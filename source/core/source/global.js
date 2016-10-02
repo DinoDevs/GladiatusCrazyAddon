@@ -1595,11 +1595,8 @@ var gca_global = {
 				}
 
 				// Inject Overview Link
-				this.convertMenu.addTabs(overview, overview_active, [
-					{href : gca_getPage.link({"mod":"overview","submod":"stats"}), img : {
-						src : "img/ui/icon_highscore.gif",
-						style : "width:15px;margin-top:6px;"
-					}},
+				this.convertMenu.addTabs("overview", overview, overview_active, [
+					{href : gca_getPage.link({"mod":"overview","submod":"stats"}), img : {style : 'background: center no-repeat url(img/ui/icon_highscore.gif);height: 26px;'}},
 					{text : 'X', href : gca_getPage.link({"mod":"overview","doll":"2"})},
 					{text : 'I', href : gca_getPage.link({"mod":"overview","doll":"3"})},
 					{text : 'II', href : gca_getPage.link({"mod":"overview","doll":"4"})},
@@ -1614,7 +1611,7 @@ var gca_global = {
 				this.convertMenu.addPlus(pantheon, pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
 
 				// Inject Guild Link
-				this.convertMenu.addTabs(guild, guild_active, [
+				this.convertMenu.addTabs("guild", guild, guild_active, [
 					{text : '\u265C', href : gca_getPage.link({"mod":"guild"})},
 					{text : '\uD83D\uDD27', href : gca_getPage.link({"mod":"guild","submod":"admin"})},
 					{text : '\uD83C\uDFF0', href : gca_getPage.link({"mod":"guild","submod":"buildings"})},
@@ -1644,7 +1641,7 @@ var gca_global = {
 						}
 						// Inject Market Link
 						if(market){
-							this.convertMenu.addTabs(market, market_active, [
+							this.convertMenu.addTabs("market", market, market_active, [
 								{href : gca_getPage.link({"mod":"market","f":"7","s":"p"}), img : {class : "item-i-7-2", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"11","s":"p"}), img : {class : "item-i-12-8", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"12","s":"p"}), img : {class : "item-i-11-7", style : "margin:-2px;"}},
@@ -1684,7 +1681,7 @@ var gca_global = {
 				},
 
 				// Add a back Tab
-				addTabs : function(menu, active, links){
+				addTabs : function(name, menu, active, links){
 					// Front Tab
 					var frontTab = document.createElement("div");
 					frontTab.className = "advanced_menu_entry";
@@ -1724,17 +1721,24 @@ var gca_global = {
 					a.className = "advanced_menu_shift";
 					a.textContent = "+";
 					a.addEventListener('click',function(){
-						if(backTab.style.display=='none'){
+						if(backTab.style.display == 'none'){
 							jQuery(menu).hide();
 							jQuery(backTab).show();
+							gca_data.section.set("advanced-menu", name + "-tab", true);
 						}
 						else{
 							jQuery(backTab).hide();
 							jQuery(menu).show();
+							gca_data.section.set("advanced-menu", name + "-tab", false);
 						}
 					},false);
 					frontTab.appendChild(a);
 					backLinks.push(a);
+
+					if(gca_data.section.get("advanced-menu", name + "-tab", false)){
+						jQuery(menu).hide();
+						jQuery(backTab).show();
+					}
 
 					return backLinks;
 				}
