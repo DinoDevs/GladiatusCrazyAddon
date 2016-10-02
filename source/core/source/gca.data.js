@@ -330,8 +330,6 @@ gca_options.data = {
 		"food_life_gain" : true,
 		// Show best food to consume
 		"best_food" : true,
-		// Overview bag manager
-		"bag_manager" : true,
 		// Daily Bonus Log
 		"daily_bonus_log" : true,
 		// Show more statistics
