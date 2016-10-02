@@ -1,0 +1,258 @@
+/*
+ * Addon Guild Jail Script
+ * Author: DarkThanos, GreatApo
+ */
+
+// Guild Jail
+var gca_guild_jail = {
+	inject : function(){
+		// Improve Layout
+		(gca_options.bool("guild","jail_layout") && 
+			this.layout.improve());
+	},
+
+	// Layout Improvements
+	layout : {
+		// Jail Boss Database
+		jail_dataBase : {
+			"10" : { name : "King Gustavo", image : "img/npc/0/2_1.jpg"},
+			"15" : { name : "Flavio Gnaeus Aurelius", image : "img/npc/0/2_13.jpg"},
+			"20" : { name : "Oribas", image : "img/npc/2/1_21.jpg"},
+			"25" : { name : "Helldog", image : "img/npc/0/2_7.jpg"},
+			"30" : { name : "Themba", image : "img/npc/1/2_3.jpg"},
+			"35" : { name : "Shetu",  image : "img/npc/1/2_14.jpg"},
+			"40" : { name : "Pyro", image : "img/npc/1/2_1.jpg"},
+			"45" : { name : "Nithotep", image : "img/npc/1/2_6.jpg"},
+			"50" : { name : "Lord Aesteron", image : "img/npc/0/2_8.jpg"},
+			"55" : { name : "Oak Lord", image : "img/npc/2/2_4.jpg"},
+			"60" : { name : "Homo Nautilus", image : "img/npc/0/2_4.jpg"},
+			"70" : { name : "Nekromar", image : "img/npc/0/2_5.jpg"},
+			"73" : { name : "Trakovar", image : "img/npc/0/2_14.jpg"},
+			"78" : { name : "Captian Kratos", image : "img/npc/0/2_12.jpg"},
+			"80" : { name : "Gernasch", image : "img/npc/0/2_2.jpg"},
+			"83" : { name : "Fenrirson", image : "img/npc/0/2_15.jpg"},
+			"88" : { name : "Zagrash", image : "img/npc/0/2_6.jpg"},
+			"90" : {
+				"Papa" : {name : "Papa Sasama", image : "img/npc/1/2_2.jpg"},
+				"Frank" : {name : "Frank N. Stein", image : "img/npc/2/2_3.jpg"}
+			},
+			"96" : { name : "Shetu bin Seth", image : "img/npc/1/2_16.jpg"},
+			"100" : { name : "Corruption", image : "img/npc/1/2_8.jpg"},
+			"102" : { name : "Akhekhu", image : "img/npc/1/2_9.jpg"},
+			"112" : { name : "Wrath Mountain", image : "img/npc/2/2_5.jpg"},
+			"122" : { name : "Valerius Filius Gustavo", image : "img/npc/2/2_8.jpg"},
+			"130" : { name : "Dracolich", image : "img/npc/2/1_32.jpg"}
+		},
+		
+		improve : function(){
+			if(!document.getElementById('content').getElementsByTagName('p')[1]) return;
+			
+			//Get Jail's cells number
+			var jailCells = document.getElementById('content').getElementsByTagName('p')[1].textContent.match(/\d+/i);
+
+			//Set an array for the prisoners
+			var prisoners = new Array();
+
+			//Count prisoners' rows
+			var jailTableRows = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr').length;
+			
+			// If you have the rights to free monsters
+			var admin = ( document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[3].getElementsByTagName('a')[1] )?true:false;
+			if(!admin) document.getElementById('content').className('noJailRights');
+			
+			//For every prisoner row
+			for(var i=1;i<jailTableRows;i++){
+				//Get prisoner's info
+				var name = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[0].textContent;
+				var lvl = parseInt(document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[1].textContent.match(/\d+/i));
+				var number = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[2].textContent.match(/\d+/i);
+
+				//Store info on a json object
+				var info = {
+					"name" : name,
+					"lvl" : lvl,
+					"img" : "img/expedition/enemy_unknown.jpg",
+					"attack_code" :  document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[3].getElementsByTagName('a')[0].getAttribute('onclick'),
+					"attack" :  document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[3].getElementsByTagName('a')[0].textContent,
+					"free_link" : "#",
+					"free" : "-"
+				};
+
+				// If you can free monsters
+				if(admin){
+					info["free_link"] = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[3].getElementsByTagName('a')[1].href;
+					info["free"] = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[3].getElementsByTagName('a')[1].textContent;
+				}
+
+				// Update info using the database
+				// If matching data, updata
+				if(this.jail_dataBase[lvl] && this.jail_dataBase[lvl].name){
+					// Update prioner image
+					info['img'] = this.jail_dataBase[lvl].image;
+				// If data have many prisoners
+				}else if(this.jail_dataBase[lvl]){
+					// Try to find the prisoner based on his name
+					for(var label in this.jail_dataBase[lvl]){
+						// if name match
+						if( name.indexOf(label)>=0 ){
+							// Update prioner image
+							info['img'] = this.jail_dataBase[lvl][label].image;
+						}
+					}
+				}
+				//Insert prisoners of the row in the array
+				for(var j=0;j<number;j++){
+					prisoners.push(info);
+				}
+			}
+			
+			var swapped;
+			do{
+				swapped = false;
+				for (var i=0; i < prisoners.length-1; i++) {
+					if (prisoners[i].lvl > prisoners[i+1].lvl) {
+						var temp = prisoners[i];
+						prisoners[i] = prisoners[i+1];
+						prisoners[i+1] = temp;
+						swapped = true;
+					}
+				}
+			}while(swapped);
+			
+			//Built prisoners' cells
+			for(var i=0;i<prisoners.length;i++){
+				let div = document.createElement('div');
+				div.className = 'expedition_box';
+				document.getElementById('content').appendChild(div);
+				
+				let div2 = document.createElement('div');
+				div.appendChild(div2);
+				
+				let div3 = document.createElement('div');
+				div3.className = 'expedition_name';
+				div3.textContent = prisoners[i].name;
+				div2.appendChild(div3);
+				
+				div3 = document.createElement('div');
+				div3.className = 'expedition_picture';
+				div3.setAttribute('data-tooltip','[[["'+prisoners[i].name+'","white"]]]');
+				div2.appendChild(div3);
+				
+				let img = document.createElement('img');
+				img.src = prisoners[i].img;
+				img.style = 'background-color:black;width:123px;height:142px;';
+				div3.appendChild(img);
+				
+				let div4 = document.createElement('div');
+				div4.className = 'jail_picture_cell pngfic';
+				div3.appendChild(div4);
+				
+				div3 = document.createElement('div');
+				div3.className = 'jail_level_number';
+				div3.style = 'background-image: url(img/interface/new.gif);';
+				div3.setAttribute('data-tooltip','[[["'+prisoners[i].lvl+'","white"]]]');
+				div3.textContent = prisoners[i].lvl;
+				div2.appendChild(div3);
+				
+				div2 = document.createElement('div');
+				div.appendChild(div2);
+				
+				let button = document.createElement('button');
+				button.type = 'button';
+				button.className = 'expedition_button';
+				button.textContent = prisoners[i].attack;
+				button.setAttribute('onclick', prisoners[i].attack_code);
+				button.style = 'margin-top:5px;';
+				div2.appendChild(button);
+				
+				let a = document.createElement('a');
+				a.href = prisoners[i].free_link;
+				a.style = ((admin)?"":"display:none;");
+				div2.appendChild(a);
+				
+				button = document.createElement('button');
+				button.type = 'button';
+				button.className = 'expedition_button';
+				button.textContent = prisoners[i].free;
+				button.style = 'margin-top:5px;';
+				a.appendChild(button);
+			}
+
+			//Hide old prisoners layout
+			document.getElementById('content').getElementsByTagName('div')[0].style = 'display:none';
+			document.getElementById('content').className = 'gca-jail-content';
+			//Calculate empty cells
+			jailCells-=prisoners.length;
+
+			//Built empty cells
+			for(var i=0;i<jailCells;i++){				
+				let div = document.createElement('div');
+				div.className = 'expedition_box';
+				document.getElementById('content').appendChild(div);
+				
+				let div2 = document.createElement('div');
+				div.appendChild(div2);
+				
+				let div3 = document.createElement('div');
+				div3.className = 'expedition_name';
+				div3.textContent = '#'+(prisoners.length+i+1);
+				div2.appendChild(div3);
+				
+				div3 = document.createElement('div');
+				div3.className = 'expedition_picture';
+				div2.appendChild(div3);
+				
+				let img = document.createElement('img');
+				img.src = 'img/costumes/background.jpg';
+				img.style = 'background-color:black;width:123px;height:142px;';
+				div3.appendChild(img);
+				
+				let div4 = document.createElement('div');
+				div4.className = 'jail_picture_cell pngfic';
+				div3.appendChild(div4);
+				
+				div2 = document.createElement('div');
+				div.appendChild(div2);
+				
+				let button = document.createElement('button');
+				button.type = 'button';
+				button.className = 'expedition_button_disabled';
+				button.textContent = '-';
+				button.setAttribute('disabled', 'disabled');
+				button.style = 'margin-top:5px;';
+				div2.appendChild(button);
+				
+				button = document.createElement('button');
+				button.type = 'button';
+				button.className = 'expedition_button_disabled';
+				button.textContent = '-';
+				button.setAttribute('disabled', 'disabled');
+				button.style = 'margin-top:5px;'+((admin)?'':'display:none;');
+				div2.appendChild(button);
+			}
+			//End of jail improvement
+			
+		}
+	}
+};
+
+(function(){
+	// On page load
+	var loaded = false;
+	var fireLoadEvent = function(){
+		if(loaded) return;
+		loaded = true;
+		// Call handler
+		gca_guild_jail.inject();
+	}
+	if(document.readyState == "complete" || document.readyState == "loaded"){
+		fireLoadEvent();
+	}else{
+		window.addEventListener('DOMContentLoaded', function(){
+			fireLoadEvent();
+		}, true);
+		window.addEventListener('load', function(){
+			fireLoadEvent();
+		}, true);
+	}
+})();

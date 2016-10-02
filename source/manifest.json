@@ -1,0 +1,44 @@
+﻿{
+	"name": "Gladiatus Crazy Add On",
+	"short_name": "GCA",
+	"version": "4.0.0",
+	"description": "Improve your gladiatus experience!",
+	"homepage_url": "http://gladiatuscrazyaddon.tk/",
+	"minimum_chrome_version": "18.0",
+
+	"icons": {
+		"16": "icons/icon_16.png",
+		"48": "icons/icon_48.png",
+		"128": "icons/icon_128.png"
+	},
+
+	"content_scripts": [
+		{
+			"matches": [
+				"http://*.gladiatus.gameforge.com/game/index.php*",
+				"https://*.gladiatus.gameforge.com/game/index.php*"
+			],
+			"js": [
+				"core/info.js",
+				"core/locale.js",
+				"core/manager.js",
+				"core/inject.js",
+				"init.js"
+			],
+			"run_at": "document_start",
+			"all_frames": true
+		}
+	],
+
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+
+	"web_accessible_resources": [
+		"core/locale/*",
+		"core/resources/*",
+		"core/source/*"
+	],
+	"manifest_version": 2
+}
