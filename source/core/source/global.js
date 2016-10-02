@@ -119,15 +119,16 @@ var gca_global = {
 			serverBosses : false
 		};
 		if(!this.isTraveling){
-			// Get submenu links
+			// Get first's submenu links
 			let links = document.getElementById('submenu1').getElementsByTagName('a');
 			// Check for "Dice roll" event
 			if(links[0].className.match('glow') && links[0].href.match('mod=craps')){
 				this.isEvent.craps = true;
 			}
+			// Get first's submenu links
+			let links = document.getElementById('submenu2').getElementsByTagName('a');
 			// Check for "Server Bosses" event
-			// TODO : fix mod match
-			if(links[links.length-2].href.match('mod=123123')){
+			if(links[links.length-1].className.match('glow') && links[links.length-1].href.match('submod=serverQuest')){
 				this.isEvent.serverBosses = true;
 			}
 		}
