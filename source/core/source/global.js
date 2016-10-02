@@ -126,7 +126,7 @@ var gca_global = {
 				this.isEvent.craps = true;
 			}
 			// Get first's submenu links
-			let links = document.getElementById('submenu2').getElementsByTagName('a');
+			links = document.getElementById('submenu2').getElementsByTagName('a');
 			// Check for "Server Bosses" event
 			if(links[links.length-1].className.match('glow') && links[links.length-1].href.match('submod=serverQuest')){
 				this.isEvent.serverBosses = true;
@@ -1650,9 +1650,6 @@ var gca_global = {
 								{href : gca_getPage.link({"mod":"market","f":"12","s":"p"}), img : {class : "item-i-11-7", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"18","s":"p"}), img : {class : "item-i-18-49", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"20","s":"p"}), img : {class : "item-i-20-11", style : "margin:-2px;"}}
-								// Old Links,
-								//{href : gca_getPage.link({"mod":"market","s":"p"}), img : {style : 'background: center no-repeat url("img/ui/icon_gold.gif");height: 26px;width: 29px;'}},
-								//{href : gca_getPage.link({"mod":"market","s":"ld"}), img : {style : 'background: center no-repeat url("img/ui/icon_level.gif");height: 26px;width: 29px;'}}
 							]);
 						}
 					}
@@ -2508,7 +2505,6 @@ var gca_global = {
 
 		// Notifications Events
 		notify_me : {
-			// gca_options.bool("global","notify_new_guild_application")
 			// Check for guild application
 			new_guild_application : function(){
 				// Get saved data
