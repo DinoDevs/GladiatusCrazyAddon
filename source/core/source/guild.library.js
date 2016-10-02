@@ -14,38 +14,66 @@ var gca_guild_library = {
 	// Layout Improvements
 	layout : {
 		improve : function(){
-			if(!document.getElementById('content').getElementsByClassName('title2_box')[0])
+			// If library container
+			if(!document.getElementById('content').getElementsByClassName('title2_box').length)
 				return;
 			
-			document.getElementById('content').getElementsByClassName('title2_box')[0].id = 'gca-library-container';
-			var guildGold = parseInt(document.getElementById('gca-library-container').parentNode.getElementsByClassName('title_box')[2].getElementsByClassName('span_right')[0].textContent.replace(/\./g,''));
+			// Save container
+			var container = document.getElementById('content').getElementsByClassName('title2_box')[0];
+			// Add an id to it
+			container.id = 'gca-library-container';
+
+			// Get guild gold
+			var guildGold = container.parentNode.getElementsByClassName('title_box')[2].getElementsByClassName('span_right')[0].textContent;
+			guildGold = parseInt(guildGold.replace(/\./g,''));
 			
-			document.getElementById('gca-library-container').getElementsByTagName('tr')[0].getElementsByTagName('td')[4].style = 'width: 15%;';
-				
-			for(let i=1;i<document.getElementById('gca-library-container').getElementsByTagName('tr').length;i++){
-				document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[4].getElementsByTagName('input')[0].value = '';
-				document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[4].getElementsByTagName('input')[1].value = '';
-				document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[4].getElementsByTagName('input')[1].className = 'library_button_delete';
-				let recepGold = document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[1].textContent.replace(/\./g,'').match(/(\d+)/)[1];
-				if(document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[3].textContent!='---' || recepGold>guildGold){
-					document.getElementById('gca-library-container').getElementsByTagName('tr')[i].style = 'opacity:0.7;';
-					document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[4].getElementsByTagName('input')[0].className = 'library_button_disabled';
-					if(recepGold>guildGold)
-						document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[1].style = 'color:red;';
-				}else{
-					document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[4].getElementsByTagName('input')[0].className = 'library_button_enable';
+			// Get recipes
+			var recipes = container.getElementsByTagName('tr');
+			// Header style fix
+			recipes[0].getElementsByTagName('td')[4].style = 'width: 15%;';
+			
+			// For each recipe
+			for (var i = recipes.length - 1; i >= 1; i--) {
+				// Fix buttons
+				recipes[i].getElementsByTagName('td')[4].getElementsByTagName('input')[0].value = '';
+				recipes[i].getElementsByTagName('td')[4].getElementsByTagName('input')[1].value = '';
+				recipes[i].getElementsByTagName('td')[4].getElementsByTagName('input')[1].className = 'library_button_delete';
+
+				// Get recipe gold
+				let recepGold = recipes[i].getElementsByTagName('td')[1].textContent.replace(/\./g,'').match(/(\d+)/)[1];
+
+				// If not enought gold or is active
+				if(recipes[i].getElementsByTagName('td')[3].textContent != '---' || recepGold > guildGold){
+					// Disable recipe
+					recipes[i].style = 'opacity:0.7;';
+					recipes[i].getElementsByTagName('td')[4].getElementsByTagName('input')[0].className = 'library_button_disabled';
+
+					// No gold
+					if(recepGold > guildGold)
+						recipes[i].getElementsByTagName('td')[1].style = 'color:red;';
 				}
+
+				// You can activate this recipe
+				else{
+					recipes[i].getElementsByTagName('td')[4].getElementsByTagName('input')[0].className = 'library_button_enable';
+				}
+
+				// Get recipe tooltip
+				let tooltip = JSON.parse(recipes[i].getElementsByTagName('div')[1].dataset.tooltip)[0];
+
+				// Get bonus
+				let bonus = tooltip[1][0].match(/\+\d+.*/)[0];
+				recipes[i].getElementsByTagName('td')[2].textContent = bonus +' ('+(recipes[i].getElementsByTagName('td')[2].textContent)+')';
 				
-				document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[2].textContent = JSON.parse('["'+(document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('img')[0].getAttribute('data-tooltip').match(/(\+\d+ [^"]+)"/)[1])+'"]')+' ('+(document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('td')[2].textContent)+')';
-				
+				// Show level
 				let div = document.createElement('div');
 				div.className = 'library_level_number';
 				div.style = 'background-image: url(img/interface/new.gif);';
-				div.textContent = document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('img')[0].getAttribute('data-tooltip').match(/(\d+) \\\//)[1];
-				document.getElementById('gca-library-container').getElementsByTagName('tr')[i].getElementsByTagName('div')[0].appendChild(div);
-				
-				
+				console.log(tooltip[3][0]);
+				div.textContent = tooltip[3][0].match(/(\d+)\s*\//)[1];
+				recipes[i].getElementsByTagName('div')[0].appendChild(div);
 			}
+
 		}
 	}
 };
