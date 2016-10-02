@@ -126,59 +126,6 @@ var gca_guild_bank = {
 				td.textContent = "(" + (Math.round(cell[2].dataset.donation * 1000 / donations) / 10) + "%)"
 				cell[3].parentNode.insertBefore(td, cell[3]);
 			}
-			
-			/*
-			
-			// Total money
-			$dark('#content div[2]').addHtml(' <font style="float:right;padding-right:10px;">('+gca_locale.get("total")+': '+subFuncts.strings.insertDots(sum)+' <img src="img/res2.gif" align="absmiddle" border="0">)</font>');
-			
-			// Donated percent amount
-			var hisMoney = 0;
-			var percent = 0;
-			var othersPerCent = 100;
-			var name='';
-			for(i=1;i<num;i++){
-				hisMoney=$dark('#content table[0] tr['+i+'] td[2]').html().replace(/\./gi,'')*1;
-				percent=Math.round((hisMoney/sum)*1000)/10;
-				$dark('#content table[0] tr['+i+'] td[2]').addHtml(' <b>('+percent+'%)</b>');
-			}
-			
-			// Donatations Log Changes
-			var gold;var time;var x;var day=null;
-			var i=1;
-			while($dark('#content table[1] tr['+(i)+']')){
-				//Merge same next donators
-				time=$dark('#content table[1] tr['+(i)+'] td[3]').html().match(/(\w\w\w, \d+\.\d+\.\d+)/)[0];
-				if(day!=time){
-					day=time;
-					$dark('*tr').class('reports_day_row').html('<td colspan="4">'+day+'</td>').beforeFrom($dark('#content table[1] tr['+(i)+']'));
-					//alert(day);
-				}else{
-					gold="<tr style=\\'color:white; font-weight: bold; font-size:9pt\\' colspan=\\'2\\' nowrap=\\'nowrap\\'><td>"+$dark('#content table[1] tr['+(i)+'] td[2]').html()+' <img src="img/res2.gif" align="absmiddle" border="0"></td></tr>';
-					time="<tr style=\\'color:white; font-weight: bold; font-size:9pt\\' colspan=\\'2\\' nowrap=\\'nowrap\\'><td>"+$dark('#content table[1] tr['+(i)+'] td[3]').html().match(/(\d+:\d+:\d+)/)[0]+"</td></tr>";
-					x=0;
-					if($dark('#content table[1] tr['+(i+1)+']')){
-						while($dark('#content table[1] tr['+i+'] td[0]') && $dark('#content table[1] tr['+(i+1)+'] td[0]') && x<=50){
-							if($dark('#content table[1] tr['+i+'] td[0]').html()==$dark('#content table[1] tr['+(i+1)+'] td[0]').html()){
-								gold+="<tr style=\\'color:white; font-weight: bold; font-size:9pt\\' colspan=\\'2\\' nowrap=\\'nowrap\\'><td>"+$dark('#content table[1] tr['+(i+1)+'] td[2]').html()+' <img src="img/res2.gif" align="absmiddle" border="0"></td></tr>';
-								time+="<tr style=\\'color:white; font-weight: bold; font-size:9pt\\' colspan=\\'2\\' nowrap=\\'nowrap\\'><td>"+$dark('#content table[1] tr['+(i+1)+'] td[3]').html().match(/(\d+:\d+:\d+)/)[0]+"</td></tr>";
-								$dark('#content table[1] tr['+(i)+'] td[2]').html(subFuncts.strings.insertDots( parseInt($dark('#content table[1] tr['+(i)+'] td[2]').html().replace(/\./g,''))+parseInt($dark('#content table[1] tr['+(i+1)+'] td[2]').html().replace(/\./g,'')) ));
-								$dark('#content table[1] tr['+(i+1)+']').remove();
-							}else{break;}
-							x++;
-						}
-					}
-					
-					if(x>0){
-						$dark('#content table[1] tr['+(i)+'] td[2]').addHtml(' <b>(+)</b>').attr('onmouseover',"return escape('<table cellspacing=2 cellpadding=2 valign=middle style=\\'width:100px;text-align:right;\\' class=\\'tooltipBox\\'>"+gold+"</table>')");
-						$dark('#content table[1] tr['+(i)+'] td[3]').addHtml(' <b>(+)</b>').attr('onmouseover',"return escape('<table cellspacing=2 cellpadding=2 valign=middle style=\\'width:190px;\\' class=\\'tooltipBox\\'>"+time+"</table>')");
-					}
-					//Remove day, display only time
-					$dark('#content table[1] tr['+(i)+'] td[3]').html($dark('#content table[1] tr['+(i)+'] td[3]').html().replace(/\w\w\w, \d+\.\d+\.\d+ - /,''));
-				}
-				i++
-			}
-			*/
 
 		}
 
