@@ -69,7 +69,6 @@ var gca_guild_library = {
 				let div = document.createElement('div');
 				div.className = 'library_level_number';
 				div.style = 'background-image: url(img/interface/new.gif);';
-				console.log(tooltip[3][0]);
 				div.textContent = tooltip[3][0].match(/(\d+)\s*\//)[1];
 				recipes[i].getElementsByTagName('div')[0].appendChild(div);
 			}
