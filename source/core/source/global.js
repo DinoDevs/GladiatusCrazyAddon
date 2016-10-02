@@ -1843,11 +1843,11 @@ var gca_global = {
 				// Arena
 				this.arenaTimeElement.arena.textContent = gca_tools.time.msToHMS_String((this.timer.arena > 0) ? this.timer.arena : 0);
 				// Grouparena
-				this.arenaTimeElement.grouparena.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena) ? this.timer.grouparena : 0);
+				this.arenaTimeElement.grouparena.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena > 0) ? this.timer.grouparena : 0);
 				// Arena xs
-				this.arenaTimeElement.arena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.arena_xs) ? this.timer.arena_xs : 0);
+				this.arenaTimeElement.arena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.arena_xs > 0) ? this.timer.arena_xs : 0);
 				// Grouparena xs
-				this.arenaTimeElement.grouparena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena_xs) ? this.timer.grouparena_xs : 0);
+				this.arenaTimeElement.grouparena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena_xs > 0) ? this.timer.grouparena_xs : 0);
 				
 				// 1 sec passed
 				this.timer.arena = this.timer.arena + 1000;
