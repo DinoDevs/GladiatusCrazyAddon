@@ -119,15 +119,16 @@ var gca_global = {
 			serverBosses : false
 		};
 		if(!this.isTraveling){
-			// Get submenu links
+			// Get first's submenu links
 			let links = document.getElementById('submenu1').getElementsByTagName('a');
 			// Check for "Dice roll" event
 			if(links[0].className.match('glow') && links[0].href.match('mod=craps')){
 				this.isEvent.craps = true;
 			}
+			// Get first's submenu links
+			links = document.getElementById('submenu2').getElementsByTagName('a');
 			// Check for "Server Bosses" event
-			// TODO : fix mod match
-			if(links[links.length-2].href.match('mod=123123')){
+			if(links[links.length-1].className.match('glow') && links[links.length-1].href.match('submod=serverQuest')){
 				this.isEvent.serverBosses = true;
 			}
 		}
@@ -1594,11 +1595,8 @@ var gca_global = {
 				}
 
 				// Inject Overview Link
-				this.convertMenu.addTabs(overview, overview_active, [
-					{href : gca_getPage.link({"mod":"overview","submod":"stats"}), img : {
-						src : "img/ui/icon_highscore.gif",
-						style : "width:15px;margin-top:6px;"
-					}},
+				this.convertMenu.addTabs("overview", overview, overview_active, [
+					{href : gca_getPage.link({"mod":"overview","submod":"stats"}), img : {style : 'background: center no-repeat url(img/ui/icon_highscore.gif);height: 26px;'}},
 					{text : 'X', href : gca_getPage.link({"mod":"overview","doll":"2"})},
 					{text : 'I', href : gca_getPage.link({"mod":"overview","doll":"3"})},
 					{text : 'II', href : gca_getPage.link({"mod":"overview","doll":"4"})},
@@ -1613,7 +1611,7 @@ var gca_global = {
 				this.convertMenu.addPlus(pantheon, pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
 
 				// Inject Guild Link
-				this.convertMenu.addTabs(guild, guild_active, [
+				this.convertMenu.addTabs("guild", guild, guild_active, [
 					{text : '\u265C', href : gca_getPage.link({"mod":"guild"})},
 					{text : '\uD83D\uDD27', href : gca_getPage.link({"mod":"guild","submod":"admin"})},
 					{text : '\uD83C\uDFF0', href : gca_getPage.link({"mod":"guild","submod":"buildings"})},
@@ -1643,15 +1641,12 @@ var gca_global = {
 						}
 						// Inject Market Link
 						if(market){
-							this.convertMenu.addTabs(market, market_active, [
+							this.convertMenu.addTabs("market", market, market_active, [
 								{href : gca_getPage.link({"mod":"market","f":"7","s":"p"}), img : {class : "item-i-7-2", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"11","s":"p"}), img : {class : "item-i-12-8", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"12","s":"p"}), img : {class : "item-i-11-7", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"18","s":"p"}), img : {class : "item-i-18-49", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"20","s":"p"}), img : {class : "item-i-20-11", style : "margin:-2px;"}}
-								// Old Links,
-								//{href : gca_getPage.link({"mod":"market","s":"p"}), img : {style : 'background: center no-repeat url("img/ui/icon_gold.gif");height: 26px;width: 29px;'}},
-								//{href : gca_getPage.link({"mod":"market","s":"ld"}), img : {style : 'background: center no-repeat url("img/ui/icon_level.gif");height: 26px;width: 29px;'}}
 							]);
 						}
 					}
@@ -1686,7 +1681,7 @@ var gca_global = {
 				},
 
 				// Add a back Tab
-				addTabs : function(menu, active, links){
+				addTabs : function(name, menu, active, links){
 					// Front Tab
 					var frontTab = document.createElement("div");
 					frontTab.className = "advanced_menu_entry";
@@ -1726,17 +1721,24 @@ var gca_global = {
 					a.className = "advanced_menu_shift";
 					a.textContent = "+";
 					a.addEventListener('click',function(){
-						if(backTab.style.display=='none'){
+						if(backTab.style.display == 'none'){
 							jQuery(menu).hide();
 							jQuery(backTab).show();
+							gca_data.section.set("advanced-menu", name + "-tab", true);
 						}
 						else{
 							jQuery(backTab).hide();
 							jQuery(menu).show();
+							gca_data.section.set("advanced-menu", name + "-tab", false);
 						}
 					},false);
 					frontTab.appendChild(a);
 					backLinks.push(a);
+
+					if(gca_data.section.get("advanced-menu", name + "-tab", false)){
+						jQuery(menu).hide();
+						jQuery(backTab).show();
+					}
 
 					return backLinks;
 				}
@@ -1841,11 +1843,11 @@ var gca_global = {
 				// Arena
 				this.arenaTimeElement.arena.textContent = gca_tools.time.msToHMS_String((this.timer.arena > 0) ? this.timer.arena : 0);
 				// Grouparena
-				this.arenaTimeElement.grouparena.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena) ? this.timer.grouparena : 0);
+				this.arenaTimeElement.grouparena.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena > 0) ? this.timer.grouparena : 0);
 				// Arena xs
-				this.arenaTimeElement.arena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.arena_xs) ? this.timer.arena_xs : 0);
+				this.arenaTimeElement.arena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.arena_xs > 0) ? this.timer.arena_xs : 0);
 				// Grouparena xs
-				this.arenaTimeElement.grouparena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena_xs) ? this.timer.grouparena_xs : 0);
+				this.arenaTimeElement.grouparena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena_xs > 0) ? this.timer.grouparena_xs : 0);
 				
 				// 1 sec passed
 				this.timer.arena = this.timer.arena + 1000;
@@ -2507,7 +2509,6 @@ var gca_global = {
 
 		// Notifications Events
 		notify_me : {
-			// gca_options.bool("global","notify_new_guild_application")
 			// Check for guild application
 			new_guild_application : function(){
 				// Get saved data
