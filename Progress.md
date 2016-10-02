@@ -56,9 +56,6 @@ Progess on Version 4.0.0
 ✖		Work / Pray / Traveling, The exact finish time (date-time) is shown next to remaining time 
 
 
-✖		Post new drops OR post them on every report
-
-
 • Overview
 ✔		Resolve overview (get dol etc)
 ✖		Eat/food features
@@ -260,6 +257,7 @@ Progess on Version 4.0.0
 ✖		Gather drop information
 ✖		Gather stats
 ✖		Show battle stances next to theoretical
+✖		Post new drops ?
 
 
 • Packages
