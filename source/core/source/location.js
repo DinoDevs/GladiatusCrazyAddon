@@ -135,9 +135,9 @@ var gca_location = {
 					enemy = document.getElementsByClassName('expedition_picture')[i].getElementsByTagName('img')[0].getAttribute('src').match(/img\/(npc|expedition)\/([^.]+)\.jpg/i)[2];
 					//console.log(enemy);
 					if(this.drops[enemy] && this.drops[enemy][0] && this.drops[enemy][1]){
-						document.getElementsByClassName('expedition_picture')[i].innerHTML += '<img src="http://'+window.location.host+'/game/img/item/18_'+this.drops[enemy][0]+'.gif" class="enemyDrop" title="If material is droped, 45% chance"><img src="http://'+window.location.host+'/game/img/item/18_'+this.drops[enemy][1]+'.gif" title="If material is droped, 25% chance" class="enemyDrop enemyDrop2">';
+						document.getElementsByClassName('expedition_picture')[i].innerHTML += '<div class="item-i-18-'+this.drops[enemy][0]+' enemyDrop" title="If material is droped, 45% chance"></div><div title="If material is droped, 25% chance" class="item-i-18-'+this.drops[enemy][1]+' enemyDrop enemyDrop2"></div>';
 					}else if(this.drops[enemy] && this.drops[enemy][0]){
-						document.getElementsByClassName('expedition_picture')[i].innerHTML += '<img src="http://'+window.location.host+'/game/img/item/18_'+this.drops[enemy][0]+'.gif" class="enemyDrop enemyDropOnly1" title="If material is droped, 70% chance">';
+						document.getElementsByClassName('expedition_picture')[i].innerHTML += '<div class="item-i-18-'+this.drops[enemy][0]+' enemyDrop enemyDropOnly1" title="If material is droped, 70% chance"></div>';
 					}
 					i++;
 				}

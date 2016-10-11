@@ -726,7 +726,7 @@
 	.gca-pray-buff{border: 1px solid #FEC046;border-radius: 100%;width: 32px;height: 32px;text-align: center;line-height: 32px;font-size: 2em;background-color: #C9AE79;background-position: center;background-repeat: no-repeat;color: #930006!important;box-shadow: 0px 0px 3px black;float:left;margin-top:20px;text-decoration:none!important;}
 	
 /* Expendition Drops */
-	.enemyDrop{border: 1px solid #670804;margin-top: -38px;background: rgba(255, 255, 255, 0.6);border-radius: 100%;margin-left: 27px;}
+	.enemyDrop{border: 1px solid #670804;margin-top: -38px;background-color: rgba(255, 255, 255, 0.6);border-radius: 100%;margin-left: 27px;position: absolute;}
 	.gca_rtl .enemyDrop{margin-left: auto;margin-right: 27px;}
 	.enemyDrop2{margin-left: 65px;}
 	.gca_rtl .enemyDrop2{margin-left: auto;margin-right: 65px;}
