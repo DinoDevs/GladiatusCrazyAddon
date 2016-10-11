@@ -152,9 +152,9 @@ var gca_tools = {
 				return "white";
 			if(color.match("lime"))
 				return "green";
-			if(color.match("#E303E0"))
-				return "blue";
 			if(color.match("#5159F7"))
+				return "blue";
+			if(color.match("#E303E0"))
 				return "purple";
 			if(color.match("#FF6A00"))
 				return "orange";
