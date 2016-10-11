@@ -738,11 +738,19 @@
 	.gca_achivements_styling .achievement_description_box{left: 0;}
 
 /* Item Shadow */
+	.do-item-shadow .item-i-white{filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.4));}
+	.do-item-shadow .item-i-green{filter: drop-shadow(1px 1px 1px rgba(0,255,0,0.3)) drop-shadow( 1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,255,0,0.3));}
+	.do-item-shadow .item-i-blue{filter: drop-shadow(1px 1px 1px rgba(81,89,247,0.4)) drop-shadow(1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px 1px 1px rgba(81,89,247,0.4));}
+	.do-item-shadow .item-i-purple{filter: drop-shadow(1px 1px 1px rgba(227,3,224,0.4)) drop-shadow(1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px 1px 1px rgba(227,3,224,0.4));}
+	.do-item-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,106,0,0.4));}
+	.do-item-shadow .item-i-red{filter: drop-shadow(1px 1px 1px rgba(255,0,0,0.4)) drop-shadow(1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,0,0,0.4));}
+	/* No Opacity
 	.do-item-shadow .item-i-white{filter: drop-shadow(1px 1px 1px white) drop-shadow(1px -1px 1px white) drop-shadow(-1px -1px 1px white) drop-shadow(-1px 1px 1px white);}
 	.do-item-shadow .item-i-green{filter: drop-shadow(1px 1px 1px lime) drop-shadow( 1px -1px 1px lime) drop-shadow(-1px -1px 1px lime) drop-shadow(-1px 1px 1px lime);}
 	.do-item-shadow .item-i-blue{filter: drop-shadow(1px 1px 1px #E303E0) drop-shadow(1px -1px 1px #E303E0) drop-shadow(-1px -1px 1px #E303E0) drop-shadow(-1px 1px 1px #E303E0);}
 	.do-item-shadow .item-i-purple{filter: drop-shadow(1px 1px 1px #5159F7) drop-shadow(1px -1px 1px #5159F7) drop-shadow(-1px -1px 1px #5159F7) drop-shadow(-1px 1px 1px #5159F7);}
 	.do-item-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px #FF6A00) drop-shadow(1px -1px 1px #FF6A00) drop-shadow(-1px -1px 1px #FF6A00) drop-shadow(-1px 1px 1px #FF6A00);}
 	.do-item-shadow .item-i-red{filter: drop-shadow(1px 1px 1px #FF0000) drop-shadow(1px -1px 1px #FF0000) drop-shadow(-1px -1px 1px #FF0000) drop-shadow(-1px 1px 1px #FF0000);}
+	*/
 
 
