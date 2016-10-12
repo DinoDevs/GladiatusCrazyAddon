@@ -225,7 +225,7 @@ Progess on Version 4.0.0
 • Locations
 ✖		Hide the building's labels in city/country, guild, underworld maps
 ✖		Show buildings level in guild's map
-✖		Show enemies' materials most dropped
+✔✎		Show enemies' materials most dropped (drops changed? new drops?)
 ✖		Underword enemies interface converted to old style
 
 
