@@ -1,5 +1,4 @@
 
-Progess on Version 4.0.0
 
 
 - [ ] Global (Changes on every game page)
@@ -57,249 +56,249 @@ Progess on Version 4.0.0
 
 
 - [ ] Overview
-		- [x] Resolve overview (get dol etc)
-		- [ ] Eat/food features
-			- [ ] Food life gain
-			- [ ] Items that will give you more Life Point than you need will be transparent
-			- [ ] Food show best food
-		- [ ] Daily bonus log
-		- [ ] Show the cap values of Resilience and Block
-		- [ ] Display for each mercenary its tooltip (base stats)
-		- [ ] Mercenaries management Interface
-		- [ ] Items' shadow
-		- [ ] Save costume's properties
-		- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)
+	- [x] Resolve overview (get dol etc)
+	- [ ] Eat/food features
+		- [ ] Food life gain
+		- [ ] Items that will give you more Life Point than you need will be transparent
+		- [ ] Food show best food
+	- [ ] Daily bonus log
+	- [ ] Show the cap values of Resilience and Block
+	- [ ] Display for each mercenary its tooltip (base stats)
+	- [ ] Mercenaries management Interface
+	- [ ] Items' shadow
+	- [ ] Save costume's properties
+	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)
 
 
 - [ ] Overview Stats
-		- [x] Show more stats
-		- [x] Show graphs of stats from reports
+	- [x] Show more stats
+	- [x] Show graphs of stats from reports
 
 
-- [ ] Overview Achievements
-	- [ ] Preloading and Onload
+- [x] Overview Achievements
+	- [x] Preloading and Onload
 		- [x] Improve Layout
 
 
 - [ ] Overview Family
-		- [ ] List with other players you are interested in
+	- [ ] List with other players you are interested in
 
 
 - [ ] Pantheon Quests
-		- [x] ✎ Quests order by category (missing category icons)
-		- [x] Finished and Failed quests on top
-		- [x] Quests detailed rewards
-		- [ ] Last location indicator
-		- [x] Save timer
+	- [x] ✎ Quests order by category (missing category icons)
+	- [x] Finished and Failed quests on top
+	- [x] Quests detailed rewards
+	- [ ] Last location indicator
+	- [x] Save timer
 
 
 - [ ] Pantheon Missions
-		- [ ] ✎	Show completed missions
+	- [ ] ✎	Show completed missions
 
 
 - [ ] Pantheon Gods
-		- [ ] ✎	Layout Inprove - needed ?
-		- [ ] Recolored buttons based of each god's favor 
-		- [ ] Percent(%) of points, red color on 100%
+	- [ ] ✎	Layout Inprove - needed ?
+	- [ ] Recolored buttons based of each god's favor 
+	- [ ] Percent(%) of points, red color on 100%
 
 
 - [ ] Pantheon Mystery Box
-		- [ ] Open all
-		- [ ] Reload reward untill to find selected
-		- [ ] Calculate rewards quality
+	- [ ] Open all
+	- [ ] Reload reward untill to find selected
+	- [ ] Calculate rewards quality
 
 
 - [ ] Guild Jail Interface
-		- [x] Cells are now visible with the creatures inside
-		- [x] Creatures are now sorted by level
+	- [x] Cells are now visible with the creatures inside
+	- [x] Creatures are now sorted by level
 
 
 - [ ] Guild Library Interface: 
-		- [x] Level of each buff and what the buff do are now directly visible 
-		- [ ] Red bg and transparency for item that you can't store in library 
-		- [ ] Gold in guild bank after the use of buff is displayed in a tooltip over the buff cost 
-		- [ ] Cost per stat point of each buff is displayed in a tooltip over the buff time 
-		- [x] Some style changes (ex. enable/delete buttons) 
+	- [x] Level of each buff and what the buff do are now directly visible 
+	- [ ] Red bg and transparency for item that you can't store in library 
+	- [ ] Gold in guild bank after the use of buff is displayed in a tooltip over the buff cost 
+	- [ ] Cost per stat point of each buff is displayed in a tooltip over the buff time 
+	- [x] Some style changes (ex. enable/delete buttons) 
 
 
 - [ ] Guild Bank Interface: 
-		- [ ] Better style (Counting)
-		- [ ] Correcting the donate field code to number type 
-		- [ ] Button to add all the gold in the donate field
-		- [ ] Advanced Guild Bank Book Interface
-			- [x] The sum of donations (total) is displayed 
-			- [x] Percent of donated amount of each player 
-			- [x] Ex-guild members are hidden (click to show them) 
-			- [ ] Merge continued donations of the same player 
-			- [ ] Day separators
-			- [ ] Highlight  me
+	- [ ] Better style (Counting)
+	- [ ] Correcting the donate field code to number type 
+	- [ ] Button to add all the gold in the donate field
+	- [ ] Advanced Guild Bank Book Interface
+		- [x] The sum of donations (total) is displayed 
+		- [x] Percent of donated amount of each player 
+		- [x] Ex-guild members are hidden (click to show them) 
+		- [ ] Merge continued donations of the same player 
+		- [ ] Day separators
+		- [ ] Highlight  me
 
 
 - [ ] Guild Medic Interface 
-		- [ ] More information over your life changes 
-		- [ ] Guild's life preview page
+	- [ ] More information over your life changes 
+	- [ ] Guild's life preview page
 
 
 - [ ] Guild War Camp:
-		- [ ] More stats & better win-lost-draw icons features were implemented 
-		- [ ] Member reports features were implemented
-		- [ ] Button that shows the raided gold next to each attack 
+	- [ ] More stats & better win-lost-draw icons features were implemented 
+	- [ ] Member reports features were implemented
+	- [ ] Button that shows the raided gold next to each attack 
 
 
 - [ ] Guild Buildings:
-		- [ ] Upgrade Calculator was implemented and highly improved
+	- [ ] Upgrade Calculator was implemented and highly improved
 
 
 - [ ] Guild Mail Interface 
-		- [ ] Improved style
-		- [ ] Check / Uncheck options for each guild members group 
+	- [ ] Improved style
+	- [ ] Check / Uncheck options for each guild members group 
 
 
 - [ ] Guild Memebers List Interface
-		- [ ] Opponent Guild: Attack buttons next to each member of a guild (member list), usefull for guild wars (old type)
-		- [ ] See which members have been attacked within 75 min 
+	- [ ] Opponent Guild: Attack buttons next to each member of a guild (member list), usefull for guild wars (old type)
+	- [ ] See which members have been attacked within 75 min 
 
 
 - [ ] Guild Admin Interface
-		- [ ] Search for players with no guild, from the guild admin page 
+	- [ ] Search for players with no guild, from the guild admin page 
 
 
 - [ ] Work
-		- [ ] Interface improve
+	- [ ] Interface improve
 
 
 - [ ] Arena
-		- [ ] Order players by level on Cross Server Arenas
-		- [ ] Enemy datails (win / losses)
-		- [ ] Link to the simulator
+	- [ ] Order players by level on Cross Server Arenas
+	- [ ] Enemy datails (win / losses)
+	- [ ] Link to the simulator
 
 
 - [ ] Training
-		- [x] Show basic points bars
-		- [ ] Show stats changes on upgrade
-		- [ ] Training Cost calculator 
-		- [ ] Propose points to upgrade
-		- [ ] Show caps and cap points changes (crit, block, avoid)
-		- [ ] Double hit calculator
+	- [x] Show basic points bars
+	- [ ] Show stats changes on upgrade
+	- [ ] Training Cost calculator 
+	- [ ] Propose points to upgrade
+	- [ ] Show caps and cap points changes (crit, block, avoid)
+	- [ ] Double hit calculator
 	
 
 - [ ] Merchants
-		- [ ] Mouse click events (double click sell buy)
-		- [ ] Cross merchants item search
-		- [ ] Remember merchants tabs
-		- [ ] Items you can buy are highlighted 
+	- [ ] Mouse click events (double click sell buy)
+	- [ ] Cross merchants item search
+	- [ ] Remember merchants tabs
+	- [ ] Items you can buy are highlighted 
 
 
 - [ ] Auction
-		- [ ] Theme(s) support
-		- [ ] Colored items based on quality
-			- [ ] Background color
-			- [ ] Shadow item
-		- [ ] Items you can afford
-		- [ ] Hide your gold system / More info about prices (value compared to price) 
-		- [ ] Advance search options (Gold limit, Damage for weapons, etc) 
-		- [ ] Item Preffix search list 
-		- [ ] Item Suffix search list 
-		- [ ] More levels in the search options 
-		- [ ] Level of each item is visible (up-right corner) 
-		- [ ] Item levels you can see in auction are shown when you mouse over the (!) icon
-		- [ ] Number of Price/Value % on auction Auction (ex. "(153%)")
-		- [ ] Button announcing to guild, with a mail, the auction status
-		- [ ] Multiple bids (no refresh)
-		- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view)
-		- [ ] Display for each mercenary its tooltip when on mercenaries
+	- [ ] Theme(s) support
+	- [ ] Colored items based on quality
+		- [ ] Background color
+		- [ ] Shadow item
+	- [ ] Items you can afford
+	- [ ] Hide your gold system / More info about prices (value compared to price) 
+	- [ ] Advance search options (Gold limit, Damage for weapons, etc) 
+	- [ ] Item Preffix search list 
+	- [ ] Item Suffix search list 
+	- [ ] More levels in the search options 
+	- [ ] Level of each item is visible (up-right corner) 
+	- [ ] Item levels you can see in auction are shown when you mouse over the (!) icon
+	- [ ] Number of Price/Value % on auction Auction (ex. "(153%)")
+	- [ ] Button announcing to guild, with a mail, the auction status
+	- [ ] Multiple bids (no refresh)
+	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view)
+	- [ ] Display for each mercenary its tooltip when on mercenaries
 
 
 - [ ] Merchants
-		- [ ] Item Preffix search list
-		- [ ] Item Suffix search list
-		- [ ] More levels in the search options 
-		- [ ] Cancel all items with one button (if "load all pages" is open this will also work) 
-		- [ ] Style fixes 
-		- [ ] Load all the pages 
-		- [ ] Item levels you can see in market are shown when you mouse over the (!) icon
-		- [ ] Select the default sell duration (2h, 8h etc) in the GCA options (default 24h)
-		- [ ] Red on items that are souldbound
-		- [ ] Price per unit
+	- [ ] Item Preffix search list
+	- [ ] Item Suffix search list
+	- [ ] More levels in the search options 
+	- [ ] Cancel all items with one button (if "load all pages" is open this will also work) 
+	- [ ] Style fixes 
+	- [ ] Load all the pages 
+	- [ ] Item levels you can see in market are shown when you mouse over the (!) icon
+	- [ ] Select the default sell duration (2h, 8h etc) in the GCA options (default 24h)
+	- [ ] Red on items that are souldbound
+	- [ ] Price per unit
 
 
 - [ ] Locations
-		- [ ] Hide the building's labels in city/country, guild, underworld maps
-		- [ ] Show buildings level in guild's map
-		- [x] ✎ Show enemies' materials most dropped (drops changed? new drops?)
-		- [ ] Underword enemies interface converted to old style
+	- [ ] Hide the building's labels in city/country, guild, underworld maps
+	- [ ] Show buildings level in guild's map
+	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops?)
+	- [ ] Underword enemies interface converted to old style
 
 
 - [ ] Messages
-		- [x] Style changes
-			- [x] Guild message
-			- [x] Private message
-			- [x] Announcement
-		- [ ] Day separators 
-		- [ ] Automatic code identification
-			- [ ] Convert all URL to links
-			- [ ] Youtube videos to videos
-		- [x] Load guild battles report
-		- [ ] Icon next to Guild Master's message (or color, sth for admins too?)
-		- [ ] Auto-remove last lines of each message, if they are empty (trim messages)
-		- [ ] Warning icon and item links on auction bid messages
-		- [ ] Tab link on incomming folder
+	- [x] Style changes
+		- [x] Guild message
+		- [x] Private message
+		- [x] Announcement
+	- [ ] Day separators 
+	- [ ] Automatic code identification
+		- [ ] Convert all URL to links
+		- [ ] Youtube videos to videos
+	- [x] Load guild battles report
+	- [ ] Icon next to Guild Master's message (or color, sth for admins too?)
+	- [ ] Auto-remove last lines of each message, if they are empty (trim messages)
+	- [ ] Warning icon and item links on auction bid messages
+	- [ ] Tab link on incomming folder
 
 
 - [ ] New Message
-		- [x] Auto focus message
-		- [x] List of friends and guild mates to choose a player
-		- [x] Bigger textarea
+	- [x] Auto focus message
+	- [x] List of friends and guild mates to choose a player
+	- [x] Bigger textarea
 
 
 - [ ] Reports
-		- [x] Improved style / Day separators 
-		- [x] Rewarded items stats on mouse over (tooltips)
-		- [ ] Gather drop information
-		- [ ] Gather stats
-		- [ ] Show battle stances next to theoretical
-		- [ ] Post new drops OR post them on every report
+	- [x] Improved style / Day separators 
+	- [x] Rewarded items stats on mouse over (tooltips)
+	- [ ] Gather drop information
+	- [ ] Gather stats
+	- [ ] Show battle stances next to theoretical
+	- [ ] Post new drops OR post them on every report
 
 
 - [x] ✎	Packages
-		- [x] Filters on the side
-		- [x] Compact layout
-		- [x] Item shadow
-		- [x] ✎	Better item add/remove wrapper - catch no item etc.
-		- [x] ✎	Load more pages - paging fix (has a bug when on last page)
+	- [x] Filters on the side
+	- [x] Compact layout
+	- [x] Item shadow
+	- [x] ✎	Better item add/remove wrapper - catch no item etc.
+	- [x] ✎	Load more pages - paging fix (has a bug when on last page)
 
 
 - [ ] Server Backup
-		- [ ] redirect
+	- [ ] redirect
 
 
 - [ ] Player Description:
-		- [ ] Preview when you edit your description 
+	- [ ] Preview when you edit your description 
 
 
 - [ ] Player Interface (Logged in or not)
-		- [ ] Simulator Button (direct to results link for premium users) 
-		- [ ] Show which item stats points are coming from clear points and which from percent bonus 
-		- [ ] Mercenaries 
-			- [ ] visible mercenary's tooltip (base stats, same as in overview)
-			- [ ] Visible mission type (icon: Medic, Damage, Protect yourself - with tooltip) 
-		- [x] Player Stats page ratios and totals
-		- [ ] Buff bar over players
+	- [ ] Simulator Button (direct to results link for premium users) 
+	- [ ] Show which item stats points are coming from clear points and which from percent bonus 
+	- [ ] Mercenaries 
+		- [ ] visible mercenary's tooltip (base stats, same as in overview)
+		- [ ] Visible mission type (icon: Medic, Damage, Protect yourself - with tooltip) 
+	- [x] Player Stats page ratios and totals
+	- [ ] Buff bar over players
 
 
 - [ ] Forge Interface
-		- [ ] Links to your bag and the market of the remaining required smelt items
+	- [ ] Links to your bag and the market of the remaining required smelt items
 
 
 - [ ] GCA News
-		- [ ] Display gca news
+	- [ ] Display gca news
 
 
 - [ ] Translations
-		- [ ] New system
+	- [ ] New system
 
 
 - [ ] Black Market
-		- [ ] Set up system
+	- [ ] Set up system
 
 
