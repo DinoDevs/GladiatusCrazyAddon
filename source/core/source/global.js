@@ -2341,17 +2341,20 @@ var gca_global = {
 			localBuffs.getElementsByClassName('buff-container')[0].className += ' gca-buff-container';
 
 			// Check if player has the praying buff
-			var praying = false;
-			var buffs = localBuffs.getElementsByClassName('buff');
-			for(let i=0;i<buffs.length;i++){
-				if(
-					buffs[i].dataset.image == "img/buff/healing.png" && 
-					(
-						(/\+5%/).test(buffs[i].getAttribute('title')) || 
-						(/\+5%/).test(buffs[i].getAttribute('onmousemove'))
-					)
-				){
-					praying = true;
+			var praying = (gca_section.submod=='pray' && document.getElementById('content').getElementById('duration'))?true:false;
+			
+			if(gca_section.submod!='pray'){// skip if in pray page
+				var buffs = localBuffs.getElementsByClassName('buff');
+				for(let i=0;i<buffs.length;i++){
+					if(
+						buffs[i].dataset.image == "img/buff/healing.png" && 
+						(
+							(/\+5%/).test(buffs[i].getAttribute('title')) || 
+							(/\+5%/).test(buffs[i].getAttribute('onmousemove'))
+						)
+					){
+						praying = true;
+					}
 				}
 			}
 			
