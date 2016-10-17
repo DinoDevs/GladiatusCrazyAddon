@@ -21,6 +21,9 @@ var gca_overview = {
 		// Daily Bonus Log
 		(gca_options.bool("overview", "daily_bonus_log") && 
 			this.daily_bonus_log.inject());
+			
+		// Repair Items Overview
+		(	this.repair_overview.inject());
 	},
 
 	// Resolve Page
@@ -438,6 +441,91 @@ var gca_overview = {
 					div.textContent = gca_tools.time.msToHMS_String(0);
 				}
 			}, 1000);
+		}
+	},
+	
+	// Items Repair Overview
+	repair_overview : {
+		// Inject
+		inject : function(){
+			// Loop Character items
+			//for (i = 0; i<8; i++) {
+			//	document.getElementById('char').getElementsByClassName('ui-droppable')[0]
+			//}
+			
+			
+			// Create div
+			var div = document.createElement("div");
+			div.id = "repair-droppable-grid";
+			div.className = "ui-droppable";
+			div.style = "width: 32px;height: 32px;position: absolute;margin-left: 556px;margin-top: -510px;border: 1px solid #cbb98a;background: url(img/shop/amplifying.png) no-repeat center center;background-size: 40px 40px;border-radius: 100%;";
+			div.setAttribute('data-container-number', '10101');
+			div.setAttribute('data-content-type-accept', '1855');
+			div.setAttribute('data-tooltip', '[[["Drop an item to see the sources needed to repair it","#FF6A00"],["Workbench\'s 6th slot needs to be empty","#808080"]]]');
+			document.getElementById("content").appendChild(div);
+			
+			// Create Script
+			var script = document.createElement("script");
+			script.textContent = "\
+			jQuery( function() {\
+				jQuery( '#repair-droppable-grid' ).droppable({\
+				  drop: function( event, ui ) {\
+					var id = jQuery(ui.draggable).attr('data-item-id');\
+					sendAjax(this, 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid='+id+'&amount=1' , function (data){gca_overview.repair_overview.resolve_item_JSON(data)} , function (elem, msg, delayDuration){ console.log(msg.responseText);});\
+				  }\
+				});\
+			  } );\
+			";
+			document.getElementById("content").appendChild(script);
+			//.dataset.tooltip
+			//function (data){data=JSON.parse(data);console.log(data);console.log(data.slots[5].formula.needed);}
+			//,{spinnerVisible:false}
+/*
+			function updateSlots(dataPlain){
+				if(/^[\],:{}\s]*$/.test(dataPlain.replace(/\\["\\\/bfnrtu]/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,""))){
+					var dataParsed=JSON.parse(dataPlain);
+					mode=dataParsed.mode;
+					slotsData=dataParsed.slots;
+					headerObject.update(dataParsed);
+					showForgeBox(activeForgeBox)
+				}else{
+					eval(dataPlain)
+				}
+			}
+
+            function messageActionDone(data)
+            {
+                data = JSON.parse(data);
+                headerObject.update(data);
+
+                if (!data["succeed"]) {
+                    var message = jQuery("#message" + data["messageId"]);
+                    message.fadeIn();
+                    error(message, data, 5000);
+                }
+            }
+*/		
+			
+			//https://s4-gr.gladiatus.gameforge.com/game/ajax.php?mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=0&iid=72914910&amount=1&sh=4bf6c30db079de397891048d9a65a7a0
+		},
+		resolve_item_JSON : function(data){
+			data=JSON.parse(data);
+			needed_materials = data.slots[5].formula.needed;
+			
+			//console.log(data);
+			//console.log(data.slots[5].formula.needed);
+			
+			// Create tooltip with the materials
+			tooltip = '[[["'+data.slots[5].item.name+'","'+data.slots[5].item.data.tooltip[0][0][1]+'"]';
+			for (var key in needed_materials) {
+				if (needed_materials.hasOwnProperty(key)) {
+					//console.log(key + " -> " + needed_materials[key]);
+					if(needed_materials[key].amount>0)
+						tooltip += ',["<div class=\\"item-i-18-'+parseInt(key.match(/18(\d+)/)[1])+'\\" style=\\"display: inline-block;\\"></div>x '+needed_materials[key].amount+' ('+needed_materials[key].name.replace(/(u.{4})/g, '\\$1')+')","#cccccc"]'
+				}
+			}
+			tooltip += ']]';
+			gca_tools.setTooltip(document.getElementById("repair-droppable-grid"), tooltip);
 		}
 	}
 };

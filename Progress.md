@@ -68,6 +68,7 @@ Progess on Version 4.0.0
 ✖		Mercenaries management Interface
 ✖		Items' shadow
 ✖		Save costume's properties
+✔✎		Drag&Drop item to see the material needed to repair it / Not in settings
 
 
 • Overview Stats
