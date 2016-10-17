@@ -1,5 +1,10 @@
 
+## Progress on Version 4.0.0
 
+
+
+
+### Global Script
 
 - [ ] Global (Changes on every game page)
 	- [ ] Preloading
@@ -55,6 +60,10 @@
 		- [ ] Work / Pray / Traveling, The exact finish time (date-time) is shown next to remaining time 
 
 
+
+
+### Global Scripts
+
 - [ ] Overview
 	- [x] Resolve overview (get dol etc)
 	- [ ] Eat/food features
@@ -84,6 +93,10 @@
 	- [ ] List with other players you are interested in
 
 
+
+
+### Pantheon Script
+
 - [ ] Pantheon Quests
 	- [x] ✎ Quests order by category (missing category icons)
 	- [x] Finished and Failed quests on top
@@ -107,6 +120,10 @@
 	- [ ] Reload reward untill to find selected
 	- [ ] Calculate rewards quality
 
+
+
+
+### Guild Script
 
 - [ ] Guild Jail Interface
 	- [x] Cells are now visible with the creatures inside
@@ -163,15 +180,27 @@
 	- [ ] Search for players with no guild, from the guild admin page 
 
 
+
+
+### Work Script
+
 - [ ] Work
 	- [ ] Interface improve
 
+
+
+
+### Arena Script
 
 - [ ] Arena
 	- [ ] Order players by level on Cross Server Arenas
 	- [ ] Enemy datails (win / losses)
 	- [ ] Link to the simulator
 
+
+
+
+### Training Script
 
 - [ ] Training
 	- [x] Show basic points bars
@@ -180,7 +209,11 @@
 	- [ ] Propose points to upgrade
 	- [ ] Show caps and cap points changes (crit, block, avoid)
 	- [ ] Double hit calculator
-	
+
+
+
+
+### Merchants Script
 
 - [ ] Merchants
 	- [ ] Mouse click events (double click sell buy)
@@ -188,6 +221,10 @@
 	- [ ] Remember merchants tabs
 	- [ ] Items you can buy are highlighted 
 
+
+
+
+### Auction Script
 
 - [ ] Auction
 	- [ ] Theme(s) support
@@ -209,7 +246,11 @@
 	- [ ] Display for each mercenary its tooltip when on mercenaries
 
 
-- [ ] Merchants
+
+
+### Market Script
+
+- [ ] Market
 	- [ ] Item Preffix search list
 	- [ ] Item Suffix search list
 	- [ ] More levels in the search options 
@@ -222,12 +263,20 @@
 	- [ ] Price per unit
 
 
+
+
+### Locations Script
+
 - [ ] Locations
 	- [ ] Hide the building's labels in city/country, guild, underworld maps
 	- [ ] Show buildings level in guild's map
 	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops?)
 	- [ ] Underword enemies interface converted to old style
 
+
+
+
+### Messages Script
 
 - [ ] Messages
 	- [x] Style changes
@@ -251,6 +300,10 @@
 	- [x] Bigger textarea
 
 
+
+
+### Reports Script
+
 - [ ] Reports
 	- [x] Improved style / Day separators 
 	- [x] Rewarded items stats on mouse over (tooltips)
@@ -260,6 +313,10 @@
 	- [ ] Post new drops OR post them on every report
 
 
+
+
+### Packages Script
+
 - [x] ✎	Packages
 	- [x] Filters on the side
 	- [x] Compact layout
@@ -268,13 +325,17 @@
 	- [x] ✎	Load more pages - paging fix (has a bug when on last page)
 
 
+
+
+### Server Backup Script
+
 - [ ] Server Backup
 	- [ ] redirect
 
 
-- [ ] Player Description:
-	- [ ] Preview when you edit your description 
 
+
+### Player Script
 
 - [ ] Player Interface (Logged in or not)
 	- [ ] Simulator Button (direct to results link for premium users) 
@@ -286,17 +347,37 @@
 	- [ ] Buff bar over players
 
 
+- [ ] Player Description:
+	- [ ] Preview when you edit your description 
+
+
+
+
+### Forge Script
+
 - [ ] Forge Interface
 	- [ ] Links to your bag and the market of the remaining required smelt items
 
+
+
+
+### GCA News Script
 
 - [ ] GCA News
 	- [ ] Display gca news
 
 
+
+
+### Translations Script
+
 - [ ] Translations
 	- [ ] New system
 
+
+
+
+### Black Market Script
 
 - [ ] Black Market
 	- [ ] Set up system
