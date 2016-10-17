@@ -2,8 +2,8 @@
 Progess on Version 4.0.0
 
 
-• Global (Changes on every game page)
--	Preloading
+- [ ] Global (Changes on every game page)
+	- [ ] Preloading
 ✔		Cache event bar's position (moving it before page loads) [if needed]
 ✔		Disable submenu change on page load (prevent menu change if mouseover) ["global","submenu_click_to_change"]
 ✔		Enable page x-Scroll ["global","x-scroll"]
