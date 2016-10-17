@@ -16,10 +16,10 @@
 		- [x] ✎	Resolve game mode (travel / underworld / dice event / server quest) - Add more modes?
 		- [x] Resolve page's direction Left-to-Right or Right-to-Left
 		- [x] Show addon's version on the bottom (also add link to homepage)
-		- [ ] ❗	Show premium days on top (may be removed / translation need)
+		- [ ] ❗	Show premium/centurio days on top (may be removed / translation need)
 		- [x] Extend hp/xp info
 			- [x] Show more info ["global","extended_hp_xp_info"]
-				- [x] Life potion shortcut ["global","extended_hp_xp_info_potion"]
+				- [x] ✎ Life potion shortcut ["global","extended_hp_xp_info_potion"] (should not work in Underword)
 			- [x] Time for full life ["global","hp_timer_for_full_life"]
 		- [x] Button bar ["global","shortcuts_bar"]
 			- [x] Create (added option to select which buttons)
@@ -43,7 +43,6 @@
 		- [x] Guild application alert ["global","notify_new_guild_application"]
 			- [x] Check Interval ["timers", "notify_new_guild_application"]
 		- [x] ✎ ❗ {Underworld} Pray buf shortCut - Will we keep this? / No setting
-		- [ ] Display Centurio days left
 		- [ ] Notification on weapon down
 		- [ ] Sound notifications for Missions, Dungeons and Arenas
 		- [ ] Gold / Experience stats monitor

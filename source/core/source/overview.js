@@ -472,55 +472,24 @@ var gca_overview = {
 			  } );\
 			";
 			document.getElementById("char").appendChild(script);
-			//.dataset.tooltip
-			//function (data){data=JSON.parse(data);console.log(data);console.log(data.slots[5].formula.needed);}
-			//,{spinnerVisible:false}
-/*
-			function updateSlots(dataPlain){
-				if(/^[\],:{}\s]*$/.test(dataPlain.replace(/\\["\\\/bfnrtu]/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,""))){
-					var dataParsed=JSON.parse(dataPlain);
-					mode=dataParsed.mode;
-					slotsData=dataParsed.slots;
-					headerObject.update(dataParsed);
-					showForgeBox(activeForgeBox)
-				}else{
-					eval(dataPlain)
-				}
-			}
-
-            function messageActionDone(data)
-            {
-                data = JSON.parse(data);
-                headerObject.update(data);
-
-                if (!data["succeed"]) {
-                    var message = jQuery("#message" + data["messageId"]);
-                    message.fadeIn();
-                    error(message, data, 5000);
-                }
-            }
-*/		
-			
-			//https://s4-gr.gladiatus.gameforge.com/game/ajax.php?mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=0&iid=72914910&amount=1&sh=4bf6c30db079de397891048d9a65a7a0
 		},
 		resolve_item_JSON : function(data){
-			data=JSON.parse(data);
-			needed_materials = data.slots[5].formula.needed;
-			
-			//console.log(data);
-			//console.log(data.slots[5].formula.needed);
-			
-			// Create tooltip with the materials
-			tooltip = '[[["'+data.slots[5].item.name+'","'+data.slots[5].item.data.tooltip[0][0][1]+'"]';
-			for (var key in needed_materials) {
-				if (needed_materials.hasOwnProperty(key)) {
-					//console.log(key + " -> " + needed_materials[key]);
-					if(needed_materials[key].amount>0)
-						tooltip += ',["<div class=\\"item-i-18-'+parseInt(key.match(/18(\d+)/)[1])+'\\" style=\\"display: inline-block;\\"></div>x '+needed_materials[key].amount+' ('+needed_materials[key].name.replace(/(u.{4})/g, '\\$1')+')","#cccccc"]'
+			if(/^[\],:{}\s]*$/.test(data.replace(/\\["\\\/bfnrtu]/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,""))){
+				data=JSON.parse(data);
+				needed_materials = data.slots[5].formula.needed;
+				
+				// Create tooltip with the materials
+				tooltip = '[[["'+data.slots[5].item.name+'","'+data.slots[5].item.data.tooltip[0][0][1]+'"]';
+				for (var key in needed_materials) {
+					if (needed_materials.hasOwnProperty(key)) {
+						//console.log(key + " -> " + needed_materials[key]);
+						if(needed_materials[key].amount>0)
+							tooltip += ',["<div class=\\"item-i-18-'+parseInt(key.match(/18(\d+)/)[1])+'\\" style=\\"display: inline-block;\\"></div>x '+needed_materials[key].amount+' ('+needed_materials[key].name.replace(/(u.{4})/g, '\\$1')+')","#cccccc"]'
+					}
 				}
+				tooltip += ']]';
+				gca_tools.setTooltip(document.getElementById("repair-droppable-grid"), tooltip);
 			}
-			tooltip += ']]';
-			gca_tools.setTooltip(document.getElementById("repair-droppable-grid"), tooltip);
 		}
 	}
 };

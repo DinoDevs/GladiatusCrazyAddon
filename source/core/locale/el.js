@@ -60,6 +60,11 @@ gca_languages["gr"] = {
 			use_life_potion : "Χρήση ενός φίλτρου ζωής 100%",
 			// dataUpdater
 			dropped_items_reported : "Οι πληροφορίες για τα κερδισμένα αντικείμενα δηλώθηκαν!",
+			// Underword
+				// Pray Shorcut
+				stop_praying : "Πάτα για να σταματήσεις την προσευχή",
+				start_praying : "Πάτα για να ξεκινήσεις να προσεύχεσαι",
+				heal : "θεραπεία",
 		
 		/* Guild */
 			// Library
@@ -115,8 +120,8 @@ gca_languages["gr"] = {
 				// Full life points recovery in (x minutes)
 				full_life_recover_in : "Ολική αναγέννηση της ζωής σε",
 				// Drop items to see materials to repair feature
-				drop_item_see_materials_repair : "Ρίξτε ένα αντικείμενο για να δείτε τα υλικά που χρηάζεται για να επισκευαστεί",
-				workbench_6th_slot_empty : "Η 6η θέση στον Πάγκο Εργασία πρέπει να είναι ελεύθερη",
+				drop_item_see_materials_repair : "Ρίξτε ένα αντικείμενο για να δείτε τα υλικά που χρειάζεται για να επισκευαστεί",
+				workbench_6th_slot_empty : "Η 6η θέση στον Πάγκο Εργασίας πρέπει να είναι ελεύθερη",
 			// Manage Mercenaries Box
 				// Manage mercenaries title
 				manage_mercenaries : "Διαχείριση Μισθοφόρων",

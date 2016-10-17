@@ -62,6 +62,11 @@ gca_languages["en"] = {
 			life_potions_left : " life potion left",
 			// dataUpdater
 			dropped_items_reported : "Enemy dropped item info were collected!",
+			// Underword
+				// Pray Shorcut
+				stop_praying : "Press to stop praying",
+				start_praying : "Press to start praying",
+				heal : "heal",
 		
 		/* Guild */
 			// Library

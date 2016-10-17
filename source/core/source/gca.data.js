@@ -321,7 +321,11 @@ gca_options.data = {
 		"x-scroll" : true,
 
 		// Enable item's shadow
-		"item_shadow" : true
+		"item_shadow" : true,
+		
+		// Underword
+			// Pray Shorcut
+			"pray_shorcut" : true
 	},
 
 	// Overview Options

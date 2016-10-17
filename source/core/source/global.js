@@ -93,7 +93,7 @@ var gca_global = {
 
 		
 		// Pray Buf shortcut - TODO clean code
-		(this.isInUnderworld && 
+		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
 			this.underworld.prayBufShortCut());
 
 	},
@@ -2337,7 +2337,6 @@ var gca_global = {
 		prayBufShortCut : function(){
 			// Get local buffs
 			var localBuffs = document.getElementById('localBuffs');
-
 			// Add gca class
 			localBuffs.getElementsByClassName('buff-container')[0].className += ' gca-buff-container';
 
@@ -2363,10 +2362,10 @@ var gca_global = {
 				//"index.php?mod=underworld&submod=prayEnd&sh=" + gca_section.sh;
 				a.href = gca_getPage.link({"mod":"underworld","submod":"prayEnd"});
 				a.textContent = '╳';
-				a.setAttribute('data-tooltip','[[["Stop praying (-5% heal)","#fff"]]]');
+				a.setAttribute('data-tooltip','[[["'+gca_locale.get("stop_praying")+' (-5% '+gca_locale.get("heal")+')","#fff"]]]');
 			}else{
 				a.href = "index.php?mod=underworld&submod=prayStart&sh=" + gca_section.sh;
-				a.setAttribute('data-tooltip','[[["Start praying (+5% heal)","#fff"]]]');
+				a.setAttribute('data-tooltip','[[["'+gca_locale.get("start_praying")+' (+5% '+gca_locale.get("heal")+')","#fff"]]]');
 			}
 			a.style = 'background-image: url(img/buff/healing.png);';
 			localBuffs.getElementsByClassName('buff-container')[0].appendChild(a);
