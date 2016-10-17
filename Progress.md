@@ -42,7 +42,7 @@
 		- [x] Remember merchants tabs ["global","remember_tabs"]
 		- [x] Guild application alert ["global","notify_new_guild_application"]
 			- [x] Check Interval ["timers", "notify_new_guild_application"]
-		- [x] ✎ ❗ {Underworld} Pray buf shortCut - Will we keep this? / No setting
+		- [x] {Underworld} Pray buff shortCut
 		- [ ] Notification on weapon down
 		- [ ] Sound notifications for Missions, Dungeons and Arenas
 		- [ ] Gold / Experience stats monitor
