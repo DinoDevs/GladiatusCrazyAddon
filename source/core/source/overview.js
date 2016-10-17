@@ -21,9 +21,10 @@ var gca_overview = {
 		// Daily Bonus Log
 		(gca_options.bool("overview", "daily_bonus_log") && 
 			this.daily_bonus_log.inject());
-			
+		
 		// Repair Items Overview
-		(	this.repair_overview.inject());
+		(gca_options.bool("overview", "repair_materials_info") &&
+			this.repair_overview.inject());
 	},
 
 	// Resolve Page
@@ -448,21 +449,15 @@ var gca_overview = {
 	repair_overview : {
 		// Inject
 		inject : function(){
-			// Loop Character items
-			//for (i = 0; i<8; i++) {
-			//	document.getElementById('char').getElementsByClassName('ui-droppable')[0]
-			//}
-			
-			
-			// Create div
+			// Create drop area
 			var div = document.createElement("div");
 			div.id = "repair-droppable-grid";
 			div.className = "ui-droppable";
-			div.style = "width: 32px;height: 32px;position: absolute;margin-left: 556px;margin-top: -510px;border: 1px solid #cbb98a;background: url(img/shop/amplifying.png) no-repeat center center;background-size: 40px 40px;border-radius: 100%;";
+			div.style = "background: url(img/shop/amplifying.png) no-repeat center center;background-size: 40px 40px;";
 			div.setAttribute('data-container-number', '10101');
 			div.setAttribute('data-content-type-accept', '1855');
-			div.setAttribute('data-tooltip', '[[["Drop an item to see the sources needed to repair it","#FF6A00"],["Workbench\'s 6th slot needs to be empty","#808080"]]]');
-			document.getElementById("content").appendChild(div);
+			div.setAttribute('data-tooltip', '[[["'+gca_locale.get("drop_item_see_materials_repair")+'","#FF6A00"],["'+gca_locale.get("workbench_6th_slot_empty")+'","#808080"]]]');
+			document.getElementById("char").appendChild(div);
 			
 			// Create Script
 			var script = document.createElement("script");
@@ -476,7 +471,7 @@ var gca_overview = {
 				});\
 			  } );\
 			";
-			document.getElementById("content").appendChild(script);
+			document.getElementById("char").appendChild(script);
 			//.dataset.tooltip
 			//function (data){data=JSON.parse(data);console.log(data);console.log(data.slots[5].formula.needed);}
 			//,{spinnerVisible:false}

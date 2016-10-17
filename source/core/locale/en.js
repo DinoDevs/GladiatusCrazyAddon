@@ -116,6 +116,9 @@ gca_languages["en"] = {
 			// General
 				// Full life points recovery in (x minutes)
 				full_life_recover_in : "Full life recover in",
+				// Drop items to see materials to repair feature
+				drop_item_see_materials_repair : "Drop an item to see the materials needed to repair it",
+				workbench_6th_slot_empty : "Workbench\'s 6th slot needs to be empty",
 			// Manage Mercenaries Box
 				// Manage mercenaries title
 				manage_mercenaries : "Manage Mercenaries",

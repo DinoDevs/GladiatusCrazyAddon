@@ -155,6 +155,8 @@ var gca_settings = {
 			"overview" : {
 				// Show the life gain a food gives
 				"food_life_gain" : true,
+				// Drop items to see materials to repair feature
+				"repair_materials_info" : true,
 				// Show best food to consume
 				"best_food" : true,
 				// Overview bag manager
