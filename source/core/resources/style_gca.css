@@ -223,6 +223,9 @@
 	.attacked_timers_xs_text{color: #d4ad0f!important;position: absolute;margin-left:-8px!important;margin-top: 6px;text-shadow: 0 0 2px #000, 0 0 4px #582f00;}
 	.gca_rtl  .attacked_timers_xs_text{margin-right:-8px!important;margin-left:auto!important;}
 	.attacked_timers_table .timer{color: #C7B68A;font-weight: normal;margin-left: 0px;margin-right: 0px;vertical-align: middle;}
+	.attacked_timers_table .timer-icon{height: 18px;width: 18px;margin-top: -2px;margin-bottom: -2px;margin-right: 2px;display: block;float: left;}
+	.attacked_timers_table .timer-icon-arena{background: transparent url('buttons/main_buttons.png') -250px -51px no-repeat;}
+	.attacked_timers_table .timer-icon-grouparena{background: transparent url('buttons/main_buttons.png') -268px -51px no-repeat;}
 	/*#BFAE54*/
 	
 /* OverView */

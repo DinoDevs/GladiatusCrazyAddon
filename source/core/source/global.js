@@ -1859,7 +1859,7 @@ var gca_global = {
 			// Create timers ui
 			createUI : function(){
 				// Variables
-				var tr, td, img, text;
+				var tr, td, icon, text;
 
 				// Create timers container
 				var container = document.createElement("div");
@@ -1872,25 +1872,21 @@ var gca_global = {
 
 				// Arena Timer Cell
 				td = document.createElement("td");
-				img = document.createElement("img");
-				img.setAttribute('align','absmiddle');
-				img.src = "img/ui/icon_arena.gif";
-				img.style.height = "18px";
+				icon = document.createElement("span");
+				icon.className = "timer-icon timer-icon-arena";
 				this.arenaTimeElement.arena = document.createElement("span");
 				this.arenaTimeElement.arena.className = "timer";
-				td.appendChild(img);
+				td.appendChild(icon);
 				td.appendChild(this.arenaTimeElement.arena);
 				tr.appendChild(td);
 				
 				// Grouparena Timer
 				td = document.createElement("td");
-				img = document.createElement("img");
-				img.setAttribute('align','absmiddle');
-				img.src = "img/ui/icon_grouparena.gif";
-				img.style.height = "18px";
+				icon = document.createElement("span");
+				icon.className = "timer-icon timer-icon-grouparena";
 				this.arenaTimeElement.grouparena = document.createElement("span");
 				this.arenaTimeElement.grouparena.className = "timer";
-				td.appendChild(img);
+				td.appendChild(icon);
 				td.appendChild(this.arenaTimeElement.grouparena);
 				tr.appendChild(td);
 				table.appendChild(tr);
@@ -1899,32 +1895,28 @@ var gca_global = {
 
 				// Arena xs Timer
 				td = document.createElement("td");
-				img = document.createElement("img");
-				img.setAttribute('align','absmiddle');
-				img.src = "img/ui/icon_arena.gif";
-				img.style.height = "18px";
+				icon = document.createElement("span");
+				icon.className = "timer-icon timer-icon-arena";
 				text = document.createElement("span");
 				text.className = "attacked_timers_xs_text";
 				text.textContent = "s";
 				this.arenaTimeElement.arena_xs = document.createElement("span");
 				this.arenaTimeElement.arena_xs.className = "timer";
-				td.appendChild(img);
+				td.appendChild(icon);
 				td.appendChild(text);
 				td.appendChild(this.arenaTimeElement.arena_xs);
 				tr.appendChild(td);
 
 				// Grouparena xs Timer
 				td = document.createElement("td");
-				img = document.createElement("img");
-				img.setAttribute('align','absmiddle');
-				img.src = "img/ui/icon_grouparena.gif";
-				img.style.height = "18px";
+				icon = document.createElement("span");
+				icon.className = "timer-icon timer-icon-grouparena";
 				text = document.createElement("span");
 				text.className = "attacked_timers_xs_text";
 				text.textContent = "s";
 				this.arenaTimeElement.grouparena_xs = document.createElement("span");
 				this.arenaTimeElement.grouparena_xs.className = "timer";
-				td.appendChild(img);
+				td.appendChild(icon);
 				td.appendChild(text);
 				td.appendChild(this.arenaTimeElement.grouparena_xs);
 				tr.appendChild(td);
