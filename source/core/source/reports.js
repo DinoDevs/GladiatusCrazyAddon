@@ -113,6 +113,11 @@ var gca_reports = {
 			// Align stuff
 			line[0].getElementsByTagName('th')[2].style.textAlign = "right";
 
+			// If no reports
+			if(line.length <= 2)
+				// Kill it with fire
+				return;
+
 			// For every row
 			while(line[row]){
 				// If a td exist
