@@ -79,15 +79,13 @@ var gca_overview_achievements = {
 			}
 
 			// Total category achivements
-			// var total = document.getElementById(category+'_details').getElementsByClassName('achievement_title_box').length;
-			var total = document.getElementById(category+'_details').innerHTML.match(/achievement_medal_(full|inactive)\.gif/ig);
-			if(total != null) total = total.length;
-			else total = 0;
+			var total = 0;
+			for (var i = 1; i <= 6; i++) {
+				total += document.getElementById(category + '_details').getElementsByClassName('achievement_detail_medal' + i).length;
+			}
+
 			// Completed category achivements
-			// var competed = document.getElementById(category+'_details').getElementsByClassName('achievement_title').length;
-			var competed = document.getElementById(category+'_details').innerHTML.match(/achievement_medal_full\.gif/ig);
-			if(competed != null) competed = competed.length;
-			else competed = 0;
+			var competed = document.getElementById(category + '_details').getElementsByClassName('active').length;
 
 			// Completed percent
 			var percent = 0;
