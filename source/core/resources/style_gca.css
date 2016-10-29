@@ -305,7 +305,7 @@
 	.guild_flag_border{background-image:url('interface/guild_flag_border.png');width: 209px;height: 232px;position: absolute; margin-top: -232px;}
 	.guild_flag_border_change_flag{margin-top: -234px; margin-left: 45px;}
 	/* Jail */
-	.jail_picture_cell{position: absolute; top: 0px; left: 0px; width: 123px!important; height: 142px!important; background-image: url('interface/jail.png');}
+	.jail_picture_cell{position: absolute; top: 0px; left: 0px; width: 123px!important; height: 142px!important; background-image: url('interface/jail.png');filter: drop-shadow(0px 0px 1px rgb(0,0,0));}
 	.noJailRights .expedition_box{height: 230px!important;}
 	.gca-jail-content .expedition_box{margin: 5px!important;width: 124px!important;}
 	.gca-jail-content .expedition_button_disabled{cursor: normal!important;}
