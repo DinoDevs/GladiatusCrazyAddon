@@ -207,11 +207,11 @@ var gca_reports = {
 		var time = [false, false];
 
 		// Reports
-		if(reports_table.getElementsByTagName('img').length > 0){
+		if(reports_table.getElementsByClassName('icon_defense').length > 0){
 			var reports = document.getElementById('content').getElementsByTagName('tr');
 			for(var i = 1; i < reports.length; i++){
 				// If defence attack
-				if(reports[i].getElementsByTagName('img')[0].src.match("interface/shield-passive.gif")){
+				if(reports[i].getElementsByClassName('icon_defense').length){
 					// Cross server
 					if(time[1] == false && reports[i].getElementsByTagName('a')[0].textContent.match(/\s+\(\d+\)/i)){
 						// Get time
