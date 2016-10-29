@@ -269,8 +269,8 @@ var gca_overview = {
 			}
 
 			// If full life return
-			//if(this.life[2] == 100)
-			//	return;
+			if(this.life[2] == 100)
+				return;
 
 			// Set max distanse
 			var distance = this.life[1]+1;
