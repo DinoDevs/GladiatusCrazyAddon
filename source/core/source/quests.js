@@ -25,9 +25,6 @@ var gca_quests = {
 
 	// Quests Categories
 	quests_categories : ['items','work','dungeon','expedition','combat','grouparena','arena','restart','finished'],
-	// Quests Categories Icons
-	// TODO : missing icons
-	quests_categories_icons : ['','','img/ui/icon_dungeonpoints.gif','img/ui/icon_expeditionpoints.gif','','img/ui/icon_grouparena.gif','img/ui/icon_arena.gif','',''],
 
 	// Quests Reorder
 	quests_reorder : function(){
@@ -56,8 +53,6 @@ var gca_quests = {
 			// Icon
 			let icon = document.createElement('div');
 			icon.className = "quest_category_icon quest_category_icon_" + this.quests_categories[i];
-			if(this.quests_categories_icons[i].length > 0)
-				icon.style.backgroundImage = "url('" + this.quests_categories_icons[i] + "')";
 			div.appendChild(icon);
 			// Insert on page
 			qcontent.parentNode.insertBefore(div, qcontent.nextSibling);

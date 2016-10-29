@@ -666,7 +666,16 @@
 	
 /* Quests */
 	.quest_category_title{background-position: left bottom;height: 17px!important;}
-	.quest_category_icon{position: absolute;width: 20px;height: 20px;z-index: 1;margin-left: -16px;margin-top: -10px;background-size: 20px 20px; background-repeat: no-repeat;}
+	.quest_category_icon{position: absolute;width: 25px;height: 25px;z-index: 1;margin-left: -20px;margin-top: -5px;background-repeat: no-repeat;filter: drop-shadow(0px 0px 2px rgba(0,0,0,1));}
+	.quest_category_icon_items{background: transparent 0px 0px url('icons/quests.png');}
+	.quest_category_icon_work{background: transparent -25px 0px url('icons/quests.png');}
+	.quest_category_icon_dungeon{background: transparent -50px 0px url('icons/quests.png');}
+	.quest_category_icon_expedition{background: transparent -75px 0px url('icons/quests.png');}
+	.quest_category_icon_combat{background: transparent -100px 0px url('icons/quests.png');}
+	.quest_category_icon_grouparena{background: transparent -125px 0px url('icons/quests.png');}
+	.quest_category_icon_arena{background: transparent -150px 0px url('icons/quests.png');}
+	.quest_category_icon_restart{background: transparent -175px 0px url('icons/quests.png');}
+	.quest_category_icon_finished{background: transparent -200px 0px url('icons/quests.png');}
 	.quest_slot_reward_god_detailed {width: auto !important;padding-left: 6px;}
 	.gca_rtl .quest_slot_reward_god_detailed {padding-right: 6px;padding-left: auto;}
 	.quest_slot_reward_honor_detailed {width: auto !important;padding-left: 6px;}
