@@ -2278,27 +2278,9 @@ var gca_global = {
 				});
 
 				// Wait first bag
-				this.firstBag();
-			},
-
-			// Inject the first bag
-			firstBag : function(){
-				var that = this;
-
-				// Get tab
-				var tab = document.getElementById("inventory_nav").getElementsByClassName("current")[0];
-
-				// Not ready
-				if(document.getElementById("inv").className.match("unavailable")){
-					if(!tab.dataset.itemShadowed)
-						setTimeout(function(){
-							that.firstBag();
-						}, 10);
-					return;
-				}
-
-				// Ready
-				this.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+				gca_tools.event.bag.waitBag(function(){
+					that.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+				});
 			},
 
 			// Inject the current bag

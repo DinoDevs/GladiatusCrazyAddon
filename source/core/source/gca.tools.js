@@ -381,8 +381,66 @@ var gca_tools = {
 					};
 
 					// First fire
-					jQuery("#inventory_nav .current").click();
+					setTimeout(function(){
+						jQuery("#inventory_nav .current").click();
+					}, 10);
 				});
+			},
+
+			// Wait a bag to load
+			waitBag_obj : {
+				// Wait active
+				waiting : false,
+				// Callback list
+				list : [],
+				// Polling function
+				polling : function(){
+					// Save instance
+					var that = this;
+
+					// Get tab
+					var tab = document.getElementById("inventory_nav").getElementsByClassName("current")[0];
+
+					// Not ready
+					if(document.getElementById("inv").className.match("unavailable")){
+						setTimeout(function(){
+							that.polling();
+						}, 10);
+						return;
+					}
+
+					// Reset variables
+					var list = this.list;
+					this.active = false;
+					this.list = [];
+
+					// Call all callbacks
+					for(var i = 0; i < list.length; i++){
+						// Asynchronously call
+						setTimeout(
+							(function(callback){
+								return function(){
+									callback();
+								}
+							})(list[i])
+						, 0);
+					}
+				}
+			},
+			waitBag : function(callback){
+				// Add callback on the list
+				this.waitBag_obj.list.push(callback);
+
+				// If already active
+				if(this.waitBag_obj.waiting == true){
+					// Return
+					return;
+				}
+
+				// Make it active
+				this.waitBag_obj.waiting = true;
+				// Start polling
+				this.waitBag_obj.polling();
 			},
 
 			// OnBagOpen

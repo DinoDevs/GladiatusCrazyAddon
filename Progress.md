@@ -64,11 +64,11 @@
 ### Overview Scripts
 
 - [ ] Overview
-	- [x] Resolve overview (get dol etc)
+	- [x] Resolve overview (get doll etc)
 	- [ ] Eat/food features
-		- [ ] Food life gain
+		- [x] Food life gain (onmouseover)
 		- [ ] Items that will give you more Life Point than you need will be transparent
-		- [ ] Food show best food
+		- [x] Food show best food (yellow shadow)
 	- [ ] Daily bonus log
 	- [ ] Show the cap values of Resilience and Block
 	- [ ] Display for each mercenary its tooltip (base stats)

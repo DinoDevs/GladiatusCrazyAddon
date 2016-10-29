@@ -46,8 +46,32 @@ var gca_overview = {
 
 		// Life variables
 		life : [0, 0, 0],
-		info : null,
-		bar : null,
+
+		// Elements
+		custom_elements : {
+			info : null,
+			bar : null,
+			spaceBar : null
+		},
+
+		// Check if item is food
+		isItemFood : function(item){
+			// Check if food item-i-7-15
+			if(item.dataset.contentType == "64" && item.className.match(/item-i-7-\d+/i)){
+				// Is a food
+				return true;
+			}
+			// Not a food
+			return false;
+		},
+
+		// Parse life tooltip
+		parseLifeTooltip : function(tooltip){
+			var getLife = JSON.parse(tooltip)[0][0][0][1].match(/(\d+)\s*\/\s*(\d+)/);
+			this.life[0] = parseInt(getLife[1]);
+			this.life[1] = parseInt(getLife[2]);
+			this.life[2] = Math.round(parseInt(getLife[1]) * 100 / parseInt(getLife[2]));
+		},
 
 		// Inject
 		lifeGain : function(){
@@ -56,48 +80,30 @@ var gca_overview = {
 				this.parseLifeTooltip(document.getElementById("header_values_hp_bar").dataset.tooltip);
 
 			// Create info span
-			this.info = document.createElement('span');
-			this.info.className = "charstats_value";
-			this.info.style = "margin-right: -20px;margin-top: -6px;font-size: 10px;";
-			document.getElementById('char_leben_tt').appendChild(this.info);
+			this.custom_elements.info = document.createElement('span');
+			this.custom_elements.info.className = "charstats_value";
+			this.custom_elements.info.style = "margin-right: -20px;margin-top: -6px;font-size: 10px;";
+			document.getElementById('char_leben_tt').appendChild(this.custom_elements.info);
 			// Create space bar
-			this.spaceBar = document.createElement('div');
-			this.spaceBar.className = "charstats_balken_leben";
-			this.spaceBar.style = "width:0%;float:right;background-image:none;";
-			document.getElementById("char_leben_balken").parentNode.insertBefore(this.spaceBar, document.getElementById("char_leben_balken"));
+			this.custom_elements.spaceBar = document.createElement('div');
+			this.custom_elements.spaceBar.className = "charstats_balken_leben";
+			this.custom_elements.spaceBar.style = "width:0%;float:right;background-image:none;";
+			document.getElementById("char_leben_balken").parentNode.insertBefore(this.custom_elements.spaceBar, document.getElementById("char_leben_balken"));
 			// Create extend bar
-			this.bar = document.createElement('div');
-			this.bar.className = "charstats_balken_leben";
-			this.bar.style = "width:0%;float:right;background-image:url(img/energie_gruen.gif);";
-			document.getElementById("char_leben_balken").parentNode.insertBefore(this.bar, document.getElementById("char_leben_balken"));
-			
-			// Items
-			var items = document.getElementById("inv").getElementsByTagName("div");
-			// For each item
-			for(var i = items.length-1; i>=0; i--){
-				// If item is food
-				if(this.isItemFood(items[i])){
-					// Get tooltip
-					let tooltip = JSON.parse(items[i].dataset.tooltip);
-					let vitality = 0;
-					if(tooltip[0][2][0].match(/\+\d+/i)){
-						vitality += parseInt(tooltip[0][1][0].match(/(\d+)/i)[0]);
-						vitality += parseInt(tooltip[0][2][0].match(/\+(\d+)/i)[0]);
-					}else if(tooltip[0][3][0].match(/\+\d+/i)){
-						vitality += parseInt(tooltip[0][2][0].match(/(\d+)/i)[0]);
-						vitality += parseInt(tooltip[0][3][0].match(/\+(\d+)/i)[0]);
-					}
-					if(vitality > 0){
-						items[i].dataset.vitality = vitality;
-						items[i].addEventListener('mouseover', function(){
-							gca_overview.foodStuff.showVitalityGain(this);
-						}, false);
-						items[i].addEventListener('mouseout', function(){
-							gca_overview.foodStuff.hideVitalityGain(this);
-						}, false);
-					}
-				}
-			}
+			this.custom_elements.bar = document.createElement('div');
+			this.custom_elements.bar.className = "charstats_balken_leben";
+			this.custom_elements.bar.style = "width:0%;float:right;background-image:url(img/energie_gruen.gif);";
+			document.getElementById("char_leben_balken").parentNode.insertBefore(this.custom_elements.bar, document.getElementById("char_leben_balken"));
+
+			// Add event on bag open
+			gca_tools.event.bag.onBagOpen(function(tab){
+				// Patch items
+				gca_overview.foodStuff.patchItems();
+			});
+			gca_tools.event.bag.waitBag(function(){
+				// Patch items
+				gca_overview.foodStuff.patchItems();
+			});
 			
 			// Attach on item grag event
 			gca_tools.event.item.onDrag(function(item){
@@ -123,94 +129,45 @@ var gca_overview = {
 			});
 		},
 
-		// Find the best food
-		bestFood : function(){
-			// Get Life
-			if(this.life[1] == 0)
-				this.parseLifeTooltip(document.getElementById("header_values_hp_bar").dataset.tooltip);
-
-			// Find best food
-			this.findBestFood();
-
-			// Attach event on request response
-			gca_tools.event.request.onAjaxResponce(function(r){
-				// Parse life
-				if(r.data.header && r.data.header.health && r.data.header.health.tooltip){
-					gca_overview.foodStuff.parseLifeTooltip(r.data.header.health.tooltip);
-				}
-				// Find best food
-				gca_overview.foodStuff.findBestFood();
-			});
-		},
-
-		// Find best food
-		bestFoodElement : null,
-		findBestFood : function(){
-			// Remove old
-			if(this.bestFoodElement){
-				this.bestFoodElement.style.webkitFilter = 'none';
-				this.bestFoodElement = null;
-			}
-
-			// If full life return
-			if(this.life[2] == 100)
-				return;
-
-			// Set max distanse
-			var distance = this.life[1]+1;
-			var food = null;
-
+		// Patch inventory items
+		patchItems : function(){
 			// Items
 			var items = document.getElementById("inv").getElementsByTagName("div");
 			// For each item
 			for(var i = items.length-1; i>=0; i--){
 				// If item is food
-				if(gca_overview.foodStuff.isItemFood(items[i])){
+				if(this.isItemFood(items[i])){
 					// Get tooltip
 					let tooltip = JSON.parse(items[i].dataset.tooltip);
 					let vitality = 0;
+					
+					// Parse vitality
 					if(tooltip[0][2][0].match(/\+\d+/i)){
 						vitality += parseInt(tooltip[0][1][0].match(/(\d+)/i)[0]);
-						vitality += parseInt(tooltip[0][2][0].match(/\+(\d+)/i)[0]);
-					}else if(tooltip[0][3][0].match(/\+\d+/i)){
-						vitality += parseInt(tooltip[0][2][0].match(/(\d+)/i)[0]);
-						vitality += parseInt(tooltip[0][3][0].match(/\+(\d+)/i)[0]);
 					}
+					else if(tooltip[0][3][0].match(/\+\d+/i)){
+						vitality += parseInt(tooltip[0][2][0].match(/(\d+)/i)[0]);
+					}
+
+					// If valid vitality
 					if(vitality > 0){
-						let thisDistance = Math.abs(this.life[1] - (this.life[0] + vitality));
-						if(thisDistance < distance){
-							distance = thisDistance;
-							food = items[i];
+						// Save vitality
+						items[i].dataset.vitality = vitality;
+
+						// Attach events
+						if(!items[i].dataset.vitalityPatch){
+							items[i].dataset.vitalityAttached = true;
+							items[i].addEventListener('mouseover', function(){
+								gca_overview.foodStuff.showVitalityGain(this);
+							}, false);
+							items[i].addEventListener('mouseout', function(){
+								gca_overview.foodStuff.hideVitalityGain(this);
+							}, false);
 						}
 					}
+
 				}
 			}
-
-			// Set new food
-			this.bestFoodElement = food;
-			// Add attribute if food exist
-			if(food){
-				food.style.webkitFilter = 'drop-shadow(black 0px 0px 1px) drop-shadow(yellow 0px 0px 3px)';
-			}
-		},
-
-		// Check if item is food
-		isItemFood : function(item){
-			// Check if food
-			if(item.dataset.contentType == "64" && window.getComputedStyle(item).getPropertyValue('background-image').match(/img\/item\/7_\d+\.gif/i)){
-				// Is a food
-				return true;
-			}
-			// Not a food
-			return false;
-		},
-
-		// Parse life tooltip
-		parseLifeTooltip : function(tooltip){
-			var getLife = JSON.parse(tooltip)[0][0][0][1].match(/(\d+)\s*\/\s*(\d+)/);
-			this.life[0] = parseInt(getLife[1]);
-			this.life[1] = parseInt(getLife[2]);
-			this.life[2] = Math.round(parseInt(getLife[1]) * 100 / parseInt(getLife[2]));
 		},
 
 		// Refresh data
@@ -254,24 +211,102 @@ var gca_overview = {
 			// Calculate life gain in percent
 			var gain = Math.floor((parseInt(item.dataset.vitality) * 100) / this.life[1]);
 			// Show life gain
-			this.info.textContent = "+" + gain + "%";
+			this.custom_elements.info.textContent = "+" + gain + "%";
 			// Calculate max healing
 			var lifeLost = 100 - this.life[2];
 			// Frame gain inside the posible
 			gain = ((lifeLost > gain) ? gain : lifeLost);
 			// Show gain bar
-			this.bar.style.width = gain + "%";
-			this.spaceBar.style.width = (lifeLost - gain) + "%";
+			this.custom_elements.bar.style.width = gain + "%";
+			this.custom_elements.spaceBar.style.width = (lifeLost - gain) + "%";
 		},
 
 		// Hide Item vitality
 		hideVitalityGain : function(item){
 			// Clear text
-			this.info.textContent = "";
+			this.custom_elements.info.textContent = "";
 			// Hide gain bar
-			this.bar.style.width = "0%";
-			this.spaceBar.style.width = "0%";
-		}
+			this.custom_elements.bar.style.width = "0%";
+			this.custom_elements.spaceBar.style.width = "0%";
+		},
+
+
+		// Find the best food
+		bestFood : function(){
+			// Get Life
+			if(this.life[1] == 0)
+				this.parseLifeTooltip(document.getElementById("header_values_hp_bar").dataset.tooltip);
+
+			var that = this;
+			// Add event on bag open
+			gca_tools.event.bag.onBagOpen(function(tab){
+				// Find best food
+				that.findBestFood();
+			});
+			gca_tools.event.bag.waitBag(function(){
+				// Find best food
+				that.findBestFood();
+			});
+
+			// Attach event on request response
+			gca_tools.event.request.onAjaxResponce(function(r){
+				// Parse life
+				if(r.data.header && r.data.header.health && r.data.header.health.tooltip){
+					that.parseLifeTooltip(r.data.header.health.tooltip);
+				}
+				// Find best food
+				that.findBestFood();
+			});
+		},
+
+		// Find best food
+		bestFoodElement : null,
+		findBestFood : function(){
+			// Remove old
+			if(this.bestFoodElement){
+				this.bestFoodElement.style.webkitFilter = 'none';
+				this.bestFoodElement = null;
+			}
+
+			// If full life return
+			//if(this.life[2] == 100)
+			//	return;
+
+			// Set max distanse
+			var distance = this.life[1]+1;
+			var food = null;
+
+			// Items
+			var items = document.getElementById("inv").getElementsByTagName("div");
+			// For each item
+			for(var i = items.length-1; i>=0; i--){
+				// If item is food
+				if(gca_overview.foodStuff.isItemFood(items[i])){
+					// Get tooltip
+					let tooltip = JSON.parse(items[i].dataset.tooltip);
+					let vitality = 0;
+					if(tooltip[0][2][0].match(/\+\d+/i)){
+						vitality += parseInt(tooltip[0][1][0].match(/(\d+)/i)[0]);
+					}else if(tooltip[0][3][0].match(/\+\d+/i)){
+						vitality += parseInt(tooltip[0][2][0].match(/(\d+)/i)[0]);
+					}
+					if(vitality > 0){
+						let thisDistance = Math.abs(this.life[1] - (this.life[0] + vitality));
+						if(thisDistance < distance){
+							distance = thisDistance;
+							food = items[i];
+						}
+					}
+				}
+			}
+
+			// Set new food
+			this.bestFoodElement = food;
+			// Add attribute if food exist
+			if(food){
+				food.style.webkitFilter = 'drop-shadow(black 0px 0px 1px) drop-shadow(yellow 0px 0px 3px) drop-shadow(yellow 0px 0px 3px)';
+			}
+		},
 	},
 
 	// Log the Daily Bonus
