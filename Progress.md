@@ -9,39 +9,39 @@
 - [ ] Global (Changes on every game page)
 	- [ ] Preloading
 		- [x] Cache event bar's position (moving it before page loads) [if needed]
-		- [x] Disable submenu change on page load (prevent menu change if mouseover) ["global","submenu_click_to_change"]
-		- [x] Enable page x-Scroll ["global","x-scroll"]
-		- [x] Preload item shadow ["global","item_shadow"]
+		- [x] Disable submenu change on page load (prevent menu change if mouseover) \["global","submenu_click_to_change"\]
+		- [x] Enable page x-Scroll \["global","x-scroll"\]
+		- [x] Preload item shadow \["global","item_shadow"\]
 	- [ ] Onload
 		- [x] ✎	Resolve game mode (travel / underworld / dice event / server quest) - Add more modes?
 		- [x] Resolve page's direction Left-to-Right or Right-to-Left
 		- [x] Show addon's version on the bottom (also add link to homepage)
 		- [ ] ❗	Show premium/centurio days on top (may be removed / translation need)
 		- [x] Extend hp/xp info
-			- [x] Show more info ["global","extended_hp_xp_info"]
-				- [x] ✎ Life potion shortcut ["global","extended_hp_xp_info_potion"] (should not work in Underword)
-			- [x] Time for full life ["global","hp_timer_for_full_life"]
-		- [x] Button bar ["global","shortcuts_bar"]
+			- [x] Show more info \["global","extended_hp_xp_info"\]
+				- [x] ✎ Life potion shortcut \["global","extended_hp_xp_info_potion"\] (should not work in Underword)
+			- [x] Time for full life \["global","hp_timer_for_full_life"\]
+		- [x] Button bar \["global","shortcuts_bar"\]
 			- [x] Create (added option to select which buttons)
 			- [x] Online friends
 			- [x] Guild donate
-			- [x] ✎	Player stats (no data / ugly) ["stats", "player"]
+			- [x] ✎	Player stats (no data / ugly) \["stats", "player"\]
 		- [x] Auction status
-			- [x] Auction bar ["global","auction_status_bar"]
-			- [x] Status notification ["global","auction_status_notification"]
+			- [x] Auction bar \["global","auction_status_bar"\]
+			- [x] Status notification \["global","auction_status_notification"\]
 		- [x] Move event bar (if button bar / auction status / hp-xp info)
-		- [x] Top bar ["global","top_fixed_bar"]
-		- [x] Advance menu ["global","advance_main_menu"]
+		- [x] Top bar \["global","top_fixed_bar"\]
+		- [x] Advance menu \["global","advance_main_menu"\]
 			- [x] Remember toggle tabs
-		- [x] Menu click to change ["global","submenu_click_to_change"]
-		- [x] Attacked timers ["global","attacked_timers"]
-		- [x] Quest timer ["global","quest_timer"]
-		- [ ] Merchants Timer (not recoded yet) ["global","merchants_timer"]
-		- [x] ✎	Add Item shadow - Is it working ok? ["global","item_shadow"]
-		- [x] Dice event timer ["global","craps_timer"]
-		- [x] Remember merchants tabs ["global","remember_tabs"]
-		- [x] Guild application alert ["global","notify_new_guild_application"]
-			- [x] Check Interval ["timers", "notify_new_guild_application"]
+		- [x] Menu click to change \["global","submenu_click_to_change"\]
+		- [x] Attacked timers \["global","attacked_timers"\]
+		- [x] Quest timer \["global","quest_timer"\]
+		- [ ] Merchants Timer (not recoded yet) \["global","merchants_timer"\]
+		- [x] ✎	Add Item shadow - Is it working ok? \["global","item_shadow"\]
+		- [x] Dice event timer \["global","craps_timer"\]
+		- [x] Remember merchants tabs \["global","remember_tabs"\]
+		- [x] Guild application alert \["global","notify_new_guild_application"\]
+			- [x] Check Interval \["timers", "notify_new_guild_application"\]
 		- [x] {Underworld} Pray buff shortCut
 		- [ ] Notification on weapon down
 		- [ ] Sound notifications for Missions, Dungeons and Arenas
@@ -61,7 +61,7 @@
 
 
 
-### Global Scripts
+### Overview Scripts
 
 - [ ] Overview
 	- [x] Resolve overview (get dol etc)
