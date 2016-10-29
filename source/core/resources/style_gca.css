@@ -288,6 +288,9 @@
 	.gca_packages_filters_layout #content .side_tab:hover{text-shadow: 0px 0px 4px #AB9965;color: black;}
 	.gca_packages_filters_layout #content .side_menu{margin: -30px -1px 0px -1px;-webkit-user-select: none;-moz-user-select: none;user-select: none;}
 	.gca_packages_filters_layout #content .side_container{clear:both;}
+	.gca_packages_filters_layout #content .side_container select{width: 164px;margin-bottom: 5px;}
+	.gca_packages_filters_layout #content .side_container input[type="text"]{width: 160px;margin-bottom: 5px;}
+	.gca_packages_filters_layout #content .side_container  input[type="submit"]{float: left;margin-top: 5px;}
 
 	.gca_compact_packages_layout #packages_wrapper {padding: 4px 0 2px 4px;}
 	.gca_compact_packages_layout #packages_wrapper .packageItem{padding: 0px;margin: 0 2px 2px 0;width: 78px;height: 142px;}
