@@ -148,8 +148,7 @@ var gca_guild_jail = {
 				div3.appendChild(div4);
 				
 				div3 = document.createElement('div');
-				div3.className = 'jail_level_number';
-				div3.style = 'background-image: url(img/interface/new.gif);';
+				div3.className = 'jail_level_number menue_new_count';
 				div3.setAttribute('data-tooltip','[[["'+prisoners[i].lvl+'","white"]]]');
 				div3.textContent = prisoners[i].lvl;
 				div2.appendChild(div3);
