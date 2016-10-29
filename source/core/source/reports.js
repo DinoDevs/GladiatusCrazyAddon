@@ -145,7 +145,7 @@ var gca_reports = {
 						line[row].getElementsByTagName('td')[2].style.textAlign = "right";
 
 						// If report has a reward
-						if(line[row].getElementsByTagName('td')[3].getElementsByTagName('img').length > 0){
+						if(line[row].getElementsByTagName('td')[3].getElementsByTagName('div').length > 0 && line[row].getElementsByTagName('td')[3].getElementsByTagName('div')[0].className == "icon_itemreward"){
 							// Get report id
 							let report_id = line[row].getElementsByTagName('td')[4].getElementsByTagName('a')[0].href.match(/reportId=(\d+)&/i)[1];
 							// Get report t parm
@@ -153,14 +153,14 @@ var gca_reports = {
 							// Load Loot
 							if(load_loot){
 								// Set a loading tooltip
-								let img = line[row].getElementsByTagName('td')[3].getElementsByTagName('img')[0];
-								img.id = 'report_reward_item_' + report_id;
-								let title = img.getAttribute('title');
-								img.removeAttribute('title');
-								img.style.cursor = "pointer";
-								gca_tools.setTooltip(img, JSON.stringify([[[title+'<span class="loading"></span>',"white"]]]));
+								let icon = line[row].getElementsByTagName('td')[3].getElementsByTagName('div')[0];
+								icon.id = 'report_reward_item_' + report_id;
+								let title = icon.getAttribute('title');
+								icon.removeAttribute('title');
+								icon.style.cursor = "pointer";
+								gca_tools.setTooltip(icon, JSON.stringify([[[title+'<span class="loading"></span>',"white"]]]));
 								// Load item
-								this.getLootItem(report_id, report_t, img, title);
+								this.getLootItem(report_id, report_t, icon, title);
 							}
 						}
 					}
@@ -170,7 +170,7 @@ var gca_reports = {
 		},
 
 		// Get loot item
-		getLootItem : function(id, t, img, title){
+		getLootItem : function(id, t, icon, title){
 			// Get Report
 			jQuery.get(gca_getPage.link({"mod":"reports","submod":"showCombatReport","reportId":id,"t":t}), function(content){
 				// Match Loot
@@ -183,13 +183,13 @@ var gca_reports = {
 				// Error
 				if(!tooltip){
 					// Display
-					gca_tools.setTooltip(img, JSON.stringify([[[title, "white"], [gca_locale.get("error"), "white"]]]));
+					gca_tools.setTooltip(icon, JSON.stringify([[[title, "white"], [gca_locale.get("error"), "white"]]]));
 				}
 				// Tooltip replace
 				else{
 					tooltip = JSON.parse(tooltip[1].replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
 					tooltip[0].unshift([title, "white"]);
-					gca_tools.setTooltip(img, JSON.stringify(tooltip));
+					gca_tools.setTooltip(icon, JSON.stringify(tooltip));
 				}
 			});
 		}
