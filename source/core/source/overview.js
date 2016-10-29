@@ -25,6 +25,10 @@ var gca_overview = {
 		// Repair Items Overview
 		(gca_options.bool("overview", "repair_materials_info") &&
 			this.repair_overview.inject());
+
+		// If Item shadow
+		(gca_options.bool("global","item_shadow") && 
+			this.itemShadow.inject());
 	},
 
 	// Resolve Page
@@ -488,25 +492,35 @@ var gca_overview = {
 			var div = document.createElement("div");
 			div.id = "repair-droppable-grid";
 			div.className = "ui-droppable";
+			// TODO : style on css file
 			div.style = "background: url(img/shop/amplifying.png) no-repeat center center;background-size: 40px 40px;";
-			div.setAttribute('data-container-number', '10101');
-			div.setAttribute('data-content-type-accept', '1855');
-			div.setAttribute('data-tooltip', '[[["'+gca_locale.get("drop_item_see_materials_repair")+'","#FF6A00"],["'+gca_locale.get("workbench_6th_slot_empty")+'","#808080"]]]');
+			div.dataset.containerNumber = 10101;
+			div.dataset.contentTypeAccept = 1855;
 			document.getElementById("char").appendChild(div);
+
+			// Add tooltip
+			gca_tools.setTooltip(div, JSON.stringify([[
+				[gca_locale.get("drop_item_see_materials_repair"), "#FF6A00"],
+				[gca_locale.get("workbench_6th_slot_empty"), "#808080"]
+			]]));
 			
-			// Create Script
-			var script = document.createElement("script");
-			script.textContent = "\
-			jQuery( function() {\
-				jQuery( '#repair-droppable-grid' ).droppable({\
-				  drop: function( event, ui ) {\
-					var id = jQuery(ui.draggable).attr('data-item-id');\
-					sendAjax(this, 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid='+id+'&amount=1' , function (data){gca_overview.repair_overview.resolve_item_JSON(data)} , function (elem, msg, delayDuration){ console.log(msg.responseText);});\
-				  }\
-				});\
-			  } );\
-			";
-			document.getElementById("char").appendChild(script);
+			// Make dropable
+			jQuery(div).droppable({
+				drop: function(event, ui){
+					// Get item's id
+					var id = jQuery(ui.draggable).data('item-id');
+					// Get items needed to repaire the item
+					sendAjax(
+						this, 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid='+id+'&amount=1',
+						function(data){
+							gca_overview.repair_overview.resolve_item_JSON(data)
+						},
+						function(elem, msg, delayDuration){
+							console.log(msg.responseText);
+						}
+					);
+				}
+			});
 		},
 		resolve_item_JSON : function(data){
 			if(/^[\],:{}\s]*$/.test(data.replace(/\\["\\\/bfnrtu]/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,""))){
@@ -525,6 +539,25 @@ var gca_overview = {
 				tooltip += ']]';
 				gca_tools.setTooltip(document.getElementById("repair-droppable-grid"), tooltip);
 			}
+		}
+	},
+	
+	// Items Shadow Inject
+	itemShadow : {
+		inject : function(){
+			this.dollItems();
+		},
+
+		// Add shadow to doll items
+		dollItems : function(){
+			// Get doll items
+			var items = document.getElementById("char").getElementsByClassName("ui-draggable");
+
+			// Add shadow to each item
+			for(var i = items.length - 1; i >= 0; i--){
+				gca_tools.itemShadow.add(items[i]);
+			}
+
 		}
 	}
 };
