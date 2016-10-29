@@ -97,7 +97,7 @@
 ### Pantheon Script
 
 - [ ] Pantheon Quests
-	- [x] ✎ Quests order by category (missing category icons)
+	- [x] Quests order by category
 	- [x] Finished and Failed quests on top
 	- [x] Quests detailed rewards
 	- [ ] Last location indicator
