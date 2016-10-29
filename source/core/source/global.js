@@ -1596,7 +1596,7 @@ var gca_global = {
 
 				// Inject Overview Link
 				this.convertMenu.addTabs("overview", overview, overview_active, [
-					{href : gca_getPage.link({"mod":"overview","submod":"stats"}), img : {style : 'background: center no-repeat url(img/ui/icon_highscore.gif);height: 26px;'}},
+					{text : 'P', href : gca_getPage.link({"mod":"overview","submod":"stats"})},
 					{text : 'X', href : gca_getPage.link({"mod":"overview","doll":"2"})},
 					{text : 'I', href : gca_getPage.link({"mod":"overview","doll":"3"})},
 					{text : 'II', href : gca_getPage.link({"mod":"overview","doll":"4"})},
