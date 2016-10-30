@@ -14,9 +14,13 @@ var gca_overview = {
 		(this.doll == 1 && gca_options.bool("overview", "food_life_gain") && 
 			this.foodStuff.lifeGain());
 
-		// Hilight best food to consume
+		// Highlight best food to consume
 		(this.doll == 1 && gca_options.bool("overview", "best_food") && 
 			this.foodStuff.bestFood());
+
+		// Make foods that give more life transparent
+		(this.doll == 1 && gca_options.bool("overview", "overfeed_food") && 
+			this.foodStuff.overFeeding());
 
 		// Daily Bonus Log
 		(gca_options.bool("overview", "daily_bonus_log") && 
@@ -49,7 +53,11 @@ var gca_overview = {
 	foodStuff : {
 
 		// Life variables
-		life : [0, 0, 0],
+		life : [
+			0, // Current life points
+			0, // Max life points
+			0  // Life percent
+		],
 
 		// Elements
 		custom_elements : {
@@ -69,6 +77,13 @@ var gca_overview = {
 			return false;
 		},
 
+		// Init life
+		initLifeData : function(){
+			// Get Life
+			if(this.life[1] == 0)
+				this.parseLifeTooltip(document.getElementById("header_values_hp_bar").dataset.tooltip);
+		},
+
 		// Parse life tooltip
 		parseLifeTooltip : function(tooltip){
 			var getLife = JSON.parse(tooltip)[0][0][0][1].match(/(\d+)\s*\/\s*(\d+)/);
@@ -77,11 +92,59 @@ var gca_overview = {
 			this.life[2] = Math.round(parseInt(getLife[1]) * 100 / parseInt(getLife[2]));
 		},
 
+		// Keep life data updated
+		keepLifeDataUpdated_active : false,
+		keepLifeDataUpdated : function(callback){
+			// If callback exist
+			if(callback && typeof callback == "function")
+				gca_tools.event.addListener("overviewFoodLifeChange", callback);
+
+			// If not already setuped
+			if(!this.keepLifeDataUpdated_active){
+				// Set it done
+				this.keepLifeDataUpdated_active = true;
+				// Attach event on request response
+				gca_tools.event.request.onAjaxResponce(function(r){
+					// Parse life
+					if(r.data.header && r.data.header.health && r.data.header.health.tooltip){
+						that.parseLifeTooltip(r.data.header.health.tooltip);
+					}
+
+					// Fire event
+					gca_tools.event.fire("overviewFoodLifeChange", r);
+				});
+			}
+		},
+
+		// Get Item's vitality
+		getItemVitality : function(item){
+			// If item is not food
+			if(!this.isItemFood(item))
+				return false;
+
+			// Get tooltip
+			let tooltip = JSON.parse(item.dataset.tooltip);
+
+			// Initialize vitality to zero
+			let vitality = 0;
+			
+			// Parse vitality (way 1)
+			if(tooltip[0][2][0].match(/\+\d+/i)){
+				vitality += parseInt(tooltip[0][1][0].match(/(\d+)/i)[0]);
+			}
+			// or Parse vitality (way 2)
+			else if(tooltip[0][3][0].match(/\+\d+/i)){
+				vitality += parseInt(tooltip[0][2][0].match(/(\d+)/i)[0]);
+			}
+
+			// Return results
+			return vitality;
+		},
+
 		// Inject
 		lifeGain : function(){
 			// Get Life
-			if(this.life[1] == 0)
-				this.parseLifeTooltip(document.getElementById("header_values_hp_bar").dataset.tooltip);
+			this.initLifeData();
 
 			// Create info span
 			this.custom_elements.info = document.createElement('span');
@@ -126,8 +189,8 @@ var gca_overview = {
 				}
 			});
 
-			// Attach on server response
-			gca_tools.event.request.onAjaxResponce(function(r){
+			// Track life changes
+			this.keepLifeDataUpdated(function(r){
 				// Update data
 				gca_overview.foodStuff.refreshData(r.data);
 			});
@@ -139,21 +202,10 @@ var gca_overview = {
 			var items = document.getElementById("inv").getElementsByTagName("div");
 			// For each item
 			for(var i = items.length-1; i>=0; i--){
+				let vitality = this.getItemVitality(items[i]);
 				// If item is food
-				if(this.isItemFood(items[i])){
-					// Get tooltip
-					let tooltip = JSON.parse(items[i].dataset.tooltip);
-					let vitality = 0;
-					
-					// Parse vitality
-					if(tooltip[0][2][0].match(/\+\d+/i)){
-						vitality += parseInt(tooltip[0][1][0].match(/(\d+)/i)[0]);
-					}
-					else if(tooltip[0][3][0].match(/\+\d+/i)){
-						vitality += parseInt(tooltip[0][2][0].match(/(\d+)/i)[0]);
-					}
-
-					// If valid vitality
+				if(vitality != false){
+					// If possitive vitality
 					if(vitality > 0){
 						// Save vitality
 						items[i].dataset.vitality = vitality;
@@ -176,11 +228,6 @@ var gca_overview = {
 
 		// Refresh data
 		refreshData : function(json){
-			// Get Life
-			if(json.header && json.header.health && json.header.health.tooltip){
-				this.parseLifeTooltip(json.header.health.tooltip);
-			}
-
 			// If item was moved
 			if(json && json.to && json.to.data){
 				// Get item data
@@ -238,8 +285,7 @@ var gca_overview = {
 		// Find the best food
 		bestFood : function(){
 			// Get Life
-			if(this.life[1] == 0)
-				this.parseLifeTooltip(document.getElementById("header_values_hp_bar").dataset.tooltip);
+			this.initLifeData();
 
 			var that = this;
 			// Add event on bag open
@@ -252,12 +298,8 @@ var gca_overview = {
 				that.findBestFood();
 			});
 
-			// Attach event on request response
-			gca_tools.event.request.onAjaxResponce(function(r){
-				// Parse life
-				if(r.data.header && r.data.header.health && r.data.header.health.tooltip){
-					that.parseLifeTooltip(r.data.header.health.tooltip);
-				}
+			// Track life changes
+			this.keepLifeDataUpdated(function(){
 				// Find best food
 				that.findBestFood();
 			});
@@ -284,19 +326,17 @@ var gca_overview = {
 			var items = document.getElementById("inv").getElementsByTagName("div");
 			// For each item
 			for(var i = items.length-1; i>=0; i--){
+				// Get vitality
+				let vitality = this.getItemVitality(items[i]);
 				// If item is food
-				if(gca_overview.foodStuff.isItemFood(items[i])){
-					// Get tooltip
-					let tooltip = JSON.parse(items[i].dataset.tooltip);
-					let vitality = 0;
-					if(tooltip[0][2][0].match(/\+\d+/i)){
-						vitality += parseInt(tooltip[0][1][0].match(/(\d+)/i)[0]);
-					}else if(tooltip[0][3][0].match(/\+\d+/i)){
-						vitality += parseInt(tooltip[0][2][0].match(/(\d+)/i)[0]);
-					}
+				if(vitality != false){
+					// If possitive vitality
 					if(vitality > 0){
+						// Calculate how close to 100% it is
 						let thisDistance = Math.abs(this.life[1] - (this.life[0] + vitality));
+						// If closer than the last one
 						if(thisDistance < distance){
+							// We have a new canditate
 							distance = thisDistance;
 							food = items[i];
 						}
@@ -311,6 +351,58 @@ var gca_overview = {
 				food.style.webkitFilter = 'drop-shadow(black 0px 0px 1px) drop-shadow(yellow 0px 0px 3px) drop-shadow(yellow 0px 0px 3px)';
 			}
 		},
+
+		// Make foods that give more life transparent
+		overFeeding : function(){
+			// Get Life
+			this.initLifeData();
+
+			var that = this;
+			// Add event on bag open
+			gca_tools.event.bag.onBagOpen(function(){
+				// Find best food
+				that.findOverFeeding();
+			});
+			gca_tools.event.bag.waitBag(function(){
+				// Find best food
+				that.findOverFeeding();
+			});
+
+			// Track life changes
+			this.keepLifeDataUpdated(function(){
+				// Find overfeeding food
+				that.findOverFeeding();
+			});
+		},
+
+		// Find overfeeding food
+		findOverFeeding : function(){
+			// Items
+			var items = document.getElementById("inv").getElementsByTagName("div");
+			// For each item
+			for(var i = items.length-1; i>=0; i--){
+				// Get vitality
+				let vitality = this.getItemVitality(items[i]);
+				// If item is food
+				if(vitality != false){
+					// If possitive vitality
+					if(vitality > 0){
+						// If overfeed
+						if(this.life[1] - this.life[0] < vitality){
+							items[i].style.opacity = 0.6;
+						}
+						// No overfeed
+						else{
+							items[i].style.opacity = 1;
+						}
+
+					}
+				}
+				// Next item
+			}
+
+			return;
+		}
 	},
 
 	// Log the Daily Bonus

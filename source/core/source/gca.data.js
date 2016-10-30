@@ -336,6 +336,8 @@ gca_options.data = {
 		"repair_materials_info" : true,
 		// Show best food to consume
 		"best_food" : true,
+		// Trasparent food gives you more life than you need
+		"overfeed_food" : true,
 		// Daily Bonus Log
 		"daily_bonus_log" : true,
 		// Show more statistics
