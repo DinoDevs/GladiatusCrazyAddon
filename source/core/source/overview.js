@@ -33,6 +33,10 @@ var gca_overview = {
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
 			this.itemShadow.inject());
+		
+		// Display detailed timer in tooltips of the buffs
+		(gca_options.bool("overview", "buffs_detailed_time") && 
+			this.buffBar.inject());
 	},
 
 	// Resolve Page
@@ -605,6 +609,51 @@ var gca_overview = {
 				gca_tools.itemShadow.add(items[i]);
 			}
 
+		}
+	},
+
+	// Buff bar
+	buffBar : {
+		inject : function(){
+			// If there is a buff bar
+			if(document.getElementById("buffbar_old")){
+				this.addTimers();
+			}
+		},
+
+		// Add timers on the buffs
+		addTimers : function(){
+			// Get buffs
+			var buffs = document.getElementsByClassName("buff_old");
+			// For each buff
+			for (var i = buffs.length - 1; i >= 0; i--) {
+				console.log("Edit buff "+ i);
+
+				// Get buff
+				let buff = buffs[i].getElementsByClassName("buff_inner")[0];
+				// Copy old timer
+				buff.dataset.timeLeft = parseInt(buffs[i].getElementsByClassName("ticker")[0].dataset.tickerTimeLeft);
+				// Update buff
+				this.updateBuffTimer(buff);
+			}
+		},
+
+		updateBuffTimer : function(buff){
+			// Get time left
+			var time_left = parseInt(buff.dataset.timeLeft);
+
+			// Get tooltip
+			var tooltip = JSON.parse(buff.dataset.tooltip);
+			tooltip[0][2] = [gca_tools.time.msToHMS_String(time_left*1000), "#DDD;text-align:right;"];
+			gca_tools.setTooltip(buff, JSON.stringify(tooltip));
+
+			// Update time
+			buff.dataset.timeLeft = time_left - 1;
+
+			var that = this;
+			setTimeout(function(){
+				that.updateBuffTimer(buff);
+			}, 1000);
 		}
 	}
 };

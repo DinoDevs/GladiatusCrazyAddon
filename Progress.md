@@ -76,6 +76,7 @@
 	- [x] Items' shadow
 	- [ ] Save costume's properties
 	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)
+	- [x] Show buff's detailed timer on tooltip
 
 
 - [ ] Overview Stats
