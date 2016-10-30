@@ -69,23 +69,22 @@
 		- [x] Food life gain (onmouseover)
 		- [x] Items that will give you more Life Point than you need will be transparent
 		- [x] Food show best food (yellow shadow)
-	- [x] ✎ Daily bonus log (needs testing)
+	- [x] ✎ Daily bonus log (Needs testing / Not in settings)
 	- [ ] Show the cap values of Resilience and Block
 	- [ ] Display for each mercenary its tooltip (base stats)
 	- [ ] Mercenaries management Interface
-	- [ ] Items' shadow
+	- [x] Items' shadow
 	- [ ] Save costume's properties
 	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)
 
 
 - [ ] Overview Stats
 	- [x] Show more stats
-	- [x] Show graphs of stats from reports
+	- [ ] Show graphs of stats from reports
 
 
 - [x] Overview Achievements
-	- [x] Preloading and Onload
-		- [x] Improve Layout
+	- [x] Improve Layout
 
 
 - [ ] Overview Family
