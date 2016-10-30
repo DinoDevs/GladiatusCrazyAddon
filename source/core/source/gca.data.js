@@ -340,6 +340,8 @@ gca_options.data = {
 		"overfeed_food" : true,
 		// Daily Bonus Log
 		"daily_bonus_log" : true,
+		// Detailed buffs timer
+		"buffs_detailed_time" : true,
 		// Show more statistics
 		"more_statistics" : true,
 		// new Achivements layout
