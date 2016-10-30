@@ -65,11 +65,11 @@
 
 - [ ] Overview
 	- [x] Resolve overview (get doll etc)
-	- [ ] Eat/food features
+	- [x] Eat/food features
 		- [x] Food life gain (onmouseover)
-		- [ ] Items that will give you more Life Point than you need will be transparent
+		- [x] Items that will give you more Life Point than you need will be transparent
 		- [x] Food show best food (yellow shadow)
-	- [ ] Daily bonus log
+	- [x] ✎ Daily bonus log (needs testing)
 	- [ ] Show the cap values of Resilience and Block
 	- [ ] Display for each mercenary its tooltip (base stats)
 	- [ ] Mercenaries management Interface

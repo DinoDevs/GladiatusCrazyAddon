@@ -410,66 +410,21 @@ var gca_overview = {
 		// Inject
 		inject : function(){
 			// If daily bonus
-			(document.getElementById('blackoutDialogLoginBonus') != null && 
-				this.saveBonus());
-
-			// Display data
-			this.showData();
-		},
-
-		// Save bonus
-		saveBonus : function(){
-			// Get wrapper
-			var wrapper = document.getElementById('blackoutDialogLoginBonus');
-			
-			// Get title
-			var title = document.getElementById('header_LoginBonus').textContent;
-			var description = wrapper.getElementsByClassName('loginbonus_description')[0].textContent;
-
-			// Get bonus
-			var bonus_box = wrapper.getElementsByClassName('loginbonus_bonus');
-			var bonus = [];
-			var daysleft = -1;
-
-			// For each reward
-			for (var i = bonus_box.length - 1; i >= 0; i--) {
-				// Get reward data
-				var bonus_item = {
-					img : bonus_box[i].getElementsByTagName('img')[0].src,
-					text : bonus_box[i].getElementsByClassName('loginbonus_text')[0].textContent,
-					tooltip : false
-				};
-				// Check if reward is collected
-				var icon = bonus_box[i].getElementsByClassName('loginbonus_icon')[0];
-				if(icon.dataset.tooltip){
-					bonus_item.tooltip = icon.dataset.tooltip;
-				}
-				// Not collected
-				else{
-					daysleft++;
-				}
-				
-				// Store data
-				bonus.unshift(bonus_item);
+			if(document.getElementById('blackoutDialogLoginBonus') != null){
+				// Save instance
+				var that = this;
+				// Wait update event
+				gca_tools.event.addListener("loginBonusDataUpdated", function(){
+					// Display data
+					that.showData();
+				});
 			}
 
-			// Fix dates
-			if(daysleft < 0)
-				daysleft = 0;
-
-			var day = 24*60*60*1000;
-			var bonusEndDate = new Date(gca_tools.time.server() + daysleft * day);
-			bonusEndDate = new Date(bonusEndDate.getFullYear(), bonusEndDate.getMonth(), bonusEndDate.getDate()).getTime() + day - 1;
-			
-			// Save expiration timestamp
-			gca_data.section.set('overview', 'daily_bonus_ends', bonusEndDate);
-			// Save data
-			gca_data.section.set('overview', 'daily_bonus_data', bonus);
-			// Save title/description
-			gca_data.section.set('overview', 'daily_bonus', {
-				title : title,
-				description : description
-			});
+			// No any new daily bonus
+			else{
+				// Display data
+				this.showData();
+			}
 		},
 
 		// Show daily bonus data
