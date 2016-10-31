@@ -151,6 +151,10 @@ var manager = {
 			else if(info.page.queries.submod == 'achievements'){
 				tools.loadScript("source/overview.achievements.js");
 			}
+			// Other Player Overview
+			else if(info.page.queries.submod == null){
+				tools.loadScript("source/player.js");
+			}
 		},
 		
 		// Training section
