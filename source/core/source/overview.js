@@ -96,6 +96,19 @@ var gca_overview = {
 			this.life[2] = Math.round(parseInt(getLife[1]) * 100 / parseInt(getLife[2]));
 		},
 
+		// Parse life request
+		parseLifeRequest : function(r){
+			if(r.data.header && r.data.header.health){
+				if(r.data.header.health.value && r.data.header.health.maxValue){
+					this.life[0] = r.data.header.health.value;
+					this.life[1] = r.data.header.health.maxValue;
+					this.life[2] = Math.round(this.life[0] * 100 / this.life[1]);
+				}
+				else if(r.data.header.health.tooltip)
+					this.parseLifeTooltip(r.data.header.health.tooltip);
+			}
+		},
+
 		// Keep life data updated
 		keepLifeDataUpdated_active : false,
 		keepLifeDataUpdated : function(callback){
@@ -110,10 +123,7 @@ var gca_overview = {
 				// Attach event on request response
 				gca_tools.event.request.onAjaxResponce(function(r){
 					// Parse life
-					if(r.data.header && r.data.header.health && r.data.header.health.tooltip){
-						that.parseLifeTooltip(r.data.header.health.tooltip);
-					}
-
+					gca_overview.foodStuff.parseLifeRequest(r);
 					// Fire event
 					gca_tools.event.fire("overviewFoodLifeChange", r);
 				});
@@ -626,9 +636,7 @@ var gca_overview = {
 			// Get buffs
 			var buffs = document.getElementsByClassName("buff_old");
 			// For each buff
-			for (var i = buffs.length - 1; i >= 0; i--) {
-				console.log("Edit buff "+ i);
-
+			for(var i = buffs.length - 1; i >= 0; i--){
 				// Get buff
 				let buff = buffs[i].getElementsByClassName("buff_inner")[0];
 				// Copy old timer
