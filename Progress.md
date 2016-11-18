@@ -55,7 +55,7 @@
 			- [ ] Storage Info (Under every bag! Guild, Overview, Merchants...)
 			- [ ] On SHIFT keydown, change the "move amount" status
 			- [ ] right-click menu on items (eat, move to inventory) 
-			- [ ] Move chackbox on the side
+			- [ ] Move checkbox on the side
 		- [ ] Work / Pray / Traveling, The exact finish time (date-time) is shown next to remaining time 
 
 
