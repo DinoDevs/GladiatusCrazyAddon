@@ -74,44 +74,42 @@ var gca_overview_achievements = {
 
 		showCategoryPercent : function(category){
 			// Check if category exist
-			if(!document.getElementById(category+'_details') || !document.getElementById('CAT_'+category)){
+			if(!document.getElementById('cat' + category) || !document.getElementById('CAT_' + category)){
+				// Warn for the problem
+				console.warn("Show category "+ category +" failed.");
+				// Prevent Crash
 				return [0,0];
 			}
 
 			// Total category achivements
 			var total = 0;
 			for (var i = 1; i <= 6; i++) {
-				total += document.getElementById(category + '_details').getElementsByClassName('achievement_detail_medal' + i).length;
+				total += document.getElementById('cat' + category).getElementsByClassName('achievement_detail_medal' + i).length;
 			}
 
 			// Completed category achivements
-			var competed = document.getElementById(category + '_details').getElementsByClassName('active').length;
+			var competed = document.getElementById('cat' + category).getElementsByClassName('active').length;
 
 			// Completed percent
 			var percent = 0;
-			if(total>0) percent = Math.round((competed*100)/total);
+			if(total>0) percent = Math.round((competed * 100) / total);
 
 			var bar = this.createProgressBar(percent);
-			document.getElementById('CAT_'+category).parentNode.insertBefore(bar, document.getElementById('CAT_'+category).nextSibling);
+			document.getElementById('CAT_' + category).parentNode.insertBefore(bar, document.getElementById('CAT_' + category).nextSibling);
 
 			return [competed, total];
 		},
 
 		createProgressBar : function(percent){
+			// Create bar
 			var bar = document.createElement('div');
-			bar.style.height = "3px";
-			bar.style.position = "absolute";
-			bar.style.left = "-2px";
-			bar.style.right = "-2px";
-			bar.style.border = "2px solid rgb(187, 168, 110)";
-			bar.style.backgroundColor = "rgba(135,87,32,0.5)";
-
+			bar.className = "achievement_progress_bar";
 			var percentBar = document.createElement('div');
-			percentBar.style.width = percent+"%";
-			percentBar.style.height = "100%";
-			percentBar.style.backgroundColor = "#E1BD33";
+			percentBar.className = "achievement_progress_bar_percent";
+			percentBar.style.width = percent + "%";
 			bar.appendChild(percentBar);
 
+			// Return bar
 			return bar;
 		}
 	}
