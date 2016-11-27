@@ -155,47 +155,256 @@ var gca_tools = {
 
 	// Item Shadow
 	// -------------------------------------------------- //
-	// itemShadow.add(item)
+	// item.shadow.add(item)
+	// item.shadow.getColor(tooltip)
+	// item.move(item, target[, size])
 	// -------------------------------------------------- //
-	itemShadow : {
+	item : {
 
-		// Get Tooltip Color
-		getColor : function(data){
-			// Parse data
-			if(typeof data == "string")
-				data = JSON.parse(data);
+		// Item Shadow
+		shadow : {
 
-			// Get color
-			var color = "";
-			if(data[0] && data[0][0] && data[0][0][1])
-				color = data[0][0][1];
+			// Get Tooltip Color
+			getColor : function(data){
+				// Parse data
+				if(typeof data == "string")
+					data = JSON.parse(data);
 
-			// Find color
-			if(color.match("white"))
-				return "white";
-			if(color.match("lime"))
-				return "green";
-			if(color.match("#5159F7"))
-				return "blue";
-			if(color.match("#E303E0"))
-				return "purple";
-			if(color.match("#FF6A00"))
-				return "orange";
-			if(color.match("#FF0000"))
-				return "red";
+				// Get color
+				var color = "";
+				if(data[0] && data[0][0] && data[0][0][1])
+					color = data[0][0][1];
 
-			// Default
-			return false;
+				// Find color
+				if(color.match("white"))
+					return "white";
+				if(color.match("lime"))
+					return "green";
+				if(color.match("#5159F7"))
+					return "blue";
+				if(color.match("#E303E0"))
+					return "purple";
+				if(color.match("#FF6A00"))
+					return "orange";
+				if(color.match("#FF0000"))
+					return "red";
+
+				// Default
+				return false;
+			},
+
+			// Add shadow
+			add : function(element){
+				// Get color
+				var color = this.getColor(element.dataset.tooltip);
+				// Add item's shadow
+				element.className += " item-i-" + color;
+			}
 		},
 
-		// Add shadow
-		add : function(element){
-			// Get color
-			var color = this.getColor(element.dataset.tooltip);
-			// Add item's shadow
-			element.className += " item-i-" + color;
-		}
+		// Move
+		move : function(item, target, size){
+			// Get target
+			var target = this._move.resolveMoveTraget(item, target);
 
+			// If many targets
+			if(target instanceof Array){
+				// Translate size
+				if(typeof size === "string")
+					size = this.droppable[size];
+				// Create tables
+				var tables = this._move.createTables(size[0], size[1], target);
+				// Get item size
+				var itemSize = this._move.getSize(item);
+				// Find spot
+				var spot = this._move.findSpot(itemSize[0], itemSize[1], tables.grid);
+				// Validate spot
+				if(!spot) return false;
+				// Translate to target
+				target = target[ tables.index[spot[0]][spot[1]] - 1 ];
+			}
+
+			// Validate target
+			if(!target) return false;
+			// Convert to jQuery
+			target = jQuery(target);
+			item = jQuery(item);
+
+			// Prepare item
+			item.data("ui-draggable").originalPosition = item.offset();
+			// Drop item
+			target.droppable('option', 'drop').call(target, null, {
+				draggable : item,
+				offset : target.offset()
+			});
+
+			// Return
+			return true;
+		},
+
+		droppable : {
+			INV : [8, 5],
+			SHOP : [6, 8]
+		},
+
+		_move : {
+
+			resolveMoveTraget : function(item, target){
+				// If array of targets
+				if(target instanceof Array){
+					return target;
+				}
+				// If not jQuery element
+				else if(!(target instanceof jQuery)){
+					// Make target jQuery
+					target = jQuery(target);
+				}
+
+				// Id droppable
+				if(target.hasClass("ui-droppable")){
+					target = target[0];
+				}
+				// If droppable grid
+				else if(target.hasClass("ui-droppable-grid")){
+					// Build grid droparea
+					window.rebuildGridDropareas(item, target);
+					// Get targets
+					target = target.find(".ui-droppable.grid-droparea");
+				}
+				// If not droppable
+				else{
+					target = target.find(".ui-droppable");
+				}
+
+				// Return to normal jQuery
+				if(target instanceof jQuery){
+					if(target.length == 0){
+						return false;
+					}
+					else if(target.length == 1){
+						target = target[0];
+					}
+					else{
+						var array = [];
+						target.each(function(){
+							array.push(this);
+						});
+						target = array;
+					}
+				}
+
+				// If target found
+				if(target)
+					return target;
+				// Failed
+				return false;
+			},
+
+			// Create
+			createTables : function(grid_width, grid_height, grid_spots){
+				// Results
+				var table = {};
+				// Variables
+				var x, y;
+
+				// Init tables
+				table.grid = [];
+				table.index = [];
+				for (var i = 0; i < grid_width; i++) {
+					x = [];
+					y = [];
+					for (var j = 0; j < grid_height; j++) {
+						x.push(1);
+						y.push(0);
+					}
+					table.grid.push(x);
+					table.index.push(y);
+				}
+
+				// Populate tables
+				for (var i = 0; i < grid_spots.length; i++) {
+					x = (parseInt(grid_spots[i].style.left) / 32);
+					y = (parseInt(grid_spots[i].style.top) / 32);
+					table.grid[x][y] = 0;
+					table.index[x][y] = i + 1;
+				}
+
+				// Return
+				return table;
+			},
+
+			// Get size
+			getSize : function(target){
+				// Convert to jQuery
+				if(!(target instanceof jQuery))
+					target = jQuery(target);
+
+				// Get sizes
+				var x = (parseInt(target.width()) / 32);
+				var y = (parseInt(target.height()) / 32);
+
+				// Retrun sizes
+				return [x, y];
+			},
+
+			// Find a spot on the table
+			// -------------------------------------------------- //
+			// Table has 0 on empty spots
+			// -------------------------------------------------- //
+			findSpot : function(item_width, item_height, table){
+				// Variables
+				var x,y,w,h;
+
+				// Init found position
+				var found = false;
+
+				// Do magic stuff
+				for(x=0; x<=table.length-item_width; x++){
+					for(y=0; y<=table[0].length-item_height; y++){
+						found = true;
+						if(item_height == 1){
+							if(table[x][y]==0){
+								found = true;
+							}else if(table[x+1][y]==0){
+								x++;
+							}else{
+								found = false;
+							}
+						}else{
+							for(w=0; w<item_width; w++){
+								for(h=0; h<item_height; h++){
+									if(table[x+w][y+h]==1){
+										found = false;
+										break;
+									}
+								};
+								if(!found){
+									break;
+								}
+							};
+						}
+						if(found){
+							for(w=0; w<item_width; w++){
+								for(h=0; h<item_height; h++){
+									table[x+w][y+h] = 1;
+								};
+							};
+							// BOOM! ... rabbit out of the hat
+							found = [x, y];
+							break;
+						}
+					}
+					if(found){
+						break;
+					}
+					if(item_height == 1){
+						x++;
+					}
+				}
+				return found;
+			}
+
+		}
 	},
 
 

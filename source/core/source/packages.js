@@ -140,7 +140,7 @@ var gca_packages = {
 		itemShadow : function(){
 			// For each
 			jQuery("#packages .ui-draggable").each(function(){
-				gca_tools.itemShadow.add(this);
+				gca_tools.item.shadow.add(this);
 			});
 		},
 
@@ -272,7 +272,7 @@ var gca_packages = {
 				// Set Items layout
 				if( gca_options.bool("packages", "items_layout") ){
 					// Get color
-					var color = gca_tools.itemShadow.getColor(drag.data("tooltip"));
+					var color = gca_tools.item.shadow.getColor(drag.data("tooltip"));
 					// Add color
 					drag.addClass("item-i-" + color);
 				}

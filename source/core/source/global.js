@@ -2296,7 +2296,7 @@ var gca_global = {
 				
 				// For each
 				for (var i = items.length - 1; i >= 0; i--) {
-					gca_tools.itemShadow.add(items[i]);
+					gca_tools.item.shadow.add(items[i]);
 				}
 
 				// Success

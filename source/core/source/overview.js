@@ -616,7 +616,7 @@ var gca_overview = {
 
 			// Add shadow to each item
 			for(var i = items.length - 1; i >= 0; i--){
-				gca_tools.itemShadow.add(items[i]);
+				gca_tools.item.shadow.add(items[i]);
 			}
 
 		}
