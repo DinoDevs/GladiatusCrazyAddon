@@ -322,6 +322,9 @@ gca_options.data = {
 
 		// Enable item's shadow
 		"item_shadow" : true,
+
+		// Enable pagination layout
+		"pagination_layout" : true,
 		
 		// Underword
 			// Pray Shorcut

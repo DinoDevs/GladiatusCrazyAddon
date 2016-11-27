@@ -279,26 +279,6 @@
 	.gca_rtl .training_cost_calculator_table #reset_button{margin-right:20px;margin-left:auto;}
 	/* New v4.0.0 */
 	#training_box .gca-bases-bar{height:4px;margin-top:-6px;border:1px solid #766531;}
-	
-/* Packages */
-	.gca_packages_filters_layout .package_side_filters{width: 190px;margin-top: 25px;height: 184px;background-color: #E7DEB8;border: 1px solid #B9A66D;border-top: 0px;clear: none;background-image: none;}
-	.gca_packages_filters_layout #content .contentItem{margin-bottom: 0px;}
-	.gca_packages_filters_layout #content .side_tab{cursor: pointer;width: 84px;border: 1px solid #B9A66D;border-bottom: 1px solid #B9A66D;background-color: #D8C8A0;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-	.gca_packages_filters_layout #content .side_tab.active{border-bottom: 0px;background-color: #E7DEB8;}
-	.gca_packages_filters_layout #content .side_tab:hover{text-shadow: 0px 0px 4px #AB9965;color: black;}
-	.gca_packages_filters_layout #content .side_menu{margin: -30px -1px 0px -1px;-webkit-user-select: none;-moz-user-select: none;user-select: none;}
-	.gca_packages_filters_layout #content .side_container{clear:both;}
-	.gca_packages_filters_layout #content .side_container select{width: 164px;margin-bottom: 5px;}
-	.gca_packages_filters_layout #content .side_container input[type="text"]{width: 160px;margin-bottom: 5px;}
-	.gca_packages_filters_layout #content .side_container  input[type="submit"]{float: left;margin-top: 5px;}
-
-	.gca_compact_packages_layout #packages_wrapper {padding: 4px 0 2px 4px;}
-	.gca_compact_packages_layout #packages_wrapper .packageItem{padding: 0px;margin: 0 2px 2px 0;width: 78px;height: 142px;}
-	.gca_compact_packages_layout #packages_wrapper .packageItem > div:nth-child(1){text-align: center;margin: 0px!important;width: 78px!important;}
-	.gca_compact_packages_layout #packages_wrapper .packageItem > div:nth-child(2){margin: 0 auto;}
-	.gca_compact_packages_layout #packages_wrapper .packageItem > div:nth-child(3){line-height: 12px;margin: 2px 0px;font-size: 10px;}
-	.gca_compact_packages_layout #packages_wrapper .packageItem > div:nth-child(3) span{font-size: 12px;font-style: italic;}
-	.gca_compact_packages_layout .pagination > .section-header{margin-top: 0px!important;}
 
 /* Guild */
 	/* Image */
@@ -778,27 +758,52 @@
 /* --------------------------------------------------
 	Version 4 - Layout
 -------------------------------------------------- */
+	
+	/* Global Layout
+	-------------------------------------------------- */
+		/* Paging Layout */
+		.gca_paging .paging_numbers{left: 58px;width: 370px;}
+		.gca_paging .paging_numbers a, .gca_paging .paging_numbers .paging_numbers_current, .gca_paging .paging_button{color: black!important;font-weight: normal!important;height: 20px;line-height: 20px;width: 20px;display: inline-block;border: 1px solid #4A3615;text-decoration: none!important;border-radius: 4px;margin: 0px;}
+		.gca_paging .paging_numbers a, .gca_paging .paging_numbers .paging_numbers_current{background: linear-gradient(to bottom, #C3AB6F, #886933);}
+		.gca_paging .paging_numbers a:hover, .gca_paging .paging_numbers .paging_numbers_current{background: linear-gradient(to bottom, #C3AB6F, #DACFA2);}
+		.gca_paging .paging_numbers .paging_numbers_spacer{height: 12px;width: 16px;display: inline-block;}
+		.gca_paging .paging_button{margin-top: 2px;background-position: center;}
+		.gca_paging .paging_button.paging_left_full{margin-left: -20px;}
+		.gca_paging .paging_button.paging_left_step{margin-left: -24px;}
+		.gca_paging .paging_button.paging_right_full{margin-right: -20px;}
+		.gca_paging .paging_button.paging_right_step{margin-right: -24px;}
 
 	/* Achievements Layout
 	-------------------------------------------------- */
 		/* Improve */
-		.gca_achivements_styling .last_achievement_date{
-			font-weight: lighter;
-			font-size: 12px;
-		}
-		.gca_achivements_styling .achievement_description_box{
-			left: 0;
-		}
+		.gca_achivements_styling .last_achievement_date{font-weight: lighter;font-size: 12px;}
+		.gca_achivements_styling .achievement_description_box{left: 0;}
 		/* Progress Bars */
-		.gca_achivements_styling .achievement_progress_bar{
-			position: absolute;
-			height: 3px;
-			left: -2px;
-			right: -2px;
-			border: 2px solid rgb(187, 168, 110);
-			background-color: rgba(135,87,32,0.5);
-		}
-		.gca_achivements_styling .achievement_progress_bar .achievement_progress_bar_percent{
-			height: 100%;
-			background-color: #E1BD33;
-		}
+		.gca_achivements_styling .achievement_progress_bar{position: absolute;height: 3px;left: -2px;right: -2px;border: 2px solid rgb(187, 168, 110);background-color: rgba(135,87,32,0.5);}
+		.gca_achivements_styling .achievement_progress_bar .achievement_progress_bar_percent{height: 100%;background-color: #E1BD33;}
+
+	/* Packages Layout
+	-------------------------------------------------- */
+		/* Compact Packets */
+		.gca_packages_compact_items_layout #packages_wrapper {padding: 4px 0 2px 4px;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem{padding: 0px;margin: 0 2px 2px 0;width: 78px;height: 142px;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(1){text-align: center;margin: 0px!important;width: 78px!important;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(2){margin: 0 auto;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(3){line-height: 12px;margin: 2px 0px;font-size: 10px;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(3) span{font-size: 12px;font-style: italic;}
+		.gca_packages_compact_items_layout .pagination > .section-header{margin-top: 0px!important;}
+		/* Group Side Filters */
+		.gca_packages_filters_layout .package_side_filters{width: 190px;margin-top: 25px;height: 184px;background-color: #E7DEB8;border: 1px solid #B9A66D;border-top: 0px;clear: none;background-image: none;}
+		.gca_packages_filters_layout #content .contentItem{margin-bottom: 0px;}
+		.gca_packages_filters_layout #content .side_tab{cursor: pointer;width: 84px;border: 1px solid #B9A66D;border-bottom: 1px solid #B9A66D;background-color: #D8C8A0;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+		.gca_packages_filters_layout #content .side_tab.active{border-bottom: 0px;background-color: #E7DEB8;}
+		.gca_packages_filters_layout #content .side_tab:hover{text-shadow: 0px 0px 4px #AB9965;color: black;}
+		.gca_packages_filters_layout #content .side_menu{margin: -30px -1px 0px -1px;-webkit-user-select: none;-moz-user-select: none;user-select: none;}
+		.gca_packages_filters_layout #content .side_container{clear:both;}
+		.gca_packages_filters_layout #content .side_container legend {margin-bottom: -4px;}
+		.gca_packages_filters_layout #content .side_container select{width: 164px;margin-bottom: 5px;}
+		.gca_packages_filters_layout #content .side_container input[type="text"]{width: 160px;margin-bottom: 5px;}
+		.gca_packages_filters_layout #content .side_container  input[type="submit"]{float: left;margin-top: 5px;}
+		.gca_packages_filters_layout #content .side_container .actions_container select{width: 80px;}
+		.gca_packages_filters_layout #content .side_container .actions_container input[type="text"]{width: 80px;}
+		.gca_packages_filters_layout #content .side_container .actions_container input[type="submit"]{float: right;}

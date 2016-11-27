@@ -7,7 +7,7 @@
 var gca_packages = {
 	// Pre Inject code
 	preinject : function(){
-		// Check if style is active
+		// Check if filter style is active
 		if(gca_options.bool("packages", "filters_layout"))
 			// Add class tag
 			document.documentElement.className += " gca_packages_filters_layout";
@@ -28,8 +28,11 @@ var gca_packages = {
 		(gca_options.bool("packages", "items_layout") && 
 			this.layout.compactPackets());
 		// Fix gameforge errors
-		(gca_options.bool("packages", "fix_gameforge_errors") && 
-			this.fixErrors());
+		//(gca_options.bool("packages", "fix_gameforge_errors") && 
+		//	this.fixErrors());
+		// Pagination layout
+		(gca_options.bool("global", "pagination_layout") && 
+			this.layout.pagination());
 		// Load more pages
 		(gca_options.bool("packages", "load_more_pages") && 
 			this.loadPackets.load());
@@ -54,7 +57,7 @@ var gca_packages = {
 		// Improve packet layout
 		compactPackets : function(){
 			// Content
-			document.getElementById("content").className += " gca_compact_packages_layout";
+			document.getElementById("content").className += " gca_packages_compact_items_layout";
 			// Wrapper Id
 			document.getElementById("packages").parentNode.id = "packages_wrapper";
 		},
@@ -97,6 +100,7 @@ var gca_packages = {
 			container.appendChild(filterTabContainer);
 			var sortTabContainer = document.createElement("div");
 			container.appendChild(sortTabContainer);
+			sortTabContainer.className = "actions_container"
 			sortTabContainer.style.display = "none";
 
 			sideBox.appendChild(container);
@@ -107,6 +111,7 @@ var gca_packages = {
 			// Insert action forms
 			var actionForms = settingDiv.getElementsByTagName("form");
 			actionForms[0].style.width = "190px";
+			sortTabContainer.appendChild(actionForms[3]);
 			sortTabContainer.appendChild(actionForms[2]);
 			sortTabContainer.appendChild(actionForms[1]);
 			filterTabContainer.appendChild(actionForms[0]);
@@ -137,6 +142,15 @@ var gca_packages = {
 			jQuery("#packages .ui-draggable").each(function(){
 				gca_tools.itemShadow.add(this);
 			});
+		},
+
+		// Pagination
+		pagination : function(){
+			// Get pagings
+			var pagings = document.getElementsByClassName("paging");
+			for(var i = pagings.length - 1; i >= 0; i--){
+				gca_tools.pagination.parse(pagings[i]);
+			}
 		}
 	},
 

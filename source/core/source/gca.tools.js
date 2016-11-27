@@ -5,7 +5,14 @@
 
 // Tools
 var gca_tools = {
+
+
 	// String Functions
+	// -------------------------------------------------- //
+	// strings.removeDots(str)
+	// strings.insertDots(str)
+	// strings.trim(str)
+	// -------------------------------------------------- //
 	strings : {
 		removeDots : function(x){
 			return x.replace(/\./g,"");
@@ -24,7 +31,17 @@ var gca_tools = {
 		}
 	},
 
+
 	// Time functions
+	// -------------------------------------------------- //
+	// time.server()
+	// time.serverDateString()
+	// time.serverTimeString()
+	// time.parse(dateString)
+	// time.msToHMS(date)
+	// time.msToHMS_String(date)
+	// time.prepForStamp(dateString)
+	// -------------------------------------------------- //
 	time : {
 		// Server's Timestamp
 		_server : false,
@@ -124,7 +141,9 @@ var gca_tools = {
 		}
 	},
 
+
 	// Set a tooltip
+	// -------------------------------------------------- //
 	setTooltip : function(el, data){
 		el.dataset.tooltip = data;
 		// If function is availiable
@@ -133,7 +152,11 @@ var gca_tools = {
 		}
 	},
 
+
 	// Item Shadow
+	// -------------------------------------------------- //
+	// itemShadow.add(item)
+	// -------------------------------------------------- //
 	itemShadow : {
 
 		// Get Tooltip Color
@@ -177,6 +200,17 @@ var gca_tools = {
 
 
 	// Events
+	// -------------------------------------------------- //
+	// event.addListener(name, callback)
+	// event.fire(name[, data])
+	// event.fireOnce(name[, data])
+	// event.clearEventListeners(name)
+	// event.item.onDrag(callback)
+	// event.item.onDrop(callback)
+	// event.request.onAjaxResponce(callback)
+	// event.bag.waitBag(callback)
+	// event.bag.onBagOpen(callback)
+	// -------------------------------------------------- //
 	event : {
 		// List of events
 		event_list : {},
@@ -454,6 +488,221 @@ var gca_tools = {
 		}
 
 
+	},
+
+
+	// Pagination
+	// -------------------------------------------------- //
+	// pagination.parse(wrapper)
+	// -------------------------------------------------- //
+	pagination : {
+
+		// Parse
+		parse : function(wrapper){
+			// If not pagination
+			if(
+				!wrapper.className.match("paging") &&
+				wrapper.getElementsByClassName("paging_numbers").length == 0 &&
+				wrapper.getElementsByClassName("paging_button").length == 0
+			){
+				return false;
+			}
+
+			// Pagination info
+			var info = this.getInfo(wrapper);
+			var pages = this.calculatePages(info, 6);
+
+			// Add style
+			wrapper.className += " gca_paging";
+
+			var linkWrapper = wrapper.getElementsByClassName("paging_numbers")[0];
+			// Clear links
+			linkWrapper.innerHTML = "";
+
+			var a;
+
+			// Create before "..."
+			if(info.first < pages[0]){
+				linkWrapper.appendChild(document.createTextNode("..."));
+			} else {
+				a = document.createElement('span');
+				a.className = "paging_numbers_spacer";
+				linkWrapper.appendChild(a);
+			}
+
+			// Create page links
+			for (var i = 0; i < pages.length; i++) {
+				linkWrapper.appendChild(document.createTextNode(" "));
+				if(pages[i] != info.current){
+					a = document.createElement('a');
+					a.href = info.link + "&page=" + pages[i];
+				}else{
+					a = document.createElement('span');
+					a.className = "paging_numbers_current";
+				}
+				a.textContent = pages[i];
+				linkWrapper.appendChild(a);
+			}
+
+			// Create after "..."
+			if(pages[pages.length - 1] < info.last)
+				linkWrapper.appendChild(document.createTextNode(" ..."));
+
+
+			return true;
+		},
+
+		// Get info
+		getInfo : function(wrapper){
+			// Page object
+			var page = {};
+
+			// Ger number wrapper
+			var numbers = wrapper.getElementsByClassName("paging_numbers")[0];
+			var links = numbers.getElementsByTagName("a");
+			var value;
+
+			// Get current page
+			page.current = numbers.getElementsByTagName("span");
+			if(page.current.length == 0 || isNaN(parseInt(page.current[0].textContent)))
+				return false;
+			page.current = parseInt(page.current[0].textContent);
+
+
+			// Get first page button value
+			page.first = this.parseButton(wrapper, "paging_left_full");
+			// If no button
+			if(page.first == false){
+				// If links exist
+				if(links.length > 0){
+					page.first = this.parseLink(links[0]);
+				}
+			}
+			// If first page not found
+			if(page.first == false || page.first > page.current){
+				page.first = page.current;
+			}
+
+			// Get last page button value
+			page.last = this.parseButton(wrapper, "paging_right_full");
+			// If no button
+			if(page.last == false){
+				// If links exist
+				if(links.length > 0){
+					page.last = this.parseLink(links[links.length-1]);
+				}
+			}
+			// If last page not found
+			if(page.last == false || page.last < page.current){
+				page.last = page.current;
+			}
+
+			// Link
+			page.link = "";
+			// If link
+			if(links.length > 0){
+				page.link = this.getLink(links[0]);
+			}
+			// Else
+			else if(wrapper.getElementsByClassName("paging_left_full").length > 0){
+				page.link = wrapper.getElementsByClassName("paging_left_full")[0];
+			}
+			// Else
+			else if(wrapper.getElementsByClassName("paging_right_full").length > 0){
+				page.link = wrapper.getElementsByClassName("paging_right_full")[0];
+			}
+
+			// Return info
+			return page;
+		},
+
+		// Parse button
+		parseButton : function(wrapper, name){
+			// Button Value
+			var value = false;
+
+			// Get button
+			var button = wrapper.getElementsByClassName(name);
+			// If button exist
+			if(button.length != 0){
+				// Parse link
+				value = this.parseLink(button[0]);
+			}
+
+			// Return value
+			return value;
+		},
+
+		// Parse link
+		parseLink : function(element){
+			// Get value
+			var value = gca_getPage.parameters(element.href);
+			// If Not found
+			if(!value["page"])
+				return false;
+
+			// Parse value
+			value = parseInt(value["page"]);
+			// Check value
+			if(isNaN(value))
+				return false;
+
+			// Return value
+			return value;
+		},
+
+		// Get link
+		getLink : function(element){
+			var link = element.href;
+			link = link.replace(/(&page=\d+|page=\d+&)/i, "");
+			return link;
+		},
+
+		// Calculate pages to show
+		calculatePages : function(info, offset){
+			var pages = [];
+			var page;
+
+			// Push current
+			pages.push(info.current);
+
+			// Prepend pages
+			var prepend_count = offset;
+			prepend_page = info.current - 1;
+			while(prepend_count > 0 && info.first <= prepend_page){
+				pages.unshift(prepend_page);
+				prepend_page--;
+				prepend_count--;
+			}
+
+			// Append pages
+			var append_count = offset;
+			append_page = info.current + 1;
+			while(append_count > 0 && append_page <= info.last){
+				pages.push(append_page);
+				append_page++;
+				append_count--;
+			}
+
+			// Fill ahead
+			while(prepend_count > 0 && append_page <= info.last){
+				pages.push(append_page);
+				append_page++;
+				prepend_count--;
+			}
+
+			// Fill before
+			while(append_count > 0 && info.first <= prepend_page){
+				pages.unshift(prepend_page);
+				prepend_page--;
+				append_count--;
+			}
+
+			// Return pages
+			return pages;
+		}
+
 	}
+
 
 };
