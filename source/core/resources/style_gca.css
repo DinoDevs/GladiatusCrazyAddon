@@ -764,8 +764,10 @@
 		/* Paging Layout */
 		.gca_paging .paging_numbers{left: 58px;width: 370px;}
 		.gca_paging .paging_numbers a, .gca_paging .paging_numbers .paging_numbers_current, .gca_paging .paging_button{color: black!important;font-weight: normal!important;height: 20px;line-height: 20px;width: 20px;display: inline-block;border: 1px solid #4A3615;text-decoration: none!important;border-radius: 4px;margin: 0px;}
-		.gca_paging .paging_numbers a, .gca_paging .paging_numbers .paging_numbers_current{background: linear-gradient(to bottom, #C3AB6F, #886933);}
+		.gca_paging .paging_numbers a, .gca_paging .paging_numbers .paging_numbers_current{line-height: 21px;text-align: center;font-size: 10px;vertical-align: bottom;background: linear-gradient(to bottom, #C3AB6F, #886933);}
 		.gca_paging .paging_numbers a:hover, .gca_paging .paging_numbers .paging_numbers_current{background: linear-gradient(to bottom, #C3AB6F, #DACFA2);}
+		.gca_paging .paging_numbers a:hover{box-shadow: 0px 0px 2px rgba(0,0,0,0.6);}
+		.gca_paging .paging_numbers .paging_numbers_current{cursor: default;}
 		.gca_paging .paging_numbers .paging_numbers_spacer{height: 12px;width: 16px;display: inline-block;}
 		.gca_paging .paging_button{margin-top: 2px;background-position: center;}
 		.gca_paging .paging_button.paging_left_full{margin-left: -20px;}
