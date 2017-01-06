@@ -571,19 +571,47 @@ var gca_tools = {
 				window.sendAjax = gca_tools.event.request.sendAjax;
 			},
 
+			// on Before Callback data
+			beforeAjaxResponce : {
+				list : []
+			},
+			// on Before Callback
+			onBeforeAjaxResponce : function(callback){
+				if(!this.loaded)
+					this.init();
+				// Set an injector
+				this.beforeAjaxResponce.list.push(callback);
+			},
+
 			// Sent Ajax wrapper
 			sendAjax : function(elem, url, data, callbackDone, callbackFail, option){
 				// Call original
 				gca_tools.event.request.original.sendAjax(elem, url, data, function(data, elem){
+					// Set up a pointer
+					var arg = {
+						data : data,
+						elem : elem
+					};
+
+					// Before responce
+					var before = gca_tools.event.request.beforeAjaxResponce;
+					if(before.list.length){
+						for(var i = 0; i < before.list.length; i++){
+							before.list[i](arg);
+						}
+					};
+
+					// Call callback
 					if(callbackDone !== undefined && typeof callbackDone === 'function') {
-						callbackDone(data, elem);
+						callbackDone(arg.data, arg.elem);
 					}
+
 					// Fire event
-					gca_tools.event.fire('ajaxresponce', {elem : elem, data : data});
+					gca_tools.event.fire('ajaxresponce', {elem : arg.elem, data : arg.data});
 				}, callbackFail, option);
 			},
 
-			// OnDrag Event wrapper
+			// Ajax Event wrapper
 			onAjaxResponce : function(callback){
 				if(!this.loaded)
 					this.init();
