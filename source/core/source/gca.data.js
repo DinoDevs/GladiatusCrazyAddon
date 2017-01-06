@@ -413,8 +413,6 @@ gca_options.data = {
 		"compact_info_layout" : true,
 		// Improve packets layout
 		"items_layout" : true,
-		// Fix ajax errors
-		"fix_gameforge_errors" : true,
 		// Load more packages pages
 		"load_more_pages" : true,
 		// Number of pages to load
