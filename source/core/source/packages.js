@@ -27,9 +27,6 @@ var gca_packages = {
 		// Set Items layout
 		(gca_options.bool("packages", "items_layout") && 
 			this.layout.compactPackets());
-		// Fix gameforge errors
-		//(gca_options.bool("packages", "fix_gameforge_errors") && 
-		//	this.fixErrors());
 		// Pagination layout
 		(gca_options.bool("global", "pagination_layout") && 
 			this.layout.pagination());
@@ -138,6 +135,17 @@ var gca_packages = {
 
 		// Item Shadow
 		itemShadow : function(){
+			// Apply item shadow
+			this.itemShadowApply();
+
+			// On new items reapply
+			gca_tools.event.request.onAjaxResponce(function(responce){
+				// If package load request
+				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+					gca_packages.layout.itemShadowApply();
+			});
+		},
+		itemShadowApply : function(){
 			// For each
 			jQuery("#packages .ui-draggable").each(function(){
 				gca_tools.item.shadow.add(this);
@@ -146,16 +154,23 @@ var gca_packages = {
 
 		// Pagination
 		pagination : function(){
+			// Page skipping
+			var skipping = 1;
+			if(gca_options.bool("packages", "load_more_pages")){
+				skipping = gca_options.get("packages", "pages_to_load");
+			}
+
 			// Get pagings
 			var pagings = document.getElementsByClassName("paging");
 			for(var i = pagings.length - 1; i >= 0; i--){
-				gca_tools.pagination.parse(pagings[i]);
+				gca_tools.pagination.parse(pagings[i], skipping);
 			}
 		}
 	},
 
 	// Load more packets
 	loadPackets : {
+
 		// Inject
 		load : function(){
 			// Get page
@@ -167,6 +182,8 @@ var gca_packages = {
 			var pages = gca_options.get("packages", "pages_to_load");
 			// Patch ajax url
 			this.patchAjaxUrl(pages);
+			// Patch ajax responce
+			this.patchAjaxResponce();
 			// Load pages
 			this.loadPages(page, pages, urlParams)
 		},
@@ -217,6 +234,50 @@ var gca_packages = {
 			window.ajaxUrl = gca_getPage.link(url, 'ajax.php');
 		},
 
+		// Patch Ajax Responce
+		patchAjaxResponce : function(){
+			// Save scope
+			var that = this;
+
+			// Save Items
+			jQuery(".packageItem > [data-container-number]").each(function(){
+				that.patchAjaxResponceItems.push( -1 * jQuery(this).data("containerNumber") );
+			})
+
+			// Before Responce
+			gca_tools.event.request.onBeforeAjaxResponce(function(responce){
+				// If package load request
+				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+					// Handle items
+					that.patchAjaxResponceHandler(responce);
+			});
+		},
+
+		// Handle
+		patchAjaxResponceItems : [],
+		patchAjaxResponceHandler : function(responce){
+			// Save scope
+			var that = this;
+
+			// Remove empty boxes
+			jQuery(".packageItem > [data-container-number]:not(:has(div))").each(function(){
+				var index = that.patchAjaxResponceItems.indexOf(-1 * jQuery(this).data("containerNumber"));
+				if(index > -1){
+					that.patchAjaxResponceItems.splice(index, 1);
+				}
+			})
+
+			// Add items on list
+			for(var i = this.patchAjaxResponceItems.length - 1; i >= 0; i--){
+				var index = responce.data.newPackages.indexOf(this.patchAjaxResponceItems[i]);
+				if(index == -1){
+					responce.data.newPackages.unshift( this.patchAjaxResponceItems[i] );
+				}
+			}
+
+			JSON.stringify(responce.data.newPackages);
+		},
+
 		// Load more pages
 		loadPages : function(page, pages, urlParams){
 			// Pages to load
@@ -244,8 +305,18 @@ var gca_packages = {
 
 			// Get packets
 			jQuery.get(gca_getPage.link(page), function(content){
+
+				// Get page number
+				var responce_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
+				if(responce_page) responce_page = responce_page[1] * 1;
+				else responce_page = -1;
+
+				// Validate responce page
+				if(page.page != responce_page)
+					return;
+
 				// Parse items form content
-				var items = content.match(/<div\s+class="packageItem">[^<]*<div[^>]+>[^<]*<\/div>[^<]*<div[^>]*>[^<]*<div[^>]*>[^<]*<\/div>[^<]*<\/div>[^<]*<div>[^<]*<br\s*\/*>[^<]*<span[^>]*>[^<]*<\/span>[^<]*<\/div>[^<]*<\/div>/gim);
+				var items = content.match(/<div\s+class="packageItem">[^<]*<div[^>]+>[^<]*<\/div>[^<]*<div[^>]*>[^<]*<div[^>]*>[^<]*<\/div>[^<]*<\/div>[^<]*<div>[^<]*[^<]*<span[^>]*>[^<]*<\/span>[^<]*<\/div>[^<]*<\/div>/gim);
 				if(items == null) return;
 				// For each item
 				for (var i=0; i<items.length; i++){
@@ -262,104 +333,32 @@ var gca_packages = {
 			// Save instance
 			var that = this;
 
-			// Append new package
-			if (data.newPackage) {
-				var newPackage = jQuery(data.newPackage);
-				jQuery('#packages').append(newPackage);
-				var drag = newPackage.find('.ui-draggable');
-				makeDraggable(drag);
+			var item = jQuery(data.newPackage);
+			var item_dragable = item.find(".ui-draggable");
+			jQuery("#packages").append(item);
+			DragDrop.makeDraggable(item_dragable);
+			item_dragable.removeClass("ui-droppable");
+			this.updatePagePriceInGold(item_dragable, +1);
+			item.find("[data-container-number]").data("removeFunction",
+				// Copy from other :P
+				jQuery(".packageItem > [data-container-number]").data("removeFunction")
+			);
 
-				// Set Items layout
-				if( gca_options.bool("packages", "items_layout") ){
-					// Get color
-					var color = gca_tools.item.shadow.getColor(drag.data("tooltip"));
-					// Add color
-					drag.addClass("item-i-" + color);
-				}
-				
-				// Correct price
-				this.changeValueSimulate(jQuery('#valuePage'), drag.data('priceGold') * drag.data('amount'));
-				// Add drop event
-				// Gameforge for some reason don't do that on new packets :P
-				newPackage.find(' > [data-container-number]').data('removeFunction', function(elem, amount){
-					that.packageDropHandler(this, elem, amount);
-				});
-			}
-			// Update pagination links
-			if(data.pagination)
-				jQuery('.pagination').html(data.pagination);
+			// Save Item
+			this.patchAjaxResponceItems.push( -1 * item.find("[data-container-number]").data("containerNumber") );
+
+			// If Item shadow
+			(gca_options.bool("global","item_shadow") && 
+				gca_tools.item.shadow.add(item_dragable[0]));
 		},
 
-		// Change Value
-		changeValueSimulate : function(el, inc) {
-			var value = el.data('value') + inc;
-			el.data('value', value);
-			el.text(formatZahl(value));
-		},
-
-		// Package Drop 
-		packageDropHandler : function(packet, elem, amount){
-			var drag = packet.getDragContainer();
-			var dragPrice = elem.data('priceGold') * amount;
-			// Correct prices
-			this.changeValueSimulate(jQuery('#valuePage'), -1*dragPrice);
-			this.changeValueSimulate(jQuery('#valueTotal'), -1*dragPrice);
-			// Replace container if empty
-			if (!drag.children().length) {
-				// Remove old container
-				drag.parents('.packageItem').first().remove();
-				
-				// Save instance
-				var that = this;
-				// Send request
-				sendAjax(elem, window.ajaxUrl, '', function(data){
-					that.insertPacket(data);
-				}, function(){
-					that.oupsNetworkError(elem, 1);
-				}, {dataType: 'json', spinnerVisible: false});
-			}
-		},
-
-		// On fail try again
-		oupsNetworkError : function(elem, times){
-			// Lets hope it was network error :P
-			// or potato servers crashed
-
-			// If this happends a lot... abandon
-			if(times > 10) return;
-
-			// Lets wait a little... exponential
-			var wait = (times*time) * 1000;
-
-			// Lets give it a try
-			setTimeout(function(){
-				// Send request
-				sendAjax(elem, window.ajaxUrl, '', function(data){
-					that.insertPacket(data);
-				}, function(){
-					that.oupsNetworkError(elem, times + 1);
-				}, {dataType: 'json', spinnerVisible: false});
-			}, wait);
+		// Update page price in gold
+		updatePagePriceInGold : function(item, factor){
+			var pagePriceInGold = jQuery("#valuePage");
+			var cost = factor * item.data("priceGold") * item.data("amount");
+			var newPagePriceInGold = pagePriceInGold.data("value") + cost;
+			pagePriceInGold.data("value", newPagePriceInGold).text(formatZahl(newPagePriceInGold))
 		}
-
-	},
-
-	// Fix gameforge errors on packages manager
-	fixErrors : function(){
-		// Check if gameforge's code has not yet run
-		if(jQuery('.packageItem > [data-container-number]').data('removeFunction') == undefined){
-			// Check back later
-			setTimeout(function(){
-				gca_packages.fixErrors();
-			}, 10);
-			return;
-		}
-
-		// Ok patch code
-		var that = this;
-		jQuery('.packageItem > [data-container-number]').data('removeFunction', function(elem, amount){
-			that.loadPackets.packageDropHandler(this, elem, amount);
-		});
 	}
 };
 
