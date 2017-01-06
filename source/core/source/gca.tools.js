@@ -205,7 +205,7 @@ var gca_tools = {
 				// Color not found
 				if(!color)
 					return;
-				
+
 				// Add item's shadow
 				element.className += " item-i-" + color;
 			}
@@ -739,12 +739,17 @@ var gca_tools = {
 
 	// Pagination
 	// -------------------------------------------------- //
-	// pagination.parse(wrapper)
+	// pagination.parse(wrapper[, skipping])
 	// -------------------------------------------------- //
 	pagination : {
 
 		// Parse
 		parse : function(wrapper, skipping){
+			return this._parse(wrapper, false, skipping);
+		},
+
+		// Advance parse
+		_parse : function(wrapper, info, skipping){
 			// Default skipping
 			if(!skipping || isNaN(skipping) || skipping < 1){
 				skipping = 1;
@@ -759,7 +764,8 @@ var gca_tools = {
 			}
 
 			// Pagination info
-			var info = this.getInfo(wrapper, skipping);
+			if(!info)
+				info = this.getInfo(wrapper, skipping);
 			var pages = this.calculatePages(info, 6);
 
 			// Add style
@@ -801,7 +807,7 @@ var gca_tools = {
 
 			// Fix nav buttons
 			if(skipping > 1){
-				var button;
+				let button;
 
 				// Left Full
 				button = wrapper.getElementsByClassName("paging_left_full");
@@ -815,23 +821,42 @@ var gca_tools = {
 					else
 						button[0].href = info.link + "&page=" + (info.current - info.skipping);
 
+				// Right Full
+				button = wrapper.getElementsByClassName("paging_right_full");
+				if(button.length)
+					button[0].href = info.link + "&page=" + info.relativeLast;
+				// Right Step
+				button = wrapper.getElementsByClassName("paging_right_step");
+				if(button.length)
+					if(info.relativeLast <= info.current + info.skipping)
+						button[0].href = info.link + "&page=" + info.relativeLast;
+					else
+						button[0].href = info.link + "&page=" + (info.current + info.skipping);
+			}
 
-				var relative_last = info.last - info.skipping + 1;
-				if(info.first > relative_last){
-					relative_last = info.first;
-				}
+			if(info.first == info.current){
+				let button;
+
+				// Left Full
+				button = wrapper.getElementsByClassName("paging_left_full");
+				if(button.length)
+					button[0].style.display = "none";
+				// Left Step
+				button = wrapper.getElementsByClassName("paging_left_step");
+				if(button.length)
+					button[0].style.display = "none";
+			}
+			if(info.relativeLast == info.current){
+				let button;
 
 				// Right Full
 				button = wrapper.getElementsByClassName("paging_right_full");
 				if(button.length)
-					button[0].href = info.link + "&page=" + relative_last;
+					button[0].style.display = "none";
 				// Right Step
 				button = wrapper.getElementsByClassName("paging_right_step");
 				if(button.length)
-					if(relative_last <= info.current + info.skipping)
-						button[0].href = info.link + "&page=" + relative_last;
-					else
-						button[0].href = info.link + "&page=" + (info.current + info.skipping);
+					button[0].style.display = "none";
 			}
 
 			return true;
@@ -902,6 +927,12 @@ var gca_tools = {
 			// Else
 			else if(wrapper.getElementsByClassName("paging_right_full").length > 0){
 				page.link = wrapper.getElementsByClassName("paging_right_full")[0];
+			}
+
+			// Relative last
+			page.relativeLast = page.last - page.skipping + 1;
+			if(page.first > page.relativeLast){
+				page.relativeLast = page.first;
 			}
 
 			// Return info

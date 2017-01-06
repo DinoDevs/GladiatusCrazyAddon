@@ -154,6 +154,24 @@ var gca_packages = {
 
 		// Pagination
 		pagination : function(){
+			// Apply pagination shadow
+			this.paginationApply(document);
+
+			gca_tools.event.request.onBeforeAjaxResponce(function(responce){
+				// If package load request
+				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
+					// Parse code
+					var wrapper = document.createElement("div");
+					wrapper.innerHTML = responce.data.pagination;
+					// Parse pagination
+					gca_packages.layout.paginationApply(wrapper);
+					// Patch code
+					responce.data.pagination = wrapper.innerHTML;
+				}
+			});
+		},
+		paginationCurrent : -1,
+		paginationApply : function(wrapper){
 			// Page skipping
 			var skipping = 1;
 			if(gca_options.bool("packages", "load_more_pages")){
@@ -161,9 +179,26 @@ var gca_packages = {
 			}
 
 			// Get pagings
-			var pagings = document.getElementsByClassName("paging");
+			var pagings = wrapper.getElementsByClassName("paging");
+			if(this.paginationCurrent < 0 && pagings.length){
+				var page = gca_tools.pagination.getInfo(pagings[0], skipping);
+				this.paginationCurrent = page.current;
+			}
+
+			var page;
 			for(var i = pagings.length - 1; i >= 0; i--){
-				gca_tools.pagination.parse(pagings[i], skipping);
+				// Pagination info
+				page = gca_tools.pagination.getInfo(pagings[i], skipping);
+				// Check current page
+				if(this.paginationCurrent < 0 || this.paginationCurrent > page.current){
+					this.paginationCurrent = page.current;
+				}
+				// Update current page
+				else{
+					page.current = this.paginationCurrent;
+				}
+				// Parse pagination
+				gca_tools.pagination._parse(pagings[i], page, skipping);
 			}
 		}
 	},
