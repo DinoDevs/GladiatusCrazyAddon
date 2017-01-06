@@ -167,7 +167,7 @@ var gca_tools = {
 			// Get Tooltip Color
 			getColor : function(data){
 				// Parse data
-				if(typeof data == "string")
+				if(typeof data == "string" && data.length > 0)
 					data = JSON.parse(data);
 
 				// Get color
@@ -197,6 +197,15 @@ var gca_tools = {
 			add : function(element){
 				// Get color
 				var color = this.getColor(element.dataset.tooltip);
+				// On error, try jQuery
+				if(!color && jQuery){
+					color = this.getColor(jQuery(element).data("tooltip"));
+				}
+
+				// Color not found
+				if(!color)
+					return;
+				
 				// Add item's shadow
 				element.className += " item-i-" + color;
 			}
@@ -735,7 +744,11 @@ var gca_tools = {
 	pagination : {
 
 		// Parse
-		parse : function(wrapper){
+		parse : function(wrapper, skipping){
+			// Default skipping
+			if(!skipping || isNaN(skipping) || skipping < 1){
+				skipping = 1;
+			}
 			// If not pagination
 			if(
 				!wrapper.className.match("paging") &&
@@ -746,7 +759,7 @@ var gca_tools = {
 			}
 
 			// Pagination info
-			var info = this.getInfo(wrapper);
+			var info = this.getInfo(wrapper, skipping);
 			var pages = this.calculatePages(info, 6);
 
 			// Add style
@@ -786,11 +799,50 @@ var gca_tools = {
 				linkWrapper.appendChild(document.createTextNode(" ..."));
 
 
+			// Fix nav buttons
+			if(skipping > 1){
+				var button;
+
+				// Left Full
+				button = wrapper.getElementsByClassName("paging_left_full");
+				if(button.length)
+					button[0].href = info.link + "&page=" + info.first;
+				// Left Step
+				button = wrapper.getElementsByClassName("paging_left_step");
+				if(button.length)
+					if(info.first >= info.current - info.skipping)
+						button[0].href = info.link + "&page=" + info.first;
+					else
+						button[0].href = info.link + "&page=" + (info.current - info.skipping);
+
+
+				var relative_last = info.last - info.skipping + 1;
+				if(info.first > relative_last){
+					relative_last = info.first;
+				}
+
+				// Right Full
+				button = wrapper.getElementsByClassName("paging_right_full");
+				if(button.length)
+					button[0].href = info.link + "&page=" + relative_last;
+				// Right Step
+				button = wrapper.getElementsByClassName("paging_right_step");
+				if(button.length)
+					if(relative_last <= info.current + info.skipping)
+						button[0].href = info.link + "&page=" + relative_last;
+					else
+						button[0].href = info.link + "&page=" + (info.current + info.skipping);
+			}
+
 			return true;
 		},
 
 		// Get info
-		getInfo : function(wrapper){
+		getInfo : function(wrapper, skipping){
+			// Default skipping
+			if(!skipping || isNaN(skipping)){
+				skipping = 1;
+			}
 			// Page object
 			var page = {};
 
@@ -833,6 +885,9 @@ var gca_tools = {
 			if(page.last == false || page.last < page.current){
 				page.last = page.current;
 			}
+
+			// Pages per page
+			page.skipping = skipping;
 
 			// Link
 			page.link = "";
@@ -905,33 +960,33 @@ var gca_tools = {
 
 			// Prepend pages
 			var prepend_count = offset;
-			prepend_page = info.current - 1;
+			prepend_page = info.current - info.skipping;
 			while(prepend_count > 0 && info.first <= prepend_page){
 				pages.unshift(prepend_page);
-				prepend_page--;
+				prepend_page -= info.skipping;
 				prepend_count--;
 			}
 
 			// Append pages
 			var append_count = offset;
-			append_page = info.current + 1;
+			append_page = info.current + info.skipping;
 			while(append_count > 0 && append_page <= info.last){
 				pages.push(append_page);
-				append_page++;
+				append_page += info.skipping;
 				append_count--;
 			}
 
 			// Fill ahead
 			while(prepend_count > 0 && append_page <= info.last){
 				pages.push(append_page);
-				append_page++;
+				append_page += info.skipping;
 				prepend_count--;
 			}
 
 			// Fill before
 			while(append_count > 0 && info.first <= prepend_page){
 				pages.unshift(prepend_page);
-				prepend_page--;
+				prepend_page -= info.skipping;
 				append_count--;
 			}
 
