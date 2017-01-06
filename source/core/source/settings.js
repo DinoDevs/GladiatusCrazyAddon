@@ -230,7 +230,11 @@ var gca_settings = {
 				// Improve info layout
 				"compact_info_layout" : true,
 				// Improve packets layout
-				"items_layout" : true
+				"items_layout" : true,
+				// Load more packages pages
+				"load_more_pages" : true,
+				// Number of pages to load
+				"pages_to_load" : 2
 			}
 		},
 
@@ -239,6 +243,8 @@ var gca_settings = {
 			for(var category in this.scheme){
 				// For each label
 				for(var label in this.scheme[category]){
+
+					// Settings Object
 					if(typeof this.scheme[category][label] == "object"){
 						var type = this.scheme[category][label].type;
 						if(!type) continue;
@@ -258,6 +264,8 @@ var gca_settings = {
 								break;
 						}
 					}
+
+					// Parse from value
 					else{
 						var type = this.scheme[category][label];
 						if(typeof type != "string"){
