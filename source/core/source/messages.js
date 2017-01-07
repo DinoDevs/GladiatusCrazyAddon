@@ -33,6 +33,10 @@ var gca_messages = {
 					this.sendMessage.inject(); // TODO : Send message
 				}
 			}
+
+			// Pagination layout
+			(gca_options.bool("global", "pagination_layout") && 
+				this.pagination());
 		}
 	},
 
@@ -411,6 +415,16 @@ var gca_messages = {
 			// 
 			//var div = document.createElement('div');
 			//document.getElementById("content").preve
+		}
+	},
+
+	// Pagination
+	pagination : function(){
+		// Get pagings
+		var pagings = document.getElementsByClassName("paging");
+		// Parse each
+		for(var i = pagings.length - 1; i >= 0; i--){
+			gca_tools.pagination.parse(pagings[i]);
 		}
 	}
 };
