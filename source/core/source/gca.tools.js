@@ -425,6 +425,7 @@ var gca_tools = {
 	// event.clearEventListeners(name)
 	// event.item.onDrag(callback)
 	// event.item.onDrop(callback)
+	// event.request.onBeforeAjaxResponce(callback)
 	// event.request.onAjaxResponce(callback)
 	// event.bag.waitBag(callback)
 	// event.bag.onBagOpen(callback)
@@ -740,6 +741,7 @@ var gca_tools = {
 	// Pagination
 	// -------------------------------------------------- //
 	// pagination.parse(wrapper[, skipping])
+	// pagination._parse(wrapper[, info, skipping])
 	// -------------------------------------------------- //
 	pagination : {
 
