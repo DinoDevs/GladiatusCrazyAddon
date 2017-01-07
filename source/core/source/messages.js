@@ -39,6 +39,18 @@ var gca_messages = {
 	// Messages Interface stuff
 	messages : {
 
+		// Data
+		data : {
+			guild : {
+				in : false,
+				loaded : false
+			},
+			count : {},
+
+			last_message : 0,
+			last_message_saved : 0
+		},
+
 		// Improve interface
 		improve : function(){
 			// Messages
@@ -46,6 +58,12 @@ var gca_messages = {
 			
 			// Display Number of messages
 			this.displayNumberOfMessages(messages.length);
+
+			// Check if in guild
+			this.data.guild.in = gca_data.section.get("guild", "inGuild", false);
+			// Get last message
+			this.data.last_message = gca_data.section.get("messages", 'last_message', 0);
+			this.data.last_message_saved = this.data.last_message;
 
 			// Message editing and style changes on each message
 			for(var i = 0; i < messages.length; i++){
@@ -64,6 +82,9 @@ var gca_messages = {
 				element : element
 			};
 
+			// Unreaded
+			this.unreaded(message);
+
 			// Fix link click close message
 			var titleLinks = message.title.getElementsByTagName('a');
 			if(titleLinks){
@@ -81,7 +102,7 @@ var gca_messages = {
 
 			// Guild message
 			else if(message.image.match(/\d+-\d+\.png/)){
-				//this.editMessage.guild(message);
+				this.editMessage.guild(message);
 			}
 
 			// Gladiatus notification
@@ -94,6 +115,26 @@ var gca_messages = {
 				else{
 					this.editMessage.otherNews(message);
 				}
+			}
+		},
+
+		// Unreaded
+		unreaded : function(message){
+			// Get message id
+			var id = message.element.getElementsByClassName("message_box_icon")[0].getElementsByTagName("input")[0].value * 1;
+
+			// If new message 
+			if(id > this.data.last_message){
+
+				// Hilight new message
+				message.element.className += " unread_message";
+
+				// Save id
+				if(id > this.data.last_message_saved){
+					this.data.last_message_saved = id;
+					gca_data.section.set("messages", 'last_message', id);
+				}
+
 			}
 		},
 
@@ -153,10 +194,46 @@ var gca_messages = {
 				content.insertBefore(layout, content.firstChild);
 			},
 			
+			// Guild message
+			guild : function(message){
+				// Get data
+				var data = gca_messages.messages.data;
+
+				// If in guild
+				if(data.guild.in){
+
+					// Load Mates
+					if(!data.guild.loaded){
+						var mates = gca_data.section.get("guild", "mates", []);
+						data.guild.mates = {};
+
+						for(var i = mates.length - 1; i >= 0; i--){
+							data.guild.mates[mates[i].id] = mates[i];
+						}
+
+						data.guild.loaded = true;
+					}
+
+					// More info on player
+					var id = message.title.getElementsByTagName('a')[0].href.match(/&p=(\d+)/i)[1];
+					if(data.guild.mates[id]){
+						var mate = data.guild.mates[id];
+
+						// Insert more info
+						var info = document.createElement("span");
+						info.textContent = "[ lv" + mate.level + " - " + mate.rank + " ]";
+						message.title.appendChild(info);
+					}
+				}
+			},
+
 			// Guild Battle report
 			guildReport : function(message){
 				// Guild Report message
 				message.element.className += " gca_messages_guild_report";
+
+				// Change icon
+				message.element.getElementsByClassName("message_icon")[0].style.backgroundImage = message.element.getElementsByClassName("message_icon")[0].style.backgroundImage.replace("icon_7.gif", "icon_4.gif");
 
 				// Loading
 				var loading = document.createElement("div");
