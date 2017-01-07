@@ -789,6 +789,7 @@
 	/* Message Layout
 	-------------------------------------------------- */
 		/* General Message Style */
+		.gca_messages_styling #content form{margin-bottom: 5px;}
 		.gca_messages_styling #content form > div{padding:0px!important;}
 		.gca_messages_styling .message_box{margin-top: 4px;width: 540px;}
 		.gca_messages_styling .message_box.unread_message{box-shadow: 0px 0px 3px 1px rgba(255, 165, 0, 0.8);}
