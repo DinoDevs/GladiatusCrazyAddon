@@ -175,8 +175,18 @@ var gca_settings = {
 			"messages" : {
 				// Layout
 				"messages_layout" : true,
+				// Show Unreaded
+				"show_unread" : true,
 				// Send Message Box
 				"send_message_box" : true,
+				// Show more guild mate info
+				"more_guild_mate_info" : true,
+				// Show message links
+				"show_message_links" : true,
+				// Get guild battle info
+				"get_guild_battle_info" : true,
+				// Show sidebar
+				"show_sidebar" : true,
 				// New Message focus manage
 				"new_message_focus" : true,
 				// New Message friend list

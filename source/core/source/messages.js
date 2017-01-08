@@ -29,7 +29,7 @@ var gca_messages = {
 				this.layout.improve());
 
 			// Unread messages
-			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
+			(gca_options.bool("messages", "show_unread") &&
 				this.unread.show());
 
 			// Pagination layout
@@ -37,26 +37,25 @@ var gca_messages = {
 				this.pagination());
 
 			// Send message box
-			(gca_options.bool("global", "send_message_box") && // TODO : Send message
+			(gca_options.bool("messages", "send_message_box") && // TODO : Send message
 				this.send_message.create());
 
 			// Guild message player info
-			(gca_options.bool("messages", "messages_layout") && gca_options.bool("global", "pagination_layout") && // TODO : option needed
+			(gca_options.bool("messages", "messages_layout") && 
+			 gca_options.bool("messages", "more_guild_mate_info") && 
 				this.guild_message.more_info());
 
 			// Guild message parse links
-			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
+			(gca_options.bool("messages", "show_message_links") &&
 				this.guild_message.display_links());
 
 			// Guild battle more info
-			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
+			(gca_options.bool("messages", "get_guild_battle_info") &&
 				this.guild_battle.more_info());
 
 			// Sidebar
-			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
+			(gca_options.bool("messages", "show_sidebar") &&
 				this.sidebar.inject());
-
-			// TODO : message count
 		}
 	},
 
@@ -594,32 +593,54 @@ var gca_messages = {
 		createIcons : function(){
 			// Personal
 			if(gca_messages.messages.type.personal.length){
-				this.addIcon({
+				let icon = this.addIcon({
 					backgroundImage : "url(img/interface_ar/messages.gif)"
-				}, gca_messages.messages.type.personal.length, false);
+				}, gca_messages.messages.type.personal.length, this.handleClick);
+				icon.cur = -1;
+				icon.list = gca_messages.messages.type.personal;
 			}
 
 			// Guild
 			if(gca_messages.messages.type.guild.length){
-				this.addIcon({
-					backgroundImage : "url(img/logo/0/1_2.jpg)",
-					backgroundSize : "100% 100%"
-				}, gca_messages.messages.type.guild.length, false);
+				let img = gca_messages.messages.type.guild[0].element.getElementsByClassName("message_icon")[0].style.backgroundImage;
+				let icon = this.addIcon({
+					backgroundImage : img,
+					backgroundSize : "100% 111%"
+				}, gca_messages.messages.type.guild.length, this.handleClick);
+				icon.cur = -1;
+				icon.list = gca_messages.messages.type.guild;
 			}
 
 			// News
 			if(gca_messages.messages.type.news.length){
-				this.addIcon({
+				let icon = this.addIcon({
 					backgroundImage : "url(img/news/icon_7.gif)"
-				}, gca_messages.messages.type.news.length, false);
+				}, gca_messages.messages.type.news.length, this.handleClick);
+				icon.cur = -1;
+				icon.list = gca_messages.messages.type.news;
 			}
 
 			// Guild Battle
 			if(gca_messages.messages.type.guild_battle.length){
-				this.addIcon({
+				let icon = this.addIcon({
 					backgroundImage : "url(img/news/icon_4.gif)"
-				}, gca_messages.messages.type.guild_battle.length, false);
+				}, gca_messages.messages.type.guild_battle.length, this.handleClick);
+				icon.cur = -1;
+				icon.list = gca_messages.messages.type.guild_battle;
 			}
+		},
+
+		// Handle click
+		handleClick : function(obj){
+			// Next message
+			obj.cur ++;
+			// If end go to start
+			if(obj.list.length <= obj.cur)
+				obj.cur = 0;
+			// Scroll to message
+			jQuery('html, body').animate({
+				scrollTop: jQuery(obj.list[obj.cur].element).offset().top - 30
+			}, 200);
 		},
 
 		// Add icon
@@ -638,16 +659,32 @@ var gca_messages = {
 				icon_element.style[css] = icon[css];
 			}
 
+			// Object
+			var object = {
+				element : wrapper,
+				content : text_element,
+				icon : icon_element
+			};
+
 			// If callback
 			if(callback){
+				// Add cursor pointer
 				icon_element.style.cursor = "pointer";
-				// TODO : implement callbacks
+				// If function
+				if(typeof(callback) == "function"){
+					icon_element.addEventListener('click',function(){
+						callback(object);
+					}, false);
+				}
 			}
 
 			// Insert on page
 			wrapper.appendChild(text_element);
 			wrapper.appendChild(icon_element);
 			this.element.appendChild(wrapper);
+
+			// Return icon
+			return object;
 		}
 
 	},
