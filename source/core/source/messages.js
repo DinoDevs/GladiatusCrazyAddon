@@ -52,6 +52,10 @@ var gca_messages = {
 			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
 				this.guild_battle.more_info());
 
+			// Sidebar
+			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
+				this.sidebar.inject());
+
 			// TODO : message count
 		}
 	},
@@ -562,6 +566,88 @@ var gca_messages = {
 					loading.appendChild(document.createTextNode(gca_locale.get("error")));
 				}
 			});
+		}
+
+	},
+
+
+	// Sidebar
+	sidebar : {
+		
+		// Sidebar element
+		element : null,
+
+		// Inject
+		inject : function(){
+			// Create sidebar
+			this.element = document.createElement("div");
+			this.element.className = "gca_messages_sidebar";
+			// Insert on page
+			var content = document.getElementById("content");
+			content.insertBefore(this.element, content.firstChild);
+
+			// Create Icons
+			this.createIcons();
+		},
+
+		// Create Icons
+		createIcons : function(){
+			// Personal
+			if(gca_messages.messages.type.personal.length){
+				this.addIcon({
+					backgroundImage : "url(img/interface_ar/messages.gif)"
+				}, gca_messages.messages.type.personal.length, false);
+			}
+
+			// Guild
+			if(gca_messages.messages.type.guild.length){
+				this.addIcon({
+					backgroundImage : "url(img/logo/0/1_2.jpg)",
+					backgroundSize : "100% 100%"
+				}, gca_messages.messages.type.guild.length, false);
+			}
+
+			// News
+			if(gca_messages.messages.type.news.length){
+				this.addIcon({
+					backgroundImage : "url(img/news/icon_7.gif)"
+				}, gca_messages.messages.type.news.length, false);
+			}
+
+			// Guild Battle
+			if(gca_messages.messages.type.guild_battle.length){
+				this.addIcon({
+					backgroundImage : "url(img/news/icon_4.gif)"
+				}, gca_messages.messages.type.guild_battle.length, false);
+			}
+		},
+
+		// Add icon
+		addIcon : function(icon, text, callback){
+			// Icon Wrapper
+			var wrapper = document.createElement("div");
+			wrapper.className = "gca_messages_sidebar_icon_wrapper";
+			// Text
+			var text_element = document.createElement("div");
+			text_element.className = "gca_messages_sidebar_text";
+			text_element.textContent = text;
+			// Icon
+			var icon_element = document.createElement("div");
+			icon_element.className = "gca_messages_sidebar_icon";
+			for(css in icon){
+				icon_element.style[css] = icon[css];
+			}
+
+			// If callback
+			if(callback){
+				icon_element.style.cursor = "pointer";
+				// TODO : implement callbacks
+			}
+
+			// Insert on page
+			wrapper.appendChild(text_element);
+			wrapper.appendChild(icon_element);
+			this.element.appendChild(wrapper);
 		}
 
 	},
