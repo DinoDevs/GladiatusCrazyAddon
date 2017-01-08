@@ -20,130 +20,164 @@ var gca_messages = {
 	inject : function(){
 		// Messages
 		if(gca_section.submod == 'messageShow' || gca_section.submod == 'messageMoveDelete'){
-			// Check if messages list
-			if(document.getElementById('content').getElementsByTagName('form').length > 0){
-				// Check if option is active
-				if(gca_options.bool("messages","messages_layout")){
-					// Improve Messages Interface
-					this.messages.improve();
-				}
-				// Check if option is active
-				if(gca_options.bool("messages","send_message_box")){
-					// Insert message sent
-					this.sendMessage.inject(); // TODO : Send message
-				}
-			}
+			
+			// Parse messages
+			this.messages.resolve();
+
+			// Messages layout improve
+			(gca_options.bool("messages", "messages_layout") && 
+				this.layout.improve());
+
+			// Unread messages
+			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
+				this.unread.show());
 
 			// Pagination layout
 			(gca_options.bool("global", "pagination_layout") && 
 				this.pagination());
+
+			// Send message box
+			(gca_options.bool("global", "send_message_box") && // TODO : Send message
+				this.send_message.create());
+
+			// Guild message player info
+			(gca_options.bool("messages", "messages_layout") && gca_options.bool("global", "pagination_layout") && // TODO : option needed
+				this.guild_message.more_info());
+
+			// Guild battle more info
+			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
+				this.guild_battle.more_info());
+
+			// TODO : message count
 		}
 	},
 
-	// Messages Interface stuff
+
+	// Resolve messages
 	messages : {
 
-		// Data
-		data : {
-			guild : {
-				in : false,
-				loaded : false
-			},
-			count : {},
+		// Message list
+		list : [],
+		// Messages by type
+		type : {
+			// Unknowned messages
+			"other" : [],
 
-			last_message : 0,
-			last_message_saved : 0
+			// Messages
+			"personal" : [],
+			"guild" : [],
+
+			// News
+			"news" : [],
+			"guild_battle" : []
 		},
 
-		// Improve interface
-		improve : function(){
-			// Messages
+		// Resolve
+		resolve : function(){
+			// If no messages
+			if(document.getElementById('content').getElementsByTagName('form').length == 0)
+				return;
+
+			// Get messages
 			var messages = document.getElementById("content").getElementsByTagName('form')[0].getElementsByClassName("message_box");
-			
-			// Display Number of messages
-			this.displayNumberOfMessages(messages.length);
 
-			// Check if in guild
-			this.data.guild.in = gca_data.section.get("guild", "inGuild", false);
-			// Get last message
-			this.data.last_message = gca_data.section.get("messages", 'last_message', 0);
-			this.data.last_message_saved = this.data.last_message;
-
-			// Message editing and style changes on each message
+			// Parse messages
+			var msg;
 			for(var i = 0; i < messages.length; i++){
-				this.editMessageInterface(messages[i]);
+				// Parse message
+				msg = this.parseMessage(messages[i]);
+				// Insert it in all list
+				this.list.push(msg);
+				// Insert it in type list
+				this.type[msg.type].push(msg);
 			}
 		},
 
-		// Edit message interface
-		editMessageInterface : function(element){
+		// Parse message
+		parseMessage : function(element){
 			// Message Object
 			var message = {
 				image : element.getElementsByClassName("message_icon")[0].style.backgroundImage,
 				title : element.getElementsByClassName("message_title")[0],
 				date : element.getElementsByClassName("message_date")[0],
 				body : element.getElementsByClassName("message_text")[0],
-				element : element
+				element : element,
+				type : "other"
 			};
-
-			// Unreaded
-			this.unreaded(message);
-
-			// Fix link click close message
-			var titleLinks = message.title.getElementsByTagName('a');
-			if(titleLinks){
-				for (var i = titleLinks.length - 1; i >= 0; i--) {
-					titleLinks[i].addEventListener('click', function(e){
-						e.stopPropagation();
-					}, false);
-				}
-			}
 
 			// Personal message
 			if(message.image.match("messages.gif")){
-				this.editMessage.personal(message);
+				message.type = "personal";
 			}
 
 			// Guild message
 			else if(message.image.match(/\d+-\d+\.png/)){
-				this.editMessage.guild(message);
+				message.type = "guild";
 			}
 
 			// Gladiatus notification
 			else if(message.image.match("icon_7.gif")){
+				
 				// Guild attack
 				if(element.getElementsByTagName('a').length > 0 && element.getElementsByTagName('a')[0].href.match("guild_warcamp")){
-					this.editMessage.guildReport(message);
+					message.type = "guild_battle";
 				}
+				
 				// Other
 				else{
-					this.editMessage.otherNews(message);
+					message.type = "news";
 				}
+			}
+
+			return message;
+		}
+
+	},
+
+
+	// Layout
+	layout : {
+
+		// Improve interface
+		improve : function(){
+			// List
+			var messages = gca_messages.messages.list;
+			// For each message
+			for(var i = 0; i < messages.length; i++){
+				// Apply interface
+				this.apply(messages[i]);
 			}
 		},
 
-		// Unreaded
-		unreaded : function(message){
-			// Get message id
-			var id = message.element.getElementsByClassName("message_box_icon")[0].getElementsByTagName("input")[0].value * 1;
+		// Apply on message
+		apply : function(message){
+			// Find type
+			switch(message.type){
+				// Messages
+				case "personal":
+					this.template.personal(message);
+					break;
+				case "guild":
+					this.template.guild(message);
+					break;
 
-			// If new message 
-			if(id > this.data.last_message){
+				// News
+				case "news":
+					this.template.news(message);
+					break;
+				case "guild_battle":
+					this.template.guild_battle(message);
+					break;
 
-				// Hilight new message
-				message.element.className += " unread_message";
-
-				// Save id
-				if(id > this.data.last_message_saved){
-					this.data.last_message_saved = id;
-					gca_data.section.set("messages", 'last_message', id);
-				}
-
+				// Unknowned messages
+				case "other":
+					break;
 			}
 		},
 
-		// Fix messages
-		editMessage : {
+		// Per Type edit
+		template : {
+
 			// Personal message
 			personal : function(message){
 				// Personal message
@@ -200,223 +234,289 @@ var gca_messages = {
 			
 			// Guild message
 			guild : function(message){
-				// Get data
-				var data = gca_messages.messages.data;
+				
+			},
 
-				// If in guild
-				if(data.guild.in){
-
-					// Load Mates
-					if(!data.guild.loaded){
-						var mates = gca_data.section.get("guild", "mates", []);
-						data.guild.mates = {};
-
-						for(var i = mates.length - 1; i >= 0; i--){
-							data.guild.mates[mates[i].id] = mates[i];
-						}
-
-						data.guild.loaded = true;
-					}
-
-					// More info on player
-					var id = message.title.getElementsByTagName('a')[0].href.match(/&p=(\d+)/i)[1];
-					if(data.guild.mates[id]){
-						var mate = data.guild.mates[id];
-
-						// Insert more info
-						var info = document.createElement("span");
-						info.textContent = "[ lv" + mate.level + " - " + mate.rank + " ]";
-						message.title.appendChild(info);
-					}
-				}
+			// General News
+			news : function(message){
+				// News message
+				message.element.className += " gca_messages_other_news";
 			},
 
 			// Guild Battle report
-			guildReport : function(message){
+			guild_battle : function(message){
 				// Guild Report message
 				message.element.className += " gca_messages_guild_report";
 
 				// Change icon
-				message.element.getElementsByClassName("message_icon")[0].style.backgroundImage = message.element.getElementsByClassName("message_icon")[0].style.backgroundImage.replace("icon_7.gif", "icon_4.gif");
+				var icon = message.element.getElementsByClassName("message_icon")[0];
+				icon.style.backgroundImage = icon.style.backgroundImage.replace("icon_7.gif", "icon_4.gif");
+			}
+		}
 
-				// Loading
-				var loading = document.createElement("div");
-				loading.className = "loading";
-				message.body.appendChild(loading);
+	},
 
-				// Create new message layout
-				var layout = document.createElement("div");
-				// Header title div
-				var header = document.createElement("div");
-				header.className = "gca_messages_guild_report_title";
-				layout.appendChild(header);
-				// Guild flags div
-				var guilds = document.createElement("div");
-				guilds.className = "gca_messages_guild_report_main";
-				layout.appendChild(guilds);
-				// Description Div
-				var description = document.createElement("div");
-				description.className = "gca_messages_guild_report_decription";
-				layout.appendChild(description);
-				// Results
-				var resultsDiv = document.createElement("div");
-				resultsDiv.className = "gca_messages_guild_report_results";
-				layout.appendChild(resultsDiv);
-				// Place link on message title
-				var link = message.body.getElementsByTagName("a")[0];
-				message.title.appendChild(link);
-				// Insert new layout on the message
-				layout.style.display = "none";
-				message.body.appendChild(layout);
 
-				// Attacker guild
-				var guildA = {};
-				var div = document.createElement("div");
-				div.className = "gca_messages_guild_report_left";
-				guildA.name = document.createElement("div");
-				guildA.name.className = "gca_messages_guild_report_name";
-				div.appendChild(guildA.name);
-				guildA.imgDiv = document.createElement("div");
-				guildA.imgDiv.className = "gca_messages_guild_report_divimage";
-				guildA.img = document.createElement("img");
-				guildA.imgDiv.appendChild(guildA.img);
-				div.appendChild(guildA.imgDiv);
-				guilds.appendChild(div);
+	// Unread messages
+	unread : {
 
-				// Defender guild
-				var guildB = {};
-				div = document.createElement("div");
-				div.className = "gca_messages_guild_report_right";
-				guildB.name = document.createElement("div");
-				guildB.name.className = "gca_messages_guild_report_name";
-				div.appendChild(guildB.name);
-				guildB.imgDiv = document.createElement("div");
-				guildB.imgDiv.className = "gca_messages_guild_report_divimage";
-				guildB.img = document.createElement("img");
-				guildB.imgDiv.appendChild(guildB.img);
-				div.appendChild(guildB.imgDiv);
-				guilds.appendChild(div);
+		// Last readed
+		last : 0,
 
-				// VS
-				div = document.createElement("div");
-				div.className = "gca_messages_guild_report_vs";
-				div.textContent = "VS";
-				guilds.appendChild(div);
-				
-				// Get more info
-				jQuery.get(link.href, function(data){
-					// Get Winner
-					var winner = data.match(/<div\s*id="reportHeader"\s*class="([^"]+)">([^<]+)<\/div>/i);
-					// Get Guilds
-					var guilds = data.match(/<span\s*class="guildname">([^<]+)<\/span>\s*<\/div>\s*<img\s*alt="[^"]+"\s*src="[^"]+"\s*border="0"\s*\/>/gm);
-					// Get description
-					var battleInfo = data.match(/<h2>\s*([^<]+)<img\s+src="([^"]+)"\s+alt="([^"]+)"\s+title="([^"]+)"[^>]+>[^<]*(<a\s+alt="[^"]+"\s+title="[^"]+"\s+href="index\.php\?mod=guild_warcamp&submod=guild_combat&gid=\d+&sh=[^"]+"[^>]*>\s*<img[^>]+>\s*<\/a>|)\s*<br[^>]*>\s*<\/h2>/im);
-					// Results
-					var results = data.match(/<th[^>]*>(\d+)<\/th>\s*<th[^>]*><a\s+href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"\s+target="_self">([^<]+)<\/a><\/th>\s*<th[^>]*><\/th>\s*<th[^>]*><\/th>\s*<th[^>]*><a\s+href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"\s+target="_self">([^<]+)<\/a><\/th>\s*<th[^>]*>(\d+)<\/th>/im);
+		// Show unread messages
+		show : function(){
+			// Load last message
+			this.last = gca_data.section.get("messages", 'last_read_message', 0);
 
-					// If data was loaded with no problem
-					if(winner != null && results != null && guilds.length == 2){
-						// Display layout
-						layout.style.display = "block";
-						loading.style.display = "none";
+			// List
+			var messages = gca_messages.messages.list;
 
-						// Display winner
-						header.appendChild(document.createTextNode(winner[2]));
-						header.className += " " + winner[1];
-						// Parse guilds' info
-						var guild_A = guilds[0].match(/<span\s*class="guildname">([^<]+)<\/span>\s*<\/div>\s*<img\s*alt="[^"]+"\s*src="([^"]+)"\s*border="0"\s*\/>/im);
-						var guild_B = guilds[1].match(/<span\s*class="guildname">([^<]+)<\/span>\s*<\/div>\s*<img\s*alt="[^"]+"\s*src="([^"]+)"\s*border="0"\s*\/>/im);
+			// Save last message id
+			if(messages.length > 0)
+				gca_data.section.set("messages", 'last_read_message', this.getId(messages[0]));
 
-						// Display Attacker Guild
-						guildA.name.appendChild(document.createTextNode(guild_A[1]));
-						guildA.img.setAttribute("src", guild_A[2]);
-						// Display Defender Guild
-						guildB.name.appendChild(document.createTextNode(guild_B[1]));
-						guildB.img.setAttribute("src", guild_B[2]);
-
-						// Build description
-						if(battleInfo != null){
-							var img = document.createElement("img");
-							img.setAttribute("src", battleInfo[2]);
-							img.setAttribute("alt", battleInfo[3]);
-							img.setAttribute("title", battleInfo[4]);
-							img.setAttribute("align", "absmiddle");
-							img.setAttribute("border", "0");
-							description.appendChild(document.createTextNode(battleInfo[1]));
-							description.appendChild(img);
-						}
-
-						// Build results
-						var table, tr, td, link;
-						table = document.createElement("table");
-						tr = document.createElement("tr");
-						td = document.createElement("td");
-						td.className = "battles_results battles_results_left";
-						td.textContent = "(" + results[1] + ")";
-						tr.appendChild(td);
-						td = document.createElement("td");
-						td.className = "battles_results_left";
-						link = document.createElement("a");
-						link.href = gca_getPage.link({"mod":"guild", "submod":"forumGladiatorius", "i":results[2]});
-						link.textContent = results[3];
-						td.appendChild(link);
-						tr.appendChild(td);
-						td = document.createElement("td");
-						tr.appendChild(td);
-						td = document.createElement("td");
-						td.className = "battles_results_right";
-						link = document.createElement("a");
-						link.href = gca_getPage.link({"mod":"guild", "submod":"forumGladiatorius", "i":results[4]});
-						link.textContent = results[5];
-						td.appendChild(link);
-						tr.appendChild(td);
-						td = document.createElement("td");
-						td.className = "battles_results battles_results_right";
-						td.textContent = "(" + results[6] + ")";
-						tr.appendChild(td);
-						table.appendChild(tr);
-						resultsDiv.appendChild(table);
-					}
-					else{
-						loading.style.backgroundImage = "none";
-						loading.appendChild(document.createTextNode(gca_locale.get("error")));
-					}
-				});
-			},
-
-			// General News
-			otherNews : function(message){
-				// News message
-				message.element.className += " gca_messages_other_news";
+			// For each message
+			for(var i = 0; i < messages.length; i++){
+				// Check if unread
+				this.checkMessage(messages[i]);
 			}
 		},
 
-		// Display number of messages
-		displayNumberOfMessages : function(messagesNumber) {
-			return;
+		// Check message
+		checkMessage : function(message){
+			// If unread message
+			if(this.getId(message) > this.last)
+				// Hilight unread message
+				message.element.className += " gca_messages_unread_message";
+		},
 
-			// Get pagging div
-			var pagging = document.getElementsByClassName("paging");
-			// Check if exist
-			if(!pagging.length > 0) return;
-			pagging = pagging[0];
+		// Get message id
+		getId : function(message){
+			// Return message id
+			return (message.element.getElementsByClassName("message_box_icon")[0].getElementsByTagName("input")[0].value * 1);
+		}
 
+	},
+
+
+	// Guild message functions
+	guild_message : {
+
+		// Guild mates
+		mates : {},
+
+		// Load
+		more_info : function(){
+			// If no guild
+			if(!gca_data.section.get("guild", "inGuild", false))
+				return;
+
+			// List
+			var messages = gca_messages.messages.type.guild;
+
+			// If no messages
+			if(messages.length == 0)
+				return;
+
+			// Load guild mates
+			var mates = gca_data.section.get("guild", "mates", []);
+			for(var i = mates.length - 1; i >= 0; i--){
+				this.mates[mates[i].id] = mates[i];
+			}
+
+			// For each message
+			for(var i = 0; i < messages.length; i++){
+				// Load battle
+				this.load_info(messages[i]);
+			}
+		},
+
+		// Load info
+		load_info : function(message){
+			// Get player id
+			var id = message.title.getElementsByTagName('a')[0].href.match(/&p=(\d+)/i)[1];
+			// Get player info
+			var mate = this.mates[id];
+
+			// If player in list
+			if(mate){
+				// Insert more info
+				var info = document.createElement("span");
+				info.textContent = "[ lv" + mate.level + " - " + mate.rank + " ]";
+				message.title.appendChild(info);
+			}
+		}
+
+	},
+
+
+	// Guild battle functions
+	guild_battle : {
+
+		// Load
+		more_info : function(){
+			// List
+			var messages = gca_messages.messages.type.guild_battle;
+			// For each message
+			for(var i = 0; i < messages.length; i++){
+				// Load battle
+				this.load_battle(messages[i]);
+			}
+		},
+
+		// Load more
+		load_battle : function(message){
+			// Guild Report message
+			if(!message.element.className.match("gca_messages_guild_report"))
+				message.element.className += " gca_messages_guild_report";
+
+			// Loading
+			var loading = document.createElement("div");
+			loading.className = "loading";
+			message.body.appendChild(loading);
+
+			// Create new message layout
+			var layout = document.createElement("div");
+			// Header title div
+			var header = document.createElement("div");
+			header.className = "gca_messages_guild_report_title";
+			layout.appendChild(header);
+			// Guild flags div
+			var guilds = document.createElement("div");
+			guilds.className = "gca_messages_guild_report_main";
+			layout.appendChild(guilds);
+			// Description Div
+			var description = document.createElement("div");
+			description.className = "gca_messages_guild_report_decription";
+			layout.appendChild(description);
+			// Results
+			var resultsDiv = document.createElement("div");
+			resultsDiv.className = "gca_messages_guild_report_results";
+			layout.appendChild(resultsDiv);
+			// Place link on message title
+			var link = message.body.getElementsByTagName("a")[0];
+			message.title.appendChild(link);
+			// Insert new layout on the message
+			layout.style.display = "none";
+			message.body.appendChild(layout);
+
+			// Attacker guild
+			var guildA = {};
 			var div = document.createElement("div");
-			div.className = "pagging-number-of-messages";
-			div.textContent = "(" + messagesNumber + ")";
-			pagging.insertBefore(div, pagging.firstChild);
+			div.className = "gca_messages_guild_report_left";
+			guildA.name = document.createElement("div");
+			guildA.name.className = "gca_messages_guild_report_name";
+			div.appendChild(guildA.name);
+			guildA.imgDiv = document.createElement("div");
+			guildA.imgDiv.className = "gca_messages_guild_report_divimage";
+			guildA.img = document.createElement("img");
+			guildA.imgDiv.appendChild(guildA.img);
+			div.appendChild(guildA.imgDiv);
+			guilds.appendChild(div);
+
+			// Defender guild
+			var guildB = {};
+			div = document.createElement("div");
+			div.className = "gca_messages_guild_report_right";
+			guildB.name = document.createElement("div");
+			guildB.name.className = "gca_messages_guild_report_name";
+			div.appendChild(guildB.name);
+			guildB.imgDiv = document.createElement("div");
+			guildB.imgDiv.className = "gca_messages_guild_report_divimage";
+			guildB.img = document.createElement("img");
+			guildB.imgDiv.appendChild(guildB.img);
+			div.appendChild(guildB.imgDiv);
+			guilds.appendChild(div);
+
+			// VS
+			div = document.createElement("div");
+			div.className = "gca_messages_guild_report_vs";
+			div.textContent = "VS";
+			guilds.appendChild(div);
+			
+			// Get more info
+			jQuery.get(link.href, function(data){
+				// Get Winner
+				var winner = data.match(/<div\s*id="reportHeader"\s*class="([^"]+)">([^<]+)<\/div>/i);
+				// Get Guilds
+				var guilds = data.match(/<span\s*class="guildname">([^<]+)<\/span>\s*<\/div>\s*<img\s*alt="[^"]+"\s*src="[^"]+"\s*border="0"\s*\/>/gm);
+				// Get description
+				var battleInfo = data.match(/<h2>\s*([^<]+)<img\s+src="([^"]+)"\s+alt="([^"]+)"\s+title="([^"]+)"[^>]+>[^<]*(<a\s+alt="[^"]+"\s+title="[^"]+"\s+href="index\.php\?mod=guild_warcamp&submod=guild_combat&gid=\d+&sh=[^"]+"[^>]*>\s*<img[^>]+>\s*<\/a>|)\s*<br[^>]*>\s*<\/h2>/im);
+				// Results
+				var results = data.match(/<th[^>]*>(\d+)<\/th>\s*<th[^>]*><a\s+href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"\s+target="_self">([^<]+)<\/a><\/th>\s*<th[^>]*><\/th>\s*<th[^>]*><\/th>\s*<th[^>]*><a\s+href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"\s+target="_self">([^<]+)<\/a><\/th>\s*<th[^>]*>(\d+)<\/th>/im);
+
+				// If data was loaded with no problem
+				if(winner != null && results != null && guilds.length == 2){
+					// Display layout
+					layout.style.display = "block";
+					loading.style.display = "none";
+
+					// Display winner
+					header.appendChild(document.createTextNode(winner[2]));
+					header.className += " " + winner[1];
+					// Parse guilds' info
+					var guild_A = guilds[0].match(/<span\s*class="guildname">([^<]+)<\/span>\s*<\/div>\s*<img\s*alt="[^"]+"\s*src="([^"]+)"\s*border="0"\s*\/>/im);
+					var guild_B = guilds[1].match(/<span\s*class="guildname">([^<]+)<\/span>\s*<\/div>\s*<img\s*alt="[^"]+"\s*src="([^"]+)"\s*border="0"\s*\/>/im);
+
+					// Display Attacker Guild
+					guildA.name.appendChild(document.createTextNode(guild_A[1]));
+					guildA.img.setAttribute("src", guild_A[2]);
+					// Display Defender Guild
+					guildB.name.appendChild(document.createTextNode(guild_B[1]));
+					guildB.img.setAttribute("src", guild_B[2]);
+
+					// Build description
+					if(battleInfo != null){
+						var img = document.createElement("img");
+						img.setAttribute("src", battleInfo[2]);
+						img.setAttribute("alt", battleInfo[3]);
+						img.setAttribute("title", battleInfo[4]);
+						img.setAttribute("align", "absmiddle");
+						img.setAttribute("border", "0");
+						description.appendChild(document.createTextNode(battleInfo[1]));
+						description.appendChild(img);
+					}
+
+					// Build results
+					var table, tr, td, link;
+					table = document.createElement("table");
+					tr = document.createElement("tr");
+					td = document.createElement("td");
+					td.className = "battles_results battles_results_left";
+					td.textContent = "(" + results[1] + ")";
+					tr.appendChild(td);
+					td = document.createElement("td");
+					td.className = "battles_results_left";
+					link = document.createElement("a");
+					link.href = gca_getPage.link({"mod":"guild", "submod":"forumGladiatorius", "i":results[2]});
+					link.textContent = results[3];
+					td.appendChild(link);
+					tr.appendChild(td);
+					td = document.createElement("td");
+					tr.appendChild(td);
+					td = document.createElement("td");
+					td.className = "battles_results_right";
+					link = document.createElement("a");
+					link.href = gca_getPage.link({"mod":"guild", "submod":"forumGladiatorius", "i":results[4]});
+					link.textContent = results[5];
+					td.appendChild(link);
+					tr.appendChild(td);
+					td = document.createElement("td");
+					td.className = "battles_results battles_results_right";
+					td.textContent = "(" + results[6] + ")";
+					tr.appendChild(td);
+					table.appendChild(tr);
+					resultsDiv.appendChild(table);
+				}
+				else{
+					loading.style.backgroundImage = "none";
+					loading.appendChild(document.createTextNode(gca_locale.get("error")));
+				}
+			});
 		}
+
 	},
 
-	// Sent message interface
-	sendMessage : {
-		// Inject
-		inject : function(){
-			// 
-			//var div = document.createElement('div');
-			//document.getElementById("content").preve
-		}
-	},
 
 	// Pagination
 	pagination : function(){
@@ -426,7 +526,19 @@ var gca_messages = {
 		for(var i = pagings.length - 1; i >= 0; i--){
 			gca_tools.pagination.parse(pagings[i]);
 		}
+	},
+
+
+	// Send message box
+	send_message : {
+
+		// Create box
+		create : function(){
+
+		}
+
 	}
+
 };
 
 (function(){

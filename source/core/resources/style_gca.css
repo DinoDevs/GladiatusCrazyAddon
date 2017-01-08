@@ -792,7 +792,6 @@
 		.gca_messages_styling #content form{margin-bottom: 5px;}
 		.gca_messages_styling #content form > div{padding:0px!important;}
 		.gca_messages_styling .message_box{margin-top: 4px;width: 540px;}
-		.gca_messages_styling .message_box.unread_message{box-shadow: 0px 0px 3px 1px rgba(255, 165, 0, 0.8);}
 		.gca_messages_styling .message_box .messageSubject{background: #E6DCB7;height: 14px;width: 534px;padding: 4px 4px 4px 0px;border-width: 1px;}
 		.gca_messages_styling .message_box .messageSubject .message_box_icon{margin-left: -18px;}
 		.gca_messages_styling .message_box .messageSubject .message_box_title{margin-left: 15px;}
@@ -805,31 +804,30 @@
 		.gca_messages_styling .message_box:hover .message_box_content .message_footer a{display: block;}
 		.gca_messages_styling .message_box:hover .messageSubject{border: 1px solid #7D714A;}
 		.gca_messages_styling .message_box:hover .message_box_content{border-left: 1px solid #7D714A;border-right: 1px solid #7D714A;border-bottom: 1px solid #7D714A;}
-		/* Pagging *//*
-		.gca_messages_styling .section-header{cursor: auto;}
-		.gca_messages_styling .title_box{border: 1px solid #7D714A;background: linear-gradient(to bottom, #C3AB6F, #D3C195);}
-		.gca_messages_styling .pagging-number-of-messages{text-align: center;font-weight: normal;color: #432B0F;position: absolute;top: 5px;left: 5px;width: 30px;height: 22px;line-height: 22px;}
-		.gca_messages_styling .paging_numbers a, .gca_messages_styling .paging_numbers .paging_numbers_current{color: black!important;font-weight: normal!important;height: 20px;line-height: 20px;width: 20px;display: inline-block;border: 1px solid #4A3615;text-decoration: none!important;border-radius: 4px;margin: 0px;background: linear-gradient(to bottom, #C3AB6F, #886933);}
-		.gca_messages_styling .paging_numbers a:hover, .gca_messages_styling .paging_numbers .paging_numbers_current{background: linear-gradient(to bottom, #C3AB6F, #DACFA2);}
+		.message_box.gca_messages_unread_message{box-shadow: 0px 0px 3px 1px rgba(255, 165, 0, 0.8);}
 		/* Messages Guild */
 		.gca_messages_styling .message_box .messageSubject .message_box_title .message_title span{margin-left: 5px;font-size: 10px;color: #8a6b35;font-style: italic;}
 		/* Messages Guild Report */
-		.gca_messages_styling .gca_messages_guild_report .loading{height: 245px;width: 526px;background-position: center;}
-		.gca_messages_styling .gca_messages_guild_report_name{background-image: url("interface/name_bg.png");width: 168px;height: 26px;margin-left: auto;margin-right: auto;vertical-align: middle;text-align: center;color: #BFAE54;padding-top: 6px;font-weight: bold;font-size: 12px;}
-		.gca_messages_styling .gca_messages_guild_report_main{height: 185px;}
-		.gca_messages_styling .gca_messages_guild_report_title{color: #BFAE54;border: 2px solid #BFAE54;text-align: center;padding: 2px 4px;font-size: 16px;margin: 4px 40px 5px 40px;}
-		.gca_messages_styling .gca_messages_guild_report_left{text-align: center;width: 200px;float: left;padding-left: 25px;}
-		.gca_messages_styling .gca_messages_guild_report_right{text-align: center;width: 200px;float: right;padding-right: 25px;}
-		.gca_messages_styling .gca_messages_guild_report_vs{width: 30px;margin: 0 auto;text-align: center;padding-top: 85px;font-weight: bold;font-size: 14px;}
-		.gca_messages_styling .gca_messages_guild_report_divimage img{width: 130px;height: 144px;}
-		.gca_messages_styling .gca_messages_guild_report_decription, .gca_messages_styling .gca_messages_guild_report_results{width: 450px;margin: 0 auto;}
-		.gca_messages_styling .gca_messages_guild_report_results table{width: 100%;}
-		.gca_messages_styling .gca_messages_guild_report .battles_results{width:30px;}
-		.gca_messages_styling .gca_messages_guild_report .battles_results_left{text-align: left!important;}
-		.gca_messages_styling .gca_messages_guild_report .battles_results_right{text-align: right!important;}
 		.gca_messages_styling .gca_messages_guild_report .messageSubject,
 		.gca_messages_styling .gca_messages_guild_report .message_text,
 		.gca_messages_styling .gca_messages_guild_report .message_footer{background: #E8E3CD!important;}
+		.gca_messages_styling .gca_messages_guild_report_left{padding-left: 25px;}
+		.gca_messages_styling .gca_messages_guild_report_right{padding-right: 25px;}
+		/* Messages Guild Report - Load more info */
+		.gca_messages_guild_report .message_title{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+		.gca_messages_guild_report .loading{height: 245px;width: 526px;background-position: center;}
+		.gca_messages_guild_report_name{background-image: url("interface/name_bg.png");width: 168px;height: 26px;margin-left: auto;margin-right: auto;vertical-align: middle;text-align: center;color: #BFAE54;padding-top: 6px;font-weight: bold;font-size: 12px;}
+		.gca_messages_guild_report_main{height: 185px;}
+		.gca_messages_guild_report_title{color: #BFAE54;border: 2px solid #BFAE54;text-align: center;padding: 2px 4px;font-size: 16px;margin: 4px 40px 5px 40px;}
+		.gca_messages_guild_report_left{text-align: center;width: 200px;float: left;}
+		.gca_messages_guild_report_right{text-align: center;width: 200px;float: right;}
+		.gca_messages_guild_report_vs{width: 30px;margin: 0 auto;text-align: center;padding-top: 85px;font-weight: bold;font-size: 14px;}
+		.gca_messages_guild_report_divimage img{width: 130px;height: 144px;}
+		.gca_messages_guild_report_decription, .gca_messages_guild_report_results{width: 450px;margin: 0 auto;}
+		.gca_messages_guild_report_results table{width: 100%;}
+		.gca_messages_guild_report .battles_results{width:30px;}
+		.gca_messages_guild_report .battles_results_left{text-align: left!important;}
+		.gca_messages_guild_report .battles_results_right{text-align: right!important;}
 		/* Personal Message */
 		.gca_messages_styling .gca_messages_personal .message_footer{background-color: transparent!important;}
 		.gca_messages_styling .gca_messages_personal .gca_messages_personal_table{padding: 5px 10px;background-color: #E6DCB7;margin-bottom: -10px;}
