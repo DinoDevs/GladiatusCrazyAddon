@@ -15,16 +15,16 @@ var gca_guild_library = {
 	layout : {
 		improve : function(){
 			// If library container
-			if(!document.getElementById('content').getElementsByClassName('title2_box').length)
+			if(!document.getElementById('content').getElementsByTagName('section').length)
 				return;
 			
 			// Save container
-			var container = document.getElementById('content').getElementsByClassName('title2_box')[0];
+			var container = document.getElementById('content').getElementsByTagName('section')[0];
 			// Add an id to it
 			container.id = 'gca-library-container';
 
 			// Get guild gold
-			var guildGold = container.parentNode.getElementsByClassName('title_box')[2].getElementsByClassName('span_right')[0].textContent;
+			var guildGold = container.parentNode.getElementsByClassName('span_right')[1].textContent;
 			guildGold = parseInt(guildGold.replace(/\./g,''));
 			
 			// Get recipes
@@ -43,7 +43,7 @@ var gca_guild_library = {
 				let recepGold = recipes[i].getElementsByTagName('td')[1].textContent.replace(/\./g,'').match(/(\d+)/)[1];
 
 				// If not enought gold or is active
-				if(recipes[i].getElementsByTagName('td')[3].textContent != '---' || recepGold > guildGold){
+				if(recipes[i].getElementsByTagName('td')[3].getElementsByTagName('span')[0].textContent != '---' || recepGold > guildGold){
 					// Disable recipe
 					recipes[i].style = 'opacity:0.7;';
 					recipes[i].getElementsByTagName('td')[4].getElementsByTagName('input')[0].className = 'library_button_disabled';
@@ -68,7 +68,7 @@ var gca_guild_library = {
 				// Show level
 				let div = document.createElement('div');
 				div.className = 'library_level_number';
-				div.style = 'background-image: url(img/interface/new.gif);';
+				div.style = 'background-image: url(img/premium/box/amount.png);background-size: contain;';
 				div.textContent = tooltip[3][0].match(/(\d+)\s*\//)[1];
 				recipes[i].getElementsByTagName('div')[0].appendChild(div);
 			}

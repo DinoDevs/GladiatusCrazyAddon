@@ -300,7 +300,7 @@
 	.library_button_enable:hover{background: transparent url('buttons/quest_button.jpg') 0px -30px no-repeat;}
 	.library_button_delete{width: 30px; height: 30px; background: transparent url('buttons/quest_button.jpg') -30px 0px no-repeat; border: 0px;}
 	.library_button_delete:hover{background: transparent url('buttons/quest_button.jpg') -30px -30px no-repeat;}
-	.library_level_number{font-size:0.8em;position: absolute; margin-top: -15px; margin-left: 18px; width: 16px; height: 16px; color: white; text-align: center; font-weight: bold;line-height: 16px;}
+	.library_level_number{font-size:0.8em;position: absolute; margin-top: -15px; margin-left: 18px; width: 16px; height: 16px; color: white; text-align: center; font-weight: bold;line-height: 16px;pointer-events: none;}
 	.gca_rtl .library_level_number{margin-right: 18px;margin-left: auto;}
 	#gca-library-container td{text-align:center;}
 	#gca-library-container td:nth-child(2),#gca-library-container td:nth-child(3),#gca-library-container td:nth-child(4){border-bottom:1px dotted #333;}
