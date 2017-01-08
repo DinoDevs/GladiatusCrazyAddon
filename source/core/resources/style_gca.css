@@ -807,9 +807,9 @@
 		.message_box.gca_messages_unread_message{box-shadow: 0px 0px 3px 1px rgba(255, 165, 0, 0.8);}
 		/* Messages Guild */
 		.gca_messages_styling .message_box .messageSubject .message_box_title .message_title span{margin-left: 5px;font-size: 10px;color: #8a6b35;font-style: italic;}
-		.gca_messages_styling .message_box .message_box_content.gca_message_links{border-top: 1px solid #BBA86E;}
-		.gca_messages_styling .message_box:hover .message_box_content.gca_message_links{border-top: 1px solid #7D714A;}
-		.gca_messages_styling .message_box .message_box_content.gca_message_links .message_text{background-color: #d3c195;font-size: 10px;}
+		.message_box .message_box_content .message_text.gca_message_links{font-size: 10px;font-style: italic;margin-top: 20px;background-color: rgba(0,0,0,0.1);}
+		.gca_messages_styling .message_box .message_box_content .message_text.gca_message_links{border-top: 1px solid #BBA86E;margin-top: 0px;background-color: #d3c195;}
+		.gca_messages_styling .message_box:hover .message_box_content .message_text.gca_message_links{border-top: 1px solid #7D714A;}
 		/* Messages Guild Report */
 		.gca_messages_styling .gca_messages_guild_report .messageSubject,
 		.gca_messages_styling .gca_messages_guild_report .message_text,

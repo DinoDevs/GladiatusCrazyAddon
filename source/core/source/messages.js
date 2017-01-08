@@ -45,7 +45,7 @@ var gca_messages = {
 				this.guild_message.more_info());
 
 			// Guild message parse links
-			(gca_options.bool("messages", "messages_layout") && gca_options.bool("global", "pagination_layout") && // TODO : option needed
+			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
 				this.guild_message.display_links());
 
 			// Guild battle more info
@@ -378,11 +378,8 @@ var gca_messages = {
 				return;
 
 			// Create links box
-			var box = document.createElement("div");
-			box.className = "message_box_content new_message gca_message_links";
 			var wrapper = document.createElement("div");
-			wrapper.className = "message_text";
-			box.appendChild(wrapper);
+			wrapper.className = "message_text gca_message_links";
 
 			// Create links
 			var a;
@@ -396,7 +393,7 @@ var gca_messages = {
 			}
 
 			// Add box on message
-			message.element.appendChild(box);
+			message.body.parentNode.appendChild(wrapper);
 		}
 
 	},
