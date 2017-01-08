@@ -47,22 +47,22 @@ var gca_guild_jail = {
 		improve : function(){
 			if(!document.getElementById('content').getElementsByTagName('p')[1]) return;
 			
-			//Get Jail's cells number
+			// Get Jail's cells number
 			var jailCells = document.getElementById('content').getElementsByTagName('p')[1].textContent.match(/\d+/i);
 
-			//Set an array for the prisoners
+			// Set an array for the prisoners
 			var prisoners = new Array();
 
-			//Count prisoners' rows
+			// Count prisoners' rows
 			var jailTableRows = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr').length;
 			
 			// If you have the rights to free monsters
 			var admin = ( document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[3].getElementsByTagName('a')[1] )?true:false;
 			if(!admin) document.getElementById('content').className('noJailRights');
 			
-			//For every prisoner row
+			// For every prisoner row
 			for(var i=1;i<jailTableRows;i++){
-				//Get prisoner's info
+				// Get prisoner's info
 				var name = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[0].textContent;
 				var lvl = parseInt(document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[1].textContent.match(/\d+/i));
 				var number = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[2].textContent.match(/\d+/i);
@@ -177,13 +177,13 @@ var gca_guild_jail = {
 				a.appendChild(button);
 			}
 
-			//Hide old prisoners layout
-			document.getElementById('content').getElementsByTagName('div')[0].style = 'display:none';
+			// Hide old prisoners layout
+			document.getElementById('content').getElementsByTagName('article')[0].style = 'display:none';
 			document.getElementById('content').className = 'gca-jail-content';
-			//Calculate empty cells
+			// Calculate empty cells
 			jailCells-=prisoners.length;
 
-			//Built empty cells
+			// Built empty cells
 			for(var i=0;i<jailCells;i++){				
 				let div = document.createElement('div');
 				div.className = 'expedition_box';
