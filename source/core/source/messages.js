@@ -44,6 +44,10 @@ var gca_messages = {
 			(gca_options.bool("messages", "messages_layout") && gca_options.bool("global", "pagination_layout") && // TODO : option needed
 				this.guild_message.more_info());
 
+			// Guild message parse links
+			(gca_options.bool("messages", "messages_layout") && gca_options.bool("global", "pagination_layout") && // TODO : option needed
+				this.guild_message.display_links());
+
 			// Guild battle more info
 			(gca_options.bool("global", "pagination_layout") && // TODO : option needed
 				this.guild_battle.more_info());
@@ -271,9 +275,14 @@ var gca_messages = {
 			// List
 			var messages = gca_messages.messages.list;
 
-			// Save last message id
-			if(messages.length > 0)
-				gca_data.section.set("messages", 'last_read_message', this.getId(messages[0]));
+			// If messages
+			if(messages.length > 0){
+				// Get the id of the first message
+				let first_id = this.getId(messages[0]);
+				// If new message save it's id
+				if(first_id > this.last)
+					gca_data.section.set("messages", 'last_read_message', first_id);
+			}
 
 			// For each message
 			for(var i = 0; i < messages.length; i++){
@@ -345,6 +354,49 @@ var gca_messages = {
 				info.textContent = "[ lv" + mate.level + " - " + mate.rank + " ]";
 				message.title.appendChild(info);
 			}
+		},
+
+
+		// Display links
+		display_links : function(){
+			// List
+			var messages = gca_messages.messages.type.guild;
+			// For each message
+			for(var i = 0; i < messages.length; i++){
+				// Load battle
+				this.parse_links(messages[i]);
+			}
+		},
+
+		// Parse links
+		parse_links : function(message){
+			// Match links
+			var links = message.body.textContent.match(/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/g);
+
+			// If no links found return
+			if(!links)
+				return;
+
+			// Create links box
+			var box = document.createElement("div");
+			box.className = "message_box_content new_message gca_message_links";
+			var wrapper = document.createElement("div");
+			wrapper.className = "message_text";
+			box.appendChild(wrapper);
+
+			// Create links
+			var a;
+			for(var i = 0; i < links.length; i++){
+				a = document.createElement("a");
+				a.href = links[i];
+				a.setAttribute("target","_blank");
+				a.textContent = links[i];
+				wrapper.appendChild(a);
+				wrapper.appendChild(document.createElement("br"));
+			}
+
+			// Add box on message
+			message.element.appendChild(box);
 		}
 
 	},
