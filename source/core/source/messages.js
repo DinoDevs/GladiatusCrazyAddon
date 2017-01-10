@@ -56,6 +56,8 @@ var gca_messages = {
 			// Sidebar
 			(gca_options.bool("messages", "show_sidebar") &&
 				this.sidebar.inject());
+
+			// On name click -> close message bug
 		}
 	},
 
