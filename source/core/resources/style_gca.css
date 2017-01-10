@@ -823,7 +823,7 @@
 		.gca_messages_styling .gca_messages_guild_report_right{padding-right: 25px;}
 		/* Messages Guild Report - Load more info */
 		.gca_messages_guild_report .message_title{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-		.gca_messages_guild_report .loading{height: 245px;width: 526px;background-position: center;}
+		.gca_messages_guild_report .loading{height: 265px;margin-bottom:4px;width: 526px;background-position: center;}
 		.gca_messages_guild_report_name{background-image: url("interface/name_bg.png");width: 168px;height: 26px;margin-left: auto;margin-right: auto;vertical-align: middle;text-align: center;color: #BFAE54;padding-top: 6px;font-weight: bold;font-size: 12px;}
 		.gca_messages_guild_report_main{height: 185px;}
 		.gca_messages_guild_report_title{color: #BFAE54;border: 2px solid #BFAE54;text-align: center;padding: 2px 4px;font-size: 16px;margin: 4px 40px 5px 40px;}
@@ -831,6 +831,7 @@
 		.gca_messages_guild_report_right{text-align: center;width: 200px;float: right;}
 		.gca_messages_guild_report_vs{width: 30px;margin: 0 auto;text-align: center;padding-top: 85px;font-weight: bold;font-size: 14px;}
 		.gca_messages_guild_report_divimage img{width: 130px;height: 144px;}
+		.gca_messages_guild_report_decription{height: 19px;}
 		.gca_messages_guild_report_decription, .gca_messages_guild_report_results{width: 450px;margin: 0 auto;}
 		.gca_messages_guild_report_results table{width: 100%;}
 		.gca_messages_guild_report .battles_results{width:30px;}
