@@ -815,7 +815,7 @@
 		/* Messages Guild */
 		.gca_messages_styling .message_box .messageSubject .message_box_title .message_title span{margin-left: 5px;font-size: 10px;color: #8a6b35;font-style: italic;}
 		.message_box .message_box_content .message_text.gca_message_links{font-size: 10px;font-style: italic;margin-top: 20px;background-color: rgba(0,0,0,0.1);}
-		.gca_messages_styling .message_box .message_box_content .message_text.gca_message_links{border-top: 1px solid #BBA86E;margin-top: 0px;background-color: #d3c195;}
+		.gca_messages_styling .message_box .message_box_content .message_text.gca_message_links{border-top: 1px solid #BBA86E;margin-top: 0px;background-color: rgba(211, 193, 149, 0.5);}
 		.gca_messages_styling .message_box:hover .message_box_content .message_text.gca_message_links{border-top: 1px solid #7D714A;}
 		/* Messages Guild Report */
 		.gca_messages_styling .gca_messages_guild_report .messageSubject,
@@ -862,7 +862,7 @@
 		.gca_messages_styling .gca_messages_other_news .messageSubject,
 		.gca_messages_styling .gca_messages_other_news .message_text,
 		.gca_messages_styling .gca_messages_other_news .message_footer{background: #EAD791!important;}
-
+		/*
 		.tdn_changed{border: 1px solid #af8e50; background-color: #ded8c6; padding: 5px;}
 		.personal_message_icon{position: absolute; margin-left: -29px; background: transparent url('buttons/main_buttons.png') -177px -50px no-repeat; width: 14px; height: 13px;}
 		.gca_rtl  .personal_message_icon{margin-right: -29px; margin-left: auto;}
@@ -884,6 +884,7 @@
 		.gca_rtl .msg_title2_inner{margin-right:-6px;margin-left:auto;}
 		
 		.tdn_changed .guild-flag{margin-left: auto;margin-right: auto;}
+		*/
 
 	/* New Message Layout
 	-------------------------------------------------- */
