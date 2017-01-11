@@ -36,6 +36,10 @@ var gca_messages = {
 			(gca_options.bool("global", "pagination_layout") && 
 				this.pagination());
 
+			// Separate days
+			(gca_options.bool("messages", "separate_days") && 
+				this.separator.days());
+
 			// Send message box
 			(gca_options.bool("messages", "send_message_box") && // TODO : Send message
 				this.send_message.create());
@@ -141,6 +145,12 @@ var gca_messages = {
 			}
 
 			return message;
+		},
+
+		// Get date from message
+		parseDate : function(message){
+			var date = message.element.getElementsByClassName("message_date")[0].textContent.match(/(\d+)\.(\d+)\.(\d+)/i);
+			return date[0];
 		}
 
 	},
@@ -702,6 +712,51 @@ var gca_messages = {
 		for(var i = pagings.length - 1; i >= 0; i--){
 			gca_tools.pagination.parse(pagings[i]);
 		}
+	},
+
+
+	// Separator
+	separator : {
+		
+		// Separate days
+		days : function(){
+			// List
+			var messages = gca_messages.messages.list;
+			// If messages
+			if(messages.length > 1){
+				// Get previus date
+				var prev_date = gca_messages.messages.parseDate(messages[0]);
+				// Next date variable
+				var next_date;
+
+				// For each message
+				for(var i = 1; i < messages.length; i++){
+					// Get date
+					next_date = gca_messages.messages.parseDate(messages[i]);
+					// If new date
+					if(next_date != prev_date){
+						// Add separator
+						this.add(messages[i], next_date);
+						// Set new date
+						prev_date = next_date;
+					}
+				}
+			}
+		},
+
+		// Add a separator
+		add : function(message, title){
+			// Create
+			var separator = document.createElement("div");
+			separator.className = "message_box gca_messages_separator";
+			// Set title
+			separator.textContent = title;
+			// Add on page
+			message.element.parentNode.insertBefore(separator, message.element);
+			// Return element
+			return separator;
+		}
+
 	},
 
 

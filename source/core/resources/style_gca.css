@@ -804,6 +804,8 @@
 		.gca_messages_styling .message_box:hover .message_box_content .message_footer a{display: block;}
 		.gca_messages_styling .message_box:hover .messageSubject{border: 1px solid #7D714A;}
 		.gca_messages_styling .message_box:hover .message_box_content{border-left: 1px solid #7D714A;border-right: 1px solid #7D714A;border-bottom: 1px solid #7D714A;}
+		.message_box.gca_messages_separator{margin-top: 15px;border-bottom: 2px solid #bba86e;}
+		.gca_messages_styling .message_box.gca_messages_separator{border-bottom: 1px solid #bba86e;}
 		.message_box.gca_messages_unread_message{box-shadow: 0px 0px 3px 1px rgba(255, 165, 0, 0.8);}
 		/* Messages Side Bar */
 		.gca_messages_sidebar{width: 45px;margin-left: 545px;margin-top: 80px;position: fixed;}

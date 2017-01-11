@@ -177,6 +177,8 @@ var gca_settings = {
 				"messages_layout" : true,
 				// Show Unreaded
 				"show_unread" : true,
+				// Separate days
+				"separate_days" : true,
 				// Send Message Box
 				"send_message_box" : true,
 				// Show more guild mate info
