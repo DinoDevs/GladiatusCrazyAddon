@@ -367,6 +367,8 @@ gca_options.data = {
 		"get_guild_battle_info" : true,
 		// Show sidebar
 		"show_sidebar" : true,
+		// Fix header links
+		"fix_header_links" : true,
 		// New Message focus manage
 		"new_message_focus" : true,
 		// New Message friend list

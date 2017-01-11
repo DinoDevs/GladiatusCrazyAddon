@@ -57,7 +57,9 @@ var gca_messages = {
 			(gca_options.bool("messages", "show_sidebar") &&
 				this.sidebar.inject());
 
-			// On name click -> close message bug
+			// Header links fix
+			(gca_options.bool("messages", "fix_header_links") &&
+				this.fix.headerLinks());
 		}
 	},
 
@@ -700,6 +702,39 @@ var gca_messages = {
 		for(var i = pagings.length - 1; i >= 0; i--){
 			gca_tools.pagination.parse(pagings[i]);
 		}
+	},
+
+
+	// Fixes functions
+	fix : {
+
+		// Fix messages header links
+		headerLinks : function(){
+			// List
+			var messages = gca_messages.messages.list;
+
+			var links;
+			// For each message
+			for(var i = 0; i < messages.length; i++){
+				links = messages[i].title.getElementsByTagName('a');
+				// If header link
+				if(links.length){
+					// Fix header link
+					this.headerLink(links);
+				}
+			}
+		},
+
+		// Fix message header links
+		headerLink : function(links){
+			// Fix link click close message
+			for (var i = links.length - 1; i >= 0; i--) {
+				links[i].addEventListener('click', function(e){
+					e.stopPropagation();
+				}, true);
+			}
+		}
+
 	},
 
 
