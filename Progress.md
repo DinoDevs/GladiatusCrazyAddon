@@ -278,19 +278,26 @@
 ### Messages Script
 
 - [ ] Messages
-	- [x] Style changes
+	- [x] New Layout
 		- [x] Guild message
 		- [x] Private message
 		- [x] Announcement
-	- [ ] Day separators 
-	- [ ] Automatic code identification
-		- [ ] Convert all URL to links
+		- [x] Guild Mates informations (level - rank)
+	- [x] Hilight unread messages
+	- [x] Day separators
+	- [ ] Send message box
+	- [ ] Message parse
+		- [x] Show message links below
 		- [ ] Youtube videos to videos
 	- [x] Load guild battles report
-	- [ ] Icon next to Guild Master's message (or color, sth for admins too?)
+	- [x] Sidebar buttons
+		- [x] Show number of messages (per type)
+		- [x] Click to go on message
+	- [x] Fixes
+		- [x] Fix header link click bug
 	- [ ] Auto-remove last lines of each message, if they are empty (trim messages)
 	- [ ] Warning icon and item links on auction bid messages
-	- [ ] Tab link on incomming folder
+	- [ ] Tab link on incomming folder (Tab to go to the incomming folder)
 
 
 - [ ] New Message
