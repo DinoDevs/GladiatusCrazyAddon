@@ -582,9 +582,9 @@ var gca_overview = {
 			item.from.attr("data-amount", item.amount);
 			// Get items needed to repair the item
 			sendAjax(
-				item.from, 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid=' + item.from.data('item-id') + '&amount=1',
+				drop.getDropContainer(), 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid=' + item.from.data('item-id') + '&amount=1',
 				function(data){
-					gca_overview.repair_overview.resolve_item_JSON(data)
+					gca_overview.repair_overview.resolveMaterials(data)
 				},
 				function(elem, msg, delayDuration){
 					console.log(msg.responseText);
@@ -592,7 +592,7 @@ var gca_overview = {
 			);
 		},
 
-		resolve_item_JSON : function(data){
+		resolveMaterials : function(data){
 			if(/^[\],:{}\s]*$/.test(data.replace(/\\["\\\/bfnrtu]/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,""))){
 				data=JSON.parse(data);
 				needed_materials = data.slots[5].formula.needed;
