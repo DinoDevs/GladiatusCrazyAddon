@@ -552,7 +552,7 @@ var gca_overview = {
 			// Create drop area
 			var div = document.createElement("div");
 			div.id = "repair-droppable-grid";
-			div.className = "ui-droppable";
+			div.className = "custom-ui-droppable";
 			// TODO : style on css file
 			div.style = "background: url(img/shop/amplifying.png) no-repeat center center;background-size: 40px 40px;";
 			div.dataset.containerNumber = 10101;
@@ -565,24 +565,33 @@ var gca_overview = {
 				[gca_locale.get("workbench_6th_slot_empty"), "#808080"]
 			]]));
 			
-			// Make dropable
-			jQuery(div).droppable({
-				drop: function(event, ui){
-					// Get item's id
-					var id = jQuery(ui.draggable).data('item-id');
-					// Get items needed to repaire the item
-					sendAjax(
-						this, 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid='+id+'&amount=1',
-						function(data){
-							gca_overview.repair_overview.resolve_item_JSON(data)
-						},
-						function(elem, msg, delayDuration){
-							console.log(msg.responseText);
-						}
-					);
-				}
-			});
+			window.addEventListener('load', function(){
+				DragDrop.makeDroppable(div);
+				div.dataset.requestFunction = function(to, amount){
+					gca_overview.repair_overview.dropHandler(this, {from : this.getDrag(), to : to, amount : amount});
+				};
+			}, false);
 		},
+
+		// Item drop handler
+		dropHandler : function(drop, item){
+			// Remove fake one
+			item.to.remove().dequeue();
+			// Set amount
+			item.from.data("amount", item.amount);
+			item.from.attr("data-amount", item.amount);
+			// Get items needed to repair the item
+			sendAjax(
+				item.from, 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid=' + item.from.data('item-id') + '&amount=1',
+				function(data){
+					gca_overview.repair_overview.resolve_item_JSON(data)
+				},
+				function(elem, msg, delayDuration){
+					console.log(msg.responseText);
+				}
+			);
+		},
+
 		resolve_item_JSON : function(data){
 			if(/^[\],:{}\s]*$/.test(data.replace(/\\["\\\/bfnrtu]/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,""))){
 				data=JSON.parse(data);
