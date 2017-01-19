@@ -803,7 +803,7 @@ var gca_tools = {
 			}
 
 			// Create after "..."
-			if(pages[pages.length - 1] < info.last)
+			if(pages[pages.length - 1] < info.relativeLast)
 				linkWrapper.appendChild(document.createTextNode(" ..."));
 
 
@@ -932,7 +932,7 @@ var gca_tools = {
 			}
 
 			// Relative last
-			page.relativeLast = page.last - page.skipping + 1;
+			page.relativeLast = page.last - ((page.last - 1) % page.skipping);
 			if(page.first > page.relativeLast){
 				page.relativeLast = page.first;
 			}
