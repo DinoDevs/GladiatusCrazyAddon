@@ -33,6 +33,9 @@ var gca_packages = {
 		// Load more pages
 		(gca_options.bool("packages", "load_more_pages") && 
 			this.loadPackets.load());
+		// Special category features
+		(gca_options.bool("packages", "special_category_features") && 
+			this.specialCategory.resolve());
 	},
 
 	// Layout Improvements
@@ -394,7 +397,93 @@ var gca_packages = {
 			var newPagePriceInGold = pagePriceInGold.data("value") + cost;
 			pagePriceInGold.data("value", newPagePriceInGold).text(formatZahl(newPagePriceInGold))
 		}
+	},
+
+	// Special Categories
+	specialCategory : {
+		
+		// Resolve category
+		resolve : function(){
+			var category = parseInt(document.getElementById("pf").f.value);
+			switch(category){
+				case 20:
+					this.categories.scroll.load();
+					break;
+			}
+		},
+
+		// Categories
+		categories : {
+			
+			// Scrolls Category
+			scroll : {
+
+				// Load
+				load : function(){
+					var that = this;
+					// Get data
+					jQuery.ajax({
+						type: "GET",
+						url: gca_getPage.link({"mod":"forge"}),
+						success: function(result){
+							// Get each name
+							var scrollNamesCode = result.match(/<option value="\d+" data-level="\d+" data-name="[^"]+">/gim);
+							// Parse names
+							var list = [];
+							for(var i = scrollNamesCode.length - 1; i >= 0; i--){
+								// Add on the list
+								list.unshift(scrollNamesCode[i].match(/data-name="([^"]+)">/i)[1]);
+							}
+
+							// Same list
+							that.name = list;
+							// Save regexp code
+							that.nameRegexp = "(" + list.join("|") + ")";
+
+							that.showIfHave();
+						},
+						error: function(){
+							
+						}
+					});
+
+					// On new items reapply
+					gca_tools.event.request.onAjaxResponce(function(responce){
+						// If package load request
+						if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+							that.showIfHave();
+					});
+				},
+
+				// Apply 
+				showIfHave : function(){
+					if(!this.name)
+						return;
+
+					var that = this;
+					// For each
+					jQuery("#packages .ui-draggable").each(function(){
+						// If already parsed
+						if(this.dataset.parseOwn)
+							return;
+						else
+							this.dataset.parseOwn = true;
+						// Get item
+						let item = jQuery(this);
+						// Check if own
+						let own = item.data("tooltip")[0][0][0].match(new RegExp(that.nameRegexp,'i'));
+						if(own)
+							item.data("tooltip")[0].push(["You know this scroll", "red"]); // TODO : translation needed
+						else
+							item.data("tooltip")[0].push(["You don't know this scroll", "green"]); // TODO : translation needed
+					});
+				}
+			}
+		}
+
+
 	}
+
 };
 
 (function(){

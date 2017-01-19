@@ -430,7 +430,9 @@ gca_options.data = {
 		// Load more packages pages
 		"load_more_pages" : true,
 		// Number of pages to load
-		"pages_to_load" : 2
+		"pages_to_load" : 2,
+		// Special category features
+		"special_category_features" : true
 	},
 
 	// TODO : DEPRECATED below
