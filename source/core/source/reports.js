@@ -35,6 +35,10 @@ var gca_reports = {
 			(gca_options.bool("reports", "style_change") &&
 				this.reports_style.change());
 		}
+
+		// Pagination layout
+		(gca_options.bool("global", "pagination_layout") && 
+			this.pagination());
 	},
 
 	// Get Submod
@@ -248,7 +252,18 @@ var gca_reports = {
 		
 		// Fire reports info updated
 		gca_tools.event.fireOnce("arena-info-update");
-	}
+	},
+
+
+	// Pagination
+	pagination : function(){
+		// Get pagings
+		var pagings = document.getElementsByClassName("paging");
+		// Parse each
+		for(var i = pagings.length - 1; i >= 0; i--){
+			gca_tools.pagination.parse(pagings[i]);
+		}
+	},
 };
 
 (function(){
