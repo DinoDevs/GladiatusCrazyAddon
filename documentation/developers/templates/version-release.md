@@ -1,4 +1,4 @@
-![fixes](https://img.shields.io/badge/improvments-X-green.svg?style=flat-square) ![fixes](https://img.shields.io/badge/bug%20fixes-X-red.svg?style=flat-square) ![fixes](https://img.shields.io/badge/translations-X-blue.svg?style=flat-square)
+![fixes](https://img.shields.io/badge/improvments-x-green.svg?style=flat-square) ![fixes](https://img.shields.io/badge/bug%20fixes-x-red.svg?style=flat-square) ![fixes](https://img.shields.io/badge/translations-x-blue.svg?style=flat-square)
 
 #### Changelog
  - **Bug Fixes**
