@@ -54,8 +54,7 @@ We suggest you to download a *stable release*. Alpha releases are for developers
 
 If you are new to installing browsers addons/extensions or you just want to jump on a new browser, follow our steps for installing our addon.
 
-[Guides under construction](documentation/documentation/install.md)
-
+Find set-by-step guides for all major browsers on our [installation docs](documentation/installation.md).
 
 
 
