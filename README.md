@@ -9,7 +9,7 @@
 
 > A browser extension for the "Gladiatus" browser game.
 
-<div align='right'> • [Downloads](#downloads) • [Installation](#installation) • [Developers Docs](#developers-docs) • [Contact Us](#contact-us) • </div>
+ • [Downloads](#downloads) • [Installation](#installation) • [Developers Docs](#developers-docs) • [Contact Us](#contact-us) • 
 
 
 <img src="documentation/resources/cover.png" width="100%"/>
