@@ -9,7 +9,7 @@
 
 > A browser extension for the "Gladiatus" browser game.
 
-
+<div align='right'> • [Downloads](#downloads) • [Installation](#installation) • [Developers Docs](#developers-docs) • [Contact Us](#contact-us) • </div>
 
 
 <img src="documentation/resources/cover.png" width="100%"/>
@@ -36,11 +36,16 @@ We suggest you to download a *stable release*. Alpha releases are for developers
 [![version](https://img.shields.io/badge/version-unsupported-lightgrey.svg?style=flat-square&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAABNElEQVR4AWJgqAD0SQcQDUVRGMetIpCkwiKBQjJLKQBRUYCEqKQqtqGogAkAEUCgAgQIIRBRkAUBCgggBVJUtao%2FvpvPwfBznnvv%2BXZ33rtNMqjTcysmUcAC8ranKqlZtQk7eMCvqaKCsRjizVncqOFb1f2obniI3%2BBcB55whDJK2MOzAqo6M6G%2B%2BhSwpI1ddGE8zGQ03OwqzuASc3q%2BQDH9goWcpXmo5lJAD6Z0aF%2Bb2yhgDetYRUV7n6ozKaBRzd1484FFWv%2FSczEFNChgPl0xBjgLKMWATTs0iz4MYcAMam0Y7TFg2QK2bIjUGmzKOXtN71ix8IxqB8ro%2FV8PB44V8KF6j1Oc4BovWs%2BnrzEGZHFX601IvwfEkDYc4NWD5BGHaPa%2F4Pzz7cQ0iljECFriEP8AsBC7uWBeNyIAAAAASUVORK5CYII%3D)](https://github.com/DinoDevs/GladiatusCrazyAddon/releases)
 <sub><sup>The addon is Edge compartible, we will release an instalation guide soon.</sup></sub>
 
-### Latest alpha builds v4.x.x <sub><sup>(not recomended)</sup></sub>
+### Latest dev builds v4.x.x <sub><sup>(not recomended)</sup></sub>
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
 [![version type](https://img.shields.io/badge/latest%20build-27--JAN--2017-green.svg?style=flat-square)](https://dinodevs.com)
 [![progress](https://img.shields.io/badge/progress-35%25%20(83%2F237)-lightgrey.svg?style=flat-square)](https://dinodevs.com)
 <sub><sup>Updated on 27-Jan-2017</sup></sub>
+
+
+
+
+<sub>All releases: [stable-releases](https://github.com/DinoDevs/GladiatusCrazyAddon/releases)</sub>
 
 
 
