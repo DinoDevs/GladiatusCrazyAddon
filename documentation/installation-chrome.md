@@ -1,5 +1,7 @@
 # Installation Documentation - Google Chrome
 
+<img src="resources/browser-icons/chrome_16x16.png" align="right">
+
 ### How to install the addon on *Google Chrome* browser
 
 - [Install from the *Google web store*](#install-from-the-google-web-store) <sub><sup>(recomended)</sup></sub>

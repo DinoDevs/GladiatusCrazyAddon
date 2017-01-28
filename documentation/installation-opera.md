@@ -1,5 +1,7 @@
 # Installation Documentation - Opera
 
+<img src="resources/browser-icons/opera_16x16.png" align="right">
+
 ### How to install the addon on *Opera* browser
 
 - [Install from the *Google web store*](#install-from-the-google-web-store) <sub><sup>(recomended)</sup></sub>

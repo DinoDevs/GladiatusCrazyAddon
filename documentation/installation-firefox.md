@@ -1,5 +1,7 @@
 # Installation Documentation - Firefox
 
+<img src="resources/browser-icons/firefox_16x16.png" align="right">
+
 ### How to install the addon on *Firefox* browser
 
 - [Install using the *.xpi* extension file](#install-using-the-xpi-extension-file) <sub><sup>(easier)</sup></sub>
