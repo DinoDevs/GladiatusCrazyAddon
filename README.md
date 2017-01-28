@@ -96,11 +96,14 @@ Contact us to leave us your feedback or to express your thoughts.
 
 ## Our team
 
+<img align="left" src="documentation/resources/logo-icons/dinodevs_32.png"/> We are [DinoDevs](https://github.com/DinoDevs), a group of people coding for fun!
+
+DinoDevs members working on this project:
 <dl>
-  <dt>GreatApo</dt>
+  <dt>GreatApo ~ https://github.com/GreatApo</dt>
   <dd>Description not found!</dd>
 
-  <dt>DarkThanos</dt>
+  <dt>GramThanos (aka DakThanos) ~ https://github.com/GramThanos</dt>
   <dd>I like to code!</dd>
 </dl>
 
