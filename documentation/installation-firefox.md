@@ -2,9 +2,9 @@
 
 ### How to install the addon on *Firefox* browser
 
-- [Install using the *.xpi* extension file](#install-using-the-crx-extension-file) <sub><sup>(easier)</sup></sub>
-- [Install using the *.xpi* extension file (alternative)](#install-using-the-crx-extension-file-alternative)
-- [Install using the *.zip* extension file](#install-using-the-zip-extension-file-alternative) <sub><sup>(not recomended)</sup></sub>
+- [Install using the *.xpi* extension file](#install-using-the-xpi-extension-file) <sub><sup>(easier)</sup></sub>
+- [Install using the *.xpi* extension file (alternative)](#install-using-the-xpi-extension-file-alternative)
+- [Install using the *.zip* extension file](#install-using-the-zip-extension-file) <sub><sup>(not recomended)</sup></sub>
 
 ---
 
