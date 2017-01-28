@@ -103,7 +103,7 @@ DinoDevs members working on this project:
   <dt>GreatApo ~ https://github.com/GreatApo</dt>
   <dd>Description not found!</dd>
 
-  <dt>GramThanos (aka DakThanos) ~ https://github.com/GramThanos</dt>
+  <dt>GramThanos (aka DarkThanos) ~ https://github.com/GramThanos</dt>
   <dd>I like to code!</dd>
 </dl>
 
