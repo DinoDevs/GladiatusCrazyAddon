@@ -316,17 +316,14 @@ var gca_global = {
 						return;
 					}
 
+					// Save scope
+					var that = this;
+
 					// Use Potion
 					var self = this;
 					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventoryActivate","feature":"18","token":potions}), function(content){
-						// Match players life
-						var life = content.match(/<div\s*id="header_values_hp_bar"\s*class="header_values_bar"\s*data-tooltip="\[\[\[\[[^,]+,&quot;(\d+)\s*\\\/\s*(\d+)&quot;\]/m);
-						if(life){
-							life = [parseInt(life[1]), parseInt(life[2])];
-						}else{
-							life = [0,0];
-						}
-						life.unshift( life[0] == life[1] );
+						// Get life info
+						var life = that.parseLifeFromHtml(content);
 
 						self.usageSet(false);
 
@@ -345,8 +342,9 @@ var gca_global = {
 
 				// Get Potion Number
 				getPotionsNumber : function(callback){
+					var that = this;
 					// Load premium inventory page
-					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventoryActivate"}), function(content){
+					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventory"}), function(content){
 						// Match potion number
 						var potions = content.match(/document\.location\.href='index\.php\?mod=premium&submod=inventoryActivate&feature=18&token=(\d+)&sh=/);
 						if(potions){
@@ -355,15 +353,8 @@ var gca_global = {
 							potions = 0;
 						}
 
-						// Match players life
-						var life = content.match(/<div\s*id="header_values_hp_bar"\s*class="header_values_bar"\s*data-tooltip="\[\[\[\[[^,]+,&quot;(\d+)\s*\\\/\s*(\d+)&quot;\]/m);
-						if(life){
-							life = [parseInt(life[1]), parseInt(life[2])];
-						}else{
-							life = [0,0];
-						}
-						// Push infrond true/false if life is full/notfull
-						life.unshift( life[0] == life[1] );
+						// Get life info
+						var life = that.parseLifeFromHtml(content);
 
 						// Update HP
 						gca_global.display.extended_hp_xp.updateLife(life[1],life[2]);
@@ -371,6 +362,23 @@ var gca_global = {
 						// Return result
 						callback(potions, life);
 					});
+				},
+
+				parseLifeFromHtml : function(html){
+					// Get life info
+					var life = html.match(/<div\s+id="header_values_hp_bar"\s+class="header_values_bar"\s+data-max-value="(\d+)"\s+data-value="(\d+)"\s+data-regen-per-hour="(\d+)"/m);
+
+					// If not found
+					if(!life){
+						life = [0, 0, 0];
+					}
+
+					var info = [parseInt(life[1]), parseInt(life[2]), parseInt(life[3])];
+					// Push infrond true/false if life is full/notfull
+					info.unshift( info[0] == info[1] );
+
+					// Return life info
+					return info;
 				}
 			},
 
