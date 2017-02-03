@@ -646,25 +646,6 @@
 	#gca_settings_content .premico{width:32px;height:16px;float:left;background-image:url('icons/premico.png');margin-top:4px;}
 	#gca_settings_content .betaico{width:32px;height:16px;float:left;background-image:url('icons/betaico.png');margin-top:4px;}
 	#gca_settings_content select{ margin-right: 5px;margin-left: 5px;}
-	
-/* Quests */
-	.quest_category_title{background-position: left bottom;height: 17px!important;}
-	.quest_category_icon{position: absolute;width: 25px;height: 25px;z-index: 1;margin-left: -20px;margin-top: -5px;background-repeat: no-repeat;filter: drop-shadow(0px 0px 2px rgba(0,0,0,1));}
-	.quest_category_icon_items{background: transparent 0px 0px url('icons/quests.png');}
-	.quest_category_icon_work{background: transparent -25px 0px url('icons/quests.png');}
-	.quest_category_icon_dungeon{background: transparent -50px 0px url('icons/quests.png');}
-	.quest_category_icon_expedition{background: transparent -75px 0px url('icons/quests.png');}
-	.quest_category_icon_combat{background: transparent -100px 0px url('icons/quests.png');}
-	.quest_category_icon_grouparena{background: transparent -125px 0px url('icons/quests.png');}
-	.quest_category_icon_arena{background: transparent -150px 0px url('icons/quests.png');}
-	.quest_category_icon_restart{background: transparent -175px 0px url('icons/quests.png');}
-	.quest_category_icon_finished{background: transparent -200px 0px url('icons/quests.png');}
-	.quest_slot_reward_god_detailed {width: auto !important;padding-left: 6px;}
-	.gca_rtl .quest_slot_reward_god_detailed {padding-right: 6px;padding-left: auto;}
-	.quest_slot_reward_honor_detailed {width: auto !important;padding-left: 6px;}
-	.gca_rtl .quest_slot_reward_honor_detailed {padding-right: 6px;padding-left: auto;}
-	.quest_slot_reward_xp_detailed {width: auto !important;padding-left: 6px;}
-	.gca_rtl .quest_slot_reward_xp_detailed {padding-right: 6px;padding-left: auto;}
 
 /* Missions */
 	#gca_completed_mission .slot_mission_completed{font-size: 13px;font-weight: bold;margin: 0 20px;height: 21px;line-height: 21px;}
@@ -678,15 +659,7 @@
 	.gca_rtl .mercenaries_fight_type{right:10px;left:auto;}
 	.merc_back{position:absolute;z-index: 51;margin-top: -220px;margin-left: 228px;background-image: url('interface/merc_back.jpg');width:31px;height:31px;}
 	.gca_rtl .merc_back{margin-right: 228px;}
-	
-/* Arena */
-	.arena_clear_button{position:absolute;margin:-24px auto auto 286px;}
-	.gca_rtl .arena_clear_button{margin:-24px 286px auto auto;}
-	.arena_attack_button{margin-left:25px;cursor:pointer;}
-	.gca_rtl .arena_attack_button{margin-right:25px;margin-left:auto;}
-	
-/* Costumes */
-	.avatar_border{background-image:url('interface/avatar_border.png');width: 168px;height: 194px;z-index: 2;}
+
 	
 /* Travel */
 	.menue_news_disable{background: url('icons/travel-icons.gif') 0px 0px no-repeat!important;cursor:default;}
@@ -705,8 +678,7 @@
 	.sound_off{background: url('icons/mute.png') 0px 0px no-repeat;}
 	.sound_on{background: url('icons/sound.png') 0px 0px no-repeat;}
 
-/* Disable Selection On double clicks */
-	#inv, #shop{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+
 
 /* Forge */
 	#forgeAllItems_button{margin-left:35px;margin-top:6px;}
@@ -732,25 +704,9 @@
 	.enemyDropOnly1{margin-left: 45px;}
 	.gca_rtl .enemyDropOnly1{margin-left: auto;margin-right: 45px;}
 
-/* Achievements Layout */
-	.gca_achivements_styling .last_achievement_date{font-weight: lighter;font-size: 12px;}
-	.gca_achivements_styling .achievement_description_box{left: 0;}
 
-/* Item Shadow */
-	.do-item-shadow .item-i-white{filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.4));}
-	.do-item-shadow .item-i-green{filter: drop-shadow(1px 1px 1px rgba(0,255,0,0.3)) drop-shadow( 1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,255,0,0.3));}
-	.do-item-shadow .item-i-blue{filter: drop-shadow(1px 1px 1px rgba(81,89,247,0.4)) drop-shadow(1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px 1px 1px rgba(81,89,247,0.4));}
-	.do-item-shadow .item-i-purple{filter: drop-shadow(1px 1px 1px rgba(227,3,224,0.4)) drop-shadow(1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px 1px 1px rgba(227,3,224,0.4));}
-	.do-item-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,106,0,0.4));}
-	.do-item-shadow .item-i-red{filter: drop-shadow(1px 1px 1px rgba(255,0,0,0.4)) drop-shadow(1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,0,0,0.4));}
-	/* No Opacity
-	.do-item-shadow .item-i-white{filter: drop-shadow(1px 1px 1px white) drop-shadow(1px -1px 1px white) drop-shadow(-1px -1px 1px white) drop-shadow(-1px 1px 1px white);}
-	.do-item-shadow .item-i-green{filter: drop-shadow(1px 1px 1px lime) drop-shadow( 1px -1px 1px lime) drop-shadow(-1px -1px 1px lime) drop-shadow(-1px 1px 1px lime);}
-	.do-item-shadow .item-i-blue{filter: drop-shadow(1px 1px 1px #E303E0) drop-shadow(1px -1px 1px #E303E0) drop-shadow(-1px -1px 1px #E303E0) drop-shadow(-1px 1px 1px #E303E0);}
-	.do-item-shadow .item-i-purple{filter: drop-shadow(1px 1px 1px #5159F7) drop-shadow(1px -1px 1px #5159F7) drop-shadow(-1px -1px 1px #5159F7) drop-shadow(-1px 1px 1px #5159F7);}
-	.do-item-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px #FF6A00) drop-shadow(1px -1px 1px #FF6A00) drop-shadow(-1px -1px 1px #FF6A00) drop-shadow(-1px 1px 1px #FF6A00);}
-	.do-item-shadow .item-i-red{filter: drop-shadow(1px 1px 1px #FF0000) drop-shadow(1px -1px 1px #FF0000) drop-shadow(-1px -1px 1px #FF0000) drop-shadow(-1px 1px 1px #FF0000);}
-	*/
+
+
 
 
 
@@ -758,9 +714,12 @@
 /* --------------------------------------------------
 	Version 4 - Layout
 -------------------------------------------------- */
-	
+
+
+
 	/* Global Layout
 	-------------------------------------------------- */
+
 		/* Paging Layout */
 		.gca_paging .paging_numbers{left: 58px;width: 370px;}
 		.gca_paging .paging_numbers a, .gca_paging .paging_numbers .paging_numbers_current, .gca_paging .paging_button{color: black!important;font-weight: normal!important;height: 20px;line-height: 20px;width: 20px;display: inline-block;border: 1px solid #4A3615;text-decoration: none!important;border-radius: 4px;margin: 0px;}
@@ -776,18 +735,24 @@
 		.gca_paging .paging_button.paging_right_full{margin-right: -20px;}
 		.gca_paging .paging_button.paging_right_step{margin-right: -24px;}
 
+
+
 	/* Achievements Layout
 	-------------------------------------------------- */
+
 		/* Improve */
 		.gca_achivements_styling .last_achievement_date{font-weight: lighter;font-size: 12px;}
 		.gca_achivements_styling .achievement_description_box{left: 0;}
+
 		/* Progress Bars */
 		.gca_achivements_styling .achievement_progress_bar{position: absolute;height: 3px;left: -2px;right: -2px;border: 2px solid rgb(187, 168, 110);background-color: rgba(135,87,32,0.5);}
 		.gca_achivements_styling .achievement_progress_bar .achievement_progress_bar_percent{height: 100%;background-color: #E1BD33;}
 
 
+
 	/* Message Layout
 	-------------------------------------------------- */
+
 		/* General Message Style */
 		.gca_messages_styling #content form{margin-bottom: 5px;}
 		.gca_messages_styling #content form > div{padding:0px!important;}
@@ -807,22 +772,26 @@
 		.message_box.gca_messages_separator{margin-top: 15px;border-bottom: 2px solid #bba86e;}
 		.gca_messages_styling .message_box.gca_messages_separator{border-bottom: 1px solid #bba86e;}
 		.message_box.gca_messages_unread_message{box-shadow: 0px 0px 3px 1px rgba(255, 165, 0, 0.8);}
+		
 		/* Messages Side Bar */
 		.gca_messages_sidebar{width: 45px;margin-left: 545px;margin-top: 80px;position: fixed;}
 		.gca_messages_sidebar .gca_messages_sidebar_icon_wrapper{float: left;height: 24px;width: 42px;border-radius: 11px;margin-bottom: 5px;background-color: #4a3615;box-shadow: 0px 0px 3px black;}
 		.gca_messages_sidebar .gca_messages_sidebar_icon_wrapper .gca_messages_sidebar_text{float: right;width: 22px;margin-left: -10px;text-align: center;line-height: 24px;color: #d8cda0;font-size: 10px;}
 		.gca_messages_sidebar .gca_messages_sidebar_icon_wrapper .gca_messages_sidebar_icon{background-position: center center;background-repeat: no-repeat;background-color: #d3c195;height: 22px;width: 22px;border: 1px solid #4a3615;border-radius: 11px;float: left;}
+		
 		/* Messages Guild */
 		.gca_messages_styling .message_box .messageSubject .message_box_title .message_title span{margin-left: 5px;font-size: 10px;color: #8a6b35;font-style: italic;}
 		.message_box .message_box_content .message_text.gca_message_links{font-size: 10px;font-style: italic;margin-top: 20px;background-color: rgba(0,0,0,0.1);}
 		.gca_messages_styling .message_box .message_box_content .message_text.gca_message_links{border-top: 1px solid #BBA86E;margin-top: 0px;background-color: rgba(211, 193, 149, 0.5);}
 		.gca_messages_styling .message_box:hover .message_box_content .message_text.gca_message_links{border-top: 1px solid #7D714A;}
+		
 		/* Messages Guild Report */
 		.gca_messages_styling .gca_messages_guild_report .messageSubject,
 		.gca_messages_styling .gca_messages_guild_report .message_text,
 		.gca_messages_styling .gca_messages_guild_report .message_footer{background: #E8E3CD!important;}
 		.gca_messages_styling .gca_messages_guild_report_left{padding-left: 25px;}
 		.gca_messages_styling .gca_messages_guild_report_right{padding-right: 25px;}
+		
 		/* Messages Guild Report - Load more info */
 		.gca_messages_guild_report .message_title{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 		.gca_messages_guild_report .loading{height: 265px;margin-bottom:4px;width: 526px;background-position: center;}
@@ -839,6 +808,7 @@
 		.gca_messages_guild_report .battles_results{width:30px;}
 		.gca_messages_guild_report .battles_results_left{text-align: left!important;}
 		.gca_messages_guild_report .battles_results_right{text-align: right!important;}
+		
 		/* Personal Message */
 		.gca_messages_styling .gca_messages_personal .message_footer{background-color: transparent!important;}
 		.gca_messages_styling .gca_messages_personal .gca_messages_personal_table{padding: 5px 10px;background-color: #E6DCB7;margin-bottom: -10px;}
@@ -858,36 +828,17 @@
 		.gca_messages_styling .gca_messages_personal .messageSubject,
 		.gca_messages_styling .gca_messages_personal .gca_messages_personal_table,
 		.gca_messages_styling .gca_messages_personal .message_box_content{background: #D0BD8D;}
+
 		/* News */
 		.gca_messages_styling .gca_messages_other_news .messageSubject,
 		.gca_messages_styling .gca_messages_other_news .message_text,
 		.gca_messages_styling .gca_messages_other_news .message_footer{background: #EAD791!important;}
-		/*
-		.tdn_changed{border: 1px solid #af8e50; background-color: #ded8c6; padding: 5px;}
-		.personal_message_icon{position: absolute; margin-left: -29px; background: transparent url('buttons/main_buttons.png') -177px -50px no-repeat; width: 14px; height: 13px;}
-		.gca_rtl  .personal_message_icon{margin-right: -29px; margin-left: auto;}
-		.message_textarea{background: #DBCBA5; border: 0px; border-top: 1px solid #AF8E50; border-bottom: 1px solid #AF8E50; padding: 5px; margin: 5px -5px 5px -5px; width: 100%; resize: none;}
-		.message_day_td{border: 1px solid #BBA86E; background-color: #D3C195; color: #513F2C; padding-left: 5px; font-weight:bold !important; border-top-right-radius: 15px;}
-		.gca_rtl  .message_day_td{border-top-right-radius: 0px; border-top-left-radius: 15px;}
-		.message_day_td_small{border: 1px solid #BBA86E; background-color: #D3C195; border-top-left-radius: 15px;}
-		.gca_rtl  .message_day_td_small{border-top-right-radius: 15px; border-top-left-radius: 0px;}
-		
-		.msg_code{background-color:#ccc;padding:5px;border:1px dotted #666;width:414px;border-left:10px solid #666;}
-		.gca_rtl .msg_code{border-right:10px solid #666;border-left:1px dotted #666;}
-		.msg_quote{background-color:#f3e9cf;padding:5px;border:1px dotted #e1b53d;width:423px;}
-		.msg_img{max-width:433px;border:1px solid #513F2C;}
-		.msg_lquote{float:left;margin-top:-10px;}
-		.gca_rtl .msg_lquote{float:right;}
-		.msg_rquote{float:right;margin-top:-30px;}
-		.gca_rtl .msg_rquote{float:left;}
-		.msg_title2_inner{margin-left:-6px;}
-		.gca_rtl .msg_title2_inner{margin-right:-6px;margin-left:auto;}
-		
-		.tdn_changed .guild-flag{margin-left: auto;margin-right: auto;}
-		*/
+
+
 
 	/* New Message Layout
 	-------------------------------------------------- */
+
 		/* Improve */
 		.newMessageAdd{cursor: pointer;background: transparent url('buttons/main_buttons.png') -45px 0px no-repeat;width: 25px;height: 25px;border: 0px;float: right;margin-right: 180px;margin-top: -3px;margin-bottom: -3px;}
 		.gca_rtl .newMessageAdd{float: left;margin-left: 124px;margin-right: auto;}
@@ -904,8 +855,39 @@
 		.gca_new_message_styling #messageForm textarea{min-height: 180px!important;max-height: 310px!important;resize: vertical!important;}
 		.gca_new_message_styling #content > div{margin-top: 0px!important;}
 
+
+
+	/* Quests Layout
+	-------------------------------------------------- */
+		
+		/* Elements Layout */
+		.quest_category_title{background-position: left bottom;height: 17px!important;}
+		.quest_category_icon{position: absolute;width: 25px;height: 25px;z-index: 1;margin-left: -20px;margin-top: -5px;background-repeat: no-repeat;filter: drop-shadow(0px 0px 2px rgba(0,0,0,1));}
+		
+		/* Quests Icons */
+		.quest_category_icon_items{background: transparent 0px 0px url('icons/quests.png');}
+		.quest_category_icon_work{background: transparent -25px 0px url('icons/quests.png');}
+		.quest_category_icon_dungeon{background: transparent -50px 0px url('icons/quests.png');}
+		.quest_category_icon_expedition{background: transparent -75px 0px url('icons/quests.png');}
+		.quest_category_icon_combat{background: transparent -100px 0px url('icons/quests.png');}
+		.quest_category_icon_grouparena{background: transparent -125px 0px url('icons/quests.png');}
+		.quest_category_icon_arena{background: transparent -150px 0px url('icons/quests.png');}
+		.quest_category_icon_restart{background: transparent -175px 0px url('icons/quests.png');}
+		.quest_category_icon_finished{background: transparent -200px 0px url('icons/quests.png');}
+
+		/* Detailed Rewards */
+		.quest_slot_reward_god_detailed {width: auto !important;padding-left: 6px;}
+		.gca_rtl .quest_slot_reward_god_detailed {padding-right: 6px;padding-left: auto;}
+		.quest_slot_reward_honor_detailed {width: auto !important;padding-left: 6px;}
+		.gca_rtl .quest_slot_reward_honor_detailed {padding-right: 6px;padding-left: auto;}
+		.quest_slot_reward_xp_detailed {width: auto !important;padding-left: 6px;}
+		.gca_rtl .quest_slot_reward_xp_detailed {padding-right: 6px;padding-left: auto;}
+
+
+
 	/* Packages Layout
 	-------------------------------------------------- */
+		
 		/* Compact Packets */
 		.gca_packages_compact_items_layout #packages_wrapper {padding: 4px 0 2px 4px;}
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem{padding: 0px;margin: 0 2px 2px 0;width: 78px;height: 142px;}
@@ -914,6 +896,7 @@
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(3){line-height: 12px;margin: 2px 0px;font-size: 10px;}
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(3) span{font-size: 12px;font-style: italic;}
 		.gca_packages_compact_items_layout .pagination > .section-header{margin-top: 0px!important;}
+		
 		/* Group Side Filters */
 		.gca_packages_filters_layout .package_side_filters{width: 190px;margin-top: 25px;height: 184px;background-color: #E7DEB8;border: 1px solid #B9A66D;border-top: 0px;clear: none;background-image: none;}
 		.gca_packages_filters_layout #content .contentItem{margin-bottom: 0px;}
@@ -930,8 +913,20 @@
 		.gca_packages_filters_layout #content .side_container .actions_container input[type="text"]{width: 80px;}
 		.gca_packages_filters_layout #content .side_container .actions_container input[type="submit"]{float: right;}
 
-	/* Modal
+
+
+	/* Tools
 	-------------------------------------------------- */
+
+		/* Item Shadow */
+		.do-item-shadow .item-i-white{filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.4));}
+		.do-item-shadow .item-i-green{filter: drop-shadow(1px 1px 1px rgba(0,255,0,0.3)) drop-shadow( 1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,255,0,0.3));}
+		.do-item-shadow .item-i-blue{filter: drop-shadow(1px 1px 1px rgba(81,89,247,0.4)) drop-shadow(1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px 1px 1px rgba(81,89,247,0.4));}
+		.do-item-shadow .item-i-purple{filter: drop-shadow(1px 1px 1px rgba(227,3,224,0.4)) drop-shadow(1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px 1px 1px rgba(227,3,224,0.4));}
+		.do-item-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,106,0,0.4));}
+		.do-item-shadow .item-i-red{filter: drop-shadow(1px 1px 1px rgba(255,0,0,0.4)) drop-shadow(1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,0,0,0.4));}
+
+		/* Modal */
 		.gca_modal_wrapper .gca_modal_window{position: fixed;z-index: 999999;top: 50%;left: 50%;margin-top: -125px;margin-left: -309px;}
 		.gca_modal_wrapper .blackoutDialog_header{height: 10px;}
 		.gca_modal_wrapper .blackoutDialog_header .title{font-size: large;text-align: center;padding-left: 145px;padding-right: 71px;}
@@ -939,3 +934,11 @@
 		.gca_modal_wrapper .blackoutDialog_body{height: 100px;}
 		.gca_modal_wrapper .blackoutDialog_body .blackoutDialog_text{margin-top: 18px;}
 		.gca_modal_wrapper .gca_modal_background{position: fixed;z-index: 999998;background-color: rgba(0,0,0,0.5);top: 0px;left: 0px;bottom: 0px;right: 0px;}
+
+
+
+	/* General Tweaks
+	-------------------------------------------------- */
+
+		/* Disable Selection */
+		#inventory_nav, #inv, #shop_nav, #shop{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
