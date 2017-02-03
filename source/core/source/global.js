@@ -629,7 +629,7 @@ var gca_global = {
 							input.className = "button1";
 							input.value = gca_locale.get("donate_all_your_gold");
 							input.addEventListener('click', function(){
-								gca_global.display.shortcuts_bar.donate_all_money();
+								gca_global.display.shortcuts_bar.donate_gold.check();
 							}, false);
 							div.appendChild(input);
 							instant_donate_gold.appendChild(div);
@@ -1083,39 +1083,70 @@ var gca_global = {
 			},
 
 			// Donate All button
-			donate_all_money : function(){
-				var gold = gca_tools.strings.removeDots(
-					gca_tools.strings.trim(
-						document.getElementById('sstat_gold_val').textContent
-					)
-				);
-				
-				if(gold == 0)
-					gca_notifications.warning( gca_locale.get("no_gold") );
+			donate_gold : {
 
-				// Clear Gold
-				document.getElementById('sstat_gold_val').textContent = "";
-				// Display Loading
-				var loading = document.createElement('div');
-				loading.className = "loading";
-				loading.marginTop = "6px";
-				loading.opacity = "0.8";
-				document.getElementById('sstat_gold_val').appendChild(loading);
-
-				// Post to the server
-				jQuery.ajax({
-					type: "POST",
-					url: gca_getPage.link({"mod":"guildBankingHouse","submod":"donate"}),
-					data: 'donation=' + gold + '&doDonation=Donate All',
-					success: function(){
-						document.getElementById('sstat_gold_val').textContent = 0;
-						gca_notifications.success( gca_locale.get("gold_donated") );
-					},
-					error: function(){
-						document.getElementById('sstat_gold_val').textContent = gca_tools.strings.insertDots(gold);
-						gca_notifications.error( gca_locale.get("gold_donation_failed") );
+				// Create confirm modal
+				check : function(){
+					// Get gold with dots
+					var gold_txt = gca_tools.strings.trim(document.getElementById('sstat_gold_val').textContent);
+					// Parse gold in number
+					var gold = parseInt(gca_tools.strings.removeDots(gold_txt));
+					
+					// If no gold or parse failed
+					if(gold == 0 || isNaN(gold)){
+						// Show warning
+						gca_notifications.warning( gca_locale.get("no_gold") );
 					}
-				});
+
+					var that = this;
+					// Create confirm modal
+					var modal = new gca_tools.Modal(
+						gca_locale.get("donate_all_your_gold"),
+						null,
+						function(){
+							that.donate(gold);
+							modal.destroy();
+						},
+						function(){
+							modal.destroy();
+						}
+					);
+					modal.body(("Are you sure you want to donate <number> gold?").replace(/<number>/g, gold_txt)); // TODO : Locale
+					modal.button("Yes", true); // TODO : Locale
+					modal.button("Cancel", false); // TODO : Locale
+					modal.show();
+				},
+
+				// Donate gold
+				donate : function(gold){
+					if(gold == 0)
+						gca_notifications.warning( gca_locale.get("no_gold") );
+
+					// Clear Gold
+					document.getElementById('sstat_gold_val').textContent = "";
+					// Display Loading
+					var loading = document.createElement('div');
+					loading.className = "loading";
+					loading.marginTop = "6px";
+					loading.opacity = "0.8";
+					document.getElementById('sstat_gold_val').appendChild(loading);
+
+					// Post to the server
+					jQuery.ajax({
+						type: "POST",
+						url: gca_getPage.link({"mod":"guildBankingHouse","submod":"donate"}),
+						data: 'donation=' + gold + '&doDonation=Donate All',
+						success: function(){
+							document.getElementById('sstat_gold_val').textContent = 0;
+							gca_notifications.success( gca_locale.get("gold_donated") );
+						},
+						error: function(){
+							document.getElementById('sstat_gold_val').textContent = gca_tools.strings.insertDots(gold);
+							gca_notifications.error( gca_locale.get("gold_donation_failed") );
+						}
+					});
+				}
+
 			},
 
 			// Player stats
