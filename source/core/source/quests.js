@@ -96,11 +96,19 @@ var gca_quests = {
 		var reward_element = document.getElementsByClassName('quest_slot_reward_' + type);
 		// For each reward
 		for(var i = reward_element.length-1; i >= 0; i--){
+			// Get element
 			let reward_span = reward_element[i].getElementsByTagName('span');
+			// If exist
 			if(reward_span.length > 0){
+				// Set style
 				reward_element[i].className += ' quest_slot_reward_' + type + '_detailed';
-				let reward = reward_span[0].dataset.tooltip.match(/\d+/);
-				reward_span[0].insertBefore( document.createTextNode(reward), reward_span[0].firstChild );
+				// Get reward
+				let reward = reward_span[0].dataset.tooltip.replace(/\./g,'').match(/\d+/);
+				// Display
+				reward_span[0].insertBefore(
+					document.createTextNode(gca_tools.strings.insertDots(reward)),
+					reward_span[0].firstChild
+				);
 			}
 		}
 		
