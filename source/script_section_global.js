@@ -215,7 +215,7 @@ var gca_section_global = {
 						var instant_donate_gold = $dark('*div').class('instant_message_div instant').css('display:none;').addChild(
 							$dark('*div').class('title2_box').addChild(
 								$dark('*input').type('button').id('donate_all_button').class('button1').value( gca_locale.get("donate_all_your_gold") ).click(function(){
-									gca_section_global.display.button_bar.donate_all_money();
+									gca_section_global.display.button_bar.donate_gold.check();
 								})
 							)
 						);
@@ -721,6 +721,66 @@ var gca_section_global = {
 					this.dialog.open();
 				}				
 			},*/
+			// Donate All button
+			donate_gold : {
+
+				// Create confirm modal
+				check : function(){
+					// Get gold with dots
+					var gold_txt = document.getElementById('sstat_gold_val').textContent.replace(/ /g,'');
+					// Parse gold in number
+					var gold = parseInt(gold_txt.replace(/\./g,''));
+					
+					// If no gold or parse failed
+					if(gold == 0 || isNaN(gold)){
+						// Show warning
+						gca_notifications.warning( gca_locale.get("no_gold") );
+					}
+
+					var that = this;
+					// Create confirm modal
+					var modal = new gca_built.Modal(
+						gca_locale.get("donate_all_your_gold"),
+						null,
+						function(){
+							that.donate(gold);
+							modal.destroy();
+						},
+						function(){
+							modal.destroy();
+						}
+					);
+					modal.body(("Are you sure you want to donate <number> gold?").replace(/<number>/g, gold_txt));
+					modal.button("Yes", true);
+					modal.button("Cancel", false);
+					modal.show();
+				},
+
+				// Donate gold
+				donate : function(gold){
+					if(gold == 0)
+						gca_notifications.warning( gca_locale.get("no_gold") );
+
+					$dark('#sstat_gold_val').html('<div class="loading" style="margin-top:6px;opacity:0.8;"/></div>');				
+					//Post to the server
+					xmlHttpRequest({
+						url: getPage.link({"mod":"guildBankingHouse","submod":"donate"}),
+						method: "POST",
+						data : 'donation='+gold+'&doDonation=Donate All',
+						onload: function(content){
+							//document.getElementById('donate_all_button').value=gca_locale.get( "done" );
+							gca_notifications.success( gca_locale.get("gold_donated") );
+							document.getElementById('sstat_gold_val').innerHTML=0;
+						},
+						onerror: function(xml){
+							$dark('#sstat_gold_val').html( subFuncts.strings.insertDots(myGold) );
+							gca_notifications.error( gca_locale.get("gold_donation_failed") );
+						}
+					});
+				}
+
+			},
+
 			//Donate All button
 			donate_all_money : function(){
 				var myGold=$dark('#sstat_gold_val').html().replace(/ /g,'').replace(/\./g,'');
