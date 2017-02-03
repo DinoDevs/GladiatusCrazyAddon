@@ -20,9 +20,9 @@ var gca_dataUpdater = {
 		}
 	},
 	dayCheck : function(){
-		this.newVersion();
-		this.gca_highscore_update();
-		this.gca_info_collector_post();
+		//this.newVersion();
+		//this.gca_highscore_update();
+		//this.gca_info_collector_post();
 		return;
 	},
 	hourCheck : function(){
@@ -30,7 +30,7 @@ var gca_dataUpdater = {
 		return;
 	},
 	twelveHoursCheck : function(){
-		this.premium.getPremiumCode();
+		//this.premium.getPremiumCode();
 	},
 	sixHoursCheck : function(){
 		return;
