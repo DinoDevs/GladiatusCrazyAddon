@@ -118,8 +118,8 @@ var gca_quests = {
 		// Get cooldown timer
 		var cooldown = document.getElementById("quest_header_cooldown");
 		if(cooldown && cooldown.getElementsByTagName('span').length > 0){
-			let seconds = parseInt( cooldown.getElementsByTagName('span')[0].dataset.tickerTimeLeft );
-			availableIn += seconds * 1000;
+			let ms = parseInt( cooldown.getElementsByTagName('span')[0].dataset.tickerTimeLeft );
+			availableIn += ms;
 			
 			// Update data
 			gca_data.section.set("timers", 'quest_available', availableIn);
