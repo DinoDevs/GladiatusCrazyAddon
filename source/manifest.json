@@ -2,6 +2,7 @@
 	"name": "Gladiatus Crazy Add On",
 	"version": "3.2.7",
 	"description": "The craziest add-on for gladiatus ever!",
+	"author": "DinoDevs (Darkthanos, GreatApo)",
 	"homepage_url": "http://gladiatuscrazyaddon.tk/",
 	"icons": {
 		"16": "icon_16.png",
