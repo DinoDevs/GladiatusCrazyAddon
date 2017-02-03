@@ -1,0 +1,552 @@
+﻿/*
+ * Addon Style Css
+ * Author: DarkThanos, GreatApo
+ * Copyright: all rights reserved
+ */
+
+/** Style Override **/
+/* Chat Icon */
+	#chat_icon {z-index: 2;}
+
+/* Google Ads*//*
+	.banner1{display: none!important;}*/
+
+/* Buttons */
+	input[type="button"]{cursor: pointer;}
+	button{cursor: pointer;}
+
+/** Addon style **/
+/* Move Event Bar */
+	.eventBarMove_mainnav{bottom: -25px!important;}
+	.eventBarMove_content{margin-top: 25px!important;}
+	.eventBarMove_banner_top{top: 152px!important;background-image: url('img/eventBar.png')!important;z-index: 299!important;}
+	.eventBarMove_banner_event{top: 155px!important;z-index: 299!important;}
+	.eventBarMove_cooldown_bar_event{margin-top: 30px!important;}
+
+/* Extended Hp and Xp info */
+	#header_values_hp_xp_background{position: absolute; z-index: 1; top:81px; left:335px; background-image: url('img/extend_hp_xp_info.png'); width: 180px; height: 50px; border: 0px;}
+	.gca_rtl #header_values_hp_xp_background{left:auto; right: 335px; -moz-transform: scaleX(-1); -o-transform: scaleX(-1); -webkit-transform: scaleX(-1); transform: scaleX(-1);}
+	.header_values_hp_extend{z-index: 12; margin-top: 15px;}
+	.header_values_xp_extend{z-index: 12; margin-top: 30px;}
+	#header_values_hp_points , #header_values_xp_points{ color: #C7B68A; margin-top: -15px; margin-left: -30px; font-size: 1.0em; text-align: center;}
+	.gca_rtl #header_values_hp_points , .gca_rtl #header_values_xp_points{ margin-left: auto; margin-right: -40px; }
+	#header_values_hp_points span, #header_values_xp_points span{ color: #C7B68A!important; font-size: 15px!important; font-weight: normal!important; margin: 0px!important;}
+	.header_values_bar_percent {width: 23px !important;margin-right: 9px;}
+	.gca_rtl .header_values_bar_percent{margin-left: 9px;}
+	#header_life_pot {margin-right: -5px;margin-top: -14px;float: right;cursor:pointer;width:15px;height:21px;background-image: url('img/pot.png');}
+	.gca_rtl #header_life_pot {margin-left: -5px;float: left;}
+
+/* Button bar */
+	#gca_button_bar{position: absolute; z-index: 400;top: 114px; left: 520px; height: 25px; width: 370px; text-align: left;}
+	.gca_rtl #gca_button_bar{right: 520px;left: auto;text-align: right;}
+	#gca_button_bar .icon-out{float: left;}
+	.gca_rtl #gca_button_bar .icon-out{float: right;}
+	#gca_button_bar a{text-decoration: none; margin-right: 1px;}
+	.gca_rtl #gca_button_bar a{margin-right: auto; margin-left: 1px;}
+	#gca_button_bar .icon {width: 25px; height: 25px; display: block; cursor: pointer;}
+	#gca_button_bar .icon-out .instant{position: absolute; display: none;}
+
+/* Quick Guild Message */
+	.instant_message_div{position: absolute; margin-left: 1px;}
+	.gca_rtl .instant_message_div{margin-right: 1px;margin-left: auto;}
+	.instant_message_div .title2_box{padding: 5px; text-align: left;}
+	.gca_rtl .instant_message_div .title2_box{text-align: right;}
+	.instant_message_div textarea{height: 70px; width: 300px;}
+
+/* Show My Stats */
+	#showMyStats{color: #DDD; width: 230px; z-index:2000;}
+	#showMyStats .cssAlign{text-align: right;}
+	.gca_rtl #showMyStats .cssAlign{text-align: left;}
+
+/* icons */
+	.message-icon{background: transparent url('img/buttons.png') 0px 0px no-repeat; width: 45px!important;}
+	.message-icon:hover{background: transparent url('img/buttons.png') 0px -25px no-repeat;}
+	.people-icon{background: transparent url('img/buttons.png') -45px 0px no-repeat;}
+	.people-icon:hover{background: transparent url('img/buttons.png') -45px -25px no-repeat;}
+	.swords-icon{background: transparent url('img/buttons.png') -70px 0px no-repeat;}
+	.swords-icon:hover{background: transparent url('img/buttons.png') -70px -25px no-repeat;}
+	.report-icon{background: transparent url('img/buttons.png') -95px 0px no-repeat;}
+	.report-icon:hover{background: transparent url('img/buttons.png') -95px -25px no-repeat;}
+	.box-icon{background: transparent url('img/buttons.png') -120px 0px no-repeat;}
+	.box-icon:hover{background: transparent url('img/buttons.png') -120px -25px no-repeat;}
+	.castle-icon{background: transparent url('img/buttons.png') -145px 0px no-repeat;}
+	.castle-icon:hover{background: transparent url('img/buttons.png') -145px -25px no-repeat;}
+	.gold-icon{background: transparent url('img/buttons.png') -170px 0px no-repeat;}
+	.gold-icon:hover{background: transparent url('img/buttons.png') -170px -25px no-repeat;}
+	.cross-icon{background: transparent url('img/buttons.png') -195px 0px no-repeat;}
+	.cross-icon:hover{background: transparent url('img/buttons.png') -195px -25px no-repeat;}
+	.market-icon{background: transparent url('img/buttons.png') -220px 0px no-repeat;}
+	.market-icon:hover{background: transparent url('img/buttons.png') -220px -25px no-repeat;}
+	.notebook-icon{background: transparent url('img/buttons.png') -245px 0px no-repeat;}
+	.notebook-icon:hover{background: transparent url('img/buttons.png') -245px -25px no-repeat;}
+	.online-icon{background: transparent url('img/buttons.png') -270px 0px no-repeat;}
+	.online-icon:hover{background: transparent url('img/buttons.png') -270px -25px no-repeat;}
+	.scrol-icon{background: transparent url('img/buttons.png') -295px 0px no-repeat;}
+	.scrol-icon:hover{background: transparent url('img/buttons.png') -295px -25px no-repeat;}
+
+/* Auction Status Bar */
+	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 110px;}
+	.gca_rtl #AuctionStatusDiv{right: auto; left: 110px;}
+
+	#AuctionStatusDiv table{border-spacing: 0px; border: 0px;}
+	#AuctionStatus{line-height: 13px;color:white;}
+	#AuctionStatusDiv table table{font-size: 11px; line-height: 9px;}
+
+	#AuctionStatusDiv .auction_status_bg_left{width: 20px; height: 30px; background: transparent url('img/auct_status_bg.png') 0px -30px no-repeat;}
+	.gca_rtl #AuctionStatusDiv .auction_status_bg_left{width: 20px; height: 30px; background: transparent url('img/auct_status_bg.png') -20px -30px no-repeat;}
+	#AuctionStatusDiv .auction_status_bg_center{height: 30px; background: transparent url('img/auct_status_bg.png') repeat-x;}
+	#AuctionStatusDiv .auction_status_bg_right{width: 20px; height: 30px; background: transparent url('img/auct_status_bg.png') -20px -30px no-repeat;}
+	.gca_rtl #AuctionStatusDiv .auction_status_bg_right{width: 20px; height: 30px; background: transparent url('img/auct_status_bg.png') 0px -30px no-repeat;}
+	#AuctionStatusDiv .auction_status_loading_img{margin-top: 6px; margin-left: 2px; opacity: 0.5;}
+	.gca_rtl #AuctionStatusDiv .auction_status_loading_img{margin-left: auto; margin-right: 2px;}
+	
+	.loading{width: 41px; height: 6px; background: transparent url('img/loading.gif') no-repeat;}
+
+/* Top Fixed Bar */
+	#topFixedBar{color: #DCBB96; background: url('img/top_bar_bg.png') repeat-x scroll 0 -4px transparent; z-index: 9000; position: fixed; top: 0px; left: 0px; right: 0px; height: 24px; display: none; line-height: 24px;}
+	.bar-fixed-bar{display: inline!important;}
+	.icon_gold-fixed-bar, .icon_rubies-fixed-bar{z-index: 9001; position: fixed; top: 3px;}
+	.gold_val-fixed-bar, .ruby_val-fixed-bar{z-index: 9001; position: fixed; top: 3px; margin-left: 18px;}
+	.gca_rtl .gold_val-fixed-bar, .gca_rtl  .ruby_val-fixed-bar{margin-right: 18px;margin-left: auto;}
+	.icon_expeditionpoints-fixed-bar, .icon_arena-fixed-bar{z-index: 9001; position: fixed; top: -1px; cursor: pointer;}
+	.expeditionpoints_value-fixed-bar{z-index: 9001; position: fixed; top: -2px; margin-left: 28px; cursor: pointer;}
+	.gca_rtl .expeditionpoints_value-fixed-bar{margin-right: 28px;margin-left: auto;}
+	.icon_dungeonpoints-fixed-bar, .icon_grouparena-fixed-bar{z-index: 9001; position: fixed; top: -1px; margin-left: 100px; cursor: pointer;}
+	.gca_rtl  .icon_dungeonpoints-fixed-bar, .gca_rtl .icon_grouparena-fixed-bar{margin-right: 100px;margin-left: auto;}
+	.dungeonpoints_value-fixed-bar{z-index: 9001; position: fixed; top: -2px; margin-left: 128px; cursor: pointer;}
+	.gca_rtl .dungeonpoints_value-fixed-bar{margin-right: 128px;margin-left: auto;}
+	.header_values_ressources-fixed-bar, .header_values_general-fixed-bar{padding-top: 18px;}
+	.show_premium_days-fixed-bar{z-index: 9001 !important; position: fixed !important;cursor: pointer;top: -7px !important;}
+
+/* Show Prem Days */
+	.show_prem_days{position: absolute;right: 4px;width: 170px;padding: 4px 0 4px 4px;z-index: 9000;top: 0px;}
+	.gca_rtl .show_prem_days{left: 4px;right: auto;}
+	.show_prem_days_text{z-index: 9001;height: 18px;border-radius: 7px;position: relative;background: url(https://gf3.geo.gfsrv.net/cdne6/e68cfc25498f0ece78cebd1ba027cd.png) repeat-x 0 -36px;top: 0px;padding: 5px 3px;color: #dcbb96;}
+
+/* Show Centurio Days */
+	.show_centurio_days{float: right;margin-left: -22px;margin-right: 6px;margin-top: 2px;width: 16px;height: 16px;color: white;text-align: center;font-weight: bold;font-size: 11px;}
+	.gca_rtl .show_centurio_days{float: left;margin-left: 6px;margin-right: -22px;}
+	
+/* Advanced main menu */
+	.advanced_main_menu_entry{position: relative;height: 29px;}
+	.advanced_main_menu_link{background: transparent url('img/menu_items.png') no-repeat -30px -27px !important;}
+	.advanced_main_menu_link:hover{background: transparent url('img/menu_items.png') no-repeat -194px -27px !important;}
+	.advanced_main_menu_link_active{background: transparent url('img/menu_items.png') no-repeat -194px -27px !important;}
+	.advanced_main_menu_back_links{height: 26px;}
+	.advanced_main_menu_back_links a{height: 26px;width: 27px;float: left;text-decoration: none;display: block;cursor: pointer;line-height: 26px;text-align: center;background: transparent url('img/menu_items.png') no-repeat -358px -27px !important;}
+	.gca_rtl .advanced_main_menu_back_links a{float: right;}
+	.advanced_main_menu_back_links a:hover{background: transparent url('img/menu_items.png') no-repeat -385px -27px !important;}
+	.advanced_main_menu_back_links a img, .advanced_sub_menu_back_links a img{width: 21px;margin-top: 3px;}
+	.advanced_main_menu_shift{width: 15px;cursor: pointer;display: block;height: 26px;line-height: 26px;text-align: center;position: absolute;top: 0px;right: 9px;display: block;background: transparent url('img/menu_items.png') no-repeat 0px -27px;}
+	.gca_rtl .advanced_main_menu_shift{right: 0px;left: 9px;}
+	.advanced_main_menu_shift:hover{background: transparent url('img/menu_items.png') no-repeat -15px -27px;}
+
+	.advanced_sub_menu_entry{position: relative;height: 27px;}
+	.advanced_sub_menu_link{background: transparent url('img/menu_items.png') no-repeat -30px 0px !important;}
+	.advanced_sub_menu_link:hover{background: transparent url('img/menu_items.png') no-repeat -176px 0px !important;}
+	.advanced_sub_menu_link_active{background: transparent url('img/menu_items.png') no-repeat -176px 0px !important;}
+	.advanced_sub_menu_back_links{height: 26px;margin-left: 10px;}
+	.gca_rtl .advanced_sub_menu_back_links{margin-right: 10px;margin-left: auto;}
+	.advanced_sub_menu_back_links a{height: 26px;width: 29px;float: left;text-decoration: none;display: block;cursor: pointer;line-height: 26px;text-align: center;background: transparent url('img/menu_items.png') no-repeat -322px 0px !important;}
+	.gca_rtl .advanced_sub_menu_back_links a{float: right;}
+	.advanced_sub_menu_back_links a:hover{background: transparent url('img/menu_items.png') no-repeat -351px 0px !important;}
+	.advanced_sub_menu_shift{width: 15px;cursor: pointer;display: block;height: 26px;line-height: 26px;text-align: center;position: absolute;top: 0px;right: 8px;display: block;background: transparent url('img/menu_items.png') no-repeat 0px 0px;}
+	.gca_rtl .advanced_sub_menu_shift{margin-right: 2px;}
+	.advanced_sub_menu_shift:hover{background: transparent url('img/menu_items.png') no-repeat -15px 0px;}
+
+/* tooltips */
+	.gca_tooltip_normal_title{text-align: left; color: #DDDDDD; font-weight: bold; font-size: 8pt;}
+	.gca_rtl .gca_tooltip_normal_title{text-align: right;}
+	.gca_tooltip_normal_text{padding-left: 20px; text-align: right; color: #DDDDDD; font-weight: bold; font-size: 8pt;}
+	.gca_rtl .gca_tooltip_normal_text{text-align: left;}
+	.gca_tooltip_category_title{text-align: left; color:#BA9700; font-weight:bold; font-size: 8pt;}
+	.gca_rtl .gca_tooltip_category_title{text-align: right;}
+	.gca_tooltip_category_text{padding-left: 20px; text-align: right; color: #BA9700; font-weight: bold; font-size: 8pt;}
+	.gca_rtl .gca_tooltip_category_text{text-align: left;}
+	.gca_tooltip_grey_text{color:#808080;font-weight:bold;font-size:8pt}
+
+/* Dialog */
+	.modal {position: fixed; top: 0px; bottom: 0px; right: 0px; left: 0px; background-color: black; opacity: 0.5; z-index: 5000;}
+	.gca_dialog{top: 0px; left: 0px; z-index: 5001; position: fixed; width: 100%; height: 1px;}
+	.gca_dialog .out{width: 618px; margin-top: 50px; margin-right: auto; margin-left: auto;}
+	.gca_dialog .out .title{background-image: url('img/dialog/header.png'); width: 618px; height: 64px; padding-top: 65px; font-size: large; text-align: center;}
+	.gca_dialog .out .body{background-image: url('img/dialog/body.png'); width: 498px; padding-left: 60px; padding-right: 60px; min-height: 60px;}
+	.gca_dialog .out .footer{background-image: url('img/dialog/footer.png'); width: 100%; height: 75px;}
+	.gca_dialog .out .space{height: 20px; width: 100%;}
+
+/* Attacked timers */
+	#header_menue.attacked_timers_active{z-index: 3;}
+	#header_menue.attacked_timers_active #menue_news, #header_menue.attacked_timers_active #menue_messages, #header_menue.attacked_timers_active #menue_packages, #header_menue.attacked_timers_active #menue_reports{height: 39px;}
+	.attacked_timers_back{margin-right: 2px!important;margin-left: 2px!important;position:absolute;top:38px;left:146px;width:192px;height:108px;z-index:2;}
+	.gca_rtl .attacked_timers_back{left:auto;right:146px;}
+	
+	.attacked_timers_back:before{content: "";top:0px;margin-right: 2px!important;margin-left: 2px!important;position:absolute;top:0px;left:0px;width:192px;height:108px;z-index:-1;background:url('img/attacked_timers.jpg');}
+	.gca_rtl .attacked_timers_back:before{left:auto;right:0px;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);}
+	
+	.attacked_timers_table{margin-top: 38px;margin-left: 25px;line-height: 16px;width: 170px;text-align: left;}
+	.gca_rtl  .attacked_timers_table{margin-right: 25px;margin-left: auto;text-align: right;}
+	.attacked_timers_xs_text{color: #d4ad0f!important;position: absolute;margin-left:-8px!important;margin-top: 6px;text-shadow: 0 0 2px #000, 0 0 4px #582f00;}
+	.gca_rtl  .attacked_timers_xs_text{margin-right:-8px!important;margin-left:auto!important;}
+	.attacked_timers_table .timer{color: #C7B68A;font-weight: normal;margin-left: 0px;margin-right: 0px;vertical-align: middle;}
+	.attacked_timers_table .timer-icon{height: 18px;width: 18px;margin-top: -2px;margin-bottom: -2px;margin-right: 2px;display: block;float: left;}
+	.attacked_timers_table .timer-icon-arena{background: transparent url('img/buttons.png') -250px -51px no-repeat;}
+	.attacked_timers_table .timer-icon-grouparena{background: transparent url('img/buttons.png') -268px -51px no-repeat;}
+	
+	/*
+	.attacked_timers_back{margin-right: 2px!important;margin-left: 2px!important;position:absolute;top:38px;left:146px;width:192px;height:108px;z-index:2;}
+	.gca_rtl  .attacked_timers_back{left:auto;right:146px;}
+	
+	.attacked_timers_back:before{content: "";top:0px;margin-right: 2px!important;margin-left: 2px!important;position:absolute;top:0px;left:0px;width:192px;height:108px;z-index:-1;background:url('img/attacked_timers.jpg');}
+	.gca_rtl  .attacked_timers_back:before{left:auto;right:0px;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);}
+	
+	.attacked_timers_table{margin-top: 38px;margin-left: 25px;line-height: 16px;width: 170px;text-align: left;}
+	.gca_rtl  .attacked_timers_table{margin-right: 25px;margin-left: auto;text-align: right;}
+	.attacked_timers_xs_text{color: #d4ad0f!important;position: absolute;margin-left:-8px!important;margin-top: 6px;text-shadow: 0 0 2px #000, 0 0 4px #582f00;}
+	.gca_rtl  .attacked_timers_xs_text{margin-right:-8px!important;margin-left:auto!important;}
+	*/
+/* OverView */
+	/* Stats */
+		.overviewStatsHr{height:10px;}
+	/* Mercenaries Management */
+		.mercenaries_management_titles_tr{background-color:#c1b08e;color:#473a21;}
+		#manage_mercenaries_table .task{cursor:pointer;width:18px;height:18px;margin:0px auto;}
+	/* Info Box */
+		.gca_rtl .info_box{margin-right: 13px!important;margin-left: auto!important;}
+
+/* Traning */
+	.gca-training-info{width: 240px!important;right: 140px!important;}
+	.gca_rtl .gca-training-info{left: 140px!important;right: auto!important;}
+	.gca-training-value{width: 48px!important;}
+	.gca-training-green{color: green;}
+	.gca-training-red{color: red;}
+	.gca-training-discount{position: absolute;right: 5px;top: 4px;z-index: 1;font-weight: bold;}
+	.gca_rtl .gca-training-discount{left: 5px;right: auto;}
+	.gca-training-discount .icon{position: absolute;right: -28px;cursor: pointer;}
+	.gca_rtl .gca-training-discount .icon{left: -28px;right: auto;}
+	.guild-flag{height: 20px;width: 21px;background: transparent url('img/buttons.png') no-repeat -210px -50px;}
+	/* Cost Calculator */
+	.training_cost_calculator_table{border: 1px solid #af8e50;background-color: #ded8c6;padding: 5px;}
+	.small_button{background: transparent url('img/button4.jpg') 0px 0px no-repeat;border: 0 none;color: #453011;font-size: 11px;font-weight: bold;height: 26px;width: 37px;}
+	.small_button:hover{background: transparent url('img/button4.jpg') 0px -26px no-repeat;}
+	.total_gold_spent_on_training{border-radius: 5px;background-color: #ded8c6;border: 1px solid #b79963;float: right;font-weight: lighter;font-size: 10px;line-height: 13px;padding: 1px 4px;margin-top: 2px;}
+	.gca_rtl .total_gold_spent_on_training{float: right;}
+	.values_may_be_wrong_on_training{font-weight: normal;margin-top: 13px;float:right;}
+	.gca_rtl .values_may_be_wrong_on_training{float:left;}
+	.training_cost_calculator_table #reset_button{margin-left:20px;}
+	.gca_rtl .training_cost_calculator_table #reset_button{margin-right:20px;margin-left:auto;}
+
+/* Packages */
+	#packages_darkmod .unload{width: 475px; margin-bottom: 4px; border: 1px solid #B28B60; background: #F1E4BC url('img/loading.gif') no-repeat center center;}
+	.packages_darkmod_top{overflow: scroll; width: 500px;}
+	.package_darkmod_page{float: left; width: 481px; height: 138px;}
+	.gca_rtl .package_darkmod_page{float: right;}
+	.package_darkmod_page_info{cursor: pointer; background: transparent url('img/menu_items.png') no-repeat -380px 0px; color: #BFAE54; font-family: Century Gothic, sans-serif; font-weight: bold; position: absolute; margin-left: -35px; width:28px; height:20px; padding-right:5px; text-align:center; line-height:20px;}
+	.gca_rtl .package_darkmod_page_info{margin-right: -35px; padding-left:5px; margin-left:auto; padding-right:auto;}
+	.package_darkmod_pack{float: left; width: 114px; border: 1px solid #b28b60; background-color: #f1e4bc; margin-right: 4px; margin-bottom: 4px;}
+	.gca_rtl .package_darkmod_pack{float: right; margin-right: auto; margin-left: 4px;}
+	.package_darkmod_pack .item{width: 64px; margin: 0 auto;}
+	.package_darkmod_pack .info, .package_darkmod_pack .delete{text-align: center; cursor: pointer;}
+	/*Item moved*/
+	.package_darkmod_page .moved{height: 132px; opacity: 0.3;}
+	.package_darkmod_page .moved div{display: none;}
+	/*Gold Display*/
+	#info_display_left{float: left; margin-top: 18px; border: 1px solid #B28B60; background-color: #F1E4BC; padding: 4px; width: 80px;}
+	/*Collect Gold*/
+	.collectGold{float: right; margin-right: 23px; background-color: #513F2C; -webkit-border-radius: 5px; border-radius: 5px; border: 1px solid black; cursor: pointer;}
+	.collectGold:hover{background-color: #666666;}
+	.package_darkmod_pack{height:134px;}
+	.package_darkmod_pack .delete{margin-top: 98px;}
+	/*Packages Info Box*/
+	.gca_packages_info_box table td{line-height: 12px;}
+
+/* Guild */
+	/* Image */
+	.guild_flag_border{background-image:url('img/guild_flag_border.png');width: 209px;height: 232px;position: absolute; margin-top: -232px;}
+	.guild_flag_border_change_flag{margin-top: -234px; margin-left: 45px;}
+	/* Jail */
+	.jail_picture_cell{position: absolute; top: 0px; left: 0px; width: 123px; height: 142px; background-image: url('img/jail.png');}
+	.noJailRights .expedition_box{height: 230px!important;}
+	.jail_level_number{position: absolute; margin-top: -22px; margin-left: 101px; width: 16px; height: 16px; color: white; text-align: center; font-weight: bold; font-size: 11px; cursor: pointer;}
+	.gca_rtl .jail_level_number{margin-right: 101px;margin-left: auto;}
+	/* Library */
+	.library_button_disabled{width: 30px; height: 30px; background: transparent url('img/quest_button.jpg') -60px 0px no-repeat; cursor: default; border: 0px;}
+	.library_button_disabled:hover{background: transparent url('img/quest_button.jpg') -60px -30px no-repeat;}
+	.library_button_enable{width: 30px; height: 30px; background: transparent url('img/quest_button.jpg') 0px 0px no-repeat; border: 0px;}
+	.library_button_enable:hover{background: transparent url('img/quest_button.jpg') 0px -30px no-repeat;}
+	.library_button_delete{width: 30px; height: 30px; background: transparent url('img/quest_button.jpg') -30px 0px no-repeat; border: 0px;}
+	.library_button_delete:hover{background: transparent url('img/quest_button.jpg') -30px -30px no-repeat;}
+	.dotted_bottom_border{border-bottom:1px dotted #333;}
+	.library_level_number{position: absolute; margin-top: -15px; margin-left: 18px; width: 16px; height: 16px; color: white; text-align: center; font-weight: bold; font-size: 11px;}
+	.gca_rtl .library_level_number{margin-right: 18px;margin-left: auto;}
+	/* Bank */
+	.count_line{border-top: 1px solid #513F2C; text-align: right;}
+	.gca_rtl .count_line{text-align: left;}
+	.donate_input{width: 100px;}
+	.donate_all_button{float: right;}
+	.gca_rtl .donate_all_button{float: left;}
+	/* Guild Medic */
+	.float_right{float: right;}
+	.gca_rtl .float_right{float: left;}
+	/* Guild Mail */
+	.guild_mail textarea{width:506px;background-color:#fff;border-width: 1px;border-color:#8da4b7;border-style:solid;font-family:'Trebuchet MS', Arial, sans-serif;color:#333;font-size:.85em}
+	.guild_mailtextarea:focus{background-color:#fff9f4;border-color:#fa2;border-width:1px;color:#000}
+	.subTabMenu {border: 1px;margin-bottom: -1px;margin-top: -2px;padding: 1px;position: relative;z-index: 0;}
+	.subTabMenu:after {content: "";clear: both;display: block;height: 0;}
+	.subTabMenu .containerHead {margin: 0;padding: 2px;min-height: 5px;}
+	.subTabMenu .containerHead h2, .subTabMenu .containerHead h3 {padding: 2px 5px;}
+	.subTabMenu .containerHead:after {content: "";clear: both;display: block;height: 0;}
+	.subTabMenu ul {list-style: none;margin: 0;padding: 0;}
+	.subTabMenu li {float: left;}
+	.subTabMenu li a {text-decoration: none;white-space: nowrap;margin: 1px;padding: 2px 6px;display: block;}
+	.subTabMenu li.activeSubTabMenu a, .subTabMenu li a:hover {border-width: 1px;padding: 1px 5px;}
+	.mceToolbar {height: auto !important; display: block;}
+	.mceToolbar ul {margin: 0 3px;padding: 0;width: 99.5%; display: block;float: left;}
+	.mceToolbar li {display: block;position: relative;}
+	.mceToolbar li a {margin: 1px;padding: 1px;}
+	.mceToolbar li a:hover {margin: 1px;padding: 0;}
+	.mceToolbar li.activeSubTabMenu a {margin: 1px;padding: 0;}
+	.subTabMenu{background-color:#C6B08B;border-style:solid}
+	.containerHead{background-color:#8B7355}
+	.guild_mail #buttons{background:#DBCBA5;border-top:1px solid #AF8E50;border-bottom:1px solid #AF8E50;padding:5px;margin:10px -7px 0px -7px;text-align: left;}
+	.gca_rtl .guild_mail #buttons{margin:10px -10px 0px -5px;}
+	.bbcode_button_smiles, .bbcode_button_b, .bbcode_button_i, .bbcode_button_center, .bbcode_button_url, .bbcode_button_img, .bbcode_button_email, .bbcode_button_ytvideo, .bbcode_button_code, .bbcode_button_quote, .bbcode_button_font, .bbcode_button_u, .bbcode_button_s, .bbcode_button_announcement{width:24px;height:24px;float:left;margin-left:2px;cursor:pointer;}
+	.bbcode_button_smiles{background:url('img/messages/bbcode_buttons.png') -144px 0px no-repeat;}
+	.bbcode_button_b{background:url('img/messages/bbcode_buttons.png') 0px 0px no-repeat;}
+	.bbcode_button_i{background:url('img/messages/bbcode_buttons.png') -24px 0px no-repeat;}
+	.bbcode_button_center{background:url('img/messages/bbcode_buttons.png') -120px 0px no-repeat;}
+	.bbcode_button_url{background:url('img/messages/bbcode_buttons.png') -72px 0px no-repeat;}
+	.bbcode_button_img{background:url('img/messages/bbcode_buttons.png') -48px 0px no-repeat;}
+	.bbcode_button_email{background:url('img/messages/bbcode_buttons.png') -120px -24px no-repeat;}
+	.bbcode_button_ytvideo{background:url('img/messages/bbcode_buttons.png') -96px 0px no-repeat;}
+	.bbcode_button_code{background:url('img/messages/bbcode_buttons.png') 0px -24px no-repeat;}
+	.bbcode_button_quote{background:url('img/messages/bbcode_buttons.png') -24px -24px no-repeat;}
+	.bbcode_button_font{background:url('img/messages/bbcode_buttons.png') -96px -24px no-repeat;}
+	.bbcode_button_u{background:url('img/messages/bbcode_buttons.png') -72px -24px no-repeat;}
+	.bbcode_button_s{background:url('img/messages/bbcode_buttons.png') -48px -24px no-repeat;}
+	.bbcode_button_announcement{background:url('img/messages/bbcode_buttons.png') -168px 0px no-repeat;}
+	.bbcode_emoticons_smile, .bbcode_emoticons_sad, .bbcode_emoticons_biggrin, .bbcode_emoticons_wink, .bbcode_emoticons_w00t, .bbcode_emoticons_unsure, .bbcode_emoticons_tongue, .bbcode_emoticons_squint, .bbcode_emoticons_mellow, .bbcode_emoticons_crying, .bbcode_emoticons_cool, .bbcode_emoticons_confused, .bbcode_emoticons_blink{cursor:pointer;margin:3px;width:17px;height:17px;}
+	.bbcode_emoticons_smile{background: transparent url('img/messages/emoticons.png') -17px -17px no-repeat;}
+	.bbcode_emoticons_sad{background: transparent url('img/messages/emoticons.png') 0px -17px no-repeat;}
+	.bbcode_emoticons_biggrin{background: transparent url('img/messages/emoticons.png') 0px 0px no-repeat;}
+	.bbcode_emoticons_wink{background: transparent url('img/messages/emoticons.png') -17px 0px no-repeat;}
+	.bbcode_emoticons_w00t{background: transparent url('img/messages/emoticons.png') -85px -17px no-repeat;}
+	.bbcode_emoticons_unsure{background: transparent url('img/messages/emoticons.png') -68px -17px no-repeat;}
+	.bbcode_emoticons_tongue{background: transparent url('img/messages/emoticons.png') -51px -17px no-repeat;}
+	.bbcode_emoticons_squint{background: transparent url('img/messages/emoticons.png') -34px -17px no-repeat;}
+	.bbcode_emoticons_mellow{background: transparent url('img/messages/emoticons.png') -85px 0px no-repeat;}
+	.bbcode_emoticons_crying{background: transparent url('img/messages/emoticons.png') -68px 0px no-repeat;}
+	.bbcode_emoticons_cool{background: transparent url('img/messages/emoticons.png') -51px 0px no-repeat;}
+	.bbcode_emoticons_confused{background: transparent url('img/messages/emoticons.png') -102px 0px no-repeat;margin-top:-4px;height:24px;}
+	.bbcode_emoticons_blink{background: transparent url('img/messages/emoticons.png') -34px 0px no-repeat;}
+	.guild_mail label{cursor:pointer;}
+	.message_blocked_icon{background-image: url('img/notifications.png');background-position: -32px 0px;position:absolute;width:16px;height:16px;}
+	.message_info_icon{background-image: url('img/notifications.png');background-position: -48px 0px;position:absolute;width:16px;height:16px;}
+	.message_warning_icon{background-image: url('img/notifications.png');background-position: -16px 0px;position:absolute;width:16px;height:16px;}
+	.message_with_icon{margin-left:20px;}
+	.gca_rtl .message_with_icon{margin-right:20px;margin-left:auto;}
+	
+	/* Guild War Camp */
+	.guild-war-camp-fight-details{height:16px;width:16px;background:transparent url('img/buttons.png') no-repeat -148px -50px;}
+	.raidedGold{float:right;}
+	.gca_rtl .raidedGold{float:left;}
+	.gca_rtl #WarListOptions{left: 110px;right:auto;}
+	.guild_av_level{float:right;margin-right:7px;}
+	.gca_rtl .guild_av_level{float:left;margin-right:auto;margin-left:7px;}
+	.guild_av_level2{float:right;margin-right:30px;}
+	.gca_rtl .guild_av_level2{float:left;margin-right:auto;margin-left:30px;}
+	.war_camp_guild_gold{float:right;margin-right:15px;}
+	.gca_rtl .war_camp_guild_gold{float:left;margin-right:auto;margin-left:15px;}
+	/* Guild Upgrade Calculator */
+	.upgrade_calculator_link_button{margin-left:175px;margin-top:5px;margin-bottom: 8px;}
+	.gca_rtl .upgrade_calculator_link_button{margin-left:auto;margin-right:175px;}
+	.upgrade_calculator_button{margin-left: 15px;margin-top: 20px;margin-bottom: 15px;}
+	.gca_rtl .upgrade_calculator_button{margin-right: 15px;margin-left: auto;}
+	.guild_upgrade_gold_to_custom_img{width: 20px;cursor:pointer;}
+	.guild_upgrade_clear_button{position: absolute;margin-top: -22px;margin-left: 115px;}
+	.gca_rtl .guild_upgrade_clear_button{margin-right: 115px;margin-left: auto;}
+	
+/* Message */
+	.tdn_changed{border: 1px solid #af8e50; background-color: #ded8c6; padding: 5px;}
+	.personal_message_icon{position: absolute; margin-left: -29px; background: transparent url('img/buttons.png') -177px -50px no-repeat; width: 14px; height: 13px;}
+	.gca_rtl  .personal_message_icon{margin-right: -29px; margin-left: auto;}
+	.message_textarea{background: #DBCBA5; border: 0px; border-top: 1px solid #AF8E50; border-bottom: 1px solid #AF8E50; padding: 5px; margin: 5px -5px 5px -5px; width: 100%; resize: none;}
+	.message_day_td{border: 1px solid #BBA86E; background-color: #D3C195; color: #513F2C; padding-left: 5px; font-weight:bold !important; border-top-right-radius: 15px;}
+	.gca_rtl  .message_day_td{border-top-right-radius: 0px; border-top-left-radius: 15px;}
+	.message_day_td_small{border: 1px solid #BBA86E; background-color: #D3C195; border-top-left-radius: 15px;}
+	.gca_rtl  .message_day_td_small{border-top-right-radius: 15px; border-top-left-radius: 0px;}
+	
+	.msg_code{background-color:#ccc;padding:5px;border:1px dotted #666;width:414px;border-left:10px solid #666;}
+	.gca_rtl .msg_code{border-right:10px solid #666;border-left:1px dotted #666;}
+	.msg_quote{background-color:#f3e9cf;padding:5px;border:1px dotted #e1b53d;width:423px;}
+	.msg_img{max-width:433px;border:1px solid #513F2C;}
+	.msg_lquote{float:left;margin-top:-10px;}
+	.gca_rtl .msg_lquote{float:right;}
+	.msg_rquote{float:right;margin-top:-30px;}
+	.gca_rtl .msg_rquote{float:left;}
+	.msg_title2_inner{margin-left:-6px;}
+	.gca_rtl .msg_title2_inner{margin-right:-6px;margin-left:auto;}
+	
+	.tdn_changed .guild-flag{margin-left: auto;margin-right: auto;}
+
+/* New Message */
+	.newMessageAdd{cursor: pointer;background: transparent url('img/buttons.png') -45px 0px no-repeat;width: 25px;height: 25px;border: 0px;float: right;margin-right: 124px;}
+	.gca_rtl .newMessageAdd{float: left;margin-left: 124px;margin-right: auto;}
+	.newMessageAdd:hover{background: transparent url('img/buttons.png') -45px -25px no-repeat;}
+
+/* Online Friends */
+	.online_friends_loading_img {margin-left:100px;margin-top:20px;}
+	.online_friends_table{text-align:center;width:100%;}
+
+/* Auction */
+	.auction_enable_button{color:#006600 !important;cursor:pointer;}
+	.auction_disable_button{color:#660000 !important;cursor:pointer;opacity:0.70;}
+	.auction_bid_div {height:115px;}
+	.x3columns{margin: 27px -1px 0px -280px;padding-left:279px;padding-top:10px;background:url('img/auction/img_midle.jpg') repeat-y left top;z-index:35;}
+	.gca_rtl .x3columns{margin: 27px -280px 0px -1px;padding-right:279px;padding-left:0px;background:url('img/auction/img_midle_ar.jpg') repeat-y right top;}
+	.x3columns table{margin:0px 0px 0px -269px}
+	.gca_rtl  .x3columns table{margin:0px -269px 0px 0px}
+	.x3columns  #td1{position:absolute;width:265px;margin-top:-252px;margin-left:538px;}
+	.gca_rtl  .x3columns  #td1{margin-right:538px;margin-left:auto;}
+	.x3columns  #td2{position:absolute;width:265px;margin-top:-126px;margin-left:538px;}
+	.gca_rtl  .x3columns  #td2{margin-right:538px;margin-left:auto;}
+	.auction_bottom_image{background:url('img/auction/img_down.jpg');position:absolute;margin-left:-279px;z-index:50;width:273px;height:56px;}
+	.auction_top_image{background:url('img/auction/img_top.jpg');position:absolute;margin-left:-279px;margin-top:-20px;z-index:35;width:273px;height:23px;}
+	.gca_rtl .auction_top_image, .gca_rtl .auction_bottom_image{margin-right:-279px;margin-left:auto;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);}
+	.auction_clear_button, .market_clear_button{position:absolute;margin:-21px auto auto 205px;}
+	.gca_rtl .auction_clear_button, .gca_rtl .market_clear_button{margin:-21px 205px auto auto;}
+	.auction_level_number{float:right;margin:2px;width:16px;height:16px;color:white;text-align:center;font-weight:bold;font-size:11px;cursor:pointer;}
+	.gca_rtl .auction_level_number{float:left;}
+	.clear_button{background: url('img/buttons.png') 0px -50px no-repeat;width:20px;height:20px;cursor:pointer;}
+	.clear_button:hover{background: url('img/buttons.png') -20px -50px no-repeat;}
+	.auction_premium{background: url('img/premium/auction_premium.jpg');width:125px;height:22px;}
+	
+	#CancelAll{margin-top:5px;}
+	#cancel_all_button{float:right;}
+	.gca_rtl #cancel_all_button{float:left;}
+	
+	#warn_guild_div{position:absolute;margin-left: 341px;margin-top: -24px;}
+	.gca_rtl #warn_guild_div{margin-right: 260px;margin-left: auto;}
+
+	#hideGoldWithPercentTranslation{display:inline-block;width:150px;white-space: nowrap;overflow:hidden !important;text-overflow: ellipsis;color:#555555}
+	
+/* Market */
+	.market_darkmod_page_info{cursor: pointer; background: transparent url('img/menu_items.png') no-repeat -380px 0px; color: #BFAE54; font-family: Century Gothic, sans-serif; font-weight: bold; position: absolute; margin-left: -32px; width:28px; height:20px; padding-right:5px; text-align:center; line-height:20px;}
+	.gca_rtl .market_darkmod_page_info{margin-right: -32px; padding-left:5px; margin-left:auto; padding-right:auto;}
+	.fix_market_darkmod{margin-left:-36px;}
+	.gca_rtl .fix_market_darkmod{margin-right: -36px; margin-left:auto;}
+	#level_to_see_info{background-image: url('img/notifications.png');background-position: -48px 0px;position:absolute;width:16px;height:16px;margin:6px;cursor:help;}
+	
+/* Reports */
+	.reports_day_row td{background:#d2c7ac;font-weight:bold !important;border-top: 1px solid #BBA86E;}
+	
+/* Merchants */
+	/* Time */
+	#merchants_time_box{font-size:0.75em;margin-top:-4px;float:right;margin-right:11px;height: 12px;}
+	.gca_rtl #merchants_time_box{margin-left: 20px;margin-right: 12px;}
+	.merchants_time_percent_out{width: 102px;height: 6px;overflow: hidden;margin-left: 11px;margin-top: 8px;}
+	.gca_rtl .merchants_time_percent_out{margin-right: 11px;margin-left: auto;}
+	
+	/* Search */
+	.searchContainer {border-width: 0;margin-top: -20px;margin-right: -140px;padding: 10px;}
+	.gca_rtl .searchContainer {margin-left: -154px;margin-right: auto;}
+	#searchInput {background-image: url('http://board.gladiatus.de/wcf/icon/gladiatus31/searchHeadOptionsS.png');background-position: 2px center;background-repeat: no-repeat;padding-left: 23px;width: 13em;}
+	.searchSubmit {margin: -1px 0 0;padding-left: 1px;vertical-align: middle; border:0px;}
+	.gca_rtl .searchSubmit {padding-right: 1px;padding-left: auto;}
+	.ms_results_box {margin-top:50px;border:1px solid #af8e50;background-color:#ded8c6;padding:5px;width:524px;}
+	.ms_item{padding:2px;cursor:pointer;}
+	#ms_loading{padding:20px;}
+
+/* General */
+	.black{color: black;}
+	#exp_and_gold_stats_icon{background: transparent url('img/buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;margin-top: 96px;}
+
+/* Notifications */
+	.notification-area{position: fixed;z-index: 9999;top: 42px;left: 12px;font-family: century gothic;}
+	.gca_rtl .notification-area{right: 12px;left: auto;}
+	.notification-box{cursor: pointer;background-position: 15px center;background-repeat: no-repeat;-moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px; border-radius: 3px 3px 3px 3px;-moz-box-shadow: 0 0 12px #999999;-webkit-box-shadow: 0 0 12px #999999;-o-box-shadow: 0 0 12px #999999;box-shadow: 0 0 12px #999999;color: #FFFFFF;margin: 0 0 6px;filter: alpha(opacity=80);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";opacity: 0.8;padding: 8px 8px 8px 30px;width: 200px;}
+	.gca_rtl .notification-box{padding: 8px 30px 8px 8px;}
+	.notification-normal{/*background-color: #030303;*/background-color: #555555;}
+	.notification-success{background-color: #51A351;}
+	.notification-error{background-color: #BD362F;}
+	.notification-info{background-color: #2F96B4;}
+	.notification-warning{background-color: #F89406;}
+	.notification-box div{float: left;margin-left:-22px;background-repeat: no-repeat;width: 16px;height:16px;}
+	.gca_rtl .notification-box div{float: right;margin-left:auto;margin-right:-22px;}
+	.notification-normal div{background-image: url('img/notifications.png');background-position: -64px 0px;}
+	.notification-success div{background-image: url('img/notifications.png');background-position: 0px 0px;}
+	.notification-error div{background-image: url('img/notifications.png');background-position: -32px 0px;}
+	.notification-info div{background-image: url('img/notifications.png');background-position: -48px 0px;}
+	.notification-warning div{background-image: url('img/notifications.png');background-position: -16px 0px;}
+
+/* Settings */
+	#gca_setings_content{display: none;width: 540px;float: right;padding-top: 5px;padding-right: 87px;padding-bottom: 0;padding-left: 23px;z-index: 10;}
+	.gca_rtl #gca_setings_content{float: left;padding-left: 87px;padding-right: 23px;}
+	#gca_setings_content .logo{background-image:url('img/GCA_logo.png');background-position-y: -10px;width: 500px;height: 130px;margin: 10px auto;border: 2px solid black;}
+	#gca_setings_content .logo div{color: whiteSmoke;font-size: 16px;margin-top: 98px;margin-left: 340px;}
+	#gca_setings_content .options_category{background-color: #E7DEB8;margin-top: 4px;cursor: pointer;font-size: 14px;padding: 4px;border: 2px solid #390200;}
+	#gca_setings_content .options_category_box{margin-top: 2px;padding: 8px;margin-bottom: 2px;background-color: #E7DEB8;border: 1px solid #BBA86E;}
+	.settings_image{background-image:url('img/settings_icon.png');width:48px;height:48px;}
+	#gca_setings_content .options_bottom_button_margin{margin-right:10px;}
+	.gca_rtl #gca_setings_content .options_bottom_button_margin{margin-left:10px;margin-right:auto;}
+	#gca_setings_content .premico{width:32px;height:16px;float:left;background-image:url('img/premico.png');margin-top:4px;}
+	#gca_setings_content .betaico{width:32px;height:16px;float:left;background-image:url('img/betaico.png');margin-top:4px;}
+	#gca_setings_content select{ margin-right: 5px;margin-left: 5px;}
+	
+/* Quests */
+	.quest_category_title{background-position: left bottom;height: 17px!important;}
+	.quest_slot_reward_god_changed {width: auto !important;padding-left: 6px;}
+	.gca_rtl .quest_slot_reward_god_changed {padding-right: 6px;padding-left: auto;}
+	.quest_slot_reward_honor_changed {width: auto !important;padding-left: 6px;}
+	.gca_rtl .quest_slot_reward_honor_changed {padding-right: 6px;padding-left: auto;}
+	.quest_slot_reward_xp_changed {width: auto !important;padding-left: 6px;}
+	.gca_rtl .quest_slot_reward_xp_changed {padding-right: 6px;padding-left: auto;}
+	
+/* Player */
+	.simulator_button{background-image:url('img/simulator.jpg');width: 250px;height: 70px;border: 0px;margin-left: 20px;margin-top: 2px;font-weight: bold;font-size: 20px;color:orange;}
+	.prem_simulator_button{background-image:url('img/prem_simulator.jpg');width: 250px;height: 70px;border: 0px;margin-left: 20px;margin-top: 2px;font-weight: bold;font-size: 20px;color:orange;}
+	.gca_rtl .simulator_button, .gca_rtl .prem_simulator_button{margin-right: 20px;margin-left: auto;}
+	.mercenaries_fight_type{position:absolute;top:165px;left:10px;z-index:41}
+	.gca_rtl .mercenaries_fight_type{right:10px;left:auto;}
+	.merc_back{position:absolute;z-index: 51;margin-top: -220px;margin-left: 228px;background-image: url('img/merc_back.jpg');width:31px;height:31px;}
+	.gca_rtl .merc_back{margin-right: 228px;}
+	
+/* Arena */
+	.arena_clear_button{position:absolute;margin:-24px auto auto 286px;}
+	.gca_rtl .arena_clear_button{margin:-24px 286px auto auto;}
+	.arena_attack_button{margin-left:25px;cursor:pointer;}
+	.gca_rtl .arena_attack_button{margin-right:25px;margin-left:auto;}
+	
+/* Costumes */
+	.avatar_border{background-image:url('img/avatar_border.png');width: 168px;height: 194px;z-index: 2;}
+	
+/* Travel */
+	.menue_news_disable{background: url('img/travel-icons.gif') 0px 0px no-repeat!important;cursor:default;}
+	.menue_news_disable:hover{background: url('img/travel-icons.gif') 0px 0px no-repeat!important;}
+	.menue_reports_disable{background: url('img/travel-icons.gif') -42px 0px no-repeat!important;cursor:default;}
+	.menue_reports_disable:hover{background: url('img/travel-icons.gif') -42px 0px no-repeat!important;}
+	.menue_packages_disable{background: url('img/travel-icons.gif') -84px 0px no-repeat!important;cursor:default;}
+	.menue_packages_disable:hover{background: url('img/travel-icons.gif') -84px 0px no-repeat!important;}
+
+/* More Player Images */
+	.more_profile_images_from_photobucket{width: 120px;margin: 3px;cursor:pointer;}
+
+/* Sound Button */
+	.mute_button{position:fixed;bottom:0px;right:0px;width:32px;height:32px;cursor:pointer;}
+	.gca_rtl .mute_button{left:0px;right:auto;}
+	.sound_off{background: url('img/mute.png') 0px 0px no-repeat;}
+	.sound_on{background: url('img/sound.png') 0px 0px no-repeat;}
+
+/* Disable Selection On double clicks */
+	#inv, #shop{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+
+/* Forge */
+	#forgeAllItems_button{margin-left:35px;margin-top:6px;}
+	.gca_rtl #forgeAllItems_button{margin-right:35px;margin-left:auto;}
+
+/* Locations */
+	.enemyDrop{border: 1px solid #670804;margin-top: -38px;background: rgba(255, 255, 255, 0.6);border-radius: 100%;margin-left: 27px;}
+	.gca_rtl .enemyDrop{margin-left: auto;margin-right: 27px;}
+	.enemyDrop2{margin-left: 65px;}
+	.gca_rtl .enemyDrop2{margin-left: auto;margin-right: 65px;}
+	.enemyDropOnly1{margin-left: 45px;}
+	.gca_rtl .enemyDropOnly1{margin-left: auto;margin-right: 45px;}

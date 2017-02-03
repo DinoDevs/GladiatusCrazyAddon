@@ -1,0 +1,131 @@
+﻿/*
+ * Addon Options Default Script
+ * Author: DarkThanos, GreatApo
+ * Copyright: all rights reserved
+ */
+
+gca_options.data = {
+	// Global Script Options
+		"ENABLE_GLOBAL_EXTENDED_HP_XP_INFO" : true,
+		"ENABLE_GLOBAL_BUTTON_BAR" : true,
+		"ENABLE_GLOBAL_AUCTION_STATUS_BAR" : false,
+		"ENABLE_GLOBAL_AUCTION_STATUS_NOTIFICATION" : false,
+		"ENABLE_GLOBAL_TOP_FIXED_BAR" : true,
+		"ENABLE_GLOBAL_ADVANCED_MAIN_MENU" : true,
+		"ENABLE_GLOBAL_MERCHANTS_TIME" : true,
+		"ENABLE_GLOBAL_MINITES_LEFT_FOR_FULL_LIFE" : true,
+		"ENABLE_GLOBAL_REMEMBER_TABS" : true,
+		"GLOBAL_LANGUAGE" : "en",
+		"ENABLE_GLOBAL_QUESTS_TIMER" : true,
+		"ENABLE_GLOBAL_ATTACKED_TIMERS" : true,
+		"ENABLE_GLOBAL_WEAPON_DOWN_ALERT" : true,
+		"ENABLE_GLOBAL_DISPLAY_CENTURIO_DAYS" : false,
+		"ENABLE_GLOBAL_MAP_NAMES_LEVELS" : false,
+		"ENABLE_GLOBAL_SOUND_NOTIFICATIONS" : true,
+
+	// Overview Script Options
+		// Main Player Options
+		"ENABLE_OVERVIEW_ITEMS_ANALIZE" : true,
+		"ENABLE_OVERVIEW_DISPLAY_SHARE_LINK" : true,
+		"ENABLE_OVERVIEW_MERCENARIES_MANAGEMENT" : true,
+		"ENABLE_OVERVIEW_SHOW_HEAL" : false,
+		"ENABLE_PLAYER_IMAGE" : true,
+		// Stats Options
+		"ENABLE_OVERVIEW_PLAYER_STATS_MOD" : true,
+		"ENABLE_OVERVIEW_BLOCK_AVOID_CAPS" : true,
+
+	// Training Script Options
+		"ENABLE_TRANING_DISPLAY_MOD" : true,
+		"ENABLE_TRANING_DISPLAY_COST_CALCULATOR" : true,
+
+	// Auction Script Options
+		// Table modifications
+		"ENABLE_AUCTION_DISPLAY_ITEMS_NUM" : true,
+		"ENABLE_AUCTION_DISPLAY_ITEMS_BGCOLOR" : true,
+		"ENABLE_AUCTION_AUTO_FILL_GOLD" : true,
+		"ENABLE_AUCTION_DISPLAY_ITEMS_LVL" : true,
+		"ENABLE_AUCTION_DISPLAY_3_ITEMS_PER_ROW" : true,
+		"ENABLE_AUCTION_MULTIPLE_BIDS" : false,
+		"ENABLE_AUCTION_WARN_GUILD" : true,
+		// Search modifications
+		"ENABLE_AUCTION_EXPAND_ITEMS_LVL" : true,
+		"ENABLE_AUCTION_IMPROVE_SEARCH_MENU" : true,
+		// Mercenaries tooltips
+		"ENABLE_AUCTION_MERCENARIES_TOOLTIPS" : true,
+		"ENABLE_AUCTION_HIDE_MERCENARIES_GUIDE_ROW" : true,
+
+	// Market Script Options
+		// Table modifications
+		"ENABLE_MARKET_LOAD_MORE_PAGES" : true,
+		"ENABLE_MARKET_STYLE_CHANGES" : true,
+		"ENABLE_MARKET_CANCEL_PACKETS_BUTTON" : true,
+		"ENABLE_MARKET_DEFAULT_SELL_DURATION" : true,
+		"MARKET_DEFAULT_SELL_DURATION" : 2,
+		// Search modifications
+		"ENABLE_MARKET_EXPAND_ITEMS_LVL" : true,
+		"ENABLE_MARKET_IMPROVE_SEARCH_MENU" : true,
+
+	// Merchants Script Options
+		// On merchants page
+		"ENABLE_MERCHANTS_ITEM_SEARCH" : true,
+		"ENABLE_MERCHANTS_HIGHLIGHT_ITEMS" : true,
+		"ENABLE_MERCHANTS_INFOS" : true,
+
+	// Messages Script Options
+		// Messages Options
+		"ENABLE_MESSAGES_STYLING" : false,
+		"ENABLE_MESSAGES_CONVERT_LINKS" : false,
+		"ENABLE_MESSAGES_FIX_SPACES" : false,
+		// New Message Options
+		"ENABLE_NEWMESSAGE_FOCUS" : true,
+		"ENABLE_NEWMESSAGE_FRIENDLIST" : true,
+		// Message Spam Block
+		"ENABLE_MESSAGE_SPAM_BLOCK" : false,
+		"SPAM_BLOCKED_PLAYERS" : ' ',
+
+	// Packages Script Options
+		"ENABLE_PACKAGES_NEW_LAYOUT" : true,
+		"PACKAGES_MAX_PAGES_TO_LOAD" : 5,
+		"ENABLE_PACKAGES_COLLECT_GOLD_BUTTON" : true,
+		"ENABLE_PACKAGES_EXPIRED_PACKAGES" : false,
+		"PACKAGES_EXPIRED_HOURS" : 12,
+
+	// Reports Script Options
+		// Report list Options
+		"ENABLE_REPORT_LIST_STYLE" : true,
+
+	// Chat Script Options
+		// Chat list Options
+		"ENABLE_CHAT_URL_MOD" : true,
+		"ENABLE_CHAT_STYLE_MOD" : true,
+		
+	// Guild Script Options
+		"ENABLE_GUILD_MESSAGE_INTERFACE" : true,
+		"ENABLE_GUILD_JAIL_INTERFACE" : true,
+		"ENABLE_GUILD_LIBRARY_INTERFACE" : true,
+		"ENABLE_GUILD_BANK_INTERFACE" : true,
+		"ENABLE_GUILD_BANKBOOK_INTERFACE" : true,
+		"ENABLE_GUILD_MEDIC_INTERFACE" : true,
+		"ENABLE_GUILD_LIFE_TAB" : true,
+		"ENABLE_GUILD_IMAGES" : true,
+		"ENABLE_GUILD_APPLICATION_ALERT" : false,
+		"ENABLE_GUILD_NAMES_LEVELS" : false,
+	
+	// Pantheon
+		"ENABLE_PANTHEON_QUESTS_ORDER" : true,
+		"ENABLE_PANTHEON_QUESTS_DETAILED_REWARDS" : true,
+		"ENABLE_PANTHEON_GODS_RECOLOR" : true,
+		
+	// Arena
+		"ENABLE_ARENA_SERVER_ARENA_ORDER" : true,
+		
+	// Player
+		"ENABLE_PLAYER_SIMULATOR_BUTTON" : true,
+		"ENABLE_PLAYER_MERCENARIES_FIGHT_TYPE" : true,
+		
+	// Premium
+		"PREMIUM_KEY" : false,
+		
+	// Game Fixes
+		"ENABLE_FIXES_RTL_TOOLTIP_FIX" : true
+}

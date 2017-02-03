@@ -1,44 +1,139 @@
 ﻿{
 	"name": "Gladiatus Crazy Add On",
-	"short_name": "GCA",
-	"version": "4.0.0",
-	"description": "Improve your gladiatus experience!",
+	"version": "3.2.7",
+	"description": "The craziest add-on for gladiatus ever!",
 	"homepage_url": "http://gladiatuscrazyaddon.tk/",
-	"minimum_chrome_version": "18.0",
-
 	"icons": {
-		"16": "icons/icon_16.png",
-		"48": "icons/icon_48.png",
-		"128": "icons/icon_128.png"
+		"16": "icon_16.png",
+		"48": "icon_48.png",
+		"128": "icon_128.png"
 	},
-
 	"content_scripts": [
 		{
+			"run_at": "document_start",
 			"matches": [
 				"http://*.gladiatus.gameforge.com/game/index.php*",
 				"https://*.gladiatus.gameforge.com/game/index.php*"
 			],
 			"js": [
-				"core/info.js",
-				"core/locale.js",
-				"core/manager.js",
-				"core/inject.js",
-				"init.js"
+			
+				"library_ajax.js",
+				"library_save.js",
+				"library_build.js",
+				"library_func.js",
+				
+				"locale_lang.js",
+				"locale/ar.js",
+				"locale/bg.js",
+				"locale/cs.js",
+				"locale/de.js",
+				"locale/en-US.js",
+				"locale/el-GR.js",
+				"locale/es.js",
+				"locale/et.js",
+				"locale/fa.js",
+				"locale/fr.js",
+				"locale/he.js",
+				"locale/hr.js",
+				"locale/hu.js",
+				"locale/lv.js",
+				"locale/lt.js",
+				"locale/nb.js",
+				"locale/nl.js",
+				"locale/pl.js",
+				"locale/pt.js",
+				"locale/ro.js",
+				"locale/ru.js",
+				"locale/sk.js",
+				"locale/sl.js",
+				"locale/sq.js",
+				"locale/tr.js",
+				"locale/zh.js",
+				
+				"debug.js",
+				
+				"script_info.js",
+				"script_data.js",
+				"script_dataUpdater.js",
+				"script_utility.js",
+				"script_section.js",
+				"script_date.js",
+				"script_built.js",
+				"script_resources.js",
+				"script_notifications.js",
+				
+				"script_welcome.js",
+				
+				"script_section_global.js",
+				"script_section_overview.js",
+				"script_section_training.js",
+				"script_section_messages.js",
+				"script_section_reports.js",
+				"script_section_packages.js",
+				"script_section_guild.js",
+				"script_section_auction.js",
+				"script_section_market.js",
+				"script_section_merchants.js",
+				"script_section_pantheon.js",
+				"script_section_arena.js",
+				"script_section_player.js",
+				"script_section_costumes.js",
+				"script_section_map-work-forge.js",
+				"script_section_news_surveys.js",
+				"script_section_magus.js",
+				
+				"script_options.js",
+				"script_options_default.js",
+				"script_options_interface.js",
+				
+				"google_analitics.js",
+				
+				"preloader.js"
 			],
-			"run_at": "document_start",
 			"all_frames": true
+		},
+		{
+			"run_at": "document_end",
+			"matches": [
+				"http://*.gladiatus.gameforge.com/game/index.php*",
+				"https://*.gladiatus.gameforge.com/game/index.php*"
+			],
+			"js": [
+				"start_run.js"
+			],
+			"all_frames": true
+		},
+		{
+			"matches": [
+				"http://*.gladiatus.gameforge.com/game/main.php*",
+				"https://*.gladiatus.gameforge.com/game/main.php*"
+			],
+			"js": [
+				"library_save.js",
+				"library_build.js",
+				"library_func.js",
+				"chat/library_chat_func.js",
+				
+				"script_data.js",
+				
+				"chat/script_chat_url_mod.js",
+				"chat/script_chat_style_mod.js",
+				"chat/script_chat_utility.js",
+				
+				"script_options.js",
+				"script_options_default.js",
+				
+				"chat/start_chat_run.js"
+			],
+			"all_frames": false
 		}
 	],
-
-	"background": {
-		"scripts": ["background.js"],
-		"persistent": false
-	},
-
 	"web_accessible_resources": [
-		"core/locale/*",
-		"core/resources/*",
-		"core/source/*"
+		"style_gca.css",
+		"script_dd_improve.js",
+		"img/*",
+		"sounds/*",
+		"scripts/*"
 	],
 	"manifest_version": 2
 }
