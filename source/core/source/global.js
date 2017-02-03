@@ -1096,6 +1096,7 @@ var gca_global = {
 					if(gold == 0 || isNaN(gold)){
 						// Show warning
 						gca_notifications.warning( gca_locale.get("no_gold") );
+						return;
 					}
 
 					var that = this;
