@@ -780,28 +780,6 @@ var gca_section_global = {
 					});
 				}
 
-			},
-
-			//Donate All button
-			donate_all_money : function(){
-				var myGold=$dark('#sstat_gold_val').html().replace(/ /g,'').replace(/\./g,'');
-				if(myGold==0) gca_notifications.warning( gca_locale.get("no_gold") );
-				$dark('#sstat_gold_val').html('<div class="loading" style="margin-top:6px;opacity:0.8;"/></div>');				
-				//Post to the server
-				xmlHttpRequest({
-					url: getPage.link({"mod":"guildBankingHouse","submod":"donate"}),
-					method: "POST",
-					data : 'donation='+myGold+'&doDonation=Donate All',
-					onload: function(content){
-						//document.getElementById('donate_all_button').value=gca_locale.get( "done" );
-						gca_notifications.success( gca_locale.get("gold_donated") );
-						document.getElementById('sstat_gold_val').innerHTML=0;
-					},
-					onerror: function(xml){
-						$dark('#sstat_gold_val').html( subFuncts.strings.insertDots(myGold) );
-						gca_notifications.error( gca_locale.get("gold_donation_failed") );
-					}
-				});
 			}
 		},
 		auction_status_bar : function(){
