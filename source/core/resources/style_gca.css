@@ -929,3 +929,13 @@
 		.gca_packages_filters_layout #content .side_container .actions_container select{width: 80px;}
 		.gca_packages_filters_layout #content .side_container .actions_container input[type="text"]{width: 80px;}
 		.gca_packages_filters_layout #content .side_container .actions_container input[type="submit"]{float: right;}
+
+	/* Modal
+	-------------------------------------------------- */
+		.gca_modal_wrapper .gca_modal_window{position: fixed;z-index: 999999;top: 50%;left: 50%;margin-top: -125px;margin-left: -309px;}
+		.gca_modal_wrapper .blackoutDialog_header{height: 10px;}
+		.gca_modal_wrapper .blackoutDialog_header .title{font-size: large;text-align: center;padding-left: 145px;padding-right: 71px;}
+		.gca_modal_wrapper .blackoutDialog_icon img{margin-top: 18px;}
+		.gca_modal_wrapper .blackoutDialog_body{height: 100px;}
+		.gca_modal_wrapper .blackoutDialog_body .blackoutDialog_text{margin-top: 18px;}
+		.gca_modal_wrapper .gca_modal_background{position: fixed;z-index: 999998;background-color: rgba(0,0,0,0.5);top: 0px;left: 0px;bottom: 0px;right: 0px;}
