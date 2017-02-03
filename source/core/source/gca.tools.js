@@ -212,6 +212,7 @@ var gca_tools = {
 		},
 
 		// Move
+		/*
 		move : function(item, target, size){
 			// Get target
 			var target = this._move.resolveMoveTraget(item, target);
@@ -276,7 +277,7 @@ var gca_tools = {
 				// If droppable grid
 				else if(target.hasClass("ui-droppable-grid")){
 					// Build grid droparea
-					window.rebuildGridDropareas(item, target);
+					this.rebuildGridDropareas(item, target);
 					// Get targets
 					target = target.find(".ui-droppable.grid-droparea");
 				}
@@ -307,6 +308,55 @@ var gca_tools = {
 					return target;
 				// Failed
 				return false;
+			},
+
+			rebuildGridDropareas : function(drag, el){
+				var gridSizes = [];
+				$(el).each(function(i) {
+					gridSizes[i] = {
+						w: Math.round($(this).width() / 32),
+						h: Math.round($(this).height() / 32)
+					}
+				});
+				$(el).find(".grid-droparea").remove();
+				$(el).each(function(i) {
+					var drop = $(this);
+					if (!drop.is(".ui-droppable-grid") || drag.data("questType")) {
+						return
+					}
+					var w = gridSizes[i].w,
+						h = gridSizes[i].h,
+						map = this.buildDroppableMap(drop.children().not(drag), w, h);
+					for (var x = 0; x < w; x++) {
+						for (var y = 0; y < h; y++) {
+							var cell = new GridCell(drop.data("contentTypeAccept") || 0, map, x, y);
+							if (!map[x][y] && cell.accepts($(drag))) {
+								drop.prepend(cell.createDroppable())
+							}
+						}
+					}
+				});
+				return el
+			},
+
+			buildDroppableMap : function(elements, w, h) {
+				var map = new Array(w);
+				for (var i = 0; i < w; i++) {
+					map[i] = new Array(h)
+				}
+				elements.each(function() {
+					var obj = $(this),
+						l = obj.data("positionX") - 1,
+						t = obj.data("positionY") - 1,
+						w = obj.data("measurementX"),
+						h = obj.data("measurementY");
+					for (var x = 0; x < w; x++) {
+						for (var y = 0; y < h; y++) {
+							map[l + x][t + y] = this
+						}
+					}
+				});
+				return map;
 			},
 
 			// Create
@@ -414,6 +464,7 @@ var gca_tools = {
 			}
 
 		}
+		*/
 	},
 
 
