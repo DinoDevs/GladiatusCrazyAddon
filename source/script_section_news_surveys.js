@@ -21,9 +21,12 @@ var gca_section_news_surveys = {
 		);
 	},
 	show_GCA_News : function(){
+		$dark('#mainnav .current[0]').addChild($dark('*div').class('navBG'));
 		$dark('#mainnav .current[0]').class('awesome-tabs');
 		$dark('#GCA_News_Tab a[0]').class('awesome-tabs current');
-		$dark('#GCA_News_Tab .navBG[0]').element.style.display='none';
+		while($dark('#GCA_News_Tab .navBG').length){
+			$dark('#GCA_News_Tab .navBG[0]').remove();
+		}
 		$dark('#content').html('');
 		$dark('#content').addChild(
 			$dark('*div').class('contentItem').addChild([
