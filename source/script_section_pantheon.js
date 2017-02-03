@@ -64,8 +64,8 @@ var gca_section_pantheon = {
 			//Save time
 			var time=new Date().getTime();
 			if($dark('#quest_header_cooldown')){
-				var seconds = parseInt(document.getElementById("quest_header_cooldown").getElementsByTagName("span")[0].dataset.tickerTimeLeft);
-				time=(time+seconds*1000).toString();
+				var ms = parseInt(document.getElementById("quest_header_cooldown").getElementsByTagName("span")[0].dataset.tickerTimeLeft);
+				time=(time + ms).toString();
 				gca_data.set('quest_timer_time',time);
 			}
 			if($dark('#quest_header_accepted')){
