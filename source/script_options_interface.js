@@ -62,7 +62,7 @@ gca_options.interface = {
 		gca_data.set('playerMail',$dark('#content input[1]').value());
 	},
 	gotoSettings : function(){
-		$dark('#content div[0]').addChild([
+		$dark('#content article[0]').addChild([
 			$dark('*br'),
 			$dark('*div').class("title_box").addChild(
 				$dark('*div').class("title_inner").html(gca.name)
