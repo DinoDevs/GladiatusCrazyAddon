@@ -13,7 +13,7 @@ var gca_training = {
 		(gca_options.bool("training","show_basics_in_bars") &&
 			this.showBasicsInBars());
 
-		// Show basics in bars
+		// Enable multiple train
 		(gca_options.bool("training","multiple_train") &&
 			this.multipleTrain.show());
 	},
