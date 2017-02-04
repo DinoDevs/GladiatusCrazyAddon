@@ -37,6 +37,7 @@ gca_options.data = {
 	// Training Script Options
 		"ENABLE_TRANING_DISPLAY_MOD" : true,
 		"ENABLE_TRANING_DISPLAY_COST_CALCULATOR" : true,
+		"ENABLE_TRANING_MULTIPLE" : true,
 
 	// Auction Script Options
 		// Table modifications

@@ -299,6 +299,7 @@ gca_languages["en"] = {
 			OPTIONS_TRANING_OPTIONS : "Training settings",
 				OPTIONS_TRANING_DISPLAY_MOD : "Display more info",
 				OPTIONS_TRANING_DISPLAY_COST_CALCULATOR : "Display cost calculator",
+				OPTIONS_TRANING_MULTIPLE : "Enable multiple training",
 
 			OPTIONS_AUCTION_OPTIONS : "Auction settings",
 				OPTIONS_AUCTION_TABLE_MODIFICATIONS : "Enable interface modifications",

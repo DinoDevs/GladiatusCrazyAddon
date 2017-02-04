@@ -151,7 +151,8 @@ gca_options.interface = {
 				new this.optionsClasses.category("TRANING_OPTIONS",[
 					new this.optionsClasses.subcategory(null,[
 						new this.optionsClasses.checkBox("TRANING_DISPLAY_MOD"),
-						new this.optionsClasses.checkBox("TRANING_DISPLAY_COST_CALCULATOR")
+						new this.optionsClasses.checkBox("TRANING_DISPLAY_COST_CALCULATOR"),
+						new this.optionsClasses.checkBox("TRANING_MULTIPLE")
 					])
 				]),
 				new this.optionsClasses.category("AUCTION_OPTIONS",[

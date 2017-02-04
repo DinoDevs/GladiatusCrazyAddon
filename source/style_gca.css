@@ -555,6 +555,8 @@
 
 /* v4 Css
 -------------------------------------------------- */
+	/* Tools
+	-------------------------------------------------- */
 	/* Modal */
 	.gca_modal_wrapper .gca_modal_window{position: fixed;z-index: 999999;top: 50%;left: 50%;margin-top: -125px;margin-left: -309px;}
 	.gca_modal_wrapper .blackoutDialog_header{height: 10px;}
@@ -563,3 +565,16 @@
 	.gca_modal_wrapper .blackoutDialog_body{height: 100px;}
 	.gca_modal_wrapper .blackoutDialog_body .blackoutDialog_text{margin-top: 18px;}
 	.gca_modal_wrapper .gca_modal_background{position: fixed;z-index: 999998;background-color: rgba(0,0,0,0.5);top: 0px;left: 0px;bottom: 0px;right: 0px;}
+
+	/* Training
+	-------------------------------------------------- */
+	/* Basec points in bars */
+	#training_box.gca_multiple_training .loading{position: absolute;background-color: rgba(0,0,0,0.4);top: 0px;bottom: 0px;left: 0px;right: 0px;z-index: 1;border-radius: 5px;width: auto;height: auto;background-position: center center;}
+	#training_box.gca_multiple_training .training_link{right: 35px;}
+	#training_box.gca_multiple_training .gca_multiple{position: absolute;width: 28px;top: 2px;right: 4px;}
+	#training_box.gca_multiple_training .gca_multiple .number{float: left;padding-top: 10px;height: 15px;line-height: 15px;font-size: 10px;width: 17px;}
+	#training_box.gca_multiple_training .gca_multiple .arrow{width: 0;height: 0;float: right;cursor: pointer;border-left: 5px solid transparent;border-right: 5px solid transparent;}
+	#training_box.gca_multiple_training .gca_multiple .arrow-up{border-bottom: 5px solid #695220;padding-top: 6px;margin-bottom: 1px;}
+	#training_box.gca_multiple_training .gca_multiple .arrow-up:hover{border-bottom: 5px solid #3a2d13;}
+	#training_box.gca_multiple_training .gca_multiple .arrow-down{border-top: 5px solid #695220;margin-top: 1px;padding-bottom: 6px;}
+	#training_box.gca_multiple_training .gca_multiple .arrow-down:hover{border-top: 5px solid #3a2d13;}
