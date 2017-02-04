@@ -216,6 +216,13 @@ var gca_settings = {
 				"found_items" : true
 			},
 
+			"training" : {
+				// Show bacis in bars
+				"show_basics_in_bars" : true,
+				// Enable multiple train
+				"multiple_train" : true
+			},
+
 			// Auction Options
 			"auction" : {
 				// TODO : need options

@@ -604,7 +604,7 @@
 	.notification-warning div{background-image: url('icons/notifications.png');background-position: -16px 0px;}
 
 /* Settings */
-	#settings_box {width: 500px;margin: 0 auto;}
+	#settings_box {width: 500px;margin: 15px auto 0px auto;}
 	#settings_box .icon{float:left;background-image:url('icons/settings_icon.png');width:48px;height:48px;}
 	#settings_box .description{margin: 6px 0px 6px 10px;line-height: 18px;float: left;}
 	#settings_box .space{height:10px;clear:both;}
@@ -634,6 +634,7 @@
 	#settings_logo .title{color: white;font-size: 16px;position: absolute;bottom: 5px;right: 10px;}
 
 	/* OLD */
+	/*
 	#gca_settings_content{display: none;width: 540px;float: right;padding-top: 5px;padding-right: 87px;padding-bottom: 0;padding-left: 23px;z-index: 10;}
 	.gca_rtl #gca_settings_content{float: left;padding-left: 87px;padding-right: 23px;}
 	#gca_settings_content .logo{background-image:url('images/GCA_logo.png');background-position-y: -10px;width: 500px;height: 130px;margin: 10px auto;border: 2px solid black;}
@@ -646,6 +647,7 @@
 	#gca_settings_content .premico{width:32px;height:16px;float:left;background-image:url('icons/premico.png');margin-top:4px;}
 	#gca_settings_content .betaico{width:32px;height:16px;float:left;background-image:url('icons/betaico.png');margin-top:4px;}
 	#gca_settings_content select{ margin-right: 5px;margin-left: 5px;}
+	*/
 
 /* Missions */
 	#gca_completed_mission .slot_mission_completed{font-size: 13px;font-weight: bold;margin: 0 20px;height: 21px;line-height: 21px;}
@@ -857,6 +859,36 @@
 
 
 
+	/* Packages Layout
+	-------------------------------------------------- */
+		
+		/* Compact Packets */
+		.gca_packages_compact_items_layout #packages_wrapper {padding: 4px 0 2px 4px;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem{padding: 0px;margin: 0 2px 2px 0;width: 78px;height: 142px;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(1){text-align: center;margin: 0px!important;width: 78px!important;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(2){margin: 0 auto;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(3){line-height: 12px;margin: 2px 0px;font-size: 10px;}
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(3) span{font-size: 12px;font-style: italic;}
+		.gca_packages_compact_items_layout .pagination > .section-header{margin-top: 0px!important;}
+		
+		/* Group Side Filters */
+		.gca_packages_filters_layout .package_side_filters{width: 190px;margin-top: 25px;height: 184px;background-color: #E7DEB8;border: 1px solid #B9A66D;border-top: 0px;clear: none;background-image: none;}
+		.gca_packages_filters_layout #content .contentItem{margin-bottom: 0px;}
+		.gca_packages_filters_layout #content .side_tab{cursor: pointer;width: 84px;border: 1px solid #B9A66D;border-bottom: 1px solid #B9A66D;background-color: #D8C8A0;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+		.gca_packages_filters_layout #content .side_tab.active{border-bottom: 0px;background-color: #E7DEB8;}
+		.gca_packages_filters_layout #content .side_tab:hover{text-shadow: 0px 0px 4px #AB9965;color: black;}
+		.gca_packages_filters_layout #content .side_menu{margin: -30px -1px 0px -1px;-webkit-user-select: none;-moz-user-select: none;user-select: none;}
+		.gca_packages_filters_layout #content .side_container{clear:both;}
+		.gca_packages_filters_layout #content .side_container legend {margin-bottom: -4px;}
+		.gca_packages_filters_layout #content .side_container select{width: 164px;margin-bottom: 5px;}
+		.gca_packages_filters_layout #content .side_container input[type="text"]{width: 160px;margin-bottom: 5px;}
+		.gca_packages_filters_layout #content .side_container  input[type="submit"]{float: left;margin-top: 5px;}
+		.gca_packages_filters_layout #content .side_container .actions_container select{width: 80px;}
+		.gca_packages_filters_layout #content .side_container .actions_container input[type="text"]{width: 80px;}
+		.gca_packages_filters_layout #content .side_container .actions_container input[type="submit"]{float: right;}
+
+
+
 	/* Quests Layout
 	-------------------------------------------------- */
 		
@@ -885,33 +917,22 @@
 
 
 
-	/* Packages Layout
+	/* Training
 	-------------------------------------------------- */
-		
-		/* Compact Packets */
-		.gca_packages_compact_items_layout #packages_wrapper {padding: 4px 0 2px 4px;}
-		.gca_packages_compact_items_layout #packages_wrapper .packageItem{padding: 0px;margin: 0 2px 2px 0;width: 78px;height: 142px;}
-		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(1){text-align: center;margin: 0px!important;width: 78px!important;}
-		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(2){margin: 0 auto;}
-		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(3){line-height: 12px;margin: 2px 0px;font-size: 10px;}
-		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(3) span{font-size: 12px;font-style: italic;}
-		.gca_packages_compact_items_layout .pagination > .section-header{margin-top: 0px!important;}
-		
-		/* Group Side Filters */
-		.gca_packages_filters_layout .package_side_filters{width: 190px;margin-top: 25px;height: 184px;background-color: #E7DEB8;border: 1px solid #B9A66D;border-top: 0px;clear: none;background-image: none;}
-		.gca_packages_filters_layout #content .contentItem{margin-bottom: 0px;}
-		.gca_packages_filters_layout #content .side_tab{cursor: pointer;width: 84px;border: 1px solid #B9A66D;border-bottom: 1px solid #B9A66D;background-color: #D8C8A0;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-		.gca_packages_filters_layout #content .side_tab.active{border-bottom: 0px;background-color: #E7DEB8;}
-		.gca_packages_filters_layout #content .side_tab:hover{text-shadow: 0px 0px 4px #AB9965;color: black;}
-		.gca_packages_filters_layout #content .side_menu{margin: -30px -1px 0px -1px;-webkit-user-select: none;-moz-user-select: none;user-select: none;}
-		.gca_packages_filters_layout #content .side_container{clear:both;}
-		.gca_packages_filters_layout #content .side_container legend {margin-bottom: -4px;}
-		.gca_packages_filters_layout #content .side_container select{width: 164px;margin-bottom: 5px;}
-		.gca_packages_filters_layout #content .side_container input[type="text"]{width: 160px;margin-bottom: 5px;}
-		.gca_packages_filters_layout #content .side_container  input[type="submit"]{float: left;margin-top: 5px;}
-		.gca_packages_filters_layout #content .side_container .actions_container select{width: 80px;}
-		.gca_packages_filters_layout #content .side_container .actions_container input[type="text"]{width: 80px;}
-		.gca_packages_filters_layout #content .side_container .actions_container input[type="submit"]{float: right;}
+
+		/* Basic points in bars */
+		#training_box .gca-bases-bar{height:4px;margin-top:-6px;border:1px solid #766531;}
+
+		/* Basec points in bars */
+		#training_box.gca_multiple_training .loading{position: absolute;background-color: rgba(0,0,0,0.4);top: 0px;bottom: 0px;left: 0px;right: 0px;z-index: 1;border-radius: 5px;width: auto;height: auto;background-position: center center;}
+		#training_box.gca_multiple_training .training_link{right: 35px;}
+		#training_box.gca_multiple_training .gca_multiple{position: absolute;width: 28px;top: 2px;right: 4px;}
+		#training_box.gca_multiple_training .gca_multiple .number{float: left;padding-top: 10px;height: 15px;line-height: 15px;font-size: 10px;width: 17px;}
+		#training_box.gca_multiple_training .gca_multiple .arrow{width: 0;height: 0;float: right;cursor: pointer;border-left: 5px solid transparent;border-right: 5px solid transparent;}
+		#training_box.gca_multiple_training .gca_multiple .arrow-up{border-bottom: 5px solid #695220;padding-top: 6px;margin-bottom: 1px;}
+		#training_box.gca_multiple_training .gca_multiple .arrow-up:hover{border-bottom: 5px solid #3a2d13;}
+		#training_box.gca_multiple_training .gca_multiple .arrow-down{border-top: 5px solid #695220;margin-top: 1px;padding-bottom: 6px;}
+		#training_box.gca_multiple_training .gca_multiple .arrow-down:hover{border-top: 5px solid #3a2d13;}
 
 
 

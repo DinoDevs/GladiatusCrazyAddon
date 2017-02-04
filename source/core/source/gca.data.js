@@ -377,6 +377,22 @@ gca_options.data = {
 		"new_message_friend_list" : true
 	},
 
+	// Packages Options
+	"packages" : {
+		// Improve filters layout
+		"filters_layout" : true,
+		// Improve info layout
+		"compact_info_layout" : true,
+		// Improve packets layout
+		"items_layout" : true,
+		// Load more packages pages
+		"load_more_pages" : true,
+		// Number of pages to load
+		"pages_to_load" : 2,
+		// Special category features
+		"special_category_features" : true
+	},
+
 	// Pantheon Options
 	"pantheon" : {
 		// Reorder quests
@@ -394,6 +410,13 @@ gca_options.data = {
 		"load_loot_tooltips" : true,
 		// Item found
 		"found_items" : true
+	},
+
+	"training" : {
+		// Show bacis in bars
+		"show_basics_in_bars" : true,
+		// Enable multiple train
+		"multiple_train" : true
 	},
 
 	// Auction Options
@@ -417,22 +440,6 @@ gca_options.data = {
 		"library_layout" : true,
 		// Bank Book Layout
 		"bank_book_layout" : true
-	},
-
-	// Packages Options
-	"packages" : {
-		// Improve filters layout
-		"filters_layout" : true,
-		// Improve info layout
-		"compact_info_layout" : true,
-		// Improve packets layout
-		"items_layout" : true,
-		// Load more packages pages
-		"load_more_pages" : true,
-		// Number of pages to load
-		"pages_to_load" : 2,
-		// Special category features
-		"special_category_features" : true
 	},
 
 	// TODO : DEPRECATED below

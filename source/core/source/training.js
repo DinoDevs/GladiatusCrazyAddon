@@ -6,108 +6,331 @@
 // Training
 var gca_training = {
 	inject : function(){
-		// Get Values
-		this.getValues();
+		// Load data
+		this.data.load();
 		
-		// Training Interface
-		this.interface.improvements();
-		
-		// Run training points inject info
-		//(gca_options.isOn("ENABLE_TRANING_DISPLAY_MOD") && 
-		//this.display.extened_training_info.run());
-		
-		// Run training points inject info
-		//(gca_options.isOn("ENABLE_TRANING_DISPLAY_COST_CALCULATOR") && 
-		//this.interface.training_cost_calculator.run());
-	},
-	// Library
-	data : {
-		// Element Ids
-		id : {
-			strength : "char_f0",
-			skill : "char_f1",
-			agility : "char_f2",
-			constitution : "char_f3",
-			charisma : "char_f4",
-			intelligence : "char_f5"
-		},
-		// Stats coeff
-		coeff : {
-			strength : 2.6,
-			skill : 2.5,
-			agility : 2.3,
-			constitution : 2.3,
-			charisma : 2.5,
-			intelligence : 2.4
-		},
-		// Current Values
-		values : {
-			name : [],
-			value : [],
-			base : [],
-			max : [],
-			item_points_used : [],
-			item_points_all : []
-		},
-	},
-	getValues : function(){
-		for(let i=0; i<=5;i++){
-			let tooltip = JSON.parse(document.getElementById('char_f'+i+'_tt').getAttribute('data-tooltip'));
-			// Name [0][0][0][0]
-			// Value [0][0][0][1]
-			// Base Name [0][1][0][0]
-			// Base Value [0][1][0][1]
-			// Max Name [0][2][0][0]
-			// Max Value [0][2][0][1]
-			// Max Value Color [0][2][1][1]
-			// Items Value from tot_value [0][3][0][1]
-			// If [5] -> ενισχυση
-			this.data.values.name.push(tooltip[0][0][0][0].replace(':',''));
-			this.data.values.value.push(tooltip[0][0][0][1]);
-			this.data.values.base.push(tooltip[0][1][0][1]);
-			this.data.values.max.push(tooltip[0][2][0][1]);
-			this.data.values.item_points_used.push(parseInt(tooltip[0][3][0][1].match(/\+*-*\d+/g)[0]));
-			this.data.values.item_points_all.push(parseInt(tooltip[0][3][0][1].match(/\+*-*\d+/g)[1]));
-		}
-		//console.log(this.data.values);
+		// Show basics in bars
+		(gca_options.bool("training","show_basics_in_bars") &&
+			this.showBasicsInBars());
+
+		// Show basics in bars
+		(gca_options.bool("training","multiple_train") &&
+			this.multipleTrain.show());
 	},
 
-	// Interface Improvements
-	interface : {
-		improvements : function(){
-			// Get Data
-			
-			// Display base points in bars
-			for(let i=0; i<=5;i++){
+	// Data
+	data : {
+
+		// Skills
+		skills : {
+			strength : {id : "char_f0", index: 1, coeff : 2.6},
+			skill : {id : "char_f1", index: 2, coeff : 2.5},
+			agility : {id : "char_f2", index: 3, coeff : 2.3},
+			constitution : {id : "char_f3", index: 4, coeff : 2.3},
+			charisma : {id : "char_f4", index: 5, coeff : 2.5},
+			intelligence : {id : "char_f5", index: 6, coeff : 2.4}
+		},
+
+		// Discount
+		discount : 0,
+
+		// Load Data
+		load : function(){
+			// For each attribute
+			for(let id in this.skills){
+				// Reference
+				let skill = this.skills[id];
+				// Save bar
+				skill.bar = document.getElementById(skill.id + '_tt');
+				// Get tooltip
+				let tooltip = JSON.parse(skill.bar.getAttribute('data-tooltip'));
+
+				// Name
+				skill.name = tooltip[0][0][0][0].replace(':','');
+				// Points
+				skill.points = parseInt(tooltip[0][0][0][1], 10);
+				// Base Name
+				skill.base = parseInt(tooltip[0][1][0][1], 10);
+				// Max Value
+				skill.max = parseInt(tooltip[0][2][0][1], 10);
+				// Points from items
+				let fromItems = tooltip[0][3][0][1].match(/(\+|-)\d+/g);
+				skill.fromItems = {
+					points : parseInt(fromItems[0], 10),
+					max : parseInt(fromItems[1], 10)
+				};
+
+				// Cost
+				skill.cost = parseInt(skill.bar.parentNode.getElementsByClassName("training_costs")[0].textContent.replace(/\./g,""));
+			}
+
+			// Calculate discound
+			this.discount = Math.round(100 - (this.skills.strength.cost * 100 / Math.pow(this.skills.strength.base - 4, this.skills.strength.coeff)));
+		}
+	},
+
+	// Show basics in bars
+	showBasicsInBars : function(){
+		// For each skill
+		for(let i in gca_training.data.skills){
+			// Reference skill
+			let skill = gca_training.data.skills[i];
+
+			// Calculate base percent
+			var base = Math.round(skill.base / skill.max * 100);
+
+			// Create overlay bar div
+			let div = document.createElement('div');
+			div.className = 'gca-bases-bar';
+			div.style.width = base + "%";
+			div.style.backgroundColor = "#ccc";
+			skill.bar.getElementsByTagName('div')[0].appendChild(div);
+
+			// Calculate points percent
+			var points = Math.round(skill.points / skill.max * 100);
+
+			// If basics are more than points
+			if(base > points){
+				// Create negative bar
 				let div = document.createElement('div');
 				div.className = 'gca-bases-bar';
-				var p_base = Math.round( gca_training.data.values.base[i]/gca_training.data.values.max[i]*100 );
-				div.style = 'width:' + p_base + '%;background-color:#ccc;';
-				document.getElementById('char_f'+i+'_tt').getElementsByTagName('div')[0].appendChild(div);
+				div.style.width = (base - points) + "%";
+				div.style.marginLeft = points + "%";
+				div.style.backgroundColor = "#A70000";
+				skill.bar.getElementsByTagName('div')[0].appendChild(div);
+			}
+		}		
+	},
 
-				var p_value = Math.round( gca_training.data.values.value[i]/gca_training.data.values.max[i]*100 );
-				if(p_base > p_value){
-					div = document.createElement('div');
-					div.className = 'gca-bases-bar';
-					div.style = 'width:' + (p_base-p_value) + '%;margin-left:' + (p_value) + '%;background-color:#A70000;';
-					document.getElementById('char_f'+i+'_tt').getElementsByTagName('div')[0].appendChild(div);
+	// Multi 
+	multipleTrain : {
+
+		// Show
+		show : function(){
+			// Save instance
+			let that = this;
+			
+			// Set multiple training style
+			document.getElementById("training_box").className = "gca_multiple_training";
+
+			// Setup loading element
+			let loading = document.createElement('div');
+			loading.className = "loading";
+			loading.style.display = "none";
+			document.getElementById("training_box").appendChild(loading);
+
+			// For each skill
+			for(let i in gca_training.data.skills){
+				// Reference skill
+				let skill = gca_training.data.skills[i];
+
+				// Save skill
+				let data = {};
+				data.skill = skill;
+				data.loading = loading;
+				
+				// Wrapper
+				let wrapper = document.createElement('div');
+				wrapper.className = "gca_multiple";
+
+				// Number wrapper
+				let number_wrapper = document.createElement('div');
+				number_wrapper.className = "number";
+				number_wrapper.textContent = "×";
+				wrapper.appendChild(number_wrapper);
+
+				// Number
+				let number = document.createElement('span');
+				data.number = number;
+				number_wrapper.appendChild(number);
+
+				// Arrows
+				let arrowUp = document.createElement('div');
+				data.arrowUp = arrowUp;
+				arrowUp.className = "arrow arrow-up";
+				wrapper.appendChild(arrowUp);
+				let arrowDown = document.createElement('div');
+				data.arrowDown = arrowDown;
+				arrowDown.className = "arrow arrow-down";
+				wrapper.appendChild(arrowDown);
+
+				// Inject on page
+				skill.bar.parentNode.appendChild(wrapper);
+
+				// Get images
+				data.imgs = skill.bar.parentNode.getElementsByTagName("img");
+
+				// Remake cost
+				data.cost = document.createElement('span');
+				data.imgs[0].parentNode.removeChild(data.imgs[0].previousSibling);
+				data.imgs[0].parentNode.insertBefore(data.cost, data.imgs[0]);
+
+				// Make train links
+				data.trainButton = {};
+				data.trainButton.disabed = document.createElement('a');
+				data.trainButton.disabed.className = "training_button";
+				data.trainButton.disabed.style.backgroundImage = "url(img/ui/training/button_disabled.jpg)";
+				data.trainButton.disabed.style.display = "none";
+				data.trainButton.active = document.createElement('a');
+				data.trainButton.active.className = "training_button";
+				data.trainButton.active.style.cursor = "pointer";
+				data.trainButton.active.style.display = "none";
+				// Hide old train links
+				if(data.imgs.length > 1){
+					data.imgs[1].style.display = "none";
+					data.trainButton.original = data.imgs[1];
 				}
+				else{
+					let tmp = data.imgs[0].parentNode.parentNode.getElementsByTagName('a');
+					if(tmp.length){
+						tmp[0].style.display = "none";
+						data.trainButton.original = tmp[0];
+					}
+				}
+				// Insert train links
+				data.imgs[0].parentNode.parentNode.appendChild(data.trainButton.disabed);
+				data.imgs[0].parentNode.parentNode.appendChild(data.trainButton.active);
+				// Multiple training link
+				data.trainButton.active.addEventListener('click', function(){
+					that.prepareTraining(data);
+				}, false);
+
+				// Save cost for 1
+				data.initCost = skill.cost;
+				data.currentCost = skill.cost;
+
+				// Save data
+				data.count = 1;
+
+				// Events
+				data.arrowUp.addEventListener("click", function(){
+					that.add( 1, data);
+				}, false);
+				data.arrowDown.addEventListener("click", function(){
+					that.add(-1, data);
+				}, false);
+
+				// Update display data
+				this.update(data);
+			}
+		},
+
+		add : function(increment, data){
+			// Update counter
+			data.count += increment;
+			
+			// Check if valid
+			if(data.count <= 0){
+				data.count = 1;
+			}
+			else if(data.count > 99){
+				data.count = 99;
+			}
+
+			// Calculate cost
+			if(data.count == 1){
+				data.currentCost = data.initCost;
+			}
+			else{
+				data.currentCost = gca_training.costs.calculate(data.skill, data.count, gca_training.data.discount);
+			}
+
+			// Update display
+			this.update(data);
+		},
+
+		isTraining : false,
+		prepareTraining : function(data){
+			// Atomicity
+			if(this.isTraining || data.count <= 0) return;
+			this.isTraining = true;
+
+			// Show loading
+			data.loading.style.display = "block";
+
+			// Start training
+			this.doTrain(data, data.count);
+		},
+
+		doTrain : function(data, count){
+			// Create link
+			let link = gca_getPage.link({"mod":"training", "submod":"train", "skillToTrain" : data.skill.index});
+
+			// If last one redirect
+			if(count == 1){
+				document.location.href = link
+				return;
+			}
+
+			// Do ajax train call
+			let that = this;
+			jQuery.ajax({
+				type: "GET",
+				url: link,
+				success: function(){
+					count -= 1;
+					that.doTrain(data, count);
+				},
+				error: function(){
+					document.location.href = gca_getPage.link({"mod":"training"});
+				}
+			});
+		},
+
+		update : function(data){
+			// Update number
+			data.number.textContent = data.count;
+			// Update cost
+			data.cost.textContent = gca_tools.strings.insertDots(data.currentCost) + " ";
+
+			// Get player gold
+			var gold = parseInt(document.getElementById("sstat_gold_val").textContent.replace(/\./g,""));
+
+			// Don't train
+			if(data.count <= 0){
+				data.trainButton.original.style.display = "none";
+				data.trainButton.disabed.style.display = "block";
+				data.trainButton.active.style.display = "none";
+			}
+			// If normal link
+			else if(data.count == 1){
+				data.trainButton.original.style.display = "block";
+				data.trainButton.disabed.style.display = "none";
+				data.trainButton.active.style.display = "none";
+			}
+			// If you don't have the gold
+			else if(data.currentCost > gold){
+				data.trainButton.original.style.display = "none";
+				data.trainButton.disabed.style.display = "block";
+				data.trainButton.active.style.display = "none";
+			}
+			// You have the gold
+			else{
+				data.trainButton.original.style.display = "none";
+				data.trainButton.disabed.style.display = "none";
+				data.trainButton.active.style.display = "block";
+			}
+		}
+		
+	},
+
+	// Costs
+	costs : {
+
+		// Calculate
+		calculate : function(skill, upgrades, discount){
+			// Cost
+			let cost = 0;
+
+			// Discount factor
+			let factor = (100 - discount) / 100;
+
+			// For each upgrade
+			for(var i = upgrades - 1; i >= 0; i--){
+				cost += Math.round(Math.pow(skill.base + i - 4, skill.coeff) * factor);
 			}
 			
-			//width: 30%;
-			//height:4px;margin-top:-6px;background-color:#fff;border:1px solid #766531;
-			
-			// Get max points and calculate max points after upgrade
-			
-			
-			/*
-			var max = parseInt( $dark('#'+this.object[i]+'_tt').getAttr('onmouseover').match(/\d+<\/td><\/tr>/g)[2] );
-			var max_change = 1+(newpoints-1)%2;
-			//Show Max
-			$dark('#'+this.object[i]+' div[3]').html( '/' ).afterFrom( $dark('#'+this.object[i]+' div[6]') );
-			$dark('#'+this.object[i]+' div[3]').style('color:#666;').html( max ).afterFrom( $dark('#'+this.object[i]+' div[6]') );
-			*/
-			
+			return cost;
 		}
 	}
 };
