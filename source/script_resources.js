@@ -15,6 +15,9 @@ var gca_resources = {
 		if(typeof chrome != 'undefined'){
 			return chrome.extension.getURL(path);
 		}
+		else if(window.navigator.userAgent.indexOf("Edge") > -1){
+			return browser.extension.getURL(path);
+		}
 		// If Firefox Browser
 		else {
 			if(this.addon_url == null)

@@ -25,6 +25,73 @@
 			});
 */
 
+// Fix edge bug
+if(window.navigator.userAgent.indexOf("Edge") > -1){
+	var contentXHR = {
+		index : 0,
+		create : function(x){
+			var i = this.index;
+			var j = Math.floor(Math.random() * 10000);
+			this.index ++;
+
+			var eventHandler = document.createElement("input");
+			eventHandler.id = "gca_xhr_event_handler_no" + i;
+			eventHandler.setAttribute("type","button");
+			eventHandler.setAttribute("style","display:none;");
+
+			if(x.method==undefined || x.method==null || ( x.method!="POST" && x.method!="GET" ) ) x.method="GET";
+
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.charset = 'utf-8';
+			script.id = 'testing';
+			script.defer = true;
+			script.async = true;
+			var data = "";
+			if(x.data != undefined) data = "						data: " + JSON.stringify(x.data) + ",\n";
+			script.text = "\n\
+				(function(){\n\
+					var eventHandler = document.getElementById(\"" + "gca_xhr_event_handler_no" + i + "\");\n\
+					jQuery.ajax({\n\
+						type: \"" + x.method + "\",\n\
+						url: \"" + x.url + "\",\n" + data + "\
+						success: function(content){\n\
+							localStorage.setItem(\"" + "gca_xhr_responce_tab_" + j + "_no" + i + "\", content)\n\
+							eventHandler.click();\n\
+						},\n\
+						error: function(){\n\
+							localStorage.removeItem(\"" + "gca_xhr_responce_tab_" + j + "_no" + i + "\")\n\
+							eventHandler.click();\n\
+						}\n\
+					});\n\
+				})();\n\
+			";
+
+			//console.log("started " + j + " " + i);
+
+			eventHandler.addEventListener('click', function(){
+				//console.log("event " + j + " " + i);
+				eventHandler.parentNode.removeChild(eventHandler);
+				script.parentNode.removeChild(script);
+				// Error
+				if(localStorage.getItem("gca_xhr_responce_tab_" + j + "_no" + i) === null){
+					x.onerror(null);
+				}
+				else{
+					var content = localStorage.getItem("gca_xhr_responce_tab_" + j + "_no" + i);
+					localStorage.removeItem("gca_xhr_responce_tab_" + j + "_no" + i);
+					x.onload(content);
+				}
+			}, false);
+
+			
+			document.body.appendChild(eventHandler);
+			document.body.appendChild(script);
+
+		},
+	};
+}
+
 var dark_ajax_library = {
 	absoluteLink : function(relative, base){
 		// http://stackoverflow.com/questions/14780350/convert-relative-path-to-absolute-using-javascript
@@ -49,6 +116,13 @@ var dark_ajax_library = {
 
 	xmlHttpRequest : function(x){
 		if(x.url==undefined || x.url==null) return false;
+
+		// If Edge
+		if(window.navigator.userAgent.indexOf("Edge") > -1){
+			contentXHR.create(x);
+			return;
+		}
+
 		var xmlhttp=false;
 		if (!xmlhttp && typeof XMLHttpRequest!='undefined'){
 			try {xmlhttp = new XMLHttpRequest();}
