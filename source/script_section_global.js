@@ -172,7 +172,7 @@ var gca_section_global = {
 					/* Sent guild message button */
 					var instant_message_textarea = $dark('*textarea');
 					var instant_message_div = $dark('*div').class('instant_message_div instant').css('display:none;').addChild(
-						$dark('*div').class('title2_box').addChild([
+						$dark('*div').class('hover_box').addChild([
 							$dark('*i').html( gca_locale.get("write_guild_message")+":" ),
 							$dark('*br'),
 							instant_message_textarea,
@@ -213,7 +213,7 @@ var gca_section_global = {
 						
 						/* Link to guild's bank */
 						var instant_donate_gold = $dark('*div').class('instant_message_div instant').css('display:none;').addChild(
-							$dark('*div').class('title2_box').addChild(
+							$dark('*div').class('hover_box').addChild(
 								$dark('*input').type('button').id('donate_all_button').class('button1').value( gca_locale.get("donate_all_your_gold") ).click(function(){
 									gca_section_global.display.button_bar.donate_gold.check();
 								})
@@ -622,105 +622,6 @@ var gca_section_global = {
 					}});
 				}
 			},
-			//Hide/Display Online Friends
-			/*online_friends : function(){
-				if(!$dark('#online_guild_friends')){
-					this.dialog = new gca_built.dialog();
-					this.dialog.title.html(gca_locale.get( "online_friends" ));
-
-					this.dialog.body.addChild([
-						$dark('*div').html('<table class="online_friends_table"><tr><td width="50%"><b>'+gca_locale.get( "guild_friends" )+'</b><td/><td width="50%"><b>'+gca_locale.get( "family_friends" )+'</b><td/></tr></table><table class="online_friends_table"><tr><td width="50%"><div id="online_guild_friends" class="online_friends_loading_img loading"/></div></td><td width="50%"><div id="online_family_friends" class="online_friends_loading_img loading"/></div></td></tr></table>')
-					]);
-
-					this.dialog.body.addChild([
-						$dark('*div').class("space")
-					]);
-
-					var dialog = this.dialog;
-					this.dialog.body.addChild([
-						$dark('*input').class("button3").type("button").value(gca_locale.get( "close" )).click( function(){dialog.close();} )
-					]);
-					this.dialog.open();
-					
-					//Get online guild memebers
-					xmlHttpRequest({
-						url : getPage.link({"mod":"guild","submod":"memberList","i":"0","order":"o"}),
-						method : "GET",
-						onload : function(content){
-							var doc = $dark('*div').html(content).element;
-							if(doc.getElementsByClassName("title2_box")[0]){
-								var html_code='';
-								var x=2;
-								var found_players=0;
-								while(doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x]){
-									if(doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x].getElementsByTagName('td')[4]){
-										if(doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x].getElementsByTagName('td')[4].innerHTML.match(/color.(Green|#406000);/i)){
-											if(doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x].getElementsByTagName('td')[4].innerHTML.match('color:Green;')){
-												html_code+='<font color="green">&bull;</font> ';
-											}else{
-												html_code+='<font color="#406000">&bull;</font> ';
-											}
-											html_code+=doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x].getElementsByTagName('td')[0].innerHTML.replace('>',' style="color:black;font-family:century gothic;">')+'<br/>';
-											found_players++;
-										}
-									}
-									x++;
-								}
-								document.getElementById('online_guild_friends').removeAttribute('class');
-								if(found_players>=10){
-									document.getElementById('online_guild_friends').setAttribute('style','overflow:auto;height:200px;');
-								}else if(found_players==0){
-									html_code='-<br/>';
-								}
-								document.getElementById('online_guild_friends').innerHTML = html_code;
-							}else{
-								document.getElementById('online_guild_friends').removeAttribute('class');
-								document.getElementById('online_guild_friends').innerHTML = gca_locale.get("error");
-							}
-						}
-					});
-					
-					//Get online family memebers
-					xmlHttpRequest({
-						url : getPage.link({"mod":"overview","submod":"buddylist"}),
-						method : "GET",
-						onload : function(content){
-							var doc = $dark('*div').html(content).element;
-							if(doc.getElementsByClassName("title2_box")[0]){
-								var html_code='';
-								var x=1;
-								var found_players=0;
-								while(doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x]){
-									if(doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x].getElementsByTagName('td')[3]){
-										if(doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x].getElementsByTagName('td')[3].innerHTML.match(/color.(Green|#406000);/i)){
-											if(doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x].getElementsByTagName('td')[3].innerHTML.match('color:Green;')){
-												html_code+='<font color="green">&bull;</font> ';
-											}else{
-												html_code+='<font color="#406000">&bull;</font> ';
-											}
-											html_code+=doc.getElementsByClassName("title2_box")[0].getElementsByTagName('tr')[x].getElementsByTagName('td')[0].innerHTML.replace('>',' style="color:black;font-family:century gothic;">')+'<br/>';
-											found_players++;
-										}
-									}
-									x++;
-								}
-								document.getElementById('online_family_friends').removeAttribute('class');
-								if(found_players>=10){
-									document.getElementById('online_family_friends').setAttribute('style','overflow:auto;height:200px;');
-								}else if(found_players==0){
-									html_code='-<br/>';
-								}
-								document.getElementById('online_family_friends').innerHTML = html_code;
-							}else{
-								document.getElementById('online_family_friends').removeAttribute('class');
-								document.getElementById('online_family_friends').innerHTML = gca_locale.get("error");
-							}
-						}
-					});
-				}else{
-					this.dialog.open();
-				}				
-			},*/
 			// Donate All button
 			donate_gold : {
 

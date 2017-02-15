@@ -45,12 +45,13 @@
 	.gca_rtl #gca_button_bar a{margin-right: auto; margin-left: 1px;}
 	#gca_button_bar .icon {width: 25px; height: 25px; display: block; cursor: pointer;}
 	#gca_button_bar .icon-out .instant{position: absolute; display: none;}
+	#gca_button_bar .hover_box{background: #ded2ad;border: 1px solid #bba86e;padding: 5px;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);}
 
 /* Quick Guild Message */
 	.instant_message_div{position: absolute; margin-left: 1px;}
 	.gca_rtl .instant_message_div{margin-right: 1px;margin-left: auto;}
-	.instant_message_div .title2_box{padding: 5px; text-align: left;}
-	.gca_rtl .instant_message_div .title2_box{text-align: right;}
+	.instant_message_div .hover_box{padding: 5px; text-align: left;}
+	.gca_rtl .instant_message_div .hover_box{text-align: right;}
 	.instant_message_div textarea{height: 70px; width: 300px;}
 
 /* Show My Stats */
