@@ -16,7 +16,7 @@ var gca_section_reports = {
 			}
 		}else{
 			//Check if there is content
-			if($dark('#content .title_inner[1]') && $dark('#content .title_inner[1] table[0]')){
+			if($dark('#content table[0]')){
 				if( !getPage.url().match(/(showExpeditions|showDungeons|t=-1)/) ){
 					//Save attack time
 					this.save_attacks_time();
@@ -124,15 +124,15 @@ var gca_section_reports = {
 		}else{
 			var group='';
 		}
-		var length=$dark('.report_statistic[0] tr').length;
+		var length=$dark('.section-like[0] tr').length;
 		var found=[false,false];
 		for(i=1;i<=length;i++){
-			if($dark('.report_statistic[0] tr['+i+'] td[1]')){
-				if($dark('.report_statistic[0] tr['+i+'] .icon_defense[0]')){
-					if($dark('.report_statistic[0] tr['+i+'] td[1] a[0]').html().match(/\(\d+\)/)){
+			if($dark('.section-like[0] tr['+i+'] td[1]')){
+				if($dark('.section-like[0] tr['+i+'] .icon_defense[0]')){
+					if($dark('.section-like[0] tr['+i+'] td[1] a[0]').html().match(/\(\d+\)/)){
 						if(!found[0]){
 							//Cross Server Fights
-							var date=$dark('.report_statistic[0] tr['+i+'] td[0]').html().match(/(\d+)\.(\d+)\.(\d+) (\d+):(\d+):(\d+)/);
+							var date=$dark('.section-like[0] tr['+i+'] td[0]').html().match(/(\d+)\.(\d+)\.(\d+) (\d+):(\d+):(\d+)/);
 							date = new Date(date[3], date[2]-1, date[1], date[4], date[5], date[6], 0).getTime();
 							//Save
 							gca_data.set(group+'arena_xs_attacked_time', date);
@@ -145,7 +145,7 @@ var gca_section_reports = {
 					}else{
 						if(!found[1]){
 							//Normal Server Fights
-							var date=$dark('.report_statistic[0] tr['+i+'] td[0]').html().match(/(\d+)\.(\d+)\.(\d+) (\d+):(\d+):(\d+)/);
+							var date=$dark('.section-like[0] tr['+i+'] td[0]').html().match(/(\d+)\.(\d+)\.(\d+) (\d+):(\d+):(\d+)/);
 							date = new Date(date[3], date[2]-1, date[1], date[4], date[5], date[6], 0).getTime();
 							//Save
 							gca_data.set(group+'arena_attacked_time', date);
@@ -165,46 +165,6 @@ var gca_section_reports = {
 	},
 	//New Style
 	reports_style : function(){
-		/*
-		// Fix style bug
-		if($dark('#content tr[0]').element){
-			if($dark('#content tr[0] th[2]').element)
-				$dark('#content tr[0] th[2]').attr('colspan','2');
-			//Fix description width
-			if($dark('#content tr[0] th[1]').element)
-				$dark('#content tr[0] th[1]').css('width: 276px;');
-		}
-		
-		//Style it!
-		var report_id = null;
-		var report_t = null;
-		var report_date = null;
-		var row = 0;
-		// For every row
-		while($dark('#content tr['+row+']')){
-			if($dark('#content tr['+row+'] td[0]')){
-				if(report_date != $dark('#content tr['+row+'] td[0]').html().match(/(\d+\.\d+\.\d+) /i)[1]){
-					report_date = $dark('#content tr['+row+'] td[0]').html().match(/(\d+\.\d+\.\d+) /i)[1];
-					$dark('*tr').class('reports_day_row').html('<td>'+report_date+'</td><td></td><td></td><td></td><td></td>').beforeFrom($dark('#content tr['+row+']'));
-				}else{
-					$dark('#content tr['+row+'] td[0]').style('').html($dark('#content tr['+row+'] td[0]').html().replace(report_date+' ',''));
-					$dark('#content tr['+row+'] td[2]').style('text-align:right;');
-					// If report has a reward
-					if($dark('#content tr['+row+'] td[3] img[0]')){
-						// Get report id
-						report_id = $dark('#content tr['+row+'] td[4] a[0]').attr('href').match(/reportId=(\d+)&/i)[1];
-						// Get report t parm
-						report_t = $dark('#content tr['+row+'] td[4] a[0]').attr('href').match(/t=(\d+)&/i)[1];
-						// Set a loading tooltip
-						$dark('#content tr['+row+'] td[3] img[0]').id('report_reward_item_'+report_id).style('cursor:pointer;').attr('onmouseover',"return escape('<table cellspacing=2 cellpadding=2 valign=middle class=\\'tooltipBox\\'><tr><td style=\\'color:white; font-weight: bold; font-size:9pt\\' colspan=\\'2\\' nowrap=\\'nowrap\\'><div class=\"loading\"/></div></td></tr></table>')");
-						// Get item info
-						gca_section_reports.find_the_item(report_id, report_t, row);
-					}
-				}
-			}
-			row++;
-		}
-		*/
 		// Load loot tooltips
 		var load_loot = true;
 
@@ -250,6 +210,7 @@ var gca_section_reports = {
 						let report_id = line[row].getElementsByTagName('td')[4].getElementsByTagName('a')[0].href.match(/reportId=(\d+)&/i)[1];
 						// Get report t parm
 						let report_t = line[row].getElementsByTagName('td')[4].getElementsByTagName('a')[0].href.match(/t=(\d+)&/i)[1];
+
 						// Load Loot
 						if(load_loot){
 							// Set a loading tooltip
@@ -262,15 +223,22 @@ var gca_section_reports = {
 							// Add id to img
 							img.id = "image_report_" + report_id;
 
-							tooltip = [[[title+'<span class="loading"></span>',"white"]]];
+							tooltip = [[[title+'<div class="loading" style="margin: 5px auto 8px auto;"></div>',"white"]]];
 							//gca_tools.setTooltip(img, JSON.stringify([[[title+'<span class="loading"></span>',"white"]]]));
-							var script_code = "(function (){\n" + 
+
+							let script = document.createElement('script');
+							script.type = 'text/javascript';
+							script.charset = 'utf-8';
+							script.defer = true;
+							script.async = true;
+							script.text = "(function (){\n" + 
 							"var data = JSON.stringify(" + JSON.stringify(tooltip) + ");\n" +
 							"var img = jQuery('#image_report_" + report_id + "')[0];\n" + 
-							"img.dataset.tooltip = data.tooltip;\n" + 
+							"img.dataset.tooltip = data;\n" + 
 							"if(typeof setTooltip != 'undefined'){setTooltip(img, data);}\n" +
 							"})();";
-
+							document.body.appendChild(script);
+							script.parentNode.removeChild(script);
 
 							// Load item
 							this.getLootItem(report_id, report_t, img, title);
@@ -297,8 +265,6 @@ var gca_section_reports = {
 					tooltip = content.match(/<div\s+class="reportReward"\s+data-tooltip="([^"]+)">/im);
 				}
 
-				
-				
 				// Error
 				if(!tooltip){
 					tooltip = [[[title, "white"], [gca_locale.get("error"), "white"]]];
@@ -306,44 +272,23 @@ var gca_section_reports = {
 				// Tooltip replace
 				else{
 					tooltip = JSON.parse(tooltip[1].replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
-					tooltip[0].unshift(['Rescripted for v4.0.0',"red"])
+					//tooltip[0].unshift(['Rescripted for v4.0.0',"red"])
 					tooltip[0].unshift([title, "white"]);
 				}
 
-				var script_code = "(function (){\n" + 
+				let script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.charset = 'utf-8';
+				script.defer = true;
+				script.async = true;
+				script.text = "(function (){\n" + 
 				"var data = JSON.stringify(" + JSON.stringify(tooltip) + ");\n" +
 				"var img = jQuery('#image_report_" + id + "')[0];\n" + 
-				"img.dataset.tooltip = data.tooltip\n" + 
+				"img.dataset.tooltip = data;\n" + 
 				"if(typeof setTooltip != 'undefined'){setTooltip(img, data);}\n" +
 				"})();";
-
-				var script = document.createElement('script');
-				script.innerHTML = script_code;
 				document.body.appendChild(script);
-			}
-		});
-	},
-
-	//Find the items you won and make tooltips
-	find_the_item : function(id,t,row){
-		var temp_onmouseover=null;
-		xmlHttpRequest({
-			url : getPage.link({"mod":"reports","submod":"showCombatReport","t":t,"reportId":id}),
-			method : "GET",
-			onload : function(content){
-				var doc = $dark('*div').html(content).element;
-				if(doc.getElementsByClassName("reportReward")[0]){
-					var temp_onmouseover=doc.getElementsByClassName("reportReward")[0].getElementsByTagName("div")[0].getAttribute('onmouseover');
-				}else if(doc.getElementsByClassName("reportReward_itemsOnly")[0]){
-					var temp_onmouseover=doc.getElementsByClassName("reportReward_itemsOnly")[0].getAttribute('onmouseover');
-				}else{
-					var temp_onmouseover="return escape('<table cellspacing=2 cellpadding=2 valign=middle class=\\'tooltipBox\\'><tr><td style=\\'color:white; font-weight: bold; font-size:9pt\\' colspan=\\'2\\' nowrap=\\'nowrap\\'>"+gca_locale.get("error")+"</td></tr></table>')";
-				}
-				if($dark('#tOoLtIp_report_reward_item_'+id)){
-					$dark('#tOoLtIp_report_reward_item_'+id+' table[1] td[0]').html(temp_onmouseover.substring(15, temp_onmouseover.length-15-2).replace(/\\'/g,"'"));
-				}else{
-					$dark('#content tr['+row+'] td[3] img[0]').attr('onmouseover',temp_onmouseover);
-				}
+				script.parentNode.removeChild(script);
 			}
 		});
 	}
