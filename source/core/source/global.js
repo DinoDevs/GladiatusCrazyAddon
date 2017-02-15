@@ -488,7 +488,7 @@ var gca_global = {
 						// Create Extended Layout to sent message
 						{
 							let div = document.createElement('div');
-							div.className = "title2_box";
+							div.className = "hover_box";
 
 							let temp = document.createElement('i');
 							temp.textContent = gca_locale.get("write_guild_message")+":";
@@ -622,7 +622,7 @@ var gca_global = {
 							instant_donate_gold.className = "instant_message_div instant";
 							instant_donate_gold.style.display = "none";
 							let div = document.createElement('div');
-							div.className = "title2_box";
+							div.className = "hover_box";
 							let input = document.createElement('input');
 							input.type = "button";
 							input.id = "donate_all_button";
@@ -707,7 +707,7 @@ var gca_global = {
 				// Display your player stats
 				if(activeButtons.indexOf("stt") >= 0){
 					var table_wrapper = document.createElement("div");
-					table_wrapper.className = "title2_box";
+					table_wrapper.className = "hover_box";
 					var statsHtmlTable = document.createElement("table");
 					statsHtmlTable.id = "gca_player_stats_table";
 

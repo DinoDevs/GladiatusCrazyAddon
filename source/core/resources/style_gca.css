@@ -64,6 +64,7 @@
 	.gca_rtl #gca_shortcuts_bar a{margin-right: auto; margin-left: 1px;}
 	#gca_shortcuts_bar .icon {width: 25px; height: 25px; display: block; cursor: pointer;}
 	#gca_shortcuts_bar .icon-out .instant{position: absolute; display: none;}
+	#gca_shortcuts_bar .hover_box{background: #ded2ad;border: 1px solid #bba86e;padding: 5px;box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);}
 
 /* Quick Guild Message */
 	.instant_message_div{position: absolute; margin-left: 1px;}
