@@ -405,16 +405,16 @@
 	.gca_rtl .x3columns{margin: 27px -280px 0px -1px;padding-right:279px;padding-left:0px;background:url('img/auction/img_midle_ar.jpg') repeat-y right top;}
 	.x3columns table{margin:0px 0px 0px -269px}
 	.gca_rtl  .x3columns table{margin:0px -269px 0px 0px}
-	.x3columns  #td1{position:absolute;width:265px;margin-top:-252px;margin-left:538px;}
+	.x3columns  #td1{position:absolute;width:265px;margin-top:-254px;margin-left:538px;}
 	.gca_rtl  .x3columns  #td1{margin-right:538px;margin-left:auto;}
-	.x3columns  #td2{position:absolute;width:265px;margin-top:-126px;margin-left:538px;}
+	.x3columns  #td2{position:absolute;width:265px;margin-top:-127px;margin-left:538px;}
 	.gca_rtl  .x3columns  #td2{margin-right:538px;margin-left:auto;}
 	.auction_bottom_image{background:url('img/auction/img_down.jpg');position:absolute;margin-left:-279px;z-index:50;width:273px;height:56px;}
 	.auction_top_image{background:url('img/auction/img_top.jpg');position:absolute;margin-left:-279px;margin-top:-20px;z-index:35;width:273px;height:23px;}
 	.gca_rtl .auction_top_image, .gca_rtl .auction_bottom_image{margin-right:-279px;margin-left:auto;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);}
 	.auction_clear_button, .market_clear_button{position:absolute;margin:-21px auto auto 205px;}
 	.gca_rtl .auction_clear_button, .gca_rtl .market_clear_button{margin:-21px 205px auto auto;}
-	.auction_level_number{float:right;margin:2px;width:16px;height:16px;color:white;text-align:center;font-weight:bold;font-size:11px;cursor:pointer;}
+	.auction_level_number{float:right;margin:2px;width:16px;height:16px;color:white;text-align:center;/*font-weight:bold;font-size:11px;cursor:pointer;*/cursor:default;font-size: 9px;line-height: 17px;text-align: center;}
 	.gca_rtl .auction_level_number{float:left;}
 	.clear_button{background: url('img/buttons.png') 0px -50px no-repeat;width:20px;height:20px;cursor:pointer;}
 	.clear_button:hover{background: url('img/buttons.png') -20px -50px no-repeat;}

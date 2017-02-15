@@ -87,15 +87,15 @@ var gca_section_auction = {
 		var i=1;var color;
 		while(i<=items && i<501){
 			if($dark('#auction_table td['+(i-1)+']')){
-				if($dark('#auction_table td['+(i-1)+'] div[4]')){
-					color=$dark('#auction_table td['+(i-1)+'] div[4]').attr('data-tooltip').match(/","(....)/i)[1];
+				if($dark('#auction_table td['+(i-1)+'] div[3]')){
+					color=$dark('#auction_table td['+(i-1)+'] div[3]').attr('data-tooltip').match(/","(....)/i)[1];
 					if (color=='lime'){color = '0, 255, 0, 0.1'}
 					else if (color=='#515'){color = '0, 70, 255, 0.2'}
 					else if (color=='#E30'){color = '227, 3, 224, 0.2'}
 					else if (color=='#FF6'){color = '255, 106, 0, 0.2'}
 					else if (color=='whit'){color = '255, 255, 255, 0.2'}
 					else{color = '90, 156, 255, 0.2'}
-					$dark('#auction_table td['+(i-1)+'] div[4]').style('background: rgba(' + color + ');width:64px;height:96px;');
+					$dark('#auction_table td['+(i-1)+'] div[3]').style('background: rgba(' + color + ');width:64px;height:96px;');
 				}
 				i++
 			}
@@ -142,16 +142,16 @@ var gca_section_auction = {
 			document.getElementsByName('bid_amount')[i].value=price;
 			
 			//Items where you can hide gold
-			value = parseInt(  $dark('#auction_table td['+i+'] div[4]').attr('data-tooltip').replace(/\./gi,'').match(/(\d+) (<img|<div class=\\"icon_gold\\")/i)[1] );
+			value = parseInt(  $dark('#auction_table td['+i+'] div[3]').attr('data-tooltip').replace(/\./gi,'').match(/(\d+) (<img|<div class=\\"icon_gold\\")/i)[1] );
 			
 			//More info about prices
 			percent = Math.round(price/value*100);
 			
 			if(value >= price){// old standar condition (value==price || value==price+1)
-				$dark('#auction_table td['+i+'] div[6] input[0]').style('background-color:#FFCC66;');
-				$dark('#auction_table td['+i+'] div[7]').addHtml('<br><div id="hideGoldWithPercentTranslation">'+ gca_locale.get('hide_your_gold_here') +'</div><font style="position:absolute;">('+percent+'%)</font>');
+				$dark('#auction_table td['+i+'] div[5] input[0]').style('background-color:#FFCC66;');
+				$dark('#auction_table td['+i+'] div[6]').addHtml('<br><span id="hideGoldWithPercentTranslation">'+ gca_locale.get('hide_your_gold_here') +'</span><font style="position:absolute;">('+percent+'%)</font>');
 			}else{
-				$dark('#auction_table td['+i+'] div[7]').addHtml('<br><font color="#555555">'+ gca_locale.get('price_eq_value') +' + '+subFuncts.strings.insertDots(price-value)+' <img align="absmiddle" src="img/res2.gif"></font> ('+percent+'%)');
+				$dark('#auction_table td['+i+'] div[6]').addHtml('<br><font color="#555555">'+ gca_locale.get('price_eq_value') +' + '+subFuncts.strings.insertDots(price-value)+' <img align="absmiddle" src="img/res2.gif"></font> ('+percent+'%)');
 			}
 			
 			//Check items you can affored
@@ -169,8 +169,8 @@ var gca_section_auction = {
 		while($dark('#auction_table .auction_bid_div['+i+']')){
 			//Level of each item
 			$dark('*div').class('auction_level_number').style('background-image: url(img/premium/box/amount.png);background-size: contain;').attr('title','Level').text(
-				$dark('#auction_table td['+i+'] div[4]').attr('data-tooltip').match(/(\d+)","#808080/i)[1]
-			).beforeFrom($dark('#auction_table td['+i+'] div[1]'));
+				$dark('#auction_table td['+i+'] div[3]').attr('data-tooltip').match(/(\d+)","#808080/i)[1]
+			).beforeFrom($dark('#auction_table td['+i+'] div[0]'));
 			
 			i++;
 		}
@@ -283,32 +283,32 @@ var gca_section_auction = {
 			
 			//Gold Limit Filter
 			$dark('*script').html('\
-			function filterItemsByGold(requiredGold){\
-				var itemNum=document.forms.length-1;\
-				var i=1;\
-				var itemsCount=0;\
-				var Gold="";\
-				while(i<=itemNum && i<501){\
-					if(document.getElementById("GoldFilterResult").style.display = "block"){\
-						document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\
-					}\
-					Gold=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[8].innerHTML.replace(/\\./gi,"");\
-					if(Gold.match(/: (\\d+)&nbsp;/i)){\
-						Gold=Gold.match(/: (\\d+)&nbsp;/i)[1]*1;\
-					}else{\
-						Gold=0;\
-					}\
-					\
-					if(Gold>requiredGold){\
-						document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\
-						itemsCount++;\
-					}\
-					i++;\
-				}\
-				itemsCount=i-itemsCount-1;\
-				document.getElementById("GoldFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\
-				document.getElementById("GoldFilterResult").style.display = "block";\
-			}\
+			function filterItemsByGold(requiredGold){\n\
+				var itemNum=document.forms.length-1;\n\
+				var i=1;\n\
+				var itemsCount=0;\n\
+				var Gold="";\n\
+				while(i<=itemNum && i<501){\n\
+					if(document.getElementById("GoldFilterResult").style.display = "block"){\n\
+						document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\n\
+					}\n\
+					Gold=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[8].innerHTML.replace(/\\./gi,"");\n\
+					if(Gold.match(/: (\\d+)&nbsp;/i)){\n\
+						Gold=Gold.match(/: (\\d+)&nbsp;/i)[1]*1;\n\
+					}else{\n\
+						Gold=0;\n\
+					}\n\
+					\n\
+					if(Gold>requiredGold){\n\
+						document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\n\
+						itemsCount++;\n\
+					}\n\
+					i++;\n\
+				}\n\
+				itemsCount=i-itemsCount-1;\n\
+				document.getElementById("GoldFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\n\
+				document.getElementById("GoldFilterResult").style.display = "block";\n\
+			}\n\
 			').appendTo('body');
 			
 			//Gold limit
@@ -331,28 +331,28 @@ var gca_section_auction = {
 				
 				if(itemType == 1){//weapons
 					// minimal damage filter script
-					$dark('*script').html('\
-					function filterItemsByDamage(requiredDamage){\
-						var itemNum=document.forms.length-1;\
-						var i=1;\
-						var itemsCount=0;\
-						var damage="";\
-						while(i<=itemNum && i<501){\
-							if(document.getElementById("damageFilterResult").style.display = "block"){\
-								document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\
-							}\
-							damage=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[5].getAttribute("data-tooltip");\
-							damage=damage.match(/ (\\d+) - (\\d+)<\\/td>/i)[2]*1;\
-							if(damage<requiredDamage){\
-								document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\
-								itemsCount++;\
-							}\
-							i++;\
-						}\
-						itemsCount=i-itemsCount-1;\
-						document.getElementById("damageFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\
-						document.getElementById("damageFilterResult").style.display = "block";\
-					}\
+					$dark('*script').html('\n\
+					function filterItemsByDamage(requiredDamage){\n\
+						var itemNum=document.forms.length-1;\n\
+						var i=1;\n\
+						var itemsCount=0;\n\
+						var damage="";\n\
+						while(i<=itemNum && i<501){\n\
+							if(document.getElementById("damageFilterResult").style.display = "block"){\n\
+								document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\n\
+							}\n\
+							damage=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[4].getAttribute("data-tooltip");\n\
+							damage=damage.match(/ (\\d+) - (\\d+)"/i)[2]*1;\n\
+							if(damage<requiredDamage){\n\
+								document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\n\
+								itemsCount++;\n\
+							}\n\
+							i++;\n\
+						}\n\
+						itemsCount=i-itemsCount-1;\n\
+						document.getElementById("damageFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\n\
+						document.getElementById("damageFilterResult").style.display = "block";\n\
+					}\n\
 					').appendTo('body');
 					
 					//Minimal Damage Filter
@@ -362,28 +362,28 @@ var gca_section_auction = {
 				// heal filter script
 				var heal_string = gca_data.get('heal_string',false);
 				if( heal_string && document.location.href.match('ttype=3') ){
-					$dark('*script').html('\
-					function filterItemsByHeal(requiredHeal){\
-						var itemNum=document.forms.length-1;\
-						var i=1;\
-						var itemsCount=0;\
-						var heal="";\
-						while(i<=itemNum && i<501){\
-							if(document.getElementById("healFilterResult").style.display = "block"){\
-								document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\
-							}\
-							heal=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[5].getAttribute("onmouseover").split("</table")[0];\
-							heal=(heal.match(/'+heal_string+' \\+/i))?heal.match(/'+heal_string+' \\+(\\d+)<\\/td>/i)[1]*1:false;\
-							if(!heal || heal<requiredHeal){\
-								document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\
-								itemsCount++;\
-							}\
-							i++;\
-						}\
-						itemsCount=i-itemsCount-1;\
-						document.getElementById("healFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\
-						document.getElementById("healFilterResult").style.display = "block";\
-					}\
+					$dark('*script').html('\n\
+					function filterItemsByHeal(requiredHeal){\n\
+						var itemNum=document.forms.length-1;\n\
+						var i=1;\n\
+						var itemsCount=0;\n\
+						var heal="";\n\
+						while(i<=itemNum && i<501){\n\
+							if(document.getElementById("healFilterResult").style.display = "block"){\n\
+								document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\n\
+							}\n\
+							heal=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[4].getAttribute("onmouseover").split("</table")[0];\n\
+							heal=(heal.match(/'+heal_string+' \\+/i))?heal.match(/'+heal_string+' \\+(\\d+)<\\/td>/i)[1]*1:false;\n\
+							if(!heal || heal<requiredHeal){\n\
+								document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\n\
+								itemsCount++;\n\
+							}\n\
+							i++;\n\
+						}\n\
+						itemsCount=i-itemsCount-1;\n\
+						document.getElementById("healFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\n\
+						document.getElementById("healFilterResult").style.display = "block";\n\
+					}\n\
 					').appendTo('body');
 					
 					//Heal Filter
@@ -400,32 +400,32 @@ var gca_section_auction = {
 				
 				if(itemType == 11 || itemType == 12){
 					//Improvements +?
-					$dark('*script').html('\
-						function filterItemsByPlus(requiredPlus){\
-							var itemNum=document.forms.length-1;\
-							var i=1;\
-							var itemsCount=0;\
-							var plus="";\
-							while(i<=itemNum && i<501){\
-								if(document.getElementById("plusFilterResult").style.display = "block"){\
-									document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\
-								}\
-								plus=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[5].getAttribute("onmouseover");\
-								if(plus.match(/: \\+(\\d+)/i)){\
-									plus=plus.match(/: \\+(\\d+)/i)[1]*1;\
-								}else{\
-									plus=0;\
-								}\
-								if(plus<requiredPlus){\
-									document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\
-									itemsCount++;\
-								}\
-								i++;\
-							}\
-							itemsCount=i-itemsCount-1;\
-							document.getElementById("plusFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\
-							document.getElementById("plusFilterResult").style.display = "block";\
-						}\
+					$dark('*script').html('\n\
+						function filterItemsByPlus(requiredPlus){\n\
+							var itemNum=document.forms.length-1;\n\
+							var i=1;\n\
+							var itemsCount=0;\n\
+							var plus="";\n\
+							while(i<=itemNum && i<501){\n\
+								if(document.getElementById("plusFilterResult").style.display = "block"){\n\
+									document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\n\
+								}\n\
+								plus=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[4].getAttribute("onmouseover");\n\
+								if(plus.match(/: \\+(\\d+)/i)){\n\
+									plus=plus.match(/: \\+(\\d+)/i)[1]*1;\n\
+								}else{\n\
+									plus=0;\n\
+								}\n\
+								if(plus<requiredPlus){\n\
+									document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\n\
+									itemsCount++;\n\
+								}\n\
+								i++;\n\
+							}\n\
+							itemsCount=i-itemsCount-1;\n\
+							document.getElementById("plusFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\n\
+							document.getElementById("plusFilterResult").style.display = "block";\n\
+						}\n\
 					').appendTo('body');
 					
 					//Improvements +? button
@@ -433,43 +433,43 @@ var gca_section_auction = {
 					
 					if(itemType == 11){
 						//Improvements Duration
-						$dark('*script').html('\
-							function filterItemsByDuration(requiredDuration){\
-								var itemNum=document.forms.length-1;\
-								var i=1;\
-								var itemsCount=0;\
-								var Duration="";\
-								while(i<=itemNum && i<501){\
-									if(document.getElementById("DurationFilterResult").style.display = "block"){\
-										document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\
-									}\
-									if(requiredDuration!=-1){\
-										Duration=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[5].getAttribute("onmouseover");\
-										if(Duration.match(/: 0(\\d):00 h/i)){\
-											Duration=Duration.match(/: 0(\\d):00 h/i)[1]*1;\
-										}else{\
-											Duration=0;\
-										}\
-									}else{Duration=-1;}\
-									if(Duration!=requiredDuration){\
-										document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\
-										itemsCount++;\
-									}\
-									i++;\
-								}\
-								itemsCount=i-itemsCount-1;\
-								document.getElementById("DurationFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\
-								document.getElementById("DurationFilterResult").style.display = "block";\
-							}\
+						$dark('*script').html('\n\
+							function filterItemsByDuration(requiredDuration){\n\
+								var itemNum=document.forms.length-1;\n\
+								var i=1;\n\
+								var itemsCount=0;\n\
+								var Duration="";\n\
+								while(i<=itemNum && i<501){\n\
+									if(document.getElementById("DurationFilterResult").style.display = "block"){\n\
+										document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:1;");\n\
+									}\n\
+									if(requiredDuration!=-1){\n\
+										Duration=document.getElementById("auction_table").getElementsByTagName("td")[i-1].getElementsByTagName("div")[4].getAttribute("onmouseover");\n\
+										if(Duration.match(/: 0(\\d):00 h/i)){\n\
+											Duration=Duration.match(/: 0(\\d):00 h/i)[1]*1;\n\
+										}else{\n\
+											Duration=0;\n\
+										}\n\
+									}else{Duration=-1;}\n\
+									if(Duration!=requiredDuration){\n\
+										document.getElementById("auction_table").getElementsByTagName("td")[i-1].setAttribute("style","opacity:0.5;");\n\
+										itemsCount++;\n\
+									}\n\
+									i++;\n\
+								}\n\
+								itemsCount=i-itemsCount-1;\n\
+								document.getElementById("DurationFilterResult").innerHTML = "'+ gca_locale.get('items_found') +': <b>"+itemsCount+"</b>";\n\
+								document.getElementById("DurationFilterResult").style.display = "block";\n\
+							}\n\
 						').appendTo('body');
 						
 						//Improvements Duration button
-						var options='\
-						<option value="-1">- '+ gca_locale.get("select") +' -</option>\
-						<option value="1"> 01:00 h</option>\
-						<option value="2"> 02:00 h</option>\
-						<option value="4"> 04:00 h</option>\
-						<option value="8"> 08:00 h</option>\
+						var options='\n\
+						<option value="-1">- '+ gca_locale.get("select") +' -</option>\n\
+						<option value="1"> 01:00 h</option>\n\
+						<option value="2"> 02:00 h</option>\n\
+						<option value="4"> 04:00 h</option>\n\
+						<option value="8"> 08:00 h</option>\n\
 						';
 						$dark('*tr').id('Item_Duration_Search').html('<td style="width: 50%; text-align: center;">'+ gca_locale.get('duration') +'</td><td style="width: 50%;"><select name="SelectDuration" id="SelectDuration">'+options+'</select><input style="margin-left:5px;margin-right:5px;" onclick="filterItemsByDuration(document.getElementById(\'SelectDuration\').value)" value="'+L_filter+'" class="button3" type="button"><div id="DurationFilterResult" class="title_box" style="display:none"></div></td>').afterFrom($dark('#content form[0] table[0] tr[5]'));
 					}
