@@ -50,8 +50,6 @@ var gca_packages = {
 				document.getElementById('content').getElementsByClassName('paging')[0].parentNode.style.marginTop = "-2px";
 			// Options
 			document.getElementById('content').getElementsByTagName('article')[0].getElementsByTagName('h2')[1].style.marginTop = "-2px";
-			// Hide Content title
-			document.getElementById('content').getElementsByTagName('article')[0].getElementsByTagName('h2')[2].style.display = "none";
 		},
 
 		// Improve packet layout
