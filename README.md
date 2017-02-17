@@ -115,7 +115,7 @@ We need to give some attribute on all the people of the community that help us m
 
 Here are some of those people in a `people.sort()` order:
 
-> *.WhiteGladiatur., Adamus23, Anathustra, Bazzi, Besmir Sadiku, DarkSide666, Dark_Knight_, Darksun, Dimitroff, Dominators_S3, DoonFreak, Eric Hsieh, Francisco Carvajal, IvoGradeff, JotaFraG, Led_Zeppelin, Legend, M33312, MANo0o0o0o0oN, Maximus, McINTYRE, Rune1, SyStem, TANKISTA33, TheBreaker, TraiaN, Vanlen_1er, WiLLsTeiN, Xe"aR"Mohamed3342, bujekx, __djor__, kelmaxine, koritze, mijo.vkci, niko, priscuss, proximilius, tfmvl, titigrd, wupload*
+> *.WhiteGladiatur., Adamus23, Anathustra, Bazzi, Besmir Sadiku, DarkSide666, Dark_Knight_, Darksun, Dimitroff, Dominators_S3, DoonFreak, Eric Hsieh, Francisco Carvajal, IvoGradeff, JezdiciOko, JotaFraG, Led_Zeppelin, Legend, M33312, MANo0o0o0o0oN, Maximus, McINTYRE, Rune1, SatansWhore, SyStem, TANKISTA33, TheBreaker, TraiaN, Valentor, Vanlen_1er, WiLLsTeiN, Xe"aR"Mohamed3342, adamar, bujekx, __djor__, kelmaxine, koritze, mijo.vkci, niko, priscuss, proximilius, roro, tfmvl, titigrd, wupload*
 
 Excuse us if we forget someone and also let us thank you for using our addon.
 
