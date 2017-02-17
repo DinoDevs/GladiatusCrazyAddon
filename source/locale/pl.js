@@ -5,14 +5,14 @@
  * Name : Polish
  * Code : [none]
  * Tag  : pl
- * Translator: wupload@op.pl, bujekx
+ * Translator: wupload@op.pl, bujekx, Valentor, SatansWhore [jeremi.900@interia.pl]
  */
 
 gca_languages['pl'] = {
 	name : 'Polski',
-	translator : "wupload@op.pl, bujekx",
+	translator : "wupload@op.pl, bujekx, Valentor, SatansWhore",
 	locale : {
-		description : "Najbardziej zwariowany dodatek do gladiatus!",
+		description : "Najbardziej szalony add-on do gladiatusa!",
 		write_private_message : "Napisz prywatną wiadomość",
 		write_guild_message : "Napisz wiadomość do gildii",
 		send : "Wyślij",
@@ -37,6 +37,7 @@ gca_languages['pl'] = {
 		avarage_experiance_per_day : "Średnie doświadczenie na dzień",
 		days_left_to_level_up : "ile dni pozostało do poziomu w górę",
 		use_life_potion : "Użyj 100% mikstury życia",
+		dropped_items_reported : "Przeciwnik upuścił przedmiot!",
 		gold_after_enable : "Złoto po odtworzeniu",
 		lost_points : "Stracone punkty",
 		points_to_heal : "Punkty zdrowia",
@@ -157,11 +158,14 @@ gca_languages['pl'] = {
 		OPTIONS_GLOBAL_EXTENDED_HP_XP_INFO : "Wyświetlaj informacje o HP i XP",
 		OPTIONS_GLOBAL_BUTTON_BAR : "Pokaż pasek przycisków nagłówka",
 		OPTIONS_GLOBAL_AUCTION_STATUS_BAR : "Pokaż status aukcji",
+		OPTIONS_GLOBAL_AUCTION_STATUS_NOTIFICATION : "Powiadamiaj gdy status aukcji ulegnie zmianie",
 		OPTIONS_GLOBAL_TOP_FIXED_BAR : "Włącz górny pasek przewijania",
 		OPTIONS_GLOBAL_ADVANCED_MAIN_MENU : "Popraw główne menu",
 		OPTIONS_GLOBAL_MERCHANTS_TIME : "Wyświetl czas kupców",
 		OPTIONS_GLOBAL_MINITES_LEFT_FOR_FULL_LIFE : "Wyświetl zegar czasu regeneracji życia",
 		OPTIONS_GLOBAL_REMEMBER_TABS : "Pamiętaj, kupców i karty inwentaryzacyjne",
+		OPTIONS_GLOBAL_QUESTS_TIMER : "Pokaż status/czas misji",
+		OPTIONS_GLOBAL_ATTACKED_TIMERS : "Pokaż czas mijający od ostatniego ataku lub obrony",
 		OPTIONS_GLOBAL_WEAPON_DOWN_ALERT : "Alarmuj kiedy gracz jest bez broni",
 		OPTIONS_GLOBAL_DISPLAY_CENTURIO_DAYS : "Pokaż pozostały czas trwania centuriona ",
 		OPTIONS_GLOBAL_MAP_NAMES_LEVELS : "Ukryj nazwy budynków w mieście",
@@ -185,6 +189,7 @@ gca_languages['pl'] = {
 		OPTIONS_AUCTION_DISPLAY_ITEMS_LVL : "Wyświetlacz poziomu przedmiotu",
 		OPTIONS_AUCTION_DISPLAY_3_ITEMS_PER_ROW : "Wyświetlacz 3 przedmiotów w linii",
 		OPTIONS_AUCTION_MULTIPLE_BIDS : "Włącz wielokrotną licytację (bez odświeżania)",
+		OPTIONS_AUCTION_WARN_GUILD : "Włącz przycisk raportujący status aukcji do gildii",
 		OPTIONS_AUCTION_SEARCH_MODIFICATIONS : "Włącz modyfikacje wyszukiwania",
 		OPTIONS_AUCTION_EXPAND_ITEMS_LVL : "Rozwiń poziomy przedmiotów",
 		OPTIONS_AUCTION_IMPROVE_SEARCH_MENU : "Poprawa menu wyszukiwania",
@@ -196,6 +201,7 @@ gca_languages['pl'] = {
 		OPTIONS_MARKET_LOAD_MORE_PAGES : "Automatycznie załadować więcej stron",
 		OPTIONS_MARKET_STYLE_CHANGES : "Włącz modyfikacje stylu",
 		OPTIONS_MARKET_CANCEL_PACKETS_BUTTON : "Wyświetl przycisk do anulowania wszystkiego",
+		OPTIONS_MARKET_DEFAULT_SELL_DURATION : "Wybierz domyślny czas sprzedaży w markecie",
 		OPTIONS_MARKET_SEARCH_MODIFICATIONS : "Włącz modyfikacje wyszukiwania",
 		OPTIONS_MARKET_EXPAND_ITEMS_LVL : "Rozwiń poziomy przedmioty",
 		OPTIONS_MARKET_IMPROVE_SEARCH_MENU : "Poprawa menu wyszukiwania",
@@ -207,6 +213,7 @@ gca_languages['pl'] = {
 		OPTIONS_MESSAGES_LIST_OPTIONS : "Lista ustawień wiadomości",
 		OPTIONS_MESSAGES_STYLING : "Poprawa interfejsu wiadomości",
 		OPTIONS_MESSAGES_CONVERT_LINKS : "Konwertuj tekst do linków URL",
+		OPTIONS_MESSAGES_FIX_SPACES : "Napraw brakujące miejsce w wiadomościach",
 		OPTIONS_NEW_MESSAGE_OPTIONS : "Nowe Ustawienia wiadomości",
 		OPTIONS_NEWMESSAGE_FOCUS : "Ustaw natychmiastowe skupienie się na treści",
 		OPTIONS_NEWMESSAGE_FRIENDLIST : "Włącz przycisk listy znajomych",
@@ -238,16 +245,17 @@ gca_languages['pl'] = {
 		OPTIONS_PANTHEON_OPTIONS : "Ustawienia Panteonu",
 		OPTIONS_PANTHEON_QUESTS_ORDER : "Włącz grupowanie misji",
 		OPTIONS_PANTHEON_QUESTS_DETAILED_REWARDS : "Włącz szczegółowe informacje o nagrodach",
+		OPTIONS_PANTHEON_GODS_RECOLOR : "Zmień kolor przycisków bazując na przydatności każdej rzeczy",
 		OPTIONS_ARENA_OPTIONS : "Ustawienia areny",
 		OPTIONS_ARENA_SERVER_ARENA_ORDER : "Sortuj gladiatorów po poziomie",
 		OPTIONS_PLAYER_OPTIONS : "Ustawienia podglądu Gracza",
 		OPTIONS_PLAYER_SIMULATOR_BUTTON : "Włącz przycisk symulatora",
 		OPTIONS_PLAYER_MERCENARIES_FIGHT_TYPE : "Pokazuj tryb walki najemników gracza",
-		OPTIONS_PREMIUM_OPTIONS : "GCA ustawienia premium",
-		OPTIONS_PREMIUM_KEY : "Wpisz twój klucz premium",
+		OPTIONS_PREMIUM_OPTIONS : "Ustawienia premium GCA",
+		OPTIONS_PREMIUM_KEY : "Wpisz twój klucz premium GCA",
 		OPTIONS_GET_PREMIUM : "Kup klucz premium",
-		OPTIONS_GAME_FIXES_OPTIONS : "poprawki gry",
-		OPTIONS_FIXES_RTL_TOOLTIP_FIX : "problem podpowiedzi"
+		OPTIONS_GAME_FIXES_OPTIONS : "Poprawki gry",
+		OPTIONS_FIXES_RTL_TOOLTIP_FIX : "Napraw problem przesuwającego się dodatku"
 	}
 }
 
