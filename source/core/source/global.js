@@ -84,8 +84,12 @@ var gca_global = {
 			this.display.itemShadow.inventory());
 
 		// Event Craps Timer
-		(this.isEvent.craps && gca_options.bool("global","craps_timer") &&
+		(this.isEvent.craps && gca_options.bool("events","craps_timer") &&
 			this.display.event.craps_timer.inject());
+
+		// Event Server Quest
+		(this.isEvent.serverQuest && gca_options.bool("events","server_quest_timer") &&
+			this.display.event.server_quest_timer.inject());
 
 		// Remember merchants' and inventory tabs
 		(gca_options.bool("global","remember_tabs") && 
@@ -120,7 +124,7 @@ var gca_global = {
 		// Check for events
 		this.isEvent = {
 			craps : false,
-			serverBosses : false
+			serverQuest : false
 		};
 		if(!this.isTraveling){
 			// Get first's submenu links
@@ -133,7 +137,7 @@ var gca_global = {
 			links = document.getElementById('submenu2').getElementsByTagName('a');
 			// Check for "Server Bosses" event
 			if(links[links.length-1].className.match('glow') && links[links.length-1].href.match('submod=serverQuest')){
-				this.isEvent.serverBosses = true;
+				this.isEvent.serverQuest = true;
 			}
 		}
 	},
@@ -2198,6 +2202,139 @@ var gca_global = {
 						this.crapsTimeElement .parentNode.removeChild(this.crapsTimeElement );
 					}
 					this.crapsTimeElement = null;
+
+					// Restart
+					this.display();
+				}
+			},
+
+
+			// Server Quest Event Timer
+			server_quest_timer : {
+				inject : function(){
+					// if Craps wait for update event
+					if(gca_section.mod == 'location' && gca_section.submod == 'serverQuest'){
+						gca_tools.event.addListener("server_quest-info-update", function(){
+							gca_global.display.event.server_quest_timer.display();
+						});
+						return;
+					}
+					// Do not run while traveling
+					else if (gca_global.isTraveling){
+						return;
+					}
+
+					this.display();
+				},
+
+				// Display timers
+				display : function(){
+					// Already running
+					if(this.serverQuestTimeElement)
+						return;
+					// Get banner
+					var banner = document.getElementById("banner_event_link");
+					// Check banner link
+					var banner_link = gca_getPage.parameters(banner.href);
+					if(banner_link.mod != "location" || banner_link.submod != "serverQuest"){
+						return;
+					}
+
+					// Time when server quest is available
+					var nextAvailable = parseInt(gca_data.section.get("timers", 'server_quest_available', 0));
+					// Server quest point
+					this.points = gca_data.section.get("timers", 'server_quest_points','N/A');
+
+					// Timer wrapper
+					this.serverQuestWrapperElement = document.createElement("div");
+					this.serverQuestWrapperElement.id = "ServerQuestTime";
+					banner.parentNode.appendChild(this.serverQuestWrapperElement);
+
+					// Icon
+					let img = document.createElement("img");
+					img.src = "img/ui/expedition_points2.png";
+					this.serverQuestWrapperElement.appendChild(img);
+					this.serverQuestWrapperElement.appendChild(document.createTextNode(" "));
+
+					// Points
+					this.serverQuestPointsElement = document.createElement("span");
+					this.serverQuestPointsElement.textContent = "";
+					this.serverQuestWrapperElement.appendChild(this.serverQuestPointsElement);
+					this.serverQuestWrapperElement.appendChild(document.createTextNode(" "));
+
+					// Timer
+					this.serverQuestTimeElement = document.createElement("span");
+					this.serverQuestTimeElement.textContent = "";
+					this.serverQuestWrapperElement.appendChild(this.serverQuestTimeElement);
+
+					// Time difference
+					this.timer = (nextAvailable - gca_tools.time.server());
+					// Check if the time has finished
+					if(this.timer < 0){
+						// No points but new day
+						if(this.points == 0 && gca_data.section.get("timers", 'server_quest_last_date', 0) != gca_tools.time.serverDateString()){
+							this.serverQuestPointsElement.textContent = "?";
+							this.serverQuestTimeElement.textContent = "";
+						}
+						// Do i have data saved?
+						else if(this.points != 'N/A'){
+							this.serverQuestPointsElement.textContent = this.points;
+							this.serverQuestTimeElement.textContent = "";
+						}
+						// No data
+						else{
+							this.serverQuestPointsElement.textContent = "?";
+							this.serverQuestTimeElement.textContent = "";
+						}
+					}
+					// Time has NOT finished
+					else{
+						// Refresh the countdown
+						this.countdown_interval = setInterval(function(){
+							gca_global.display.event.server_quest_timer.countdown();
+						}, 1000);
+						this.countdown();
+					}
+				},
+
+				// Count Down
+				countdown_interval : null,
+				countdown : function(){
+					// If ready
+					if(this.timer < 0){
+						this.serverQuestPointsElement.textContent = "";
+						this.serverQuestTimeElement.textContent = "";
+						// Clear timer
+						clearInterval(this.countdown_interval);
+						return;
+					}
+					if(this.points != 'N/A'){
+						this.serverQuestPointsElement.textContent = this.points;
+					}
+
+					// Convert milliseconds to Minutes:Seconds
+					var date = new Date(this.timer);
+					var minutes = date.getMinutes();
+					var seconds = date.getSeconds();
+					// Format to 01:04
+					if(minutes < 10){minutes = '0'+minutes;}
+					if(seconds < 10){seconds = '0'+seconds;}
+
+					// Display the values
+					this.serverQuestTimeElement.textContent = '- ' + minutes + ':' + seconds + '';
+					
+					// 1 sec passed
+					this.timer = this.timer - 1000;
+				},
+
+				restart : function(){
+					// Clear interval
+					clearInterval(this.countdown_interval);
+					// If timer exist remove it :P
+					if(this.serverQuestTimeElement){
+						this.serverQuestTimeElement .parentNode.removeChild(this.serverQuestTimeElement );
+					}
+					this.serverQuestTimeElement = null;
 
 					// Restart
 					this.display();

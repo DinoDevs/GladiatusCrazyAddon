@@ -606,8 +606,9 @@
 
 /* Settings */
 	#settings_box {width: 500px;margin: 15px auto 0px auto;}
+	#settings_box section{text-align: right;}
 	#settings_box .icon{float:left;background-image:url('icons/settings_icon.png');width:48px;height:48px;}
-	#settings_box .description{margin: 6px 0px 6px 10px;line-height: 18px;float: left;}
+	#settings_box .description{margin: 6px 0px 6px 10px;line-height: 18px;float: left;text-align: left;}
 	#settings_box .space{height:10px;clear:both;}
 	#settings_box input{margin-bottom: 4px;}
 
@@ -964,3 +965,12 @@
 
 		/* Disable Selection */
 		#inventory_nav, #inv, #shop_nav, #shop{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+
+
+
+	/* Events
+	-------------------------------------------------- */
+
+		/* Server Quest Event banner timer */
+		#ServerQuestTime{font-size: 11px;height: 11px;line-height: 11px;padding: 1px;pointer-events: none;}
+		#ServerQuestTime img{height: 10px;margin: -1px 0px;}

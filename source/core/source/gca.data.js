@@ -306,8 +306,6 @@ gca_options.data = {
 		"attacked_timers" : true,
 		// Quest Timer
 		"quest_timer" : true,
-		// Craps Event Timer
-		"craps_timer" : true,
 
 		// Player Image
 		"player_image" : true,
@@ -440,6 +438,13 @@ gca_options.data = {
 		"library_layout" : true,
 		// Bank Book Layout
 		"bank_book_layout" : true
+	},
+
+	"events" : {
+		// Craps Event Timer
+		"craps_timer" : true,
+		// Server Quest Event Timer
+		"server_quest_timer" : true
 	},
 
 	// TODO : DEPRECATED below

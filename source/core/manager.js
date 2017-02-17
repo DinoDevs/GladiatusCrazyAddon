@@ -189,7 +189,18 @@ var manager = {
 		
 		// Location section
 		location : function() {
-			tools.loadScript("source/location.js");
+			// Server quest
+			if(
+				info.page.queries.submod == 'serverQuest' || 
+				info.page.queries.submod == 'serverQuestHighscore'
+			){
+				this.event.serverQuest();
+			}
+
+			// Expedition
+			else{
+				tools.loadScript("source/location.js");
+			}
 		},
 
 		// Settings
@@ -226,6 +237,11 @@ var manager = {
 			// Craps Events
 			craps : function() {
 				tools.loadScript("source/event.craps.js");
+			},
+
+			// Server Quest Event
+			serverQuest : function() {
+				tools.loadScript("source/event.serverQuest.js");
 			}
 
 		}

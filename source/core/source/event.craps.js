@@ -11,7 +11,7 @@ var gca_craps = {
 			return;
 
 		// Save craps time
-		if(gca_options.bool("global", "craps_timer")){
+		if(gca_options.bool("events", "craps_timer")){
 			this.save_craps_info();
 			this.patch_craps_event();
 		}

@@ -31,19 +31,13 @@ var gca_settings = {
 			// Box
 			var wrapper = document.createElement("div");
 			wrapper.id = "settings_box";
-			var wrapperTitle = document.createElement("div");
-			wrapperTitle.className = "title_box";
-			var title = document.createElement("div");
-			title.className = "title_inner";
+			var title = document.createElement("h2");
+			title.className = "section-header";
 			title.textContent = gca.name + " - " + gca_locale.get("OPTIONS_SETTINGS");
-			wrapperTitle.appendChild(title);
-			wrapper.appendChild(wrapperTitle);
-			var wrapperBox = document.createElement("div");
-			wrapperBox.className = "title2_box";
-			var box = document.createElement("div");
-			box.className = "title2_inner";
-			wrapperBox.appendChild(box);
-			wrapper.appendChild(wrapperBox);
+			wrapper.appendChild(title);
+			var box = document.createElement("section");
+			box.style.display = "block";
+			wrapper.appendChild(box);
 			document.getElementById("content").appendChild(wrapper);
 
 			// Icon
@@ -133,8 +127,6 @@ var gca_settings = {
 				"attacked_timers" : true,
 				// Quest Timer
 				"quest_timer" : true,
-				// Craps Event Timer
-				"craps_timer" : true,
 
 				// Player Image
 				"player_image" : true,
@@ -258,7 +250,14 @@ var gca_settings = {
 				"pages_to_load" : 2,
 				// Special category features
 				"special_category_features" : true
-			}
+			},
+
+			"events" : {
+				// Craps Event Timer
+				"craps_timer" : true,
+				// Server Quest Event Timer
+				"server_quest_timer" : true
+			},
 		},
 
 		parseScheme : function(){
