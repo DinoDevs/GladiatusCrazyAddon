@@ -10,6 +10,9 @@ var gca_overview = {
 		// Resolve Page
 		this.overviewResolve();
 
+		// Update data
+		this.updateData();
+
 		// Food life gain predict
 		(this.doll == 1 && gca_options.bool("overview", "food_life_gain") && 
 			this.foodStuff.lifeGain());
@@ -50,6 +53,175 @@ var gca_overview = {
 				this.doll = i+1;
 				break;
 			}
+		}
+	},
+
+	// Update data
+	updateData : function(){
+
+		// Save costume
+		if(this.doll == 1){
+			// Get avatars
+			let avatars = document.getElementsByClassName("avatar");
+			// Get costume code
+			let costume = avatars[0].style.backgroundImage.match(/\/img\/costumes\/sets\/\w+\/(\d+)(_\d+|_complete|)\./);
+			
+			// If costume not found
+			if(!costume){
+				// Set no costume
+				costume = [0, 0];
+			}
+
+			// If costume found
+			else{
+				// Get custome code
+				costume = [
+					// Type
+					parseInt(costume[1], 10),
+					// Parts
+					(costume[2] == "_complete")? 10 : 0
+				];
+
+				// If costume not full
+				if(costume[1] != 10){
+					let part;
+					for (let i = avatars.length - 1; i > 0; i--) {
+						part = avatars[i].style.backgroundImage.match(/\/img\/costumes\/sets\/\w+\/\d+_\d+\./);
+						if(part) costume[1]++;
+					}
+				}
+			}
+
+			// Parse costume
+			let player_costume = {
+				code : costume[0],
+				parts : costume[1]
+			};
+			switch(costume[0]) {
+
+				// Vulcanus
+				case 1:
+					player_costume.name = "Vulcanus";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Feronia
+				case 2:
+					player_costume.name = "Feronia";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Neptune
+				case 3:
+					player_costume.name = "Neptune";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Aeolus
+				case 4:
+					player_costume.name = "Aeolus";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Pluto
+				case 5:
+					player_costume.name = "Pluto";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Juno
+				case 6:
+					player_costume.name = "Juno";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Wrath
+				case 7:
+					player_costume.name = "Wrath";
+					if(costume[1] > 7){
+						player_costume.parts = 7;
+					}
+					break;
+
+				// Eagle
+				case 8:
+					player_costume.name = "Eagle";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Underworld Normal
+				case 11:
+					player_costume.name = "Underworld Normal";
+					player_costume.parts = 1;
+					break;
+
+				// Underworld Medium
+				case 12:
+					player_costume.name = "Underworld Medium";
+					player_costume.parts = 1;
+					break;
+
+				// Underworld Hard
+				case 13:
+					player_costume.name = "Underworld Hard";
+					player_costume.parts = 1;
+					break;
+
+				// Saturn
+				case 9:
+					player_costume.name = "Saturn";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Bubona
+				case 10:
+					player_costume.name = "Bubona";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Mercurius
+				case 14:
+					player_costume.name = "Mercurius";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Ra
+				case 15:
+					player_costume.name = "Ra";
+					if(costume[1] > 5){
+						player_costume.parts = 5;
+					}
+					break;
+
+				// Default
+				default:
+					player_costume.name = "None";
+					player_costume.parts = 0;
+					break;
+			}
+
+			// Save
+			gca_data.section.set("overview", "costume", player_costume);
 		}
 	},
 
