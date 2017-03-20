@@ -640,6 +640,14 @@
 
 
 
+	/* Costumes Layout
+	-------------------------------------------------- */
+
+		/* Parts Indicator Layout */
+		.gca_costumes_styling .parts_indicator{position: absolute;z-index: 99;right: 3px;top: 3px;width: 20px;height: 20px;line-height: 20px;text-align: center;color: #ffffff;text-shadow: -1px -1px 1px black, -1px 1px 1px black, 1px 1px 1px black, 1px -1px 1px black;}
+
+
+
 	/* Achievements Layout
 	-------------------------------------------------- */
 

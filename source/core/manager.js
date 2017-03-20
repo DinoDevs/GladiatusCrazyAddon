@@ -21,6 +21,11 @@ var manager = {
 					this.section.overview();
 					break;
 
+				// Costumes
+				case "costumes":
+					this.section.costumes();
+					break;
+
 				// Messages
 				case "messages":
 					this.section.messages();
@@ -122,6 +127,11 @@ var manager = {
 			else if(info.page.queries.submod == "fetchLoginBonus" || info.page.queries.submod == null){
 				tools.loadScript("source/overview.js");
 			}
+		},
+
+		// Costumes
+		costumes : function() {
+			tools.loadScript("source/overview.costumes.js");
 		},
 
 		// Messages section
