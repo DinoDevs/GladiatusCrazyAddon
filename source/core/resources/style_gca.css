@@ -763,11 +763,12 @@
 		.gca_messages_styling .message_box{margin-top: 4px;width: 540px;}
 		.gca_messages_styling .message_box .messageSubject{background: #E6DCB7;height: 14px;width: 534px;padding: 4px 4px 4px 0px;border-width: 1px;}
 		.gca_messages_styling .message_box .messageSubject .message_box_icon{margin-left: -18px;}
-		.gca_messages_styling .message_box .messageSubject .message_box_title{margin-left: 15px;}
-		.gca_messages_styling .message_box .messageSubject .message_box_title .message_title{width: 420px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+		.gca_messages_styling .message_box .messageSubject .message_box_title{margin-left: 15px;position: relative;}
+		.gca_messages_styling .message_box .messageSubject .message_box_title .message_title{width: 370px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+		.gca_messages_styling .message_box .messageSubject .message_box_title .message_date{position: absolute;right: 0px;line-height: 18px;}
 		.gca_messages_styling .message_box .message_icon{margin-left: 20px;margin-top: -2px;}
 		.gca_messages_styling .message_box .message_box_content{margin-top: -1px;width: 538px;padding: 0px!important;border-width: 1px;}
-		.gca_messages_styling .message_box .message_box_content .message_text{padding: 4px 6px;background-color: #E6DCB7;}
+		.gca_messages_styling .message_box .message_box_content .message_text{padding: 4px 6px;background-color: #E6DCB7;line-height: 15px;}
 		.gca_messages_styling .message_box .message_box_content .message_footer{background-color: #E6DCB7;height: 18px;}
 		.gca_messages_styling .message_box .message_box_content .message_footer a{display: none;}
 		.gca_messages_styling .message_box:hover .message_box_content .message_footer a{display: block;}

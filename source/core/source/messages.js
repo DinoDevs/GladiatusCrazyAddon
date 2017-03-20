@@ -149,8 +149,17 @@ var gca_messages = {
 
 		// Get date from message
 		parseDate : function(message){
-			var date = message.element.getElementsByClassName("message_date")[0].textContent.match(/(\d+)\.(\d+)\.(\d+)/i);
-			return date[0];
+			var date = message.date.textContent.match(/(\d+)\.(\d+)\.(\d+)/i);
+			var time = message.date.textContent.match(/(\d+):(\d+):(\d+)/i);
+			return {
+				day : date[0],
+				month : date[1],
+				year : date[2],
+
+				hour : time[0],
+				minites : time[1],
+				seconds : time[2]
+			};
 		}
 
 	},
@@ -725,14 +734,14 @@ var gca_messages = {
 			// If messages
 			if(messages.length > 1){
 				// Get previus date
-				var prev_date = gca_messages.messages.parseDate(messages[0]);
+				var prev_date = gca_messages.messages.parseDate(messages[0]).day;
 				// Next date variable
 				var next_date;
 
 				// For each message
 				for(var i = 1; i < messages.length; i++){
 					// Get date
-					next_date = gca_messages.messages.parseDate(messages[i]);
+					next_date = gca_messages.messages.parseDate(messages[i]).day;
 					// If new date
 					if(next_date != prev_date){
 						// Add separator
