@@ -88,7 +88,7 @@ var gca_global = {
 			this.display.event.craps_timer.inject());
 
 		// Event Server Quest
-		(this.isEvent.serverQuest && gca_options.bool("events","server_quest_timer") &&
+		(this.isEvent.serverQuest && this.isEvent.bar && gca_options.bool("events","server_quest_timer") &&
 			this.display.event.server_quest_timer.inject());
 
 		// Remember merchants' and inventory tabs
@@ -124,8 +124,10 @@ var gca_global = {
 		// Check for events
 		this.isEvent = {
 			craps : false,
-			serverQuest : false
+			serverQuest : false,
+			bar : false
 		};
+
 		if(!this.isTraveling){
 			// Get first's submenu links
 			let links = document.getElementById('submenu1').getElementsByTagName('a');
@@ -139,6 +141,10 @@ var gca_global = {
 			if(links[links.length-1].className.match('glow') && links[links.length-1].href.match('submod=serverQuest')){
 				this.isEvent.serverQuest = true;
 			}
+		}
+
+		if(document.getElementById("banner_event_link")){
+			this.isEvent.bar = true;
 		}
 	},
 
@@ -2234,6 +2240,7 @@ var gca_global = {
 						return;
 					// Get banner
 					var banner = document.getElementById("banner_event_link");
+					if(!banner) return;
 					// Check banner link
 					var banner_link = gca_getPage.parameters(banner.href);
 					if(banner_link.mod != "location" || banner_link.submod != "serverQuest"){
