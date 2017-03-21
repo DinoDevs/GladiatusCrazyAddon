@@ -248,22 +248,24 @@ var gca_overview = {
 				this.caps[2] = true;
 				
 				// Attach on item drop event
-				/*
 				gca_tools.event.item.onDrop(function(item){
 					// Re-show caps
+					console.log(1);
 					gca_overview.blockAvoidCaps.calculateCaps();
 				});
-				*/
 			}
 			
 			// Show caps
-			//console.log(JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip));
-			var parseDataset = JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip);
-			parseDataset[0][2][0][1] = parseDataset[0][2][0][1] + "/" + this.caps[0];
-			parseDataset[0][6][0][1] = parseDataset[0][6][0][1] + "/" + this.caps[1];
-			//console.log(parseDataset);
-			gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(parseDataset));
-			
+				var parseDataset = JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip);
+				
+				// Avoid
+				parseDataset[0][2][1][1]=(parseDataset[0][2][0][1]>=this.caps[0])?"#00B712":"#ff0000";
+				parseDataset[0][2][0][1] = parseDataset[0][2][0][1] + "/" + this.caps[0];
+				// Block
+				parseDataset[0][6][1][1]=(parseDataset[0][6][0][1]>=this.caps[1])?"#00B712":"#ff0000";
+				parseDataset[0][6][0][1] = parseDataset[0][6][0][1] + "/" + this.caps[1];
+				
+				gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(parseDataset));
 		}
 	},
 	
