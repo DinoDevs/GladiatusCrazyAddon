@@ -147,8 +147,8 @@ var gca_tools = {
 	setTooltip : function(el, data){
 		el.dataset.tooltip = data;
 		// If function is availiable
-		if(typeof tooltips != "undefined"){
-			tooltips.set(el, data);
+		if(typeof window.tooltips != "undefined"){
+			window.tooltips.set(el, data);
 		}
 	},
 
