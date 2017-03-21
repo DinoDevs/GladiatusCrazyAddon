@@ -29,6 +29,10 @@ var gca_overview = {
 		(gca_options.bool("overview", "daily_bonus_log") && 
 			this.daily_bonus_log.inject());
 		
+		// Show Block and Avoid Caps
+		(gca_options.bool("overview", "block_avoid_caps") && 
+			this.blockAvoidCaps.calculateCaps());
+		
 		// Repair Items Overview
 		(gca_options.bool("overview", "repair_materials_info") &&
 			this.repair_overview.inject());
@@ -226,6 +230,44 @@ var gca_overview = {
 	},
 
 	// Food Life gain predict on mouse over
+	blockAvoidCaps : {
+		// Caps variables
+		caps : [
+			0, // Avoid Cap
+			0, // Block Cap
+			false // Calculated
+		],
+
+		// Calculate Block and Avoid Caps
+		calculateCaps : function(){
+			if (!this.caps[2]){
+				// Calculate Caps
+				var player_level = parseInt(document.getElementById("header_values_level").textContent);
+				this.caps[0] = Math.floor(24.5*4*(player_level-8)/52)+1;
+				this.caps[1] = Math.floor(49.5*6*(player_level-8)/52)+1;
+				this.caps[2] = true;
+				
+				// Attach on item drop event
+				/*
+				gca_tools.event.item.onDrop(function(item){
+					// Re-show caps
+					gca_overview.blockAvoidCaps.calculateCaps();
+				});
+				*/
+			}
+			
+			// Show caps
+			//console.log(JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip));
+			var parseDataset = JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip);
+			parseDataset[0][2][0][1] = parseDataset[0][2][0][1] + "/" + this.caps[0];
+			parseDataset[0][6][0][1] = parseDataset[0][6][0][1] + "/" + this.caps[1];
+			//console.log(parseDataset);
+			gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(parseDataset));
+			
+		}
+	},
+	
+	// Food Life gain predict on mouse over
 	foodStuff : {
 
 		// Life variables
@@ -367,7 +409,7 @@ var gca_overview = {
 				}
 			});
 			// Attach on item drop event
-			gca_tools.event.item.onDrag(function(item){
+			gca_tools.event.item.onDrop(function(item){
 				// If is food
 				if(gca_overview.foodStuff.isItemFood(item)){
 					// Hide life gain
