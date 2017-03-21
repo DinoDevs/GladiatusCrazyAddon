@@ -201,17 +201,22 @@ var gca_reports = {
 
 	// Save reports infomation
 	save_reports_info : function(){
-		// Check if report_statistic exist
-		var reports_table = document.getElementById('content').getElementsByClassName('report_statistic');
-		if(reports_table.length == 0)
+		// Check if section exist
+		var section = document.getElementById('content').getElementsByTagName('section');
+		if(section.length == 0)
 			return;
-		reports_table = reports_table[0];
+		section = section[0];
+		// Check if table exist
+		var table = section.getElementsByTagName('table');
+		if(table.length == 0)
+			return;
+		table = table[0];
 
 		// Time variable
 		var time = [false, false];
 
 		// Reports
-		if(reports_table.getElementsByClassName('icon_defense').length > 0){
+		if(table.getElementsByClassName('icon_defense').length > 0){
 			var reports = document.getElementById('content').getElementsByTagName('tr');
 			for(var i = 1; i < reports.length; i++){
 				// If defence attack
