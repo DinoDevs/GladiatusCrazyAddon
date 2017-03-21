@@ -8,7 +8,7 @@ var gca_overview_costumes = {
 	// Pre Inject code
 	preinject : function(){
 		// Check if style is active
-		//if(gca_options.bool("overview","achivements_layout"))
+		if(gca_options.bool("overview","costumes_layout"))
 			// Add class tag
 			document.documentElement.className += " gca_costumes_styling";
 	},
@@ -16,8 +16,8 @@ var gca_overview_costumes = {
 	// Inject Code
 	inject : function(){
 		// Improve Layout
-		//(gca_options.bool("overview","achivements_layout") && 
-			this.partsIndicators.show()//);
+		(gca_options.bool("overview","costumes_layout") && 
+			this.partsIndicators.show());
 	},
 
 	// Count costume parts

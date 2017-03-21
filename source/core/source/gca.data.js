@@ -346,7 +346,9 @@ gca_options.data = {
 		// Show more statistics
 		"more_statistics" : true,
 		// new Achivements layout
-		"achivements_layout" : true
+		"achivements_layout" : true,
+		// Costumes layout
+		"costumes_layout" : true
 	},
 
 	// Messages Options
