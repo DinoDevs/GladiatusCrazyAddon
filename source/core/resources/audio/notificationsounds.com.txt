@@ -1,0 +1,13 @@
+
+The sounds :
+
+	coins.ogg
+	communication-channel.ogg
+	et-voila.ogg
+	gets-in-the-way.ogg
+	job-done.ogg
+	pizzicato.ogg
+	served.ogg
+	wet.ogg
+
+Are from the site https://notificationsounds.com
