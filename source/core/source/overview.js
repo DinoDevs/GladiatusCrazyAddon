@@ -243,28 +243,40 @@ var gca_overview = {
 			if (!this.caps[2]){
 				// Calculate Caps
 				var player_level = parseInt(document.getElementById("header_values_level").textContent);
-				this.caps[0] = Math.floor(24.5*4*(player_level-8)/52)+1;
-				this.caps[1] = Math.floor(49.5*6*(player_level-8)/52)+1;
+				this.caps[0] = Math.floor(24.5*4*(player_level-8)/52)+1;//Avoid Cap formula
+				this.caps[1] = Math.floor(49.5*6*(player_level-8)/52)+1;//Block Cap formula
 				this.caps[2] = true;
 				
-				// Attach on item drop event
-				gca_tools.event.item.onDrop(function(item){
-					// Re-show caps
-					console.log(1);
-					gca_overview.blockAvoidCaps.calculateCaps();
+				// Attach event on request response
+				gca_tools.event.request.onAjaxResponce(function(r){
+					// If the response changes the tooplit
+					if (r.hasOwnProperty('data') && r.data.hasOwnProperty('status') && r.data.status.hasOwnProperty('panzer') && r.data.status.panzer.hasOwnProperty('tooltip') ){
+						// Apply the new tooplit
+						gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(r.data.status.panzer.tooltip));
+						// Call this function
+						gca_overview.blockAvoidCaps.calculateCaps();
+					}
 				});
 			}
 			
 			// Show caps
 				var parseDataset = JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip);
 				
-				// Avoid
-				parseDataset[0][2][1][1]=(parseDataset[0][2][0][1]>=this.caps[0])?"#00B712":"#ff0000";
-				parseDataset[0][2][0][1] = parseDataset[0][2][0][1] + "/" + this.caps[0];
-				// Block
-				parseDataset[0][6][1][1]=(parseDataset[0][6][0][1]>=this.caps[1])?"#00B712":"#ff0000";
-				parseDataset[0][6][0][1] = parseDataset[0][6][0][1] + "/" + this.caps[1];
-				
+				// Loop through the tooltip to find the proper rows
+				var i = 1;
+				var capNo = 0;
+				while (parseDataset[0][i] && capNo<2){
+					// If the color is golden
+					if( parseDataset[0][i][1][1] == "#BA9700" ){
+						// Change color
+						parseDataset[0][i][1][1]=(parseDataset[0][i][0][1]>=this.caps[capNo])?"#00B712":"#ff0000";
+						// Apply the /Cap
+						parseDataset[0][i][0][1] = parseDataset[0][i][0][1] + "/" + this.caps[capNo];
+						capNo++;
+					}
+					i++;
+				}
+				// Apply the changed tooplit
 				gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(parseDataset));
 		}
 	},
