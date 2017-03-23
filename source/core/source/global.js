@@ -31,7 +31,8 @@ var gca_global = {
 		// Display gca version on footer
 		this.display.version();
 		// Show premium days
-		this.display.show_premium_days();
+		// TODO : disabled
+		//this.display.show_premium_days();
 
 		// Extended info on Health and Experience bars
 		(gca_options.bool("global","extended_hp_xp_info") && 
@@ -190,6 +191,7 @@ var gca_global = {
 		},
 
 		// Show Premium Days
+		// TODO : disabled
 		show_premium_days : function(){
 			// Calculate Days left
 			var prem_days = Math.ceil(( gca_data.section.get("timers", "premium_expiration", 0) - ((new Date()).getTime() / 1000) ) / 86400);
