@@ -30,9 +30,6 @@ var gca_global = {
 
 		// Display gca version on footer
 		this.display.version();
-		// Show premium days
-		// TODO : disabled
-		//this.display.show_premium_days();
 
 		// Extended info on Health and Experience bars
 		(gca_options.bool("global","extended_hp_xp_info") && 
@@ -188,45 +185,6 @@ var gca_global = {
 				// Insert link
 				footerLinks[0].appendChild(link);
 			}
-		},
-
-		// Show Premium Days
-		// TODO : disabled
-		show_premium_days : function(){
-			// Calculate Days left
-			var prem_days = Math.ceil(( gca_data.section.get("timers", "premium_expiration", 0) - ((new Date()).getTime() / 1000) ) / 86400);
-
-			// Create element
-			var div = document.createElement("div");
-			div.id = "show_premium_days";
-			div.className = "show_prem_days";
-			var h = document.createElement("h4");
-			h.className = "show_prem_days_text";
-			var link = document.createElement("a");
-			link.setAttribute("target", "_blank");
-
-			// TODO
-			// We need some traslations here
-
-			// If player have active premium
-			if(prem_days > 0){
-				link.href = "http://gladiatuscrazyaddon.tk/index.php?mode=donate";
-				link.style.color = "#dcbb96";
-				link.title = "By another premium key";
-				link.textContent = 'GCA Premium: ' + prem_days + ' ' + gca_locale.get("days");
-			}
-			// If player do not have a premium
-			else{
-				link.href = "http://q.gs/1940284/free-gca-key";
-				link.style = "color:yellow;font-weight:bold;";
-				link.title = "Get 1 day FREE Key";
-				link.textContent = "Get GCA premium FREE!";
-			}
-			
-			// Insert elements on page
-			h.appendChild(link);
-			div.appendChild(h);
-			document.body.appendChild(div);
 		},
 
 		// Extended Health and Experience bars
