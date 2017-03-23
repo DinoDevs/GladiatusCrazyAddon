@@ -9,18 +9,33 @@ var gca_audio = {
 	volume : 1,
 	muted : false,
 
-	// Default audio
+	// Sounds list
+	buildInSounds : {
+		"water" : "alert-sound-water.ogg",
+		"coin" : "coins.ogg",
+		"channel" : "communication-channel.ogg",
+		"voila" : "et-voila.ogg",
+		"in-the-way" : "gets-in-the-way.ogg",
+		"done" : "job-done.ogg",
+		"pizzicato" : "pizzicato.ogg",
+		"served" : "served.ogg",
+		"wet" : "wet.ogg"
+	},
+
+	// Default audio settings
 	defaults : {
 		"auction_notification" : {vol : 1, mute : false}
 	},
 
-	// Audio Objects
+	// Audio Object List
 	audioIdObjs : {},
+
+	// Create a new Audio Object
 	makeAudioIdObj : function(id, obj = false){
-		// Make obj
+		// Make obj if not exist
 		this.audioIdObjs[id] = {
 			id : id,
-			url : gca_resources.audio + "alert-sound-water.ogg",
+			url : gca_resources.audio + this.buildInSounds["water"],
 			volume : 1,
 			muted : false,
 			obj : false
@@ -28,20 +43,55 @@ var gca_audio = {
 
 		// Insert prefereces
 		if(obj){
-			// Change url
-			if(obj.url)
-				if(obj.extUrl)
+
+			// if change url
+			if(obj.url){
+				// If external url
+				if(obj.url.match(/^https:\/\//) != null) {
 					this.audioIdObjs[id].url = obj.url;
-				else
+				}
+				// If internal
+				else {
 					this.audioIdObjs[id].url = gca_resources.audio + obj.url;
+				}
+			}
+			else if(obj.sound && typeof this.buildInSounds[obj.sound] == "undefined"){
+				this.audioIdObjs[id].url = gca_resources.audio + obj.url;
+			}
+
 			// Change volume
-			if(obj.vol)
+			if(obj.vol){
 				this.audioIdObjs[id].volume = obj.vol;
+			}
 			// Change muted
-			if(obj.mute)
+			if(obj.mute){
 				this.audioIdObjs[id].muted = obj.mute;
+			}
 		}
 
+		// Return object
+		return this.audioIdObjs[id];
+	},
+
+	// Load audio by id
+	loadById : function(id){
+		// Get user data options
+		var data = gca_data.section.get("sound", "objects", {});
+
+		// If user data defined
+		if(data[id]){
+			this.audioIdObjs[id] = this.makeAudioIdObj(id, data[id]);
+		}
+		// Else if default
+		else if(this.defaults[id]){
+			this.audioIdObjs[id] = this.makeAudioIdObj(id, this.defaults[id]);
+		}
+		// Else default options
+		else{
+			this.audioIdObjs[id] = this.makeAudioIdObj(id);
+		}
+
+		// Return object
 		return this.audioIdObjs[id];
 	},
 
@@ -49,55 +99,64 @@ var gca_audio = {
 	getById : function(id){
 		// Get objects
 		var obj = this.audioIdObjs[id];
-		// If no current object exist
+
+		// If object don't exist
 		if(typeof obj == "undefined"){
-			// Get user data options
-			var data = gca_data.get('sounds', {});
-			// If user data defined
-			if(data[id]){
-				obj = this.makeAudioIdObj(id, data[id]);
-			}
-			else if(this.defaults[id]){
-				obj = this.makeAudioIdObj(id, this.defaults[id]);
-			}
-			else{
-				obj = this.makeAudioIdObj(id);
-			}
+			// Load audio
+			obj = this.loadById(id);
 		}
+
 		// Return object
 		return obj;
 	},
 
 	// New audio
-	new : function(id, singleObj = false){
+	new : function(id, synced = false){
 		// Get object
 		var soundObj = this.getById(id);
 
 		// Sound
 		var audio;
 		
-		if(singleObj){
-			// Single audio object sound
-			if(!soundObj.obj)
+		// If synced audio
+		if(synced){
+			// Single audio object for all
+
+			// If object dont exist
+			if(!soundObj.obj){
+				// Create object
 				soundObj.obj = new Audio(soundObj.url);
+			}
+
+			// Save audio object
 			audio = soundObj.obj;
 		}
+
+		// Unique audio object
 		else{
+			// Create a new audio onject
 			audio = new Audio(soundObj.url);
 		}
+
+		// Set volume
 		audio.volume = this.volume * soundObj.volume;
+		// Set muted
 		audio.muted = (this.muted || soundObj.muted);
 
+		// Return audio
 		return audio;
 	},
 
 	// Play a sound
-	play : function(id, singleObj = false){
+	play : function(id, synced = false){
+
 		// Get audio
-		var audio = this.new(id, singleObj);
+		var audio = this.new(id, synced);
+
 		// Play sound
 		audio.play();
 
+		// Return
 		return audio;
 	}
 };
