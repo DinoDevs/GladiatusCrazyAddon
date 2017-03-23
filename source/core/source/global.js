@@ -2621,7 +2621,7 @@ var gca_global = {
 					// Get Url
 					var url = (event.target && (event.target.href || (event.target.parentNode && event.target.parentNode.href) || (event.target.parentNode && event.target.parentNode.parentNode && event.target.parentNode.parentNode.href) ) ) || false;
 					// If it is a link
-					if(url && url.substring(0,7) == "http://" && url.substring(7, 7+gca_section.domain.length) == gca_section.domain){
+					if(url && url.substring(0,8) == "https://" && url.substring(8, 8 + gca_section.domain.length) == gca_section.domain){
 						// Call event
 						gca_global.background.remember_tabs.onLinkClick(event, url, gca_getPage.parameters(url));
 					}
@@ -2655,15 +2655,6 @@ var gca_global = {
 				var pageType = this.pagesWithInventory.indexOf(page.mod);
 				// If no page of interest, return
 				if(pageType < 0 || (pageType == 0 && page.submod != null)) return;
-
-				// If inv is defined, save it
-				if(page.inv){
-					gca_data.section.set("cache", 'inventory_tab', page.inv);
-				}
-				// Else, load it
-				else{
-					page.inv = gca_data.section.get("cache", 'inventory_tab', 0);
-				}
 
 				// If destination is "inventory"
 				if(pageType == 1){
