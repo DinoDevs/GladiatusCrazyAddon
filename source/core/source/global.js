@@ -676,12 +676,12 @@ var gca_global = {
 				
 				// Display your player stats
 				if(activeButtons.indexOf("stt") >= 0){
-					var table_wrapper = document.createElement("div");
+					let table_wrapper = document.createElement("div");
 					table_wrapper.className = "hover_box";
-					var statsHtmlTable = document.createElement("table");
+					let statsHtmlTable = document.createElement("table");
 					statsHtmlTable.id = "gca_player_stats_table";
 
-					var show_stats = document.createElement('div');
+					let show_stats = document.createElement('div');
 					show_stats.className = "instant";
 					show_stats.id = "gca_player_stats";
 					show_stats.style.display = "none";
@@ -695,6 +695,10 @@ var gca_global = {
 						gca_global.display.shortcuts_bar.playerStats.refresh();
 					}, false);
 					table_wrapper.appendChild(link);
+					// Refresh spacer
+					let spacer = document.createElement('div');
+					spacer.style.height = "26px";
+					table_wrapper.appendChild(spacer);
 					
 					// Shotcut button
 					button = document.createElement('div');
