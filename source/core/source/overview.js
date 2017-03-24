@@ -32,10 +32,6 @@ var gca_overview = {
 		// Show Block and Avoid Caps
 		(gca_options.bool("overview", "block_avoid_caps") && 
 			this.blockAvoidCaps.calculateCaps());
-		
-		// Repair Items Overview
-		(gca_options.bool("overview", "repair_materials_info") &&
-			this.repair_overview.inject());
 
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
@@ -770,73 +766,6 @@ var gca_overview = {
 					div.textContent = gca_tools.time.msToHMS_String(0);
 				}
 			}, 1000);
-		}
-	},
-	
-	// Items Repair Overview
-	repair_overview : {
-		// Inject
-		inject : function(){
-			// Create drop area
-			var div = document.createElement("div");
-			div.id = "repair-droppable-grid";
-			div.className = "custom-ui-droppable";
-			// TODO : style on css file
-			div.style = "background: url(img/shop/amplifying.png) no-repeat center center;background-size: 40px 40px;";
-			div.dataset.containerNumber = 10101;
-			div.dataset.contentTypeAccept = 1855;
-			document.getElementById("char").appendChild(div);
-
-			// Add tooltip
-			gca_tools.setTooltip(div, JSON.stringify([[
-				[gca_locale.get("drop_item_see_materials_repair"), "#FF6A00"],
-				[gca_locale.get("workbench_6th_slot_empty"), "#808080"]
-			]]));
-			
-			window.addEventListener('load', function(){
-				DragDrop.makeDroppable(div);
-				div.dataset.requestFunction = function(to, amount){
-					gca_overview.repair_overview.dropHandler(this, {from : this.getDrag(), to : to, amount : amount});
-				};
-			}, false);
-		},
-
-		// Item drop handler
-		dropHandler : function(drop, item){
-			// Remove fake one
-			item.to.remove().dequeue();
-			// Set amount
-			item.from.data("amount", item.amount);
-			item.from.attr("data-amount", item.amount);
-			// Get items needed to repair the item
-			sendAjax(
-				drop.getDropContainer(), 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid=' + item.from.data('item-id') + '&amount=1',
-				function(data){
-					gca_overview.repair_overview.resolveMaterials(data)
-				},
-				function(elem, msg, delayDuration){
-					console.log(msg.responseText);
-				}
-			);
-		},
-
-		resolveMaterials : function(data){
-			if(/^[\],:{}\s]*$/.test(data.replace(/\\["\\\/bfnrtu]/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,"]").replace(/(?:^|:|,)(?:\s*\[)+/g,""))){
-				data=JSON.parse(data);
-				needed_materials = data.slots[5].formula.needed;
-				
-				// Create tooltip with the materials
-				tooltip = '[[["'+data.slots[5].item.name+'","'+data.slots[5].item.data.tooltip[0][0][1]+'"]';
-				for (var key in needed_materials) {
-					if (needed_materials.hasOwnProperty(key)) {
-						//console.log(key + " -> " + needed_materials[key]);
-						if(needed_materials[key].amount>0)
-							tooltip += ',["<div class=\\"item-i-18-'+parseInt(key.match(/18(\d+)/)[1])+'\\" style=\\"display: inline-block;\\"></div>x '+needed_materials[key].amount+' ('+needed_materials[key].name.replace(/(u.{4})/g, '\\$1')+')","#cccccc"]'
-					}
-				}
-				tooltip += ']]';
-				gca_tools.setTooltip(document.getElementById("repair-droppable-grid"), tooltip);
-			}
 		}
 	},
 	

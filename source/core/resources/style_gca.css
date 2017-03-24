@@ -254,9 +254,6 @@
 		#manage_mercenaries_table .task{cursor:pointer;width:18px;height:18px;margin:0px auto;}
 	/* Info Box */
 		.gca_rtl .info_box{margin-right: 13px!important;margin-left: auto!important;}
-	/* Drop item see materials to repair */
-		#repair-droppable-grid{width: 32px;height: 32px;position: absolute;margin-left:350px;border: 1px solid #cbb98a;border-radius: 100%;}
-		.gca_rtl #repair-droppable-grid{margin-left:auto;margin-right:350px;}
 
 /* Traning */
 	.gca-training-info{width: 240px!important;right: 140px!important;}

@@ -335,8 +335,6 @@ gca_options.data = {
 		"food_life_gain" : true,
 		// Show block and avoid criticals values caps
 		"block_avoid_caps" : true,
-		// Drop items to see materials to repair feature
-		"repair_materials_info" : true,
 		// Show best food to consume
 		"best_food" : true,
 		// Trasparent food gives you more life than you need
