@@ -1,10 +1,10 @@
 /*
- * Addon Missions Script
+ * Addon Pantheon Missions Script
  * Author: DarkThanos, GreatApo
  */
 
 // Missions
-var gca_missions = {
+var gca_pantheon_missions = {
 	inject : function(){
 		// Check for errors
 		if(!document.getElementById("content"))
@@ -124,7 +124,7 @@ var gca_missions = {
 		if(loaded) return;
 		loaded = true;
 		// Call handler
-		gca_missions.inject();
+		gca_pantheon_missions.inject();
 	}
 	if(document.readyState == "complete" || document.readyState == "loaded"){
 		fireLoadEvent();

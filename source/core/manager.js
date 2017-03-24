@@ -179,17 +179,17 @@ var manager = {
 
 		// Quests
 		quests : function(){
-			tools.loadScript("source/quests.js");
+			tools.loadScript("source/pantheon.quests.js");
 		},
 
 		// Missions
 		missions : function(){
-			tools.loadScript("source/missions.js");
+			tools.loadScript("source/pantheon.missions.js");
 		},
 
 		// Gods
 		gods : function(){
-			tools.loadScript("source/gods.js");
+			tools.loadScript("source/pantheon.gods.js");
 		},
 
 		// Reports

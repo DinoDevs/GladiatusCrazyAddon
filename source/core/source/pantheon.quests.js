@@ -1,10 +1,10 @@
 ﻿/*
- * Addon Quests Script
+ * Addon Pantheon Quests Script
  * Author: DarkThanos, GreatApo
  */
 
 // Quests
-var gca_quests = {
+var gca_pantheon_quests = {
 	inject : function(){
 		// Check for errors
 		if(!document.getElementById("content"))
@@ -161,7 +161,7 @@ var gca_quests = {
 		if(loaded) return;
 		loaded = true;
 		// Call handler
-		gca_quests.inject();
+		gca_pantheon_quests.inject();
 	}
 	if(document.readyState == "complete" || document.readyState == "loaded"){
 		fireLoadEvent();

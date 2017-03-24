@@ -400,7 +400,9 @@ gca_options.data = {
 		// Insert more details on quests
 		"quests_detailed_rewards" : true,
 		// Show completed missions
-		"missions_show_completed" : true
+		"missions_show_completed" : true,
+		// Show gods points percent
+		"gods_show_points_percent" : true
 	},
 
 	// Reports

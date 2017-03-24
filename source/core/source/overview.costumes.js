@@ -1,5 +1,5 @@
 /*
- * Addon OverviewAchievements Script
+ * Addon OverviewCostumes Script
  * Author: DarkThanos, GreatApo
  */
 
