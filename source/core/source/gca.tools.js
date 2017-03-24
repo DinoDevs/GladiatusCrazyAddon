@@ -40,6 +40,7 @@ var gca_tools = {
 	// time.parse(dateString)
 	// time.msToHMS(date)
 	// time.msToHMS_String(date)
+	// time.msToString(date)
 	// time.prepForStamp(dateString)
 	// -------------------------------------------------- //
 	time : {
@@ -111,7 +112,10 @@ var gca_tools = {
 			return [hrs, mins, secs];
 		},
 		msToHMS_String : function(d){
-			d = parseInt(d);
+			// Parse number if not
+			if (typeof d !== "number") {
+				d = parseInt(d, 10);
+			}
 			
 			// Max values
 			if(d >= 99*60*60*1000)
@@ -119,6 +123,29 @@ var gca_tools = {
 			
 			var [hrs, mins, secs] = this.msToHMS(d);
 			return (hrs<10? '0':'') + hrs + ':' + (mins<10? '0':'') + mins + ':' + (secs<10? '0':'') + secs;
+		},
+		msToString : function(d){
+			// Parse number if not
+			if (typeof d !== "number") {
+				d = parseInt(d, 10);
+			}
+			
+			// Get hh:mm:ss
+			var [hrs, mins, secs] = this.msToHMS(d);
+			// Convert hours to days
+			var days = 0;
+			if (hrs > 24) {
+				// Calculate days
+				days = (hrs - (hrs % 24)) / 24;
+				// Calculate hours
+				hrs = hrs % 24;
+			}
+
+			return '' +
+				(days > 0 ? days + ' ' + 'days' + ' ' : '') +
+				(hrs < 10 ? '0' : '') + hrs + ':' +
+				(mins < 10 ? '0' : '') + mins + ':' +
+				(secs < 10 ? '0' : '') + secs;
 		},
 
 		prepForStamp : function(d){
