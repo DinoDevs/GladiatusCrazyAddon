@@ -30,8 +30,6 @@ var gca_global = {
 
 		// Display gca version on footer
 		this.display.version();
-		// Show premium days
-		this.display.show_premium_days();
 
 		// Extended info on Health and Experience bars
 		(gca_options.bool("global","extended_hp_xp_info") && 
@@ -187,44 +185,6 @@ var gca_global = {
 				// Insert link
 				footerLinks[0].appendChild(link);
 			}
-		},
-
-		// Show Premium Days
-		show_premium_days : function(){
-			// Calculate Days left
-			var prem_days = Math.ceil(( gca_data.section.get("timers", "premium_expiration", 0) - ((new Date()).getTime() / 1000) ) / 86400);
-
-			// Create element
-			var div = document.createElement("div");
-			div.id = "show_premium_days";
-			div.className = "show_prem_days";
-			var h = document.createElement("h4");
-			h.className = "show_prem_days_text";
-			var link = document.createElement("a");
-			link.setAttribute("target", "_blank");
-
-			// TODO
-			// We need some traslations here
-
-			// If player have active premium
-			if(prem_days > 0){
-				link.href = "http://gladiatuscrazyaddon.tk/index.php?mode=donate";
-				link.style.color = "#dcbb96";
-				link.title = "By another premium key";
-				link.textContent = 'GCA Premium: ' + prem_days + ' ' + gca_locale.get("days");
-			}
-			// If player do not have a premium
-			else{
-				link.href = "http://q.gs/1940284/free-gca-key";
-				link.style = "color:yellow;font-weight:bold;";
-				link.title = "Get 1 day FREE Key";
-				link.textContent = "Get GCA premium FREE!";
-			}
-			
-			// Insert elements on page
-			h.appendChild(link);
-			div.appendChild(h);
-			document.body.appendChild(div);
 		},
 
 		// Extended Health and Experience bars
@@ -716,12 +676,12 @@ var gca_global = {
 				
 				// Display your player stats
 				if(activeButtons.indexOf("stt") >= 0){
-					var table_wrapper = document.createElement("div");
+					let table_wrapper = document.createElement("div");
 					table_wrapper.className = "hover_box";
-					var statsHtmlTable = document.createElement("table");
+					let statsHtmlTable = document.createElement("table");
 					statsHtmlTable.id = "gca_player_stats_table";
 
-					var show_stats = document.createElement('div');
+					let show_stats = document.createElement('div');
 					show_stats.className = "instant";
 					show_stats.id = "gca_player_stats";
 					show_stats.style.display = "none";
@@ -735,6 +695,10 @@ var gca_global = {
 						gca_global.display.shortcuts_bar.playerStats.refresh();
 					}, false);
 					table_wrapper.appendChild(link);
+					// Refresh spacer
+					let spacer = document.createElement('div');
+					spacer.style.height = "26px";
+					table_wrapper.appendChild(spacer);
 					
 					// Shotcut button
 					button = document.createElement('div');
@@ -2621,7 +2585,7 @@ var gca_global = {
 					// Get Url
 					var url = (event.target && (event.target.href || (event.target.parentNode && event.target.parentNode.href) || (event.target.parentNode && event.target.parentNode.parentNode && event.target.parentNode.parentNode.href) ) ) || false;
 					// If it is a link
-					if(url && url.substring(0,7) == "http://" && url.substring(7, 7+gca_section.domain.length) == gca_section.domain){
+					if(url && url.substring(0,8) == "https://" && url.substring(8, 8 + gca_section.domain.length) == gca_section.domain){
 						// Call event
 						gca_global.background.remember_tabs.onLinkClick(event, url, gca_getPage.parameters(url));
 					}
@@ -2655,15 +2619,6 @@ var gca_global = {
 				var pageType = this.pagesWithInventory.indexOf(page.mod);
 				// If no page of interest, return
 				if(pageType < 0 || (pageType == 0 && page.submod != null)) return;
-
-				// If inv is defined, save it
-				if(page.inv){
-					gca_data.section.set("cache", 'inventory_tab', page.inv);
-				}
-				// Else, load it
-				else{
-					page.inv = gca_data.section.get("cache", 'inventory_tab', 0);
-				}
 
 				// If destination is "inventory"
 				if(pageType == 1){

@@ -6,8 +6,21 @@
 // Audio
 var gca_audio = {
 	// General
-	volume : 1,
-	muted : false,
+	_volume : 1,
+	_muted : false,
+
+	// Loaded
+	loaded : false,
+	load : function(){
+		if (this.loaded)
+			return;
+		this.loaded = true;
+
+		// Get volume
+		this._volume = gca_data.section.get("sound", "volume", 1);
+		// Get muted
+		this._muted = gca_data.section.get("sound", "muted", false);
+	},
 
 	// Sounds list
 	buildInSounds : {
@@ -112,6 +125,9 @@ var gca_audio = {
 
 	// New audio
 	new : function(id, synced = false){
+		// Check if load needed
+		this.load();
+
 		// Get object
 		var soundObj = this.getById(id);
 
@@ -139,9 +155,9 @@ var gca_audio = {
 		}
 
 		// Set volume
-		audio.volume = this.volume * soundObj.volume;
+		audio.volume = this._volume * soundObj.volume;
 		// Set muted
-		audio.muted = (this.muted || soundObj.muted);
+		audio.muted = (this._muted || soundObj.muted);
 
 		// Return audio
 		return audio;
