@@ -66,6 +66,11 @@ var manager = {
 					this.section.gods();
 					break;
 
+				// Mysterybox
+				case "mysterybox":
+					this.section.mysterybox();
+					break;
+
 				// Reports
 				case "reports":
 					this.section.reports();
@@ -190,6 +195,11 @@ var manager = {
 		// Gods
 		gods : function(){
 			tools.loadScript("source/pantheon.gods.js");
+		},
+
+		// Mysterybox
+		mysterybox : function(){
+			tools.loadScript("source/pantheon.mysterybox.js");
 		},
 
 		// Reports

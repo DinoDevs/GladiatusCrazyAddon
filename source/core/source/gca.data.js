@@ -402,7 +402,9 @@ gca_options.data = {
 		// Show completed missions
 		"missions_show_completed" : true,
 		// Show gods points percent
-		"gods_show_points_percent" : true
+		"gods_show_points_percent" : true,
+		// Open many mysteryboxes button
+		"open_many_mysteryboxes" : true
 	},
 
 	// Reports

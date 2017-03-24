@@ -621,6 +621,9 @@
 	/* Global Layout
 	-------------------------------------------------- */
 
+		/* Buttons corrections */
+		.premium_activate_button.disabled{filter: grayscale(100%);color: black;cursor: default;}
+
 		/* Paging Layout */
 		.gca_paging .paging_numbers{left: 58px;width: 370px;}
 		.gca_paging .paging_numbers a, .gca_paging .paging_numbers .paging_numbers_current, .gca_paging .paging_button{color: black!important;font-weight: normal!important;height: 20px;line-height: 20px;width: 20px;display: inline-block;border: 1px solid #4A3615;text-decoration: none!important;border-radius: 4px;margin: 0px;}
