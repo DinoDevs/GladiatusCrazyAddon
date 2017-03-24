@@ -806,28 +806,40 @@ var gca_overview = {
 				// Get buff
 				let buff = buffs[i].getElementsByClassName("buff_inner")[0];
 				// Copy old timer
-				buff.dataset.timeLeft = parseInt(buffs[i].getElementsByClassName("ticker")[0].dataset.tickerTimeLeft);
+				buff.dataset.timeLeft = parseInt(buffs[i].getElementsByClassName("ticker")[0].dataset.tickerTimeLeft, 10);
 				// Update buff
-				this.updateBuffTimer(buff);
+				this.initTimer(buff);
 			}
 		},
 
-		updateBuffTimer : function(buff){
+		initTimer : function(buff){
+			// Save instance
+			var that = this;
+
+			// Create new line in tooltip
+			var tooltip = JSON.parse(buff.dataset.tooltip);
+			tooltip[0].push(["...", "#DDD;text-align:right;"]);
+			gca_tools.setTooltip(buff, JSON.stringify(tooltip));
+
+			// Interval varisble
+			var interval;
+			// Every 1 sec
+			interval = setInterval(function(){
+				that.updateTimer(buff);
+			}, 1000);
+		},
+
+		updateTimer : function(buff){
 			// Get time left
-			var time_left = parseInt(buff.dataset.timeLeft);
+			var time_left = parseInt(buff.dataset.timeLeft, 10);
 
 			// Get tooltip
 			var tooltip = JSON.parse(buff.dataset.tooltip);
-			tooltip[0][2] = [gca_tools.time.msToHMS_String(time_left*1000), "#DDD;text-align:right;"];
+			tooltip[0][tooltip[0].length - 1] = [gca_tools.time.msToString(time_left), "#DDD;text-align:right;"];
 			gca_tools.setTooltip(buff, JSON.stringify(tooltip));
 
 			// Update time
-			buff.dataset.timeLeft = time_left - 1;
-
-			var that = this;
-			setTimeout(function(){
-				that.updateBuffTimer(buff);
-			}, 1000);
+			buff.dataset.timeLeft = (time_left - 1000);
 		}
 	}
 };
