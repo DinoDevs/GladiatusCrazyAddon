@@ -16,7 +16,6 @@
 		- [x] ✎	Resolve game mode (travel / underworld / dice event / server quest) - Add more modes?
 		- [x] Resolve page's direction Left-to-Right or Right-to-Left
 		- [x] Show addon's version on the bottom (also add link to homepage)
-		- [ ] ❗	Show premium/centurio days on top (may be removed / translation need)
 		- [x] Extend hp/xp info
 			- [x] Show more info \["global","extended_hp_xp_info"\]
 				- [x] ✎ Life potion shortcut \["global","extended_hp_xp_info_potion"\] (should not work in Underword)
@@ -44,7 +43,8 @@
 			- [x] Check Interval \["timers", "notify_new_guild_application"\]
 		- [x] {Underworld} Pray buff shortCut
 		- [ ] Notification on weapon down
-		- [ ] Sound notifications for Missions, Dungeons and Arenas
+		- [x] Sound notifications for Missions, Dungeons and Arenas
+			- [x] Browser notification
 		- [ ] Gold / Experience stats monitor
 		- [ ] Player update in the GCA Highscore (if we keep the highscore) OR make a Global Arena
 		- [ ] "New version" installed message
@@ -70,11 +70,11 @@
 		- [x] Items that will give you more Life Point than you need will be transparent
 		- [x] Food show best food (yellow shadow)
 	- [x] ✎ Daily bonus log (Needs testing / Not in settings)
-	- [ ] Show the cap values of Resilience and Block
+	- [x] Show the cap values of Resilience and Block
 	- [ ] Display for each mercenary its tooltip (base stats)
 	- [ ] Mercenaries management Interface
 	- [x] Items' shadow
-	- [ ] Save costume's properties
+	- [x] Save costume's properties
 	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)
 	- [x] Show buff's detailed timer on tooltip
 
@@ -90,6 +90,11 @@
 
 - [ ] Overview Family
 	- [ ] List with other players you are interested in
+
+
+- [ ] Overview Costumes
+	- [x] Show part number for each costume
+	- [ ] Custom player image
 
 
 
@@ -111,11 +116,11 @@
 - [ ] Pantheon Gods
 	- [ ] ✎	Layout Inprove - needed ?
 	- [ ] Recolored buttons based of each god's favor 
-	- [ ] Percent(%) of points, red color on 100%
+	- [x] Percent(%) of points, red color on 100%
 
 
 - [ ] Pantheon Mystery Box
-	- [ ] Open all
+	- [x] Open all
 	- [ ] Reload reward untill to find selected
 	- [ ] Calculate rewards quality
 
