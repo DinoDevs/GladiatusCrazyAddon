@@ -54,7 +54,7 @@
 	.gca_rtl #header_life_pot {margin-left: -5px;float: left;}
 
 /* Button bar */
-	#gca_shortcuts_bar{position: absolute; z-index: 400;top: 114px; left: 520px; height: 25px; width: 370px; text-align: left;}
+	#gca_shortcuts_bar{position: absolute; z-index: 600;top: 114px; left: 520px; height: 25px; width: 370px; text-align: left;}
 	.gca_rtl #gca_shortcuts_bar{right: 520px;left: auto;text-align: right;}
 	#gca_shortcuts_bar.noExtendedHpXpInfo{left: 410px;}
 	.gca_rtl #gca_shortcuts_bar.noExtendedHpXpInfo{right: 410px;}
