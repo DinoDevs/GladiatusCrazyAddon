@@ -63,7 +63,7 @@ var gca_notifications = {
 	},
 
 
-	browser : function(title = "Gladiatus Crazy Addon", message = false, icon = false, callback = false){
+	browser : function(title = false, message = false, icon = false, callback = false){
 		// Check if ready
 		if (!this._browser.permissions){
 			return;
@@ -71,8 +71,11 @@ var gca_notifications = {
 
 		// Object
 		var obj = {};
+		// Title
+		if(!title) title =  "(s" + gca_section.server + "-" + gca_section.country + ") " + gca.name;
 		// Body
 		if(message) obj.body = message;
+		else obj.body = "";
 		// Icon
 		if(icon) obj.icon = message;
 		else obj.icon = gca_resources.folder + "icons/icon.png";
