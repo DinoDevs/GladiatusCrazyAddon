@@ -37,7 +37,11 @@ var gca_audio = {
 
 	// Default audio settings
 	defaults : {
-		"auction_notification" : {vol : 1, mute : false}
+		"expedition_notification" : {vol : 1, mute : false, sound : "water"},
+		"dungeon_notification" : {vol : 1, mute : false, sound : "water"},
+		"arena_notification" : {vol : 1, mute : false, sound : "water"},
+		"turma_notification" : {vol : 1, mute : false, sound : "water"},
+		"auction_notification" : {vol : 1, mute : false, sound : "coin"}
 	},
 
 	// Audio Object List
@@ -68,8 +72,8 @@ var gca_audio = {
 					this.audioIdObjs[id].url = gca_resources.audio + obj.url;
 				}
 			}
-			else if(obj.sound && typeof this.buildInSounds[obj.sound] == "undefined"){
-				this.audioIdObjs[id].url = gca_resources.audio + obj.url;
+			else if(obj.sound && typeof this.buildInSounds[obj.sound] != "undefined"){
+				this.audioIdObjs[id].url = gca_resources.audio + this.buildInSounds[obj.sound];
 			}
 
 			// Change volume
