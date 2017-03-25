@@ -353,7 +353,11 @@ gca_options.data = {
 		// new Achivements layout
 		"achivements_layout" : true,
 		// Costumes layout
-		"costumes_layout" : true
+		"costumes_layout" : true,
+		// Mercenaries manager
+		"mercenaries_manager" : true,
+		// Mercenary tooltip show
+		"mercenary_tooltip_show" : true
 	},
 
 	// Messages Options

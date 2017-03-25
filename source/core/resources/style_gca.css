@@ -558,7 +558,6 @@
 	.gca_rtl .simulator_button, .gca_rtl .prem_simulator_button{margin-right: 20px;margin-left: auto;}
 	.mercenaries_fight_type{position:absolute;top:165px;left:10px;z-index:41}
 	.gca_rtl .mercenaries_fight_type{right:10px;left:auto;}
-	.merc_back{position:absolute;z-index: 51;margin-top: -220px;margin-left: 228px;background-image: url('interface/merc_back.jpg');width:31px;height:31px;}
 	.gca_rtl .merc_back{margin-right: 228px;}
 
 	
@@ -638,6 +637,13 @@
 		.gca_paging .paging_button.paging_left_step{margin-left: -24px;}
 		.gca_paging .paging_button.paging_right_full{margin-right: -20px;}
 		.gca_paging .paging_button.paging_right_step{margin-right: -24px;}
+
+
+
+	/* Overview Layout
+	-------------------------------------------------- */
+		.mercenary_bg{position: absolute;background-image: url('interface/char_item_bg.jpg');width:32px;height:32px;left:22px;top:20px;}
+		.mercenary_bg div{left: 0px;top: 0px;}
 
 
 

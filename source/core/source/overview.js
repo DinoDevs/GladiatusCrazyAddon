@@ -40,6 +40,13 @@ var gca_overview = {
 		// Display detailed timer in tooltips of the buffs
 		(gca_options.bool("overview", "buffs_detailed_time") && 
 			this.buffBar.inject());
+
+		// Mercenaries manager interface
+		(gca_options.bool("overview", "mercenaries_manager") && this.doll > 1 &&
+			this.mercenaries.manager());
+		// Mercenaries show tooltip
+		(gca_options.bool("overview", "mercenary_tooltip_show") && this.doll > 2 &&
+			this.mercenaries.showTooltip());
 	},
 
 	// Resolve Page
@@ -49,7 +56,7 @@ var gca_overview = {
 
 		var dolls = document.getElementsByClassName('charmercsel');
 		for (var i = 0; i < dolls.length; i++) {
-			if(dolls[i].className == "charmercsel charmercsel_aktive"){
+			if(dolls[i].className == "charmercsel active"){
 				this.doll = i+1;
 				break;
 			}
@@ -841,6 +848,302 @@ var gca_overview = {
 			// Update time
 			buff.dataset.timeLeft = (time_left - 1000);
 		}
+	},
+
+	// Mercenaries
+	mercenaries : {
+		// Informations
+		list : false,
+		types : {
+			tank : "",
+			dps : "",
+			healer : "",
+			elements : {}
+		},
+
+		// Mercenaries manager interface
+		manager : function(){
+			var that = this;
+
+			// Get info
+			this.getInfo();
+
+			// Player table
+			var player_table = document.getElementById("inv").parentNode.parentNode.parentNode.parentNode.parentNode;
+
+			// Create wrappers
+			var wrapper_row = document.createElement("tr");
+			var wrapper = document.createElement("td");
+			wrapper.style.paddingTop = "15px";
+			wrapper.setAttribute("colspan", "2");
+			wrapper_row.appendChild(wrapper);
+			player_table.appendChild(wrapper_row);
+
+			// Create manager
+			var title = document.createElement("h2");
+			title.className = "section-header";
+			title.style.cursor = "pointer";
+			title.textContent = this.list[0].name;
+			wrapper.appendChild(title);
+			var content = document.createElement("section");
+			content.style.display = "block";
+
+			// Mercenaries table
+			var table = document.createElement("table");
+			table.style.width = "100%";
+			var tr, td, btn;
+			for (var i = 0; i < this.list.length; i++) {
+				// Elements data
+				this.types.elements[this.list[i].id] = {};
+
+				tr = document.createElement("tr");
+				table.appendChild(tr);
+
+				// Tank
+				td = document.createElement("td");
+				td.style.width = "30px";
+				td.style.textAlign = "center";
+				btn = document.createElement("div");
+				btn.className = "icon_attack";
+				btn.style.cursor = "pointer";
+				if(this.list[i].type == 1){
+					btn.style.backgroundPosition = "-1917px 0";
+				}
+				else{
+					btn.style.backgroundPosition = "-1935px 0";
+				}
+				this.types.elements[this.list[i].id].tank = btn;
+					btn.addEventListener('click', (function(id){
+						return function(){
+							that.selectTask(id, 1);
+						};
+					})(this.list[i].id), false);
+				td.appendChild(btn);
+				tr.appendChild(td);
+
+				// Dps
+				td = document.createElement("td");
+				td.style.width = "30px";
+				td.style.textAlign = "center";
+				btn = document.createElement("div");
+				btn.className = "icon_attack";
+				btn.style.cursor = "pointer";
+				if(this.list[i].type == 2){
+					btn.style.backgroundPosition = "-1953px 0";
+				}
+				else{
+					btn.style.backgroundPosition = "-1971px 0";
+				}
+				this.types.elements[this.list[i].id].dps = btn;
+					btn.addEventListener('click', (function(id){
+						return function(){
+							that.selectTask(id, 2);
+						};
+					})(this.list[i].id), false);
+				td.appendChild(btn);
+				tr.appendChild(td);
+
+				// Healer
+				td = document.createElement("td");
+				td.style.width = "30px";
+				td.style.textAlign = "center";
+				btn = document.createElement("div");
+				btn.className = "icon_attack";
+				btn.style.cursor = "pointer";
+				if(this.list[i].type == 3){
+					btn.style.backgroundPosition = "-1989px 0";
+				}
+				else{
+					btn.style.backgroundPosition = "-2007px 0";
+				}
+				this.types.elements[this.list[i].id].healer = btn;
+					btn.addEventListener('click', (function(id){
+						return function(){
+							that.selectTask(id, 3);
+						};
+					})(this.list[i].id), false);
+				td.appendChild(btn);
+				tr.appendChild(td);
+
+				// Dont take with you
+				td = document.createElement("td");
+				td.style.width = "30px";
+				td.style.textAlign = "center";
+				if(i != 0){
+					btn = document.createElement("div");
+					btn.className = "icon_attack";
+					btn.style.cursor = "pointer";
+					if(this.list[i].type == 0){
+						btn.style.backgroundPosition = "-2025px 0";
+					}
+					else{
+						btn.style.backgroundPosition = "-2043px 0";
+					}
+					this.types.elements[this.list[i].id].ignore = btn;
+					btn.addEventListener('click', (function(id){
+						return function(){
+							that.selectTask(id, 4);
+						};
+					})(this.list[i].id), false);
+					td.appendChild(btn);
+				}
+				tr.appendChild(td);
+
+				// Name
+				td = document.createElement("td");
+				td.textContent = this.list[i].name;
+				tr.appendChild(td);
+			}
+
+			content.appendChild(table);
+			wrapper.appendChild(content);
+		},
+
+		// Select info
+		selectTask : function(id, type){
+			if(type == 1) this.types.elements[id].tank.style.backgroundPosition = "-1917px 0";
+			else this.types.elements[id].tank.style.backgroundPosition = "-1935px 0";
+
+			if(type == 2) this.types.elements[id].dps.style.backgroundPosition = "-1953px 0";
+			else this.types.elements[id].dps.style.backgroundPosition = "-1971px 0";
+
+			if(type == 3) this.types.elements[id].healer.style.backgroundPosition = "-1989px 0";
+			else this.types.elements[id].healer.style.backgroundPosition = "-2007px 0";
+
+			if(this.types.elements[id].ignore){
+				if(type == 4) this.types.elements[id].ignore.style.backgroundPosition = "-2025px 0";
+				else this.types.elements[id].ignore.style.backgroundPosition = "-2043px 0";
+			}
+
+			// Apply
+			window.selectTask(id + "", type + "");
+
+			// Hide wrong changes
+			if(gca_overview.doll != id){
+				document.getElementById("task1").style.display = "none";
+				document.getElementById("task2").style.display = "none";
+				document.getElementById("task3").style.display = "none";
+			}
+		},
+
+		// Get info
+		getInfo : function(){
+			// If already loaded
+			if(this.list) return;
+
+			// Get types
+			this.types.tank = JSON.parse(document.getElementById("task1").dataset.tooltip)[0][0][0];
+			this.types.dps = JSON.parse(document.getElementById("task2").dataset.tooltip)[0][0][0];
+			this.types.healer = JSON.parse(document.getElementById("task3").dataset.tooltip)[0][0][0];
+
+			// Dolls
+			var dolls = document.getElementsByClassName("charmercsel");
+			// Info list
+			this.list = [];
+
+			var info, pic;
+			// For each doll
+			for (var i = 1; i < dolls.length; i++) {
+				// Mercenary
+				info = {};
+				// Get pic
+				pic = dolls[i].getElementsByClassName("charmercpic")[0];
+				// If player exist
+				if(pic.match("doll") != null){
+					// Get info
+					info.id = parseInt(pic.className.match(/doll(\d+)/)[1], 10);
+					info.tooltip = JSON.parse(pic.dataset.tooltip);
+					info.name = info.tooltip[0][0][0].match(/([^<]*)</)[1];
+					info.typeText = info.tooltip[0][0][0].match(/>([^<]*)<\/font>/)[1];
+
+					if(info.typeText.match(this.types.tank) != null){
+						info.type = 1;
+					}
+					else if(info.typeText.match(this.types.dps) != null){
+						info.type = 2;
+					}
+					else if(info.typeText.match(this.types.healer) != null){
+						info.type = 3;
+					}
+					else {
+						info.type = 0;
+					}
+
+					this.list.push(info);
+				}
+			}
+		},
+
+		// Mercenaries show tooltip
+		showTooltip : function(){
+			var tooltip = [[]];
+
+			// Name
+			tooltip[0].push([
+				document.getElementsByClassName("playername")[0].textContent.replace(/^\s*|\s*$/g,""),
+				"white;width:120px;"
+			]);
+			// Life points
+			tooltip[0].push([
+				document.getElementById("char_leben_tt").getElementsByClassName("charstats_text")[0].textContent + ": " +
+				JSON.parse(document.getElementById("char_leben_tt").dataset.tooltip)[0][0][0][1].match(/\d+ \/ (\d+)/)[1],
+				"#BA9700"
+			]);
+			// Strength
+			tooltip[0].push([
+				document.getElementById("char_f0_tt").getElementsByClassName("charstats_text")[0].textContent + ": " +
+				JSON.parse(document.getElementById("char_f0_tt").dataset.tooltip)[0][1][0][1],
+				"#BA9700"
+			]);
+			// Dexterity
+			tooltip[0].push([
+				document.getElementById("char_f1_tt").getElementsByClassName("charstats_text")[0].textContent + ": " +
+				JSON.parse(document.getElementById("char_f1_tt").dataset.tooltip)[0][1][0][1],
+				"#BA9700"
+			]);
+			// Agility
+			tooltip[0].push([
+				document.getElementById("char_f2_tt").getElementsByClassName("charstats_text")[0].textContent + ": " +
+				JSON.parse(document.getElementById("char_f2_tt").dataset.tooltip)[0][1][0][1],
+				"#BA9700"
+			]);
+			// Constitution
+			tooltip[0].push([
+				document.getElementById("char_f3_tt").getElementsByClassName("charstats_text")[0].textContent + ": " +
+				JSON.parse(document.getElementById("char_f3_tt").dataset.tooltip)[0][1][0][1],
+				"#BA9700"
+			]);
+			// Charisma
+			tooltip[0].push([
+				document.getElementById("char_f4_tt").getElementsByClassName("charstats_text")[0].textContent + ": " +
+				JSON.parse(document.getElementById("char_f4_tt").dataset.tooltip)[0][1][0][1],
+				"#BA9700"
+			]);
+			// Intelligence
+			tooltip[0].push([
+				document.getElementById("char_f5_tt").getElementsByClassName("charstats_text")[0].textContent + ": " +
+				JSON.parse(document.getElementById("char_f5_tt").dataset.tooltip)[0][1][0][1],
+				"#BA9700"
+			]);
+			// Level
+			tooltip[0].push([
+				document.getElementById("char_level_tt").getElementsByClassName("charstats_value21")[0].textContent + ": " +
+				document.getElementById("char_level").textContent,
+				"#808080"
+			]);
+
+			// Create item icon
+			var wrapper = document.createElement("div");
+			wrapper.className = "mercenary_bg";
+			var item = document.createElement("div");
+			item.className = "item-i-15-5";
+			wrapper.appendChild(item);
+			document.getElementById("char").appendChild(wrapper);
+
+			// Apply tooltip
+			gca_tools.setTooltip(item, JSON.stringify(tooltip));
+		}
+
 	}
 };
 
