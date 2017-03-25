@@ -267,6 +267,8 @@ gca_options.data = {
 	"global" : {
 		// Sounds
 		"sound_notifications" : true,
+		// Browser notifications
+		"browser_notifications" : true,
 
 		// Extended Hp-Xp info
 		"extended_hp_xp_info" : true,

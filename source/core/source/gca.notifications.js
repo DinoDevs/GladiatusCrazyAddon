@@ -60,5 +60,51 @@ var gca_notifications = {
 		jQuery(element).fadeOut("fast", function(){
 			element.parentNode.removeChild(element);
 		});
+	},
+
+
+	browser : function(title = "Gladiatus Crazy Addon", message = false, icon = false, callback = false){
+		// Check if ready
+		if (!this._browser.permissions){
+			return;
+		}
+
+		// Object
+		var obj = {};
+		// Body
+		if(message) obj.body = message;
+		// Icon
+		if(icon) obj.icon = message;
+		else obj.icon = gca_resources.folder + "icons/icon.png";
+
+		// Show notification
+		var notification = new Notification(title, obj);
+
+		// Check if callback
+		if(!callback){
+			callback = function(){
+				window.focus();
+				this.close();
+			}
+		}
+		notification.addEventListener("click", callback, false);
+	},
+	_browser : {
+		permissions : false,
+
+		init : function(){
+			var that = this;
+			that.check();
+		},
+		check : function(){
+			// Not supported? 
+			if(!Notification) return;
+			// We need permission
+			if (Notification.permission !== "granted"){
+				Notification.requestPermission();
+			} else {
+				this.permissions = true;
+			}
+		}
 	}
 };

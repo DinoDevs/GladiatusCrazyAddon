@@ -107,6 +107,9 @@ var gca_global = {
 		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
 			this.underworld.prayBufShortCut());
 
+		// Browser notifications
+		(gca_options.bool("global","browser_notifications") &&
+			gca_notifications._browser.init());
 	},
 
 	// Game Modes Check
