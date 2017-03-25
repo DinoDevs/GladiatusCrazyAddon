@@ -310,6 +310,9 @@ gca_options.data = {
 		// Player Image
 		"player_image" : true,
 
+		// Cooldown Sound Notification
+		"cooldown_sound_notifications" : true,
+
 		// Notifications
 		"notify_new_guild_application" : false,
 		// Notifications Interal in minites

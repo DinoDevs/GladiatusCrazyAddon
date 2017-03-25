@@ -66,7 +66,7 @@ var gca_global = {
 			this.display.attacked_timers.inject());
 
 		// Quests Timer
-		(gca_options.bool("global","quest_timer") &&
+		(!this.isTraveling && gca_options.bool("global","quest_timer") &&
 			this.display.quests_timer.inject());
 
 		// Merchants Timer
@@ -82,16 +82,21 @@ var gca_global = {
 			this.display.itemShadow.inventory());
 
 		// Event Craps Timer
-		(this.isEvent.craps && gca_options.bool("events","craps_timer") &&
+		(!this.isTraveling && this.isEvent.craps && gca_options.bool("events","craps_timer") &&
 			this.display.event.craps_timer.inject());
 
 		// Event Server Quest
-		(this.isEvent.serverQuest && this.isEvent.bar && gca_options.bool("events","server_quest_timer") &&
+		(!this.isTraveling && this.isEvent.serverQuest && this.isEvent.bar && gca_options.bool("events","server_quest_timer") &&
 			this.display.event.server_quest_timer.inject());
 
 		// Remember merchants' and inventory tabs
-		(gca_options.bool("global","remember_tabs") && 
+		(!this.isTraveling && gca_options.bool("global","remember_tabs") && 
 			this.background.remember_tabs.init());
+
+		// Cooldown Sound Notification for missions, dungeons and arenas
+		(!this.isTraveling && gca_options.bool("global","cooldown_sound_notifications") && 
+			this.background.notify_me.cooldown_sounds.init());
+
 
 		// Notification : Guild application alert
 		(!this.isTraveling && gca_options.bool("global","notify_new_guild_application") && 
@@ -2699,6 +2704,46 @@ var gca_global = {
 
 		// Notifications Events
 		notify_me : {
+
+			// Cooldown Sound Notification for missions, dungeons and arenas
+			cooldown_sounds : {
+				init : function(){
+					// Save instance
+					var that = this;
+					// Wait a little
+					setTimeout(function(){
+						// Missions
+						that.initActionCooldown("cooldown_bar_text_expedition", "expedition_notification");
+						// Dungeon
+						that.initActionCooldown("cooldown_bar_text_dungeon", "dungeon_notification");
+						// Arena
+						that.initActionCooldown("cooldown_bar_text_arena", "arena_notification");
+						// Arena Turma
+						that.initActionCooldown("cooldown_bar_text_ct", "turma_notification");
+					}, 500);
+				},
+
+				initActionCooldown : function(id, sound) {
+					// Get button
+					var button = document.getElementById(id);
+					// Check no button
+					if(!button) return;
+
+					// Cooldown
+					var cooldown = button.textContent.match(/(\d+):(\d+):(\d+)/);
+					// Check id cooldown
+					if(cooldown){
+						// Calculate cooldown
+						cooldown = (parseInt(cooldown[1], 10) * 60 * 60 + parseInt(cooldown[2], 10) * 60 + parseInt(cooldown[3], 10))*1000;
+						// Setup a timeout
+						setTimeout(function(){
+							console.log(id, sound);
+							gca_audio.play(sound);
+						}, cooldown);
+					}
+				}
+			},
+
 			// Check for guild application
 			new_guild_application : function(){
 				// Get saved data
