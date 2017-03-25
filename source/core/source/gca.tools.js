@@ -111,15 +111,15 @@ var gca_tools = {
 
 			return [hrs, mins, secs];
 		},
-		msToHMS_String : function(d){
+		msToHMS_String : function(d, maxHours = 99){
 			// Parse number if not
 			if (typeof d !== "number") {
 				d = parseInt(d, 10);
 			}
 			
 			// Max values
-			if(d >= 99*60*60*1000)
-				return '99:00:00';
+			if(d >= maxHours*60*60*1000)
+				return (maxHours<10? '0':'') + maxHours + ':00:00';
 			
 			var [hrs, mins, secs] = this.msToHMS(d);
 			return (hrs<10? '0':'') + hrs + ':' + (mins<10? '0':'') + mins + ':' + (secs<10? '0':'') + secs;
