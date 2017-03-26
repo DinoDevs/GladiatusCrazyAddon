@@ -329,6 +329,9 @@ gca_options.data = {
 		// Enable pagination layout
 		"pagination_layout" : true,
 		
+		// Gold/Exp data
+		"gold_exp_data" : true,
+		
 		// Underword
 			// Pray Shorcut
 			"pray_shorcut" : true

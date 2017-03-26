@@ -110,6 +110,10 @@ var gca_global = {
 		// Browser notifications
 		(gca_options.bool("global","browser_notifications") &&
 			gca_notifications._browser.init());
+		
+		// Gold/Exp data
+		(gca_options.bool("global","gold_exp_data") &&
+			this.background.gold_exp_data.collect());
 	},
 
 	// Game Modes Check
@@ -2784,6 +2788,36 @@ var gca_global = {
 				}
 			}
 
+		},
+		
+		// Gold/Exp data
+		gold_exp_data : {
+			collect : function(){
+				// Get saved data
+				var gold_exp_data = gca_data.section.get("data", "gold_exp_data", [[0,0,0]]);
+				var d = new Date();
+				
+				// Collect data every 5min = 300000 milliseconds
+				if (d.getTime()-gold_exp_data[gold_exp_data.length-1][2]>300000){
+					
+					// Go to achievements page and collect gathered gold data
+					jQuery.get(gca_getPage.link({"mod":"overview","submod":"achievements"}), function(content){
+						// If gather gold value exist
+						if(content.match(/[\d\.]+ \/ 50\.000\.000/i)){
+							// Save data and timestamp
+							gold_exp_data.push([
+								// Gathered gold
+								content.match(/([\d\.]+) \/ 50\.000\.000/i)[1].replace(/\./g),
+								// Current EXP
+								document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ (\d+)"/i),
+								// Timestamp
+								d.getTime()
+							])
+							gca_data.section.get("data", "gold_exp_data", gold_exp_data);
+						}
+					});
+				}
+			}
 		}
 	}
 };
