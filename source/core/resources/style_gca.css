@@ -481,7 +481,8 @@
 
 /* General */
 	.black{color: black;}
-	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;margin-top: 96px;}
+	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;margin-top: 96px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));}
+	#exp_and_gold_stats_icon:hover{filter: drop-shadow(1px 1px 1px rgba(191, 174, 84,0.5));}
 
 /* Notifications */
 	.notification-area{position: fixed;z-index: 9999;top: 42px;left: 12px;font-family: century gothic;}

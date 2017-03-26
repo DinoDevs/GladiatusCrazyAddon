@@ -111,9 +111,9 @@ var gca_global = {
 		(gca_options.bool("global","browser_notifications") &&
 			gca_notifications._browser.init());
 		
-		// Gold/Exp data
+		// Gold/Exp data TODO
 		(gca_options.bool("global","gold_exp_data") &&
-			this.background.gold_exp_data.collect());
+			this.background.gold_exp_data.inject());
 	},
 
 	// Game Modes Check
@@ -2792,31 +2792,173 @@ var gca_global = {
 		
 		// Gold/Exp data
 		gold_exp_data : {
+			inject : function(){
+				// Collect data
+				this.collect();
+				// Show gold_exp_data button
+				this.create_button();
+			},
+			
 			collect : function(){
 				// Get saved data
-				var gold_exp_data = gca_data.section.get("data", "gold_exp_data", [[0,0,0]]);
+				var gold_exp_data = JSON.parse(gca_data.section.get("data", "gold_exp_data", JSON.stringify([[0,0,0]])));
 				var d = new Date();
 				
-				// Collect data every 5min = 300000 milliseconds
-				if (d.getTime()-gold_exp_data[gold_exp_data.length-1][2]>300000){
+				// Collect data every 10min = 600000 milliseconds
+				if (d.getTime()-gold_exp_data[gold_exp_data.length-1][2]>600000){
 					
 					// Go to achievements page and collect gathered gold data
 					jQuery.get(gca_getPage.link({"mod":"overview","submod":"achievements"}), function(content){
 						// If gather gold value exist
 						if(content.match(/[\d\.]+ \/ 50\.000\.000/i)){
-							// Save data and timestamp
+							// Delete [0,0,0] data, first run
+							if (gold_exp_data.length==1 && gold_exp_data[0][2]==0){gold_exp_data=[];}
+							
+							// Data and timestamp
 							gold_exp_data.push([
 								// Gathered gold
-								content.match(/([\d\.]+) \/ 50\.000\.000/i)[1].replace(/\./g),
+								parseInt(content.match(/([\d\.]+) \/ 50\.000\.000/i)[1].replace(/\./g,"")),
 								// Current EXP
-								document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ (\d+)"/i),
+								parseInt(document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1]),
 								// Timestamp
 								d.getTime()
-							])
-							gca_data.section.get("data", "gold_exp_data", gold_exp_data);
+							]);
+							
+							// Save if data are different from the last time
+							if ([gold_exp_data[gold_exp_data.length-1][0],gold_exp_data[gold_exp_data.length-1][1]]!=[gold_exp_data[gold_exp_data.length-2][0],gold_exp_data[gold_exp_data.length-2][1]]) {
+								gca_data.section.set("data", "gold_exp_data", JSON.stringify(gold_exp_data));
+							}
 						}
 					});
 				}
+			},
+			
+			// Create Gold & EXP data button
+			create_button : function(){
+				button = document.createElement('div');
+				button.id = "exp_and_gold_stats_icon";
+				document.getElementById("header_game").appendChild(button);
+				
+				button.addEventListener('click', function(){
+					gca_global.background.gold_exp_data.open();
+				}, false);
+			},
+			
+			// Gold & EXP data Dialog
+			dialog : false,
+
+			// Open Dialog
+			open : function(){
+				if(!this.dialog){
+					// Create a dialog
+					var dialog = new gca_build.dialog;
+					dialog.smallHead(true);
+					dialog.title.textContent = gca_locale.get( "gold_exp_data" );
+
+					// Temp elements variables
+					var div, h2, span, script, canvas;
+					
+					// Add header
+					h2 = document.createElement('h2');
+					h2.textContent = "Test graph (click legends)";
+					dialog.body.appendChild(h2);
+					
+					// Add Canvas
+					canvas = document.createElement('canvas');
+					canvas.id = "myChart";
+					canvas.width = 500;
+					canvas.height = 200;
+					dialog.body.appendChild(canvas);
+					
+					// Add Chart Lib
+					script = document.createElement('script');
+					script.src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"; // https://cdnjs.com/libraries/Chart.js
+					dialog.body.appendChild(script);
+					 
+					script.onload = function (){
+						// Values for the Data Plot
+						var dataSet  = JSON.parse(gca_data.section.get("data", "gold_exp_data", JSON.stringify([[0,0,0]])));
+						
+						// Fix data
+						var seventh_day = 0;
+						var exp_levelup = 0;
+						var Xdata = [];
+						var Ydata = [];
+						var labelsArr = [];
+						var d = new Date(); // Now
+						var seventh_day_timestamp = d.getTime() - 604800000;// Now - 7 days = 7*24*60*60*1000 = 604800000 milliseconds
+						
+						for (i=1;i<dataSet.length;i++) {
+							if( dataSet[i][2]>=seventh_day_timestamp ){
+								// Sum some of the lost EXP from levelup
+								if(dataSet[i][1]<dataSet[i-1][1]){
+									exp_levelup=exp_levelup+dataSet[i-1][1];
+								}
+								
+								Xdata[i-seventh_day]={x:Math.round((dataSet[i][2]-seventh_day_timestamp)/1000/60/60/24*1000)/1000,y:(dataSet[i][0]-dataSet[seventh_day][0])};
+								Ydata[i-seventh_day]={x:Math.round((dataSet[i][2]-seventh_day_timestamp)/1000/60/60/24*1000)/1000,y:(dataSet[i][1]-dataSet[seventh_day][1]+exp_levelup)};
+								labelsArr[i-seventh_day]=[(7 - Math.round((dataSet[i][2]-seventh_day_timestamp)/1000/60/60/24)) + " days ago", (Math.round((dataSet[i][2]-seventh_day_timestamp)/1000/60/60/24*1000)/1000)];
+							}else{
+								seventh_day=i;
+							}
+						}
+						
+						var ctx = document.getElementById("myChart");
+						var myChart = new Chart(ctx, {
+							type: 'line',
+							data: {
+								labels : labelsArr,
+								datasets: [
+								{
+									label: 'Gold (k)',
+									fill: true,
+									backgroundColor: "rgba(255,193,7,0.3)",
+									borderColor: "rgba(255,193,7,1)",
+									data: Xdata
+								},
+								{
+									label: 'Experience',
+									fill: true,
+									backgroundColor: "rgba(75,192,192,0.3)",
+									borderColor: "rgba(75,192,192,1)",
+									data: Ydata
+								}
+								]
+							},
+							options: {
+								scales: {
+									xAxes: [{
+										type: 'linear',
+										position: 'bottom',
+										display: true
+									}]
+								}
+							}
+						});
+					}
+					
+					// Add some space
+					div = document.createElement('div');
+					div.className = "space";
+					dialog.body.appendChild(div);
+
+					// Save dialog variable
+					this.dialog = dialog;
+
+					// Add close Button
+					var button = document.createElement('input');
+					button.className = "button3";
+					button.type = "button";
+					button.value = gca_locale.get("close");
+					dialog.body.appendChild(button);
+
+					button.addEventListener('click', function(){
+						dialog.close();
+					}, false);
+				}
+
+				// Display Dialog
+				this.dialog.open();
 			}
 		}
 	}
