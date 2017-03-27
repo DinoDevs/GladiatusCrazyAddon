@@ -2843,7 +2843,7 @@ var gca_global = {
 
 					// Get last saved data
 					var lastData = false;
-					if(data.lenght){
+					if(data.length){
 						lastData = data[data.length - 1];
 					}
 					// If no last data
@@ -2985,7 +2985,7 @@ var gca_global = {
 					}
 				}
 				
-				var myChart = new Chart(this.canvas, {
+				new Chart(this.canvas, {
 					type: 'line',
 					data: {
 						labels : labelsArr,
