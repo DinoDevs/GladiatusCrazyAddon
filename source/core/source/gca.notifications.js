@@ -77,7 +77,7 @@ var gca_notifications = {
 		if(message) obj.body = message;
 		else obj.body = "";
 		// Icon
-		if(icon) obj.icon = message;
+		if(icon) obj.icon = gca_resources.folder + icon;
 		else obj.icon = gca_resources.folder + "icons/icon.png";
 
 		// Show notification
