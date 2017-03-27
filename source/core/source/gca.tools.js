@@ -42,6 +42,7 @@ var gca_tools = {
 	// time.msToHMS_String(date)
 	// time.msToString(date)
 	// time.prepForStamp(dateString)
+	// time.ajaxServer(html)
 	// -------------------------------------------------- //
 	time : {
 		// Server's Timestamp
@@ -52,11 +53,9 @@ var gca_tools = {
 		updateServerTime : function(){
 			// Parse server's time
 			var sDate = JSON.parse(document.getElementById("server-time").getAttribute("data-start-time"));
-			// Bug fix - Wrong month?
-			if(new Date().getMonth() == sDate[1]-1 && Math.abs(sDate[2] - (new Date().getDate()))<=1 ) sDate[1] -= 1;
 			
 			// Save time
-			this._server = new Date(sDate[0], sDate[1], sDate[2], sDate[3], sDate[4], sDate[5], sDate[6]).getTime();
+			this._server = new Date(sDate[0], sDate[1] - 1, sDate[2], sDate[3], sDate[4], sDate[5], sDate[6]).getTime();
 			// Save date string - dd.mm.yyyy
 			this._serverDateString = sDate[3] + "." + sDate[2] + "." + sDate[1];
 			// Save time string - hh:mm
@@ -165,6 +164,23 @@ var gca_tools = {
 				// m/d/y
 				return d[0]+'.'+d[1]+'.'+d[2]+' '+d[3]+':'+d[4]+':'+d[5];
 			}
+		},
+
+		ajaxServer : function(html){
+			// Calculate server time
+			var time = html.match(/<span id="server-time" data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]">/i);
+			if(time == null){
+				return 0;
+			}
+			return new Date(
+				parseInt(time[1], 10),
+				parseInt(time[2], 10) - 1,
+				parseInt(time[3], 10),
+				parseInt(time[4], 10),
+				parseInt(time[5], 10),
+				parseInt(time[6], 10),
+				parseInt(time[7], 10)
+			).getTime();
 		}
 	},
 
