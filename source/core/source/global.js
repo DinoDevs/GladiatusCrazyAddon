@@ -2720,17 +2720,17 @@ var gca_global = {
 					// Wait a little
 					setTimeout(function(){
 						// Missions
-						that.initActionCooldown("cooldown_bar_text_expedition", "expedition_notification", expeditionProgressBar.readyText);
+						that.initActionCooldown("cooldown_bar_text_expedition", "expedition_notification", expeditionProgressBar.readyText, "expedition");
 						// Dungeon
-						that.initActionCooldown("cooldown_bar_text_dungeon", "dungeon_notification", dungeonProgressBar.readyText);
+						that.initActionCooldown("cooldown_bar_text_dungeon", "dungeon_notification", dungeonProgressBar.readyText, "dungeon");
 						// Arena
-						that.initActionCooldown("cooldown_bar_text_arena", "arena_notification", arenaProgressBar.readyText);
+						that.initActionCooldown("cooldown_bar_text_arena", "arena_notification", arenaProgressBar.readyText, "arena");
 						// Arena Turma
-						that.initActionCooldown("cooldown_bar_text_ct", "turma_notification", ctProgressBar.readyText);
+						that.initActionCooldown("cooldown_bar_text_ct", "turma_notification", ctProgressBar.readyText, "turma");
 					}, 500);
 				},
 
-				initActionCooldown : function(id, sound, readyText) {
+				initActionCooldown : function(id, sound, readyText, icon) {
 					// Get button
 					var button = document.getElementById(id);
 					// Check no button
@@ -2747,7 +2747,7 @@ var gca_global = {
 							gca_audio.play(sound);
 							if(gca_options.bool("global","browser_notifications") && readyText && readyText.length > 0){
 								// Browser notification
-								gca_notifications.browser(false, readyText, false, function(){
+								gca_notifications.browser(false, readyText, "icons/icon_" + icon + ".png", function(){
 									// Set focus on window
 									window.focus();
 									// Close notification
