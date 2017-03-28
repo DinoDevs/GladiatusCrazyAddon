@@ -51,11 +51,15 @@ gca_languages["en"] = {
 			// Weapon down alert
 			weapon_down : "Your weapon is removed!",
 			//Levelling Stats
-			leveling_stats : "Experience Stats",
-			today_experience : "Today's experience",
-			days7_experience : "7 days experience",
-			avarage_experiance_per_day : "Average experience per day",
+			gold_exp_data : "Gold and Experience Data",
+			today_values : "Today's values",
+			days7_values : "7 days values",
+			average_per_day : "Average values per day",
 			days_left_to_level_up : "Days left to level up",
+			leveling_stats : "Experience Stats", //old
+			today_experience : "Today's experience", //old
+			days7_experience : "7 days experience", //old
+			avarage_experiance_per_day : "Average experience per day", //old
 			// Life
 			use_life_potion : "Use a 100% life potion",
 			a_life_potion_was_used : "A 100% life potion was used",

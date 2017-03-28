@@ -51,11 +51,15 @@ gca_languages["gr"] = {
 			// Weapon down alert
 			weapon_down : "Το όπλο σου έχει αφαιρεθεί!",
 			// Leveling Stats
-			leveling_stats : "Στατιστικά Εμπειρίας",
-			today_experience : "Εμπειρία σήμερα",
-			days7_experience : "Εμπειρία 7 ημερών",
-			avarage_experiance_per_day : "Μέση εμπειρία ανά μέρα",
+			gold_exp_data : "Δεδομένα Χρυσού και Εμπειρίας",
+			today_values : "Σημερινές τιμές",
+			days7_values : "Τιμές 7 ημερών",
+			average_per_day : "Μέσες τιμές ανά μέρα",
 			days_left_to_level_up : "Υπολειπόμενες ημέρες για ανέβασμα επιπέδου",
+			leveling_stats : "Στατιστικά Εμπειρίας", //old
+			today_experience : "Εμπειρία σήμερα", //old
+			days7_experience : "Εμπειρία 7 ημερών", //old
+			avarage_experiance_per_day : "Μέση εμπειρία ανά μέρα", //old
 			// Life
 			use_life_potion : "Χρήση ενός φίλτρου ζωής 100%",
 			// dataUpdater

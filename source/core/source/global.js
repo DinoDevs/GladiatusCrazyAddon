@@ -2902,12 +2902,33 @@ var gca_global = {
 				var dialog = new gca_build.dialog;
 				this.dialog = dialog;
 				dialog.smallHead(true);
-				dialog.title.textContent = "gold_exp_data"; // TODO : translations
+				dialog.title.textContent = gca_locale.get("gold_exp_data"); // TODO : translations
 				
-				// Add header
-				var h2 = document.createElement('h2');
-				h2.textContent = "Click on graph's legends to enable/disable data. Data are summed from 7 days ago. 'Change' values are the difference between the data collections."; // TODO : translations
-				dialog.body.appendChild(h2);
+				// Add description
+				var div = document.createElement('div');
+				div.id = "today_values";
+				div.textContent = gca_locale.get("today_values") + ":";
+				dialog.body.appendChild(div);
+				
+				div = document.createElement('div');
+				div.id = "days7_values";
+				div.textContent = gca_locale.get("days7_values") + ":";
+				dialog.body.appendChild(div);
+				
+				div = document.createElement('div');
+				div.id = "average_per_day";
+				div.textContent = gca_locale.get("average_per_day") + ":";
+				dialog.body.appendChild(div);
+				
+				div = document.createElement('div');
+				div.id = "days_left_to_level_up";
+				div.textContent = gca_locale.get("days_left_to_level_up") + ":";
+				dialog.body.appendChild(div);
+				
+				// Add some space
+				var div = document.createElement('div');
+				div.className = "space";
+				dialog.body.appendChild(div);
 				
 				// Add Canvas
 				var canvas = document.createElement('canvas');
@@ -2915,6 +2936,16 @@ var gca_global = {
 				canvas.height = 200;
 				this.canvas = canvas;
 				dialog.body.appendChild(canvas);
+				
+				// Add description
+				div = document.createElement('div');
+				div.textContent = "Click on graph's legends to enable/disable data groups. Gold and Experience data are summed starting from 7 days ago."; // TODO : translations
+				dialog.body.appendChild(div);
+				
+				// Add some space
+				var div = document.createElement('div');
+				div.className = "space";
+				dialog.body.appendChild(div);
 				
 				// Add Chart Lib
 				var scripts_loaded = 0;
@@ -2940,11 +2971,6 @@ var gca_global = {
 					}
 				}, false);
 				document.getElementsByTagName('head')[0].appendChild(script);
-				
-				// Add some space
-				var div = document.createElement('div');
-				div.className = "space";
-				dialog.body.appendChild(div);
 
 				// Add close Button
 				var button = document.createElement('input');
@@ -2967,6 +2993,7 @@ var gca_global = {
 				
 				// Fix data
 				var seventh_day = 0;
+				var last_day = 0;
 				var exp_levelup = 0;
 				var Xdata = [];
 				var Ydata = [];
@@ -2976,6 +3003,7 @@ var gca_global = {
 
 				// Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
 				var seventh_day_timestamp = gca_tools.time.server() - 6048e5;
+				var last_day_timestamp = gca_tools.time.server() - 864e5;
 				
 				// For every data
 				for (var i = 0; i < data.length; i++) {
@@ -3003,38 +3031,72 @@ var gca_global = {
 							x : data[i][2],
 							y : ((i==0)?0:(data[i][1] - data[i-1][1]))
 						};
+						
+						if(data[i][2] <= seventh_day_timestamp){
+							last_day = i;
+						}
 					}else{
 						seventh_day = i;
 					}
 				}
 				
+				// Experience translate
+				var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
+				// Gold translate
+				var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
+				
+				// Write raw data - TODO needs a little styling + today_values=last 24h not today
+				document.getElementById('today_values').textContent+= " "+(Ydata[Ydata.length-1].y-Ydata[last_day].y) +" "+exp_tran+" / "+(Xdata[Xdata.length-1].y-Xdata[last_day].y)+" ";
+				var img = document.createElement('img');
+				img.src = "img/res2.gif";
+				img.align = "absmiddle";
+				img.border = "0";
+				document.getElementById('today_values').appendChild(img);
+				
+				document.getElementById('days7_values').textContent+= " "+Ydata[Ydata.length-1].y +" "+exp_tran+" / "+Xdata[Xdata.length-1].y+" ";
+				var img = document.createElement('img');
+				img.src = "img/res2.gif";
+				img.align = "absmiddle";
+				img.border = "0";
+				document.getElementById('days7_values').appendChild(img);
+				
+				document.getElementById('average_per_day').textContent+= " "+ Math.round(Ydata[Ydata.length-1].y/7*100)/100 +" "+exp_tran+" / "+Math.round(Xdata[Xdata.length-1].y/7*100)/100+" ";
+				var img = document.createElement('img');
+				img.src = "img/res2.gif";
+				img.align = "absmiddle";
+				img.border = "0";
+				document.getElementById('average_per_day').appendChild(img);
+				
+				document.getElementById('days_left_to_level_up').textContent+= " "+ Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(Ydata[Ydata.length-1].y/7)*100)/100;
+				
+				// Populate graph
 				new Chart(this.canvas, {
 					type: 'line',
 					data: {
 						datasets: [
 							{
-								label: 'Gold', // TODO - translate
+								label: gold_tran,
 								fill: true,
 								backgroundColor: "rgba(255,193,7,0.3)",
 								borderColor: "rgba(255,193,7,1)",
 								data: Xdata
 							},
 							{
-								label: 'Change', // TODO - translate
+								label: 'Measurements', // TODO - translate
 								type: 'bubble',
 								backgroundColor: "rgba(255,193,7,0.3)",
 								borderColor: "rgba(255,193,7,1)",
 								data: XdataChange
 							},
 							{
-								label: 'Experience', // TODO - translate
+								label: exp_tran,
 								fill: true,
 								backgroundColor: "rgba(75,192,192,0.3)",
 								borderColor: "rgba(75,192,192,1)",
 								data: Ydata
 							},
 							{
-								label: 'Change', // TODO - translate
+								label: 'Measurements', // TODO - translate
 								type: 'bubble',
 								backgroundColor: "rgba(75,192,192,0.3)",
 								borderColor: "rgba(75,192,192,1)",
@@ -3049,11 +3111,14 @@ var gca_global = {
 								time: {
 									unit: 'day',
 									displayFormats: {
-										quarter: 'll'
+										day: 'MMM D'
 									},
 									tooltipFormat: 'MMM D, h:mm:ss a'
 								}
 							}]
+						},
+						legend: {
+							position : 'bottom'
 						}
 					}
 				});
