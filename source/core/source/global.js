@@ -2906,7 +2906,7 @@ var gca_global = {
 				
 				// Add header
 				var h2 = document.createElement('h2');
-				h2.textContent = "Test graph (click legends)"; // TODO : translations
+				h2.textContent = "Click on graph's legends to enable/disable data. Data are summed from 7 days ago. 'Change' values are the difference between the data collections."; // TODO : translations
 				dialog.body.appendChild(h2);
 				
 				// Add Canvas
@@ -2970,6 +2970,8 @@ var gca_global = {
 				var exp_levelup = 0;
 				var Xdata = [];
 				var Ydata = [];
+				var XdataChange = [];
+				var YdataChange = [];
 				var labelsArr = [];
 
 				// Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
@@ -2988,10 +2990,18 @@ var gca_global = {
 							x : data[i][2],
 							y : (data[i][0] - data[seventh_day][0])
 						};
+						XdataChange[i - seventh_day] = {
+							x : data[i][2],
+							y : ((i==0)?0:(data[i][0] - data[i-1][0]))
+						};
 						// Calculate last 7 days Exp Data
 						Ydata[i - seventh_day] = {
 							x : data[i][2],
 							y : (data[i][1]-data[seventh_day][1]+exp_levelup)
+						};
+						YdataChange[i - seventh_day] = {
+							x : data[i][2],
+							y : ((i==0)?0:(data[i][1] - data[i-1][1]))
 						};
 					}else{
 						seventh_day = i;
@@ -3010,11 +3020,25 @@ var gca_global = {
 								data: Xdata
 							},
 							{
+								label: 'Change', // TODO - translate
+								type: 'bubble',
+								backgroundColor: "rgba(255,193,7,0.3)",
+								borderColor: "rgba(255,193,7,1)",
+								data: XdataChange
+							},
+							{
 								label: 'Experience', // TODO - translate
 								fill: true,
 								backgroundColor: "rgba(75,192,192,0.3)",
 								borderColor: "rgba(75,192,192,1)",
 								data: Ydata
+							},
+							{
+								label: 'Change', // TODO - translate
+								type: 'bubble',
+								backgroundColor: "rgba(75,192,192,0.3)",
+								borderColor: "rgba(75,192,192,1)",
+								data: YdataChange
 							}
 						]
 					},
