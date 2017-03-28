@@ -2923,7 +2923,10 @@ var gca_global = {
 					// Render chart
 					that.renderChart();
 				}, false);
-				document.getElementsByTagName('head')[0].appendChild(script);
+				dialog.body.appendChild(script);
+				var script = document.createElement('script');
+				script.src = gca_resources.folder + "libraries/moment.min.js";
+				dialog.body.appendChild(script);
 				
 				// Add some space
 				var div = document.createElement('div');
@@ -2960,26 +2963,23 @@ var gca_global = {
 				var seventh_day_timestamp = gca_tools.time.server() - 6048e5;
 				
 				// For every data
-				for (var i = 1; i < data.length; i++) {
+				for (var i = 0; i < data.length; i++) {
 					// If time in the last 7 days
 					if(data[i][2] >= seventh_day_timestamp){
 						// Sum some of the lost EXP from levelup
-						if(data[i][1] < data[i-1][1]){
+						if(i>0 && data[i][1] < data[i-1][1]){
 							exp_levelup = exp_levelup + data[i-1][1];
 						}
-						
+						// Calculate last 7 days Gold Data
 						Xdata[i - seventh_day] = {
-							x : Math.round((data[i][2] - seventh_day_timestamp)/1000/60/60/24*1000)/1000,
+							x : data[i][2],
 							y : (data[i][0] - data[seventh_day][0])
 						};
+						// Calculate last 7 days Exp Data
 						Ydata[i - seventh_day] = {
-							x : Math.round((data[i][2] - seventh_day_timestamp)/1000/60/60/24*1000)/1000,
+							x : data[i][2],
 							y : (data[i][1]-data[seventh_day][1]+exp_levelup)
 						};
-						labelsArr[i - seventh_day] = [
-							(7 - Math.round((data[i][2]-seventh_day_timestamp)/1000/60/60/24)) + " days ago",
-							(Math.round((data[i][2]-seventh_day_timestamp)/1000/60/60/24*1000)/1000)
-						];
 					}else{
 						seventh_day = i;
 					}
@@ -2988,17 +2988,16 @@ var gca_global = {
 				new Chart(this.canvas, {
 					type: 'line',
 					data: {
-						labels : labelsArr,
 						datasets: [
 							{
-								label: 'Gold (k)',
+								label: 'Gold', // TODO - translate
 								fill: true,
 								backgroundColor: "rgba(255,193,7,0.3)",
 								borderColor: "rgba(255,193,7,1)",
 								data: Xdata
 							},
 							{
-								label: 'Experience',
+								label: 'Experience', // TODO - translate
 								fill: true,
 								backgroundColor: "rgba(75,192,192,0.3)",
 								borderColor: "rgba(75,192,192,1)",
@@ -3009,9 +3008,14 @@ var gca_global = {
 					options: {
 						scales: {
 							xAxes: [{
-								type: 'linear',
-								position: 'bottom',
-								display: true
+								type: 'time',
+								time: {
+									unit: 'day',
+									displayFormats: {
+										quarter: 'll'
+									},
+									tooltipFormat: 'MMM D, h:mm:ss a'
+								}
 							}]
 						}
 					}
