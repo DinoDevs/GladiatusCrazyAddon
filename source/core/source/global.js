@@ -2917,16 +2917,29 @@ var gca_global = {
 				dialog.body.appendChild(canvas);
 				
 				// Add Chart Lib
+				var scripts_loaded = 0;
 				var script = document.createElement('script');
 				script.src = gca_resources.folder + "libraries/Chart.min.js";
 				script.addEventListener('load', function(){
-					// Render chart
-					that.renderChart();
+					scripts_loaded++;
+					// If all scripts loaded
+					if(scripts_loaded == 2){
+						// Render chart
+						that.renderChart();
+					}
 				}, false);
-				dialog.body.appendChild(script);
-				var script = document.createElement('script');
+				document.getElementsByTagName('head')[0].appendChild(script);
+				script = document.createElement('script');
 				script.src = gca_resources.folder + "libraries/moment.min.js";
-				dialog.body.appendChild(script);
+				script.addEventListener('load', function(){
+					scripts_loaded++;
+					// If all scripts loaded
+					if(scripts_loaded == 2){
+						// Render chart
+						that.renderChart();
+					}
+				}, false);
+				document.getElementsByTagName('head')[0].appendChild(script);
 				
 				// Add some space
 				var div = document.createElement('div');
