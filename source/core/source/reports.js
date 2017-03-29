@@ -187,7 +187,7 @@ var gca_reports = {
 				// Error
 				if(!tooltip){
 					// Display
-					gca_tools.setTooltip(icon, JSON.stringify([[[title, "white"], [gca_locale.get("error"), "white"]]]));
+					gca_tools.setTooltip(icon, JSON.stringify([[[title, "white"], [gca_locale.get("general", "error"), "white"]]]));
 				}
 				// Tooltip replace
 				else{
