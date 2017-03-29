@@ -29,8 +29,7 @@ var gca_pantheon_mysterybox = {
 
 			// Create button
 			this.button = document.createElement("input");
-			// TODO : translations needed
-			this.button.value = "Open all";
+			this.button.value = gca_locale.get("pantheon", "mysterybox_open_all");
 			this.button.type = "button";
 			this.button.className = "premium_activate_button" + (enabled ? "" : " disabled");
 			document.getElementById("mysterybox_buttons").appendChild(this.button);
@@ -58,8 +57,7 @@ var gca_pantheon_mysterybox = {
 			// Disable buttons
 			document.getElementById("startStop").className += " disabled";
 			document.getElementById("startStop").setAttribute("disabled","disabled");
-			// TODO : translations needed
-			this.button.value = "Stop";
+			this.button.value = gca_locale.get("pantheon", "mysterybox_open_stop");;
 
 			// Rewards Wrapper
 			this.rewards_wrapper = document.getElementsByClassName("mysterybox_reward_pool")[0];
@@ -84,11 +82,11 @@ var gca_pantheon_mysterybox = {
 			this.running = false;
 			this.stop = false;
 
-			// TODO : translations needed
-			this.button.value = "Done!";
+			// Set button text
+			this.button.value = gca_locale.get("pantheon", "mysterybox_open_done");
 
 			if(error){
-				alert(error);
+				this.title = error;
 			}
 		},
 
@@ -168,8 +166,7 @@ var gca_pantheon_mysterybox = {
 
 							// Check results
 							if(won == null){
-								// TODO : translation needed
-								that.handleStop("Failed to decode reward.");
+								that.handleStop(gca_locale.get("general", "error") + " (decode_error)");
 								return;
 							}
 
@@ -183,15 +180,13 @@ var gca_pantheon_mysterybox = {
 							that.run();
 						},
 						error: function(){
-							// TODO : translation needed
-							that.handleStop("Failed to load reward.");
+							that.handleStop(gca_locale.get("general", "error") + " (load_error)");
 							return;
 						}
 					});
 				},
 				error: function(){
-					// TODO : translation needed
-					that.handleStop("Failed to load data.");
+					that.handleStop(gca_locale.get("general", "error") + " (data_error)");
 					return;
 				}
 			});
