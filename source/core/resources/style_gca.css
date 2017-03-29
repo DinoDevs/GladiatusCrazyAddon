@@ -573,12 +573,6 @@
 /* More Player Images */
 	.more_profile_images_from_photobucket{width: 120px;margin: 3px;cursor:pointer;}
 
-/* Sound Button */
-	.mute_button{position:fixed;bottom:0px;right:0px;width:32px;height:32px;cursor:pointer;}
-	.gca_rtl .mute_button{left:0px;right:auto;}
-	.sound_off{background: url('icons/mute.png') 0px 0px no-repeat;}
-	.sound_on{background: url('icons/sound.png') 0px 0px no-repeat;}
-
 
 
 /* Forge */
@@ -638,6 +632,11 @@
 		.gca_paging .paging_button.paging_left_step{margin-left: -24px;}
 		.gca_paging .paging_button.paging_right_full{margin-right: -20px;}
 		.gca_paging .paging_button.paging_right_step{margin-right: -24px;}
+
+		/* Sounds controls bar */
+		.gca_sound_bar{position: fixed;z-index: 6;right: 0px;bottom: 0px;}
+		.gca_sound_bar .sound-toggle{width: 32px;height: 32px;background: url('icons/sound.png') 0px 0px no-repeat;cursor: pointer;}
+		.gca_sound_bar .sound-toggle.mute{background-position: -32px 0px;}
 
 
 

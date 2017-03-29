@@ -114,6 +114,10 @@ var gca_global = {
 		// Gold/Exp data TODO
 		(gca_options.bool("global","gold_exp_data") &&
 			this.background.gold_exp_data.inject());
+
+		// Sound buttons
+		(gca_options.bool("sound","enabled") &&
+			this.sound.bar());
 	},
 
 	// Game Modes Check
@@ -2715,9 +2719,15 @@ var gca_global = {
 			// Cooldown Sound Notification for missions, dungeons and arenas
 			cooldown_sounds : {
 				init : function(){
+					// If no sounds and no notifications
+					if(!gca_options.bool("sound","enabled") && !gca_options.bool("global","browser_notifications")){
+						// No way to notify the user
+						return;
+					}
+
 					// Save instance
 					var that = this;
-					// Wait a little
+					// Wait a sec
 					setTimeout(function(){
 						// Missions
 						that.initActionCooldown("cooldown_bar_text_expedition", "expedition_notification", expeditionProgressBar.readyText, "expedition");
@@ -2744,7 +2754,11 @@ var gca_global = {
 						cooldown = (parseInt(cooldown[1], 10) * 60 * 60 + parseInt(cooldown[2], 10) * 60 + parseInt(cooldown[3], 10))*1000;
 						// Setup a timeout
 						setTimeout(function(){
-							gca_audio.play(sound);
+							if(gca_options.bool("sound","enabled")){
+								gca_audio.play(sound);
+							}
+
+							// If notifications enabled
 							if(gca_options.bool("global","browser_notifications") && readyText && readyText.length > 0){
 								// Browser notification
 								gca_notifications.browser(false, readyText, "icons/icon_" + icon + ".png", function(){
@@ -2775,7 +2789,7 @@ var gca_global = {
 				else if(gca_tools.time.server() - lastTime >= gca_options.int("global","notify_new_guild_application_interval") * 60000){
 					// Save time
 					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
-					// Check guild for any application
+					// Check gui ld for any application
 					jQuery.get(gca_getPage.link({"mod":"guild","submod":"admin"}), function(content){
 						// If application exist
 						if(content.match('submod=adminApplication')){
@@ -3122,6 +3136,55 @@ var gca_global = {
 						}
 					}
 				});
+			}
+		}
+	},
+
+	// Sound stuf
+	sound : {
+		// Elements
+		elements : {},
+
+		// Create bar
+		bar : function(){
+			// Set up sound bar
+			var bar = document.createElement('div');
+			bar.className = "gca_sound_bar";
+			// Toggle sound icon
+			this.elements.toggleIcon = document.createElement('div');
+			this.elements.toggleIcon.className = "sound-toggle";
+			if(gca_audio.isMuted()){
+				this.elements.toggleIcon.className += " mute";
+			}
+			// Save instance
+			var that = this;
+			this.elements.toggleIcon.addEventListener("click", function(){
+				that.toggle();
+			}, false);
+
+			bar.appendChild(this.elements.toggleIcon);
+
+			// Add on page
+			document.body.appendChild(bar);
+		},
+
+		// Turn on or off audio
+		toggle : function(){
+			// If element not yet created
+			if(!this.elements.toggleIcon)
+				// return
+				return;
+			// Toggle
+			if(gca_audio.isMuted()){
+				// Unmute
+				gca_audio.mute(false);
+				this.elements.toggleIcon.className = "sound-toggle";
+				gca_audio.play("sound_toggle");
+			}
+			else{
+				// Mute
+				gca_audio.mute(true);
+				this.elements.toggleIcon.className = "sound-toggle mute";
 			}
 		}
 	}

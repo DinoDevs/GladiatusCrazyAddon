@@ -465,6 +465,11 @@ gca_options.data = {
 		"server_quest_timer" : true
 	},
 
+	"sound" : {
+		// Sounds enabled
+		"enabled" : true
+	},
+
 	// TODO : DEPRECATED below
 	// Global Script Options
 		"ENABLE_GLOBAL_EXTENDED_HP_XP_INFO" : true,

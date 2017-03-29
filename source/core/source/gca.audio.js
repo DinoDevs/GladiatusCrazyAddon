@@ -70,7 +70,8 @@ var gca_audio = {
 		"dungeon_notification" : {vol : 1, mute : false, sound : "water"},
 		"arena_notification" : {vol : 1, mute : false, sound : "water"},
 		"turma_notification" : {vol : 1, mute : false, sound : "water"},
-		"auction_notification" : {vol : 1, mute : false, sound : "coin"}
+		"auction_notification" : {vol : 1, mute : false, sound : "coin"},
+		"sound_toggle" : {vol : 1, mute : false, sound : "water"}
 	},
 
 	// Audio Object List
