@@ -100,23 +100,10 @@ var gca_data_manager = {
 	getPlayerId : function(){
 		// Page info
 		var url = document.location.href;
-		var country, server;
 		
-		// TODO : Clean
-		//var country = (url.match(/\.(\w*)\.gladiatus\.gameforge\.com/)[1])?url.match(/\.(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
-		//var server = (url.match(/s\d+\./i))?url.match(/s(\d+)\./i)[1]:null;
-
-		// Old Url
-		if(url.match(/s\d+\.\w+\.gladiatus\.gameforge\.com/)){
-			country = (url.match(/\.(\w*)\.gladiatus\.gameforge\.com/))?url.match(/\.(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
-			server = (url.match(/s\d+\./i))?url.match(/s(\d+)\./i)[1]:null;
-		}
-		
-		// New Url
-		else{
-			country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
-			server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
-		}
+		// Get server info
+		var country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)) ? url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1] : null;
+		var server = (url.match(/s\d+-/i)) ? url.match(/s(\d+)-/i)[1] : null;
 
 		// Resolve Player Id from cookies
 		var playerId = document.cookie.match(new RegExp("Gladiatus_" + country + "_" + server + "=(\\d+)","i"));
@@ -221,6 +208,7 @@ var gca_options = {
 			return true;
 		return false;
 	},
+	
 	// Get Integer Setting
 	int : function(category, label){
 		if(this.data[category] && this.data[category][label])
@@ -234,28 +222,13 @@ var gca_options = {
 			return this.data[category][label];
 		return null;
 	},
+
 	//  Set Setting
 	set : function(category, label, value){
 		if(!this.data[category]){
 			this.data[category] = {};
 		}
 		this.data[category][label] = value;
-		this.saveData();
-	},
-
-	// TODO : DEPRECATED
-	isOn : function(label){
-		if(this.data[label])
-			return true;
-		return false;
-	},
-	// TODO : DEPRECATED
-	load : function(label){
-		return this.data[label];
-	},
-	// TODO : DEPRECATED
-	save : function(label, value){
-		this.data[label] = value;
 		this.saveData();
 	}
 }
@@ -471,37 +444,22 @@ gca_options.data = {
 	},
 
 	// TODO : DEPRECATED below
+	// Options only here for reference
+	// Implemented is removed
+	/*
 	// Global Script Options
-		"ENABLE_GLOBAL_EXTENDED_HP_XP_INFO" : true,
-		"ENABLE_GLOBAL_BUTTON_BAR" : true,
-		"ENABLE_GLOBAL_AUCTION_STATUS_BAR" : false,
-		"ENABLE_GLOBAL_AUCTION_STATUS_NOTIFICATION" : false,
-		"ENABLE_GLOBAL_TOP_FIXED_BAR" : true,
-		"ENABLE_GLOBAL_ADVANCED_MAIN_MENU" : true,
 		"ENABLE_GLOBAL_MERCHANTS_TIME" : true,
-		"ENABLE_GLOBAL_MINITES_LEFT_FOR_FULL_LIFE" : true,
-		"ENABLE_GLOBAL_REMEMBER_TABS" : true,
-		"GLOBAL_LANGUAGE" : "en",
-		"ENABLE_GLOBAL_QUESTS_TIMER" : true,
-		"ENABLE_GLOBAL_ATTACKED_TIMERS" : true,
 		"ENABLE_GLOBAL_WEAPON_DOWN_ALERT" : true,
 		"ENABLE_GLOBAL_DISPLAY_CENTURIO_DAYS" : false,
 		"ENABLE_GLOBAL_MAP_NAMES_LEVELS" : false,
-		"ENABLE_GLOBAL_SOUND_NOTIFICATIONS" : true,
 
 	// Overview Script Options
 		// Main Player Options
 		"ENABLE_OVERVIEW_ITEMS_ANALIZE" : true,
 		"ENABLE_OVERVIEW_DISPLAY_SHARE_LINK" : true,
-		"ENABLE_OVERVIEW_MERCENARIES_MANAGEMENT" : true,
-		"ENABLE_OVERVIEW_SHOW_HEAL" : false,
 		"ENABLE_PLAYER_IMAGE" : true,
-		// Stats Options
-		"ENABLE_OVERVIEW_PLAYER_STATS_MOD" : true,
-		"ENABLE_OVERVIEW_BLOCK_AVOID_CAPS" : true,
 
 	// Training Script Options
-		"ENABLE_TRANING_DISPLAY_MOD" : true,
 		"ENABLE_TRANING_DISPLAY_COST_CALCULATOR" : true,
 
 	// Auction Script Options
@@ -538,27 +496,14 @@ gca_options.data = {
 		"ENABLE_MERCHANTS_INFOS" : true,
 
 	// Messages Script Options
-		// Messages Options
-		"ENABLE_MESSAGES_STYLING" : false,
-		"ENABLE_MESSAGES_CONVERT_LINKS" : false,
-		"ENABLE_MESSAGES_FIX_SPACES" : false,
-		// New Message Options
-		"ENABLE_NEWMESSAGE_FOCUS" : true,
-		"ENABLE_NEWMESSAGE_FRIENDLIST" : true,
 		// Message Spam Block
 		"ENABLE_MESSAGE_SPAM_BLOCK" : false,
 		"SPAM_BLOCKED_PLAYERS" : ' ',
 
 	// Packages Script Options
-		"ENABLE_PACKAGES_NEW_LAYOUT" : true,
-		"PACKAGES_MAX_PAGES_TO_LOAD" : 5,
 		"ENABLE_PACKAGES_COLLECT_GOLD_BUTTON" : true,
 		"ENABLE_PACKAGES_EXPIRED_PACKAGES" : false,
 		"PACKAGES_EXPIRED_HOURS" : 12,
-
-	// Reports Script Options
-		// Report list Options
-		"ENABLE_REPORT_LIST_STYLE" : true,
 
 	// Chat Script Options
 		// Chat list Options
@@ -567,20 +512,14 @@ gca_options.data = {
 		
 	// Guild Script Options
 		"ENABLE_GUILD_MESSAGE_INTERFACE" : true,
-		"ENABLE_GUILD_JAIL_INTERFACE" : true,
-		"ENABLE_GUILD_LIBRARY_INTERFACE" : true,
 		"ENABLE_GUILD_BANK_INTERFACE" : true,
 		"ENABLE_GUILD_BANKBOOK_INTERFACE" : true,
 		"ENABLE_GUILD_MEDIC_INTERFACE" : true,
 		"ENABLE_GUILD_LIFE_TAB" : true,
 		"ENABLE_GUILD_IMAGES" : true,
-		"ENABLE_GUILD_APPLICATION_ALERT" : false,
-			"GUILD_APPLICATION_ALERT_INTERVAL" : 60,
 		"ENABLE_GUILD_NAMES_LEVELS" : false,
 	
 	// Pantheon
-		"ENABLE_PANTHEON_QUESTS_ORDER" : true,
-		"ENABLE_PANTHEON_QUESTS_DETAILED_REWARDS" : true,
 		"ENABLE_PANTHEON_GODS_RECOLOR" : true,
 		
 	// Arena
@@ -589,12 +528,7 @@ gca_options.data = {
 	// Player
 		"ENABLE_PLAYER_SIMULATOR_BUTTON" : true,
 		"ENABLE_PLAYER_MERCENARIES_FIGHT_TYPE" : true,
-		
-	// Premium
-		"PREMIUM_KEY" : false,
-		
-	// Game Fixes
-		"ENABLE_FIXES_RTL_TOOLTIP_FIX" : true
+	*/
 };
 
 // Initiate Options
