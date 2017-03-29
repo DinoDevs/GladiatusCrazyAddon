@@ -22,6 +22,35 @@ var gca_audio = {
 		this._muted = gca_data.section.get("sound", "muted", false);
 	},
 
+
+	// Get / Set / Check
+	isMuted : function(){
+		// Return value
+		return this._muted;
+	},
+	mute : function(value = true){
+		// Set value
+		if(value){
+			this._muted = true;
+		}
+		else{
+			this._muted = false;
+		}
+	},
+	volume : function(value){
+		// Return value
+		if(value == null){
+			return this._volume;
+		}
+		// Set value
+		else if(value){
+			this._volume = value;
+		}
+		else{
+			this._volume = value;
+		}
+	},
+
 	// Sounds list
 	buildInSounds : {
 		"water" : "alert-sound-water.ogg",
