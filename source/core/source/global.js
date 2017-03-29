@@ -252,7 +252,7 @@ var gca_global = {
 					// Create Healing Pot button
 					var link = document.createElement('a');
 					link.id = "header_life_pot";
-					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="img/premium/token/18.jpg"> ' + gca_locale.get('use_life_potion'),"white"]]]);
+					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="img/premium/token/18.jpg"> ' + gca_locale.get("global", "life_potion_use"),"white"]]]);
 					
 					// On click callback
 					var self = this;
@@ -298,7 +298,9 @@ var gca_global = {
 					}
 					if(potions == 0){
 						this.usageSet(false);
-						gca_notifications.error( "0 " + gca_locale.get("life_potions_left") );
+						gca_notifications.error(
+							gca_locale.get("global", "life_potion_left", {number:0})
+						);
 						return;
 					}
 
@@ -314,7 +316,10 @@ var gca_global = {
 						self.usageSet(false);
 
 						// Report success
-						gca_notifications.success( gca_locale.get("a_life_potion_was_used") + " (" + (potions-1) + " " + gca_locale.get("life_potions_left") + ")" );
+						gca_notifications.success(
+							gca_locale.get("global", "life_potion_used") +
+							" (" + (potions-1) + " " + gca_locale.get("global", "life_potion_left", {number: potions-1}) + ")"
+						);
 						// Update HP
 						gca_global.display.extended_hp_xp.updateLife(life[1], life[2]);
 					})
@@ -322,7 +327,7 @@ var gca_global = {
 					.fail(function(){
 						self.usageSet(false);
 						// Report Error
-						gca_notifications.error( gca_locale.get("error") );
+						gca_notifications.error(gca_locale.get("general", "error"));
 					});
 				},
 
@@ -420,7 +425,7 @@ var gca_global = {
 				// Return if 0 minites
 				if(minites_left <= 0) return;
 				// Add data on the tooltip
-				lifeTooltip[0].push([[gca_locale.get('full_life_recover_in'), minites_left + " " + gca_locale.get('minutes')], ["#BA9700","#BA9700"]]);
+				lifeTooltip[0].push([[gca_locale.get("global", "life_recover_full"), minites_left + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
 				gca_tools.setTooltip(div, JSON.stringify(lifeTooltip));
 			}
 		},
@@ -457,7 +462,7 @@ var gca_global = {
 						link = document.createElement('a');
 						link.className = "icon message-icon";
 						link.href = gca_getPage.link({"mod":"messages","submod":"messageNew"});
-						link.title = gca_locale.get("write_private_message");
+						link.title = gca_locale.get("global", "message_private_write");
 						button.appendChild(link);
 						shortcutsBar.appendChild(button);
 					}
@@ -477,7 +482,7 @@ var gca_global = {
 							div.className = "hover_box";
 
 							let temp = document.createElement('i');
-							temp.textContent = gca_locale.get("write_guild_message")+":";
+							temp.textContent = gca_locale.get("global", "message_guild_write") + ":";
 							div.appendChild(temp);
 
 							temp = document.createElement('br');
@@ -498,7 +503,7 @@ var gca_global = {
 							temp = document.createElement('input');
 							temp.type = "button";
 							temp.className = "button1";
-							temp.value = gca_locale.get("send");
+							temp.value = gca_locale.get("global", "message_send");
 							temp.addEventListener('click', function(){
 								// Get message
 								var msg = instant_message_textarea.value;
@@ -516,13 +521,13 @@ var gca_global = {
 									loading.style.display = "none";
 									if(ok){
 										instant_message_textarea.value = "";
-										gca_notifications.success( gca_locale.get("guild_message_was_sent") );
+										gca_notifications.success(gca_locale.get("global", "message_sent_success"));
 									}else{
-										gca_notifications.error( gca_locale.get("guild_message_sent_failed") );
+										gca_notifications.error(gca_locale.get("global", "message_sent_failed"));
 									}
 								});
 								if(!send){
-									gca_notifications.error( gca_locale.get("there_are_no_data") );
+									gca_notifications.error(gca_locale.get("global", "no_data"));
 								}
 							}, false);
 							div.appendChild(temp);
@@ -535,7 +540,7 @@ var gca_global = {
 							temp = document.createElement('label');
 							temp.setAttribute("for", "qgm_exclude_me");
 							temp.id = "qgm_exclude_me";
-							temp.textContent = gca_locale.get('exclude_me');
+							temp.textContent = gca_locale.get("global", "message_exclude_me");
 							div.appendChild(temp);
 							
 							instant_message_div.appendChild(div);
@@ -548,7 +553,7 @@ var gca_global = {
 						link = document.createElement('a');
 						link.className = 'icon message-icon';
 						link.href = gca_getPage.link({"mod":"guild","submod":"adminMail"});
-						link.title = gca_locale.get("write_guild_message");
+						link.title = gca_locale.get("global", "message_guild_write");
 
 						button.appendChild(link);
 						button.appendChild(instant_message_div);
@@ -573,7 +578,7 @@ var gca_global = {
 							link = document.createElement('a');
 							link.className = "icon cross-icon";
 							link.href = gca_getPage.link({"mod":"guild_medic"});
-							link.title = gca_locale.get("go_to_guilds_medic_center");
+							link.title = gca_locale.get("global", "message_guild_write");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
@@ -585,7 +590,7 @@ var gca_global = {
 							link = document.createElement('a');
 							link.className = "icon market-icon";
 							link.href = gca_getPage.link({"mod":"guildMarket"});
-							link.title = gca_locale.get("go_to_guilds_market");
+							link.title = gca_locale.get("global", "guild_market_goto");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
@@ -597,7 +602,7 @@ var gca_global = {
 							link = document.createElement('a');
 							link.className = "icon box-icon";
 							link.href = gca_getPage.link({"mod":"guildStorage"});
-							link.title = gca_locale.get("go_to_guilds_storage");
+							link.title = gca_locale.get("global", "guild_storage_goto");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
@@ -613,7 +618,7 @@ var gca_global = {
 							input.type = "button";
 							input.id = "donate_all_button";
 							input.className = "button1";
-							input.value = gca_locale.get("donate_all_your_gold");
+							input.value = gca_locale.get("global", "donate_gold_all_gold");
 							input.addEventListener('click', function(){
 								gca_global.display.shortcuts_bar.donate_gold.check();
 							}, false);
@@ -625,7 +630,7 @@ var gca_global = {
 							link = document.createElement('a');
 							link.className = "icon gold-icon";
 							link.href = gca_getPage.link({"mod":"guildBankingHouse"});
-							//link.title = gca_locale.get("go_to_guilds_bank");
+							link.title = gca_locale.get("global", "guild_bank_goto");
 							button.appendChild(link);
 							button.appendChild(instant_donate_gold);
 							shortcutsBar.appendChild(button);
@@ -645,7 +650,7 @@ var gca_global = {
 							link = document.createElement('a');
 							link.className = "icon report-icon";
 							link.href = gca_getPage.link({"mod":"guild_warcamp"});
-							link.title = gca_locale.get("go_to_guilds_war_camp");
+							link.title = gca_locale.get("global", "guild_warcamp_goto");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
@@ -657,7 +662,7 @@ var gca_global = {
 							link = document.createElement('a');
 							link.className = "icon castle-icon";
 							link.href = gca_getPage.link({"mod":"guild_jail"});
-							link.title = gca_locale.get("go_to_guilds_jail");
+							link.title = gca_locale.get("global", "guild_jail_goto");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
@@ -669,7 +674,7 @@ var gca_global = {
 							link = document.createElement('a');
 							link.className = "icon notebook-icon";
 							link.href = gca_getPage.link({"mod":"guildLibrary"});
-							link.title = gca_locale.get("go_to_guilds_library");
+							link.title = gca_locale.get("global", "guild_library_goto");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
@@ -684,7 +689,7 @@ var gca_global = {
 					link = document.createElement('a');
 					link.className = "icon swords-icon";
 					link.href = 'http://gladiatussimulator.tk/';
-					link.title = gca_locale.get("go_to_simulator");
+					link.title = gca_locale.get("global", "simulator_goto");
 					link.setAttribute("target", "_blank");
 					button.appendChild(link);
 					shortcutsBar.appendChild(button);
@@ -721,7 +726,7 @@ var gca_global = {
 					button.className = "icon-out";
 					link = document.createElement('a');
 					link.className = "icon people-icon";
-					link.title = gca_locale.get("display_my_stats");
+					link.title = gca_locale.get("global", "stats_display");
 					button.appendChild(link);
 					button.appendChild(show_stats);
 					shortcutsBar.appendChild(button);
@@ -738,7 +743,7 @@ var gca_global = {
 					button.className = "icon-out";
 					link = document.createElement('a');
 					link.className = "icon online-icon";
-					link.title = gca_locale.get("display_online_players");
+					link.title = gca_locale.get("global", "online_display");
 					button.appendChild(link);
 					shortcutsBar.appendChild(button);
 
@@ -761,7 +766,7 @@ var gca_global = {
 						// Create a dialog
 						var dialog = new gca_build.dialog;
 						dialog.smallHead(true);
-						dialog.title.textContent = gca_locale.get( "online_friends" );
+						dialog.title.textContent = gca_locale.get("global", "online_friends");
 
 						// Temp elements variables
 						var table, tr, td, div, span;
@@ -772,14 +777,14 @@ var gca_global = {
 						tr = document.createElement('tr');
 						td = document.createElement('td');
 						td.setAttribute("width", "50%");
-						td.textContent = gca_locale.get( "guild_friends" ) + " ";
+						td.textContent = gca_locale.get("global", "guild_friends") + " ";
 						span = document.createElement('span');
 						span.id = "online_friends_guild_counter";
 						td.appendChild(span);
 						tr.appendChild(td);
 						td = document.createElement('td');
 						td.setAttribute("width", "50%");
-						td.textContent = gca_locale.get( "family_friends" ) + " ";
+						td.textContent = gca_locale.get("global", "family_friends") + " ";
 						span = document.createElement('span');
 						span.id = "online_friends_family_counter";
 						td.appendChild(span);
@@ -830,7 +835,7 @@ var gca_global = {
 						var button = document.createElement('input');
 						button.className = "button3";
 						button.type = "button";
-						button.value = gca_locale.get("close");
+						button.value = gca_locale.get("general", "close");
 						dialog.body.appendChild(button);
 
 						button.addEventListener('click', function(){
@@ -1085,14 +1090,14 @@ var gca_global = {
 					// If no gold or parse failed
 					if(gold == 0 || isNaN(gold)){
 						// Show warning
-						gca_notifications.warning( gca_locale.get("no_gold") );
+						gca_notifications.warning(gca_locale.get("global", "donate_gold_no_gold"));
 						return;
 					}
 
 					var that = this;
 					// Create confirm modal
 					var modal = new gca_tools.Modal(
-						gca_locale.get("donate_all_your_gold"),
+						gca_locale.get("global", "donate_gold_all_gold"),
 						null,
 						function(){
 							that.donate(gold);
@@ -1102,16 +1107,16 @@ var gca_global = {
 							modal.destroy();
 						}
 					);
-					modal.body(("Are you sure you want to donate <number> gold?").replace(/<number>/g, gold_txt)); // TODO : Locale
-					modal.button("Yes", true); // TODO : Locale
-					modal.button("Cancel", false); // TODO : Locale
+					modal.body(gca_locale.get("global", "donate_gold_confirm", {number : gold_txt}));
+					modal.button(gca_locale.get("general", "confirm"), true);
+					modal.button(gca_locale.get("general", "cancel"), false);
 					modal.show();
 				},
 
 				// Donate gold
 				donate : function(gold){
 					if(gold == 0)
-						gca_notifications.warning( gca_locale.get("no_gold") );
+						gca_notifications.warning( gca_locale.get("global", "donate_gold_no_gold") );
 
 					// Clear Gold
 					document.getElementById('sstat_gold_val').textContent = "";
@@ -1129,11 +1134,11 @@ var gca_global = {
 						data: 'donation=' + gold + '&doDonation=Donate All',
 						success: function(){
 							document.getElementById('sstat_gold_val').textContent = 0;
-							gca_notifications.success( gca_locale.get("gold_donated") );
+							gca_notifications.success(gca_locale.get("global", "donate_gold_success"));
 						},
 						error: function(){
 							document.getElementById('sstat_gold_val').textContent = gca_tools.strings.insertDots(gold);
-							gca_notifications.error( gca_locale.get("gold_donation_failed") );
+							gca_notifications.error(gca_locale.get("global", "donate_gold_failed"));
 						}
 					});
 				}
@@ -1183,7 +1188,7 @@ var gca_global = {
 					else{
 						tr = document.createElement("tr");
 						td = document.createElement("td");
-						td.textContent = gca_locale.get("there_are_no_data");
+						td.textContent = gca_locale.get("general", "no_data");
 						tr.appendChild(td);
 						statsHtmlTable.appendChild(tr);
 					}
@@ -1239,7 +1244,7 @@ var gca_global = {
 							var tr = document.createElement("tr");
 							var td = document.createElement("td");
 							var span = document.createElement("span");
-							span.className = gca_locale.get("error");
+							span.className = gca_locale.get("general", "error");
 							td.appendChild(span);
 							tr.appendChild(td);
 							statsHtmlTable.appendChild(tr);
@@ -1372,7 +1377,7 @@ var gca_global = {
 				// Check for error
 				if(!auctionName || !auctionStatus){
 					if(statusUI)
-						statusUI.textContent = gca_locale.get("error");
+						statusUI.textContent = gca_locale.get("general", "error");
 					return;
 				}
 
@@ -2027,7 +2032,7 @@ var gca_global = {
 						this.questTimeElement.appendChild(document.createTextNode("("));
 						let font = document.createElement("font");
 						font.setAttribute("color", "red");
-						font.textContent = gca_locale.get('quest_full');
+						font.textContent = gca_locale.get("global", "quest_full");
 						this.questTimeElement.appendChild(font);
 						this.questTimeElement.appendChild(document.createTextNode(")"));
 					}
@@ -2037,7 +2042,7 @@ var gca_global = {
 						this.questTimeElement.appendChild(document.createTextNode("("));
 						let font = document.createElement("font");
 						font.setAttribute("color", "yellow");
-						font.textContent = gca_locale.get('quest_new');
+						font.textContent = gca_locale.get("global", "quest_new");
 						this.questTimeElement.appendChild(font);
 						this.questTimeElement.appendChild(document.createTextNode(")"));
 					}
@@ -2058,9 +2063,9 @@ var gca_global = {
 				// If ready
 				if(this.timer < 0){
 					if(this.quests_free_slots == 0){
-						this.questTimeElement.textContent = "(" + gca_locale.get('quest_full') + ")";
+						this.questTimeElement.textContent = "(" + gca_locale.get("global", "quest_full") + ")";
 					}else{
-						this.questTimeElement.textContent = "(" + gca_locale.get('quest_new') + ")";
+						this.questTimeElement.textContent = "(" + gca_locale.get("global", "quest_new") + ")";
 					}
 					this.questTimeElement.style.color = "yellow";
 
@@ -2132,7 +2137,7 @@ var gca_global = {
 					if(this.timer < 0){
 						// Zero toss but new day
 						if(this.craps_free_toss == 0 && gca_data.section.get("timers", 'craps_last_date', 0) != gca_tools.time.serverDateString()){
-							this.crapsTimeElement.textContent = "(" + gca_locale.get('quest_new') + ")";
+							this.crapsTimeElement.textContent = "(" + gca_locale.get("global", "quest_new") + ")";
 						}
 						// Do i have data saved?
 						else if(this.craps_free_toss != 'N/A'){
@@ -2155,7 +2160,7 @@ var gca_global = {
 					// If ready
 					if(this.timer < 0){
 						if(this.craps_free_toss == 0 && gca_data.section.get("timers", 'craps_last_date', 0) == gca_tools.time.serverDateString()){
-							this.crapsTimeElement.textContent = "(" + gca_locale.get('quest_new') + ")";
+							this.crapsTimeElement.textContent = "(" + gca_locale.get("global", "quest_new") + ")";
 						}
 						else{
 							this.crapsTimeElement.textContent = "(" + this.craps_free_toss + ")";
@@ -2331,92 +2336,6 @@ var gca_global = {
 
 		merchants_time : {
 			inject : function(){
-				// Save time if merchant
-				if(gca_section.mod == 'inventory'){
-					gca_section_merchants.save_merchants_time();
-				}
-				
-				// Variable because of the Advance menu changes
-				var x = (document.getElementById('submenu1').getElementsByTagName('a').length.length > 12) ? 4 : 3;
-				
-				// Roll Dice Event
-				if( document.getElementById('submenu1').getElementsByTagName('a')[0].className.match('glow') ){
-					x++;
-				}
-				
-				// Calculate time
-				var date = gca_tools.time.server();
-				var time = gca_data.section.get("timers", 'merchants_time', -1 );
-				var remaining_time = time - date;
-				
-				if(remaining_time > 0){
-					var percent_completed = Math.round( 100-( remaining_time/( 24*60*60*1000 ) )*100 );
-					var remaining_h = Math.floor( remaining_time/(60*60*1000) );
-					if(remaining_h<10){remaining_h='0'+remaining_h;}
-					var remaining_m = Math.floor( ( remaining_time%(60*60*1000) )/(60*1000) );
-					if(remaining_m<10){remaining_m='0'+remaining_m;}
-					var remaining_s = Math.floor( ( remaining_time%(60*1000) )/1000 );
-					if(remaining_s<10){remaining_s='0'+remaining_s;}
-					var time_format = remaining_h +':'+ remaining_m +':'+ remaining_s;
-					var color='#BFAE54';
-				}else if( remaining_time == (-1 - date) ){
-					var percent_completed = '?';
-					var time_format = 'N/A';
-					var color='white';
-				}else{
-					var percent_completed = 100;
-					var time_format = gca_locale.get('new_goods');
-					var color='yellow';
-				}
-				
-				var level = parseInt( $dark('#header_values_level').html() );
-				if(level==1){
-					$dark('*div').id("merchants_time_tooltip_holder").html('<div id="merchants_time_box" style="color:'+color+';">'+time_format+'</div><div class="merchants_time_percent_out" style="background-image: url(img/energie_balken_grund.gif);"><div id="merchants_time_percent" class="charstats_balken_xp" style="width:'+percent_completed+'%"></div></div>').tooltip([gca_locale.get('merchants_new_goods_time')+' ( '+percent_completed+'% )']).beforeFrom( $dark('#submenu1 a['+(x-2)+']') );
-					$dark('*div').style('height:10px;').afterFrom( $dark('#submenu1 a['+(x+1)+']') );
-				}else if(level==2){
-					$dark('*div').id("merchants_time_tooltip_holder").html('<div id="merchants_time_box" style="color:'+color+';">'+time_format+'</div><div class="merchants_time_percent_out" style="background-image: url(img/energie_balken_grund.gif);"><div id="merchants_time_percent" class="charstats_balken_xp" style="width:'+percent_completed+'%"></div></div>').tooltip([gca_locale.get('merchants_new_goods_time')+' ( '+percent_completed+'% )']).beforeFrom( $dark('#submenu1 a['+x+']') );
-					$dark('*div').style('height:10px;').afterFrom( $dark('#submenu1 a['+(x+1)+']') );
-				}else if(level==3 || level==4 || level==5 ){
-					$dark('*div').id("merchants_time_tooltip_holder").html('<div id="merchants_time_box" style="color:'+color+';">'+time_format+'</div><div class="merchants_time_percent_out" style="background-image: url(img/energie_balken_grund.gif);"><div id="merchants_time_percent" class="charstats_balken_xp" style="width:'+percent_completed+'%"></div></div>').tooltip([gca_locale.get('merchants_new_goods_time')+' ( '+percent_completed+'% )']).beforeFrom( $dark('#submenu1 a['+(x+1)+']') );
-					$dark('*div').style('height:10px;').afterFrom( $dark('#submenu1 a['+(x+4)+']') );
-				}else{
-					$dark('*div').id("merchants_time_tooltip_holder").html('<div id="merchants_time_box" style="color:'+color+';">'+time_format+'</div><div class="merchants_time_percent_out" style="background-image: url(img/energie_balken_grund.gif);"><div id="merchants_time_percent" class="charstats_balken_xp" style="width:'+percent_completed+'%"></div></div>').tooltip([gca_locale.get('merchants_new_goods_time')+' ( '+percent_completed+'% )']).beforeFrom( $dark('#submenu1 a['+x+']') );
-					$dark('*div').style('height:10px;').afterFrom( $dark('#submenu1 a['+(x+4)+']') );
-				}
-				
-				if(remaining_time>0){
-					$dark('*script').html('\
-					var time_left='+Math.floor(remaining_time/1000)+';\
-					merchant_coutdown();\
-					\
-					function merchant_coutdown(){\
-						var percent_completed = Math.round( 100-( time_left/( 24*60*60 ) )*100 );\
-						document.getElementById("merchants_time_percent").style.width=percent_completed+"%";\
-						\
-						if((time_left-(time_left%3600))/3600<1){\
-							document.getElementById("merchants_time_box").style.color="red";\
-						}else{\
-							document.getElementById("merchants_time_box").style.color="#C7B68A;";\
-						}\
-						\
-						var h=(time_left-(time_left%3600))/3600;\
-						var m=((time_left%3600)-(time_left%60))/60;\
-						var s=time_left%60;\
-						h=(h<10)?"0"+h:h;\
-						m=(m<10)?"0"+m:m;\
-						s=(s<10)?"0"+s:s;\
-						\
-						document.getElementById("merchants_time_box").innerHTML=""+h+":"+m+":"+s;\
-						time_left=time_left-1;\
-						if(time_left==-2){\
-							document.getElementById("merchants_time_box").innerHTML="'+gca_locale.get('new_goods')+'";\
-							document.getElementById("merchants_time_box").style.color="yellow";\
-						}else{\
-							setTimeout("merchant_coutdown()",999);\
-						}\
-					}\
-					').appendTo('body');
-				}
 			}
 		},
 
@@ -2507,10 +2426,10 @@ var gca_global = {
 				//"index.php?mod=underworld&submod=prayEnd&sh=" + gca_section.sh;
 				a.href = gca_getPage.link({"mod":"underworld","submod":"prayEnd"});
 				a.textContent = '╳';
-				a.setAttribute('data-tooltip','[[["'+gca_locale.get("stop_praying")+' (-5% '+gca_locale.get("heal")+')","#fff"]]]');
+				a.setAttribute('data-tooltip','[[["' + gca_locale.get("global", "pray_stop") + ' (-5% '+gca_locale.get("global", "heal") + ')","#fff"]]]');
 			}else{
 				a.href = "index.php?mod=underworld&submod=prayStart&sh=" + gca_section.sh;
-				a.setAttribute('data-tooltip','[[["'+gca_locale.get("start_praying")+' (+5% '+gca_locale.get("heal")+')","#fff"]]]');
+				a.setAttribute('data-tooltip','[[["' + gca_locale.get("global", "pray_start") + ' (+5% '+gca_locale.get("global", "heal") + ')","#fff"]]]');
 			}
 			a.style = 'background-image: url(img/buff/healing.png);';
 			localBuffs.getElementsByClassName('buff-container')[0].appendChild(a);
@@ -2783,7 +2702,7 @@ var gca_global = {
 				var lastTime = gca_data.section.get("timers", "notify_new_guild_application", 0);
 				// If an application is pending
 				if(lastTime == -1){
-					gca_notifications.info(gca_locale.get("pending_guild_application"));
+					gca_notifications.info(gca_locale.get("global", "notification_guild_application"));
 				}
 				// Else if it's time to check
 				else if(gca_tools.time.server() - lastTime >= gca_options.int("global","notify_new_guild_application_interval") * 60000){
@@ -2796,7 +2715,7 @@ var gca_global = {
 							// Save
 							gca_data.section.set("timers", "notify_new_guild_application", -1);
 							// Notify
-							gca_notifications.info(gca_locale.get("pending_guild_application"));
+							gca_notifications.info(gca_locale.get("global", "notification_guild_application"));
 						}
 					});
 				}
@@ -2916,27 +2835,27 @@ var gca_global = {
 				var dialog = new gca_build.dialog;
 				this.dialog = dialog;
 				dialog.smallHead(true);
-				dialog.title.textContent = gca_locale.get("gold_exp_data"); // TODO : translations
+				dialog.title.textContent = gca_locale.get("global", "gold_exp_data");
 				
 				// Add description
 				var div = document.createElement('div');
 				div.id = "today_values";
-				div.textContent = gca_locale.get("today_values") + ":";
+				div.textContent = gca_locale.get("global", "gold_exp_data_today") + ":";
 				dialog.body.appendChild(div);
 				
 				div = document.createElement('div');
 				div.id = "days7_values";
-				div.textContent = gca_locale.get("days7_values") + ":";
+				div.textContent = gca_locale.get("global", "gold_exp_data_week") + ":";
 				dialog.body.appendChild(div);
 				
 				div = document.createElement('div');
 				div.id = "average_per_day";
-				div.textContent = gca_locale.get("average_per_day") + ":";
+				div.textContent = gca_locale.get("global", "gold_exp_data_avg_day") + ":";
 				dialog.body.appendChild(div);
 				
 				div = document.createElement('div');
 				div.id = "days_left_to_level_up";
-				div.textContent = gca_locale.get("days_left_to_level_up") + ":";
+				div.textContent = gca_locale.get("global", "gold_exp_data_to_level_up") + ":";
 				dialog.body.appendChild(div);
 				
 				// Add some space
@@ -2990,7 +2909,7 @@ var gca_global = {
 				var button = document.createElement('input');
 				button.className = "button3";
 				button.type = "button";
-				button.value = gca_locale.get("close");
+				button.value = gca_locale.get("general", "close");
 				dialog.body.appendChild(button);
 
 				button.addEventListener('click', function(){
