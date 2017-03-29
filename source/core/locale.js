@@ -3,7 +3,7 @@
  * Gladiatus Crazy Add On
  */
 
-// Loacale Manage
+// Locale Manage
 var locale = {
 	// Languages Language
 	countries : {
@@ -28,7 +28,7 @@ var locale = {
 		);
 
 		// Load translation script
-		tools.preloadScript("source/locale.js");
+		tools.preloadScript("source/gca.locale.js");
 
 		// If not english
 		if(lang != "en") {

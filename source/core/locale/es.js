@@ -10,7 +10,9 @@
 gca_languages['es'] = {
 	name : 'Español',
 	translator : "Francisco Carvajal, McINTYRE[claudiukiss@yahoo.es], JotaFraG [daxter_gamer@hotmail.com]",
-	locale : {
+	locale :{
+	},
+	locale_deprecated : {
 		description : "¡La addon más loca de Gladiatus jamás creada!",
 		write_private_message : "Escribir mensaje privado",
 		write_guild_message : "Escribir mensaje para la alianza",

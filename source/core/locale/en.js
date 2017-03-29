@@ -9,7 +9,100 @@
 var gca_languages = gca_languages || {};
 gca_languages["en"] = {
 	name : "English (United States)",
-	locale : {
+	translators : ["DarkThanos", "GreatApo"],
+	
+	// Traslations
+	locale :{
+		// Addon info
+		info : {
+			description : "The craziest add-on for gladiatus ever!"
+		},
+
+		// General
+		general : {
+
+			// Minites
+			minutes : "minute(s)",
+
+			no_data : "No data",
+
+
+			// Modal buttons
+			confirm : "Confirm",
+			cancel : "Cancel",
+			close : "Close",
+			error : "Error",
+		},
+
+		// Global
+		global : {
+			// Use a life potion
+			life_potion_use : "Use a life potion",
+			life_potion_used : "A life potion was used",
+			life_potion_left : "You now have {number} life potion(s)",
+			
+			// Life points recovery
+			life_recover_full : "Full life recover",
+
+			// Button bar - Message
+			message_private_write : "Write private message",
+			message_guild_write : "Write guild message",
+			message_send : "Send",
+			message_sent_success : "Message was sent successfully",
+			message_sent_failed : "Failed to sent message",
+			message_empty : "The message is empty",
+			message_exclude_me : "Exclude me",
+			// Button bar buttons
+			guild_market_goto : "Go to guild's market",
+			guild_storage_goto : "Go to guild's storage",
+			guild_bank_goto : "Go to guild's bank",
+			guild_warcamp_goto : "Go to guild's war camp",
+			guild_jail_goto : "Go to guild's jail",
+			guild_library_goto : "Go to guild's library",
+			guild_medic_goto : "Go to guild's medic center",
+			simulator_goto : "Go to simulator",
+			stats_display : "Display my stats",
+			online_display : "Display online players",
+			// Online friends
+			online_friends : "Online Friends",
+			guild_friends : "Guild Friends",
+			family_friends : "Family Friends",
+			// Guild donate
+			donate_gold_confirm : "Are you sure you want to donate {number} gold?",
+			donate_gold_success : "Gold donated successfully",
+			donate_gold_failed : "Gold donation failed",
+			donate_gold_no_gold : "There is no gold to donate",
+			donate_gold_all_gold : "Donate all your gold",
+
+			// Quest timer
+			quest_full : "Full",
+			quest_new : "New",
+
+			// Pray icon
+			pray_start : "Press to stop praying",
+			pray_stop : "Press to start praying",
+			heal : "heal",
+
+			// Notifications
+			notification_guild_application : "There is a pending guild application!",
+
+			// Gold - Exp data
+			gold_exp_data : "Gold and Experience Data",
+			gold_exp_data_today : "Today's values",
+			gold_exp_data_week : "7 days values",
+			gold_exp_data_avg_day : "Average values per day",
+			gold_exp_data_to_level_up : "Days left to level up",
+		},
+
+		pantheon : {
+			mysterybox_open_all : "Open all",
+			mysterybox_open_stop : "Stop",
+			mysterybox_open_done : "Done!",
+		}
+	},
+
+	// Old deprecated struct
+	locale_deprecated : {
 		/* Add on informations */
 			description : "The craziest add-on for gladiatus ever!",
 
