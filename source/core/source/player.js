@@ -21,12 +21,15 @@ var gca_player = {
 
 		// Add shadow to doll items
 		dollItems : function(){
-			// Get doll items
-			var items = document.getElementById("char").getElementsByClassName("ui-draggable");
+			// Get doll divs
+			var items = document.getElementById("char").getElementsByClassName("ui-droppable");
 
 			// Add shadow to each item
 			for(var i = items.length - 1; i >= 0; i--){
-				gca_tools.itemShadow.add(items[i]);
+				// If item
+				if(items[i].className.match("item-i-")){
+					gca_tools.item.shadow.add(items[i]);
+				}
 			}
 
 		}
