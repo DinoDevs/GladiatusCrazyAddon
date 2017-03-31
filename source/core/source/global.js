@@ -2993,7 +2993,7 @@ var gca_global = {
 				img.border = "0";
 				document.getElementById('days7_values').appendChild(img);
 				
-				document.getElementById('average_per_day').textContent+= " "+ Math.round(Ydata[Ydata.length-1].y/7*100)/100 +" "+exp_tran+" / "+Math.round(Xdata[Xdata.length-1].y/7*100)/100+" ";
+				document.getElementById('average_per_day').textContent+= " "+ Math.round(Ydata[Ydata.length-1].y/7) +" "+exp_tran+" / "+Math.round(Xdata[Xdata.length-1].y/7)+" ";
 				var img = document.createElement('img');
 				img.src = "img/res2.gif";
 				img.align = "absmiddle";
