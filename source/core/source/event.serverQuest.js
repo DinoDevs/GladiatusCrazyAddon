@@ -45,7 +45,7 @@ var gca_server_quest = {
 
 		
 		// Get number of points
-		var points_number = document.getElementById("content").getElementsByTagName("img")[1].parentNode.innerHTML.match(/(\d)\s*<img/im);
+		var points_number = document.getElementById("content").getElementsByTagName("img")[1].parentNode.innerHTML.match(/(\d+)\s*<img/im);
 		if(points_number){
 			points_number = parseInt(points_number[1]);
 		}
