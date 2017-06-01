@@ -318,9 +318,22 @@ var gca_packages = {
 		loadPages : function(page, pages, urlParams){
 			// Pages to load
 			this.pageLoadArray = [];
+
+			// Create url object for each page
+			var urlObj;
 			for(var i=1; i<pages; i++){
-				urlParams.page = page + i;
-				this.pageLoadArray.push(urlParams);
+				// Init url object for this page
+				urlObj = {};
+				// Copy url parametes
+				for (param in urlParams) {
+					if (urlParams.hasOwnProperty(param)) {
+						urlObj[param] = urlParams[param];
+					}
+				}
+				// Set page number
+				urlObj.page = page + i;
+				// Add url on the list
+				this.pageLoadArray.push(urlObj);
 			}
 
 			// Load page auter page
@@ -341,10 +354,11 @@ var gca_packages = {
 
 			// Get packets
 			jQuery.get(gca_getPage.link(page), function(content){
+				console.log(gca_getPage.link(page));
 
 				// Get page number
 				var responce_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
-				if(responce_page) responce_page = responce_page[1] * 1;
+				if(responce_page) responce_page = parseInt(responce_page[1], 10);
 				else responce_page = -1;
 
 				// Validate responce page
@@ -352,7 +366,7 @@ var gca_packages = {
 					return;
 
 				// Parse items form content
-				var items = content.match(/<div\s+class="packageItem">[^<]*<div[^>]+>[^<]*<\/div>[^<]*<div[^>]*>[^<]*<div[^>]*>[^<]*<\/div>[^<]*<\/div>[^<]*<div>[^<]*[^<]*<span[^>]*>[^<]*<\/span>[^<]*<\/div>[^<]*<\/div>/gim);
+				var items = content.match(/<div\s+class="packageItem">[^<]*<input\s+[^>]+>[^<]*<div[^>]+>[^<]*<\/div>[^<]*<div[^>]*>[^<]*<div[^>]*>[^<]*<\/div>[^<]*<\/div>[^<]*<div>[^<]*[^<]*<span[^>]*>[^<]*<\/span>[^<]*<\/div>[^<]*<\/div>/gim);
 				if(items == null) return;
 				// For each item
 				for (var i=0; i<items.length; i++){
