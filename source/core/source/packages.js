@@ -354,8 +354,6 @@ var gca_packages = {
 
 			// Get packets
 			jQuery.get(gca_getPage.link(page), function(content){
-				console.log(gca_getPage.link(page));
-
 				// Get page number
 				var responce_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
 				if(responce_page) responce_page = parseInt(responce_page[1], 10);
