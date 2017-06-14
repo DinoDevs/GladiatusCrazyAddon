@@ -8,6 +8,8 @@ var gca_guild_bank = {
 
 	// Inject 
 	inject : function(){
+		return;
+
 		// Donate page
 		if(gca_section.submod == null || gca_section.submod == 'donate')
 			this.inject_donatePage();
