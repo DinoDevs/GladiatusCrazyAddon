@@ -6,13 +6,21 @@
  * Translator: DarkThanos, GreatApo
  */
 
+// Languages Object
 var gca_languages = gca_languages || {};
+
+// Set Language
 gca_languages["en"] = {
+
+	// Language name
 	name : "English (United States)",
+	// Translators (authors of this script)
 	translators : ["DarkThanos", "GreatApo"],
 	
 	// Traslations
 	locale :{
+	// Translations object
+	locale : {
 		// Addon info
 		info : {
 			description : "The craziest add-on for gladiatus ever!"
@@ -94,10 +102,13 @@ gca_languages["en"] = {
 			gold_exp_data_to_level_up : "Days left to level up",
 		},
 
+		// Pantheon section
 		pantheon : {
+			// Mystery box
 			mysterybox_open_all : "Open all",
 			mysterybox_open_stop : "Stop",
 			mysterybox_open_done : "Done!",
+		},
 		}
 	},
 

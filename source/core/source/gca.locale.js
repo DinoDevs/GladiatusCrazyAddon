@@ -36,7 +36,7 @@ var gca_locale = {
 		// For each variable
 		for(var name in variables){
 			// Replace variable
-			raw = raw.replace(new RegExp('{' + name + '}', 'g'), variables[name]);
+			raw = raw.replace(new RegExp('{{' + name + '}}', 'g'), variables[name]);
 		}
 		// Return generated traslation
 		return raw;
@@ -50,22 +50,25 @@ var gca_locale = {
 		}
 
 		// Check Language
-		if(gca_languages[gca_locale.active] != undefined)
+		if(gca_languages[gca_locale.active] != undefined){
 			// Check Translation
 			if(
 				gca_languages[gca_locale.active].locale[section] != undefined &&
 				gca_languages[gca_locale.active].locale[section][code] != undefined
-			)
+			) {
 				// Get Translation
 				return gca_languages[gca_locale.active].locale[section][code];
-
+			}
+		}
+		
 		// If not found, fallback to english
 		// Get english locale
 		if(
 			gca_languages["en"].locale[section] &&
 			gca_languages["en"].locale[section][code]
-		)
+		){
 			return gca_languages["en"].locale[section][code];
+		}
 
 		// If not found
 		// Undefined Locale
