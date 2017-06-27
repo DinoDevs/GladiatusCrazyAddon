@@ -1300,9 +1300,24 @@ var gca_tools = {
 		};
 
 		return modal;
-	})()
+	})(),
 
 
+	// Create
+	// -------------------------------------------------- //
+	// create.goldIcon()
+	// -------------------------------------------------- //
+	create : {
 
+		goldIcon : function() {
+			var img = document.createElement("img");
+			img.setAttribute("alt", "");
+			img.setAttribute("src", "img/res2.gif");
+			img.setAttribute("align", "absmiddle");
+			img.setAttribute("border", "0");
+			return img;
+		}
+
+	}
 
 };
