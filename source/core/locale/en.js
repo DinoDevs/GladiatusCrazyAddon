@@ -109,6 +109,11 @@ gca_languages["en"] = {
 			mysterybox_open_stop : "Stop",
 			mysterybox_open_done : "Done!",
 		},
+
+		// Guild section
+		guild : {
+			// Guild Bank
+			bank_all_gold : "All your gold"
 		}
 	},
 

@@ -8,7 +8,6 @@ var gca_guild_bank = {
 
 	// Inject 
 	inject : function(){
-		return;
 
 		// Donate page
 		if(gca_section.submod == null || gca_section.submod == 'donate')
@@ -21,117 +20,156 @@ var gca_guild_bank = {
 
 	// Page - Donate
 	inject_donatePage : function(){
-
+		// Bank Book Layout improve
+		(gca_options.bool("guild","bank_donate_layout") && 
+			this.donateLayout.improve(this));
 	},
 
 	// Page - Book
 	inject_bookPage : function(){
 		// Bank Book Layout improve
 		(gca_options.bool("guild","bank_book_layout") && 
-			this.bookLayout.improve());
+			this.bookLayout.improve(this));
 	},
 
+	// Tools
+	tools : {
+		parseGold : function(text){
+			// Prepare
+			text = gca_tools.strings.trim(text);
+			text = gca_tools.strings.removeDots(text);
+			// Parse gold
+			var gold = parseInt(text, 10);
+			if(isNaN(gold)) return null;
+			return gold;
+		}
+	},
 
 	// Bank Improve
 	donateLayout : {
-		improve : function(){
+		improve : function(self){
+			// Get wrappers
+			var wrapper = document.getElementById("content").getElementsByTagName("article");
+			if(!wrapper) return;
 
+			// Improve gold in bank
+			this.goldInBank(self, wrapper[0].getElementsByTagName("table")[0]);
+			// Improve donate all my gold
+			this.insertAllPlayersGold(self, wrapper[0].getElementsByTagName("table")[1]);
+		},
+
+		// Improve gold in bank
+		goldInBank : function(self, wrapper){
+			// Get gold values
+			var bankGold = self.tools.parseGold(wrapper.getElementsByTagName("th")[1].textContent);
+			var bankSafeGold = self.tools.parseGold(wrapper.getElementsByTagName("th")[3].textContent);
+
+			// Validate
+			if(bankGold === null || bankSafeGold === null)
+				return;
+
+			// Add minus symbol
+			var safeGoldCell = wrapper.getElementsByTagName("th")[3];
+			safeGoldCell.insertBefore(document.createTextNode('- '), safeGoldCell.childNodes[0]);
+
+			// Add unsafe gold row
+			var unsafeGoldRow = document.createElement("tr");
+			var emptyCell = document.createElement("th");
+			unsafeGoldRow.appendChild(emptyCell);
+			var unsafeGoldCell = document.createElement("th");
+			unsafeGoldCell.setAttribute("align", "right");
+			unsafeGoldCell.textContent = "= " + gca_tools.strings.insertDots(bankGold - bankSafeGold) + " ";
+			unsafeGoldCell.style.borderTop = "1px solid #876e3e";
+			unsafeGoldCell.appendChild(gca_tools.create.goldIcon());
+			unsafeGoldRow.appendChild(unsafeGoldCell);
+			wrapper.appendChild(unsafeGoldRow);
+		},
+
+		// Improve donate all my gold
+		insertAllPlayersGold : function(self, wrapper){
+			// Make space for the cell
+			wrapper.getElementsByTagName("th")[4].removeAttribute("colspan");
+			
+			// Create cell
+			var buttonCell = document.createElement("th");
+			buttonCell.setAttribute("align", "right");
+			wrapper.getElementsByTagName("tr")[2].appendChild(buttonCell);
+
+			// Create button
+			var button = document.createElement("input");
+			button.setAttribute("type", "button");
+			button.setAttribute("class", "button1");
+			button.setAttribute("value", gca_locale.get("guild", "bank_all_gold"));
+			buttonCell.appendChild(button);
+
+			// Get input
+			var input = wrapper.getElementsByTagName("th")[3].getElementsByTagName("input")[0];
+
+			// Handle action
+			button.addEventListener('click', function(){
+				// Get player's gold
+				var gold = document.getElementById("sstat_gold_val").textContent;
+				gold = self.tools.parseGold(gold);
+				// Add value
+				input.value = gold;
+			}, false);
 		}
 	},
 
 	// Bank Book Improve
 	bookLayout : {
-		improve : function(){
-			// Donations
-			var donations = 0;
-			var exMembers_donations = 0;
+		improve : function(self){
+			// Get wrappers
+			var wrapper = document.getElementById("content").getElementsByTagName("section");
+			if(!wrapper) return;
 
-			// Set hide ex-guild member class flag
-			document.getElementById("content").className += " hide-not-in-guild-players bank-book-layout";
+			// Improve donators interface
+			this.donators(self, wrapper[0].getElementsByTagName("table")[0]);
+		},
 
-			// Table
-			var table = document.getElementById("content").getElementsByTagName("table")[0];
-			table.setAttribute("width", "100%");
-			table.id = "guild-bank-book-table";
+		// Improve donators
+		donators : function(self, wrapper){
+			// Full width
+			wrapper.style.width = "100%";
 
 			// Get rows
-			var row = table.getElementsByTagName("tr");
+			var row = wrapper.getElementsByTagName("tr");
 			// For each row
-			for(var i=1; i<row.length; i++){
-				// Get cell
-				var cell = row[i].getElementsByTagName("td");
-				// Get gold
-				var gold = parseInt(cell[2].textContent.replace(/\./g,''));
-				donations += gold;
-				// If not in guild
-				if(cell[1].textContent == "-"){
-					exMembers_donations += gold;
-					row[i].className = "not-in-guild";
+			var gold;
+			for (var i = row.length - 1; i >= 2; i--) {
+				// If row and above don't have a link
+				if(
+					row[i].getElementsByTagName("a").length == 0 &&
+					row[i - 1].getElementsByTagName("a").length == 0
+				){
+					// Add golds
+					gold = self.tools.parseGold(row[i].getElementsByTagName("td")[2].textContent);
+					gold += self.tools.parseGold(row[i - 1].getElementsByTagName("td")[2].textContent);
+					row[i - 1].getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(gold);
+					// Number of data
+					row[i - 1].dataset.number = (row[i].dataset.number) ? parseInt(row[i].dataset.number, 10) + 1 : 2;
+					// Remove row
+					row[i].parentNode.removeChild(row[i]);
 				}
-				// Save gold in dataset
-				cell[2].dataset.donation = gold;
 			}
 
-			// Show total donations	
-			var goldInfo = document.createElement("div");
-			goldInfo.id = "guild-bank-book-gold-info";
-			goldInfo.appendChild(document.createTextNode("(" + gca_locale.get("total") + ": " + gca_tools.strings.insertDots(donations)));
-			var goldImg = document.createElement("img");
-			goldImg.src = "img/res2.gif";
-			goldImg.setAttribute("align", "absmiddle");
-			goldImg.setAttribute("border", "0");
-			goldInfo.appendChild(goldImg);
-			goldInfo.appendChild(document.createTextNode(")"));
-			document.getElementById("content").getElementsByTagName("div")[2].appendChild(goldInfo);
-
-			// Show ex-members donations
-			var exMember = table.getElementsByClassName("not-in-guild");
-			if(exMember.length > 0){
-				exMember = exMember[0];
-				var tr = exMember.cloneNode(true);
-				tr.getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(exMembers_donations);
-				tr.getElementsByTagName("td")[2].dataset.donation = exMembers_donations;
-				tr.className = "not-in-guild-header";
-				tr.dataset.closed = true;
-				tr.addEventListener('click', function(){
-					var value;
-					if(this.dataset.state == "opened"){
-						value = "none";
-						this.dataset.state = "closed";
-					}else{
-						value = "table-row";
-						this.dataset.state = "opened";
-					}
-
-					var exMembers = table.getElementsByClassName("not-in-guild");
-					for (var i = exMembers.length - 1; i >= 0; i--) {
-						exMembers[i].style.display = value;
-					}
-				}, false);
-
-				exMember.parentNode.insertBefore(tr, exMember);
+			// Donated gold
+			var guildGold = 0;
+			for (var i = row.length - 1; i >= 1; i--) {
+				guildGold += self.tools.parseGold(row[i].getElementsByTagName("td")[2].textContent);
 			}
 
-			// Setup a column
-			var cell = row[0].getElementsByTagName("td");
-			var td = document.createElement("td");
-			td.textContent = "%";
-			td.style.color = "#612D04";
-    		td.style.fontWeight = "bold";
-			cell[3].parentNode.insertBefore(td, cell[3]);
-
-			// For each row
-			for(var i=1; i<row.length; i++){
-				// Get cell
-				cell = row[i].getElementsByTagName("td");
-				td = document.createElement("td");
-				td.textContent = "(" + (Math.round(cell[2].dataset.donation * 1000 / donations) / 10) + "%)"
-				cell[3].parentNode.insertBefore(td, cell[3]);
+			// Show data
+			for (var i = row.length - 1; i >= 1; i--) {
+				// Show percent
+				gold = self.tools.parseGold(row[i].getElementsByTagName("td")[2].textContent);
+				row[i].getElementsByTagName("td")[2].textContent += " (" + (Math.round((gold * 1000) / guildGold) / 10) + "%)";
+				// If more items in row
+				if (row[i].dataset.number) {
+					row[i].getElementsByTagName("td")[0].textContent += " (" + row[i].dataset.number + ")";
+				}
 			}
-
 		}
-
-
 	}
 };
 

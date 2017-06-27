@@ -427,6 +427,8 @@ gca_options.data = {
 		"jail_layout" : true,
 		// Library layout
 		"library_layout" : true,
+		// Bank Donate Layout
+		"bank_donate_layout" : true,
 		// Bank Book Layout
 		"bank_book_layout" : true
 	},
