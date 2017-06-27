@@ -40,10 +40,12 @@ var gca_overview_stats = {
 			gold_lost : parseInt(arena.gold_lost.getElementsByTagName('td')[0].textContent.replace(/\s*<img[^>]*>/g,'').replace(/\./g,''))
 		};
 
+		// Arena battles number improve
 		arena.wins.getElementsByTagName('td')[0].textContent = gca_tools.strings.insertDots(arena_stats.wins) + " (" + Math.round(arena_stats.wins*100/arena_stats.battles) + "%)";
 		arena.loses.getElementsByTagName('td')[0].textContent = gca_tools.strings.insertDots(arena_stats.loses) + " (" + Math.round(arena_stats.loses*100/arena_stats.battles) + "%)";
 		arena.draws.getElementsByTagName('td')[0].textContent = gca_tools.strings.insertDots(arena_stats.draws) + " (" + Math.round(arena_stats.draws*100/arena_stats.battles) + "%)";
 		
+		// Calculate ratio
 		arena_stats.ratio = Math.round((arena_stats.wins/arena_stats.loses)*100)/100;
 		if(isNaN(arena_stats.ratio)) arena_stats.ratio = 1;
 		arena.ratio = document.createElement('tr');
@@ -62,10 +64,11 @@ var gca_overview_stats = {
 		temp.style.height = "10px";
 		arena.ratio.parentNode.insertBefore(temp, arena.ratio.nextSibling);
 
+		// Calculate hits difference
 		arena_stats.hit_points_difference = arena_stats.hit_points_done - arena_stats.hit_points_taken;
 		arena.hit_points_difference = document.createElement('tr');
 		temp = document.createElement('th');
-		temp.textContent = gca_locale.get("difference") + ":";
+		temp.textContent = gca_locale.get("overview", "stats_difference") + ":";
 		arena.hit_points_difference.appendChild(temp);
 		temp = document.createElement('td');
 		temp.className = "stats_value";
@@ -79,10 +82,11 @@ var gca_overview_stats = {
 		temp.style.height = "10px";
 		arena.hit_points_difference.parentNode.insertBefore(temp, arena.hit_points_difference.nextSibling);
 
+		// Calculate gold difference
 		arena_stats.gold_difference = arena_stats.gold_taken - arena_stats.gold_lost;
 		arena.gold_difference = document.createElement('tr');
 		temp = document.createElement('th');
-		temp.textContent = gca_locale.get("difference") + ":";
+		temp.textContent = gca_locale.get("overview", "stats_difference") + ":";
 		arena.gold_difference.appendChild(temp);
 		temp = document.createElement('td');
 		temp.className = "stats_value";
@@ -116,10 +120,12 @@ var gca_overview_stats = {
 			gold_lost : parseInt(turma.gold_lost.getElementsByTagName('td')[0].textContent.replace(/\s*<img[^>]*>/g,'').replace(/\./g,''))
 		};
 
+		// Arena battles number improve
 		turma.wins.getElementsByTagName('td')[0].textContent = gca_tools.strings.insertDots(turma_stats.wins) + " (" + Math.round(turma_stats.wins*100/turma_stats.battles) + "%)";
 		turma.loses.getElementsByTagName('td')[0].textContent = gca_tools.strings.insertDots(turma_stats.loses) + " (" + Math.round(turma_stats.loses*100/turma_stats.battles) + "%)";
 		turma.draws.getElementsByTagName('td')[0].textContent = gca_tools.strings.insertDots(turma_stats.draws) + " (" + Math.round(turma_stats.draws*100/turma_stats.battles) + "%)";
 		
+		// Calculate ratio
 		turma_stats.ratio = Math.round((turma_stats.wins/turma_stats.loses)*100)/100;
 		if(isNaN(turma_stats.ratio)) turma_stats.ratio = 1;
 		turma.ratio = document.createElement('tr');
@@ -138,10 +144,11 @@ var gca_overview_stats = {
 		temp.style.height = "10px";
 		turma.ratio.parentNode.insertBefore(temp, turma.ratio.nextSibling);
 
+		// Calculate gold difference
 		turma_stats.gold_difference = turma_stats.gold_taken - turma_stats.gold_lost;
 		turma.gold_difference = document.createElement('tr');
 		temp = document.createElement('th');
-		temp.textContent = gca_locale.get("difference") + ":";
+		temp.textContent = gca_locale.get("overview", "stats_difference") + ":";
 		turma.gold_difference.appendChild(temp);
 		temp = document.createElement('td');
 		temp.className = "stats_value";

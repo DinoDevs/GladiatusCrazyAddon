@@ -45,9 +45,8 @@ gca_languages["en"] = {
 
 			// Minites
 			minutes : "minute(s)",
-
+			// No data
 			no_data : "No data",
-
 
 			// Modal buttons
 			confirm : "Confirm",
@@ -114,6 +113,12 @@ gca_languages["en"] = {
 			gold_exp_data_week : "7 days values",
 			gold_exp_data_avg_day : "Average values per day",
 			gold_exp_data_to_level_up : "Days left to level up",
+		},
+
+		// Overview
+		overview : {
+			// Stats Difference
+			stats_difference : "Difference",
 		},
 
 		// Pantheon section
