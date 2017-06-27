@@ -137,6 +137,18 @@ var gca_messages = {
 				if(element.getElementsByTagName('a').length > 0 && element.getElementsByTagName('a')[0].href.match("guild_warcamp")){
 					message.type = "guild_battle";
 				}
+
+				// Auction item won
+				// The anounsment has the same title and body
+				else if(message.title.textContent == message.body.textContent){
+					message.type = "news";
+				}
+
+				// Auction item lost
+				// The body has 2x "
+				else if(message.body.textContent.split('"').length - 1 == 2){
+					message.type = "news";
+				}
 				
 				// Other
 				else{
