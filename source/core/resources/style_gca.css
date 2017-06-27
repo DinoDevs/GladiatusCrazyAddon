@@ -616,6 +616,7 @@
 	-------------------------------------------------- */
 
 		/* Buttons corrections */
+		input[type="submit"].button1, input[type="submit"].button2 {cursor: pointer;}
 		.premium_activate_button.disabled{filter: grayscale(100%);color: black;cursor: default;}
 
 		/* Paging Layout */
