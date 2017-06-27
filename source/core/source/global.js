@@ -2735,12 +2735,15 @@ var gca_global = {
 			collect : function(){
 				// Get saved data
 				var data = gca_data.section.get("data", "gold_exp_data", false);
+				
+				console.log(data);
+				
 				// Collect data every 10min = (600k ms)
-				if (!data || gca_tools.time.server() - data[data.length - 1][2] < 6e5){
+				if (data && gca_tools.time.server() - data[data.length - 1][2] < 6e5){
 					// Not yet 10 mins
 					return;
 				}
-					
+				
 				// Go to achievements page and collect gathered gold data
 				jQuery.get(gca_getPage.link({"mod":"overview","submod":"achievements"}), function(content){
 					// Get server date
@@ -2748,11 +2751,15 @@ var gca_global = {
 
 					// Get saved data (again just to be sure)
 					var data = gca_data.section.get("data", "gold_exp_data", []);
+					
+					
+					/* Ο ΘΑΝΟΣ ΓΡΑΦΕΙ GTP ΚΩΔΙΚΑ
 					// Collect data every 10min = (600k ms)
 					if (!serverDate || !data.length || serverDate - data[data.length - 1][2] < 6e5){
 						// Not yet 10 mins
 						return;
 					}
+					*/
 
 					// Get gold
 					var gold = content.match(/([\d\.]+) \/ 50\.000\.000/i);
@@ -2865,6 +2872,7 @@ var gca_global = {
 				
 				// Add Canvas
 				var canvas = document.createElement('canvas');
+				canvas.id = "graph_canvas";
 				canvas.width = 500;
 				canvas.height = 200;
 				this.canvas = canvas;
@@ -2973,88 +2981,97 @@ var gca_global = {
 					}
 				}
 				
-				// Experience translate
-				var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
-				// Gold translate
-				var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
-				
-				// Write raw data - TODO needs a little styling + today_values=last 24h not today
-				document.getElementById('today_values').textContent+= " "+(Ydata[Ydata.length-1].y-Ydata[last_day].y) +" "+exp_tran+" / "+(Xdata[Xdata.length-1].y-Xdata[last_day].y)+" ";
-				var img = document.createElement('img');
-				img.src = "img/res2.gif";
-				img.align = "absmiddle";
-				img.border = "0";
-				document.getElementById('today_values').appendChild(img);
-				
-				document.getElementById('days7_values').textContent+= " "+Ydata[Ydata.length-1].y +" "+exp_tran+" / "+Xdata[Xdata.length-1].y+" ";
-				var img = document.createElement('img');
-				img.src = "img/res2.gif";
-				img.align = "absmiddle";
-				img.border = "0";
-				document.getElementById('days7_values').appendChild(img);
-				
-				document.getElementById('average_per_day').textContent+= " "+ Math.round(Ydata[Ydata.length-1].y/7) +" "+exp_tran+" / "+Math.round(Xdata[Xdata.length-1].y/7)+" ";
-				var img = document.createElement('img');
-				img.src = "img/res2.gif";
-				img.align = "absmiddle";
-				img.border = "0";
-				document.getElementById('average_per_day').appendChild(img);
-				
-				document.getElementById('days_left_to_level_up').textContent+= " "+ Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(Ydata[Ydata.length-1].y/7)*100)/100;
-				
-				// Populate graph
-				new Chart(this.canvas, {
-					type: 'line',
-					data: {
-						datasets: [
-							{
-								label: gold_tran,
-								fill: true,
-								backgroundColor: "rgba(255,193,7,0.3)",
-								borderColor: "rgba(255,193,7,1)",
-								data: Xdata
-							},
-							{
-								label: 'Measurements', // TODO - translate
-								type: 'bubble',
-								backgroundColor: "rgba(255,193,7,0.3)",
-								borderColor: "rgba(255,193,7,1)",
-								data: XdataChange
-							},
-							{
-								label: exp_tran,
-								fill: true,
-								backgroundColor: "rgba(75,192,192,0.3)",
-								borderColor: "rgba(75,192,192,1)",
-								data: Ydata
-							},
-							{
-								label: 'Measurements', // TODO - translate
-								type: 'bubble',
-								backgroundColor: "rgba(75,192,192,0.3)",
-								borderColor: "rgba(75,192,192,1)",
-								data: YdataChange
-							}
-						]
-					},
-					options: {
-						scales: {
-							xAxes: [{
-								type: 'time',
-								time: {
-									unit: 'day',
-									displayFormats: {
-										day: 'MMM D'
-									},
-									tooltipFormat: 'MMM D, h:mm:ss a'
+				// If there are no data
+				if(Ydata.length<1 || Xdata.length<1){
+					document.getElementById('today_values').textContent+= " N/A";
+					document.getElementById('days7_values').textContent+= " N/A";
+					document.getElementById('average_per_day').textContent+= " N/A";
+					document.getElementById('days_left_to_level_up').textContent+= " N/A";
+					document.getElementById('graph_canvas').style.display = "none";
+				}else{
+					// Experience translate
+					var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
+					// Gold translate
+					var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
+					
+					// Write raw data - TODO needs a little styling + today_values=last 24h not today
+					document.getElementById('today_values').textContent+= " "+(Ydata[Ydata.length-1].y-Ydata[last_day].y) +" "+exp_tran+" / "+(Xdata[Xdata.length-1].y-Xdata[last_day].y)+" ";
+					var img = document.createElement('img');
+					img.src = "img/res2.gif";
+					img.align = "absmiddle";
+					img.border = "0";
+					document.getElementById('today_values').appendChild(img);
+					
+					document.getElementById('days7_values').textContent+= " "+Ydata[Ydata.length-1].y +" "+exp_tran+" / "+Xdata[Xdata.length-1].y+" ";
+					var img = document.createElement('img');
+					img.src = "img/res2.gif";
+					img.align = "absmiddle";
+					img.border = "0";
+					document.getElementById('days7_values').appendChild(img);
+					
+					document.getElementById('average_per_day').textContent+= " "+ Math.round(Ydata[Ydata.length-1].y/7) +" "+exp_tran+" / "+Math.round(Xdata[Xdata.length-1].y/7)+" ";
+					var img = document.createElement('img');
+					img.src = "img/res2.gif";
+					img.align = "absmiddle";
+					img.border = "0";
+					document.getElementById('average_per_day').appendChild(img);
+					
+					document.getElementById('days_left_to_level_up').textContent+= " "+ Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(Ydata[Ydata.length-1].y/7)*100)/100;
+					
+					// Populate graph
+					new Chart(this.canvas, {
+						type: 'line',
+						data: {
+							datasets: [
+								{
+									label: gold_tran,
+									fill: true,
+									backgroundColor: "rgba(255,193,7,0.3)",
+									borderColor: "rgba(255,193,7,1)",
+									data: Xdata
+								},
+								{
+									label: 'Measurements', // TODO - translate
+									type: 'bubble',
+									backgroundColor: "rgba(255,193,7,0.3)",
+									borderColor: "rgba(255,193,7,1)",
+									data: XdataChange
+								},
+								{
+									label: exp_tran,
+									fill: true,
+									backgroundColor: "rgba(75,192,192,0.3)",
+									borderColor: "rgba(75,192,192,1)",
+									data: Ydata
+								},
+								{
+									label: 'Measurements', // TODO - translate
+									type: 'bubble',
+									backgroundColor: "rgba(75,192,192,0.3)",
+									borderColor: "rgba(75,192,192,1)",
+									data: YdataChange
 								}
-							}]
+							]
 						},
-						legend: {
-							position : 'bottom'
+						options: {
+							scales: {
+								xAxes: [{
+									type: 'time',
+									time: {
+										unit: 'day',
+										displayFormats: {
+											day: 'MMM D'
+										},
+										tooltipFormat: 'MMM D, h:mm:ss a'
+									}
+								}]
+							},
+							legend: {
+								position : 'bottom'
+							}
 						}
-					}
-				});
+					});
+				}
 			}
 		}
 	},
