@@ -17,8 +17,22 @@ gca_languages["en"] = {
 	// Translators (authors of this script)
 	translators : ["DarkThanos", "GreatApo"],
 	
-	// Traslations
-	locale :{
+	// Language options
+	options : {
+		// Language formats
+		formats : {
+			// Short date format
+			shortDate : "d/MM/yyyy",
+			// Long date format
+			longDate : "dddd, d, MMMM yyyy",
+			// Number Separators
+			number : {
+				thousands : ",",
+				decimal : "."
+			}
+		}
+	},
+
 	// Translations object
 	locale : {
 		// Addon info
