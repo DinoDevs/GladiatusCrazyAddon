@@ -47,7 +47,7 @@ gca_languages["en"] = {
 			// Use a life potion
 			life_potion_use : "Use a life potion",
 			life_potion_used : "A life potion was used",
-			life_potion_left : "You now have {number} life potion(s)",
+			life_potion_left : "You now have {{number}} life potion(s)",
 			
 			// Life points recovery
 			life_recover_full : "Full life recover",
