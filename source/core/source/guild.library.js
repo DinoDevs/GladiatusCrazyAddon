@@ -9,6 +9,14 @@ var gca_guild_library = {
 		// Library Layout improve
 		(gca_options.bool("guild","library_layout") && 
 			this.layout.improve());
+
+		// Fade non scrolls items
+		(gca_options.bool("guild","library_fade_non_scrolls") && 
+			this.fadeNonScrolls.init());
+
+		// More Tooltip data
+		(gca_options.bool("guild","library_tooltip_data") && 
+			this.tooltipData.init());
 	},
 
 	// Layout Improvements
@@ -25,7 +33,7 @@ var gca_guild_library = {
 
 			// Get guild gold
 			var guildGold = container.parentNode.getElementsByClassName('span_right')[1].textContent;
-			guildGold = parseInt(guildGold.replace(/\./g,''));
+			guildGold = gca_tools.strings.parseGold(guildGold);
 			
 			// Get recipes
 			var recipes = container.getElementsByTagName('tr');
@@ -74,7 +82,81 @@ var gca_guild_library = {
 			}
 
 		}
+	},
+
+	// Fade all the non scrolls items
+	fadeNonScrolls : {
+
+		init : function() {
+			// Exit if no inventory
+			if(!document.getElementById("inv")) return;
+
+			var that = this;
+
+			// Add event
+			gca_tools.event.bag.onBagOpen(function(tab){
+				that.applyToBag(tab);
+			});
+
+			// Wait first bag
+			gca_tools.event.bag.waitBag(function(){
+				that.applyToBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+			});
+		},
+
+		applyToBag : function(tab) {
+			if(tab.dataset.itemShadowed) return;
+
+			// Get items
+			var items = document.getElementById('inv').getElementsByClassName("ui-draggable");
+			
+			// For each
+			for (var i = items.length - 1; i >= 0; i--) {
+				if(!items[i].className.match(/item-i-13-\d+/i))
+					items[i].style.opacity = "0.5";
+			}
+
+			// Success
+			if(items.length)
+				tab.dataset.itemShadowed = true;
+		}
+	},
+
+	// Tooltip data
+	tooltipData : {
+		init : function(){
+			// If library container
+			if(!document.getElementById('content').getElementsByTagName('section').length)
+				return;
+			
+			// Save container
+			var container = document.getElementById('content').getElementsByTagName('section')[0];
+			// Add an id to it
+			container.id = 'gca-library-container';
+
+			// Get guild gold
+			var guildGold = container.parentNode.getElementsByClassName('span_right')[1].textContent;
+			guildGold = gca_tools.strings.parseGold(guildGold);
+			if(guildGold === null) return;
+			
+			// Get recipes
+			var recipes = container.getElementsByTagName('tr');
+
+			// For each recipe
+			for (var i = recipes.length - 1; i >= 1; i--) {
+				let recipe = recipes[i].getElementsByTagName('div')[1];
+				let tooltip = JSON.parse(recipe.dataset.tooltip);
+				let gold = gca_tools.strings.parseGold(recipes[i].getElementsByTagName('td')[1].textContent);
+				let points = parseInt(recipes[i].getElementsByTagName('td')[2].textContent.match(/\+(\d+)/i)[1], 10);
+
+				tooltip[0].push([gca_locale.get("guild", "library_per_point_cost") + ' ' + gca_tools.strings.insertDots(Math.round(gold/points)) + ' <div class="icon_gold"></div>', '#DDDDDD']);
+				tooltip[0].push([gca_locale.get("guild", "library_gold_left") + ' ' + gca_tools.strings.insertDots(guildGold - gold) + ' <div class="icon_gold"></div>', '#DDDDDD']);
+
+				gca_tools.setTooltip(recipe, JSON.stringify(tooltip));
+			}
+		}
 	}
+
 };
 
 (function(){

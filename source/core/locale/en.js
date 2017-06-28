@@ -132,7 +132,11 @@ gca_languages["en"] = {
 		// Guild section
 		guild : {
 			// Guild Bank
-			bank_all_gold : "All your gold"
+			bank_all_gold : "All your gold",
+
+			// Library
+			library_per_point_cost : "Cost per stat point",
+			library_gold_left : "Guild gold after activation"
 		}
 	},
 
