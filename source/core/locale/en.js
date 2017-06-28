@@ -89,7 +89,7 @@ gca_languages["en"] = {
 			guild_friends : "Guild Friends",
 			family_friends : "Family Friends",
 			// Guild donate
-			donate_gold_confirm : "Are you sure you want to donate {number} gold?",
+			donate_gold_confirm : "Are you sure you want to donate {{number}} gold?",
 			donate_gold_success : "Gold donated successfully",
 			donate_gold_failed : "Gold donation failed",
 			donate_gold_no_gold : "There is no gold to donate",
