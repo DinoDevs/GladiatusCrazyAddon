@@ -32,19 +32,6 @@ var gca_guild_bank = {
 			this.bookLayout.improve(this));
 	},
 
-	// Tools
-	tools : {
-		parseGold : function(text){
-			// Prepare
-			text = gca_tools.strings.trim(text);
-			text = gca_tools.strings.removeDots(text);
-			// Parse gold
-			var gold = parseInt(text, 10);
-			if(isNaN(gold)) return null;
-			return gold;
-		}
-	},
-
 	// Bank Improve
 	donateLayout : {
 		improve : function(self){
@@ -61,8 +48,8 @@ var gca_guild_bank = {
 		// Improve gold in bank
 		goldInBank : function(self, wrapper){
 			// Get gold values
-			var bankGold = self.tools.parseGold(wrapper.getElementsByTagName("th")[1].textContent);
-			var bankSafeGold = self.tools.parseGold(wrapper.getElementsByTagName("th")[3].textContent);
+			var bankGold = gca_tools.strings.parseGold(wrapper.getElementsByTagName("th")[1].textContent);
+			var bankSafeGold = gca_tools.strings.parseGold(wrapper.getElementsByTagName("th")[3].textContent);
 
 			// Validate
 			if(bankGold === null || bankSafeGold === null)
@@ -109,7 +96,7 @@ var gca_guild_bank = {
 			button.addEventListener('click', function(){
 				// Get player's gold
 				var gold = document.getElementById("sstat_gold_val").textContent;
-				gold = self.tools.parseGold(gold);
+				gold = gca_tools.strings.parseGold(gold);
 				// Add value
 				input.value = gold;
 			}, false);
@@ -143,8 +130,8 @@ var gca_guild_bank = {
 					row[i - 1].getElementsByTagName("a").length == 0
 				){
 					// Add golds
-					gold = self.tools.parseGold(row[i].getElementsByTagName("td")[2].textContent);
-					gold += self.tools.parseGold(row[i - 1].getElementsByTagName("td")[2].textContent);
+					gold = gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
+					gold += gca_tools.strings.parseGold(row[i - 1].getElementsByTagName("td")[2].textContent);
 					row[i - 1].getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(gold);
 					// Number of data
 					row[i - 1].dataset.number = (row[i].dataset.number) ? parseInt(row[i].dataset.number, 10) + 1 : 2;
@@ -156,13 +143,13 @@ var gca_guild_bank = {
 			// Donated gold
 			var guildGold = 0;
 			for (var i = row.length - 1; i >= 1; i--) {
-				guildGold += self.tools.parseGold(row[i].getElementsByTagName("td")[2].textContent);
+				guildGold += gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
 			}
 
 			// Show data
 			for (var i = row.length - 1; i >= 1; i--) {
 				// Show percent
-				gold = self.tools.parseGold(row[i].getElementsByTagName("td")[2].textContent);
+				gold = gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
 				row[i].getElementsByTagName("td")[2].textContent += " (" + (Math.round((gold * 1000) / guildGold) / 10) + "%)";
 				// If more items in row
 				if (row[i].dataset.number) {

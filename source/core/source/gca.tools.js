@@ -12,6 +12,7 @@ var gca_tools = {
 	// strings.removeDots(str)
 	// strings.insertDots(str)
 	// strings.trim(str)
+	// strings.parseGold(str)
 	// -------------------------------------------------- //
 	strings : {
 		removeDots : function(x){
@@ -28,6 +29,15 @@ var gca_tools = {
 		},
 		trim : function(str){
 			return str.replace(/\s+/g," ").replace(/^\s+|\s+$/g,"");
+		},
+		parseGold : function(text){
+			// Prepare
+			text = this.trim(text);
+			text = this.removeDots(text);
+			// Parse gold
+			var gold = parseInt(text, 10);
+			if(isNaN(gold)) return null;
+			return gold;
 		}
 	},
 
