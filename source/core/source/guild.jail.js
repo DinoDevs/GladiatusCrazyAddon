@@ -6,9 +6,12 @@
 // Guild Jail
 var gca_guild_jail = {
 	inject : function(){
-		// Improve Layout
-		(gca_options.bool("guild","jail_layout") && 
-			this.layout.improve());
+		// If main jail page
+		if (gca_section.submod == null) {
+			// Improve Layout
+			(gca_options.bool("guild","jail_layout") && 
+				this.layout.improve());
+		}
 	},
 
 	// Layout Improvements
