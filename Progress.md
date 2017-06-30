@@ -129,12 +129,12 @@
 
 ### Guild Script
 
-- [ ] Guild Jail Interface
+- [x] Guild Jail Interface
 	- [x] Cells are now visible with the creatures inside
 	- [x] Creatures are now sorted by level
 
 
-- [ ] Guild Library Interface: 
+- [x] Guild Library Interface: 
 	- [x] Level of each buff and what the buff do are now directly visible 
 	- [x] Transparency for item that you can't store in library 
 	- [x] Gold in guild bank after the use of buff is displayed in a tooltip over the buff cost 
@@ -156,7 +156,7 @@
 
 
 - [ ] Guild Medic Interface 
-	- [ ] More information over your life changes 
+	- [x] More information over your life changes 
 	- [ ] Guild's life preview page
 
 
