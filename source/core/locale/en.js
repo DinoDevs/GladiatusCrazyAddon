@@ -136,7 +136,12 @@ gca_languages["en"] = {
 
 			// Library
 			library_per_point_cost : "Cost per stat point",
-			library_gold_left : "Guild gold after activation"
+			library_gold_left : "Guild gold after activation",
+
+			// Medic
+			medic_lost_points : "Lost points",
+			medic_points_to_heal : "Points to heal",
+			medic_life_after_heal : "Life after heal"
 		}
 	},
 

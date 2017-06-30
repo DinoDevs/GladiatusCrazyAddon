@@ -103,6 +103,11 @@ var manager = {
 				case "guildBankingHouse":
 					this.section.guild_bank();
 					break;
+				
+				// Medic
+				case "guild_medic":
+					this.section.guild_medic();
+					break;
 
 			
 			// Events
@@ -249,6 +254,11 @@ var manager = {
 		// Guild Bank section
 		guild_bank : function() {
 			tools.loadScript("source/guild.bank.js");
+		},
+
+		// Guild Medic section
+		guild_medic : function() {
+			tools.loadScript("source/guild.medic.js");
 		},
 
 		// Events

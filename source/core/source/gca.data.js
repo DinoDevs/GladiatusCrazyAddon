@@ -425,14 +425,15 @@ gca_options.data = {
 	"guild" : {
 		// Jail layout
 		"jail_layout" : true,
-		// Library layout
+		// Library options
 		"library_layout" : true,
 		"library_fade_non_scrolls" : true,
 		"library_tooltip_data" : true,
-		// Bank Donate Layout
+		// Bank Layouts
 		"bank_donate_layout" : true,
-		// Bank Book Layout
-		"bank_book_layout" : true
+		"bank_book_layout" : true,
+		// Medic Layout
+		"medic_layout" : true
 	},
 
 	"events" : {
