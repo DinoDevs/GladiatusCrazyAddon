@@ -43,6 +43,11 @@ var gca_guild_bank = {
 			this.goldInBank(self, wrapper[0].getElementsByTagName("table")[0]);
 			// Improve donate all my gold
 			this.insertAllPlayersGold(self, wrapper[0].getElementsByTagName("table")[1]);
+
+			// Set gold input to number type
+			var input = wrapper[0].getElementsByTagName("table")[1].getElementsByTagName("input")[0];
+			input.style.width = "138px";
+			input.type = "number";
 		},
 
 		// Improve gold in bank
@@ -138,6 +143,12 @@ var gca_guild_bank = {
 					// Remove row
 					row[i].parentNode.removeChild(row[i]);
 				}
+
+				// If this player
+				else if (row[i].getElementsByTagName("a").length && row[i].getElementsByTagName("a")[0].href.match(new RegExp("&p=" + gca_section.playerId + "&", "i"))) {
+					// Highlight player
+					row[i].style.backgroundColor = "rgba(253, 199, 51, 0.6)";
+				}
 			}
 
 			// Donated gold
@@ -153,7 +164,7 @@ var gca_guild_bank = {
 				row[i].getElementsByTagName("td")[2].textContent += " (" + (Math.round((gold * 1000) / guildGold) / 10) + "%)";
 				// If more items in row
 				if (row[i].dataset.number) {
-					row[i].getElementsByTagName("td")[0].textContent += " (" + row[i].dataset.number + ")";
+					row[i].getElementsByTagName("td")[0].textContent += " \u00D7" + row[i].dataset.number;
 				}
 			}
 		}
