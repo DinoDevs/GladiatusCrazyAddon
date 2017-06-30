@@ -2736,8 +2736,6 @@ var gca_global = {
 				// Get saved data
 				var data = gca_data.section.get("data", "gold_exp_data", false);
 				
-				console.log(data);
-				
 				// Collect data every 10min = (600k ms)
 				if (data && gca_tools.time.server() - data[data.length - 1][2] < 6e5){
 					// Not yet 10 mins
