@@ -143,16 +143,16 @@
 
 
 - [ ] Guild Bank Interface: 
-	- [ ] Better style (Counting)
-	- [ ] Correcting the donate field code to number type 
-	- [ ] Button to add all the gold in the donate field
+	- [x] Better style (Counting)
+	- [x] Correcting the donate field code to number type 
+	- [x] Button to add all the gold in the donate field
 	- [ ] Advanced Guild Bank Book Interface
 		- [x] The sum of donations (total) is displayed 
 		- [x] Percent of donated amount of each player 
 		- [x] Ex-guild members are combine
 		- [ ] Merge continued donations of the same player 
 		- [ ] Day separators
-		- [ ] Highlight me
+		- [x] Highlight me
 
 
 - [ ] Guild Medic Interface 
