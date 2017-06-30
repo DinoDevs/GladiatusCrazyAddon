@@ -129,12 +129,12 @@
 
 ### Guild Script
 
-- [ ] Guild Jail Interface
+- [x] Guild Jail Interface
 	- [x] Cells are now visible with the creatures inside
 	- [x] Creatures are now sorted by level
 
 
-- [ ] Guild Library Interface: 
+- [x] Guild Library Interface: 
 	- [x] Level of each buff and what the buff do are now directly visible 
 	- [x] Transparency for item that you can't store in library 
 	- [x] Gold in guild bank after the use of buff is displayed in a tooltip over the buff cost 
@@ -143,20 +143,20 @@
 
 
 - [ ] Guild Bank Interface: 
-	- [ ] Better style (Counting)
-	- [ ] Correcting the donate field code to number type 
-	- [ ] Button to add all the gold in the donate field
+	- [x] Better style (Counting)
+	- [x] Correcting the donate field code to number type 
+	- [x] Button to add all the gold in the donate field
 	- [ ] Advanced Guild Bank Book Interface
 		- [x] The sum of donations (total) is displayed 
 		- [x] Percent of donated amount of each player 
 		- [x] Ex-guild members are combine
 		- [ ] Merge continued donations of the same player 
 		- [ ] Day separators
-		- [ ] Highlight me
+		- [x] Highlight me
 
 
 - [ ] Guild Medic Interface 
-	- [ ] More information over your life changes 
+	- [x] More information over your life changes 
 	- [ ] Guild's life preview page
 
 
