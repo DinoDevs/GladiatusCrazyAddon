@@ -109,8 +109,8 @@
 	- [x] Save timer
 
 
-- [ ] Pantheon Missions
-	- [ ] ✎	Show completed missions
+- [x] Pantheon Missions
+	- [x] ✎	Show completed missions
 
 
 - [ ] Pantheon Gods
@@ -136,9 +136,9 @@
 
 - [ ] Guild Library Interface: 
 	- [x] Level of each buff and what the buff do are now directly visible 
-	- [ ] Red bg and transparency for item that you can't store in library 
-	- [ ] Gold in guild bank after the use of buff is displayed in a tooltip over the buff cost 
-	- [ ] Cost per stat point of each buff is displayed in a tooltip over the buff time 
+	- [x] Transparency for item that you can't store in library 
+	- [x] Gold in guild bank after the use of buff is displayed in a tooltip over the buff cost 
+	- [x] Cost per stat point of each buff is displayed in a tooltip over the buff time 
 	- [x] Some style changes (ex. enable/delete buttons) 
 
 
@@ -149,10 +149,10 @@
 	- [ ] Advanced Guild Bank Book Interface
 		- [x] The sum of donations (total) is displayed 
 		- [x] Percent of donated amount of each player 
-		- [x] Ex-guild members are hidden (click to show them) 
+		- [x] Ex-guild members are combine
 		- [ ] Merge continued donations of the same player 
 		- [ ] Day separators
-		- [ ] Highlight  me
+		- [ ] Highlight me
 
 
 - [ ] Guild Medic Interface 
