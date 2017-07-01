@@ -13,6 +13,10 @@ var gca_overview = {
 		// Update data
 		this.updateData();
 
+		// Analyze items
+		(gca_options.bool("overview", "analyze_items") && 
+			this.analyzeItems.show(this));
+
 		// Food life gain predict
 		(this.doll == 1 && gca_options.bool("overview", "food_life_gain") && 
 			this.foodStuff.lifeGain());
@@ -229,6 +233,84 @@ var gca_overview = {
 
 			// Save
 			gca_data.section.set("overview", "costume", player_costume);
+		}
+
+		// Analyze items
+		this.analyzeItemsData = {};
+		var data = this.analyzeItemsData;
+		var i;
+		var statsNames = ["strength", "dexterity", "agility", "constitution", "charisma", "intelligence"];
+		for (i = 0; i < statsNames.length; i++) {
+			data[statsNames[i]] = {values : [], percents : [], sum : {values : 0, percents : 0}};
+		}
+
+		data.strength.id = "char_f0_tt";
+		data.strength.name = document.getElementById("char_f0_tt").getElementsByClassName("charstats_text")[0].textContent;
+		data.dexterity.id = "char_f1_tt";
+		data.dexterity.name = document.getElementById("char_f1_tt").getElementsByClassName("charstats_text")[0].textContent;
+		data.agility.id = "char_f2_tt";
+		data.agility.name = document.getElementById("char_f2_tt").getElementsByClassName("charstats_text")[0].textContent;
+		data.constitution.id = "char_f3_tt";
+		data.constitution.name = document.getElementById("char_f3_tt").getElementsByClassName("charstats_text")[0].textContent;
+		data.charisma.id = "char_f4_tt";
+		data.charisma.name = document.getElementById("char_f4_tt").getElementsByClassName("charstats_text")[0].textContent;
+		data.intelligence.id = "char_f5_tt";
+		data.intelligence.name = document.getElementById("char_f5_tt").getElementsByClassName("charstats_text")[0].textContent;
+
+		
+		var charItems = document.getElementById("char").getElementsByClassName("ui-draggable");
+		var tooltip, line, match, stat;
+		var j, k;
+		for (i = charItems.length - 1; i >= 0; i--) {
+			tooltip = JSON.parse(charItems[i].dataset.tooltip)[0];
+			for (j = 1; j < tooltip.length; j++) {
+				if (typeof tooltip[j][0] == "string") {
+					line = tooltip[j][0];
+				}
+				else {
+					line = tooltip[j][0][0];
+				}
+
+				// For each power
+				for (k = 0; k < statsNames.length; k++) {
+					stat = data[statsNames[k]];
+
+					// Items default stats
+					match = line.match(new RegExp(stat.name + " ([\\+-]\\d+%?)", "i"));
+					if (match) {
+						match = match[1];
+						if (match[match.length - 1] == "%"){
+							stat.percents.push(parseInt(match, 10)/100);
+							stat.sum.percents += parseInt(match, 10)/100;
+						}
+						else{
+							stat.values.push(parseInt(match, 10));
+							stat.sum.values += parseInt(match, 10);
+						}
+					}
+
+					// Items enchanced stats
+					else {
+						match = line.match(new RegExp("([\\+-]\\d+) " + stat.name, "i"));
+						if (match) {
+							match = match[1];
+							stat.values.push(parseInt(match, 10));
+							stat.sum.values += parseInt(match, 10);
+						}
+					}
+				}
+			}
+		}
+
+		// Save data if main player
+		if (this.doll == 1) {
+			var json = {};
+			for (i = 0; i < statsNames.length; i++)
+				json[statsNames[i]] = {
+					values : data[statsNames[i]].values,
+					percents : data[statsNames[i]].percents
+				};
+			gca_data.section.set("overview", "stats", JSON.stringify(json));
 		}
 	},
 
@@ -1148,6 +1230,52 @@ var gca_overview = {
 			gca_tools.setTooltip(item, JSON.stringify(tooltip));
 		}
 
+	},
+
+	// Show analyzed items
+	analyzeItems : {
+		show : function(self) {
+			var stats = self.analyzeItemsData;
+			for (name in stats) {
+				if (stats.hasOwnProperty(name)) {
+					this.statShow(stats[name]);
+				}
+			}
+		},
+
+		// Show data for stat
+		statShow : function(stat){
+			// Get tooltip
+			var tooltip = document.getElementById(stat.id).dataset.tooltip;
+			tooltip = JSON.parse(tooltip);
+
+			// Get basics values
+			var basics = tooltip[0][1][0][1];
+			var max = tooltip[0][2][0][1];
+
+			// Calculate point from percents 
+			var percentsPoints = 0;
+			for (var i = stat.percents.length - 1; i >= 0; i--) {
+				percentsPoints += Math.round(basics * stat.percents[i]);
+			}
+			var totalPoits = stat.sum.values + percentsPoints;
+
+			// Create points string
+			var points = "" +
+				((stat.sum.values >= 0)?"+":"") + stat.sum.values + " " +
+				((stat.sum.percents >= 0)?"+":"") + (stat.sum.percents * 100) + "% " +
+				"(" + ((percentsPoints >= 0)?"+":"") + percentsPoints + ")" + " " +
+				"= " + ((totalPoits >= 0)?"+":"") + totalPoits;
+
+			// Add data to the tooltip
+			tooltip[0].splice(tooltip[0].length - 1, 0, [["","&#x27A4; " + points],["#DDDDDD","#DDDDDD"]]);
+
+			// Set tooltip
+			gca_tools.setTooltip(
+				document.getElementById(stat.id),
+				JSON.stringify(tooltip)
+			);
+		}
 	}
 };
 

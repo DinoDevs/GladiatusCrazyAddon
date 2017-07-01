@@ -312,6 +312,8 @@ gca_options.data = {
 
 	// Overview Options
 	"overview" : {
+		// Analyze items
+		"analyze_items" : true,
 		// Show the life gain a food gives
 		"food_life_gain" : true,
 		// Show block and avoid criticals values caps
