@@ -138,6 +138,16 @@ var gca_messages = {
 					message.type = "guild_battle";
 				}
 
+				/*
+				// New title
+				else if(element.getElementsByTagName('a').length > 0 && element.getElementsByTagName('a')[0].href.match("achievements")){
+					message.type = "news";
+					// Title
+					//console.log(element.getElementsByTagName('a')[0].textContent);
+					// HTML content
+					//<a href="index.php?mod=overview&amp;submod=achievements&amp;sh=<hash>"><span style="font-weight: bold;">Pluto`s Death Bringer</span></a>
+				}
+
 				// Auction item won
 				// The anounsment has the same title and body
 				else if(message.title.textContent == message.body.textContent){
@@ -149,6 +159,7 @@ var gca_messages = {
 				else if(message.body.textContent.split('"').length - 1 == 2){
 					message.type = "news";
 				}
+				*/
 				
 				// Other
 				else{
