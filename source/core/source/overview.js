@@ -280,8 +280,8 @@ var gca_overview = {
 					if (match) {
 						match = match[1];
 						if (match[match.length - 1] == "%"){
-							stat.percents.push(parseInt(match, 10)/100);
-							stat.sum.percents += parseInt(match, 10)/100;
+							stat.percents.push(parseInt(match, 10));
+							stat.sum.percents += parseInt(match, 10);
 						}
 						else{
 							stat.values.push(parseInt(match, 10));
@@ -1256,14 +1256,14 @@ var gca_overview = {
 			// Calculate point from percents 
 			var percentsPoints = 0;
 			for (var i = stat.percents.length - 1; i >= 0; i--) {
-				percentsPoints += Math.round(basics * stat.percents[i]);
+				percentsPoints += Math.round(basics * (stat.percents[i]/100));
 			}
 			var totalPoits = stat.sum.values + percentsPoints;
 
 			// Create points string
 			var points = "" +
 				((stat.sum.values >= 0)?"+":"") + stat.sum.values + " " +
-				((stat.sum.percents >= 0)?"+":"") + (stat.sum.percents * 100) + "% " +
+				((stat.sum.percents >= 0)?"+":"") + stat.sum.percents + "% " +
 				"(" + ((percentsPoints >= 0)?"+":"") + percentsPoints + ")" + " " +
 				"= " + ((totalPoits >= 0)?"+":"") + totalPoits;
 
