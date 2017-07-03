@@ -22,15 +22,18 @@ var gca_reports = {
 			
 			// If Combat report
 			if (this.combatReport == "reportExpedition") {
-
 				// Log items found for statistics
 				//(gca_options.bool("reports", "found_items") &&
 				//	this.report_found_items()); // TODO
+			}
 
+
+			if (this.combatReport == "reportExpedition" || this.combatReport == "reportDungeon") {
 				// Add shadow on items rewards
 				(gca_options.bool("global","item_shadow") &&
 					this.itemShadow());
 			}
+
 		}
 		
 		// Report Lists
