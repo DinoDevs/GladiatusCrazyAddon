@@ -16,13 +16,21 @@ var gca_reports = {
 		// Combat reports
 		if(this.submod == 'showCombatReport'){
 			// Change player image
-			(gca_options.bool("global","player_image") &&
-				// Attach custom image on reports
-				this.player_images_in_reports()); // TODO
-			// Item found
-			(this.combatReport == "reportExpedition" && gca_options.bool("reports", "found_items") &&
+			//(gca_options.bool("global","player_image") &&
+			//	// Attach custom image on reports
+			//	this.player_images_in_reports()); // TODO
+			
+			// If Combat report
+			if (this.combatReport == "reportExpedition") {
+
 				// Log items found for statistics
-				this.report_found_items()); // TODO
+				//(gca_options.bool("reports", "found_items") &&
+				//	this.report_found_items()); // TODO
+
+				// Add shadow on items rewards
+				(gca_options.bool("global","item_shadow") &&
+					this.itemShadow());
+			}
 		}
 		
 		// Report Lists
@@ -269,6 +277,26 @@ var gca_reports = {
 			gca_tools.pagination.parse(pagings[i]);
 		}
 	},
+
+	// Add shadow to items
+	itemShadow : function(){
+		// Get rewards wrapper
+		var wrapper = document.getElementById("content").getElementsByClassName("reportReward");
+		if(wrapper.length == 0) return;
+
+		// Get elements that may be items
+		var elements = wrapper[0].childNodes;
+		if(elements.length == 0) return;
+
+		// Add shadow to each item
+		for(var i = elements.length - 1; i >= 0; i--){
+			if (elements[i].dataset && elements[i].dataset.tooltip) {
+				let item = elements[i].getElementsByTagName("div")[0];
+				if (item)
+					gca_tools.item.shadow.add(item, elements[i]);
+			}
+		}
+	}
 };
 
 (function(){

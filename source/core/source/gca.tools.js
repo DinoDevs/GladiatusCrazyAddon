@@ -247,12 +247,16 @@ var gca_tools = {
 			},
 
 			// Add shadow
-			add : function(element){
+			add : function(element, tooltipElement){
+				// If item is the self element
+				if(typeof tooltipElement == "undefined"){
+					tooltipElement = element;
+				}
 				// Get color
-				var color = this.getColor(element.dataset.tooltip);
+				var color = this.getColor(tooltipElement.dataset.tooltip);
 				// On error, try jQuery
 				if(!color && jQuery){
-					color = this.getColor(jQuery(element).data("tooltip"));
+					color = this.getColor(jQuery(tooltipElement).data("tooltip"));
 				}
 
 				// Color not found
