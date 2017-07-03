@@ -142,6 +142,11 @@ gca_languages["en"] = {
 			medic_lost_points : "Lost points",
 			medic_points_to_heal : "Points to heal",
 			medic_life_after_heal : "Life after heal"
+		},
+
+		// Training section
+		training : {
+			costs_discount : "Training costs discount"
 		}
 	},
 

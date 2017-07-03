@@ -308,7 +308,11 @@ var gca_overview = {
 			for (i = 0; i < statsNames.length; i++)
 				json[statsNames[i]] = {
 					values : data[statsNames[i]].values,
-					percents : data[statsNames[i]].percents
+					percents : data[statsNames[i]].percents,
+					sum : {
+						values : data[statsNames[i]].sum.values,
+						percents : data[statsNames[i]].sum.percents
+					}
 				};
 			gca_data.section.set("overview", "stats", JSON.stringify(json));
 		}

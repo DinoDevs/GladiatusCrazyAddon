@@ -840,6 +840,13 @@
 	/* Training
 	-------------------------------------------------- */
 
+		/* Training info */
+		#training_box .gca-training-info{float: left;margin: 6px 10px;}
+
+		/* Training data after upgrade */
+		#training_box .gca-training-values .training_value{position: relative;}
+		#training_box .gca-training-values .gca-training-after-upgrade{position: absolute;right: 0;top: -4px;font-size: 10px;line-height: 10px;height: 10px;}
+
 		/* Basic points in bars */
 		#training_box .gca-bases-bar{height:4px;margin-top:-6px;border:1px solid #766531;}
 

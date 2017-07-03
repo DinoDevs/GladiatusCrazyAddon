@@ -404,10 +404,16 @@ gca_options.data = {
 	},
 
 	"training" : {
+		// Show discount
+		"show_discount" : true,
 		// Show bacis in bars
 		"show_basics_in_bars" : true,
 		// Enable multiple train
-		"multiple_train" : true
+		"multiple_train" : true,
+		// Show analyze data
+		"show_analyze_items_data" : true,
+		// Show points after upgrade
+		"show_points_after_upgrade" : true,
 	},
 
 	// Auction Options
