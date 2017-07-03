@@ -284,16 +284,18 @@ var gca_reports = {
 		var wrapper = document.getElementById("content").getElementsByClassName("reportReward");
 		if(wrapper.length == 0) return;
 
-		// Get elements that may be items
-		var elements = wrapper[0].childNodes;
-		if(elements.length == 0) return;
-
-		// Add shadow to each item
-		for(var i = elements.length - 1; i >= 0; i--){
-			if (elements[i].dataset && elements[i].dataset.tooltip) {
-				let item = elements[i].getElementsByTagName("div")[0];
-				if (item)
-					gca_tools.item.shadow.add(item, elements[i]);
+		for (var w = 0; w < wrapper.length; w++) {
+			// Get elements that may be items
+			var elements = wrapper[w].childNodes;
+			if(elements.length > 0){
+				// Add shadow to each item
+				for(var i = elements.length - 1; i >= 0; i--){
+					if (elements[i].dataset && elements[i].dataset.tooltip) {
+						let item = elements[i].getElementsByTagName("div")[0];
+						if (item)
+							gca_tools.item.shadow.add(item, elements[i]);
+					}
+				}
 			}
 		}
 	}
