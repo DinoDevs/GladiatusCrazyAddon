@@ -208,7 +208,7 @@
 
 - [ ] Training
 	- [x] Show basic points bars
-	- [ ] Show stats changes on upgrade
+	- [x] Show stats changes on upgrade
 	- [ ] Training Cost calculator 
 	- [ ] Propose points to upgrade
 	- [ ] Show caps and cap points changes (crit, block, avoid)
