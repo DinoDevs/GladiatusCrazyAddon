@@ -42,13 +42,13 @@ var gca_new_message = {
 		showNames : function(){
 			// Create a friends button
 			var div = document.createElement("div");
-			div.className = "newMessageAdd";
+			div.className = "gca_new_message_select_user";
 			div.addEventListener("click", function(){
 				gca_new_message.newMessage.showPlayersName.open();
 			}, false);
 
 			// Insert button
-			document.getElementById("messageForm").getElementsByTagName("input")[0].parentNode.appendChild(div);
+			document.getElementById("messageForm").messageRecipient.parentNode.appendChild(div);
 		},
 
 		// Show mates names

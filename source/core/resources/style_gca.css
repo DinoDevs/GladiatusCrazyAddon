@@ -762,10 +762,6 @@
 	-------------------------------------------------- */
 
 		/* Improve */
-		.newMessageAdd{cursor: pointer;background: transparent url('buttons/main_buttons.png') -45px 0px no-repeat;width: 25px;height: 25px;border: 0px;float: right;margin-right: 180px;margin-top: -3px;margin-bottom: -3px;}
-		.gca_rtl .newMessageAdd{float: left;margin-left: 124px;margin-right: auto;}
-		.newMessageAdd:hover{background: transparent url('buttons/main_buttons.png') -45px -25px no-repeat;}
-		#guild_friends_list a, #family_friends_list a{cursor: pointer;}
 		.gca_new_message_styling #content > div > div {width: 529px!important;}
 		.gca_new_message_styling #content .title2_box{width: 492px!important;}
 		.gca_new_message_styling .scroll_top_center,
@@ -776,6 +772,11 @@
 		.gca_new_message_styling .scroll_body_right{height: 484px!important;}
 		.gca_new_message_styling #messageForm textarea{min-height: 180px!important;max-height: 310px!important;resize: vertical!important;}
 		.gca_new_message_styling #content > div{margin-top: 0px!important;}
+		.gca_new_message_styling #messageForm input[type="submit"]{padding: 5px 10px;}
+		/* Select user button */
+		.gca_new_message_select_user{cursor: pointer;background: transparent url('buttons/main_buttons.png') -45px 0px no-repeat;width: 25px;height: 25px;border: 0px;display: inline-block;margin: -7px -7px;;}
+		.gca_new_message_select_user:hover{background: transparent url('buttons/main_buttons.png') -45px -25px no-repeat;}
+		#guild_friends_list a, #family_friends_list a{cursor: pointer;}
 
 
 
