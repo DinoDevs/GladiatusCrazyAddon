@@ -338,7 +338,7 @@ var gca_training = {
 
 		var info = document.createElement("div");
 		info.className = "gca-training-info";
-		info.textContent = gca_locale.get("training", "costs_discount") + ": " + this.data.discount + "%";
+		info.textContent = gca_locale.get("training", "costs_discount", {number : this.data.discount});
 		wrapper.appendChild(info);
 	},
 

@@ -146,7 +146,7 @@ gca_languages["en"] = {
 
 		// Training section
 		training : {
-			costs_discount : "Training costs discount"
+			costs_discount : "Training costs discount: {{number}}%"
 		}
 	},
 

@@ -841,7 +841,7 @@
 	-------------------------------------------------- */
 
 		/* Training info */
-		#training_box .gca-training-info{float: left;margin: 6px 10px;}
+		#training_box .gca-training-info{float: left;margin: 6px 10px;font-weight: bold;}
 
 		/* Training data after upgrade */
 		#training_box .gca-training-values .training_value{position: relative;}
