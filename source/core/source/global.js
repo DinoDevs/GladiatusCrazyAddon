@@ -14,7 +14,7 @@ var gca_global = {
 		(gca_options.bool("global","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.preload());
 		// If x-scroll
-		(gca_options.bool("global","x-scroll") && 
+		(gca_options.bool("global","x_scroll") && 
 			this.display.xScrollFix());
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 

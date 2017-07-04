@@ -518,17 +518,25 @@
 	#settings_tab {width: 374px;float: right;border-left: 1px solid #9c8959;margin-top: 5px;padding: 5px;}
 	#settings_tab .settings_tab_title{padding: 5px 10px;margin-top: -5px;border: 1px solid black;background: linear-gradient(to bottom, #C3AB6F, #DACFA2);color: black;}
 
-	#settings_tab .switch-field input {display: none;}
-	#settings_tab .switch-field label {float: left;}
-	#settings_tab .switch-field label {display: inline-block;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: center;text-shadow: none;padding: 2px 14px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-webkit-transition: all 0.1s ease-in-out;-moz-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
-	#settings_tab .switch-field label:hover {cursor: pointer;}
-	#settings_tab .switch-field input:checked + label {background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
-	#settings_tab .switch-field label:first-of-type {border-radius: 4px 0 0 4px;}
-	#settings_tab .switch-field label:last-of-type {border-radius: 0 4px 4px 0;}
-
 	#settings_tab .type-wrapper{margin:5px 0px;background-color: #dacfa1;padding: 5px;border: 1px solid #c4ac70;}
 	#settings_tab .type-wrapper span{line-height: 21px;}
-	#settings_tab .type-wrapper.type-boolean .switch-field{float: right;}
+
+	#settings_tab .type-wrapper .switch-field{float: right;}
+	#settings_tab .type-wrapper.type-boolean .switch-field input,
+	#settings_tab .type-wrapper.type-enumerator .switch-field input {display: none;}
+	#settings_tab .type-wrapper.type-boolean .switch-field label,
+	#settings_tab .type-wrapper.type-enumerator .switch-field label {float: left;}
+	#settings_tab .type-wrapper.type-boolean .switch-field label,
+	#settings_tab .type-wrapper.type-enumerator .switch-field label {display: inline-block;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: center;text-shadow: none;padding: 2px 14px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-webkit-transition: all 0.1s ease-in-out;-moz-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
+	#settings_tab .type-wrapper.type-boolean .switch-field label:hover,
+	#settings_tab .type-wrapper.type-enumerator .switch-field label:hover {cursor: pointer;}
+	#settings_tab .type-wrapper.type-boolean .switch-field input:checked + label,
+	#settings_tab .type-wrapper.type-enumerator .switch-field input:checked + label {background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
+	#settings_tab .type-wrapper.type-boolean .switch-field label:first-of-type,
+	#settings_tab .type-wrapper.type-enumerator .switch-field label:first-of-type {border-radius: 4px 0 0 4px;}
+	#settings_tab .type-wrapper.type-boolean .switch-field label:last-of-type,
+	#settings_tab .type-wrapper.type-enumerator .switch-field label:last-of-type {border-radius: 0 4px 4px 0;}
+	#settings_tab .type-wrapper.type-integer .switch-field input{border-radius: 4px;width: 74px;height: 15px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
 
 	#settings_logo{background-image:url('images/GCA_logo.png');position:relative;background-position-y: -10px;width: 530px;height: 130px;margin-bottom: 10px;border: 2px solid black;background-repeat: no-repeat;background-color: black;}
 	#settings_logo .title{color: white;font-size: 16px;position: absolute;bottom: 5px;right: 10px;}

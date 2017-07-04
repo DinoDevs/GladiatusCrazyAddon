@@ -15,7 +15,7 @@ var gca_settings = {
 		this.options.parseScheme();
 
 		// Create Options
-		this.options.inject();
+		this.options.createBox();
 
 		// If gca settings
 		if(gca_section.gcamod == "settings"){
@@ -26,14 +26,14 @@ var gca_settings = {
 
 	// Options
 	options : {
-		// Inject
-		inject : function(){
-			// Box
+		// Create box on settings
+		createBox : function(){
+			// Gca Box
 			var wrapper = document.createElement("div");
 			wrapper.id = "settings_box";
 			var title = document.createElement("h2");
 			title.className = "section-header";
-			title.textContent = gca.name + " - " + gca_locale.get("OPTIONS_SETTINGS");
+			title.textContent = gca.name + " v" + gca.version + " - " + gca_locale.get("settings", "settings");
 			wrapper.appendChild(title);
 			var box = document.createElement("section");
 			box.style.display = "block";
@@ -47,21 +47,21 @@ var gca_settings = {
 			// Description
 			var desc = document.createElement("div");
 			desc.className = "description";
-			desc.appendChild(document.createTextNode(gca_locale.get("OPTIONS_DESCRIPTION")));
+			desc.appendChild(document.createTextNode(gca_locale.get("settings", "description")));
 			desc.appendChild(document.createElement("br"));
-			desc.appendChild(document.createTextNode(gca_locale.get("OPTIONS_BUTTON_BELOW")));
+			desc.appendChild(document.createTextNode(gca_locale.get("settings", "description_click_button")));
 			box.appendChild(desc);
 
 			// Clear
-			var clear = document.createElement("div");
-			clear.className = "space";
-			box.appendChild(clear);
+			var spacer = document.createElement("div");
+			spacer.className = "space";
+			box.appendChild(spacer);
 
 			// Insert Settings button
 			var button = document.createElement("input");
 			button.type = "button";
 			button.className = "awesome-button";
-			button.value = gca_locale.get("OPTIONS_SETTINGS");
+			button.value = gca_locale.get("settings", "settings");
 			box.appendChild(button);
 			// Add on click event
 			button.addEventListener("click", function(){
@@ -88,6 +88,8 @@ var gca_settings = {
 			"global" : {
 				// Sounds
 				"sound_notifications" : true,
+				// Browser notifications
+				"browser_notifications" : true,
 
 				// Extended Hp-Xp info
 				"extended_hp_xp_info" : true,
@@ -131,16 +133,25 @@ var gca_settings = {
 				// Player Image
 				"player_image" : true,
 
+				// Cooldown Sound Notification
+				"cooldown_sound_notifications" : true,
+
 				// Notifications
 				"notify_new_guild_application" : false,
 				// Notifications Interal in minites
 				"notify_new_guild_application_interval" : 60,
-	
+			
 				// Enable x-scroll
-				"x-scroll" : true,
+				"x_scroll" : true,
 
 				// Enable item's shadow
 				"item_shadow" : true,
+
+				// Enable pagination layout
+				"pagination_layout" : true,
+				
+				// Gold/Exp data
+				"gold_exp_data" : true,
 				
 				// Underword
 					// Pray Shorcut
@@ -149,18 +160,30 @@ var gca_settings = {
 
 			// Overview Options
 			"overview" : {
+				// Analyze items
+				"analyze_items" : true,
 				// Show the life gain a food gives
 				"food_life_gain" : true,
-				// Drop items to see materials to repair feature
-				"repair_materials_info" : true,
+				// Show block and avoid criticals values caps
+				"block_avoid_caps" : true,
 				// Show best food to consume
 				"best_food" : true,
-				// Overview bag manager
-				"bag_manager" : true,
+				// Trasparent food gives you more life than you need
+				"overfeed_food" : true,
+				// Daily Bonus Log
+				"daily_bonus_log" : true,
+				// Detailed buffs timer
+				"buffs_detailed_time" : true,
+				// Mercenaries manager
+				"mercenaries_manager" : true,
+				// Mercenary tooltip show
+				"mercenary_tooltip_show" : true,
 				// Show more statistics
 				"more_statistics" : true,
 				// new Achivements layout
-				"achivements_layout" : true
+				"achivements_layout" : true,
+				// Costumes layout
+				"costumes_layout" : true
 			},
 
 			// Messages Options
@@ -189,53 +212,6 @@ var gca_settings = {
 				"new_message_friend_list" : true
 			},
 
-			// Pantheon Options
-			"pantheon" : {
-				// Reorder quests
-				"quests_reorder" : true,
-				// Insert more details on quests
-				"quests_detailed_rewards" : true,
-				// Show completed missions
-				"missions_show_completed" : true
-			},
-
-			// Reports
-			"reports" : {
-				// Style change
-				"style_change" : true,
-				"load_loot_tooltips" : true,
-				// Item found
-				"found_items" : true
-			},
-
-			"training" : {
-				// Show bacis in bars
-				"show_basics_in_bars" : true,
-				// Enable multiple train
-				"multiple_train" : true
-			},
-
-			// Auction Options
-			"auction" : {
-				// TODO : need options
-			},
-
-			// Expedition Options
-			"expedition" : {
-				// Show that each enemy drops
-				"show_enemy_drops" : true,
-				// Underworld expedition layout
-				"underworld_layout" : true
-			},
-
-			// Guild Options
-			"guild" : {
-				// Jail layout
-				"jail_layout" : true,
-				// Library layout
-				"library_layout" : true
-			},
-
 			// Packages Options
 			"packages" : {
 				// Improve filters layout
@@ -252,12 +228,81 @@ var gca_settings = {
 				"special_category_features" : true
 			},
 
+			// Pantheon Options
+			"pantheon" : {
+				// Reorder quests
+				"quests_reorder" : true,
+				// Insert more details on quests
+				"quests_detailed_rewards" : true,
+				// Show completed missions
+				"missions_show_completed" : true,
+				// Show gods points percent
+				"gods_show_points_percent" : true,
+				// Open many mysteryboxes button
+				"open_many_mysteryboxes" : true
+			},
+
+			// Reports
+			"reports" : {
+				// Style change
+				"style_change" : true,
+				"load_loot_tooltips" : true,
+				// Item found
+				"found_items" : true
+			},
+
+			"training" : {
+				// Show discount
+				"show_discount" : true,
+				// Show bacis in bars
+				"show_basics_in_bars" : true,
+				// Enable multiple train
+				"multiple_train" : true,
+				// Show analyze data
+				"show_analyze_items_data" : true,
+				// Show points after upgrade
+				"show_points_after_upgrade" : true,
+			},
+
+			// Expedition Options
+			"expedition" : {
+				// Show that each enemy drops
+				"show_enemy_drops" : true,
+				// Underworld expedition layout
+				"underworld_layout" : true
+			},
+
+			// Guild Options
+			"guild" : {
+				// Jail layout
+				"jail_layout" : true,
+				// Library options
+				"library_layout" : true,
+				"library_fade_non_scrolls" : true,
+				"library_tooltip_data" : true,
+				// Bank Layouts
+				"bank_donate_layout" : true,
+				"bank_book_layout" : true,
+				// Medic Layout
+				"medic_layout" : true
+			},
+
+			// Auction Options
+			"auction" : {
+				// TODO : need options
+			},
+
 			"events" : {
 				// Craps Event Timer
 				"craps_timer" : true,
 				// Server Quest Event Timer
 				"server_quest_timer" : true
 			},
+
+			"sound" : {
+				// Sounds enabled
+				"enabled" : true
+			}
 		},
 
 		parseScheme : function(){
@@ -271,7 +316,7 @@ var gca_settings = {
 						var type = this.scheme[category][label].type;
 						if(!type) continue;
 						var locale = this.scheme[category][label].locale;
-						if(!locale) locale = "$" + category + "$" + label;
+						if(!locale) locale = gca_locale.get("settings", "category_" + category + "$" + label);
 						var _category = this.scheme[category][label].category;
 						if(!_category) _category = category;
 						var _label = this.scheme[category][label].label;
@@ -280,6 +325,9 @@ var gca_settings = {
 						switch(this.scheme[category][label].type){
 							case "boolean" :
 								this.scheme[category][label] = this.class.boolean(locale, _category, _label);
+								break;
+							case "integer" :
+								this.scheme[category][label] = this.class.integer(locale, _category, _label);
 								break;
 							case "enumerator" :
 								this.scheme[category][label] = this.class.enumerator(locale, this.scheme[category][label].values, _category, _label);
@@ -293,6 +341,8 @@ var gca_settings = {
 						if(typeof type != "string"){
 							if(typeof type == "boolean")
 								type = "boolean";
+							else if(typeof type == "number")
+								type = "integer";
 						}
 						else{
 							if(type.match(/\|/i)){
@@ -302,10 +352,26 @@ var gca_settings = {
 
 						switch(type){
 							case "boolean" :
-								this.scheme[category][label] = this.class.boolean("$" + category + "$" + label, category, label);
+								this.scheme[category][label] = this.class.boolean(
+									gca_locale.get("settings", "category_" + category + "$" + label),
+									category,
+									label
+								);
+								break;
+							case "integer" :
+								this.scheme[category][label] = this.class.integer(
+									gca_locale.get("settings", "category_" + category + "$" + label),
+									category,
+									label
+								);
 								break;
 							case "enumerator" :
-								this.scheme[category][label] = this.class.enumerator("$" + category + "$" + label, this.scheme[category][label], category, label);
+								this.scheme[category][label] = this.class.enumerator(
+									gca_locale.get("settings", "category_" + category + "$" + label),
+									this.scheme[category][label],
+									category,
+									label
+								);
 								break;
 						}
 					}
@@ -322,7 +388,7 @@ var gca_settings = {
 			var url = gca_getPage.parameters();
 
 			// Get tabname
-			var tabname = null;
+			var tabname = "global";
 			if(url.gcamod == "settings" && url.category){
 				tabname = url.category;
 			}
@@ -330,14 +396,14 @@ var gca_settings = {
 			// Change Url
 			url.gcamod = "settings";
 			delete url.sh;
-			window.history.pushState(null, "GCA - Settings", gca_getPage.link(url));
+			window.history.pushState({category : tabname}, "GCA - Settings", gca_getPage.link(url));
 
 			// Create if not exist
 			if(!document.getElementById("content_2nd"))
 				this.create();
 
 			// Open Global tab
-			this.openTab(tabname);
+			this.openTab(tabname, gca_locale.get("settings", "category_" + tabname));
 
 			// Scroll to top
 			window.scrollTo(0, 0);
@@ -346,6 +412,27 @@ var gca_settings = {
 			document.getElementById("content").style.display = "none";
 			// Show page's 2nd content
 			document.getElementById("content_2nd").style.display = "block";
+
+			var that = this;
+			// Catch history events
+			window.addEventListener("popstate", function (event) {
+				// Previus tab
+				if(event.state){
+					var tabname = event.state.category;
+					// Open Global tab
+					that.openTab(tabname, gca_locale.get("settings", "category_" + tabname));
+					// Scroll to top
+					window.scrollTo(0, 0);
+				}
+				// Close settings
+				else {
+					// Hide page's 2nd content
+					document.getElementById("content_2nd").style.display = "none";
+					// Show page's content
+					document.getElementById("content").style.display = "block";
+				}
+				return true;
+			}, false);
 		},
 
 		// Create options
@@ -361,7 +448,7 @@ var gca_settings = {
 			logo.id = "settings_logo";
 			var logo_title = document.createElement("div");
 			logo_title.className = "title";
-			logo_title.textContent = "Settings";
+			logo_title.textContent = gca_locale.get("settings", "settings");
 			logo.appendChild(logo_title);
 			content_2nd.appendChild(logo);
 
@@ -386,20 +473,29 @@ var gca_settings = {
 
 			// Create Categories
 			for (let category in this.scheme) {
+				let title = gca_locale.get("settings", "category_" + category);
 				let li = document.createElement('li');
 				li.dataset.category = category;
-				li.textContent = category; // TODO : add translations
+				li.textContent = title;
 				menu.appendChild(li);
-				li.addEventListener('click', (function(tabname, that){
+				li.addEventListener('click', (function(tabname, title, that){
 					return function(){
-						that.openTab(tabname);
+						// Get url
+						var url = gca_getPage.parameters();
+						url.category = tabname;
+						url.gcamod = "settings";
+						delete url.sh;
+						// Change Url
+						window.history.pushState({category : tabname}, "GCA - Settings", gca_getPage.link(url));
+
+						that.openTab(tabname, title);
 					};
-				})(category, this), false);
+				})(category, title, this), false);
 			}
 		},
 
 		activeTab : null,
-		openTab : function(tabname){
+		openTab : function(tabname, title){
 			// Clear tab
 			this.tab_div.innerHTML = "";
 
@@ -422,18 +518,18 @@ var gca_settings = {
 			}
 
 			// Open tab
-			this.createTab(tabname, this.scheme[tabname]);
+			this.createTab(tabname, title, this.scheme[tabname]);
 		},
 
 		tabItems : null,
-		createTab : function(name, scheme){
+		createTab : function(name, titleText, scheme){
 			// Tab Items reset
 			this.tabItems = [];
 
 			var container = document.createElement("div");
 
 			var title = document.createElement("div");
-			title.textContent = name;
+			title.textContent = titleText;
 			title.className = "settings_tab_title";
 			container.appendChild(title);
 
@@ -448,7 +544,7 @@ var gca_settings = {
 			save.type = "button";
 			save.className = "button2";
 			save.style.float = "right";
-			save.value = "Save"; // TODO : locale
+			save.value = gca_locale.get("settings", "save");
 			// Save event
 			var that = this;
 			save.addEventListener('click', function(){
@@ -457,7 +553,7 @@ var gca_settings = {
 					that.tabItems[i].save();
 				}
 				// Notify
-				gca_notifications.info("Refresh");
+				gca_notifications.info(gca_locale.get("settings", "notification_reload"));
 			}, false);
 
 			container.appendChild(save);
@@ -468,6 +564,7 @@ var gca_settings = {
 			// Costruck known type
 			switch(scheme.type){
 				case "boolean": return this.construct.boolean(id, scheme, container);
+				case "integer": return this.construct.integer(id, scheme, container);
 				case "enumerator": return this.construct.enumerator(id, scheme, container);
 			}
 
@@ -531,6 +628,51 @@ var gca_settings = {
 				item.save = function(){
 					var value = item.data.true.checked;
 					gca_options.set(scheme.data.category, scheme.data.label, value);
+				};
+
+				return item;
+			},
+
+			integer : function(id, scheme, container){
+				// Item object
+				var item = {};
+				item.id = id;
+				item.data = {};
+
+				// Type Wrapper
+				var typeWrapper = document.createElement('div');
+				typeWrapper.className = "type-wrapper type-integer";
+				var title = document.createElement('span');
+				title.textContent = scheme.locale;
+				typeWrapper.appendChild(title);
+				container.appendChild(typeWrapper);
+
+				var select = document.createElement('div');
+				select.className = "switch-field";
+
+				item.data.input = document.createElement('input');
+				item.data.input.type = "text";
+				item.data.input.id = id + "__integer";
+				item.data.input.name = id;
+				item.data.input.value = scheme.value;
+				select.appendChild(item.data.input);
+
+				typeWrapper.appendChild(select);
+
+				var clearBoth = document.createElement('div');
+				clearBoth.style.clear = "both";
+				typeWrapper.appendChild(clearBoth);
+
+				item.save = function(){
+					var value = item.data.input.value;
+					value = parseInt(value, 10);
+					if(isNaN(value)){
+						value = scheme.value;
+						item.data.input.value = scheme.value;
+					}
+					else {
+						gca_options.set(scheme.data.category, scheme.data.label, value);
+					}
 				};
 
 				return item;
@@ -603,6 +745,17 @@ var gca_settings = {
 						label : label
 					},
 					value : gca_options.bool(category, label)
+				};
+			},
+			integer : function(locale, category, label){
+				return {
+					type : "integer",
+					locale : locale,
+					data : {
+						category : category,
+						label : label
+					},
+					value : gca_options.get(category, label)
 				};
 			},
 			enumerator : function(locale, types, category, label){

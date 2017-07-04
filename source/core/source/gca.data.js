@@ -294,7 +294,7 @@ gca_options.data = {
 		"notify_new_guild_application_interval" : 60,
 	
 		// Enable x-scroll
-		"x-scroll" : true,
+		"x_scroll" : true,
 
 		// Enable item's shadow
 		"item_shadow" : true,
@@ -326,16 +326,16 @@ gca_options.data = {
 		"daily_bonus_log" : true,
 		// Detailed buffs timer
 		"buffs_detailed_time" : true,
+		// Mercenaries manager
+		"mercenaries_manager" : true,
+		// Mercenary tooltip show
+		"mercenary_tooltip_show" : true,
 		// Show more statistics
 		"more_statistics" : true,
 		// new Achivements layout
 		"achivements_layout" : true,
 		// Costumes layout
-		"costumes_layout" : true,
-		// Mercenaries manager
-		"mercenaries_manager" : true,
-		// Mercenary tooltip show
-		"mercenary_tooltip_show" : true
+		"costumes_layout" : true
 	},
 
 	// Messages Options
@@ -416,11 +416,6 @@ gca_options.data = {
 		"show_points_after_upgrade" : true,
 	},
 
-	// Auction Options
-	"auction" : {
-		// TODO : need options
-	},
-
 	// Expedition Options
 	"expedition" : {
 		// Show that each enemy drops
@@ -442,6 +437,11 @@ gca_options.data = {
 		"bank_book_layout" : true,
 		// Medic Layout
 		"medic_layout" : true
+	},
+
+	// Auction Options
+	"auction" : {
+		// TODO : need options
 	},
 
 	"events" : {

@@ -147,6 +147,99 @@ gca_languages["en"] = {
 		// Training section
 		training : {
 			costs_discount : "Training costs discount: {{number}}%"
+		},
+
+		// Settings
+		settings : {
+			// Settings
+			settings : "Settings",
+			// Description
+			description : "Enable or disable the addon's features.",
+			description_click_button : "Click the button below to go to addon's settings...",
+			
+			// Categories
+			category_global : "Global",
+			category_overview : "Overview",
+			category_messages : "Messages",
+			category_packages : "Packages",
+			category_pantheon : "Pantheon",
+			category_reports : "Reports",
+			category_training : "Training",
+			category_expedition : "Expedition",
+			category_guild : "Guild",
+			category_auction : "Auction",
+			category_events : "Events",
+			category_sound : "Sounds",
+
+			// Settings - Global
+			category_global$sound_notifications : "Enable sound notifications",
+			category_global$browser_notifications : "Enable browser notifications",
+			category_global$extended_hp_xp_info : "Display extended HP and XP header info",
+			category_global$extended_hp_xp_info_potion : "Display life potion use icon",
+			category_global$hp_timer_for_full_life : "Display minutes left to full heal",
+			category_global$shortcuts_bar : "Enable the shortcuts bar",
+			category_global$shortcuts_bar_buttons : "Select shortcuts for the shortcuts bar",
+			category_global$auction_status_bar : "Display auction status bar",
+			category_global$auction_status_notification : "Alert when auction status changes",
+			category_global$top_fixed_bar : "Enable top fixed bar",
+			category_global$advance_main_menu : "Improve main menu",
+			category_global$submenu_click_to_change : "Submenu change on click",
+			category_global$remember_tabs : "Remember merchands tabs",
+			category_global$attacked_timers : "Show attacked timers",
+			category_global$quest_timer : "Show quests status or timer",
+			category_global$player_image : "Enable players' images",
+			category_global$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
+			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
+			category_global$notify_new_guild_application_interval : "Check for applications every (seconds)",
+			category_global$x_scroll : "Enable gladiatus' horizontal scroll",
+			category_global$item_shadow : "Enable items shadows",
+			category_global$pagination_layout : "Change paginations layout",
+			category_global$gold_exp_data : "Show gold and exp data",
+			category_global$pray_shorcut : "Display pray shorcut",
+			// Settings - Overview
+			category_overview$analyze_items : "Analyze items stats (needed for training)",
+			category_overview$food_life_gain : "Show life gain from foods",
+			category_overview$block_avoid_caps : "Show block and Avoid caps",
+			category_overview$best_food : "Highlight best food",
+			category_overview$overfeed_food : "Fade foods that will over-heal you",
+			category_overview$daily_bonus_log : "Log daily bonus",
+			category_overview$buffs_detailed_time : "Show detailed timers on guild buffs",
+			category_overview$mercenaries_manager : "Show mercenaries manager",
+			category_overview$mercenary_tooltip_show : "Show mercenaries tooltips",
+			category_overview$more_statistics : "Show more stats on statistics tab",
+			category_overview$achivements_layout : "Enhance achivements layout",
+			category_overview$costumes_layout : "Enhance costumes layout",
+			// Settings - Messages
+			category_messages$messages_layout : "Improve messages layout",
+			category_messages$show_unread : "Highlight unread messages",
+			category_messages$separate_days : "Separate messages from different days",
+			category_messages$send_message_box : "Enable send message box",
+			category_messages$more_guild_mate_info : "Show more guild mates info",
+			category_messages$show_message_links : "Show links included on messages",
+			category_messages$get_guild_battle_info : "Auto load guild battle results",
+			category_messages$show_sidebar : "Show messages sidebar",
+			category_messages$fix_header_links : "Fix messages title link click bug",
+			category_messages$new_message_focus : "Focus on message body",
+			category_messages$new_message_friend_list : "Enable select friend from list button",
+			// Settings - Packages
+			category_packages$filters_layout : "Enhance filters layout",
+			category_packages$compact_info_layout : "Make info layout compact",
+			category_packages$items_layout : "Improve items layout",
+			category_packages$load_more_pages : "Load more pages",
+			category_packages$pages_to_load : "Number of pages to load",
+			category_packages$special_category_features : "Enable special category features",
+			// Settings - Packages
+			category_pantheon$quests_reorder : "Enable quest grouping",
+			category_pantheon$quests_detailed_rewards : "Show detailed quests rewards",
+			category_pantheon$missions_show_completed : "Show completed missions",
+			category_pantheon$gods_show_points_percent : "Show god points percent",
+			category_pantheon$open_many_mysteryboxes : "Open multiple mystery boxes",
+
+			// Buttons
+			save : "Save",
+
+			// Notifications
+			notification_reload : "Reload the page for the changes to take effect"
 		}
 	},
 
