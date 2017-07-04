@@ -411,6 +411,7 @@
 	.online_friends_table .private-message-icon{width: 14px;height: 13px;display: inline-block;margin-bottom: -2px;margin-right: 4px;background: transparent url('buttons/main_buttons.png') -177px -50px no-repeat;}
 
 /* Auction */
+/*
 	.auction_enable_button{color:#006600 !important;cursor:pointer;}
 	.auction_disable_button{color:#660000 !important;cursor:pointer;opacity:0.70;}
 	.auction_bid_div {height:115px;}
@@ -440,7 +441,7 @@
 
 	#hideGoldWithPercentTranslation{display:inline-block;width:150px;white-space: nowrap;overflow:hidden !important;text-overflow: ellipsis;color:#555555}
 	
-	/* New */
+	// New
 	.auctionPackageItem {border: 1px solid #b28b60;background-color:#DED2AD;padding: 0 0 7px 7px;display: inline-block;margin-bottom: 10px;margin-right: 10px;float: left;}
 	.gca_rtl .auctionPackageItem {margin-left: 10px;margin-right: auto;float: right;}
 	.auctionPacketTitle {cursor:help;width:66px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;font-style: italic;}
@@ -452,6 +453,8 @@
 	.gca_rtl #auction_table .inputGoldImg{margin-right: -8px;margin-left: auto;}
 	.auction_sort {float:right;margin:5px;}
 	.gca_rtl .auction_sort {float:left;}
+*/
+
 /* Market */
 	.market_darkmod_page_info{cursor: pointer; background: transparent url('interface/menu_items.png') no-repeat -380px 0px; color: #BFAE54; font-family: Century Gothic, sans-serif; font-weight: bold; position: absolute; margin-left: -32px; width:28px; height:20px; padding-right:5px; text-align:center; line-height:20px;}
 	.gca_rtl .market_darkmod_page_info{margin-right: -32px; padding-left:5px; margin-left:auto; padding-right:auto;}
@@ -869,6 +872,27 @@
 		#training_box.gca_multiple_training .gca_multiple .arrow-up:hover{border-bottom: 5px solid #3a2d13;}
 		#training_box.gca_multiple_training .gca_multiple .arrow-down{border-top: 5px solid #695220;margin-top: 1px;padding-bottom: 6px;}
 		#training_box.gca_multiple_training .gca_multiple .arrow-down:hover{border-top: 5px solid #3a2d13;}
+
+
+
+	/* Auction
+	-------------------------------------------------- */
+
+		/* Level indicator */
+		.gca_auction .gca_item_level{float: right;width: 16px;height: 16px;color: white;cursor: default;font-size: 9px;line-height: 17px;text-align: center;margin: 2px;}
+
+		/* Item value info */
+		.gca_auction .gca-auction-good-price,
+		.gca_auction .gca-auction-bad-price {white-space: nowrap;text-overflow: ellipsis;color: rgb(85, 85, 85);overflow: hidden !important;}
+		.gca_auction .gca-auction-price-value-percent {float: right;margin-right: -5px;}
+		.gca_auction .gca-auction-can-not-buy{opacity: 0.7;color: rgb(102, 0, 0);}
+
+		/* 3 Items per row */
+		.gca_auction .gca-x3columns{padding-left: 279px;padding-top: 10px;z-index: 35;margin: 27px -1px 0px -280px;background: url(interface/auction_img_midle.jpg) left top repeat-y;}
+		.gca_auction .gca-x3columns table{margin: 0px 0px 0px -265px;width: 806px!important;}
+		.gca_auction .gca-x3columns .gca-x3columns-top{position: absolute;margin-left: -279px;margin-top: -20px;z-index: 35;width: 273px;height: 23px;background: url(interface/auction_img_top.jpg);}
+		.gca_auction .gca-x3columns .gca-x3columns-bottom{position: absolute;margin-left: -279px;z-index: 50;width: 273px;height: 56px;background: url(interface/auction_img_down.jpg);}
+		.gca_auction .gca-x3columns td{width: 266px;}
 
 
 

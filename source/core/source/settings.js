@@ -289,7 +289,14 @@ var gca_settings = {
 
 			// Auction Options
 			"auction" : {
-				// TODO : need options
+				// Count page items
+				"items_counters" : true,
+				// Show price data
+				"item_price_analyze" : true,
+				// Show item level
+				"item_level" : true,
+				// Show 3 items per line
+				"x3_items_per_line" : false,
 			},
 
 			"events" : {

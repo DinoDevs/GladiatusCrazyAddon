@@ -149,6 +149,20 @@ gca_languages["en"] = {
 			costs_discount : "Training costs discount: {{number}}%"
 		},
 
+		// Auction section
+		auction : {
+			// Info
+			items_info : "Items information",
+			// Number of items in the page
+			number_of_items : "Number of items : {{number}}",
+			// Number of items that have been bided in the page
+			number_of_bided_items : "Number of bided items : {{number}}",
+			// Message on items that you can buy and sell at the same price
+			hide_your_gold_here : "Hide your gold here",
+			// Price of item equals to its value
+			price_value_function : "Price = Value + {{number}}",
+		},
+
 		// Settings
 		settings : {
 			// Settings
