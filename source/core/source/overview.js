@@ -1272,7 +1272,7 @@ var gca_overview = {
 				"= " + ((totalPoits >= 0)?"+":"") + totalPoits;
 
 			// Add data to the tooltip
-			tooltip[0].splice(tooltip[0].length - 1, 0, [["","&#x27A4; " + points],["#DDDDDD","#DDDDDD"]]);
+			tooltip[0].splice(4, 0, [["","&#x27A4; " + points],["#DDDDDD","#DDDDDD"]]);
 
 			// Set tooltip
 			gca_tools.setTooltip(

@@ -8,6 +8,7 @@ var gca_training = {
 	inject : function(){
 		// Load data
 		this.data.load();
+		console.log(this.data.skills);
 
 		// Show discount
 		(gca_options.bool("training","show_discount") &&
@@ -54,7 +55,7 @@ var gca_training = {
 				// Save bar
 				skill.bar = document.getElementById(skill.id + '_tt');
 				// Get tooltip
-				let tooltip = JSON.parse(skill.bar.getAttribute('data-tooltip'));
+				let tooltip = JSON.parse(skill.bar.dataset.tooltip);
 
 				// Name
 				skill.name = tooltip[0][0][0][0].replace(':','');
@@ -65,7 +66,10 @@ var gca_training = {
 				// Max Value
 				skill.max = parseInt(tooltip[0][2][0][1], 10);
 				// Enhanced Points
-				skill.enhanced = parseInt(document.getElementById(skill.id).getElementsByClassName("training_value")[2].textContent, 10);
+				skill.enhanced = 0;
+				if (typeof tooltip[0][4][1] == "object" && tooltip[0][4][1][1] == "#00B712") {
+					skill.enhanced = parseInt(tooltip[0][4][0][1], 10);
+				}
 
 				// Points from items
 				let fromItems = tooltip[0][3][0][1].match(/(\+|-)\d+/g);
@@ -411,7 +415,7 @@ var gca_training = {
 				"= " + ((totalPoits >= 0)?"+":"") + totalPoits;
 
 			// Add data to the tooltip
-			tooltip[0].splice(tooltip[0].length - 1, 0, [["","&#x27A4; " + points],["#DDDDDD","#DDDDDD"]]);
+			tooltip[0].splice(4, 0, [["","&#x27A4; " + points],["#DDDDDD","#DDDDDD"]]);
 
 			// Set tooltip
 			gca_tools.setTooltip(
@@ -488,7 +492,9 @@ var gca_training = {
 
 			var basicNew = skill.base + upgrades;
 			var basicChange = upgrades;
-			var maxNew = basicNew + Math.floor(basicNew / 2) + level;
+			
+			var maxEnhance = skill.max - (skill.base + Math.floor(skill.base / 2) + level);
+			var maxNew = basicNew + Math.floor(basicNew / 2) + level + maxEnhance;
 			var maxChange = maxNew - skill.max;
 
 			var pointsNew = 0;
