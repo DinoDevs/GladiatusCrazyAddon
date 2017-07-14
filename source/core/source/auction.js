@@ -66,7 +66,7 @@ var gca_auction = {
 		for (var i = items.length - 1; i >= 0; i--) {
 			// Get elements
 			tooltipElement = items[i].getElementsByTagName("div")[1];
-			itemElement = items[i].getElementsByTagName("div")[2];
+			itemElement = items[i].getElementsByTagName("div")[1];
 			// Render shadow
 			gca_tools.item.shadow.add(itemElement, tooltipElement);
 		}
