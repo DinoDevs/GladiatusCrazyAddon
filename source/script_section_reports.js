@@ -33,18 +33,20 @@ var gca_section_reports = {
 	},
 	reportFoundItems : function(){
 		// New report?
-			var date = $dark('#header_game span[6]').html().match(/(\d+).(\d+).(\d+) (\d+).(\d+)/i);
-			var now = new Date();
-			date=date[2]+"/"+date[1]+"/"+date[3]+' '+date[4]+":"+now.getMinutes()+":"+now.getSeconds();
-			var reportDate = $dark('#content .title_inner[1]').html().match(/(\d+).(\d+).(\d+) (\d+).(\d+).(\d+)/i);
-			reportDate=reportDate[2]+"/"+reportDate[1]+"/"+reportDate[3]+' '+reportDate[4]+":"+reportDate[5]+":"+reportDate[6];
-			var timePassed = (new Date(date).getTime() - new Date(reportDate).getTime())/ 1000;// to sec
-			_alert("You attacked before: "+timePassed+" sec");
-			
-			if( timePassed>10 )
-				return;
+		var date = $dark('#header_game span[6]').html().match(/(\d+).(\d+).(\d+) (\d+).(\d+)/i);
+		var now = new Date();
+		date=date[2]+"/"+date[1]+"/"+date[3]+' '+date[4]+":"+now.getMinutes()+":"+now.getSeconds();
+		var reportDate = $dark('#content .title_inner[1]').html().match(/(\d+).(\d+).(\d+) (\d+).(\d+).(\d+)/i);
+		reportDate=reportDate[2]+"/"+reportDate[1]+"/"+reportDate[3]+' '+reportDate[4]+":"+reportDate[5]+":"+reportDate[6];
+		var timePassed = (new Date(date).getTime() - new Date(reportDate).getTime())/ 1000;// to sec
+		_alert("You attacked before: "+timePassed+" sec");
+		
+		if( timePassed>10 )
+			return;
 		
 		// Reward exist?
+		return;
+		/*
 		if($dark('.reportReward[0]') && $dark('.reportReward[0]')){
 			var data = gca_data.get('collectorData', "");
 			
@@ -61,6 +63,7 @@ var gca_section_reports = {
 			i++;
 			}
 		}
+		*/
 	},
 	player_images_in_reports : function(){
 		if($dark('.dungeon_report_statistic[0] a[0]')){//Fight with mercenaries
@@ -173,7 +176,7 @@ var gca_section_reports = {
 
 		// Report lines
 		var row = 1;
-		var line = document.getElementById('content').getElementsByTagName('tr');
+		var line = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr');
 
 		// Align stuff
 		line[0].getElementsByTagName('th')[2].style.textAlign = "right";
@@ -259,10 +262,10 @@ var gca_section_reports = {
 			onload : function(content){
 
 				// Match Loot
-				var tooltip = content.match(/<div\s+style="background-image:url\(\d*\/*img\/shop\/shop_zelle\.gif\);\s*width:\d+px;\s*height:\s*\d+p*x*;float:left;"\s*data-tooltip="([^"]+)">/im);
-				if(!tooltip){
-					// Match alternative loot
-					tooltip = content.match(/<div\s+class="reportReward"\s+data-tooltip="([^"]+)">/im);
+				var tooltip = content.match(/<div class="reportReward">[^<]+(?:<br \/>[^<]*|)<div>(<div style="[^"]*" class="item-i-[^>]+>)/im);
+				if(tooltip){
+					// Match loot tooltip
+					tooltip = tooltip[1].match(/data-tooltip="([^"]+)"/im);
 				}
 
 				// Error
