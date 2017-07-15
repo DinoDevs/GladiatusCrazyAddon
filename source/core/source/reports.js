@@ -228,7 +228,7 @@ var gca_reports = {
 
 		// Reports
 		if(table.getElementsByClassName('icon_defense').length > 0){
-			var reports = document.getElementById('content').getElementsByTagName('tr');
+			var reports = table.getElementsByTagName('tr');
 			for(var i = 1; i < reports.length; i++){
 				// If defence attack
 				if(reports[i].getElementsByClassName('icon_defense').length){
@@ -284,21 +284,15 @@ var gca_reports = {
 	// Add shadow to items
 	itemShadow : function(){
 		// Get rewards wrapper
-		var wrapper = document.getElementById("content").getElementsByClassName("reportReward");
-		if(wrapper.length == 0) return;
+		var rewards = document.getElementById("content").getElementsByClassName("reportReward");
+		if(rewards.length == 0) return;
 
-		for (var w = 0; w < wrapper.length; w++) {
-			// Get elements that may be items
-			var elements = wrapper[w].childNodes;
-			if(elements.length > 0){
-				// Add shadow to each item
-				for(var i = elements.length - 1; i >= 0; i--){
-					if (elements[i].dataset && elements[i].dataset.tooltip) {
-						let item = elements[i].getElementsByTagName("div")[0];
-						if (item)
-							gca_tools.item.shadow.add(item, elements[i]);
-					}
-				}
+		// For each reward
+		for (var i = 0; i < rewards.length; i++) {
+			// Get divs inside reward
+			var divs = rewards[i].getElementsByTagName("div");
+			if(divs.length > 1){
+				gca_tools.item.shadow.add(divs[1]);
 			}
 		}
 	}
