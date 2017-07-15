@@ -123,7 +123,7 @@ var gca_reports = {
 
 			// Report lines
 			var row = 1;
-			var line = document.getElementById('content').getElementsByTagName('tr');
+			var line = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr');
 
 			// Align stuff
 			line[0].getElementsByTagName('th')[2].style.textAlign = "right";
@@ -189,10 +189,10 @@ var gca_reports = {
 			// Get Report
 			jQuery.get(gca_getPage.link({"mod":"reports","submod":"showCombatReport","reportId":id,"t":t}), function(content){
 				// Match Loot
-				var tooltip = content.match(/<div\s+style="background-image:url\(\d*\/*img\/shop\/shop_zelle\.gif\);\s*width:\d+px;\s*height:\s*\d+p*x*;float:left;"\s*data-tooltip="([^"]+)">/im);
-				if(!tooltip){
-					// Match alternative loot
-					tooltip = content.match(/<div\s+class="reportReward"\s+data-tooltip="([^"]+)">/im);
+				var tooltip = content.match(/<div class="reportReward">[^<]+(?:<br \/>[^<]*|)<div>(<div style="[^"]*" class="item-i-[^>]+>)/im);
+				if(tooltip){
+					// Match loot tooltip
+					tooltip = tooltip[1].match(/data-tooltip="([^"]+)"/im);
 				}
 				
 				// Error
