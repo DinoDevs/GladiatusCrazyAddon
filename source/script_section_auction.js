@@ -20,8 +20,8 @@ var gca_section_auction = {
 			this.item_background_colors());
 
 			// Auto fill items gold
-			(gca_options.isOn("ENABLE_AUCTION_AUTO_FILL_GOLD") && 
-			this.auto_fill_gold_inputs());
+			//(gca_options.isOn("ENABLE_AUCTION_AUTO_FILL_GOLD") && 
+			//this.auto_fill_gold_inputs());
 			
 			// Multiple bids
 			(gca_options.isOn("ENABLE_AUCTION_MULTIPLE_BIDS") && 
@@ -95,7 +95,7 @@ var gca_section_auction = {
 					else if (color=='#FF6'){color = '255, 106, 0, 0.2'}
 					else if (color=='whit'){color = '255, 255, 255, 0.2'}
 					else{color = '90, 156, 255, 0.2'}
-					$dark('#auction_table td['+(i-1)+'] div[3]').style('background: rgba(' + color + ');width:64px;height:96px;');
+					$dark('#auction_table td['+(i-1)+'] div[3]').style('background-color: rgba(' + color + ');width:64px;height:96px;');
 				}
 				i++
 			}
