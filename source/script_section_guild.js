@@ -1259,7 +1259,7 @@ var gca_section_guild = {
 					code=code.replace('&qq'+mates_ids[i]+'='+mates_ids[i],'');
 			}
 			
-			code+= '&mailText='+message+'&sendmails=123';
+			code+= '&mailText=' + encodeURIComponent(message) + '&sendmails=123';
 			
 			if(message.length==0)
 				gca_notifications.warning( gca_locale.get("guild_message_empty") );
