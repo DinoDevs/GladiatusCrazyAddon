@@ -9,7 +9,14 @@
 var gca_languages = gca_languages || {};
 gca_languages["gr"] = {
 	name : "Ελληνικά",
-	locale : {
+	
+	// Traslations
+	locale :{
+		// Sections
+	},
+
+	// Old deprecated struct
+	locale_deprecated : {
 		/* Add on informations */
 			description : "Το πιο τρελό add-on για το gladiatus που φτιάχτηκε ποτέ!",
 

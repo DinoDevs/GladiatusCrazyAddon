@@ -64,21 +64,8 @@ var gca_auction = {
 		// For each item
 		var tooltipElement, itemElement;
 		for (var i = items.length - 1; i >= 0; i--) {
-			// Get elements
-			tooltipElement = items[i].getElementsByTagName("div")[1];
-			itemElement = items[i].getElementsByTagName("div")[2];
-
-			// TODO: update fix
-			if(!itemElement) itemElement = tooltipElement;
-
-			// Render shadow
-			gca_tools.item.shadow.add(itemElement, tooltipElement);
-
-			/*
-			// TODO : Code after the update
 			// Render shadow
 			gca_tools.item.shadow.add(items[i].getElementsByTagName("div")[1]);
-			*/
 		}
 	},
 
