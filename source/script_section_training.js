@@ -522,11 +522,11 @@ var gca_section_training = {
 					// Arrows
 					let arrowUp = document.createElement('div');
 					data.arrowUp = arrowUp;
-					arrowUp.className = "arrow arrow-up";
+					arrowUp.className = "gca-arrow gca-arrow-up";
 					wrapper.appendChild(arrowUp);
 					let arrowDown = document.createElement('div');
 					data.arrowDown = arrowDown;
-					arrowDown.className = "arrow arrow-down";
+					arrowDown.className = "gca-arrow gca-arrow-down";
 					wrapper.appendChild(arrowDown);
 
 					// Inject on page

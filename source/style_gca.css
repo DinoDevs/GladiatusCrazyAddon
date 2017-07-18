@@ -574,8 +574,8 @@
 	#training_box.gca_multiple_training .training_link{right: 35px;}
 	#training_box.gca_multiple_training .gca_multiple{position: absolute;width: 28px;top: 2px;right: 4px;}
 	#training_box.gca_multiple_training .gca_multiple .number{float: left;padding-top: 10px;height: 15px;line-height: 15px;font-size: 10px;width: 17px;}
-	#training_box.gca_multiple_training .gca_multiple .arrow{width: 0;height: 0;float: right;cursor: pointer;border-left: 5px solid transparent;border-right: 5px solid transparent;}
-	#training_box.gca_multiple_training .gca_multiple .arrow-up{border-bottom: 5px solid #695220;padding-top: 6px;margin-bottom: 1px;}
-	#training_box.gca_multiple_training .gca_multiple .arrow-up:hover{border-bottom: 5px solid #3a2d13;}
-	#training_box.gca_multiple_training .gca_multiple .arrow-down{border-top: 5px solid #695220;margin-top: 1px;padding-bottom: 6px;}
-	#training_box.gca_multiple_training .gca_multiple .arrow-down:hover{border-top: 5px solid #3a2d13;}
+	#training_box.gca_multiple_training .gca_multiple .gca-arrow{width: 0;height: 0;float: right;cursor: pointer;border-left: 5px solid transparent;border-right: 5px solid transparent;}
+	#training_box.gca_multiple_training .gca_multiple .gca-arrow-up{border-bottom: 5px solid #695220;padding-top: 6px;margin-bottom: 1px;}
+	#training_box.gca_multiple_training .gca_multiple .gca-arrow-up:hover{border-bottom: 5px solid #3a2d13;}
+	#training_box.gca_multiple_training .gca_multiple .gca-arrow-down{border-top: 5px solid #695220;margin-top: 1px;padding-bottom: 6px;}
+	#training_box.gca_multiple_training .gca_multiple .gca-arrow-down:hover{border-top: 5px solid #3a2d13;}
