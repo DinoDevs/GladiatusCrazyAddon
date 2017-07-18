@@ -579,3 +579,8 @@
 	#training_box.gca_multiple_training .gca_multiple .gca-arrow-up:hover{border-bottom: 5px solid #3a2d13;}
 	#training_box.gca_multiple_training .gca_multiple .gca-arrow-down{border-top: 5px solid #695220;margin-top: 1px;padding-bottom: 6px;}
 	#training_box.gca_multiple_training .gca_multiple .gca-arrow-down:hover{border-top: 5px solid #3a2d13;}
+
+
+/* Options Box Style */
+	.gca-old-title_box {border: 2px solid #bba86e;background-color: #d3c195;color: #513f2c;font-size: 14px;text-align: left;font-weight: bold;padding: 0 5px;}
+	.gca-old-title2_box {padding: 2px 7px;text-align: left;border: 1px solid #bba86e;border-top: 0;min-height: 10px;}

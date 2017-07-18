@@ -64,10 +64,10 @@ gca_options.interface = {
 	gotoSettings : function(){
 		$dark('#content article[0]').addChild([
 			$dark('*br'),
-			$dark('*div').class("title_box").addChild(
+			$dark('*div').class("title_box gca-old-title_box").addChild(
 				$dark('*div').class("title_inner").html(gca.name)
 			),
-			$dark('*div').class("title2_box").addChild(
+			$dark('*div').class("title2_box gca-old-title2_box").addChild(
 				$dark('*div').class("title2_inner").addChild([
 					$dark('*table').addChild([
 						$dark('*tr').addChild([
