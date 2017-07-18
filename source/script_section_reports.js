@@ -32,6 +32,7 @@ var gca_section_reports = {
 			gca_section_global.display.attacked_timers());
 	},
 	reportFoundItems : function(){
+		return;
 		// New report?
 		var date = $dark('#header_game span[6]').html().match(/(\d+).(\d+).(\d+) (\d+).(\d+)/i);
 		var now = new Date();
@@ -45,7 +46,7 @@ var gca_section_reports = {
 			return;
 		
 		// Reward exist?
-		return;
+		//return;
 		/*
 		if($dark('.reportReward[0]') && $dark('.reportReward[0]')){
 			var data = gca_data.get('collectorData', "");
