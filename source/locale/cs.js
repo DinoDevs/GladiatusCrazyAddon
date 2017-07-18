@@ -5,12 +5,12 @@
  * Name : Czech
  * Code : [none]
  * Tag  : cs
- * Translator: WiLLsTeiN, JezdiciOko, adamar [adamar.hry@seznam.cz]
+ * Translator: WiLLsTeiN, JezdiciOko, adamar [adamar.hry@seznam.cz], Majkii
  */
 
 gca_languages['cs'] = {
-	name : 'čeština',
-	translator : "WiLLsTeiN, JezdiciOko, adamar",
+	name : 'Čeština',
+	translator : "WiLLsTeiN, JezdiciOko, adamar, Majkii",
 	locale : {
 		description : "Nejbláznivější add-on pro Gladiatus",
 		write_private_message : "Napsat soukromou zprávu",
@@ -124,7 +124,6 @@ gca_languages['cs'] = {
 		gold_donation_failed : "Darování tvého zlata SELHALO",
 		no_gold : "Nemáš žádné peníze k darování",
 		packages_expiring_in : "Je tady balíček(y) procházejíci v",
-		hours : "hodina/y",
 		hours : "Hodin(a)",
 		error : "CHYBA",
 		loading : "Načítám",
@@ -174,14 +173,15 @@ gca_languages['cs'] = {
 		OPTIONS_GLOBAL_LANGUAGE : "Změn jazyk addonu",
 		OPTIONS_OVERVIEW_OPTIONS : "Nastavení přehledu",
 		OPTIONS_MAIN_PLAYER_OPTIONS : "Hlavní nastavení hráče",
-		OPTIONS_OVERVIEW_ITEMS_ANALIZE : "Analizuj hráčovo předměty",
-		OPTIONS_OVERVIEW_DISPLAY_SHARE_LINK : "Display share player's link button",
+		OPTIONS_OVERVIEW_ITEMS_ANALIZE : "Analizuj hráčovy předměty",
+		OPTIONS_OVERVIEW_DISPLAY_SHARE_LINK : "Zobrazit hráčovo sdílecí tlačítko",
 		OPTIONS_STATS_OPTIONS : "Nastavení statů",
 		OPTIONS_OVERVIEW_PLAYER_STATS_MOD : "Rozšířené zobrazení statů",
 		OPTIONS_OVERVIEW_BLOCK_AVOID_CAPS : "Ukaž maximální hodnoty na vyhnutí a blokování",
 		OPTIONS_TRANING_OPTIONS : "Nastavení cvičiště",
 		OPTIONS_TRANING_DISPLAY_MOD : "Zobraz více informací",
 		OPTIONS_TRANING_DISPLAY_COST_CALCULATOR : "Zobraz kalkulátor ceny statů",
+		OPTIONS_TRANING_MULTIPLE : "Povolit několikanásobný trénink",
 		OPTIONS_AUCTION_OPTIONS : "Nastavení aukce",
 		OPTIONS_AUCTION_TABLE_MODIFICATIONS : "Změny zobrazení",
 		OPTIONS_AUCTION_DISPLAY_ITEMS_NUM : "Zobraz počet předmětů",
@@ -196,7 +196,7 @@ gca_languages['cs'] = {
 		OPTIONS_AUCTION_IMPROVE_SEARCH_MENU : "Zlepšit nabídku vyhledávání",
 		OPTIONS_AUCTION_TOOLTIP_MODIFICATIONS : "Zapni ukazatel vlastností předmětů",
 		OPTIONS_AUCTION_MERCENARIES_TOOLTIPS : "Ukaž vlastnosti od každého žoldáka když ukážeš na avatar jakéhokoliv žoldáka",
-		OPTIONS_AUCTION_HIDE_MERCENARIES_GUIDE_ROW : "Skrýt Průvodce / poslední řádek vlastností žoldáků (lepší na porovnávaní)",
+		OPTIONS_AUCTION_HIDE_MERCENARIES_GUIDE_ROW : "Skrýt průvodce / poslední řádek vlastností žoldáků (lepší na porovnávaní)",
 		OPTIONS_MARKET_OPTIONS : "Nastavení trhu",
 		OPTIONS_MARKET_TABLE_MODIFICATIONS : "Změny zobrazení",
 		OPTIONS_MARKET_LOAD_MORE_PAGES : "Automaticky načíst více stránek",
@@ -243,11 +243,11 @@ gca_languages['cs'] = {
 		OPTIONS_GUILD_LIFE_TAB : "Zobrazit u medika životy členů gildy",
 		OPTIONS_GUILD_APPLICATION_ALERT : "Upozornit na novou gildovní aplikaci (pouze pro adminy)",
 		OPTIONS_GUILD_NAMES_LEVELS : "Skrýt názvy a levely gildovních budov",
-		OPTIONS_PANTHEON_OPTIONS : "Nastavení Úkolů (Pantheon)",
+		OPTIONS_PANTHEON_OPTIONS : "Nastavení Pantheonu",
 		OPTIONS_PANTHEON_QUESTS_ORDER : "Povolit seskupení úkolů",
 		OPTIONS_PANTHEON_QUESTS_DETAILED_REWARDS : "Zapnout detailní odměňovací přehled",
-		OPTIONS_PANTHEON_GODS_RECOLOR : "Přebarvit tlačítka založené na sobě.",
-		OPTIONS_ARENA_OPTIONS : "Nastavené Areny",
+		OPTIONS_PANTHEON_GODS_RECOLOR : "Přebarvit tlačítka založené na sobě",
+		OPTIONS_ARENA_OPTIONS : "Nastavené areny",
 		OPTIONS_ARENA_SERVER_ARENA_ORDER : "Seřadit gladiátory podle úrovně",
 		OPTIONS_PLAYER_OPTIONS : "Nastavení hráčského přehledu",
 		OPTIONS_PLAYER_SIMULATOR_BUTTON : "Povolit Simulátor",

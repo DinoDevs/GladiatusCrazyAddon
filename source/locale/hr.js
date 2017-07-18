@@ -10,7 +10,7 @@
 
 gca_languages['hr'] = {
 	name : 'Hrvatski',
-	translator : "Dark_Knight_@ba.gladiatus.org, mijo.vkci@hotimail.com",
+	translator : "Dark_Knight, mijo.vkci",
 	locale : {
 		description : "Najluđi addon za Gladiatus ikada!",
 		write_private_message : "Napišite privatnu poruku",
@@ -60,6 +60,8 @@ gca_languages['hr'] = {
 		round_to : "Zaokružiti na",
 		results_to_text : "Rezultat prikazat kao tekst",
 		calculate_cost : "Izračunajte cijenu",
+		multiplier : "Višestruko",
+		enable_multiplier : "Uključi višestruko",
 		search_for_players : "Traži igrača",
 		guild_status : "Savezni status",
 		search : "Traži",
@@ -156,6 +158,7 @@ gca_languages['hr'] = {
 		OPTIONS_GLOBAL_MERCHANTS_TIME : "Prikaz brojača do nove robe kod trgovca",
 		OPTIONS_GLOBAL_MINITES_LEFT_FOR_FULL_LIFE : "Prikaz minuta preostalih do kompletnog ozdravljenja",
 		OPTIONS_GLOBAL_REMEMBER_TABS : "Zapamti stranice trgovca i ruksaka",
+		OPTIONS_GLOBAL_ATTACKED_TIMERS : "Prikaži vrijeme prošlo od zadnjeg napada na obranu",
 		OPTIONS_GLOBAL_WEAPON_DOWN_ALERT : "Upozorenje kada igrač nema oružje na sebi",
 		OPTIONS_GLOBAL_DISPLAY_CENTURIO_DAYS : "Prikaz preostalih dana Centuria",
 		OPTIONS_GLOBAL_MAP_NAMES_LEVELS : "Sakrijte imena zgrada u savezu/gradu",
@@ -170,6 +173,7 @@ gca_languages['hr'] = {
 		OPTIONS_TRANING_OPTIONS : "Postavke treninga",
 		OPTIONS_TRANING_DISPLAY_MOD : "Prikaz dodatnih informacija",
 		OPTIONS_TRANING_DISPLAY_COST_CALCULATOR : "Prikaz kalkulatora cijene",
+		OPTIONS_TRANING_MULTIPLE : "Uključi višestruko treniranje",
 		OPTIONS_AUCTION_OPTIONS : "Postavke aukcije",
 		OPTIONS_AUCTION_TABLE_MODIFICATIONS : "Uključite dodatne opcije sučelja",
 		OPTIONS_AUCTION_DISPLAY_ITEMS_NUM : "Prikaz broja predmeta",
@@ -221,6 +225,7 @@ gca_languages['hr'] = {
 		OPTIONS_GUILD_LIFE_TAB : "Prikaz zdravlja kompletnog saveza u Doktorovoj vili",
 		OPTIONS_GUILD_APPLICATION_ALERT : "Upozorenje kada stigne nova aplikacija za savez (za Admine saveza)",
 		OPTIONS_GUILD_NAMES_LEVELS : "Sakrijte imena i levele saveznih zgrada (Glavni prikaz saveza)",
+		OPTIONS_PANTHEON_OPTIONS : "postavke Pantheon",
 		OPTIONS_ARENA_OPTIONS : "Postavke Arena",
 		OPTIONS_PREMIUM_OPTIONS : "GCA Premium postavke",
 		OPTIONS_PREMIUM_KEY : "Unesite Vaš GCA premium ključ",

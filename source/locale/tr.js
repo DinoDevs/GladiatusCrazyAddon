@@ -5,12 +5,12 @@
  * Name : Turkish
  * Code : [none]
  * Tag  : tr
- * Translator: OneLastKiss En-S15 / XeaR - {s16} [barisdursun88@gmail.com]
+ * Translator: OneLastKiss/XeaR/ArmadilloTR
  */
 
 gca_languages['tr'] = {
 	name : 'Türkçe',
-	translator : "OneLastKiss/XeaR",
+	translator : "OneLastKiss/XeaR/ArmadilloTR",
 	locale : {
 		description : "Gladiatus için yapılmış en çılgın eklenti!",
 		write_private_message : "Özel mesaj yaz",
@@ -181,6 +181,7 @@ gca_languages['tr'] = {
 		OPTIONS_TRANING_OPTIONS : "Eğitim ayarları",
 		OPTIONS_TRANING_DISPLAY_MOD : "Daha fazla bilgi göster",
 		OPTIONS_TRANING_DISPLAY_COST_CALCULATOR : "Tutar hesaplayıcıyı göster",
+		OPTIONS_TRANING_MULTIPLE : "Çoklu eğitimi aktif et",
 		OPTIONS_AUCTION_OPTIONS : "Müzayede ayarları",
 		OPTIONS_AUCTION_TABLE_MODIFICATIONS : "Arayüz değişiklikleri",
 		OPTIONS_AUCTION_DISPLAY_ITEMS_NUM : "Eşya sayısını göster",
@@ -201,14 +202,19 @@ gca_languages['tr'] = {
 		OPTIONS_MARKET_LOAD_MORE_PAGES : "Diğer sayfaları otomatik yükle",
 		OPTIONS_MARKET_STYLE_CHANGES : "Görünüş değişiklikleri",
 		OPTIONS_MARKET_CANCEL_PACKETS_BUTTON : "Bütün teklifleri geri çek butonunu göster",
+		OPTIONS_MARKET_DEFAULT_SELL_DURATION : "Varsayılan market satış süresini seç",
 		OPTIONS_MARKET_SEARCH_MODIFICATIONS : "Arama değişiklikleri",
 		OPTIONS_MARKET_EXPAND_ITEMS_LVL : "Eşyaların seviyesi seçeneğini genişlet",
 		OPTIONS_MARKET_IMPROVE_SEARCH_MENU : "Arama menüsünü geliştir",
 		OPTIONS_MERCHANTS_OPTIONS : "Tüccar ayarları",
 		OPTIONS_MERCHANTS_ITEM_SEARCH : "Tüccarlarda eşya aramaya izin ver",
+		OPTIONS_MERCHANTS_HIGHLIGHT_ITEMS : "Tüccarlardan alabileceğin eşyaları vurgula",
+		OPTIONS_MERCHANTS_INFOS : "Tüccarların altındaki bilgi kutucuğunu aktif et",
 		OPTIONS_MESSAGES_OPTIONS : "Mesaj ayarları",
 		OPTIONS_MESSAGES_LIST_OPTIONS : "Mesaj listesi ayarları",
 		OPTIONS_MESSAGES_STYLING : "Mesaj arayüzünü geliştir",
+		OPTIONS_MESSAGES_CONVERT_LINKS : "Metin URL'lerini linke çevir",
+		OPTIONS_MESSAGES_FIX_SPACES : "Mesajlardaki yer problemini düzelt",
 		OPTIONS_NEW_MESSAGE_OPTIONS : "Yeni mesaj ayarları",
 		OPTIONS_NEWMESSAGE_FOCUS : "İçeriğe anlık odaklanmayı ayarla",
 		OPTIONS_NEWMESSAGE_FRIENDLIST : "Arkadaş listesi butonu ekle",
@@ -219,6 +225,7 @@ gca_languages['tr'] = {
 		OPTIONS_PACKAGES_NEW_LAYOUT : "Yeni \"kasa(altın)\" düzenlemesine izin ver",
 		OPTIONS_PACKAGES_MAX_PAGES_TO_LOAD : "Yüklenecek maksimum sayfa sayısı",
 		OPTIONS_PACKAGES_COLLECT_GOLD_BUTTON : "Altınları topla butonu ekle",
+		OPTIONS_PACKAGES_EXPIRED_PACKAGES : "Süresi geçmiş paketlerin uyarılarını aktif et",
 		OPTIONS_REPORTS_OPTIONS : "Raporlama ayarları",
 		OPTIONS_REPORT_LIST_OPTIONS : "Rapor listesi ayarları",
 		OPTIONS_REPORT_LIST_STYLE : "Rapor listesi görünüşünü geliştir",
@@ -235,6 +242,14 @@ gca_languages['tr'] = {
 		OPTIONS_GUILD_LIFE_TAB : "Villa medici'de ittifak üyelerinin sağlık durumunu göster",
 		OPTIONS_GUILD_APPLICATION_ALERT : "Yeni bir ittifağa katılım başvurusu olduğunda uyar (İttifak yöneticileri için)",
 		OPTIONS_GUILD_NAMES_LEVELS : "Ana ittifak sayfasında binaların isimlerini ve seviyelerini gizle",
+		OPTIONS_PANTHEON_OPTIONS : "Pantheon ayaları",
+		OPTIONS_PANTHEON_QUESTS_ORDER : "Görev gruplamasını aktif et",
+		OPTIONS_PANTHEON_QUESTS_DETAILED_REWARDS : "Detaylı ödül görünümünü aktif et",
+		OPTIONS_PANTHEON_OPTIONS : "Pantheon ayarları",
+		OPTIONS_ARENA_OPTIONS : "Arena ayarları",
+		OPTIONS_ARENA_SERVER_ARENA_ORDER : "Gladyatörlerin seviyeye göre sırala",
+		OPTIONS_PLAYER_OPTIONS : "Oyuncu genel bakış ayarları",
+		OPTIONS_PLAYER_SIMULATOR_BUTTON : "Similasyonu aktif et",
 		OPTIONS_PREMIUM_OPTIONS : "GCA Premium ayarları",
 		OPTIONS_PREMIUM_KEY : "GCA Premium şifrenizi girin",
 		OPTIONS_GET_PREMIUM : "Premium şifre satın al",
