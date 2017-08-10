@@ -77,14 +77,19 @@ var gca_section_auction = {
 	//Items numbers
 	item_numbers : function(){
 		var items = document.forms.length-1;
-		var bids=$dark('#auction_table span').length;
-		$dark('*div').class('title2_box').style('width:535px;').html('<div class=\"title_inner\"><center>'+ gca_locale.get('number_of_items') +': ' + items + '<br>'+ gca_locale.get('number_of_bided_items') +': ' + bids + '</div></center></div>').beforeFrom($dark('#auction_table'));
-		//.id('mystylecolor')
+		var bids = $dark('#auction_table span').length;
+		$dark('#content article[0]').addChild([
+			$dark('*h2').class('section-header').style('cursor: pointer;').html(gca_locale.get('number_of_items')),
+			$dark('*section').style('display: block;').html(
+				gca_locale.get('number_of_items') +': ' + items + '<br>' + gca_locale.get('number_of_bided_items') +': ' + bids
+			)
+		]);
+		//$dark('#content article[0]').DOM().style.minHeight = (document.getElementById("mainmenu").offsetHeight - 10) + "px";
 	},
 	//Item background colors
 	item_background_colors : function(){
 		var items=document.forms.length-1;
-		var i=1;var color;
+		var i=1;var color;var tmp;
 		while(i<=items && i<501){
 			if($dark('#auction_table td['+(i-1)+']')){
 				if($dark('#auction_table td['+(i-1)+'] div[3]')){
@@ -95,7 +100,10 @@ var gca_section_auction = {
 					else if (color=='#FF6'){color = '255, 106, 0, 0.2'}
 					else if (color=='whit'){color = '255, 255, 255, 0.2'}
 					else{color = '90, 156, 255, 0.2'}
-					$dark('#auction_table td['+(i-1)+'] div[3]').style('background-color: rgba(' + color + ');width:64px;height:96px;');
+					tmp = $dark('#auction_table td['+(i-1)+'] div[2]').DOM()
+					tmp.style.backgroundColor = 'rgba(' + color + ')';
+					tmp.style.width = '64px';
+					tmp.style.height = '96px';
 				}
 				i++
 			}
