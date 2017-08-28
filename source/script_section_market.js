@@ -246,7 +246,7 @@ var gca_section_market = {
 		var script_code = "(function (){\n" + 
 		"var data = JSON.stringify(" + JSON.stringify(tooltip) + ");\n" +
 		"var img = jQuery('#level_to_see_info')[0];\n" + 
-		"img.dataset.tooltip = data.tooltip\n" + 
+		"img.dataset.tooltip = data;\n" + 
 		"if(typeof setTooltip != 'undefined'){setTooltip(img, data);}\n" +
 		"})();";
 
