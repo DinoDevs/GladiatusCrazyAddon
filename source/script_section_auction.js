@@ -1,6 +1,6 @@
 ﻿/*
  * Addon Auction Script
- * Author: GreatApo
+ * Author: GreatApo, Darkthanos
  * Copyright: all rights reserved
  */
 
@@ -100,7 +100,7 @@ var gca_section_auction = {
 					else if (color=='#FF6'){color = '255, 106, 0, 0.2'}
 					else if (color=='whit'){color = '255, 255, 255, 0.2'}
 					else{color = '90, 156, 255, 0.2'}
-					tmp = $dark('#auction_table td['+(i-1)+'] div[2]').DOM()
+					tmp = $dark('#auction_table td['+(i-1)+'] div[2]').DOM();
 					tmp.style.backgroundColor = 'rgba(' + color + ')';
 					tmp.style.width = '64px';
 					tmp.style.height = '96px';
@@ -487,7 +487,15 @@ var gca_section_auction = {
 	},
 	warn_guild_mates : function(){
 		var time_checked = $dark('#header_game span[6]').html().match(/(\d+:\d+)/i)[1];
-		var auction_translation = document.getElementsByClassName('menuitem active')[0].textContent;
+		//var auction_translation = document.getElementsByClassName('menuitem active')[0].textContent;
+		var auction_translation = "";
+		var menu_items = document.getElementsByClassName('menuitem');
+		for (var i = menu_items.length - 1; i >= 0; i--) {
+			if (menu_items[i].href.match("mod=auction")) {
+				auction_translation = menu_items[i].textContent;
+				break;
+			}
+		}
 		var auction_type = ( $dark('#mainnav .current[0]') )? $dark('#mainnav .current[0]').html() : gca_locale.get('error');var auction_stats = $dark('#content .description_span_right[0] b[0]').html();
 		var message='['+time_checked+'] '+auction_translation+' ('+auction_type+') : '+ auction_stats;
 		
