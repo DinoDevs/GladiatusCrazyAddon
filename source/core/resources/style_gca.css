@@ -652,6 +652,17 @@
 
 
 
+	/* Inventory Layout
+	-------------------------------------------------- */
+		.inventory_options_group .inventoryBox #itemOptions{display: none;margin-top: 5px;}
+		.inventory_options_group .inventoryBox .bag_buy_extend{display: none;width: auto!important;padding: 0px;margin: 2px 6px;}
+		.inventory_options_group .inventoryBox #show-item-info{display: none;}
+		.inventory_options_group #inv {margin-bottom: 10px;}
+		.inventory_options_group .gca-inv-group-options-button{position: absolute;top: 3px;right: 2px;cursor: pointer;z-index: 1;width: 16px;height: 16px;background: transparent url('icons/gear.png');}
+		.inventory_options_group .gca-inv-group-options-button:hover{filter: drop-shadow(0px 0px 1px rgba(0,0,0,0.5));}
+		.inventory_options_group .gca-inv-group-options-box{display: none;margin: 0px 22px 5px;border: 1px solid #9f835c;}
+
+
 	/* Overview Layout
 	-------------------------------------------------- */
 		.mercenary_bg{position: absolute;background-image: url('interface/char_item_bg.jpg');width:32px;height:32px;left:22px;top:20px;}

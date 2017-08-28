@@ -19,6 +19,9 @@ var gca_global = {
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
 			this.display.itemShadow.preload());
+		// If Inventory options group
+		(gca_options.bool("global","inventory_options_group") &&
+			this.display.inventoryOptionsGroup.preload());
 	},
 	// Inject Code
 	inject : function(){
@@ -72,6 +75,10 @@ var gca_global = {
 		// Merchants Timer
 		//(gca_options.bool("global","merchants_timer") &&
 		//	this.display.merchants_time.inject());
+
+		// Inventory options group
+		(gca_options.bool("global","inventory_options_group") &&
+			this.display.inventoryOptionsGroup.create());
 
 		// Daily Bonus Log
 		(gca_options.bool("overview", "daily_bonus_log") && 
@@ -1414,9 +1421,7 @@ var gca_global = {
 			moved : false,
 			preload : function(){
 				// Insert it on html tag
-				if(document.documentElement.className.length>0)
-					document.documentElement.className += " ";
-				document.documentElement.className += "event_bar_moved";
+				document.documentElement.className += " event_bar_moved";
 				// Set moved
 				this.moved = true;
 			},
@@ -2387,8 +2392,61 @@ var gca_global = {
 					tab.dataset.itemShadowed = true;
 			}
 
-		}
+		},
 
+		// Group inventory options
+		inventoryOptionsGroup : {
+			// Preload before page load
+			preload : function(){
+				// Insert it on html tag
+				document.documentElement.className += " inventory_options_group";
+			},
+			// Create group
+			create : function(){
+				if (!document.getElementById('inv')) return;
+
+				// Get wrapper
+				var wrapper = document.getElementById('inv').parentNode;
+				// Create options button
+				this.button = document.createElement('div');
+				this.button.className = "gca-inv-group-options-button";
+				var that = this;
+				this.button.addEventListener('click', function(){
+					that.toggle();
+				}, false);
+				wrapper.appendChild(this.button);
+				// Create options box
+				this.box = document.createElement('div');
+				this.box.className = "gca-inv-group-options-box";
+				wrapper.appendChild(this.box);
+				
+				var item;
+				// Populate options box
+				item = wrapper.getElementsByClassName("bag_buy_extend")[0];
+				item.style.display = "block";
+				this.box.appendChild(item);
+				item = document.getElementById("itemOptions");
+				item.style.display = "block";
+				this.box.appendChild(item);
+				item = document.getElementById("show-item-info");
+				item.style.display = "block";
+				this.box.appendChild(item);
+			},
+			// Show/Hide options
+			hidden : true,
+			toggle : function() {
+				if (this.hidden) this.show();
+				else this.hide(); 
+			},
+			show : function() {
+				this.box.style.display = "block";
+				this.hidden = false;
+			},
+			hide : function() {
+				this.box.style.display = "none";
+				this.hidden = true;
+			}
+		}
 	},
 
 	// Underworld related functions

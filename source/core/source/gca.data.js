@@ -299,6 +299,9 @@ gca_options.data = {
 		// Enable item's shadow
 		"item_shadow" : true,
 
+		// Enable inventory group options
+		"inventory_options_group" : true,
+
 		// Enable pagination layout
 		"pagination_layout" : true,
 		
