@@ -73,6 +73,7 @@ gca_languages["en"] = {
 			message_sent_failed : "Failed to sent message",
 			message_empty : "The message is empty",
 			message_exclude_me : "Exclude me",
+
 			// Button bar buttons
 			guild_market_goto : "Go to guild's market",
 			guild_storage_goto : "Go to guild's storage",
@@ -84,10 +85,12 @@ gca_languages["en"] = {
 			simulator_goto : "Go to simulator",
 			stats_display : "Display my stats",
 			online_display : "Display online players",
+
 			// Online friends
 			online_friends : "Online Friends",
 			guild_friends : "Guild Friends",
 			family_friends : "Family Friends",
+
 			// Guild donate
 			donate_gold_confirm : "Are you sure you want to donate {{number}} gold?",
 			donate_gold_success : "Gold donated successfully",
@@ -207,6 +210,7 @@ gca_languages["en"] = {
 			category_global$notify_new_guild_application_interval : "Check for applications every (seconds)",
 			category_global$x_scroll : "Enable gladiatus' horizontal scroll",
 			category_global$item_shadow : "Enable items shadows",
+			category_global$inventory_options_group : "Group inventory options",
 			category_global$pagination_layout : "Change paginations layout",
 			category_global$gold_exp_data : "Show gold and exp data",
 			category_global$pray_shorcut : "Display pray shorcut",
