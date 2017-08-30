@@ -151,7 +151,7 @@ var gca_tools = {
 			}
 
 			return '' +
-				(days > 0 ? days + ' ' + 'days' + ' ' : '') +
+				(days > 0 ? days + ' ' + gca_locale.get("general", "days") + ' ' : '') +
 				(hrs < 10 ? '0' : '') + hrs + ':' +
 				(mins < 10 ? '0' : '') + mins + ':' +
 				(secs < 10 ? '0' : '') + secs;

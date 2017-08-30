@@ -43,6 +43,8 @@ gca_languages["en"] = {
 		// General
 		general : {
 
+			// Days
+			days : "day(s)",
 			// Minites
 			minutes : "minute(s)",
 			// No data
@@ -204,6 +206,7 @@ gca_languages["en"] = {
 			category_global$remember_tabs : "Remember merchands tabs",
 			category_global$attacked_timers : "Show attacked timers",
 			category_global$quest_timer : "Show quests status or timer",
+			category_global$merchants_timer : "Show merchands timer indicator",
 			category_global$player_image : "Enable players' images",
 			category_global$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
