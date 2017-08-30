@@ -73,8 +73,8 @@ var gca_global = {
 			this.display.quests_timer.inject());
 
 		// Merchants Timer
-		//(gca_options.bool("global","merchants_timer") &&
-		//	this.display.merchants_time.inject());
+		(gca_options.bool("global","merchants_timer") &&
+			this.display.merchants_timer.inject(this));
 
 		// Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
@@ -1524,8 +1524,14 @@ var gca_global = {
 
 		// Improve Main Menu
 		advanced_main_menu : {
-			// Create Advance menu
-			create : function(){
+			loaded : false,
+			info : {},
+
+			// Resolve menu
+			resolve : function() {
+				if (this.loaded)
+					return;
+				this.loaded = true;
 
 				// Get main menu links list
 				var main_links = document.getElementById("mainmenu").getElementsByTagName('a');
@@ -1539,24 +1545,24 @@ var gca_global = {
 				}
 
 				// Overview Link
-				var overview = main_links[0];
-				var overview_active = (overview.className.match('active')) ? '_active' : '';
+				this.info.overview = main_links[0];
+				this.info.overview_active = (this.info.overview.className.match('active')) ? '_active' : '';
 
 				// Hightscore Link
-				var highscore = main_links[3];
-				var highscore_active = (highscore.className.match('active')) ? '_active' : '';
+				this.info.highscore = main_links[3];
+				this.info.highscore_active = (this.info.highscore.className.match('active')) ? '_active' : '';
 
 				// Pantheon Link
-				var pantheon = main_links[1];
-				var pantheon_active = (pantheon.className.match('active')) ? '_active' : '';
-				var guild = main_links[2];
-				var guild_active = (guild.className.match('active')) ? '_active' : '';
+				this.info.pantheon = main_links[1];
+				this.info.pantheon_active = (this.info.pantheon.className.match('active')) ? '_active' : '';
+				this.info.guild = main_links[2];
+				this.info.guild_active = (this.info.guild.className.match('active')) ? '_active' : '';
 
 
 				// While not traveling
 				if(!gca_global.isTraveling){
 					// Submenu links
-					var sublink = {
+					this.info.sublink = {
 						work : {active : false},
 						arena : {active : false},
 						training : {active : false},
@@ -1575,71 +1581,100 @@ var gca_global = {
 					
 					// Resolve links
 					for(let i = 0; i < sub_links.length; i++){
-						if(!sublink.work.active && sub_links[i].href.match(/index.php\?mod=work(&|&amp;)sh=/i)){
-							sublink.work.active = i;
+						if(!this.info.sublink.work.active && sub_links[i].href.match(/index.php\?mod=work(&|&amp;)sh=/i)){
+							this.info.sublink.work.active = i + 1;
+							this.info.sublink.work.link = sub_links[i];
 						}
-						else if(!sublink.arena.active && sub_links[i].href.match(/index.php\?mod=arena(&|&amp;)sh=/i)){
-							sublink.arena.active = i;
+						else if(!this.info.sublink.arena.active && sub_links[i].href.match(/index.php\?mod=arena(&|&amp;)sh=/i)){
+							this.info.sublink.arena.active = i + 1;
+							this.info.sublink.arena.link = sub_links[i];
 						}
-						else if(!sublink.training.active && sub_links[i].href.match(/index.php\?mod=training(&|&amp;)sh=/i)){
-							sublink.training.active = i;
+						else if(!this.info.sublink.training.active && sub_links[i].href.match(/index.php\?mod=training(&|&amp;)sh=/i)){
+							this.info.sublink.training.active = i + 1;
+							this.info.sublink.training.link = sub_links[i];
 						}
-						else if(!sublink.weaponSmith.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=1(&|&amp;)sh=/i)){
-							sublink.weaponSmith.active = i;
+						else if(!this.info.sublink.weaponSmith.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=1(&|&amp;)sh=/i)){
+							this.info.sublink.weaponSmith.active = i + 1;
+							this.info.sublink.weaponSmith.link = sub_links[i];
 						}
-						else if(!sublink.armourSmith.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=2(&|&amp;)sh=/i)){
-							sublink.armourSmith.active = i;
+						else if(!this.info.sublink.armourSmith.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=2(&|&amp;)sh=/i)){
+							this.info.sublink.armourSmith.active = i + 1;
+							this.info.sublink.armourSmith.link = sub_links[i];
 						}
-						else if(!sublink.generalGoods.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=3(&|&amp;)sh=/i)){
-							sublink.generalGoods.active = i;
+						else if(!this.info.sublink.generalGoods.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=3(&|&amp;)sh=/i)){
+							this.info.sublink.generalGoods.active = i + 1;
+							this.info.sublink.generalGoods.link = sub_links[i];
 						}
-						else if(!sublink.alchemist.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=4(&|&amp;)sh=/i)){
-							sublink.alchemist.active = i;
+						else if(!this.info.sublink.alchemist.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=4(&|&amp;)sh=/i)){
+							this.info.sublink.alchemist.active = i + 1;
+							this.info.sublink.alchemist.link = sub_links[i];
 						}
-						else if(!sublink.mercenaries.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=5(&|&amp;)sh=/i)){
-							sublink.mercenaries.active = i;
+						else if(!this.info.sublink.mercenaries.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=5(&|&amp;)sh=/i)){
+							this.info.sublink.mercenaries.active = i + 1;
+							this.info.sublink.mercenaries.link = sub_links[i];
 						}
-						else if(!sublink.forge.active && sub_links[i].href.match(/index.php\?mod=forge(&|&amp;)sh=/i)){
-							sublink.forge.active = i;
+						else if(!this.info.sublink.forge.active && sub_links[i].href.match(/index.php\?mod=forge(&|&amp;)sh=/i)){
+							this.info.sublink.forge.active = i + 1;
+							this.info.sublink.forge.link = sub_links[i];
 						}
-						else if(!sublink.malefica.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=6(&|&amp;)sh=/i)){
-							sublink.malefica.active = i;
+						else if(!this.info.sublink.malefica.active && sub_links[i].href.match(/index.php\?mod=inventory(&|&amp;)sub=6(&|&amp;)sh=/i)){
+							this.info.sublink.malefica.active = i + 1;
+							this.info.sublink.malefica.link = sub_links[i];
 						}
-						else if(!sublink.wizard.active && sub_links[i].href.match(/index.php\?mod=magus(&|&amp;)sh=/i)){
-							sublink.wizard.active = i;
+						else if(!this.info.sublink.wizard.active && sub_links[i].href.match(/index.php\?mod=magus(&|&amp;)sh=/i)){
+							this.info.sublink.wizard.active = i + 1;
+							this.info.sublink.wizard.link = sub_links[i];
 						}
-						else if(!sublink.auction.active && sub_links[i].href.match(/index.php\?mod=auction(&|&amp;)sh=/i)){
-							sublink.auction.active = i;
+						else if(!this.info.sublink.auction.active && sub_links[i].href.match(/index.php\?mod=auction(&|&amp;)sh=/i)){
+							this.info.sublink.auction.active = i + 1;
+							this.info.sublink.auction.link = sub_links[i];
 						}
-						else if(!sublink.market.active && sub_links[i].href.match(/index.php\?mod=market(&|&amp;)sh=/i)){
-							sublink.market.active = i;
+						else if(!this.info.sublink.market.active && sub_links[i].href.match(/index.php\?mod=market(&|&amp;)sh=/i)){
+							this.info.sublink.market.active = i + 1;
+							this.info.sublink.market.link = sub_links[i];
 						}
 					};
 
 					// Arena
-					if(sublink.arena.active){
-						var arena = sub_links[sublink.arena.active];
-						var arena_active = (arena.className.match('active')) ? '_active' : '';
+					if(this.info.sublink.arena.active){
+						this.info.arena = this.info.sublink.arena.link;
+						this.info.arena_active = (this.info.arena.className.match('active')) ? '_active' : '';
 					}
 					// Forge
-					if(sublink.forge.active){
-						var forge = sub_links[sublink.forge.active];
-						var forge_active = (forge.className.match('active')) ? '_active' : '';
+					if(this.info.sublink.forge.active){
+						this.info.forge = this.info.sublink.forge.link;
+						this.info.forge_active = (this.info.forge.className.match('active')) ? '_active' : '';
 					}
 					// Auction
-					if(sublink.auction.active){
-						var auction = sub_links[sublink.auction.active];
-						var auction_active = (auction.className.match('active')) ? '_active' : '';
+					if(this.info.sublink.auction.active){
+						this.info.auction = this.info.sublink.auction.link;
+						this.info.auction_active = (this.info.auction.className.match('active')) ? '_active' : '';
 					}
 					// Market
-					if(sublink.market.active){
-						var market = sub_links[sublink.market.active];
-						var market_active = (market.className.match('active')) ? '_active' : '';
+					if(this.info.sublink.market.active){
+						this.info.market = this.info.sublink.market.link;
+						this.info.market_active = (this.info.market.className.match('active')) ? '_active' : '';
 					}
 				}
+			},
+
+			// Tag main menu
+			isTagged : false,
+			tagMainMenu : function() {
+				if (this.isTagged) return;
+				this.isTagged = true;
+				document.getElementById('mainmenu').className += " gca_advance_main_menu";
+			},
+
+			// Create Advance menu
+			create : function(){
+				// Resolve menu
+				this.resolve();
+				// Tag menu
+				this.tagMainMenu();
 
 				// Inject Overview Link
-				this.convertMenu.addTabs("overview", overview, overview_active, [
+				this.convertMenu.addTabs("overview", this.info.overview, this.info.overview_active, [
 					{text : 'P', href : gca_getPage.link({"mod":"overview","submod":"stats"})},
 					{text : 'X', href : gca_getPage.link({"mod":"overview","doll":"2"})},
 					{text : 'I', href : gca_getPage.link({"mod":"overview","doll":"3"})},
@@ -1649,13 +1684,13 @@ var gca_global = {
 				]);
 
 				// Inject Highscore Link
-				this.convertMenu.addPlus(highscore, highscore_active, {href : "http://gladiatuscrazyaddon.tk/index.php?mode=highscore", target : "_blank"});
+				this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : "http://gladiatuscrazyaddon.tk/index.php?mode=highscore", target : "_blank"});
 
 				// Inject Pantheon Link
-				this.convertMenu.addPlus(pantheon, pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
+				this.convertMenu.addPlus(this.info.pantheon, this.info.pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
 
 				// Inject Guild Link
-				this.convertMenu.addTabs("guild", guild, guild_active, [
+				this.convertMenu.addTabs("guild", this.info.guild, this.info.guild_active, [
 					{text : '\u265C', href : gca_getPage.link({"mod":"guild"})},
 					{text : '\uD83D\uDD27', href : gca_getPage.link({"mod":"guild","submod":"admin"})},
 					{text : '\uD83C\uDFF0', href : gca_getPage.link({"mod":"guild","submod":"buildings"})},
@@ -1673,19 +1708,19 @@ var gca_global = {
 					// If player over lv2
 					if(level > 2){
 						// Inject Arena link
-						this.convertMenu.addPlus(arena, arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
+						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
 
 						// Forge
-						if(forge){
-							this.convertMenu.addPlus(forge, forge_active, {href : gca_getPage.link({"mod":"forge","submod":"smeltery"})});
+						if(this.info.forge){
+							this.convertMenu.addPlus(this.info.forge, this.info.forge_active, {href : gca_getPage.link({"mod":"forge","submod":"smeltery"})});
 						}
 						// Auction
-						if(auction){
-							this.convertMenu.addPlus(auction, auction_active, {href : gca_getPage.link({"mod":"auction","ttype":"3"})});
+						if(this.info.auction){
+							this.convertMenu.addPlus(this.info.auction, this.info.auction_active, {href : gca_getPage.link({"mod":"auction","ttype":"3"})});
 						}
 						// Inject Market Link
-						if(market){
-							this.convertMenu.addTabs("market", market, market_active, [
+						if(this.info.market){
+							this.convertMenu.addTabs("market", this.info.market, this.info.market_active, [
 								{href : gca_getPage.link({"mod":"market","f":"7","s":"p"}), img : {class : "item-i-7-2", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"11","s":"p"}), img : {class : "item-i-12-8", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"12","s":"p"}), img : {class : "item-i-11-7", style : "margin:-2px;"}},
@@ -1698,7 +1733,7 @@ var gca_global = {
 					// lv2 player
 					else if(level == 2){
 						// Inject Arena link
-						this.convertMenu.addPlus(arena, arena_active, {href : getPage.link({"mod":"arena","submod":"grouparena"})});
+						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : getPage.link({"mod":"arena","submod":"grouparena"})});
 					}
 				}
 			},
@@ -1706,17 +1741,18 @@ var gca_global = {
 			convertMenu : {
 				// Add a + button
 				addPlus : function(menu, active, options){
-					// Inject Link
+					// Inject parent wrapper
 					var newMenu = document.createElement("div");
 					newMenu.className = "advanced_menu_entry";
 					menu.parentNode.insertBefore(newMenu, menu.nextSibling);
 					newMenu.appendChild(menu);
 					menu.className += " advanced_menu_link" + active;
+					menu.dataset.hasWrapper = "true";
 					// Plus Link
 					var a = document.createElement("a");
 					a.className = "advanced_menu_shift";
 					a.textContent = ">";
-					a.style.fontFamily = "consolas";
+					a.style.fontFamily = "Consolas, monaco, monospace";
 					for(let i in options){
 						a.setAttribute(i,options[i]);
 					}
@@ -1730,6 +1766,7 @@ var gca_global = {
 					var frontTab = document.createElement("div");
 					frontTab.className = "advanced_menu_entry";
 					menu.parentNode.insertBefore(frontTab, menu.nextSibling);
+					menu.dataset.hasWrapper = "true";
 					// Back Tab
 					var backTab = document.createElement("div");
 					backTab.className = "advanced_menu_back_links";
@@ -1785,7 +1822,27 @@ var gca_global = {
 					}
 
 					return backLinks;
-				}
+				},
+
+				// Add a side icon
+				addSideIcon : function(menu, active, icon){
+					// Inject parent wrapper
+					var menuWrapper
+					if (!menu.dataset.hasWrapper) {
+						menuWrapper = document.createElement("div");
+						menuWrapper.className = "advanced_menu_entry";
+						menu.parentNode.insertBefore(menuWrapper, menu.nextSibling);
+						menuWrapper.appendChild(menu);
+					} else {
+						menuWrapper = menu.parentNode;
+					}
+					// Side icon
+					var i = document.createElement("span");
+					i.className = "advanced_menu_side_icon";
+					if (icon) i.className += " " + icon;
+					menuWrapper.appendChild(i);
+					return i;
+				},
 			},
 			
 			// Convert mouseover submenu change event to click event
@@ -2339,8 +2396,106 @@ var gca_global = {
 			}
 		},
 
-		merchants_time : {
-			inject : function(){
+		merchants_timer : {
+			preload : function(){
+				// Resolve menu
+				this.self.display.advanced_main_menu.resolve();
+				// Tag menu
+				this.self.display.advanced_main_menu.tagMainMenu();
+				
+				// Clear indicator
+				this.icon = null;
+			},
+
+
+			inject : function(self){
+				// Save instances
+				this.self = self;
+				var that = this;
+
+				// Preload
+				this.preload();
+
+				// if merchant wait for update event
+				if(gca_section.mod == 'inventory'){
+					this.setIndicator('grey', false);
+					gca_tools.event.addListener("merchants-timer-update", function(){
+						that.display();
+					});
+					return;
+				}
+				// Do not run while traveling
+				else if (gca_global.isTraveling){
+					return;
+				}
+
+				this.display();
+			},
+
+			setIndicator : function(type, tooltip) {
+				// Create indicator
+				if (!this.icon) {
+					// Get menu item
+					var weaponSmith = this.self.display.advanced_main_menu.info.sublink.weaponSmith.link;
+					var weaponSmith_active = (weaponSmith.className.match('active')) ? '_active' : '';
+
+					// Add indicator
+					this.icon = this.self.display.advanced_main_menu.convertMenu.addSideIcon(weaponSmith, weaponSmith_active, "indicator-" + type);
+				}
+				// Update indicator
+				else {
+					this.icon.className = this.icon.className.replace(/indicator-\S+/g, "indicator-" + type);
+				}
+
+				if (tooltip) {
+					gca_tools.setTooltip(this.icon, JSON.stringify(tooltip));
+				}
+			},
+
+			// Display timers
+			display : function(){
+				// Time when new items will arrive
+				var itemsRefresh = parseInt(gca_data.section.get("timers", 'merchants_refresh', 0));
+				this.text = gca_data.section.get("timers", 'merchants_refresh_text', " ");
+
+				// Time difference
+				this.timer = (itemsRefresh - gca_tools.time.server());
+
+				// Check if the time has finished
+				if(this.timer < 0){
+					// New items arrived
+					this.setIndicator('red', [[[this.text,"#BA9700"],["00:00:00","white;text-align:right;"]]]);
+				}
+				// Time has NOT finished
+				else{
+					// Save instance
+					var that = this;
+					// Refresh the countdown
+					this.countdown_interval = setInterval(function(){
+						that.countdown();
+					}, 1000);
+					this.countdown();
+				}
+			},
+
+			// Count Down
+			countdown_interval : null,
+			countdown : function(){
+				// If ready
+				if(this.timer < 0){
+					// New items arrived
+					this.setIndicator('red', [[[this.text,"#BA9700"],["00:00:00","white;text-align:right;"]]]);
+
+					// Clear timer
+					clearInterval(this.countdown_interval);
+					return;
+				}
+				
+				// Wait items arrived
+				this.setIndicator('yellow', [[[this.text,"#BA9700"],[gca_tools.time.msToString(this.timer),"white;text-align:right;"]]]);
+				
+				// 1 sec passed
+				this.timer = this.timer - 1000;
 			}
 		},
 

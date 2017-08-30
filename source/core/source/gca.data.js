@@ -281,6 +281,8 @@ gca_options.data = {
 		"attacked_timers" : true,
 		// Quest Timer
 		"quest_timer" : true,
+		// Merchants
+		"merchants_timer" : true,
 
 		// Player Image
 		"player_image" : true,

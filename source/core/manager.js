@@ -81,6 +81,11 @@ var manager = {
 					this.section.location();
 					break;
 
+				// Merchants
+				case "inventory":
+					this.section.merchants();
+					break;
+
 			// Settings
 				// Location
 				case "settings":
@@ -226,6 +231,11 @@ var manager = {
 			else{
 				tools.loadScript("source/location.js");
 			}
+		},
+
+		// Merchants section
+		merchants : function() {
+			tools.loadScript("source/merchants.js");
 		},
 
 		// Settings
