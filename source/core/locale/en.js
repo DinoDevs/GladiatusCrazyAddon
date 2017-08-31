@@ -249,12 +249,38 @@ gca_languages["en"] = {
 			category_packages$load_more_pages : "Load more pages",
 			category_packages$pages_to_load : "Number of pages to load",
 			category_packages$special_category_features : "Enable special category features",
-			// Settings - Packages
+			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Enable quest grouping",
 			category_pantheon$quests_detailed_rewards : "Show detailed quests rewards",
 			category_pantheon$missions_show_completed : "Show completed missions",
 			category_pantheon$gods_show_points_percent : "Show god points percent",
 			category_pantheon$open_many_mysteryboxes : "Open multiple mystery boxes",
+			// Settings - Reports
+			category_reports$style_change : "Improve reports' list layout",
+			category_reports$load_loot_tooltips : "Load report's reward",
+			// Settings - Training
+			category_training$show_discount : "Show training discount",
+			category_training$show_basics_in_bars : "Show basics in bars",
+			category_training$multiple_train : "Enable multiple training",
+			category_training$show_analyze_items_data : "Show analyzed items data in tooltips",
+			category_training$show_points_after_upgrade : "Show stat points after upgrade",
+			// Settings - Expedition
+			// Settings - Guild
+			category_guild$jail_layout : "Improve jail's layout",
+			category_guild$library_layout : "Improve library's layout",
+			category_guild$library_fade_non_scrolls : "Fade items thet are not scrolls on library",
+			category_guild$library_tooltip_data : "Add more data on library's tooltips",
+			category_guild$bank_donate_layout : "Improve bank's donate layout",
+			category_guild$bank_book_layout : "Improve bank's book layout",
+			category_guild$medic_layout : "Improve medic's layout",
+			// Settings - Auction
+			category_auction$items_counters : "Count items and bidded items",
+			category_auction$item_price_analyze : "Analyze items' prices",
+			category_auction$item_level : "Show items level",
+			category_auction$x3_items_per_line : "Change layout to 3 items per line",
+			// Settings - Events
+			// Settings - Sound
+			category_sound$enabled : "Enable sounds",
 
 			// Buttons
 			save : "Save",
