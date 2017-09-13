@@ -286,6 +286,12 @@ var gca_settings = {
 				"show_points_after_upgrade" : true,
 			},
 
+			// Merchants
+			"merchants" : {
+				// Fade items that you can not afford
+				"fade_unaffordable_items" : true
+			},
+
 			// Expedition Options
 			"expedition" : {
 				// Show that each enemy drops

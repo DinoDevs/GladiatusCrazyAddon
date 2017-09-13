@@ -184,6 +184,7 @@ gca_languages["en"] = {
 			category_pantheon : "Pantheon",
 			category_reports : "Reports",
 			category_training : "Training",
+			category_merchants : "Merchants",
 			category_expedition : "Expedition",
 			category_guild : "Guild",
 			category_auction : "Auction",
