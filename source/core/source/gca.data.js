@@ -408,6 +408,8 @@ gca_options.data = {
 		"found_items" : true
 	},
 
+
+	// Training
 	"training" : {
 		// Show discount
 		"show_discount" : true,
@@ -419,6 +421,12 @@ gca_options.data = {
 		"show_analyze_items_data" : true,
 		// Show points after upgrade
 		"show_points_after_upgrade" : true,
+	},
+
+	// Merchants
+	"merchants" : {
+		// Fade items that you can not afford
+		"fade_unaffordable_items" : true
 	},
 
 	// Expedition Options
