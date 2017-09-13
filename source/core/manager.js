@@ -86,6 +86,11 @@ var manager = {
 					this.section.merchants();
 					break;
 
+				// Market
+				case "market":
+					this.section.markets();
+					break;
+
 			// Settings
 				// Location
 				case "settings":
@@ -113,6 +118,10 @@ var manager = {
 				case "guild_medic":
 					this.section.guild_medic();
 					break;
+
+				// Market
+				case "guildMarket":
+					this.section.markets();
 
 			
 			// Events
@@ -236,6 +245,11 @@ var manager = {
 		// Merchants section
 		merchants : function() {
 			tools.loadScript("source/merchants.js");
+		},
+
+		// Markets
+		markets : function() {
+			tools.loadScript("source/markets.js");
 		},
 
 		// Settings
