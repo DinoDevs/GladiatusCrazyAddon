@@ -240,14 +240,22 @@ var manager = {
 
 		// Settings
 		settings : function() {
+			// General settings page
 			if(
 				info.page.queries.submod == null || 
 				info.page.queries.submod == 'savePassword' || 
 				info.page.queries.submod == 'saveEmail' || 
 				info.page.queries.submod == 'sendValidationLink' || 
 				info.page.queries.submod == 'deleteAccSettings'
-			){
+			) {
 				tools.loadScript("source/settings.js");
+			}
+			// Character settings
+			else if(
+				info.page.queries.submod == 'charSettings' ||
+				info.page.queries.submod == 'saveCharacterDesc'
+			) {
+				tools.loadScript("source/settings.character.js");
 			}
 		},
 
