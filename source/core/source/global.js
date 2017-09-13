@@ -85,8 +85,10 @@ var gca_global = {
 			this.background.daily_bonus_log.inject());
 
 		// If Item shadow
-		(gca_options.bool("global","item_shadow") && 
-			this.display.itemShadow.inventory());
+		if(gca_options.bool("global","item_shadow")) {
+			this.display.itemShadow.inventory();
+			this.display.itemShadow.shop();
+		}
 
 		// Event Craps Timer
 		(!this.isTraveling && this.isEvent.craps && gca_options.bool("events","craps_timer") &&
@@ -2545,8 +2547,21 @@ var gca_global = {
 				// Success
 				if(items.length)
 					tab.dataset.itemShadowed = true;
-			}
+			},
 
+			// Inject shadow into shop
+			shop : function() {
+				// Exit if no shop
+				if(!document.getElementById("shop")) return;
+
+				// Get items
+				var items = document.getElementById('shop').getElementsByClassName("ui-draggable");
+				
+				// For each
+				for (var i = items.length - 1; i >= 0; i--) {
+					gca_tools.item.shadow.add(items[i]);
+				}
+			}
 		},
 
 		// Group inventory options

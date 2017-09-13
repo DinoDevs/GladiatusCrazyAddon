@@ -13,10 +13,6 @@ var gca_merchants = {
 		// Save merchants time
 		(gca_options.bool("global","merchants_timer") &&
 			this.save_merchants_info());
-
-		// If Item shadow
-		(gca_options.bool("global","item_shadow") && 
-			this.itemShadow.shop());
 	},
 
 	// Save merchants infomations
@@ -38,19 +34,6 @@ var gca_merchants = {
 
 		// Fire merchants info updated
 		gca_tools.event.fireOnce("merchants-timer-update");
-	},
-
-	// Add shadow on items
-	itemShadow : {
-		shop : function() {
-			// Get items
-			var items = document.getElementById('shop').getElementsByClassName("ui-draggable");
-			
-			// For each
-			for (var i = items.length - 1; i >= 0; i--) {
-				gca_tools.item.shadow.add(items[i]);
-			}
-		}
 	}
 };
 
