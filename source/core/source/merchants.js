@@ -14,6 +14,10 @@ var gca_merchants = {
 		(gca_options.bool("merchants","fade_unaffordable_items") &&
 			this.fadeUnaffordableItems.inject());
 
+		// If Item shadow
+		(gca_options.bool("global","item_shadow") && 
+			this.itemShadow.inject());
+
 		// Save merchants time
 		(gca_options.bool("global","merchants_timer") &&
 			this.save_merchants_info());
@@ -61,6 +65,25 @@ var gca_merchants = {
 					items[i].style.opacity = 1;
 				}
 			}
+		}
+	},
+	
+	// Items Shadow Inject
+	itemShadow : {
+		inject : function(){
+			this.dollItems();
+		},
+
+		// Add shadow to doll items
+		dollItems : function(){
+			// Get doll items
+			var items = document.getElementById("char").getElementsByClassName("ui-draggable");
+
+			// Add shadow to each item
+			for(var i = items.length - 1; i >= 0; i--){
+				gca_tools.item.shadow.add(items[i]);
+			}
+
 		}
 	},
 
