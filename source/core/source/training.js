@@ -8,7 +8,6 @@ var gca_training = {
 	inject : function(){
 		// Load data
 		this.data.load();
-		console.log(this.data.skills);
 
 		// Show discount
 		(gca_options.bool("training","show_discount") &&
