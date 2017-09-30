@@ -256,6 +256,7 @@ gca_languages["en"] = {
 			category_pantheon$missions_show_completed : "Show completed missions",
 			category_pantheon$gods_show_points_percent : "Show god points percent",
 			category_pantheon$open_many_mysteryboxes : "Open multiple mystery boxes",
+			category_pantheon$show_mysterybox_rewards_rubies : " Show mysterybox reward's value in rubies",
 			// Settings - Reports
 			category_reports$style_change : "Improve reports' list layout",
 			category_reports$load_loot_tooltips : "Load report's reward",

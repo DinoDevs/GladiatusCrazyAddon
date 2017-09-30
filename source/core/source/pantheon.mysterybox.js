@@ -6,9 +6,12 @@
 // Overview
 var gca_pantheon_mysterybox = {
 	inject : function(){
-		// Show gods points percent
+		// Show open all boxes
 		(gca_options.bool("pantheon", "open_many_mysteryboxes") && 
 			this.openManyMysteryboxes.inject());
+		// Show rewards value in rubies
+		(gca_options.bool("pantheon", "show_mysterybox_rewards_rubies") && 
+			this.rewardsValue.show());
 	},
 
 	// Open many mysteryboxes
@@ -221,6 +224,134 @@ var gca_pantheon_mysterybox = {
 
 			this.rewards_wrapper.insertBefore(wrapper, this.rewards_clearfix);
 			gca_tools.setTooltip(wrapper, reward.tooltip.replace(/&quot;/g,'"'));
+		}
+	},
+
+	// Show items value in rubies
+	rewardsValue : {
+		// Rewards value
+		valueTable : {
+			token : {
+
+				// Mobilisation
+				// game/assets/img/premium/token/5.jpg
+				"5" : {rubies : 3},
+
+				// Gate Key
+				// game/assets/img/premium/token/6.jpg
+				"6" : {rubies : 3},
+
+				// Holy Hourglass
+				// game/assets/img/premium/token/7.jpg
+				"7" : {rubies : 1},
+
+				// Work Clothing
+				// game/assets/img/premium/token/8.jpg
+				"8" : {rubies : 1},
+
+				// Blessing Symbol
+				// game/assets/img/premium/token/9.jpg
+				"9" : {rubies : 15},
+
+				// Seal Coins
+				// game/assets/img/premium/token/10.jpg
+				"10" : {rubies : 15},
+
+				// Commendation
+				// game/assets/img/premium/token/11.jpg
+				"11" : {rubies : 15},
+
+				// Secret Formula
+				// game/assets/img/premium/token/12.jpg
+				"12" : {rubies : 15},
+
+				// Arena Parchment
+				// game/assets/img/premium/token/13.jpg
+				"13" : {rubies : 50},
+
+				// Symbol of Duality
+				// game/assets/img/premium/token/14.jpg
+				"14" : {rubies : 20},
+
+				// Magical Bag
+				// game/assets/img/premium/token/15.jpg
+				"15" : {rubies : -1},
+
+				// Chest of Divine Fate
+				// game/assets/img/premium/token/16.jpg
+				"16" : {rubies : 7},
+
+				// Fortuna's Die of Destiny
+				// game/assets/img/premium/token/17.jpg
+				"17" : {rubies : 2},
+
+				// 100% Healing Potion
+				// game/assets/img/premium/token/18.jpg
+				"18" : {rubies : 1},
+			},
+
+			box : {
+				// Leandronimus Cervisia of Favour
+				// game/assets/img/premium/box/hamper.jpg
+				"hamper" : {rubies : 1.07},
+			},
+
+			// game/assets/img/costumes/sets/male/7_complete_small.jpg
+			costumes : {rubies : 50}
+		},
+
+		show : function() {
+			// Check if valid page
+			if (!document.getElementById('content'))
+				return;
+
+			// Get rewards
+			var div;
+			var rubies;
+			var icon;
+			var rewards = document.getElementById('content').getElementsByClassName('mysterybox_reward_item_pool');
+			for (var i = rewards.length - 1; i >= 0; i--) {
+				rubies = this.resolveReward(rewards[i]);
+				icon = document.createElement('div');
+				icon.className = 'icon_rubies';
+				icon.setAttribute('style', 'transform: scale(0.8);');
+				div = document.createElement('div');
+				div.setAttribute('style', 'position: absolute;top: 5px;left: 4px;font-size: 11px;color: #c7b68a;font-weight: bold;text-shadow: 0px 0px 3px black;');
+				div.appendChild(icon);
+				div.appendChild(document.createTextNode(((rubies > 0)? rubies : '?')));
+				rewards[i].appendChild(div);
+			}
+		},
+
+		resolveReward : function(reward){
+			// Get image
+			var image = reward.getElementsByTagName('img')[0].src;
+			// Get amount
+			var amount = reward.getElementsByClassName('mysterybox_reward_item_count_value');
+			if (amount.length > 0) amount = parseInt(amount[0].textContent, 10);
+			else amount = 1;
+
+			// Resolve image
+			var r;
+
+			// If token
+			r = image.match(/img\/premium\/token\/(\d+)\.jpg/i);
+			if (r && this.valueTable.token[r[1]]) {
+				return (this.valueTable.token[r[1]].rubies * amount);
+			}
+
+			// If box
+			r = image.match(/img\/premium\/box\/([^.]+)\.jpg/i);
+			if (r && this.valueTable.box[r[1]]) {
+				return (this.valueTable.box[r[1]].rubies * amount);
+			}
+
+			// If costume
+			r = image.match(/img\/costumes\/sets\/(?:male|female)\/([^.]+])\.jpg/i);
+			if (r) {
+				return -1;
+			}
+
 		}
 	}
 };

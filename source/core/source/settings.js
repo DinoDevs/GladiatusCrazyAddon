@@ -261,7 +261,9 @@ var gca_settings = {
 				// Show gods points percent
 				"gods_show_points_percent" : true,
 				// Open many mysteryboxes button
-				"open_many_mysteryboxes" : true
+				"open_many_mysteryboxes" : true,
+				// Show mysterybox reward's value in rubies
+				"show_mysterybox_rewards_rubies" : true
 			},
 
 			// Reports
