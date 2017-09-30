@@ -747,6 +747,7 @@
 		.message_box .message_box_content .message_text.gca_message_links{font-size: 10px;font-style: italic;margin-top: 20px;background-color: rgba(0,0,0,0.1);}
 		.gca_messages_styling .message_box .message_box_content .message_text.gca_message_links{border-top: 1px solid #BBA86E;margin-top: 0px;background-color: rgba(211, 193, 149, 0.5);}
 		.gca_messages_styling .message_box:hover .message_box_content .message_text.gca_message_links{border-top: 1px solid #7D714A;}
+		.gca_messages_styling .message_box .message_box_content .message_text.gca_message_links a:hover{text-shadow: 0px 0px 1px rgba(97, 45, 4, 0.3);}
 		
 		/* Messages Guild Report */
 		.gca_messages_styling .gca_messages_guild_report .messageSubject,
