@@ -390,13 +390,17 @@ var gca_global = {
 					div = document.getElementById('header_values_hp_points');
 					div.textContent = "";
 					var text = document.createElement('span');
-					text.textContent = hp;
+					text.textContent = gca_tools.strings.insertDots(hp);
 					div.appendChild(text);
-					text = document.createTextNode(" / " + maxhp);
+					text = document.createTextNode(" / " + gca_tools.strings.insertDots(maxhp));
 					div.appendChild(text);
 				}
+				// Get HP bar
+				div = document.getElementById('header_values_hp_bar_fill');
+				// Stop HP bar's animation
+				jQuery(div).stop();
 				// Update HP bar
-				document.getElementById('header_values_hp_bar_fill').style.width = Math.round((hp*100)/maxhp) + "%";
+				div.style.width = Math.round((hp*100)/maxhp) + "%";
 				// Update Tooltip
 				div = document.getElementById('header_values_hp_bar');
 				if(div){
