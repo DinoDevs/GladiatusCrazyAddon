@@ -381,6 +381,8 @@ gca_options.data = {
 		"load_more_pages" : true,
 		// Number of pages to load
 		"pages_to_load" : 2,
+		// Show item's price
+		"item_price" : false,
 		// Special category features
 		"special_category_features" : true
 	},

@@ -23,7 +23,10 @@ var gca_packages = {
 			this.layout.compactInfo());
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
-			this.layout.itemShadow());
+			this.layout.itemShadow.init(this));
+		// Show item's price
+		(gca_options.bool("packages", "item_price") && 
+			this.layout.itemPrice.init(this));
 		// Set Items layout
 		(gca_options.bool("packages", "items_layout") && 
 			this.layout.compactPackets());
@@ -35,7 +38,7 @@ var gca_packages = {
 			this.loadPackets.load());
 		// Special category features
 		(gca_options.bool("packages", "special_category_features") && 
-			this.specialCategory.resolve());
+			this.specialCategory.resolve(this));
 	},
 
 	// Layout Improvements
@@ -135,22 +138,91 @@ var gca_packages = {
 		},
 
 		// Item Shadow
-		itemShadow : function(){
-			// Apply item shadow
-			this.itemShadowApply();
+		itemShadow : {
+			init : function(self){
+				// Save instance
+				var that = this;
+				// Apply item shadow
+				this.apply();
 
-			// On new items reapply
-			gca_tools.event.request.onAjaxResponce(function(responce){
-				// If package load request
-				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
-					gca_packages.layout.itemShadowApply();
-			});
+				// On new items reapply
+				gca_tools.event.request.onAjaxResponce(function(responce){
+					// If package load request
+					if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+						that.apply();
+				});
+				// On packages page load
+				self.loadPackets.onPageLoad(function(){
+					that.apply();
+				});
+			},
+			apply : function(){
+				// For each
+				jQuery("#packages .ui-draggable").each(function(){	
+					// If already parsed
+					if(this.dataset.gcaFlag_itemShadow)
+						return;
+					// Flag as parsed
+					this.dataset.gcaFlag_itemShadow = true;
+					// Add shadow
+					gca_tools.item.shadow.add(this);
+				});
+			}
 		},
-		itemShadowApply : function(){
-			// For each
-			jQuery("#packages .ui-draggable").each(function(){
-				gca_tools.item.shadow.add(this);
-			});
+
+		// Show item's price
+		itemPrice : {
+			init : function(self){
+				// Save instance
+				var that = this;
+				// Apply item shadow
+				this.apply();
+
+				// On new items reapply
+				gca_tools.event.request.onAjaxResponce(function(responce){
+					// If package load request
+					if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+						that.apply();
+				});
+				// On packages page load
+				self.loadPackets.onPageLoad(function(){
+					that.apply();
+				});
+			},
+			apply : function(){
+				// For each
+				jQuery("#packages .ui-draggable").each(function(){
+					// If no gold data
+					if(!this.dataset.priceGold)
+						return;
+						
+					// If already parsed
+					if(this.dataset.gcaFlag_itemPriceShow)
+						return;
+					// Flag as parsed
+					this.dataset.gcaFlag_itemPriceShow = true;
+
+					// Get item's gold
+					var gold = parseInt(this.dataset.priceGold, 10);
+					
+					// Create text
+					var div = document.createElement("div");
+					div.style.position = "absolute";
+					div.style.color = "white";
+					div.style.textAlign = "right";
+					div.style.fontSize = "10px";
+					div.style.overflow = "hidden";
+					div.style.marginTop = "-44px";
+					div.style.width = "70px";
+					div.style.textShadow = "0px 0px 2px #000";
+					div.textContent = gca_tools.strings.insertDots(gold);
+					var icon = document.createElement("div");
+					icon.className = "icon_gold";
+					icon.style.transform = "scale(0.8)";
+					div.appendChild(icon);
+					this.parentNode.parentNode.appendChild(div);
+				});
+			}
 		},
 
 		// Pagination
@@ -371,6 +443,11 @@ var gca_packages = {
 					// Insert item on page
 					that.insertPacket({newPackage : items[i]});
 				}
+
+				// Fire page load event
+				gca_tools.event.fire('packages_page_loaded');
+
+				// Load next page
 				that.loadPage();
 			});
 		},
@@ -396,8 +473,8 @@ var gca_packages = {
 			this.patchAjaxResponceItems.push( -1 * item.find("[data-container-number]").data("containerNumber") );
 
 			// If Item shadow
-			(gca_options.bool("global","item_shadow") && 
-				gca_tools.item.shadow.add(item_dragable[0]));
+			//(gca_options.bool("global","item_shadow") && 
+			//	gca_tools.item.shadow.add(item_dragable[0]));
 		},
 
 		// Update page price in gold
@@ -406,6 +483,12 @@ var gca_packages = {
 			var cost = factor * item.data("priceGold") * item.data("amount");
 			var newPagePriceInGold = pagePriceInGold.data("value") + cost;
 			pagePriceInGold.data("value", newPagePriceInGold).text(formatZahl(newPagePriceInGold))
+		},
+
+		// On page load event
+		onPageLoad : function(callback){
+			// Set a listener
+			gca_tools.event.addListener('packages_page_loaded', callback);
 		}
 	},
 
@@ -413,11 +496,11 @@ var gca_packages = {
 	specialCategory : {
 		
 		// Resolve category
-		resolve : function(){
+		resolve : function(self){
 			var category = parseInt(document.getElementById("pf").f.value);
 			switch(category){
 				case 20:
-					this.categories.scroll.load();
+					this.categories.scroll.load(self);
 					break;
 			}
 		},
@@ -429,9 +512,33 @@ var gca_packages = {
 			scroll : {
 
 				// Load
-				load : function(){
+				load : function(self){
+					// Save instance
 					var that = this;
+
 					// Get data
+					this.loadData();
+
+					// On new items reapply
+					gca_tools.event.request.onAjaxResponce(function(responce){
+						// If package load request
+						if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+							that.showIsLearned();
+					});
+
+					// On packages page load
+					self.loadPackets.onPageLoad(function(){
+						that.showIsLearned();
+					});
+				},
+
+				// Load scroll data
+
+				loadData : function(){
+					// Save instance
+					var that = this;
+
+					// Make request
 					jQuery.ajax({
 						type: "GET",
 						url: gca_getPage.link({"mod":"forge"}),
@@ -449,43 +556,42 @@ var gca_packages = {
 							that.name = list;
 							// Save regexp code
 							that.nameRegexp = "(" + list.join("|") + ")";
-
-							that.showIfHave();
+							// Check scrolls
+							that.showIsLearned();
 						},
-						error: function(){
-							
-						}
-					});
-
-					// On new items reapply
-					gca_tools.event.request.onAjaxResponce(function(responce){
-						// If package load request
-						if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
-							that.showIfHave();
+						error: function(){}
 					});
 				},
 
 				// Apply 
-				showIfHave : function(){
+				showIsLearned : function(){
+					// If no data return
 					if(!this.name)
 						return;
 
+					// Save instance
 					var that = this;
-					// For each
+					
+					// For each item
 					jQuery("#packages .ui-draggable").each(function(){
 						// If already parsed
-						if(this.dataset.parseOwn)
+						if(this.dataset.gcaFlag_isLearned)
 							return;
-						else
-							this.dataset.parseOwn = true;
+						// Flag as parsed
+						this.dataset.gcaFlag_isLearned = true;
+						
 						// Get item
 						let item = jQuery(this);
 						// Check if own
 						let own = item.data("tooltip")[0][0][0].match(new RegExp(that.nameRegexp,'i'));
-						if(own)
+						if(own){
+							this.style.filter = "drop-shadow(2px 2px 1px rgba(255,0,0,0.4)) drop-shadow( 2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(255,0,0,0.4))";
 							item.data("tooltip")[0].push(["You know this scroll", "red"]); // TODO : translation needed
-						else
+						}
+						else{
+							this.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
 							item.data("tooltip")[0].push(["You don't know this scroll", "green"]); // TODO : translation needed
+						}
 					});
 				}
 			}

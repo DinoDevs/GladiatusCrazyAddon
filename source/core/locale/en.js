@@ -249,6 +249,7 @@ gca_languages["en"] = {
 			category_packages$items_layout : "Improve items layout",
 			category_packages$load_more_pages : "Load more pages",
 			category_packages$pages_to_load : "Number of pages to load",
+			category_packages$item_price : "Show items' price",
 			category_packages$special_category_features : "Enable special category features",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Enable quest grouping",
