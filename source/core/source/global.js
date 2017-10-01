@@ -2605,6 +2605,11 @@ var gca_global = {
 				item = document.getElementById("show-item-info");
 				item.style.display = "block";
 				this.box.appendChild(item);
+
+				// Fix bug click
+				var buy = wrapper.getElementsByClassName("bag_buy_extend")[0].getElementsByTagName("a")[0];
+				buy.removeAttribute("href");
+				buy.style.cursor = "pointer";
 			},
 			// Show/Hide options
 			hidden : true,
