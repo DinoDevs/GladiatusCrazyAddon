@@ -731,8 +731,8 @@ var gca_tools = {
 
 			// Ajax Event wrapper
 			onAjaxResponce : function(callback){
-				if(!this.loaded)
-					this.init();
+				// Init it
+				this.init();
 				// Set a listener
 				gca_tools.event.addListener('ajaxresponce', callback);
 			}
