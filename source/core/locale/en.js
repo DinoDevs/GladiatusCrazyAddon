@@ -211,7 +211,7 @@ gca_languages["en"] = {
 			category_global$player_image : "Enable players' images",
 			category_global$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
-			category_global$notify_new_guild_application_interval : "Check for applications every (seconds)",
+			category_global$notify_new_guild_application_interval : "Check for applications every (minutes)",
 			category_global$x_scroll : "Enable gladiatus' horizontal scroll",
 			category_global$item_shadow : "Enable items shadows",
 			category_global$inventory_options_group : "Group inventory options",
