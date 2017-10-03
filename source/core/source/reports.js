@@ -188,23 +188,44 @@ var gca_reports = {
 		getLootItem : function(id, t, icon, title){
 			// Get Report
 			jQuery.get(gca_getPage.link({"mod":"reports","submod":"showCombatReport","reportId":id,"t":t}), function(content){
+				var tooltips = [];
+
 				// Match Loot
-				var tooltip = content.match(/<div class="reportReward">[^<]+(?:<br \/>[^<]*|)<div>(<div style="[^"]*" class="item-i-[^>]+>)/im);
-				if(tooltip){
-					// Match loot tooltip
-					tooltip = tooltip[1].match(/data-tooltip="([^"]+)"/im);
+				var match_tooltips = content.match(/<div class="reportReward">[^<]+(?:<br \/>[^<]*|)<div>(<div style="[^"]*" class="item-i-[^>]+>)/img);
+
+				// If found tooltip
+				if(match_tooltips){
+					// For each tooltip
+					for (var i = 0; i < match_tooltips.length; i++) {
+						// Match loot tooltip
+						tooltips.push(match_tooltips[i].match(/data-tooltip="([^"]+)"/im));
+					}
 				}
 				
-				// Error
-				if(!tooltip){
-					// Display
+				// Error - not fould loot
+				if(tooltips.length == 0){
+					// Display error message
 					gca_tools.setTooltip(icon, JSON.stringify([[[title, "white"], [gca_locale.get("general", "error"), "white"]]]));
 				}
 				// Tooltip replace
 				else{
-					tooltip = JSON.parse(tooltip[1].replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
-					tooltip[0].unshift([title, "white"]);
-					gca_tools.setTooltip(icon, JSON.stringify(tooltip));
+					// Add title on tooltip
+					var reward_tooltip = [[[title, "white"]]];
+					// For each tooltip
+					var i, j, tooltip;
+					for (i = 0; i < tooltips.length; i++) {
+						// Parse tooltip
+						tooltip = JSON.parse(tooltips[i][1].replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
+						// Add space
+						if(i != 0)
+							reward_tooltip[0].push(["&nbsp;", "white"]);
+						// Add tooltip rows
+						for (j = 0; j < tooltip[0].length; j++) {
+							reward_tooltip[0].push(tooltip[0][j]);
+						}
+					}
+					// Show tooltip
+					gca_tools.setTooltip(icon, JSON.stringify(reward_tooltip));
 				}
 			});
 		}
