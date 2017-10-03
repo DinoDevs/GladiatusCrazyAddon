@@ -18,6 +18,10 @@ var gca_markets = {
 	// Add shadow on items
 	itemShadow : {
 		market : function() {
+			// If no items exit
+			if (!document.getElementById('market_table'))
+				return;
+
 			// Get items
 			var items = document.getElementById('market_table').getElementsByTagName("div");
 			
