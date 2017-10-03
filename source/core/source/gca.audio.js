@@ -64,14 +64,27 @@ var gca_audio = {
 		"wet" : "wet.ogg"
 	},
 
-	// Default audio settings
-	defaults : {
-		"expedition_notification" : {vol : 1, mute : false, sound : "water"},
-		"dungeon_notification" : {vol : 1, mute : false, sound : "water"},
-		"arena_notification" : {vol : 1, mute : false, sound : "water"},
-		"turma_notification" : {vol : 1, mute : false, sound : "water"},
-		"auction_notification" : {vol : 1, mute : false, sound : "coin"},
-		"sound_toggle" : {vol : 1, mute : false, sound : "water"}
+	// Id channels settings
+	channels : {},
+	setupChannel : function(id, settings) {
+		// Init channel
+		var channel = {
+			vol : 1,
+			mute : false,
+			sound : "water"
+		};
+		// Set settings
+		if(typeof settings.vol != "undefined"){
+			channel.vol = settings.vol;
+		}
+		if(typeof settings.mute != "undefined"){
+			channel.mute = settings.mute;
+		}
+		if(typeof settings.sound != "undefined" && this.buildInSounds[settings.sound]){
+			channel.sound = settings.sound;
+		}
+		// Save channel
+		this.channels[id] = channel;
 	},
 
 	// Audio Object List
@@ -129,9 +142,9 @@ var gca_audio = {
 		if(data[id]){
 			this.audioIdObjs[id] = this.makeAudioIdObj(id, data[id]);
 		}
-		// Else if default
-		else if(this.defaults[id]){
-			this.audioIdObjs[id] = this.makeAudioIdObj(id, this.defaults[id]);
+		// Else if channel id
+		else if(this.channels[id]){
+			this.audioIdObjs[id] = this.makeAudioIdObj(id, this.channels[id]);
 		}
 		// Else default options
 		else{
@@ -210,3 +223,12 @@ var gca_audio = {
 		return audio;
 	}
 };
+
+// Setup sound channels
+// gca_audio.setupChannel("<id string>", {vol : <0-1>, mute : <boolean>, sound : "<sound id string>"});
+gca_audio.setupChannel("expedition_notification", {sound : "water"});
+gca_audio.setupChannel("dungeon_notification",    {sound : "water"});
+gca_audio.setupChannel("arena_notification",      {sound : "water"});
+gca_audio.setupChannel("turma_notification",      {sound : "water"});
+gca_audio.setupChannel("auction_notification",    {sound : "coin"});
+gca_audio.setupChannel("sound_toggle",            {sound : "water"});
