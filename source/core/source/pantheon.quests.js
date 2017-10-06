@@ -39,6 +39,9 @@ var gca_pantheon_quests = {
 		var quest_categories = {};
 		var qcontent = document.getElementsByClassName('contentboard_header_long')[0];
 
+		// Fix height
+		qcontent.style.minHeight = "55px";
+
 		if(document.getElementById("quest_header_cooldown_cancel") == null)
 			qcontent.style.height = "46px";
 
