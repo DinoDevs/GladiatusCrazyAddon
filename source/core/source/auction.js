@@ -24,6 +24,7 @@ var gca_auction = {
 				this.itemsLevelShow());
 			(gca_options.bool("auction","x3_items_per_line") && 
 				this.items3PerLine());
+			this.itemsStatsShow();
 		}
 	},
 
@@ -143,6 +144,36 @@ var gca_auction = {
 		}
 	},
 
+	itemsStatsShow : function() {
+		// Run on food section
+		var e = document.getElementsByName("itemType")[0];
+		if ( e.options[e.selectedIndex].value==7 ){
+			// Translations
+			healTranslation = unescape(document.getElementById("header_values_hp_bar").dataset.tooltip.match(/"([^:]+):"/)[1]);
+			goldTranslation = unescape(document.getElementById("icon_gold").dataset.tooltip.match(/"([^"]+)"/)[1]);
+			
+			// Get items
+			var items = document.getElementById("auction_table").getElementsByClassName("auction_item_div");
+			var items2 = document.getElementById("auction_table").getElementsByClassName("auction_bid_div");
+			// For each item
+			var heal, price, wrapper, indicator, re = / (\d+) /i;
+			for (var i = items.length - 1; i >= 0; i--) {
+				// Get heal
+				heal = parseInt(items[i].getElementsByTagName("div")[1].dataset.tooltip.replace(/ 0 /g,"").match(re)[1]);
+				price = parseInt(gca_tools.strings.removeDots(items2[i].getElementsByTagName('div')[1].textContent).match(/(\d+)/i)[1], 10);
+				// Create heal per gold indicator
+				indicator = document.createElement("div");
+				indicator.className = "";
+				indicator.style="position: absolute; color: #a2dca5; text-align: center; font-size: 10px; overflow: hidden; margin-top: 80px; width: 64px; text-shadow: rgb(0, 0, 0) 0px 0px 2px;";
+				indicator.title = "+"+healTranslation+ " ("+healTranslation+"/"+goldTranslation+")";
+				indicator.textContent = "+" + heal +" ("+ Math.round(heal/price*100)/100 +")"; //heal+"/"+price;
+				// Get wrapper
+				wrapper = items[i];
+				wrapper.insertBefore(indicator, wrapper.firstChild);
+			}
+		}
+	},
+	
 	items3PerLine : function() {
 		// Get items
 		var itemsNumber = document.forms.length - 1;
