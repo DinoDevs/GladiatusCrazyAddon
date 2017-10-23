@@ -222,8 +222,9 @@
 - [ ] Merchants
 	- [ ] Mouse click events (double click sell buy)
 	- [ ] Cross merchants item search
-	- [ ] Remember merchants tabs
-	- [ ] Items you can buy are highlighted 
+	- [x] Remember merchants tabs
+	- [x] Items you can buy are highlighted 
+	- [x] Colored items based on quality
 
 
 
@@ -232,22 +233,23 @@
 
 - [ ] Auction
 	- [ ] Theme(s) support
-	- [ ] Colored items based on quality
+	- [x] Colored items based on quality
 		- [ ] Background color
-		- [ ] Shadow item
-	- [ ] Items you can afford
-	- [ ] Hide your gold system / More info about prices (value compared to price) 
+		- [x] Shadow item
+	- [x] Items you can afford
+	- [x] Hide your gold system / More info about prices (value compared to price) 
 	- [ ] Advance search options (Gold limit, Damage for weapons, etc) 
 	- [ ] Item Preffix search list 
 	- [ ] Item Suffix search list 
 	- [ ] More levels in the search options 
-	- [ ] Level of each item is visible (up-right corner) 
+	- [x] Level of each item is visible (up-right corner) 
 	- [ ] Item levels you can see in auction are shown when you mouse over the (!) icon
-	- [ ] Number of Price/Value % on auction Auction (ex. "(153%)")
+	- [x] Number of Price/Value % on auction Auction (ex. "(153%)")
 	- [ ] Button announcing to guild, with a mail, the auction status
-	- [ ] Multiple bids (no refresh)
+	- [x] Multiple bids without page refresh
 	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view)
 	- [ ] Display for each mercenary its tooltip when on mercenaries
+	- [x] ✎	Extra stats shown on item images
 
 
 
