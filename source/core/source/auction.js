@@ -25,6 +25,7 @@ var gca_auction = {
 			(gca_options.bool("auction","x3_items_per_line") && 
 				this.items3PerLine());
 			this.itemsStatsShow();
+			this.multiBids();
 		}
 	},
 
@@ -172,6 +173,56 @@ var gca_auction = {
 				wrapper.insertBefore(indicator, wrapper.firstChild);
 			}
 		}
+	},
+	
+	multiBids : function(){
+		// Get item forms
+		var itemForms = document.getElementById("auction_table").getElementsByTagName("form");
+		for (var i = itemForms.length - 1; i >= 0; i--) {
+			// Each item
+			document.getElementById("auction_table").getElementsByTagName("form")[i].getElementsByTagName("input")[7].setAttribute("type","button");
+			document.getElementById("auction_table").getElementsByTagName("form")[i].getElementsByTagName("input")[7].setAttribute("id", itemForms[i].id.match(/\d+/) );
+			document.getElementById("auction_table").getElementsByTagName("form")[i].getElementsByTagName("input")[7].addEventListener('click',function(){gca_auction.bidItem(this.id);},false);
+		}
+	},
+	
+	bidItem : function(id){
+		data = document.getElementById("auctionForm"+id).getElementsByTagName("input");
+		price = parseInt( data[6].value );
+		gold = parseInt( document.getElementById("sstat_gold_val").textContent.replace(/ /g,'').replace(/\./g,'') );
+		
+		post_data = "auctionid="+ data[0].value +"&qry="+ data[1].value +"&itemType="+ data[2].value +"&itemLevel="+ data[3].value +"&itemQuality="+ data[4].value +"&buyouthd="+ data[5].value +"&bid_amount="+price+"&bid="+ data[7].value ;
+		
+		//Create Spinner
+		spinner = document.createElement("img");
+		spinner.src = "img/ui/spinner.gif";
+		spinner.id = "spinner"+id;
+		spinner.style = "position: absolute;margin-top: -90px;margin-left: 115px;margin-right: 115px;height: 40px;";
+		document.getElementById("auctionForm"+id).appendChild(spinner);
+		
+		// Post to the server
+		jQuery.ajax({
+			type: "POST",
+			url:  document.getElementById("auctionForm"+id).getAttribute('action'),
+			data: post_data,
+			success: function(content){
+				document.getElementById("auctionForm"+id).removeChild(document.getElementById("spinner"+id));
+				if( content.match(/message fail">([^<]+)<\/div/i) ){
+					gca_notifications.error( content.match(/message fail">([^<]+)<\/div/i)[1] );
+				}else if( content.match(/message success">([^<]+)<\/div/i) ){
+					gca_notifications.success( content.match(/message success">([^<]+)<\/div/i)[1] );
+					document.getElementById("sstat_gold_val").textContent = gca_tools.strings.insertDots(gold-price);
+					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].setAttribute('style','color: blue;height: 32px;');
+					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].textContent = content.match(/message success">([^<]+)<\/div/i)[1];
+					document.getElementById("auctionForm"+id).getElementsByTagName("input")[6].value = price*1.05+1;
+				}else{
+					gca_notifications.error(gca_locale.get("general", "error"));
+				}
+			},
+			error: function(){
+				gca_notifications.error(gca_locale.get("general", "error"));
+			}
+		});
 	},
 	
 	items3PerLine : function() {
