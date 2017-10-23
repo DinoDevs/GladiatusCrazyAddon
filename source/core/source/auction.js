@@ -214,9 +214,12 @@ var gca_auction = {
 				}else if( content.match(/message success">([^<]+)<\/div/i) ){
 					gca_notifications.success( content.match(/message success">([^<]+)<\/div/i)[1] );
 					document.getElementById("sstat_gold_val").textContent = gca_tools.strings.insertDots(gold-price);
-					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].setAttribute('style','color: blue;height: 32px;');
+					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].setAttribute('style','color: blue;height: 48px;');
+					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[1].setAttribute('style','display:none;');
 					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].textContent = content.match(/message success">([^<]+)<\/div/i)[1];
-					document.getElementById("auctionForm"+id).getElementsByTagName("input")[6].value = price*1.05+1;
+					document.getElementById("auctionForm"+id).getElementsByTagName("input")[6].value = Math.floor(price*1.05)+1;
+					document.getElementById("auctionForm"+id).getElementsByTagName("input")[6].setAttribute("style","");
+					
 				}else{
 					gca_notifications.error(gca_locale.get("general", "error"));
 				}
