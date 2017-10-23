@@ -329,6 +329,10 @@ var gca_settings = {
 				"item_level" : true,
 				// Show 3 items per line
 				"x3_items_per_line" : false,
+				// Enable multi bids
+				"multi_bids" : true,
+				// Show extra stats on items
+				"extra_item_stats" : true
 			},
 
 			"events" : {

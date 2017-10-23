@@ -24,8 +24,10 @@ var gca_auction = {
 				this.itemsLevelShow());
 			(gca_options.bool("auction","x3_items_per_line") && 
 				this.items3PerLine());
-			this.itemsStatsShow();
-			this.multiBids();
+			(gca_options.bool("auction","multi_bids") &&
+				this.multiBids());
+			(gca_options.bool("auction","extra_item_stats") &&
+				this.extraItemStats());
 		}
 	},
 
@@ -145,7 +147,7 @@ var gca_auction = {
 		}
 	},
 
-	itemsStatsShow : function() {
+	extraItemStats : function() {
 		// Run on food section
 		var e = document.getElementsByName("itemType")[0];
 		if ( e.options[e.selectedIndex].value==7 ){
