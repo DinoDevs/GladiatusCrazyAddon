@@ -71,7 +71,7 @@ var gca_training = {
 				}
 
 				// Points from items
-				let fromItems = tooltip[0][3][0][1].match(/(\+|-)\d+/g);
+				let fromItems = tooltip[0][3][0][1].match(/(\+|-)*\d+/g);
 				skill.fromItems = {
 					points : parseInt(fromItems[0], 10),
 					max : parseInt(fromItems[1], 10)
