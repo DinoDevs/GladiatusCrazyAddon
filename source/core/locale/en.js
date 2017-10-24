@@ -286,7 +286,9 @@ gca_languages["en"] = {
 				
 			// Settings - Events
 			// Settings - Sound
-			category_sound$enabled : "Enable sounds",
+			category_sound$enabled : "Enable sound system",
+			category_sound$muted : "Mute/Unmute sounds",
+			category_sound$volume : "Sounds volume",
 
 			// Buttons
 			save : "Save",

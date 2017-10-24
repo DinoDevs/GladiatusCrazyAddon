@@ -344,7 +344,18 @@ var gca_settings = {
 
 			"sound" : {
 				// Sounds enabled
-				"enabled" : true
+				"enabled" : true,
+				// Sounds muted
+				"muted" : false,
+				// Volume scale
+				"volume" : {
+					"type" : "range",
+					"min" : 1,
+					"step" : 1,
+					"max" : 100,
+					"scale" : 0.01,
+					"db" : "section",
+				}
 			}
 		},
 
@@ -364,13 +375,15 @@ var gca_settings = {
 						if(!_category) _category = category;
 						var _label = this.scheme[category][label].label;
 						if(!_label) _label = label;
+						var _db = this.scheme[category][label].db;
+						if(!_db) _db = "options";
 
 						switch(this.scheme[category][label].type){
 							case "boolean" :
-								this.scheme[category][label] = this.class.boolean(locale, _category, _label);
+								this.scheme[category][label] = this.class.boolean(locale, _category, _label, _db);
 								break;
 							case "integer" :
-								this.scheme[category][label] = this.class.integer(locale, _category, _label);
+								this.scheme[category][label] = this.class.integer(locale, _category, _label, _db);
 								break;
 							case "enumerator" :
 								var _values = this.scheme[category][label].values;
@@ -378,7 +391,18 @@ var gca_settings = {
 								if(!_values_locale) _values_locale = false;
 								var _values_dom = this.scheme[category][label].values_dom;
 								if(!_values_dom) _values_dom = false;
-								this.scheme[category][label] = this.class.enumerator(locale, _values, _values_locale, _values_dom, _category, _label);
+								this.scheme[category][label] = this.class.enumerator(locale, _values, _values_locale, _values_dom, _category, _label, _db);
+								break;
+							case "range" :
+								var _min = this.scheme[category][label].min;
+								if(!_min) _min = 0;
+								var _step = this.scheme[category][label].step;
+								if(!_step) _step = 1;
+								var _max = this.scheme[category][label].max;
+								if(!_max) _max = 100;
+								var _scale = this.scheme[category][label].scale;
+								if(!_scale) _scale = 1;
+								this.scheme[category][label] = this.class.range(locale, _min, _step, _max, _scale, _category, _label, _db);
 								break;
 						}
 					}
@@ -397,20 +421,23 @@ var gca_settings = {
 								type = "enumerator";
 							}
 						}
+						var db = "options";
 
 						switch(type){
 							case "boolean" :
 								this.scheme[category][label] = this.class.boolean(
 									gca_locale.get("settings", "category_" + category + "$" + label),
 									category,
-									label
+									label,
+									db
 								);
 								break;
 							case "integer" :
 								this.scheme[category][label] = this.class.integer(
 									gca_locale.get("settings", "category_" + category + "$" + label),
 									category,
-									label
+									label,
+									db
 								);
 								break;
 							case "enumerator" :
@@ -420,7 +447,28 @@ var gca_settings = {
 									false,
 									false,
 									category,
-									label
+									label,
+									db
+								);
+								break;
+							case "range" :
+								let _min = this.scheme[category][label].min;
+								if(!_min) _min = 0;
+								let _step = this.scheme[category][label].step;
+								if(!_step) _step = 1;
+								let _max = this.scheme[category][label].max;
+								if(!_max) _max = 100;
+								let _scale = this.scheme[category][label].scale;
+								if(!_scale) _scale = 1;
+								this.scheme[category][label] = this.class.range(
+									gca_locale.get("settings", "category_" + category + "$" + label),
+									_min,
+									_step,
+									_max,
+									_scale,
+									category,
+									label,
+									db
 								);
 								break;
 						}
@@ -616,6 +664,7 @@ var gca_settings = {
 				case "boolean": return this.construct.boolean(id, scheme, container);
 				case "integer": return this.construct.integer(id, scheme, container);
 				case "enumerator": return this.construct.enumerator(id, scheme, container);
+				case "range": return this.construct.range(id, scheme, container);
 			}
 
 			// Default - Unknown
@@ -677,7 +726,13 @@ var gca_settings = {
 
 				item.save = function(){
 					var value = item.data.true.checked;
-					gca_options.set(scheme.data.category, scheme.data.label, value);
+
+					if(scheme.data.db == "options"){
+						gca_options.set(scheme.data.category, scheme.data.label, value);
+					}
+					else if(scheme.data.db == "section"){
+						gca_data.section.set(scheme.data.category, scheme.data.label, value);
+					}
 				};
 
 				return item;
@@ -721,7 +776,12 @@ var gca_settings = {
 						item.data.input.value = scheme.value;
 					}
 					else {
-						gca_options.set(scheme.data.category, scheme.data.label, value);
+						if(scheme.data.db == "options"){
+							gca_options.set(scheme.data.category, scheme.data.label, value);
+						}
+						else if(scheme.data.db == "section"){
+							gca_data.section.set(scheme.data.category, scheme.data.label, value);
+						}
 					}
 				};
 
@@ -787,7 +847,77 @@ var gca_settings = {
 							value.push(item.data.types[i].value);
 					}
 
-					gca_options.set(scheme.data.category, scheme.data.label, value.join("|"));
+					if(scheme.data.db == "options"){
+						gca_options.set(scheme.data.category, scheme.data.label, value.join("|"));
+					}
+					else if(scheme.data.db == "section"){
+						gca_data.section.set(scheme.data.category, scheme.data.label, value.join("|"));
+					}
+				};
+
+				return item;
+			},
+
+			range : function(id, scheme, container){
+				// Item object
+				var item = {};
+				item.id = id;
+				item.data = {};
+
+				var input_value = scheme.value / scheme.scale;
+
+				// Type Wrapper
+				var typeWrapper = document.createElement('div');
+				typeWrapper.className = "type-wrapper type-range";
+				var title = document.createElement('span');
+				title.textContent = scheme.locale;
+				typeWrapper.appendChild(title);
+				container.appendChild(typeWrapper);
+
+				var select = document.createElement('div');
+				select.className = "switch-field";
+
+				var preview = document.createElement('div');
+				preview.style.float = "left";
+				preview.style.width = "32px";
+				preview.style.fontSize = "10px";
+				preview.style.height = "20px";
+				preview.style.lineHeight = "20px";
+				preview.textContent = Math.round((input_value / scheme.max) * 100);
+				select.appendChild(preview);
+
+				item.data.input = document.createElement('input');
+				item.data.input.style.height = "12px";
+				item.data.input.style.width = "80px";
+				item.data.input.type = "range";
+				item.data.input.id = id + "__range";
+				item.data.input.name = id;
+				item.data.input.value = input_value;
+				item.data.input.setAttribute("min", scheme.min);
+				item.data.input.setAttribute("step", scheme.step);
+				item.data.input.setAttribute("max", scheme.max);
+				select.appendChild(item.data.input);
+
+				item.data.input.addEventListener('change', function(){
+					preview.textContent = Math.round((this.value / scheme.max) * 100);
+				}, false);
+
+				typeWrapper.appendChild(select);
+
+				var clearBoth = document.createElement('div');
+				clearBoth.style.clear = "both";
+				typeWrapper.appendChild(clearBoth);
+
+				item.save = function(){
+					var value = item.data.input.value;
+					value = parseInt(value, 10);
+
+					if(scheme.data.db == "options"){
+						gca_options.set(scheme.data.category, scheme.data.label, value * scheme.scale);
+					}
+					else if(scheme.data.db == "section"){
+						gca_data.section.set(scheme.data.category, scheme.data.label, value * scheme.scale);
+					}
 				};
 
 				return item;
@@ -795,32 +925,44 @@ var gca_settings = {
 		},
 
 		class : {
-			boolean : function(locale, category, label){
+			boolean : function(locale, category, label, db){
 				return {
 					type : "boolean",
 					locale : locale,
 					data : {
 						category : category,
-						label : label
+						label : label,
+						db : db
 					},
-					value : gca_options.bool(category, label)
+					value : 
+						(db == "options") ? gca_options.bool(category, label) :
+						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
+						null
 				};
 			},
-			integer : function(locale, category, label){
+			integer : function(locale, category, label, db){
 				return {
 					type : "integer",
 					locale : locale,
 					data : {
 						category : category,
-						label : label
+						label : label,
+						db : db
 					},
-					value : gca_options.get(category, label)
+					value : 
+						(db == "options") ? gca_options.get(category, label) :
+						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
+						null
 				};
 			},
-			enumerator : function(locale, types, values_locale, values_dom, category, label){
+			enumerator : function(locale, types, values_locale, values_dom, category, label, db){
 				var defValues = types.split('|');
 				var values = [];
-				var saved = gca_options.get(category, label).split('|');
+				var saved = 
+					(db == "options") ? gca_options.get(category, label).split('|') :
+					(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)).split('|') :
+					[];
+
 				for(var i = 0; i < saved.length; i++){
 					if(defValues.indexOf(saved[i]) > -1){
 						values.push(saved[i]);
@@ -835,550 +977,35 @@ var gca_settings = {
 					values_dom : values_dom,
 					data : {
 						category : category,
-						label : label
+						label : label,
+						db : db
 					},
 					value : values
 				};
+			},
+			range : function(locale, min, step, max, scale, category, label, db){
+				return {
+					type : "range",
+					locale : locale,
+					data : {
+						category : category,
+						label : label,
+						db : db
+					},
+					value : 
+						(db == "options") ? gca_options.get(category, label) :
+						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
+						null
+					,
+
+					min : min,
+					step : step,
+					max : max,
+					scale : scale
+				};
 			}
 		}
-	},
-
-	interface : {
-		// Create Options
-		createSettings : function(){
-			// Settings var
-			var settings = gca_settings.settings;
-
-			// Settings Div
-			settings.elements.content = document.createElement("div");
-			settings.elements.content.id = "gca_setings_content";
-
-			// Elements build temp variables
-			var div, textDiv;
-
-			// Page title
-			div = document.createElement("div");
-			div.className = "logo";
-			textDiv = document.createElement("div");
-			textDiv.textContent = gca_locale.get("OPTIONS_SETTINGS");
-			div.appendChild(textDiv);
-			settings.elements.content.appendChild(div);
-
-			// Spacer
-			div = document.createElement("div");
-			div.style.height = "4px";
-			settings.elements.content.appendChild(div);
-
-
-			settings.elements.options = (
-				new settings.classes.options("Gladiatus Crazy Addon Options",[
-					new settings.classes.category("GLOBAL_OPTIONS",[
-						new settings.classes.subcategory(null,[
-							new settings.classes.checkBox("GLOBAL_EXTENDED_HP_XP_INFO"),
-							new settings.classes.checkBox("GLOBAL_BUTTON_BAR"),
-							new settings.classes.checkBox("GLOBAL_AUCTION_STATUS_BAR"),
-							new settings.classes.checkBox("GLOBAL_AUCTION_STATUS_NOTIFICATION"),
-							new settings.classes.checkBox("GLOBAL_TOP_FIXED_BAR"),
-							new settings.classes.checkBox("GLOBAL_ADVANCED_MAIN_MENU"),
-							new settings.classes.checkBox("GLOBAL_MERCHANTS_TIME"),
-							new settings.classes.checkBox("GLOBAL_MINITES_LEFT_FOR_FULL_LIFE"),
-							new settings.classes.checkBox("GLOBAL_REMEMBER_TABS"),
-							new settings.classes.checkBox("GLOBAL_QUESTS_TIMER"),
-							new settings.classes.checkBox("GLOBAL_ATTACKED_TIMERS"),
-							new settings.classes.checkBox("GLOBAL_WEAPON_DOWN_ALERT"),
-							new settings.classes.checkBox("GLOBAL_DISPLAY_CENTURIO_DAYS"),
-							new settings.classes.checkBox("GLOBAL_MAP_NAMES_LEVELS"),
-							new settings.classes.checkBox("GLOBAL_SOUND_NOTIFICATIONS"),
-							new settings.classes.dropdownlist("GLOBAL_LANGUAGE", gca_languages),
-						])
-					]),
-					new settings.classes.category("OVERVIEW_OPTIONS",[
-						new settings.classes.subcategory("MAIN_PLAYER_OPTIONS",[
-							new settings.classes.checkBox("OVERVIEW_ITEMS_ANALIZE"),
-							new settings.classes.checkBox("OVERVIEW_DISPLAY_SHARE_LINK")
-						]),
-						new settings.classes.subcategory("STATS_OPTIONS",[
-							new settings.classes.checkBox("OVERVIEW_PLAYER_STATS_MOD"),
-							new settings.classes.checkBox("OVERVIEW_BLOCK_AVOID_CAPS")
-						])
-					]),
-					new settings.classes.category("TRANING_OPTIONS",[
-						new settings.classes.subcategory(null,[
-							new settings.classes.checkBox("TRANING_DISPLAY_MOD"),
-							new settings.classes.checkBox("TRANING_DISPLAY_COST_CALCULATOR")
-						])
-					]),
-					new settings.classes.category("AUCTION_OPTIONS",[
-						new settings.classes.subcategory("AUCTION_TABLE_MODIFICATIONS",[
-							new settings.classes.checkBox("AUCTION_DISPLAY_ITEMS_NUM"),
-							new settings.classes.checkBox("AUCTION_DISPLAY_ITEMS_BGCOLOR"),
-							new settings.classes.checkBox("AUCTION_AUTO_FILL_GOLD"),
-							new settings.classes.checkBox("AUCTION_DISPLAY_ITEMS_LVL"),
-							new settings.classes.checkBox("AUCTION_DISPLAY_3_ITEMS_PER_ROW"),
-							new settings.classes.checkBox("AUCTION_MULTIPLE_BIDS"),
-							new settings.classes.checkBox("AUCTION_WARN_GUILD")
-						]),
-						new settings.classes.subcategory("AUCTION_SEARCH_MODIFICATIONS",[
-							new settings.classes.checkBox("AUCTION_EXPAND_ITEMS_LVL"),
-							new settings.classes.checkBox("AUCTION_IMPROVE_SEARCH_MENU")
-						]),
-						new settings.classes.subcategory("AUCTION_TOOLTIP_MODIFICATIONS",[
-							new settings.classes.checkBox("AUCTION_MERCENARIES_TOOLTIPS"),
-							new settings.classes.checkBox("AUCTION_HIDE_MERCENARIES_GUIDE_ROW")
-						])
-					]),
-					new settings.classes.category("MARKET_OPTIONS",[
-						new settings.classes.subcategory("MARKET_TABLE_MODIFICATIONS",[
-							new settings.classes.checkBox("MARKET_LOAD_MORE_PAGES",true),
-							new settings.classes.checkBox("MARKET_STYLE_CHANGES"),
-							new settings.classes.checkBox("MARKET_CANCEL_PACKETS_BUTTON"),
-							new settings.classes.dropdownlist("MARKET_DEFAULT_SELL_DURATION", {"0":{name:"2 h"},"1":{name:"8 h"},"2":{name:"24 h"},"3":{name:"48 h"}}),
-						]),
-						new settings.classes.subcategory("MARKET_SEARCH_MODIFICATIONS",[
-							new settings.classes.checkBox("MARKET_EXPAND_ITEMS_LVL"),
-							new settings.classes.checkBox("MARKET_IMPROVE_SEARCH_MENU")
-						])
-					]),
-					new settings.classes.category("MERCHANTS_OPTIONS",[
-						new settings.classes.subcategory(null,[
-							new settings.classes.checkBox("MERCHANTS_ITEM_SEARCH"),
-							new settings.classes.checkBox("MERCHANTS_HIGHLIGHT_ITEMS"),
-							new settings.classes.checkBox("MERCHANTS_INFOS")
-						])
-					]),
-					new settings.classes.category("MESSAGES_OPTIONS",[
-						new settings.classes.subcategory("MESSAGES_LIST_OPTIONS",[
-							new settings.classes.checkBox("MESSAGES_STYLING"),
-							new settings.classes.checkBox("MESSAGES_CONVERT_LINKS", false, true),
-							new settings.classes.checkBox("MESSAGES_FIX_SPACES", false, true)
-						]),
-						new settings.classes.subcategory("NEW_MESSAGE_OPTIONS",[
-							new settings.classes.checkBox("NEWMESSAGE_FOCUS"),
-							new settings.classes.checkBox("NEWMESSAGE_FRIENDLIST")
-						]),
-						new settings.classes.subcategory("MESSAGE_SPAM_BLOCK_OPTIONS",[
-							new settings.classes.checkBox("MESSAGE_SPAM_BLOCK"),
-							new settings.classes.textinput("SPAM_BLOCKED_PLAYERS",function(){}),
-						])
-					]),
-					new settings.classes.category("PACKAGES_OPTIONS",[
-						new settings.classes.subcategory(null,[
-							new settings.classes.checkBox("PACKAGES_NEW_LAYOUT",true),
-							new settings.classes.numberinput("PACKAGES_MAX_PAGES_TO_LOAD",function(){},true),
-							new settings.classes.checkBox("PACKAGES_COLLECT_GOLD_BUTTON"),
-							new settings.classes.checkBox("PACKAGES_EXPIRED_PACKAGES"),
-							new settings.classes.numberinput("PACKAGES_EXPIRED_HOURS")
-						])
-					]),
-					new settings.classes.category("REPORTS_OPTIONS",[
-						new settings.classes.subcategory("REPORT_LIST_OPTIONS",[
-							new settings.classes.checkBox("REPORT_LIST_STYLE")
-						])
-					]),
-					new settings.classes.category("CHAT_OPTIONS",[
-						new settings.classes.checkBox("CHAT_URL_MOD"),
-						new settings.classes.checkBox("CHAT_STYLE_MOD")
-					]),
-					new settings.classes.category("PANTHEON_OPTIONS",[
-						new settings.classes.checkBox("PANTHEON_QUESTS_ORDER"),
-						new settings.classes.checkBox("PANTHEON_QUESTS_DETAILED_REWARDS"),
-						new settings.classes.checkBox("PANTHEON_GODS_RECOLOR")
-					]),
-					new settings.classes.category("ARENA_OPTIONS",[
-						new settings.classes.checkBox("ARENA_SERVER_ARENA_ORDER")
-					]),
-					new settings.classes.category("PLAYER_OPTIONS",[
-						new settings.classes.checkBox("PLAYER_SIMULATOR_BUTTON"),
-						new settings.classes.checkBox("PLAYER_MERCENARIES_FIGHT_TYPE")
-					]),
-					new settings.classes.category("GUILD_OPTIONS",[
-						new settings.classes.subcategory(null,[
-							new settings.classes.checkBox("GUILD_MESSAGE_INTERFACE"),
-							new settings.classes.checkBox("GUILD_JAIL_INTERFACE"),
-							new settings.classes.checkBox("GUILD_LIBRARY_INTERFACE"),
-							new settings.classes.checkBox("GUILD_BANK_INTERFACE"),
-							new settings.classes.checkBox("GUILD_BANKBOOK_INTERFACE"),
-							new settings.classes.checkBox("GUILD_MEDIC_INTERFACE"),
-							new settings.classes.checkBox("GUILD_LIFE_TAB"),
-							new settings.classes.checkBox("GUILD_APPLICATION_ALERT"),
-							new settings.classes.checkBox("GUILD_NAMES_LEVELS")
-						])
-					]),
-					new settings.classes.category("PREMIUM_OPTIONS",[
-						new settings.classes.subcategory(null,[
-							new settings.classes.textinput("PREMIUM_KEY",function(){gca_dataUpdater.premium.getPremiumCode()}),
-							new settings.classes.text( 'Premium: '+( (Math.round((gca_data.get('premium_days',0)-(new Date().getTime()/1000))/60/60/24)<0)?0:Math.round((gca_data.get('premium_days',0)-(new Date().getTime()/1000))/60/60/24) )+' '+gca_locale.get("days")+' '+gca_locale.get("remaining")),
-							new settings.classes.button("GET_PREMIUM",function(){window.open('http://gladiatuscrazyaddon.tk/index.php?mode=donate','_blank');})
-						])
-					]),
-					new settings.classes.category("GAME_FIXES_OPTIONS",[
-						new settings.classes.subcategory(null,[
-							new settings.classes.checkBox("FIXES_RTL_TOOLTIP_FIX")
-						])
-					])
-				])
-			);
-			this.gcaElements.content.addChild([
-				this.gcaElements.options.getDOM(),
-				$dark('*br'),
-				$dark('*input').type('button').value(gca_locale.get("GENERAL_BACK")).class("button2 options_bottom_button_margin").click(function(){
-					gca_options.interface.toggle();
-				}),
-				$dark('*input').type('button').value(gca_locale.get("OPTIONS_OPEN_ALL")).class("button2 options_bottom_button_margin").click(function(){
-					gca_options.interface.gcaElements.options.toggle(false);
-				}),
-				$dark('*input').type('button').value(gca_locale.get("OPTIONS_CLOSE_ALL")).class("button2 options_bottom_button_margin").click(function(){
-					gca_options.interface.gcaElements.options.toggle(true);
-				}),
-				$dark('*input').type('button').value(gca_locale.get("OPTIONS_SAVE_ALL")).class("button2").click(function(){
-					gca_options.interface.gcaElements.options.save();
-					gca_options.interface.saveComplete();
-				})
-			]);
-
-			$dark('#main_inner').addChild(this.gcaElements.content);
-
-
-
-
-
-		}
-	},
-
-
-	settings : {
-		// Settings Elements
-		elements : {},
-
-		// Settings Types Classes
-		classes : {
-			options : (function(name, categories){
-				// Constructor
-				function Options(name, categories) {
-					this.name = name;
-					this.categories = categories;
-					this.div = document.createElement("div");
-					for (var i = 0; i < this.categories.length; i++)
-						this.div.appendChild(this.categories[i].getDOM());
-				}
-				Options.prototype.save = function(){
-					for (var i = 0; i < this.categories.length; i++)
-						this.categories[i].save();
-				};
-				Options.prototype.getDOM = function(){
-					return this.div;
-				};
-				Options.prototype.toggle = function(value){
-					for(i in this.categories)
-						this.categories[i].toggle(value);
-				};
-				return Options;
-			})(),
-
-			// Categories
-			category : (function(name, subcategories){
-				// Constructor
-				function Category(name, subcategories) {
-					this.name = (name) ? gca_locale.get("OPTIONS_"+name) : name;
-					this.subcategories = subcategories;
-					this.open = false;
-					this.div = document.createElement("div");
-					for(i in this.subcategories)
-						this.div.addChild(subcategories[i].getDOM());
-				}
-				Category.prototype.save = function(){
-					for(i in this.subcategories)
-						this.subcategories[i].save();
-				};
-				Category.prototype.getDOM = function(){
-					// Save instance
-					var that = this;
-					// Main div
-					var div = document.createElement("div");
-					// Name
-					var name = document.createElement("div");
-					name.className = "options_category";
-					name.textContent = this.name;
-					name.addEventListener("click", function(){that.toggle();}, false);
-					div.appendChild(name);
-					// Category
-					this.div.className = "options_category_box";
-					this.div.style.display = "none";
-					// Save Category button
-					var input = document.createElement("input");
-					input.type = "button";
-					input.className = "button1";
-					input.style.marginTop = "5px";
-					input.value = gca_locale.get("OPTIONS_SAVE_CATEGORY");
-					input.addEventListener("click", function(){
-						that.save();
-						gca_settings.settings.saveComplete();
-					}, false);
-					this.div.appendChild(input);
-					div.appendChild(this.div);
-
-					return div;
-				};
-				Category.prototype.toggle = function(value){
-					if(value!=undefined) this.open = value;
-					if(this.open) this.div.style.display = "none";
-					else this.div.style.display = "block";
-					this.open = (!this.open);
-				};
-				return Category;
-			})(),
-
-			// SubCategories
-			subcategory : (function(name, elements){
-				// Constructor
-				function Subcategory(name, elements) {
-					this.name = (name) ? gca_locale.get("OPTIONS_"+name) : name;
-					this.elements = elements;
-					this.div = document.createElement("div");
-					if(this.name) this.div.style.marginTop = "10px";
-					for(i in this.elements)
-						this.div.addChild(elements[i].getDOM());
-				}
-				Subcategory.prototype.save = function(){
-					for(i in this.elements)
-						this.elements[i].save();
-				};
-				Subcategory.prototype.getDOM = function(){
-					// If name exist
-					if(this.name){
-						// Create wrapper
-						var div = document.createElement("div");
-						// Option name
-						var name = document.createElement("div");
-						name.textContent = this.name;
-						div.appendChild(name);
-						div.appendChild(this.div);
-						return div;
-					};
-					return this.div;
-				};
-				return Subcategory;
-			})(),
-
-			// Elements Types "CheckBox"
-			checkBox : (function(label){
-				function CheckBox(label, premium, beta){
-					premium = typeof premium !== 'undefined' ? premium : false;
-					beta = typeof beta !== 'undefined' ? beta : false;
-					this.label = (label) ? gca_locale.get("OPTIONS_"+label) : label;
-					this.value = "ENABLE_"+label;
-					this.input = document.createElement("input");
-					this.input.type = "checkbox";
-					if(gca_options.isOn(this.value)){
-						this.input.setAttribute("checked","checked");
-					}
-					this.element = document.createElement("label");
-					
-					if(beta){
-						let betaIcon = document.createElement("div");
-						betaIcon.className = "betaico";
-						this.element.appendChild(betaIcon);
-					}
-					if(premium){
-						let premIcon = document.createElement("div");
-						premIcon.className = "premico";
-						this.element.appendChild(premIcon);
-					}
-
-					var span = document.createElement("span");
-					span.textContent = this.label;
-					this.element.appendChild(span);
-				}
-				CheckBox.prototype.getValue = function(){
-					if(this.input.checked)
-						return true;
-					return false;
-				};
-				CheckBox.prototype.save = function(){
-					gca_options.save(this.value, this.getValue());
-				};
-				CheckBox.prototype.getDOM = function(){
-					var div = document.createElement("div");
-					div.appendChild(this.element);
-					return div;
-				};
-				return CheckBox;
-			})(),
-
-			// Elements Types "DropDown List"
-			dropdownlist : (function(label){
-				function DropDownList(label, options, texts){
-					this.label = (label) ? gca_locale.get("OPTIONS_"+label) : label;
-					this.value = label;
-					this.select = document.createElement("select");
-					
-					if(options instanceof Object){
-						this.options = new Array();
-						this.texts = new Array();
-						for(i in options){
-							this.options.push(i);
-							this.texts.push(options[i].name);
-						}
-					}else{
-						this.options = options;
-						this.texts = texts;
-					}
-					
-					for(var i=0; i<this.options.length; i++){
-						var optElm = document.createElement("option");
-						optElm.value = i;
-						optElm.textContent = this.texts[i];
-						this.select.appendChild(optElm);
-						if(this.options[i] == gca_options.load(this.value))
-							optElm.setAttribute("selected","selected");
-					}
-
-					this.element = document.createElement("span");
-					this.element.textContent = this.label;
-				};
-				DropDownList.prototype.getValue = function(){
-					if(isNaN(this.select.value) || this.select.value >= this.options.length)
-						return null;
-					return this.options[this.select.value];
-				};
-				DropDownList.prototype.save = function(){
-					if(this.getValue())
-						gca_options.save(this.value, this.getValue());
-				};
-				DropDownList.prototype.getDOM = function(){
-					var div = document.createElement("div");
-					div.appendChild(this.select);
-					div.appendChild(this.element);
-					return div;
-				};
-				return DropDownList;
-			})(),
-			
-			// Elements Types "TextInput"
-			textinput : (function(label, save_function){
-				function TextInput(label, save_function){
-					this.label = (label) ? gca_locale.get("OPTIONS_" + label) : label;
-					this.value = label;
-					this.input = document.createElement("input");
-					this.input.type = "text";
-					this.save_function = save_function;
-					
-					if(gca_options.load(this.value))
-						this.input.value(gca_options.load(this.value)) ;
-					
-					this.element = document.createElement("span");
-					this.element.textContent = this.label;
-				};
-				TextInput.prototype.getValue = function(){
-					if(this.input.value && this.input.value!="" && this.input.value!=null)
-						return this.input.value;
-					return '-';
-				};
-				TextInput.prototype.save = function(){
-					gca_options.save(this.value, this.getValue());
-					if(this.save_function)
-						this.save_function();
-				};
-				TextInput.prototype.getDOM = function(){
-					var div = document.createElement("div");
-					div.appendChild(this.input);
-					div.appendChild(this.element);
-					return div;
-				};
-				return TextInput;
-			})(),
-
-			// Elements Types "NumberInput"
-			numberinput : (function(label, save_function){
-				function NumberInput(label, save_function, premium, beta){
-					premium = typeof premium !== 'undefined' ? premium : false;
-					beta = typeof beta !== 'undefined' ? beta : false;
-					this.label = (label) ? gca_locale.get("OPTIONS_"+label) : label;
-					this.value = label;
-					this.input = document.createElement("input");
-					this.input.style.float = "right";
-					this.input.type = "number";
-					this.save_function = save_function;
-					
-					if(gca_options.load(this.value))
-						this.input.value(gca_options.load(this.value)) ;
-
-					this.element = document.createElement("label");
-					
-					if(beta){
-						let betaIcon = document.createElement("div");
-						betaIcon.className = "betaico";
-						this.element.appendChild(betaIcon);
-					}
-					if(premium){
-						let premIcon = document.createElement("div");
-						premIcon.className = "premico";
-						this.element.appendChild(premIcon);
-					}
-
-					var span = document.createElement("span");
-					span.textContent = this.label;
-					this.element.appendChild(span);
-				};
-				NumberInput.prototype.getValue = function(){
-					if(this.input.value && this.input.value!="" && this.input.value!=null && this.input.value>=0)
-						return this.input.value;
-					return gca_options.load(this.value);
-				};
-				NumberInput.prototype.save = function(){
-					gca_options.save(this.value, this.getValue());
-					if(this.save_function)
-						this.save_function();
-				};
-				NumberInput.prototype.getDOM = function(){
-					var div = document.createElement("div");
-					div.style.height = "26px";
-					div.style.lineHeight = "26px";
-					div.appendChild(this.input);
-					div.appendChild(this.element);
-					return div;
-				};
-				return NumberInput;
-			})(),
-			
-			// Elements Types "Button"
-			button : (function(label, callback){
-				function Button(label, callback){
-					this.input = document.createElement("input");
-					this.input.type = "button";
-					this.input.value = gca_locale.get("OPTIONS_" + label);
-					this.input.className = "button1";
-					this.input.addEventListener("click", function(){callback();}, false);
-				};
-				Button.prototype.save = function(){return;};
-				Button.prototype.getDOM = function(){
-					var div = document.createElement("div");
-					div.appendChild(this.input);
-					return div;
-				};
-				return Button;
-			})(),
-			
-			// Text
-			text : (function(label){
-				function Text(label){
-					this.span = document.createElement("span");
-					this.span.textContent = label;
-				};
-				Text.prototype.save = function(){return;};
-				Text.prototype.getDOM = function(){
-					var div = document.createElement("div");
-					div.appendChild(this.span);
-					return div;
-				};
-				return Text;
-			})()
-		}
-
-
-
-
-	},
+	}
 };
 
 (function(){

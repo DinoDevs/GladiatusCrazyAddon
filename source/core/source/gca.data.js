@@ -499,8 +499,12 @@ gca_options.data = {
 	},
 
 	"sound" : {
-		// Sounds enabled
-		"enabled" : true
+		// Sound system enabled
+		"enabled" : true,
+		// Sounds muted
+		"muted" : false,
+		// Volume scale
+		"volume" : 0.8
 	},
 
 	// TODO : DEPRECATED below
