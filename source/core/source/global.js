@@ -3319,43 +3319,61 @@ var gca_global = {
 		// Create bar
 		bar : function(){
 			// Set up sound bar
-			var bar = document.createElement('div');
-			bar.className = "gca_sound_bar";
+			this.elements.bar = document.createElement('div');
+			this.elements.bar.className = "gca_sound_bar";
+
 			// Toggle sound icon
 			this.elements.toggleIcon = document.createElement('div');
 			this.elements.toggleIcon.className = "sound-toggle";
-			if(gca_audio.isMuted()){
-				this.elements.toggleIcon.className += " mute";
-			}
+			this.elements.bar.appendChild(this.elements.toggleIcon);
+
+			// Add on page
+			document.body.appendChild(this.elements.bar);
+			this.update();
+
 			// Save instance
 			var that = this;
+
+			// On volume toggle
 			this.elements.toggleIcon.addEventListener("click", function(){
 				that.toggle();
 			}, false);
 
-			bar.appendChild(this.elements.toggleIcon);
-
-			// Add on page
-			document.body.appendChild(bar);
+			// On volume change
+			gca_tools.event.addListener("volume-change", function(){
+				that.update();
+			});
 		},
 
 		// Turn on or off audio
 		toggle : function(){
 			// If element not yet created
 			if(!this.elements.toggleIcon)
-				// return
 				return;
+
 			// Toggle
 			if(gca_audio.isMuted()){
 				// Unmute
 				gca_audio.mute(false);
-				this.elements.toggleIcon.className = "sound-toggle";
+				this.update();
 				gca_audio.play("sound_toggle");
 			}
 			else{
 				// Mute
 				gca_audio.mute(true);
+				this.update();
+			}
+		},
+
+		// Update visuals
+		update : function(){
+			// If is muted
+			if(gca_audio.isMuted()){
 				this.elements.toggleIcon.className = "sound-toggle mute";
+			}
+			// If not muted
+			else{
+				this.elements.toggleIcon.className = "sound-toggle";
 			}
 		}
 	}

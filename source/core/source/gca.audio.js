@@ -12,14 +12,40 @@ var gca_audio = {
 	// Loaded
 	loaded : false,
 	load : function(){
-		if (this.loaded)
-			return;
-		this.loaded = true;
-
 		// Get volume
 		this._volume = gca_data.section.get("sound", "volume", 1);
 		// Get muted
 		this._muted = gca_data.section.get("sound", "muted", false);
+
+		var that = this;
+		// Set up syncing
+		this._sync_interval = setInterval(function(){
+			that.sync();
+		}, 1000);
+	},
+
+	// Sync audio across tabs
+	sync : function(){
+		var changed = false;
+
+		// Sync data
+		gca_data.section.sync("sound");
+
+		// Get volume
+		var volume = gca_data.section.get("sound", "volume", 1);
+		if(volume != this._volume) changed = true;
+		// Get muted
+		var muted = gca_data.section.get("sound", "muted", false);
+		if(muted != this._muted) changed = true;
+
+		if(changed){
+			// Update volume
+			this._volume = volume;
+			// Update muted
+			this._muted = muted;
+			// Fire event
+			gca_tools.event.fire("volume-change");
+		}
 	},
 
 
@@ -32,9 +58,11 @@ var gca_audio = {
 		// Set value
 		if(value){
 			this._muted = true;
+			gca_data.section.set("sound", "muted", true);
 		}
 		else{
 			this._muted = false;
+			gca_data.section.set("sound", "muted", false);
 		}
 	},
 	volume : function(value){
@@ -43,11 +71,9 @@ var gca_audio = {
 			return this._volume;
 		}
 		// Set value
-		else if(value){
+		else if(!isNaN(value) && value > 0 && value <= 1){
 			this._volume = value;
-		}
-		else{
-			this._volume = value;
+			gca_data.section.set("sound", "volume", value);
 		}
 	},
 
@@ -172,9 +198,6 @@ var gca_audio = {
 
 	// New audio
 	new : function(id, synced = false){
-		// Check if load needed
-		this.load();
-
 		// Get object
 		var soundObj = this.getById(id);
 
@@ -223,6 +246,9 @@ var gca_audio = {
 		return audio;
 	}
 };
+
+// Load sounds
+gca_audio.load();
 
 // Setup sound channels
 // gca_audio.setupChannel("<id string>", {vol : <0-1>, mute : <boolean>, sound : "<sound id string>"});
