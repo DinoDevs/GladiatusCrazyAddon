@@ -30,6 +30,21 @@ var gca_data = {
 		return false;
 	},
 
+/*
+	// Sync
+	_sync_last : new Date().getTime(),
+	sync : function(){
+		// Get timestamp
+		var time = new Date().getTime();
+		// Check if recently synced
+		if(time - this._sync_last <= 100)
+			return;
+		// Load data
+		gca_data_manager.loadData();
+		this._sync_last = time;
+	}
+*/
+
 	// Section Data
 	section : {
 		// Section data
@@ -58,6 +73,10 @@ var gca_data = {
 				return true;
 			}
 			return false;
+		},
+
+		sync : function(section){
+			gca_data_manager.loadSectionData(section);
 		},
 
 		def : function(section){
