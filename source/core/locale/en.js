@@ -166,6 +166,8 @@ gca_languages["en"] = {
 			hide_your_gold_here : "Hide your gold here",
 			// Price of item equals to its value
 			price_value_function : "Price = Value + {{number}}",
+			// Levels you can see
+			levels_you_can_see : "You can see items from level {{min}} to level {{max}}.",
 		},
 
 		// Settings

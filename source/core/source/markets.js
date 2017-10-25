@@ -13,6 +13,8 @@ var gca_markets = {
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") &&
 			this.itemShadow.market());
+			
+		this.levelsYouCanSee();
 	},
 
 	// Add shadow on items
@@ -31,6 +33,16 @@ var gca_markets = {
 					gca_tools.item.shadow.add(items[i]);
 			}
 		}
+	},
+	
+	levelsYouCanSee : function(){
+		var playerLvl = parseInt(document.getElementById("header_values_level").textContent);
+		var maxLvl = ( playerLvl+9<Math.floor(1.25*playerLvl) )? playerLvl+9 : Math.floor(1.25*playerLvl);
+		
+		var baseElement = document.getElementsByClassName("buildingDesc")[1].getElementsByTagName("p")[0];
+		baseElement.appendChild(document.createElement("br"));
+		baseElement.appendChild(document.createElement("br"));
+		baseElement.appendChild(document.createTextNode(gca_locale.get("auction", "levels_you_can_see", {min : 0, max : maxLvl})));
 	}
 };
 

@@ -28,9 +28,21 @@ var gca_auction = {
 				this.multiBids());
 			(gca_options.bool("auction","extra_item_stats") &&
 				this.extraItemStats());
+				
+			this.levelsYouCanSee();
 		}
 	},
-
+	
+	levelsYouCanSee : function(){
+		var playerLvl = parseInt(document.getElementById("header_values_level").textContent);
+		var minLvl = Math.floor(playerLvl* 0.75);
+		var maxLvl = ( playerLvl+14<Math.ceil(1.25*playerLvl+5.75) )? playerLvl+14 : Math.ceil(1.25*playerLvl+5.75);
+		
+		var baseElement = document.getElementsByClassName("buildingDesc")[1].getElementsByTagName("p")[0];
+		baseElement.appendChild(document.createElement("br"));
+		baseElement.appendChild(document.createElement("br"));
+		baseElement.appendChild(document.createTextNode(gca_locale.get("auction", "levels_you_can_see", {min : minLvl, max : maxLvl})));
+	},
 	itemsCounters : function(){
 		// Count items (number of fourms minus the search form)
 		var items = document.forms.length - 1;
@@ -241,7 +253,9 @@ var gca_auction = {
 
 		// Add style
 		auction.className += "gca-x3columns";
-
+		// Menu over bug - Semi fix
+		document.getElementById("main_inner").getElementsByTagName("article")[0].style = "min-height:379px";
+		
 		// Top image
 		var top = document.createElement("div");
 		top.className = "gca-x3columns-top";
