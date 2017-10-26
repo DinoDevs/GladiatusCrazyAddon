@@ -24,8 +24,9 @@ var gca_section_auction = {
 			//this.auto_fill_gold_inputs());
 			
 			// Multiple bids
-			(gca_options.isOn("ENABLE_AUCTION_MULTIPLE_BIDS") && 
-			this.multiple_bids());
+			// TODO : Temporary disabled
+			//(gca_options.isOn("ENABLE_AUCTION_MULTIPLE_BIDS") && 
+			//this.multiple_bids());
 			
 			// Display items' lvl
 			(gca_options.isOn("ENABLE_AUCTION_DISPLAY_ITEMS_LVL") && 
