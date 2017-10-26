@@ -1019,7 +1019,7 @@ var gca_section_guild = {
 			}else if(gca_section.submod=="guild_member_reports"){
 				this.guild_member_reports();
 			}else if(!gca_section.submod){
-				this.guild_fight_more_stats();
+				//this.guild_fight_more_stats();
 			}
 		},
 		guild_member_reports : function(){
