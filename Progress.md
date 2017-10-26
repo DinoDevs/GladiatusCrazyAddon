@@ -45,7 +45,7 @@
 		- [ ] Notification on weapon down
 		- [x] Sound notifications for Missions, Dungeons and Arenas
 			- [x] Browser notification
-		- [x] ✎Gold / Experience stats monitor (+repack fee estimation)
+		- [x] Gold / Experience stats monitor (+repack fee estimation)
 		- [ ] Player update in the GCA Highscore (if we keep the highscore) OR make a Global Arena
 		- [ ] "New version" installed message
 		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit)
@@ -70,9 +70,9 @@
 		- [x] Items that will give you more Life Point than you need will be transparent
 		- [x] Food show best food (yellow shadow)
 	- [x] ✎ Daily bonus log (Needs testing / Not in settings)
-	- [x] ✎ Show the cap values of Resilience and Block (TODO: For all dolls + 50% critical & 90% crit heal)
+	- [x] Show the cap values of Resilience and Block
 	- [x] Display for each mercenary its tooltip (base stats)
-	- [x] ✎ Mercenaries management Interface (TODO: Add mercenaries type icοns)
+	- [x] Mercenaries management Interface
 	- [x] Items' shadow
 	- [x] Save costume's properties
 	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)
@@ -209,7 +209,7 @@
 - [ ] Training
 	- [x] Show basic points bars
 	- [x] Show stats changes on upgrade
-	- [ ] Training Cost calculator (arrow down to 0 + shwo sum)
+	- [ ] Training Cost calculator (arrow down to 0 + show sum)
 	- [ ] Propose points to upgrade
 	- [x] Stats breakdown calculator (Block, Critical hits, Avoid critical, Double hits, hits, heal etc...)
 	- [ ] Advance calculation (load heal from dungeon player + choose target player to calculate hits etc)
@@ -358,7 +358,7 @@
 		- [ ] visible mercenary's tooltip (base stats, same as in overview)
 		- [ ] Visible mission type (icon: Medic, Damage, Protect yourself - with tooltip) 
 	- [x] Player Stats page ratios and totals
-	- [ ] Buff bar over players
+	- [x] Buff bar over players
 
 
 - [x] Player Description:
