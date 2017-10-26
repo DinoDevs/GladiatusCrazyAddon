@@ -222,16 +222,35 @@ var gca_training = {
 				data.count = 1;
 
 				// Events
-				data.arrowUp.addEventListener("click", function(){
+				this.addIncrementEvent(data.arrowUp, function(){
 					that.add( 1, data);
-				}, false);
-				data.arrowDown.addEventListener("click", function(){
+				});
+				this.addIncrementEvent(data.arrowDown, function(){
 					that.add(-1, data);
-				}, false);
+				});
 
 				// Update display data
 				this.update(data);
 			}
+		},
+
+		addIncrementEvent : function(element, callback){
+			var start = null;
+			var fireIntervals = null;
+			var wait = 200;
+
+			element.addEventListener("mousedown", function(e){
+				start = new Date().getTime();
+				fireIntervals = setInterval(function(){
+					callback(e);
+				}, wait);
+			}, false);
+			element.addEventListener("mouseup", function(e){
+				clearInterval(fireIntervals);
+				if(new Date().getTime() - start < wait){
+					callback(e);
+				}
+			}, false);
 		},
 
 		add : function(increment, data){
