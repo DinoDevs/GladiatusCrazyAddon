@@ -39,6 +39,8 @@ var gca_packages = {
 		// Special category features
 		(gca_options.bool("packages", "special_category_features") && 
 			this.specialCategory.resolve(this));
+		
+		this.eventItemsCategory();
 	},
 
 	// Layout Improvements
@@ -598,6 +600,26 @@ var gca_packages = {
 		}
 
 
+	},
+	
+	eventItemsCategory : function(){
+		// Code based on:	https://github.com/Sheldan/GladiatusScripts/blob/master/gladi_fixes.tamper.js
+		// Author:			Sheldan
+
+		// Fixes the missing option for items with the category 21 (presumably Event items)
+		var option = document.createElement("option");
+		option.setAttribute('value', 21);
+		option.textContent = 'Event items';
+		document.getElementsByName('f')[0].appendChild(option);
+		
+		// Gladiatus doesn't autoselect options which are not there server side
+		var isFiltered = function() {
+			if (document.location.href.indexOf('f=') != -1){
+				return ( parseInt(document.location.href.match(/f=(\d+)/)[1]) == 21 );
+			}
+			return false;
+		}
+		if (isFiltered()){document.getElementsByName('f')[0].value = 21;}
 	}
 
 };
