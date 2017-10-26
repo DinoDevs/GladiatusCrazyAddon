@@ -13,7 +13,8 @@ var gca_markets = {
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") &&
 			this.itemShadow.market());
-			
+		
+		this.soulboundItems();
 		this.levelsYouCanSee();
 	},
 
@@ -35,6 +36,7 @@ var gca_markets = {
 		}
 	},
 	
+	// Show item levels you can see
 	levelsYouCanSee : function(){
 		var playerLvl = parseInt(document.getElementById("header_values_level").textContent);
 		var maxLvl = ( playerLvl+9<Math.floor(1.25*playerLvl) )? playerLvl+9 : Math.floor(1.25*playerLvl);
@@ -43,6 +45,19 @@ var gca_markets = {
 		baseElement.appendChild(document.createElement("br"));
 		baseElement.appendChild(document.createElement("br"));
 		baseElement.appendChild(document.createTextNode(gca_locale.get("auction", "levels_you_can_see", {min : 0, max : maxLvl})));
+	},
+	
+	// Point out which items are soulbound
+	soulboundItems : function(){
+		if(document.getElementById("market_table")){
+			var rows = document.getElementById("market_table").getElementsByTagName("tr");
+			for(var i=1; i<=rows.length - 1; i++){
+				if(typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined"){
+					rows[i].style="background-color: rgba(255, 0, 0,0.2);";
+					document.buyForm[i-1].setAttribute("onsubmit","return confirm('This item is soulbound. Do you really want to buy it?');")
+				}
+			}
+		}
 	}
 };
 

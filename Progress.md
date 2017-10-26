@@ -70,9 +70,9 @@
 		- [x] Items that will give you more Life Point than you need will be transparent
 		- [x] Food show best food (yellow shadow)
 	- [x] ✎ Daily bonus log (Needs testing / Not in settings)
-	- [x] Show the cap values of Resilience and Block
-	- [ ] Display for each mercenary its tooltip (base stats)
-	- [ ] Mercenaries management Interface
+	- [x] ✎ Show the cap values of Resilience and Block (TODO: For all dolls + 50% critical & 90% crit heal)
+	- [x] Display for each mercenary its tooltip (base stats)
+	- [x] ✎ Mercenaries management Interface (TODO: Add mercenaries type icans)
 	- [x] Items' shadow
 	- [x] Save costume's properties
 	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)
@@ -265,7 +265,7 @@
 	- [ ] Load all the pages 
 	- [x] Item levels you can see in market are shown in building's description
 	- [ ] Select the default sell duration (2h, 8h etc) in the GCA options (default 24h)
-	- [ ] Red on items that are souldbound
+	- [x] Red on items that are souldbound & confirmation on buy
 	- [ ] Price per unit
 
 
