@@ -662,9 +662,10 @@ var gca_training = {
 					var fakePercentGain = Math.round(totalChange*this.self.data.skills["dexterity"].points/this.self.data.skills["intelligence"].points /this.self.data.skills["agility"].points*10*1000)/100;
 					write_breakdown_stat(1,"Double hit: +"+doubleHitGain+"% (+"+fakePercentGain+"‰) *");
 				// Threat per round gain
-					var threatGain = Math.floor(totalNew/10) - Math.floor(totalOld/10);
-					var fakePercentGain = Math.round( (totalNew/10 - totalOld/10)*100 )/100;
-					write_breakdown_stat(0,"Threat/round: +"+threatGain+" (+"+fakePercentGain+")");
+					//var threatGain = Math.floor(totalNew/10) - Math.floor(totalOld/10); per round
+					var threatGain = Math.floor(totalNew*0.7) - Math.floor(totalOld*0.7);
+					var fakePercentGain = Math.round( (totalNew*0.7 - totalOld*0.7)*100 )/100;
+					write_breakdown_stat(0,"Threat: +"+threatGain+" (+"+fakePercentGain+")");
 			}else if(name=='intelligence'){
 				// Heal gain
 					var healGain = Math.round(totalChange*4/5*100)/100;
