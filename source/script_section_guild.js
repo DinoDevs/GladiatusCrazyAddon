@@ -1148,8 +1148,8 @@ var gca_section_guild = {
 					this.betterGuildMedic();
 			}else{
 				//Check if there is content
-				if( gca_options.isOn("ENABLE_GUILD_LIFE_TAB") && $dark('#content .buildingDesc[0]') )
-					this.guildLife();
+				//if( gca_options.isOn("ENABLE_GUILD_LIFE_TAB") && $dark('#content .buildingDesc[0]') )
+				//	this.guildLife();
 			}
 		},
 		//Improve Guild Medic
@@ -1189,9 +1189,9 @@ var gca_section_guild = {
 			$dark('#charstats .charstats_bg[3]').tooltip([afterHealPoints+' / '+maxPoints],["white","#c0c0c0"]);
 			
 			//Make Guild Life Tab
-			$dark('#mainnav tr[0]').addChild([
-				$dark('*td').html('<a href="'+document.location.href+'&guildLife" class="awesome-tabs" style="cursor:pointer;">'+gca_locale.get("guild_life")+'<div class="navBG"></div></a>')
-			]);
+			//$dark('#mainnav tr[0]').addChild([
+			//	$dark('*td').html('<a href="'+document.location.href+'&guildLife" class="awesome-tabs" style="cursor:pointer;">'+gca_locale.get("guild_life")+'<div class="navBG"></div></a>')
+			//]);
 		},
 		//Guild Life
 		guildLife : function(){
