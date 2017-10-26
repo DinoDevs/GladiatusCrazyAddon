@@ -2986,15 +2986,6 @@ var gca_global = {
 
 					// Get saved data (again just to be sure)
 					var data = gca_data.section.get("data", "gold_exp_data", []);
-					
-					
-					/* Ο ΘΑΝΟΣ ΓΡΑΦΕΙ GTP ΚΩΔΙΚΑ
-					// Collect data every 10min = (600k ms)
-					if (!serverDate || !data.length || serverDate - data[data.length - 1][2] < 6e5){
-						// Not yet 10 mins
-						return;
-					}
-					*/
 
 					// Get gold
 					var gold = content.match(/([\d\.]+) \/ 50\.000\.000/i);
@@ -3171,11 +3162,14 @@ var gca_global = {
 				var seventh_day = 0;
 				var last_day = 0;
 				var exp_levelup = 0;
-				var Xdata = [];
-				var Ydata = [];
-				var XdataChange = [];
-				var YdataChange = [];
-				var labelsArr = [];
+				var goldData = [];
+				var expData = [];
+				var goldDataChange = [];
+				var expDataChange = [];
+				var goldDataAverage = [];
+				var expDataAverage = [];
+				var lastAverage = 0;
+				var countAverage = 1;
 
 				// Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
 				var seventh_day_timestamp = gca_tools.time.server() - 6048e5;
@@ -3183,41 +3177,67 @@ var gca_global = {
 				
 				// For every data
 				for (var i = 0; i < data.length; i++) {
-					// If time in the last 7 days
+					// If time is in the last 7 days
 					if(data[i][2] >= seventh_day_timestamp){
 						// Sum some of the lost EXP from levelup
 						if(i>0 && data[i][1] < data[i-1][1]){
 							exp_levelup = exp_levelup + data[i-1][1];
 						}
 						// Calculate last 7 days Gold Data
-						Xdata[i - seventh_day] = {
-							x : data[i][2],
-							y : (data[i][0] - data[seventh_day][0])
-						};
-						XdataChange[i - seventh_day] = {
-							x : data[i][2],
-							y : ((i==0)?0:(data[i][0] - data[i-1][0]))
-						};
+							goldData[i - seventh_day] = {
+								x : data[i][2],
+								y : (data[i][0] - data[seventh_day][0])
+							};
+							goldDataChange[i - seventh_day] = {
+								x : data[i][2],
+								y : ((i==0)?0:(data[i][0] - data[i-1][0]))
+							};
 						// Calculate last 7 days Exp Data
-						Ydata[i - seventh_day] = {
-							x : data[i][2],
-							y : (data[i][1]-data[seventh_day][1]+exp_levelup)
-						};
-						YdataChange[i - seventh_day] = {
-							x : data[i][2],
-							y : ((i==0)?0:(data[i][1] - data[i-1][1]))
-						};
+							expData[i - seventh_day] = {
+								x : data[i][2],
+								y : (data[i][1]-data[seventh_day][1]+exp_levelup)
+							};
+							expDataChange[i - seventh_day] = {
+								x : data[i][2],
+								y : ((i==0)?0:(data[i][1] - data[i-1][1]))
+							};
 						
-						if(data[i][2] <= seventh_day_timestamp){
-							last_day = i;
+						// Calculate average
+							if(lastAverage==0){
+								lastAverage=seventh_day;
+								goldDataAverage[i - seventh_day] = {
+									x : data[i][2],
+									y : (data[i][0] - data[seventh_day][0])
+								};
+								expDataAverage[i - seventh_day] = {
+									x : data[i][2],
+									y : (data[i][1]-data[seventh_day][1]+exp_levelup)
+								};
+							}else if( data[i][2]-data[lastAverage][2]>=864e5/2 ){
+								goldDataAverage[countAverage] = {
+									x : data[i][2],
+									y : (data[i][0] - data[lastAverage][0])
+								};
+								expDataAverage[countAverage] = {
+									x : data[i][2],
+									y : (data[i][1]-data[lastAverage][1]+exp_levelup)
+								};
+								
+								lastAverage=i;
+								countAverage++;
+							}
+						
+						if(last_day==0 && data[i][2] <= last_day_timestamp){
+							last_day = i - seventh_day;
 						}
 					}else{
-						seventh_day = i;
+						seventh_day = i+1;
 					}
 				}
 				
+				
 				// If there are no data
-				if(Ydata.length<1 || Xdata.length<1){
+				if(expData.length<1 || goldData.length<1){
 					document.getElementById('today_values').textContent+= " N/A";
 					document.getElementById('days7_values').textContent+= " N/A";
 					document.getElementById('average_per_day').textContent+= " N/A";
@@ -3230,28 +3250,29 @@ var gca_global = {
 					var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
 					
 					// Write raw data - TODO needs a little styling + today_values=last 24h not today
-					document.getElementById('today_values').textContent+= " "+(Ydata[Ydata.length-1].y-Ydata[last_day].y) +" "+exp_tran+" / "+(Xdata[Xdata.length-1].y-Xdata[last_day].y)+" ";
+					document.getElementById('today_values').textContent+= " "+gca_tools.strings.insertDots(expData[expData.length-1].y-expData[last_day].y) +" "+exp_tran+" / "+gca_tools.strings.insertDots(goldData[goldData.length-1].y-goldData[last_day].y)+" ";
 					var img = document.createElement('img');
 					img.src = "img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('today_values').appendChild(img);
 					
-					document.getElementById('days7_values').textContent+= " "+Ydata[Ydata.length-1].y +" "+exp_tran+" / "+Xdata[Xdata.length-1].y+" ";
+					document.getElementById('days7_values').textContent+= " "+gca_tools.strings.insertDots(expData[expData.length-1].y) +" "+exp_tran+" / "+gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
 					var img = document.createElement('img');
 					img.src = "img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('days7_values').appendChild(img);
 					
-					document.getElementById('average_per_day').textContent+= " "+ Math.round(Ydata[Ydata.length-1].y/7) +" "+exp_tran+" / "+Math.round(Xdata[Xdata.length-1].y/7)+" ";
+					document.getElementById('average_per_day').textContent+= " "+ gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7)) +" "+exp_tran+" / "+gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
 					var img = document.createElement('img');
 					img.src = "img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('average_per_day').appendChild(img);
 					
-					document.getElementById('days_left_to_level_up').textContent+= " "+ Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(Ydata[Ydata.length-1].y/7)*100)/100;
+					document.getElementById('days_left_to_level_up').textContent+= " "+ Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7)*100)/100;
+					
 					
 					// Populate graph
 					new Chart(this.canvas, {
@@ -3263,28 +3284,51 @@ var gca_global = {
 									fill: true,
 									backgroundColor: "rgba(255,193,7,0.3)",
 									borderColor: "rgba(255,193,7,1)",
-									data: Xdata
+									data: goldDataAverage
+								},
+								{
+									label: "Total "+gold_tran,
+									fill: true,
+									backgroundColor: "rgba(255,193,7,0.3)",
+									borderColor: "rgba(255,193,7,1)",
+									data: goldData,
+									hidden: true
 								},
 								{
 									label: 'Measurements', // TODO - translate
-									type: 'bubble',
+									type: 'line',
 									backgroundColor: "rgba(255,193,7,0.3)",
 									borderColor: "rgba(255,193,7,1)",
-									data: XdataChange
+									data: goldDataChange,
+									hidden: true,
+									pointStyle: "crossRot",
+									showLine: false
 								},
 								{
 									label: exp_tran,
 									fill: true,
 									backgroundColor: "rgba(75,192,192,0.3)",
 									borderColor: "rgba(75,192,192,1)",
-									data: Ydata
+									data: expDataAverage,
+									hidden: true
+								},
+								{
+									label: "Total "+exp_tran,
+									fill: true,
+									backgroundColor: "rgba(75,192,192,0.3)",
+									borderColor: "rgba(75,192,192,1)",
+									data: expData,
+									hidden: true
 								},
 								{
 									label: 'Measurements', // TODO - translate
-									type: 'bubble',
+									type: 'line',
 									backgroundColor: "rgba(75,192,192,0.3)",
 									borderColor: "rgba(75,192,192,1)",
-									data: YdataChange
+									data: expDataChange,
+									hidden: true,
+									pointStyle: "cross",
+									showLine: false
 								}
 							]
 						},
@@ -3298,6 +3342,11 @@ var gca_global = {
 											day: 'MMM D'
 										},
 										tooltipFormat: 'MMM D, h:mm:ss a'
+									}
+								}],
+								yAxes: [{
+									ticks: {
+										min: 0
 									}
 								}]
 							},
