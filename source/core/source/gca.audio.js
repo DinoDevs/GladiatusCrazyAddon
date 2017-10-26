@@ -247,9 +247,6 @@ var gca_audio = {
 	}
 };
 
-// Load sounds
-gca_audio.load();
-
 // Setup sound channels
 // gca_audio.setupChannel("<id string>", {vol : <0-1>, mute : <boolean>, sound : "<sound id string>"});
 gca_audio.setupChannel("expedition_notification", {sound : "water"});
@@ -258,3 +255,24 @@ gca_audio.setupChannel("arena_notification",      {sound : "water"});
 gca_audio.setupChannel("turma_notification",      {sound : "water"});
 gca_audio.setupChannel("auction_notification",    {sound : "coin"});
 gca_audio.setupChannel("sound_toggle",            {sound : "water"});
+
+(function(){
+	// On page load
+	var loaded = false;
+	var fireLoadEvent = function(){
+		if(loaded) return;
+		loaded = true;
+		// Call handler
+		gca_audio.load();
+	}
+	if(document.readyState == "complete" || document.readyState == "loaded"){
+		fireLoadEvent();
+	}else{
+		window.addEventListener('DOMContentLoaded', function(){
+			fireLoadEvent();
+		}, true);
+		window.addEventListener('load', function(){
+			fireLoadEvent();
+		}, true);
+	}
+})();
