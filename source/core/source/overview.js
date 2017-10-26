@@ -302,6 +302,14 @@ var gca_overview = {
 			}
 		}
 
+		// Get Special Stats
+			var specialJson = {};
+			specialJson['avoid_critical'] = {item_points : parseInt(JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip)[0][3][0][1])};
+			specialJson['block'] = {item_points : parseInt(JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip)[0][7][0][1])};
+			specialJson['critical_hit'] = {item_points : parseInt(JSON.parse(document.getElementById("char_schaden_tt").dataset.tooltip)[0][6][0][1])};
+			specialJson['critical_healing'] = {item_points : parseInt(JSON.parse(document.getElementById("char_healing_tt").dataset.tooltip)[0][4][0][1])};//should be taken from dungeon player
+
+			
 		// Save data if main player
 		if (this.doll == 1) {
 			var json = {};
@@ -315,6 +323,7 @@ var gca_overview = {
 					}
 				};
 			gca_data.section.set("overview", "stats", JSON.stringify(json));
+			gca_data.section.set("overview", "special_stats", JSON.stringify(specialJson));
 		}
 	},
 
