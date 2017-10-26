@@ -1259,7 +1259,7 @@ var gca_section_global = {
 						var days = info.match(/(\d+)/)[1];
 						if(days>=100){days='+;'}
 						$dark('#mainmenu .premium[0]').html( 
-							$dark('#mainmenu .premium[0]').html() + '<div class="show_centurio_days" style="background-image: url(img/interface/new.gif);">'+days+'</div>'
+							$dark('#mainmenu .premium[0]').html() + '<div class="show_centurio_days">'+days+'</div>'
 						);
 					}
 				}
