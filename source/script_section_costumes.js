@@ -70,7 +70,7 @@ var gca_section_costumes = {
 					$dark('*input').id('image_button').type('button').class('button2').value('').css('margin-left: 10px;margin-right: 10px;position: absolute;').click( saveFunction )
 				])
 			]),
-			$dark('*div').class('contentItem').addChild([
+			/*$dark('*div').class('contentItem').addChild([
 				$dark('*h3').html( gca_locale.get("more_player_images") ),
 				$dark('*div').class('contentItem_content').addChild([
 					$dark('*img').attr('src','http://i617.photobucket.com/albums/tt260/goldisever/GCAO/gigantas.jpg').class('more_profile_images_from_photobucket').attr('onclick',"document.getElementById(\'image_link\').value=this.getAttribute(\'src\');"),
@@ -99,7 +99,7 @@ var gca_section_costumes = {
 					$dark('*img').attr('src','http://i617.photobucket.com/albums/tt260/goldisever/GCAO/amazona.jpg').class('more_profile_images_from_photobucket').attr('onclick',"document.getElementById(\'image_link\').value=this.getAttribute(\'src\');"),
 					$dark('*span').html( gca_locale.get("made_by")+' <b>Miguel Coimbra</b> (<a href="http://www.miguelcoimbra.com/" target="_blank">Homepage</a>)</i>')
 				])
-			])
+			])*/
 		]);
 		
 		//Take Player Description
