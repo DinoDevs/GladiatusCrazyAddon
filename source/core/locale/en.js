@@ -118,6 +118,7 @@ gca_languages["en"] = {
 			gold_exp_data_week : "Last 7 days",
 			gold_exp_data_avg_day : "Average values per day",
 			gold_exp_data_to_level_up : "Days left to level up",
+			gold_exp_data_package_tax : "Weekly gold-to-package tax",
 		},
 
 		// Overview

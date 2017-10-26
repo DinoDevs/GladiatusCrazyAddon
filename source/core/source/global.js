@@ -2974,8 +2974,8 @@ var gca_global = {
 				var data = gca_data.section.get("data", "gold_exp_data", false);
 				
 				// Collect data every 10min = (600k ms)
-				if (data && gca_tools.time.server() - data[data.length - 1][2] < 6e5){
-					// Not yet 10 mins
+				if (data && gca_tools.time.server() - data[data.length - 1][2] < 6e5*3){
+					// Not yet 30 mins
 					return;
 				}
 				
@@ -3074,6 +3074,12 @@ var gca_global = {
 				table.style = "width: 100%;text-align: center;";
 				dialog.body.appendChild(table);
 				var tr = document.createElement('tr');
+				tr.style = "font-weight: bold;";
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				table.appendChild(tr);
+				tr = document.createElement('tr');
 				tr.appendChild(document.createElement('td'));
 				tr.appendChild(document.createElement('td'));
 				tr.appendChild(document.createElement('td'));
@@ -3105,10 +3111,17 @@ var gca_global = {
 				table.getElementsByTagName("tr")[2].getElementsByTagName("td")[0].textContent = gca_locale.get("global", "gold_exp_data_week") + ":";
 				table.getElementsByTagName("tr")[3].getElementsByTagName("td")[0].textContent = gca_locale.get("global", "gold_exp_data_avg_day") + ":";
 				table.getElementsByTagName("tr")[4].getElementsByTagName("td")[0].textContent = gca_locale.get("global", "gold_exp_data_to_level_up") + ":";
+				table.getElementsByTagName("tr")[5].getElementsByTagName("td")[0].textContent = gca_locale.get("global", "gold_exp_data_package_tax") + ":";
+				table.getElementsByTagName("tr")[1].getElementsByTagName("td")[0].style = "font-weight: bold;";
+				table.getElementsByTagName("tr")[2].getElementsByTagName("td")[0].style = "font-weight: bold;";
+				table.getElementsByTagName("tr")[3].getElementsByTagName("td")[0].style = "font-weight: bold;";
+				table.getElementsByTagName("tr")[4].getElementsByTagName("td")[0].style = "font-weight: bold;";
+				table.getElementsByTagName("tr")[5].getElementsByTagName("td")[0].style = "font-weight: bold;";
 				table.getElementsByTagName("tr")[1].id = "today_values";
 				table.getElementsByTagName("tr")[2].id = "days7_values";
 				table.getElementsByTagName("tr")[3].id = "average_per_day";
 				table.getElementsByTagName("tr")[4].id = "days_left_to_level_up";
+				table.getElementsByTagName("tr")[5].id = "gold_package_tax_estimation";
 				
 				// Add some space
 				var div = document.createElement('div');
@@ -3269,7 +3282,7 @@ var gca_global = {
 					// Gold translate
 					var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
 					
-					// Write raw data - TODO needs a little styling + today_values=last 24h not today
+					// Write data
 					document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y-expData[last_day].y)+" ";
 					document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y-goldData[last_day].y)+" ";
 					var img = document.createElement('img');
@@ -3306,7 +3319,13 @@ var gca_global = {
 					img.border = "0";
 					document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
 					
-					document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7)*100)/100;
+					document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7));
+					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots( Math.round(goldData[goldData.length-1].y/50) );
+					img = document.createElement('img');
+					img.src = "img/res2.gif";
+					img.align = "absmiddle";
+					img.border = "0";
+					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].appendChild(img);
 					
 					// Populate graph
 					new Chart(this.canvas, {

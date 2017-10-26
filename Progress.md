@@ -72,7 +72,7 @@
 	- [x] ✎ Daily bonus log (Needs testing / Not in settings)
 	- [x] ✎ Show the cap values of Resilience and Block (TODO: For all dolls + 50% critical & 90% crit heal)
 	- [x] Display for each mercenary its tooltip (base stats)
-	- [x] ✎ Mercenaries management Interface (TODO: Add mercenaries type icans)
+	- [x] ✎ Mercenaries management Interface (TODO: Add mercenaries type icοns)
 	- [x] Items' shadow
 	- [x] Save costume's properties
 	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)

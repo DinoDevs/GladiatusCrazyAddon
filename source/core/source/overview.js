@@ -333,7 +333,9 @@ var gca_overview = {
 		caps : [
 			0, // Avoid Cap
 			0, // Block Cap
-			false // Calculated
+			false, // Calculated
+			0, // Critical hit Cap
+			0, // Critical heal Cap
 		],
 
 		// Calculate Block and Avoid Caps
@@ -343,6 +345,8 @@ var gca_overview = {
 				var player_level = parseInt(document.getElementById("header_values_level").textContent);
 				this.caps[0] = Math.floor(24.5*4*(player_level-8)/52)+1;//Avoid Cap formula
 				this.caps[1] = Math.floor(49.5*6*(player_level-8)/52)+1;//Block Cap formula
+				this.caps[3] = Math.floor(49.5*5*(player_level-8)/52)+1;//Critical hit Cap formula
+				this.caps[4] = Math.floor(89.5*7*(player_level-8)/52)+1;//Critical heal Cap formula
 				this.caps[2] = true;
 				
 				// Attach event on request response
@@ -357,9 +361,8 @@ var gca_overview = {
 				});
 			}
 			
-			// Show caps
+			// Show Avoid/Block caps
 				var parseDataset = JSON.parse(document.getElementById("char_panzer_tt").dataset.tooltip);
-				
 				// Loop through the tooltip to find the proper rows
 				var i = 1;
 				var capNo = 0;
@@ -376,6 +379,43 @@ var gca_overview = {
 				}
 				// Apply the changed tooplit
 				gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(parseDataset));
+			
+			// Show Critical hit caps
+				var parseDataset = JSON.parse(document.getElementById("char_schaden_tt").dataset.tooltip);
+				// Loop through the tooltip to find the proper rows
+				var i = 1;
+				capNo++;
+				while (parseDataset[0][i] && capNo<4){
+					// If the color is golden
+					if( parseDataset[0][i][1][1] == "#BA9700" ){
+						// Change color
+						parseDataset[0][i][1][1]=(parseDataset[0][i][0][1]>=this.caps[capNo])?"#00B712":"#ff0000";
+						// Apply the /Cap
+						parseDataset[0][i][0][1] = parseDataset[0][i][0][1] + "/" + this.caps[capNo];
+						capNo++;
+					}
+					i++;
+				}
+				// Apply the changed tooplit
+				gca_tools.setTooltip(document.getElementById("char_schaden_tt"),JSON.stringify(parseDataset));
+			
+			// Show Critical heal caps
+				var parseDataset = JSON.parse(document.getElementById("char_healing_tt").dataset.tooltip);
+				// Loop through the tooltip to find the proper rows
+				var i = 1;
+				while (parseDataset[0][i] && capNo<5){
+					// If the color is golden
+					if( parseDataset[0][i][1][1] == "#BA9700" ){
+						// Change color
+						parseDataset[0][i][1][1]=(parseDataset[0][i][0][1]>=this.caps[capNo])?"#00B712":"#ff0000";
+						// Apply the /Cap
+						parseDataset[0][i][0][1] = parseDataset[0][i][0][1] + "/" + this.caps[capNo];
+						capNo++;
+					}
+					i++;
+				}
+				// Apply the changed tooplit
+				gca_tools.setTooltip(document.getElementById("char_healing_tt"),JSON.stringify(parseDataset));
 		}
 	},
 	
