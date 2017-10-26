@@ -3070,26 +3070,45 @@ var gca_global = {
 				dialog.smallHead(true);
 				dialog.title.textContent = gca_locale.get("global", "gold_exp_data");
 				
-				// Add description
-				var div = document.createElement('div');
-				div.id = "today_values";
-				div.textContent = gca_locale.get("global", "gold_exp_data_today") + ":";
-				dialog.body.appendChild(div);
-				
-				div = document.createElement('div');
-				div.id = "days7_values";
-				div.textContent = gca_locale.get("global", "gold_exp_data_week") + ":";
-				dialog.body.appendChild(div);
-				
-				div = document.createElement('div');
-				div.id = "average_per_day";
-				div.textContent = gca_locale.get("global", "gold_exp_data_avg_day") + ":";
-				dialog.body.appendChild(div);
-				
-				div = document.createElement('div');
-				div.id = "days_left_to_level_up";
-				div.textContent = gca_locale.get("global", "gold_exp_data_to_level_up") + ":";
-				dialog.body.appendChild(div);
+				var table = document.createElement('table');
+				table.style = "width: 100%;text-align: center;";
+				dialog.body.appendChild(table);
+				var tr = document.createElement('tr');
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				table.appendChild(tr);
+				tr = document.createElement('tr');
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				table.appendChild(tr);
+				tr = document.createElement('tr');
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				table.appendChild(tr);
+				tr = document.createElement('tr');
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				table.appendChild(tr);
+				tr = document.createElement('tr');
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				tr.appendChild(document.createElement('td'));
+				table.appendChild(tr);
+				table.getElementsByTagName("tr")[0].getElementsByTagName("td")[0].style = "width: 40%;";
+				table.getElementsByTagName("tr")[0].getElementsByTagName("td")[1].textContent = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
+				table.getElementsByTagName("tr")[0].getElementsByTagName("td")[2].textContent = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
+				table.getElementsByTagName("tr")[1].getElementsByTagName("td")[0].textContent = gca_locale.get("global", "gold_exp_data_today") + ":";
+				table.getElementsByTagName("tr")[2].getElementsByTagName("td")[0].textContent = gca_locale.get("global", "gold_exp_data_week") + ":";
+				table.getElementsByTagName("tr")[3].getElementsByTagName("td")[0].textContent = gca_locale.get("global", "gold_exp_data_avg_day") + ":";
+				table.getElementsByTagName("tr")[4].getElementsByTagName("td")[0].textContent = gca_locale.get("global", "gold_exp_data_to_level_up") + ":";
+				table.getElementsByTagName("tr")[1].id = "today_values";
+				table.getElementsByTagName("tr")[2].id = "days7_values";
+				table.getElementsByTagName("tr")[3].id = "average_per_day";
+				table.getElementsByTagName("tr")[4].id = "days_left_to_level_up";
 				
 				// Add some space
 				var div = document.createElement('div');
@@ -3101,13 +3120,14 @@ var gca_global = {
 				canvas.id = "graph_canvas";
 				canvas.width = 500;
 				canvas.height = 200;
+				canvas.style = "padding: 10px;margin: -10px;background: rgba(255,255,255,0.7);border-radius: 5px;"
 				this.canvas = canvas;
 				dialog.body.appendChild(canvas);
 				
 				// Add description
-				div = document.createElement('div');
-				div.textContent = "Click on graph's legends to enable/disable data groups. Gold and Experience data are summed starting from 7 days ago."; // TODO : translations
-				dialog.body.appendChild(div);
+				//div = document.createElement('div');
+				//div.textContent = "Click on graph's legends to enable/disable data groups. Gold and Experience data are summed starting from 7 days ago."; // TODO : translations
+				//dialog.body.appendChild(div);
 				
 				// Add some space
 				var div = document.createElement('div');
@@ -3227,7 +3247,7 @@ var gca_global = {
 								countAverage++;
 							}
 						
-						if(last_day==0 && data[i][2] <= last_day_timestamp){
+						if(last_day==0 && data[i][2] >= last_day_timestamp){
 							last_day = i - seventh_day;
 						}
 					}else{
@@ -3250,29 +3270,43 @@ var gca_global = {
 					var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
 					
 					// Write raw data - TODO needs a little styling + today_values=last 24h not today
-					document.getElementById('today_values').textContent+= " "+gca_tools.strings.insertDots(expData[expData.length-1].y-expData[last_day].y) +" "+exp_tran+" / "+gca_tools.strings.insertDots(goldData[goldData.length-1].y-goldData[last_day].y)+" ";
+					document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y-expData[last_day].y)+" ";
+					document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y-goldData[last_day].y)+" ";
 					var img = document.createElement('img');
+					img.src = "img/ui/icon_level_small.gif";
+					img.border = "0";
+					document.getElementById('today_values').getElementsByTagName("td")[1].appendChild(img);
+					img = document.createElement('img');
 					img.src = "img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
-					document.getElementById('today_values').appendChild(img);
+					document.getElementById('today_values').getElementsByTagName("td")[2].appendChild(img);
 					
-					document.getElementById('days7_values').textContent+= " "+gca_tools.strings.insertDots(expData[expData.length-1].y) +" "+exp_tran+" / "+gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
+					document.getElementById('days7_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y)+" ";
+					document.getElementById('days7_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
 					var img = document.createElement('img');
+					img.src = "img/ui/icon_level_small.gif";
+					img.border = "0";
+					document.getElementById('days7_values').getElementsByTagName("td")[1].appendChild(img);
+					img = document.createElement('img');
 					img.src = "img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
-					document.getElementById('days7_values').appendChild(img);
+					document.getElementById('days7_values').getElementsByTagName("td")[2].appendChild(img);
 					
-					document.getElementById('average_per_day').textContent+= " "+ gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7)) +" "+exp_tran+" / "+gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
+					document.getElementById('average_per_day').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7))+" ";
+					document.getElementById('average_per_day').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
 					var img = document.createElement('img');
+					img.src = "img/ui/icon_level_small.gif";
+					img.border = "0";
+					document.getElementById('average_per_day').getElementsByTagName("td")[1].appendChild(img);
+					img = document.createElement('img');
 					img.src = "img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
-					document.getElementById('average_per_day').appendChild(img);
+					document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
 					
-					document.getElementById('days_left_to_level_up').textContent+= " "+ Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7)*100)/100;
-					
+					document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7)*100)/100;
 					
 					// Populate graph
 					new Chart(this.canvas, {

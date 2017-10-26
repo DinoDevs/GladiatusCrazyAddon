@@ -114,8 +114,8 @@ gca_languages["en"] = {
 
 			// Gold - Exp data
 			gold_exp_data : "Gold and Experience Data",
-			gold_exp_data_today : "Today's values",
-			gold_exp_data_week : "7 days values",
+			gold_exp_data_today : "Last 24 hours",
+			gold_exp_data_week : "Last 7 days",
 			gold_exp_data_avg_day : "Average values per day",
 			gold_exp_data_to_level_up : "Days left to level up",
 		},
