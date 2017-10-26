@@ -45,7 +45,7 @@
 		- [ ] Notification on weapon down
 		- [x] Sound notifications for Missions, Dungeons and Arenas
 			- [x] Browser notification
-		- [ ] Gold / Experience stats monitor
+		- [x] ✎Gold / Experience stats monitor (+repack fee estimation)
 		- [ ] Player update in the GCA Highscore (if we keep the highscore) OR make a Global Arena
 		- [ ] "New version" installed message
 		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit)
@@ -209,10 +209,10 @@
 - [ ] Training
 	- [x] Show basic points bars
 	- [x] Show stats changes on upgrade
-	- [ ] Training Cost calculator 
+	- [ ] Training Cost calculator (arrow down to 0 + shwo sum)
 	- [ ] Propose points to upgrade
-	- [ ] Show caps and cap points changes (crit, block, avoid)
-	- [ ] Double hit calculator
+	- [x] Stats breakdown calculator (Block, Critical hits, Avoid critical, Double hits, hits, heal etc...)
+	- [ ] Advance calculation (load heal from dungeon player + choose target player to calculate hits etc)
 
 
 
@@ -243,7 +243,7 @@
 	- [ ] Item Suffix search list 
 	- [ ] More levels in the search options 
 	- [x] Level of each item is visible (up-right corner) 
-	- [ ] Item levels you can see in auction are shown when you mouse over the (!) icon
+	- [x] Item levels you can see in auction are shown in building's description
 	- [x] Number of Price/Value % on auction Auction (ex. "(153%)")
 	- [ ] Button announcing to guild, with a mail, the auction status
 	- [x] Multiple bids without page refresh
@@ -263,7 +263,7 @@
 	- [ ] Cancel all items with one button (if "load all pages" is open this will also work) 
 	- [ ] Style fixes 
 	- [ ] Load all the pages 
-	- [ ] Item levels you can see in market are shown when you mouse over the (!) icon
+	- [x] Item levels you can see in market are shown in building's description
 	- [ ] Select the default sell duration (2h, 8h etc) in the GCA options (default 24h)
 	- [ ] Red on items that are souldbound
 	- [ ] Price per unit
@@ -336,6 +336,7 @@
 	- [x] Item shadow
 	- [x] ✎	Better item add/remove wrapper - catch no item etc.
 	- [x] ✎	Load more pages - paging fix (has a bug when on last page)
+	- [x] New item category "Event items"
 
 
 
@@ -360,8 +361,8 @@
 	- [ ] Buff bar over players
 
 
-- [ ] Player Description:
-	- [ ] Preview when you edit your description 
+- [x] Player Description:
+	- [x] Preview when you edit your description 
 
 
 
