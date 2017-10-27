@@ -33,7 +33,7 @@ var gca_overview = {
 		(gca_options.bool("overview", "daily_bonus_log") && 
 			this.daily_bonus_log.inject());
 		
-		// Show Block and Avoid Caps
+		// Show Block / Avoid / Critical Hit / Critical Heal Caps
 		(gca_options.bool("overview", "block_avoid_caps") && 
 			this.blockAvoidCaps.calculateCaps());
 
@@ -48,9 +48,13 @@ var gca_overview = {
 		// Mercenaries manager interface
 		(gca_options.bool("overview", "mercenaries_manager") && this.doll > 1 &&
 			this.mercenaries.manager());
+		
 		// Mercenaries show tooltip
 		(gca_options.bool("overview", "mercenary_tooltip_show") && this.doll > 2 &&
 			this.mercenaries.showTooltip());
+			
+		// repair_overview
+		this.repair_overview.inject();
 	},
 
 	// Resolve Page
@@ -326,7 +330,52 @@ var gca_overview = {
 			gca_data.section.set("overview", "special_stats", JSON.stringify(specialJson));
 		}
 	},
+	
+	// Items Repair Overview
+	repair_overview : {
+		// Inject
+		inject : function(){
+			// Create drop area
+			var div = document.createElement("div");
+			div.id = "repair-droppable-grid";
+			div.className = "ui-droppable quest_category_icon_work";
+			div.style = "width:25px;height:25px;margin:16px;border-radius: 100%;border: 1px solid #b28b60;background-color: #4f371e;";
+			div.setAttribute('data-container-number', '384');
+			div.setAttribute('data-content-type-accept', '1855');
+			div.setAttribute('data-tooltip', '[[["'+gca_locale.get("drop_item_see_materials_repair")+'","#FF6A00"],["'+gca_locale.get("workbench_6th_slot_empty")+'","#808080"]]]');
+			document.getElementById("char").appendChild(div);
+			
+			// Create Script
+			var script = document.createElement("script");
+			script.textContent = "\
+			jQuery( function() {\
+				jQuery( '#repair-droppable-grid' ).droppable({\
+				  drop: function( event, ui ) {\
+					var id = jQuery(ui.draggable).attr('data-item-id');\
+					sendAjax(this, 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid='+id+'&amount=1' , function (data){gca_overview.repair_overview.resolve_item_JSON(data)} , function (elem, msg, delayDuration){ console.log(msg.responseText);});\
+				  }\
+				});\
+			  } );\
+			";
+			document.getElementById("char").appendChild(script);
+		},
+		resolve_item_JSON : function(data){
+			data=JSON.parse(data);
+			needed_materials = data.slots[5].formula.needed;
 
+			// Create tooltip with the materials
+			tooltip = '[[["'+data.slots[5].item.name+'","'+data.slots[5].item.data.tooltip[0][0][1]+'"]';
+			for (var key in needed_materials) {
+				if (needed_materials.hasOwnProperty(key)) {
+					if(needed_materials[key].amount>0)
+						tooltip += ',["<div class=\\"item-i-18-'+parseInt(key.match(/18(\d+)/)[1])+'\\" style=\\"display: inline-block;\\"></div>x '+needed_materials[key].amount+' ('+needed_materials[key].name.replace(/(u.{4})/g, '\\$1')+')","#cccccc"]'
+				}
+			}
+			tooltip += ']]';
+			gca_tools.setTooltip(document.getElementById("repair-droppable-grid"), tooltip);
+		}
+	},
+	
 	// Food Life gain predict on mouse over
 	blockAvoidCaps : {
 		// Caps variables
