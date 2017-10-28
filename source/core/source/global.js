@@ -120,7 +120,7 @@ var gca_global = {
 		(gca_options.bool("global","browser_notifications") &&
 			gca_notifications._browser.init());
 		
-		// Gold/Exp data TODO
+		// Gold/Exp data
 		(gca_options.bool("global","gold_exp_data") &&
 			this.background.gold_exp_data.inject());
 
@@ -2993,6 +2993,7 @@ var gca_global = {
 					var exp = document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i);
 					// If gold or exp not found
 					if(gold == null || exp == null){
+						console.log("GCA: Could not get gold or exp data.");
 						// Exit
 						return;
 					}
@@ -3207,11 +3208,14 @@ var gca_global = {
 				// Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
 				var seventh_day_timestamp = gca_tools.time.server() - 6048e5;
 				var last_day_timestamp = gca_tools.time.server() - 864e5;
+				var newdata=[];
 				
 				// For every data
 				for (var i = 0; i < data.length; i++) {
 					// If time is in the last 7 days
 					if(data[i][2] >= seventh_day_timestamp){
+						newdata.push(data[i]);
+						
 						// Sum some of the lost EXP from levelup
 						if(i>0 && data[i][1] < data[i-1][1]){
 							exp_levelup = exp_levelup + data[i-1][1];
@@ -3268,6 +3272,8 @@ var gca_global = {
 					}
 				}
 				
+				// Save only last 7 days data
+				gca_data.section.set("data", "gold_exp_data", newdata);
 				
 				// If there are no data
 				if(expData.length<1 || goldData.length<1){
