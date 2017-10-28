@@ -205,7 +205,9 @@ var gca_settings = {
 				// new Achivements layout
 				"achivements_layout" : true,
 				// Costumes layout
-				"costumes_layout" : true
+				"costumes_layout" : true,
+				// Items repair overview
+				"items_repair_overview" : true
 			},
 
 			// Messages Options

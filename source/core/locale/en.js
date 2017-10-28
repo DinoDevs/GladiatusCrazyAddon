@@ -238,6 +238,7 @@ gca_languages["en"] = {
 			category_overview$more_statistics : "Show more stats on statistics tab",
 			category_overview$achivements_layout : "Enhance achivements layout",
 			category_overview$costumes_layout : "Enhance costumes layout",
+			category_overview$items_repair_overview : "Drop items in the field to see the materials needed to repair them",
 			// Settings - Messages
 			category_messages$messages_layout : "Improve messages layout",
 			category_messages$show_unread : "Highlight unread messages",

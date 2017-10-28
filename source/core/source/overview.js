@@ -54,7 +54,7 @@ var gca_overview = {
 			this.mercenaries.showTooltip());
 			
 		// Repair overview
-		(this.doll == 1 &&
+		(gca_options.bool("overview", "items_repair_overview") && this.doll == 1 &&
 			this.repair_overview.inject());
 	},
 
