@@ -3257,38 +3257,12 @@ var gca_global = {
 				div.className = "space";
 				dialog.body.appendChild(div);
 				
-				/*
-				// Add Chart Lib
-				var scripts_loaded = 0;
-				var script = document.createElement('script');
-				script.src = gca_resources.folder + "libraries/Chart.min.js";
-				script.addEventListener('load', function(){
-					scripts_loaded++;
-					// If all scripts loaded
-					if(scripts_loaded == 2){
-						// Render chart
-						that.renderChart();
-					}
-				}, false);
-				document.getElementsByTagName('head')[0].appendChild(script);
-				script = document.createElement('script');
-				script.src = gca_resources.folder + "libraries/moment.min.js";
-				script.addEventListener('load', function(){
-					scripts_loaded++;
-					// If all scripts loaded
-					if(scripts_loaded == 2){
-						// Render chart
-						that.renderChart();
-					}
-				}, false);
-				document.getElementsByTagName('head')[0].appendChild(script);
-				*/
 				var renderChart = function(){
 										// Values for the Data Plot
 					var data  = gca_data.section.get("data", "gold_exp_data", [[0,0,0]]);
 					
 					// Fix data
-					var seventh_day = 0;
+					var seventh_day = -1;
 					var last_day = 0;
 					var exp_levelup = 0;
 					var goldData = [];
@@ -3306,53 +3280,58 @@ var gca_global = {
 					var newdata=[];
 					
 					// For every data
-					for (var i = 0; i < data.length; i++) {
+					data[-1]=[0,0,0];
+					for (var i = 0; i < data.length-1; i++) {
 						// If time is in the last 7 days
 						if(data[i][2] >= seventh_day_timestamp){
-							if(i>0){newdata.push(data[i-1]);}
+							newdata.push(data[i-1]);
 							
 							// Sum some of the lost EXP from levelup
 							if(i>0 && data[i][1] < data[i-1][1]){
 								exp_levelup = exp_levelup + data[i-1][1];
 							}
 							// Calculate last 7 days Gold Data
-								goldData[i - seventh_day] = {
+								goldData[i - seventh_day-1] = {
 									x : data[i][2],
 									y : (data[i][0] - data[seventh_day][0])
 								};
-								goldDataChange[i - seventh_day] = {
+								goldDataChange[i - seventh_day-1] = {
 									x : data[i][2],
 									y : ((i==0)?0:(data[i][0] - data[i-1][0]))
 								};
 							// Calculate last 7 days Exp Data
-								expData[i - seventh_day] = {
+								expData[i - seventh_day-1] = {
 									x : data[i][2],
 									y : (data[i][1]-data[seventh_day][1]+exp_levelup)
 								};
-								expDataChange[i - seventh_day] = {
+								expDataChange[i - seventh_day-1] = {
 									x : data[i][2],
 									y : ((i==0)?0:(data[i][1] - data[i-1][1]))
 								};
 							
 							// Calculate average
+								var ratio = 0;
 								if(goldDataAverage.length==0){
-									lastAverage=seventh_day;
-									goldDataAverage[i - seventh_day] = {
+									lastAverage=seventh_day+1;
+									ratio = (data[i][2] - data[seventh_day][2]) / 864e5;
+									
+									goldDataAverage[0] = {
 										x : data[i][2],
-										y : (data[i][0] - data[seventh_day][0])
+										y : Math.round((data[i][0] - data[seventh_day][0])/ratio)
 									};
-									expDataAverage[i - seventh_day] = {
+									expDataAverage[0] = {
 										x : data[i][2],
-										y : (data[i][1]-data[seventh_day][1]+exp_levelup)
+										y : Math.round((data[i][1] - data[seventh_day][1])/ratio)
 									};
 								}else if( data[i][2]-data[lastAverage][2]>=864e5/2 ){
+									ratio = (data[i][2] - data[lastAverage][2]) / 864e5 ;
 									goldDataAverage[countAverage] = {
 										x : data[i][2],
-										y : (data[i][0] - data[lastAverage][0])
+										y : Math.round((data[i][0] - data[lastAverage][0])/ratio)
 									};
 									expDataAverage[countAverage] = {
 										x : data[i][2],
-										y : (data[i][1]-data[lastAverage][1]+exp_levelup)
+										y : Math.round((expData[i - seventh_day-1].y-expData[lastAverage-seventh_day-1].y)/ratio)
 									};
 									
 									lastAverage=i;
@@ -3360,10 +3339,10 @@ var gca_global = {
 								}
 							
 							if(last_day==0 && data[i][2] >= last_day_timestamp){
-								last_day = i - seventh_day;
+								last_day = i - seventh_day-1;
 							}
 						}else{
-							seventh_day = i+1;
+							seventh_day = i;
 						}
 					}
 					newdata.push(data[i-1]);
