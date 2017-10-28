@@ -3214,7 +3214,7 @@ var gca_global = {
 				for (var i = 0; i < data.length; i++) {
 					// If time is in the last 7 days
 					if(data[i][2] >= seventh_day_timestamp){
-						newdata.push(data[i]);
+						if(i>0){newdata.push(data[i-1]);}
 						
 						// Sum some of the lost EXP from levelup
 						if(i>0 && data[i][1] < data[i-1][1]){
@@ -3271,6 +3271,7 @@ var gca_global = {
 						seventh_day = i+1;
 					}
 				}
+				newdata.push(data[i]);
 				
 				// Save only last 7 days data
 				gca_data.section.set("data", "gold_exp_data", newdata);
