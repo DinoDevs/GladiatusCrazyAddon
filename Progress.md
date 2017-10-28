@@ -6,7 +6,7 @@
 
 ### Global Script
 
-- [ ] Global (Changes on every game page)
+- **Global** (Changes on every game page)
 	- [x] Preloading
 		- [x] Cache event bar's position (moving it before page loads) [if needed]
 		- [x] Disable submenu change on page load (prevent menu change if mouseover) \["global","submenu_click_to_change"\]
@@ -36,6 +36,7 @@
 		- [x] Attacked timers \["global","attacked_timers"\]
 		- [x] Quest timer \["global","quest_timer"\]
 		- [x] Merchants Timer \["global","merchants_timer"\]
+		- [x] ✎	Forge Timer (only for smelt for now)
 		- [x] Add Item shadow \["global","item_shadow"\]
 		- [x] Dice event timer \["global","craps_timer"\]
 		- [x] Remember merchants tabs \["global","remember_tabs"\]
