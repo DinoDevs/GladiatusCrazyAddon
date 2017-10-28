@@ -85,6 +85,11 @@ var manager = {
 				case "inventory":
 					this.section.merchants();
 					break;
+					
+				// Magus
+				case "magus":
+					this.section.magus();
+					break;
 
 				// Market
 				case "market":
@@ -245,6 +250,11 @@ var manager = {
 		// Merchants section
 		merchants : function() {
 			tools.loadScript("source/merchants.js");
+		},
+
+		// Magus section
+		magus : function() {
+			tools.loadScript("source/magus.js");
 		},
 
 		// Markets

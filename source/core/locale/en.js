@@ -191,6 +191,7 @@ gca_languages["en"] = {
 			category_reports : "Reports",
 			category_training : "Training",
 			category_merchants : "Merchants",
+			category_magus : "Magus",
 			category_expedition : "Expedition",
 			category_guild : "Guild",
 			category_auction : "Auction",
@@ -273,6 +274,10 @@ gca_languages["en"] = {
 			category_training$multiple_train : "Enable multiple training",
 			category_training$show_analyze_items_data : "Show analyzed items data in tooltips",
 			category_training$show_points_after_upgrade : "Show stat points after upgrade",
+			// Settings - Merchants
+			category_merchants$fade_unaffordable_items : "Fade items that you can not afford",
+			// Settings - Magus
+			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Expedition
 			// Settings - Guild
 			category_guild$jail_layout : "Improve jail's layout",

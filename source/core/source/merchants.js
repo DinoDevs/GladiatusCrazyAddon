@@ -10,7 +10,7 @@ var gca_merchants = {
 		if(!document.getElementById("content"))
 			return;
 		
-		// Fade unadordable items
+		// Fade unaffordable items
 		(gca_options.bool("merchants","fade_unaffordable_items") &&
 			this.fadeUnaffordableItems.inject());
 

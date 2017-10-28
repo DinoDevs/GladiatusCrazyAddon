@@ -295,6 +295,12 @@ var gca_settings = {
 				// Fade items that you can not afford
 				"fade_unaffordable_items" : true
 			},
+			
+			// Magus
+			"magus" : {
+				// Fade items that you can not improve
+				"fade_unimprovable_items" : true
+			},
 
 			// Expedition Options
 			"expedition" : {

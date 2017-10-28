@@ -452,6 +452,12 @@ gca_options.data = {
 		"fade_unaffordable_items" : true
 	},
 
+	// Magus
+	"magus" : {
+		// Fade items that you can not improve
+		"fade_unimprovable_items" : true
+	},
+
 	// Expedition Options
 	"expedition" : {
 		// Show that each enemy drops

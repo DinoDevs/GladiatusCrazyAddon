@@ -7,7 +7,7 @@
 ### Global Script
 
 - [ ] Global (Changes on every game page)
-	- [ ] Preloading
+	- [x] Preloading
 		- [x] Cache event bar's position (moving it before page loads) [if needed]
 		- [x] Disable submenu change on page load (prevent menu change if mouseover) \["global","submenu_click_to_change"\]
 		- [x] Enable page x-Scroll \["global","x-scroll"\]
@@ -24,7 +24,7 @@
 			- [x] Create (added option to select which buttons)
 			- [x] Online friends
 			- [x] Guild donate
-			- [x] ✎	Player stats (no data / ugly) \["stats", "player"\]
+			- [x] ✎	Player stats (ugly) \["stats", "player"\]
 		- [x] Auction status
 			- [x] Auction bar \["global","auction_status_bar"\]
 			- [x] Status notification \["global","auction_status_notification"\]
@@ -35,8 +35,8 @@
 		- [x] Menu click to change \["global","submenu_click_to_change"\]
 		- [x] Attacked timers \["global","attacked_timers"\]
 		- [x] Quest timer \["global","quest_timer"\]
-		- [ ] Merchants Timer (not recoded yet) \["global","merchants_timer"\]
-		- [x] ✎	Add Item shadow - Is it working ok? \["global","item_shadow"\]
+		- [x] Merchants Timer \["global","merchants_timer"\]
+		- [x] Add Item shadow \["global","item_shadow"\]
 		- [x] Dice event timer \["global","craps_timer"\]
 		- [x] Remember merchants tabs \["global","remember_tabs"\]
 		- [x] Guild application alert \["global","notify_new_guild_application"\]
@@ -223,10 +223,15 @@
 	- [ ] Mouse click events (double click sell buy)
 	- [ ] Cross merchants item search
 	- [x] Remember merchants tabs
-	- [x] Items you can buy are highlighted 
+	- [x] Fade items you can not buy
 	- [x] Colored items based on quality
 
 
+### Magus Script
+
+- [x] Magus
+	- [x] Fade items you can not improve
+	- [x] Colored items based on quality
 
 
 ### Auction Script
@@ -249,7 +254,7 @@
 	- [x] Multiple bids without page refresh
 	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view)
 	- [ ] Display for each mercenary its tooltip when on mercenaries
-	- [x] ✎	Extra stats shown on item images
+	- [x] ✎	Extra stats shown on item images (only on food for now)
 
 
 
@@ -276,7 +281,7 @@
 - [ ] Locations
 	- [ ] Hide the building's labels in city/country, guild, underworld maps
 	- [ ] Show buildings level in guild's map
-	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops?)
+	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area...)
 	- [ ] Underword enemies interface converted to old style
 
 
