@@ -3240,7 +3240,7 @@ var gca_global = {
 							};
 						
 						// Calculate average
-							if(lastAverage==0){
+							if(goldDataAverage.length==0){
 								lastAverage=seventh_day;
 								goldDataAverage[i - seventh_day] = {
 									x : data[i][2],
@@ -3271,7 +3271,7 @@ var gca_global = {
 						seventh_day = i+1;
 					}
 				}
-				newdata.push(data[i]);
+				newdata.push(data[i-1]);
 				
 				// Save only last 7 days data
 				gca_data.section.set("data", "gold_exp_data", newdata);
