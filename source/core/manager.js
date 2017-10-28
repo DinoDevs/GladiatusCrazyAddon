@@ -90,6 +90,11 @@ var manager = {
 				case "magus":
 					this.section.magus();
 					break;
+				
+				// Forge
+				case "forge":
+					this.section.forge();
+					break;
 
 				// Market
 				case "market":
@@ -256,7 +261,12 @@ var manager = {
 		magus : function() {
 			tools.loadScript("source/magus.js");
 		},
-
+		
+		// Forge section
+		forge : function() {
+			tools.loadScript("source/forge.js");
+		},
+		
 		// Markets
 		markets : function() {
 			tools.loadScript("source/markets.js");

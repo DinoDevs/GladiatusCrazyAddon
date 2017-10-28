@@ -127,6 +127,9 @@ var gca_global = {
 		// Sound buttons
 		(gca_options.bool("sound","enabled") &&
 			this.sound.bar());
+			
+		// Forge timer
+		this.display.forge_timer();
 	},
 	
 	scripts : {
@@ -2476,6 +2479,38 @@ var gca_global = {
 			}
 		},
 
+		forge_timer : function(){
+			// Do not run while traveling
+			if (gca_global.isTraveling){return;}
+			
+			var smeltTimes = gca_data.section.get("timers", "smelt_times", null);
+			
+			if(typeof smeltTimes.data!=='undefined' && smeltTimes.data.length>0){
+				// Create indicator
+				var forge = gca_global.display.advanced_main_menu.info.sublink.forge.link;
+				var forge_active = (forge.className.match('active')) ? '_active' : '';
+				
+				var type = 'red';
+				var current = gca_tools.time.server();
+				var tooltip = '[[[["'+smeltTimes.translation[0]+'","'+smeltTimes.translation[1]+'"],["#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00","#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00"]]';
+				
+				for(i=0;i<smeltTimes.data.length;i++){
+					if(smeltTimes.data[i][0]*1000<=current){
+						type = 'green';
+						gca_notifications.success(smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2]);
+						tooltip += ',[["'+smeltTimes.data[i][1]+'","'+smeltTimes.translation[2]+'"],["#DDD","#00ff00"]]';
+					}else{
+						tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+'"],["#DDD","#DDD"]]';
+					}
+				}
+				tooltip += ']]';
+				
+				// Add indicator
+				this.icon = gca_global.display.advanced_main_menu.convertMenu.addSideIcon(forge, forge_active, "indicator-" + type);
+				gca_tools.setTooltip(this.icon, tooltip);
+			}
+		},
+		
 		merchants_timer : {
 			preload : function(){
 				// Resolve menu
