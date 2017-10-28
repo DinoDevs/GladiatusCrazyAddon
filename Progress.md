@@ -7,12 +7,12 @@
 ### Global Script
 
 - **Global** (Changes on every game page)
-	- [x] Preloading
+	- **Preloading**
 		- [x] Cache event bar's position (moving it before page loads) [if needed]
 		- [x] Disable submenu change on page load (prevent menu change if mouseover) \["global","submenu_click_to_change"\]
 		- [x] Enable page x-Scroll \["global","x-scroll"\]
 		- [x] Preload item shadow \["global","item_shadow"\]
-	- [ ] Onload
+	- **Onload**
 		- [x] ✎	Resolve game mode (travel / underworld / dice event / server quest) - Add more modes?
 		- [x] Resolve page's direction Left-to-Right or Right-to-Left
 		- [x] Show addon's version on the bottom (also add link to homepage)
@@ -64,7 +64,7 @@
 
 ### Overview Scripts
 
-- [ ] Overview
+- **Overview**
 	- [x] Resolve overview (get doll etc)
 	- [x] Eat/food features
 		- [x] Food life gain (onmouseover)
@@ -80,20 +80,20 @@
 	- [x] Show buff's detailed timer on tooltip
 
 
-- [ ] Overview Stats
+- **Overview Stats**
 	- [x] Show more stats
 	- [ ] Show graphs of stats from reports
 
 
-- [x] Overview Achievements
+- **Overview Achievements**
 	- [x] Improve Layout
 
 
-- [ ] Overview Family
+- **Overview Family**
 	- [ ] List with other players you are interested in
 
 
-- [ ] Overview Costumes
+- **Overview Costumes**
 	- [x] Show part number for each costume
 	- [ ] Custom player image
 
@@ -102,7 +102,7 @@
 
 ### Pantheon Script
 
-- [ ] Pantheon Quests
+- **Pantheon Quests**
 	- [x] Quests order by category
 	- [x] Finished and Failed quests on top
 	- [x] Quests detailed rewards
@@ -110,17 +110,17 @@
 	- [x] Save timer
 
 
-- [x] Pantheon Missions
+- **Pantheon Missions**
 	- [x] ✎	Show completed missions
 
 
-- [ ] Pantheon Gods
+- **Pantheon Gods**
 	- [ ] ✎	Layout Inprove - needed ?
 	- [ ] Recolored buttons based of each god's favor 
 	- [x] Percent(%) of points, red color on 100%
 
 
-- [ ] Pantheon Mystery Box
+- **Pantheon Mystery Box**
 	- [x] Open all
 	- [ ] Reload reward untill to find selected
 	- [ ] Calculate rewards quality
@@ -130,12 +130,12 @@
 
 ### Guild Script
 
-- [x] Guild Jail Interface
+- **Guild Jail Interface**
 	- [x] Cells are now visible with the creatures inside
 	- [x] Creatures are now sorted by level
 
 
-- [x] Guild Library Interface: 
+- **Guild Library Interface** 
 	- [x] Level of each buff and what the buff do are now directly visible 
 	- [x] Transparency for item that you can't store in library 
 	- [x] Gold in guild bank after the use of buff is displayed in a tooltip over the buff cost 
@@ -143,7 +143,7 @@
 	- [x] Some style changes (ex. enable/delete buttons) 
 
 
-- [ ] Guild Bank Interface: 
+- **Guild Bank Interface**
 	- [x] Better style (Counting)
 	- [x] Correcting the donate field code to number type 
 	- [x] Button to add all the gold in the donate field
@@ -156,32 +156,32 @@
 		- [x] Highlight me
 
 
-- [ ] Guild Medic Interface 
+- **Guild Medic Interface** 
 	- [x] More information over your life changes 
 	- [ ] Guild's life preview page
 
 
-- [ ] Guild War Camp:
+- **Guild War Camp**
 	- [ ] More stats & better win-lost-draw icons features were implemented 
 	- [ ] Member reports features were implemented
 	- [ ] Button that shows the raided gold next to each attack 
 
 
-- [ ] Guild Buildings:
+- **Guild Buildings**
 	- [ ] Upgrade Calculator was implemented and highly improved
 
 
-- [ ] Guild Mail Interface 
+- **Guild Mail Interface**
 	- [ ] Improved style
 	- [ ] Check / Uncheck options for each guild members group 
 
 
-- [ ] Guild Memebers List Interface
+- **Guild Memebers List Interface**
 	- [ ] Opponent Guild: Attack buttons next to each member of a guild (member list), usefull for guild wars (old type)
 	- [ ] See which members have been attacked within 75 min 
 
 
-- [ ] Guild Admin Interface
+- **Guild Admin Interface**
 	- [ ] Search for players with no guild, from the guild admin page 
 
 
@@ -189,7 +189,7 @@
 
 ### Work Script
 
-- [ ] Work
+- **Work**
 	- [ ] Interface improve
 
 
@@ -197,7 +197,7 @@
 
 ### Arena Script
 
-- [ ] Arena
+- **Arena**
 	- [ ] Order players by level on Cross Server Arenas
 	- [ ] Enemy datails (win / losses)
 	- [ ] Link to the simulator
@@ -207,7 +207,7 @@
 
 ### Training Script
 
-- [ ] Training
+- **Training**
 	- [x] Show basic points bars
 	- [x] Show stats changes on upgrade
 	- [ ] Training Cost calculator (arrow down to 0 + show sum)
@@ -220,7 +220,7 @@
 
 ### Merchants Script
 
-- [ ] Merchants
+- **Merchants**
 	- [ ] Mouse click events (double click sell buy)
 	- [ ] Cross merchants item search
 	- [x] Remember merchants tabs
@@ -230,14 +230,14 @@
 
 ### Magus Script
 
-- [x] Magus
+- **Magus**
 	- [x] Fade items you can not improve
 	- [x] Colored items based on quality
 
 
 ### Auction Script
 
-- [ ] Auction
+- **Auction**
 	- [ ] Theme(s) support
 	- [x] Colored items based on quality
 		- [ ] Background color
@@ -262,7 +262,7 @@
 
 ### Market Script
 
-- [ ] Market
+- **Market**
 	- [ ] Item Preffix search list
 	- [ ] Item Suffix search list
 	- [ ] More levels in the search options 
@@ -279,7 +279,7 @@
 
 ### Locations Script
 
-- [ ] Locations
+- **Locations**
 	- [ ] Hide the building's labels in city/country, guild, underworld maps
 	- [ ] Show buildings level in guild's map
 	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area...)
@@ -290,7 +290,7 @@
 
 ### Messages Script
 
-- [ ] Messages
+- **Messages**
 	- [x] New Layout
 		- [x] Guild message
 		- [x] Private message
@@ -313,7 +313,7 @@
 	- [ ] Tab link on incomming folder (Tab to go to the incomming folder)
 
 
-- [ ] New Message
+- **New Message**
 	- [x] Auto focus message
 	- [x] List of friends and guild mates to choose a player
 	- [x] Bigger textarea
@@ -323,7 +323,7 @@
 
 ### Reports Script
 
-- [ ] Reports
+- **Reports**
 	- [x] Improved style / Day separators 
 	- [x] Rewarded items stats on mouse over (tooltips)
 	- [ ] Gather drop information
@@ -349,7 +349,7 @@
 
 ### Server Backup Script
 
-- [ ] Server Backup
+- **Server Backup**
 	- [ ] redirect
 
 
@@ -357,7 +357,7 @@
 
 ### Player Script
 
-- [ ] Player Interface (Logged in or not)
+- **Player Interface** (Logged in or not)
 	- [ ] Simulator Button (direct to results link for premium users) 
 	- [ ] Show which item stats points are coming from clear points and which from percent bonus 
 	- [ ] Mercenaries 
@@ -367,7 +367,7 @@
 	- [x] Buff bar over players
 
 
-- [x] Player Description:
+- **Player Description**
 	- [x] Preview when you edit your description 
 
 
@@ -375,7 +375,7 @@
 
 ### Forge Script
 
-- [ ] Forge Interface
+- **Forge Interface**
 	- [ ] Links to your bag and the market of the remaining required smelt items
 
 
@@ -383,7 +383,7 @@
 
 ### GCA News Script
 
-- [ ] GCA News
+- **GCA News**
 	- [ ] Display gca news
 
 
@@ -391,7 +391,7 @@
 
 ### Translations Script
 
-- [ ] Translations
+- **Translations**
 	- [ ] New system
 
 
@@ -399,7 +399,7 @@
 
 ### Audio Script
 
-- [ ] Audio Manages
+- **Audio Manages**
 	- [ ] Setup system
 
 
@@ -407,7 +407,7 @@
 
 ### Black Market Script
 
-- [ ] Black Market
+- **Black Market**
 	- [ ] Set up system
 
 
