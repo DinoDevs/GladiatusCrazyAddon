@@ -128,6 +128,41 @@ var gca_global = {
 		(gca_options.bool("sound","enabled") &&
 			this.sound.bar());
 	},
+	
+	scripts : {
+		chartScript : {
+			load : 0, // 2 = ready
+			create : function(renderChartFunction){
+				var that=this;
+				if(that.load<2){
+					var script = document.createElement('script');
+					script.src = gca_resources.folder + "libraries/Chart.min.js";
+					script.addEventListener('load', function(){
+						that.load++;
+						// If all scripts loaded
+						if(that.load >= 2){
+							// Render chart
+							renderChartFunction();
+						}
+					}, false);
+					document.getElementsByTagName('head')[0].appendChild(script);
+					script = document.createElement('script');
+					script.src = gca_resources.folder + "libraries/moment.min.js";
+					script.addEventListener('load', function(){
+						that.load++;
+						// If all scripts loaded
+						if(that.load >= 2){
+							// Render chart
+							renderChartFunction();
+						}
+					}, false);
+					document.getElementsByTagName('head')[0].appendChild(script);
+				}else{
+					renderChartFunction();
+				}
+			}
+		}
+	},
 
 	// Game Modes Check
 	gameModeResolve : function(){
@@ -714,6 +749,12 @@ var gca_global = {
 					table_wrapper.className = "hover_box";
 					let statsHtmlTable = document.createElement("table");
 					statsHtmlTable.id = "gca_player_stats_table";
+					
+					// Add Canvas
+					var canvas = document.createElement('canvas');
+					canvas.id = "stats_canvas";
+					canvas.style = "background-color:rgba(255,255,255,0.8);border-radius:5%";
+					table_wrapper.appendChild(canvas);
 
 					let show_stats = document.createElement('div');
 					show_stats.className = "instant";
@@ -1196,6 +1237,39 @@ var gca_global = {
 							tr.appendChild(td);
 							statsHtmlTable.appendChild(tr);
 						}
+						
+						var chartFunction = function(){
+							new Chart(document.getElementById("stats_canvas"), {
+								type: 'radar',
+								data: {
+								  labels: [stats[attributes[0]][0], stats[attributes[1]][0], stats[attributes[2]][0], stats[attributes[3]][0], stats[attributes[4]][0], stats[attributes[5]][0]],
+								  datasets: [
+									{
+									  label: "Stats",
+									  fill: true,
+									  backgroundColor: "rgba(179,181,198,0.2)",
+									  borderColor: "rgba(179,181,198,1)",
+									  pointBorderColor: "#fff",
+									  pointBackgroundColor: "rgba(179,181,198,1)",
+									  pointBorderColor: "#fff",
+									  data: [stats[attributes[0]][1], stats[attributes[1]][1], stats[attributes[2]][1], stats[attributes[3]][1], stats[attributes[4]][1], stats[attributes[5]][1]]
+									}
+								  ]
+								},
+								options: {
+									scale: {
+										pointLabels: {
+											fontSize: 8
+										}
+									},
+									legend: {
+										display: false
+									}
+								}
+							});
+						}
+						
+						gca_global.scripts.chartScript.create(chartFunction);
 					}
 					// Stats not saved
 					else{
@@ -1293,8 +1367,8 @@ var gca_global = {
 							stats.constitutionName = statNamesA[5].match(/>([^<]+)</i)[1];
 							stats.charismaName = statNamesA[6].match(/>([^<]+)</i)[1];
 							stats.intelligenceName = statNamesA[7].match(/>([^<]+)</i)[1];
-							stats.armourName = statNamesB[0].match(/>([^<]+)</i)[1];
-							stats.damageName = statNamesB[1].match(/>([^<]+)</i)[1];
+							stats.armourName = statNamesB[1].match(/>([^<]+)</i)[1];
+							stats.damageName = statNamesB[2].match(/>([^<]+)</i)[1];
 
 							stats.strength = stats.strength[1];
 							stats.dexterity = stats.dexterity[1];
@@ -3148,6 +3222,7 @@ var gca_global = {
 				div.className = "space";
 				dialog.body.appendChild(div);
 				
+				/*
 				// Add Chart Lib
 				var scripts_loaded = 0;
 				var script = document.createElement('script');
@@ -3172,7 +3247,238 @@ var gca_global = {
 					}
 				}, false);
 				document.getElementsByTagName('head')[0].appendChild(script);
+				*/
+				var renderChart = function(){
+										// Values for the Data Plot
+					var data  = gca_data.section.get("data", "gold_exp_data", [[0,0,0]]);
+					
+					// Fix data
+					var seventh_day = 0;
+					var last_day = 0;
+					var exp_levelup = 0;
+					var goldData = [];
+					var expData = [];
+					var goldDataChange = [];
+					var expDataChange = [];
+					var goldDataAverage = [];
+					var expDataAverage = [];
+					var lastAverage = 0;
+					var countAverage = 1;
 
+					// Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
+					var seventh_day_timestamp = gca_tools.time.server() - 6048e5;
+					var last_day_timestamp = gca_tools.time.server() - 864e5;
+					var newdata=[];
+					
+					// For every data
+					for (var i = 0; i < data.length; i++) {
+						// If time is in the last 7 days
+						if(data[i][2] >= seventh_day_timestamp){
+							if(i>0){newdata.push(data[i-1]);}
+							
+							// Sum some of the lost EXP from levelup
+							if(i>0 && data[i][1] < data[i-1][1]){
+								exp_levelup = exp_levelup + data[i-1][1];
+							}
+							// Calculate last 7 days Gold Data
+								goldData[i - seventh_day] = {
+									x : data[i][2],
+									y : (data[i][0] - data[seventh_day][0])
+								};
+								goldDataChange[i - seventh_day] = {
+									x : data[i][2],
+									y : ((i==0)?0:(data[i][0] - data[i-1][0]))
+								};
+							// Calculate last 7 days Exp Data
+								expData[i - seventh_day] = {
+									x : data[i][2],
+									y : (data[i][1]-data[seventh_day][1]+exp_levelup)
+								};
+								expDataChange[i - seventh_day] = {
+									x : data[i][2],
+									y : ((i==0)?0:(data[i][1] - data[i-1][1]))
+								};
+							
+							// Calculate average
+								if(goldDataAverage.length==0){
+									lastAverage=seventh_day;
+									goldDataAverage[i - seventh_day] = {
+										x : data[i][2],
+										y : (data[i][0] - data[seventh_day][0])
+									};
+									expDataAverage[i - seventh_day] = {
+										x : data[i][2],
+										y : (data[i][1]-data[seventh_day][1]+exp_levelup)
+									};
+								}else if( data[i][2]-data[lastAverage][2]>=864e5/2 ){
+									goldDataAverage[countAverage] = {
+										x : data[i][2],
+										y : (data[i][0] - data[lastAverage][0])
+									};
+									expDataAverage[countAverage] = {
+										x : data[i][2],
+										y : (data[i][1]-data[lastAverage][1]+exp_levelup)
+									};
+									
+									lastAverage=i;
+									countAverage++;
+								}
+							
+							if(last_day==0 && data[i][2] >= last_day_timestamp){
+								last_day = i - seventh_day;
+							}
+						}else{
+							seventh_day = i+1;
+						}
+					}
+					newdata.push(data[i-1]);
+					
+					// Save only last 7 days data
+					gca_data.section.set("data", "gold_exp_data", newdata);
+					
+					// If there are no data
+					if(expData.length<1 || goldData.length<1){
+						document.getElementById('today_values').textContent+= " N/A";
+						document.getElementById('days7_values').textContent+= " N/A";
+						document.getElementById('average_per_day').textContent+= " N/A";
+						document.getElementById('days_left_to_level_up').textContent+= " N/A";
+						document.getElementById('graph_canvas').style.display = "none";
+					}else{
+						// Experience translate
+						var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
+						// Gold translate
+						var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
+						
+						// Write data
+						document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y-expData[last_day].y)+" ";
+						document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y-goldData[last_day].y)+" ";
+						var img = document.createElement('img');
+						img.src = "img/ui/icon_level_small.gif";
+						img.border = "0";
+						document.getElementById('today_values').getElementsByTagName("td")[1].appendChild(img);
+						img = document.createElement('img');
+						img.src = "img/res2.gif";
+						img.align = "absmiddle";
+						img.border = "0";
+						document.getElementById('today_values').getElementsByTagName("td")[2].appendChild(img);
+						
+						document.getElementById('days7_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y)+" ";
+						document.getElementById('days7_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
+						var img = document.createElement('img');
+						img.src = "img/ui/icon_level_small.gif";
+						img.border = "0";
+						document.getElementById('days7_values').getElementsByTagName("td")[1].appendChild(img);
+						img = document.createElement('img');
+						img.src = "img/res2.gif";
+						img.align = "absmiddle";
+						img.border = "0";
+						document.getElementById('days7_values').getElementsByTagName("td")[2].appendChild(img);
+						
+						document.getElementById('average_per_day').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7))+" ";
+						document.getElementById('average_per_day').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
+						var img = document.createElement('img');
+						img.src = "img/ui/icon_level_small.gif";
+						img.border = "0";
+						document.getElementById('average_per_day').getElementsByTagName("td")[1].appendChild(img);
+						img = document.createElement('img');
+						img.src = "img/res2.gif";
+						img.align = "absmiddle";
+						img.border = "0";
+						document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
+						
+						document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7));
+						document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots( Math.round(goldData[goldData.length-1].y/50) );
+						img = document.createElement('img');
+						img.src = "img/res2.gif";
+						img.align = "absmiddle";
+						img.border = "0";
+						document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].appendChild(img);
+						
+						// Populate graph
+						new Chart(document.getElementById('graph_canvas'), {
+							type: 'line',
+							data: {
+								datasets: [
+									{
+										label: gold_tran,
+										fill: true,
+										backgroundColor: "rgba(255,193,7,0.3)",
+										borderColor: "rgba(255,193,7,1)",
+										data: goldDataAverage
+									},
+									{
+										label: "Total "+gold_tran,
+										fill: true,
+										backgroundColor: "rgba(255,193,7,0.3)",
+										borderColor: "rgba(255,193,7,1)",
+										data: goldData,
+										hidden: true
+									},
+									{
+										label: 'Measurements', // TODO - translate
+										type: 'line',
+										backgroundColor: "rgba(255,193,7,0.3)",
+										borderColor: "rgba(255,193,7,1)",
+										data: goldDataChange,
+										hidden: true,
+										pointStyle: "crossRot",
+										showLine: false
+									},
+									{
+										label: exp_tran,
+										fill: true,
+										backgroundColor: "rgba(75,192,192,0.3)",
+										borderColor: "rgba(75,192,192,1)",
+										data: expDataAverage,
+										hidden: true
+									},
+									{
+										label: "Total "+exp_tran,
+										fill: true,
+										backgroundColor: "rgba(75,192,192,0.3)",
+										borderColor: "rgba(75,192,192,1)",
+										data: expData,
+										hidden: true
+									},
+									{
+										label: 'Measurements', // TODO - translate
+										type: 'line',
+										backgroundColor: "rgba(75,192,192,0.3)",
+										borderColor: "rgba(75,192,192,1)",
+										data: expDataChange,
+										hidden: true,
+										pointStyle: "cross",
+										showLine: false
+									}
+								]
+							},
+							options: {
+								scales: {
+									xAxes: [{
+										type: 'time',
+										time: {
+											unit: 'day',
+											displayFormats: {
+												day: 'MMM D'
+											},
+											tooltipFormat: 'MMM D, h:mm:ss a'
+										}
+									}],
+									yAxes: [{
+										ticks: {
+											min: 0
+										}
+									}]
+								},
+								legend: {
+									position : 'bottom'
+								}
+							}
+						});
+					}
+				}
+				gca_global.scripts.chartScript.create(renderChart);
+				
 				// Add close Button
 				var button = document.createElement('input');
 				button.className = "button3";
@@ -3186,236 +3492,6 @@ var gca_global = {
 
 				// Open dialog
 				this.dialog.open();
-			},
-
-			renderChart : function(){
-				// Values for the Data Plot
-				var data  = gca_data.section.get("data", "gold_exp_data", [[0,0,0]]);
-				
-				// Fix data
-				var seventh_day = 0;
-				var last_day = 0;
-				var exp_levelup = 0;
-				var goldData = [];
-				var expData = [];
-				var goldDataChange = [];
-				var expDataChange = [];
-				var goldDataAverage = [];
-				var expDataAverage = [];
-				var lastAverage = 0;
-				var countAverage = 1;
-
-				// Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
-				var seventh_day_timestamp = gca_tools.time.server() - 6048e5;
-				var last_day_timestamp = gca_tools.time.server() - 864e5;
-				var newdata=[];
-				
-				// For every data
-				for (var i = 0; i < data.length; i++) {
-					// If time is in the last 7 days
-					if(data[i][2] >= seventh_day_timestamp){
-						if(i>0){newdata.push(data[i-1]);}
-						
-						// Sum some of the lost EXP from levelup
-						if(i>0 && data[i][1] < data[i-1][1]){
-							exp_levelup = exp_levelup + data[i-1][1];
-						}
-						// Calculate last 7 days Gold Data
-							goldData[i - seventh_day] = {
-								x : data[i][2],
-								y : (data[i][0] - data[seventh_day][0])
-							};
-							goldDataChange[i - seventh_day] = {
-								x : data[i][2],
-								y : ((i==0)?0:(data[i][0] - data[i-1][0]))
-							};
-						// Calculate last 7 days Exp Data
-							expData[i - seventh_day] = {
-								x : data[i][2],
-								y : (data[i][1]-data[seventh_day][1]+exp_levelup)
-							};
-							expDataChange[i - seventh_day] = {
-								x : data[i][2],
-								y : ((i==0)?0:(data[i][1] - data[i-1][1]))
-							};
-						
-						// Calculate average
-							if(goldDataAverage.length==0){
-								lastAverage=seventh_day;
-								goldDataAverage[i - seventh_day] = {
-									x : data[i][2],
-									y : (data[i][0] - data[seventh_day][0])
-								};
-								expDataAverage[i - seventh_day] = {
-									x : data[i][2],
-									y : (data[i][1]-data[seventh_day][1]+exp_levelup)
-								};
-							}else if( data[i][2]-data[lastAverage][2]>=864e5/2 ){
-								goldDataAverage[countAverage] = {
-									x : data[i][2],
-									y : (data[i][0] - data[lastAverage][0])
-								};
-								expDataAverage[countAverage] = {
-									x : data[i][2],
-									y : (data[i][1]-data[lastAverage][1]+exp_levelup)
-								};
-								
-								lastAverage=i;
-								countAverage++;
-							}
-						
-						if(last_day==0 && data[i][2] >= last_day_timestamp){
-							last_day = i - seventh_day;
-						}
-					}else{
-						seventh_day = i+1;
-					}
-				}
-				newdata.push(data[i-1]);
-				
-				// Save only last 7 days data
-				gca_data.section.set("data", "gold_exp_data", newdata);
-				
-				// If there are no data
-				if(expData.length<1 || goldData.length<1){
-					document.getElementById('today_values').textContent+= " N/A";
-					document.getElementById('days7_values').textContent+= " N/A";
-					document.getElementById('average_per_day').textContent+= " N/A";
-					document.getElementById('days_left_to_level_up').textContent+= " N/A";
-					document.getElementById('graph_canvas').style.display = "none";
-				}else{
-					// Experience translate
-					var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
-					// Gold translate
-					var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
-					
-					// Write data
-					document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y-expData[last_day].y)+" ";
-					document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y-goldData[last_day].y)+" ";
-					var img = document.createElement('img');
-					img.src = "img/ui/icon_level_small.gif";
-					img.border = "0";
-					document.getElementById('today_values').getElementsByTagName("td")[1].appendChild(img);
-					img = document.createElement('img');
-					img.src = "img/res2.gif";
-					img.align = "absmiddle";
-					img.border = "0";
-					document.getElementById('today_values').getElementsByTagName("td")[2].appendChild(img);
-					
-					document.getElementById('days7_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y)+" ";
-					document.getElementById('days7_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
-					var img = document.createElement('img');
-					img.src = "img/ui/icon_level_small.gif";
-					img.border = "0";
-					document.getElementById('days7_values').getElementsByTagName("td")[1].appendChild(img);
-					img = document.createElement('img');
-					img.src = "img/res2.gif";
-					img.align = "absmiddle";
-					img.border = "0";
-					document.getElementById('days7_values').getElementsByTagName("td")[2].appendChild(img);
-					
-					document.getElementById('average_per_day').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7))+" ";
-					document.getElementById('average_per_day').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
-					var img = document.createElement('img');
-					img.src = "img/ui/icon_level_small.gif";
-					img.border = "0";
-					document.getElementById('average_per_day').getElementsByTagName("td")[1].appendChild(img);
-					img = document.createElement('img');
-					img.src = "img/res2.gif";
-					img.align = "absmiddle";
-					img.border = "0";
-					document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
-					
-					document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7));
-					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots( Math.round(goldData[goldData.length-1].y/50) );
-					img = document.createElement('img');
-					img.src = "img/res2.gif";
-					img.align = "absmiddle";
-					img.border = "0";
-					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].appendChild(img);
-					
-					// Populate graph
-					new Chart(this.canvas, {
-						type: 'line',
-						data: {
-							datasets: [
-								{
-									label: gold_tran,
-									fill: true,
-									backgroundColor: "rgba(255,193,7,0.3)",
-									borderColor: "rgba(255,193,7,1)",
-									data: goldDataAverage
-								},
-								{
-									label: "Total "+gold_tran,
-									fill: true,
-									backgroundColor: "rgba(255,193,7,0.3)",
-									borderColor: "rgba(255,193,7,1)",
-									data: goldData,
-									hidden: true
-								},
-								{
-									label: 'Measurements', // TODO - translate
-									type: 'line',
-									backgroundColor: "rgba(255,193,7,0.3)",
-									borderColor: "rgba(255,193,7,1)",
-									data: goldDataChange,
-									hidden: true,
-									pointStyle: "crossRot",
-									showLine: false
-								},
-								{
-									label: exp_tran,
-									fill: true,
-									backgroundColor: "rgba(75,192,192,0.3)",
-									borderColor: "rgba(75,192,192,1)",
-									data: expDataAverage,
-									hidden: true
-								},
-								{
-									label: "Total "+exp_tran,
-									fill: true,
-									backgroundColor: "rgba(75,192,192,0.3)",
-									borderColor: "rgba(75,192,192,1)",
-									data: expData,
-									hidden: true
-								},
-								{
-									label: 'Measurements', // TODO - translate
-									type: 'line',
-									backgroundColor: "rgba(75,192,192,0.3)",
-									borderColor: "rgba(75,192,192,1)",
-									data: expDataChange,
-									hidden: true,
-									pointStyle: "cross",
-									showLine: false
-								}
-							]
-						},
-						options: {
-							scales: {
-								xAxes: [{
-									type: 'time',
-									time: {
-										unit: 'day',
-										displayFormats: {
-											day: 'MMM D'
-										},
-										tooltipFormat: 'MMM D, h:mm:ss a'
-									}
-								}],
-								yAxes: [{
-									ticks: {
-										min: 0
-									}
-								}]
-							},
-							legend: {
-								position : 'bottom'
-							}
-						}
-					});
-				}
 			}
 		}
 	},

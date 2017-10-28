@@ -77,7 +77,7 @@
 	.instant_message_div .textarea_wrapper textarea{height: 70px; width: 300px; max-width: 400px}
 
 /* Show My Stats */
-	#gca_player_stats{width: 230px;}
+	#gca_player_stats{width: 300px;}
 	#gca_player_stats .title2_box{padding-bottom: 28px;}
 	#gca_player_stats .title2_box table{width: 100%;}
 	#gca_player_stats .loading{display: block;height:180px;width:222px;background-position: center;}
