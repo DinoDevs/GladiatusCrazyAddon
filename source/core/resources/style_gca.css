@@ -683,7 +683,7 @@
 		.mercenary_bg{position: absolute;background-image: url('interface/char_item_bg.jpg');width:32px;height:32px;left:22px;top:20px;}
 		.mercenary_bg div{left: 0px;top: 0px;}
 		
-		#repair-droppable-grid{width:25px;height:25px;margin:220px;margin-top: 238px;border-radius: 100%;border: 1px solid #b28b60;background-color: #4f371e;}
+		#repair-droppable-grid{width:25px;height:25px;margin:16px;border-radius: 100%;border: 1px solid #b28b60;background-color: #4f371e;}
 
 
 	/* Costumes Layout
