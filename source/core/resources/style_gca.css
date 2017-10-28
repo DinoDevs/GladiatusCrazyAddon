@@ -249,19 +249,7 @@
 	.gca_rtl .values_may_be_wrong_on_training{float:left;}
 	.training_cost_calculator_table #reset_button{margin-left:20px;}
 	.gca_rtl .training_cost_calculator_table #reset_button{margin-right:20px;margin-left:auto;}
-	/* New v4.0.0 */
-	#training_box .gca-bases-bar{height:4px;margin-top:-6px;border:1px solid #766531;}
-	#trainingPage .switch-field{height: 11px;width: 360px;margin-right: auto;margin-left: auto;}
-	#trainingPage .switch-field input{display: none;}
-	#trainingPage .switch-field label{float: left;width:150px}
-	#trainingPage .switch-field label{display: inline-block;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: center;text-shadow: none;padding: 2px 14px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-webkit-transition: all 0.1s ease-in-out;-moz-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
-	#trainingPage .switch-field label:hover{cursor: pointer;}
-	#trainingPage .switch-field input:checked + label{background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
-	#trainingPage .switch-field label:first-of-type{border-radius: 4px 0 0 4px;}
-	#trainingPage .switch-field label:last-of-type{border-radius: 0 4px 4px 0;}
-	#trainingPage .breakdownBox{top: -18px;width: 260px;right: 140px;height: 30px;}
-	#trainingPage .breakdownBox table{width:100%;}
-	#trainingPage .breakdownBox td{font-size: 10px;width:50%;line-height: 10px;color: #000000;}
+
 	
 /* Guild */
 	/* Image */
@@ -694,7 +682,8 @@
 	-------------------------------------------------- */
 		.mercenary_bg{position: absolute;background-image: url('interface/char_item_bg.jpg');width:32px;height:32px;left:22px;top:20px;}
 		.mercenary_bg div{left: 0px;top: 0px;}
-
+		
+		#repair-droppable-grid{width:25px;height:25px;margin:220px;margin-top: 238px;border-radius: 100%;border: 1px solid #b28b60;background-color: #4f371e;}
 
 
 	/* Costumes Layout
@@ -914,7 +903,19 @@
 		#training_box.gca_multiple_training .gca_multiple .gca-arrow-up:hover{border-bottom: 5px solid #3a2d13;}
 		#training_box.gca_multiple_training .gca_multiple .gca-arrow-down{border-top: 5px solid #695220;margin-top: 1px;padding-bottom: 6px;}
 		#training_box.gca_multiple_training .gca_multiple .gca-arrow-down:hover{border-top: 5px solid #3a2d13;}
-
+		
+		/* View-mode switch + stats breakdown mode */
+		#trainingPage .switch-field{height: 11px;width: 360px;margin-right: auto;margin-left: auto;}
+		#trainingPage .switch-field input{display: none;}
+		#trainingPage .switch-field label{float: left;width:150px}
+		#trainingPage .switch-field label{display: inline-block;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: center;text-shadow: none;padding: 2px 14px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-webkit-transition: all 0.1s ease-in-out;-moz-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
+		#trainingPage .switch-field label:hover{cursor: pointer;}
+		#trainingPage .switch-field input:checked + label{background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
+		#trainingPage .switch-field label:first-of-type{border-radius: 4px 0 0 4px;}
+		#trainingPage .switch-field label:last-of-type{border-radius: 0 4px 4px 0;}
+		#trainingPage .breakdownBox{top: -18px;width: 260px;right: 140px;height: 30px;}
+		#trainingPage .breakdownBox table{width:100%;}
+		#trainingPage .breakdownBox td{font-size: 10px;width:50%;line-height: 10px;color: #000000;}
 
 
 	/* Auction

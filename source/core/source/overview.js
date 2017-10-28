@@ -339,10 +339,9 @@ var gca_overview = {
 			var div = document.createElement("div");
 			div.id = "repair-droppable-grid";
 			div.className = "ui-droppable quest_category_icon_work";
-			div.style = "width:25px;height:25px;margin:16px;border-radius: 100%;border: 1px solid #b28b60;background-color: #4f371e;";
 			div.setAttribute('data-container-number', '384');
 			div.setAttribute('data-content-type-accept', '1855');
-			div.setAttribute('data-tooltip', '[[["'+gca_locale.get("drop_item_see_materials_repair")+'","#FF6A00"],["'+gca_locale.get("workbench_6th_slot_empty")+'","#808080"]]]');
+			div.setAttribute('data-tooltip', '[[["'+gca_locale.get("overview","drop_item_see_materials_repair")+'","#FF6A00"],["'+gca_locale.get("overview","workbench_6th_slot_empty")+'","#808080"]]]');
 			document.getElementById("char").appendChild(div);
 			
 			// Create Script
@@ -371,8 +370,10 @@ var gca_overview = {
 						tooltip += ',["<div class=\\"item-i-18-'+parseInt(key.match(/18(\d+)/)[1])+'\\" style=\\"display: inline-block;\\"></div>x '+needed_materials[key].amount+' ('+needed_materials[key].name.replace(/(u.{4})/g, '\\$1')+')","#cccccc"]'
 				}
 			}
+			tooltip += ',["<span style=\\"float:right;\\">'+ ( gca_tools.strings.insertDots( parseInt(document.getElementById('header_values_level').textContent)*10+10 ) ) +' <div class=\\"icon_gold\\" style=\\"display: inline-block;\\"></div></span>","#cccccc"]'
 			tooltip += ']]';
 			gca_tools.setTooltip(document.getElementById("repair-droppable-grid"), tooltip);
+			document.getElementById("repair-droppable-grid").style = "border: 1px solid #fef17e;";
 		}
 	},
 	
