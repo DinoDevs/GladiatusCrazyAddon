@@ -11,7 +11,8 @@ var gca_server_quest = {
 			return;
 		
 		// Enemies
-		if(gca_section.submod == 'serverQuest' || !Number.isInteger(gca_getPage.parameter('loc'))){
+		if(gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc'))){
+			console.log('Event running');
 			// Save server quest time
 			if(gca_options.bool("events", "server_quest_timer")){
 				this.save_info();

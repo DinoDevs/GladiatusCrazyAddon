@@ -95,7 +95,7 @@ var gca_global = {
 			this.display.event.craps_timer.inject());
 
 		// Event Server Quest
-		(!this.isTraveling && this.isEvent.serverQuest && this.isEvent.bar && gca_options.bool("events","server_quest_timer") &&
+		(!this.isTraveling && (this.isEvent.serverQuest || this.isEvent.locationQuest) && this.isEvent.bar && gca_options.bool("events","server_quest_timer") &&
 			this.display.event.server_quest_timer.inject());
 
 		// Remember merchants' and inventory tabs
@@ -205,7 +205,7 @@ var gca_global = {
 				if(links[links.length-1].href.match('submod=serverQuest')){
 					this.isEvent.serverQuest = true;
 				}else if(links[links.length-1].href.match(/loc=(\w+)&/)){
-					this.isEvent.serverQuest = links[links.length-1].href.match(/loc=(\w+)&/)[1];
+					this.isEvent.locationQuest = links[links.length-1].href.match(/loc=(\w+)&/)[1];
 				}
 			}
 		}
@@ -2357,7 +2357,7 @@ var gca_global = {
 			server_quest_timer : {
 				inject : function(){
 					// if Craps wait for update event
-					if(gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || !Number.isInteger(gca_getPage.parameter('loc')))){
+					if(gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc')))){
 						gca_tools.event.addListener("server_quest-info-update", function(){
 							gca_global.display.event.server_quest_timer.display();
 						});
@@ -2381,7 +2381,7 @@ var gca_global = {
 					if(!banner) return;
 					// Check banner link
 					var banner_link = gca_getPage.parameters(banner.href);
-					if(banner_link.mod != "location" || (banner_link.submod != "serverQuest" && Number.isInteger(banner_link.loc))){
+					if(banner_link.mod != "location" || (banner_link.submod != "serverQuest" && !isNaN(banner_link.loc))){
 						return;
 					}
 
