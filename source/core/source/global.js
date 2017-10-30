@@ -2483,9 +2483,6 @@ var gca_global = {
 		},
 
 		forge_timer : function(){
-			// Do not run while traveling
-			if (gca_global.isTraveling){return;}
-			
 			var smeltTimes = gca_data.section.get("timers", "smelt_times", null);
 			
 			if(typeof smeltTimes.data!=='undefined' && smeltTimes.data.length>0){
@@ -2494,7 +2491,8 @@ var gca_global = {
 				var forge_active = (forge.className.match('active')) ? '_active' : '';
 				
 				var type = 'red';
-				var current = gca_tools.time.server();
+				// PC time NOT SERVER time (for some unknown reason :P gladiatus gives this time in code)
+				var current = new Date(); current = current.getTime();
 				var tooltip = '[[[["'+smeltTimes.translation[0]+'","'+smeltTimes.translation[1]+'"],["#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00","#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00"]]';
 				
 				for(i=0;i<smeltTimes.data.length;i++){
