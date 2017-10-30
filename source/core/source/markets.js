@@ -52,7 +52,7 @@ var gca_markets = {
 		if(document.getElementById("market_table")){
 			var rows = document.getElementById("market_table").getElementsByTagName("tr");
 			for(var i=1; i<=rows.length - 1; i++){
-				if(typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined"){
+				if(typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"){
 					rows[i].style="background-color: rgba(255, 0, 0,0.2);";
 					document.buyForm[i-1].setAttribute("onsubmit","return confirm('This item is soulbound. Do you really want to buy it?');")
 				}

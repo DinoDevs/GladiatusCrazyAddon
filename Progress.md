@@ -264,7 +264,7 @@
 	- [ ] Load all the pages 
 	- [x] Item levels you can see in market are shown in building's description
 	- [ ] Select the default sell duration (2h, 8h etc) in the GCA options (default 24h)
-	- [x] ✎	Red on items that are souldbound & confirmation on buy (not on Cancel) - DOTO
+	- [x] Red on items that are souldbound & confirmation on buy
 	- [ ] Price per unit
 
 
