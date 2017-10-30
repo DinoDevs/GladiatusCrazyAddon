@@ -10,21 +10,22 @@ var gca_markets = {
 		if(!document.getElementById("content"))
 			return;
 		
-		// If Item shadow
-		(gca_options.bool("global","item_shadow") &&
-			this.itemShadow.market());
-		
-		this.soulboundItems();
 		this.levelsYouCanSee();
+		
+		// If there are items
+		if(document.getElementById("market_table")){
+			// If Item shadow
+			(gca_options.bool("global","item_shadow") &&
+				this.itemShadow.market());
+		
+			this.soulboundItems();
+			this.cancelAllButton();
+		}
 	},
 
 	// Add shadow on items
 	itemShadow : {
 		market : function() {
-			// If no items exit
-			if (!document.getElementById('market_table'))
-				return;
-
 			// Get items
 			var items = document.getElementById('market_table').getElementsByTagName("div");
 			
@@ -49,14 +50,63 @@ var gca_markets = {
 	
 	// Point out which items are soulbound
 	soulboundItems : function(){
-		if(document.getElementById("market_table")){
-			var rows = document.getElementById("market_table").getElementsByTagName("tr");
-			for(var i=1; i<=rows.length - 1; i++){
-				if(typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"){
-					rows[i].style="background-color: rgba(255, 0, 0,0.2);";
-					document.buyForm[i-1].setAttribute("onsubmit","return confirm('This item is soulbound. Do you really want to buy it?');")
-				}
+		var rows = document.getElementById("market_table").getElementsByTagName("tr");
+		for(var i=1; i<=rows.length - 1; i++){
+			if(typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"){
+				rows[i].style="background-color: rgba(255, 0, 0,0.2);";
+				document.buyForm[i-1].setAttribute("onsubmit","return confirm('This item is soulbound. Do you really want to buy it?');")
 			}
+		}
+	},
+	
+	// Cancel all button
+	cancelAllButton : function(){
+		var buttons = document.getElementsByName('cancel');
+		
+		if(buttons.length>0){
+			//create button
+			var button = document.createElement("input");
+			button.type = 'button';
+			button.className = "awesome-button";
+			button.id = 'cancelAllButton';
+			button.style = "float:right;margin-top: 4px;";
+			button.value = buttons[0].value + ' ('+buttons.length+')';
+			button.dataset.current = 0;
+			button.dataset.max = buttons.length;
+			button.addEventListener('click', function(){
+				// Cancel all code
+				var rows = document.getElementById("market_table").getElementsByTagName("tr");
+				var cancel = encodeURIComponent(document.getElementsByName('cancel')[0].value);
+				var id;
+				for(var i=1; i<=rows.length - 1; i++){
+					if(typeof rows[i].getElementsByTagName("input")['cancel'] !== "undefined"){
+						id = document.buyForm[i-1][0].value;
+						jQuery.ajax({
+							type: "POST",
+							url: document.location.href,
+							data: 'buyid='+id+'&cancel='+cancel,
+							success: function(){
+								if(document.getElementById('cancelAllButton').dataset.current==document.getElementById('cancelAllButton').dataset.max-1){
+									document.location.href=document.location.href;
+									return;
+								}
+								document.getElementById('cancelAllButton').dataset.current++;
+								document.getElementById('cancelAllButton').value = buttons[0].value + ' ( '+document.getElementById('cancelAllButton').dataset.current+'/'+document.getElementById('cancelAllButton').dataset.max+')';;
+							},
+							error: function(){
+								gca_notifications.error(gca_locale.get("general", "error"));
+							}
+						});
+					}
+				}
+				
+				
+				//document.location.href
+				//'buyid='+itemsId+'&cancel='+encodeURIComponent(cancel)
+			}, false);
+			
+			var base = document.getElementById("content").getElementsByTagName("h2")[3];
+			base.parentNode.insertBefore(button,base);
 		}
 	}
 };
