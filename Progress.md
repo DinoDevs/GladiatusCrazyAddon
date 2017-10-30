@@ -283,7 +283,7 @@
 	- [ ] Hide the building's labels in city/country, guild, underworld maps
 	- [ ] Show buildings level in guild's map
 	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area...)
-	- [ ] Underword enemies interface converted to old style
+	- [x] underworld enemies interface converted to old style
 
 
 

@@ -105,8 +105,8 @@ gca_languages["en"] = {
 			quest_new : "New",
 
 			// Pray icon
-			pray_start : "Press to stop praying",
-			pray_stop : "Press to start praying",
+			pray_start : "Press to start praying",
+			pray_stop : "Press to stop praying",
 			heal : "heal",
 
 			// Notifications

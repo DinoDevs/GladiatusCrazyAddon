@@ -129,7 +129,8 @@ var gca_global = {
 			this.sound.bar());
 			
 		// Forge timer
-		this.display.forge_timer();
+		(!this.isTraveling && 
+			this.display.forge_timer());
 	},
 	
 	scripts : {
@@ -1638,6 +1639,8 @@ var gca_global = {
 				// Pantheon Link
 				this.info.pantheon = main_links[1];
 				this.info.pantheon_active = (this.info.pantheon.className.match('active')) ? '_active' : '';
+				
+				// Guild Link
 				this.info.guild = main_links[2];
 				this.info.guild_active = (this.info.guild.className.match('active')) ? '_active' : '';
 

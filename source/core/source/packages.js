@@ -625,24 +625,27 @@ var gca_packages = {
 };
 
 (function(){
-	// Pre Inject
-	gca_packages.preinject();
-	// On page load
-	var loaded = false;
-	var fireLoadEvent = function(){
-		if(loaded) return;
-		loaded = true;
-		// Call handler
-		gca_packages.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
+	// While not traveling
+	if(document.getElementById('submenu1') !== null){
+		// Pre Inject
+		gca_packages.preinject();
+		// On page load
+		var loaded = false;
+		var fireLoadEvent = function(){
+			if(loaded) return;
+			loaded = true;
+			// Call handler
+			gca_packages.inject();
+		}
+		if(document.readyState == "complete" || document.readyState == "loaded"){
 			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+		}else{
+			window.addEventListener('DOMContentLoaded', function(){
+				fireLoadEvent();
+			}, true);
+			window.addEventListener('load', function(){
+				fireLoadEvent();
+			}, true);
+		}
 	}
 })();
