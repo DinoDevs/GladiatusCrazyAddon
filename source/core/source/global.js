@@ -2488,9 +2488,9 @@ var gca_global = {
 		},
 
 		forge_timer : function(){
-			var smeltTimes = gca_data.section.get("timers", "smelt_times", null);
+			var smeltTimes = gca_data.section.get("timers", "smelt_times", {data:[]});
 			
-			if(typeof smeltTimes.data!=='undefined' && smeltTimes.data.length>0){
+			if(smeltTimes.data.length>0){
 				// Create indicator
 				var forge = gca_global.display.advanced_main_menu.info.sublink.forge.link;
 				var forge_active = (forge.className.match('active')) ? '_active' : '';
