@@ -1,17 +1,17 @@
 /*
- * Addon Location Server Quest Script
+ * Addon Server Quest Script
  * Author: DarkThanos, GreatApo
  */
 
-// Location
+// Server Quest Script
 var gca_server_quest = {
 	inject : function(){
 		// Check for errors
 		if(!document.getElementById("content"))
 			return;
-
+		
 		// Enemies
-		if(gca_section.submod == 'serverQuest'){
+		if(gca_section.submod == 'serverQuest' || !Number.isInteger(gca_getPage.parameter('loc'))){
 			// Save server quest time
 			if(gca_options.bool("events", "server_quest_timer")){
 				this.save_info();

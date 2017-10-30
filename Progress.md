@@ -14,17 +14,18 @@
 		- [x] Preload item shadow \["global","item_shadow"\]
 	- **Onload**
 		- [x] ✎	Resolve game mode (travel / underworld / dice event / server quest) - Add more modes?
+			- [x] ✎	Event timers (event / dice event / server quest) (with problems?)
 		- [x] Resolve page's direction Left-to-Right or Right-to-Left
 		- [x] Show addon's version on the bottom (also add link to homepage)
 		- [x] Extend hp/xp info
 			- [x] Show more info \["global","extended_hp_xp_info"\]
-				- [x] ✎ Life potion shortcut \["global","extended_hp_xp_info_potion"\] (should not work in Underword)
+				- [x] Life potion shortcut \["global","extended_hp_xp_info_potion"\]
 			- [x] Time for full life \["global","hp_timer_for_full_life"\]
 		- [x] Button bar \["global","shortcuts_bar"\]
 			- [x] Create (added option to select which buttons)
 			- [x] Online friends
 			- [x] Guild donate
-			- [x] ✎	Player stats (ugly) \["stats", "player"\]
+			- [x] Player stats \["stats", "player"\]
 		- [x] Auction status
 			- [x] Auction bar \["global","auction_status_bar"\]
 			- [x] Status notification \["global","auction_status_notification"\]
@@ -36,27 +37,24 @@
 		- [x] Attacked timers \["global","attacked_timers"\]
 		- [x] Quest timer \["global","quest_timer"\]
 		- [x] Merchants Timer \["global","merchants_timer"\]
-		- [x] ✎	Forge Timer (only for smelt for now)
+		- [x] ✎	Forge Timer (only for smelt)
 		- [x] Add Item shadow \["global","item_shadow"\]
 		- [x] Dice event timer \["global","craps_timer"\]
 		- [x] Remember merchants tabs \["global","remember_tabs"\]
 		- [x] Guild application alert \["global","notify_new_guild_application"\]
 			- [x] Check Interval \["timers", "notify_new_guild_application"\]
 		- [x] {Underworld} Pray buff shortCut
-		- [ ] Notification on weapon down
 		- [x] Sound notifications for Missions, Dungeons and Arenas
 			- [x] Browser notification
-		- [x] Gold / Experience stats monitor (+repack fee estimation)
+		- [x] Gold / Experience stats monitor
 		- [ ] Player update in the GCA Highscore (if we keep the highscore) OR make a Global Arena
 		- [ ] "New version" installed message
-		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit)
+		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit) - DOTO
 		- [ ] Packages Expire Warning (Set the number of hours for the warning +  Tooltip with the next expire hours on packages button)
 		- [ ] Share an item's stats to guild message
 		- [ ] Bag Interface:
 			- [ ] Storage Info (Under every bag! Guild, Overview, Merchants...)
-			- [ ] On SHIFT keydown, change the "move amount" status
-			- [ ] right-click menu on items (eat, move to inventory) 
-			- [ ] Move checkbox on the side
+			- [x] Move checkbox on the side
 		- [ ] Work / Pray / Traveling, The exact finish time (date-time) is shown next to remaining time 
 
 
@@ -76,7 +74,7 @@
 	- [x] Mercenaries management Interface
 	- [x] Items' shadow
 	- [x] Save costume's properties
-	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings/No translatios)
+	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings)
 	- [x] Show buff's detailed timer on tooltip
 
 
@@ -115,7 +113,7 @@
 
 
 - **Pantheon Gods**
-	- [ ] ✎	Layout Inprove - needed ?
+	- [ ] ✎	Layout Improve - needed ?
 	- [ ] Recolored buttons based of each god's favor 
 	- [x] Percent(%) of points, red color on 100%
 
@@ -123,7 +121,7 @@
 - **Pantheon Mystery Box**
 	- [x] Open all
 	- [ ] Reload reward untill to find selected
-	- [ ] Calculate rewards quality
+	- [x] Calculate reward value in rubies 
 
 
 
@@ -222,7 +220,6 @@
 
 - **Merchants**
 	- [ ] Mouse click events (double click sell buy)
-	- [ ] Cross merchants item search
 	- [x] Remember merchants tabs
 	- [x] Fade items you can not buy
 	- [x] Colored items based on quality
@@ -238,10 +235,7 @@
 ### Auction Script
 
 - **Auction**
-	- [ ] Theme(s) support
 	- [x] Colored items based on quality
-		- [ ] Background color
-		- [x] Shadow item
 	- [x] Items you can afford
 	- [x] Hide your gold system / More info about prices (value compared to price) 
 	- [ ] Advance search options (Gold limit, Damage for weapons, etc) 
@@ -253,7 +247,7 @@
 	- [x] Number of Price/Value % on auction Auction (ex. "(153%)")
 	- [ ] Button announcing to guild, with a mail, the auction status
 	- [x] Multiple bids without page refresh
-	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view)
+	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view) - DOTO
 	- [ ] Display for each mercenary its tooltip when on mercenaries
 	- [x] ✎	Extra stats shown on item images (only on food for now)
 
@@ -266,12 +260,11 @@
 	- [ ] Item Preffix search list
 	- [ ] Item Suffix search list
 	- [ ] More levels in the search options 
-	- [ ] Cancel all items with one button (if "load all pages" is open this will also work) 
-	- [ ] Style fixes 
+	- [ ] Cancel all items with one button (if "load all pages" is open this will also work) - DOTO
 	- [ ] Load all the pages 
 	- [x] Item levels you can see in market are shown in building's description
 	- [ ] Select the default sell duration (2h, 8h etc) in the GCA options (default 24h)
-	- [x] Red on items that are souldbound & confirmation on buy
+	- [x] ✎	Red on items that are souldbound & confirmation on buy (not on Cancel) - DOTO
 	- [ ] Price per unit
 
 
@@ -280,10 +273,9 @@
 ### Locations Script
 
 - **Locations**
-	- [ ] Hide the building's labels in city/country, guild, underworld maps
 	- [ ] Show buildings level in guild's map
 	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area...)
-	- [x] underworld enemies interface converted to old style
+	- [x] Underworld enemies interface converted to old style
 
 
 

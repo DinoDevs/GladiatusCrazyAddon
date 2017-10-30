@@ -241,15 +241,14 @@ var manager = {
 			// Server quest
 			if(
 				info.page.queries.submod == 'serverQuest' || 
-				info.page.queries.submod == 'serverQuestHighscore'
+				info.page.queries.submod == 'serverQuestHighscore' ||
+				!Number.isInteger(info.page.queries.loc) // loc=desert
 			){
 				this.event.serverQuest();
 			}
 
 			// Expedition
-			else{
-				tools.loadScript("source/location.js");
-			}
+			tools.loadScript("source/location.js");
 		},
 
 		// Merchants section

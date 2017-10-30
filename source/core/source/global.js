@@ -187,6 +187,7 @@ var gca_global = {
 		this.isEvent = {
 			craps : false,
 			serverQuest : false,
+			locationQuest : false,
 			bar : false
 		};
 
@@ -199,9 +200,13 @@ var gca_global = {
 			}
 			// Get first's submenu links
 			links = document.getElementById('submenu2').getElementsByTagName('a');
-			// Check for "Server Bosses" event
-			if(links[links.length-1].className.match('glow') && links[links.length-1].href.match('submod=serverQuest')){
-				this.isEvent.serverQuest = true;
+			if(links[links.length-1].className.match('glow')){
+				// Check for "Server Bosses" event
+				if(links[links.length-1].href.match('submod=serverQuest')){
+					this.isEvent.serverQuest = true;
+				}else if(links[links.length-1].href.match(/loc=(\w+)&/)){
+					this.isEvent.serverQuest = links[links.length-1].href.match(/loc=(\w+)&/)[1];
+				}
 			}
 		}
 
@@ -2352,7 +2357,7 @@ var gca_global = {
 			server_quest_timer : {
 				inject : function(){
 					// if Craps wait for update event
-					if(gca_section.mod == 'location' && gca_section.submod == 'serverQuest'){
+					if(gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || !Number.isInteger(gca_getPage.parameter('loc')))){
 						gca_tools.event.addListener("server_quest-info-update", function(){
 							gca_global.display.event.server_quest_timer.display();
 						});
@@ -2376,7 +2381,7 @@ var gca_global = {
 					if(!banner) return;
 					// Check banner link
 					var banner_link = gca_getPage.parameters(banner.href);
-					if(banner_link.mod != "location" || banner_link.submod != "serverQuest"){
+					if(banner_link.mod != "location" || (banner_link.submod != "serverQuest" && Number.isInteger(banner_link.loc))){
 						return;
 					}
 

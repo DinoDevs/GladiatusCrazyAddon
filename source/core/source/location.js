@@ -20,7 +20,7 @@ var gca_location = {
 	},
 
 	// Layout Improvements
-	layout : {		
+	layout : {
 		
 		// Improve Underworld expedition layout
 		improve_underworld : function(){
@@ -132,7 +132,7 @@ var gca_location = {
 				var i = 0;
 				var enemy;
 				while( document.getElementsByClassName('expedition_picture')[i] && document.getElementsByClassName('expedition_picture')[i].getElementsByTagName('img')[0] ){
-					enemy = document.getElementsByClassName('expedition_picture')[i].getElementsByTagName('img')[0].getAttribute('src').match(/img\/(npc|expedition)\/([^.]+)\.jpg/i)[2];
+					enemy = document.getElementsByClassName('expedition_picture')[i].getElementsByTagName('img')[0].getAttribute('src').match(/img\/(npc|expedition)\/([^.]+)\.(jpg|png)/i)[2];
 					//console.log(enemy);
 					if(this.drops[enemy] && this.drops[enemy][0] && this.drops[enemy][1]){
 						document.getElementsByClassName('expedition_picture')[i].innerHTML += '<div class="item-i-18-'+this.drops[enemy][0]+' enemyDrop" title="If material is droped, 45% chance"></div><div title="If material is droped, 25% chance" class="item-i-18-'+this.drops[enemy][1]+' enemyDrop enemyDrop2"></div>';
