@@ -49,7 +49,7 @@
 		- [x] Gold / Experience stats monitor
 		- [ ] Player update in the GCA Highscore (if we keep the highscore) OR make a Global Arena
 		- [ ] "New version" installed message
-		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit) - DOTO
+		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit)
 		- [ ] Packages Expire Warning (Set the number of hours for the warning +  Tooltip with the next expire hours on packages button)
 		- [ ] Share an item's stats to guild message
 		- [ ] Bag Interface:
@@ -247,7 +247,7 @@
 	- [x] Number of Price/Value % on auction Auction (ex. "(153%)")
 	- [ ] Button announcing to guild, with a mail, the auction status
 	- [x] Multiple bids without page refresh
-	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view) - DOTO
+	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view)
 	- [ ] Display for each mercenary its tooltip when on mercenaries
 	- [x] ✎	Extra stats shown on item images (only on food for now)
 
@@ -260,7 +260,7 @@
 	- [ ] Item Preffix search list
 	- [ ] Item Suffix search list
 	- [ ] More levels in the search options 
-	- [ ] Cancel all items with one button (if "load all pages" is open this will also work) - DOTO
+	- [x] Cancel all items with one button (if "load all pages" is open this will also work)
 	- [ ] Load all the pages 
 	- [x] Item levels you can see in market are shown in building's description
 	- [ ] Select the default sell duration (2h, 8h etc) in the GCA options (default 24h)
@@ -273,7 +273,6 @@
 ### Locations Script
 
 - **Locations**
-	- [ ] Show buildings level in guild's map
 	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area...)
 	- [x] Underworld enemies interface converted to old style
 
@@ -318,7 +317,7 @@
 - **Reports**
 	- [x] Improved style / Day separators 
 	- [x] Rewarded items stats on mouse over (tooltips)
-	- [ ] Gather drop information
+	- [x] Gather materials droped information
 	- [ ] Gather stats
 	- [ ] Show battle stances next to theoretical
 	- [ ] Post new drops OR post them on every report
