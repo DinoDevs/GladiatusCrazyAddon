@@ -2816,7 +2816,7 @@ var gca_global = {
 				// Get bonus
 				var bonus_box = wrapper.getElementsByClassName('loginbonus_bonus');
 				var bonus = [];
-				var daysleft = -1;
+				var daysleft = 0;
 
 				// For each reward
 				for (var i = bonus_box.length - 1; i >= 0; i--) {
@@ -2830,6 +2830,7 @@ var gca_global = {
 					var icon = bonus_box[i].getElementsByClassName('loginbonus_icon')[0];
 					if(icon.dataset.tooltip){
 						bonus_item.tooltip = icon.dataset.tooltip;
+						daysleft = 0;
 					}
 					// Not collected
 					else{
@@ -2839,15 +2840,11 @@ var gca_global = {
 					// Store data
 					bonus.unshift(bonus_item);
 				}
-
-				// Fix dates
-				if(daysleft < 0)
-					daysleft = 0;
+				daysleft++;
 
 				var day = 24*60*60*1000;
-				var bonusEndDate = new Date(gca_tools.time.server() + daysleft * day);
-				bonusEndDate = new Date(bonusEndDate.getFullYear(), bonusEndDate.getMonth(), bonusEndDate.getDate()).getTime() + day - 1;
-				
+				var bonusEndDate = new Date(Math.floor(gca_tools.time.server()/day)*day + daysleft * day);
+
 				// Save expiration timestamp
 				gca_data.section.set('overview', 'daily_bonus_ends', bonusEndDate);
 				// Save data

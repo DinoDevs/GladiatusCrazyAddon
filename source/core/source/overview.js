@@ -939,9 +939,9 @@ var gca_overview = {
 			if(collected < 7){
 				var nextBonusDate = new Date(gca_tools.time.server());
 				nextBonusDate = new Date(nextBonusDate.getFullYear(), nextBonusDate.getMonth(), nextBonusDate.getDate()).getTime() + 24*60*60*1000 - 1;
-				var nextDay = new Date(nextBonusDate).getDay();
-
-				if(nextDay != 0){
+				var nextDay = 6-Math.floor((bonusEndDate-gca_tools.time.server())/864e5)*864e5
+				
+				if(nextDay != 6){
 					this.nextBonusTimer(boxes[nextDay], nextBonusDate - gca_tools.time.server());
 				}
 			}
