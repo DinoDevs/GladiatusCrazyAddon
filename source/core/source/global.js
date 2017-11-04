@@ -2846,7 +2846,7 @@ var gca_global = {
 				daysleft++;
 
 				var day = 24*60*60*1000;
-				var bonusEndDate = new Date(Math.floor(gca_tools.time.server()/day)*day + daysleft * day);
+				var bonusEndDate = new Date(Math.floor(gca_tools.time.server()/day)*day + daysleft * day).getTime();
 
 				// Save expiration timestamp
 				gca_data.section.set('overview', 'daily_bonus_ends', bonusEndDate);
