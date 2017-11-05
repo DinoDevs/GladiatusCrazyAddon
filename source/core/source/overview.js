@@ -414,7 +414,7 @@ var gca_overview = {
 						// If needed
 						if(materials[key].amount > 0){
 							tooltip[0].push([
-								'<div class="item-i-18-' + parseInt(key.match(/18(\d+)/)[1]) + '" style="display:inline-block;transform: scale(0.8);margin:0 -5px -10px 0px;"></div> &times; ' + materials[key].amount + ' (' + materials[key].name + ')',
+								'<div class="item-i-18-' + parseInt(key.match(/18(\d+)/)[1]) + '" style="display:inline-block;transform: scale(0.8);margin:0 -5px -10px 0px;"></div> &times; ' + materials[key].amount + ' (' + this.checkForUtf8Bug(materials[key].name) + ')',
 								"#cccccc"
 							]);
 						}
@@ -441,6 +441,24 @@ var gca_overview = {
 		// Calculate repaire costs
 		getRepairCost : function() {
 			return gca_tools.strings.insertDots(parseInt(document.getElementById('header_values_level').textContent) * 10 + 10, 10);
+		},
+
+		// Check and fix if utf8 bug
+		checkForUtf8Bug : function(text){
+			// If not multiple of 5
+			if (text.length % 5 != 0)
+				return text;
+
+			// Split on u
+			var utf8 = text.split("u");
+
+			// If not correct number of u
+			if (utf8.length - 1 != text.length / 5)
+				return text;
+
+			// Join with \\u
+			utf8 = utf8.join("%u");
+			return unescape(utf8);
 		}
 	},
 	
