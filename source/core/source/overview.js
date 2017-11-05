@@ -336,49 +336,111 @@ var gca_overview = {
 	repair_overview : {
 		// Inject
 		inject : function(){
+			// Get char element
+			var char = document.getElementById("char");
+			if(!char) return;
+
+			// Create repair slot
+			var slot = document.createElement("div");
+			slot.className = "single_char_item_bg repair_slot_bg";
+			char.appendChild(slot);
+
 			// Create drop area
-			var div = document.createElement("div");
-			div.id = "repair-droppable-grid";
-			div.className = "ui-droppable quest_category_icon_work";
-			div.setAttribute('data-container-number', '384');
-			div.setAttribute('data-content-type-accept', '1855');
-			div.setAttribute('data-tooltip', '[[["'+gca_locale.get("overview","drop_item_see_materials_repair")+'","#FF6A00"],["'+gca_locale.get("overview","workbench_6th_slot_empty")+'","#808080"]]]');
-			document.getElementById("char").appendChild(div);
-			
-			// Create Script
-			var script = document.createElement("script");
-			script.textContent = "\
-			jQuery( function() {\
-				jQuery( '#repair-droppable-grid' ).droppable({\
-				  drop: function( event, ui ) {\
-					var id = jQuery(ui.draggable).attr('data-item-id');\
-					sendAjax(this, 'ajax.php', 'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid='+id+'&amount=1' , function (data){gca_overview.repair_overview.resolve_item_JSON(data)} , function (elem, msg, delayDuration){ console.log(msg.responseText);});\
-				  }\
-				});\
-			  } );\
-			";
-			document.getElementById("char").appendChild(script);
+			var drop_area = document.createElement("div");
+			drop_area.className = "ui-droppable quest_category_icon_work";
+			drop_area.dataset.containerNumber = 384;
+			drop_area.dataset.contentTypeAccept = 1855;
+			slot.appendChild(drop_area);
+			gca_tools.setTooltip(
+				drop_area,
+				JSON.stringify([
+					[
+						[gca_locale.get("overview","drop_item_see_materials_repair"), "#FF6A00"],
+						[gca_locale.get("overview","workbench_6th_slot_empty"), "#808080"]
+					]
+				])
+			);
+
+			// Save element for layter use
+			this.drop_area = drop_area;
+
+			// Add event
+			var that = this;
+			jQuery(function(){
+				jQuery(drop_area).droppable({
+					drop: function(event, ui) {
+						var id = jQuery(ui.draggable).data('itemId');
+						sendAjax(
+							this,
+							'ajax.php',
+							'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid=' + id + '&amount=1',
+							function (data){
+								that.showRepaireTooltip(data, id);
+							},
+							function (elem, msg, delayDuration){
+								//console.log(msg.responseText);
+							}
+						);
+					}
+				});
+			});
 		},
-		resolve_item_JSON : function(data){
-			data=JSON.parse(data);
+		showRepaireTooltip : function(data, id){
+			// Parse data string
+			data = JSON.parse(data);
+			// Tooltip variable
+			var tooltip;
 			
-			if(typeof data.slots[5].item!=='undefined' || typeof data.slots[5].formula.needed!=='undefined'){
-				needed_materials = data.slots[5].formula.needed;
+			// If data exist
+			if(typeof data.slots[5].item !== 'undefined' || typeof data.slots[5].formula.needed !== 'undefined' && data.slots[5].item.data.itemId == id){
+				// Get materials
+				var materials = data.slots[5].formula.needed;
+
+				// Get item data
+				var item = {
+					name : data.slots[5].item.name,
+					text_css: data.slots[5].item.data.tooltip[0][0][1],
+					color: data.slots[5].item.data.tooltip[0][0][1].match(/\s*([^;]+);/)[1]
+				};
+
 				// Create tooltip with the materials
-				tooltip = '[[["'+data.slots[5].item.name+'","'+data.slots[5].item.data.tooltip[0][0][1]+'"]';
-				for (var key in needed_materials) {
-					if (needed_materials.hasOwnProperty(key)) {
-						if(needed_materials[key].amount>0)
-							tooltip += ',["<div class=\\"item-i-18-'+parseInt(key.match(/18(\d+)/)[1])+'\\" style=\\"display: inline-block;\\"></div>x '+needed_materials[key].amount+' ('+needed_materials[key].name.replace(/(u.{4})/g, '\\$1')+')","#cccccc"]'
+				tooltip = [[]];
+				// Add item name
+				tooltip[0].push([item.name, item.text_css]);
+
+				// For each material
+				for (var key in materials) {
+					if (materials.hasOwnProperty(key)) {
+						// If needed
+						if(materials[key].amount > 0){
+							tooltip[0].push([
+								'<div class="item-i-18-' + parseInt(key.match(/18(\d+)/)[1]) + '" style="display:inline-block;transform: scale(0.8);margin:0 -5px -10px 0px;"></div> &times; ' + materials[key].amount + ' (' + materials[key].name + ')',
+								"#cccccc"
+							]);
+						}
 					}
 				}
-				tooltip += ',["<span style=\\"float:right;\\">'+ ( gca_tools.strings.insertDots( parseInt(document.getElementById('header_values_level').textContent)*10+10 ) ) +' <div class=\\"icon_gold\\" style=\\"display: inline-block;\\"></div></span>","#cccccc"]'
-				tooltip += ']]';
-				document.getElementById("repair-droppable-grid").style = "border: 1px solid #fef17e;";
-			}else{
-				tooltip = '[[["'+gca_locale.get("general","error")+'","#ff0000"]]]';
+				// Show repair cost
+				tooltip[0].push([
+					'<span style="float:right;">' + this.getRepairCost() + ' <div class="icon_gold" style="display: inline-block;"></div></span>',
+					"#cccccc"
+				]);
+				this.drop_area.style.filter = "drop-shadow(0px 0px 2px " + item.color + ")";
 			}
-			gca_tools.setTooltip(document.getElementById("repair-droppable-grid"), tooltip);
+
+			// Error
+			else{
+				tooltip = [[[gca_locale.get("general","error"), "#ff0000"]]];
+				this.drop_area.style.filter = "none";
+			}
+
+			// Set tooltip
+			gca_tools.setTooltip(this.drop_area, JSON.stringify(tooltip));
+		},
+
+		// Calculate repaire costs
+		getRepairCost : function() {
+			return gca_tools.strings.insertDots(parseInt(document.getElementById('header_values_level').textContent) * 10 + 10, 10);
 		}
 	},
 	
