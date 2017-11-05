@@ -445,6 +445,14 @@ var gca_overview = {
 
 		// Check and fix if utf8 bug
 		checkForUtf8Bug : function(text){
+			// Split on space
+			var array = text.split(" ");
+			for (var i = array.length - 1; i >= 0; i--) {
+				array[i] = this.checkForUtf8BugWord(array[i]);
+			}
+			return array.join(" ");
+		},
+		checkForUtf8BugWord : function(text){
 			// If not multiple of 5
 			if (text.length % 5 != 0)
 				return text;
