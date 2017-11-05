@@ -20,22 +20,6 @@ var info = {
 			this.url = info.data.document.location.href;
 
 			// Resolve Url
-			var url_resolve = this.url.match(/https?:\/\/s(\d+)\.(\w+)\.gladiatus\.gameforge\.com\/game\/(index|main).php\?(.*)/i);
-			if(url_resolve){
-				// Server
-				this.server = url_resolve[1];
-				// Country
-				this.country = url_resolve[2];
-				// Domain
-				this.domain = "s" + this.server + "." + this.country + ".gladiatus.gameforge.com";
-				// Queries
-				this.queries = this.resolveQueries(url_resolve[4]);
-
-				// Ok
-				return true;
-			}
-
-			// Try again
 			url_resolve = this.url.match(/https?:\/\/s(\d+)-(\w+)\.gladiatus\.gameforge\.com\/game\/(index|main).php\?(.*)/i);
 			if(url_resolve){
 				// Server
