@@ -1389,7 +1389,7 @@ var gca_overview = {
 
 			// Create item icon
 			var wrapper = document.createElement("div");
-			wrapper.className = "mercenary_bg";
+			wrapper.className = "single_char_item_bg mercenary_slot_bg";
 			var item = document.createElement("div");
 			item.className = "item-i-15-5";
 			wrapper.appendChild(item);
