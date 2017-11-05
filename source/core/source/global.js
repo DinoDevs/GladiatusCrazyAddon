@@ -2645,10 +2645,19 @@ var gca_global = {
 					that.currentBag(tab);
 				});
 
-				// Wait first bag
-				gca_tools.event.bag.waitBag(function(){
+				// If bag not already loaded
+				if (document.getElementById("inv").className.match("unavailable")) {
+					// Wait first bag
+					gca_tools.event.bag.waitBag(function(){
+						that.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+					});
+				}
+				// Else id already loaded
+				// (you can test it with ctrl+F5)
+				else {
+					// Add shadows
 					that.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
-				});
+				}
 			},
 
 			// Inject the current bag
