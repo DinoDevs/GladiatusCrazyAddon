@@ -18,13 +18,15 @@ var locale = {
 		"ru","sk","sl","sq","tr",
 		"zh"
 	],
+	// Language loaded
+	loaded : "en",
 
 	// Load Language
 	preload : function() {
 		// Language to load
 		var lang = this.find(
 			(this.countries[info.page.country]) ? this.countries[info.page.country] : info.page.country,
-			info.data.storage["language"]
+			info.data.window.localStorage.getItem("gladiatusCrazyAddonData_" + info.page.playerId + "_lang", "en")
 		);
 
 		// Load translation script
@@ -38,6 +40,7 @@ var locale = {
 
 		// Load lang
 		tools.preloadScript("locale/" + lang + ".js");
+		this.loaded = lang;
 	},
 
 	// Find language
@@ -52,6 +55,16 @@ var locale = {
 
 		// Lang not available
 		return "en";
+	},
+
+	// Load all languages
+	loadAllLanguages : function(){
+		// For each language
+		for (var i = this.languages.length - 1; i >= 0; i--) {
+			if (this.languages[i] != "en" && this.languages[i] != this.loaded){
+				tools.loadScript("locale/" + this.languages[i] + ".js");
+			}
+		}
 	}
 
 };

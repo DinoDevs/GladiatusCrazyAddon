@@ -16,22 +16,6 @@ gca_languages["en"] = {
 	name : "English (United States)",
 	// Translators (authors of this script)
 	translators : ["DarkThanos", "GreatApo"],
-	
-	// Language options
-	options : {
-		// Language formats
-		formats : {
-			// Short date format
-			shortDate : "d/MM/yyyy",
-			// Long date format
-			longDate : "dddd, d, MMMM yyyy",
-			// Number Separators
-			number : {
-				thousands : ",",
-				decimal : "."
-			}
-		}
-	},
 
 	// Translations object
 	locale : {
@@ -309,6 +293,24 @@ gca_languages["en"] = {
 			notification_reload : "Reload the page for the changes to take effect"
 		}
 	},
+
+	// Language options (not yet in use)
+	/*
+	options : {
+		// Language formats
+		formats : {
+			// Short date format
+			shortDate : "d/MM/yyyy",
+			// Long date format
+			longDate : "dddd, d, MMMM yyyy",
+			// Number Separators
+			number : {
+				thousands : ",",
+				decimal : "."
+			}
+		}
+	},
+	*/
 
 	// Old deprecated struct
 	locale_deprecated : {

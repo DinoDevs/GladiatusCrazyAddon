@@ -6,13 +6,23 @@
  * Translator: DarkThanos, GreatApo
  */
 
+// Languages Object
 var gca_languages = gca_languages || {};
+
+// Set Language
 gca_languages["gr"] = {
+
+	// Language name
 	name : "Ελληνικά",
-	
-	// Traslations
-	locale :{
-		// Sections
+	// Translators (authors of this script)
+	translators : ["DarkThanos", "GreatApo"],
+
+	// Translations object
+	locale : {
+		// Addon info
+		info : {
+			description : "Το πιο τρελό add-on για το gladiatus που φτιάχτηκε ποτέ!"
+		},
 		
 		
 		// Overview
@@ -414,5 +424,3 @@ gca_languages["gr"] = {
 				OPTIONS_FIXES_RTL_TOOLTIP_FIX : "Διόρθωση προβλήματος των κινούμενων tooltip (για τους δεξιά προς τα αριστερά server, πχ. Αραβικός)"
 	}
 }
-
-gca_locale.active = "gr";

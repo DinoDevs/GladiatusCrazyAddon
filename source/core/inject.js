@@ -3,12 +3,14 @@
  * Gladiatus Crazy Add On
  */
 
-var inject = function(_info, _document, _folder, _storage){
+var inject = function(_info, _window, _folder, _storage){
 
 	// Save addon info
 	info.addon = _info;
+	// Window
+	info.data.window = _window;
 	// Document
-	info.data.document = _document;
+	info.data.document = _window.document;
 	// Folder
 	info.data.folder = _folder;
 	// Storage

@@ -8,6 +8,38 @@ var gca_locale = {
 	// Active Locale
 	active : "en",
 
+	// Load
+	_loaded : false,
+	_load : function(){
+		// Clear
+		this._loaded = true;
+		// Get info
+		var country = gca_section.country;
+		var savedlang = this._getLang();
+
+		// Check if saved lang available
+		if(savedlang && gca_languages.hasOwnProperty(savedlang) != -1){
+			this.active = savedlang;
+		}
+		// Check if country lang available
+		else if(gca_languages.hasOwnProperty(country) != -1){
+			this.active = country;
+		}
+		// Lang not available
+		else {
+			this.active = "en";
+		}
+	},
+
+	// Get or Set lang
+	_getLang : function(){
+		return window.localStorage.getItem(gca_data_manager.mod + "_" + gca_section.playerId + "_lang");
+	},
+	_setLang : function(lang){
+		window.localStorage.setItem(gca_data_manager.mod + "_" + gca_section.playerId + "_lang", lang);
+	},
+
+
 	// Get Locale
 	get : function(section, code, variables){
 		// TODO : call deprecated warning
@@ -44,6 +76,9 @@ var gca_locale = {
 
 	// Get Locale
 	getRaw : function(section, code){
+		// Load if not loaded
+		if(!this._loaded) this._load();
+
 		// TODO : call deprecated method if needed
 		if(typeof code == "undefined"){
 			return this.get_deprecated(section);

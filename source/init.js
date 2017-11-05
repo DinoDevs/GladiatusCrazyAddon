@@ -24,7 +24,7 @@ var init = setInterval(function(){
 	// Start code
 	inject(
 		info,
-		window.document,
+		window,
 		chrome.extension.getURL("core"),
 		{}
 	);

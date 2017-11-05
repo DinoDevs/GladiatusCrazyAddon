@@ -281,6 +281,7 @@ var manager = {
 				info.page.queries.submod == 'sendValidationLink' || 
 				info.page.queries.submod == 'deleteAccSettings'
 			) {
+				locale.loadAllLanguages();
 				tools.loadScript("source/settings.js");
 			}
 			// Character settings

@@ -86,6 +86,46 @@ var gca_settings = {
 		scheme : {
 			// Global Options
 			"global" : {
+				// Language
+				"language_select" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							data.select = document.createElement("select");
+							var languages = [];
+							var lang;
+							for(lang in gca_languages){
+								if(gca_languages.hasOwnProperty(lang)){
+									languages.push(lang);
+								}
+							}
+							languages.sort(function(a, b) {
+								//if(gca_languages[a].name < gca_languages[b].name) return -1;
+								//else if(gca_languages[a].name > gca_languages[b].name) return 1;
+								if(a < b) return -1;
+								else if(a > b) return 1;
+								else return 0;
+							});
+							var option;
+							for (var i = 0; i < languages.length; i++) {
+								lang = languages[i];
+								option = document.createElement("option");
+								option.value = lang;
+								option.textContent = gca_languages[lang].name;
+								if (gca_locale.active == lang) {
+									option.selected = true;
+								}
+								data.select.appendChild(option);
+							}
+							return data.select;
+						},
+						"save" : function(data){
+							gca_locale._setLang(data.select.value);
+						}
+					};
+					return scheme;
+				})(),
+
 				// Sounds
 				"sound_notifications" : true,
 				// Browser notifications
@@ -412,6 +452,19 @@ var gca_settings = {
 								if(!_scale) _scale = 1;
 								this.scheme[category][label] = this.class.range(locale, _min, _step, _max, _scale, _category, _label, _db);
 								break;
+							case "custom" :
+								let _dom = this.scheme[category][label].dom;
+								if(!_dom) _dom = 0;
+								let _save = this.scheme[category][label].save;
+								if(!_save) _save = 0;
+								this.scheme[category][label] = this.class.custom(
+									gca_locale.get("settings", "category_" + category + "$" + label),
+									_dom,
+									_save,
+									category,
+									label,
+									db
+								);
 						}
 					}
 
@@ -460,25 +513,30 @@ var gca_settings = {
 								);
 								break;
 							case "range" :
-								let _min = this.scheme[category][label].min;
-								if(!_min) _min = 0;
-								let _step = this.scheme[category][label].step;
-								if(!_step) _step = 1;
-								let _max = this.scheme[category][label].max;
-								if(!_max) _max = 100;
-								let _scale = this.scheme[category][label].scale;
-								if(!_scale) _scale = 1;
 								this.scheme[category][label] = this.class.range(
 									gca_locale.get("settings", "category_" + category + "$" + label),
-									_min,
-									_step,
-									_max,
-									_scale,
+									0,
+									1,
+									100,
+									1,
 									category,
 									label,
 									db
 								);
 								break;
+							case "custom" :
+								let _dom = this.scheme[category][label].dom;
+								if(!_dom) _dom = 0;
+								let _save = this.scheme[category][label].save;
+								if(!_save) _save = 0;
+								this.scheme[category][label] = this.class.custom(
+									gca_locale.get("settings", "category_" + category + "$" + label),
+									null,
+									null,
+									category,
+									label,
+									db
+								);
 						}
 					}
 					
@@ -673,6 +731,7 @@ var gca_settings = {
 				case "integer": return this.construct.integer(id, scheme, container);
 				case "enumerator": return this.construct.enumerator(id, scheme, container);
 				case "range": return this.construct.range(id, scheme, container);
+				case "custom": return this.construct.custom(id, scheme, container);
 			}
 
 			// Default - Unknown
@@ -929,6 +988,38 @@ var gca_settings = {
 				};
 
 				return item;
+			},
+
+			custom : function(id, scheme, container){
+				// Item object
+				var item = {};
+				item.id = id;
+				item.data = {};
+
+				// Type Wrapper
+				var typeWrapper = document.createElement('div');
+				typeWrapper.className = "type-wrapper type-custom";
+				var title = document.createElement('span');
+				title.textContent = scheme.locale;
+				typeWrapper.appendChild(title);
+				container.appendChild(typeWrapper);
+
+				if(typeof scheme.dom == "function"){
+					var custom = scheme.dom(item.data, title, typeWrapper);
+					typeWrapper.appendChild(custom);
+				}
+
+				var clearBoth = document.createElement('div');
+				clearBoth.style.clear = "both";
+				typeWrapper.appendChild(clearBoth);
+
+				item.save = function(){
+					if(typeof scheme.save == "function"){
+						scheme.save(item.data);
+					}
+				};
+
+				return item;
 			}
 		},
 
@@ -1010,6 +1101,19 @@ var gca_settings = {
 					step : step,
 					max : max,
 					scale : scale
+				};
+			},
+			custom : function(locale, dom, save, category, label, db){
+				return {
+					type : "custom",
+					locale : locale,
+					data : {
+						category : category,
+						label : label,
+						db : db
+					},
+					dom : dom,
+					save : save
 				};
 			}
 		}
