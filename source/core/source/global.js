@@ -2445,16 +2445,18 @@ var gca_global = {
 				// Count Down
 				countdown_interval : null,
 				countdown : function(){
+					
 					// If ready
 					if(this.timer < 0){
-						this.serverQuestPointsElement.textContent = "";
+						if(this.points != 'N/A'){
+							this.serverQuestPointsElement.textContent = this.points;
+						}else{
+							this.serverQuestPointsElement.textContent = "";
+						}
 						this.serverQuestTimeElement.textContent = "";
 						// Clear timer
 						clearInterval(this.countdown_interval);
 						return;
-					}
-					if(this.points != 'N/A'){
-						this.serverQuestPointsElement.textContent = this.points;
 					}
 
 					// Convert milliseconds to Minutes:Seconds
