@@ -639,7 +639,7 @@ var gca_training = {
 			}else if(name=='dexterity'){
 				// Critical Hit % Gain
 					var player_level = parseInt(document.getElementById("header_values_level").textContent);
-					var criticalPercentGain = Math.floor((this.specialStats["critical_hit"].item_points+Math.floor(totalNew/10))*52/(player_level-8)/5) - Math.floor((this.specialStats["critical_hit"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/5) ;
+					var criticalPercentGain = Math.round((this.specialStats["critical_hit"].item_points+Math.floor(totalNew/10))*52/(player_level-8)/5) - Math.round((this.specialStats["critical_hit"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/5) ;
 					var fakePercentGain =  Math.round((totalChange/10)*52/(player_level-8)/5 *1000)/100;
 					write_breakdown_stat(2,"Crit hit: +"+criticalPercentGain+"% (+"+fakePercentGain+"‰)");
 				// Hit Chance
@@ -653,10 +653,10 @@ var gca_training = {
 			}else if(name=='agility'){
 				// Avoid critical % Gain
 					var player_level = parseInt(document.getElementById("header_values_level").textContent);
-					if( Math.floor( (this.specialStats["avoid_critical"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/4 )>=25){
+					if( Math.round( (this.specialStats["avoid_critical"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/4 )>=25){
 						write_breakdown_stat(2,"Avoid crit: MAX");
 					}else{
-						var avoidPercentGain = Math.floor((this.specialStats["avoid_critical"].item_points+Math.floor(totalNew/10))*52/(player_level-8)/4) - Math.floor((this.specialStats["avoid_critical"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/4) ;
+						var avoidPercentGain = Math.round((this.specialStats["avoid_critical"].item_points+Math.floor(totalNew/10))*52/(player_level-8)/4) - Math.round((this.specialStats["avoid_critical"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/4) ;
 						var fakePercentGain =  Math.round((totalChange/10)*52/(player_level-8)/4 *1000)/100;
 						write_breakdown_stat(2,"Avoid crit: +"+avoidPercentGain+"% (+"+fakePercentGain+"‰)");
 					}
@@ -691,10 +691,10 @@ var gca_training = {
 					write_breakdown_stat(0,"Heal: +"+Math.floor(healGain)+"% (+"+healGain+")");
 				// Critical Healling Chance
 					var player_level = parseInt(document.getElementById("header_values_level").textContent);
-					if(Math.floor((this.specialStats["critical_healing"].item_points+Math.floor(totalOld/5))*52/(player_level-8)/7)>=90){
+					if(Math.round((this.specialStats["critical_healing"].item_points+Math.floor(totalOld/5))*52/(player_level-8)/7)>=90){
 						write_breakdown_stat(2,"Crit heal: MAX");
 					}else{
-						var healingPercentGain = Math.floor((this.specialStats["critical_healing"].item_points+Math.floor(totalNew/5))*52/(player_level-8)/7) - Math.floor((this.specialStats["critical_healing"].item_points+Math.floor(totalOld/5))*52/(player_level-8)/7) ;
+						var healingPercentGain = Math.round((this.specialStats["critical_healing"].item_points+Math.floor(totalNew/5))*52/(player_level-8)/7) - Math.round((this.specialStats["critical_healing"].item_points+Math.floor(totalOld/5))*52/(player_level-8)/7) ;
 						var fakePercentGain =  Math.round((totalChange/5)*52/(player_level-8)/7 *1000)/100;
 						write_breakdown_stat(2,"Crit heal: +"+healingPercentGain+"% (+"+fakePercentGain+"‰)");
 					}
