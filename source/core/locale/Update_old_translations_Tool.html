@@ -1,0 +1,230 @@
+Old Translation: (the whole file)<br>
+<textarea id="old" style="height: 500px;width: 100%;"></textarea><br>
+<script src="en.js"></script>
+<input type="button" id="button" value="Update to new translation type">
+<br><br><a href="http://jsbeautifier.org/">Go to jsbeautifier.org</a>
+
+<script>
+function convert(){
+	eval(document.getElementById('old').value.replace('var gca_languages = ','var a = '));
+	
+	//Convert
+	gca_languages[Object.keys(gca_languages)[1]].locale = gca_languages.en.locale;
+	var old = gca_languages[Object.keys(gca_languages)[1]].locale_deprecated;
+	
+	gca_languages[Object.keys(gca_languages)[1]].locale = {
+		info : {
+			description : old.description
+		},
+		general : {
+			days : old.days,
+			minutes : old.minutes,
+			no_data : old.there_are_no_data,
+			//confirm : old.,
+			//cancel : old.,
+			close : old.close,
+			error : old.error
+		},
+		global : {
+			life_potion_use : old.use_life_potion,
+			life_potion_used : old.a_life_potion_was_used,
+			life_potion_left : old.life_potions_left,
+			life_recover_full : old.full_life_recover_in,
+			message_private_write : old.write_private_message,
+			message_guild_write : old.write_guild_message,
+			message_send : old.send,
+			message_sent_success : old.guild_message_was_sent, //IT SHOULD NOT BE GUILD
+			message_sent_failed : old.guild_message_sent_failed, //IT SHOULD NOT BE GUILD
+			message_empty : old.guild_message_empty, //IT SHOULD NOT BE GUILD
+			message_exclude_me : old.exclude_me,
+			guild_market_goto : old.go_to_guilds_market,
+			guild_storage_goto : old.go_to_guilds_storage,
+			guild_bank_goto : old.go_to_guilds_bank,
+			guild_warcamp_goto : old.go_to_guilds_war_camp,
+			guild_jail_goto : old.go_to_guilds_jail,
+			guild_library_goto : old.go_to_guilds_library,
+			guild_medic_goto : old.go_to_guilds_medic_center,
+			simulator_goto : old.go_to_simulator,
+			stats_display : old.display_my_stats,
+			online_display : old.display_online_players,
+			online_friends : old.online_friends,
+			guild_friends : old.guild_friends,
+			family_friends : old.family_friends,
+			//donate_gold_confirm : old.,
+			donate_gold_success : old.gold_donated,
+			donate_gold_failed : old.gold_donation_failed,
+			donate_gold_no_gold : old.no_gold,
+			donate_gold_all_gold : old.donate_all_your_gold,
+			quest_full : old.quest_full,
+			quest_new : old.quest_new,
+			pray_start : old.start_praying,
+			pray_stop : old.stop_praying,
+			heal : old.heal,
+			notification_guild_application : old.pending_guild_application,
+			gold_exp_data : old.gold_exp_data,
+			gold_exp_data_today : old.today_values,
+			gold_exp_data_week : old.days7_values,
+			gold_exp_data_avg_day : old.average_per_day,
+			gold_exp_data_to_level_up : old.days_left_to_level_up,
+			//gold_exp_data_package_tax : old.,
+		},
+		overview : {
+			//stats_difference : old.,
+			//drop_item_see_materials_repair : old.,
+			//workbench_6th_slot_empty : old.,
+		},
+		pantheon : {
+			//mysterybox_open_all : old.,
+			//mysterybox_open_stop : old.,
+			//mysterybox_open_done : old.,
+		},
+		guild : {
+			bank_all_gold : old.add_all_gold,
+			//library_per_point_cost : old.,
+			//library_gold_left : old.,
+			medic_lost_points : old.lost_points,
+			medic_points_to_heal : old.points_to_heal,
+			medic_life_after_heal : old.life_after_heal,
+		},
+		training : {
+			costs_discount : old.guild_discount, //IT SHOULD BE ONLY DISCUNT - NOT GUILD
+		},
+		auction : {
+			//items_info : old.,
+			number_of_items : old.number_of_items,
+			number_of_bided_items : old.number_of_bided_items,
+			hide_your_gold_here : old.hide_your_gold_here,
+			price_value_function : old.price_eq_value,
+			levels_you_can_see : old.levels_you_can_see,
+		},
+		settings : {
+			settings : old.OPTIONS_SETTINGS,
+			description : old.OPTIONS_DESCRIPTION,
+			description_click_button : old.OPTIONS_BUTTON_BELOW,
+			category_global : old.OPTIONS_GLOBAL_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			category_overview : old.OPTIONS_OVERVIEW_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			category_messages : old.OPTIONS_MESSAGES_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			category_packages : old.OPTIONS_PACKAGES_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			category_pantheon : old.OPTIONS_PANTHEON_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			category_reports : old.OPTIONS_REPORTS_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			category_training : old.OPTIONS_TRANING_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			category_merchants : old.OPTIONS_MERCHANTS_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			//category_magus : old., //IT SHOULD BE WITHOUT SETTINGS
+			//category_expedition : old., //IT SHOULD BE WITHOUT SETTINGS
+			category_guild : old.OPTIONS_GUILD_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			category_auction : old.OPTIONS_AUCTION_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+			//category_events : old., //IT SHOULD BE WITHOUT SETTINGS
+			//category_sound : old., //IT SHOULD BE WITHOUT SETTINGS
+	//DOESNOT EXIST	category_market : old.OPTIONS_MARKET_OPTIONS, //IT SHOULD BE WITHOUT SETTINGS
+	//DOESNOT EXIST	category_arena : old.OPTIONS_ARENA_OPTIONS //IT SHOULD BE WITHOUT SETTINGS
+			category_global$sound_notifications : old.OPTIONS_GLOBAL_SOUND_NOTIFICATIONS,
+			//category_global$browser_notifications : old.,
+			category_global$extended_hp_xp_info : old.OPTIONS_GLOBAL_EXTENDED_HP_XP_INFO,
+			//category_global$extended_hp_xp_info_potion : old.,
+			//category_global$hp_timer_for_full_life : old.,
+			category_global$shortcuts_bar : old.OPTIONS_GLOBAL_BUTTON_BAR, 
+			//category_global$shortcuts_bar_buttons : old.,
+			category_global$auction_status_bar : old.OPTIONS_GLOBAL_AUCTION_STATUS_BAR,
+			category_global$auction_status_notification : old.OPTIONS_GLOBAL_AUCTION_STATUS_NOTIFICATION,
+			category_global$top_fixed_bar : old.OPTIONS_GLOBAL_TOP_FIXED_BAR,
+			category_global$advance_main_menu : old.OPTIONS_GLOBAL_ADVANCED_MAIN_MENU,
+			//category_global$submenu_click_to_change : old.,
+			category_global$remember_tabs : old.OPTIONS_GLOBAL_REMEMBER_TABS,
+			category_global$attacked_timers : old.OPTIONS_GLOBAL_ATTACKED_TIMERS,
+			category_global$quest_timer : old.OPTIONS_GLOBAL_QUESTS_TIMER,
+			category_global$merchants_timer : old.OPTIONS_GLOBAL_MERCHANTS_TIME,
+			//category_global$player_image : old.,
+			//category_global$cooldown_sound_notifications : old.,
+			//category_global$notify_new_guild_application : old.,
+			//category_global$notify_new_guild_application_interval : old.,
+			//category_global$x_scroll : old.,
+			//category_global$item_shadow : old.,
+			//category_global$inventory_options_group : old.,
+			//category_global$pagination_layout : old.,
+			//category_global$gold_exp_data : old.,
+			//category_global$pray_shorcut : old.,
+			category_overview$analyze_items : old.OPTIONS_OVERVIEW_ITEMS_ANALIZE,
+			//category_overview$food_life_gain : old.,
+			category_overview$block_avoid_caps : old.OPTIONS_OVERVIEW_BLOCK_AVOID_CAPS,
+			//category_overview$best_food : old.,
+			//category_overview$overfeed_food : old.,
+			//category_overview$daily_bonus_log : old.,
+			//category_overview$buffs_detailed_time : old.,
+			//category_overview$mercenaries_manager : old.,
+			//category_overview$mercenary_tooltip_show : old.,
+			category_overview$more_statistics : old.OPTIONS_OVERVIEW_PLAYER_STATS_MOD,
+			//category_overview$achivements_layout : old.,
+			//category_overview$costumes_layout : old.,
+			//category_overview$items_repair_overview : old.,
+			category_messages$messages_layout : old.OPTIONS_MESSAGES_STYLING,
+			//category_messages$show_unread : old.,
+			//category_messages$separate_days : old.,
+			//category_messages$send_message_box : old.,
+			//category_messages$more_guild_mate_info : old.,
+			//category_messages$show_message_links : old.,
+			//category_messages$get_guild_battle_info : old.,
+			//category_messages$show_sidebar : old.,
+			//category_messages$fix_header_links : old.,
+			category_messages$new_message_focus : old.OPTIONS_NEWMESSAGE_FOCUS,
+			category_messages$new_message_friend_list : old.OPTIONS_NEWMESSAGE_FRIENDLIST,
+			//category_packages$filters_layout : old.,
+			//category_packages$compact_info_layout : old.,
+			//category_packages$items_layout : old.,
+			//category_packages$load_more_pages : old.,
+			category_packages$pages_to_load : old.OPTIONS_PACKAGES_MAX_PAGES_TO_LOAD, // WITHOUT MAXIMUM
+			//category_packages$item_price : old.,
+			//category_packages$special_category_features : old.,
+			//category_pantheon$quests_reorder : old.,
+			category_pantheon$quests_detailed_rewards : old.OPTIONS_PANTHEON_QUESTS_DETAILED_REWARDS,
+			//category_pantheon$missions_show_completed : old.,
+			//category_pantheon$gods_show_points_percent : old.,
+			//category_pantheon$open_many_mysteryboxes : old.,
+			//category_pantheon$show_mysterybox_rewards_rubies : old.,
+			category_reports$style_change : old.OPTIONS_REPORT_LIST_STYLE,
+			//category_reports$load_loot_tooltips : old.,
+			//category_training$show_discount : old.,
+			//category_training$show_basics_in_bars : old.,
+			//category_training$multiple_train : old.,
+			//category_training$show_analyze_items_data : old.,
+			//category_training$show_points_after_upgrade : old.,
+			//category_merchants$fade_unaffordable_items : old.,
+			//category_magus$fade_unimprovable_items : old.,
+			category_guild$jail_layout : old.OPTIONS_GUILD_JAIL_INTERFACE,
+			category_guild$library_layout : old.OPTIONS_GUILD_LIBRARY_INTERFACE,
+			//category_guild$library_fade_non_scrolls : old.,
+			//category_guild$library_tooltip_data : old.,
+			category_guild$bank_donate_layout : old.OPTIONS_GUILD_BANK_INTERFACE,
+			category_guild$bank_book_layout : old.OPTIONS_GUILD_BANKBOOK_INTERFACE,
+			category_guild$medic_layout : old.OPTIONS_GUILD_MEDIC_INTERFACE,
+			category_auction$items_counters : old.OPTIONS_AUCTION_DISPLAY_ITEMS_NUM,
+			//category_auction$item_price_analyze : old.,
+			category_auction$item_level : old.OPTIONS_AUCTION_DISPLAY_ITEMS_LVL,
+			category_auction$x3_items_per_line : old.OPTIONS_AUCTION_DISPLAY_3_ITEMS_PER_ROW,
+			category_auction$multi_bids : old.OPTIONS_AUCTION_MULTIPLE_BIDS,
+			//category_auction$extra_item_stats : old.,
+			//category_sound$enabled : old.,
+			//category_sound$muted : old.,
+			//category_sound$volume : old.,
+			save : old.OPTIONS_SAVE_ALL, // WITHOUT ALL
+			notification_reload : old.OPTIONS_RELOAD
+		}
+	}
+	
+	//New
+	document.getElementById('old').value = '/*\
+* Gladiatus Crazy Addon Translation\n\
+* Name : Engish (United States)\n\
+* Code : ' +Object.keys(gca_languages)[1]+ '\n\
+* Tag  : ' +Object.keys(gca_languages)[1]+ '\n\
+* Translator: ' + JSON.stringify(gca_languages[Object.keys(gca_languages)[1]].translators).replace(/("|\[|\])/g,"") + '\n\
+*/\n\
+// Languages Object\n\
+var gca_languages = gca_languages || {};\n\
+// Set Language\n\
+gca_languages["'+Object.keys(gca_languages)[1]+'"] = ';
+	document.getElementById('old').value += JSON.stringify(gca_languages[Object.keys(gca_languages)[1]]);
+	
+	alert('Translation updated. You can delete the deprecated part or leave it as it is.');
+}
+document.getElementById('button').onclick = convert;
+</script>
