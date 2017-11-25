@@ -365,7 +365,12 @@
 
 ### Forge Script
 
-- **Forge/Workbench Interface**
+- **Forge Interface**
+	- [ ] Links to your bag and the market of the remaining required smelt items
+	- [ ] Finish timer on main menu + Notification
+- **Smelt Interface**
+	- [x] Finish timer on main menu + Notification
+- **Workbench Interface**
 	- [x] ✎Links to your bag and the market of the remaining required smelt items
 
 
