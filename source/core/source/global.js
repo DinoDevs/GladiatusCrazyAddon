@@ -2587,7 +2587,7 @@ var gca_global = {
 				// Check if the time has finished
 				if(this.timer < 0){
 					// New items arrived
-					this.setIndicator('red', [[[this.text,"#BA9700"],["00:00:00","white;text-align:right;"]]]);
+					this.setIndicator('green', [[[this.text,"#BA9700"],["00:00:00","white;text-align:right;"]]]);
 				}
 				// Time has NOT finished
 				else{
@@ -2615,7 +2615,7 @@ var gca_global = {
 				}
 				
 				// Wait items arrived
-				this.setIndicator('yellow', [[[this.text,"#BA9700"],[gca_tools.time.msToString(this.timer),"white;text-align:right;"]]]);
+				this.setIndicator('red', [[[this.text,"#BA9700"],[gca_tools.time.msToString(this.timer),"white;text-align:right;"]]]);
 				
 				// 1 sec passed
 				this.timer = this.timer - 1000;
