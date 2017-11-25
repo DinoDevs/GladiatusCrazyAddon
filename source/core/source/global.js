@@ -2160,7 +2160,7 @@ var gca_global = {
 					// Remove indicator
 					menu.textContent = menu.textContent.replace(quest_completed[0],'');
 					// Append a new indicator
-					menu.appendChild(document.createTextNode("("));
+					menu.appendChild(document.createTextNode(" ("));
 					let font = document.createElement("font");
 					font.setAttribute("color", "green");
 					font.textContent = quest_completed[1];
