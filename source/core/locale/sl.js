@@ -10,8 +10,39 @@
 
 gca_languages['sl'] = {
 	name : 'Slovenčina ',
-	translator : "TANKISTA33@azet.sk",
-	locale : {
+	translators : ["TANKISTA33@azet.sk"],
+	"locale": {
+		"info": {
+			"description": "Najbláznivejšie add-on pre Gladiatus vôbec!"
+		},
+		"general": {},
+		"global": {
+			"message_private_write": "Napíšte súkromnú správu",
+			"message_guild_write": "Napíšte gildovnú správu",
+			"message_send": "Odoslať",
+			"message_exclude_me": "Vylúčiť ma",
+			"guild_market_goto": "Prejsť na trh gildy",
+			"guild_storage_goto": "Prejsť do slkadu gildy",
+			"guild_bank_goto": "Prejsť do gildovnej banky",
+			"guild_warcamp_goto": "Prejsť na tábor vojny gildy",
+			"guild_jail_goto": "Ísť do väzenia gildy",
+			"guild_library_goto": "Choďte do knižnice gildy",
+			"guild_medic_goto": "Prejsť na percentra gildy",
+			"simulator_goto": "Prejsť na simulátore",
+			"stats_display": "Zobrazenie Moje štatistiky",
+			"online_display": "Pozrieť online hráčov",
+			"donate_gold_all_gold": "Darujte všetko zlato",
+			"quest_full": "Plný",
+			"quest_new": "Nový"
+		},
+		"overview": {},
+		"pantheon": {},
+		"guild": {},
+		"training": {},
+		"auction": {},
+		"settings": {}
+	},
+	locale_deprecated : {
 		description : "Najbláznivejšie add-on pre Gladiatus vôbec!",
 		write_private_message : "Napíšte súkromnú správu",
 		write_guild_message : "Napíšte gildovnú správu",

@@ -6,7 +6,7 @@ Old Translation: (the whole file)<br>
 
 <script>
 function convert(){
-	eval(document.getElementById('old').value.replace('var gca_languages = ','var a = '));
+	eval(document.getElementById('old').value.replace('var gca_languages = ','var a = ').replace(/gca_locale\.active..."..";/,""));
 	
 	//Convert
 	gca_languages[Object.keys(gca_languages)[1]].locale = gca_languages.en.locale;
