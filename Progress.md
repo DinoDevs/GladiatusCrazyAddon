@@ -13,7 +13,7 @@
 		- [x] Enable page x-Scroll \["global","x-scroll"\]
 		- [x] Preload item shadow \["global","item_shadow"\]
 	- **Onload**
-		- [x] Resolve game mode (travel / underworld / dice event / server quest / location event)
+		- [x] Resolve game mode (travel / underworld / dice event / server quest / location event / Service wait screen)
 			- [x] Event timers (event / dice event / server quest / location event)
 		- [x] Resolve page's direction Left-to-Right or Right-to-Left
 		- [x] Show addon's version on the bottom (also add link to homepage)

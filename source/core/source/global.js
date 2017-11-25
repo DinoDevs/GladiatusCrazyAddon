@@ -34,6 +34,10 @@ var gca_global = {
 		// Display gca version on footer
 		this.display.version();
 
+		// Server Service wait screen
+		if(document.getElementById('container_infobox'))
+			return;
+		
 		// Extended info on Health and Experience bars
 		(gca_options.bool("global","extended_hp_xp_info") && 
 			this.display.extended_hp_xp.info());

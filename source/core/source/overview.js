@@ -6,7 +6,10 @@
 // Overview
 var gca_overview = {
 	inject : function(){
-
+		// Server Service wait screen
+		if(document.getElementById('container_infobox'))
+			return;
+	
 		// Resolve Page
 		this.overviewResolve();
 
