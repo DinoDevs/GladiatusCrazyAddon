@@ -302,6 +302,8 @@ gca_options.data = {
 		"quest_timer" : true,
 		// Merchants
 		"merchants_timer" : true,
+		// Forge
+		"forge_timers" : true,
 
 		// Player Image
 		"player_image" : true,
@@ -454,6 +456,12 @@ gca_options.data = {
 		"fade_unaffordable_items" : true
 	},
 
+	// Forge
+	"forge" : {
+		// Packages & market shortcuts for each material need (forge/repair)
+		"material_links" : true
+	},
+	
 	// Magus
 	"magus" : {
 		// Fade items that you can not improve

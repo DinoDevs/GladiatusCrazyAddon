@@ -20,7 +20,8 @@ var gca_forge = {
 		}else{//workbench
 			// TODO
 			
-			this.sourceLinks();
+			(gca_options.bool("forge","material_links") &&
+			this.sourceLinks());
 		}
 
 	},

@@ -129,7 +129,7 @@ var gca_global = {
 			this.sound.bar());
 			
 		// Forge timer
-		(!this.isTraveling && 
+		(!this.isTraveling && gca_options.bool("global","forge_timers") &&
 			this.display.forge_timer());
 	},
 	

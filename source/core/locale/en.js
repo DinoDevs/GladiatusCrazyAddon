@@ -175,6 +175,7 @@ gca_languages["en"] = {
 			category_reports : "Reports",
 			category_training : "Training",
 			category_merchants : "Merchants",
+			category_forge : "Forge",
 			category_magus : "Magus",
 			category_expedition : "Expedition",
 			category_guild : "Guild",
@@ -200,6 +201,7 @@ gca_languages["en"] = {
 			category_global$attacked_timers : "Show attacked timers",
 			category_global$quest_timer : "Show quests status or timer",
 			category_global$merchants_timer : "Show merchands timer indicator",
+			category_global$forge_timers : "Show forge/smelt timer indicator",
 			category_global$player_image : "Enable players' images",
 			category_global$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
@@ -263,6 +265,8 @@ gca_languages["en"] = {
 			category_training$show_points_after_upgrade : "Show stat points after upgrade",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Fade items that you can not afford",
+			// Settings - Forge
+			category_forge$material_links : "Show packages & market shortcuts for each material need (forge/repair)",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Expedition
