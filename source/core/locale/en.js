@@ -183,6 +183,7 @@ gca_languages["en"] = {
 			category_sound : "Sounds",
 
 			// Settings - Global
+			category_global$language_select : "Select addon's language",
 			category_global$sound_notifications : "Enable sound notifications",
 			category_global$browser_notifications : "Enable browser notifications",
 			category_global$extended_hp_xp_info : "Display extended HP and XP header info",
@@ -206,9 +207,9 @@ gca_languages["en"] = {
 			category_global$x_scroll : "Enable gladiatus' horizontal scroll",
 			category_global$item_shadow : "Enable items shadows",
 			category_global$inventory_options_group : "Group inventory options",
-			category_global$pagination_layout : "Change paginations layout",
+			category_global$pagination_layout : "Change pages-box's layout",
 			category_global$gold_exp_data : "Show gold and exp data",
-			category_global$pray_shorcut : "Display pray shorcut",
+			category_global$pray_shorcut : "Display pray shorcut when in Underworld",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
@@ -222,7 +223,7 @@ gca_languages["en"] = {
 			category_overview$more_statistics : "Show more stats on statistics tab",
 			category_overview$achivements_layout : "Enhance achivements layout",
 			category_overview$costumes_layout : "Enhance costumes layout",
-			category_overview$items_repair_overview : "Drop items in the field to see the materials needed to repair them",
+			category_overview$items_repair_overview : "Show needed-materials-to-repair box",
 			// Settings - Messages
 			category_messages$messages_layout : "Improve messages layout",
 			category_messages$show_unread : "Highlight unread messages",
@@ -252,7 +253,8 @@ gca_languages["en"] = {
 			category_pantheon$show_mysterybox_rewards_rubies : " Show mysterybox reward's value in rubies",
 			// Settings - Reports
 			category_reports$style_change : "Improve reports' list layout",
-			category_reports$load_loot_tooltips : "Load report's reward",
+			category_reports$load_loot_tooltips : "Load each report's reward",
+			category_reports$found_items : "Gather data about found items",
 			// Settings - Training
 			category_training$show_discount : "Show training discount",
 			category_training$show_basics_in_bars : "Show basics in bars",
@@ -264,6 +266,8 @@ gca_languages["en"] = {
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Expedition
+			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",
+			category_expedition$underworld_layout : "Show underword's enemies layout like expendition's",
 			// Settings - Guild
 			category_guild$jail_layout : "Improve jail's layout",
 			category_guild$library_layout : "Improve library's layout",
@@ -279,8 +283,9 @@ gca_languages["en"] = {
 			category_auction$x3_items_per_line : "Change layout to 3 items per line",
 			category_auction$multi_bids : "Bid many items without page refresh",
 			category_auction$extra_item_stats : "Show extra stats on item images",
-				
 			// Settings - Events
+			category_events$craps_timer : "Display dice event's timer on top",
+			category_events$server_quest_timer : "Display server-quest or location event's timer on top",
 			// Settings - Sound
 			category_sound$enabled : "Enable sound system",
 			category_sound$muted : "Mute/Unmute sounds",

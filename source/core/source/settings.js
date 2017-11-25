@@ -92,6 +92,7 @@ var gca_settings = {
 						"type" : "custom",
 						"dom" : function(data, title, wrapper){
 							data.select = document.createElement("select");
+							data.select.style = "float:right;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;";
 							var languages = [];
 							var lang;
 							for(lang in gca_languages){

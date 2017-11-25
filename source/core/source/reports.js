@@ -27,8 +27,8 @@ var gca_reports = {
 			// If Combat report
 			if (this.combatReport == "reportExpedition") {
 				// Log items found for statistics
-				//(gca_options.bool("reports", "found_items") &&
-					this.report_found_items();//);
+				(gca_options.bool("reports", "found_items") &&
+					this.report_found_items());
 			}
 
 
