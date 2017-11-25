@@ -9,6 +9,10 @@ var gca_reports = {
 		// Check for errors
 		if(!document.getElementById("content"))
 			return;
+		
+		// Check getting out from underword
+		if(document.getElementById('content').getElementsByTagName('img')[0].src.match('/ceres.png'))
+			return;
 
 		// Resolve submod
 		this.resolveSubmod();
