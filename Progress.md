@@ -13,8 +13,8 @@
 		- [x] Enable page x-Scroll \["global","x-scroll"\]
 		- [x] Preload item shadow \["global","item_shadow"\]
 	- **Onload**
-		- [x] ✎	Resolve game mode (travel / underworld / dice event / server quest) - Add more modes?
-			- [x] ✎	Event timers (event / dice event / server quest) (with problems?)
+		- [x] Resolve game mode (travel / underworld / dice event / server quest / location event)
+			- [x] Event timers (event / dice event / server quest / location event)
 		- [x] Resolve page's direction Left-to-Right or Right-to-Left
 		- [x] Show addon's version on the bottom (also add link to homepage)
 		- [x] Extend hp/xp info
@@ -74,7 +74,7 @@
 	- [x] Mercenaries management Interface
 	- [x] Items' shadow
 	- [x] Save costume's properties
-	- [x] ✎ Drag&Drop item to see the material needed to repair it (Not in settings)
+	- [x] Drag&Drop item to see the material needed to repair it
 	- [x] Show buff's detailed timer on tooltip
 
 
@@ -113,7 +113,6 @@
 
 
 - **Pantheon Gods**
-	- [ ] ✎	Layout Improve - needed ?
 	- [ ] Recolored buttons based of each god's favor 
 	- [x] Percent(%) of points, red color on 100%
 
@@ -208,7 +207,7 @@
 - **Training**
 	- [x] Show basic points bars
 	- [x] Show stats changes on upgrade
-	- [ ] Training Cost calculator (arrow down to 0 + show sum)
+	- [ ] Training Cost calculator (arrow down to 0 + show total)
 	- [ ] Propose points to upgrade
 	- [x] Stats breakdown calculator (Block, Critical hits, Avoid critical, Double hits, hits, heal etc...)
 	- [ ] Advance calculation (load heal from dungeon player + choose target player to calculate hits etc)
@@ -273,7 +272,7 @@
 ### Locations Script
 
 - **Locations**
-	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area...)
+	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area... - underworld)
 	- [x] Underworld enemies interface converted to old style
 
 
@@ -317,7 +316,7 @@
 - **Reports**
 	- [x] Improved style / Day separators 
 	- [x] Rewarded items stats on mouse over (tooltips)
-	- [x] Gather materials droped information
+	- [x] Gather information (materials dropped)
 	- [ ] Gather stats
 	- [ ] Show battle stances next to theoretical
 	- [ ] Post new drops OR post them on every report
@@ -366,8 +365,8 @@
 
 ### Forge Script
 
-- **Forge Interface**
-	- [ ] Links to your bag and the market of the remaining required smelt items
+- **Forge/Workbench Interface**
+	- [x] ✎Links to your bag and the market of the remaining required smelt items
 
 
 
@@ -383,7 +382,7 @@
 ### Translations Script
 
 - **Translations**
-	- [ ] New system
+	- [x] ✎New system
 
 
 
@@ -391,7 +390,7 @@
 ### Audio Script
 
 - **Audio Manages**
-	- [ ] Setup system
+	- [x] ✎Setup system
 
 
 
