@@ -59,15 +59,12 @@ gca_languages['fa'] = {
 			"medic_points_to_heal": "میزان سلامتی معالجه",
 			"medic_life_after_heal": "میزان سلامتی بعد معالجه"
 		},
-		"training": {
-			"costs_discount": "تخفیف اتحاد"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "تعداد وسایل",
-			"number_of_bided_items": "تعداد قیمت گذاری شده ها",
+			"number_of_items": "تعداد وسایل : {{number}}",
+			"number_of_bided_items": "تعداد قیمت گذاری شده ها : {{number}}",
 			"hide_your_gold_here": "بانکینگ طلا",
-			"price_value_function": "قیمت = ارزش",
-			"levels_you_can_see": "سطح وسایلی که میبینید"
+			"price_value_function": "قیمت = ارزش + {{number}}"
 		},
 		"settings": {
 			"settings": "تنظیمات",

@@ -59,15 +59,12 @@ gca_languages['lv'] = {
 			"medic_points_to_heal": "Izveseļojamie dzīvības punkti",
 			"medic_life_after_heal": "Dzīvības punkti pēc ārstniecības"
 		},
-		"training": {
-			"costs_discount": "Ģildes atlaide"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Priekšmetu skaits",
-			"number_of_bided_items": "Solīto priekšmetu skaits",
+			"number_of_items": "Priekšmetu skaits : {{number}}",
+			"number_of_bided_items": "Solīto priekšmetu skaits : {{number}}",
 			"hide_your_gold_here": "Noslēp zeltu!",
-			"price_value_function": "Cena=vērtība",
-			"levels_you_can_see": "Redzamais priekšmetu līmenis"
+			"price_value_function": "Cena=vērtība + {{number}}"
 		},
 		"settings": {
 			"settings": "Iestatījumi",

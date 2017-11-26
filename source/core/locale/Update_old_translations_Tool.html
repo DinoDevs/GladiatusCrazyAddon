@@ -87,15 +87,15 @@ function convert(){
 			medic_life_after_heal : old.life_after_heal,
 		},
 		training : {
-			costs_discount : old.guild_discount, //IT SHOULD BE ONLY DISCUNT - NOT GUILD
+			//costs_discount : old.guild_discount, //IT SHOULD BE ONLY DISCUNT - NOT GUILD
 		},
 		auction : {
 			//items_info : old.,
-			number_of_items : old.number_of_items,
-			number_of_bided_items : old.number_of_bided_items,
+			number_of_items : old.number_of_items + " : {{number}}",
+			number_of_bided_items : old.number_of_bided_items+" : {{number}}",
 			hide_your_gold_here : old.hide_your_gold_here,
-			price_value_function : old.price_eq_value,
-			levels_you_can_see : old.levels_you_can_see,
+			price_value_function : old.price_eq_value+" + {{number}}",
+			//levels_you_can_see : old.levels_you_can_see, {{min}} {{max}}
 		},
 		settings : {
 			settings : old.OPTIONS_SETTINGS,

@@ -60,15 +60,12 @@ gca_languages['nb'] = {
 			"medic_points_to_heal": "poeng til helbreding",
 			"medic_life_after_heal": "liv etter helbreding"
 		},
-		"training": {
-			"costs_discount": "klan rabatt"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "antall gjenstander",
-			"number_of_bided_items": "antall bydde gjenstander",
+			"number_of_items": "antall gjenstander : {{number}}",
+			"number_of_bided_items": "antall bydde gjenstander : {{number}}",
 			"hide_your_gold_here": "gjem gullet dit her",
-			"price_value_function": "pris = verdi",
-			"levels_you_can_see": "gjenstands nivå du kan se er"
+			"price_value_function": "pris = verdi + {{number}}"
 		},
 		"settings": {
 			"settings": "Instillinger",

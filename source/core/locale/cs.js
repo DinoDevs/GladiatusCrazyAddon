@@ -61,15 +61,12 @@ gca_languages['cs'] = {
 			"medic_points_to_heal": "Body k vyléčení",
 			"medic_life_after_heal": "Životy po vyléčení"
 		},
-		"training": {
-			"costs_discount": "Gildovní sleva"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Počet předmětů",
-			"number_of_bided_items": "Počet nabídnutých předmětů",
+			"number_of_items": "Počet předmětů : {{number}}",
+			"number_of_bided_items": "Počet nabídnutých předmětů : {{number}}",
 			"hide_your_gold_here": "Zde můžeš uložit zlato",
-			"price_value_function": "Cena = Hodnota",
-			"levels_you_can_see": "Nejvyšší level který vidíš je"
+			"price_value_function": "Cena = Hodnota + {{number}}"
 		},
 		"settings": {
 			"settings": "Nastavení",

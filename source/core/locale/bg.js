@@ -60,15 +60,12 @@ gca_languages['bg'] = {
 			"medic_points_to_heal": "Точки след лечение",
 			"medic_life_after_heal": "Живот след лечение"
 		},
-		"training": {
-			"costs_discount": "Guild discount"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Брой итеми",
-			"number_of_bided_items": "Брой избрани итеми",
+			"number_of_items": "Брой итеми : {{number}}",
+			"number_of_bided_items": "Брой избрани итеми : {{number}}",
 			"hide_your_gold_here": "Купи без загуба на злато",
-			"price_value_function": "Цена = Стойност",
-			"levels_you_can_see": "Най- високото ниво, което можеш да видиш е"
+			"price_value_function": "Цена = Стойност + {{number}}"
 		},
 		"settings": {
 			"settings": "Настройки",

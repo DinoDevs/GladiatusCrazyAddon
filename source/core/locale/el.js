@@ -81,14 +81,14 @@ gca_languages["gr"] = {
 			"medic_life_after_heal": "Ζωή μετά την θεραπεία"
 		},
 		"training": {
-			"costs_discount": "Έκπτωση τάγματος"
+			"costs_discount": "Έκπτωση κόστους: {{number}}%"
 		},
 		"auction": {
-			"number_of_items": "Αριθμός αντικειμένων",
-			"number_of_bided_items": "Αριθμός δημοπρατούμενων αντικειμένων",
+			"number_of_items": "Αριθμός αντικειμένων : {{number}}",
+			"number_of_bided_items": "Αριθμός δημοπρατούμενων αντικειμένων : {{number}}",
 			"hide_your_gold_here": "Κρύψε τον χρυσό σου εδώ",
-			"price_value_function": "Τιμή = Αξία",
-			"levels_you_can_see": "Τα επίπεδα αντικειμένων που μπορείς να δεις είναι"
+			"price_value_function": "Τιμή = Αξία + {{number}}",
+			"levels_you_can_see": "Μπορείς να δεις αντικείμα επιπέδου από {{min}} έως {{max}}."
 		},
 		"settings": {
 			"settings": "Ρυθμίσεις",

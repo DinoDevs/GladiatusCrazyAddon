@@ -62,15 +62,12 @@ gca_languages['ar'] = {
 			"medic_points_to_heal": "نقاط الشفاء",
 			"medic_life_after_heal": "نقاط الحياه بعد الشفاء"
 		},
-		"training": {
-			"costs_discount": "النقابه المُعاديه"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "عدد البنود",
-			"number_of_bided_items": "عدد البنود المنتظره بعد المزاد",
+			"number_of_items": "عدد البنود : {{number}}",
+			"number_of_bided_items": "عدد البنود المنتظره بعد المزاد : {{number}}",
 			"hide_your_gold_here": "يمكنك إخفاء الذهب الخاص بك هنا",
-			"price_value_function": "السعر لا يساوي القيمه",
-			"levels_you_can_see": "مستوايات العناصر التي يمكن أن تراها"
+			"price_value_function": "السعر لا يساوي القيمه + {{number}}"
 		},
 		"settings": {
 			"settings": "إعدادات",

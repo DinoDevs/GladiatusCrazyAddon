@@ -59,15 +59,12 @@ gca_languages['ru'] = {
 			"medic_points_to_heal": "Очков здоровья будет вылечено",
 			"medic_life_after_heal": "Здоровье после лечения"
 		},
-		"training": {
-			"costs_discount": "Скидка за счет гильдии"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Количество предметов",
-			"number_of_bided_items": "Число ставок",
+			"number_of_items": "Количество предметов : {{number}}",
+			"number_of_bided_items": "Число ставок : {{number}}",
 			"hide_your_gold_here": "Можно просейвить тут",
-			"price_value_function": "цена = стоимости",
-			"levels_you_can_see": "Уровень вещей которые Вы можете видеть"
+			"price_value_function": "цена = стоимости + {{number}}"
 		},
 		"settings": {
 			"settings": "Настройки",

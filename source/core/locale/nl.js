@@ -60,15 +60,12 @@ gca_languages['nl'] = {
 			"medic_points_to_heal": "Genezende punten",
 			"medic_life_after_heal": "Leven na genezing"
 		},
-		"training": {
-			"costs_discount": "Gildekorting"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Aantal voorwerpen",
-			"number_of_bided_items": "Aantal voorwerpen waarop geboden is",
+			"number_of_items": "Aantal voorwerpen : {{number}}",
+			"number_of_bided_items": "Aantal voorwerpen waarop geboden is : {{number}}",
 			"hide_your_gold_here": "Zet hier je goud veilig",
-			"price_value_function": "Prijs is gelijk aan waarde",
-			"levels_you_can_see": "Het level van de voorwerpen die je kunt zien is"
+			"price_value_function": "Prijs is gelijk aan waarde + {{number}}"
 		},
 		"settings": {
 			"settings": "Instellingen",

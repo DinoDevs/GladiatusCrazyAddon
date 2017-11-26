@@ -59,15 +59,12 @@ gca_languages['ro'] = {
 			"medic_points_to_heal": "Puncte de vindecare",
 			"medic_life_after_heal": "Viaţa după vindecare"
 		},
-		"training": {
-			"costs_discount": "Discountul breslei"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Numarul obiectelor",
-			"number_of_bided_items": "Numărul obiectelor licitate",
+			"number_of_items": "Numarul obiectelor : {{number}}",
+			"number_of_bided_items": "Numărul obiectelor licitate : {{number}}",
 			"hide_your_gold_here": "Ascude-ţi aici aurul",
-			"price_value_function": "Preţ = Valuare",
-			"levels_you_can_see": "Nivelul obiectelor pe care le poţi vedea este"
+			"price_value_function": "Preţ = Valuare + {{number}}"
 		},
 		"settings": {
 			"settings": "Setări",

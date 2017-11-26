@@ -59,15 +59,12 @@ gca_languages['pl'] = {
 			"medic_points_to_heal": "Punkty zdrowia",
 			"medic_life_after_heal": "Życie po uleczeniu"
 		},
-		"training": {
-			"costs_discount": "rabat gildii"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Liczba przedmiotów",
-			"number_of_bided_items": "Liczba licytowanych przedmiotów",
+			"number_of_items": "Liczba przedmiotów : {{number}}",
+			"number_of_bided_items": "Liczba licytowanych przedmiotów : {{number}}",
 			"hide_your_gold_here": "Schowaj swoje złoto tu",
-			"price_value_function": "Cena = Wartość",
-			"levels_you_can_see": "Poziom przedmiotów które możesz zobaczyć"
+			"price_value_function": "Cena = Wartość + {{number}}"
 		},
 		"settings": {
 			"settings": "Ustawienia",

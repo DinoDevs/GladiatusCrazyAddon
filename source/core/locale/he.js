@@ -59,15 +59,12 @@ gca_languages['he'] = {
 			"medic_points_to_heal": "נקודות חיים שיתמלאו",
 			"medic_life_after_heal": "נקודות חיים לאחר המילוי"
 		},
-		"training": {
-			"costs_discount": "הנחת אגודה"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "מספר חפצים",
-			"number_of_bided_items": "מספר חפצים שהציעו עליהם",
+			"number_of_items": "מספר חפצים : {{number}}",
+			"number_of_bided_items": "מספר חפצים שהציעו עליהם : {{number}}",
 			"hide_your_gold_here": "החבא כאן זהב",
-			"price_value_function": "מחיר = ערך",
-			"levels_you_can_see": "רמת הפריטים שניתן לראות"
+			"price_value_function": "מחיר = ערך + {{number}}"
 		},
 		"settings": {
 			"settings": "הגדרות",

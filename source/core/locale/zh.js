@@ -59,15 +59,12 @@ gca_languages['zh'] = {
 			"medic_points_to_heal": "治療後增加的生命值",
 			"medic_life_after_heal": "治療後的生命值"
 		},
-		"training": {
-			"costs_discount": "公會折扣"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "項目數",
-			"number_of_bided_items": "已出價的項目數",
+			"number_of_items": "項目數 : {{number}}",
+			"number_of_bided_items": "已出價的項目數 : {{number}}",
 			"hide_your_gold_here": "在這裡隱藏你的金幣",
-			"price_value_function": "價格=價值",
-			"levels_you_can_see": "你可以看見的物品等級"
+			"price_value_function": "價格=價值 + {{number}}"
 		},
 		"settings": {
 			"settings": "設置",

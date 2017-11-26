@@ -59,15 +59,12 @@ gca_languages['tr'] = {
 			"medic_points_to_heal": "Tedavi edilecek kısım",
 			"medic_life_after_heal": "Tedavi sonrası enerji"
 		},
-		"training": {
-			"costs_discount": "İttifak indirimi"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Eşya sayısı",
-			"number_of_bided_items": "Teklif yapılan eşya sayısı",
+			"number_of_items": "Eşya sayısı : {{number}}",
+			"number_of_bided_items": "Teklif yapılan eşya sayısı : {{number}}",
 			"hide_your_gold_here": "Altınınızı burada saklayabilirsiniz",
-			"price_value_function": "Ücret = Değeri",
-			"levels_you_can_see": "Burada görebileceğiniz eşya seviyeleri"
+			"price_value_function": "Ücret = Değeri + {{number}}"
 		},
 		"settings": {
 			"settings": "Ayarlar",

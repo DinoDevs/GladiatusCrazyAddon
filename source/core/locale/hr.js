@@ -59,15 +59,12 @@ gca_languages['hr'] = {
 			"medic_points_to_heal": "Bodovi za izliječiti",
 			"medic_life_after_heal": "Zdravlje nakon liječenja"
 		},
-		"training": {
-			"costs_discount": "Popust od strane saveza"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Broj predmeta",
-			"number_of_bided_items": "Broj predmeta na koje je ponuđeno",
+			"number_of_items": "Broj predmeta : {{number}}",
+			"number_of_bided_items": "Broj predmeta na koje je ponuđeno : {{number}}",
 			"hide_your_gold_here": "Sakrijte zlato ovdje",
-			"price_value_function": "Cijena = Vrijednost",
-			"levels_you_can_see": "Level predmeta koje možete vidjeti je"
+			"price_value_function": "Cijena = Vrijednost + {{number}}"
 		},
 		"settings": {
 			"settings": "Postavke",

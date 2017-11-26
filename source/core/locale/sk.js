@@ -59,15 +59,12 @@ gca_languages['sk'] = {
 			"medic_points_to_heal": "Body k vyliečeniu",
 			"medic_life_after_heal": "Body života po liečení"
 		},
-		"training": {
-			"costs_discount": "Spolková zľava"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Počet predmetov",
-			"number_of_bided_items": "Počet aktívnych ponúk",
+			"number_of_items": "Počet predmetov : {{number}}",
+			"number_of_bided_items": "Počet aktívnych ponúk : {{number}}",
 			"hide_your_gold_here": "Vložiť zlato",
-			"price_value_function": "Cena = Hodnota",
-			"levels_you_can_see": "Najvyšší viditeľný level je"
+			"price_value_function": "Cena = Hodnota + {{number}}"
 		},
 		"settings": {
 			"settings": "Nastavenie",

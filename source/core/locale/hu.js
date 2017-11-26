@@ -59,15 +59,12 @@ gca_languages['hu'] = {
 			"medic_points_to_heal": "Gyógyítható életpontok",
 			"medic_life_after_heal": "Gyógyítás utáni életpontok"
 		},
-		"training": {
-			"costs_discount": "Egyesületi kedvezmény"
-		},
+		"training": {},
 		"auction": {
-			"number_of_items": "Talált tárgyak száma",
-			"number_of_bided_items": "Licitált tárgyak száma",
+			"number_of_items": "Talált tárgyak száma : {{number}}",
+			"number_of_bided_items": "Licitált tárgyak száma : {{number}}",
 			"hide_your_gold_here": "Arany elrejtése",
-			"price_value_function": "Ár = Érték",
-			"levels_you_can_see": "Látható tárgyak szintje"
+			"price_value_function": "Ár = Érték + {{number}}"
 		},
 		"settings": {
 			"settings": "Beállítások",
