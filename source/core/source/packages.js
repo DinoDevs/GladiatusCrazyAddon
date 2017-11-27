@@ -588,11 +588,11 @@ var gca_packages = {
 						let own = item.data("tooltip")[0][0][0].match(new RegExp(that.nameRegexp,'i'));
 						if(own){
 							this.style.filter = "drop-shadow(2px 2px 1px rgba(255,0,0,0.4)) drop-shadow( 2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(255,0,0,0.4))";
-							item.data("tooltip")[0].push(["You know this scroll", "red"]); // TODO : translation needed
+							item.data("tooltip")[0].push([gca_locale.get("packages","known_scroll"), "red"]);
 						}
 						else{
 							this.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
-							item.data("tooltip")[0].push(["You don't know this scroll", "green"]); // TODO : translation needed
+							item.data("tooltip")[0].push([gca_locale.get("packages","unknown_scroll"), "green"]);
 						}
 					});
 				}

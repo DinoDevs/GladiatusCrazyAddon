@@ -162,7 +162,11 @@ gca_languages["en"] = {
 		forge : {
 			forge_ended : "Forge ended!"
 		},
-		
+		// Packages
+		packages : {
+			known_scroll : "You know this scroll",
+			unknown_scroll : "You don't know this scroll"
+		},
 		// Settings
 		settings : {
 			// Settings
