@@ -39,7 +39,7 @@ We suggest you to download a *stable release*. Alpha releases are for developers
 ### Latest dev build v4.x.x <sub><sup>(recomended)</sup></sub>
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![version type](https://img.shields.io/badge/latest%20build-26--NOV--2017-green.svg?style=flat-square)
-[![progress](https://img.shields.io/badge/progress-67%25%20(132%2F197)-lightgrey.svg?style=flat-square)](https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/Progress.md)
+[![progress](https://img.shields.io/badge/progress-68%25%20(135%2F200)-lightgrey.svg?style=flat-square)](https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/Progress.md)
 <sub><sup>Updated on 26-Nov-2017</sup></sub>
 
 

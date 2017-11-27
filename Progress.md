@@ -272,7 +272,7 @@
 ### Locations Script
 
 - **Locations**
-	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area... - underworld)
+	- [x] ✎ Show enemies' materials most dropped (drops changed? new drops? new area... - underworld/events)
 	- [x] Underworld enemies interface converted to old style
 
 
@@ -366,8 +366,8 @@
 ### Forge Script
 
 - **Forge Interface**
-	- [ ] Links to your bag and the market of the remaining required smelt items
-	- [ ] Finish timer on main menu + Notification
+	- [x] ✎Links to your bag and the market of the remaining required smelt items
+	- [x] Finish timer on main menu + Notification
 - **Smelt Interface**
 	- [x] Finish timer on main menu + Notification
 - **Workbench Interface**

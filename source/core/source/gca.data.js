@@ -459,7 +459,9 @@ gca_options.data = {
 	// Forge
 	"forge" : {
 		// Packages & market shortcuts for each material need (forge/repair)
-		"material_links" : true
+		"material_links" : true,
+		// Show Prefix/Sufix/Base levels
+		"show_levels" : true
 	},
 	
 	// Magus

@@ -157,7 +157,12 @@ gca_languages["en"] = {
 			// Levels you can see
 			levels_you_can_see : "You can see items from level {{min}} to level {{max}}.",
 		},
-
+		
+		// Forge
+		forge : {
+			forge_ended : "Forge ended!"
+		},
+		
 		// Settings
 		settings : {
 			// Settings
@@ -267,6 +272,7 @@ gca_languages["en"] = {
 			category_merchants$fade_unaffordable_items : "Fade items that you can not afford",
 			// Settings - Forge
 			category_forge$material_links : "Show packages & market shortcuts for each material need (forge/repair)",
+			category_forge$show_levels : "Show Prefix/Sufix/Base item levels next to names (forge)",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Expedition
