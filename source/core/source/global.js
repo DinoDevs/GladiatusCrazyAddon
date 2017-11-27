@@ -2776,7 +2776,6 @@ var gca_global = {
 
 	// Underworld related functions
 	underworld : {
-
 		// Pray Icon Shortcut
 		prayBufShortCut : function(){
 			// Get local buffs
@@ -3283,7 +3282,7 @@ var gca_global = {
 				
 				// Add description
 				//div = document.createElement('div');
-				//div.textContent = "Click on graph's legends to enable/disable data groups. Gold and Experience data are summed starting from 7 days ago."; // TODO : translations
+				//div.textContent = "Click on graph's legends to enable/disable data groups. Gold and Experience data are summed starting from 7 days ago.";
 				//dialog.body.appendChild(div);
 				
 				// Add some space
@@ -3455,7 +3454,7 @@ var gca_global = {
 										data: goldDataAverage
 									},
 									{
-										label: "Total "+gold_tran,
+										label: gca_locale.get("global","gold_exp_data_total_gold"),
 										fill: true,
 										backgroundColor: "rgba(255,193,7,0.3)",
 										borderColor: "rgba(255,193,7,1)",
@@ -3463,7 +3462,7 @@ var gca_global = {
 										hidden: true
 									},
 									{
-										label: 'Measurements', // TODO - translate
+										label: gca_locale.get("global","gold_exp_data_measurements"), 
 										type: 'line',
 										backgroundColor: "rgba(255,193,7,0.3)",
 										borderColor: "rgba(255,193,7,1)",
@@ -3481,7 +3480,7 @@ var gca_global = {
 										hidden: true
 									},
 									{
-										label: "Total "+exp_tran,
+										label: gca_locale.get("global","gold_exp_data_total_exp"),
 										fill: true,
 										backgroundColor: "rgba(75,192,192,0.3)",
 										borderColor: "rgba(75,192,192,1)",
@@ -3489,7 +3488,7 @@ var gca_global = {
 										hidden: true
 									},
 									{
-										label: 'Measurements', // TODO - translate
+										label: gca_locale.get("global","gold_exp_data_measurements"),
 										type: 'line',
 										backgroundColor: "rgba(75,192,192,0.3)",
 										borderColor: "rgba(75,192,192,1)",
