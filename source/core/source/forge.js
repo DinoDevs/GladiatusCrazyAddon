@@ -103,24 +103,46 @@ var gca_forge = {
 					
 					var li = document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('li');
 					var name,linkBox;
+					var all_names="";
 					var links=[];
 					for(var i=0;i<li.length;i++){
-						name = encodeURIComponent(li[i].getElementsByTagName('div')[0].title);
+						//name = encodeURIComponent(li[i].getElementsByTagName('div')[0].title);
+						name = slotsData[tab].formula.needed[Object.keys(slotsData[tab].formula.needed)[i]].name;
+						if(document.getElementsByClassName('forge_amount')[i].style.backgroundColor!="greenyellow")
+							all_names+=name.split(" ")[name.split(" ").length-1]+" ";
 						linkBox = document.createElement('div');
-						linkBox.className = 'forge_amount';
-						linkBox.style = 'background-color: #bba86e;font-size: 12px;';
+						//linkBox.className = 'forge_amount';
+						linkBox.style = 'background-color: #bba86e;font-size: 14px;position: absolute;width: 16px;margin-top: -46px;margin-left: 32px;line-height: 23px;';
 						li[i].appendChild(linkBox);
 						links[0] = document.createElement('a');
-						links[0].href = gca_getPage.link({"mod":"packages","qry":name});
+						links[0].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"packages","qry":name,"&f":"18"})+"';");
+						links[0].title = document.getElementById("menue_packages").title+": "+name;
 						links[0].textContent = '⧉ ';
-						links[0].style = "text-decoration:none;";
+						links[0].style = "text-decoration:none;cursor:pointer;";
 						linkBox.appendChild(links[0]);
 						links[1] = document.createElement('a');
-						links[1].href = gca_getPage.link({"mod":"market","qry":name});
+						links[1].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"market","qry":name,"&f":"18"})+"';");
+						links[1].title = ((document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].href.match("mod=market"))?document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].textContent+": ":"") + name;
 						links[1].textContent = ' ⚖';
-						links[1].style = "text-decoration:none;";
+						links[1].style = "text-decoration:none;cursor:pointer;";
 						linkBox.appendChild(links[1]);
 					}
+					
+					linkBox = document.createElement('div');
+					linkBox.style = 'width: 16px;font-size: 12px;position: absolute;margin-top: -32px;line-height: 16px;';
+					document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('ul')[0].appendChild(linkBox);
+					links[0] = document.createElement('a');
+					links[0].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"packages","qry":all_names,"&f":"18"})+"';");
+					links[0].title = document.getElementById("menue_packages").title+": "+all_names;
+					links[0].textContent = '⧉ ';
+					links[0].style = "text-decoration:none;cursor:pointer;";
+					linkBox.appendChild(links[0]);
+					links[1] = document.createElement('a');
+					links[1].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"market","qry":all_names,"&f":"18"})+"';");
+					links[1].title = ((document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].href.match("mod=market"))?document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].textContent+": ":"") + all_names;
+					links[1].textContent = ' ⚖';
+					links[1].style = "text-decoration:none;cursor:pointer;";
+					linkBox.appendChild(links[1]);
 				}
 			}
 			
