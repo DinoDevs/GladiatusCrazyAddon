@@ -19,6 +19,8 @@ var gca_forge = {
 			
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
+			
+			this.recraft.inject();
 		// Smelt
 		}else if(gca_section.submod=='smeltery'){
 			this.saveSmeltTimers();
@@ -88,6 +90,7 @@ var gca_forge = {
 		}
 	},
 	
+	// Shortcuts for materials in packages and market
 	sourceLinks : {
 		inject : function(){
 			document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks=-1;
@@ -150,9 +153,55 @@ var gca_forge = {
 				gca_forge.sourceLinks.repeat();
 			}, 500);
 		}
+	},
+	
+	recraft : {
+		inject : function(){
+			// Make button
+			var recraft_button = document.createElement('div');
+			recraft_button.className = "awesome-button";
+			recraft_button.id = "recraft_button";
+			recraft_button.style="margin-top: 15px;";
+			recraft_button.textContent = "Recraft item";
+			recraft_button.dataset.tab=-1;
+			recraft_button.onclick = function(event) {
+				gca_forge.recraft.repeat();
+				var tab = document.getElementById('recraft_button').dataset.tab;
+				if (tab==-1)
+					return;
+				// Loot materials
+				sendAjax(jQuery(this), "ajax.php", "mod=forge&submod=lootbox&mode=forging&slot=" + tab);
+				// Re craft item
+				var tab = document.getElementById('recraft_button').dataset.tab;
+				var basic = document.getElementById("forge_itembox").getElementsByTagName('div')[0].className.replace("item-i-","");
+				forgeAjax(this, "rent", "rent=" + slotsData[tab].formula.rent[2] + "&item=" + basic + "&prefix=" + slotsData[tab].formula.prefix + "&suffix=" + slotsData[tab].formula.suffix);
+			};
+			document.getElementById('forge_button_box').appendChild(recraft_button);
+			
+			document.getElementById('forge_nav').onclick = function(event) { document.getElementById('recraft_button').dataset.tab=-1;gca_forge.recraft.repeat(); };
+			
+			this.repeat();
+		},
+		repeat : function(){
+			if(document.getElementById("slot-finished-failed").className!="hidden"){
+				var tab = document.getElementById('forge_nav').getElementsByClassName('tabActive')[0].className.match(/forge_finished-failed (\d) tabActive/i)[1];
+				document.getElementById('recraft_button').dataset.tab=tab;
+				if (slotsData[tab]){
+					document.getElementById('recraft_button').textContent = "Recraft item: "+slotsData[tab].formula.rent[2]+" ";
+					var icon_gold = document.createElement('div');
+					if(slotsData[tab].formula.rent[2]>document.getElementById('sstat_gold_val').textContent.replace(/\./g,"")){
+						document.getElementById('recraft_button').className += " disabled";
+					}
+					icon_gold.className = "icon_gold";
+					document.getElementById('recraft_button').appendChild(icon_gold);
+				}
+			}
+			
+			setTimeout(function(){
+				gca_forge.recraft.repeat();
+			}, 500);
+		}
 	}
-	
-	
 };
 
 (function(){

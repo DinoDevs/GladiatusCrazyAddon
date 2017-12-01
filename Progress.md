@@ -37,7 +37,7 @@
 		- [x] Attacked timers \["global","attacked_timers"\]
 		- [x] Quest timer \["global","quest_timer"\]
 		- [x] Merchants Timer \["global","merchants_timer"\]
-		- [x] ✎	Forge Timer (only for smelt)
+		- [x] Forge Timers (forge/smelt)
 		- [x] Add Item shadow \["global","item_shadow"\]
 		- [x] Dice event timer \["global","craps_timer"\]
 		- [x] Remember merchants tabs \["global","remember_tabs"\]
@@ -109,7 +109,7 @@
 
 
 - **Pantheon Missions**
-	- [x] ✎	Show completed missions
+	- [x] Show completed missions
 
 
 - **Pantheon Gods**
@@ -366,12 +366,13 @@
 ### Forge Script
 
 - **Forge Interface**
-	- [x] ✎Links to your bag and the market of the remaining required smelt items
-	- [x] Finish timer on main menu + Notification
+	- [x] Links to your bag and the market of the remaining required smelt items
+	- [x] Forge timer on main menu + Notification
+	- [x] Button when forge fails to re-craft the item
 - **Smelt Interface**
-	- [x] Finish timer on main menu + Notification
+	- [x] Smelt timer on main menu + Notification
 - **Workbench Interface**
-	- [x] ✎Links to your bag and the market of the remaining required smelt items
+	- [x] Links to your bag and the market of the remaining required smelt items
 
 
 
