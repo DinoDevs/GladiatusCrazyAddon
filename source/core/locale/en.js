@@ -163,7 +163,8 @@ gca_languages["en"] = {
 		
 		// Forge
 		forge : {
-			forge_ended : "Forge ended!"
+			forge_ended : "Forge ended!",
+			recraft_item : "Re-craft item"
 		},
 		// Packages
 		packages : {

@@ -90,6 +90,10 @@ gca_languages["gr"] = {
 			"price_value_function": "Τιμή = Αξία + {{number}}",
 			"levels_you_can_see": "Μπορείς να δεις αντικείμα επιπέδου από {{min}} έως {{max}}."
 		},
+		forge : {
+			forge_ended : "Η σφυρηλάτηση τελείωσε!",
+			recraft_item : "Σφυρηλάτηση ξανά"
+		},
 		"settings": {
 			"settings": "Ρυθμίσεις",
 			"description": "Ενεργοποίησε ή απενεργοποίησε οποιοδήποτε μέσα στο προσθέτου!",

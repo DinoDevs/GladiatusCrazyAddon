@@ -162,7 +162,7 @@ var gca_forge = {
 			recraft_button.className = "awesome-button";
 			recraft_button.id = "recraft_button";
 			recraft_button.style="margin-top: 15px;";
-			recraft_button.textContent = "Recraft item";
+			recraft_button.textContent = gca_locale.get("forge","recraft_item");
 			recraft_button.dataset.tab=-1;
 			recraft_button.onclick = function(event) {
 				gca_forge.recraft.repeat();
@@ -187,7 +187,7 @@ var gca_forge = {
 				var tab = document.getElementById('forge_nav').getElementsByClassName('tabActive')[0].className.match(/forge_finished-failed (\d) tabActive/i)[1];
 				document.getElementById('recraft_button').dataset.tab=tab;
 				if (slotsData[tab]){
-					document.getElementById('recraft_button').textContent = "Recraft item: "+slotsData[tab].formula.rent[2]+" ";
+					document.getElementById('recraft_button').textContent = gca_locale.get("forge","recraft_item")+": "+gca_tools.strings.insertDots(slotsData[tab].formula.rent[2])+" ";
 					var icon_gold = document.createElement('div');
 					if(slotsData[tab].formula.rent[2]>document.getElementById('sstat_gold_val').textContent.replace(/\./g,"")){
 						document.getElementById('recraft_button').className += " disabled";
