@@ -159,13 +159,13 @@
 
 
 - **Guild War Camp**
-	- [ ] More stats & better win-lost-draw icons features were implemented 
-	- [ ] Member reports features were implemented
+	- [ ] More stats & better win-lost-draw icons features
+	- [ ] Member reports features
 	- [ ] Button that shows the raided gold next to each attack 
 
 
 - **Guild Buildings**
-	- [ ] Upgrade Calculator was implemented and highly improved
+	- [ ] Upgrade Calculator
 
 
 - **Guild Mail Interface**
@@ -195,9 +195,10 @@
 ### Arena Script
 
 - **Arena**
-	- [ ] Order players by level on Cross Server Arenas
+	- [x] Order players by level on Cross Server Arenas
 	- [ ] Enemy datails (win / losses)
 	- [ ] Link to the simulator
+	- [x] Option to ignore attack confirmations (default: disabled)
 
 
 
@@ -365,15 +366,11 @@
 
 ### Forge Script
 
-- **Forge Interface**
-	- [x] Links to your bag and the market of the remaining required smelt items
-	- [x] Forge timer on main menu + Notification
-	- [x] Button when forge fails to re-craft the item
-- **Smelt Interface**
-	- [x] Smelt timer on main menu + Notification
-- **Workbench Interface**
-	- [x] Links to your bag and the market of the remaining required smelt items
-
+- **Forge/Smelt/Workbench Interface**
+	- [x] Links to your bag and the market of the remaining needed materials (Forge/Workbench)
+	- [x] Guild message with the remaining needed materials + probable quality (Forge/Workbench)
+	- [x] Forge/Smelt timer on main menu + Notifications when done
+	- [x] Button when forge fails, to re-craft the item
 
 
 

@@ -166,6 +166,7 @@ gca_languages["en"] = {
 			forge_ended : "Forge ended!",
 			recraft_item : "Re-craft item"
 		},
+		
 		// Packages
 		packages : {
 			known_scroll : "You know this scroll",
@@ -189,6 +190,7 @@ gca_languages["en"] = {
 			category_training : "Training",
 			category_merchants : "Merchants",
 			category_forge : "Forge",
+			category_arena : "Arena",
 			category_magus : "Magus",
 			category_expedition : "Expedition",
 			category_guild : "Guild",
@@ -281,6 +283,8 @@ gca_languages["en"] = {
 			// Settings - Forge
 			category_forge$material_links : "Show packages & market shortcuts for each material need (forge/repair)",
 			category_forge$show_levels : "Show Prefix/Sufix/Base item levels next to names (forge)",
+			// Settings - Arena
+			category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Expedition

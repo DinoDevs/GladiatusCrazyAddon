@@ -96,6 +96,11 @@ var manager = {
 					this.section.forge();
 					break;
 
+				// Arena
+				case "arena":
+					this.section.arena();
+					break;
+					
 				// Market
 				case "market":
 					this.section.markets();
@@ -264,6 +269,11 @@ var manager = {
 		// Forge section
 		forge : function() {
 			tools.loadScript("source/forge.js");
+		},
+		
+		// Arena section
+		arena : function() {
+			tools.loadScript("source/arena.js");
 		},
 		
 		// Markets

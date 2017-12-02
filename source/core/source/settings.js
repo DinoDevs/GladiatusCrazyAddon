@@ -349,6 +349,12 @@ var gca_settings = {
 				"show_levels" : true
 			},
 			
+			// Arena
+			"arena" : {
+				// Ignore attack confirmations
+				"ignore_attack_confirmations" : false
+			},
+			
 			// Magus
 			"magus" : {
 				// Fade items that you can not improve
