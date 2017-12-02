@@ -8,46 +8,40 @@
 
 - **Global** (Changes on every game page)
 	- **Preloading**
-		- [x] Cache event bar's position (moving it before page loads) [if needed]
-		- [x] Disable submenu change on page load (prevent menu change if mouseover) \["global","submenu_click_to_change"\]
-		- [x] Enable page x-Scroll \["global","x-scroll"\]
-		- [x] Preload item shadow \["global","item_shadow"\]
+		- [x] Cache event bar's position (moving it before page loads)
+		- [x] Submenu needs click to change (prevent menu change if mouseover)
+		- [x] Enable page horizontal-scroll
+		- [x] Item shadow based on their quality
 	- **Onload**
 		- [x] Resolve game mode (travel / underworld / dice event / server quest / location event / Service wait screen)
 			- [x] Event timers (event / dice event / server quest / location event)
 		- [x] Resolve page's direction Left-to-Right or Right-to-Left
 		- [x] Show addon's version on the bottom (also add link to homepage)
 		- [x] Extend hp/xp info
-			- [x] Show more info \["global","extended_hp_xp_info"\]
-				- [x] Life potion shortcut \["global","extended_hp_xp_info_potion"\]
-			- [x] Time for full life \["global","hp_timer_for_full_life"\]
-		- [x] Button bar \["global","shortcuts_bar"\]
-			- [x] Create (added option to select which buttons)
+			- [x] Show more info
+			- [x] Life potion shortcut next to hp bar
+			- [x] Time for full life
+		- [x] Button bar
+			- [x] Option to enable/disable buttons
 			- [x] Online friends
 			- [x] Guild donate
-			- [x] Player stats \["stats", "player"\]
-		- [x] Auction status
-			- [x] Auction bar \["global","auction_status_bar"\]
-			- [x] Status notification \["global","auction_status_notification"\]
+			- [x] Player stats
+		- [x] Auction status bar + notifications
 		- [x] Move event bar (if button bar / auction status / hp-xp info)
-		- [x] Top bar \["global","top_fixed_bar"\]
-		- [x] Advance menu \["global","advance_main_menu"\]
+		- [x] Top bar when scrolling down, showing varius info
+		- [x] Advance menu
 			- [x] Remember toggle tabs
-		- [x] Menu click to change \["global","submenu_click_to_change"\]
-		- [x] Attacked timers \["global","attacked_timers"\]
-		- [x] Quest timer \["global","quest_timer"\]
-		- [x] Merchants Timer \["global","merchants_timer"\]
+		- [x] Attacked timers
+		- [x] Quest timer
+		- [x] Merchants Timer
 		- [x] Forge Timers (forge/smelt)
-		- [x] Add Item shadow \["global","item_shadow"\]
-		- [x] Dice event timer \["global","craps_timer"\]
-		- [x] Remember merchants tabs \["global","remember_tabs"\]
-		- [x] Guild application alert \["global","notify_new_guild_application"\]
-			- [x] Check Interval \["timers", "notify_new_guild_application"\]
+		- [x] Dice event timer
+		- [x] Remember merchants tabs
+		- [x] Guild application alert + Check Interval
 		- [x] {Underworld} Pray buff shortCut
-		- [x] Sound notifications for Missions, Dungeons and Arenas
-			- [x] Browser notification
+		- [x] Sound / Browser notifications for Missions, Dungeons and Arenas
 		- [x] Gold / Experience stats monitor
-		- [ ] Player update in the GCA Highscore (if we keep the highscore) OR make a Global Arena
+		- [ ] Player update in the GCA Highscore OR make a Global Arena
 		- [ ] "New version" installed message
 		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit)
 		- [ ] Packages Expire Warning (Set the number of hours for the warning +  Tooltip with the next expire hours on packages button)
@@ -68,6 +62,7 @@
 		- [x] Food life gain (onmouseover)
 		- [x] Items that will give you more Life Point than you need will be transparent
 		- [x] Food show best food (yellow shadow)
+		- [ ] Show red when in underworld
 	- [x] ✎ Daily bonus log (Needs testing / Not in settings)
 	- [x] Show the cap values of Resilience and Block
 	- [x] Display for each mercenary its tooltip (base stats)
@@ -76,6 +71,7 @@
 	- [x] Save costume's properties
 	- [x] Drag&Drop item to see the material needed to repair it
 	- [x] Show buff's detailed timer on tooltip
+	- [ ] Show average item durability
 
 
 - **Overview Stats**
@@ -88,7 +84,7 @@
 
 
 - **Overview Family**
-	- [ ] List with other players you are interested in
+	- [ ] List of other players you are interested in
 
 
 - **Overview Costumes**
@@ -119,8 +115,8 @@
 
 - **Pantheon Mystery Box**
 	- [x] Open all
-	- [ ] Reload reward untill to find selected
-	- [x] Calculate reward value in rubies 
+	- [ ] Reload reward until you find selected OR reload when "opening all" if no selected
+	- [x] Show rewards' value in rubies 
 
 
 
@@ -128,8 +124,8 @@
 ### Guild Script
 
 - **Guild Jail Interface**
-	- [x] Cells are now visible with the creatures inside
-	- [x] Creatures are now sorted by level
+	- [x] UI improvements: Visible cells with the creatures inside
+	- [x] Creatures are sorted by level
 
 
 - **Guild Library Interface** 
@@ -169,8 +165,8 @@
 
 
 - **Guild Mail Interface**
-	- [ ] Improved style
-	- [ ] Check / Uncheck options for each guild members group 
+	- [ ] Improved style (like what?)
+	- [ ] Check all by default (like what?)
 
 
 - **Guild Memebers List Interface**
@@ -187,7 +183,7 @@
 ### Work Script
 
 - **Work**
-	- [ ] Interface improve
+	- [ ] Interface improve (like what?)
 
 
 
@@ -196,7 +192,7 @@
 
 - **Arena**
 	- [x] Order players by level on Cross Server Arenas
-	- [ ] Enemy datails (win / losses)
+	- [ ] Enemy details (win / losses)
 	- [ ] Link to the simulator
 	- [x] Option to ignore attack confirmations (default: disabled)
 
@@ -239,8 +235,7 @@
 	- [x] Items you can afford
 	- [x] Hide your gold system / More info about prices (value compared to price) 
 	- [ ] Advance search options (Gold limit, Damage for weapons, etc) 
-	- [ ] Item Preffix search list 
-	- [ ] Item Suffix search list 
+	- [ ] Item Preffix/Suffix search list
 	- [ ] More levels in the search options 
 	- [x] Level of each item is visible (up-right corner) 
 	- [x] Item levels you can see in auction are shown in building's description
@@ -249,7 +244,7 @@
 	- [x] Multiple bids without page refresh
 	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view)
 	- [ ] Display for each mercenary its tooltip when on mercenaries
-	- [x] ✎	Extra stats shown on item images (only on food for now)
+	- [x] ✎	Extra stats shown on item images (only on food for now) (what else?)
 
 
 
@@ -257,8 +252,7 @@
 ### Market Script
 
 - **Market**
-	- [ ] Item Preffix search list
-	- [ ] Item Suffix search list
+	- [ ] Item Preffix/Suffix search list
 	- [ ] More levels in the search options 
 	- [x] Cancel all items with one button (if "load all pages" is open this will also work)
 	- [ ] Load all the pages 
@@ -320,7 +314,7 @@
 	- [x] Gather information (materials dropped)
 	- [ ] Gather stats
 	- [ ] Show battle stances next to theoretical
-	- [ ] Post new drops OR post them on every report
+	- [ ] Post gathered drops to server every 24h
 
 
 
@@ -334,14 +328,6 @@
 	- [x] ✎	Better item add/remove wrapper - catch no item etc.
 	- [x] ✎	Load more pages - paging fix (has a bug when on last page)
 	- [x] New item category "Event items"
-
-
-
-
-### Server Backup Script
-
-- **Server Backup**
-	- [ ] redirect
 
 
 
@@ -370,7 +356,7 @@
 	- [x] Links to your bag and the market of the remaining needed materials (Forge/Workbench)
 	- [x] Guild message with the remaining needed materials + probable quality (Forge/Workbench)
 	- [x] Forge/Smelt timer on main menu + Notifications when done
-	- [x] Button when forge fails, to re-craft the item
+	- [x] ✎Button when forge fails, to re-craft the item
 
 
 
@@ -393,14 +379,6 @@
 ### Audio Script
 
 - **Audio Manages**
-	- [x] ✎Setup system
-
-
-
-
-### Black Market Script
-
-- **Black Market**
-	- [ ] Set up system
+	- [x] Setup system
 
 
