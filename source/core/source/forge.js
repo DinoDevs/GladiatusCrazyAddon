@@ -79,9 +79,9 @@ var gca_forge = {
 			1,2,3,4,5,6,7,8,9,10,3,5,//Shields
 			1,1,2,3,4,5,6,7,8,9,10,4,//Armor
 			1,1,2,2,3,4,6,7,9,10,5,8,7,//Head
-			1,1,2,3,4,5,6,7,8,9,//Hands
+			1,2,3,4,5,6,7,8,9,//Hands
 			1,1,1,1,1,1,1,1,//Rings
-			1,2,3,4,6,7,8,9,10,//Shoes
+			1,2,3,4,5,6,7,8,9,10,//Shoes
 			1,1,1,1,1,1,1,1,1,1//Amulets
 		];
 		var options = document.getElementById('basic0').getElementsByTagName("option");
