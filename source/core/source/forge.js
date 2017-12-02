@@ -94,7 +94,7 @@ var gca_forge = {
 	sourceLinks : {
 		inject : function(){
 			document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks=-1;
-			document.getElementById('forge_nav').onclick = function(event) { document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks=-1; };
+			document.getElementById('forge_nav').addEventListener("click", function(event) { document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks=-1;console.log("Clicked"); });
 			this.repeat();
 		},
 		repeat : function(){
@@ -107,12 +107,15 @@ var gca_forge = {
 					var li = document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('li');
 					var name,linkBox;
 					var all_names="";
+					var msg="";
 					var links=[];
 					for(var i=0;i<li.length;i++){
 						//name = encodeURIComponent(li[i].getElementsByTagName('div')[0].title);
 						name = slotsData[tab].formula.needed[Object.keys(slotsData[tab].formula.needed)[i]].name;
-						if(document.getElementsByClassName('forge_amount')[i].style.backgroundColor!="greenyellow")
+						if(document.getElementsByClassName('forge_amount')[i].style.backgroundColor!="greenyellow"){
 							all_names+=name.split(" ")[name.split(" ").length-1]+" ";
+							msg+="\n - "+name+": "+document.getElementsByClassName('forge_amount')[i].getElementsByClassName('forge_actual_value')[0].textContent;
+						}
 						linkBox = document.createElement('div');
 						//linkBox.className = 'forge_amount';
 						linkBox.style = 'background-color: #bba86e;font-size: 14px;position: absolute;width: 16px;margin-top: -46px;margin-left: 32px;line-height: 23px;';
@@ -131,21 +134,58 @@ var gca_forge = {
 						linkBox.appendChild(links[1]);
 					}
 					
+					if(msg.length>0){
+						var most_probable=0;
+						var most_probable_color="";
+						var qualities = document.getElementById('forge_qualities').getElementsByTagName('li');
+						for(i=0;i<qualities.length;i++){
+							if(qualities[i].textContent.match(/(\d+)%/)[1]>most_probable){
+								most_probable=qualities[i].textContent.match(/(\d+)%/)[1];
+								most_probable_color=qualities[i].textContent;
+							}
+						}
+						
+						msg = document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('legend')[0].textContent+" ("+most_probable_color+")"+msg;
+					}
+					
 					linkBox = document.createElement('div');
-					linkBox.style = 'width: 16px;font-size: 12px;position: absolute;margin-top: -32px;line-height: 16px;';
+					linkBox.style = 'width: 16px;font-size: 12px;position: absolute;margin-top: -46px;line-height: 16px;';
 					document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('ul')[0].appendChild(linkBox);
 					links[0] = document.createElement('a');
 					links[0].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"packages","qry":all_names,"&f":"18"})+"';");
 					links[0].title = document.getElementById("menue_packages").title+": "+all_names;
-					links[0].textContent = '⧉ ';
+					links[0].textContent = ' ⧉ ';
 					links[0].style = "text-decoration:none;cursor:pointer;";
 					linkBox.appendChild(links[0]);
 					links[1] = document.createElement('a');
 					links[1].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"market","qry":all_names,"&f":"18"})+"';");
 					links[1].title = ((document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].href.match("mod=market"))?document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].textContent+": ":"") + all_names;
-					links[1].textContent = ' ⚖';
+					links[1].textContent = ' ⚖ ';
 					links[1].style = "text-decoration:none;cursor:pointer;";
 					linkBox.appendChild(links[1]);
+					links[2] = document.createElement('a');
+					links[2].title = gca_locale.get("global", "message_guild_write");
+					links[2].textContent = ' ✉ ';
+					links[2].style = "text-decoration:none;cursor:pointer;";
+					links[2].dataset.msg = msg;
+					links[2].addEventListener('click', function(){
+						// Get message
+						var msg = this.dataset.msg;
+						// Dont send if no materials are needed
+						if(msg.length == 0) return;
+						// Send message
+						var send = gca_global.background.guildMessage.send(msg, false, function(ok){
+							if(ok){
+								gca_notifications.success(gca_locale.get("global", "message_sent_success"));
+							}else{
+								gca_notifications.error(gca_locale.get("global", "message_sent_failed"));
+							}
+						});
+						if(!send){
+							gca_notifications.error(gca_locale.get("global", "no_data"));
+						}
+					}, false);
+					linkBox.appendChild(links[2]);
 				}
 			}
 			
@@ -178,7 +218,7 @@ var gca_forge = {
 			};
 			document.getElementById('forge_button_box').appendChild(recraft_button);
 			
-			document.getElementById('forge_nav').onclick = function(event) { document.getElementById('recraft_button').dataset.tab=-1;gca_forge.recraft.repeat(); };
+			document.getElementById('forge_nav').addEventListener("click", function(event) { document.getElementById('recraft_button').dataset.tab=-1; });
 			
 			this.repeat();
 		},
