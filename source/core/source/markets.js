@@ -69,7 +69,7 @@ var gca_markets = {
 			button.type = 'button';
 			button.className = "awesome-button";
 			button.id = 'cancelAllButton';
-			button.style = "float:right;margin-top: 4px;";
+			button.style = "margin-top: -21px;position: absolute;right: 116px;";
 			button.value = buttons[0].value + ' ('+buttons.length+')';
 			button.dataset.current = 0;
 			button.dataset.max = buttons.length;
@@ -105,7 +105,7 @@ var gca_markets = {
 				//'buyid='+itemsId+'&cancel='+encodeURIComponent(cancel)
 			}, false);
 			
-			var base = document.getElementById("content").getElementsByTagName("h2")[3];
+			var base = document.getElementById("market_table");
 			base.parentNode.insertBefore(button,base);
 		}
 	}
