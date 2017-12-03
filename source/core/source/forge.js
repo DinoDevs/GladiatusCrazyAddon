@@ -204,18 +204,9 @@ var gca_forge = {
 			recraft_button.style="margin-top: 15px;";
 			recraft_button.textContent = gca_locale.get("forge","recraft_item");
 			recraft_button.dataset.tab=-1;
-			recraft_button.onclick = function(event) {
-				gca_forge.recraft.repeat();
-				var tab = document.getElementById('recraft_button').dataset.tab;
-				if (tab==-1)
-					return;
-				// Loot materials
-				sendAjax(jQuery(this), "ajax.php", "mod=forge&submod=lootbox&mode=forging&slot=" + tab);
-				// Re craft item
-				var tab = document.getElementById('recraft_button').dataset.tab;
-				var basic = document.getElementById("forge_itembox").getElementsByTagName('div')[0].className.replace("item-i-","");
-				forgeAjax(this, "rent", "rent=" + slotsData[tab].formula.rent[2] + "&item=" + basic + "&prefix=" + slotsData[tab].formula.prefix + "&suffix=" + slotsData[tab].formula.suffix);
-			};
+			recraft_button.addEventListener('click',function(event) {
+				rent();
+			});
 			document.getElementById('forge_button_box').appendChild(recraft_button);
 			
 			document.getElementById('forge_nav').addEventListener("click", function(event) { document.getElementById('recraft_button').dataset.tab=-1; });
