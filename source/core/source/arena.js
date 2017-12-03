@@ -11,20 +11,45 @@ var gca_arena = {
 			
 		// Normal arena
 		if(gca_section.submod == null){
-			
+			(gca_options.bool("arena","show_simulator_imagelink") &&
+				this.show_simulator());
 			
 		// Server Arena / Server Turma
 		}else if(gca_section.submod=='serverArena'){
 			this.sort_by_lvl();
 			
+			if(gca_getPage.parameter('aType')==2){
+				// Normal
+				(gca_options.bool("arena","show_simulator_imagelink") &&
+					this.show_simulator());
+			}else{
+				//Turma
+				
+			}
 			
 		// Turma
 		}else{
 			
-			
 		}
 	},
 
+	// Show Simulator
+	show_simulator : function(){
+		var sim_link = document.createElement('a');
+		sim_link.href = "http://gladiatussimulator.tk/";
+		sim_link.setAttribute("target","_blank");
+		sim_link.style = "text-decoration: none;";
+		document.getElementById('content').getElementsByTagName('article')[0].parentNode.insertBefore(sim_link, document.getElementById('content').getElementsByTagName('article')[0]);
+		
+		var sim_image = document.createElement('div');
+		sim_image.className = "gca_arena-simulator-img";
+		sim_link.appendChild(sim_image);
+		
+		var sim_text = document.createElement('div');
+		sim_text.textContent = "Before attacking, use the...";
+		sim_image.appendChild(sim_text);
+	},
+	
 	// Ignore attack confirmations
 	ignore_attack_confirmations : function(){
 		var attack_buttons = document.getElementsByClassName('attack');

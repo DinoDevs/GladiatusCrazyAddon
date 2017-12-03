@@ -352,7 +352,9 @@ var gca_settings = {
 			// Arena
 			"arena" : {
 				// Ignore attack confirmations
-				"ignore_attack_confirmations" : false
+				"ignore_attack_confirmations" : false,
+				// Show simulator's image-link
+				"show_simulator_imagelink" : true
 			},
 			
 			// Magus

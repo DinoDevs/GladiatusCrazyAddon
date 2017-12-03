@@ -948,8 +948,13 @@
 		.gca_auction .gca-x3columns .gca-x3columns-bottom{position: absolute;margin-left: -279px;z-index: 50;width: 273px;height: 56px;background: url(interface/auction_img_down.jpg);}
 		.gca_auction .gca-x3columns td{width: 266px;}
 
+		
+	/* Arena
+	-------------------------------------------------- */
+		.gca_arena-simulator-img{background: transparent url('images/simulator.jpg') no-repeat 0px 0px;width:250px;height:70px;margin: 10px;margin-left: auto;margin-right: auto;}
+		.gca_arena-simulator-img div{color:#fff;text-align: center;text-shadow: 0px 0px 2px black;padding-top: 4px;}
 
-
+		
 	/* Tools
 	-------------------------------------------------- */
 

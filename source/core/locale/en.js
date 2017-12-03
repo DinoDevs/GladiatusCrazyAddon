@@ -285,6 +285,7 @@ gca_languages["en"] = {
 			category_forge$show_levels : "Show Prefix/Sufix/Base item levels next to names (forge)",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
+			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (gladiatussimulator.tk)",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Expedition
