@@ -621,7 +621,14 @@
 		.gca_sound_bar{position: fixed;z-index: 6;right: 0px;bottom: 0px;}
 		.gca_sound_bar .sound-toggle{width: 32px;height: 32px;background: url('icons/sound.png') 0px 0px no-repeat;cursor: pointer;}
 		.gca_sound_bar .sound-toggle.mute{background-position: -32px 0px;}
-
+		
+		/* GCA Window icons */
+		.gca_windows_icon-facebook{background: transparent url('icons/gca-window-icons.png') no-repeat 0px 0px;width:32px;height:32px;margin: 10px;}
+		.gca_windows_icon-github{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -32px;width:32px;height:32px;margin: 10px;}
+		.gca_windows_icon-idea{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -64px;width:32px;height:32px;margin: 10px;}
+		.gca_windows_icon-bug{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -96px;width:32px;height:32px;margin: 10px;}
+		.gca_windows_icon-translation{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -128px;width:32px;height:32px;margin: 10px;}
+		.gca_windows_icon-beer{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -160px;width:32px;height:32px;margin: 10px;}
 
 
 	/* Advanced main menu Layout

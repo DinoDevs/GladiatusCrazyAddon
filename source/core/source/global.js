@@ -135,6 +135,86 @@ var gca_global = {
 		// Forge timer
 		(!this.isTraveling && gca_options.bool("global","forge_timers") &&
 			this.display.forge_timer());
+			
+		// 48h GCA Window: links + posting data
+		this.spam_post_window();
+	},
+	
+	spam_post_window : function(){
+		var last_time_shown = gca_data.section.get("timers", "gca_window", null);
+		var current = new Date(); current = current.getTime();
+		
+		if(last_time_shown==null || (last_time_shown+(48*60*60*1000))<current){			
+			// Save time shown
+			gca_data.section.set("timers", "gca_window", current);
+			
+			// Create a dialog
+			var dialog = new gca_build.dialog;
+			this.dialog = dialog;
+			dialog.smallHead(true);
+			dialog.title.textContent = "Gladiatus Crazy Addon v"+gca.version;
+			
+			/* TODO WITH JAVASCRIPT + POST DATA TO SERVER
+			var div = document.createElement('div');
+			div.className = "gca_windows_icon-facebook";
+			dialog.body.appendChild(div);
+			dialog.body.appendChild(document.createTextNode("Reporting materials dropped data to our server..."));
+			
+			var div = document.createElement('div');
+			div.className = "gca_windows_icon-github";
+			dialog.body.appendChild(div);
+			
+			var div = document.createElement('div');
+			div.className = "gca_windows_icon-idea";
+			dialog.body.appendChild(div);
+			
+			var div = document.createElement('div');
+			div.className = "gca_windows_icon-bug";
+			dialog.body.appendChild(div);
+			
+			var div = document.createElement('div');
+			div.className = "gca_windows_icon-beer";
+			dialog.body.appendChild(div);
+			
+			var div = document.createElement('div');
+			div.className = "gca_windows_icon-translation";
+			dialog.body.appendChild(div);
+			*/
+			
+			dialog.body.style="font-size: 16px;text-align: center;";
+			
+			dialog.body.innerHTML = '\
+				<span style="font-style:italic;">Making gladiatus great since 2010!</span>\
+				<br><br>\
+				<table style="font-size: 16px;margin-left: auto;margin-right: auto;">\
+					<tr>\
+						<td><div class="gca_windows_icon-bug"></div></td><td>Did you found a <span style="color:#f00;">bug</span>?<br>Do you have an <span style="color:#11a000;">idea</span> for a new feature?</td><td><div class="gca_windows_icon-idea"></div></td>\
+					</tr>\
+					<tr>\
+						<td><a target="_blank" href="https://www.facebook.com/GladiatusCrazyAddOn/"><div class="gca_windows_icon-facebook"></div></a></td><td>Open an issue on our <a target="_blank" href="https://github.com/DinoDevs/GladiatusCrazyAddon/" style="color:#616161;">Github</a> or<br>send us a <a target="_blank" href="https://www.facebook.com/GladiatusCrazyAddOn/" style="color:#0072ff;">Facebook</a> message!</td><td><a target="_blank" href="https://github.com/DinoDevs/GladiatusCrazyAddon/"><div class="gca_windows_icon-github"></div></a></td>\
+					</tr>\
+				</table>\
+				<br>\
+				<table style="font-size: 16px;margin-left: auto;margin-right: auto;">\
+					<tr>\
+						<td><a target="_blank" href="https://github.com/DinoDevs/GladiatusCrazyAddon/tree/master/source/core/locale"><div class="gca_windows_icon-translation"></div></a></td><td>We need your support! Buy us a <a target="_blank" href="https://paypal.me/gcadonation/5" style="color:#fff000;">beer</a><br>or help us <a target="_blank" href="https://github.com/DinoDevs/GladiatusCrazyAddon/tree/master/source/core/locale" style="color:#fff;">translate</a> the addon in your language!</td><td><a target="_blank" href="https://paypal.me/gcadonation/5"><div class="gca_windows_icon-beer"></div></a></td>\
+					</tr>\
+				</table>\
+				<br>Do not forget to visit addon\'s <a href="index.php?mod=settings&gcamod=settings">settings</a><br>to enable and disable features...\
+				<br><br>Yours, GreatApo & DarkThanos\
+			';
+			
+			// Add close Button
+			var button = document.createElement('input');
+			button.className = "button3";
+			button.type = "button";
+			button.style = "float: right;";
+			button.value = gca_locale.get("general", "close");
+			dialog.body.appendChild(button);
+			button.addEventListener('click', function(){dialog.close();}, false);
+			
+			dialog.open();
+		}
 	},
 	
 	scripts : {
