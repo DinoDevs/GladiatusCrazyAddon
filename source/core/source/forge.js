@@ -114,7 +114,7 @@ var gca_forge = {
 						name = slotsData[tab].formula.needed[Object.keys(slotsData[tab].formula.needed)[i]].name;
 						if(document.getElementsByClassName('forge_amount')[i].style.backgroundColor!="greenyellow"){
 							all_names+=name.split(" ")[name.split(" ").length-1]+" ";
-							msg+="\n - "+name+": "+document.getElementsByClassName('forge_amount')[i].getElementsByClassName('forge_actual_value')[0].textContent;
+							msg+="\n - "+name+": "+(parseInt(document.getElementsByClassName('forge_amount')[i].getElementsByClassName('forge_setpoint')[0].textContent,10)-parseInt(document.getElementsByClassName('forge_amount')[i].getElementsByClassName('forge_actual_value')[0].textContent,10));
 						}
 						linkBox = document.createElement('div');
 						//linkBox.className = 'forge_amount';
