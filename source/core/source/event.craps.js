@@ -29,11 +29,13 @@ var gca_craps = {
 		// Get cooldown timer
 		var cooldown = document.getElementById("crapsCooldownTimer");
 		if(cooldown && cooldown.getElementsByTagName('span').length > 0){
-			let timeString = cooldown.getElementsByTagName('span')[0].textContent;
+			/*let timeString = cooldown.getElementsByTagName('span')[0].textContent;
 			let hours = parseInt( timeString.match(/(\d+):\d+:\d+/)[1] );
 			let minutes = parseInt( timeString.match(/\d+:(\d+):\d+/)[1] );
 			let seconds = parseInt( timeString.match(/\d+:\d+:(\d+)/)[1] );
-			availableIn += hours*60*60*1000 + minutes*60*1000 + seconds*1000;
+			availableIn += hours*60*60*1000 + minutes*60*1000 + seconds*1000;*/
+			
+			availableIn += parseInt( cooldown.getElementsByTagName('span')[0].dataset.tickerTimeLeft);
 			
 			// Update data
 			gca_data.section.set("timers", 'craps_available', availableIn);
@@ -73,7 +75,10 @@ var gca_craps = {
 		showPopup_pointer : null,
 		showPopup_wrapper : function(prizes){
 			gca_craps.patched.showPopup_pointer(prizes);
-
+			
+			// Reset timer
+			document.getElementById("crapsCooldownTimer").getElementsByTagName('span')[0].dataset.tickerTimeLeft = 600000;
+			
 			// Stall a little
 			window.setTimeout(function(){
 				gca_craps.save_craps_info();
