@@ -63,11 +63,11 @@ var gca_tools = {
 		updateServerTime : function(){
 			// Parse server's time
 			var sDate = JSON.parse(document.getElementById("server-time").getAttribute("data-start-time"));
-			
+
 			// Save time
 			this._server = new Date(sDate[0], sDate[1] - 1, sDate[2], sDate[3], sDate[4], sDate[5], sDate[6]).getTime();
 			// Save date string - dd.mm.yyyy
-			this._serverDateString = sDate[3] + "." + sDate[2] + "." + sDate[1];
+			this._serverDateString = sDate[2] + "." + sDate[1] + "." + sDate[0];
 			// Save time string - hh:mm
 			this._serverTimeString = sDate[3] + ":" + sDate[4];
 		},

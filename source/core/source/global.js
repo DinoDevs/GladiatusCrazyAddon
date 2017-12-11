@@ -2473,7 +2473,7 @@ var gca_global = {
 					var nextAvailable = parseInt(gca_data.section.get("timers", 'server_quest_available', 0));
 					// Server quest point
 					this.points = gca_data.section.get("timers", 'server_quest_points','N/A');
-
+					
 					// Timer wrapper
 					this.serverQuestWrapperElement = document.createElement("div");
 					this.serverQuestWrapperElement.id = "ServerQuestTime";
