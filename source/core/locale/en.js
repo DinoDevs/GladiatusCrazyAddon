@@ -192,6 +192,7 @@ gca_languages["en"] = {
 			category_forge : "Forge",
 			category_arena : "Arena",
 			category_magus : "Magus",
+			category_market : "Market",
 			category_expedition : "Expedition",
 			category_guild : "Guild",
 			category_auction : "Auction",
@@ -212,10 +213,10 @@ gca_languages["en"] = {
 			category_global$top_fixed_bar : "Enable top fixed bar",
 			category_global$advance_main_menu : "Improve main menu",
 			category_global$submenu_click_to_change : "Submenu change on click",
-			category_global$remember_tabs : "Remember merchands tabs",
+			category_global$remember_tabs : "Remember merchants tabs",
 			category_global$attacked_timers : "Show attacked timers",
 			category_global$quest_timer : "Show quests status or timer",
-			category_global$merchants_timer : "Show merchands timer indicator",
+			category_global$merchants_timer : "Show merchants timer indicator",
 			category_global$forge_timers : "Show forge/smelt timer indicator",
 			category_global$player_image : "Enable players' images",
 			category_global$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
@@ -226,7 +227,7 @@ gca_languages["en"] = {
 			category_global$inventory_options_group : "Group inventory options",
 			category_global$pagination_layout : "Change pages-box's layout",
 			category_global$gold_exp_data : "Show gold and exp data",
-			category_global$pray_shorcut : "Display pray shorcut when in Underworld",
+			category_global$pray_shorcut : "Display pray shortcut when in Underworld",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
@@ -238,7 +239,7 @@ gca_languages["en"] = {
 			category_overview$mercenaries_manager : "Show mercenaries manager",
 			category_overview$mercenary_tooltip_show : "Show mercenaries tooltips",
 			category_overview$more_statistics : "Show more stats on statistics tab",
-			category_overview$achivements_layout : "Enhance achivements layout",
+			category_overview$achivements_layout : "Enhance achievements layout",
 			category_overview$costumes_layout : "Enhance costumes layout",
 			category_overview$items_repair_overview : "Show needed-materials-to-repair box",
 			// Settings - Messages
@@ -267,7 +268,7 @@ gca_languages["en"] = {
 			category_pantheon$missions_show_completed : "Show completed missions",
 			category_pantheon$gods_show_points_percent : "Show god points percent",
 			category_pantheon$open_many_mysteryboxes : "Open multiple mystery boxes",
-			category_pantheon$show_mysterybox_rewards_rubies : " Show mysterybox reward's value in rubies",
+			category_pantheon$show_mysterybox_rewards_rubies : " Show mystery-box reward's value in rubies",
 			// Settings - Reports
 			category_reports$style_change : "Improve reports' list layout",
 			category_reports$load_loot_tooltips : "Load each report's reward",
@@ -288,19 +289,22 @@ gca_languages["en"] = {
 			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (gladiatussimulator.tk)",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
+			// Settings - Market
+			category_market$soulbound_warning : "Buy confirmation on soul-bound items",
+			category_market$cancel_all_button : "Show cancel-all button",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",
-			category_expedition$underworld_layout : "Show underword's enemies layout like expendition's",
+			category_expedition$underworld_layout : "Show underworld's enemies layout like expedition's",
 			// Settings - Guild
 			category_guild$jail_layout : "Improve jail's layout",
 			category_guild$library_layout : "Improve library's layout",
-			category_guild$library_fade_non_scrolls : "Fade items thet are not scrolls on library",
+			category_guild$library_fade_non_scrolls : "Fade items that are not scrolls on library",
 			category_guild$library_tooltip_data : "Add more data on library's tooltips",
 			category_guild$bank_donate_layout : "Improve bank's donate layout",
 			category_guild$bank_book_layout : "Improve bank's book layout",
 			category_guild$medic_layout : "Improve medic's layout",
 			// Settings - Auction
-			category_auction$items_counters : "Count items and bidded items",
+			category_auction$items_counters : "Count items and bidden items",
 			category_auction$item_price_analyze : "Analyze items' prices",
 			category_auction$item_level : "Show items level",
 			category_auction$x3_items_per_line : "Change layout to 3 items per line",

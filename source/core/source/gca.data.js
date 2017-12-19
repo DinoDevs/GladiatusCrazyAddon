@@ -477,6 +477,14 @@ gca_options.data = {
 		// Fade items that you can not improve
 		"fade_unimprovable_items" : true
 	},
+	
+	// Market
+	"market" : {
+		// Soul-bound Buy-Confirmation
+		"soulbound_warning" : true,
+		// Show Cancel-all button
+		"cancel_all_button" : true
+	},
 
 	// Expedition Options
 	"expedition" : {

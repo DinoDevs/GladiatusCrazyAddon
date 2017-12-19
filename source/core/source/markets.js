@@ -19,7 +19,9 @@ var gca_markets = {
 				this.itemShadow.market());
 		
 			this.soulboundItems();
-			this.cancelAllButton();
+			
+			(gca_options.bool("market","cancel_all_button") &&
+				this.cancelAllButton());
 		}
 	},
 
@@ -51,10 +53,12 @@ var gca_markets = {
 	// Point out which items are soulbound
 	soulboundItems : function(){
 		var rows = document.getElementById("market_table").getElementsByTagName("tr");
+		var warning = gca_options.bool("market","soulbound_warning");
 		for(var i=1; i<=rows.length - 1; i++){
 			if(typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"){
 				rows[i].style="background-color: rgba(255, 0, 0,0.2);";
-				document.buyForm[i-1].setAttribute("onsubmit","return confirm('This item is soulbound. Do you really want to buy it?');")
+				if (warning)
+					document.buyForm[i-1].setAttribute("onsubmit","return confirm('This item is soulbound. Do you really want to buy it?');")
 			}
 		}
 	},
