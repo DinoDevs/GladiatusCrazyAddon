@@ -396,7 +396,7 @@ var gca_training = {
 			// Create info
 			let info = document.createElement("div");
 			info.className = "gca-training-info";
-			info.textContent = "Total cost";
+			info.textContent = gca_locale.get("training", "total_cost");
 			inner.appendChild(info);
 
 			// Create total costs

@@ -445,7 +445,7 @@ gca_options.data = {
 		// Enable multiple training
 		"multiple_train" : true,
 		// Enable calculator training
-		"calculator_train" : false,
+		"calculator_train" : true,
 		// Show analyze data
 		"show_analyze_items_data" : true,
 		// Show points after upgrade

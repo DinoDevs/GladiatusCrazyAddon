@@ -142,6 +142,7 @@ gca_languages["en"] = {
 
 		// Training section
 		training : {
+			total_cost : "Total cost",
 			costs_discount : "Training costs discount: {{number}}%"
 		},
 
@@ -277,6 +278,7 @@ gca_languages["en"] = {
 			category_training$show_discount : "Show training discount",
 			category_training$show_basics_in_bars : "Show basics in bars",
 			category_training$multiple_train : "Enable multiple training",
+			category_training$calculator_train : "Enable cost calculator",
 			category_training$show_analyze_items_data : "Show analyzed items data in tooltips",
 			category_training$show_points_after_upgrade : "Show stat points after upgrade",
 			// Settings - Merchants
