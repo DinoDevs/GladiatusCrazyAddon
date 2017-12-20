@@ -321,6 +321,9 @@ gca_languages["en"] = {
 			// Buttons
 			save : "Save",
 
+			// Info
+			translated_by : "Translated by: {{string}}",
+
 			// Notifications
 			notification_reload : "Reload the page for the changes to take effect"
 		}

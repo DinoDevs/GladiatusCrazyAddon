@@ -91,8 +91,11 @@ var gca_settings = {
 					var scheme = {
 						"type" : "custom",
 						"dom" : function(data, title, wrapper){
+							if(wrapper.className.length > 0) wrapper.className += " ";
+							wrapper.className += "language_select";
+							// Create select
 							data.select = document.createElement("select");
-							data.select.style = "float:right;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;";
+							// Create a list of languages
 							var languages = [];
 							var lang;
 							for(lang in gca_languages){
@@ -100,9 +103,8 @@ var gca_settings = {
 									languages.push(lang);
 								}
 							}
+							// Sort languages
 							languages.sort(function(a, b) {
-								//if(gca_languages[a].name < gca_languages[b].name) return -1;
-								//else if(gca_languages[a].name > gca_languages[b].name) return 1;
 								if(a < b) return -1;
 								else if(a > b) return 1;
 								else return 0;
@@ -118,7 +120,29 @@ var gca_settings = {
 								}
 								data.select.appendChild(option);
 							}
-							return data.select;
+							// Create refresh info function
+							data.refreshInfo = function() {
+								var lang = gca_languages[data.select.value];
+								var info = "";
+								if (lang.translators instanceof Array) {
+									for (var i = 0; i < lang.translators.length; i++) {
+										if (i != 0) {
+											info += ", ";
+										}
+										info += lang.translators[i];
+									}
+								} else {
+									info += lang.translators;
+								}
+								data.info.textContent = gca_locale.get("settings", "translated_by", {string: info});
+							}
+							// Add language info
+							data.info = document.createElement("div");
+							data.info.className = "translated-by";
+							data.refreshInfo();
+							// Add change event
+							data.select.addEventListener("change", data.refreshInfo, false);
+							return [data.select, data.info];
 						},
 						"save" : function(data){
 							gca_locale._setLang(data.select.value);
@@ -1033,7 +1057,13 @@ var gca_settings = {
 
 				if(typeof scheme.dom == "function"){
 					var custom = scheme.dom(item.data, title, typeWrapper);
-					typeWrapper.appendChild(custom);
+					if (custom instanceof Array) {
+						for (var i = 0; i < custom.length; i++) {
+							typeWrapper.appendChild(custom[i]);
+						}
+					} else {
+						typeWrapper.appendChild(custom);
+					}
 				}
 
 				var clearBoth = document.createElement('div');
