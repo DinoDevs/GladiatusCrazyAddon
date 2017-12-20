@@ -587,55 +587,75 @@ var gca_training = {
 			// If init failed return
 			if (!this.init(self))
 				return;
+
+			// Get wrapper
+			let wrapper = document.getElementById("training_box").parentNode;
 			
 			// Create mode switch
-			var modeSwitch = document.createElement("div");
+			let modeSwitch = document.createElement("div");
 			modeSwitch.className = "switch-field";
 			modeSwitch.id = "mode-switch";
-			var radio1 = document.createElement("input");
-			radio1.type = "radio";
-			radio1.id = "stat_points_mode";
-			radio1.name = "stats_view_mode";
-			radio1.value = 0;
-			var label1 = document.createElement("label");
-			label1.setAttribute("for","stat_points_mode");
-			label1.textContent = "Stat points";
-			var radio2 = document.createElement("input");
-			radio2.type = "radio";
-			radio2.id = "points_breakdown_mode";
-			radio2.name = "stats_view_mode";
-			radio2.value = 1;
-			var label2 = document.createElement("label");
-			label2.setAttribute("for","points_breakdown_mode");
-			label2.textContent = "Points breakdown";
-			document.getElementById("training_box").parentNode.parentNode.insertBefore(modeSwitch,document.getElementById("training_box").parentNode);
-			modeSwitch.appendChild(radio1);
-			modeSwitch.appendChild(label1);
-			modeSwitch.appendChild(radio2);
-			modeSwitch.appendChild(label2);
-			document.getElementById("training_box").parentNode.appendChild(document.createTextNode("* Stats are calculated with the concept of attacking yourself."));
+
+			let statPointsMode = document.createElement("input");
+			statPointsMode.type = "radio";
+			statPointsMode.id = "stat_points_mode";
+			statPointsMode.name = "stats_view_mode";
+			statPointsMode.value = 0;
+			let statPointsLabel = document.createElement("label");
+			statPointsLabel.setAttribute("for", "stat_points_mode");
+			statPointsLabel.textContent = gca_locale.get("training", "stats_points");
+			modeSwitch.appendChild(statPointsMode);
+			modeSwitch.appendChild(statPointsLabel);
+
+			let pointsBreakdownMode = document.createElement("input");
+			pointsBreakdownMode.type = "radio";
+			pointsBreakdownMode.id = "points_breakdown_mode";
+			pointsBreakdownMode.name = "stats_view_mode";
+			pointsBreakdownMode.value = 1;
+			let pointsBreakdownLabel = document.createElement("label");
+			pointsBreakdownLabel.setAttribute("for", "points_breakdown_mode");
+			pointsBreakdownLabel.textContent = gca_locale.get("training", "points_breakdown");
+			wrapper.parentNode.insertBefore(modeSwitch, wrapper);
+			modeSwitch.appendChild(pointsBreakdownMode);
+			modeSwitch.appendChild(pointsBreakdownLabel);
+
+			// Show some info
+			let info = document.createElement("span");
+			info.style.fontSize = "10px";
+			info.style.textAlign = "right";
+			info.style.display = "none";
+			info.textContent = gca_locale.get("training", "stats_calculated_with_yourself_as_an_opponent");
+			wrapper.appendChild(info);
+
+			// Get bars
+			let bars = document.getElementsByClassName('charstats_balken');
 			
-			document.getElementById("stat_points_mode").onclick = function(){
-				var bars = document.getElementsByClassName('charstats_balken');
-				for (var i = 0; i < bars.length; i++) {bars[i].style = "display:block;top:4px;";}
-				for (name in gca_training.analyzeStats.stats) {
-					document.getElementById(gca_training.analyzeStats.self.data.skills[name].id).style = "display:block";
+			// Add events
+			statPointsMode.addEventListener("click", () => {
+				// Display bars
+				for (let i = 0; i < bars.length; i++) {
+					bars[i].style = "display:block;top:4px;";
+				}
+				for (name in this.stats) {
+					document.getElementById(this.self.data.skills[name].id).style = "display:block";
 					document.getElementById(name+"_breakdownBox").style = "display:none";
 				}
-				
-			};
-			document.getElementById("points_breakdown_mode").onclick = function(){
-				var bars = document.getElementsByClassName('charstats_balken');
-				for (var i = 0; i < bars.length; i++) {bars[i].style = "display:none";}
-				for (name in gca_training.analyzeStats.stats) {
-					document.getElementById(gca_training.analyzeStats.self.data.skills[name].id).style = "display:none";
+				info.style.display = "none";
+			}, false);
+			pointsBreakdownMode.addEventListener("click", () => {
+				// Hide bars
+				for (let i = 0; i < bars.length; i++) {
+					bars[i].style = "display:none";
+				}
+				for (name in this.stats) {
+					document.getElementById(this.self.data.skills[name].id).style = "display:none";
 					document.getElementById(name+"_breakdownBox").style = "display:block";
 				}
-			};
+				info.style.display = "block";
+			}, false);
 			
 			// Select mode
-			document.getElementById("stat_points_mode").checked = true;
-			//document.getElementById("points_breakdown_mode").checked = true;
+			statPointsMode.checked = true;
 			
 			// For each stat
 			for (name in this.stats) {

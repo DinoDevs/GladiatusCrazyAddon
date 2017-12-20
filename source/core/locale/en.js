@@ -142,7 +142,13 @@ gca_languages["en"] = {
 
 		// Training section
 		training : {
+			// Points analisys
+			stats_points : "Stats Points",
+			points_breakdown : "Points Breakdown",
+			stats_calculated_with_yourself_as_an_opponent : "* Stats are calculated with the concept of attacking yourself.",
+			// Cost calculator
 			total_cost : "Total cost",
+			// Discount show
 			costs_discount : "Training costs discount: {{number}}%"
 		},
 
