@@ -442,8 +442,10 @@ gca_options.data = {
 		"show_discount" : true,
 		// Show bacis in bars
 		"show_basics_in_bars" : true,
-		// Enable multiple train
+		// Enable multiple training
 		"multiple_train" : true,
+		// Enable calculator training
+		"calculator_train" : false,
 		// Show analyze data
 		"show_analyze_items_data" : true,
 		// Show points after upgrade

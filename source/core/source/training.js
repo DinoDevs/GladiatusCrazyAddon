@@ -10,16 +10,20 @@ var gca_training = {
 		this.data.load();
 
 		// Show discount
-		(gca_options.bool("training","show_discount") &&
-			this.showDiscount());
+		((gca_options.bool("training","show_discount") || gca_options.bool("training","calculator_train")) &&
+			this.showDiscount.show(this));
 		
 		// Show basics in bars
 		(gca_options.bool("training","show_basics_in_bars") &&
 			this.showBasicsInBars());
 
-		// Enable multiple train
-		(gca_options.bool("training","multiple_train") &&
+		// Enable multiple training
+		((gca_options.bool("training","multiple_train") || gca_options.bool("training","calculator_train")) &&
 			this.multipleTrain.show(this));
+
+		// Enable training calculator
+		(gca_options.bool("training","calculator_train") &&
+			this.calculatorTrain.show(this));
 
 		// Show analyzed points on tooltips
 		(gca_options.bool("training","show_analyze_items_data") &&
@@ -83,6 +87,8 @@ var gca_training = {
 
 			// Calculate discound
 			this.discount = Math.round(100 - (this.skills.strength.cost * 100 / Math.pow(this.skills.strength.base - 4, this.skills.strength.coeff)));
+			// Save default discount
+			this.initial_discount = this.discount;
 		}
 	},
 
@@ -125,7 +131,6 @@ var gca_training = {
 		// Show
 		show : function(self){
 			// Save instance
-			let that = this;
 			this.self = self;
 			
 			// Set multiple training style
@@ -137,6 +142,9 @@ var gca_training = {
 			loading.style.display = "none";
 			document.getElementById("training_box").appendChild(loading);
 
+			// Save skill data
+			this.skills = {};
+
 			// For each skill
 			for(let i in this.self.data.skills){
 				// Reference skill
@@ -144,6 +152,7 @@ var gca_training = {
 
 				// Save skill
 				let data = {};
+				this.skills[i] = data;
 				data.name = i;
 				data.skill = skill;
 				data.loading = loading;
@@ -210,8 +219,8 @@ var gca_training = {
 				data.imgs[0].parentNode.parentNode.appendChild(data.trainButton.disabed);
 				data.imgs[0].parentNode.parentNode.appendChild(data.trainButton.active);
 				// Multiple training link
-				data.trainButton.active.addEventListener('click', function(){
-					that.prepareTraining(data);
+				data.trainButton.active.addEventListener('click', () => {
+					this.prepareTraining(data);
 				}, false);
 
 				// Save cost for 1
@@ -222,22 +231,21 @@ var gca_training = {
 				data.count = 1;
 
 				// Events
-				this.addIncrementEvent(data.arrowUp, function(){
-					that.add( 1, data);
-				});
-				this.addIncrementEvent(data.arrowDown, function(){
-					that.add(-1, data);
-				});
+				this.addIncrementEvent(data.arrowUp, () => {
+					this.add( 1, data);
+				}, 200);
+				this.addIncrementEvent(data.arrowDown, () => {
+					this.add(-1, data);
+				}, 200);
 
 				// Update display data
 				this.update(data);
 			}
 		},
 
-		addIncrementEvent : function(element, callback){
+		addIncrementEvent : function(element, callback, wait){
 			var start = null;
 			var fireIntervals = null;
-			var wait = 200;
 
 			element.addEventListener("mousedown", function(e){
 				start = new Date().getTime();
@@ -250,6 +258,9 @@ var gca_training = {
 				if(new Date().getTime() - start < wait){
 					callback(e);
 				}
+			}, false);
+			element.addEventListener("mouseout", function(e){
+				clearInterval(fireIntervals);
 			}, false);
 		},
 
@@ -266,7 +277,7 @@ var gca_training = {
 			}
 
 			// Calculate cost
-			if(data.count == 1){
+			if(data.count == 1 && this.self.data.initial_discount == this.self.data.discount){
 				data.currentCost = data.initCost;
 			}
 			else if(data.count == 0){
@@ -305,15 +316,14 @@ var gca_training = {
 			}
 
 			// Do ajax train call
-			let that = this;
 			jQuery.ajax({
 				type: "GET",
 				url: link,
-				success: function(){
+				success: () => {
 					count -= 1;
-					that.doTrain(data, count);
+					this.doTrain(data, count);
 				},
-				error: function(){
+				error: () => {
 					document.location.href = gca_getPage.link({"mod":"training"});
 				}
 			});
@@ -352,19 +362,139 @@ var gca_training = {
 				data.trainButton.disabed.style.display = "none";
 				data.trainButton.active.style.display = "block";
 			}
+
+			if (this.self.calculatorTrain.enabled) {
+				this.self.calculatorTrain.refresh();
+			}
 		}
 		
 	},
 
-	// Show discount
-	showDiscount : function() {
-		// Get wrapper for our data
-		var wrapper = document.getElementById("training_box").getElementsByClassName("training_inner")[6];
+	// Training Calculator
+	calculatorTrain : {
+		enabled : false,
 
-		var info = document.createElement("div");
-		info.className = "gca-training-info";
-		info.textContent = gca_locale.get("training", "costs_discount", {number : this.data.discount});
-		wrapper.appendChild(info);
+		// Show
+		show : function(self){
+			// Set as enabled feature
+			this.enabled = true;
+
+			// Save instance
+			this.self = self;
+
+			// Create row
+			this.row = document.createElement("div");
+			this.row.style = "width:500px;position:relative";
+			var previousNode = document.getElementById("training_box").getElementsByClassName("training_inner")[5].parentNode;
+			previousNode.parentNode.insertBefore(this.row, previousNode.nextSibling);
+
+			// Create inner wrapper
+			let inner = document.createElement("div");
+			inner.className = "training_inner";
+			this.row.appendChild(inner);
+
+			// Create info
+			let info = document.createElement("div");
+			info.className = "gca-training-info";
+			info.textContent = "Total cost";
+			inner.appendChild(info);
+
+			// Create total costs
+			let link = document.createElement("div");
+			link.className = "training_link";
+			let costsWrapper = document.createElement("div");
+			costsWrapper.className = "training_costs";
+			this.totalCostElement = document.createElement("span");
+			costsWrapper.appendChild(this.totalCostElement);
+			costsWrapper.appendChild(gca_tools.create.goldIcon());
+			link.appendChild(costsWrapper);
+			inner.appendChild(link);
+
+			// Show discount arrows
+			let arrowsWrapper = document.createElement("div");
+			arrowsWrapper.className = "gca_multiple";
+			let arrowUp = document.createElement("div");
+			arrowUp.className = "gca-arrow gca-arrow-up";
+			let arrowDown = document.createElement("div");
+			arrowDown.className = "gca-arrow gca-arrow-down";
+			arrowsWrapper.appendChild(arrowUp);
+			arrowsWrapper.appendChild(arrowDown);
+			this.self.showDiscount.info.parentNode.appendChild(arrowsWrapper);
+			// Events
+			this.self.multipleTrain.addIncrementEvent(arrowUp, () => {
+				this.changeDiscount(+1);
+			}, 100);
+			this.self.multipleTrain.addIncrementEvent(arrowDown, () => {
+				this.changeDiscount(-1);
+			}, 100);
+
+			// Refresh
+			this.refresh();
+		},
+
+		changeDiscount : function(change) {
+			this.self.data.discount += change;
+			if (this.self.data.discount < 0) {
+				this.self.data.discount = 0;
+			}
+			else if (this.self.data.discount > 100) {
+				this.self.data.discount = 100;
+			}
+			this.self.showDiscount.refresh(true);
+		},
+
+		getCosts : function() {
+			let costs = 0;
+
+			// For each skill
+			for(let i in this.self.multipleTrain.skills){
+				// Reference skill
+				let skill = this.self.multipleTrain.skills[i];
+				costs += skill.currentCost;
+			}
+
+			return costs;
+		},
+
+		setTotalGold : function(gold){
+			this.totalCostElement.textContent = gca_tools.strings.insertDots(gold) + " ";
+		},
+
+		refresh : function() {
+			let costs = this.getCosts();
+			this.setTotalGold(costs);
+		}
+	},
+
+	// Show discount
+	showDiscount : {
+		show : function(self) {
+			// Save instance
+			this.self = self;
+
+			// Get wrapper for our data
+			var wrapper = document.getElementById("training_box").getElementsByClassName("training_inner")[6];
+
+			// Create info element
+			let infoWrapper = document.createElement("div");
+			infoWrapper.className = "gca-training-info";
+			this.info = document.createElement("span");
+			infoWrapper.appendChild(this.info);
+			wrapper.appendChild(infoWrapper);
+
+			this.refresh();
+		},
+
+		refresh : function(refresh_skills = false) {
+			this.info.textContent = gca_locale.get("training", "costs_discount", {number : this.self.data.discount});
+
+			if(refresh_skills){
+				// For each skill
+				for(let i in this.self.multipleTrain.skills){
+					this.self.multipleTrain.add(0, this.self.multipleTrain.skills[i]);
+				}
+			}
+		}
 	},
 
 	// Show analyzed stats

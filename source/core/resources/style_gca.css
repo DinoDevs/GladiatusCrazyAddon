@@ -859,6 +859,7 @@
 		#training_box.gca_multiple_training .gca_multiple .gca-arrow-up:hover{border-bottom: 5px solid #3a2d13;}
 		#training_box.gca_multiple_training .gca_multiple .gca-arrow-down{border-top: 5px solid #695220;margin-top: 1px;padding-bottom: 6px;}
 		#training_box.gca_multiple_training .gca_multiple .gca-arrow-down:hover{border-top: 5px solid #3a2d13;}
+		#training_box.gca_multiple_training .gca-training-info .gca_multiple{position: static;display: inline-block;width: 10px;top: auto;right: auto;margin: -7px 2px;}
 		
 		/* View-mode switch + stats breakdown mode */
 		#trainingPage .switch-field{height: 11px;width: 360px;margin-right: auto;margin-left: auto;}
