@@ -477,61 +477,6 @@
 	.notification-info div{background-image: url('icons/notifications.png');background-position: -48px 0px;}
 	.notification-warning div{background-image: url('icons/notifications.png');background-position: -16px 0px;}
 
-/* Settings */
-	#settings_box {width: 500px;margin: 15px auto 0px auto;}
-	#settings_box section{text-align: right;}
-	#settings_box .icon{float:left;background-image:url('icons/settings_icon.png');width:48px;height:48px;}
-	#settings_box .description{margin: 6px 0px 6px 10px;line-height: 18px;float: left;text-align: left;}
-	#settings_box .space{height:10px;clear:both;}
-	#settings_box input{margin-bottom: 4px;}
-
-	#settings_menu {width: 150px;float: left;}
-	#settings_menu ul{padding: 0px;list-style: none;margin: 0px;}
-	#settings_menu ul li{padding: 5px 10px;margin: 5px 0px;border: 1px solid black;background: linear-gradient(to bottom, #C3AB6F, #DACFA2);cursor: pointer;}
-	#settings_menu ul li:hover, #settings_menu ul li.active{background: linear-gradient(to bottom, #3d0802, #852111);color: white;}
-	#settings_menu ul li.active{box-shadow: 0px 0px 4px black;}
-	#settings_tab {width: 374px;float: right;border-left: 1px solid #9c8959;margin-top: 5px;padding: 5px;}
-	#settings_tab .settings_tab_title{padding: 5px 10px;margin-top: -5px;border: 1px solid black;background: linear-gradient(to bottom, #C3AB6F, #DACFA2);color: black;}
-
-	#settings_tab .type-wrapper{margin:5px 0px;background-color: #dacfa1;padding: 5px;border: 1px solid #c4ac70;}
-	#settings_tab .type-wrapper span{line-height: 21px;}
-
-	#settings_tab .type-wrapper .switch-field{float: right;}
-	#settings_tab .type-wrapper.type-boolean .switch-field input,
-	#settings_tab .type-wrapper.type-enumerator .switch-field input{display: none;}
-	#settings_tab .type-wrapper.type-boolean .switch-field label,
-	#settings_tab .type-wrapper.type-enumerator .switch-field label {float: left;}
-	#settings_tab .type-wrapper.type-boolean .switch-field label,
-	#settings_tab .type-wrapper.type-enumerator .switch-field label {display: inline-block;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: center;text-shadow: none;padding: 2px 14px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-webkit-transition: all 0.1s ease-in-out;-moz-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
-	#settings_tab .type-wrapper.type-boolean .switch-field label:hover,
-	#settings_tab .type-wrapper.type-enumerator .switch-field label:hover {cursor: pointer;}
-	#settings_tab .type-wrapper.type-boolean .switch-field input:checked + label,
-	#settings_tab .type-wrapper.type-enumerator .switch-field input:checked + label {background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
-	#settings_tab .type-wrapper.type-boolean .switch-field label:first-of-type,
-	#settings_tab .type-wrapper.type-enumerator .switch-field label:first-of-type {border-radius: 4px 0 0 4px;}
-	#settings_tab .type-wrapper.type-boolean .switch-field label:last-of-type,
-	#settings_tab .type-wrapper.type-enumerator .switch-field label:last-of-type {border-radius: 0 4px 4px 0;}
-	#settings_tab .type-wrapper.type-integer .switch-field input{border-radius: 4px;width: 74px;height: 15px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
-
-	#settings_logo{background-image:url('images/GCA_logo.png');position:relative;background-position-y: -10px;width: 530px;height: 130px;margin-bottom: 10px;border: 2px solid black;background-repeat: no-repeat;background-color: black;}
-	#settings_logo .title{color: white;font-size: 16px;position: absolute;bottom: 5px;right: 10px;}
-
-	/* OLD */
-	/*
-	#gca_settings_content{display: none;width: 540px;float: right;padding-top: 5px;padding-right: 87px;padding-bottom: 0;padding-left: 23px;z-index: 10;}
-	.gca_rtl #gca_settings_content{float: left;padding-left: 87px;padding-right: 23px;}
-	#gca_settings_content .logo{background-image:url('images/GCA_logo.png');background-position-y: -10px;width: 500px;height: 130px;margin: 10px auto;border: 2px solid black;}
-	#gca_settings_content .logo div{color: whiteSmoke;font-size: 16px;margin-top: 98px;margin-left: 340px;}
-	#gca_settings_content .options_category{background-color: #E7DEB8;margin-top: 4px;cursor: pointer;font-size: 14px;padding: 4px;border: 2px solid #390200;}
-	#gca_settings_content .options_category_box{margin-top: 2px;padding: 8px;margin-bottom: 2px;background-color: #E7DEB8;border: 1px solid #BBA86E;}
-	.settings_image{background-image:url('icons/settings_icon.png');width:48px;height:48px;}
-	#gca_settings_content .options_bottom_button_margin{margin-right:10px;}
-	.gca_rtl #gca_settings_content .options_bottom_button_margin{margin-left:10px;margin-right:auto;}
-	#gca_settings_content .premico{width:32px;height:16px;float:left;background-image:url('icons/premico.png');margin-top:4px;}
-	#gca_settings_content .betaico{width:32px;height:16px;float:left;background-image:url('icons/betaico.png');margin-top:4px;}
-	#gca_settings_content select{ margin-right: 5px;margin-left: 5px;}
-	*/
-
 /* Missions */
 	#gca_completed_mission .slot_mission_completed{font-size: 13px;font-weight: bold;margin: 0 20px;height: 21px;line-height: 21px;}
 	#gca_completed_mission .contentboard_slot_active{width: 555px;}
@@ -991,3 +936,53 @@
 		/* Server Quest Event banner timer */
 		#ServerQuestTime{font-size: 11px;height: 11px;line-height: 11px;pointer-events: none;background-color: rgba(255, 255, 255, 0.80);float: left;border-radius: 10px;padding: 2px 4px 2px 4px;}
 		#ServerQuestTime img{height: 10px;margin: -1px 0px;}
+
+
+
+	/* Settings
+	-------------------------------------------------- */
+
+		/* Logo */
+		#settings_logo{background-image:url('images/GCA_logo.png');position:relative;background-position-y: -10px;width: 530px;height: 130px;margin-bottom: 10px;border: 2px solid black;background-repeat: no-repeat;background-color: black;}
+		#settings_logo .title{color: white;font-size: 16px;position: absolute;bottom: 5px;right: 10px;}
+
+		/* Box */
+		#settings_box {width: 500px;margin: 15px auto 0px auto;}
+		#settings_box section{text-align: right;}
+		#settings_box .icon{float:left;background-image:url('icons/settings_icon.png');width:48px;height:48px;}
+		#settings_box .description{margin: 6px 0px 6px 10px;line-height: 18px;float: left;text-align: left;}
+		#settings_box .space{height:10px;clear:both;}
+		#settings_box input{margin-bottom: 4px;}
+
+		/* Side menu */
+		#settings_menu {width: 150px;float: left;}
+		#settings_menu ul{padding: 0px;list-style: none;margin: 0px;}
+		#settings_menu ul li{padding: 5px 10px;margin: 5px 0px;border: 1px solid black;background: linear-gradient(to bottom, #C3AB6F, #DACFA2);cursor: pointer;}
+		#settings_menu ul li:hover, #settings_menu ul li.active{background: linear-gradient(to bottom, #3d0802, #852111);color: white;}
+		#settings_menu ul li.active{box-shadow: 0px 0px 4px black;}
+
+		/* Categories content */
+		#settings_tab {width: 374px;float: right;border-left: 1px solid #9c8959;margin-top: 5px;padding: 5px;}
+		#settings_tab .settings_tab_title{padding: 5px 10px;margin-top: -5px;border: 1px solid black;background: linear-gradient(to bottom, #C3AB6F, #DACFA2);color: black;}
+		#settings_tab .type-wrapper{margin:5px 0px;background-color: #dacfa1;padding: 5px;border: 1px solid #c4ac70;}
+		#settings_tab .type-wrapper span{line-height: 21px;}
+		#settings_tab .type-wrapper .switch-field{float: right;}
+		#settings_tab .type-wrapper.type-boolean .switch-field input,
+		#settings_tab .type-wrapper.type-enumerator .switch-field input{display: none;}
+		#settings_tab .type-wrapper.type-boolean .switch-field label,
+		#settings_tab .type-wrapper.type-enumerator .switch-field label {float: left;}
+		#settings_tab .type-wrapper.type-boolean .switch-field label,
+		#settings_tab .type-wrapper.type-enumerator .switch-field label {display: inline-block;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: center;text-shadow: none;padding: 2px 14px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-webkit-transition: all 0.1s ease-in-out;-moz-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
+		#settings_tab .type-wrapper.type-boolean .switch-field label:hover,
+		#settings_tab .type-wrapper.type-enumerator .switch-field label:hover {cursor: pointer;}
+		#settings_tab .type-wrapper.type-boolean .switch-field input:checked + label,
+		#settings_tab .type-wrapper.type-enumerator .switch-field input:checked + label {background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
+		#settings_tab .type-wrapper.type-boolean .switch-field label:first-of-type,
+		#settings_tab .type-wrapper.type-enumerator .switch-field label:first-of-type {border-radius: 4px 0 0 4px;}
+		#settings_tab .type-wrapper.type-boolean .switch-field label:last-of-type,
+		#settings_tab .type-wrapper.type-enumerator .switch-field label:last-of-type {border-radius: 0 4px 4px 0;}
+		#settings_tab .type-wrapper.type-integer .switch-field input{border-radius: 4px;width: 74px;height: 15px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
+
+		/* Other styles */
+		.language_select select{float:right;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
+		.language_select .translated-by {text-align: right;font-size: 10px;font-style: italic;}
