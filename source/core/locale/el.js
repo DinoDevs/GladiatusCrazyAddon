@@ -88,7 +88,7 @@ gca_languages["gr"] = {
 			"number_of_bided_items": "Αριθμός δημοπρατούμενων αντικειμένων : {{number}}",
 			"hide_your_gold_here": "Κρύψε τον χρυσό σου εδώ",
 			"price_value_function": "Τιμή = Αξία + {{number}}",
-			"levels_you_can_see": "Μπορείς να δεις αντικείμα επιπέδου από {{min}} έως {{max}}."
+			"levels_you_can_see": "Μπορείς να δεις αντικείμενα επιπέδου από {{min}} έως {{max}}."
 		},
 		forge : {
 			forge_ended : "Η σφυρηλάτηση τελείωσε!",
@@ -117,8 +117,8 @@ gca_languages["gr"] = {
 			"category_global$top_fixed_bar": "Ενεργοποίηση της on-scroll μπάρας",
 			"category_global$advance_main_menu": "Βελτίωση του κυρίως μενού",
 			"category_global$remember_tabs": "Να θυμάται το πρόσθετο τις καρτέλες της τσάντας και των πωλητών",
-			"category_global$attacked_timers": "Εμφάνιση των χρόνων απο την τελευταία επίθεση σε άμυνα",
-			"category_global$quest_timer": "Εμφάνιση της κάτασταση/χρόνου των αποστολών",
+			"category_global$attacked_timers": "Εμφάνιση των χρόνων από την τελευταία επίθεση σε άμυνα",
+			"category_global$quest_timer": "Εμφάνιση της κατάστασης/χρόνου των αποστολών",
 			"category_global$merchants_timer": "Προβολή του χρονομέτρου των πωλητών",
 			"category_overview$analyze_items": "Ανάλυση των αντικειμένων του παίκτη",
 			"category_overview$block_avoid_caps": "Προβολή των τιμών cap για την Προσαρμοστικότητα και την Αξία Κλειδώματος",
@@ -143,7 +143,7 @@ gca_languages["gr"] = {
 		}
 	},
 
-	// Old deprecated struct
+	// Old deprecated structure
 	locale_deprecated : {
 		/* Add on informations */
 			description : "Το πιο τρελό add-on για το gladiatus που φτιάχτηκε ποτέ!",

@@ -344,7 +344,7 @@ gca_languages["en"] = {
 	},
 	*/
 
-	// Old deprecated struct
+	// Old deprecated structure
 	locale_deprecated : {
 		/* Add on informations */
 			description : "The craziest add-on for gladiatus ever!",
@@ -386,7 +386,7 @@ gca_languages["en"] = {
 			quest_full : "Full",
 			// Weapon down alert
 			weapon_down : "Your weapon is removed!",
-			//Levelling Stats
+			//Leveling Stats
 			gold_exp_data : "Gold and Experience Data",
 			today_values : "Today's values",
 			days7_values : "7 days values",
@@ -402,8 +402,8 @@ gca_languages["en"] = {
 			life_potions_left : " life potion left",
 			// dataUpdater
 			dropped_items_reported : "Enemy dropped item info were collected!",
-			// Underword
-				// Pray Shorcut
+			// Underworld
+				// Pray Shortcut
 				stop_praying : "Press to stop praying",
 				start_praying : "Press to start praying",
 				heal : "heal",
@@ -430,7 +430,7 @@ gca_languages["en"] = {
 				add_all_gold : "Add all gold",
 			// War Camp
 				attacks : "Attacks",
-				defences : "Defences",
+				defences : "Defenses",
 				friendly : "Friendly",
 				show_raided_gold : "Show raided gold",
 			// Global
@@ -484,8 +484,8 @@ gca_languages["en"] = {
 		/* Auction */
 			// Number of items in the page
 			number_of_items : "Number of items",
-			// Number of items that have been bided in the page
-			number_of_bided_items : "Number of bided items",
+			// Number of items that have been bidden in the page
+			number_of_bided_items : "Number of bidden items",
 			// Message on items that you can buy and sell at the same price
 			hide_your_gold_here : "Hide your gold here",
 			// Price of item equals to its value

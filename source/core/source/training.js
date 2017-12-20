@@ -258,8 +258,8 @@ var gca_training = {
 			data.count += increment;
 			
 			// Check if valid
-			if(data.count <= 0){
-				data.count = 1;
+			if(data.count < 0){
+				data.count = 0;
 			}
 			else if(data.count > 99){
 				data.count = 99;
@@ -268,6 +268,9 @@ var gca_training = {
 			// Calculate cost
 			if(data.count == 1){
 				data.currentCost = data.initCost;
+			}
+			else if(data.count == 0){
+				data.currentCost = 0;
 			}
 			else{
 				data.currentCost = this.self.costs.calculate(data.skill, data.count, this.self.data.discount);
