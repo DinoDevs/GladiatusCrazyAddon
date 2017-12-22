@@ -568,12 +568,13 @@
 		.gca_sound_bar .sound-toggle.mute{background-position: -32px 0px;}
 		
 		/* GCA Window icons */
-		.gca_windows_icon-facebook{background: transparent url('icons/gca-window-icons.png') no-repeat 0px 0px;width:32px;height:32px;margin: 10px;}
-		.gca_windows_icon-github{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -32px;width:32px;height:32px;margin: 10px;}
-		.gca_windows_icon-idea{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -64px;width:32px;height:32px;margin: 10px;}
-		.gca_windows_icon-bug{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -96px;width:32px;height:32px;margin: 10px;}
-		.gca_windows_icon-translation{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -128px;width:32px;height:32px;margin: 10px;}
-		.gca_windows_icon-beer{background: transparent url('icons/gca-window-icons.png') no-repeat 0px -160px;width:32px;height:32px;margin: 10px;}
+		.gca_windows_icon {background: transparent url('icons/gca-window-icons.png') no-repeat;width:32px;height:32px;transform: scale(0.5);display: inline-block;margin: -10px;}
+		.gca_windows_icon.gca_windows_icon-facebook{background-position: 0px 0px;}
+		.gca_windows_icon.gca_windows_icon-github{background-position: 0px -32px;}
+		.gca_windows_icon.gca_windows_icon-idea{background-position: 0px -64px;}
+		.gca_windows_icon.gca_windows_icon-bug{background-position: 0px -96px;}
+		.gca_windows_icon.gca_windows_icon-translation{background-position: 0px -128px;}
+		.gca_windows_icon.gca_windows_icon-beer{background-position: 0px -160px;}
 
 
 	/* Advanced main menu Layout

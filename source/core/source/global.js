@@ -137,84 +137,7 @@ var gca_global = {
 			this.display.forge_timer());
 			
 		// 48h GCA Window: links + posting data
-		this.spam_post_window();
-	},
-	
-	spam_post_window : function(){
-		var last_time_shown = gca_data.section.get("timers", "gca_window", null);
-		var current = new Date(); current = current.getTime();
-		
-		if(last_time_shown==null || (last_time_shown+(48*60*60*1000))<current){			
-			// Save time shown
-			gca_data.section.set("timers", "gca_window", current);
-			
-			// Create a dialog
-			var dialog = new gca_build.dialog;
-			this.dialog = dialog;
-			dialog.smallHead(true);
-			dialog.title.textContent = "Gladiatus Crazy Addon v"+gca.version;
-			
-			/* TODO WITH JAVASCRIPT + POST DATA TO SERVER
-			var div = document.createElement('div');
-			div.className = "gca_windows_icon-facebook";
-			dialog.body.appendChild(div);
-			dialog.body.appendChild(document.createTextNode("Reporting materials dropped data to our server..."));
-			
-			var div = document.createElement('div');
-			div.className = "gca_windows_icon-github";
-			dialog.body.appendChild(div);
-			
-			var div = document.createElement('div');
-			div.className = "gca_windows_icon-idea";
-			dialog.body.appendChild(div);
-			
-			var div = document.createElement('div');
-			div.className = "gca_windows_icon-bug";
-			dialog.body.appendChild(div);
-			
-			var div = document.createElement('div');
-			div.className = "gca_windows_icon-beer";
-			dialog.body.appendChild(div);
-			
-			var div = document.createElement('div');
-			div.className = "gca_windows_icon-translation";
-			dialog.body.appendChild(div);
-			*/
-			
-			dialog.body.style="font-size: 16px;text-align: center;";
-			
-			dialog.body.innerHTML = '\
-				<span style="font-style:italic;">Making gladiatus great since 2010!</span>\
-				<br><br>\
-				<table style="font-size: 16px;margin-left: auto;margin-right: auto;">\
-					<tr>\
-						<td><div class="gca_windows_icon-bug"></div></td><td>Did you found a <span style="color:#f00;">bug</span>?<br>Do you have an <span style="color:#11a000;">idea</span> for a new feature?</td><td><div class="gca_windows_icon-idea"></div></td>\
-					</tr>\
-					<tr>\
-						<td><a target="_blank" href="https://www.facebook.com/GladiatusCrazyAddOn/"><div class="gca_windows_icon-facebook"></div></a></td><td>Open an issue on our <a target="_blank" href="https://github.com/DinoDevs/GladiatusCrazyAddon/" style="color:#616161;">Github</a> or<br>send us a <a target="_blank" href="https://www.facebook.com/GladiatusCrazyAddOn/" style="color:#0072ff;">Facebook</a> message!</td><td><a target="_blank" href="https://github.com/DinoDevs/GladiatusCrazyAddon/"><div class="gca_windows_icon-github"></div></a></td>\
-					</tr>\
-				</table>\
-				<br>\
-				<table style="font-size: 16px;margin-left: auto;margin-right: auto;">\
-					<tr>\
-						<td><a target="_blank" href="https://github.com/DinoDevs/GladiatusCrazyAddon/tree/master/source/core/locale"><div class="gca_windows_icon-translation"></div></a></td><td>We need your support! Buy us a <a target="_blank" href="https://paypal.me/gcadonation/5" style="color:#fff000;">beer</a><br>or help us <a target="_blank" href="https://github.com/DinoDevs/GladiatusCrazyAddon/tree/master/source/core/locale" style="color:#fff;">translate</a> the addon in your language!</td><td><a target="_blank" href="https://paypal.me/gcadonation/5"><div class="gca_windows_icon-beer"></div></a></td>\
-					</tr>\
-				</table>\
-				<br>Do not forget to visit addon\'s <a href="index.php?mod=settings&gcamod=settings">settings</a><br>to enable and disable features...\
-				<br><br>Yours, GreatApo & DarkThanos\
-			';
-			
-			// Add close Button
-			var button = document.createElement('input');
-			button.className = "button3";
-			button.type = "button";
-			button.style = "float: right;";
-			button.value = gca_locale.get("general", "close");
-			dialog.body.appendChild(button);
-			button.addEventListener('click', function(){dialog.close();}, false);
-			
-			dialog.open();
-		}
+		this.gcaWindow();
 	},
 	
 	scripts : {
@@ -3688,6 +3611,188 @@ var gca_global = {
 				this.elements.toggleIcon.className = "sound-toggle";
 			}
 		}
+	},
+	
+	gcaWindow : function(){
+		// Get timers
+		let now = new Date().getTime();
+		let last_time_shown = gca_data.section.get("timers", "gca_window", null);
+		
+		// If window was displayed on the last x hours return
+		if(last_time_shown !== null && (last_time_shown + (48*60*60*1000)) > now){
+			return;
+		}
+
+		// Save time shown
+		gca_data.section.set("timers", "gca_window", now);
+		
+		// Create a dialog
+		let dialog = new gca_build.dialog;
+		this.dialog = dialog;
+		dialog.smallHead(true);
+		dialog.title.textContent = "Gladiatus Crazy Addon v" + gca.version;
+		dialog.body.style.fontStyle = "16px";
+
+		// Subtitle
+		let suptitle = document.createElement("div");
+		suptitle.style.fontStyle = "italic";
+		suptitle.style.fontSize = "14px";
+		suptitle.style.textAlign = "center";
+		suptitle.textContent = "Making gladiatus great since 2010!";
+		dialog.body.appendChild(suptitle);
+
+		// Create letter
+		let letter = document.createElement("div");
+		letter.style.fontSize = "16px";
+		letter.style.fontStyle = "italic";
+		letter.style.padding = "10px 30px";
+
+
+		let p, icon, a;
+
+		// Letter start
+		let start = document.createElement("div");
+		start.appendChild(document.createTextNode("Ave Gladiator,"));
+
+		// Letter body
+		let body = document.createElement("div");
+		body.style.marginLeft = "40px";
+		body.style.paddingTop = "10px";
+		body.style.textAlign = "justify";
+		body.style.textJustify = "inter-word";
+
+		p = document.createElement("div");
+		p.style.paddingBottom = "10px";
+		p.appendChild(document.createTextNode("Thank you for using Gladiatus Crazy Addon."));
+		body.appendChild(p);
+
+		p = document.createElement("div");
+		p.style.paddingBottom = "10px";
+		p.appendChild(document.createTextNode("If you find a "));
+		icon = document.createElement("div");
+		icon.className = "gca_windows_icon gca_windows_icon-bug";
+		p.appendChild(icon);
+		p.appendChild(document.createTextNode(" "));
+		a = document.createElement("a");
+		a.setAttribute("href", "https://github.com/DinoDevs/GladiatusCrazyAddon/issues");
+		a.setAttribute("target", "_blank");
+		a.setAttribute("rel", "noreferrer");
+		a.style.color = "#b50604";
+		a.style.textDecoration = "underline";
+		a.textContent = "bug";
+		p.appendChild(a);
+		p.appendChild(document.createTextNode(" or you have a nice "));
+		icon = document.createElement("div");
+		icon.className = "gca_windows_icon gca_windows_icon-idea";
+		p.appendChild(icon);
+		p.appendChild(document.createTextNode(" "));
+		a = document.createElement("a");
+		a.setAttribute("href", "https://github.com/DinoDevs/GladiatusCrazyAddon/issues");
+		a.setAttribute("target", "_blank");
+		a.setAttribute("rel", "noreferrer");
+		a.style.color = "#545454";
+		a.style.textDecoration = "underline";
+		a.textContent = "idea";
+		p.appendChild(a);
+		p.appendChild(document.createTextNode(" for a new feature, you can open an issue on our "));
+		icon = document.createElement("div");
+		icon.className = "gca_windows_icon gca_windows_icon-github";
+		p.appendChild(icon);
+		p.appendChild(document.createTextNode(" "));
+		a = document.createElement("a");
+		a.setAttribute("href", "https://github.com/DinoDevs/GladiatusCrazyAddon/issues");
+		a.setAttribute("target", "_blank");
+		a.setAttribute("rel", "noreferrer");
+		a.style.color = "#000";
+		a.style.textDecoration = "underline";
+		a.textContent = "Github page";
+		p.appendChild(a);
+		p.appendChild(document.createTextNode(" or send us a "));
+		icon = document.createElement("div");
+		icon.className = "gca_windows_icon gca_windows_icon-facebook";
+		p.appendChild(icon);
+		p.appendChild(document.createTextNode(" "));
+		a = document.createElement("a");
+		a.setAttribute("href", "https://www.facebook.com/GladiatusCrazyAddOn/");
+		a.setAttribute("target", "_blank");
+		a.setAttribute("rel", "noreferrer");
+		a.style.color = "#3c5b9b";
+		a.style.textDecoration = "underline";
+		a.textContent = "Facebook message";
+		p.appendChild(a);
+		p.appendChild(document.createTextNode("."));
+		body.appendChild(p);
+
+		p = document.createElement("div");
+		p.style.paddingBottom = "10px";
+		p.appendChild(document.createTextNode("We need your support! Buy us a "));
+		icon = document.createElement("div");
+		icon.className = "gca_windows_icon gca_windows_icon-beer";
+		p.appendChild(icon);
+		p.appendChild(document.createTextNode(" "));
+		a = document.createElement("a");
+		a.setAttribute("href", "https://paypal.me/gcadonation/5");
+		a.setAttribute("target", "_blank");
+		a.setAttribute("rel", "noreferrer");
+		a.style.color = "#af790f";
+		a.style.textDecoration = "underline";
+		a.textContent = "beer";
+		p.appendChild(a);
+		p.appendChild(document.createTextNode(" by donating and also help us by "));
+		icon = document.createElement("div");
+		icon.className = "gca_windows_icon gca_windows_icon-translation";
+		p.appendChild(icon);
+		p.appendChild(document.createTextNode(" "));
+		a = document.createElement("a");
+		a.setAttribute("href", "https://github.com/DinoDevs/GladiatusCrazyAddon/tree/master/source/core/locale");
+		a.setAttribute("target", "_blank");
+		a.setAttribute("rel", "noreferrer");
+		a.style.color = "#3278ee";
+		a.style.textDecoration = "underline";
+		a.textContent = "translating the addon";
+		p.appendChild(a);
+		p.appendChild(document.createTextNode(" in your language!"));
+		body.appendChild(p);
+
+		p = document.createElement("div");
+		p.style.paddingBottom = "10px";
+		p.appendChild(document.createTextNode("Do not forget to visit the addon's "));
+		a = document.createElement("a");
+		a.setAttribute("href", gca_getPage.link({"mod":"settings","gcamod":"settings"}));
+		a.setAttribute("target", "_blank");
+		a.style.color = "#000";
+		a.style.textDecoration = "underline";
+		a.textContent = "settings";
+		p.appendChild(a);
+		p.appendChild(document.createTextNode(", so that you can enable or disable any feature you want."));
+		body.appendChild(p);
+
+		// Letter end
+		let end = document.createElement("div");
+		end.appendChild(document.createTextNode("Yours,"));
+		end.appendChild(document.createElement("br"));
+		end.appendChild(document.createTextNode("GreatApo & DarkThanos"));
+
+		// Build letter
+		letter.appendChild(start);
+		letter.appendChild(body);
+		letter.appendChild(end);
+		dialog.body.appendChild(letter);
+		
+		// Add close Button
+		var button = document.createElement('input');
+		button.className = "button3";
+		button.type = "button";
+		button.style = "float: right;";
+		button.value = gca_locale.get("general", "close");
+		dialog.body.appendChild(button);
+		button.addEventListener('click', function(){dialog.close();}, false);
+
+		let div = document.createElement("div");
+		div.style.clear = "both";
+		dialog.body.appendChild(div);
+		
+		dialog.open();
 	}
 };
 
