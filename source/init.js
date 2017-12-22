@@ -12,9 +12,11 @@ var init = setInterval(function(){
 		//!window.postMessage
 	) return;
 	clearInterval(init);
+
+	var Browser = (typeof browser === "undefined")? chrome : browser;
 	
 	// Get info
-	var manifest = chrome.runtime.getManifest();
+	var manifest = Browser.runtime.getManifest();
 	var info = {
 		name : manifest.name,
 		description : manifest.description,
@@ -25,7 +27,7 @@ var init = setInterval(function(){
 	inject(
 		info,
 		window,
-		chrome.extension.getURL("core"),
+		Browser.extension.getURL("core"),
 		{}
 	);
 			
