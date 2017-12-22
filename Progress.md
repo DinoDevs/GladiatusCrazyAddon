@@ -29,9 +29,10 @@
 		- [x] Auction status bar + notifications
 		- [x] Move event bar (if button bar / auction status / hp-xp info)
 		- [x] Top bar when scrolling down, showing varius info
+			- [ ] Add life bar on scroll bar
 		- [x] Advance menu
 			- [x] Remember toggle tabs
-		- [x] Attacked timers
+		- [x] ✎ Attacked timers (bug on reports)
 		- [x] Quest timer
 		- [x] Merchants Timer
 		- [x] Forge Timers (forge/smelt)
@@ -49,7 +50,9 @@
 		- [ ] Bag Interface:
 			- [ ] Storage Info (Under every bag! Guild, Overview, Merchants...)
 			- [x] Move checkbox on the side
-		- [ ] Work / Pray / Traveling, The exact finish time (date-time) is shown next to remaining time 
+		- [ ] Work / Pray / Traveling, The exact finish time (date-time) is shown next to remaining time
+		- [ ] Link to the addon's settings page
+		- [ ] Show durability on items (like level indicator)
 
 
 
@@ -76,7 +79,7 @@
 
 - **Overview Stats**
 	- [x] Show more stats
-	- [ ] Show graphs of stats from reports
+	- [ ] Show information of gathered data to be posted on the server
 
 
 - **Overview Achievements**
@@ -89,7 +92,6 @@
 
 - **Overview Costumes**
 	- [x] Show part number for each costume
-	- [ ] Custom player image
 
 
 
@@ -109,7 +111,6 @@
 
 
 - **Pantheon Gods**
-	- [ ] Recolored buttons based of each god's favor 
 	- [x] Percent(%) of points, red color on 100%
 
 
@@ -170,7 +171,6 @@
 
 
 - **Guild Memebers List Interface**
-	- [ ] Opponent Guild: Attack buttons next to each member of a guild (member list), usefull for guild wars (old type)
 	- [ ] See which members have been attacked within 75 min 
 
 
@@ -192,8 +192,8 @@
 
 - **Arena**
 	- [x] Order players by level on Cross Server Arenas
-	- [ ] Enemy details (win / losses)
-	- [ ] Link to the simulator
+	- [ ] Show "Nemesis list"
+	- [ ] Simulator buttons
 	- [x] Option to ignore attack confirmations (default: disabled)
 
 
@@ -204,9 +204,9 @@
 - **Training**
 	- [x] Show basic points bars
 	- [x] Show stats changes on upgrade
-	- [ ] Training Cost calculator (arrow down to 0 + show total)
+	- [x] Training Cost calculator
 	- [ ] Propose points to upgrade
-	- [x] Stats breakdown calculator (Block, Critical hits, Avoid critical, Double hits, hits, heal etc...)
+	- [x] ✎ Stats breakdown calculator (Block, Critical hits, Avoid critical, Double hits, hits, heal etc...)
 	- [ ] Advance calculation (load heal from dungeon player + choose target player to calculate hits etc)
 
 
@@ -255,11 +255,12 @@
 	- [ ] Item Preffix/Suffix search list
 	- [ ] More levels in the search options 
 	- [x] Cancel all items with one button (if "load all pages" is open this will also work)
-	- [ ] Load all the pages 
 	- [x] Item levels you can see in market are shown in building's description
 	- [ ] Select the default sell duration (2h, 8h etc) in the GCA options (default 24h)
-	- [x] Red on items that are souldbound & confirmation on buy
 	- [ ] Price per unit
+	- [ ] Constant sell value (selling mode)
+	- [x] Red bg on items that are souldbound & confirmation on buy
+	- [ ] Orange bg on 1g items
 
 
 
@@ -283,10 +284,7 @@
 		- [x] Guild Mates informations (level - rank)
 	- [x] Hilight unread messages
 	- [x] Day separators
-	- [ ] Send message box
-	- [ ] Message parse
-		- [x] Show message links below
-		- [ ] Youtube videos to videos
+	- [x] Show message links below
 	- [x] Load guild battles report
 	- [x] Sidebar buttons
 		- [x] Show number of messages (per type)
@@ -295,7 +293,6 @@
 		- [x] Fix header link click bug
 	- [ ] Auto-remove last lines of each message, if they are empty (trim messages)
 	- [ ] Warning icon and item links on auction bid messages
-	- [ ] Tab link on incomming folder (Tab to go to the incomming folder)
 
 
 - **New Message**
@@ -313,7 +310,7 @@
 	- [x] Rewarded items stats on mouse over (tooltips)
 	- [x] Gather information (materials dropped)
 	- [ ] Gather stats
-	- [ ] Show battle stances next to theoretical
+	- [ ] Show battle chances next to theoretical
 	- [ ] Post gathered drops to server every 24h
 
 
@@ -342,6 +339,7 @@
 		- [ ] Visible mission type (icon: Medic, Damage, Protect yourself - with tooltip) 
 	- [x] Player Stats page ratios and totals
 	- [x] Buff bar over players
+	- [ ] Show battle chances (ex. Double-Hit %)
 
 
 - **Player Description**
@@ -356,14 +354,7 @@
 	- [x] Links to your bag and the market of the remaining needed materials (Forge/Workbench)
 	- [x] Guild message with the remaining needed materials + probable quality (Forge/Workbench)
 	- [x] Forge/Smelt timer on main menu + Notifications when done
-	- [x] ✎Button when forge fails, to re-craft the item
-
-
-
-### GCA News Script
-
-- **GCA News**
-	- [ ] Display gca news
+	- [ ] Button when forge fails, to re-craft the item (scripted - has problems)
 
 
 
@@ -371,7 +362,7 @@
 ### Translations Script
 
 - **Translations**
-	- [x] ✎New system
+	- [x] ✎ New system
 
 
 
