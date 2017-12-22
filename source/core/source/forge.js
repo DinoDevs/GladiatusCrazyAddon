@@ -20,7 +20,7 @@ var gca_forge = {
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
 			
-			this.recraft.inject();
+			/*this.recraft.inject();*/
 		// Smelt
 		}else if(gca_section.submod=='smeltery'){
 			this.saveSmeltTimers();
