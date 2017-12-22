@@ -861,6 +861,10 @@
 		#training_box.gca_multiple_training .gca_multiple .gca-arrow-down:hover{border-top: 5px solid #3a2d13;}
 		#training_box.gca_multiple_training .gca-training-info .gca_multiple{position: static;display: inline-block;width: 10px;top: auto;right: auto;margin: -7px 2px;}
 		
+		/* Total cost */
+		#training_box .gca_training_total_costs {width: 300px;}
+		#training_box .gca_training_total_costs .gca_costs_difference {font-size: 10px;}
+
 		/* View-mode switch + stats breakdown mode */
 		#trainingPage .switch-field{height: 11px;width: 360px;margin-right: auto;margin-left: auto;}
 		#trainingPage .switch-field input{display: none;}

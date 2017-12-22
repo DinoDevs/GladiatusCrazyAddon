@@ -338,29 +338,38 @@ var gca_training = {
 			// Get player gold
 			var gold = parseInt(document.getElementById("sstat_gold_val").textContent.replace(/\./g,""));
 
-			// Don't train
-			if(data.count <= 0){
-				data.trainButton.original.style.display = "none";
-				data.trainButton.disabed.style.display = "block";
-				data.trainButton.active.style.display = "none";
-			}
-			// If normal link
-			else if(data.count == 1){
-				data.trainButton.original.style.display = "block";
-				data.trainButton.disabed.style.display = "none";
-				data.trainButton.active.style.display = "none";
-			}
-			// If you don't have the gold
-			else if(data.currentCost > gold){
-				data.trainButton.original.style.display = "none";
-				data.trainButton.disabed.style.display = "block";
-				data.trainButton.active.style.display = "none";
-			}
-			// You have the gold
-			else{
+			// If discount is changed
+			if (this.self.calculatorTrain.enabled && this.self.data.initial_discount !== this.self.data.discount) {
 				data.trainButton.original.style.display = "none";
 				data.trainButton.disabed.style.display = "none";
-				data.trainButton.active.style.display = "block";
+				data.trainButton.active.style.display = "none";
+			}
+
+			else {
+				// Don't train
+				if(data.count <= 0){
+					data.trainButton.original.style.display = "none";
+					data.trainButton.disabed.style.display = "block";
+					data.trainButton.active.style.display = "none";
+				}
+				// If normal link
+				else if(data.count == 1){
+					data.trainButton.original.style.display = "block";
+					data.trainButton.disabed.style.display = "none";
+					data.trainButton.active.style.display = "none";
+				}
+				// If you don't have the gold
+				else if(data.currentCost > gold){
+					data.trainButton.original.style.display = "none";
+					data.trainButton.disabed.style.display = "block";
+					data.trainButton.active.style.display = "none";
+				}
+				// You have the gold
+				else{
+					data.trainButton.original.style.display = "none";
+					data.trainButton.disabed.style.display = "none";
+					data.trainButton.active.style.display = "block";
+				}
 			}
 
 			if (this.self.calculatorTrain.enabled) {
@@ -403,9 +412,14 @@ var gca_training = {
 			let link = document.createElement("div");
 			link.className = "training_link";
 			let costsWrapper = document.createElement("div");
-			costsWrapper.className = "training_costs";
+			costsWrapper.className = "training_costs gca_training_total_costs";
+			this.totalCostDifferenceElement = document.createElement("span");
+			this.totalCostDifferenceElement.className = "gca_costs_difference";
+			costsWrapper.appendChild(this.totalCostDifferenceElement);
+			costsWrapper.appendChild(document.createTextNode(" "));
 			this.totalCostElement = document.createElement("span");
 			costsWrapper.appendChild(this.totalCostElement);
+			costsWrapper.appendChild(document.createTextNode(" "));
 			costsWrapper.appendChild(gca_tools.create.goldIcon());
 			link.appendChild(costsWrapper);
 			inner.appendChild(link);
@@ -457,7 +471,12 @@ var gca_training = {
 		},
 
 		setTotalGold : function(gold){
-			this.totalCostElement.textContent = gca_tools.strings.insertDots(gold) + " ";
+			// Set total gold
+			this.totalCostElement.textContent = gca_tools.strings.insertDots(gold);
+			// Set difference gold
+			let difference = gca_tools.strings.parseGold(document.getElementById("sstat_gold_val").textContent) - gold;
+			this.totalCostDifferenceElement.textContent = "(" + ((difference >= 0)?"+":"-") + " " + gca_tools.strings.insertDots(Math.abs(difference)) + ")";
+			this.totalCostDifferenceElement.style.color = (difference >= 0) ? "#006300" : "#840900";
 		},
 
 		refresh : function() {
@@ -490,8 +509,15 @@ var gca_training = {
 
 			if(refresh_skills){
 				// For each skill
+				let disabe_training = (this.self.data.initial_discount !== this.self.data.discount);
 				for(let i in this.self.multipleTrain.skills){
 					this.self.multipleTrain.add(0, this.self.multipleTrain.skills[i]);
+					// Hide training buttons
+					if (disabe_training) {
+						this.self.multipleTrain.skills[i].trainButton.original.style.display = "none";
+						this.self.multipleTrain.skills[i].trainButton.disabed.style.display = "none";
+						this.self.multipleTrain.skills[i].trainButton.active.style.display = "none";
+					}
 				}
 			}
 		}
