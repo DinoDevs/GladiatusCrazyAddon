@@ -86,7 +86,7 @@ var gca_forge = {
 		];
 		var options = document.getElementById('basic0').getElementsByTagName("option");
 		for (var i=0;i<options.length;i++) {
-			options[i].textContent = "("+levels[i]+") "+options[i].textContent;
+			options[i].textContent = "("+levels[i]+"lvl) "+options[i].textContent;
 		}
 	},
 	
