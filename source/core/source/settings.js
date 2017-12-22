@@ -202,7 +202,7 @@ var gca_settings = {
 
 				// Advance main menu
 				"advance_main_menu" : true,
-				"submenu_click_to_change" : true,
+				"submenu_click_to_change" : false,
 
 				// Remember Tabs
 				"remember_tabs" : true,
