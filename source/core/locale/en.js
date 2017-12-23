@@ -167,6 +167,15 @@ gca_languages["en"] = {
 			// Levels you can see
 			levels_you_can_see : "You can see items from level {{min}} to level {{max}}.",
 		},
+
+		// Markets section
+		markets : {
+			// Warnings
+			item_cost_only_x_gold : "This item costs only {{number}} gold.",
+			item_is_soulbound : "This item is soulbound.",
+			// Are you sure
+			are_you_sure_you_want_to_buy : "Do you really want to buy this item?"
+		},
 		
 		// Forge
 		forge : {
@@ -299,6 +308,7 @@ gca_languages["en"] = {
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Market
 			category_market$soulbound_warning : "Buy confirmation on soul-bound items",
+			category_market$one_gold_warning : "Buy confirmation on items that cost 1 gold",
 			category_market$cancel_all_button : "Show cancel-all button",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",

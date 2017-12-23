@@ -581,6 +581,10 @@
 		.gca_windows_icon.gca_windows_icon-translation{background-position: 0px -128px;}
 		.gca_windows_icon.gca_windows_icon-beer{background-position: 0px -160px;}
 
+		/* Settings Link */
+		.gca-settings-link-button{display: block;position: absolute;top: 60px;right: 200px;cursor: pointer;z-index: 1;width: 16px;height: 16px;background: transparent url('icons/gear.png');filter: drop-shadow(0px 0px 3px rgba(0,0,0,0.5));}
+		.gca-settings-link-button:hover{filter: drop-shadow(0px 0px 2px rgba(0,0,0,1));}
+
 
 	/* Advanced main menu Layout
 	-------------------------------------------------- */

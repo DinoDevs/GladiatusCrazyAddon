@@ -17,9 +17,15 @@ var gca_markets = {
 			// If Item shadow
 			(gca_options.bool("global","item_shadow") &&
 				this.itemShadow.market());
-		
-			this.soulboundItems();
 			
+			// If 1 gold warnings
+			(gca_options.bool("market","one_gold_warning") &&
+				this.itemsWarnings.oneGoldItems());
+			// If soul-bound warnings
+			(gca_options.bool("market","soulbound_warning") &&
+				this.itemsWarnings.soulboundItems());
+			
+			// If cancel all button
 			(gca_options.bool("market","cancel_all_button") &&
 				this.cancelAllButton());
 		}
@@ -49,16 +55,48 @@ var gca_markets = {
 		baseElement.appendChild(document.createElement("br"));
 		baseElement.appendChild(document.createTextNode(gca_locale.get("auction", "levels_you_can_see", {min : 0, max : maxLvl})));
 	},
-	
-	// Point out which items are soulbound
-	soulboundItems : function(){
-		var rows = document.getElementById("market_table").getElementsByTagName("tr");
-		var warning = gca_options.bool("market","soulbound_warning");
-		for(var i=1; i<=rows.length - 1; i++){
-			if(typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"){
-				rows[i].style="background-color: rgba(255, 0, 0,0.2);";
-				if (warning)
-					document.buyForm[i-1].setAttribute("onsubmit","return confirm('This item is soulbound. Do you really want to buy it?');")
+
+	// Point out specific items
+	itemsWarnings : {
+		// Point out which items are soulbound
+		soulboundItems : function(){
+			let rows = document.getElementById("market_table").getElementsByTagName("tr");
+			for (let i = 1; i <= rows.length - 1; i++) {
+				if (typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined") {
+					rows[i].style.backgroundColor = "rgba(255, 0, 0,0.2)";
+					document.buyForm[i-1].addEventListener("submit", function(e){
+						if (
+							!confirm(
+								gca_locale.get("markets", "item_is_soulbound") + "\n" +
+								gca_locale.get("markets", "are_you_sure_you_want_to_buy")
+							)
+						) {
+							event.preventDefault();
+							return false;
+						}
+					});
+				}
+			}
+		},
+
+		// Point out which items cost 1 gold
+		oneGoldItems : function(){
+			let rows = document.getElementById("market_table").getElementsByTagName("tr");
+			for (let i = 1; i <= rows.length - 1; i++) {
+				if (gca_tools.strings.parseGold(rows[i].getElementsByTagName("td")[2].textContent) === 1 && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"){
+					rows[i].style.backgroundColor = "rgba(255, 152, 0,0.2)";
+					document.buyForm[i-1].addEventListener("submit", function(e){
+						if (
+							!confirm(
+								gca_locale.get("markets", "item_cost_only_x_gold", {number : 1}) + "\n" +
+								gca_locale.get("markets", "are_you_sure_you_want_to_buy")
+							)
+						) {
+							event.preventDefault();
+							return false;
+						}
+					});
+				}
 			}
 		}
 	},

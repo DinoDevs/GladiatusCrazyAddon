@@ -484,6 +484,7 @@ gca_options.data = {
 	"market" : {
 		// Soul-bound Buy-Confirmation
 		"soulbound_warning" : true,
+		"one_gold_warning" : true,
 		// Show Cancel-all button
 		"cancel_all_button" : true
 	},
