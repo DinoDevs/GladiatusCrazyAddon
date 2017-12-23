@@ -29,7 +29,7 @@
 		- [x] Auction status bar + notifications
 		- [x] Move event bar (if button bar / auction status / hp-xp info)
 		- [x] Top bar when scrolling down, showing varius info
-			- [ ] Add life bar on scroll bar
+			- [x] Add life bar on scroll bar
 		- [x] Advance menu
 			- [x] Remember toggle tabs
 		- [x] ✎ Attacked timers (bug on reports)
