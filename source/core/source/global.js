@@ -1981,7 +1981,7 @@ var gca_global = {
 		// Attacked timers
 		attacked_timers : {
 			inject : function(){
-				// if Quests wait for update event
+				// if reports wait for update event
 				if(gca_section.mod == 'reports' && (gca_section.submod == 'showArena' || gca_section.submod == 'showCircusTurma' || gca_getPage.parameter('t') == '2' || gca_getPage.parameter('t') == '3') && document.getElementById('content').getElementsByClassName('report_statistic')){
 					gca_tools.event.addListener("arena-info-update", function(){
 						gca_global.display.attacked_timers.display();

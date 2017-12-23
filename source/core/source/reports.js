@@ -19,10 +19,6 @@ var gca_reports = {
 
 		// Combat reports
 		if(this.submod == 'showCombatReport' && document.getElementById('reportHeader')){
-			// Change player image
-			//(gca_options.bool("global","player_image") &&
-			//	// Attach custom image on reports
-			//	this.player_images_in_reports()); // TODO
 			
 			// If Combat report
 			if (this.combatReport == "reportExpedition") {
@@ -31,12 +27,15 @@ var gca_reports = {
 					this.report_found_items());
 			}
 
-
 			if (this.combatReport == "reportExpedition" || this.combatReport == "reportDungeon") {
 				// Add shadow on items rewards
 				(gca_options.bool("global","item_shadow") &&
 					this.itemShadow());
 			}
+
+			// TODO check if an attack was done
+			// Fire reports info updated
+			gca_tools.event.fireOnce("arena-info-update");
 
 		}
 		
@@ -106,10 +105,6 @@ var gca_reports = {
 		}
 	},
 
-	// Attach custom image on reports
-	player_images_in_reports : function(){
-		// TODO : obviously there is no code here
-	},
 	// Log items found for statistics
 	report_found_items : function(){
 		// New report?
