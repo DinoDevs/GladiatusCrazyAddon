@@ -867,7 +867,7 @@ var gca_training = {
 			}else if(name=='intelligence'){
 				// Heal gain
 					var healGain = Math.round(totalChange*4/5*100)/100;
-					write_breakdown_stat(0,"Heal: +"+Math.floor(healGain)+"% (+"+healGain+")");
+					write_breakdown_stat(0,"Heal: +"+Math.floor(healGain)+" (+"+healGain+")");
 				// Critical Healling Chance
 					var player_level = parseInt(document.getElementById("header_values_level").textContent);
 					if(Math.round((this.specialStats["critical_healing"].item_points+Math.floor(totalOld/5))*52/(player_level-8)/7)>=90){
