@@ -1557,6 +1557,7 @@ var gca_global = {
 				header_values_general : {dom : null, scroll : 74, className : "header_values_general-fixed-bar"},
 				icon_arena : {dom : null, scroll : 105, className : "icon_arena-fixed-bar"},
 				icon_grouparena : {dom : null, scroll : 105, className : "icon_grouparena-fixed-bar"},
+				header_values_hp : {dom : null, scroll : 115, className : "header_values_hp-fixed-bar"},
 				show_premium_days : {dom : null, scroll : 74, className : "show_premium_days-fixed-bar"}
 			},
 			// Create Top Bar
@@ -1585,6 +1586,7 @@ var gca_global = {
 				this.elements.header_values_general.dom = document.getElementById('header_values_general');
 				this.elements.icon_arena.dom = document.getElementById('icon_arena').parentNode;
 				this.elements.icon_grouparena.dom = document.getElementById('icon_grouparena').parentNode;
+				this.elements.header_values_hp.dom = document.getElementById('header_values_hp');
 				this.elements.show_premium_days.dom = document.getElementById('show_premium_days');
 				
 				// Attack a scroll event
