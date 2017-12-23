@@ -59,6 +59,9 @@ var gca_overview = {
 		// Repair overview
 		(gca_options.bool("overview", "items_repair_overview") && this.doll == 1 &&
 			this.repair_overview.inject());
+
+		// Setting Link
+		this.settingsLink();
 	},
 
 	// Resolve Page
@@ -1474,6 +1477,14 @@ var gca_overview = {
 				JSON.stringify(tooltip)
 			);
 		}
+	},
+
+	settingsLink : function() {
+		let link = document.createElement("a");
+		link.className = "gca-settings-link-button";
+		link.setAttribute("href", gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : "overview"}));
+		document.getElementById("footer").appendChild(link);
+		gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "white"]]]));
 	}
 };
 
