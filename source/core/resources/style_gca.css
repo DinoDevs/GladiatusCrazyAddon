@@ -151,7 +151,7 @@
 	.dungeonpoints_value-fixed-bar{z-index: 9001; position: fixed; top: 1px; margin-left: 80px; cursor: pointer;font-size: 12px;}
 	.gca_rtl .dungeonpoints_value-fixed-bar{margin-right: 128px;margin-left: auto;}
 	/*.header_values_ressources-fixed-bar, .header_values_general-fixed-bar{padding-top: 18px;}*/
-	#header_values_hp.header_values_hp-fixed-bar{z-index: 9001;position: fixed;top: 6px;margin-left: -70px;}
+	#header_values_hp.header_values_hp-fixed-bar{z-index: 9001;position: fixed;top: 6px;margin-left: 90px;left: auto;}
 	#header_values_hp.header_values_hp_extend.header_values_hp-fixed-bar{top: -4px;}
 	#header_values_hp.header_values_hp-fixed-bar #header_values_hp_points{margin-top: -10px;font-size: 8px;text-align: right;padding-right: 35px;}
 	#header_values_hp.header_values_hp-fixed-bar #header_values_hp_points span{font-size: 10px!important;}
