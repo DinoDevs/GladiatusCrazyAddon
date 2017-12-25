@@ -655,6 +655,7 @@ var gca_settings = {
 
 		// Create options
 		create : function(){
+			let content = document.getElementById("content");
 			// Create a new content
 			var content_2nd = document.createElement("div");
 			content_2nd.id = "content_2nd";
