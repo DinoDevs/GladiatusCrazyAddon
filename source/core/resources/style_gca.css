@@ -433,14 +433,18 @@
 */
 
 /* Market */
+	/*
 	.market_darkmod_page_info{cursor: pointer; background: transparent url('interface/menu_items.png') no-repeat -380px 0px; color: #BFAE54; font-family: Century Gothic, sans-serif; font-weight: bold; position: absolute; margin-left: -32px; width:28px; height:20px; padding-right:5px; text-align:center; line-height:20px;}
 	.gca_rtl .market_darkmod_page_info{margin-right: -32px; padding-left:5px; margin-left:auto; padding-right:auto;}
 	.fix_market_darkmod{margin-left:-36px;}
 	.gca_rtl .fix_market_darkmod{margin-right: -36px; margin-left:auto;}
 	#level_to_see_info{background-image: url('icons/notifications.png');background-position: -48px 0px;position:absolute;width:16px;height:16px;margin:6px;cursor:help;}
-	
+	*/
+
 /* Reports */
+	/*
 	.reports_day_row td{background:#d2c7ac;font-weight:bold !important;border-top: 1px solid #BBA86E;}
+	*/
 	
 /* Merchants */
 	/* Time */
