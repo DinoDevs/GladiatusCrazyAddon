@@ -61,7 +61,7 @@ var gca_overview = {
 			this.repair_overview.inject());
 
 		// Setting Link
-		this.settingsLink();
+		gca_tools.create.settingsLink("overview");
 	},
 
 	// Resolve Page
@@ -1477,14 +1477,6 @@ var gca_overview = {
 				JSON.stringify(tooltip)
 			);
 		}
-	},
-
-	settingsLink : function() {
-		let link = document.createElement("a");
-		link.className = "gca-settings-link-button";
-		link.setAttribute("href", gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : "overview"}));
-		document.getElementById("footer").appendChild(link);
-		gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "white"]]]));
 	}
 };
 

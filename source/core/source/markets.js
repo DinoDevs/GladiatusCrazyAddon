@@ -29,6 +29,9 @@ var gca_markets = {
 			(gca_options.bool("market","cancel_all_button") &&
 				this.cancelAllButton());
 		}
+
+		// Setting Link
+		gca_tools.create.settingsLink("market");
 	},
 
 	// Add shadow on items

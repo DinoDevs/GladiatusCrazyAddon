@@ -12,6 +12,9 @@ var gca_guild_jail = {
 			(gca_options.bool("guild","jail_layout") && 
 				this.layout.improve());
 		}
+
+		// Setting Link
+		gca_tools.create.settingsLink("guild");
 	},
 
 	// Layout Improvements

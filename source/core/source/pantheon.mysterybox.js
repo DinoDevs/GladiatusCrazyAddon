@@ -12,6 +12,9 @@ var gca_pantheon_mysterybox = {
 		// Show rewards value in rubies
 		(gca_options.bool("pantheon", "show_mysterybox_rewards_rubies") && 
 			this.rewardsValue.show());
+
+		// Setting Link
+		gca_tools.create.settingsLink("pantheon");
 	},
 
 	// Open many mysteryboxes

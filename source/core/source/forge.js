@@ -30,6 +30,8 @@ var gca_forge = {
 			this.sourceLinks.inject());
 		}
 
+		// Setting Link
+		gca_tools.create.settingsLink("forge");
 	},
 	
 	// Save forge timers

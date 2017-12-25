@@ -1330,6 +1330,14 @@ var gca_tools = {
 			img.setAttribute("align", "absmiddle");
 			img.setAttribute("border", "0");
 			return img;
+		},
+
+		settingsLink : function(category) {
+			let link = document.createElement("a");
+			link.className = "gca-settings-link-button";
+			link.setAttribute("href", gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : category}));
+			document.getElementById("footer").appendChild(link);
+			gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "white"]]]));
 		}
 
 	}

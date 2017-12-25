@@ -16,6 +16,9 @@ var gca_guild_bank = {
 		// Book page
 		else if(gca_section.submod == "showDonationLog")
 			this.inject_bookPage();
+
+		// Setting Link
+		gca_tools.create.settingsLink("guild");
 	},
 
 	// Page - Donate

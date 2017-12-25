@@ -41,6 +41,9 @@ var gca_packages = {
 			this.specialCategory.resolve(this));
 		
 		this.eventItemsCategory();
+
+		// Setting Link
+		gca_tools.create.settingsLink("packages");
 	},
 
 	// Layout Improvements
@@ -609,7 +612,7 @@ var gca_packages = {
 		// Fixes the missing option for items with the category 21 (presumably Event items)
 		var option = document.createElement("option");
 		option.setAttribute('value', 21);
-		option.textContent = 'Event items';
+		option.textContent = gca_locale.get("packages", "event_items");
 		document.getElementsByName('f')[0].appendChild(option);
 		
 		// Gladiatus doesn't autoselect options which are not there server side

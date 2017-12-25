@@ -17,6 +17,9 @@ var gca_magus = {
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
 			this.itemShadow.inject());
+
+		// Setting Link
+		gca_tools.create.settingsLink("magus");
 	},
 
 	// Fade unaffordable items

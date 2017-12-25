@@ -13,6 +13,9 @@ var gca_pantheon_missions = {
 		// Show Completed Missions
 		(gca_options.bool("pantheon","missions_show_completed") &&
 			this.show_completed());
+
+		// Setting Link
+		gca_tools.create.settingsLink("pantheon");
 	},
 
 	// Show Completed

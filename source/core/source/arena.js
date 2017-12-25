@@ -10,27 +10,30 @@ var gca_arena = {
 			this.ignore_attack_confirmations());
 			
 		// Normal arena
-		if(gca_section.submod == null){
+		if (gca_section.submod == null) {
 			(gca_options.bool("arena","show_simulator_imagelink") &&
 				this.show_simulator());
 			
 		// Server Arena / Server Turma
-		}else if(gca_section.submod=='serverArena'){
+		} else if(gca_section.submod === 'serverArena') {
 			this.sort_by_lvl();
 			
-			if(gca_getPage.parameter('aType')==2){
+			if (gca_getPage.parameter('aType') === 2) {
 				// Normal
 				(gca_options.bool("arena","show_simulator_imagelink") &&
 					this.show_simulator());
-			}else{
+			} else {
 				//Turma
 				
 			}
 			
 		// Turma
-		}else{
+		} else {
 			
 		}
+
+		// Setting Link
+		gca_tools.create.settingsLink("arena");
 	},
 
 	// Show Simulator

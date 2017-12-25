@@ -29,7 +29,7 @@ gca_languages["en"] = {
 
 			// Days
 			days : "day(s)",
-			// Minites
+			// Minutes
 			minutes : "minute(s)",
 			// No data
 			no_data : "No data",
@@ -140,9 +140,14 @@ gca_languages["en"] = {
 			medic_life_after_heal : "Life after heal"
 		},
 
+		// Expedition
+		expedition : {
+			material_drop_chance : "{{number}}% chance, between dropped materials"
+		},
+
 		// Training section
 		training : {
-			// Points analisys
+			// Points analysis
 			stats_points : "Stats Points",
 			points_breakdown : "Points Breakdown",
 			stats_calculated_with_yourself_as_an_opponent : "* Stats are calculated with the concept of attacking yourself.",
@@ -158,8 +163,8 @@ gca_languages["en"] = {
 			items_info : "Items information",
 			// Number of items in the page
 			number_of_items : "Number of items : {{number}}",
-			// Number of items that have been bided in the page
-			number_of_bided_items : "Number of bided items : {{number}}",
+			// Number of items that have been bidden in the page
+			number_of_bided_items : "Number of bidden items : {{number}}",
 			// Message on items that you can buy and sell at the same price
 			hide_your_gold_here : "Hide your gold here",
 			// Price of item equals to its value
@@ -185,6 +190,7 @@ gca_languages["en"] = {
 		
 		// Packages
 		packages : {
+			event_items : "Event items",
 			known_scroll : "You know this scroll",
 			unknown_scroll : "You don't know this scroll"
 		},

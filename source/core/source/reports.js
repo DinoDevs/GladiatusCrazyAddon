@@ -53,6 +53,9 @@ var gca_reports = {
 		// Pagination layout
 		(gca_options.bool("global", "pagination_layout") && 
 			this.pagination());
+
+		// Setting Link
+		gca_tools.create.settingsLink("reports");
 	},
 
 	// Get Submod

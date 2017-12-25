@@ -32,6 +32,9 @@ var gca_training = {
 		// Show points after upgrade
 		(gca_options.bool("training","show_points_after_upgrade") &&
 			this.analyzeStats.showDataAfterUpgrade(this));
+
+		// Setting Link
+		gca_tools.create.settingsLink("training");
 	},
 
 	// Data

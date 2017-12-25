@@ -12,6 +12,9 @@ var gca_guild_medic = {
 			(gca_options.bool("guild","medic_layout") && 
 				this.layout.improve());
 		}
+
+		// Setting Link
+		gca_tools.create.settingsLink("guild");
 	},
 
 	// Layout Improvements

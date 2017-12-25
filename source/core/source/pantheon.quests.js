@@ -21,6 +21,9 @@ var gca_pantheon_quests = {
 		// Save quest time
 		(gca_options.bool("global","quest_timer") &&
 			this.save_quest_info());
+
+		// Setting Link
+		gca_tools.create.settingsLink("pantheon");
 	},
 
 	// Quests Categories

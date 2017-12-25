@@ -17,6 +17,9 @@ var gca_location = {
 			(gca_options.bool("expedition","show_enemy_drops") && 
 				this.layout.show_drops.show()); // TODO : code clean
 		}
+
+		// Setting Link
+		gca_tools.create.settingsLink("expedition");
 	},
 
 	// Layout Improvements
@@ -130,14 +133,35 @@ var gca_location = {
 			// Show
 			show : function(){
 				var i = 0;
-				var enemy;
-				while( document.getElementsByClassName('expedition_picture')[i] && document.getElementsByClassName('expedition_picture')[i].getElementsByTagName('img')[0] ){
-					enemy = document.getElementsByClassName('expedition_picture')[i].getElementsByTagName('img')[0].getAttribute('src').match(/img\/(npc|expedition)\/([^.]+)\.(jpg|png)/i)[2];
-					//console.log(enemy);
-					if(this.drops[enemy] && this.drops[enemy][0] && this.drops[enemy][1]){
-						document.getElementsByClassName('expedition_picture')[i].innerHTML += '<div class="item-i-18-'+this.drops[enemy][0]+' enemyDrop" title="If material is droped, 45% chance"></div><div title="If material is droped, 25% chance" class="item-i-18-'+this.drops[enemy][1]+' enemyDrop enemyDrop2"></div>';
-					}else if(this.drops[enemy] && this.drops[enemy][0]){
-						document.getElementsByClassName('expedition_picture')[i].innerHTML += '<div class="item-i-18-'+this.drops[enemy][0]+' enemyDrop enemyDropOnly1" title="If material is droped, 70% chance"></div>';
+				let pictures = document.getElementsByClassName('expedition_picture');
+
+				// For each enemy
+				while (pictures[i] && pictures[i].getElementsByTagName('img')[0]) {
+					// Get enemy id
+					let enemy = pictures[i].getElementsByTagName('img')[0].getAttribute('src').match(/img\/(npc|expedition)\/([^.]+)\.(jpg|png)/i)[2];
+
+					if (this.drops[enemy]) {
+						if (this.drops[enemy].length > 1) {
+							let div;
+							// First drop
+							div = document.createElement("div");
+							div.className = "item-i-18-" + this.drops[enemy][0] + " enemyDrop";
+							gca_tools.setTooltip(div, JSON.stringify([[[gca_locale.get("expedition", "material_drop_chance", {number : 45}), "white"]]]));
+							pictures[i].appendChild(div);
+							// Second drop
+							div = document.createElement("div");
+							div.className = "item-i-18-" + this.drops[enemy][1] + " enemyDrop enemyDrop2";
+							gca_tools.setTooltip(div, JSON.stringify([[[gca_locale.get("expedition", "material_drop_chance", {number : 25}), "white"]]]));
+							pictures[i].appendChild(div);
+						}
+						else {
+							let div;
+							// Only drop
+							div = document.createElement("div");
+							div.className = "item-i-18-" + this.drops[enemy][0] + " enemyDrop enemyDropOnly1";
+							gca_tools.setTooltip(div, JSON.stringify([[[gca_locale.get("expedition", "material_drop_chance", {number : 70}), "white"]]]));
+							pictures[i].appendChild(div);
+						}
 					}
 					i++;
 				}

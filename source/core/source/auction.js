@@ -31,6 +31,9 @@ var gca_auction = {
 				
 			this.levelsYouCanSee();
 		}
+
+		// Setting Link
+		gca_tools.create.settingsLink("auction");
 	},
 	
 	levelsYouCanSee : function(){

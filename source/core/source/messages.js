@@ -65,6 +65,9 @@ var gca_messages = {
 			(gca_options.bool("messages", "fix_header_links") &&
 				this.fix.headerLinks());
 		}
+
+		// Setting Link
+		gca_tools.create.settingsLink("messages");
 	},
 
 

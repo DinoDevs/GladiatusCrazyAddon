@@ -21,6 +21,9 @@ var gca_merchants = {
 		// Save merchants time
 		(gca_options.bool("global","merchants_timer") &&
 			this.save_merchants_info());
+
+		// Setting Link
+		gca_tools.create.settingsLink("merchants");
 	},
 
 	// Fade unaffordable items

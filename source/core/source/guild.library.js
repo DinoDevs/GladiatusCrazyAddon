@@ -20,6 +20,9 @@ var gca_guild_library = {
 			(gca_options.bool("guild","library_tooltip_data") && 
 				this.tooltipData.init());
 		}
+
+		// Setting Link
+		gca_tools.create.settingsLink("guild");
 	},
 
 	// Layout Improvements

@@ -14,6 +14,9 @@ var gca_pantheon_gods = {
 		// Show gods points percent
 		(gca_options.bool("pantheon", "gods_show_points_percent") && 
 			this.showPointsPercent());
+
+		// Setting Link
+		gca_tools.create.settingsLink("pantheon");
 	},
 
 	// Gods names
