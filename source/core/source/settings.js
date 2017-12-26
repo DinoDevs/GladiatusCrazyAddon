@@ -488,6 +488,102 @@ var gca_settings = {
 					"scale" : 0.01,
 					"db" : "section",
 				}
+			},
+
+			"data" : {
+				// Export
+				"export_settings" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.export = document.createElement("input");
+							data.export.setAttribute("type", "button");
+							data.export.className = "awesome-button";
+							data.export.style.float = "right";
+							data.export.value = gca_locale.get("settings", "export");
+							data.export.addEventListener("click", () => {
+								gca_settings.backup.export();
+							}, false);
+							// Add change event
+							return [data.export];
+						}
+					};
+					return scheme;
+				})(),
+
+				// Import
+				"import_settings" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create file select
+							data.file = document.createElement("input");
+							data.file.setAttribute("type", "file");
+							data.file.style.width = "358px";
+							// Create select
+							data.import = document.createElement("input");
+							data.import.setAttribute("type", "button");
+							data.import.className = "awesome-button";
+							data.import.style.float = "right";
+							data.import.style.marginTop = "5px";
+							data.import.value = gca_locale.get("settings", "import");
+							// On import
+							data.import.addEventListener("click", () => {
+								// Check number of files
+								let files = data.file.files;
+								if (files.length !== 1) {
+									gca_notifications.error(gca_locale.get("general", "error"));
+									return;
+								}
+								// Disable elements
+								data.import.setAttribute("disabled", "disabled");
+								data.file.setAttribute("disabled", "disabled");
+								// Import data
+								gca_settings.backup.importFromFile(files[0], (error) => {
+									if (error) {
+										gca_notifications.error(gca_locale.get("general", "error") + " - " + error);
+									}
+									else {
+										// Data were imported
+										data.import.removeAttribute("disabled");
+										data.file.removeAttribute("disabled");
+										data.file.value = "";
+										// Notify user
+										gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+									}
+								});
+							}, false);
+							// Add change event
+							return [data.file, data.import];
+						}
+					};
+					return scheme;
+				})(),
+
+				// Clear
+				"clear_settings" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.clear = document.createElement("input");
+							data.clear.setAttribute("type", "button");
+							data.clear.className = "awesome-button";
+							data.clear.style.float = "right";
+							data.clear.value = gca_locale.get("settings", "clear");
+							data.clear.addEventListener("click", () => {
+								if (confirm(gca_locale.get("settings", "clear_data_confirm")) == true) {
+									gca_settings.backup.clearAll();
+									gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+								}
+							}, false);
+							// Add change event
+							return [data.clear];
+						}
+					};
+					return scheme;
+				})()
 			}
 		},
 
@@ -1208,7 +1304,135 @@ var gca_settings = {
 				};
 			}
 		}
+	},
+
+	// Backup and Restore settings
+	backup : {
+		// Export gca settings
+		export : function() {
+			// Get settings data
+			let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings");
+			// If no data set to no data
+			if(settings_data === null){
+				settings_data = "{\"data\":{}}";
+			}
+
+			// Check for errors
+			try {
+				JSON.parse(settings_data);
+			} catch (e) {
+				// Set to no data
+				settings_data = "{\"data\":{}}";
+			}
+
+			// Beautify data
+			let settings_json = JSON.parse(settings_data);
+			settings_data = JSON.stringify(settings_json, null, "\t");
+
+			// Download file
+			let file = document.createElement('a');
+			file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(settings_data));
+			file.setAttribute('download', "settings_" + gca_section.country + "_s" + gca_section.server + "_" + gca_section.playerId + ".gca");
+			file.click();
+		},
+		// Import gca settings
+		import : function(settings_data) {
+			// Check for json errors
+			try {
+				// Parse json
+				JSON.parse(settings_data);
+			}
+			catch (e) {
+				return "Parse error";
+			}
+
+			// Parse data
+			let settings_json = JSON.parse(settings_data);
+
+			// If no valid structure
+			if (!settings_json.hasOwnProperty("data") || typeof settings_json.data !== "object") {
+				return "Data error";
+			}
+
+			// Start reading data
+			let settings = {data : {}};
+
+			// For each category
+			for (category in gca_options.data) {
+				if (gca_options.data.hasOwnProperty(category)) {
+					// If category exist in imported data
+					if (settings_json.data.hasOwnProperty(category)) {
+						settings.data[category] = {};
+
+						// For each item in category
+						for (item in gca_options.data[category]) {
+							if (gca_options.data[category].hasOwnProperty(item)) {
+								
+								// If item exist in imported data
+								if (settings_json.data[category].hasOwnProperty(item)) {
+									// Save data
+									settings.data[category][item] = settings_json.data[category][item];
+								}
+
+							}
+						}
+
+					}
+					
+				}
+			}
+
+			// Prepare data
+			let imported_data = JSON.stringify(settings);
+			// Save data
+			window.localStorage.setItem(gca_data_manager.name + "_settings", imported_data);
+
+			// No errors
+			return false;
+		},
+		importFromFile : function(file, callback) {
+			try {
+				// Create reader
+				var reader = new FileReader();
+				// Listen event onloadend
+				reader.onloadend = (evt) => {
+					if (evt.target.readyState == FileReader.DONE) {
+						// Import
+						let error = this.import(evt.target.result);
+						// Call the callback
+						callback(error);
+					}
+				};
+				// Start reading
+				reader.readAsBinaryString(file);
+			} catch (e) {
+				callback("Unsupported");
+			}
+		},
+
+		// Clear all data
+		clearAll : function() {
+			// Define addon's storages
+			let storages = [
+				"advanced-menu",
+				"cache",
+				"data",
+				"guild",
+				"lang",
+				"messages",
+				"overview",
+				"settings",
+				"sound",
+				"stats",
+				"timers"
+			];
+			// Clear all storages
+			for (var i = storages.length - 1; i >= 0; i--) {
+				window.localStorage.removeItem(gca_data_manager.name + "_" + storages[i]);
+			}
+		}
 	}
+
 };
 
 (function(){

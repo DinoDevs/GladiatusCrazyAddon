@@ -220,6 +220,7 @@ gca_languages["en"] = {
 			category_auction : "Auction",
 			category_events : "Events",
 			category_sound : "Sounds",
+			category_data : "Data",
 
 			// Settings - Global
 			category_global$language_select : "Select addon's language",
@@ -343,12 +344,20 @@ gca_languages["en"] = {
 			category_sound$enabled : "Enable sound system",
 			category_sound$muted : "Mute/Unmute sounds",
 			category_sound$volume : "Sounds volume",
+			// Settings - Data
+			category_data$export_settings : "Export settings data to file",
+			category_data$import_settings : "Import settings data from file",
+			category_data$clear_settings : "Clear all the addon's data",
 
 			// Buttons
 			save : "Save",
+			export : "Export",
+			import : "Import",
+			clear : "Clear",
 
 			// Info
 			translated_by : "Translated by: {{string}}",
+			clear_data_confirm : "Are you sure you want to clear all the addon's data?",
 
 			// Notifications
 			notification_reload : "Reload the page for the changes to take effect"
