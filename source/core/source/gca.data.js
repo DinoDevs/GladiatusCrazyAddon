@@ -487,6 +487,8 @@ gca_options.data = {
 		"one_gold_warning" : true,
 		// Show Cancel-all button
 		"cancel_all_button" : true,
+		// Remember sell duration
+		"remember_sell_duration" : false,
 		// Default sell duration
 		"sell_duration" : 0,
 	},

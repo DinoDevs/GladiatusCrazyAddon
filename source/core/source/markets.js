@@ -29,8 +29,13 @@ var gca_markets = {
 			(gca_options.bool("market","cancel_all_button") &&
 				this.cancelAllButton());
 			
+			// If remember sell duration
+			if(gca_options.bool("market","remember_sell_duration")){
+				this.remember_sell_duration();
+			}else{
 			// Default sell duration
-			this.sell_duration();
+				this.sell_duration();
+			}
 		}
 
 		// Setting Link
@@ -163,10 +168,25 @@ var gca_markets = {
 		let duration = gca_data.section.get("market", "sell_duration", 0);
 		let options = document.getElementById('dauer');
 		// If 48h is selected, select 24h
-		if (duration>=options.length)
+		if (duration >= options.length)
 			duration = 2;
 		// Select saved duration
 		options.selectedIndex = duration;
+	},
+	
+	// Remember sell duration
+	remember_sell_duration : function(){
+		let duration = gca_data.section.get("cache", "last_sell_duration", 0);
+		let options = document.getElementById('dauer');
+		// If 48h is selected, select 24h
+		if (duration >= options.length)
+			duration = 2;
+		// Select saved duration
+		options.selectedIndex = duration;
+		
+		options.addEventListener("change", function () {
+			gca_data.section.set("cache", "last_sell_duration", this.selectedIndex);
+		}, false);
 	}
 };
 

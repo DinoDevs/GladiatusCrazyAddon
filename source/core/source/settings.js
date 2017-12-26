@@ -396,6 +396,8 @@ var gca_settings = {
 				"one_gold_warning" : true,
 				// Show Cancel-all button
 				"cancel_all_button" : true,
+				// Remember sell duration
+				"remember_sell_duration" : false,
 				// Default sell duration
 				"sell_duration" : (function(){
 					var scheme = {
@@ -419,7 +421,6 @@ var gca_settings = {
 						},
 						"save" : function(data){
 							gca_data.section.set("market", "sell_duration", data.select.value);
-							console.log(data.select.value);
 						}
 					};
 					return scheme;

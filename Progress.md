@@ -6,6 +6,7 @@
 - **Auction**
 	- [x] More min-levels in search options (from min to max item levels you can see, with a step of 2)
 - **Market**
+	- [x] Remember last chosen sell duration (default disabled)
 	- [x] Default sell duration can be changed from settings
 
 
