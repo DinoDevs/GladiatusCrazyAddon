@@ -108,7 +108,7 @@ DinoDevs members working on this project:
 
 
 
-## Special Thanks
+## :thumbsup: Special Thanks
 
 We need to give some attribute on all the people of the community that help us maintain the code by reporting bugs, translating the addon and contributing to our code.
 
@@ -121,7 +121,7 @@ Excuse us if we forget someone and also let us thank you for using our addon.
 
 
 
-## License
+## :scroll: License
 
 This project is under [The MIT license](https://opensource.org/licenses/MIT).
 We do although appreciate attribute.
