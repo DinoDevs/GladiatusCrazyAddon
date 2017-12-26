@@ -352,22 +352,5 @@ gca_languages["en"] = {
 			// Notifications
 			notification_reload : "Reload the page for the changes to take effect"
 		}
-	},
-
-	// Language options (not yet in use)
-	/*
-	options : {
-		// Language formats
-		formats : {
-			// Short date format
-			shortDate : "d/MM/yyyy",
-			// Long date format
-			longDate : "dddd, d, MMMM yyyy",
-			// Number Separators
-			number : {
-				thousands : ",",
-				decimal : "."
-			}
-		}
-	},
-	*/
+	}
+}

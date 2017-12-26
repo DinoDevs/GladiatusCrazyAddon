@@ -532,3 +532,5 @@ gca_languages["gr"] = {
 				OPTIONS_FIXES_RTL_TOOLTIP_FIX : "Διόρθωση προβλήματος των κινούμενων tooltip (για τους δεξιά προς τα αριστερά server, πχ. Αραβικός)"
 	}
 }
+
+gca_locale.active = "el";
