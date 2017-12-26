@@ -7,17 +7,17 @@
 
 # Gladiatus Crazy Addon
 
-> A browser extension for the "Gladiatus" browser game.
+#### A browser extension for the "Gladiatus" browser game.
 
  • [Downloads](#downloads) • [Installation](#installation) • [Developers Docs](#developers-docs) • [Contact Us](#contact-us) • 
 
 
-<img src="documentation/resources/cover.png" width="100%"/>
+<img src="documentation/resources/preview-images/gca-preview-01.png" width="100%"/>
 
 
 
 
-## Downloads
+## :paperclip: Downloads
 
 We suggest you to download a *stable release*. Alpha releases are for developers (exept if you want to check out the latest features and give us some feedback).
 
@@ -49,7 +49,7 @@ We suggest you to download a *stable release*. Alpha releases are for developers
 
 
 
-## Installation
+## :page_with_curl: Installation
 
 If you are new to installing browsers addons/extensions or you just want to jump on a new browser, follow our steps for installing our addon.
 
@@ -57,7 +57,7 @@ Find set-by-step guides for all major browsers on our [installation docs](docume
 
 
 
-## Developers Docs
+## :computer: Developers Docs
 
 We will try to provide some more info for anyone that wants to jump into the action.
 
@@ -66,7 +66,7 @@ We will try to provide some more info for anyone that wants to jump into the act
 
 
 
-## Contact us
+## :speech_balloon: Contact us
 
 Contact us to leave us your feedback or to express your thoughts.
 
@@ -77,7 +77,7 @@ Contact us to leave us your feedback or to express your thoughts.
 
 
 
-## How everything started
+## :rainbow: How everything started
 
 > *GCA was not born as you know it today. Gladiatus Crazy Addon started as a compilation of two addons (Gladiatus Crazy Messenger and Gladiatus Crazy Helper) both made from GreatApo and DarkThanos.*
 
@@ -92,7 +92,7 @@ Contact us to leave us your feedback or to express your thoughts.
 
 
 
-## Our team
+## :video_game: Our team
 
 <img align="left" src="documentation/resources/logo-icons/dinodevs_32.png"/> We are [DinoDevs](https://github.com/DinoDevs), a group of people coding for fun!
 
