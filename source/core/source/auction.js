@@ -16,6 +16,8 @@ var gca_auction = {
 		if (document.getElementById("auction_table")){
 			(gca_options.bool("auction","items_counters") && 
 				this.itemsCounters());
+			(gca_options.bool("auction","more_search_levels") &&
+				this.moreSearchLevels());
 			(gca_options.bool("global","item_shadow") && 
 				this.itemsShadow());
 			(gca_options.bool("auction","item_price_analyze") && 
@@ -37,14 +39,33 @@ var gca_auction = {
 	},
 	
 	levelsYouCanSee : function(){
-		var playerLvl = parseInt(document.getElementById("header_values_level").textContent);
-		var minLvl = Math.floor(playerLvl* 0.75);
-		var maxLvl = ( playerLvl+14<Math.ceil(1.25*playerLvl+5.75) )? playerLvl+14 : Math.ceil(1.25*playerLvl+5.75);
+		let playerLvl = parseInt(document.getElementById("header_values_level").textContent);
+		let minLvl = Math.floor(playerLvl* 0.75);
+		let maxLvl = ( playerLvl+14<Math.ceil(1.25*playerLvl+5.75) )? playerLvl+14 : Math.ceil(1.25*playerLvl+5.75);
 		
-		var baseElement = document.getElementsByClassName("buildingDesc")[1].getElementsByTagName("p")[0];
+		let baseElement = document.getElementsByClassName("buildingDesc")[1].getElementsByTagName("p")[0];
 		baseElement.appendChild(document.createElement("br"));
 		baseElement.appendChild(document.createElement("br"));
 		baseElement.appendChild(document.createTextNode(gca_locale.get("auction", "levels_you_can_see", {min : minLvl, max : maxLvl})));
+	},
+	moreSearchLevels : function(){
+		let playerLvl = parseInt(document.getElementById("header_values_level").textContent);
+		let minLvl = Math.floor(playerLvl* 0.75);
+		let maxLvl = ( playerLvl+14<Math.ceil(1.25*playerLvl+5.75) )? playerLvl+14 : Math.ceil(1.25*playerLvl+5.75);
+		
+		// Remove all previous lvl options
+		let lvl_options_parent = document.getElementsByName('itemLevel')[0];
+		while (lvl_options_parent.firstChild) {
+			lvl_options_parent.removeChild(lvl_options_parent.firstChild);
+		}
+		
+		// Create new lvl options
+		for(i=minLvl;i<=maxLvl;i=i+2){
+			let lvl_option = document.createElement("option");
+			lvl_option.value = i;
+			lvl_option.textContent = i + " +";
+			lvl_options_parent.appendChild(lvl_option);
+		}
 	},
 	itemsCounters : function(){
 		// Count items (number of fourms minus the search form)

@@ -516,6 +516,8 @@ gca_options.data = {
 	"auction" : {
 		// Count page items
 		"items_counters" : true,
+		// More search levels
+		"more_search_levels" : true,
 		// Show price data
 		"item_price_analyze" : true,
 		// Show item level

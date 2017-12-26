@@ -28,7 +28,7 @@ var gca_settings = {
 	options : {
 		// Create box on settings
 		createBox : function(){
-			// Gca Box
+			// GCA Box
 			var wrapper = document.createElement("div");
 			wrapper.id = "settings_box";
 			var title = document.createElement("h2");
@@ -224,7 +224,7 @@ var gca_settings = {
 
 				// Notifications
 				"notify_new_guild_application" : false,
-				// Notifications Interal in minites
+				// Notifications Interval in minutes
 				"notify_new_guild_application_interval" : 60,
 			
 				// Enable x-scroll
@@ -242,8 +242,8 @@ var gca_settings = {
 				// Gold/Exp data
 				"gold_exp_data" : true,
 				
-				// Underword
-					// Pray Shorcut
+				// Underworld
+					// Pray Shortcut
 					"pray_shorcut" : true
 			},
 
@@ -253,11 +253,11 @@ var gca_settings = {
 				"analyze_items" : true,
 				// Show the life gain a food gives
 				"food_life_gain" : true,
-				// Show block and avoid criticals values caps
+				// Show block and avoid critical values caps
 				"block_avoid_caps" : true,
 				// Show best food to consume
 				"best_food" : true,
-				// Trasparent food gives you more life than you need
+				// Transparent food gives you more life than you need
 				"overfeed_food" : true,
 				// Daily Bonus Log
 				"daily_bonus_log" : true,
@@ -269,7 +269,7 @@ var gca_settings = {
 				"mercenary_tooltip_show" : true,
 				// Show more statistics
 				"more_statistics" : true,
-				// new Achivements layout
+				// new Achievements layout
 				"achivements_layout" : true,
 				// Costumes layout
 				"costumes_layout" : true,
@@ -281,7 +281,7 @@ var gca_settings = {
 			"messages" : {
 				// Layout
 				"messages_layout" : true,
-				// Show Unreaded
+				// Show Unread
 				"show_unread" : true,
 				// Separate days
 				"separate_days" : true,
@@ -349,7 +349,7 @@ var gca_settings = {
 			"training" : {
 				// Show discount
 				"show_discount" : true,
-				// Show bacis in bars
+				// Show basic in bars
 				"show_basics_in_bars" : true,
 				// Enable multiple training
 				"multiple_train" : true,
@@ -425,6 +425,8 @@ var gca_settings = {
 			"auction" : {
 				// Count page items
 				"items_counters" : true,
+				// More search levels
+				"more_search_levels" : true,
 				// Show price data
 				"item_price_analyze" : true,
 				// Show item level
