@@ -61,12 +61,12 @@ var gca_arena = {
 		}
 	},
 	
-	// Rearange by lvl
+	// Re-arrange by lvl
 	sort_by_lvl : function(){
 		var rows = (document.getElementById('own2')!=null)? document.getElementById('own2').getElementsByTagName('tr') : document.getElementById('own3').getElementsByTagName('tr');
 		for(i=1;i<=5;i++){
 			for(j=i+1;j<=5;j++){
-				if(rows[i].getElementsByTagName('td')[1].textContent>rows[j].getElementsByTagName('td')[1].textContent){
+				if(parseInt(rows[i].getElementsByTagName('td')[1].textContent)>parseInt(rows[j].getElementsByTagName('td')[1].textContent)){
 					rows[i].parentNode.insertBefore(rows[j].parentNode.removeChild(rows[j]), rows[i]);
 				}
 			}
