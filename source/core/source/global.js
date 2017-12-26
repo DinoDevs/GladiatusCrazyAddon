@@ -591,7 +591,7 @@ var gca_global = {
 									}
 								});
 								if(!send){
-									gca_notifications.error(gca_locale.get("global", "no_data"));
+									gca_notifications.error(gca_locale.get("general", "no_data"));
 								}
 							}, false);
 							div.appendChild(temp);
