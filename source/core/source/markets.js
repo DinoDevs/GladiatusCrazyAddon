@@ -28,6 +28,9 @@ var gca_markets = {
 			// If cancel all button
 			(gca_options.bool("market","cancel_all_button") &&
 				this.cancelAllButton());
+			
+			// Default sell duration
+			this.sell_duration();
 		}
 
 		// Setting Link
@@ -153,6 +156,17 @@ var gca_markets = {
 			var base = document.getElementById("market_table");
 			base.parentNode.insertBefore(button,base);
 		}
+	},
+	
+	// Default sell duration
+	sell_duration : function(){
+		let duration = gca_data.section.get("market", "sell_duration", 0);
+		let options = document.getElementById('dauer');
+		// If 48h is selected, select 24h
+		if (duration>=options.length)
+			duration = 2;
+		// Select saved duration
+		options.selectedIndex = duration;
 	}
 };
 

@@ -395,7 +395,35 @@ var gca_settings = {
 				"soulbound_warning" : true,
 				"one_gold_warning" : true,
 				// Show Cancel-all button
-				"cancel_all_button" : true
+				"cancel_all_button" : true,
+				// Default sell duration
+				"sell_duration" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							if(wrapper.className.length > 0) wrapper.className += " ";
+							wrapper.className += "sell_duration_select";
+							// Create select
+							data.select = document.createElement("select");
+							// Create a list of languages
+							let durations = ['2h','8h','24h','48h'];
+							for (i = 0; i < durations.length; i++) {
+								let lang = durations[i];
+								let option = document.createElement("option");
+								option.value = i;
+								option.textContent = durations[i];
+								data.select.appendChild(option);
+							}
+							data.select.selectedIndex = gca_data.section.get("market", "sell_duration", 0);
+							return data.select;
+						},
+						"save" : function(data){
+							gca_data.section.set("market", "sell_duration", data.select.value);
+							console.log(data.select.value);
+						}
+					};
+					return scheme;
+				})()
 			},
 			
 			// Expedition Options

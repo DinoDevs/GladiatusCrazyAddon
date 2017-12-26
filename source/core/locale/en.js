@@ -316,6 +316,7 @@ gca_languages["en"] = {
 			category_market$soulbound_warning : "Buy confirmation on soul-bound items",
 			category_market$one_gold_warning : "Buy confirmation on items that cost 1 gold",
 			category_market$cancel_all_button : "Show cancel-all button",
+			category_market$sell_duration : "Select default sell duration",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",
 			category_expedition$underworld_layout : "Show underworld's enemies layout like expedition's",
