@@ -4,13 +4,13 @@
 
 
 
+<p align="center"><img src="documentation/resources/logo-icons/icon_64.png"/></p>
+<h1 align="center">Gladiatus Crazy Addon</h1>
+<h4 align="center"> A browser extension for the "Gladiatus" browser game.</h4>
 
-# Gladiatus Crazy Addon
-
-#### A browser extension for the "Gladiatus" browser game.
-
- • [Downloads](#downloads) • [Installation](#installation) • [Developers Docs](#developers-docs) • [Contact Us](#contact-us) • 
-
+<p align="center">
+ • <a href="README.md#downloads">Downloads</a> • <a href="README.md#installation">Installation</a> • <a href="README.md#developers-docs">Developers Docs</a> • <a href="README.md#contact-us">Contact Us</a> • 
+</p>
 
 <img src="documentation/resources/preview-images/gca-preview-01.png" width="100%"/>
 
