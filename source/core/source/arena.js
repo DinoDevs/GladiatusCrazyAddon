@@ -55,9 +55,26 @@ var gca_arena = {
 	
 	// Ignore attack confirmations
 	ignore_attack_confirmations : function(){
+		// New arena attack functions
+		window.gca_startFight = function(b, a) {	
+			jQuery("#errorRow").css({display: "none"});
+			sendRequest("get", "ajax/doArenaFight.php", "did=" + a + "&c=1", b)
+		}
+		
+		window.gca_startGroupFight = function(b, a) {
+			jQuery("#errorRow").css({display: "none"});
+			sendRequest("get", "ajax/doGroupFight.php", "did=" + a + "&c=1", b)
+		}
+		
+		window.gca_startProvinciarumFight = function(d, a, c, b, e) {
+			jQuery("#errorRow").css({display: "none"});
+			sendRequest("get", "ajax.php", "mod=arena&submod=confirmDoCombat&aType=" + a + "&opponentId=" + c + "&serverId=" + b + "&country=" + e, d)
+		}
+		
 		var attack_buttons = document.getElementsByClassName('attack');
 		for(i=0;i<attack_buttons.length;i++){
-			attack_buttons[i].setAttribute("onclick",attack_buttons[i].getAttribute("onclick").replace("Fight(","FightConfirmed("));
+			if(attack_buttons[i].getAttribute("onclick").match(/startFight|startGroupFight|startProvinciarumFight/i))
+				attack_buttons[i].setAttribute("onclick","gca_"+attack_buttons[i].getAttribute("onclick"));
 		}
 	},
 	
@@ -66,7 +83,7 @@ var gca_arena = {
 		var rows = (document.getElementById('own2')!=null)? document.getElementById('own2').getElementsByTagName('tr') : document.getElementById('own3').getElementsByTagName('tr');
 		for(i=1;i<=5;i++){
 			for(j=i+1;j<=5;j++){
-				if(parseInt(rows[i].getElementsByTagName('td')[1].textContent)>parseInt(rows[j].getElementsByTagName('td')[1].textContent)){
+				if(parseInt(rows[i].getElementsByTagName('td')[1].textContent,10)>parseInt(rows[j].getElementsByTagName('td')[1].textContent,10)){
 					rows[i].parentNode.insertBefore(rows[j].parentNode.removeChild(rows[j]), rows[i]);
 				}
 			}
