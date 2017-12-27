@@ -137,6 +137,9 @@
 /* Top Fixed Bar */
 	#topFixedBar{color: #DCBB96; background: url('interface/top_bar_bg.png') repeat-x scroll 0 -4px transparent; z-index: 9000; position: fixed; top: 0px; left: 0px; right: 0px; height: 24px; display: none; line-height: 24px;}
 	#topFixedBar a{color: #DCBB96;display: inline-block;margin-left: 6px;}
+	@media screen and (max-width: 1080px) {
+		#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
+	}
 	.bar-fixed-bar{display: inline!important;}
 	.icon_gold-fixed-bar, .icon_rubies-fixed-bar{z-index: 9001; position: fixed; top: 3px;}
 	.gold_val-fixed-bar, .ruby_val-fixed-bar{z-index: 9001; position: fixed; top: 3px; margin-left: 18px;}
