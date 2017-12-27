@@ -960,8 +960,8 @@
 	-------------------------------------------------- */
 
 		/* Logo */
-		#settings_logo{background-image:url('images/GCA_logo.png');position:relative;background-position-y: -10px;width: 530px;height: 130px;margin-bottom: 10px;border: 2px solid black;background-repeat: no-repeat;background-color: black;}
-		#settings_logo .title{color: white;font-size: 16px;position: absolute;bottom: 5px;right: 10px;}
+		#settings_logo{background-image: url(images/GCA_logo.png), linear-gradient(to bottom, #3d0802, #852111);position:relative;background-position: center;width: 530px;height: 130px;margin-bottom: 10px;border: 2px solid black;background-repeat: no-repeat;}
+		#settings_logo .title{color: rgba(255,255,255,0.9);font-size: 12px;position: absolute;bottom: 5px;right: 10px;text-shadow: 0px 0px 5px black, 0px 0px 5px black;}
 
 		/* Box */
 		#settings_box {width: 500px;margin: 15px auto 0px auto;}
