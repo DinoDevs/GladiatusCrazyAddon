@@ -920,7 +920,19 @@
 		.gca_arena-simulator-img{background: transparent url('images/simulator.jpg') no-repeat 0px 0px;width:250px;height:70px;margin: 10px;margin-left: auto;margin-right: auto;}
 		.gca_arena-simulator-img div{color:#fff;text-align: center;text-shadow: 0px 0px 2px black;padding-top: 4px;}
 
+	/* Market
+	-------------------------------------------------- */
+		/* 1g sell mode */
+		#market_sell_box .switch-field{float: right;margin-top: -48px;margin-right: 23px;}
+		#market_sell_box .switch-field input{display: none;}
+		#market_sell_box .switch-field label{float: left;width:auto}
+		#market_sell_box .switch-field label{display: inline-block;background-color: #d9cea2;color: black;font-size: 9px;font-weight: normal;text-align: center;text-shadow: none;padding: 1px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-webkit-transition: all 0.1s ease-in-out;-moz-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
+		#market_sell_box .switch-field label:hover{cursor: pointer;}
+		#market_sell_box .switch-field input:checked + label{background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
+		#market_sell_box .switch-field label:first-of-type{border-radius: 4px 0 0 4px;}
+		#market_sell_box .switch-field label:last-of-type{border-radius: 0 4px 4px 0;}
 		
+	
 	/* Tools
 	-------------------------------------------------- */
 

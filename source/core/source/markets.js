@@ -36,6 +36,9 @@ var gca_markets = {
 			// Default sell duration
 				this.sell_duration();
 			}
+			
+			// 1 gold mode
+			this.oneGoldMode();
 		}
 
 		// Setting Link
@@ -187,7 +190,75 @@ var gca_markets = {
 		options.addEventListener("change", function () {
 			gca_data.section.set("cache", "last_sell_duration", this.selectedIndex);
 		}, false);
+	},
+	
+	oneGoldMode : function(){
+		// Create mode switch
+		let wrapper = document.getElementById("market_sell_box").getElementsByTagName("section")[0];
+		
+		let selected_mode = gca_data.section.get("cache", "last_sell_1g_mode", 0);
+		
+		let modeSwitch = document.createElement("div");
+		modeSwitch.className = "switch-field";
+		modeSwitch.id = "mode-switch";
+		let normal_mode = document.createElement("input");
+		normal_mode.type = "radio";
+		normal_mode.id = "normal_mode";
+		normal_mode.name = "sell_mode";
+		normal_mode.value = 0;
+		if(selected_mode === 0)
+			normal_mode.checked = true;
+		let normal_mode_label = document.createElement("label");
+		normal_mode_label.setAttribute("for", "normal_mode");
+		normal_mode_label.textContent = 'Auto';//gca_locale.get("training", "stats_points");
+		modeSwitch.appendChild(normal_mode);
+		modeSwitch.appendChild(normal_mode_label);
+
+		let oneG_mode = document.createElement("input");
+		oneG_mode.type = "radio";
+		oneG_mode.id = "1g_mode";
+		oneG_mode.name = "sell_mode";
+		oneG_mode.value = 1;
+		if(selected_mode === 1)
+			oneG_mode.checked = true;
+		let oneG_mode_label = document.createElement("label");
+		oneG_mode_label.setAttribute("for", "1g_mode");
+		oneG_mode_label.textContent = '1g';//gca_locale.get("training", "points_breakdown");
+		wrapper.appendChild(modeSwitch);
+		modeSwitch.appendChild(oneG_mode);
+		modeSwitch.appendChild(oneG_mode_label);
+		
+		let auto_value = document.createElement("input");
+		auto_value.id = "auto_value";
+		auto_value.value = 0;
+		auto_value.style = "display:none";
+		modeSwitch.appendChild(auto_value);
+		
+		// Save last selected mode
+		modeSwitch.addEventListener('change',function(){
+			let selected = parseInt(document.querySelector('input[name=sell_mode]:checked').value);
+			gca_data.section.set("cache", "last_sell_1g_mode", selected);
+			if(document.getElementById('preis').value != ''){
+				if(selected == 1){
+					document.getElementById('auto_value').value = document.getElementById('preis').value;
+					document.getElementById('preis').value = 1;
+				}else{
+					document.getElementById('preis').value = document.getElementById('auto_value').value;
+				}
+			}
+		});
+		
+		// Change functions
+		var calcDuesOrg = calcDues;
+		calcDues = function(){
+			calcDuesOrg();
+			if(document.getElementById('preis').value != '' && document.querySelector('input[name=sell_mode]:checked').value == 1){
+				document.getElementById('auto_value').value = document.getElementById('preis').value;
+				document.getElementById('preis').value = 1;
+			}
+		}
 	}
+	
 };
 
 (function(){
