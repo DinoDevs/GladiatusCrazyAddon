@@ -1575,6 +1575,13 @@ var gca_global = {
 				div.appendChild(link);
 				document.body.appendChild(div);
 				
+				// Set up scroll to top button
+				var scroll_top = document.createElement("div");
+				scroll_top.className = "scroll-to-top";
+				scroll_top.setAttribute("onclick", 'jQuery("html, body").animate({ scrollTop: 0 }, "fast");');//or: window.scrollTo(0, 0)
+				scroll_top.textContent = '▲ top';
+				div.appendChild(scroll_top);
+				
 				// Bind document elements
 				this.elements.bar.dom = document.getElementById('topFixedBar');
 				this.elements.icon_gold.dom = document.getElementById('icon_gold');
