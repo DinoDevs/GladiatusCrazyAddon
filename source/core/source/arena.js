@@ -100,7 +100,7 @@ var gca_arena = {
 		// Insert
 		let table = rows[i].parentNode;
 		for (let i = 0; i < players.length; i++) {
-			table.appendChild(players[i]);
+			table.appendChild(players[i].element);
 		}
 	}
 };
