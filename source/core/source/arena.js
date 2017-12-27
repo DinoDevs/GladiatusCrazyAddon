@@ -80,13 +80,27 @@ var gca_arena = {
 	
 	// Re-arrange by lvl
 	sort_by_lvl : function(){
-		var rows = (document.getElementById('own2')!=null)? document.getElementById('own2').getElementsByTagName('tr') : document.getElementById('own3').getElementsByTagName('tr');
-		for(i=1;i<=5;i++){
-			for(j=i+1;j<=5;j++){
-				if(parseInt(rows[i].getElementsByTagName('td')[1].textContent,10)>parseInt(rows[j].getElementsByTagName('td')[1].textContent,10)){
-					rows[i].parentNode.insertBefore(rows[j].parentNode.removeChild(rows[j]), rows[i]);
-				}
-			}
+		// If no opponents
+		if (document.getElementById('own2') == null && document.getElementById('own3') == null) {
+			return;
+		}
+
+		// Get rows
+		let rows = (document.getElementById('own2') != null) ? document.getElementById('own2').getElementsByTagName('tr') : document.getElementById('own3').getElementsByTagName('tr');
+		// Create players object
+		let players = [];
+		for (let i = 1; i < 5; i++) {
+			players.push({
+				level : parseInt(rows[i].getElementsByTagName('td')[1].textContent, 10),
+				element : rows[i]
+			});
+		}
+		// Sort players
+		players.sort(function(a,b) {return (a.level > b.level) ? 1 : ((b.level > a.level) ? -1 : 0);});
+		// Insert
+		let table = rows[i].parentNode;
+		for (let i = 0; i < players.length; i++) {
+			table.appendChild(players[i]);
 		}
 	}
 };
