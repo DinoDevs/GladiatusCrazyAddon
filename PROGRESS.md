@@ -10,6 +10,7 @@
 - **Market**
 	- [x] Remember last chosen sell duration (default disabled)
 	- [x] Default sell duration can be changed from settings
+	- [x] Toggle button changing sell price to 1 gold
 - **Main Menu**
 	- [x] Add shortcut to workbench (item repair) next to malefica (>)
 - **Settings**
