@@ -303,6 +303,20 @@ var gca_auction = {
 		for(var i = 5; i < itemsNumber; i += 6){
 			items[i - 2].parentNode.appendChild(items[i]);
 		}
+
+		// Keep table on the correct spot
+		auction.style.paddingTop = "0px";
+		let margin = 0;
+		let positionTop = 945;
+		let checkPosition = function() {
+			margin = positionTop - auction.offsetTop + margin;
+			auction.style.marginTop = margin + "px";
+		}
+		setInterval(function(){
+			if (Math.abs(positionTop - auction.offsetTop) > 10) {
+				checkPosition();
+			}
+		}, 1000/60);
 	}
 
 };
