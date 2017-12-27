@@ -1748,6 +1748,11 @@ var gca_global = {
 						this.info.forge = this.info.sublink.forge.link;
 						this.info.forge_active = (this.info.forge.className.match('active')) ? '_active' : '';
 					}
+					// Malefica
+					if(this.info.sublink.malefica.active){
+						this.info.malefica = this.info.sublink.malefica.link;
+						this.info.malefica_active = (this.info.malefica.className.match('active')) ? '_active' : '';
+					}
 					// Auction
 					if(this.info.sublink.auction.active){
 						this.info.auction = this.info.sublink.auction.link;
@@ -1787,7 +1792,7 @@ var gca_global = {
 				]);
 
 				// Inject Highscore Link
-				this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : "http://gladiatuscrazyaddon.tk/index.php?mode=highscore", target : "_blank"});
+				//this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : "http://gladiatuscrazyaddon.tk/index.php?mode=highscore", target : "_blank"});
 
 				// Inject Pantheon Link
 				this.convertMenu.addPlus(this.info.pantheon, this.info.pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
@@ -1808,7 +1813,7 @@ var gca_global = {
 					// Player Level
 					var level = parseInt( document.getElementById('header_values_level').textContent );
 
-					// If player over lv2
+					// If player over lvl 2
 					if(level > 2){
 						// Inject Arena link
 						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
@@ -1816,6 +1821,10 @@ var gca_global = {
 						// Forge
 						if(this.info.forge){
 							this.convertMenu.addPlus(this.info.forge, this.info.forge_active, {href : gca_getPage.link({"mod":"forge","submod":"smeltery"})});
+						}
+						// Malefica
+						if(this.info.malefica){
+							this.convertMenu.addPlus(this.info.malefica, this.info.malefica_active, {href : gca_getPage.link({"mod":"forge","submod":"workbench"})});
 						}
 						// Auction
 						if(this.info.auction){
