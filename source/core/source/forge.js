@@ -68,12 +68,12 @@ var gca_forge = {
 	showPrefixSufixBaseLevels : function(){
 		var options = document.getElementById('prefix0').getElementsByTagName("option");
 		for (var i=1;i<options.length;i++) {
-			options[i].textContent += " ("+options[i].dataset.level+")";
+			options[i].textContent += " ("+options[i].dataset.level+"lvl)";
 		}
 		
 		var options = document.getElementById('suffix0').getElementsByTagName("option");
 		for (var i=1;i<options.length;i++) {
-			options[i].textContent += " ("+options[i].dataset.level+")";
+			options[i].textContent += " ("+options[i].dataset.level+"lvl)";
 		}
 		
 		var levels =[
