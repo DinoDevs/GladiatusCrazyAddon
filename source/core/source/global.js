@@ -645,7 +645,7 @@ var gca_global = {
 							link = document.createElement('a');
 							link.className = "icon cross-icon";
 							link.href = gca_getPage.link({"mod":"guild_medic"});
-							link.title = gca_locale.get("global", "message_guild_write");
+							link.title = gca_locale.get("global", "guild_medic_goto");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
