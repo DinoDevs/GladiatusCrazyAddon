@@ -305,18 +305,27 @@ var gca_auction = {
 		}
 
 		// Keep table on the correct spot
-		auction.style.paddingTop = "0px";
-		let margin = 0;
-		let positionTop = 945;
-		let checkPosition = function() {
-			margin = positionTop - auction.offsetTop + margin;
-			auction.style.marginTop = margin + "px";
+		let content = document.getElementById("content");
+		// Get pointer to children
+		let children = [];
+		let getchildren = document.getElementById("content").childNodes;
+		for (let i = 0; i < getchildren.length; i++) {
+			children.push(getchildren[i]);
 		}
-		setInterval(function(){
-			if (Math.abs(positionTop - auction.offsetTop) > 10) {
-				checkPosition();
+		// Create one block with minimum height
+		let div = document.createElement("div");
+		div.style.minHeight = "660px";
+		content.prepend(div);
+
+		// Insert all elements in the block up to the auction
+		for (var i = 0; i < children.length; i++) {
+			if (auction === children[i]) {
+				break;
+			} else {
+				div.append(children[i]);
 			}
-		}, 1000/60);
+		}
+
 	}
 
 };
