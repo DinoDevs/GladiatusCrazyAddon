@@ -8,6 +8,8 @@
 - **Market**
 	- [x] Remember last chosen sell duration (default disabled)
 	- [x] Default sell duration can be changed from settings
+- **Settings**
+	- [x] Ability to export/import/clear addon's options/data
 
 
 ### BUG FIXES

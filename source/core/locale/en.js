@@ -332,7 +332,7 @@ gca_languages["en"] = {
 			category_guild$medic_layout : "Improve medic's layout",
 			// Settings - Auction
 			category_auction$items_counters : "Count items and bidden items",
-			category_auction$more_search_levels : "More min-levels in search options",
+			category_auction$more_search_levels : "Show more levels in search options",
 			category_auction$item_price_analyze : "Analyze items' prices",
 			category_auction$item_level : "Show items level",
 			category_auction$x3_items_per_line : "Change layout to 3 items per line",

@@ -521,7 +521,7 @@ gca_options.data = {
 		// Count page items
 		"items_counters" : true,
 		// More search levels
-		"more_search_levels" : true,
+		"more_search_levels" : false,
 		// Show price data
 		"item_price_analyze" : true,
 		// Show item level
