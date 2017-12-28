@@ -366,6 +366,9 @@ var gca_messages = {
 		// Guild mates
 		mates : {},
 
+		// Refresh Guild mates once
+		refreshed : false,
+
 		// Load
 		more_info : function(){
 			// If no guild
@@ -405,6 +408,13 @@ var gca_messages = {
 				var info = document.createElement("span");
 				info.textContent = "[ lv" + mate.level + " - " + mate.rank + " ]";
 				message.title.appendChild(info);
+			}else if(!this.refreshed){
+				// Set refresh time null
+				gca_data.section.set("timers", "guild_info_update", null);
+				// Refresh guild info (for next time)
+				gca_global.update_guild_info();
+				// Run once
+				this.refreshed = true;
 			}
 		},
 
