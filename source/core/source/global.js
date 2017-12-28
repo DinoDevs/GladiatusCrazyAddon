@@ -136,7 +136,7 @@ var gca_global = {
 		(!this.isTraveling && gca_options.bool("global","forge_timers") &&
 			this.display.forge_timer());
 		
-		// Centurio Days
+		// Centurio & PowerUps timers
 		this.centurio_days.init();
 		
 		// 48h GCA Window: links + posting data
@@ -3646,20 +3646,51 @@ var gca_global = {
 			let last_time_shown = gca_data.section.get("cache", "gca_centurio", null);
 			let centurio_days = gca_data.section.get("timers", "gca_centurio", null);
 			
+			// When on centurio page
+			if(gca_section.mod=='premium' && gca_section.submod=='centurio'){
+				let days = (document.getElementById('premium_duration'))? parseInt(document.getElementById('premium_duration').textContent.replace(/  /g,'').match(/(\d+)/)[1]) : 0;
+				console.log('Here: '+days);
+				gca_data.section.set("cache", "gca_centurio", now);
+				gca_data.section.set("timers", "gca_centurio", days);
+				this.display_centurio_days();
+				
 			// If checked on the last x hours return
-			if(last_time_shown !== null && centurio_days !== null && (last_time_shown + (12*60*60*1000)) > now && centurio_days > 0){
+			}else if(last_time_shown !== null && centurio_days !== null && (last_time_shown + (12*60*60*1000)) > now){
+				console.log('Checked');
 				this.display_centurio_days();
 			}else{
+				// Request page
 				jQuery.get(gca_getPage.link({"mod":"premium","submod":"centurio"}), function(content){
 					gca_data.section.set("cache", "gca_centurio", now);
 					if( content.match(/<div id="premium_duration">([^<]+)<\/div>/) ){
 						let days = content.match(/<div id="premium_duration">([^<]+)<\/div>/)[1].replace(/  /g,'').match(/(\d+)/)[1];
 						gca_data.section.set("timers", "gca_centurio", parseInt(days));
-						this.display_centurio_days();
 					}else{
 						gca_data.section.set("timers", "gca_centurio", 0);
 					}
+					gca_global.centurio_days.display_centurio_days();
 				});
+			}
+			
+			let powerups_status = [
+				{enabled : false, reload : 0},
+				{enabled : false, reload : 0},
+				{enabled : false, reload : 0},
+				{enabled : false, reload : 0}
+			];
+			// When on powerups page
+			if(gca_section.mod=='powerups'){
+				let powerups = document.getElementsByClassName('powerup_duration');
+				for(i=0;i<powerups.length;i++){
+					// if enabled
+					if(powerups[i].style.color=='green'){
+						powerups_status[i].enabled = true;
+						// if reload wait time
+						if(powerups[i].parentNode.getElementsByClassName('powerup_cooldown').length>0)
+							powerups_status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft);
+					}
+				}
+				console.log(powerups_status);
 			}
 		},
 		display_centurio_days : function(){
@@ -3667,7 +3698,7 @@ var gca_global = {
 			if(days>=100){
 				days = '+';
 			}
-			console.log(days);
+			console.log('Display');
 			//$dark('#mainmenu .premiummenuitem[0]').html( $dark('#mainmenu .premiummenuitem[0]').html()+'<div class="show_centurio_days" style="background-image: url(img/interface/new.gif);">'+days+'</div>' );
 		}
 	},
