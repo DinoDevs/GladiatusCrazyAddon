@@ -1424,7 +1424,7 @@ var gca_global = {
 					tr = document.createElement("tr");
 					td = document.createElement("td");
 					td.className = "auction_status_bg_left";
-					table.appendChild(td);
+					tr.appendChild(td);
 					td = document.createElement("td");
 					td.className = "auction_status_bg_center";
 
@@ -1444,10 +1444,11 @@ var gca_global = {
 					loading.className = "auction_status_loading_img loading";
 					auctionStatus2.appendChild(loading);
 
-					table.appendChild(td);
+					tr.appendChild(td);
 					td = document.createElement("td");
 					td.className = "auction_status_bg_right";
-					table.appendChild(td);
+					tr.appendChild(td);
+					table.appendChild(tr);
 
 					statusDiv.appendChild(table);
 					document.getElementById("header_game").appendChild(statusDiv);

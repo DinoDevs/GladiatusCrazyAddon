@@ -125,11 +125,11 @@
 
 	#AuctionStatusDiv .auction_status_bg_left{width: 20px; height: 30px; background: transparent url('interface/auct_status_bg.png') 0px -30px no-repeat;}
 	.gca_rtl #AuctionStatusDiv .auction_status_bg_left{width: 20px; height: 30px; background: transparent url('interface/auct_status_bg.png') -20px -30px no-repeat;}
-	#AuctionStatusDiv .auction_status_bg_center{height: 29px; padding-top: 1px; background: transparent url('interface/auct_status_bg.png') repeat-x;}
+	#AuctionStatusDiv .auction_status_bg_center{height: 28px; padding-top: 2px; background: transparent url('interface/auct_status_bg.png') repeat-x;}
 	#AuctionStatusDiv .auction_status_bg_center div{color: #C7B68A; text-shadow: 0px 0px 4px black; line-height: 14px; font-size: 12px;}
 	#AuctionStatusDiv .auction_status_bg_right{width: 20px; height: 30px; background: transparent url('interface/auct_status_bg.png') -20px -30px no-repeat;}
 	.gca_rtl #AuctionStatusDiv .auction_status_bg_right{width: 20px; height: 30px; background: transparent url('interface/auct_status_bg.png') 0px -30px no-repeat;}
-	#AuctionStatusDiv .auction_status_loading_img{margin-top: 6px; margin-left: 2px; opacity: 0.5;}
+	#AuctionStatusDiv .auction_status_loading_img{margin-top: 4px;margin-bottom: 4px; margin-left: 2px; opacity: 0.5;}
 	.gca_rtl #AuctionStatusDiv .auction_status_loading_img{margin-left: auto; margin-right: 2px;}
 	
 	.loading{width: 41px; height: 6px; background: transparent url('loading.gif') no-repeat;}
