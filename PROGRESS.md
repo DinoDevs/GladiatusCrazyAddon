@@ -23,9 +23,12 @@
 	- [x] "No data" translation fix
 	- [x] Refresh/Save guild info every 24h ("Sent guild message" fix)
 	- [x] Fixed-top-bar _gca version_ hidden on small screens
+	- [x] Auction status style fix on firefox
 	- [x] Small fixes here and there
 - **Arena**
-	- [x] "Sort players by level" was sorting as string
+	- [x] "Sort players by level" was sorting as strings
 	- [x] "Ignore Attack Confirmations" was not working in every arena type
 - **Auction**
 	- [x] Fixed auction's 3-column-style override from the side menu
+- **Messages**
+	- [x] Refresh/Save guild info when unknown guild member message is found (guild message not reaching every player fix)
