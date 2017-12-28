@@ -32,3 +32,5 @@
 	- [x] Fixed auction's 3-column-style override from the side menu
 - **Messages**
 	- [x] Refresh/Save guild info when unknown guild member message is found (guild message not reaching every player fix)
+- **Settings**
+	- [x] No settings bug fixed
