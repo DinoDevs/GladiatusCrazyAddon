@@ -135,7 +135,10 @@ var gca_global = {
 		// Forge timer
 		(!this.isTraveling && gca_options.bool("global","forge_timers") &&
 			this.display.forge_timer());
-			
+		
+		// Centurio Days
+		this.centurio_days.init();
+		
 		// 48h GCA Window: links + posting data
 		this.gcaWindow();
 		
@@ -3632,6 +3635,40 @@ var gca_global = {
 			else{
 				this.elements.toggleIcon.className = "sound-toggle";
 			}
+		}
+	},
+	
+	//Display Centurio days every 12h
+	centurio_days : {
+		init : function(){
+			// Get timers
+			let now = new Date().getTime();
+			let last_time_shown = gca_data.section.get("cache", "gca_centurio", null);
+			let centurio_days = gca_data.section.get("timers", "gca_centurio", null);
+			
+			// If checked on the last x hours return
+			if(last_time_shown !== null && centurio_days !== null && (last_time_shown + (12*60*60*1000)) > now && centurio_days > 0){
+				this.display_centurio_days();
+			}else{
+				jQuery.get(gca_getPage.link({"mod":"premium","submod":"centurio"}), function(content){
+					gca_data.section.set("cache", "gca_centurio", now);
+					if( content.match(/<div id="premium_duration">([^<]+)<\/div>/) ){
+						let days = content.match(/<div id="premium_duration">([^<]+)<\/div>/)[1].replace(/  /g,'').match(/(\d+)/)[1];
+						gca_data.section.set("timers", "gca_centurio", parseInt(days));
+						this.display_centurio_days();
+					}else{
+						gca_data.section.set("timers", "gca_centurio", 0);
+					}
+				});
+			}
+		},
+		display_centurio_days : function(){
+			let days = gca_data.section.get("timers", "gca_centurio", null);
+			if(days>=100){
+				days = '+';
+			}
+			console.log(days);
+			//$dark('#mainmenu .premiummenuitem[0]').html( $dark('#mainmenu .premiummenuitem[0]').html()+'<div class="show_centurio_days" style="background-image: url(img/interface/new.gif);">'+days+'</div>' );
 		}
 	},
 	
