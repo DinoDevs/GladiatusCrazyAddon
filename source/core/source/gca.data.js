@@ -209,7 +209,7 @@ var gca_options = {
 			// Loop options in category
 			for(label in dataStorage[category]){
 				// Check if option exist
-				if(this.data[category] != undefined && this.data[category][label] != undefined){
+				if(this.data.hasOwnProperty(category) && this.data[category].hasOwnProperty(label)){
 					this.data[category][label] = dataStorage[category][label];
 				}
 			}
@@ -223,28 +223,28 @@ var gca_options = {
 
 	// Get Boolean Setting
 	bool : function(category, label){
-		if(this.data[category] && this.data[category][label])
+		if(this.data.hasOwnProperty(category) && this.data[category].hasOwnProperty(label))
 			return true;
 		return false;
 	},
 	
 	// Get Integer Setting
 	int : function(category, label){
-		if(this.data[category] && this.data[category][label])
+		if(this.data.hasOwnProperty(category) && this.data[category].hasOwnProperty(label))
 			return parseInt(this.data[category][label]);
 		return NaN;
 	},
 
 	// Get Setting
 	get : function(category, label){
-		if(this.data[category] && this.data[category][label])
+		if(this.data.hasOwnProperty(category) && this.data[category].hasOwnProperty(label))
 			return this.data[category][label];
 		return null;
 	},
 
 	//  Set Setting
 	set : function(category, label, value){
-		if(!this.data[category]){
+		if(!this.data.hasOwnProperty(category)){
 			this.data[category] = {};
 		}
 		this.data[category][label] = value;
