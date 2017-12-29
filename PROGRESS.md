@@ -34,3 +34,9 @@
 	- [x] Refresh/Save guild info when unknown guild member message is found (guild message not reaching every player fix)
 - **Settings**
 	- [x] No settings bug fixed
+	
+
+### TRANSLATIONS
+	- [x] Greek Translation updated by GreatApo
+	- [x] Latvian Translation updated by DarkSide666
+	- [x] Turkish Translation updated by Xus
