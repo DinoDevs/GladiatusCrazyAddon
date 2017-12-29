@@ -25,7 +25,7 @@ gca_languages['lv'] = {
 		global : {
 			life_potion_use : "Iedzert dzīvības eliksīru",
 			life_potion_used : "Dzīvības eliksīrs iedzerts",
-			life_potion_left : "Tev tagad ir {{number}} dzīvības punkti",
+			life_potion_left : "Tev ir {{number}} dzīvības eliksīri",
 			life_recover_full : "Pilna HP atjaunošanās",
 			message_private_write : "Privāta ziņa",
 			message_guild_write : "Ģildes ziņa",
@@ -66,17 +66,17 @@ gca_languages['lv'] = {
 			gold_exp_data_package_tax : "Nedēļas tirgus nodoklis",
 			gold_exp_data_measurements : "Mērījumi",
 			gold_exp_data_total_exp : "Pieredze kopā",
-			gold_exp_data_total_gold : "Zelts kopā",
+			gold_exp_data_total_gold : "Zelts kopā"
 		},
 		overview : {
 			stats_difference : "Atšķirība",
 			drop_item_see_materials_repair : "Ievelc lai redzētu kādi materiāli nepieciešami remontam",
-			workbench_6th_slot_empty : "Darbnīcas 6.lapa jābūt tukša",
+			workbench_6th_slot_empty : "Darbnīcas 6.lapa jābūt tukša"
 		},
 		pantheon : {
 			mysterybox_open_all : "Atvērt visu",
 			mysterybox_open_stop : "Stop",
-			mysterybox_open_done : "Pabeigts!",
+			mysterybox_open_done : "Pabeigts!"
 		},
 		guild : {
 			bank_all_gold : "Pievieno visu zeltu",
@@ -101,8 +101,8 @@ gca_languages['lv'] = {
 			number_of_items : "Priekšmetu skaits : {{number}}",
 			number_of_bided_items : "Solīto priekšmetu skaits : {{number}}",
 			hide_your_gold_here : "Noslēp zeltu!",
-			price_value_function : "Cena=vērtība + {{number}}"
-			levels_you_can_see : "Tu vari redzēt priekšmetus no {{min}} līdz {{max}} līmenim.",
+			price_value_function : "Cena=vērtība + {{number}}",
+			levels_you_can_see : "Tu vari redzēt priekšmetus no {{min}} līdz {{max}} līmenim."
 		},
 		markets : {
 			item_cost_only_x_gold : "Šis priekšmets maksā tikai {{number}} zeltu.",
