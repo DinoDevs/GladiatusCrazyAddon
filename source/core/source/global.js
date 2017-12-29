@@ -3702,7 +3702,7 @@ var gca_global = {
 				console.log(powerups_status);
 			
 			// If checked on the last x hours return
-			}else if(last_time_shown !== null && (last_time_shown + (12*60*60*1000)) > now){
+			}else if(last_time_check !== null && (last_time_check + (12*60*60*1000)) > now){
 				console.log('Checked');
 				this.display_centurio_days();
 			
