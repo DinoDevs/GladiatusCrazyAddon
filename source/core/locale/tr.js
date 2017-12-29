@@ -351,3 +351,5 @@ gca_languages["tr"] = {
         }
     }
 }
+
+gca_locale.active = "tr";
