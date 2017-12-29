@@ -3643,28 +3643,29 @@ var gca_global = {
 		init : function(){
 			// Get timers
 			let now = new Date().getTime();
-			let last_time_shown = gca_data.section.get("cache", "gca_centurio", null);
+			let last_time_check = gca_data.section.get("cache", "gca_centurio", null);
 			let centurio_days = gca_data.section.get("timers", "gca_centurio", null);
 			
 			// When on centurio page
 			if(gca_section.mod=='premium' && gca_section.submod=='centurio'){
-				let days = (document.getElementById('premium_duration'))? parseInt(document.getElementById('premium_duration').textContent.replace(/  /g,'').match(/(\d+)/)[1]) : 0;
-				console.log('Here: '+days);
+				let end_time = (document.getElementById('premium_duration'))? now + parseInt(document.getElementById('premium_duration').getElementsByClassName('ticker')[0].dataset.tickerTimeLeft) : now;
+				console.log('Here: '+end_time);
 				gca_data.section.set("cache", "gca_centurio", now);
-				gca_data.section.set("timers", "gca_centurio", days);
+				gca_data.section.set("timers", "gca_centurio", end_time);
 				this.display_centurio_days();
 				
 			// If checked on the last x hours return
-			}else if(last_time_shown !== null && centurio_days !== null && (last_time_shown + (12*60*60*1000)) > now){
+			}else if(last_time_check !== null && centurio_days !== null && (last_time_check + (12*60*60*1000)) > now){
 				console.log('Checked');
 				this.display_centurio_days();
 			}else{
 				// Request page
 				jQuery.get(gca_getPage.link({"mod":"premium","submod":"centurio"}), function(content){
+					console.log('Request');
 					gca_data.section.set("cache", "gca_centurio", now);
-					if( content.match(/<div id="premium_duration">([^<]+)<\/div>/) ){
-						let days = content.match(/<div id="premium_duration">([^<]+)<\/div>/)[1].replace(/  /g,'').match(/(\d+)/)[1];
-						gca_data.section.set("timers", "gca_centurio", parseInt(days));
+					if( content.match(/<div id="premium_duration">/) ){
+						let end_time = now + parseInt(content.match(/<div id="premium_duration">[^<]+<span>[^<]+<span data-ticker-time-left="(\d+)"/)[1]);
+						gca_data.section.set("timers", "gca_centurio", end_time);
 					}else{
 						gca_data.section.set("timers", "gca_centurio", 0);
 					}
