@@ -37,6 +37,7 @@
 	
 
 ### TRANSLATIONS
-	- [x] Greek Translation updated by GreatApo
-	- [x] Latvian Translation updated by DarkSide666
-	- [x] Turkish Translation updated by Xus
+- **Updates**
+	- [x] Greek Translation by GreatApo
+	- [x] Latvian Translation by DarkSide666
+	- [x] Turkish Translation by Xus
