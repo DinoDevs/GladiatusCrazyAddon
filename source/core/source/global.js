@@ -3638,11 +3638,13 @@ var gca_global = {
 		}
 	},
 	
-	//Display Centurio days every 12h
+	//Display Centurio & PowerUps days every 12h
 	centurio_days : {
 		init : function(){
 			// Get timers
 			let now = new Date().getTime();
+			
+			// CENTURIO
 			let last_time_check = gca_data.section.get("cache", "gca_centurio", null);
 			let centurio_days = gca_data.section.get("timers", "gca_centurio", null);
 			
@@ -3658,8 +3660,9 @@ var gca_global = {
 			}else if(last_time_check !== null && centurio_days !== null && (last_time_check + (12*60*60*1000)) > now){
 				console.log('Checked');
 				this.display_centurio_days();
+			
+			// Request page
 			}else{
-				// Request page
 				jQuery.get(gca_getPage.link({"mod":"premium","submod":"centurio"}), function(content){
 					console.log('Request');
 					gca_data.section.set("cache", "gca_centurio", now);
@@ -3673,26 +3676,49 @@ var gca_global = {
 				});
 			}
 			
-			let powerups_status = [
-				{enabled : false, reload : 0},
-				{enabled : false, reload : 0},
-				{enabled : false, reload : 0},
-				{enabled : false, reload : 0}
-			];
+			// POWERUPS
+			last_time_check = gca_data.section.get("cache", "gca_powerups", null);
+			let powerups_status = gca_data.section.get("timers", "gca_powerups", [
+				{enabled : 0, reload : 0},
+				{enabled : 0, reload : 0},
+				{enabled : 0, reload : 0},
+				{enabled : 0, reload : 0}
+			]);
+			
 			// When on powerups page
 			if(gca_section.mod=='powerups'){
 				let powerups = document.getElementsByClassName('powerup_duration');
 				for(i=0;i<powerups.length;i++){
 					// if enabled
 					if(powerups[i].style.color=='green'){
-						powerups_status[i].enabled = true;
+						//Ακόμη 1 Ημέρα, 14 Ώρες, 29 Λεπτά
+						let time = powerups[i].textContent.match(/\d+/g);
+						powerups_status[i].enabled = now + (time[0]*24*60*60+time[1]*60*60+time[2]*60)*1000;
 						// if reload wait time
 						if(powerups[i].parentNode.getElementsByClassName('powerup_cooldown').length>0)
 							powerups_status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft);
 					}
 				}
 				console.log(powerups_status);
-			}
+			
+			// If checked on the last x hours return
+			}else if(last_time_shown !== null && (last_time_shown + (12*60*60*1000)) > now){
+				console.log('Checked');
+				this.display_centurio_days();
+			
+			// Request page
+			}/*else{
+				jQuery.get(gca_getPage.link({"mod":"premium","submod":"centurio"}), function(content){
+					gca_data.section.set("cache", "gca_centurio", now);
+					if( content.match(/<div id="premium_duration">([^<]+)<\/div>/) ){
+						let days = content.match(/<div id="premium_duration">([^<]+)<\/div>/)[1].replace(/  /g,'').match(/(\d+)/)[1];
+						gca_data.section.set("timers", "gca_centurio", parseInt(days));
+					}else{
+						gca_data.section.set("timers", "gca_centurio", 0);
+					}
+					gca_global.centurio_days.display_centurio_days();
+				});
+			}*/
 		},
 		display_centurio_days : function(){
 			let days = gca_data.section.get("timers", "gca_centurio", null);
