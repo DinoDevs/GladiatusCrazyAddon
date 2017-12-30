@@ -146,15 +146,16 @@ var gca_markets = {
 			button.addEventListener('click', function(){
 				// Cancel all code
 				var rows = document.getElementById("market_table").getElementsByTagName("tr");
+				var forms = document.getElementById("market_table").getElementsByTagName("form");
 				var cancel = encodeURIComponent(document.getElementsByName('cancel')[0].value);
 				var id;
-				for(var i=1; i<=rows.length - 1; i++){
+				for(var i = 1; i <= rows.length - 1; i++){
 					if(typeof rows[i].getElementsByTagName("input")['cancel'] !== "undefined"){
-						id = document.buyForm[i-1][0].value;
+						id = forms[i - 1].buyid.value;
 						jQuery.ajax({
 							type: "POST",
 							url: document.location.href,
-							data: 'buyid='+id+'&cancel='+cancel,
+							data: 'buyid=' + id + '&cancel=' + cancel,
 							success: function(){
 								if(document.getElementById('cancelAllButton').dataset.current==document.getElementById('cancelAllButton').dataset.max-1){
 									document.location.href=document.location.href;
