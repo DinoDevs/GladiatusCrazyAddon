@@ -567,7 +567,7 @@ var gca_settings = {
 							// Create file select
 							data.file = document.createElement("input");
 							data.file.setAttribute("type", "file");
-							data.file.style.width = "358px";
+							data.file.className = "settings-file-input";
 							// Create select
 							data.import = document.createElement("input");
 							data.import.setAttribute("type", "button");
@@ -614,19 +614,19 @@ var gca_settings = {
 						"type" : "custom",
 						"dom" : function(data, title, wrapper){
 							// Create button
-							data.clear = document.createElement("input");
-							data.clear.setAttribute("type", "button");
-							data.clear.className = "awesome-button";
-							data.clear.style.float = "right";
-							data.clear.value = gca_locale.get("settings", "clear");
-							data.clear.addEventListener("click", () => {
-								if (confirm(gca_locale.get("settings", "clear_data_confirm")) == true) {
-									gca_settings.backup.clearAll();
+							data.reset = document.createElement("input");
+							data.reset.setAttribute("type", "button");
+							data.reset.className = "awesome-button";
+							data.reset.style.float = "right";
+							data.reset.value = gca_locale.get("settings", "reset");
+							data.reset.addEventListener("click", () => {
+								if (confirm(gca_locale.get("settings", "reset_settings_confirm")) == true) {
+									gca_settings.backup.resetSettings();
 									gca_notifications.info(gca_locale.get("settings", "notification_reload"));
 								}
 							}, false);
 							// Add change event
-							return [data.clear];
+							return [data.reset];
 						}
 					};
 					return scheme;
@@ -1494,6 +1494,12 @@ var gca_settings = {
 			} catch (e) {
 				callback("Unsupported");
 			}
+		},
+
+		// Reset settings
+		resetSettings : function() {
+			// Clear all settings
+			window.localStorage.removeItem(gca_data_manager.name + "_" + "settings");
 		},
 
 		// Clear all data

@@ -14,7 +14,7 @@
 - **Main Menu**
 	- [x] Add shortcut to workbench (item repair) next to malefica (>)
 - **Settings**
-	- [x] Ability to export/import/clear addon's options/data
+	- [x] Ability to export/import/reset/clear addon's options/data
 	- [x] GCA logo updated
 
 
@@ -38,6 +38,6 @@
 
 ### TRANSLATIONS
 - **Updates**
-	- [x] Greek Translation by GreatApo
+	- [x] Greek Translation by GreatApo and DarkThanos
 	- [x] Latvian Translation by DarkSide666
 	- [x] Turkish Translation by Xus

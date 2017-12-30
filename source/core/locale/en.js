@@ -355,11 +355,13 @@ gca_languages["en"] = {
 			save : "Save",
 			export : "Export",
 			import : "Import",
+			reset : "Reset",
 			clear : "Clear",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",
 			translated_by : "Translated by: {{string}}",
+			reset_settings_confirm : "Are you sure you want to reset the addon's settings?",
 			clear_data_confirm : "Are you sure you want to clear all the addon's data?",
 
 			// Notifications
