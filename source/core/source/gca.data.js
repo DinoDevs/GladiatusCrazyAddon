@@ -330,7 +330,10 @@ gca_options.data = {
 		
 		// Underword
 			// Pray Shorcut
-			"pray_shorcut" : true
+			"pray_shorcut" : true,
+				
+		// Centurio & PowerUps timers
+		"centurio_powerups_timers" : false
 	},
 
 	// Overview Options

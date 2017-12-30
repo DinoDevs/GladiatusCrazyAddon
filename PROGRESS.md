@@ -5,6 +5,7 @@
 ### IMPROVEMENTS
 - **Global**
 	- [x] Go-to-top button on fixed-top-bar
+	- [x] Centurio + PowerUps timers
 - **Auction**
 	- [x] More min-levels in search options (from min to max item levels you can see, with a step of 2)
 - **Market**

@@ -251,6 +251,7 @@ gca_languages["en"] = {
 			category_global$pagination_layout : "Change pages-box's layout",
 			category_global$gold_exp_data : "Show gold and exp data",
 			category_global$pray_shorcut : "Display pray shortcut when in Underworld",
+			category_global$centurio_powerups_timers : "Display Centurio & PowerUps timers on Premium button",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
