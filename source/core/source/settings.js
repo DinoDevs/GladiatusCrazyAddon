@@ -567,7 +567,7 @@ var gca_settings = {
 							// Create file select
 							data.file = document.createElement("input");
 							data.file.setAttribute("type", "file");
-							data.file.style.width = "358px";
+							data.file.className = "settings-file-input";
 							// Create select
 							data.import = document.createElement("input");
 							data.import.setAttribute("type", "button");
