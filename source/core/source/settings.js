@@ -597,7 +597,8 @@ var gca_settings = {
 										data.file.removeAttribute("disabled");
 										data.file.value = "";
 										// Notify user
-										gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+										// gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+										document.location.href = document.location.href;
 									}
 								});
 							}, false);
@@ -622,7 +623,8 @@ var gca_settings = {
 							data.reset.addEventListener("click", () => {
 								if (confirm(gca_locale.get("settings", "reset_settings_confirm")) == true) {
 									gca_settings.backup.resetSettings();
-									gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+									// gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+									document.location.href = document.location.href;
 								}
 							}, false);
 							// Add change event
@@ -646,7 +648,8 @@ var gca_settings = {
 							data.clear.addEventListener("click", () => {
 								if (confirm(gca_locale.get("settings", "clear_data_confirm")) == true) {
 									gca_settings.backup.clearAll();
-									gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+									// gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+									document.location.href = document.location.href;
 								}
 							}, false);
 							// Add change event
@@ -983,7 +986,9 @@ var gca_settings = {
 						that.tabItems[i].save();
 					}
 					// Notify
-					gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+					// gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+					// Reload page
+					document.location.href = document.location.href;
 				}, false);
 				container.appendChild(save);
 			}
