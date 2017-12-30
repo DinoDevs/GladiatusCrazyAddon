@@ -16,8 +16,6 @@ var gca_auction = {
 		if (document.getElementById("auction_table")){
 			(gca_options.bool("auction","items_counters") && 
 				this.itemsCounters());
-			(gca_options.bool("auction","more_search_levels") &&
-				this.moreSearchLevels());
 			(gca_options.bool("global","item_shadow") && 
 				this.itemsShadow());
 			(gca_options.bool("auction","item_price_analyze") && 
@@ -30,9 +28,12 @@ var gca_auction = {
 				this.multiBids());
 			(gca_options.bool("auction","extra_item_stats") &&
 				this.extraItemStats());
-				
-			this.levelsYouCanSee();
 		}
+		
+		(gca_options.bool("auction","more_search_levels") &&
+			this.moreSearchLevels());
+		
+		this.levelsYouCanSee();
 
 		// Setting Link
 		gca_tools.create.settingsLink("auction");
@@ -53,8 +54,17 @@ var gca_auction = {
 		let minLvl = Math.floor(playerLvl* 0.75);
 		let maxLvl = ( playerLvl+14<Math.ceil(1.25*playerLvl+5.75) )? playerLvl+14 : Math.ceil(1.25*playerLvl+5.75);
 		
-		// Remove all previous lvl options
 		let lvl_options_parent = document.getElementsByName('itemLevel')[0];
+		
+		// Searched level
+		let selectedLvl = parseInt(lvl_options_parent.value);
+		// Take first level from items if no clue from search option
+		if(document.getElementById("auction_table") && minLvl == selectedLvl)
+			selectedLvl = parseInt(document.getElementById('auction_table').getElementsByTagName('td')[0].getElementsByTagName('div')[0].textContent);
+		if (minLvl%2 != selectedLvl%2)
+			selectedLvl--;
+		
+		// Remove all previous lvl options
 		while (lvl_options_parent.firstChild) {
 			lvl_options_parent.removeChild(lvl_options_parent.firstChild);
 		}
@@ -66,6 +76,8 @@ var gca_auction = {
 			lvl_option.textContent = i + " +";
 			lvl_options_parent.appendChild(lvl_option);
 		}
+		
+		lvl_options_parent.value = selectedLvl;
 	},
 	itemsCounters : function(){
 		// Count items (number of fourms minus the search form)
