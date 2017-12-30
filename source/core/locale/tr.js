@@ -1,10 +1,13 @@
 /*
  * Gladiatus Crazy Eklenti Dil Dosyası
- * Ülke : Turkish (Türkiye)
- * Ülke Kodu : TR
- * Ülke Kısaltması  : tr-TR
- * Çeviren: Xus (s25)
+ * Name : Turkish (Türkiye)
+ * Code : TR
+ * Tag  : tr-TR
+ * Translator: Xus (s25)
  */
+
+// Languages Object
+var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages["tr"] = {
@@ -12,7 +15,7 @@ gca_languages["tr"] = {
     // Language name
     name : "Türkçe",
     // Translators (authors of this script)
-    translators : ["Xus - (s25) - aygn.yldz13@gmail.com"],
+    translators : ["Xus (s25)"],
 
     // Translations object
     locale : {

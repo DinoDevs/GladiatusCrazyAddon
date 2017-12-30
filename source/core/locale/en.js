@@ -122,7 +122,7 @@ gca_languages["en"] = {
 			// Mystery box
 			mysterybox_open_all : "Open all",
 			mysterybox_open_stop : "Stop",
-			mysterybox_open_done : "Done!",
+			mysterybox_open_done : "Done!"
 		},
 
 		// Guild section
@@ -194,6 +194,7 @@ gca_languages["en"] = {
 			known_scroll : "You know this scroll",
 			unknown_scroll : "You don't know this scroll"
 		},
+
 		// Settings
 		settings : {
 			// Settings
@@ -241,7 +242,6 @@ gca_languages["en"] = {
 			category_global$quest_timer : "Show quests status or timer",
 			category_global$merchants_timer : "Show merchants timer indicator",
 			category_global$forge_timers : "Show forge/smelt timer indicator",
-			category_global$player_image : "Enable players' images",
 			category_global$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
 			category_global$notify_new_guild_application_interval : "Check for applications every (minutes)",

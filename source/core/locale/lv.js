@@ -6,6 +6,10 @@
  * Translator: DarkSide666, Dominators_S3
  */
 
+// Languages Object
+var gca_languages = gca_languages || {};
+
+// Set Language
 gca_languages['lv'] = {
 	name : 'Latviešu',
 	translators : ["DarkSide666", "Dominators_S3"],
