@@ -242,29 +242,29 @@ gca_languages["gr"] = {
 			category_global$quest_timer: "Εμφάνιση της κατάστασης/χρόνου των αποστολών",
 			category_global$merchants_timer: "Προβολή του χρονομέτρου των πωλητών",
 			category_global$forge_timers : "Προβολή του χρονομέτρου σιδηρουργείου/χυτηρίου",
-			
-
-
-
-
-
-
-
-
+			category_global$cooldown_sound_notifications : "Ενεργοποίηση των ήχων ειδοποίησης (επιδρομής, μπουντρούμι, αρένα)",
+			category_global$notify_new_guild_application : "Ειδοποίηση για νέες αιτήσεις στο τάγμα",
+			category_global$notify_new_guild_application_interval : "Έλεγχος για νέες αιτήσεις κάθε (λεπτά)",
+			category_global$x_scroll : "Ενεργοποίηση της οριζόντιας κύλισης του gladiatus",
+			category_global$item_shadow : "Ενεργοποίηση των σκιών των αντικειμένων",
+			category_global$inventory_options_group : "Ομαδοποίηση των επιλογών της τσάντας",
+			category_global$pagination_layout : "Αλλαγή της εμφάνισης του κουτιού σελίδων",
+			category_global$gold_exp_data : "Εμφάνιση στατιστικών χρυσού και πόντων εμπειρίας",
+			category_global$pray_shorcut : "Εμφάνισης συντόμευσης για την προσευχή στον κάτω κόσμο",
 			// Settings - Overview
 			category_overview$analyze_items: "Ανάλυση των αντικειμένων του παίκτη",
-			
+			category_overview$food_life_gain : "Εμφάνιση των πόντων ζωής που δίνει το κάθε αναλώσιμο",
 			category_overview$block_avoid_caps: "Προβολή των τιμών cap για την Προσαρμοστικότητα και την Αξία Κλειδώματος",
-			
-
-
-
-
-
+			category_overview$best_food : "Επισήμανση του πιο κατάλληλου αναλώσιμου",
+			category_overview$overfeed_food : "Κάνε ημιδιαφανή τα αναλώσιμα που δίνουν παραπάνω πόντους ζωής",
+			category_overview$daily_bonus_log : "Καταγραφή του καθημερινού μπόνους",
+			category_overview$buffs_detailed_time : "Εμφάνιση λεπτομερείς χρονομετρητών για τα μπόνους του τάγματος",
+			category_overview$mercenaries_manager : "Εμφάνιση του διαχειριστή μισθοφόρων",
+			category_overview$mercenary_tooltip_show : "Εμφάνιση των tooltip των μισθοφόρων",
 			category_overview$more_statistics: "Παροχή περισσότερων στατιστικών παίκτη",
-			
-
-
+			category_overview$achivements_layout : "Βελτίωση της εμφάνισης των νικών",
+			category_overview$costumes_layout : "Βελτίωση της εμφάνισης των κουστουμιών",
+			category_overview$items_repair_overview : "Εμφάνιση του κουτιού εμφάνισης των πρώτων υλών για επισκευή",
 			// Settings - Messages
 			category_messages$messages_layout: "Βελτίωση του interface των μηνυμάτων",
 			
