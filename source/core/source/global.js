@@ -83,6 +83,10 @@ var gca_global = {
 		// Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
 			this.display.inventoryOptionsGroup.create());
+		// Inventory info box
+		(gca_options.bool("global","inventory_gold_info") &&
+			this.display.inventoryInfo.prepare());
+
 
 		// Daily Bonus Log
 		(gca_options.bool("overview", "daily_bonus_log") && 
@@ -2689,25 +2693,23 @@ var gca_global = {
 				// Exit if no inventory
 				if(!document.getElementById("inv")) return;
 
-				var that = this;
-
 				// Add event
-				gca_tools.event.bag.onBagOpen(function(tab){
-					that.currentBag(tab);
+				gca_tools.event.bag.onBagOpen((tab) => {
+					this.currentBag(tab);
 				});
 
 				// If bag not already loaded
 				if (document.getElementById("inv").className.match("unavailable")) {
 					// Wait first bag
-					gca_tools.event.bag.waitBag(function(){
-						that.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+					gca_tools.event.bag.waitBag(() => {
+						this.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
 					});
 				}
 				// Else id already loaded
 				// (you can test it with ctrl+F5)
 				else {
 					// Add shadows
-					that.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+					this.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
 				}
 			},
 
@@ -2799,6 +2801,78 @@ var gca_global = {
 			hide : function() {
 				this.box.style.display = "none";
 				this.hidden = true;
+			}
+		},
+
+		// Show inventory info
+		inventoryInfo : {
+			prepare : function () {
+				// Exit if no inventory
+				if(!document.getElementById("inv")) return;
+
+				// Create UI
+				this.infoBox = document.createElement("div");
+				this.infoBox.className = "gca-bag-info";
+				this.infoGold = document.createElement("span");
+				this.infoBox.appendChild(this.infoGold);
+				this.infoBox.appendChild(document.createTextNode(" "));
+				this.infoBox.appendChild(gca_tools.create.goldIcon());
+				document.getElementById("inv").parentNode.insertBefore(this.infoBox, document.getElementById("inv").nextSibling);
+
+				// Add events
+				gca_tools.event.bag.onBagOpen(() => {
+					this.showInvInfo();
+				});
+
+				// If bag not already loaded
+				if (document.getElementById("inv").className.match("unavailable")) {
+					// Wait first bag
+					gca_tools.event.bag.waitBag(() => {
+						this.showInvInfo();
+					});
+				}
+				// Else id already loaded
+				else {
+					// Add shadows
+					this.showInvInfo();
+				}
+
+				// On item move
+				gca_tools.event.request.onAjaxResponce((data) => {
+					if (
+						data.hasOwnProperty("data") &&
+						data.data.hasOwnProperty("to") &&
+						data.data.to.hasOwnProperty("data") &&
+						data.data.to.data &&
+						data.elem.length === 1
+					) {
+						this.showInvInfo(data.elem[0]);
+					}
+				})
+			},
+
+			showInvInfo : function(item = {dataset:{amount:0,itemId:0,priceGold:0}}) {
+				// Get tab
+				var tab = document.getElementById("inventory_nav").getElementsByClassName("current")[0];
+				// Get items
+				var items = document.getElementById('inv').getElementsByClassName("ui-draggable");
+				// Count gold
+				let gold = 0;
+
+				// For each item
+				for (var i = items.length - 1; i >= 0; i--) {
+					// If item is the moved item
+					if (item.dataset.itemId == items[i].dataset.itemId) {
+						gold += item.dataset.amount * item.dataset.priceGold;
+					}
+					// Normal items
+					else {
+						gold += items[i].dataset.amount * items[i].dataset.priceGold;
+					}
+				}
+
+				// Display
+				this.infoGold.textContent = gca_tools.strings.insertDots(gold);
 			}
 		}
 	},

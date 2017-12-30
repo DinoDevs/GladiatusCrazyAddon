@@ -278,6 +278,8 @@ var gca_settings = {
 
 				// Enable inventory group options
 				"inventory_options_group" : true,
+				// Enable inventory gold info
+				"inventory_gold_info" : false,
 
 				// Enable pagination layout
 				"pagination_layout" : true,

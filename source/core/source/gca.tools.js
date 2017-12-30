@@ -1320,6 +1320,7 @@ var gca_tools = {
 	// Create
 	// -------------------------------------------------- //
 	// create.goldIcon()
+	// create.settingsLink(category)
 	// -------------------------------------------------- //
 	create : {
 
