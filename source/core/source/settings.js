@@ -492,6 +492,9 @@ var gca_settings = {
 			},
 
 			"data" : {
+				"__scheme" : {
+					"save_button" : false
+				},
 				// Export
 				"export_settings" : (function(){
 					var scheme = {
@@ -869,6 +872,18 @@ var gca_settings = {
 
 		tabItems : null,
 		createTab : function(name, titleText, scheme){
+			// Get sceme options
+			var scheme_options = {
+				save_button : true
+			};
+			if (scheme.hasOwnProperty("__scheme")) {
+				for (option in scheme["__scheme"]) {
+					if (scheme["__scheme"].hasOwnProperty(option) && scheme_options.hasOwnProperty(option)) {
+						scheme_options[option] = scheme["__scheme"][option];
+					}
+				}
+			}
+
 			// Tab Items reset
 			this.tabItems = [];
 
@@ -880,29 +895,32 @@ var gca_settings = {
 			container.appendChild(title);
 
 			// Create each item
-			for(var id in scheme){
+			for(let id in scheme){
 				this.tabItems.push(
 					this.createItem(id, scheme[id], container)
 				);
 			}
 
-			var save = document.createElement("input");
-			save.type = "button";
-			save.className = "button2";
-			save.style.float = "right";
-			save.value = gca_locale.get("settings", "save");
-			// Save event
-			var that = this;
-			save.addEventListener('click', function(){
-				// Saving
-				for (var i = 0; i < that.tabItems.length; i++) {
-					that.tabItems[i].save();
-				}
-				// Notify
-				gca_notifications.info(gca_locale.get("settings", "notification_reload"));
-			}, false);
+			// Save button
+			if (scheme_options.save_button) {
+				var save = document.createElement("input");
+				save.type = "button";
+				save.className = "button2";
+				save.style.float = "right";
+				save.value = gca_locale.get("settings", "save");
+				// Save event
+				var that = this;
+				save.addEventListener('click', function(){
+					// Saving
+					for (var i = 0; i < that.tabItems.length; i++) {
+						that.tabItems[i].save();
+					}
+					// Notify
+					gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+				}, false);
+				container.appendChild(save);
+			}
 
-			container.appendChild(save);
 			this.tab_div.appendChild(container);
 		},
 
