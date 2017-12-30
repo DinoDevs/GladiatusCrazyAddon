@@ -223,7 +223,7 @@ var gca_options = {
 
 	// Get Boolean Setting
 	bool : function(category, label){
-		if(this.data.hasOwnProperty(category) && this.data[category].hasOwnProperty(label))
+		if(this.data.hasOwnProperty(category) && this.data[category].hasOwnProperty(label) && this.data[category][label])
 			return true;
 		return false;
 	},
@@ -231,7 +231,7 @@ var gca_options = {
 	// Get Integer Setting
 	int : function(category, label){
 		if(this.data.hasOwnProperty(category) && this.data[category].hasOwnProperty(label))
-			return parseInt(this.data[category][label]);
+			return parseInt(this.data[category][label], 10);
 		return NaN;
 	},
 
