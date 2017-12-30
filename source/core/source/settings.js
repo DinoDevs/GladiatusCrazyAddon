@@ -120,10 +120,50 @@ var gca_settings = {
 								}
 								data.select.appendChild(option);
 							}
+
+							// Count items
+							data.count_items = {};
+							data.translated_items = 0;
+							for (let category in gca_languages['en'].locale) {
+								if (gca_languages['en'].locale.hasOwnProperty(category)) {
+									for (let item in gca_languages['en'].locale[category]) {
+										if (gca_languages['en'].locale[category].hasOwnProperty(item)) {
+											data.translated_items++;
+										}
+									}
+								}
+							}
+
 							// Create refresh info function
 							data.refreshInfo = function() {
 								var lang = gca_languages[data.select.value];
 								var info = "";
+
+								// Completed percent
+								info = 0;
+								var translated_items = 0;
+								if (data.count_items.hasOwnProperty(data.select.value)) {
+									translated_items = data.count_items[data.select.value];
+								}
+								else {
+									for (let category in gca_languages['en'].locale) {
+										if (gca_languages['en'].locale.hasOwnProperty(category)) {
+											for (let item in gca_languages['en'].locale[category]) {
+												if (gca_languages['en'].locale[category].hasOwnProperty(item)) {
+													if (lang.locale.hasOwnProperty(category) && lang.locale[category].hasOwnProperty(item)) {
+														translated_items++;
+													}
+												}
+											}
+										}
+									}
+									data.count_items[data.select.value] = translated_items;
+								}
+								info = Math.round(translated_items * 100 / data.translated_items);
+								data.info_completed.textContent = gca_locale.get("settings", "translated_percent", {number: info});
+
+								// Translators
+								info = "";
 								if (lang.translators instanceof Array) {
 									for (var i = 0; i < lang.translators.length; i++) {
 										if (i != 0) {
@@ -134,15 +174,17 @@ var gca_settings = {
 								} else {
 									info += lang.translators;
 								}
-								data.info.textContent = gca_locale.get("settings", "translated_by", {string: info});
+								data.info_translators.textContent = gca_locale.get("settings", "translated_by", {string: info});
 							}
 							// Add language info
-							data.info = document.createElement("div");
-							data.info.className = "translated-by";
+							data.info_completed = document.createElement("div");
+							data.info_completed.className = "translate-percent";
+							data.info_translators = document.createElement("div");
+							data.info_translators.className = "translated-by";
 							data.refreshInfo();
 							// Add change event
 							data.select.addEventListener("change", data.refreshInfo, false);
-							return [data.select, data.info];
+							return [data.select, data.info_translators, data.info_completed];
 						},
 						"save" : function(data){
 							gca_locale._setLang(data.select.value);
@@ -565,8 +607,32 @@ var gca_settings = {
 					return scheme;
 				})(),
 
+				// Reset
+				"reset_settings" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.clear = document.createElement("input");
+							data.clear.setAttribute("type", "button");
+							data.clear.className = "awesome-button";
+							data.clear.style.float = "right";
+							data.clear.value = gca_locale.get("settings", "clear");
+							data.clear.addEventListener("click", () => {
+								if (confirm(gca_locale.get("settings", "clear_data_confirm")) == true) {
+									gca_settings.backup.clearAll();
+									gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+								}
+							}, false);
+							// Add change event
+							return [data.clear];
+						}
+					};
+					return scheme;
+				})(),
+
 				// Clear
-				"clear_settings" : (function(){
+				"clear_data" : (function(){
 					var scheme = {
 						"type" : "custom",
 						"dom" : function(data, title, wrapper){

@@ -348,7 +348,8 @@ gca_languages["en"] = {
 			// Settings - Data
 			category_data$export_settings : "Export settings data to file",
 			category_data$import_settings : "Import settings data from file",
-			category_data$clear_settings : "Clear all the addon's data",
+			category_data$reset_settings : "Reset the addon's setting",
+			category_data$clear_data : "Clear all the addon's data",
 
 			// Buttons
 			save : "Save",
@@ -357,6 +358,7 @@ gca_languages["en"] = {
 			clear : "Clear",
 
 			// Info
+			translated_percent : "Translated percent: {{number}}%",
 			translated_by : "Translated by: {{string}}",
 			clear_data_confirm : "Are you sure you want to clear all the addon's data?",
 
