@@ -256,7 +256,7 @@ gca_languages["gr"] = {
 			category_overview$food_life_gain : "Εμφάνιση των πόντων ζωής που δίνει το κάθε αναλώσιμο",
 			category_overview$block_avoid_caps: "Προβολή των τιμών cap για την Προσαρμοστικότητα και την Αξία Κλειδώματος",
 			category_overview$best_food : "Επισήμανση του πιο κατάλληλου αναλώσιμου",
-			category_overview$overfeed_food : "Κάνε ημιδιαφανή τα αναλώσιμα που δίνουν παραπάνω πόντους ζωής",
+			category_overview$overfeed_food : "Ημιδιαφάνεια στα αναλώσιμα που δίνουν παραπάνω πόντους ζωής",
 			category_overview$daily_bonus_log : "Καταγραφή του καθημερινού μπόνους",
 			category_overview$buffs_detailed_time : "Εμφάνιση λεπτομερείς χρονομετρητών για τα μπόνους του τάγματος",
 			category_overview$mercenaries_manager : "Εμφάνιση του διαχειριστή μισθοφόρων",
