@@ -258,9 +258,6 @@ var gca_settings = {
 				// Forge
 				"forge_timers" : true,
 
-				// Player Image
-				"player_image" : true,
-
 				// Cooldown Sound Notification
 				"cooldown_sound_notifications" : true,
 

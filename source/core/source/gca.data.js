@@ -305,9 +305,6 @@ gca_options.data = {
 		// Forge
 		"forge_timers" : true,
 
-		// Player Image
-		"player_image" : true,
-
 		// Cooldown Sound Notification
 		"cooldown_sound_notifications" : true,
 
@@ -449,7 +446,7 @@ gca_options.data = {
 		// Show analyze data
 		"show_analyze_items_data" : true,
 		// Show points after upgrade
-		"show_points_after_upgrade" : true,
+		"show_points_after_upgrade" : true
 	},
 
 	// Merchants
@@ -548,94 +545,7 @@ gca_options.data = {
 		"muted" : false,
 		// Volume scale
 		"volume" : 0.8
-	},
-
-	// TODO : DEPRECATED below
-	// Options only here for reference
-	// Implemented is removed
-	/*
-	// Global Script Options
-		"ENABLE_GLOBAL_MERCHANTS_TIME" : true,
-		"ENABLE_GLOBAL_WEAPON_DOWN_ALERT" : true,
-		"ENABLE_GLOBAL_DISPLAY_CENTURIO_DAYS" : false,
-		"ENABLE_GLOBAL_MAP_NAMES_LEVELS" : false,
-
-	// Overview Script Options
-		// Main Player Options
-		"ENABLE_OVERVIEW_ITEMS_ANALIZE" : true,
-		"ENABLE_OVERVIEW_DISPLAY_SHARE_LINK" : true,
-		"ENABLE_PLAYER_IMAGE" : true,
-
-	// Training Script Options
-		"ENABLE_TRANING_DISPLAY_COST_CALCULATOR" : true,
-
-	// Auction Script Options
-		// Table modifications
-		"ENABLE_AUCTION_DISPLAY_ITEMS_NUM" : true,
-		"ENABLE_AUCTION_DISPLAY_ITEMS_BGCOLOR" : true,
-		"ENABLE_AUCTION_AUTO_FILL_GOLD" : true,
-		"ENABLE_AUCTION_DISPLAY_ITEMS_LVL" : true,
-		"ENABLE_AUCTION_DISPLAY_3_ITEMS_PER_ROW" : true,
-		"ENABLE_AUCTION_MULTIPLE_BIDS" : false,
-		"ENABLE_AUCTION_WARN_GUILD" : true,
-		// Search modifications
-		"ENABLE_AUCTION_EXPAND_ITEMS_LVL" : true,
-		"ENABLE_AUCTION_IMPROVE_SEARCH_MENU" : true,
-		// Mercenaries tooltips
-		"ENABLE_AUCTION_MERCENARIES_TOOLTIPS" : true,
-		"ENABLE_AUCTION_HIDE_MERCENARIES_GUIDE_ROW" : true,
-
-	// Market Script Options
-		// Table modifications
-		"ENABLE_MARKET_LOAD_MORE_PAGES" : true,
-		"ENABLE_MARKET_STYLE_CHANGES" : true,
-		"ENABLE_MARKET_CANCEL_PACKETS_BUTTON" : true,
-		"ENABLE_MARKET_DEFAULT_SELL_DURATION" : true,
-		"MARKET_DEFAULT_SELL_DURATION" : 2,
-		// Search modifications
-		"ENABLE_MARKET_EXPAND_ITEMS_LVL" : true,
-		"ENABLE_MARKET_IMPROVE_SEARCH_MENU" : true,
-
-	// Merchants Script Options
-		// On merchants page
-		"ENABLE_MERCHANTS_ITEM_SEARCH" : true,
-		"ENABLE_MERCHANTS_HIGHLIGHT_ITEMS" : true,
-		"ENABLE_MERCHANTS_INFOS" : true,
-
-	// Messages Script Options
-		// Message Spam Block
-		"ENABLE_MESSAGE_SPAM_BLOCK" : false,
-		"SPAM_BLOCKED_PLAYERS" : ' ',
-
-	// Packages Script Options
-		"ENABLE_PACKAGES_COLLECT_GOLD_BUTTON" : true,
-		"ENABLE_PACKAGES_EXPIRED_PACKAGES" : false,
-		"PACKAGES_EXPIRED_HOURS" : 12,
-
-	// Chat Script Options
-		// Chat list Options
-		"ENABLE_CHAT_URL_MOD" : true,
-		"ENABLE_CHAT_STYLE_MOD" : true,
-		
-	// Guild Script Options
-		"ENABLE_GUILD_MESSAGE_INTERFACE" : true,
-		"ENABLE_GUILD_BANK_INTERFACE" : true,
-		"ENABLE_GUILD_BANKBOOK_INTERFACE" : true,
-		"ENABLE_GUILD_MEDIC_INTERFACE" : true,
-		"ENABLE_GUILD_LIFE_TAB" : true,
-		"ENABLE_GUILD_IMAGES" : true,
-		"ENABLE_GUILD_NAMES_LEVELS" : false,
-	
-	// Pantheon
-		"ENABLE_PANTHEON_GODS_RECOLOR" : true,
-		
-	// Arena
-		"ENABLE_ARENA_SERVER_ARENA_ORDER" : true,
-		
-	// Player
-		"ENABLE_PLAYER_SIMULATOR_BUTTON" : true,
-		"ENABLE_PLAYER_MERCENARIES_FIGHT_TYPE" : true,
-	*/
+	}
 };
 
 // Initiate Options
