@@ -248,6 +248,7 @@ gca_languages["en"] = {
 			category_global$x_scroll : "Enable gladiatus' horizontal scroll",
 			category_global$item_shadow : "Enable items shadows",
 			category_global$inventory_options_group : "Group inventory options",
+			category_global$inventory_gold_info : "Show inventory items' gold price",
 			category_global$pagination_layout : "Change pages-box's layout",
 			category_global$gold_exp_data : "Show gold and exp data",
 			category_global$pray_shorcut : "Display pray shortcut when in Underworld",
