@@ -241,6 +241,9 @@ var gca_auction = {
 		price = parseInt( data[6].value );
 		gold = parseInt( document.getElementById("sstat_gold_val").textContent.replace(/ /g,'').replace(/\./g,'') );
 		
+		// Create dataset time in gold
+		document.getElementById("sstat_gold_val").dataset.updateTime = 0;
+		
 		post_data = "auctionid="+ data[0].value +"&qry="+ data[1].value +"&itemType="+ data[2].value +"&itemLevel="+ data[3].value +"&itemQuality="+ data[4].value +"&buyouthd="+ data[5].value +"&bid_amount="+price+"&bid="+ data[7].value ;
 		
 		//Create Spinner
@@ -258,16 +261,33 @@ var gca_auction = {
 			success: function(content){
 				document.getElementById("auctionForm"+id).removeChild(document.getElementById("spinner"+id));
 				if( content.match(/message fail">([^<]+)<\/div/i) ){
+					// Get date - gold
+					let timestamp = content.match(/<span id="server-time" data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]/i);
+					timestamp = new Date(timestamp[1],timestamp[2],timestamp[3],timestamp[4],timestamp[5],timestamp[6],timestamp[7]).getTime();
+					let gold = content.match(/id="sstat_gold_val">([^<]+)<\/div>/i)[1];
+					if ( parseInt(document.getElementById("sstat_gold_val").dataset.updateTime) < timestamp){
+						document.getElementById("sstat_gold_val").textContent = gold;
+						document.getElementById("sstat_gold_val").dataset.updateTime = timestamp;
+					}
+					// Notification
 					gca_notifications.error( content.match(/message fail">([^<]+)<\/div/i)[1] );
 				}else if( content.match(/message success">([^<]+)<\/div/i) ){
+					// Get date - gold
+					let timestamp = content.match(/<span id="server-time" data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]/i);
+					timestamp = new Date(timestamp[1],timestamp[2],timestamp[3],timestamp[4],timestamp[5],timestamp[6],timestamp[7]).getTime();
+					let gold = content.match(/id="sstat_gold_val">([^<]+)<\/div>/i)[1];
+					if ( parseInt(document.getElementById("sstat_gold_val").dataset.updateTime) < timestamp){
+						document.getElementById("sstat_gold_val").textContent = gold;
+						document.getElementById("sstat_gold_val").dataset.updateTime = timestamp;
+					}
+					// Notification
 					gca_notifications.success( content.match(/message success">([^<]+)<\/div/i)[1] );
-					document.getElementById("sstat_gold_val").textContent = gca_tools.strings.insertDots(gold-price);
+					//document.getElementById("sstat_gold_val").textContent = gca_tools.strings.insertDots(gold-price);
 					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].setAttribute('style','color: blue;height: 48px;');
 					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[1].setAttribute('style','display:none;');
 					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].textContent = content.match(/message success">([^<]+)<\/div/i)[1];
 					document.getElementById("auctionForm"+id).getElementsByTagName("input")[6].value = Math.floor(price*1.05)+1;
 					document.getElementById("auctionForm"+id).getElementsByTagName("input")[6].setAttribute("style","");
-					
 				}else{
 					gca_notifications.error(gca_locale.get("general", "error"));
 				}
