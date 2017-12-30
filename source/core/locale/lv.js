@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['lv'] = {
-	name : 'Latviešu',
+	name : 'Latviešu (Latvian)',
 	translators : ["DarkSide666", "Dominators_S3"],
 	locale : {
 		info : {

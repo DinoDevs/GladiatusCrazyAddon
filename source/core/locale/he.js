@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['he'] = {
-	name : 'עברית',
+	name : 'עברית (Abrit)',
 	translators : ["koritze"],
 	locale : {
 		info : {

@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['et'] = {
-	name : 'Eesti keel',
+	name : 'Eesti keel (Estonian)',
 	translators : ["Legend"],
 	locale : {
 		info : {

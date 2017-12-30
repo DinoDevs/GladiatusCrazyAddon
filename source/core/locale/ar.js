@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['ar'] = {
-	name : 'العربي',
+	name : 'العربي (Arabi)',
 	translators : "MANo0o0o0o0oN",
 	locale : {
 		info : {

@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['lt'] = {
-	name : 'Lietuviu',
+	name : 'Lietuviu (Lithuanian)',
 	translators : ["Darksun"],
 	locale : {
 		info : {},

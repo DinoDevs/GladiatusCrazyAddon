@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['nl'] = {
-	name : 'Nederlands',
+	name : 'Nederlands (Dutch)',
 	translators : ["proximilius", "priscuss", "anathustra"],
 	locale : {
 		info : {

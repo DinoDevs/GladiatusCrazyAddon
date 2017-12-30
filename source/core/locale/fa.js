@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['fa'] = {
-	name : 'پارسی',
+	name : 'پارسی (Persian)',
 	translators : [".WhiteGladiatur."],
 	locale : {
 		info : {

@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['sk'] = {
-	name : 'Slovenský',
+	name : 'Slovenský (Slovak)',
 	translators : ["TraiaN", "Maximus"],
 	locale : {
 		info : {

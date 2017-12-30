@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['zh'] = {
-	name : '繁體中文',
+	name : '繁體中文 (Chinese traditional)',
 	translators : ["Eric Hsieh"],
 	locale : {
 		info : {

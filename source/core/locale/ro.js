@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['ro'] = {
-	name : 'Română',
+	name : 'Română (Romanian)',
 	translators : ["TheBreaker"],
 	locale : {
 		info : {

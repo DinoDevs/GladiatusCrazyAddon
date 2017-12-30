@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['ru'] = {
-	name : 'Русский',
+	name : 'Русский (Russian)',
 	translators : ["M33312"],
 	locale : {
 		info : {

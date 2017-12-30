@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['sl'] = {
-	name : 'Slovenčina ',
+	name : 'Slovenčina (Slovak)',
 	translators : ["TANKISTA33"],
 	locale : {
 		info : {

@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['bg'] = {
-	name : 'Български(Bulgarian)',
+	name : 'Български (Bulgarian)',
 	translators : ["IvoGradeff", "Dimitroff"],
 	locale : {
 		info : {

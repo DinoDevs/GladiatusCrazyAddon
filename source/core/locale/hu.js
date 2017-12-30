@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['hu'] = {
-	name : 'Magyar',
+	name : 'Magyar (Hungarian)',
 	translators : ["Adamus23"],
 	locale : {
 		info : {

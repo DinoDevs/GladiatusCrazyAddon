@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['cs'] = {
-	name : 'čeština',
+	name : 'čeština (Czech)',
 	translators : ["WiLLsTeiN"],
 	locale : {
 		info : {

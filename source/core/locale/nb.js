@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['nb'] = {
-	name : 'Norsk',
+	name : 'Norsk (Norwegian)',
 	translators : ["Rune1 (Norway)"],
 	locale : {
 		info : {

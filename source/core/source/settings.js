@@ -95,6 +95,7 @@ var gca_settings = {
 							wrapper.className += "language_select";
 							// Create select
 							data.select = document.createElement("select");
+							data.select.style.width = "120px";
 							// Create a list of languages
 							var languages = [];
 							var lang;
@@ -176,6 +177,9 @@ var gca_settings = {
 								}
 								data.info_translators.textContent = gca_locale.get("settings", "translated_by", {string: info});
 							}
+							// Clear both
+							let clearboth = document.createElement("div");
+							clearboth.style.clear = "both";
 							// Add language info
 							data.info_completed = document.createElement("div");
 							data.info_completed.className = "translate-percent";
@@ -184,7 +188,7 @@ var gca_settings = {
 							data.refreshInfo();
 							// Add change event
 							data.select.addEventListener("change", data.refreshInfo, false);
-							return [data.select, data.info_translators, data.info_completed];
+							return [data.select, clearboth, data.info_translators, data.info_completed];
 						},
 						"save" : function(data){
 							gca_locale._setLang(data.select.value);

@@ -13,7 +13,7 @@ var gca_languages = gca_languages || {};
 gca_languages["tr"] = {
 
     // Language name
-    name : "Türkçe",
+    name : "Türkçe (Turkish)",
     // Translators (authors of this script)
     translators : ["Xus (s25)"],
 

@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['de'] = {
-	name : 'Deutsch',
+	name : 'Deutsch (German)',
 	translators : ["DoonFreak", "GreatApo"],
 	locale : {
 		info : {

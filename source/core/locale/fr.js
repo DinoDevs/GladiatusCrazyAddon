@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['fr'] = {
-	name : 'Français',
+	name : 'Français (French)',
 	translators : ["titigrd", "Vanlen_1er"],
 	locale : {
 		info : {

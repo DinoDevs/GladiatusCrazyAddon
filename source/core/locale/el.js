@@ -13,7 +13,7 @@ var gca_languages = gca_languages || {};
 gca_languages["gr"] = {
 
 	// Language name
-	name : "Ελληνικά",
+	name : "Ελληνικά (Greek)",
 	// Translators (authors of this script)
 	translators : ["DarkThanos", "GreatApo"],
 

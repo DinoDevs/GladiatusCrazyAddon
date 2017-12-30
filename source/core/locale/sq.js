@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['sq'] = {
-	name : 'Shqip',
+	name : 'Shqip (Albanian)',
 	translators : ["Besmir Sadiku"],
 	locale : {
 		info : {

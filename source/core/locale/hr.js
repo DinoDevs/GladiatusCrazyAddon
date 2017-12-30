@@ -11,7 +11,7 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['hr'] = {
-	name : 'Hrvatski',
+	name : 'Hrvatski (Croatian)',
 	translators : ["Dark_Knight"],
 	locale : {
 		info : {
