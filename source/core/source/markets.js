@@ -24,6 +24,8 @@ var gca_markets = {
 			// If soul-bound warnings
 			(gca_options.bool("market","soulbound_warning") &&
 				this.itemsWarnings.soulboundItems());
+			// If your items warning
+			//	this.itemsWarnings.yourItems();
 			
 			// If cancel all button
 			(gca_options.bool("market","cancel_all_button") &&
@@ -77,27 +79,39 @@ var gca_markets = {
 			let rows = document.getElementById("market_table").getElementsByTagName("tr");
 			for (let i = 1; i <= rows.length - 1; i++) {
 				if (typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined") {
-					rows[i].style.backgroundColor = "rgba(255, 0, 0,0.2)";
-					document.buyForm[i-1].addEventListener("submit", function(e){
-						if (
-							!confirm(
-								gca_locale.get("markets", "item_is_soulbound") + "\n" +
-								gca_locale.get("markets", "are_you_sure_you_want_to_buy")
-							)
-						) {
-							event.preventDefault();
-							return false;
-						}
-					});
+					if(rows[i].getElementsByTagName("div")[0].dataset.soulboundTo != gca_section.playerId){// not to you
+						rows[i].style.backgroundColor = "rgba(255, 0, 0,0.2)";
+						document.buyForm[i-1].addEventListener("submit", function(e){
+							if (
+								!confirm(
+									gca_locale.get("markets", "item_is_soulbound") + "\n" +
+									gca_locale.get("markets", "are_you_sure_you_want_to_buy")
+								)
+							) {
+								event.preventDefault();
+								return false;
+							}
+						});
+					}
 				}
 			}
 		},
-
+		
+		// Point out which items are yours
+		yourItems : function(){
+			let rows = document.getElementById("market_table").getElementsByTagName("tr");
+			for (let i = 1; i <= rows.length - 1; i++) {
+				if (typeof rows[i].getElementsByTagName("input")['buy'] == "undefined") {
+					rows[i].style.backgroundColor = "rgba(0, 0, 255,0.2)";
+				}
+			}
+		},
+		
 		// Point out which items cost 1 gold
 		oneGoldItems : function(){
 			let rows = document.getElementById("market_table").getElementsByTagName("tr");
 			for (let i = 1; i <= rows.length - 1; i++) {
-				if (gca_tools.strings.parseGold(rows[i].getElementsByTagName("td")[2].textContent) === 1 && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"){
+				if (gca_tools.strings.parseGold(rows[i].getElementsByTagName("td")[2].textContent) === 1 && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined" && rows[i].style.backgroundColor != "rgba(0, 255, 0,0.2)"){
 					rows[i].style.backgroundColor = "rgba(255, 152, 0,0.2)";
 					document.buyForm[i-1].addEventListener("submit", function(e){
 						if (
@@ -192,6 +206,7 @@ var gca_markets = {
 		}, false);
 	},
 	
+	// 1g mode
 	oneGoldMode : function(){
 		// Create mode switch
 		let wrapper = document.getElementById("market_sell_box").getElementsByTagName("section")[0];
