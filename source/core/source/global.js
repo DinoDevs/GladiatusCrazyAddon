@@ -2861,13 +2861,17 @@ var gca_global = {
 
 				// For each item
 				for (var i = items.length - 1; i >= 0; i--) {
+					let g = 0;
 					// If item is the moved item
 					if (item.dataset.itemId == items[i].dataset.itemId) {
-						gold += item.dataset.amount * item.dataset.priceGold;
+						g = item.dataset.amount * item.dataset.priceGold;
 					}
 					// Normal items
 					else {
-						gold += items[i].dataset.amount * items[i].dataset.priceGold;
+						g = items[i].dataset.amount * items[i].dataset.priceGold;
+					}
+					if (!isNaN(g)) {
+						gold += g;
 					}
 				}
 
