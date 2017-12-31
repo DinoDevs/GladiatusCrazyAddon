@@ -1437,7 +1437,7 @@ var gca_overview = {
 	analyzeItems : {
 		show : function(self) {
 			var stats = self.analyzeItemsData;
-			for (name in stats) {
+			for (let name in stats) {
 				if (stats.hasOwnProperty(name)) {
 					this.statShow(stats[name]);
 				}

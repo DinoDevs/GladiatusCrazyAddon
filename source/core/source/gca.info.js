@@ -21,6 +21,7 @@ var gca_section = {
 	// Resolve Url
 	resolve : function(){
 		var url = document.location.href;
+		this.protocol = document.location.protocol;
 		this.country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
 		this.server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
 		this.mod = (url.match(/mod=\w+/i))?url.match(/mod=(\w+)/i)[1]:null;
@@ -70,7 +71,7 @@ var gca_getPage = {
 		return link + front + "sh=" + gca_section.sh;
 	},
 	fullLink : function(x){
-		return "http://"+gca_section.domain+"/game/"+this.link(x);
+		return gca_section.protocol + "//" + gca_section.domain + "/game/"+this.link(x);
 	},
 	parameter : function(x){
 		for(var array=this.url().match(/\?(.*)$/i)[1].split("&"),par={},i=0;i<array.length;i++)
