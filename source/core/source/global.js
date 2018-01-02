@@ -596,7 +596,21 @@ var gca_global = {
 									loading.style.display = "none";
 									if(ok){
 										instant_message_textarea.value = "";
-										gca_notifications.success(gca_locale.get("global", "message_sent_success"));
+										if (Math.random()*1000 <= 1) {
+											let poem = [
+												"Rubies are red,",
+												"potions are blue,",
+												"while you click,",
+												"I work for you."
+											];
+											gca_notifications.error(poem[0]);
+											gca_notifications.info(poem[1]);
+											gca_notifications.warning(poem[2]);
+											gca_notifications.success(poem[3]);
+										}
+										else {
+											gca_notifications.success(gca_locale.get("global", "message_sent_success"));
+										}
 									}else{
 										gca_notifications.error(gca_locale.get("global", "message_sent_failed"));
 									}

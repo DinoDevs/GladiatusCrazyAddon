@@ -98,7 +98,7 @@ var gca_arena = {
 		// Sort players
 		players.sort(function(a,b) {return (a.level > b.level) ? 1 : ((b.level > a.level) ? -1 : 0);});
 		// Insert
-		let table = rows[i].parentNode;
+		let table = rows[0].parentNode;
 		for (let i = 0; i < players.length; i++) {
 			table.appendChild(players[i].element);
 		}
