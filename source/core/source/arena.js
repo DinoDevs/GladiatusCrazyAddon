@@ -89,7 +89,7 @@ var gca_arena = {
 		let rows = (document.getElementById('own2') != null) ? document.getElementById('own2').getElementsByTagName('tr') : document.getElementById('own3').getElementsByTagName('tr');
 		// Create players object
 		let players = [];
-		for (let i = 1; i < 5; i++) {
+		for (let i = 1; i <= 5; i++) {
 			players.push({
 				level : parseInt(rows[i].getElementsByTagName('td')[1].textContent, 10),
 				element : rows[i]

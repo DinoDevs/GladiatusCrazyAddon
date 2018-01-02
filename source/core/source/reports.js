@@ -33,6 +33,12 @@ var gca_reports = {
 					this.itemShadow());
 			}
 
+			// If arena attacked right now
+			let referrer = gca_getPage.parameters(document.referrer);
+			if (this.combatReport == "reportArena" && referrer.mod == "arena") {
+				this.attacked.arena();
+			}
+
 			// Fire reports info updated
 			gca_tools.event.fireOnce("arena-info-update");
 
@@ -350,6 +356,37 @@ var gca_reports = {
 				gca_tools.item.shadow.add(divs[1]);
 			}
 		}
+	},
+
+	// Attack was launched
+	attacked : {
+
+		// An arena attack
+		arena : function() {
+			// Get result
+			let result = document.getElementById("reportHeader").className;
+
+			if (result === "reportWin") {
+				result = 1;		// Won
+			}
+			else if (result === "reportLose") {
+				result = -1;	// Lost
+			}
+			else {
+				result = 0;		// Draw
+			}
+
+			if (Math.random()*1000 <= 1) {
+				if (result == 1) {
+					gca_notifications.success("Are you not Entertained?");
+				}
+				else {
+					gca_notifications.warning("The force is strong with this one!");
+				}
+			}
+			
+		}
+
 	}
 };
 
