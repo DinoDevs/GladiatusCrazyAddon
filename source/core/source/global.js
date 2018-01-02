@@ -2840,10 +2840,9 @@ var gca_global = {
 				// On item move
 				gca_tools.event.request.onAjaxResponce((data) => {
 					if (
-						data.hasOwnProperty("data") &&
-						data.data.hasOwnProperty("to") &&
-						data.data.to.hasOwnProperty("data") &&
-						data.data.to.data &&
+						data.hasOwnProperty("data") && data.data &&
+						data.data.hasOwnProperty("to") && data.data.to &&
+						data.data.to.hasOwnProperty("data") && data.data.to.data &&
 						data.elem.length === 1
 					) {
 						this.showInvInfo(data.elem[0]);
