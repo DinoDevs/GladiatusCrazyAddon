@@ -33,7 +33,6 @@ var gca_reports = {
 					this.itemShadow());
 			}
 
-			// TODO check if an attack was done
 			// Fire reports info updated
 			gca_tools.event.fireOnce("arena-info-update");
 
@@ -215,8 +214,20 @@ var gca_reports = {
 
 				// Match Loot
 				var match_tooltips = content.match(/<div class="reportReward">[^<]+(?:<br \/>[^<]*|)<div>(<div style="[^"]*" class="item-i-[^>]+>)/img);
-
+				
 				// If found tooltip
+				if(match_tooltips){
+					// For each tooltip
+					for (var i = 0; i < match_tooltips.length; i++) {
+						// Match loot tooltip
+						tooltips.push(match_tooltips[i].match(/data-tooltip="([^"]+)"/im));
+					}
+				}
+
+				// Check for tokens
+				match_tooltips = content.match(/<div class="reportReward" (data-tooltip=[^>]+><img)/img);
+
+				// If found token tooltip
 				if(match_tooltips){
 					// For each tooltip
 					for (var i = 0; i < match_tooltips.length; i++) {
