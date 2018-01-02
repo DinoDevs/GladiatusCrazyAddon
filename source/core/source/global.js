@@ -3911,7 +3911,9 @@ var gca_global = {
 				}
 			}
 			
-			premium_button.dataset.tooltip = JSON.stringify([tooltip]);
+			if(tooltip.length>0){
+				premium_button.dataset.tooltip = JSON.stringify([tooltip]);
+			}
 		}
 	},
 	
