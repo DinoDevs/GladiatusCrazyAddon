@@ -149,6 +149,9 @@ var gca_global = {
 		
 		// 24h guild info update
 		this.update_guild_info();
+		
+		// Show durability
+		this.display.itemDurability();
 	},
 	
 	scripts : {
@@ -2755,6 +2758,29 @@ var gca_global = {
 				// For each
 				for (var i = items.length - 1; i >= 0; i--) {
 					gca_tools.item.shadow.add(items[i]);
+				}
+			}
+		},
+		
+		
+		// Items durability enable
+		itemDurability : function(){
+			// Get page Items
+			var items = document.querySelectorAll('div[data-content-type]');
+			var durability;
+			// Loop page's Items
+			for (i=0;i<items.length;i++){
+				// If item
+				if( items[i].dataset.contentType.test(/^(1|2|4|8|48|256|512|1024)$/) ){
+					// Get item's durability
+					durability = items[i].dataset.tooltip.match(/\d+\\*\/\d+ \((\d+)%\)","([^"]+)"\],\["[^\/]+\/\d+ \((\d+)%\)/);
+					// If item has durability
+					if(durability){
+						//items[i].dataset.tooltip = items[i].dataset.tooltip.replace(/(\d+)\\*\/(\d+)/,'$1\/$2 ('+(Math.round(durability[1]/durability[2]*100)+'%)'));
+						items[i].dataset.durability = (durability[3]>0)? (parseInt(durability[1])+parseInt(durability[3])) + "%" : (durability[1]) + "%";
+						items[i].dataset.durabilityColor = durability[2];
+						items[i].className += ' show-item-durability';
+					}
 				}
 			}
 		},
