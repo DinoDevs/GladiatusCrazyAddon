@@ -592,9 +592,13 @@
 		.gca-settings-link-button:hover{filter: drop-shadow(0px 0px 2px rgba(0,0,0,1));}
 		
 		/* Item Durability */
-		.show-item-durability [data-durability]:not([data-basis^="18-"]):after {content: attr(data-durability);color: attr(data-durability-color);line-height: 9px;}
-		.show-item-durability [data-durability]:after {left: 2px;font-size: 9px;color: lime;font-weight: bold;bottom: 2px;line-height: 5px;}
-		.show-item-durability [data-durability][data-durability-color='red']:after {color: "red";}
+		.show-item-durability [data-durability]:not([data-basis^="18-"]):after {content: attr(data-durability);color: #ccc;line-height: 9px;}
+		.show-item-durability [data-durability]:after {left: 2px;font-size: 9px;font-weight: bold;bottom: 2px;line-height: 5px;}
+		.show-item-durability [data-durability][data-durability-color='1']:after {color: #eef777;}/*#eeff00*/
+		.show-item-durability [data-durability][data-durability-color='2']:after {color: #00ff00;}
+		.show-item-durability [data-durability][data-durability-color='3']:after {color: #8baf00;}
+		.show-item-durability [data-durability][data-durability-color='4']:after {color: #ff7700;}
+		.show-item-durability [data-durability][data-durability-color='5']:after {color: #ff0000;}
 
 
 	/* Advanced main menu Layout
@@ -1025,7 +1029,7 @@
 		#settings_tab .type-wrapper.type-integer .switch-field input{border-radius: 4px;width: 74px;height: 15px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
 
 		/* Other styles */
-		.language_select select, .sell_duration_select select{float:right;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
+		.language_select select, .sell_duration_select select, .show_durability_select select{float:right;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
 		.language_select .translate-percent {text-align: right;font-size: 10px;font-style: italic;}
 		.language_select .translated-by {text-align: right;font-size: 10px;font-style: italic;}
 		.settings-file-input {width: 348px;padding: 5px;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-shadow: none;border: 1px solid rgba(0, 0, 0, 0.2);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);}

@@ -253,6 +253,7 @@ gca_languages["en"] = {
 			category_global$gold_exp_data : "Show gold and exp data",
 			category_global$pray_shorcut : "Display pray shortcut when in Underworld",
 			category_global$centurio_powerups_timers : "Display Centurio & PowerUps timers on Premium button",
+			category_global$show_durability : "Display durability on item's bottom-left corner",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
@@ -359,6 +360,8 @@ gca_languages["en"] = {
 			import : "Import",
 			reset : "Reset",
 			clear : "Clear",
+			do_not_show : "Do not show",
+			show_as : "Show as",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",

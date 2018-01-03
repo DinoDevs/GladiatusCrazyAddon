@@ -151,7 +151,8 @@ var gca_global = {
 		this.update_guild_info();
 		
 		// Show durability
-		this.display.itemDurability();
+		(gca_data.section.get("global", "show_durability", 0) != 0 && gca_section.mod!='auction' &&
+		this.display.itemDurability.init());
 	},
 	
 	scripts : {
@@ -2764,22 +2765,60 @@ var gca_global = {
 		
 		
 		// Items durability enable
-		itemDurability : function(){
-			// Get page Items
-			var items = document.querySelectorAll('div[data-content-type]');
-			var durability;
-			// Loop page's Items
-			for (i=0;i<items.length;i++){
-				// If item
-				if( items[i].dataset.contentType.test(/^(1|2|4|8|48|256|512|1024)$/) ){
-					// Get item's durability
-					durability = items[i].dataset.tooltip.match(/\d+\\*\/\d+ \((\d+)%\)","([^"]+)"\],\["[^\/]+\/\d+ \((\d+)%\)/);
-					// If item has durability
-					if(durability){
-						//items[i].dataset.tooltip = items[i].dataset.tooltip.replace(/(\d+)\\*\/(\d+)/,'$1\/$2 ('+(Math.round(durability[1]/durability[2]*100)+'%)'));
-						items[i].dataset.durability = (durability[3]>0)? (parseInt(durability[1])+parseInt(durability[3])) + "%" : (durability[1]) + "%";
-						items[i].dataset.durabilityColor = durability[2];
-						items[i].className += ' show-item-durability';
+		itemDurability : {
+			init :function(){
+				// Show durability
+				document.getElementById('content').className += ' show-item-durability';
+				
+				this.createDurability();
+				
+				// Exit if no inventory
+				if(!document.getElementById("inv")) return;
+
+				// Add event
+				gca_tools.event.bag.onBagOpen((tab) => {
+					this.createDurability();
+				});
+
+				// If bag not already loaded
+				if (document.getElementById("inv").className.match("unavailable")) {
+					// Wait first bag
+					gca_tools.event.bag.waitBag(() => {
+						this.createDurability();
+					});
+				}
+			},
+			
+			createDurability : function(){
+				// Get page Items
+				var items = document.querySelectorAll('div[data-content-type]');
+				var durability;
+				// Loop page's Items
+				for (i=0;i<items.length;i++){
+					// If item
+					if( items[i].dataset.contentType.test(/^(1|2|4|8|48|256|512|1024)$/) && items[i].dataset.durability == null ){
+						// Get item's durability
+						durability = items[i].dataset.tooltip.match(/\d+\\*\/\d+ \((\d+)%\)","([^"]+)"\],\["[^\/]+\/\d+ \((\d+)%\)/);
+						// If item has durability
+						if(durability){
+							// % or ●
+							if(gca_data.section.get("global", "show_durability", 0)==1){
+								items[i].dataset.durability = (durability[3]>0)? (parseInt(durability[1])+parseInt(durability[3])) + "%" : (durability[1]) + "%";
+							}else{
+								items[i].dataset.durability = '⚒';//●
+							}
+							if(durability[3]>0){
+								items[i].dataset.durabilityColor = 1;
+							}else if(durability[1]>=75){
+								items[i].dataset.durabilityColor = 2;
+							}else if(durability[1]>=50){
+								items[i].dataset.durabilityColor = 3;
+							}else if(durability[1]>=25){
+								items[i].dataset.durabilityColor = 4;
+							}else{
+								items[i].dataset.durabilityColor = 5;
+							}
+						}
 					}
 				}
 			}

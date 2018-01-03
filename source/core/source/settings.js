@@ -292,7 +292,35 @@ var gca_settings = {
 					"pray_shorcut" : true,
 				
 				// Centurio & PowerUps timers
-				"centurio_powerups_timers" : false
+				"centurio_powerups_timers" : false,
+				
+				// Show item durability
+				"show_durability" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							if(wrapper.className.length > 0) wrapper.className += " ";
+							wrapper.className += "show_durability_select";
+							// Create select
+							data.select = document.createElement("select");
+							// Create a list of languages
+							let durations = [ gca_locale.get("settings",'do_not_show'), gca_locale.get("settings",'show_as')+' %', gca_locale.get("settings",'show_as')+' ⚒'];//●
+							for (i = 0; i < durations.length; i++) {
+								let lang = durations[i];
+								let option = document.createElement("option");
+								option.value = i;
+								option.textContent = durations[i];
+								data.select.appendChild(option);
+							}
+							data.select.selectedIndex = gca_data.section.get("global", "show_durability", 0);
+							return data.select;
+						},
+						"save" : function(data){
+							gca_data.section.set("global", "show_durability", data.select.value);
+						}
+					};
+					return scheme;
+				})()
 			},
 
 			// Overview Options

@@ -335,7 +335,10 @@ gca_options.data = {
 			"pray_shorcut" : true,
 				
 		// Centurio & PowerUps timers
-		"centurio_powerups_timers" : false
+		"centurio_powerups_timers" : false,
+		
+		// Show item durability
+		"show_durability" : 0
 	},
 
 	// Overview Options
