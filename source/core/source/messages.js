@@ -26,7 +26,7 @@ var gca_messages = {
 
 			// Messages layout improve
 			(gca_options.bool("messages", "messages_layout") && 
-				this.layout.improve());
+				this.layout.improve(this));
 
 			// Unread messages
 			(gca_options.bool("messages", "show_unread") &&
@@ -51,11 +51,11 @@ var gca_messages = {
 
 			// Guild message parse links
 			(gca_options.bool("messages", "show_message_links") &&
-				this.guild_message.display_links());
+				this.guild_message.display_links(this));
 
 			// Guild battle more info
 			(gca_options.bool("messages", "get_guild_battle_info") &&
-				this.guild_battle.more_info());
+				this.guild_battle.more_info(this));
 
 			// Sidebar
 			(gca_options.bool("messages", "show_sidebar") &&
@@ -195,9 +195,9 @@ var gca_messages = {
 	layout : {
 
 		// Improve interface
-		improve : function(){
+		improve : function(self){
 			// List
-			var messages = gca_messages.messages.list;
+			var messages = self.messages.list;
 			// For each message
 			for(var i = 0; i < messages.length; i++){
 				// Apply interface
@@ -420,9 +420,9 @@ var gca_messages = {
 
 
 		// Display links
-		display_links : function(){
+		display_links : function(self){
 			// List
-			var messages = gca_messages.messages.type.guild;
+			var messages = self.messages.type.guild;
 			// For each message
 			for(var i = 0; i < messages.length; i++){
 				// Load battle
@@ -466,18 +466,18 @@ var gca_messages = {
 	guild_battle : {
 
 		// Load
-		more_info : function(){
+		more_info : function(self){
 			// List
-			var messages = gca_messages.messages.type.guild_battle;
+			var messages = self.messages.type.guild_battle;
 			// For each message
 			for(var i = 0; i < messages.length; i++){
 				// Load battle
-				this.load_battle(messages[i]);
+				this.load_battle(messages[i], i);
 			}
 		},
 
 		// Load more
-		load_battle : function(message){
+		load_battle : function(message, index){
 			// Guild Report message
 			if(!message.element.className.match("gca_messages_guild_report"))
 				message.element.className += " gca_messages_guild_report";
@@ -546,18 +546,8 @@ var gca_messages = {
 			div.textContent = "VS";
 			guilds.appendChild(div);
 			
-			// Get more info
-			jQuery.get(link.href, function(data){
-				// Get Winner
-				var winner = data.match(/<div\s*id="reportHeader"\s*class="([^"]+)">([^<]+)<\/div>/i);
-				// Get Guilds
-				var guilds = data.match(/<span\s*class="guildname">([^<]+)<\/span>\s*<\/div>\s*<img\s*alt="[^"]+"\s*src="[^"]+"\s*border="0"\s*\/>/gm);
-				// Get description
-				var battleInfo = data.match(/<div\s+class="section-header">\s*([^<]+)<img\s+src="([^"]+)"\s+alt="([^"]+)"\s+title="([^"]+)"[^>]+>[^<]*(<a\s+alt="[^"]+"\s+title="[^"]+"\s+href="index\.php\?mod=guild_warcamp&submod=guild_combat&gid=\d+&sh=[^"]+"[^>]*>\s*<img[^>]+>\s*<\/a>|)\s*<br[^>]*>\s*<\/div>/im);
-
-				// Results
-				var results = data.match(/<th[^>]*>(\d+)<\/th>\s*<th[^>]*><a\s+href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"\s+target="_self">([^<]+)<\/a><\/th>\s*<th[^>]*><\/th>\s*<th[^>]*><\/th>\s*<th[^>]*><a\s+href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"\s+target="_self">([^<]+)<\/a><\/th>\s*<th[^>]*>(\d+)<\/th>/im);
-
+			// Show data
+			var showBattleResults = function (winner, guilds, battleInfo, results) {
 				// If data was loaded with no problem
 				if(winner != null && results != null && guilds.length == 2){
 					// Display layout
@@ -620,11 +610,55 @@ var gca_messages = {
 					tr.appendChild(td);
 					table.appendChild(tr);
 					resultsDiv.appendChild(table);
+					return true;
 				}
-				else{
+				else {
 					loading.style.backgroundImage = "none";
 					loading.appendChild(document.createTextNode(gca_locale.get("error")));
+					return false;
 				}
+			};
+
+			// Get id
+			var message_id = message.element.id;
+			// If message is cached load it
+			if (message_id === gca_data.section.get("cache", 'last_guild_battle_id', "no-id")) {
+				let data = gca_data.section.get("cache", 'last_guild_battle_data', false);
+				if (data !== false) {
+					showBattleResults(data.winner, data.guilds, data.battleInfo, data.results);
+					return;
+				}
+			}
+
+			// Load battle info
+			jQuery.get(link.href, function(data){
+				// Get Winner
+				var winner = data.match(/<div\s*id="reportHeader"\s*class="([^"]+)">([^<]+)<\/div>/i);
+				// Get Guilds
+				var guilds = data.match(/<span\s*class="guildname">([^<]+)<\/span>\s*<\/div>\s*<img\s*alt="[^"]+"\s*src="[^"]+"\s*border="0"\s*\/>/gm);
+				// Get description
+				var battleInfo = data.match(/<div\s+class="section-header">\s*([^<]+)<img\s+src="([^"]+)"\s+alt="([^"]+)"\s+title="([^"]+)"[^>]+>[^<]*(<a\s+alt="[^"]+"\s+title="[^"]+"\s+href="index\.php\?mod=guild_warcamp&submod=guild_combat&gid=\d+&sh=[^"]+"[^>]*>\s*<img[^>]+>\s*<\/a>|)\s*<br[^>]*>\s*<\/div>/im);
+				// Results
+				var results = data.match(/<th[^>]*>(\d+)<\/th>\s*<th[^>]*><a\s+href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"\s+target="_self">([^<]+)<\/a><\/th>\s*<th[^>]*><\/th>\s*<th[^>]*><\/th>\s*<th[^>]*><a\s+href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"\s+target="_self">([^<]+)<\/a><\/th>\s*<th[^>]*>(\d+)<\/th>/im);
+
+				// Show data
+				var valid = showBattleResults(winner, guilds, battleInfo, results);
+				// If not valid or not the first battle, exit
+				if (!valid || index !== 0) return;
+
+				// Save data
+				winner = [0, winner[1], winner[2]];
+				guilds = [guilds[0], guilds[1]];
+				battleInfo = (!battleInfo) ? null : [0, battleInfo[1], battleInfo[2], battleInfo[3], battleInfo[4]];
+				results = [0, results[1], results[2], results[3], results[4], results[5], results[6]];
+
+				gca_data.section.set("cache", 'last_guild_battle_id', message_id);
+				gca_data.section.set("cache", 'last_guild_battle_data', {
+					winner : winner,
+					guilds : guilds,
+					battleInfo : battleInfo,
+					results : results,
+				});
 			});
 		}
 
