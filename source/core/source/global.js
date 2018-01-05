@@ -3923,10 +3923,12 @@ var gca_global = {
 							}
 							//powerups_status[position].reload = 0;
 						}
-						for(i=0;i<found3.length;i++){
-							let temp = found3[i].match(/id="runeTitle(\d+)" class="rune_title">[^<]+<\/span>\s*<\/h2>\s*<section>\s*<span class="powerup_cooldown">[^<]+<span data-ticker-time-left="(\d+)"/i);
-							let position = parseInt(temp[1])-1;
-							powerups_status[position].reload = now + parseInt(temp[2]);
+						if(found3){//Cooldown
+							for(i=0;i<found3.length;i++){
+								let temp = found3[i].match(/id="runeTitle(\d+)" class="rune_title">[^<]+<\/span>\s*<\/h2>\s*<section>\s*<span class="powerup_cooldown">[^<]+<span data-ticker-time-left="(\d+)"/i);
+								let position = parseInt(temp[1])-1;
+								powerups_status[position].reload = now + parseInt(temp[2]);
+							}
 						}
 					}
 					gca_data.section.set("cache", "gca_powerups", now);
