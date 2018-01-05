@@ -150,8 +150,8 @@ var gca_global = {
 		// 24h guild info update
 		this.update_guild_info();
 		
-		// Show durability
-		(gca_data.section.get("global", "show_durability", 0) != 0 && gca_section.mod!='auction' &&
+		// Show durability or notifications
+		((gca_data.section.get("global", "show_durability", 0) != 0 || gca_data.section.get("global", "min_durability", 25) > 0 )&& gca_section.mod!='auction' &&
 		this.display.itemDurability.init());
 	},
 	
@@ -2768,7 +2768,8 @@ var gca_global = {
 		itemDurability : {
 			init :function(){
 				// Show durability
-				document.getElementById('content').className += ' show-item-durability';
+				if (gca_data.section.get("global", "show_durability", 0) != 0)
+					document.getElementById('content').className += ' show-item-durability';
 				
 				this.createDurability();
 				
@@ -2777,24 +2778,25 @@ var gca_global = {
 
 				// Add event
 				gca_tools.event.bag.onBagOpen((tab) => {
-					this.createDurability();
+					this.createDurability(false);
 				});
 
 				// If bag not already loaded
 				if (document.getElementById("inv").className.match("unavailable")) {
 					// Wait first bag
 					gca_tools.event.bag.waitBag(() => {
-						this.createDurability();
+						this.createDurability(false);
 					});
 				}
 			},
 			
-			createDurability : function(){
+			createDurability : function(notifications=true){
 				// Get page Items
 				var items = document.querySelectorAll('div[data-content-type]');
 				var durability;
 				var low_durability_items = [];
-				let minimum_durability = gca_data.section.get("global", "min_durability", 25);
+				let minimum_durability = (notifications)? gca_data.section.get("global", "min_durability", 25):0;
+				let show_durability = gca_data.section.get("global", "show_durability", 0);
 				// Loop page's Items
 				for (i=0;i<items.length;i++){
 					// If item
@@ -2805,25 +2807,28 @@ var gca_global = {
 						if(durability){
 							let durability_per_cent = durability[1];
 							//let durability_color = durability[2]; //not used
-							let purity = durability[3]; //εξευγενισμός, δεν ξέρω πως να το πω
-							let total = (parseInt(durability_per_cent)+parseInt(purity));
+							let conditioning = durability[3]; //=εξευγενισμός
+							let total = (parseInt(durability_per_cent)+parseInt(conditioning));
 							
-							// % or ●
-							if(gca_data.section.get("global", "show_durability", 0)==1){
-								items[i].dataset.durability = (purity>0)? total + "%" : (durability_per_cent) + "%";
-							}else{
-								items[i].dataset.durability = '⚒';//●
-							}
-							if(purity>0){
-								items[i].dataset.durabilityColor = 1;
-							}else if(durability_per_cent>=75){
-								items[i].dataset.durabilityColor = 2;
-							}else if(durability_per_cent>=50){
-								items[i].dataset.durabilityColor = 3;
-							}else if(durability_per_cent>=25){
-								items[i].dataset.durabilityColor = 4;
-							}else{
-								items[i].dataset.durabilityColor = 5;
+							if (show_durability != 0){
+								// If enabled: % or ●
+								if(show_durability==1){
+									items[i].dataset.durability = (conditioning > 0)? total + "%" : (durability_per_cent) + "%";
+								}else{
+									items[i].dataset.durability = '⚒';//●
+								}
+								// Colors
+								if(conditioning > 0){
+									items[i].dataset.durabilityColor = 1;
+								}else if(durability_per_cent>=75){
+									items[i].dataset.durabilityColor = 2;
+								}else if(durability_per_cent>=50){
+									items[i].dataset.durabilityColor = 3;
+								}else if(durability_per_cent>=25){
+									items[i].dataset.durabilityColor = 4;
+								}else{
+									items[i].dataset.durabilityColor = 5;
+								}
 							}
 							
 							// Notification (if you wear it)
