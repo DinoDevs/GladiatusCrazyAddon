@@ -320,7 +320,17 @@ var gca_settings = {
 						}
 					};
 					return scheme;
-				})()
+				})(),
+				
+				// Minimum durability alert
+				"min_durability" : {
+					"type" : "range",
+					"min" : 0,
+					"step" : 5,
+					"max" : 200,
+					"scale" : 1,
+					"db" : "section",
+				}
 			},
 
 			// Overview Options
@@ -1237,7 +1247,7 @@ var gca_settings = {
 				item.data = {};
 
 				var input_value = scheme.value / scheme.scale;
-
+				
 				// Type Wrapper
 				var typeWrapper = document.createElement('div');
 				typeWrapper.className = "type-wrapper type-range";
@@ -1255,7 +1265,7 @@ var gca_settings = {
 				preview.style.fontSize = "10px";
 				preview.style.height = "20px";
 				preview.style.lineHeight = "20px";
-				preview.textContent = Math.round((input_value / scheme.max) * 100);
+				preview.textContent = input_value;//Math.round((input_value / scheme.max) * 100);
 				select.appendChild(preview);
 
 				item.data.input = document.createElement('input');
@@ -1271,7 +1281,7 @@ var gca_settings = {
 				select.appendChild(item.data.input);
 
 				item.data.input.addEventListener('change', function(){
-					preview.textContent = Math.round((this.value / scheme.max) * 100);
+					preview.textContent = this.value;//Math.round((this.value / scheme.max) * 100);
 				}, false);
 
 				typeWrapper.appendChild(select);

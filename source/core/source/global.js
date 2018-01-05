@@ -2793,6 +2793,8 @@ var gca_global = {
 				// Get page Items
 				var items = document.querySelectorAll('div[data-content-type]');
 				var durability;
+				var low_durability_items = [];
+				let minimum_durability = gca_data.section.get("global", "min_durability", 25);
 				// Loop page's Items
 				for (i=0;i<items.length;i++){
 					// If item
@@ -2801,25 +2803,46 @@ var gca_global = {
 						durability = items[i].dataset.tooltip.match(/\d+\\*\/\d+ \((\d+)%\)","([^"]+)"\],\["[^\/]+\/\d+ \((\d+)%\)/);
 						// If item has durability
 						if(durability){
+							let durability_per_cent = durability[1];
+							//let durability_color = durability[2]; //not used
+							let purity = durability[3]; //εξευγενισμός, δεν ξέρω πως να το πω
+							let total = (parseInt(durability_per_cent)+parseInt(purity));
+							
 							// % or ●
 							if(gca_data.section.get("global", "show_durability", 0)==1){
-								items[i].dataset.durability = (durability[3]>0)? (parseInt(durability[1])+parseInt(durability[3])) + "%" : (durability[1]) + "%";
+								items[i].dataset.durability = (purity>0)? total + "%" : (durability_per_cent) + "%";
 							}else{
 								items[i].dataset.durability = '⚒';//●
 							}
-							if(durability[3]>0){
+							if(purity>0){
 								items[i].dataset.durabilityColor = 1;
-							}else if(durability[1]>=75){
+							}else if(durability_per_cent>=75){
 								items[i].dataset.durabilityColor = 2;
-							}else if(durability[1]>=50){
+							}else if(durability_per_cent>=50){
 								items[i].dataset.durabilityColor = 3;
-							}else if(durability[1]>=25){
+							}else if(durability_per_cent>=25){
 								items[i].dataset.durabilityColor = 4;
 							}else{
 								items[i].dataset.durabilityColor = 5;
 							}
+							
+							// Notification (if you wear it)
+							if(items[i].dataset.containerNumber <= 11 && total < minimum_durability){
+								low_durability_items.push( {'name':JSON.parse('"'+items[i].dataset.tooltip.match(/"([^"]+)"/)[1]+'"'),'durability':total} );
+							}
 						}
 					}
+				}
+				
+				// Low durability notification 
+				if (low_durability_items.length>0){
+					let items_string = ':';
+					for(i=0;i<low_durability_items.length;i++){
+						items_string += '\n● ' + low_durability_items[i].name + ' (' +low_durability_items[i].durability + '%)';
+					}
+					gca_notifications.error(
+						'⚒ ' + gca_locale.get("global", "low_durability_items", {number:low_durability_items.length, percent:minimum_durability}) + items_string
+					);
 				}
 			}
 		},

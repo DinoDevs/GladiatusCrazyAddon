@@ -338,7 +338,10 @@ gca_options.data = {
 		"centurio_powerups_timers" : false,
 		
 		// Show item durability
-		"show_durability" : 0
+		"show_durability" : 0,
+		
+		// Minimum durability alert
+		"min_durability" : 25
 	},
 
 	// Overview Options
