@@ -35,7 +35,7 @@ var gca_global = {
 		this.display.version();
 
 		// Server Service wait screen
-		if(document.getElementById('container_infobox'))
+		if(document.getElementById('container_infobox') || document.getElementById('login'))
 			return;
 		
 		// Extended info on Health and Experience bars
