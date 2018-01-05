@@ -41,8 +41,8 @@ var gca_messages = {
 				this.separator.days());
 
 			// Send message box
-			(gca_options.bool("messages", "send_message_box") && // TODO : Send message
-				this.send_message.create());
+			//(gca_options.bool("messages", "send_message_box") && // TODO : Send message
+			//	this.send_message.create());
 
 			// Guild message player info
 			(gca_options.bool("messages", "messages_layout") && 
