@@ -307,64 +307,68 @@ gca_languages["gr"] = {
 			category_training$calculator_train : "Ενεργοποίηση υπολογισμού κόστους",
 			category_training$show_analyze_items_data : "Εμφάνιση δεδομένων αναλυμένων αντικειμένων σε tooltips",
 			category_training$show_points_after_upgrade : "Εμφάνιση πόντων μετά την εκπαίδευση",
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			// Settings - Merchants
+			category_merchants$fade_unaffordable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να αγοραστούν",
+			// Settings - Forge
+			category_forge$material_links : "Εμφάνιση συντομεύσεων αγοράς & πακέτων για κάθε απαιτούμενο υλικό (σιδηρουργείο/πάγκος εργασίας)",
+			category_forge$show_levels : "Εμφάνιση επιπέδων Προθεμάτων/Επιθεμάτων/Βασικών αντικειμένων δίπλα στα ονόματα τους (σιδηρουργείο)",
+			// Settings - Arena
+			category_arena$ignore_attack_confirmations : "Αγνοήστε τις επιβεβαιώσεις επίθεση (μηνύματα για την υπέρβαση των 5 επιθέσεων κλπ)",
+			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (gladiatussimulator.tk)",
+			// Settings - Magus
+			category_magus$fade_unimprovable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να βελτιωθούν",
+			// Settings - Market
+			category_market$soulbound_warning : "Επιβεβαίωση αγοράς ψυχικά δεμένων αντικειμένων",
+			category_market$one_gold_warning : "Επιβεβαίωση αγοράς αντικειμένων κόστους 1 χρυσού",
+			category_market$cancel_all_button : "Εμφάνιση κουμπιού ακύρωσης όλων",
+			category_market$remember_sell_duration : "Να θυμάσαι την τελευταία επιλεγμένη διάρκεια πώλησης",
+			category_market$sell_duration : "Ορισμός προεπιλεγμένης διάρκειας πώλησης",
+			// Settings - Expedition
+			category_expedition$show_enemy_drops : "Εμφάνιση των υλών σιδηρουργείου που δίνει ο κάθε εχθρός",
+			category_expedition$underworld_layout : "Μετατροπή της εμφάνισης των εχθρών του κάτω κόσμου όπως στις εξορμήσεις",
 			// Settings - Guild
 			category_guild$jail_layout: "Βελτίωση του interface της φυλακής",
 			category_guild$library_layout: "Βελτίωση του interface της βιβλιοθήκης",
-			
-
+			category_guild$library_fade_non_scrolls : "Διαφάνεια στα αντικείμενα που δεν είναι πάπυροι, στην βιβλιοθήκη",
+			category_guild$library_tooltip_data : "Εισαγωγή περισσοτέρων πληροφοριών στα tooltip της βιβλιοθήκης",
 			category_guild$bank_donate_layout: "Βελτίωση του interface της τράπεζας",
 			category_guild$bank_book_layout: "Βελτίωση του interface του βιβλίου δωρεών της τράπεζας",
 			category_guild$medic_layout: "Βελτίωση του interface του ιατρικού κέντρου",
 			// Settings - Auction
 			category_auction$items_counters: "Εμφάνιση του αριθμού των αντικειμένων",
-			
-
+			category_auction$more_search_levels : "Εμφάνιση περισσοτέρων επιπέδων στις επιλογές αναζήτησης",
+			category_auction$item_price_analyze : "Ανάλυση τιμών αντικειμένων",
 			category_auction$item_level: "Προβολή του επιπέδου του κάθε αντικειμένου",
 			category_auction$x3_items_per_line: "Προβολή 3ων αντικειμένων ανά γραμμή",
 			category_auction$multi_bids: "Ενεργοποίηση πολλαπλών δημοπρατήσεων (χωρίς ανανέωση)",
-			
+			category_auction$extra_item_stats : "Εμφάνιση επιπλέων στατιστικών πάνω στις εικόνες των αντικειμένων",
 			// Settings - Events
-
-
+			category_events$craps_timer : "Εμφάνιση χρονομέτρου για τα event ζαριών στην κορυφή",
+			category_events$server_quest_timer : "Εμφάνιση χρονομέτρου για τα server-quest και τα event περιοχών στην κορυφή",
 			// Settings - Sound
-
-
-
+			category_sound$enabled : "Ενεργοποίηση συστήματος ήχων",
+			category_sound$muted : "Σίγαση / κατάργηση σίγασης ήχων",
+			category_sound$volume : "Ένταση ήχων",
 			// Settings - Data
-
-
-
-
+			category_data$export_settings : "Εξαγωγή των δεδομένων ρυθμίσεων σε αρχείο",
+			category_data$import_settings : "Εισαγωγή των δεδομένων ρυθμίσεων σε αρχείο",
+			category_data$reset_settings : "Επαναφορά των ρυθμίσεων του προσθέτου",
+			category_data$clear_data : "Εκκαθάριση όλων των δεδομένων του προσθέτου",
 
 			// Buttons
 			save: "Αποθήκευση",
-
-
-
+			export : "Εξαγωγή",
+			import : "Εισαγωγή",
+			reset : "Επαναφορά",
+			clear : "Εκκαθάριση",
+			do_not_show : "Να μην φαίνεται",
+			show_as : "Εμφάνιση ως",
 
 			// Info
-
-
-
+			translated_percent : "Μεταφρασμένα τις εκατό: {{number}}%",
+			translated_by : "Μετάφραση από: {{string}}",
+			reset_settings_confirm : "Είστε σίγουρος πως θέλετε να επαναφέρετε τις ρυθμίσεις του προσθέτου;",
+			clear_data_confirm : "Είστε σίγουρος πως θέλετε να εκκαθαρίσετε τις ρυθμίσεις του προσθέτου;",
 
 			// Notifications
 			notification_reload: "Επαναφορτώστε την σελίδα για να ενεργοποιηθούν οι αλλαγές"
