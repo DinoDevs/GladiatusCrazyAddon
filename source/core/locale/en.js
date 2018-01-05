@@ -289,14 +289,14 @@ gca_languages["en"] = {
 			category_packages$load_more_pages : "Load more pages",
 			category_packages$pages_to_load : "Number of pages to load",
 			category_packages$item_price : "Show items' price",
-			category_packages$special_category_features : "Enable special category features",
+			category_packages$special_category_features : "Enable special features per category",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Enable quest grouping",
 			category_pantheon$quests_detailed_rewards : "Show detailed quests rewards",
 			category_pantheon$missions_show_completed : "Show completed missions",
 			category_pantheon$gods_show_points_percent : "Show god points percent",
 			category_pantheon$open_many_mysteryboxes : "Open multiple mystery boxes",
-			category_pantheon$show_mysterybox_rewards_rubies : " Show mystery-box reward's value in rubies",
+			category_pantheon$show_mysterybox_rewards_rubies : "Show mystery-box reward's value in rubies",
 			// Settings - Reports
 			category_reports$style_change : "Improve reports' list layout",
 			category_reports$load_loot_tooltips : "Load each report's reward",

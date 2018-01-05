@@ -248,9 +248,13 @@ gca_languages["gr"] = {
 			category_global$x_scroll : "Ενεργοποίηση της οριζόντιας κύλισης του gladiatus",
 			category_global$item_shadow : "Ενεργοποίηση των σκιών των αντικειμένων",
 			category_global$inventory_options_group : "Ομαδοποίηση των επιλογών της τσάντας",
+			category_global$inventory_gold_info : "Εμφάνιση της τιμής των αντικειμένων της τσάντας",
 			category_global$pagination_layout : "Αλλαγή της εμφάνισης του κουτιού σελίδων",
 			category_global$gold_exp_data : "Εμφάνιση στατιστικών χρυσού και πόντων εμπειρίας",
 			category_global$pray_shorcut : "Εμφάνισης συντόμευσης για την προσευχή στον κάτω κόσμο",
+			category_global$centurio_powerups_timers : "Εμφάνιση χρονομέτρων για τον Εκατόνταρχο και τις Συμφωνίες επάνω στο κουμπί Premium",
+			category_global$show_durability : "Εμφάνιση της ανθεκτικότητας των αντικειμένων στην κάτω αριστερή τους γωνία",
+			category_global$min_durability : "Ειδοποίηση όταν η ανθεκτικότητα+εξευγενισμός είναι κάτω από μια τιμή % (επιλέξτε 0 για απενεργοποίηση)",
 			// Settings - Overview
 			category_overview$analyze_items: "Ανάλυση των αντικειμένων του παίκτη",
 			category_overview$food_life_gain : "Εμφάνιση των πόντων ζωής που δίνει το κάθε αναλώσιμο",
@@ -267,61 +271,61 @@ gca_languages["gr"] = {
 			category_overview$items_repair_overview : "Εμφάνιση του κουτιού εμφάνισης των πρώτων υλών για επισκευή",
 			// Settings - Messages
 			category_messages$messages_layout: "Βελτίωση του interface των μηνυμάτων",
-			
-
-
-
-
-
-
-
+			category_messages$show_unread : "Υπερφώτιση μη αναγνωσμένων μηνυμάτων",
+			category_messages$separate_days : "Διαχωρισμός μηνυμάτων διαφορετικών ημερών",
+			category_messages$send_message_box : "Ενεργοποίηση κουτιού αποστολής μηνύματος",
+			category_messages$more_guild_mate_info : "Εμφάνιση περισσοτέρων πληροφοριών στους συμπαίχτες του τάγματος",
+			category_messages$show_message_links : "Εμφάνιση υπερσυνδέσμων που εμπεριέχονται στα μηνύματα",
+			category_messages$get_guild_battle_info : "Αυτόματη φόρτωση αποτελεσμάτων των μαχών τάγματος",
+			category_messages$show_sidebar : "Εμφάνιση της πλαϊνής μπάρας μηνυμάτων",
+			category_messages$fix_header_links : "Επιδιόρθωση του προβλήματος στο κλικ πάνω στον τίτλο των μηνυμάτων ",
 			category_messages$new_message_focus: "Αυτόματο focus του κέρσορα στο μήνυμα",
 			category_messages$new_message_friend_list: "Εμφάνιση του κουμπιού Λίστα Φίλων",
 			// Settings - Packages
-
-
-
-
+			category_packages$filters_layout : "Βελτίωση της εμφάνισης των φίλτρων",
+			category_packages$compact_info_layout : "Κάντε το interface των πληροφοριών συμπαγή",
+			category_packages$items_layout : "Βελτίωση της εμφάνισης των αντικειμένων",
+			category_packages$load_more_pages : "Φόρτωση περισσοτέρων σελίδων",
 			category_packages$pages_to_load: "Μέγιστος αριθμός σελίδων που φορτώνονται",
-			
-
+			category_packages$item_price : "Εμφάνιση του κόστους κάθε αντικειμένου",
+			category_packages$special_category_features : "Ενεργοποίηση ειδικών λειτουργιών ανά κατηγορία",
 			// Settings - Pantheon
-
+			category_pantheon$quests_reorder : "Ομαδοποίηση αποστολών",
 			category_pantheon$quests_detailed_rewards: "Ενεργοποίηση λεπτομερούς εμφάνισης των ανταμοιβών",
-			
-
-
-
+			category_pantheon$missions_show_completed : "Εμφάνιση διεκπεραιωμένων επιδιώξεων",
+			category_pantheon$gods_show_points_percent : "Εμφάνιση των πόντων θεών τις εκατό",
+			category_pantheon$open_many_mysteryboxes : "Άνοιγμα πολλαπλών σεντουκιών",
+			category_pantheon$show_mysterybox_rewards_rubies : "Εμφάνιση τις αξίας των ανταμοιβών από τα σεντούκια σε ρουμπίνια",
 			// Settings - Reports
 			category_reports$style_change: "Βελτίωση του interface της λίστας αναφορών",
-			
-
+			category_reports$load_loot_tooltips : "Φόρτωση των ανταμοιβών τις κάθε αναφοράς",
+			category_reports$found_items : "Συλλογή δεδομένων από τα αντικείμενα που πέφτουν",
 			// Settings - Training
-
-
-
-
-
-
-			// Settings - Merchants
-
-			// Settings - Forge
-
-
-			// Settings - Arena
-
-
-			// Settings - Magus
-
-			// Settings - Market
-
-
-
-
-
-			// Settings - Expedition
-
-
+			category_training$show_discount : "Εμφάνιση έκπτωσης εκπαίδευσης",
+			category_training$show_basics_in_bars : "Εμφάνιση βασικών εκπαιδεύσεων στις μπάρες",
+			category_training$multiple_train : "Ενεργοποίηση πολλαπλής εκπαίδευσης",
+			category_training$calculator_train : "Ενεργοποίηση υπολογισμού κόστους",
+			category_training$show_analyze_items_data : "Εμφάνιση δεδομένων αναλυμένων αντικειμένων σε tooltips",
+			category_training$show_points_after_upgrade : "Εμφάνιση πόντων μετά την εκπαίδευση",
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			// Settings - Guild
 			category_guild$jail_layout: "Βελτίωση του interface της φυλακής",
 			category_guild$library_layout: "Βελτίωση του interface της βιβλιοθήκης",
