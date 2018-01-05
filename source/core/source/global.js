@@ -2766,7 +2766,7 @@ var gca_global = {
 		
 		// Items durability enable
 		itemDurability : {
-			init :function(){
+			init : function(){
 				// Show durability
 				if (gca_data.section.get("global", "show_durability", 0) != 0)
 					document.getElementById('content').className += ' show-item-durability';
@@ -2788,6 +2788,21 @@ var gca_global = {
 						this.createDurability(false);
 					});
 				}
+
+				// If in packets
+				if (gca_section.mod === "packages") {
+					// On item get
+					gca_tools.event.request.onAjaxResponce((responce) => {
+						// If package load request
+						if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
+							this.createDurability(false);
+						}
+					});
+					// On new packet page
+					gca_tools.event.addListener("packages_page_loaded", () => {
+						this.createDurability(false);
+					});
+				}
 			},
 			
 			createDurability : function(notifications=true){
@@ -2798,9 +2813,10 @@ var gca_global = {
 				let minimum_durability = (notifications)? gca_data.section.get("global", "min_durability", 25):0;
 				let show_durability = gca_data.section.get("global", "show_durability", 0);
 				// Loop page's Items
-				for (i=0;i<items.length;i++){
+				for (let i = 0; i < items.length; i++){
 					// If item
-					if( items[i].dataset.contentType.test(/^(1|2|4|8|48|256|512|1024)$/) && items[i].dataset.durability == null ){
+					if(!items[i].dataset.gca_durability && items[i].dataset.contentType.test(/^(1|2|4|8|48|256|512|1024)$/) && items[i].dataset.durability == null){
+						items[i].dataset.gca_durability = true;
 						// Get item's durability
 						durability = items[i].dataset.tooltip.match(/\d+\\*\/\d+ \((\d+)%\)","([^"]+)"\],\["[^\/]+\/\d+ \((\d+)%\)/);
 						// If item has durability
@@ -2842,7 +2858,7 @@ var gca_global = {
 				// Low durability notification 
 				if (low_durability_items.length>0){
 					let items_string = ':';
-					for(i=0;i<low_durability_items.length;i++){
+					for(let i = 0; i < low_durability_items.length; i++){
 						items_string += '\n● ' + low_durability_items[i].name + ' (' +low_durability_items[i].durability + '%)';
 					}
 					gca_notifications.error(
