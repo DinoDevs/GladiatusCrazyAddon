@@ -485,7 +485,9 @@ var gca_packages = {
 		// Update page price in gold
 		updatePagePriceInGold : function(item, factor){
 			var pagePriceInGold = jQuery("#valuePage");
+			if (!item.data("priceGold") || !item.data("amount")) return;
 			var cost = factor * item.data("priceGold") * item.data("amount");
+			if (isNaN(cost)) return;
 			var newPagePriceInGold = pagePriceInGold.data("value") + cost;
 			pagePriceInGold.data("value", newPagePriceInGold).text(formatZahl(newPagePriceInGold))
 		},
