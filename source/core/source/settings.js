@@ -697,8 +697,15 @@ var gca_settings = {
 									document.location.href = document.location.href;
 								}
 							}, false);
+
+							// Create info
+							data.info = document.createElement("div");
+							data.info.style.textAlign = "right";
+							data.info.style.padding = "0px 5px";
+							data.info.textContent = gca_settings.backup.getStorageSize(true);
+
 							// Add change event
-							return [data.clear];
+							return [data.clear, data.info];
 						}
 					};
 					return scheme;
@@ -1552,26 +1559,44 @@ var gca_settings = {
 			window.localStorage.removeItem(gca_data_manager.name + "_" + "settings");
 		},
 
+		// Define addon's storages
+		addonStorages : ["advanced-menu", "cache", "data", "guild", "lang", "messages", "overview", "settings", "sound", "stats", "timers"],
+		
 		// Clear all data
 		clearAll : function() {
-			// Define addon's storages
-			let storages = [
-				"advanced-menu",
-				"cache",
-				"data",
-				"guild",
-				"lang",
-				"messages",
-				"overview",
-				"settings",
-				"sound",
-				"stats",
-				"timers"
-			];
 			// Clear all storages
-			for (var i = storages.length - 1; i >= 0; i--) {
-				window.localStorage.removeItem(gca_data_manager.name + "_" + storages[i]);
+			for (let i = this.addonStorages.length - 1; i >= 0; i--) {
+				window.localStorage.removeItem(gca_data_manager.name + "_" + this.addonStorages[i]);
 			}
+		},
+
+		// Count size of db
+		getStorageSize : function(humanReadable = false) {
+			var bytes = 0;
+			// Count all storages
+			for (let i = this.addonStorages.length - 1; i >= 0; i--) {
+				let data = window.localStorage.getItem(gca_data_manager.name + "_" + this.addonStorages[i]);
+				if (typeof data === "string") {
+					// https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
+					bytes += encodeURI(data).split(/%(?:u[0-9A-F]{2})?[0-9A-F]{2}|./).length - 1;
+				}
+			}
+
+			// If want bytes number
+			if (!humanReadable)
+				return bytes;
+
+			// Create human readable string
+			if(Math.abs(bytes) < 1024) {
+				return bytes + ' B';
+			}
+			var units = ['kB','MB','GB','TB','PB','EB','ZB','YB'];
+			var u = -1;
+			do {
+				bytes /= 1024;
+				++u;
+			} while(Math.abs(bytes) >= 1024 && u < units.length - 1);
+			return bytes.toFixed(1) + '' + units[u];
 		}
 	}
 
