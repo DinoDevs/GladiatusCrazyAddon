@@ -3914,15 +3914,15 @@ var gca_global = {
 				gca_data.section.set("timers", "gca_powerups", powerups_status);
 				// Fill UI
 				this.display();
-			
+			}
 			// If checked on the last x hours return
-			}else if(last_time_check !== null && (last_time_check + (12*60*60*1000)) > now && false){
+			else if(last_time_check !== null && (last_time_check + (12*60*60*1000)) > now && false){
 				// Already checked
 				// Fill UI
 				this.display();
-				
+			}
 			// Request page
-			}else{
+			else{
 				jQuery.get(gca_getPage.link({"mod":"powerups"}), function(content){
 					now = new Date().getTime();
 					let found = content.match(/id="rune\d_\d"\s+class="powerUpImg\d"\s+data-tooltip="[^"]+"\s+style="background-image: [^;]+;"/gi);
