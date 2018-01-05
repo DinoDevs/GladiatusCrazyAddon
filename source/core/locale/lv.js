@@ -257,7 +257,11 @@ gca_languages['lv'] = {
 			export : "Eksportēt",
 			import : "Importēt",
 			clear : "Nodzēst",
+			do_not_show : "Nerādīt",
+			show_as : "Rādīt kā",
+ 			translated_percent : "Iztulkots: {{number}}%",
 			translated_by : "Tulkojuši: {{string}}",
+ 			reset_settings_confirm : "Vai tiešām vēlaties noresetot visus addon iestatījumus?",
 			clear_data_confirm : "Vai tiešām vēlaties nodzēst visus addon datus?",
 			notification_reload : "Atjauno lapu, lai iestatījumi sāktu darboties"
 		}
