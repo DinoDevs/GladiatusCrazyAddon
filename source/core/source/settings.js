@@ -510,7 +510,9 @@ var gca_settings = {
 						}
 					};
 					return scheme;
-				})()
+				})(),
+				// Remember sorting 
+				"remember_sort" : false
 			},
 			
 			// Expedition Options

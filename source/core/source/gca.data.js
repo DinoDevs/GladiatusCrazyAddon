@@ -499,6 +499,8 @@ gca_options.data = {
 		"remember_sell_duration" : false,
 		// Default sell duration
 		"sell_duration" : 0,
+		// Remember sorting 
+		"remember_sort" : false
 	},
 
 	// Expedition Options

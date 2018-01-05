@@ -107,8 +107,8 @@ var gca_global = {
 			this.display.event.server_quest_timer.inject());
 
 		// Remember merchants' and inventory tabs
-		(!this.isTraveling && gca_options.bool("global","remember_tabs") && 
-			this.background.remember_tabs.init());
+		(!this.isTraveling && (gca_options.bool("global","remember_tabs") || gca_options.bool("market","remember_sort")) && 
+			this.background.targetLinkEditor.init());
 
 		// Cooldown Sound Notification for missions, dungeons and arenas
 		(!this.isTraveling && gca_options.bool("global","cooldown_sound_notifications") && 
@@ -3120,7 +3120,7 @@ var gca_global = {
 		},
 
 		// Remember Tabs
-		remember_tabs : {
+		targetLinkEditor : {
 			// Initialize
 			init : function(){
 				// Catch page leave
@@ -3130,9 +3130,46 @@ var gca_global = {
 					// If it is a link
 					if(url && url.substring(0,8) == "https://" && url.substring(8, 8 + gca_section.domain.length) == gca_section.domain){
 						// Call event
-						gca_global.background.remember_tabs.onLinkClick(event, url, gca_getPage.parameters(url));
+						gca_global.background.targetLinkEditor.onLinkClick(event, url, gca_getPage.parameters(url));
 					}
 				}, false);
+			},
+
+			// On link click
+			onLinkClick : function(event, url, page){
+				// Check parameter mod
+				if(!page.mod) return;
+				// Parse submod
+				var submod = null;
+				if(page.submod) submod = page.submod;
+				// Delete sh
+				delete page.sh;
+				// Set flag
+				page._not_changed = true;
+
+				if (gca_options.bool("global","remember_tabs")){
+					this.editor_rememberTabs(page);
+				}
+				if (gca_options.bool("market","remember_sort")) {
+					this.editor_rememberMarketSort(page);
+				}
+
+				// Check if not changed
+				if (page._not_changed) {
+					return;
+				}
+				delete page._not_changed;
+
+				// Create link
+				url = gca_getPage.fullLink(page);
+				// Patch target's link
+				if(event.target.href){
+					event.target.href = url;
+				}else if(event.target.parentNode.href){
+					event.target.parentNode.href = url;
+				}else{
+					event.target.parentNode.parentNode.href = url;
+				}
 			},
 
 			// Pages with inventory
@@ -3148,18 +3185,9 @@ var gca_global = {
 				"guild_storage"
 			],
 
-			// On link click
-			onLinkClick : function(event, url, page){
-				// Check parameter mod
-				if(!page.mod) return;
-				// Parse submod
-				var submod = null;
-				if(page.submod) submod = page.submod;
-				// Delete sh
-				delete page.sh;
-
+			editor_rememberTabs : function (page){
 				// Get type of page
-				var pageType = this.pagesWithInventory.indexOf(page.mod);
+				let pageType = this.pagesWithInventory.indexOf(page.mod);
 				// If no page of interest, return
 				if(pageType < 0 || (pageType == 0 && page.submod != null)) return;
 
@@ -3172,18 +3200,33 @@ var gca_global = {
 					// Else, load it
 					else{
 						page.subsub = gca_data.section.get("cache", 'merchants_tab', 0);
+						page._not_changed = false;
 					}
 				}
+			},
 
-				// Create link
-				url = gca_getPage.fullLink(page);
-				// Patch target's link
-				if(event.target.href){
-					event.target.href = url;
-				}else if(event.target.parentNode.href){
-					event.target.parentNode.href = url;
-				}else{
-					event.target.parentNode.parentNode.href = url;
+			// Pages with market
+			pagesWithMarket : [
+				"market",
+				"guild_market"
+			],
+
+			editor_rememberMarketSort : function (page) {
+				// Get type of page
+				let pageType = this.pagesWithMarket.indexOf(page.mod);
+				// If no page of interest, return
+				if(pageType < 0) return;
+
+				// If shop is defined, save it
+				if(page.s){
+					gca_data.section.set("cache", 'market_sort', page.s);
+				}
+				// Else, load it
+				else {
+					let cachedValue = gca_data.section.get("cache", 'market_sort', false);
+					if (cachedValue === false) return;
+					page.s = cachedValue;
+					page._not_changed = false;
 				}
 			}
 		},
