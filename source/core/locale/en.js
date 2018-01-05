@@ -354,7 +354,7 @@ gca_languages["en"] = {
 			// Settings - Data
 			category_data$export_settings : "Export settings data to file",
 			category_data$import_settings : "Import settings data from file",
-			category_data$reset_settings : "Reset addon's setting",
+			category_data$reset_settings : "Reset addon's settings",
 			category_data$clear_data : "Clear all addon's data",
 
 			// Buttons
