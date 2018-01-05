@@ -351,7 +351,7 @@ gca_languages["gr"] = {
 			category_sound$volume : "Ένταση ήχων",
 			// Settings - Data
 			category_data$export_settings : "Εξαγωγή των δεδομένων ρυθμίσεων σε αρχείο",
-			category_data$import_settings : "Εισαγωγή των δεδομένων ρυθμίσεων σε αρχείο",
+			category_data$import_settings : "Εισαγωγή των δεδομένων ρυθμίσεων από αρχείο",
 			category_data$reset_settings : "Επαναφορά των ρυθμίσεων του προσθέτου",
 			category_data$clear_data : "Εκκαθάριση όλων των δεδομένων του προσθέτου",
 
