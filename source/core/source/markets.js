@@ -294,11 +294,10 @@ var gca_markets = {
 
 			// Get url
 			var url = gca_getPage.parameters();
-			if (!url.hasOwnProperty("s")) return;
-
+			
 			for (var i = 0; i < links.length; i++) {
 				let link = gca_getPage.parameters(links[i].href);
-				if (link.hasOwnProperty("s") && url.s[0] === link.s[0]) {
+				if (url.hasOwnProperty("s") && link.hasOwnProperty("s") && url.s[0] === link.s[0]) {
 					links[i].textContent = ((url.s.length == 1) ? "▲" : "▼") + " " + links[i].textContent;
 				}else{
 					links[i].textContent = "▷ " + links[i].textContent;
