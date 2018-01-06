@@ -11,21 +11,47 @@ var gca_languages = gca_languages || {};
 
 // Set Language
 gca_languages['de'] = {
+
+	// Language name
 	name : 'Deutsch (German)',
+	// Translators (authors of this script)
 	translators : ["DoonFreak", "GreatApo"],
+
+	// Translations object
 	locale : {
+		// Addon info
 		info : {
 			description : "Das verrückteste Gladiatus Add-On aller Zeiten"
 		},
+
+		// General
 		general : {
-			days : "Tage",
-			minutes : "Minuten",
+
+			// Days
+			days : "Tag(e)",
+			// Minutes
+			minutes : "Minute(n)",
+			// No data
 			no_data : "Keine Daten vorhanden",
+
+			// Modal buttons
+				//confirm : "",
+				//cancel : "",
 			close : "schließen",
 			error : "Fehler"
 		},
+
+		// Global
 		global : {
+			// Use a life potion
+				//life_potion_use : "",
+				//life_potion_used : "",
+				//life_potion_left : "",
+			
+			// Life points recovery
 			life_recover_full : "Gesamtes Leben wiederhergestellt in",
+
+			// Button bar - Message
 			message_private_write : "Private Nachricht schreiben",
 			message_guild_write : "Gildennachricht schreiben",
 			message_send : "senden",
@@ -33,6 +59,8 @@ gca_languages['de'] = {
 			message_sent_failed : "Gildennachricht ist fehlgeschlagen",
 			message_empty : "Gildennachricht ist leer",
 			message_exclude_me : "Mich ausgenommen",
+
+			// Button bar buttons
 			guild_market_goto : "Zum Gildenmarkt",
 			guild_storage_goto : "Zum Lager",
 			guild_bank_goto : "Zur Bank",
@@ -41,67 +69,315 @@ gca_languages['de'] = {
 			guild_library_goto : "Zur Bibliothek",
 			guild_medic_goto : "Zum Arzt",
 			simulator_goto : "Zum Simulator",
+				//stats_display : "",
 			online_display : "Spieler die online sind anzeigen",
+
+			// Online friends
 			online_friends : "Online Freunde",
 			guild_friends : "Gilden Freunde",
 			family_friends : "Familien Freunde",
+
+			// Guild donate
+				//donate_gold_confirm : "",
 			donate_gold_success : "Dein Gold wurde gespendet",
 			donate_gold_failed : "Deine Goldspende schlug fehlt",
+				//donate_gold_no_gold : "",
 			donate_gold_all_gold : "Gesamtes Gold spenden",
+
+			// Quest timer
 			quest_full : "Voll",
 			quest_new : "Neu",
+
+			// Pray icon
+				//pray_start : "",
+				//pray_stop : "",
+				//heal : "",
+
+			// Notifications
 			notification_guild_application : "Gildenbewerbung vorhanden",
-			gold_exp_data_to_level_up : "Verbleibende Tage bis zum Level Aufstieg"
+
+
+			// Gold - Exp data
+				//gold_exp_data : "",
+				//gold_exp_data_today : "",
+				//gold_exp_data_week : "",
+				//gold_exp_data_avg_day : "",
+			gold_exp_data_to_level_up : "Verbleibende Tage bis zum Level Aufstieg",
+				//gold_exp_data_package_tax : "",
+				//gold_exp_data_measurements : "",
+				//gold_exp_data_total_exp : "",
+				//gold_exp_data_total_gold : "",
 		},
-		overview : {},
-		pantheon : {},
+
+		// Overview
+		overview : {
+			// Stats Difference
+				//stats_difference : "",
+			// Drop items to see materials to repair feature
+				//drop_item_see_materials_repair : "",
+				//workbench_6th_slot_empty : "",
+		},
+
+		// Pantheon section
+		pantheon : {
+			// Mystery box
+				//mysterybox_open_all : "",
+				//mysterybox_open_stop : "",
+				//mysterybox_open_done : ""
+		},
+
+		// Guild section
 		guild : {
+			// Guild Bank
 			bank_all_gold : "Füge gesamtes Gold hinzu",
+
+			// Library
+				//library_per_point_cost : "",
+				//library_gold_left : "",
+
+			// Medic
 			medic_lost_points : "Verlorene Punkte",
 			medic_points_to_heal : "Punkte zum heilen",
 			medic_life_after_heal : "Leben nach dem heilen"
 		},
-		training : {},
-		auction : {
-			number_of_items : "Anzahl Gegenstände : {{number}}",
-			number_of_bided_items : "Anzahl gebotener Gegenstände : {{number}}",
-			hide_your_gold_here : "Sichere dein Gold hier",
-			price_value_function : "Preis = Wert + {{number}}"
+
+		// Expedition
+		expedition : {
+			material_drop_chance : ""
 		},
+
+		// Training section
+		training : {
+			// Points analysis
+				//stats_points : "",
+				//points_breakdown : "",
+				//stats_calculated_with_yourself_as_an_opponent : "",
+			// Cost calculator
+				//total_cost : "",
+			// Discount show
+				//costs_discount : ""
+		},
+
+		// Auction section
+		auction : {
+			// Info
+				//items_info : "",
+			// Number of items in the page
+			number_of_items : "Anzahl Gegenstände : {{number}}",
+			// Number of items that have been bidden in the page
+			number_of_bided_items : "Anzahl gebotener Gegenstände : {{number}}",
+			// Message on items that you can buy and sell at the same price
+			hide_your_gold_here : "Sichere dein Gold hier",
+			// Price of item equals to its value
+			price_value_function : "Preis = Wert + {{number}}"
+			// Levels you can see
+				//levels_you_can_see : "",
+		},
+
+		// Markets section
+		markets : {
+			// Warnings
+				//item_cost_only_x_gold : "",
+				//item_is_soulbound : "",
+			// Are you sure
+				//are_you_sure_you_want_to_buy : ""
+		},
+		
+		// Forge
+		forge : {
+				//forge_ended : "",
+				//recraft_item : ""
+		},
+		
+		// Packages
+		packages : {
+				//event_items : "",
+				//known_scroll : "",
+				//unknown_scroll : ""
+		},
+
+		// Settings
 		settings : {
+			// Settings
 			settings : "Einstellungen",
+			// Description
 			description : "Aktiviere oder deaktiviere Funktionen des Add-On",
 			description_click_button : "Drücke den unteren Button um zu den Add-On Einstellungen zu kommen",
-			category_global : "Allgemeine Einstellungen",
-			category_overview : "Übersicht Einstellungen",
-			category_messages : "Nachrichten Einstellungen",
-			category_packages : "Pakete Einstellungen",
-			category_reports : "Meldungs Einstellungen",
-			category_training : "Trainings Einstellungen",
-			category_merchants : "Händler Einstellungen",
-			category_guild : "Gilden Einstellung",
-			category_auction : "Auktionshaus Einstellungen",
+			
+			// Categories
+			category_global : "Allgemeine",
+			category_overview : "Übersicht",
+			category_messages : "Nachrichten",
+			category_packages : "Pakete",
+				//category_pantheon : "",
+			category_reports : "Meldungs",
+			category_training : "Trainings",
+			category_merchants : "Händler",
+				//category_forge : "",
+				//category_arena : "",
+				//category_magus : "",
+				//category_market : "",
+				//category_expedition : "",
+			category_guild : "Gilden",
+			category_auction : "Auktionshaus",
+				//category_events : "",
+				//category_sound : "",
+				//category_data : "",
+
+			// Settings - Global
 			category_global$language_select : "Add on Sprache ändern",
 			category_global$sound_notifications : "Aktiviere Ton Benachrichtigungen für Missionen, Dungeons und Arenas",
+				//category_global$browser_notifications : "",
 			category_global$extended_hp_xp_info : "Zeige erweiterte HP und XP Infos",
+				//category_global$extended_hp_xp_info_potion : "",
+				//category_global$hp_timer_for_full_life : "",
 			category_global$shortcuts_bar : "Buttonleiste anzeigen",
+				//category_global$shortcuts_bar_buttons : "",
 			category_global$auction_status_bar : "Auktionsstatus einblenden",
+				//category_global$auction_status_notification : "",
 			category_global$top_fixed_bar : "Aktiviere mitscrollende Leiste",
 			category_global$advance_main_menu : "Verbessertes Hauptmenü",
+				//category_global$submenu_click_to_change : "",
 			category_global$remember_tabs : "Behalte Händler und Inventar Tabs",
+				//category_global$attacked_timers : "",
+				//category_global$quest_timer : "",
 			category_global$merchants_timer : "Händlerzeit anzeigen",
+				//category_global$forge_timers : "",
+				//category_global$cooldown_sound_notifications : "",
+				//category_global$notify_new_guild_application : "",
+				//category_global$notify_new_guild_application_interval : "",
+				//category_global$x_scroll : "",
+				//category_global$item_shadow : "",
+				//category_global$inventory_options_group : "",
+				//category_global$inventory_gold_info : "",
+				//category_global$pagination_layout : "",
+				//category_global$gold_exp_data : "",
+				//category_global$pray_shorcut : "",
+				//category_global$centurio_powerups_timers : "",
+				//category_global$show_durability : "",
+				//category_global$min_durability : "",
+			// Settings - Overview
 			category_overview$analyze_items : "Analysiere Spielergegenstände",
+				//category_overview$food_life_gain : "",
+				//category_overview$block_avoid_caps : "",
+				//category_overview$best_food : "",
+				//category_overview$overfeed_food : "",
+				//category_overview$daily_bonus_log : "",
+				//category_overview$buffs_detailed_time : "",
+				//category_overview$mercenaries_manager : "",
+				//category_overview$mercenary_tooltip_show : "",
 			category_overview$more_statistics : "Zeige mehr Spielerstatistik",
+				//category_overview$achivements_layout : "",
+				//category_overview$costumes_layout : "",
+				//category_overview$items_repair_overview : "",
+			// Settings - Messages
 			category_messages$messages_layout : "Füge Nachrichteninterface hinzu",
+				//category_messages$show_unread : "",
+				//category_messages$separate_days : "",
+				//category_messages$send_message_box : "",
+				//category_messages$more_guild_mate_info : "",
+				//category_messages$show_message_links : "",
+				//category_messages$get_guild_battle_info : "",
+				//category_messages$show_sidebar : "",
+				//category_messages$fix_header_links : "",
+				//category_messages$new_message_focus : "",
 			category_messages$new_message_friend_list : "Aktivieren des Freunde list Button",
+			// Settings - Packages
+				//category_packages$filters_layout : "",
+				//category_packages$compact_info_layout : "",
+				//category_packages$items_layout : "",
+				//category_packages$load_more_pages : "",
 			category_packages$pages_to_load : "Max Seitenanzahl die geladen werden soll",
+				//category_packages$item_price : "",
+				//category_packages$special_category_features : "",
+			// Settings - Pantheon
+				//category_pantheon$quests_reorder : "",
+				//category_pantheon$quests_detailed_rewards : "",
+				//category_pantheon$missions_show_completed : "",
+				//category_pantheon$gods_show_points_percent : "",
+				//category_pantheon$open_many_mysteryboxes : "",
+				//category_pantheon$show_mysterybox_rewards_rubies : "",
+			// Settings - Reports
+				//category_reports$style_change : "",
+				//category_reports$load_loot_tooltips : "",
+				//category_reports$found_items : "",
+			// Settings - Training
+				//category_training$show_discount : "",
+				//category_training$show_basics_in_bars : "",
+				//category_training$multiple_train : "",
+				//category_training$calculator_train : "",
+				//category_training$show_analyze_items_data : "",
+				//category_training$show_points_after_upgrade : "",
+			// Settings - Merchants
+				//category_merchants$fade_unaffordable_items : "",
+			// Settings - Forge
+				//category_forge$material_links : "",
+				//category_forge$show_levels : "",
+			// Settings - Arena
+				//category_arena$ignore_attack_confirmations : "",
+				//category_arena$show_simulator_imagelink : "",
+			// Settings - Magus
+				category_magus$fade_unimprovable_items : "",
+			// Settings - Market
+				//category_market$soulbound_warning : "",
+				//category_market$one_gold_warning : "",
+				//category_market$cancel_all_button : "",
+				//category_market$remember_sell_duration : "",
+				//category_market$sell_duration : "",
+				//category_market$remember_sort : "",
+			// Settings - Expedition
+				//category_expedition$show_enemy_drops : "",
+				//category_expedition$underworld_layout : "",
+			// Settings - Guild
+				//category_guild$jail_layout : "",
+				//category_guild$library_layout : "",
+				//category_guild$library_fade_non_scrolls : "",
+				//category_guild$library_tooltip_data : "",
+				//category_guild$bank_donate_layout : "",
+				//category_guild$bank_book_layout : "",
+				//category_guild$medic_layout : "",
+			// Settings - Auction
 			category_auction$items_counters : "Zeige Anzahl der Gegenstände",
+				//category_auction$more_search_levels : "",
+				//category_auction$item_price_analyze : "",
 			category_auction$item_level : "Zeige Level der Gegenstände",
 			category_auction$x3_items_per_line : "Zeige 3 Gegenstände pro Reihe",
-			save : "Alles speichern",
+				//category_auction$multi_bids : "",
+				//category_auction$extra_item_stats : "",
+			// Settings - Events
+				//category_events$craps_timer : "",
+				//category_events$server_quest_timer : "",
+			// Settings - Sound
+				//category_sound$enabled : "",
+				//category_sound$muted : "",
+				//category_sound$volume : "",
+			// Settings - Data
+				//category_data$export_settings : "",
+				//category_data$import_settings : "",
+				//category_data$reset_settings : "",
+				//category_data$clear_data : "",
+
+			// Buttons
+			save : "Speichern",
+				//export : "",
+				//import : "",
+				//reset : "",
+				//clear : "",
+				//do_not_show : "",
+				//show_as : "",
+
+			// Info
+				//translated_percent : "",
+				//translated_by : "",
+				//reset_settings_confirm : "",
+				//clear_data_confirm : "",
+
+			// Notifications
 			notification_reload : "Seite neu laden, um die Zusätze zu aktivieren"
 		}
 	},
+
+
 	locale_deprecated : {
 		description : "Das verrückteste Gladiatus Add-On aller Zeiten",
 		write_private_message : "Private Nachricht schreiben",
