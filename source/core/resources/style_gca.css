@@ -943,6 +943,8 @@
 		#market_sell_box .switch-field input:checked + label{background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
 		#market_sell_box .switch-field label:first-of-type{border-radius: 4px 0 0 4px;}
 		#market_sell_box .switch-field label:last-of-type{border-radius: 0 4px 4px 0;}
+		/* Change sort arrows */
+		.gca_change_sort_arrows #market_table th a {padding-right: 0px;background-image: none;}
 		
 	
 	/* Tools

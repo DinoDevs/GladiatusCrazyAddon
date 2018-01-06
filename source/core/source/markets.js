@@ -41,6 +41,8 @@ var gca_markets = {
 			
 			// 1 gold mode
 			this.oneGoldMode();
+
+			this.layout.changeShortArrows();
 		}
 
 		// Setting Link
@@ -273,8 +275,35 @@ var gca_markets = {
 				document.getElementById('preis').value = 1;
 			}
 		}
+	},
+
+	// Layout
+	layout : {
+		changeShortArrows : function() {
+			let content = document.getElementById("content");
+			if(content.className.length > 0)
+				content.className += " ";
+			content.className += "gca_change_sort_arrows";
+
+			let links = document.getElementById("market_table");
+			if(!links) return;
+			links = links.getElementsByTagName("tr");
+			if(!links.length) return;
+			links = links[0].getElementsByTagName("a");
+			if(!links.length) return;
+
+			// Get url
+			var url = gca_getPage.parameters();
+			if (!url.hasOwnProperty("s")) return;
+
+			for (var i = 0; i < links.length; i++) {
+				let link = gca_getPage.parameters(links[i].href);
+				if (link.hasOwnProperty("s") && url.s[0] === link.s[0]) {
+					links[i].textContent = ((url.s.length == 1) ? "▲" : "▼") + " " + links[i].textContent;
+				}
+			}
+		}
 	}
-	
 };
 
 (function(){
