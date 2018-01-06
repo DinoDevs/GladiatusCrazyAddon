@@ -323,7 +323,7 @@ gca_languages["gr"] = {
 			category_market$cancel_all_button : "Εμφάνιση κουμπιού ακύρωσης όλων",
 			category_market$remember_sell_duration : "Να θυμάται το πρόσθετο την τελευταία επιλεγμένη διάρκεια πώλησης",
 			category_market$sell_duration : "Ορισμός προεπιλεγμένης διάρκειας πώλησης",
-			category_market$remember_sort : "Βελτίωση και να θυμάται το πρόσθετο την τελευταία ταξινόμηση",
+			category_market$remember_sort : "Να θυμάται το πρόσθετο την τελευταία ταξινόμηση",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Εμφάνιση των υλών σιδηρουργείου που δίνει ο κάθε εχθρός",
 			category_expedition$underworld_layout : "Μετατροπή της εμφάνισης των εχθρών του κάτω κόσμου όπως στις εξορμήσεις",

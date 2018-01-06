@@ -324,7 +324,7 @@ gca_languages["en"] = {
 			category_market$cancel_all_button : "Show cancel-all button",
 			category_market$remember_sell_duration : "Remember last chosen sell duration",
 			category_market$sell_duration : "Select default sell duration",
-			category_market$remember_sort : "Improve and remember last sort order",
+			category_market$remember_sort : "Remember last sort order",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",
 			category_expedition$underworld_layout : "Show underworld's enemies layout like expedition's",
