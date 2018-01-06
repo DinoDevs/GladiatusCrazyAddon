@@ -82,7 +82,7 @@ gca_languages["tr"] = {
             donate_gold_success : "Bağış Başarıyla Yapıldı",
             donate_gold_failed : "Bağış Yapılamadı",
             donate_gold_no_gold : "Altın Bağışı Bulunmuyor",
-            donate_gold_all_gold : "Tüm Bağışlar",
+            donate_gold_all_gold : "Tüm Altını Bağışla",
 
             // Quest timer
             quest_full : "Dolu",
@@ -142,7 +142,7 @@ gca_languages["tr"] = {
 
         // Expedition
         expedition : {
-            material_drop_chance : "Bu malzemenin düşme şansı {{number}}% "
+            material_drop_chance : "Bu malzemenin düşme şansı %{{number}} "
         },
 
         // Training section
@@ -220,13 +220,14 @@ gca_languages["tr"] = {
             category_auction : "Müzayede Ayarları",
             category_events : "Event Ayarları",
             category_sound : "Ses Ayarları",
+            category_data : "Eklenti Ayarları",
 
             // Settings - Global
             category_global$language_select : "Eklenti dilini değiştir",
             category_global$sound_notifications : "Görev, zindanlar ve arenalar için sesle uyar",
             category_global$browser_notifications : "Tarayıcı bildirimlerini aç",
             category_global$extended_hp_xp_info : "Sayfanın üst kısmında genişletilmiş HP ve XP bilgilerini göster",
-            category_global$extended_hp_xp_info_potion : "Şifre iksirini göster",
+            category_global$extended_hp_xp_info_potion : "Şifa iksirini göster",
             category_global$hp_timer_for_full_life : "Yaşam enerjinisin dolacağı zaman",
             category_global$shortcuts_bar : "Kısayollar çubuğunu etkinleştir",
             category_global$shortcuts_bar_buttons : "Kısayol çubuğundaki kısayolları seçin",
@@ -243,13 +244,17 @@ gca_languages["tr"] = {
             category_global$player_image : "Oyuncuların resimlerini etkinleştir",
             category_global$cooldown_sound_notifications : "Sesli bildirimleri etkinleştir (keşif, zindan, arena)",
             category_global$notify_new_guild_application : "Yeni ittifak başvurusu olduğunda beni haberdar et",
-            category_global$notify_new_guild_application_interval : "Her dakika başvuruları kontrol edin (dakika)",
+            category_global$notify_new_guild_application_interval : "İttifak başvurularını kontrol edin (dakika) cinsinden",
             category_global$x_scroll : "Gladiatus'un yatay kaydırma özelliğini etkinleştir",
             category_global$item_shadow : "Eşya gölgelerini etkinleştir",
-            category_global$inventory_options_group : "Envanter opsiyonlarını ektinleştir",
-            category_global$pagination_layout : "Sayfalar kutusunun düzenini değiştirme",
+            category_global$inventory_options_group : "Envanter opsiyonlarını etkinleştir",
+            category_global$inventory_gold_info : "Envanter eşyalarının altın fiyatını göster",
+            category_global$pagination_layout : "Sandık sayfalar kutusunun arayüzünü geliştir",
             category_global$gold_exp_data : "Altın ve exp bilgilerini göster",
             category_global$pray_shorcut : "Yeraltı zaman ile ilgili bir opsiyon",
+            category_global$centurio_powerups_timers : "Premium menüsü üzerinde anlaşmaların kalan zamanlarını göster",
+            category_global$show_durability : "Ürünün sol alt köşesinde dayanıklılığı göster",
+            category_global$min_durability : "Seçmiş olduğun % nin altında dayanıklılığı olan itemleri göster (Devre dışı bırakmak için 0 yapın)",
             // Settings - Overview
             category_overview$analyze_items : "Eşya durumlarını analiz edin (eğitim için gereklidir)",
             category_overview$food_life_gain : "Malzemelerden hayat kazancını göster",
@@ -316,6 +321,9 @@ gca_languages["tr"] = {
             category_market$soulbound_warning : "Ruha bağlı ürünlerde onay alın",
             category_market$one_gold_warning : "1 Altına maal olan ürünlerde alırken onay al",
             category_market$cancel_all_button : "Tümünü iptal et butonunu gösterin",
+            category_market$remember_sell_duration : "Son seçilen satış süresini hatırla",
+            category_market$sell_duration : "Varsayılan satış süresini seçin",
+            category_market$remember_sort : "Sıralama düzenini hatırla",
             // Settings - Expedition
             category_expedition$show_enemy_drops : "Düşecek olan hammaddeleri gösterin",
             category_expedition$underworld_layout : "Keşifler gibi yeraltı dünyasının düşman düzenini göster",
@@ -342,12 +350,26 @@ gca_languages["tr"] = {
             category_sound$enabled : "Ses sistemini ektinleştir",
             category_sound$muted : "Sustur / Sesi Açma Sesi",
             category_sound$volume : "Ses seviyesi",
+            // Settings - Data
+            category_data$export_settings : "Eklenti ayarlarını dışarı aktar",
+            category_data$import_settings : "Eklenti ayarlarını içeri aktar",
+            category_data$reset_settings : "Eklenti ayarlarını sıfırla",
+            category_data$clear_data : "Tüm eklenti verilerini temizle",
 
             // Buttons
             save : "Kaydet",
+            export : "Dışarı aktar",
+            import : "İçeri aktar",
+            reset : "Sıfırla",
+            clear : "Temizle",
+            do_not_show : "Gösterme",
+            show_as : "Olarak göster",
 
             // Info
+            translated_percent : "Çeviri durumu: %{{number}}",
             translated_by : "Çeviren: {{string}}",
+            reset_settings_confirm : "Eklenti ayarlarını sıfırlamak istediğinize emin misiniz?",
+            clear_data_confirm : "Tüm eklenti ayarlarını silmek istediğinize emin misiniz?",
 
             // Notifications
             notification_reload : "Değişikliklerin geçerli olması için sayfayı yeniden yükleyin"
