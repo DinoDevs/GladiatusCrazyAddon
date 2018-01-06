@@ -14,7 +14,8 @@
 	- [x] Gold counting improvements when multi-bidding
 - **Market**
 	- [x] Remember last chosen sell duration (default disabled)
-	- [x] Remember last item sort (default disabled)
+	- [x] Remember last items' sort order (default disabled)
+	- [x] Improve item's sort order with proper icons on table's header
 	- [x] Default sell duration can be changed from settings
 	- [x] Toggle button changing sell price to 1 gold
 - **Main Menu**
