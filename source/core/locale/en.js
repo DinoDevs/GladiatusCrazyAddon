@@ -30,7 +30,7 @@ gca_languages["en"] = {
 			// Days
 			days : "day(s)",
 			// Minutes
-			minutes : "minute(s)",
+			minutes : "minute",
 			// No data
 			no_data : "No data",
 
