@@ -319,4 +319,4 @@ gca_languages['hr'] = {
 	}
 }
 
-gca_locale.active = "hr";
+gca_languages._active = "hr";

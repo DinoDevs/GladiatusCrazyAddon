@@ -319,4 +319,4 @@ gca_languages['ru'] = {
 	}
 }
 
-gca_locale.active = "ru";
+gca_languages._active = "ru";

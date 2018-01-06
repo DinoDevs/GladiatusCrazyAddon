@@ -319,4 +319,4 @@ gca_languages['fa'] = {
 	}
 }
 
-gca_locale.active = "fa";
+gca_languages._active = "fa";

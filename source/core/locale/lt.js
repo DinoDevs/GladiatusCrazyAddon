@@ -55,4 +55,4 @@ gca_languages['lt'] = {
 	}
 }
 
-gca_locale.active = "lt";
+gca_languages._active = "lt";

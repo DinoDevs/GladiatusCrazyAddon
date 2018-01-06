@@ -324,4 +324,4 @@ gca_languages['bg'] = {
 	}
 }
 
-gca_locale.active = "bg";
+gca_languages._active = "bg";

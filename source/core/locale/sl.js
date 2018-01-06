@@ -70,4 +70,4 @@ gca_languages['sl'] = {
 	}
 }
 
-gca_locale.active = "sl";
+gca_languages._active = "sl";

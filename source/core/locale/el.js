@@ -376,4 +376,4 @@ gca_languages["gr"] = {
 	}
 }
 
-gca_locale.active = "el";
+gca_languages._active = "el";

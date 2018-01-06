@@ -317,4 +317,4 @@ gca_languages['nl'] = {
 	}
 }
 
-gca_locale.active = "nl";
+gca_languages._active = "nl";

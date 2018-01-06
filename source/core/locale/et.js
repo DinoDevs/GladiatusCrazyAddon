@@ -313,4 +313,4 @@ gca_languages['et'] = {
 	}
 }
 
-gca_locale.active = "et";
+gca_languages._active = "et";

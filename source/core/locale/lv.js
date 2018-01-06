@@ -270,4 +270,4 @@ gca_languages['lv'] = {
 	}
 }
 
-gca_locale.active = "lv";
+gca_languages._active = "lv";

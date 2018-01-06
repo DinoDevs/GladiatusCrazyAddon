@@ -13,6 +13,12 @@ var gca_locale = {
 	_load : function(){
 		// Clear
 		this._loaded = true;
+
+		// Get active lang
+		if (gca_languages.hasOwnProperty("_active")) {
+			this.active = gca_languages._active;
+		}
+
 		// Get info
 		var country = gca_section.country;
 		var savedlang = this._getLang();

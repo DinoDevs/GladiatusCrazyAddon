@@ -319,4 +319,4 @@ gca_languages['sk'] = {
 	}
 }
 
-gca_locale.active = "sk";
+gca_languages._active = "sk";

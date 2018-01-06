@@ -319,4 +319,4 @@ gca_languages['zh'] = {
 	}
 }
 
-gca_locale.active = "zh";
+gca_languages._active = "zh";

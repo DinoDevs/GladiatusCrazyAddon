@@ -96,4 +96,4 @@ gca_languages['sq'] = {
 	}
 }
 
-gca_locale.active = "sq";
+gca_languages._active = "sq";

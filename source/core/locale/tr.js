@@ -355,4 +355,4 @@ gca_languages["tr"] = {
     }
 }
 
-gca_locale.active = "tr";
+gca_languages._active = "tr";

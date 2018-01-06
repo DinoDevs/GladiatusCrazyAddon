@@ -319,4 +319,4 @@ gca_languages['ro'] = {
 	}
 }
 
-gca_locale.active = "ro";
+gca_languages._active = "ro";
