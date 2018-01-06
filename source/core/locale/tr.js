@@ -323,7 +323,7 @@ gca_languages["tr"] = {
             category_market$cancel_all_button : "Tümünü iptal et butonunu gösterin",
             category_market$remember_sell_duration : "Son seçilen satış süresini hatırla",
             category_market$sell_duration : "Varsayılan satış süresini seçin",
-            category_market$remember_sort : "Sıralama düzenini hatırla",
+            category_market$remember_sort : "Son sıralama düzenini hatırla",
             // Settings - Expedition
             category_expedition$show_enemy_drops : "Düşecek olan hammaddeleri gösterin",
             category_expedition$underworld_layout : "Keşifler gibi yeraltı dünyasının düşman düzenini göster",
