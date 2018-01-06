@@ -77,21 +77,6 @@ Contact us to leave us your feedback or to express your thoughts.
 
 
 
-## :rainbow: How everything started
-
-> *GCA was not born as you know it today. Gladiatus Crazy Addon started as a compilation of two addons (Gladiatus Crazy Messenger and Gladiatus Crazy Helper) both made from GreatApo and DarkThanos.*
-
-> *Gladiatus Crazy Messenger was a Firefox addon containing most of the GCA's messages features. On the other hand, Gladiatus Crazy Helper, was a Firefox addon integrating a life bar in the header of the game (the lifebar that the game has now) and some other minor features.*
-
-> *These two addons met a great popularity on the Greeks servers (starting from GreatApo's old guild, Ελληνικό Πειρατικό) so the team decided to improve them more creating a whole new addon which will gather all the features together. So, Gladiatus Crazy Addon was born.*
-
-> *All the improvement where made based on users' suggestions and this is why this addon is so famous. Then the popularity of the addon started raising more and a lot of communities made topics about it in their forums...*
-
-> *Now the idea is to integrate into the game all the ideas that fans/players have, in order to make the game better and more enjoyable!*
-
-
-
-
 ## :video_game: Our team
 
 <img align="left" src="documentation/resources/logo-icons/dinodevs_32.png"/> We are [DinoDevs](https://github.com/DinoDevs), a group of people coding for fun!
