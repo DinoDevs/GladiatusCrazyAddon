@@ -300,6 +300,8 @@ var gca_markets = {
 				let link = gca_getPage.parameters(links[i].href);
 				if (link.hasOwnProperty("s") && url.s[0] === link.s[0]) {
 					links[i].textContent = ((url.s.length == 1) ? "▲" : "▼") + " " + links[i].textContent;
+				}else{
+					links[i].textContent = "▷ " + links[i].textContent;
 				}
 			}
 		}
