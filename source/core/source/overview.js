@@ -20,17 +20,25 @@ var gca_overview = {
 		(gca_options.bool("overview", "analyze_items") && 
 			this.analyzeItems.show(this));
 
-		// Food life gain predict
-		(this.doll == 1 && gca_options.bool("overview", "food_life_gain") && 
-			this.foodStuff.lifeGain());
+		// If underworld
+		if(document.getElementById('wrapper_game').className == 'underworld'){
+			(this.doll == 1 && 
+				this.foodStuff.underworld.fadeFoods(this));
+		}
+		// If not underworld
+		else {
+			// Food life gain predict
+			(this.doll == 1 && gca_options.bool("overview", "food_life_gain") && 
+				this.foodStuff.lifeGain());
 
-		// Highlight best food to consume
-		(this.doll == 1 && gca_options.bool("overview", "best_food") && 
-			this.foodStuff.bestFood());
+			// Highlight best food to consume
+			(this.doll == 1 && gca_options.bool("overview", "best_food") && 
+				this.foodStuff.bestFood());
 
-		// Make foods that give more life transparent
-		(this.doll == 1 && gca_options.bool("overview", "overfeed_food") && 
-			this.foodStuff.overFeeding());
+			// Make foods that give more life transparent
+			(this.doll == 1 && gca_options.bool("overview", "overfeed_food") && 
+				this.foodStuff.overFeeding());
+		}
 
 		// Daily Bonus Log
 		(gca_options.bool("overview", "daily_bonus_log") && 
@@ -886,21 +894,20 @@ var gca_overview = {
 			// Get Life
 			this.initLifeData();
 
-			var that = this;
 			// Add event on bag open
-			gca_tools.event.bag.onBagOpen(function(){
+			gca_tools.event.bag.onBagOpen(() => {
 				// Find best food
-				that.findOverFeeding();
+				this.findOverFeeding();
 			});
-			gca_tools.event.bag.waitBag(function(){
+			gca_tools.event.bag.waitBag(() => {
 				// Find best food
-				that.findOverFeeding();
+				this.findOverFeeding();
 			});
 
 			// Track life changes
-			this.keepLifeDataUpdated(function(){
+			this.keepLifeDataUpdated(() => {
 				// Find overfeeding food
-				that.findOverFeeding();
+				this.findOverFeeding();
 			});
 		},
 
@@ -931,6 +938,40 @@ var gca_overview = {
 			}
 
 			return;
+		},
+
+		// Underworld functions
+		underworld : {
+			// Fade foods on underworld
+			fadeFoods : function (self) {
+				// Add events
+				gca_tools.event.bag.onBagOpen(() => {
+					this.findAndFadeFoods(self);
+				});
+				gca_tools.event.bag.waitBag(() => {
+					this.findAndFadeFoods(self);
+				});
+				this.findAndFadeFoods(self);
+			},
+			findAndFadeFoods : function (self) {
+				// Items
+				var items = document.getElementById("inv").getElementsByTagName("div");
+				// For each item
+				for(var i = items.length-1; i>=0; i--){
+					// Get vitality
+					let vitality = self.foodStuff.getItemVitality(items[i]);
+					// If item is food
+					if(vitality != false){
+						// If possitive vitality
+						if(vitality > 0){
+							items[i].style.opacity = 0.4;
+						}
+					}
+					// Next item
+				}
+
+				return;
+			}
 		}
 	},
 
