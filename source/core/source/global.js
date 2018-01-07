@@ -35,8 +35,9 @@ var gca_global = {
 		this.display.version();
 
 		// Server Service wait screen
-		if(document.getElementById('container_infobox') || document.getElementById('login'))
+		if (!this.isLoggedIn) {
 			return;
+		}
 		
 		// Extended info on Health and Experience bars
 		(gca_options.bool("global","extended_hp_xp_info") && 
@@ -193,17 +194,9 @@ var gca_global = {
 	// Game Modes Check
 	gameModeResolve : function(){
 		// Default Values
+		this.isLoggedIn = true;
 		this.isTraveling = false;
 		this.isInUnderworld = false;
-
-		// Check if traveling
-		if(document.getElementById('submenu1') == null){
-			this.isTraveling = true;
-		}
-		// Otherwise Check if is Underwold
-		else if(document.getElementById('wrapper_game').className == 'underworld'){
-			this.isInUnderworld = true;
-		}
 
 		// Check for events
 		this.isEvent = {
@@ -212,6 +205,20 @@ var gca_global = {
 			locationQuest : false,
 			bar : false
 		};
+
+		// Logged Out
+		if (document.getElementById('container_infobox') || document.getElementById('login')){
+			this.isLoggedIn = false;
+			return;
+		}
+		// Check if traveling
+		else if(document.getElementById('submenu1') == null){
+			this.isTraveling = true;
+		}
+		// Otherwise Check if is Underwold
+		else if(document.getElementById('wrapper_game').className == 'underworld'){
+			this.isInUnderworld = true;
+		}
 
 		if(!this.isTraveling){
 			// Get first's submenu links
@@ -3119,7 +3126,7 @@ var gca_global = {
 			}
 		},
 
-		// Remember Tabs
+		// Link Editor
 		targetLinkEditor : {
 			// Initialize
 			init : function(){
