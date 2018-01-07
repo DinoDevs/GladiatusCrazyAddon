@@ -964,7 +964,8 @@ var gca_overview = {
 					if(vitality != false){
 						// If possitive vitality
 						if(vitality > 0){
-							items[i].style.opacity = 0.4;
+							items[i].style.opacity = 0.6;
+							items[i].style.webkitFilter = 'drop-shadow(black 0px 0px 1px) drop-shadow(red 0px 0px 3px) drop-shadow(red 0px 0px 3px)';
 						}
 					}
 					// Next item
