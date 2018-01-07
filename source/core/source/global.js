@@ -3394,9 +3394,13 @@ var gca_global = {
 				// Get saved data
 				var data = gca_data.section.get("data", "gold_exp_data", false);
 				
-				// Collect data every 10min = (600k ms)
-				if (data && gca_tools.time.server() - data[data.length - 1][2] < 6e5*3){
-					// Not yet 30 mins
+				// Collect data every 15min = (600k ms)
+				if (false && data && gca_tools.time.server() - data[data.length - 1][2] < 6e5*3){
+					return;
+				}
+
+				// If last time failed to get data (last 5 mins)
+				if (new Date().getTime() - gca_data.section.get("cache", "gold_exp_data_failed", 0) < 3e5) {
 					return;
 				}
 				
@@ -3410,12 +3414,12 @@ var gca_global = {
 
 					// Get gold
 					var gold = content.match(/<section class="achievement_detail_box" id="cat0"[^>]*>\s*<[^>]+>\s*<div class="achievement_name">[^<]*<\/div>\s*<div class="achievement_detail_current">\s*([\d\.]+)/);
-                
+					
 					// Get exp
 					var exp = document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i);
 					// If gold or exp not found
 					if(gold == null || exp == null){
-						// TODO : Add time here to check back later
+						gca_data.section.set("cache", "gold_exp_data_failed", new Date().getTime());
 						console.log("GCA: Could not get gold or exp data.");
 						// Exit
 						return;
