@@ -35,7 +35,6 @@
 	- [x] Fixed-top-bar _gca version_ hidden on small screens
 	- [x] Auction status style fix on firefox
 	- [x] Small fixes here and there
-	- [x] Script stopped from running on login page
 - **Arena**
 	- [x] "Sort players by level" was sorting as strings
 	- [x] "Ignore Attack Confirmations" was not working in every arena type
