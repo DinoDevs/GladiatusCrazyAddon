@@ -1886,7 +1886,7 @@ var gca_global = {
 					// lv2 player
 					else if(level == 2){
 						// Inject Arena link
-						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : getPage.link({"mod":"arena","submod":"grouparena"})});
+						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
 					}
 				}
 			},
@@ -3409,11 +3409,13 @@ var gca_global = {
 					var data = gca_data.section.get("data", "gold_exp_data", []);
 
 					// Get gold
-					var gold = content.match(/([\d\.]+) \/ 50\.000\.000/i);
+					var gold = content.match(/<section class="achievement_detail_box" id="cat0"[^>]*>\s*<[^>]+>\s*<div class="achievement_name">[^<]*<\/div>\s*<div class="achievement_detail_current">\s*([\d\.]+)/);
+                
 					// Get exp
 					var exp = document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i);
 					// If gold or exp not found
 					if(gold == null || exp == null){
+						// TODO : Add time here to check back later
 						console.log("GCA: Could not get gold or exp data.");
 						// Exit
 						return;
@@ -3454,17 +3456,15 @@ var gca_global = {
 			
 			// Create Gold & EXP data button
 			create_button : function(){
-				// Save instance
-				var that = this;
 				// Create stats icon
 				var icon = document.createElement('div');
 				icon.id = "exp_and_gold_stats_icon";
 				// Insert on page
 				document.getElementById("header_game").appendChild(icon);
 				// On click handler
-				icon.addEventListener('click', function(){
+				icon.addEventListener('click', () => {
 					// Open data
-					that.open();
+					this.open();
 				}, false);
 			},
 			
@@ -3570,7 +3570,7 @@ var gca_global = {
 				dialog.body.appendChild(div);
 				
 				var renderChart = function(){
-										// Values for the Data Plot
+					// Values for the Data Plot
 					var data  = gca_data.section.get("data", "gold_exp_data", [[0,0,0]]);
 					
 					// Fix data
@@ -3669,7 +3669,7 @@ var gca_global = {
 						document.getElementById('average_per_day').textContent+= " N/A";
 						document.getElementById('days_left_to_level_up').textContent+= " N/A";
 						document.getElementById('graph_canvas').style.display = "none";
-					}else{
+					} else {
 						// Experience translate
 						var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
 						// Gold translate
