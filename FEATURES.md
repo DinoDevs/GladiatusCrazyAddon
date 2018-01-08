@@ -42,6 +42,11 @@
 		- [x] {Underworld} Pray buff shortCut
 		- [x] Sound / Browser notifications for Missions, Dungeons and Arenas
 		- [x] Gold / Experience stats monitor
+		- [x] Go-to-top button on fixed-top-bar
+		- [x] Centurio + PowerUps timers
+		- [x] Inventory gold info
+		- [x] Durability+Conditioning is shown on items, bottom left (default disabled)
+		- [x] Warning when durability+conditioning of your gear is under a % (default 25%)
 		- [ ] Player update in the GCA Highscore OR make a Global Arena
 		- [ ] "New version" installed message
 		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit)
@@ -245,6 +250,7 @@
 	- [ ] Hide the last row (guide line) of mercenaries' tooltips (better compare view)
 	- [ ] Display for each mercenary its tooltip when on mercenaries
 	- [x] ✎	Extra stats shown on item images (only on food for now) (what else?)
+	- [x] More min-levels in search options (from min to max item levels you can see, with a step of 2)
 
 
 
@@ -261,6 +267,11 @@
 	- [ ] Constant sell value (selling mode)
 	- [x] Red bg on items that are souldbound & confirmation on buy
 	- [ ] Orange bg on 1g items
+	- [x] Remember last chosen sell duration (default disabled)
+	- [x] Remember last items' sort order (default disabled)
+	- [x] Improve item's sort order with proper icons on table's header
+	- [x] Default sell duration can be changed from settings
+	- [x] Toggle button changing sell price to 1 gold
 
 
 
