@@ -7,8 +7,9 @@
 
 
 ### BUG FIXES
-- **Global**
+- **Market**
 	- [x] Sell mode (auto/1 gold) now works when there are no items in the market too
+	- [x] Remember market short fix for guild market
 
 
 ### TRANSLATIONS

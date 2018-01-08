@@ -3215,7 +3215,7 @@ var gca_global = {
 			// Pages with market
 			pagesWithMarket : [
 				"market",
-				"guild_market"
+				"guildMarket"
 			],
 
 			editor_rememberMarketSort : function (page) {
