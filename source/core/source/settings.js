@@ -511,6 +511,8 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
+				// 1 gold mode
+				"one_gold_mode" : true,
 				// Remember sorting 
 				"remember_sort" : false
 			},

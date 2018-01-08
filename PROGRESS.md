@@ -2,13 +2,13 @@
 
 
 ### IMPROVEMENTS
-- **Global**
-	- [x] ...
+- **Settings**
+	- [x] Toggle button changing sell price always to 1 gold, setting added
 
 
 ### BUG FIXES
 - **Global**
-	- [x] ...
+	- [x] Sell mode (auto/1 gold) now works when there are no items in the market too
 
 
 ### TRANSLATIONS

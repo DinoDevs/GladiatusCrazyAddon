@@ -38,12 +38,13 @@ var gca_markets = {
 			// Default sell duration
 				this.sell_duration();
 			}
-			
-			// 1 gold mode
-			this.oneGoldMode();
 
 			this.layout.changeShortArrows();
 		}
+		
+		// 1 gold mode
+		(gca_options.bool("market","one_gold_mode") &&
+			this.oneGoldMode());
 
 		// Setting Link
 		gca_tools.create.settingsLink("market");

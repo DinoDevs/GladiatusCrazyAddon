@@ -499,6 +499,8 @@ gca_options.data = {
 		"remember_sell_duration" : false,
 		// Default sell duration
 		"sell_duration" : 0,
+		// 1 gold mode
+		"one_gold_mode" : true,
 		// Remember sorting 
 		"remember_sort" : false
 	},
