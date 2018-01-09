@@ -1378,7 +1378,7 @@ var gca_overview = {
 				// Get pic
 				pic = dolls[i].getElementsByClassName("charmercpic")[0];
 				// If player exist
-				if(pic.match("doll") != null){
+				if(pic.className.match("doll") != null){
 					// Get info
 					info.id = parseInt(pic.className.match(/doll(\d+)/)[1], 10);
 					info.tooltip = JSON.parse(pic.dataset.tooltip);
