@@ -121,6 +121,11 @@ var gca_settings = {
 								}
 								data.select.appendChild(option);
 							}
+							
+							// If language is not selected
+							if (data.select.value == '_active'){
+								data.select.value = 'en';
+							}
 
 							// Count items
 							data.count_items = {};
