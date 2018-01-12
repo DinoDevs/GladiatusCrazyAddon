@@ -59,7 +59,7 @@ Find set-by-step guides for all major browsers on our [installation docs](docume
 
 ## :books: Translation
 
-Use our translation system to translate the addon in your language! [Translation System](http://gladiatuscrazyaddon.tk/TransSystem/trans.php).
+Use our [translation system](http://gladiatuscrazyaddon.tk/TransSystem/trans.php) to translate the addon in your language!
 
 
 
