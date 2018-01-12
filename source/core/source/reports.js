@@ -10,8 +10,8 @@ var gca_reports = {
 		if(!document.getElementById("content"))
 			return;
 		
-		// Check getting out from underword
-		if(document.getElementById('content').getElementsByTagName('img')[0].src.match('/ceres.png'))
+		// Check getting out from underworld
+		if(document.getElementById('content').getElementsByTagName('img')[0] && document.getElementById('content').getElementsByTagName('img')[0].src.match('/ceres.png'))
 			return;
 
 		// Resolve submod
@@ -125,7 +125,7 @@ var gca_reports = {
 			
 		// Reward exist?
 		var rewards = document.getElementsByClassName('reportReward');
-		var data = gca_data.section.set('data', 'enemy_drops', []);//enemy,item
+		var data = gca_data.section.get('data', 'enemy_drops', []);//enemy,item
 		var item, enemy;
 		for(var i=0;i<rewards.length;i++){
 			if(typeof rewards[i].getElementsByTagName('div')[1]!=='undefined'){
