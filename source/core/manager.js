@@ -113,7 +113,10 @@ var manager = {
 					break;
 
 			// Guild
-
+				case "guild":
+					this.section.guild();
+					break;
+				
 				// Jail
 				case "guild_jail":
 					this.section.guild_jail();
@@ -303,6 +306,11 @@ var manager = {
 			}
 		},
 
+		// Guild section
+		guild : function() {
+			tools.loadScript("source/guild.js");
+		},
+		
 		// Guild Jail section
 		guild_jail : function() {
 			tools.loadScript("source/guild.jail.js");
