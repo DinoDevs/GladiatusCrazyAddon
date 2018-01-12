@@ -14,6 +14,8 @@
 	- [x] Remember market short fix for guild market
 - **Settings**
 	- [x] Settings not shown when on server with no translations for a first time
+- **Reports**
+	- [x] Fixed 2 bugs not showing items' shadows and not gathering data
 
 
 ### TRANSLATIONS
