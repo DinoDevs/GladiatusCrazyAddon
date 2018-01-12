@@ -4226,7 +4226,7 @@ var gca_global = {
 		p.appendChild(icon);
 		p.appendChild(document.createTextNode(" "));
 		a = document.createElement("a");
-		a.setAttribute("href", "https://github.com/DinoDevs/GladiatusCrazyAddon/tree/master/source/core/locale");
+		a.setAttribute("href", "http://gladiatuscrazyaddon.tk/TransSystem/trans.php");
 		a.setAttribute("target", "_blank");
 		a.setAttribute("rel", "noreferrer");
 		a.style.color = "#3278ee";
