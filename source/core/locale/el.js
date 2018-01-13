@@ -262,7 +262,7 @@ gca_languages["gr"] = {
 			category_overview$best_food : "Επισήμανση του πιο κατάλληλου αναλώσιμου",
 			category_overview$overfeed_food : "Ημιδιαφάνεια στα αναλώσιμα που δίνουν παραπάνω πόντους ζωής",
 			category_overview$daily_bonus_log : "Καταγραφή του καθημερινού μπόνους",
-			category_overview$buffs_detailed_time : "Εμφάνιση λεπτομερείς χρονομετρητών για τα μπόνους του τάγματος",
+			category_overview$buffs_detailed_time : "Εμφάνιση λεπτομερών χρονομετρητών για τα μπόνους του τάγματος",
 			category_overview$mercenaries_manager : "Εμφάνιση του διαχειριστή μισθοφόρων",
 			category_overview$mercenary_tooltip_show : "Εμφάνιση των tooltip των μισθοφόρων",
 			category_overview$more_statistics: "Παροχή περισσότερων στατιστικών παίκτη",
