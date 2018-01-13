@@ -6,6 +6,8 @@
 	- [x] Toggle button changing sell price always to 1 gold, setting added
 - **Guild**
 	- [x] Guild-mail auto check all
+- **Reports**
+	- [x] Dungeon analyzer: see players' life points for each dungeon round
 
 
 ### BUG FIXES

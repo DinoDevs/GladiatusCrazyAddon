@@ -25,6 +25,9 @@ var gca_reports = {
 				// Log items found for statistics
 				(gca_options.bool("reports", "found_items") &&
 					this.report_found_items());
+			}else if (this.combatReport == "reportDungeon"){
+				// Dungeon battle analyzer
+				this.dungeon_analyzer();
 			}
 
 			if (this.combatReport == "reportExpedition" || this.combatReport == "reportDungeon") {
@@ -387,6 +390,229 @@ var gca_reports = {
 			
 		}
 
+	},
+	
+	// Dungeon analyzer
+	dungeon_analyzer : function() {
+		var errors = 0;
+		var life_points = document.getElementById('attackerCharStats1').getElementsByClassName('charstats_text')[0].innerHTML;
+		var enemies = [];
+		var players = [];
+
+		// Find enemies
+		for(var i=1; i<=5; i++) {
+			if(document.getElementById('defenderAvatar1'+i)){
+				var name = document.getElementById('defenderAvatar1'+i).getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
+				var life = document.getElementById('defenderCharStats1'+i).getElementsByClassName('charstats_value3_mirrored')[0].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,'');
+				found = false;
+				index = 0;
+				for(var j=0; j<enemies.length; j++){
+					if(enemies[j][0]==name){
+						found = true;
+						index = j;
+						break;
+					}
+				}
+				if(!found)
+					enemies.push([name, parseInt(life), parseInt(life), 0, 1]);
+				else{//else add him in the same name as 2 in 1
+					enemies[index][4] ++;
+					enemies[index][1] += life;
+					enemies[index][2] += life;
+				}
+			}
+		}
+
+		// Find players
+		for(var i=1; i<=5; i++) {
+			if(document.getElementById('attackerAvatar'+i)){
+				var name = document.getElementById('attackerAvatar'+i).getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
+				var life = parseInt(document.getElementById('attackerCharStats'+i).getElementsByClassName('charstats_value3')[0].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,''));
+				found = false;
+				index = 0;
+				for(var j=0; j<players.length; j++){
+					if(players[j][0]==name){
+						found = true;
+						index = j;
+						break;
+					}
+				}
+				if(!found)
+					players.push([name, parseInt(life), parseInt(life), 0, 1]);
+				else{//else add him in the same name as 2 in 1
+					players[index][4] ++;
+					players[index][1] += life;
+					players[index][2] += life;
+				}
+			}
+		}
+
+		jQuery('.dungeon_report_statistic:eq(1) table th.table_border_bottom').each(function(index){
+			var div = document.createElement('div');
+			div.id = "dungeon_life_report_"+index;
+			div.className = "title2_box dungeon_life_report";
+			
+			div.setAttribute('style','position: absolute; left: 70px; padding: 2px 0px 2px 2px;overflow: hidden;');
+			
+			for (var i=0; i<enemies.length; i++){
+				enemies[i][3] = 0;
+			}
+			for (var i=0; i<players.length; i++){
+				players[i][3] = 0;
+			}
+			
+			var rows = [this.parentNode];
+			var element = this.parentNode.nextElementSibling;
+			while(element && element.getElementsByClassName('table_border_bottom').length==0){
+				rows.push(element);
+				if(element.getElementsByTagName('font').length>0){
+					var text = element.getElementsByTagName('font')[0].innerHTML.replace(/\*(Ο\/Η)*\s*/g,'').replace(/<\/*b>/g,'');
+					if(text.match(/\d+/)) {
+						var isHealing = (element.getElementsByTagName('font')[0].getAttribute('color')=='green')?true:false;
+						var value = parseInt(text.match(/\d+/)[0]);
+						var found = false;
+						var action = null;
+						for(var j=0; j<enemies.length; j++){
+							if(text.match(enemies[j][0]+' ')){
+								found = true;
+								if(isHealing){
+									enemies[j][1] += value;
+									enemies[j][3] += value;
+								}else{
+									enemies[j][1] -= value;
+									enemies[j][3] -= value;
+								}
+								action = enemies[j][0];
+								break;
+							}
+						}
+						if(!found){
+							for(var j=0; j<players.length; j++){
+								if(text.match(players[j][0]+' ')){
+									found = true;
+									if(isHealing){
+										players[j][1] += value;
+										players[j][3] += value;
+									}else{
+										players[j][1] -= value;
+										players[j][3] -= value;
+									}
+								}
+							}
+						}
+						if(!found){
+							element.getElementsByTagName('font')[0].innerHTML += "<br>[Analyzer Data Error]";
+							errors ++;
+						}
+					}
+				}
+				element = element.nextElementSibling;
+			};
+			
+			var roundName = this.innerHTML;
+			
+			let temp_div = document.createElement('div');
+			temp_div.style = "position: absolute;background-color: rgba(0,0,0,0.3);width: 1px;top: -1px;bottom: -1px;right: 0px;z-index: 1;box-shadow: 0px 0px 6px black;";
+			div.appendChild(temp_div);
+			temp_div = document.createElement('div');
+			temp_div.style = "margin-top: 0px;width: 200px;overflow: hidden;";
+			temp_div.className = "charstats_nomargin";
+				let temp_div2 = document.createElement('div');
+				temp_div2.style = "background-image:url(img/char_status_kopf_b.jpg);width:262px;height:5px;overflow:hidden";
+				temp_div.appendChild(temp_div2);
+				
+				temp_div2 = document.createElement('div');
+				temp_div2.style = "text-align: center; width: 200px;";
+				temp_div2.className = "charstats_bg2";
+					let temp_div3 = document.createElement('span');
+					temp_div3.textContent = roundName + " - " + life_points;
+					temp_div2.appendChild(temp_div3);
+				temp_div.appendChild(temp_div2);
+			div.appendChild(temp_div);
+			
+			let temp_div4;
+			for (var i=0; i<enemies.length; i++){
+				var persent = ((((enemies[i][1]>0)?enemies[i][1]:0)/enemies[i][2])*100);
+				
+				temp_div2 = document.createElement('div');
+				temp_div2.style = "width: 200px;";
+				temp_div2.className = "charstats_bg2";
+					temp_div3 = document.createElement('span');
+					temp_div3.className = 'charstats_text';
+					temp_div3.textContent = ((enemies[i][4]>1)?'['+enemies[i][4]+'] ':'')+enemies[i][0];
+					if(enemies[i][3]!=0){
+						temp_div4 = document.createElement('span');
+						temp_div4.style = 'color:'+((enemies[i][3]>0)?'rgb(0, 100, 0)':'rgb(100, 0, 0)')+';font-size: 11px;float: right;margin-right: 80px;';
+						temp_div4.textContent = ((enemies[i][3]>0)?'+':'')+enemies[i][3]
+						temp_div3.appendChild(temp_div4);
+					}
+					temp_div2.appendChild(temp_div3);
+					temp_div3 = document.createElement('div');
+					temp_div3.className = 'charstats_balken';
+						temp_div4 = document.createElement('div');
+						temp_div4.className = 'charstats_balken_leben';
+						temp_div4.style = 'width:'+persent+'%';
+						temp_div3.appendChild(temp_div4);
+					temp_div2.appendChild(temp_div3);
+					temp_div3 = document.createElement('span');
+					temp_div3.className = 'charstats_value3';
+					temp_div3.style = 'font-weight: normal;font-size: 11px;';
+					temp_div3.textContent = enemies[i][1]+' / '+enemies[i][2];
+					temp_div2.appendChild(temp_div3);
+				temp_div.appendChild(temp_div2);
+			}
+			
+			for (var i=0; i<players.length; i++){
+				var persent = ((((players[i][1]>0)?players[i][1]:0)/players[i][2])*100);
+				
+				temp_div2 = document.createElement('div');
+				temp_div2.style = "width: 200px;";
+				temp_div2.className = "charstats_bg2";
+					temp_div3 = document.createElement('span');
+					temp_div3.className = 'charstats_text';
+					temp_div3.textContent = ((players[i][4]>1)?'['+players[i][4]+'] ':'')+players[i][0];
+					if(players[i][3]!=0){
+						temp_div4 = document.createElement('span');
+						temp_div4.style = 'color:'+((players[i][3]>0)?'rgb(0, 100, 0)':'rgb(100, 0, 0)')+';font-size: 11px;float: right;margin-right: 80px;';
+						temp_div4.textContent = ((players[i][3]>0)?'+':'')+players[i][3]
+						temp_div3.appendChild(temp_div4);
+					}
+					temp_div2.appendChild(temp_div3);
+					temp_div3 = document.createElement('div');
+					temp_div3.className = 'charstats_balken';
+						temp_div4 = document.createElement('div');
+						temp_div4.className = 'charstats_balken_misc';
+						temp_div4.style = 'width:'+persent+'%';
+						temp_div3.appendChild(temp_div4);
+					temp_div2.appendChild(temp_div3);
+					temp_div3 = document.createElement('span');
+					temp_div3.className = 'charstats_value3';
+					temp_div3.style = 'font-weight: normal;font-size: 11px;'+((persent<=10)?'font-weight:bold;':'');
+					temp_div3.textContent = players[i][1]+' / '+players[i][2];
+					temp_div2.appendChild(temp_div3);
+				temp_div.appendChild(temp_div2);
+			}
+			
+			temp_div2 = document.createElement('div');
+			temp_div2.style = "clear:both;background-image:url(img/char_status_abschluss_b.jpg);width:262px;height:5px;overflow:hidden";
+			temp_div.appendChild(temp_div2);
+			
+			this.parentNode.insertBefore(div, this.nextSibling);
+			
+			var height = div.clientHeight+10;
+			for(var i=0; i<rows.length; i++){
+				height -= rows[i].clientHeight;
+			}
+			if(height>0){
+				height = height;
+				var tr = document.createElement('tr');
+				tr.style.height = height+'px';
+				rows[rows.length-1].parentNode.insertBefore(tr, rows[rows.length-1].nextSibling);
+			}
+		});
+
+		//if(errors>0)
+		//	console.log('ERRORS : '+errors);
 	}
 };
 
