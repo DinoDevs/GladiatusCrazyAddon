@@ -3,7 +3,7 @@
  * Name : Portuguese
  * Code : [none]
  * Tag  : pt
- * Translator: Led_Zeppelin, tfmvl, kelmaxine
+ * Translator: HarveySpecter [lucasamicci@gmail.com] Led_Zeppelin, tfmvl, kelmaxine
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['pt'] = {
 	name : 'Portugues (Portuguese)',
-	translators : ["Led_Zeppelin", "tfmvl", "kelmaxine"],
+	translators : ["HarveySpecter [lucasamicci@gmail.com]", "Led_Zeppelin", "tfmvl", "kelmaxine"],
 	locale : {
 		info : {
 			description : "O mais louco add-on para gladiatus sempre!"
@@ -21,16 +21,21 @@ gca_languages['pt'] = {
 			days : "dias",
 			minutes : "minutos",
 			no_data : "Não há dados.",
+			confirm : "Confirmar",
+			cancel : "Cancelar",
 			close : "Fechar",
 			error : "Erro"
 		},
 		global : {
-			life_recover_full : "Vida totalmente recuperada em",
+			life_potion_use : "Use uma poção de vida",
+			life_potion_used : "Uma poção de vida foi usada",
+			life_potion_left : "Você possui {{número}} poções de vida",
+			life_recover_full : "Vida totalmente recuperada",
 			message_private_write : "Escrever mensagem privada",
 			message_guild_write : "Escrever mensagem guilda",
 			message_send : "Enviar",
-			message_sent_success : "A mensagem de Aliança foi enviada",
-			message_sent_failed : "A mensagem de Aliança não foi enviada",
+			message_sent_success : "Mensagem enviada com sucesso",
+			message_sent_failed : "Falha no envio da mensagem",
 			message_empty : "A mensagem está vazia",
 			message_exclude_me : "Excluir-me",
 			guild_market_goto : "Ir para o Mercado da Aliança",
@@ -46,28 +51,64 @@ gca_languages['pt'] = {
 			online_friends : "Amigos Online",
 			guild_friends : "Amigos da Aliança",
 			family_friends : "Amigos da Família",
+			donate_gold_confirm : "Você quer doar {{número}} ouro(s) ?",
 			donate_gold_success : "O seu ouro foi doado",
 			donate_gold_failed : "A sua doação falhou",
+			donate_gold_no_gold : "Você não tem ouro para doar",
 			donate_gold_all_gold : "Doar todo o seu ouro",
 			quest_full : "Completo",
 			quest_new : "Novo",
+			pray_start : "Clique para começar a oração",
+			pray_stop : "Clique para parar a oração",
+			heal : "Regenerar",
 			notification_guild_application : "Há uma aplicação pendente na Aliança!",
-			gold_exp_data_to_level_up : "Dias que faltam para subir de nível"
+			low_durability_items : "Existem {{número}} itens com durabilidade abaixo de {{percentual}}",
+			gold_exp_data : "Informação de ouro e experiência",
+			gold_exp_data_today : "Últimas 24 horas",
+			gold_exp_data_week : "Últimos 7 dias",
+			gold_exp_data_avg_day : "Média de valores por dia",
+			gold_exp_data_to_level_up : "Dias que faltam para subir de nível",
+			gold_exp_data_package_tax : "Taxa semanal de ouro armazenado",
+			gold_exp_data_measurements : "Medição",
+			gold_exp_data_total_exp : "Experiência total",
+			gold_exp_data_total_gold : "Ouro total"
 		},
-		overview : {},
-		pantheon : {},
+		overview : {
+			stats_difference : "Diferença",
+			drop_item_see_materials_repair : "Arraste um item para ver o material necessário para reparo",
+			workbench_6th_slot_empty : "O sexto espaço de armazenamento precisa estar vazio"
+		},
+		pantheon : {
+			mysterybox_open_all : "Abrir tudo",
+			mysterybox_open_stop : "Pare",
+			mysterybox_open_done : "Feito"
+		},
+				
+				
 		guild : {
-			bank_all_gold : "Adicionar todo o ouro",
+			bank_all_gold : "Todo o ouro",
+			library_per_point_cost : "Custo por ponto",
+			library_gold_left : "Ouro da guilda após a ativação",
 			medic_lost_points : "Pontos perdidos",
 			medic_points_to_heal : "Pontos para curar",
 			medic_life_after_heal : "Vida após a cura"
 		},
-		training : {},
+		expedition : {
+		},
+		training : {
+		},
+				
 		auction : {
 			number_of_items : "Número de items : {{number}}",
 			number_of_bided_items : "Número de items licitados : {{number}}",
 			hide_your_gold_here : "Esconder o seu ouro aqui",
 			price_value_function : "Preço = Valor + {{number}}"
+		},
+		markets : {
+		},
+		forge : {
+		},
+		packages : {
 		},
 		settings : {
 			settings : "Configurações",
@@ -80,17 +121,30 @@ gca_languages['pt'] = {
 			category_reports : "Configurações de relatórios",
 			category_training : "Definições de treino",
 			category_merchants : "Configurações comerciantes",
+			category_forge : "Forja",
+			category_arena : "Arena",
+			category_market : "Mercado",
+			category_expedition : "Expedição",
 			category_guild : "Definições de alianças",
 			category_auction : "Configurações do leilão",
+			category_sound : "som",
 			category_global$language_select : "Alterar a linguagem do Add-on",
 			category_global$sound_notifications : "Activar notificações de som para as missões, masmorras e arenas",
+			category_global$browser_notifications : "Ativar notificações do navegador",
 			category_global$extended_hp_xp_info : "Mostrar info extendida de Pontos de Vida e Experiência na barra superior.",
+			category_global$extended_hp_xp_info_potion : "Exibir ícone de uso de poção de vida",
+			category_global$hp_timer_for_full_life : "Exibir minutos para a cura completa",
 			category_global$shortcuts_bar : "Mostrar barra superior de botões.",
+			category_global$shortcuts_bar_buttons : "Selecione atalhos para a barra de atalhos",
 			category_global$auction_status_bar : "Mostrar barra de estado dos leilões",
+			category_global$auction_status_notification : "Alerta quando o status do leilão mudar",
 			category_global$top_fixed_bar : "Ativar barra superior OnScroll",
 			category_global$advance_main_menu : "Melhorar o menu principal",
 			category_global$remember_tabs : "Guardar páginas da mochila e dos mercadores",
 			category_global$merchants_timer : "Mostrar tempo restante dos mercadores.",
+			category_global$notify_new_guild_application : "Notifique-me quando há uma nova aplicação de alianças",
+			category_global$notify_new_guild_application_interval : "Verifique as aplicações a cada (minutos)",
+			category_global$x_scroll : "Ativar rolagem horizontal Gladiatus'",
 			category_overview$analyze_items : "Analisar os items do jogador",
 			category_overview$more_statistics : "Fornecer mais estatísticas do jogador",
 			category_messages$messages_layout : "Melhorar a interface de mensagens",
@@ -107,6 +161,11 @@ gca_languages['pt'] = {
 			category_auction$item_level : "Mostrar o nivel dos items.",
 			category_auction$x3_items_per_line : "Mostrar 3 items por linha",
 			save : "Salvar todos",
+			show_as : "Mostrar como",
+			translated_percent : "Porcentagem traduzida: {{number}}%",
+			translated_by : "Traduzido por: {{string}}",
+			reset_settings_confirm : "Tem certeza de que deseja redefinir as configurações do addon?",
+			clear_data_confirm : "Tem certeza de que deseja limpar todos os dados do addon?",
 			notification_reload : "Recarregar a página, para que as opções tenham efeito"
 		}
 	},

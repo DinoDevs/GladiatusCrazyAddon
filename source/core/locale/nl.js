@@ -3,7 +3,7 @@
  * Name : Dutch
  * Code : [none]
  * Tag  : nl
- * Translator: proximilius, priscuss, anathustra
+ * Translator: priscuss@hotmail.nl proximilius, anathustra
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['nl'] = {
 	name : 'Nederlands (Dutch)',
-	translators : ["proximilius", "priscuss", "anathustra"],
+	translators : ["priscuss@hotmail.nl", "proximilius", "anathustra"],
 	locale : {
 		info : {
 			description : "De allerbeste gladiatus add-on ooit!!"
@@ -21,10 +21,15 @@ gca_languages['nl'] = {
 			days : "dagen",
 			minutes : "minuten",
 			no_data : "Er is geen data",
+			confirm : "Bevestig",
+			cancel : "Annuleer",
 			close : "Sluiten",
 			error : "Fout"
 		},
 		global : {
+			life_potion_use : "Gebruik een Genezingsdrankje",
+			life_potion_used : "Een genezingsdrankje is gebruikt",
+			life_potion_left : "Je hebt nu {{number}} genezingsdrankje(s)",
 			life_recover_full : "Volledig herstel van levenspunten over",
 			message_private_write : "Schrijf privébericht",
 			message_guild_write : "Schrijf gildebericht",
@@ -46,28 +51,68 @@ gca_languages['nl'] = {
 			online_friends : "Online vrienden",
 			guild_friends : "Gildegenoten",
 			family_friends : "Familia leden",
+			donate_gold_confirm : "Ben je zeker dat je {{number}} goud wil doneren",
 			donate_gold_success : "Je goud is gedoneerd",
 			donate_gold_failed : "Goud donatie mislukt",
+			donate_gold_no_gold : "Er is geen goud om te doneren",
 			donate_gold_all_gold : "Doneer al je goud",
-			quest_full : "Volledige versie",
+			quest_full : "Volledige verzien",
 			quest_new : "Nieuw",
+			pray_start : "Klik om te bidden te beginnen",
+			pray_stop : "Klik om bidden te beëindigen",
+			heal : "Genezing",
 			notification_guild_application : "Er is een aanmelding voor de Gilde!",
-			gold_exp_data_to_level_up : "Dagen voordat je levelt "
+			low_durability_items : "Er zijn {{number}} item(s) met duurzaamheid onder {{percent}}%",
+			gold_exp_data : "Goud en XP Data",
+			gold_exp_data_today : "Afgelopen 24 uur",
+			gold_exp_data_week : "Afgelopen 7 dagen",
+			gold_exp_data_avg_day : "Gemiddelde waarden per dag",
+			gold_exp_data_to_level_up : "Dagen voordat je levelt ",
+			gold_exp_data_total_exp : "Totale XP",
+			gold_exp_data_total_gold : "Totaal Goud"
 		},
-		overview : {},
-		pantheon : {},
+		overview : {
+			stats_difference : "Verschil",
+			drop_item_see_materials_repair : "Plaats een item om te zien welke grondstoffen voor reparatie nodig zijn",
+			workbench_6th_slot_empty : "Werkbank 6 tabblad moet leeg zijn"
+		},
+		pantheon : {
+			mysterybox_open_all : "Open alle",
+			mysterybox_open_stop : "Stop",
+			mysterybox_open_done : "Klaar!"
+		},
+				
+				
 		guild : {
 			bank_all_gold : "Doneer alle goudstukjes",
+			library_per_point_cost : "Kosten per Stat punt",
+			library_gold_left : "Gilde goud na activatie",
 			medic_lost_points : "Verloren punten",
 			medic_points_to_heal : "Genezende punten",
 			medic_life_after_heal : "Leven na genezing"
 		},
-		training : {},
+		expedition : {
+			material_drop_chance : "{{number}}% kans, op materiaal"
+		},
+		training : {
+			stats_points : "Stat punten",
+			points_breakdown : "Punten berekening",
+			stats_calculated_with_yourself_as_an_opponent : "* Stats zijn berekend op aanval op je eigen",
+			total_cost : "Totale kosten",
+			costs_discount : "Trainingskosten korting: {{number}}%"
+		},
+				
 		auction : {
 			number_of_items : "Aantal voorwerpen : {{number}}",
 			number_of_bided_items : "Aantal voorwerpen waarop geboden is : {{number}}",
 			hide_your_gold_here : "Zet hier je goud veilig",
 			price_value_function : "Prijs is gelijk aan waarde + {{number}}"
+		},
+		markets : {
+		},
+		forge : {
+		},
+		packages : {
 		},
 		settings : {
 			settings : "Instellingen",

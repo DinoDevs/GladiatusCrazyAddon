@@ -3,7 +3,7 @@
  * Name : Chinese
  * Code : [none]
  * Tag  : zh
- * Translator: Eric Hsieh
+ * Translator: Eric Hsieh, Liu
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['zh'] = {
 	name : '繁體中文 (Chinese traditional)',
-	translators : ["Eric Hsieh"],
+	translators : ["Eric Hsieh, Liu"],
 	locale : {
 		info : {
 			description : "craziest add-on給永遠的神鬼戰士"
@@ -21,6 +21,8 @@ gca_languages['zh'] = {
 			days : "天",
 			minutes : "每分鐘",
 			no_data : "目前還沒有數據",
+			"confirm" : "確認",
+			"cancel" : "取消",
 			close : "關閉",
 			error : "錯誤"
 		},

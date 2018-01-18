@@ -22,6 +22,11 @@
 
 ### TRANSLATIONS
 - **Updates**
-	- [x] Greek Translation by GreatApo and DarkThanos
-	- [x] Latvian Translation by DarkSide666
-	- [x] Turkish Translation by Xus
+	- [x] Greek updated by GreatApo and DarkThanos
+	- [x] Latvian updated by DarkSide666
+	- [x] Turkish updated by Xus
+	- [x] Lithuanian updated by andrius_t
+	- [x] Dutch updated by priscuss
+	- [x] Portuguese updated by HarveySpecter
+	- [x] Slovak updated by TraiaN
+	- [x] Chinese updated by Eric Liu
