@@ -39,7 +39,7 @@ var gca_markets = {
 				this.sell_duration();
 			}
 
-			this.layout.changeShortArrows();
+			this.layout.changeSortArrows();
 		}
 		
 		// 1 gold mode
@@ -280,7 +280,7 @@ var gca_markets = {
 
 	// Layout
 	layout : {
-		changeShortArrows : function() {
+		changeSortArrows : function() {
 			let content = document.getElementById("content");
 			if(content.className.length > 0)
 				content.className += " ";
