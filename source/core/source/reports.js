@@ -106,7 +106,7 @@ var gca_reports = {
 			// CircusTurma type
 			else if(t === "3") this.combatReport = "reportCircusTurma";
 			// Dungeons type
-			else if(t === "1") this.combatReport = "reportDungeon";
+			else if(t === "1" || t === "4") this.combatReport = "reportDungeon";
 
 			else this.combatReport = "reportExpedition";
 		}
