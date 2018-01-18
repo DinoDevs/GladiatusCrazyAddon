@@ -129,6 +129,10 @@ var gca_reports = {
 		// Reward exist?
 		var rewards = document.getElementsByClassName('reportReward');
 		var data = gca_data.section.get('data', 'enemy_drops', []);//enemy,item
+		// Fix wrong data type of previous versions
+		if(data.constructor != Array){
+			data = [];
+		}
 		var item, enemy;
 		for(var i=0;i<rewards.length;i++){
 			if(typeof rewards[i].getElementsByTagName('div')[1]!=='undefined'){
