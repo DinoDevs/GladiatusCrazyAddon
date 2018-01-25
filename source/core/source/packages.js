@@ -72,7 +72,7 @@ var gca_packages = {
 		groupSideFilters : function(){
 			// Move bag to the right
 			var bagBox = document.getElementById("inv").parentNode.parentNode;
-			bagBox.style.float = "right";
+			bagBox.className += " package_side_bag";
 			bagBox.parentNode.style.padding = "0px 0px";
 
 			// Create Side filter box

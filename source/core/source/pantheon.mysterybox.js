@@ -38,7 +38,9 @@ var gca_pantheon_mysterybox = {
 			this.button.value = gca_locale.get("pantheon", "mysterybox_open_all");
 			this.button.type = "button";
 			this.button.className = "premium_activate_button" + (enabled ? "" : " disabled");
-			document.getElementById("mysterybox_buttons").appendChild(this.button);
+			var buttonsWrapper = document.getElementById("mysterybox_buttons");
+			buttonsWrapper.appendChild(this.button);
+			buttonsWrapper.parentNode.style.minHeight = '140px';
 
 			// If disabled
 			if(!enabled)
@@ -319,7 +321,7 @@ var gca_pantheon_mysterybox = {
 				icon.className = 'icon_rubies';
 				icon.setAttribute('style', 'transform: scale(0.8);');
 				div = document.createElement('div');
-				div.setAttribute('style', 'position: absolute;top: 5px;left: 4px;font-size: 11px;color: #c7b68a;font-weight: bold;text-shadow: 0px 0px 3px black;');
+				div.className = 'reward_pool_rubies_price';
 				div.appendChild(icon);
 				div.appendChild(document.createTextNode(((rubies > 0)? rubies : '?')));
 				rewards[i].appendChild(div);

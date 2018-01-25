@@ -13,6 +13,12 @@ var gca_global = {
 		// If submenu click to change
 		(gca_options.bool("global","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.preload());
+		// If rtl server
+		if (localStorage.getItem('gca_rtl')) {
+			if (document.documentElement.className.length)
+				document.documentElement.className += " ";
+			document.documentElement.className += "gca_rtl";
+		}
 		// If x-scroll
 		(gca_options.bool("global","x_scroll") && 
 			this.display.xScrollFix());
@@ -256,7 +262,13 @@ var gca_global = {
 		}
 		// Else its a right to left server
 		window.gca_rtl = true;
-		document.documentElement.className += " gca_rtl";
+		if (document.documentElement.className.length)
+			document.documentElement.className += " ";
+		document.documentElement.className += "gca_rtl";
+
+		// Enable if disabled
+		if (!localStorage.getItem('gca_rtl'))
+			localStorage.setItem('gca_rtl', 'true');
 	},
 
 	// Display stuf
@@ -906,14 +918,14 @@ var gca_global = {
 						td.setAttribute("width", "50%");
 						div = document.createElement('div');
 						div.id = "online_guild_friends";
-						div.style.textAlign = "left";
+						//div.style.textAlign = "left";
 						td.appendChild(div);
 						tr.appendChild(td);
 						td = document.createElement('td');
 						td.setAttribute("width", "50%");
 						div = document.createElement('div');
 						div.id = "online_family_friends";
-						div.style.textAlign = "left";
+						//div.style.textAlign = "left";
 						td.appendChild(div);
 						tr.appendChild(td);
 						table.appendChild(tr);
@@ -1057,9 +1069,9 @@ var gca_global = {
 						else{
 							// If too many players found
 							if(player_list.length >= 10){
-								parent.setAttribute('style','text-align:left;overflow:auto;height:200px;');
+								parent.setAttribute('style','overflow:auto;height:200px;');
 							}else{
-								parent.setAttribute('style','text-align:left;');
+								parent.removeAttribute('style');
 
 							}
 							parent.parentNode.setAttribute('style','vertical-align:top;');
@@ -1139,9 +1151,9 @@ var gca_global = {
 						else{
 							// If too many players found
 							if(player_list.length >= 10){
-								parent.setAttribute('style','text-align:left;overflow:auto;height:200px;');
+								parent.setAttribute('style','overflow:auto;height:200px;');
 							}else{
-								parent.setAttribute('style','text-align:left;');
+								parent.removeAttribute('style');
 							}
 							parent.parentNode.setAttribute('style','vertical-align:top;');
 							// For each player
