@@ -685,18 +685,17 @@ var gca_overview = {
 
 			// Create info span
 			this.custom_elements.info = document.createElement('span');
-			this.custom_elements.info.className = "charstats_value";
-			this.custom_elements.info.style = "margin-right: -20px;margin-top: -6px;font-size: 10px;";
+			this.custom_elements.info.className = "charstats_value gca_life_gain_info";
 			document.getElementById('char_leben_tt').appendChild(this.custom_elements.info);
 			// Create space bar
 			this.custom_elements.spaceBar = document.createElement('div');
-			this.custom_elements.spaceBar.className = "charstats_balken_leben";
-			this.custom_elements.spaceBar.style = "width:0%;float:right;background-image:none;";
+			this.custom_elements.spaceBar.className = "charstats_balken_leben gca_life_gain_bar";
+			this.custom_elements.spaceBar.style = "width:0%;background-image:none;";
 			document.getElementById("char_leben_balken").parentNode.insertBefore(this.custom_elements.spaceBar, document.getElementById("char_leben_balken"));
 			// Create extend bar
 			this.custom_elements.bar = document.createElement('div');
-			this.custom_elements.bar.className = "charstats_balken_leben";
-			this.custom_elements.bar.style = "width:0%;float:right;background-image:url(img/energie_gruen.gif);";
+			this.custom_elements.bar.className = "charstats_balken_leben gca_life_gain_bar";
+			this.custom_elements.bar.style = "width:0%;background-image:url(img/energie_gruen.gif);";
 			document.getElementById("char_leben_balken").parentNode.insertBefore(this.custom_elements.bar, document.getElementById("char_leben_balken"));
 
 			// Add event on bag open

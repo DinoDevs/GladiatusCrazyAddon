@@ -674,6 +674,11 @@
 
 	/* Overview Layout
 	-------------------------------------------------- */
+		/* Show life gain */
+		.gca_life_gain_info {margin-right: -20px;margin-top: -6px;font-size: 10px;}
+		.gca_rtl .gca_life_gain_info {margin-right: auto;margin-left: -20px;}
+		.gca_life_gain_bar {float:right;}
+		.gca_rtl .gca_life_gain_bar {float:left;}
 		/* Single item slot */
 		.single_char_item_bg{position: absolute;background-image: url('interface/char_item_bg.jpg');width:32px;height:32px;}
 		/* Mercenary info slot */
