@@ -10,8 +10,6 @@ var gca_markets = {
 		if(!document.getElementById("content"))
 			return;
 		
-		this.levelsYouCanSee();
-		
 		// If there are items
 		if(document.getElementById("market_table")){
 			// If Item shadow
@@ -42,9 +40,15 @@ var gca_markets = {
 			this.layout.changeSortArrows();
 		}
 		
+		// Insert sort options in POST-URL on sell form
+		this.sortOptionsOnSell();
+			
 		// 1 gold mode
 		(gca_options.bool("market","one_gold_mode") &&
 			this.oneGoldMode());
+			
+		// Levels you can see
+		this.levelsYouCanSee();
 
 		// Setting Link
 		gca_tools.create.settingsLink("market");
@@ -304,6 +308,15 @@ var gca_markets = {
 					links[i].textContent = "▷ " + links[i].textContent;
 				}
 			}
+		}
+	},
+	
+	sortOptionsOnSell : function() {
+		// Get url
+		var url = gca_getPage.parameters();
+		// Fix POST-URL on sell form
+		if (url.hasOwnProperty("s")) {
+			document.getElementById('sellForm').action += '&s='+url.s[0];
 		}
 	}
 };

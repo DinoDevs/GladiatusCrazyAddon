@@ -8,7 +8,9 @@
 
 ### BUG FIXES
 - **Global**
-	- [x] ...
+	- [x] Many style fixes for right-to-left servers
+- **Market**
+	- [x] Table sort after selling fix
 
 
 ### TRANSLATIONS
