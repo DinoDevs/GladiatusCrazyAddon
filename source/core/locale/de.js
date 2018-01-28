@@ -253,13 +253,13 @@ gca_languages['de'] = {
 			//category_global$pagination_layout : "",
 			category_global$gold_exp_data : "Zeige Gold und Erfahrung Daten an",
 			category_global$pray_shorcut : "Beten Tasten in der Unterwelt anzeigen",
-			category_global$centurio_powerups_timers : "",
+			//category_global$centurio_powerups_timers : "",
 			category_global$show_durability : "Haltbarkeit der Gegenstände unten links anzeigen",
 			category_global$min_durability : "Benachrichtige sobald ein Gegenstand weniger als _% Haltbarkeit + Veredelung hat (Regler auf 0 deaktiviert)",
 			// Settings - Overview
 			category_overview$analyze_items : "Analysiere Spielergegenstände",
 			category_overview$food_life_gain : "Zeige Lebenspunkte nach der Nahrung",
-			category_overview$block_avoid_caps : "",
+			//category_overview$block_avoid_caps : "",
 			category_overview$best_food : "Hebt das beste Essen hervor",
 			category_overview$overfeed_food : "Blende Essen aus, dass zuviel heilt",
 			category_overview$daily_bonus_log : "Tagesbonus protokollieren",
@@ -289,7 +289,7 @@ gca_languages['de'] = {
 			category_packages$load_more_pages : "Mehrere Seiten laden",
 			category_packages$pages_to_load : "Max Seitenanzahl die geladen werden soll",
 			category_packages$item_price : "Wert der Gegenstände anzeigen",
-			category_packages$special_category_features : "",
+			//category_packages$special_category_features : "",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Aktiviere die Gruppierung von Aufgaben",
 			category_pantheon$quests_detailed_rewards : "Zeige detaillierte Aufgabenbelohnungen ",
@@ -367,7 +367,7 @@ gca_languages['de'] = {
 			show_as : "anzeigen als",
 
 			// Info
-			translated_by : "",
+			//translated_by : "",
 			reset_settings_confirm : "Möchtest du die Einstellungen des Addons wirklich zurücksetzen?",
 			clear_data_confirm : "Möchtest du wirklich alle Daten des Addons löschen?",
 

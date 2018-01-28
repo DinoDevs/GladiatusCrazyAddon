@@ -25,6 +25,9 @@ var inject = function(_info, _window, _folder, _storage){
 	// Not logged in
 	if(info.page.playerId == 0)
 		return;
+	
+	// Resolve Player Id
+	info.page.resolvePlayerId();
 
 	// Load Style
 	tools.loadStyle("resources/style_gca.css");

@@ -67,7 +67,7 @@ var gca_locale = {
 
 		// If no variables
 		if(typeof variables == "undefined"){
-			// Return raw traslation
+			// Return raw translation
 			return raw;
 		}
 
@@ -76,7 +76,7 @@ var gca_locale = {
 			// Replace variable
 			raw = raw.replace(new RegExp('{{' + name + '}}', 'g'), variables[name]);
 		}
-		// Return generated traslation
+		// Return generated translation
 		return raw;
 	},
 

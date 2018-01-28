@@ -26,18 +26,18 @@ var locale = {
 		// Language to load
 		var lang = this.find(
 			(this.countries[info.page.country]) ? this.countries[info.page.country] : info.page.country,
-			info.data.window.localStorage.getItem("gladiatusCrazyAddonData_" + info.page.playerId + "_lang", "en")
+			info.data.window.localStorage.getItem("gladiatusCrazyAddonData_" + info.page.playerId + "_lang")
 		);
-
+		
 		// Load translation script
 		tools.preloadScript("source/gca.locale.js");
 
-		// If not english
+		// If not English
 		if(lang != "en") {
-			// Load english for any unsupported translation
+			// Load English for any unsupported translation
 			tools.preloadScript("locale/en.js");
 		}
-
+		
 		// Load lang
 		tools.preloadScript("locale/" + lang + ".js");
 		this.loaded = lang;
