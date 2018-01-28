@@ -17,3 +17,5 @@
 - **Updates**
 	- [x] Greek updated by GreatApo and DarkThanos
 	- [x] German updated by DoonFreak
+- **Fixes**
+	- [x] Translations not loading
