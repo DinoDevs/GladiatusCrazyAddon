@@ -1083,7 +1083,7 @@ var gca_global = {
 								parent.appendChild(sentMsg);
 								let bull = document.createElement('font');
 								bull.setAttribute("color", player_list[i].color);
-								bull.textContent = "\u2022";
+								bull.textContent = "\u25cf";
 								parent.appendChild(bull);
 								parent.appendChild( document.createTextNode(' ') );
 								let name = document.createElement('a');
@@ -1164,7 +1164,7 @@ var gca_global = {
 								parent.appendChild(sentMsg);
 								let bull = document.createElement('font');
 								bull.setAttribute("color", player_list[i].color);
-								bull.textContent = "\u2022";
+								bull.textContent = "\u25cf";
 								parent.appendChild(bull);
 								parent.appendChild( document.createTextNode(' ') );
 								let name = document.createElement('a');

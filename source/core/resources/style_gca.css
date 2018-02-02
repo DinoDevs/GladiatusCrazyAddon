@@ -392,10 +392,10 @@
 /* Online Friends */
 	.online_friends_loading_img {margin-left:100px;margin-top:20px;}
 	.online_friends_table{text-align:center;width:100%;}
-	.online_friends_table .online_guild_friends,
-	.online_friends_table .online_guild_friends {text-align: left;}
+	.online_friends_table #online_guild_friends,
+	.online_friends_table #online_family_friends {text-align: left;}
 	.gca_rtl .online_friends_table #online_guild_friends,
-	.gca_rtl .online_friends_table #online_guild_friends {text-align: right;}
+	.gca_rtl .online_friends_table #online_family_friends {text-align: right;}
 	.online_friends_table .private-message-icon{width: 14px;height: 13px;display: inline-block;margin-bottom: -2px;margin-right: 4px;background: transparent url('buttons/main_buttons.png') -177px -50px no-repeat;}
 
 /* Auction */
