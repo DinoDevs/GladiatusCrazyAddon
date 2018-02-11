@@ -94,7 +94,7 @@ var gca_arena = {
 					try {
 						var obj = JSON.parse(content);
 					} catch (e) {
-						gca_notifications.error("Something went wrong.");
+						gca_notifications.error("Global Arena:\nSomething went wrong.");
 						return;
 					}
 					
@@ -102,9 +102,9 @@ var gca_arena = {
 				},
 				error: function(jqXHR, exception){
 					if(jqXHR.status == 0){
-						gca_notifications.error("Our server is still HTTP and not HTTPS. If you want to continue allow script load of unauthenticated sources on this page.");
+						gca_notifications.error("Global Arena:\nOur server is still HTTP and not HTTPS. If you want to continue allow script load of unauthenticated sources on this page.");
 					}else{
-						gca_notifications.error("Connection error.");
+						gca_notifications.error("Global Arena:\nConnection error.");
 					}
 				}
 			});
@@ -135,7 +135,7 @@ var gca_arena = {
 					}else if(obj.status){
 						if(obj.status == 'lost'){
 							gca_notifications.error("Global Arena:\nYou lost the fight :( ");
-							document.getElementById('alert_box').textContent = "Global Arena:\nYou lost the fight :(";
+							document.getElementById('alert_box').textContent = "You lost the fight :(";
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else if(obj.status == 'win'){
 							gca_arena_make_list(obj);
