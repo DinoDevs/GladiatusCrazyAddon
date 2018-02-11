@@ -193,45 +193,45 @@ var gca_arena = {
 			
 			let temp_element3;
 			
-			for(i=1;i<=list.length;i++){
+			for(i=0;i<list.length;i++){
 				temp_element = document.createElement("tr");
 				div.getElementsByTagName('table')[0].appendChild(temp_element);
 				
 				temp_element2 = document.createElement("th");
-				temp_element2.textContent = list[list.length-i].position;
-				last_position = list[list.length-i].position;
+				temp_element2.textContent = list[i].position;
+				last_position = list[i].position;
 				temp_element.appendChild(temp_element2);
 				
 				temp_element2 = document.createElement("td");
-				//temp_element2.textContent = list[list.length-i].name;
+				//temp_element2.textContent = list[i].name;
 				temp_element.appendChild(temp_element2);
 				
 				//https://s4-gr.gladiatus.gameforge.com/game/index.php?mod=player&p=119682
 				temp_element3 = document.createElement("a");
-				temp_element3.href = "https://s"+list[list.length-i].server+"-"+list[list.length-i].country+".gladiatus.gameforge.com/game/index.php?mod=player&p="+list[list.length-i].id;
-				temp_element3.textContent = list[list.length-i].name;
+				temp_element3.href = "https://s"+list[i].server+"-"+list[i].country+".gladiatus.gameforge.com/game/index.php?mod=player&p="+list[i].id;
+				temp_element3.textContent = list[i].name;
 				temp_element3.setAttribute("target","_blank");
 				temp_element2.appendChild(temp_element3);
 				
 				temp_element2 = document.createElement("td");
-				//temp_element2.textContent = list[list.length-i].country;
+				//temp_element2.textContent = list[i].country;
 				temp_element2.style= "text-align: center;";
 				temp_element.appendChild(temp_element2);
 				
 				temp_element3 = document.createElement("img");
-				temp_element3.src = "https://flags.fmcdn.net/data/flags/h20/"+list[list.length-i].country+".png";
+				temp_element3.src = "https://flags.fmcdn.net/data/flags/h20/"+list[i].country+".png";
 				temp_element3.style = "height: 12px;";
-				temp_element3.dataset.tooltip = '[[[["Country:","'+list[list.length-i].country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+list[list.length-i].server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
+				temp_element3.dataset.tooltip = '[[[["Country:","'+list[i].country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+list[i].server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
 				temp_element2.appendChild(temp_element3);
 				
 				temp_element2 = document.createElement("td");
-				//temp_element2.textContent = list[list.length-i].id;
+				//temp_element2.textContent = list[i].id;
 				temp_element.appendChild(temp_element2);
 				
 				temp_element3 = document.createElement("div");
 				temp_element3.className = "attack";
-				temp_element3.setAttribute("onclick","gca_arena_attack_enemy('"+list[list.length-i].country+"',"+list[list.length-i].server+","+list[list.length-i].id+")");
-				temp_element3.dataset.tooltip = '[[["Attack '+list[list.length-i].name+'","#fff;font-size:12px;"]]]';
+				temp_element3.setAttribute("onclick","gca_arena_attack_enemy('"+list[i].country+"',"+list[i].server+","+list[i].id+")");
+				temp_element3.dataset.tooltip = '[[["Attack '+list[i].name+'","#fff;font-size:12px;"]]]';
 				temp_element2.appendChild(temp_element3);
 			}
 			
