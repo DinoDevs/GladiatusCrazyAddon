@@ -62,7 +62,7 @@ var gca_arena = {
 		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
 		// Add header
 		temp_element = document.createElement('h2');
-		temp_element.className = "section-header";
+		temp_element.className = "section-header global_arena_header";
 		temp_element.textContent = "Global Arena (Crazy Addon)";
 		//temp_element.style = "cursor: pointer;";
 		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
@@ -73,7 +73,7 @@ var gca_arena = {
 		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
 		// Add text
 		temp_element = document.createElement('p');
-		temp_element.textContent = 'This is the ultimate arena gathering gladiators from all around the world! In this arena gladiators do not fight for gold or experience, they fight to find out who is the best gladiator in the world!';
+		temp_element.textContent = 'This is the ultimate arena gathering gladiators from all around the world! In this arena gladiators do not fight for gold or experience, they fight to find out who is the best in the world!';
 		temp_element.style="text-align: justify;";
 		document.getElementById('global_arena_box').appendChild(temp_element);
 		// Add button
@@ -154,12 +154,12 @@ var gca_arena = {
 			
 			// Add text
 			let temp_element = document.createElement('p');
-			temp_element.textContent = 'This is the ultimate arena gathering gladiators from all around the world! In this arena gladiators do not fight for gold or experience, they fight to find out who is the best gladiator in the world!';
+			temp_element.textContent = 'This is the ultimate arena gathering gladiators from all around the world! In this arena gladiators do not fight for gold or experience, they fight to find out who is the best in the world!';
 			temp_element.style="text-align: justify;";
 			div.appendChild(temp_element);
 			
 			temp_element = document.createElement("table");
-			temp_element.width = "80%";
+			temp_element.width = "100%";
 			div.appendChild(temp_element);
 			
 			let div2 = document.getElementById('content').getElementsByTagName('article')[0].getElementsByClassName('right')[0].getElementsByTagName('tr');
@@ -172,16 +172,24 @@ var gca_arena = {
 			
 			let temp_element2 = document.createElement("th");
 			temp_element2.textContent = position;
-			temp_element2.width = "10%";
+			temp_element2.width = "20%";
+			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("th");
 			temp_element2.textContent = name;
-			temp_element2.width = "30%";
+			temp_element2.width = "20%";
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("th");
 			temp_element2.textContent = 'Country';
+			temp_element2.width = "20%";
+			temp_element2.style= "text-align: center;";
+			temp_element.appendChild(temp_element2);
+			
+			
+			temp_element2 = document.createElement("th");
+			temp_element2.textContent = 'Server';
 			temp_element2.width = "20%";
 			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
@@ -193,13 +201,13 @@ var gca_arena = {
 			
 			let temp_element3;
 			
-			for(i=0;i<list.length;i++){
+			for(let i=0;i<list.length;i++){
 				temp_element = document.createElement("tr");
 				div.getElementsByTagName('table')[0].appendChild(temp_element);
 				
 				temp_element2 = document.createElement("th");
 				temp_element2.textContent = list[i].position;
-				last_position = list[i].position;
+				temp_element2.style= "text-align: center;";
 				temp_element.appendChild(temp_element2);
 				
 				temp_element2 = document.createElement("td");
@@ -214,15 +222,21 @@ var gca_arena = {
 				temp_element2.appendChild(temp_element3);
 				
 				temp_element2 = document.createElement("td");
-				//temp_element2.textContent = list[i].country;
+				temp_element2.textContent = "("+list[i].country.toUpperCase()+") ";
 				temp_element2.style= "text-align: center;";
 				temp_element.appendChild(temp_element2);
 				
 				temp_element3 = document.createElement("img");
 				temp_element3.src = "https://flags.fmcdn.net/data/flags/h20/"+list[i].country+".png";
 				temp_element3.style = "height: 12px;";
-				temp_element3.dataset.tooltip = '[[[["Country:","'+list[i].country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+list[i].server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
+				temp_element3.setAttribute("align","absmiddle");
+				//temp_element3.dataset.tooltip = '[[[["Country:","'+list[i].country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+list[i].server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
 				temp_element2.appendChild(temp_element3);
+				
+				temp_element2 = document.createElement("td");
+				temp_element2.textContent = list[i].server;
+				temp_element2.style= "text-align: center;";
+				temp_element.appendChild(temp_element2);
 				
 				temp_element2 = document.createElement("td");
 				//temp_element2.textContent = list[i].id;
@@ -239,7 +253,8 @@ var gca_arena = {
 			div.getElementsByTagName('table')[0].appendChild(temp_element);
 			
 			temp_element2 = document.createElement("th");
-			temp_element2.textContent = list[0].position+1;
+			temp_element2.textContent = list[list.length-1].position+1;
+			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("th");
@@ -247,14 +262,21 @@ var gca_arena = {
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("td");
+			temp_element2.textContent = "("+gca_section.country.toUpperCase()+") ";
 			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
 			
 			temp_element3 = document.createElement("img");
 			temp_element3.src = "https://flags.fmcdn.net/data/flags/h20/"+gca_section.country+".png";
 			temp_element3.style = "height: 12px;";
-			temp_element3.dataset.tooltip = '[[[["Country:","'+gca_section.country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+gca_section.server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
+			temp_element3.setAttribute("align","absmiddle");
+			//temp_element3.dataset.tooltip = '[[[["Country:","'+gca_section.country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+gca_section.server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
 			temp_element2.appendChild(temp_element3);
+			
+			temp_element2 = document.createElement("td");
+			temp_element2.textContent = gca_section.server;
+			temp_element2.style= "text-align: center;";
+			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("td");
 			temp_element2.textContent = " ";
