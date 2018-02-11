@@ -134,8 +134,8 @@ var gca_arena = {
 						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 					}else if(obj.status){
 						if(obj.status == 'lost'){
-							gca_notifications.error("Global Arena:\nYou lost the fight :( ");
-							document.getElementById('alert_box').textContent = "You lost the fight :(";
+							gca_notifications.error("Global Arena:\nYou lost the fight...");
+							document.getElementById('alert_box').textContent = "You lost the fight...";
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else if(obj.status == 'win'){
 							gca_arena_make_list(obj);
@@ -222,12 +222,12 @@ var gca_arena = {
 			
 			temp_element2 = document.createElement("th");
 			temp_element2.textContent = document.getElementById('mainmenu').getElementsByClassName('menuitem')[2].textContent;
-			temp_element2.width = "20%";
+			temp_element2.width = "30%";
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("th");
 			temp_element2.textContent = 'Country';
-			temp_element2.width = "20%";
+			temp_element2.width = "10%";
 			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
 			
@@ -278,7 +278,7 @@ var gca_arena = {
 				}
 				
 				temp_element2 = document.createElement("td");
-				temp_element2.textContent = "("+list[i].country.toUpperCase()+") ";
+				//temp_element2.textContent = "("+list[i].country.toUpperCase()+") ";
 				temp_element2.style= "text-align: center;";
 				temp_element.appendChild(temp_element2);
 				
@@ -287,6 +287,7 @@ var gca_arena = {
 				temp_element3.className = "flag";
 				temp_element3.setAttribute("align","absmiddle");
 				//temp_element3.dataset.tooltip = '[[[["Country:","'+list[i].country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+list[i].server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
+				temp_element3.dataset.tooltip = '[[["'+list[i].country.toUpperCase()+'","#fff;font-size:12px;"]]]';
 				temp_element2.appendChild(temp_element3);
 				
 				temp_element2 = document.createElement("td");
@@ -322,7 +323,7 @@ var gca_arena = {
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("td");
-			temp_element2.textContent = "("+gca_section.country.toUpperCase()+") ";
+			//temp_element2.textContent = "("+gca_section.country.toUpperCase()+") ";
 			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
 			
@@ -331,6 +332,7 @@ var gca_arena = {
 			temp_element3.className = "flag";
 			temp_element3.setAttribute("align","absmiddle");
 			//temp_element3.dataset.tooltip = '[[[["Country:","'+gca_section.country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+gca_section.server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
+			temp_element3.dataset.tooltip = '[[["'+gca_section.country.toUpperCase()+'","#fff;font-size:12px;"]]]';
 			temp_element2.appendChild(temp_element3);
 			
 			temp_element2 = document.createElement("td");
