@@ -3920,7 +3920,15 @@ var gca_global = {
 			
 			// When on centurio page
 			if(gca_section.mod=='premium' && gca_section.submod=='centurio'){
-				let end_time = (document.getElementById('premium_duration'))? now + parseInt(document.getElementById('premium_duration').getElementsByClassName('ticker')[0].dataset.tickerTimeLeft) : now;
+				let end_time = now;
+				if(document.getElementById('premium_duration')){
+					if(document.getElementById('premium_duration').getElementsByClassName('ticker').length>0){
+						end_time += parseInt(document.getElementById('premium_duration').getElementsByClassName('ticker')[0].dataset.tickerTimeLeft);
+					}else{
+						end_time += parseInt(document.getElementById('premium_duration').textContent.match(/\d+/i))*24*60*60*1000;
+					}
+				}
+				//let end_time = (document.getElementById('premium_duration'))? now + parseInt(document.getElementById('premium_duration').getElementsByClassName('ticker')[0].dataset.tickerTimeLeft) : now;
 				gca_data.section.set("cache", "gca_centurio", now);
 				gca_data.section.set("timers", "gca_centurio", end_time);
 				// Fill UI
