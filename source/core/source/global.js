@@ -1769,7 +1769,7 @@ var gca_global = {
 							this.info.sublink.mercenaries.active = i + 1;
 							this.info.sublink.mercenaries.link = sub_links[i];
 						}
-						else if(!this.info.sublink.forge.active && sub_links[i].href.match(/index.php\?mod=forge(&|&amp;)sh=/i)){
+						else if(!this.info.sublink.forge.active && sub_links[i].href.match(/index.php\?mod=forge(&|&amp;)(submod=forge(&|&amp;))*sh=/i)){
 							this.info.sublink.forge.active = i + 1;
 							this.info.sublink.forge.link = sub_links[i];
 						}
