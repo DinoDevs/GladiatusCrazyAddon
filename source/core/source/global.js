@@ -3373,12 +3373,14 @@ var gca_global = {
 				// If an application is pending
 				if(lastTime == -1){
 					gca_notifications.info(gca_locale.get("global", "notification_guild_application"));
+					// Save time
+					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
 				}
 				// Else if it's time to check
 				else if(gca_tools.time.server() - lastTime >= gca_options.int("global","notify_new_guild_application_interval") * 60000){
 					// Save time
 					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
-					// Check gui ld for any application
+					// Check guild for any application
 					jQuery.get(gca_getPage.link({"mod":"guild","submod":"admin"}), function(content){
 						// If application exist
 						if(content.match('submod=adminApplication')){
