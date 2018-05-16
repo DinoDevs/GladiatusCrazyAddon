@@ -538,14 +538,11 @@
 	.gca-pray-buff{border: 1px solid #FEC046;border-radius: 100%;width: 32px;height: 32px;text-align: center;line-height: 32px;font-size: 2em;background-color: #C9AE79;background-position: center;background-repeat: no-repeat;color: #930006!important;box-shadow: 0px 0px 3px black;float:left;margin-top:20px;text-decoration:none!important;}
 	
 /* Expendition Drops */
-	.enemyDrop{border: 1px solid #670804;margin-top: -38px;background-color: rgba(255, 255, 255, 0.6);border-radius: 100%;margin-left: 27px;position: absolute;}
-	.gca_rtl .enemyDrop{margin-left: auto;margin-right: 27px;}
-	.enemyDrop2{margin-left: 65px;}
-	.gca_rtl .enemyDrop2{margin-left: auto;margin-right: 65px;}
-	.enemyDropOnly1{margin-left: 45px;}
-	.gca_rtl .enemyDropOnly1{margin-left: auto;margin-right: 45px;}
-
-
+	.enemyDrop {position: absolute;bottom: 0px;right: 0px;transform: scale(0.75);filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3)) drop-shadow( 1px -1px 1px rgba(0,0,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,0,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,0,0,0.3));}
+	.gca_rtl .enemyDrop{right: auto;left: 0px;}
+	.enemyDrop2{right: 25px;}
+	.gca_rtl .enemyDrop2{right: auto;left: 25px;}
+	.enemyDrop:hover {filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.3)) drop-shadow( 1px -1px 1px rgba(255,255,255,0.3)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.3)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.3));}
 
 
 
