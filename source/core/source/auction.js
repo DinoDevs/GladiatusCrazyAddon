@@ -310,7 +310,7 @@ var gca_auction = {
 		// Add style
 		auction.className += "gca-x3columns";
 		// Menu over bug - Semi fix
-		document.getElementById("main_inner").getElementsByTagName("article")[0].style = "min-height:379px";
+		document.getElementById("main_inner").getElementsByTagName("article")[0].style = "min-height:468px";
 		
 		// Top image
 		var top = document.createElement("div");
@@ -346,7 +346,7 @@ var gca_auction = {
 		}
 		// Create one block with minimum height
 		let div = document.createElement("div");
-		div.style.minHeight = "660px";
+		div.style.minHeight = "700px";
 		content.prepend(div);
 
 		// Insert all elements in the block up to the auction
