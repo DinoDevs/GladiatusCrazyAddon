@@ -13,7 +13,7 @@ var gca_arena = {
 		if (gca_section.submod == null) {
 			(gca_options.bool("arena","show_simulator_imagelink") &&
 				this.show_simulator());
-			this.show_gca_global_arena();
+			//this.show_gca_global_arena();
 			
 		// Server Arena / Server Turma
 		} else if(gca_section.submod === 'serverArena') {
