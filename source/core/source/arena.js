@@ -13,7 +13,7 @@ var gca_arena = {
 		if (gca_section.submod == null) {
 			(gca_options.bool("arena","show_simulator_imagelink") &&
 				this.show_simulator());
-			//this.show_gca_global_arena();
+			this.show_gca_global_arena();
 			
 		// Server Arena / Server Turma
 		} else if(gca_section.submod === 'serverArena') {
@@ -41,7 +41,7 @@ var gca_arena = {
 	// Show Simulator
 	show_simulator : function(){
 		var sim_link = document.createElement('a');
-		sim_link.href = "http://gladiatussimulator.tk/";
+		sim_link.href = "https://gladiatussimulator.tk/";
 		sim_link.setAttribute("target","_blank");
 		sim_link.style = "text-decoration: none;";
 		document.getElementById('content').getElementsByTagName('article')[0].parentNode.insertBefore(sim_link, document.getElementById('content').getElementsByTagName('article')[0]);
@@ -89,7 +89,7 @@ var gca_arena = {
 		window.gca_arena_load_enemies = function() {
 			jQuery.ajax({
 				type: "GET",
-				url: "http://gladiatuscrazyaddon.tk/arena/ajax.php?player_id="+gca_section.playerId+"&server="+gca_section.server+"&country="+gca_section.country,
+				url: "https://gladiatuscrazyaddon.tk/arena/ajax.php?player_id="+gca_section.playerId+"&server="+gca_section.server+"&country="+gca_section.country,
 				success: function(content){
 					try {
 						var obj = JSON.parse(content);
@@ -117,7 +117,7 @@ var gca_arena = {
 			document.getElementById('spiner_box').style.display = 'block';
 			jQuery.ajax({
 				type: "GET",
-				url: "http://gladiatuscrazyaddon.tk/arena/ajax.php?player_id_A="+gca_section.playerId+"&server_A="+gca_section.server+"&country_A="+gca_section.country+"&player_id_B="+player_id_B+"&server_B="+server_B+"&country_B="+country_B,
+				url: "https://gladiatuscrazyaddon.tk/arena/ajax.php?player_id_A="+gca_section.playerId+"&server_A="+gca_section.server+"&country_A="+gca_section.country+"&player_id_B="+player_id_B+"&server_B="+server_B+"&country_B="+country_B,
 				success: function(content){
 					try {
 						var obj = JSON.parse(content);
