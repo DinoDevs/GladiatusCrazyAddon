@@ -1,24 +1,16 @@
-## Progress on Version 4.0.5
+## Progress on Version 4.0.6
 
 
 ### IMPROVEMENTS
-- **Arena**
-	- [x] Add Global GCA arena (fight against gladiators around the world)
+- **Global**
+	- [x] No Improvements
 
 
 ### BUG FIXES
 - **Global**
-	- [x] Gladiatus v3.1.0 related bug/addon crash fixed (advance main menu & forge timer problem)
-	- [x] Many style fixes for right-to-left servers
-	- [x] Small fixes here and there
-	- [x] New guild applications spam notification fixed
-- **Market**
-	- [x] Table sort after selling fix
+	- [x] No bug fixes
 
 
 ### TRANSLATIONS
 - **Updates**
-	- [x] Greek updated by GreatApo and DarkThanos
-	- [x] German updated by DoonFreak
-- **Fixes**
-	- [x] Translations not loading
+	- [x] No translations
