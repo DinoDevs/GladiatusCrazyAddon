@@ -1,0 +1,11 @@
+
+Chart.js
+	Website 	:	https://github.com/chartjs/Chart.js
+	Version 	:	2.7.1
+	File 		:	https://github.com/chartjs/Chart.js/releases/download/v2.7.1/Chart.js
+
+moment.js
+	Website 	:	https://github.com/moment/moment
+	Version 	:	2.20.1
+	Zip 		:	https://github.com/moment/moment/archive/2.20.1.zip
+	File		:	<zip>/moment-2.20.1/moment.js
