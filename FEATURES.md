@@ -57,7 +57,8 @@
 			- [x] Move checkbox on the side
 		- [ ] Work / Pray / Traveling, The exact finish time (date-time) is shown next to remaining time
 		- [ ] Link to the addon's settings page
-		- [ ] Show durability on items (like level indicator)
+		- [x] Show durability on items (like level indicator)
+		- [ ] Tooltips comapare enable-disable on mouse press (or on some pages)
 
 
 
@@ -361,11 +362,12 @@
 
 ### Forge Script
 
-- **Forge/Smelt/Workbench Interface**
+- **Forge/Smelt/Workbench/Hurreum Interface**
 	- [x] Links to your bag and the market of the remaining needed materials (Forge/Workbench)
 	- [x] Guild message with the remaining needed materials + probable quality (Forge/Workbench)
 	- [x] Forge/Smelt timer on main menu + Notifications when done
 	- [ ] Button when forge fails, to re-craft the item (scripted - has problems)
+	- [ ] New storage interface
 
 
 
