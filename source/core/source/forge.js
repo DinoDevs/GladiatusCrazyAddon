@@ -40,14 +40,14 @@ var gca_forge = {
 	
 	// Save forge timers
 	saveForgeTimers : function(){
-		if(typeof slotsData!=="undefined"){
-			var forgeTimes ={translation : [document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),gca_locale.get("forge","forge_ended")]};//Smeltery, Duration, Done!
+		if (typeof slotsData!=="undefined") {
+			var forgeTimes = {translation : [document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),gca_locale.get("forge","forge_ended")]};//Smeltery, Duration, Done!
 			forgeTimes.data = [];// EndTime, Name
 			var current = new Date(); current = current.getTime();
-			for(i=0;i<slotsData.length;i++){
-				if(typeof slotsData[i]['forge_slots.uend']!=="undefined"){
-					if(slotsData[i]['forge_slots.uend']*1000>current)
-						forgeTimes.data.push([slotsData[i]['forge_slots.uend'],slotsData[i].item.name]);
+			for (var i = 0; i < slotsData.length; i++) {
+				if (typeof slotsData[i]['forge_slots.uend'] !== "undefined") {
+					if(slotsData[i]['forge_slots.uend'] * 1000 > current)
+						forgeTimes.data.push([slotsData[i]['forge_slots.uend'], slotsData[i].item.name]);
 				}
 			}
 			gca_data.section.set("timers", "forge_times", forgeTimes);
@@ -56,11 +56,15 @@ var gca_forge = {
 	
 	// Save smelt timers
 	saveSmeltTimers : function(){
-		if(typeof slotsData!=="undefined"){
-			var smeltTimes ={translation : [document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),document.getElementById('slot-finished-succeeded').getElementsByTagName('fieldset')[0].textContent.trim().replace(/  /g,'').replace(/(?:\r\n|\r|\n)/g,' ')]};//Smeltery, Duration, Done!
+		if (typeof slotsData!=="undefined") {
+			var smeltTimes = {translation : [
+				document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,
+				document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),
+				document.getElementById('slot-finished-succeeded').getElementsByTagName('fieldset')[0].textContent.trim().replace(/  /g,'').replace(/(?:\r\n|\r|\n)/g,' ')
+			]};//Smeltery, Duration, Done!
 			smeltTimes.data = [];// EndTime, Name
-			for(i=0;i<slotsData.length;i++){
-				if(typeof slotsData[i]['forge_slots.uend']!=="undefined"){
+			for(var i = 0; i < slotsData.length; i++) {
+				if(typeof slotsData[i]['forge_slots.uend'] !== "undefined"){
 					smeltTimes.data.push([slotsData[i]['forge_slots.uend'],slotsData[i].item.name]);
 				}
 			}
@@ -70,13 +74,15 @@ var gca_forge = {
 	
 	// Show Fix/Sufix/Base names levels
 	showPrefixSufixBaseLevels : function(){
-		var options = document.getElementById('prefix0').getElementsByTagName("option");
-		for (var i=1;i<options.length;i++) {
+		var i, options;
+
+		options = document.getElementById('prefix0').getElementsByTagName("option");
+		for (i = 1; i < options.length; i++) {
 			options[i].textContent += " ("+options[i].dataset.level+"lvl)";
 		}
 		
-		var options = document.getElementById('suffix0').getElementsByTagName("option");
-		for (var i=1;i<options.length;i++) {
+		options = document.getElementById('suffix0').getElementsByTagName("option");
+		for (i = 1; i < options.length; i++) {
 			options[i].textContent += " ("+options[i].dataset.level+"lvl)";
 		}
 		
@@ -90,8 +96,8 @@ var gca_forge = {
 			1,2,3,4,5,6,7,8,9,10,//Shoes
 			1,1,1,1,1,1,1,1,1,1//Amulets
 		];
-		var options = document.getElementById('basic0').getElementsByTagName("option");
-		for (var i=0;i<options.length;i++) {
+		options = document.getElementById('basic0').getElementsByTagName("option");
+		for (i = 0; i < options.length; i++) {
 			options[i].textContent = "("+levels[i]+"lvl) "+options[i].textContent;
 		}
 	},
