@@ -21,11 +21,15 @@ var gca_forge = {
 			this.sourceLinks.inject());
 			
 			/*this.recraft.inject();*/
+		}
+
 		// Smelt
-		}else if(gca_section.submod=='smeltery'){
+		else if(gca_section.submod == 'smeltery') {
 			this.saveSmeltTimers();
-		//Repair
-		}else{//workbench
+		}
+
+		// Repair
+		else if(gca_section.submod == 'workbench') {
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
 		}
