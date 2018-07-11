@@ -1026,6 +1026,21 @@
 		.gca_rtl .gca_change_sort_arrows #market_table th a {padding-right: auto;padding-left: 0px;}
 		
 	
+	/* Horreum
+	-------------------------------------------------- */
+
+		/* Quality Number Color */
+		#resource-list td[data-quality="-1"]{color: white; text-shadow: 0px 0px 1px #000000;}
+		#resource-list td[data-quality="0"]{color: lime; text-shadow: 0px 0px 1px #000000;}
+		#resource-list td[data-quality="1"]{color: #5159F7;}
+		#resource-list td[data-quality="2"]{color: #E303E0;}
+		#resource-list td[data-quality="3"]{color: #FF6A00;}
+		#resource-list td[data-quality="4"]{color: #FF0000;}
+		#resource-list td[data-quality="-1"], #resource-list td[data-quality="0"], #resource-list td[data-quality="1"], #resource-list td[data-quality="2"], #resource-list td[data-quality="3"], #resource-list td[data-quality="4"] {font-weight: bold;}
+		/* Upgrade Arrows center */
+		.upgrade.q0, .upgrade.q1, .upgrade.q2, .upgrade.q3, .upgrade.q4 {margin-left: 10px;margin-right: -8px;}
+		
+	
 	/* Tools
 	-------------------------------------------------- */
 
