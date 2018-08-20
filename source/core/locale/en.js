@@ -310,6 +310,7 @@ gca_languages["en"] = {
 			category_training$show_points_after_upgrade : "Show stat points after upgrade",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Fade items that you can not afford",
+			category_merchants$show_shop_info : "Show shop info (total gold and rubies)",
 			// Settings - Forge
 			category_forge$material_links : "[Forge/Repair] Show packages & market shortcuts for each material need",
 			category_forge$show_levels : "[Forge] Show Prefix/Sufix/Base item levels next to names",

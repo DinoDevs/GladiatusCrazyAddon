@@ -1325,9 +1325,16 @@ var gca_tools = {
 	create : {
 
 		goldIcon : function() {
+			return this.icon('img/res2.gif');
+		},
+		rubiesIcon : function() {
+			return this.icon('img/res3.gif');
+		},
+
+		icon : function(src) {
 			var img = document.createElement("img");
 			img.setAttribute("alt", "");
-			img.setAttribute("src", "img/res2.gif");
+			img.setAttribute("src", src);
 			img.setAttribute("align", "absmiddle");
 			img.setAttribute("border", "0");
 			return img;

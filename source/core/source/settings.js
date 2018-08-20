@@ -455,7 +455,9 @@ var gca_settings = {
 			// Merchants
 			"merchants" : {
 				// Fade items that you can not afford
-				"fade_unaffordable_items" : true
+				"fade_unaffordable_items" : true,
+				// Show shop info
+				"show_shop_info" : true
 			},
 			
 			// Forge
