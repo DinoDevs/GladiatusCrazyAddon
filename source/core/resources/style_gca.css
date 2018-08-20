@@ -1039,6 +1039,17 @@
 		#resource-list td[data-quality="-1"], #resource-list td[data-quality="0"], #resource-list td[data-quality="1"], #resource-list td[data-quality="2"], #resource-list td[data-quality="3"], #resource-list td[data-quality="4"] {font-weight: bold;}
 		/* Upgrade Arrows center */
 		.upgrade.q0, .upgrade.q1, .upgrade.q2, .upgrade.q3, .upgrade.q4 {margin-left: 10px;margin-right: -8px;}
+		/* Show resources names */
+		#resource-list.show-resource-names td:first-child {line-height: 32px;text-align: left;}
+		#resource-list.show-resource-names td:first-child div {float: left;}
+		/* Click to select material */
+		#resource-list.resource-click-to-select td:first-child,
+		#resource-list.resource-click-to-select td[data-quality="-1"],
+		#resource-list.resource-click-to-select td[data-quality="0"],
+		#resource-list.resource-click-to-select td[data-quality="1"],
+		#resource-list.resource-click-to-select td[data-quality="2"],
+		#resource-list.resource-click-to-select td[data-quality="3"],
+		#resource-list.resource-click-to-select td[data-quality="4"] {cursor: pointer;}
 		
 	
 	/* Tools

@@ -34,6 +34,14 @@ var gca_forge = {
 			this.sourceLinks.inject());
 		}
 
+		// Horreum
+		else if(gca_section.submod == 'storage') {
+			//(gca_options.bool("forge","material_links") &&
+			this.horreum.showResourcesNames();//);
+			this.horreum.rememberStoreOptions();
+			this.horreum.clickToSelectMaterial();
+		}
+
 		// Setting Link
 		gca_tools.create.settingsLink("forge");
 	},
@@ -243,6 +251,109 @@ var gca_forge = {
 			setTimeout(function(){
 				gca_forge.recraft.repeat();
 			}, 500);
+		}
+	},
+
+	horreum : {
+
+		clickToSelectMaterial : function() {
+			let resource_type = document.getElementById('resource-type');
+			let resource_quality = document.getElementById('resource-quality');
+
+			// Enable css
+			document.getElementById('resource-list').className += ' resource-click-to-select';
+
+			// Get material values
+			let values = {};
+			let option = resource_type.getElementsByTagName('option');
+			for (var i = option.length - 1; i >= 0; i--) {
+				if (option[i].dataset.imageClass) {
+					values[option[i].dataset.imageClass] = option[i].value;
+				}
+			}
+
+			let row = document.getElementById('resource-list').getElementsByTagName('tr');
+			for (let i = 0; i < row.length; i++) {
+				let column = row[i].getElementsByTagName('td');
+				if (column.length > 0) {
+					let image = column[0].getElementsByTagName('div')[0].className;
+					row[i].addEventListener('click', function(event){
+						var element = event.target;
+						resource_type.value = values[image];
+						if (element.tagName == 'TD' && element.dataset.quality) {
+							resource_quality.value = element.dataset.quality;
+						}
+						jQuery(resource_type).change();
+						jQuery(resource_quality).change();
+					}, false);
+				}
+			}
+		},
+
+		rememberStoreOptions : function() {
+			// Handle load from inventory
+			let fromInventory = document.getElementById('from-inventory');
+			fromInventory.checked = gca_data.section.get('cache', 'horreum_from_inventory', false);
+			fromInventory.addEventListener('change', function() {
+				gca_data.section.set('cache', 'horreum_from_inventory', this.checked);
+				console.log(this.checked);
+			}, false);
+
+			// Handle load from packages
+			let fromPackages = document.getElementById('from-packages');
+			fromPackages.checked = gca_data.section.get('cache', 'horreum_from_packages', false);
+			fromPackages.addEventListener('change', function() {
+				gca_data.section.set('cache', 'horreum_from_packages', this.checked);
+				console.log(this.checked);
+			}, false);
+
+			// Handle overlow action
+			let overflowAction = document.getElementsByName('sell-excess');
+			if (gca_data.section.get('cache', 'horreum_overflow_action', 'sell') != 'sell') {
+				overflowAction[0].checked = false;
+				overflowAction[1].checked = true;
+			}
+			else {
+				overflowAction[1].checked = false;
+				overflowAction[0].checked = true;
+			}
+			overflowAction[0].addEventListener('change', function() {
+				gca_data.section.set('cache', 'horreum_overflow_action', (this.checked ? 'sell' : 'delete'));
+			}, false);
+			overflowAction[1].addEventListener('change', function() {
+				gca_data.section.set('cache', 'horreum_overflow_action', (this.checked ? 'delete' : 'sell'));
+			}, false);
+
+			// Enable button if a from option is checked
+			if (fromInventory.checked || fromPackages.checked) {
+				document.getElementById('store').removeAttribute('disabled');
+			}
+		},
+
+		showResourcesNames : function() {
+			// Enable css
+			document.getElementById('resource-list').className += ' show-resource-names';
+
+			// Get material names
+			let names = {};
+			let option = document.getElementById('resource-type').getElementsByTagName('option');
+			for (var i = option.length - 1; i >= 0; i--) {
+				if (option[i].dataset.imageClass) {
+					names[option[i].dataset.imageClass] = option[i].innerHTML.trim();
+				}
+			}
+
+			// Show materials names
+			let row = document.getElementById('resource-list').getElementsByTagName('tr');
+			for (let i = 0; i < row.length; i++) {
+				let column = row[i].getElementsByTagName('td');
+				if (column.length > 0) {
+					let image = column[0].getElementsByTagName('div')[0].className;
+					if (names.hasOwnProperty(image)) {
+						column[0].appendChild(document.createTextNode(names[image]));
+					}
+				}
+			}
 		}
 	}
 };
