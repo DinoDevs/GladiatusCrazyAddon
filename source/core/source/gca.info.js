@@ -8,7 +8,7 @@ var gca = {
 	name : "Gladiatus Crazy Addon",
 	shortName : "GCA",
 	description: "Improve your gladiatus experience!",
-	version: "4.0.5",
+	version: "4.0.6",
 	developers : [
 		"GreatApo",
 		"DarkThanos"
