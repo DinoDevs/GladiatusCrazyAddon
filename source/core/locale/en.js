@@ -311,8 +311,11 @@ gca_languages["en"] = {
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Fade items that you can not afford",
 			// Settings - Forge
-			category_forge$material_links : "Show packages & market shortcuts for each material need (forge/repair)",
-			category_forge$show_levels : "Show Prefix/Sufix/Base item levels next to names (forge)",
+			category_forge$material_links : "[Forge/Repair] Show packages & market shortcuts for each material need",
+			category_forge$show_levels : "[Forge] Show Prefix/Sufix/Base item levels next to names",
+			category_forge$horreum_materials_names : "[Horreum] Show material name",
+			category_forge$horreum_remember_options : "[Horreum] Remember last selected store settings",
+			category_forge$horreum_select_meterials : "[Horreum] Select material on click",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
 			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (gladiatussimulator.tk)",

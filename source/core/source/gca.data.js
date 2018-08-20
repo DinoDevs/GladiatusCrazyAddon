@@ -471,7 +471,14 @@ gca_options.data = {
 		// Packages & market shortcuts for each material need (forge/repair)
 		"material_links" : true,
 		// Show Prefix/Sufix/Base levels
-		"show_levels" : true
+		"show_levels" : true,
+
+		// Show materials names
+		"horreum_materials_names" : true,
+		// Rmember options
+		"horreum_remember_options" : true,
+		// Select material with click
+		"horreum_select_meterials" : true
 	},
 	
 	// Arena

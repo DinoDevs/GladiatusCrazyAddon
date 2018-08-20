@@ -36,10 +36,12 @@ var gca_forge = {
 
 		// Horreum
 		else if(gca_section.submod == 'storage') {
-			//(gca_options.bool("forge","material_links") &&
-			this.horreum.showResourcesNames();//);
-			this.horreum.rememberStoreOptions();
-			this.horreum.clickToSelectMaterial();
+			(gca_options.bool("forge","horreum_materials_names") &&
+			this.horreum.showResourcesNames());
+			(gca_options.bool("forge","horreum_remember_options") &&
+			this.horreum.rememberStoreOptions());
+			(gca_options.bool("forge","horreum_select_meterials") &&
+			this.horreum.clickToSelectMaterial());
 		}
 
 		// Setting Link
