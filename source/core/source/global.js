@@ -2993,8 +2993,6 @@ var gca_global = {
 			},
 
 			showInvInfo : function(item = {dataset:{amount:0,itemId:0,priceGold:0}}) {
-				// Get tab
-				var tab = document.getElementById("inventory_nav").getElementsByClassName("current")[0];
 				// Get items
 				var items = document.getElementById('inv').getElementsByClassName("ui-draggable");
 				// Count gold
