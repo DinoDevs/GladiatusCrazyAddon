@@ -88,6 +88,30 @@ var gca_overview = {
 
 	// Update data
 	updateData : function(){
+		// Find player id
+		if (gca_section.playerId == 0 && this.doll == 1) {
+			var player_id = 0;
+			if (window.playerId) {
+				player_id = window.playerId;
+			}
+			else {
+				var getId = document.getElementById('content').innerHTML.match(/https:\/\/s\d+-\w+\.gladiatus\.gameforge\.com\/game\/index\.php\?mod=player(?:&|&amp;)p=(\d+)/i);
+				if (getId) player_id = getId[1];
+			}
+
+			if (player_id > 0) {
+				var cookie_name = "Gca_" + gca_section.country + "_" + gca_section.server;
+				var cookie_value = player_id + "_" + gca_section.sh.substring(0, gca_section.sh.length/4);
+				var cookie_expire_days = 364;
+
+				var d = new Date();
+				d.setTime(d.getTime() + (cookie_expire_days*24*60*60*1000));
+				var cookie_expires = "expires="+ d.toUTCString();
+				document.cookie = cookie_name + "=" + cookie_value + ";" + cookie_expires + ";path=/";
+				
+				gca_section.resolvePlayerId();
+			}
+		}
 
 		// Save costume
 		if(this.doll == 1){

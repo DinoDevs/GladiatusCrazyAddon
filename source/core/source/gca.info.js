@@ -35,7 +35,7 @@ var gca_section = {
 	// Get Player's id
 	resolvePlayerId : function(){
 		// Resolve Player Id from cookies
-		var cookiePlayerId = document.cookie.match(new RegExp("Gladiatus_" + this.country + "_" + this.server + "=(\\d+)","i"));
+		var cookiePlayerId = document.cookie.match(new RegExp("Gca_" + this.country + "_" + this.server + "=(\\d+)_" + this.sh.substring(0, this.sh.length/4),"i"));
 		// If cookie exist
 		if(cookiePlayerId && cookiePlayerId[1]){
 			this.playerId = cookiePlayerId[1];
