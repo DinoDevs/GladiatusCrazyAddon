@@ -97,6 +97,10 @@ var gca_arena = {
 						gca_notifications.error("Global Arena:\nSomething went wrong.");
 						return;
 					}
+					if (obj.error) {
+						gca_notifications.error("Global Arena:\nThe server responded with an error.");
+						return;
+					}
 					
 					gca_arena_make_list(obj);
 				},
