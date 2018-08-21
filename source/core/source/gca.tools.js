@@ -269,259 +269,209 @@ var gca_tools = {
 		},
 
 		// Move
-		/*
-		move : function(item, target, size){
-			// Get target
-			var target = this._move.resolveMoveTraget(item, target);
+		move : function(item, target){
+			var spot = this._move.getTargetSpot(item, target);
+			if(!spot) return false;
 
-			// If many targets
-			if(target instanceof Array){
-				// Translate size
-				if(typeof size === "string")
-					size = this.droppable[size];
-				// Create tables
-				var tables = this._move.createTables(size[0], size[1], target);
-				// Get item size
-				var itemSize = this._move.getSize(item);
-				// Find spot
-				var spot = this._move.findSpot(itemSize[0], itemSize[1], tables.grid);
-				// Validate spot
-				if(!spot) return false;
-				// Translate to target
-				target = target[ tables.index[spot[0]][spot[1]] - 1 ];
-			}
+			this.drag(item, spot.x, spot.y);
+			return true;
 
-			// Validate target
-			if(!target) return false;
-			// Convert to jQuery
-			target = jQuery(target);
-			item = jQuery(item);
+			var dot = document.createElement('div');
+			dot.style.width = '1px';
+			dot.style.height = '1px';
+			dot.style.border = '1px solid black';
+			dot.style.position = 'absolute';
+			dot.style.top = (spot.y - 1) + 'px';
+			dot.style.left = (spot.x - 1) + 'px';
+			dot.style.zIndex = '99999';
+			document.body.appendChild(dot);
 
-			// Prepare item
-			item.data("ui-draggable").originalPosition = item.offset();
-			// Drop item
-			target.droppable('option', 'drop').call(target, null, {
-				draggable : item,
-				offset : target.offset()
-			});
-
-			// Return
 			return true;
 		},
 
-		droppable : {
-			INV : [8, 5],
-			SHOP : [6, 8]
+		drag : function(item, x, y){
+			var cords_item = jQuery(item).offset();
+			cords_item = {x: cords_item.left, y: cords_item.top};
+			var cords_target = {x: x, y: y};
+			var cords_middle = {
+				x: cords_item.x + (cords_target.x - cords_item.x)/2,
+				y: cords_item.y + (cords_target.y - cords_item.y)/2
+			};
+
+			this._move.fireMouseEvent(item, 'mousedown', {clientX: cords_item.x, clientY: cords_item.y});
+			this._move.fireMouseEvent(item.ownerDocument, 'mousemove', {clientX: cords_item.x, clientY: cords_item.y});
+			this._move.fireMouseEvent(item.ownerDocument, 'mousemove', {clientX: cords_middle.x, clientY: cords_middle.y});
+			this._move.fireMouseEvent(item.ownerDocument, 'mousemove', {clientX: cords_target.x, clientY: cords_target.y});
+			this._move.fireMouseEvent(item, 'mouseup', {clientX: cords_target.x, clientY: cords_target.y});
 		},
 
 		_move : {
 
-			resolveMoveTraget : function(item, target){
-				// If array of targets
-				if(target instanceof Array){
-					return target;
+			getTargetSpot : function(item, target) {
+				var grid, size;
+				if (target == 'shop') {
+					grid = document.getElementById('shop');
+					size = [8, 6];
 				}
-				// If not jQuery element
-				else if(!(target instanceof jQuery)){
-					// Make target jQuery
-					target = jQuery(target);
+				else if (target == 'inv') {
+					grid = document.getElementById('inv');
+					size = [5, 8];
 				}
-
-				// Id droppable
-				if(target.hasClass("ui-droppable")){
-					target = target[0];
-				}
-				// If droppable grid
-				else if(target.hasClass("ui-droppable-grid")){
-					// Build grid droparea
-					this.rebuildGridDropareas(item, target);
-					// Get targets
-					target = target.find(".ui-droppable.grid-droparea");
-				}
-				// If not droppable
-				else{
-					target = target.find(".ui-droppable");
+				else {
+					return false;
 				}
 
-				// Return to normal jQuery
-				if(target instanceof jQuery){
-					if(target.length == 0){
-						return false;
-					}
-					else if(target.length == 1){
-						target = target[0];
-					}
-					else{
-						var array = [];
-						target.each(function(){
-							array.push(this);
-						});
-						target = array;
-					}
-				}
+				var spot = this.findGridSpot(
+					item.dataset.measurementY,
+					item.dataset.measurementX,
+					this.getGridMap(size[0], size[1], this.getGridItems(grid))
+				);
+				if (!spot) return false;
 
-				// If target found
-				if(target)
-					return target;
-				// Failed
-				return false;
+				console.log(spot);
+
+				var cords_grid = jQuery(grid).offset();
+				cords_grid = {x: cords_grid.left, y: cords_grid.top};
+				spot = {
+					x: (cords_grid.x + (32 * spot.x) + 1),
+					y: (cords_grid.y + (32 * spot.y) + 1)
+				};
+				console.log(spot);
+
+				return spot;
 			},
 
-			rebuildGridDropareas : function(drag, el){
-				var gridSizes = [];
-				$(el).each(function(i) {
-					gridSizes[i] = {
-						w: Math.round($(this).width() / 32),
-						h: Math.round($(this).height() / 32)
+			// Create a grid map of free spaces
+			getGridItems : function(grid){
+				var items = [];
+				var dragables = grid.getElementsByClassName('ui-draggable');
+				for (var i = 0; i < dragables.length; i++) {
+					items.push({
+						y : parseInt(dragables[i].style.top, 10)/32,
+						x : parseInt(dragables[i].style.left, 10)/32,
+						h : parseInt(dragables[i].dataset.measurementY, 10),
+						w : parseInt(dragables[i].dataset.measurementX, 10)
+					});
+				}
+				console.log(items);
+				return items;
+			},
+
+			// Create a grid map of free spaces
+			getGridMap : function(height, width, items){
+				var table = [];
+				var y, x;
+				
+				// Create table
+				for (y = 0; y < height; y++) {
+					table.push([]);
+					for (x = 0; x < width; x++) {
+						table[y].push(false);
 					}
-				});
-				$(el).find(".grid-droparea").remove();
-				$(el).each(function(i) {
-					var drop = $(this);
-					if (!drop.is(".ui-droppable-grid") || drag.data("questType")) {
-						return
-					}
-					var w = gridSizes[i].w,
-						h = gridSizes[i].h,
-						map = this.buildDroppableMap(drop.children().not(drag), w, h);
-					for (var x = 0; x < w; x++) {
-						for (var y = 0; y < h; y++) {
-							var cell = new GridCell(drop.data("contentTypeAccept") || 0, map, x, y);
-							if (!map[x][y] && cell.accepts($(drag))) {
-								drop.prepend(cell.createDroppable())
-							}
+				}
+
+				// Set item occupied spaces
+				for (var i = items.length - 1; i >= 0; i--) {
+					for (y = 0; y < items[i].h; y++) {
+						for (x = 0; x < items[i].w; x++) {
+							table[items[i].y + y][items[i].x + x] = true;
 						}
 					}
-				});
-				return el
-			},
-
-			buildDroppableMap : function(elements, w, h) {
-				var map = new Array(w);
-				for (var i = 0; i < w; i++) {
-					map[i] = new Array(h)
-				}
-				elements.each(function() {
-					var obj = $(this),
-						l = obj.data("positionX") - 1,
-						t = obj.data("positionY") - 1,
-						w = obj.data("measurementX"),
-						h = obj.data("measurementY");
-					for (var x = 0; x < w; x++) {
-						for (var y = 0; y < h; y++) {
-							map[l + x][t + y] = this
-						}
-					}
-				});
-				return map;
-			},
-
-			// Create
-			createTables : function(grid_width, grid_height, grid_spots){
-				// Results
-				var table = {};
-				// Variables
-				var x, y;
-
-				// Init tables
-				table.grid = [];
-				table.index = [];
-				for (var i = 0; i < grid_width; i++) {
-					x = [];
-					y = [];
-					for (var j = 0; j < grid_height; j++) {
-						x.push(1);
-						y.push(0);
-					}
-					table.grid.push(x);
-					table.index.push(y);
 				}
 
-				// Populate tables
-				for (var i = 0; i < grid_spots.length; i++) {
-					x = (parseInt(grid_spots[i].style.left) / 32);
-					y = (parseInt(grid_spots[i].style.top) / 32);
-					table.grid[x][y] = 0;
-					table.index[x][y] = i + 1;
-				}
-
-				// Return
 				return table;
 			},
 
-			// Get size
-			getSize : function(target){
-				// Convert to jQuery
-				if(!(target instanceof jQuery))
-					target = jQuery(target);
-
-				// Get sizes
-				var x = (parseInt(target.width()) / 32);
-				var y = (parseInt(target.height()) / 32);
-
-				// Retrun sizes
-				return [x, y];
-			},
-
-			// Find a spot on the table
+			// Find a spot on the grid
 			// -------------------------------------------------- //
-			// Table has 0 on empty spots
-			// -------------------------------------------------- //
-			findSpot : function(item_width, item_height, table){
-				// Variables
+			findGridSpot : function(item_height, item_width, table){
 				var x,y,w,h;
-
-				// Init found position
 				var found = false;
 
 				// Do magic stuff
-				for(x=0; x<=table.length-item_width; x++){
-					for(y=0; y<=table[0].length-item_height; y++){
+				for (x = 0; x <= table[0].length - item_width; x++) {
+					for (y = 0; y <= table.length - item_height; y++) {
 						found = true;
-						if(item_height == 1){
-							if(table[x][y]==0){
+
+						if (item_height == 1) {
+							if (table[y][x] == false) {
 								found = true;
-							}else if(table[x+1][y]==0){
+							}
+							else if (table[y][x+1] == false) {
 								x++;
-							}else{
+							}
+							else {
 								found = false;
 							}
-						}else{
-							for(w=0; w<item_width; w++){
-								for(h=0; h<item_height; h++){
-									if(table[x+w][y+h]==1){
+						}
+						else {
+							for (w = 0; w < item_width; w++) {
+								for (h = 0; h < item_height; h++) {
+									if (table[y+h][x+w] == true) {
 										found = false;
 										break;
 									}
-								};
-								if(!found){
+								}
+								if (!found) {
 									break;
 								}
-							};
+							}
 						}
-						if(found){
-							for(w=0; w<item_width; w++){
-								for(h=0; h<item_height; h++){
-									table[x+w][y+h] = 1;
-								};
-							};
+						if (found) {
+							for (w = 0; w < item_width; w++) {
+								for (h = 0; h < item_height; h++) {
+									table[y+h][x+w] = true;
+								}
+							}
 							// BOOM! ... rabbit out of the hat
-							found = [x, y];
+							found = {y : y, x : x};
 							break;
 						}
 					}
-					if(found){
+					if (found) {
 						break;
 					}
-					if(item_height == 1){
+					if (item_height == 1) {
 						x++;
 					}
 				}
 				return found;
+			},
+
+			// Mouse event simulation
+			fireMouseEvent : function(elem, type, opt) {
+				var options = {
+					bubbles: true,
+					cancelable: (type !== 'mousemove'),
+					view: window,
+					detail: 0,
+					screenX: 0,
+					screenY: 0,
+					clientX: 1,
+					clientY: 1,
+					ctrlKey: false,
+					altKey: false,
+					shiftKey: false,
+					metaKey: false,
+					button: 0,
+					relatedTarget: undefined
+				};
+				for (prop in options) {
+					if (options.hasOwnProperty(prop) && opt.hasOwnProperty(prop)) {
+						options[prop] = opt[prop];
+					}
+				}
+				var event = document.createEvent('MouseEvents');
+				event.initMouseEvent( type, options.bubbles, options.cancelable,
+					options.view, options.detail,
+					options.screenX, options.screenY, options.clientX, options.clientY,
+					options.ctrlKey, options.altKey, options.shiftKey, options.metaKey,
+					options.button, options.relatedTarget || document.body.parentNode );
+				elem.dispatchEvent(event);
 			}
 
 		}
-		*/
+		//*/
 	},
 
 
