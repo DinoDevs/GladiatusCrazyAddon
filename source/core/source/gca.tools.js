@@ -274,8 +274,8 @@ var gca_tools = {
 			if(!spot) return false;
 
 			this.drag(item, spot.x, spot.y);
-			return true;
-
+			
+			/*
 			var dot = document.createElement('div');
 			dot.style.width = '1px';
 			dot.style.height = '1px';
@@ -285,7 +285,8 @@ var gca_tools = {
 			dot.style.left = (spot.x - 1) + 'px';
 			dot.style.zIndex = '99999';
 			document.body.appendChild(dot);
-
+			*/
+		
 			return true;
 		},
 
@@ -299,10 +300,10 @@ var gca_tools = {
 			};
 
 			this._move.fireMouseEvent(item, 'mousedown', {clientX: cords_item.x, clientY: cords_item.y});
-			this._move.fireMouseEvent(item.ownerDocument, 'mousemove', {clientX: cords_item.x, clientY: cords_item.y});
-			this._move.fireMouseEvent(item.ownerDocument, 'mousemove', {clientX: cords_middle.x, clientY: cords_middle.y});
-			this._move.fireMouseEvent(item.ownerDocument, 'mousemove', {clientX: cords_target.x, clientY: cords_target.y});
-			this._move.fireMouseEvent(item, 'mouseup', {clientX: cords_target.x, clientY: cords_target.y});
+			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_item.x, clientY: cords_item.y});
+			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_middle.x, clientY: cords_middle.y});
+			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_target.x, clientY: cords_target.y});
+			this._move.fireMouseEvent(document, 'mouseup', {clientX: cords_target.x, clientY: cords_target.y});
 		},
 
 		_move : {
@@ -328,15 +329,12 @@ var gca_tools = {
 				);
 				if (!spot) return false;
 
-				console.log(spot);
-
 				var cords_grid = jQuery(grid).offset();
 				cords_grid = {x: cords_grid.left, y: cords_grid.top};
 				spot = {
 					x: (cords_grid.x + (32 * spot.x) + 1),
 					y: (cords_grid.y + (32 * spot.y) + 1)
-				};
-				console.log(spot);
+				}
 
 				return spot;
 			},
@@ -353,7 +351,6 @@ var gca_tools = {
 						w : parseInt(dragables[i].dataset.measurementX, 10)
 					});
 				}
-				console.log(items);
 				return items;
 			},
 
