@@ -24,7 +24,11 @@ var gca_merchants = {
 
 		// Fade unaffordable items
 		(gca_options.bool("merchants","show_shop_info") &&
-		this.containerItemsInfo.prepare());
+			this.containerItemsInfo.prepare());
+
+		// Double click to sell/buy items
+		(gca_options.bool("merchants","double_click_actions") &&
+			this.doubleClickActions.init());
 
 		// Setting Link
 		gca_tools.create.settingsLink("merchants");
@@ -115,7 +119,7 @@ var gca_merchants = {
 		gca_tools.event.fireOnce("merchants-timer-update");
 	},
 
-
+	// Show information about shop's items
 	containerItemsInfo : {
 		prepare : function() {
 			// Exit if no inventory
@@ -181,6 +185,68 @@ var gca_merchants = {
 			// Display
 			this.infoRubies.textContent = gca_tools.strings.insertDots(rubies);
 			this.infoGold.textContent = gca_tools.strings.insertDots(gold);
+		}
+	},
+
+	// Double click sell/buy
+	doubleClickActions : {
+		init : function(){
+			// Save instance
+			var that = this;
+			// Apply item events
+			this.apply();
+
+			// Add event
+			gca_tools.event.bag.onBagOpen((tab) => {
+				this.apply();
+			});
+
+			// If bag not already loaded
+			if (document.getElementById("inv").className.match("unavailable")) {
+				// Wait first bag
+				gca_tools.event.bag.waitBag(() => {
+					this.apply();
+				});
+			}
+
+			// On item move
+			gca_tools.event.request.onAjaxResponce((data) => {
+				if (
+					data.hasOwnProperty("data") && data.data &&
+					data.data.hasOwnProperty("to") && data.data.to &&
+					data.data.to.hasOwnProperty("data") && data.data.to.data &&
+					data.elem.length === 1
+				) {
+					let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
+					if (item) delete item[0].dataset.gcaFlag_doubleClickEvent;
+					this.apply();
+				}
+			});
+		},
+		apply : function(){
+			this.applyOn(jQuery('#inv .ui-draggable'));
+			this.applyOn(jQuery('#shop .ui-draggable'));
+		},
+		applyOn : function(items){
+			var that = this;
+			// For each
+			items.each(function(){
+				if (!this.dataset) return;
+				// If already parsed
+				if(this.dataset.gcaFlag_doubleClickEvent) return;
+				// Flag as parsed
+				this.dataset.gcaFlag_doubleClickEvent = true;
+				// Add event
+				this.addListener('dblclick', that.handler);
+			});
+		},
+		handler : function() {
+			if (this.parentNode.id == 'inv') {
+				gca_tools.item.move(this, 'shop');
+			}
+			else if (this.parentNode.id == 'shop') {
+				gca_tools.item.move(this, 'inv');
+			}
 		}
 	}
 };

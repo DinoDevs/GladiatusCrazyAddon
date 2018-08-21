@@ -415,7 +415,9 @@ gca_options.data = {
 		// Show item's price
 		"item_price" : false,
 		// Special category features
-		"special_category_features" : true
+		"special_category_features" : true,
+		// Open packets with double click
+		"double_click_open" : false
 	},
 
 	// Pantheon Options
@@ -465,7 +467,9 @@ gca_options.data = {
 		// Fade items that you can not afford
 		"fade_unaffordable_items" : true,
 		// Show shop info
-		"show_shop_info" : false
+		"show_shop_info" : false,
+		// Double click items to sell or buy
+		"double_click_actions" : true
 	},
 
 	// Forge

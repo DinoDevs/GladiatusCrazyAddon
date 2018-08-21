@@ -39,6 +39,9 @@ var gca_packages = {
 		// Special category features
 		(gca_options.bool("packages", "special_category_features") && 
 			this.specialCategory.resolve(this));
+		// Open packets with double click
+		(gca_options.bool("packages", "double_click_open") && 
+			this.doubleClickToOpen.init(this));
 		
 		this.eventItemsCategory();
 
@@ -605,6 +608,46 @@ var gca_packages = {
 		}
 
 
+	},
+
+
+
+	// On double click open packet
+	doubleClickToOpen : {
+		init : function(self){
+			// Save instance
+			var that = this;
+			// Apply item events
+			this.apply();
+
+			// On new items reapply
+			gca_tools.event.request.onAjaxResponce(function(responce){
+				// If package load request
+				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+					that.apply();
+			});
+			// On packages page load
+			self.loadPackets.onPageLoad(function(){
+				that.apply();
+			});
+		},
+		apply : function(){
+			var that = this;
+			// For each
+			jQuery("#packages .ui-draggable").each(function(){
+				// If already parsed
+				if(this.dataset.gcaFlag_doubleClickEvent)
+					return;
+				// Flag as parsed
+				this.dataset.gcaFlag_doubleClickEvent = true;
+				// Add event
+				this.addListener('dblclick', that.handler);
+			});
+		},
+		handler : function() {
+			if (this.parentNode.id == 'inv') return;
+			gca_tools.item.move(this,'inv');
+		}
 	},
 	
 	eventItemsCategory : function(){
