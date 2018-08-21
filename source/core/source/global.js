@@ -138,10 +138,6 @@ var gca_global = {
 		// Gold/Exp data
 		(gca_options.bool("global","gold_exp_data") &&
 			this.background.gold_exp_data.inject());
-
-		// Sound buttons
-		(gca_options.bool("sound","enabled") &&
-			this.sound.bar());
 			
 		// Forge timer
 		(!this.isTraveling && gca_options.bool("global","forge_timers") &&
@@ -3834,73 +3830,6 @@ var gca_global = {
 
 				// Open dialog
 				this.dialog.open();
-			}
-		}
-	},
-
-	// Sound stuf
-	sound : {
-		// Elements
-		elements : {},
-
-		// Create bar
-		bar : function(){
-			// Set up sound bar
-			this.elements.bar = document.createElement('div');
-			this.elements.bar.className = "gca_sound_bar";
-
-			// Toggle sound icon
-			this.elements.toggleIcon = document.createElement('div');
-			this.elements.toggleIcon.className = "sound-toggle";
-			this.elements.bar.appendChild(this.elements.toggleIcon);
-
-			// Add on page
-			document.body.appendChild(this.elements.bar);
-			this.update();
-
-			// Save instance
-			var that = this;
-
-			// On volume toggle
-			this.elements.toggleIcon.addEventListener("click", function(){
-				that.toggle();
-			}, false);
-
-			// On volume change
-			gca_tools.event.addListener("volume-change", function(){
-				that.update();
-			});
-		},
-
-		// Turn on or off audio
-		toggle : function(){
-			// If element not yet created
-			if(!this.elements.toggleIcon)
-				return;
-
-			// Toggle
-			if(gca_audio.isMuted()){
-				// Unmute
-				gca_audio.mute(false);
-				this.update();
-				gca_audio.play("sound_toggle");
-			}
-			else{
-				// Mute
-				gca_audio.mute(true);
-				this.update();
-			}
-		},
-
-		// Update visuals
-		update : function(){
-			// If is muted
-			if(gca_audio.isMuted()){
-				this.elements.toggleIcon.className = "sound-toggle mute";
-			}
-			// If not muted
-			else{
-				this.elements.toggleIcon.className = "sound-toggle";
 			}
 		}
 	},

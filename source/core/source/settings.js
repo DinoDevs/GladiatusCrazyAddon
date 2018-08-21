@@ -586,7 +586,10 @@ var gca_settings = {
 				// Sounds enabled
 				"enabled" : true,
 				// Sounds muted
-				"muted" : false,
+				"muted" : {
+					"type" : "boolean",
+					"db" : "section",
+				},
 				// Volume scale
 				"volume" : {
 					"type" : "range",
@@ -595,7 +598,34 @@ var gca_settings = {
 					"max" : 100,
 					"scale" : 0.01,
 					"db" : "section",
-				}
+				},
+				/*
+				// Channels
+				"channels" : (function(){
+					var scheme = {
+						type : 'custom',
+						dom : function(data, title, wrapper){
+							// Channels wrapper
+							var section = document.createElement('div');
+
+							let channels = gca_audio_channels.list;
+							for (let channel in channels) {
+								if (channels.hasOwnProperty(channel)) {
+									let div = document.createElement('div');
+									div.innerHTML = channel;
+									section.appendChild(div);
+								}
+							}
+
+							return section;
+						},
+						save : function(data){
+							//gca_data.section.set("global", "show_durability", data.select.value);
+						}
+					};
+					return scheme;
+				})()
+				*/
 			},
 
 			"data" : {
@@ -788,7 +818,7 @@ var gca_settings = {
 									_save,
 									category,
 									label,
-									db
+									_db
 								);
 						}
 					}
