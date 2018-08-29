@@ -216,7 +216,7 @@ gca_languages['lv'] = {
 			category_training$show_basics_in_bars : "Rādīt pamata līmeņus progresa joslā",
 			category_training$multiple_train : "Ieslēgt vairāku trennēšanos",
 			category_training$calculator_train : "Ieslēgt izmaksu kalkulatoru",
-			category_training$show_analyze_items_data  : "Rādīt analizēto priekšmetu datus padomos",
+			category_training$show_analyze_items_data : "Rādīt analizēto priekšmetu datus padomos",category_training$show_analyze_items_data : "Rādīt analizēto priekšmetu datus padomos",
 			category_training$show_points_after_upgrade : "Rādīt prasmju punktus pēc uzlabošanas",
 			category_merchants$fade_unaffordable_items : "Notušēt priekšmetus, ko nevarat aļauties nopirkt",
 			category_forge$material_links : "Rādīt paku un tirgus īsceļus katram nepieciešamajam materiālam (kalve/remonts)",
@@ -265,8 +265,6 @@ gca_languages['lv'] = {
 			clear_data_confirm : "Vai tiešām vēlaties nodzēst visus addon datus?",
 			notification_reload : "Atjauno lapu, lai iestatījumi sāktu darboties"
 		}
-	},
-	locale_deprecated : {
 	}
 }
 

@@ -83,8 +83,6 @@ gca_languages['sk'] = {
 			mysterybox_open_stop : "Stop",
 			mysterybox_open_done : "Hotovo!"
 		},
-				
-				
 		guild : {
 			bank_all_gold : "Vložiť všetko zlato",
 			library_per_point_cost : "Cena za skúsenostný bod",
@@ -103,7 +101,6 @@ gca_languages['sk'] = {
 			total_cost : "Celková cena",
 			costs_discount : "Zľava na tréning: {{number}}%"
 		},
-				
 		auction : {
 			items_info : "Informácie o predmetoch",
 			number_of_items : "Počet predmetov : {{number}}",
