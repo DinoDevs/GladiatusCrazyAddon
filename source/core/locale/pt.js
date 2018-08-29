@@ -3,7 +3,7 @@
  * Name : Portuguese
  * Code : [none]
  * Tag  : pt
- * Translator: HarveySpecter [lucasamicci@gmail.com] Led_Zeppelin, tfmvl, kelmaxine
+ * Translator: HarveySpecter [lucasamicci@gmail.com] Led_Zeppelin, tfmvl, kelmaxine, patrick_ [glauco_freitas@hotmail.com], alansoft@gmail.com
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['pt'] = {
 	name : 'Portugues (Portuguese)',
-	translators : ["HarveySpecter", "Led_Zeppelin", "tfmvl", "kelmaxine"],
+	translators : ["HarveySpecter", "Led_Zeppelin", "tfmvl", "kelmaxine", "alansoft", "patrick_"],
 	locale : {
 		info : {
 			description : "O mais louco add-on para gladiatus sempre!"
@@ -83,8 +83,6 @@ gca_languages['pt'] = {
 			mysterybox_open_stop : "Pare",
 			mysterybox_open_done : "Feito"
 		},
-				
-				
 		guild : {
 			bank_all_gold : "Todo o ouro",
 			library_per_point_cost : "Custo por ponto",
@@ -94,21 +92,35 @@ gca_languages['pt'] = {
 			medic_life_after_heal : "Vida após a cura"
 		},
 		expedition : {
+			material_drop_chance : "{{number}}% chance, entre materiais dropados"
 		},
 		training : {
+			stats_points : "pontos de status",
+			stats_calculated_with_yourself_as_an_opponent : "status são calculados com o conceito de atacar a si mesmo",
+			total_cost : "custo total",
+			costs_discount : "desconto de custos de treino"
 		},
-				
 		auction : {
+			items_info : "informação dos ítens",
 			number_of_items : "Número de items : {{number}}",
 			number_of_bided_items : "Número de items licitados : {{number}}",
 			hide_your_gold_here : "Esconder o seu ouro aqui",
-			price_value_function : "Preço = Valor + {{number}}"
+			price_value_function : "Preço = Valor + {{number}}",
+			levels_you_can_see : "você pode ver ítens do nível {{min}} até o nível {{max}}."
 		},
 		markets : {
+			item_cost_only_x_gold : "Este item custa apenas {{number}} em ouro.",
+			item_is_soulbound : "Este item é fantástico",
+			are_you_sure_you_want_to_buy : "Você realmente quer comprar este item?"
 		},
 		forge : {
+			forge_ended : "Fornalha terminou!",
+			recraft_item : "Item reconstruido"
 		},
 		packages : {
+			event_items : "Itens do evento",
+			known_scroll : "Você conhece esse pergaminho",
+			unknown_scroll : "Você não conhece este pergaminho"
 		},
 		settings : {
 			settings : "Configurações",
@@ -118,16 +130,20 @@ gca_languages['pt'] = {
 			category_overview : "Configurações da Vista Geral",
 			category_messages : "Configurações de mensagens",
 			category_packages : "Configurações de Pacotes",
+			category_pantheon : "Panteão",
 			category_reports : "Configurações de relatórios",
 			category_training : "Definições de treino",
 			category_merchants : "Configurações comerciantes",
 			category_forge : "Forja",
 			category_arena : "Arena",
+			category_magus : "Mago",
 			category_market : "Mercado",
 			category_expedition : "Expedição",
 			category_guild : "Definições de alianças",
 			category_auction : "Configurações do leilão",
+			category_events : "Eventos",
 			category_sound : "som",
+			category_data : "Dados",
 			category_global$language_select : "Alterar a linguagem do Add-on",
 			category_global$sound_notifications : "Activar notificações de som para as missões, masmorras e arenas",
 			category_global$browser_notifications : "Ativar notificações do navegador",
@@ -140,17 +156,25 @@ gca_languages['pt'] = {
 			category_global$auction_status_notification : "Alerta quando o status do leilão mudar",
 			category_global$top_fixed_bar : "Ativar barra superior OnScroll",
 			category_global$advance_main_menu : "Melhorar o menu principal",
+			category_global$submenu_click_to_change : "Alterar o sub-menu com um clique",
 			category_global$remember_tabs : "Guardar páginas da mochila e dos mercadores",
+			category_global$attacked_timers : "Mostrar temporizadores em curso",
 			category_global$merchants_timer : "Mostrar tempo restante dos mercadores.",
+			category_global$forge_timers : "Mostrar indicador de temporizador forja / fundição",
 			category_global$notify_new_guild_application : "Notifique-me quando há uma nova aplicação de alianças",
 			category_global$notify_new_guild_application_interval : "Verifique as aplicações a cada (minutos)",
 			category_global$x_scroll : "Ativar rolagem horizontal Gladiatus'",
+			category_global$item_shadow : "Activa a sombra dos itens",
+			category_global$inventory_options_group : "Opções do inventário ( grupo)",
+			category_global$inventory_gold_info : "Mostrar o preço do ouro dos itens de inventário",
+			category_global$pagination_layout : "Alterar o layout da página-caixa",
 			category_overview$analyze_items : "Analisar os items do jogador",
 			category_overview$more_statistics : "Fornecer mais estatísticas do jogador",
 			category_messages$messages_layout : "Melhorar a interface de mensagens",
 			category_messages$new_message_focus : "Definir o foco imediato no conteúdo",
 			category_messages$new_message_friend_list : "Ativar botão lista de amigos",
 			category_packages$pages_to_load : "O número máximo de páginas para carregar",
+			category_packages$item_price : "Mostrar o preço dos itens",
 			category_reports$style_change : "Melhorar a interface da lista de relatórios",
 			category_guild$jail_layout : "Melhorar a interface do Negotium X",
 			category_guild$library_layout : "Melhorar a interface da Biblioteca",
