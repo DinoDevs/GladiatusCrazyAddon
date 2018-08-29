@@ -3,7 +3,7 @@
  * Name : Lithuanian
  * Code : [none]
  * Tag  : lt
- * Translator: andrius_t (t.andrius@gmail.com), Darksun
+ * Translator: andrius_t (t.andrius@gmail.com), Darksun, Danielius Dieninis (TheDance) [giliauskasdance@gmail.com]
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['lt'] = {
 	name : 'Lietuviu (Lithuanian)',
-	translators : ["andrius_t (t.andrius@gmail.com)","Darksun"],
+	translators : ["andrius_t", "Darksun", "TheDance"],
 	locale : {
 		info : {
 			description : "Geriausias papildinys žaidimui gladiatus!"
@@ -29,15 +29,15 @@ gca_languages['lt'] = {
 		global : {
 			life_potion_use : "Naudoti gyvybės gėrimą",
 			life_potion_used : "Gyvybės gėrimas buvo panaudotas",
-			life_potion_left : "Jūs turite {{number}} gyvybės gėrimą (ų)",
+			life_potion_left : "Jūs turite {{number}} gyvybės gėrimą (-ų)",
 			life_recover_full : "Pilnas gyvybės atstatymas",
 			message_private_write : "Rašyti asmeninę žinutę",
-			message_guild_write : "Parašyti pranešimą gildijai",
+			message_guild_write : "Rašyti pranešimą gildijai",
 			message_send : "Siųsti",
 			message_sent_success : "Žinutė išsiųsta sėkmingai",
-			message_sent_failed : "Žinutės siuntimas nepavyko",
+			message_sent_failed : "Žinutės išsiųsti nepavyko",
 			message_empty : "Žinutė tuščia",
-			message_exclude_me : "Man neįtraukti",
+			message_exclude_me : "Manęs neįtraukti",
 			guild_market_goto : "Eiti į gildijos turgų",
 			guild_storage_goto : "Eiti į gildijos sandelį",
 			guild_bank_goto : "Eiti į gildijos banką",
@@ -53,20 +53,20 @@ gca_languages['lt'] = {
 			family_friends : "Šeimos draugai",
 			donate_gold_confirm : "Ar tikrai norite paaukoti {{number}} aukso?",
 			donate_gold_success : "Auksas paaukotas sėkmingai",
-			donate_gold_failed : "Auksas nepaaukotas",
+			donate_gold_failed : "Aukso paaukoti nepavyko",
 			donate_gold_no_gold : "Nėra aukso paaukojimui",
 			donate_gold_all_gold : "Paaukoti visą savo auksą",
 			quest_full : "Pilnas",
 			quest_new : "Naujas",
-			pray_start : "Spausti, kad pradėti melstis",
-			pray_stop : "Spausti, kad baigti melstis",
-			heal : "gydytis",
-			notification_guild_application : "Yra laukianti gildijos paraiška ",
+			pray_start : "Spausk, kad pradėtum melstis",
+			pray_stop : "Spausk, kad baigtum melstis",
+			heal : "Gydytis",
+			notification_guild_application : "Yra nepatvirtintų paraiškų į gildiją",
 			low_durability_items : "Yra {{number}} daiktas(ų) kurių patvarumas mažesnis nei {{percent}}%",
 			gold_exp_data : "Aukso ir Patirties duomenys",
 			gold_exp_data_today : "Pastarosios 24 valandos",
 			gold_exp_data_week : "Pastarosios 7 dienos",
-			gold_exp_data_avg_day : "Vidutinės dienos vertės",
+			gold_exp_data_avg_day : "Vidutinės vertės per dieną",
 			gold_exp_data_to_level_up : "Liko dienų iki kito lygio",
 			gold_exp_data_package_tax : "Savaitinis aukso pakavimo mokestis",
 			gold_exp_data_measurements : "Matavimai",
@@ -175,7 +175,7 @@ gca_languages['lt'] = {
 			category_global$pray_shorcut : "Rodyti meldimosi nuorodą esant Požemių pasaulyje",
 			category_global$centurio_powerups_timers : "Rodyti Centuriono ir sutarčių galiojimo laikus ant Premium nuorodos",
 			category_global$show_durability : "Rodyti daiktų patvarumą daikto kairiajame apatiniame kampe",
-			category_global$min_durability : "Įspėti kai daikto patvarumas yra mažesnis nei % (pasirinkti 0 kad išjungti)",
+			category_global$min_durability : "Įspėtjimas kai daikto patvarumas yra mažesnis nei % (pasirinkti 0 kad išjungti)",
 			category_overview$analyze_items : "Analizuoti daikto duomenis (reikalingus lavinimuisi)",
 			category_overview$food_life_gain : "Rodyti maisto duodamą gyvybės atstatymą",
 			category_overview$block_avoid_caps : "Rodyti blokavimo ir išvengimo caps",
@@ -210,8 +210,8 @@ gca_languages['lt'] = {
 			category_pantheon$quests_reorder : "Įjungti užduočių grupavimą",
 			category_pantheon$quests_detailed_rewards : "Rodyti detalų užduoties atlygį",
 			category_pantheon$missions_show_completed : "Rodyti užbaigtas misijas",
-			category_pantheon$gods_show_points_percent : "Rodyti deivų taškų procentus",
-			category_pantheon$open_many_mysteryboxes : "Vienu metu atidaryti kasdieninio bonuso skrynias",
+			category_pantheon$gods_show_points_percent : "Rodyti dievų taškų procentus",
+			category_pantheon$open_many_mysteryboxes : "Vienu metu atidaryti kelias kasdieninio bonuso skrynias",
 			category_pantheon$show_mysterybox_rewards_rubies : "Rodyti kasdieninio bonuso atlygio vertę, rubinais",
 			category_reports$style_change : "Pagerinti ataskaitų išdėstymą",
 			category_reports$load_loot_tooltips : "Įkelti kiekvienos ataskaitos atlygį",
@@ -268,10 +268,10 @@ gca_languages['lt'] = {
 			do_not_show : "Nerodyti",
 			show_as : "Rodyti kaip",
 			translated_percent : "Vertimo apimtis: {{percent}}%",
-			translated_by : "Išversta: {{string}}",
+			translated_by : "Išverstė: {{string}}",
 			reset_settings_confirm : "Ar tikrai norite atstatyti papildinio nustatymus ?",
-			clear_data_confirm : "Ar tikrai norite ištrinti papildinio duomenis?",
-			notification_reload : "Perkrauti puslapį, kad pakeitimai įsigaliotu"
+			clear_data_confirm : "Ar tikrai norite ištrinti visus papildinio duomenis?",
+			notification_reload : "Perkrauti puslapį, kad pakeitimai įsigaliotų"
 		}
 	}
 }
