@@ -3,7 +3,7 @@
  * Name : Polish
  * Code : [none]
  * Tag  : pl
- * Translator: wupload
+ * Translator: wupload, Legiss
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['pl'] = {
 	name : 'Polski (Polish)',
-	translators : ["wupload"],
+	translators : ["wupload", "Legiss"],
 	locale : {
 		info : {
 			description : "Zwariowany dodatek dla Gladiatus"
@@ -21,10 +21,15 @@ gca_languages['pl'] = {
 			days : "Dzień",
 			minutes : "Minut",
 			no_data : "Nie ma daty",
+			confirm : "Potwierdź",
+			cancel : "Anuluj",
 			close : "Zamknięte",
 			error : "Błąd"
 		},
 		global : {
+			life_potion_use : "Użyj mikstury życia",
+			life_potion_used : "Użyto miksturę życia",
+			life_potion_left : "Pozostało {{number}} mikstur życia",
 			life_recover_full : "Pełne odzyskanie życia ",
 			message_private_write : "Napisz prywatną wiadomość",
 			message_guild_write : "Napisz wiadomość do gildii",
@@ -33,7 +38,7 @@ gca_languages['pl'] = {
 			message_sent_failed : "Błąd podczas wysyłania wiadomości",
 			message_empty : "Brak wiadomości",
 			message_exclude_me : "Wyklucz mnie",
-			guild_market_goto : "\tIdź do rynku gildii",
+			guild_market_goto : "Idź do rynku gildii",
 			guild_storage_goto : "Przejdź do Magazynu",
 			guild_bank_goto : "Przejdź do Banku Gildii",
 			guild_warcamp_goto : "Przejdź do Wojenna Hala Sław",
@@ -46,28 +51,59 @@ gca_languages['pl'] = {
 			online_friends : "Przyjaciele online",
 			guild_friends : "Przyjaciele gildyjni",
 			family_friends : "Rodzina",
+			donate_gold_confirm : "Czy na pewno chcesz przekazać {{number}} złota?",
 			donate_gold_success : "Twoje złoto zostało przekazane",
 			donate_gold_failed : "Wystąpił błąd podczas przekazywania złota",
+			donate_gold_no_gold : "Brakuje złota, aby dokonać dotacji",
 			donate_gold_all_gold : "Przeznacz całe złoto",
 			quest_full : "Pełny",
 			quest_new : "Nowe",
+			pray_start : "Zacznij modlitwę",
+			pray_stop : "Zakończ modlitwę",
+			heal : "Ulecz",
 			notification_guild_application : "Aktywna aplikacja w gildii!",
-			gold_exp_data_to_level_up : "ile dni pozostało do poziomu w górę"
+			low_durability_items : "Masz {{number}} przedmiotów z trwałością poniżej {{percent}}%",
+			gold_exp_data_today : "Zostały 24 godziny",
+			gold_exp_data_week : "Zostało 7 dni",
+			gold_exp_data_avg_day : "Średnie wartości na dzień",
+			gold_exp_data_to_level_up : "ile dni pozostało do poziomu w górę",
+			gold_exp_data_package_tax : "Tygodniowy podatek za paczki",
+			gold_exp_data_total_exp : "Łączne punkty doświadczenia",
+			gold_exp_data_total_gold : "Łączne złoto"
 		},
-		overview : {},
-		pantheon : {},
+		overview : {
+			stats_difference : "Różnica",
+			drop_item_see_materials_repair : "Upuść przedmiot, aby zobaczyć jakie składniki będą potrzebne do naprawy",
+			workbench_6th_slot_empty : "6 slot w warsztacie musi być pusty"
+		},
+		pantheon : {
+			mysterybox_open_all : "Otwórz wszystkie",
+			mysterybox_open_stop : "Zatrzymaj",
+			mysterybox_open_done : "Skończone!"
+		},
 		guild : {
 			bank_all_gold : "Dodaj całe złoto",
+			library_per_point_cost : "Koszt za punkt statystyki",
+			library_gold_left : "Złoto do gildii po aktywacji",
 			medic_lost_points : "Stracone punkty",
 			medic_points_to_heal : "Punkty zdrowia",
 			medic_life_after_heal : "Życie po uleczeniu"
 		},
-		training : {},
+		expedition : {
+		},
+		training : {
+		},
 		auction : {
 			number_of_items : "Liczba przedmiotów : {{number}}",
 			number_of_bided_items : "Liczba licytowanych przedmiotów : {{number}}",
 			hide_your_gold_here : "Schowaj swoje złoto tu",
 			price_value_function : "Cena = Wartość + {{number}}"
+		},
+		markets : {
+		},
+		forge : {
+		},
+		packages : {
 		},
 		settings : {
 			settings : "Ustawienia",
