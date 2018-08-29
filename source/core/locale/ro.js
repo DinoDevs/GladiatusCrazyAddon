@@ -21,6 +21,8 @@ gca_languages['ro'] = {
 			days : "zile",
 			minutes : "minute",
 			no_data : "Nu există date",
+			confirm : "Confirma",
+			cancel : "Cancel",
 			close : "Închide",
 			error : "Eroare"
 		},
@@ -46,6 +48,7 @@ gca_languages['ro'] = {
 			online_friends : "Prieteni Online",
 			guild_friends : "Prietenii Breslei",
 			family_friends : "Prietenii Familiei",
+			donate_gold_confirm : "Esti sigur ca vrei sa donezi",
 			donate_gold_success : "Aurul tău a fost donat",
 			donate_gold_failed : "Donarea aurului a eşuat",
 			donate_gold_all_gold : "Donează-ţi toţi banii",
@@ -54,20 +57,31 @@ gca_languages['ro'] = {
 			notification_guild_application : "Există o aplicaţie în breaslă nerezolvată!",
 			gold_exp_data_to_level_up : "Zile rămase până la urmatorul nivel"
 		},
-		overview : {},
-		pantheon : {},
+		overview : {
+		},
+		pantheon : {
+		},
 		guild : {
 			bank_all_gold : "Adaugă tot aurul",
 			medic_lost_points : "Punctele pierdute",
 			medic_points_to_heal : "Puncte de vindecare",
 			medic_life_after_heal : "Viaţa după vindecare"
 		},
-		training : {},
+		expedition : {
+		},
+		training : {
+		},
 		auction : {
 			number_of_items : "Numarul obiectelor : {{number}}",
 			number_of_bided_items : "Numărul obiectelor licitate : {{number}}",
 			hide_your_gold_here : "Ascude-ţi aici aurul",
 			price_value_function : "Preţ = Valuare + {{number}}"
+		},
+		markets : {
+		},
+		forge : {
+		},
+		packages : {
 		},
 		settings : {
 			settings : "Setări",
