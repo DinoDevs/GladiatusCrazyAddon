@@ -37,9 +37,9 @@ We suggest you to download a *stable release*. Alpha releases are for developers
 [![version](https://img.shields.io/badge/version-v4.0.5-green.svg?style=flat-square&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAABNElEQVR4AWJgqAD0SQcQDUVRGMetIpCkwiKBQjJLKQBRUYCEqKQqtqGogAkAEUCgAgQIIRBRkAUBCgggBVJUtao%2FvpvPwfBznnvv%2BXZ33rtNMqjTcysmUcAC8ranKqlZtQk7eMCvqaKCsRjizVncqOFb1f2obniI3%2BBcB55whDJK2MOzAqo6M6G%2B%2BhSwpI1ddGE8zGQ03OwqzuASc3q%2BQDH9goWcpXmo5lJAD6Z0aF%2Bb2yhgDetYRUV7n6ozKaBRzd1484FFWv%2FSczEFNChgPl0xBjgLKMWATTs0iz4MYcAMam0Y7TFg2QK2bIjUGmzKOXtN71ix8IxqB8ro%2FV8PB44V8KF6j1Oc4BovWs%2BnrzEGZHFX601IvwfEkDYc4NWD5BGHaPa%2F4Pzz7cQ0iljECFriEP8AsBC7uWBeNyIAAAAASUVORK5CYII%3D)](https://github.com/DinoDevs/GladiatusCrazyAddon/releases/latest)
 
 
-### Latest dev build v4.x.x-beta <sub><sup>(for developers)</sup></sub>
+### Latest dev build v4.0.6-beta <sub><sup>(for developers)</sup></sub> <sub><sup>[[Progress Here]](PROGRESS.md)</sup></sub>
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-x-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-x-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-x-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-3-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 
 
