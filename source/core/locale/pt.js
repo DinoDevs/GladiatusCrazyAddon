@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['pt'] = {
 	name : 'Portugues (Portuguese)',
-	translators : ["HarveySpecter [lucasamicci@gmail.com]", "Led_Zeppelin", "tfmvl", "kelmaxine"],
+	translators : ["HarveySpecter", "Led_Zeppelin", "tfmvl", "kelmaxine"],
 	locale : {
 		info : {
 			description : "O mais louco add-on para gladiatus sempre!"

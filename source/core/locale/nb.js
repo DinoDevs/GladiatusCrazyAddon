@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['nb'] = {
 	name : 'Norsk (Norwegian)',
-	translators : ["Rune1 (Norway)"],
+	translators : ["Rune1"],
 	locale : {
 		info : {
 			description : "Den villeste utvidelsen til Gladiatus noensinne!"

@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['nl'] = {
 	name : 'Nederlands (Dutch)',
-	translators : ["priscuss@hotmail.nl", "proximilius", "anathustra"],
+	translators : ["priscuss", "proximilius", "anathustra"],
 	locale : {
 		info : {
 			description : "De allerbeste gladiatus add-on ooit!!"
