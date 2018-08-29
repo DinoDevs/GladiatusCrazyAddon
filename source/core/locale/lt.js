@@ -273,22 +273,6 @@ gca_languages['lt'] = {
 			clear_data_confirm : "Ar tikrai norite ištrinti papildinio duomenis?",
 			notification_reload : "Perkrauti puslapį, kad pakeitimai įsigaliotu"
 		}
-	},
-	locale_deprecated : {
-		write_private_message : "Rašyti privačią žinutę",
-		write_guild_message : "Parašyti gildijos pranešimą",
-		send : "Siūsti",
-		go_to_guilds_storage : "Eiti į gildijos sandeli",
-		go_to_guilds_bank : "Eiti į gildijos banką",
-		donate_all_your_gold : "Paaukoti visą savo aukso",
-		go_to_guilds_jail : "Eiti į gildijos kalėjimą",
-		go_to_simulator : "Eiti į simuliatoriu",
-		display_my_stats : "Rodyti mano statistika",
-		display_online_players : "Rodyti prisijungusius žaidėjus",
-		quest_new : "Naujas",
-		quest_full : "Pilnas",
-		total : "Iš viso ",
-		OPTIONS_GAME_FIXES_OPTIONS : "Žaidimo pataisymai"
 	}
 }
 
