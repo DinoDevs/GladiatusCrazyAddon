@@ -6,36 +6,62 @@
 // Location
 var gca_arena = {
 	inject : function(){
-		(gca_options.bool("arena","ignore_attack_confirmations") &&
+		// Find arena type
+		this.resolve();
+
+		// Sort players by level
+		((this.isCrossNormalArena || this.isCrossTurmaArena) &&
+			this.sort_by_lvl());
+
+		// Attack Confirmations
+		(gca_options.bool("arena", "ignore_attack_confirmations") &&
 			this.ignore_attack_confirmations());
-			
-		// Normal arena
-		if (gca_section.submod == null) {
-			(gca_options.bool("arena","show_simulator_imagelink") &&
-				this.show_simulator());
-			this.show_gca_global_arena();
-			
-		// Server Arena / Server Turma
-		} else if(gca_section.submod === 'serverArena') {
-			this.sort_by_lvl();
-			
-			if (gca_getPage.parameter('aType') == 2) {
-				// Normal
-				(gca_options.bool("arena","show_simulator_imagelink") &&
-					this.show_simulator());
-				
-			} else {
-				//Turma
-				
-			}
-			
-		// Turma
-		} else {
-			
-		}
+
+		// Highlight guild members on other severs
+		//((this.isNormalArena || this.isCrossNormalArena) &&
+		//	);
+
+		// Simulator Link
+		((this.isNormalArena || this.isCrossNormalArena) && gca_options.bool("arena", "show_simulator_imagelink") &&
+			this.show_simulator());
+
+		// Global Arena
+		(this.isNormalArena &&
+			this.show_gca_global_arena());
 
 		// Setting Link
 		gca_tools.create.settingsLink("arena");
+	},
+
+	// Resolve arena type
+	resolve : function() {
+		this.isNormalArena = false;
+		this.isTurmaArena = false;
+		this.isCrossNormalArena = false;
+		this.isCrossTurmaArena = false;
+
+		// Normal arena
+		if (gca_section.submod == null) {
+			this.isNormalArena = true;
+		}
+
+		// Turma
+		else if (gca_section.submod === "grouparena") {
+			this.isTurmaArena = true;
+		}
+
+		// Cross Server Arenas
+		else if(gca_section.submod === 'serverArena') {
+			let type = gca_getPage.parameter('aType');
+			// Normal Arena
+			if (type == 2) {
+				this.isCrossNormalArena = true;
+			}
+			// Turma Arena
+			else if (type == 3) {
+				this.isCrossTurmaArena = true;
+			}
+		}
 	},
 
 	// Show Simulator

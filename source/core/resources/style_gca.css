@@ -690,6 +690,8 @@
 		/* Fix rtl problems */
 		.gca_rtl .charmercsel{transform: scaleX(-1);}
 		.gca_rtl .shopTab:before, .gca_rtl .shopTab:after{transform: scaleX(-1);}
+		/* Target Player List */
+		.gca-target-player-list-link {position: absolute;bottom: -19px;font-weight: bold;padding: 0px 1px;}
 
 
 	/* Costumes Layout

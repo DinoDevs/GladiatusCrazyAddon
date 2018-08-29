@@ -6,12 +6,34 @@
 // Overview
 var gca_player = {
 	inject : function(){
+	
+		// Resolve Page
+		this.overviewResolve();
 		
 		// Items shadow
 		(gca_options.bool("global","item_shadow") && 
 			this.itemShadow.inject());
+
+		// Target Players List
+		//(gca_options.bool("arena","target_list") && 
+			this.targetList.inject(this);//);
 		
 		this.show_buffs();
+	},
+
+	// Resolve Page
+	overviewResolve : function(){
+		// Default Values
+		this.doll = 1;
+		this.playerId = gca_getPage.parameter('p');
+
+		var dolls = document.getElementsByClassName('charmercsel');
+		for (var i = 0; i < dolls.length; i++) {
+			if(dolls[i].className == "charmercsel active"){
+				this.doll = i+1;
+				break;
+			}
+		}
 	},
 
 	// Items Shadow Inject
@@ -35,9 +57,22 @@ var gca_player = {
 
 		}
 	},
+
+	// Target Players List
+	targetList : {
+		inject : function(self) {
+			if (self.doll != 1) return;
+
+			var char = document.getElementById('char');
+			this.link = document.createElement('div');
+			this.link.className = 'gca-target-player-list-link';
+			this.link.textContent = 'Add to target player list';
+			char.appendChild(this.link);
+		},
+	},
 	
 	// Show player buffs
-	show_buffs : function(){
+	show_buffs : function() {
 		if(!document.getElementById('content'))
 			return;
 		
