@@ -146,6 +146,13 @@ gca_languages["en"] = {
 			material_drop_chance : "{{number}}% chance, between dropped materials"
 		},
 
+		// Arena section
+		arena : {
+			global_arena_title : "Global Arena (Crazy Addon)",
+			global_arena_description : "This is the ultimate arena, gathering gladiators from all around the world! In this arena, gladiators do not fight for gold or experience, they fight for a place on the world top list!",
+			global_arena_load : "Load enemies list"
+		},
+
 		// Training section
 		training : {
 			// Points analysis
@@ -322,6 +329,8 @@ gca_languages["en"] = {
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
 			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (gladiatussimulator.tk)",
+			category_arena$sort_by_lvl : "Sort players in arena by level",
+			category_arena$highlight_guild_members : "Highlight players on other servers that may be guild members",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Market

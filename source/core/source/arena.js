@@ -10,7 +10,7 @@ var gca_arena = {
 		this.resolve();
 
 		// Sort players by level
-		((this.isCrossNormalArena || this.isCrossTurmaArena) &&
+		((this.isCrossNormalArena || this.isCrossTurmaArena) && gca_options.bool("arena", "sort_by_lvl") &&
 			this.sort_by_lvl());
 
 		// Attack Confirmations
@@ -18,8 +18,8 @@ var gca_arena = {
 			this.ignore_attack_confirmations());
 
 		// Highlight guild members on other severs
-		//((this.isNormalArena || this.isCrossNormalArena) &&
-		//	);
+		((this.isNormalArena || this.isCrossNormalArena) && gca_options.bool("arena", "highlight_guild_members") &&
+			this.highlight_mates());
 
 		// Simulator Link
 		((this.isNormalArena || this.isCrossNormalArena) && gca_options.bool("arena", "show_simulator_imagelink") &&
@@ -66,19 +66,19 @@ var gca_arena = {
 
 	// Show Simulator
 	show_simulator : function(){
-		var sim_link = document.createElement('a');
-		sim_link.href = "https://gladiatussimulator.tk/";
-		sim_link.setAttribute("target","_blank");
-		sim_link.style = "text-decoration: none;";
-		document.getElementById('content').getElementsByTagName('article')[0].parentNode.insertBefore(sim_link, document.getElementById('content').getElementsByTagName('article')[0]);
+		let link = document.createElement('a');
+		link.className = "gca_arena-simulator-link";
+		link.href = "https://gladiatussimulator.tk/";
+		link.setAttribute("target","_blank");
+		document.getElementById('content').getElementsByTagName('article')[0].parentNode.insertBefore(link, document.getElementById('content').getElementsByTagName('article')[0]);
 		
-		var sim_image = document.createElement('div');
-		sim_image.className = "gca_arena-simulator-img";
-		sim_link.appendChild(sim_image);
+		let image = document.createElement('div');
+		image.className = "gca_arena-simulator-img";
+		link.appendChild(image);
 		
-		var sim_text = document.createElement('div');
-		sim_text.textContent = "Before attacking, use the...";
-		sim_image.appendChild(sim_text);
+		let text = document.createElement('div');
+		text.textContent = "Before attacking, use the...";
+		image.appendChild(text);
 	},
 	
 	// Show GCA Global Arena
@@ -89,7 +89,7 @@ var gca_arena = {
 		// Add header
 		temp_element = document.createElement('h2');
 		temp_element.className = "section-header global_arena_header";
-		temp_element.textContent = "Global Arena (Crazy Addon)";
+		temp_element.textContent = gca_locale.get("arena", "global_arena_title");
 		//temp_element.style = "cursor: pointer;";
 		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
 		// Add box
@@ -99,14 +99,14 @@ var gca_arena = {
 		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
 		// Add text
 		temp_element = document.createElement('p');
-		temp_element.textContent = 'This is the ultimate arena gathering gladiators from all around the world! In this arena gladiators do not fight for gold or experience, they fight to find out who is the best in the world!';
+		temp_element.textContent = gca_locale.get("arena", "global_arena_description");
 		temp_element.style="text-align: justify;";
 		document.getElementById('global_arena_box').appendChild(temp_element);
 		// Add button
 		temp_element = document.createElement('input');
 		temp_element.type = "button";
 		temp_element.className = "awesome-button";
-		temp_element.value = "Load enemies list";
+		temp_element.value = gca_locale.get("arena", "global_arena_load");
 		temp_element.style = "margin-bottom: 15px;";
 		temp_element.id = "load_global_arena";
 		temp_element.setAttribute("onclick","gca_arena_load_enemies()");
@@ -207,7 +207,7 @@ var gca_arena = {
 			
 			// Add text
 			let temp_element = document.createElement('p');
-			temp_element.textContent = 'This is the ultimate arena gathering gladiators from all around the world! In this arena gladiators do not fight for gold or experience, they fight to find out who is the best in the world!';
+			temp_element.textContent = gca_locale.get("arena", "global_arena_description");
 			temp_element.style="text-align: justify;";
 			div.appendChild(temp_element);
 			
@@ -424,6 +424,36 @@ var gca_arena = {
 		let table = rows[0].parentNode;
 		for (let i = 0; i < players.length; i++) {
 			table.appendChild(players[i].element);
+		}
+	},
+
+	// Highlight guild mates
+	highlight_mates : function() {
+		// If not in a guild
+		if (!gca_data.section.get("guild", "inGuild", false)) {
+			return;
+		}
+		// If no opponents
+		if (!document.getElementById('own2') && !document.getElementById('own3')) {
+			return;
+		}
+
+		// Get links
+		let links = (document.getElementById('own2') != null) ? document.getElementById('own2').getElementsByTagName('a') : document.getElementById('own3').getElementsByTagName('a');
+		if (links.length == 0) return;
+
+		// Get guild mates
+		let mates = [];
+		let objects = gca_data.section.get("guild", "mates", []);
+		for (let i = objects.length - 1; i >= 0; i--) {
+			mates.push(objects[i].name);
+		}
+
+		// Highlight players
+		for (var i = links.length - 1; i >= 0; i--) {
+			if (mates.indexOf(links[i].textContent.trim()) >= 0) {
+				links[i].style.color = 'green';
+			}
 		}
 	}
 };

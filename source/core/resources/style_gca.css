@@ -1003,9 +1003,14 @@
 		
 	/* Arena
 	-------------------------------------------------- */
-		.gca_arena-simulator-img{background: transparent url('images/simulator.jpg') no-repeat 0px 0px;width:250px;height:70px;margin: 10px;margin-left: auto;margin-right: auto;}
+
+		/* Simulator Image */
+		.gca_arena-simulator-link{display: block;text-decoration: none;margin: 10px 20px;text-align: center;background: #d3c195;border: 1px solid #bba86e;}
+		.gca_arena-simulator-link:hover{background: #ded2ad;}
+		.gca_arena-simulator-img{display: inline-block;background: transparent url('images/simulator.jpg') no-repeat 0px 0px;width:250px;height:70px;}
 		.gca_arena-simulator-img div{color:#fff;text-align: center;text-shadow: 0px 0px 2px black;padding-top: 4px;}
 		
+		/* Global Arena */
 		.global_arena_header{background-image: url('images/colosseo_by_Dario_Veronesi_unsplash.jpg');background-size: cover;background-repeat: no-repeat;background-position: center center;height: 100px;color: rgba(255, 152, 0, 0.9);font-size: 20px;text-align: center;line-height: 100px;font-family: century gothic;text-shadow: 0px 0px 4px #000;}
 		#global_arena_box .flag{height: 12px;width:20px;}
 		#global_arena_box #alert_box{text-align: center;font-size: 14px;font-weight: bold;}

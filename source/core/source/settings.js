@@ -483,7 +483,11 @@ var gca_settings = {
 				// Ignore attack confirmations
 				"ignore_attack_confirmations" : false,
 				// Show simulator's image-link
-				"show_simulator_imagelink" : true
+				"show_simulator_imagelink" : true,
+				// Sort players by level
+				"sort_by_lvl" : true,
+				// Highlight guild members on other servers
+				"highlight_guild_members" : true
 			},
 			
 			// Magus

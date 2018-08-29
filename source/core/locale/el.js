@@ -146,6 +146,13 @@ gca_languages["gr"] = {
 			material_drop_chance : "{{number}}% πιθανότητα, μεταξύ των υλικών που πέφτουν"
 		},
 
+		// Arena section
+		arena : {
+			global_arena_title : "Παγκόσμια Αρένα (Crazy Addon)",
+			global_arena_description : "Αυτή είναι η υπέρτατη αρένα που μαζεύει μονομάχους από όλο τον κόσμο! Σε αυτή την αρένα οι μονομάχοι δεν μάχοντε για χρυσό ή εμπειρία, μάχοντε για μια θέση στην παγκόσμια κατάσταση!",
+			global_arena_load : "Φόρτωμα λίστας αντιπάλων"
+		},
+
 		// Training section
 		training : {
 			// Points analysis
@@ -322,6 +329,8 @@ gca_languages["gr"] = {
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Αγνοήστε τις επιβεβαιώσεις επίθεση (μηνύματα για την υπέρβαση των 5 επιθέσεων κλπ)",
 			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (gladiatussimulator.tk)",
+			category_arena$sort_by_lvl : "Ταξινόμηση παιχτών κατά επίπεδο στην αρένα",
+			category_arena$highlight_guild_members : "Χρωμάτισμα παιχτών από άλλους σέρβερς που μπορεί να έιναι μέλη του τάγματος",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να βελτιωθούν",
 			// Settings - Market
