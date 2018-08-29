@@ -291,7 +291,6 @@ gca_languages["en"] = {
 			category_packages$item_price : "Show items' price",
 			category_packages$special_category_features : "Enable special features per category",
 			category_packages$double_click_open : "Double click packets to open them",
-			
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Enable quest grouping",
 			category_pantheon$quests_detailed_rewards : "Show detailed quests rewards",

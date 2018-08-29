@@ -95,6 +95,7 @@ gca_languages["gr"] = {
 
 			// Notifications
 			notification_guild_application: "Υπάρχει μια αίτηση στο τάγμα σε αναμονή!",
+			low_durability_items : "Υπάρχουν {{number}} αντικείμενα με ανθεκτικότητα κάτω από {{percent}}%",
 
 			// Gold - Exp data
 			gold_exp_data: "Δεδομένα Χρυσού και Εμπειρίας",
@@ -289,6 +290,7 @@ gca_languages["gr"] = {
 			category_packages$pages_to_load: "Μέγιστος αριθμός σελίδων που φορτώνονται",
 			category_packages$item_price : "Εμφάνιση του κόστους κάθε αντικειμένου",
 			category_packages$special_category_features : "Ενεργοποίηση ειδικών λειτουργιών ανά κατηγορία",
+			category_packages$double_click_open : "Άνοιγμα πακέτων με δυπλό κλικ",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Ομαδοποίηση αποστολών",
 			category_pantheon$quests_detailed_rewards: "Ενεργοποίηση λεπτομερούς εμφάνισης των ανταμοιβών",
@@ -309,9 +311,14 @@ gca_languages["gr"] = {
 			category_training$show_points_after_upgrade : "Εμφάνιση πόντων μετά την εκπαίδευση",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να αγοραστούν",
+			category_merchants$show_shop_info : "Προβολή πληροφοριών αντικειμένων στους πωλητές (συνολικός χρυσός και ρουμπίνια)",
+			category_merchants$double_click_actions : "Πούλημα/Αγορά αντικειμένων με διπλό κλικ",
 			// Settings - Forge
 			category_forge$material_links : "Εμφάνιση συντομεύσεων αγοράς & πακέτων για κάθε απαιτούμενο υλικό (σιδηρουργείο/πάγκος εργασίας)",
 			category_forge$show_levels : "Εμφάνιση επιπέδων Προθεμάτων/Επιθεμάτων/Βασικών αντικειμένων δίπλα στα ονόματα τους (σιδηρουργείο)",
+			category_forge$horreum_materials_names : "Προβολή των ονομάτων των υλών (Αποθήκη πρώτων υλών)",
+			category_forge$horreum_remember_options : "Αποθήκευση των τελευτέων επιλογών της αποθήκης (Αποθήκη πρώτων υλών)",
+			category_forge$horreum_select_meterials : "Επιλογή πρώτων υλών με κλικ (Αποθήκη πρώτων υλών)",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Αγνοήστε τις επιβεβαιώσεις επίθεση (μηνύματα για την υπέρβαση των 5 επιθέσεων κλπ)",
 			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (gladiatussimulator.tk)",
@@ -323,6 +330,7 @@ gca_languages["gr"] = {
 			category_market$cancel_all_button : "Εμφάνιση κουμπιού ακύρωσης όλων",
 			category_market$remember_sell_duration : "Να θυμάται το πρόσθετο την τελευταία επιλεγμένη διάρκεια πώλησης",
 			category_market$sell_duration : "Ορισμός προεπιλεγμένης διάρκειας πώλησης",
+			category_market$one_gold_mode : "Επιλογή για σταθερή τιμή πώλησης στο 1 χρυσό",
 			category_market$remember_sort : "Να θυμάται το πρόσθετο την τελευταία ταξινόμηση",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Εμφάνιση των υλών σιδηρουργείου που δίνει ο κάθε εχθρός",
