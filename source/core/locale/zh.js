@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['zh'] = {
 	name : '繁體中文 (Chinese traditional)',
-	translators : ["Eric Hsieh, Liu"],
+	translators : ["Eric Hsieh", "Liu"],
 	locale : {
 		info : {
 			description : "craziest add-on給永遠的神鬼戰士"
@@ -21,12 +21,15 @@ gca_languages['zh'] = {
 			days : "天",
 			minutes : "每分鐘",
 			no_data : "目前還沒有數據",
-			"confirm" : "確認",
-			"cancel" : "取消",
+			confirm : "確認",
+			cancel : "取消",
 			close : "關閉",
 			error : "錯誤"
 		},
 		global : {
+			life_potion_use : "使用治癒藥水",
+			life_potion_used : "已使用治癒藥水",
+			life_potion_left : "你目前有{{number}}生命值",
 			life_recover_full : "生命值全滿",
 			message_private_write : "撰寫私人訊息",
 			message_guild_write : "撰寫公會訊息",
@@ -48,28 +51,59 @@ gca_languages['zh'] = {
 			online_friends : "在線好友",
 			guild_friends : "公會好友",
 			family_friends : "家族好友",
+			donate_gold_confirm : "你確定要捐獻 {{number}}金幣？",
 			donate_gold_success : "你已捐獻出你的金幣",
 			donate_gold_failed : "你捐獻金幣失敗",
+			donate_gold_no_gold : "你已無金幣可捐獻",
 			donate_gold_all_gold : "捐獻全部的金幣",
 			quest_full : "詳細",
 			quest_new : "新的",
+			pray_start : "開始祈禱",
+			pray_stop : "停止祈禱",
+			heal : "治癒",
 			notification_guild_application : "等待公會採用",
-			gold_exp_data_to_level_up : "再幾天後升級"
+			low_durability_items : "有 {{number}} 項裝備耐久度低於 {{percent}}%",
+			gold_exp_data : "金幣及經驗值數據",
+			gold_exp_data_today : "最近24小時",
+			gold_exp_data_week : "最近7天",
+			gold_exp_data_avg_day : "每天平均值",
+			gold_exp_data_to_level_up : "再幾天後升級",
+			gold_exp_data_total_exp : "總經驗驗值",
+			gold_exp_data_total_gold : "總金幣數"
 		},
-		overview : {},
-		pantheon : {},
+		overview : {
+			stats_difference : "差值",
+			drop_item_see_materials_repair : "拖曳裝備以檢視修裝所需材料",
+			workbench_6th_slot_empty : "鍛造台第6爐需為空的"
+		},
+		pantheon : {
+			mysterybox_open_all : "開啟全部",
+			mysterybox_open_stop : "停止",
+			mysterybox_open_done : "完成"
+		},
 		guild : {
 			bank_all_gold : "加入所有的金幣",
+			library_per_point_cost : "啟用袐方所需金幣數",
+			library_gold_left : "啟用袐方後公會剩餘金幣數",
 			medic_lost_points : "損失的生命值",
 			medic_points_to_heal : "治療後增加的生命值",
 			medic_life_after_heal : "治療後的生命值"
 		},
-		training : {},
+		expedition : {
+		},
+		training : {
+		},
 		auction : {
 			number_of_items : "項目數 : {{number}}",
 			number_of_bided_items : "已出價的項目數 : {{number}}",
 			hide_your_gold_here : "在這裡隱藏你的金幣",
 			price_value_function : "價格=價值 + {{number}}"
+		},
+		markets : {
+		},
+		forge : {
+		},
+		packages : {
 		},
 		settings : {
 			settings : "設置",
