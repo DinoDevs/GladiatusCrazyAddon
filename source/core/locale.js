@@ -13,10 +13,10 @@ var locale = {
 	languages : [
 		"ar","bg","cs","de","el",
 		"en","es","et","fa","fr",
-		"he","hr","hu","lt","lv",
-		"nb","nl","pl","pt","ro",
-		"ru","sk","sl","sq","tr",
-		"zh"
+		"he","hr","hu","it","lt",
+		"lv","nb","nl","pl","pt",
+		"ro","ru","sk","sl","sq",
+		"tr","zh"
 	],
 	// Language loaded
 	loaded : "en",
