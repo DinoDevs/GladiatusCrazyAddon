@@ -82,7 +82,7 @@ var gca_player = {
 			if (self.doll != 1 || !self.playerName) return;
 			// If not logged in and not cross server
 			let isCrossServer = (self.referrer && self.referrer.country && self.referrer.server != gca_section.server && self.referrer.country == gca_section.country && self.referrer.sh);
-			if (!this.isLoggedIn && !isCrossServer) return;
+			if (!self.isLoggedIn && !isCrossServer) return;
 
 			this.self = self;
 			this.id = self.playerId + '@' + gca_section.server;	
