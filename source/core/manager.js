@@ -157,17 +157,21 @@ var manager = {
 
 		// Overview section
 		overview : function() {
+			// Overview
+			if(info.page.queries.submod == "fetchLoginBonus" || info.page.queries.submod == null){
+				tools.loadScript("source/overview.js");
+			}
 			// Player Stats
-			if(info.page.queries.submod == 'stats'){
+			else if(info.page.queries.submod == 'stats'){
 				tools.loadScript("source/overview.stats.js");
 			}
 			// Player Achivements
 			else if(info.page.queries.submod == 'achievements'){
 				tools.loadScript("source/overview.achievements.js");
 			}
-			// Overview
-			else if(info.page.queries.submod == "fetchLoginBonus" || info.page.queries.submod == null){
-				tools.loadScript("source/overview.js");
+			// Buddylist
+			else if(info.page.queries.submod == "buddylist"){
+				tools.loadScript("source/overview.buddylist.js");
 			}
 		},
 

@@ -150,7 +150,10 @@ gca_languages["en"] = {
 		arena : {
 			global_arena_title : "Global Arena (Crazy Addon)",
 			global_arena_description : "This is the ultimate arena, gathering gladiators from all around the world! In this arena, gladiators do not fight for gold or experience, they fight for a place on the world top list!",
-			global_arena_load : "Load enemies list"
+			global_arena_load : "Load enemies list",
+			target_list : "Target List",
+			target_list_add : "Add to target list",
+			target_list_remove : "Remove from target list"
 		},
 
 		// Training section

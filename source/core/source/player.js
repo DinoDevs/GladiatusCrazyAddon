@@ -15,8 +15,8 @@ var gca_player = {
 			this.itemShadow.inject());
 
 		// Target Players List
-		//(gca_options.bool("arena","target_list") && 
-			this.targetList.inject(this);//);
+		(true && //gca_options.bool("arena","target_list") && 
+			this.targetList.inject(this));
 		
 		this.show_buffs();
 	},
@@ -26,12 +26,30 @@ var gca_player = {
 		// Default Values
 		this.doll = 1;
 		this.playerId = gca_getPage.parameter('p');
+		this.playerName = null;
 
+		this.isLoggedIn = (document.getElementById('icon_rubies') ? true : false);
+		this.referrer = (document.referrer) ? gca_section.resolveUrl(document.referrer) : false;
+
+
+		// Detect doll
 		var dolls = document.getElementsByClassName('charmercsel');
 		for (var i = 0; i < dolls.length; i++) {
 			if(dolls[i].className == "charmercsel active"){
 				this.doll = i+1;
 				break;
+			}
+		}
+
+		// Detect name
+		if (this.doll == 1) {
+			let name = document.getElementById('content');
+			if (name) {
+				name = name.getElementsByClassName('player_name_bg');
+				if (name.length) {
+					name = name[0].getElementsByClassName('ellipsis');
+					if (name.length) this.playerName = name[0].innerHTML.trim();
+				}
 			}
 		}
 	},
@@ -61,14 +79,64 @@ var gca_player = {
 	// Target Players List
 	targetList : {
 		inject : function(self) {
-			if (self.doll != 1) return;
+			if (self.doll != 1 || !self.playerName) return;
+			// If not logged in and not cross server
+			let isCrossServer = (self.referrer && self.referrer.country && self.referrer.server != gca_section.server && self.referrer.country == gca_section.country && self.referrer.sh);
+			if (!this.isLoggedIn && !isCrossServer) return;
 
+			this.self = self;
+			this.id = self.playerId + '@' + gca_section.server;	
+
+			// Check if target
+			this.isTarget = false;
+			if (!isCrossServer) {
+				let list = gca_data.section.get('arena', 'target-list', {});
+				this.isTarget = (list.hasOwnProperty(this.id) ? true : false);
+			}
+
+			// Add button
 			var char = document.getElementById('char');
-			this.link = document.createElement('div');
-			this.link.className = 'gca-target-player-list-link';
-			this.link.textContent = 'Add to target player list';
-			char.appendChild(this.link);
+			this.btn = document.createElement('img');
+			this.btn.className = 'gca-target-player-list-btn';
+			this.btn.style.display = 'none';
+			char.appendChild(this.btn);
+			if (!isCrossServer) this.btn.addEventListener('click', () => {this.toggle();});
+			else this.btn.addEventListener('click', () => {this.handleCrossServer(self.referrer);});
+			this.update();
+			this.btn.style.display = 'block';
 		},
+
+		update : function() {
+			this.btn.src = (this.isTarget ? 'img/ui/quest/button_cancel.jpg' : 'img/ui/training/button.jpg');
+			gca_tools.setTooltip(this.btn, JSON.stringify([[[(this.isTarget ? gca_locale.get('arena', 'target_list_remove') : gca_locale.get('arena', 'target_list_add')), 'white']]]));
+		},
+
+		toggle : function() {
+			let list = gca_data.section.get('arena', 'target-list', {});
+			// Remove from the list
+			if (this.isTarget) {
+				delete list[this.id];
+			}
+			// Add to the list
+			else {
+				list[this.id] = [gca_section.server, this.self.playerId, this.self.playerName];
+			}
+			gca_data.section.set('arena', 'target-list', list);
+			this.isTarget = !this.isTarget;
+			this.update();
+		},
+
+		handleCrossServer : function(info) {
+			document.location.href = gca_getPage.crossLink(info, {
+				mod : 'overview',
+				submod : 'buddylist',
+				sh : info.sh,
+				gcamod : 'addtarget',
+				target_server : gca_section.server,
+				target_id : this.self.playerId,
+				target_name : this.self.playerName
+			});
+		}
 	},
 	
 	// Show player buffs

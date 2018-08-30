@@ -21,6 +21,8 @@ var gca_arena = {
 		((this.isNormalArena || this.isCrossNormalArena) && gca_options.bool("arena", "highlight_guild_members") &&
 			this.highlight_mates());
 
+		this.highlight_targets();
+
 		// Simulator Link
 		((this.isNormalArena || this.isCrossNormalArena) && gca_options.bool("arena", "show_simulator_imagelink") &&
 			this.show_simulator());
@@ -453,6 +455,30 @@ var gca_arena = {
 		for (var i = links.length - 1; i >= 0; i--) {
 			if (mates.indexOf(links[i].textContent.trim()) >= 0) {
 				links[i].style.color = 'green';
+			}
+		}
+	},
+
+	// Highlight targets
+	highlight_targets : function() {
+		// If no opponents
+		if (!document.getElementById('own2') && !document.getElementById('own3')) {
+			return;
+		}
+
+		// Get links
+		let links = (document.getElementById('own2') != null) ? document.getElementById('own2').getElementsByTagName('a') : document.getElementById('own3').getElementsByTagName('a');
+		if (links.length == 0) return;
+
+		// Get targets
+		let targets = gca_data.section.get('arena', 'target-list', {});
+
+		// Highlight players
+		for (var i = links.length - 1; i >= 0; i--) {
+			// https://s13-gr.gladiatus.gameforge.com/game/index.php?mod=player&p=153593
+			let info = links[i].href.match(/\:\/\/s(\d+)-\w+\.gladiatus\.gameforge\.com\/game\/index\.php\?mod=player&p=(\d+)/i);
+			if (info && targets.hasOwnProperty(info[2] + '@' + info[1])) {
+				links[i].style.textShadow = '0px 0px 2px #ffff00';
 			}
 		}
 	}

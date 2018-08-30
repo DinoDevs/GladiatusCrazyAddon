@@ -18,24 +18,27 @@ var gca = {
 
 // Page info
 var gca_section = {
-	// Resolve Url
+	// Resolve Document Url
 	resolve : function(){
-		var url = document.location.href;
-		this.protocol = document.location.protocol;
-		this.country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
-		this.server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
-		this.mod = (url.match(/mod=\w+/i))?url.match(/mod=(\w+)/i)[1]:null;
-		this.submod = (url.match(/submod=\w+/i))?url.match(/submod=(\w+)/i)[1]:null;
-		this.gcamod = (url.match(/gcamod=\w+/i))?url.match(/gcamod=(\w+)/i)[1]:null;
-		this.sh = (url.match(/sh=[0-9a-fA-F]+/i))?url.match(/sh=([0-9a-fA-F]+)/i)[1]:null;
-		this.domain = document.domain;
-
+		this.resolveUrl(document.location.href, this);
 		this.resolvePlayerId();
+	},
+	// Resolve a url
+	resolveUrl : function(url, data = {}){
+		data.protocol = document.location.protocol;
+		data.country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
+		data.server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
+		data.mod = (url.match(/mod=\w+/i))?url.match(/mod=(\w+)/i)[1]:null;
+		data.submod = (url.match(/submod=\w+/i))?url.match(/submod=(\w+)/i)[1]:null;
+		data.gcamod = (url.match(/gcamod=\w+/i))?url.match(/gcamod=(\w+)/i)[1]:null;
+		data.sh = (url.match(/sh=[0-9a-fA-F]+/i))?url.match(/sh=([0-9a-fA-F]+)/i)[1]:null;
+		data.domain = 's' + data.server + '-' + data.country + '.gladiatus.gameforge.com';
+		return data;
 	},
 	// Get Player's id
 	resolvePlayerId : function(){
 		// Resolve Player Id from cookies
-		var cookiePlayerId = document.cookie.match(new RegExp("Gca_" + this.country + "_" + this.server + "=(\\d+)_" + this.sh.substring(0, this.sh.length/4),"i"));
+		var cookiePlayerId = (this.sh) ? document.cookie.match(new RegExp("Gca_" + this.country + "_" + this.server + "=(\\d+)_" + this.sh.substring(0, this.sh.length/4),"i")) : false;
 		// If cookie exist
 		if(cookiePlayerId && cookiePlayerId[1]){
 			this.playerId = cookiePlayerId[1];
@@ -64,14 +67,24 @@ var gca_getPage = {
 		if(!path) path = "index.php";
 		var link = path;
 		var front = "?";
-		for(i in x){
+		for(let i in x){
 			link += front + i + "=" + x[i];
 			if(front == "?") front = "&";
 		}
 		return link + front + "sh=" + gca_section.sh;
 	},
+	crossLink : function(s, x, path){
+		if(!path) path = "index.php";
+		var link = path;
+		var front = "?";
+		for(let i in x){
+			link += front + i + "=" + x[i];
+			if(front == "?") front = "&";
+		}
+		return s.protocol + "//" + s.domain + "/game/" + link;
+	},
 	fullLink : function(x){
-		return gca_section.protocol + "//" + gca_section.domain + "/game/"+this.link(x);
+		return gca_section.protocol + "//" + gca_section.domain + "/game/" + this.link(x);
 	},
 	parameter : function(x){
 		for(var array=this.url().match(/\?(.*)$/i)[1].split("&"),par={},i=0;i<array.length;i++)
