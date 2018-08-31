@@ -368,6 +368,24 @@ var gca_overview = {
 			gca_data.section.set("overview", "stats", JSON.stringify(json));
 			gca_data.section.set("overview", "special_stats", JSON.stringify(specialJson));
 		}
+
+		// Save stats locale names
+		var stats = {};
+		var spans = document.getElementById('charstats').getElementsByClassName('charstats_text');
+		stats.life_points = spans[0].textContent.trim();
+		stats.experience = spans[1].textContent.trim();
+		stats.strength = spans[2].textContent.trim();
+		stats.dexterity = spans[3].textContent.trim();
+		stats.agility = spans[4].textContent.trim();
+		stats.constitution = spans[5].textContent.trim();
+		stats.charisma = spans[6].textContent.trim();
+		stats.intelligence = spans[7].textContent.trim();
+		spans = document.getElementById('charstats').getElementsByClassName('charstats_value21');
+		stats.level = spans[0].textContent.trim();
+		stats.armour = spans[1].textContent.trim();
+		stats.damage = spans[2].textContent.trim();
+		stats.healing = spans[3].textContent.trim();
+		gca_data.section.set("overview", "stats_locale", stats);
 	},
 	
 	// Items Repair Overview

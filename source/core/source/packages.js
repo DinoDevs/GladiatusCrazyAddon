@@ -47,6 +47,8 @@ var gca_packages = {
 		
 		this.eventItemsCategory();
 
+		this.itemFilters.inject(this);
+
 		// Setting Link
 		gca_tools.create.settingsLink("packages");
 	},
@@ -608,11 +610,7 @@ var gca_packages = {
 				}
 			}
 		}
-
-
 	},
-
-
 
 	// On double click open packet
 	doubleClickToOpen : {
@@ -668,10 +666,230 @@ var gca_packages = {
 				return ( parseInt(document.location.href.match(/f=(\d+)/)[1]) == 21 );
 			}
 			return false;
-		}
+		};
 		if (isFiltered()){document.getElementsByName('f')[0].value = 21;}
-	}
+	},
 
+	itemFilters : {
+		rules : {},
+		comparators : {
+			greater : '>',
+			lesser : '<',
+			equal : '='
+		},
+
+		inject : function(self) {
+			var stats = gca_data.section.get('overview', 'stats_locale', false);
+			if (!stats) return;
+
+			// Create Rules
+			
+			var number = '((?:\\+|\\-|)\\d+)';
+			var stat_value = ' (?:(?:\\+|\\-|)\\d+% |)\\(((?:\\+|\\-|)\\d+)\\)'; // ex. 'Χάρισμα -22% (-92)'
+			var stat_percent = ' ((?:\\+|\\-|)\\d+)%'; // ex. 'Χάρισμα -22% (-92)'
+
+			this.rules.level = [stats.level, stats.level + ' (\\d+)'];
+			this.rules.strength = [stats.strength, stats.strength + stat_value];
+			this.rules.strength_percent = [stats.strength + '%', stats.strength + stat_percent];
+			this.rules.dexterity = [stats.dexterity, stats.dexterity + stat_value];
+			this.rules.dexterity_percent = [stats.dexterity + '%', stats.dexterity + stat_percent];
+			this.rules.agility = [stats.agility, stats.agility + stat_value];
+			this.rules.agility_percent = [stats.agility + '%', stats.agility + stat_percent];
+			this.rules.constitution = [stats.constitution, stats.constitution + stat_value];
+			this.rules.constitution_percent = [stats.constitution + '%', stats.constitution + stat_percent];
+			this.rules.charisma = [stats.charisma, stats.charisma + stat_value];
+			this.rules.charisma_percent = [stats.charisma + '%', stats.charisma + stat_percent];
+			this.rules.intelligence = [stats.intelligence, stats.intelligence + stat_value];
+			this.rules.intelligence_percent = [stats.intelligence + '%', stats.intelligence + stat_percent];
+			this.rules.armour = [stats.armour, stats.armour + ' \\+(\\d+)'];
+			this.rules.damage_min = [stats.damage + ' min', stats.damage + ' (\\d+) - \\d+'];
+			this.rules.damage_max = [stats.damage + ' max', stats.damage + ' \\d+ - (\\d+)'];
+			this.rules.healing = [stats.healing, stats.healing + ' ' + number];
+			//this.RULES.life_points = stats.life_points + ': ' + number;
+			
+			// Create Advance Filter
+			var article = document.createElement('article');
+			article.style.marginTop = '20px';
+			var title = document.createElement('h2');
+			title.className = 'section-header';
+			title.textContent = 'Advance Page Filters (Beta Feature)';
+			article.appendChild(title);
+			var section = document.createElement('section');
+			section.style.display = 'block';
+			section.style.textAlign = 'left';
+			section.style.padding = '5px 10px';
+			article.appendChild(section);
+			document.getElementById('content').appendChild(article);
+			
+			var active_rules = gca_data.section.get('packages', 'advance_filters', []);
+			var active_rules_running = false;
+
+			// Active rules
+			var box_active = document.createElement('div');
+			box_active.style.marginTop = '10px';
+			box_active.style.padding = '10px 15px';
+			box_active.style.border = '1px solid #876e3e';
+			for (var r = 0; r < active_rules.length; r++) {
+				let rule = document.createElement('div');
+				rule.textContent = active_rules[r][3];
+				box_active.appendChild(rule);
+			}
+			section.appendChild(box_active);
+
+			// Add rule box
+			var div = document.createElement('div');
+			div.style.margin = '10px 0px';
+
+			var input_rule, input_comp, input_value, btn_add;
+			input_rule = document.createElement('select');
+			for (let rule in this.rules) {
+				if (this.rules.hasOwnProperty(rule)) {
+					let option = document.createElement('option');
+					option.value = rule;
+					option.textContent = this.rules[rule][0];
+					input_rule.appendChild(option);
+				}
+			}
+			div.appendChild(input_rule);
+
+			input_comp = document.createElement('select');
+			for (let comp in this.comparators) {
+				if (this.comparators.hasOwnProperty(comp)) {
+					let option = document.createElement('option');
+					option.value = comp;
+					option.textContent = this.comparators[comp][0];
+					input_comp.appendChild(option);
+				}
+			}
+			div.appendChild(input_comp);
+
+			input_value = document.createElement('input');
+			div.appendChild(input_value);
+
+			btn_add = document.createElement('button');
+			btn_add.textContent = '+';
+			btn_add.className = 'awesome-button';
+			div.appendChild(btn_add);
+
+			btn_add.addEventListener('click', () => {
+				if (input_value.value.length == 0) return;
+
+				let txt = this.rules[input_rule.value][0] + ' ' + this.comparators[input_comp.value] + ' ' + input_value.value;
+				active_rules.push([
+					this.rules[input_rule.value][1],
+					this.comparators[input_comp.value],
+					input_value.value,
+					txt
+				]);
+
+				let rule = document.createElement('div');
+				rule.textContent = txt;
+				box_active.appendChild(rule);
+
+				input_value.value = '';
+			});
+
+			section.appendChild(div);
+
+			var clear = document.createElement('button');
+			clear.textContent = 'Clear Rules';
+			clear.className = 'awesome-button';
+			section.appendChild(clear);
+			clear.addEventListener('click', () => {
+				active_rules = [];
+				box_active.innerHTML = '';
+				var packages = document.getElementById('packages').getElementsByClassName('ui-draggable');
+				for (var i = 0; i < packages.length; i++) {
+					packages[i].parentNode.parentNode.style.opacity = 1;
+				}
+				gca_data.section.del('packages', 'advance_filters');
+				active_rules_running = false;
+			});
+			
+			var btn = document.createElement('button');
+			btn.textContent = 'Run Filter';
+			btn.className = 'awesome-button';
+			section.appendChild(btn);
+			btn.addEventListener('click', () => {
+				let items = this.applyFilter(active_rules);
+				btn.textContent = 'Run Filter (found ' + items.length + ')';
+				gca_data.section.set('packages', 'advance_filters', active_rules);
+				active_rules_running = true;
+			});
+
+			if (active_rules.length) {
+				let items = this.applyFilter(active_rules);
+				btn.textContent = 'Run Filter (found ' + items.length + ')';
+				active_rules_running = true;
+			}
+
+			// On new items reapply
+			gca_tools.event.request.onAjaxResponce(() => {
+				if (active_rules_running) {
+					let items = this.applyFilter(active_rules);
+					btn.textContent = 'Run Filter (found ' + items.length + ')';
+				}
+			});
+			// On packages page load
+			self.loadPackets.onPageLoad(() => {
+				if (active_rules_running) {
+					let items = this.applyFilter(active_rules);
+					btn.textContent = 'Run Filter (found ' + items.length + ')';
+				}
+			});
+		},
+
+		// Apply filter rules
+		applyFilter : function(rules){
+			for (var r = rules.length - 1; r >= 0; r--) {
+				if (rules[r][1] == '<' || rules[r][1] == '>') rules[r][2] = parseInt(rules[r][2], 10);
+			}
+
+			var packages = document.getElementById('packages').getElementsByClassName('ui-draggable');
+			var items = [];
+			for (var i = 0; i < packages.length; i++) {
+				if (this.testItemRules(packages[i], rules)) {
+					items.push(packages[i]);
+					//packages[i].parentNode.parentNode.style.display = 'block';
+					packages[i].parentNode.parentNode.style.opacity = 1;
+				}
+				else {
+					//packages[i].parentNode.parentNode.style.display = 'none';
+					packages[i].parentNode.parentNode.style.opacity = 0.5;
+				}
+			}
+			return items;
+		},
+		testItemRules : function(item, rules) {
+			var r, t;
+			for (var i = 0; i < rules.length; i++) {
+				t = JSON.stringify(JSON.parse(item.dataset.tooltip));
+				r = t.match(new RegExp(rules[i][0], 'i'));
+				if (!this.testItemRule(r, rules[i])) {
+					return false;
+				}
+			}
+
+			return true;
+		},
+		testItemRule : function(match, rule) {
+			if (!match) return false;
+
+			switch(rule[1]) {
+				case '>':
+					if (match[1] > rule[2]) return true;
+					else return false;
+				case '<':
+					if (match[1] < rule[2]) return true;
+					else return false;
+				case '=':
+					if (match[1] == rule[2]) return true;
+					else return false;
+			}
+
+			return false;
+		}
+	}
 };
 
 (function(){
@@ -682,12 +900,10 @@ var gca_packages = {
 	var fireLoadEvent = function(){
 		if(loaded) return;
 		loaded = true;
-		// Call handler
-		
 		// While not traveling
 		if(document.getElementById('submenu1') !== null)
 			gca_packages.inject();
-	}
+	};
 	if(document.readyState == "complete" || document.readyState == "loaded"){
 		fireLoadEvent();
 	}else{
