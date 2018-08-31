@@ -872,6 +872,11 @@
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(4){line-height: 12px;margin: 2px 0px;font-size: 10px;height: 24px;}
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div:nth-child(5) span{font-size: 12px;font-style: italic;}
 		.gca_packages_compact_items_layout .pagination > .section-header{margin-top: 0px!important;}
+
+		/* Small Size Packets */
+		.gca_packages_small_items_layout .packageItem > div:nth-of-type(2){transform: scale(0.5);margin: -25px auto!important;}
+		.gca_packages_small_items_layout .packageItem {height: 94px;}
+		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem{height: 90px!important;} 
 		
 		/* Group Side Filters */
 		.gca_packages_filters_layout .package_side_filters{width: 190px;margin-top: 25px;height: 184px;background-color: #E7DEB8;border: 1px solid #B9A66D;border-top: 0px;clear: none;background-image: none;}

@@ -7,10 +7,12 @@
 var gca_packages = {
 	// Pre Inject code
 	preinject : function(){
-		// Check if filter style is active
-		if(gca_options.bool("packages", "filters_layout"))
-			// Add class tag
+		// If filter is active
+		if (gca_options.bool("packages", "filters_layout"))
 			document.documentElement.className += " gca_packages_filters_layout";
+		// If small items is active
+		if (gca_options.bool("packages", "small_items_layout"))
+			document.documentElement.className += " gca_packages_small_items_layout";
 	},
 
 	// Inject Code

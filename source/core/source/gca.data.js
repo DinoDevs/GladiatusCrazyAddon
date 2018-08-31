@@ -408,6 +408,8 @@ gca_options.data = {
 		"compact_info_layout" : true,
 		// Improve packets layout
 		"items_layout" : true,
+		// Small items layout
+		"small_items_layout" : false,
 		// Load more packages pages
 		"load_more_pages" : true,
 		// Number of pages to load
