@@ -576,7 +576,9 @@ var gca_settings = {
 				// Enable multi bids
 				"multi_bids" : true,
 				// Show extra stats on items
-				"extra_item_stats" : true
+				"extra_item_stats" : true,
+				// Save auction last search
+				"save_last_state" : true
 			},
 
 			"events" : {

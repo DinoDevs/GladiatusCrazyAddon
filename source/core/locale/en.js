@@ -363,6 +363,7 @@ gca_languages["en"] = {
 			category_auction$x3_items_per_line : "Change layout to 3 items per line",
 			category_auction$multi_bids : "Bid many items without page refresh",
 			category_auction$extra_item_stats : "Show extra stats on item images",
+			category_auction$save_last_state : "Implemented auction save seach and load it by default",
 			// Settings - Events
 			category_events$craps_timer : "Display dice event's timer on top",
 			category_events$server_quest_timer : "Display server-quest or location event's timer on top",

@@ -32,8 +32,8 @@ var gca_auction = {
 		
 		(gca_options.bool("auction","more_search_levels") &&
 			this.moreSearchLevels());
-		
-		this.levelsYouCanSee();
+		(gca_options.bool("auction","save_last_state") &&
+			this.saveLastState());
 
 		// Setting Link
 		gca_tools.create.settingsLink("auction");
@@ -326,13 +326,14 @@ var gca_auction = {
 		var items = auction.getElementsByTagName("td");
 
 		// Every 3rd item
-		for(var i = 2; i < itemsNumber; i += 6){
+		var i;
+		for(i = 2; i < itemsNumber; i += 6){
 			items[i - 1].parentNode.appendChild(items[i]);
 		}
-		for(var i = 4; i < itemsNumber; i += 6){
+		for(i = 4; i < itemsNumber; i += 6){
 			items[i - 1].parentNode.appendChild(items[i]);
 		}
-		for(var i = 5; i < itemsNumber; i += 6){
+		for(i = 5; i < itemsNumber; i += 6){
 			items[i - 2].parentNode.appendChild(items[i]);
 		}
 
@@ -350,36 +351,58 @@ var gca_auction = {
 		content.prepend(div);
 
 		// Insert all elements in the block up to the auction
-		for (var i = 0; i < children.length; i++) {
+		for (i = 0; i < children.length; i++) {
 			if (auction === children[i]) {
 				break;
 			} else {
 				div.append(children[i]);
 			}
 		}
+	},
 
+	saveLastState : function() {
+		let form = document.getElementsByName('filterForm')[0];
+		let type = gca_getPage.parameter('ttype') != 3 ? 'gladiator' : 'mercenary';
+
+		// Handle a search action
+		form.addEventListener('submit', () => {
+			let data = {
+				mod : 'auction',
+				doll : form.doll.value,
+				qry : form.qry.value,
+				itemLevel : form.itemLevel.value,
+				itemType : form.itemType.value,
+				itemQuality : form.itemQuality.value
+			};
+			if (type == 'mercenary') data.ttype = 3;
+			gca_data.section.set('cache', 'auction_last_search_' + type, data);
+		});
+
+		// Update Tabs
+		let tabs = document.getElementById('mainnav').getElementsByTagName('a');
+		tabs[0].href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_gladiator', {mod : 'auction'}));
+		tabs[1].href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_mercenary', {mod : 'auction', ttype : '3'}));
 	}
-
 };
 
-(function(){
+(function() {
 	// Pre Inject
 	gca_auction.preinject();
 	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoadEvent = function() {
 		if(loaded) return;
 		loaded = true;
 		// Call handler
 		gca_auction.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
+	};
+	if (document.readyState == "complete" || document.readyState == "loaded") {
 		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
+	} else {
+		window.addEventListener('DOMContentLoaded', function() {
 			fireLoadEvent();
 		}, true);
-		window.addEventListener('load', function(){
+		window.addEventListener('load', function() {
 			fireLoadEvent();
 		}, true);
 	}

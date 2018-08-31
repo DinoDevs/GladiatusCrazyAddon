@@ -74,6 +74,9 @@ var gca_global = {
 		// Advance main menu - submenu click to change
 		(gca_options.bool("global","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.apply());
+		// Bind auction last seach
+		(gca_options.bool("auction","save_last_state") && 
+			this.display.auctionLoadLastState());
 
 		// Attacked Timers
 		(gca_options.bool("global","attacked_timers") &&
@@ -3013,6 +3016,35 @@ var gca_global = {
 				// Display
 				this.infoGold.textContent = gca_tools.strings.insertDots(gold);
 			}
+		},
+
+		// Load last auction state
+		auctionLoadLastState : function() {
+			let auction_gladiator = false;
+			let auction_mercenary = false;
+			let links, i;
+
+			links = document.getElementById('submenu1').getElementsByClassName('menuitem');
+			for (i = links.length - 1; i >= 0; i--) {
+				if (links[i].href.match(/\?mod=auction&/)) {
+					auction_gladiator = links[i];
+					break;
+				}
+			}
+
+			links = document.getElementById('submenu1').getElementsByClassName('advanced_menu_shift');
+			for (i = links.length - 1; i >= 0; i--) {
+				if (links[i].href.match(/\?mod=auction&/)) {
+					auction_mercenary = links[i];
+					break;
+				}
+			}
+
+			// Update Auction links
+			if (auction_gladiator)
+				auction_gladiator.href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_gladiator', {mod : 'auction'}));
+			if (auction_mercenary)
+				auction_mercenary.href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_mercenary', {mod : 'auction', ttype : '3'}));
 		}
 	},
 

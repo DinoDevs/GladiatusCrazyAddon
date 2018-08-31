@@ -186,7 +186,7 @@ var gca_data_manager = {
 		localStorage.setItem(this.name + "_" + section, JSON.stringify({}));
 		this.loadSectionData();
 	}
-}
+};
 // Init Managet
 gca_data_manager.init();
 
@@ -250,7 +250,7 @@ var gca_options = {
 		this.data[category][label] = value;
 		this.saveData();
 	}
-}
+};
 
 // Default Options
 gca_options.data = {
@@ -560,7 +560,9 @@ gca_options.data = {
 		// Enable multi bids
 		"multi_bids" : true,
 		// Show extra stats on items
-		"extra_item_stats" : true
+		"extra_item_stats" : true,
+		// Save auction last search
+		"save_last_state" : true
 	},
 
 	"events" : {

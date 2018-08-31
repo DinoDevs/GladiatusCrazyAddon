@@ -360,6 +360,7 @@ gca_languages["gr"] = {
 			category_auction$x3_items_per_line: "Προβολή 3ων αντικειμένων ανά γραμμή",
 			category_auction$multi_bids: "Ενεργοποίηση πολλαπλών δημοπρατήσεων (χωρίς ανανέωση)",
 			category_auction$extra_item_stats : "Εμφάνιση επιπλέων στατιστικών πάνω στις εικόνες των αντικειμένων",
+			category_auction$save_last_state : "Αποθήκευση της τελευταίας αναζήτησης και φόρτωμα της σαν αρχική",
 			// Settings - Events
 			category_events$craps_timer : "Εμφάνιση χρονομέτρου για τα event ζαριών στην κορυφή",
 			category_events$server_quest_timer : "Εμφάνιση χρονομέτρου για τα server-quest και τα event περιοχών στην κορυφή",
