@@ -273,24 +273,12 @@ var gca_tools = {
 			var spot = this._move.getTargetSpot(item, target);
 			if(!spot) return false;
 
-			this.drag(item, spot.x, spot.y);
-			
-			/*
-			var dot = document.createElement('div');
-			dot.style.width = '1px';
-			dot.style.height = '1px';
-			dot.style.border = '1px solid black';
-			dot.style.position = 'absolute';
-			dot.style.top = (spot.y - 1) + 'px';
-			dot.style.left = (spot.x - 1) + 'px';
-			dot.style.zIndex = '99999';
-			document.body.appendChild(dot);
-			*/
+			this.drag(item, spot.parent, spot.x, spot.y);
 		
 			return true;
 		},
 
-		drag : function(item, x, y){
+		drag : function(item, parent, x, y){
 			var cords_item = jQuery(item).offset();
 			cords_item = {x: cords_item.left, y: cords_item.top};
 			var cords_target = {x: x, y: y};
@@ -333,8 +321,9 @@ var gca_tools = {
 				cords_grid = {x: cords_grid.left, y: cords_grid.top};
 				spot = {
 					x: (cords_grid.x + (32 * spot.x) + 1),
-					y: (cords_grid.y + (32 * spot.y) + 1)
-				}
+					y: (cords_grid.y + (32 * spot.y) + 1),
+					parent : grid
+				};
 
 				return spot;
 			},
@@ -453,11 +442,15 @@ var gca_tools = {
 					button: 0,
 					relatedTarget: undefined
 				};
+				/*
 				for (prop in options) {
 					if (options.hasOwnProperty(prop) && opt.hasOwnProperty(prop)) {
 						options[prop] = opt[prop];
 					}
 				}
+				*/
+				options.clientX = opt.clientX;
+				options.clientY = opt.clientY;
 				var event = document.createEvent('MouseEvents');
 				event.initMouseEvent( type, options.bubbles, options.cancelable,
 					options.view, options.detail,
@@ -1041,14 +1034,13 @@ var gca_tools = {
 		// Calculate pages to show
 		calculatePages : function(info, offset){
 			var pages = [];
-			var page;
 
 			// Push current
 			pages.push(info.current);
 
 			// Prepend pages
 			var prepend_count = offset;
-			prepend_page = info.current - info.skipping;
+			var prepend_page = info.current - info.skipping;
 			while(prepend_count > 0 && info.first <= prepend_page){
 				pages.unshift(prepend_page);
 				prepend_page -= info.skipping;
@@ -1057,7 +1049,7 @@ var gca_tools = {
 
 			// Append pages
 			var append_count = offset;
-			append_page = info.current + info.skipping;
+			var append_page = info.current + info.skipping;
 			while(append_count > 0 && append_page <= info.last){
 				pages.push(append_page);
 				append_page += info.skipping;
