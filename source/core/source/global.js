@@ -179,7 +179,7 @@ var gca_global = {
 					}, false);
 					document.getElementsByTagName('head')[0].appendChild(script);
 					script = document.createElement('script');
-					script.src = gca_resources.folder + "libraries/moment.min.js";
+					script.src = gca_resources.folder + "libraries/moment.js";
 					script.addEventListener('load', function(){
 						that.load++;
 						// If all scripts loaded
