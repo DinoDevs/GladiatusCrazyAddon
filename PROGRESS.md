@@ -1,24 +1,32 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-3-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-11-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
+- **Arena**
+	- [x] Target Players List (Managable from Family tab)
+	- [ ] Hilghlight guild members on other servers (needs colors)
 - **Packets**
-	- [x] Double click to open packets (default off)
+	- [x] Double click to open packets (default off) [Beta]
+	- [ ] Advance Packages filter [Beta] (needs options)
+	- [x] Small items layout (default off)
 - **Merchants**
-	- [x] Double click to sell/buy items
+	- [x] Double click to sell/buy items [Beta]
 	- [x] Display shop's total items gold and rubies
 - **Horreum**
 	- [x] Horreum UI improvements (ex. colors on numbers)
 	- [x] Click to select materials
 	- [x] Show material names
+- **Auction**
+	- [x] Save last search and load it as default page
 
 
 ### BUG FIXES
 - **Global**
 	- [x] Audio settings now work
 	- [x] Fixed get player ID system (Global arena works now)
+	- [x] Some code clean up and layout fixes
 - **Horreum**
 	- [x] Workbench code now dont run on hurreum
 
