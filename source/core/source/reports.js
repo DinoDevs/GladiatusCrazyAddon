@@ -546,7 +546,7 @@ var gca_reports = {
 					temp_div3.textContent = ((enemies[i][4]>1)?'['+enemies[i][4]+'] ':'')+enemies[i][0];
 					if(enemies[i][3]!=0){
 						temp_div4 = document.createElement('span');
-						temp_div4.style = 'color:'+((enemies[i][3]>0)?'rgb(0, 100, 0)':'rgb(100, 0, 0)')+';font-size: 11px;float: right;margin-right: 80px;';
+						temp_div4.style = 'color:'+((enemies[i][3]>0)?'rgb(0, 100, 0)':'rgb(100, 0, 0)')+';position: absolute;display: block;font-size: 11px;right: 80px;top: 0px;background: rgba(183, 153, 99, 0.5);';
 						temp_div4.textContent = ((enemies[i][3]>0)?'+':'')+enemies[i][3]
 						temp_div3.appendChild(temp_div4);
 					}
@@ -577,7 +577,7 @@ var gca_reports = {
 					temp_div3.textContent = ((players[i][4]>1)?'['+players[i][4]+'] ':'')+players[i][0];
 					if(players[i][3]!=0){
 						temp_div4 = document.createElement('span');
-						temp_div4.style = 'color:'+((players[i][3]>0)?'rgb(0, 100, 0)':'rgb(100, 0, 0)')+';font-size: 11px;float: right;margin-right: 80px;';
+						temp_div4.style = 'color:'+((players[i][3]>0)?'rgb(0, 100, 0)':'rgb(100, 0, 0)')+';position: absolute;display: block;font-size: 11px;right: 80px;top: 0px;background: rgba(183, 153, 99, 0.5);';
 						temp_div4.textContent = ((players[i][3]>0)?'+':'')+players[i][3]
 						temp_div3.appendChild(temp_div4);
 					}
