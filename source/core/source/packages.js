@@ -687,6 +687,8 @@ var gca_packages = {
 			var number = '((?:\\+|\\-|)\\d+)';
 			var stat_value = ' (?:(?:\\+|\\-|)\\d+% |)\\(((?:\\+|\\-|)\\d+)\\)'; // ex. 'Χάρισμα -22% (-92)'
 			var stat_percent = ' ((?:\\+|\\-|)\\d+)%'; // ex. 'Χάρισμα -22% (-92)'
+			var mercenary_stat_value = ' (\\d+)';
+			var mercenary = document.getElementById('pf').f.getElementsByTagName('option')[14].textContent.trim();
 
 			this.rules.level = [stats.level, stats.level + ' (\\d+)'];
 			this.rules.strength = [stats.strength, stats.strength + stat_value];
@@ -705,7 +707,16 @@ var gca_packages = {
 			this.rules.damage_min = [stats.damage + ' min', stats.damage + ' (\\d+) - \\d+'];
 			this.rules.damage_max = [stats.damage + ' max', stats.damage + ' \\d+ - (\\d+)'];
 			this.rules.healing = [stats.healing, stats.healing + ' ' + number];
+			this.rules.threat = [stats.threat, stats.threat + ' ' + number];
 			//this.RULES.life_points = stats.life_points + ': ' + number;
+			
+			this.rules.strength_mercenary = [mercenary + ' ' + stats.strength, stats.strength + ':' + mercenary_stat_value];
+			this.rules.dexterity_mercenary = [mercenary + ' ' + stats.dexterity, stats.dexterity + ':' + mercenary_stat_value];
+			this.rules.agility_mercenary = [mercenary + ' ' + stats.agility, stats.agility + ':' + mercenary_stat_value];
+			this.rules.constitution_mercenary = [mercenary + ' ' + stats.constitution, stats.constitution + ':' + mercenary_stat_value];
+			this.rules.charisma_mercenary = [mercenary + ' ' + stats.charisma, stats.charisma + ':' + mercenary_stat_value];
+			this.rules.intelligence_mercenary = [mercenary + ' ' + stats.intelligence, stats.intelligence + ':' + mercenary_stat_value];
+			console.log(this.rules.intelligence_mercenary);
 			
 			// Create Advance Filter
 			var article = document.createElement('article');
@@ -791,7 +802,9 @@ var gca_packages = {
 
 			section.appendChild(div);
 
+			var btn = document.createElement('button');
 			var clear = document.createElement('button');
+
 			clear.textContent = 'Clear Rules';
 			clear.className = 'awesome-button';
 			section.appendChild(clear);
@@ -804,9 +817,9 @@ var gca_packages = {
 				}
 				gca_data.section.del('packages', 'advance_filters');
 				active_rules_running = false;
+				btn.textContent = 'Run Filter';
 			});
 			
-			var btn = document.createElement('button');
 			btn.textContent = 'Run Filter';
 			btn.className = 'awesome-button';
 			section.appendChild(btn);
