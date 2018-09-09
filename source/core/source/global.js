@@ -326,7 +326,7 @@ var gca_global = {
 				// Insert XP info
 				div = document.createElement('div');
 				div.id = "header_values_xp_points";
-				var text = document.createElement('span');
+				text = document.createElement('span');
 				text.textContent = gca_tools.strings.insertDots(xp[1]);
 				div.appendChild(text);
 				text = document.createTextNode(" / " + gca_tools.strings.insertDots(xp[2]));
@@ -551,7 +551,7 @@ var gca_global = {
 				var button, link;
 
 				// If player has no Guild
-				if(false && !gca_data.section.get("guild", "inGuild", false)){
+				if(!gca_data.section.get("guild", "inGuild", false)){
 					// Create a "Sent Private message" button
 					if(activeButtons.indexOf("msg") >= 0){
 						button = document.createElement('div');
@@ -949,7 +949,7 @@ var gca_global = {
 						}, false);
 
 						// Add close Button
-						var button = document.createElement('input');
+						button = document.createElement('input');
 						button.className = "button3";
 						button.type = "button";
 						button.value = gca_locale.get("general", "close");
@@ -1305,19 +1305,16 @@ var gca_global = {
 							new Chart(document.getElementById("stats_canvas"), {
 								type: 'radar',
 								data: {
-								  labels: [stats[attributes[0]][0], stats[attributes[1]][0], stats[attributes[2]][0], stats[attributes[3]][0], stats[attributes[4]][0], stats[attributes[5]][0]],
-								  datasets: [
-									{
-									  label: "Stats",
-									  fill: true,
-									  backgroundColor: "rgba(179,181,198,0.2)",
-									  borderColor: "rgba(179,181,198,1)",
-									  pointBorderColor: "#fff",
-									  pointBackgroundColor: "rgba(179,181,198,1)",
-									  pointBorderColor: "#fff",
-									  data: [stats[attributes[0]][1], stats[attributes[1]][1], stats[attributes[2]][1], stats[attributes[3]][1], stats[attributes[4]][1], stats[attributes[5]][1]]
-									}
-								  ]
+									labels: [stats[attributes[0]][0], stats[attributes[1]][0], stats[attributes[2]][0], stats[attributes[3]][0], stats[attributes[4]][0], stats[attributes[5]][0]],
+									datasets: [{
+										label: "Stats",
+										fill: true,
+										backgroundColor: "rgba(179,181,198,0.2)",
+										borderColor: "rgba(179,181,198,1)",
+										pointBackgroundColor: "rgba(179,181,198,1)",
+										pointBorderColor: "#fff",
+										data: [stats[attributes[0]][1], stats[attributes[1]][1], stats[attributes[2]][1], stats[attributes[3]][1], stats[attributes[4]][1], stats[attributes[5]][1]]
+									}]
 								},
 								options: {
 									scale: {
@@ -1962,7 +1959,7 @@ var gca_global = {
 					menu.className += " advanced_menu_link" + active;
 					frontTab.appendChild(backTab);
 					// Tab Toggle
-					a = document.createElement("a");
+					var a = document.createElement("a");
 					a.className = "advanced_menu_shift";
 					a.textContent = "+";
 					a.addEventListener('click',function(){
@@ -2577,7 +2574,7 @@ var gca_global = {
 				var tooltip = '[[';
 				if(smeltTimes.data.length>0){
 					tooltip += '[["'+smeltTimes.translation[0]+'","'+smeltTimes.translation[1]+'"],["#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00","#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00"]]';
-					for(i=0;i<smeltTimes.data.length;i++){
+					for(let i=0;i<smeltTimes.data.length;i++){
 						if(smeltTimes.data[i][0]*1000<=current){
 							type = 'green';
 							gca_notifications.success(smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2]);
@@ -2590,7 +2587,7 @@ var gca_global = {
 				}
 				if(forgeTimes.data.length>0){
 					tooltip += '[["'+forgeTimes.translation[0]+'","'+forgeTimes.translation[1]+'"],["#FF6A00; font-size:12px; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00","#FF6A00; font-size:12px; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00"]]';
-					for(i=0;i<forgeTimes.data.length;i++){
+					for(let i=0;i<forgeTimes.data.length;i++){
 						if(forgeTimes.data[i][0]*1000<=current){
 							type = 'green';
 							gca_notifications.success(forgeTimes.translation[0]+': '+forgeTimes.data[i][1]+'\n'+forgeTimes.translation[2]);
@@ -2795,7 +2792,7 @@ var gca_global = {
 				if(!document.getElementById("inv")) return;
 
 				// Add event
-				gca_tools.event.bag.onBagOpen((tab) => {
+				gca_tools.event.bag.onBagOpen(() => {
 					this.createDurability(false);
 				});
 
@@ -3184,9 +3181,6 @@ var gca_global = {
 			onLinkClick : function(event, url, page){
 				// Check parameter mod
 				if(!page.mod) return;
-				// Parse submod
-				var submod = null;
-				if(page.submod) submod = page.submod;
 				// Delete sh
 				delete page.sh;
 				// Set flag
@@ -3340,18 +3334,16 @@ var gca_global = {
 						return;
 					}
 
-					// Save instance
-					var that = this;
 					// Wait a sec
-					setTimeout(function(){
+					setTimeout(() => {
 						// Missions
-						that.initActionCooldown("cooldown_bar_text_expedition", "expedition_notification", expeditionProgressBar.readyText, "expedition");
+						this.initActionCooldown("cooldown_bar_text_expedition", "expedition_notification", expeditionProgressBar.readyText, "expedition");
 						// Dungeon
-						that.initActionCooldown("cooldown_bar_text_dungeon", "dungeon_notification", dungeonProgressBar.readyText, "dungeon");
+						this.initActionCooldown("cooldown_bar_text_dungeon", "dungeon_notification", dungeonProgressBar.readyText, "dungeon");
 						// Arena
-						that.initActionCooldown("cooldown_bar_text_arena", "arena_notification", arenaProgressBar.readyText, "arena");
+						this.initActionCooldown("cooldown_bar_text_arena", "arena_notification", arenaProgressBar.readyText, "arena");
 						// Arena Turma
-						that.initActionCooldown("cooldown_bar_text_ct", "turma_notification", ctProgressBar.readyText, "turma");
+						this.initActionCooldown("cooldown_bar_text_ct", "turma_notification", ctProgressBar.readyText, "turma");
 					}, 500);
 				},
 
@@ -3432,12 +3424,13 @@ var gca_global = {
 			
 			collect : function(){
 				// Get saved data
-				var data = gca_data.section.get("data", "gold_exp_data", false);
+				//var data = gca_data.section.get("data", "gold_exp_data", false);
 				
 				// Collect data every 15min = (600k ms)
-				if (false && data && gca_tools.time.server() - data[data.length - 1][2] < 6e5*3){
-					return;
-				}
+				// TODO - Apo fix this
+				//if (false && data && gca_tools.time.server() - data[data.length - 1][2] < 6e5*3){
+				//	return;
+				//}
 
 				// If last time failed to get data (last 5 mins)
 				if (new Date().getTime() - gca_data.section.get("cache", "gold_exp_data_failed", 0) < 3e5) {
@@ -3527,9 +3520,6 @@ var gca_global = {
 					return;
 				}
 
-				// Save instance
-				var that = this;
-
 				// Create a dialog
 				var dialog = new gca_build.dialog;
 				this.dialog = dialog;
@@ -3609,7 +3599,7 @@ var gca_global = {
 				//dialog.body.appendChild(div);
 				
 				// Add some space
-				var div = document.createElement('div');
+				div = document.createElement('div');
 				div.className = "space";
 				dialog.body.appendChild(div);
 				
@@ -3734,7 +3724,7 @@ var gca_global = {
 						
 						document.getElementById('days7_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y)+" ";
 						document.getElementById('days7_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
-						var img = document.createElement('img');
+						img = document.createElement('img');
 						img.src = "img/ui/icon_level_small.gif";
 						img.border = "0";
 						document.getElementById('days7_values').getElementsByTagName("td")[1].appendChild(img);
@@ -3746,7 +3736,7 @@ var gca_global = {
 						
 						document.getElementById('average_per_day').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7))+" ";
 						document.getElementById('average_per_day').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
-						var img = document.createElement('img');
+						img = document.createElement('img');
 						img.src = "img/ui/icon_level_small.gif";
 						img.border = "0";
 						document.getElementById('average_per_day').getElementsByTagName("td")[1].appendChild(img);
@@ -3936,7 +3926,7 @@ var gca_global = {
 					document.getElementsByClassName('powerUpImg4'),
 					document.getElementsByClassName('powerUpImg5')
 				];
-				for(i=0;i<powerups.length;i++){
+				for(let i=0;i<powerups.length;i++){
 					// if enabled
 					if(powerups[i].style.color=='green'){
 						let time = powerups[i].textContent.match(/\d+/g);
@@ -3951,7 +3941,7 @@ var gca_global = {
 						if(powerups[i].parentNode.getElementsByClassName('powerup_cooldown').length>0)
 							powerups_status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft);
 						// find type
-						for(j=0;j<5;j++){
+						for(let j=0;j<5;j++){
 							if(imgs[j][i].style.backgroundImage.match('_border')){
 								powerups_status[i].type = [
 									document.getElementById('rune'+(i+1)+'_'+(j+1)).dataset.tooltip,
@@ -3967,11 +3957,12 @@ var gca_global = {
 				this.display();
 			}
 			// If checked on the last x hours return
-			else if(last_time_check !== null && (last_time_check + (12*60*60*1000)) > now && false){
-				// Already checked
-				// Fill UI
-				this.display();
-			}
+			// TODO - Apo check this
+			//else if(last_time_check !== null && (last_time_check + (12*60*60*1000)) > now && false){
+			//	// Already checked
+			//	// Fill UI
+			//	this.display();
+			//}
 			// Request page
 			else{
 				jQuery.get(gca_getPage.link({"mod":"powerups"}), function(content){
@@ -3988,7 +3979,7 @@ var gca_global = {
 					];
 					
 					if( found ){
-						for(i=0;i<found.length;i++){
+						for(let i=0;i<found.length;i++){
 							let temp = found[i].match(/id="rune(1|2|3|4)_\d"\s+class="powerUpImg\d"\s+data-tooltip="([^"]+)"\s+style="background-image: ([^;]+);"/i);
 							let position = parseInt(temp[1])-1;
 							powerups_status[position].type = [temp[2].replace(/&quot;/g,'"').replace(/&lt;br\\\/&gt;/g,'<br/>').replace(/&amp;nbsp;/g,' '),temp[3]];
@@ -4003,7 +3994,7 @@ var gca_global = {
 							//powerups_status[position].reload = 0;
 						}
 						if(found3){//Cooldown
-							for(i=0;i<found3.length;i++){
+							for(let i=0;i<found3.length;i++){
 								let temp = found3[i].match(/id="runeTitle(\d+)" class="rune_title">[^<]+<\/span>\s*<\/h2>\s*<section>\s*<span class="powerup_cooldown">[^<]+<span data-ticker-time-left="(\d+)"/i);
 								let position = parseInt(temp[1])-1;
 								powerups_status[position].reload = now + parseInt(temp[2]);
@@ -4058,7 +4049,7 @@ var gca_global = {
 				{enabled : 0, reload : 0, type : [null,null]},
 				{enabled : 0, reload : 0, type : [null,null]}
 			]);
-			for(i=0;i<powerups_status.length;i++){
+			for(let i=0;i<powerups_status.length;i++){
 				if(powerups_status[i].enabled-now > 0){
 					let days = Math.floor( (powerups_status[i].enabled-now)/(24*60*60*1000) );
 					tooltip.push([[unencode(powerups_status[i].type[0].match(/"([^"]+)"/i)[1]),days+' '+gca_locale.get("general", "days")+', '+gca_tools.time.msToHMS_String(powerups_status[i].enabled-now-days*24*60*60*1000)],['#FF6A00; font-size:12px; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00','#fff; font-size:12px;']]);
@@ -4336,3 +4327,7 @@ var gca_global = {
 		}, true);
 	}
 })();
+
+// ESlint defs
+/* global gca, gca_audio, gca_build, gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_resources, gca_section, gca_tools */
+/* global jQuery, Chart, expeditionProgressBar, dungeonProgressBar, arenaProgressBar, ctProgressBar */
