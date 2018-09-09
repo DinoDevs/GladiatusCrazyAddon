@@ -704,6 +704,7 @@ var gca_packages = {
 			this.rules.intelligence = [stats.intelligence, stats.intelligence + stat_value];
 			this.rules.intelligence_percent = [stats.intelligence + '%', stats.intelligence + stat_percent];
 			this.rules.armour = [stats.armour, stats.armour + ' \\+(\\d+)'];
+			this.rules.damage = [stats.damage, stats.damage + ' ((?:\\+|\\-)\\d+)'];
 			this.rules.damage_min = [stats.damage + ' min', stats.damage + ' (\\d+) - \\d+'];
 			this.rules.damage_max = [stats.damage + ' max', stats.damage + ' \\d+ - (\\d+)'];
 			this.rules.healing = [stats.healing, stats.healing + ' ' + number];
