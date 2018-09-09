@@ -449,7 +449,7 @@ var gca_messages = {
 				a = document.createElement("a");
 				a.href = links[i];
 				a.setAttribute("target", "_blank");
-				a.setAttribute("rel", "noreferrer");
+				a.setAttribute("rel", "noopener noreferrer");
 				a.textContent = links[i];
 				wrapper.appendChild(a);
 				wrapper.appendChild(document.createElement("br"));
