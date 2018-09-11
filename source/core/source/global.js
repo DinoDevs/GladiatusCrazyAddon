@@ -164,34 +164,14 @@ var gca_global = {
 	scripts : {
 		chartScript : {
 			load : 0, // 2 = ready
-			create : function(renderChartFunction){
-				var that=this;
-				if(that.load<2){
-					var script = document.createElement('script');
-					script.src = gca_resources.folder + "libraries/Chart.min.js";
-					script.addEventListener('load', function(){
-						that.load++;
-						// If all scripts loaded
-						if(that.load >= 2){
-							// Render chart
-							renderChartFunction();
-						}
-					}, false);
-					document.getElementsByTagName('head')[0].appendChild(script);
-					script = document.createElement('script');
-					script.src = gca_resources.folder + "libraries/moment.js";
-					script.addEventListener('load', function(){
-						that.load++;
-						// If all scripts loaded
-						if(that.load >= 2){
-							// Render chart
-							renderChartFunction();
-						}
-					}, false);
-					document.getElementsByTagName('head')[0].appendChild(script);
-				}else{
-					renderChartFunction();
-				}
+			create : function(render){
+				// Load moment.js
+				gca_tools.load.script('libraries/moment.js', () => {
+					// Load chart.js
+					gca_tools.load.script('libraries/Chart.min.js', () => {
+						render();
+					}, true);
+				}, true);
 			}
 		}
 	},

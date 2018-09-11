@@ -657,7 +657,7 @@ var gca_tools = {
 						for(var i = 0; i < before.list.length; i++){
 							before.list[i](arg);
 						}
-					};
+					}
 
 					// Call callback
 					if(callbackDone !== undefined && typeof callbackDone === 'function') {
@@ -726,9 +726,6 @@ var gca_tools = {
 				polling : function(){
 					// Save instance
 					var that = this;
-
-					// Get tab
-					var tab = document.getElementById("inventory_nav").getElementsByClassName("current")[0];
 
 					// Not ready
 					if(document.getElementById("inv").className.match("unavailable")){
@@ -924,7 +921,6 @@ var gca_tools = {
 			// Ger number wrapper
 			var numbers = wrapper.getElementsByClassName("paging_numbers")[0];
 			var links = numbers.getElementsByTagName("a");
-			var value;
 
 			// Get current page
 			page.current = numbers.getElementsByTagName("span");
@@ -1287,6 +1283,21 @@ var gca_tools = {
 			gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "white"]]]));
 		}
 
+	},
+
+	load : {
+		script : function(link, callback = false, resource = false) {
+			var script = document.createElement('script');
+			script.src = resource ? gca_resources.folder + link : link;
+			script.addEventListener('load', function(){
+				if (callback) callback();
+			}, false);
+			document.getElementsByTagName('head')[0].appendChild(script);
+		}
 	}
 
 };
+
+// ESlint defs
+/* global gca, gca_audio, gca_build, gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_resources, gca_section, gca_tools */
+/* global jQuery */
