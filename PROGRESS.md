@@ -1,7 +1,7 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-12-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Arena**
@@ -22,6 +22,8 @@
 	- [x] Save last search and load it as default page
 - **Guild**
 	- [x] Guild buildings calculate missing gold for upgrade
+- **Underwold**
+	- [ ] Pray buff timer bar added on header [we need to remove old pray buff side button]
 
 
 ### BUG FIXES
