@@ -47,12 +47,7 @@ var gca_guild = {
 				var differece = guildGold - cost;
 				var div = document.createElement('div');
 				div.textContent = '(' + (differece >= 0 ? '+' : '') + gca_tools.strings.insertDots(differece) + ')';
-				div.style.width = '100px';
-				div.style.position = 'absolute';
-				div.style.right = '166px';
-				div.style.top = '5px';
-				div.style.textAlign = 'right';
-				div.style.fontSize = '10px';
+				div.className = 'gca_guild_buildings_cost_difference';
 				div.style.color = differece >= 0 ? '#006300' : '#840900';
 				element.parentNode.appendChild(div);
 			}

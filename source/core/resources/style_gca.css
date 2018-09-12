@@ -929,6 +929,14 @@
 
 
 
+	/* Guild Layout
+	-------------------------------------------------- */
+		
+		/* Buildings Layout */
+		.gca_guild_buildings_cost_difference {width: 100px; position: absolute; right: 166px; top: 5px; text-align: right; font-size: 10px;}
+
+
+
 	/* Training
 	-------------------------------------------------- */
 
