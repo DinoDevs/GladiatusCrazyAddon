@@ -118,8 +118,10 @@ var gca_reports = {
 
 	// Log items found for statistics
 	report_found_items : function(){
-		// New report?
+		// Check if this is new report
 		var reportDate = document.getElementsByTagName('h2')[1].textContent.match(/(\d+).(\d+).(\d+) (\d+).(\d+).(\d+)/i);
+		if (!reportDate) reportDate = document.getElementsByTagName('h2')[0].textContent.match(/(\d+).(\d+).(\d+) (\d+).(\d+).(\d+)/i);
+		if (!reportDate) return;
 		reportDate = new Date(reportDate[3], reportDate[2] - 1, reportDate[1], reportDate[4], reportDate[5], reportDate[6])
 		var timePassed = (gca_tools.time.server() - reportDate.getTime())/1000;//in sec
 		
