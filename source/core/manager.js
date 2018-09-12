@@ -140,10 +140,10 @@ var manager = {
 				// Market
 				case "guildMarket":
 					this.section.markets();
-
+					break;
 			
 			// Events
-
+			// 
 				// Craps (Dices)
 				case "craps":
 					this.section.event.craps();
