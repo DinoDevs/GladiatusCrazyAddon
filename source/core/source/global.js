@@ -131,9 +131,11 @@ var gca_global = {
 
 		
 		// Pray Buf shortcut - TODO clean code
+		//(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
+		//	this.underworld.prayBufShortCut());
+		// Pray Buf shortcut
 		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
-			this.underworld.prayBufShortCut());
-		(this.isInUnderworld && this.underworld.prayCounterBar.add());
+			this.underworld.prayCounterBar.add());
 
 		// Browser notifications
 		(gca_options.bool("global","browser_notifications") &&
@@ -3040,7 +3042,6 @@ var gca_global = {
 				var icon = document.createElement('div');
 				icon.className = 'headericon_big';
 				icon.style.backgroundImage = 'url("img/buff/healing.png")';
-				//gca_tools.setTooltip(icon, [[['Test','#BA9700']]]);
 				wrapper.appendChild(icon);
 
 				var timer_text = document.createElement('div');
@@ -3085,7 +3086,7 @@ var gca_global = {
 							console.log((new Date().getTime() - window.duration * 1000));
 							gca_data.section.set('cache', 'underworld_pray_started', (new Date().getTime() - window.duration * 1000));
 							this.update();
-						}, 1000);
+						}, 500);
 					}
 					else {
 						gca_data.section.del('cache', 'underworld_pray_started');
@@ -3138,6 +3139,7 @@ var gca_global = {
 		},
 
 		// Pray Icon Shortcut
+		/*
 		prayBufShortCut : function(){
 			// Get local buffs
 			var localBuffs = document.getElementById('localBuffs');
@@ -3178,6 +3180,7 @@ var gca_global = {
 			a.style = 'background-image: url(img/buff/healing.png);';
 			localBuffs.getElementsByClassName('buff-container')[0].appendChild(a);
 		}
+		*/
 
 	},
 
