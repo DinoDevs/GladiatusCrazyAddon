@@ -1,7 +1,7 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-11-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-12-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Arena**
@@ -20,6 +20,8 @@
 	- [x] Show material names
 - **Auction**
 	- [x] Save last search and load it as default page
+- **Guild**
+	- [x] Guild buildings calculate missing gold for upgrade
 
 
 ### BUG FIXES
@@ -27,6 +29,7 @@
 	- [x] Audio settings now work
 	- [x] Fixed get player ID system (Global arena works now)
 	- [x] Some code clean up and layout fixes
+	- [x] Script execution on wrong page fixed (craps event on guild market)
 - **Horreum**
 	- [x] Workbench code now dont run on hurreum
 
