@@ -478,7 +478,8 @@ var gca_arena = {
 			// https://s13-gr.gladiatus.gameforge.com/game/index.php?mod=player&p=153593
 			let info = links[i].href.match(/\:\/\/s(\d+)-\w+\.gladiatus\.gameforge\.com\/game\/index\.php\?mod=player&p=(\d+)/i);
 			if (info && targets.hasOwnProperty(info[2] + '@' + info[1])) {
-				links[i].style.textShadow = '0px 0px 2px #ffff00';
+				let id = info[2] + '@' + info[1];
+				links[i].style.textShadow = '0px 0px 2px ' + targets[id][3];
 			}
 		}
 	}

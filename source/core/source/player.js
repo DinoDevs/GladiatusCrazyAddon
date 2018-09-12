@@ -119,7 +119,7 @@ var gca_player = {
 			}
 			// Add to the list
 			else {
-				list[this.id] = [gca_section.server, this.self.playerId, this.self.playerName];
+				list[this.id] = [gca_section.server, this.self.playerId, this.self.playerName, '#ffff00'];
 			}
 			gca_data.section.set('arena', 'target-list', list);
 			this.isTarget = !this.isTarget;

@@ -694,6 +694,10 @@
 		#char .gca-target-player-list-btn {cursor: pointer;width: 25px;height: 25px;position: absolute;top: 18px;left: 18px;box-shadow: 0px 0px 1px #000000;}
 		#char .gca-target-player-list-btn:hover {box-shadow: 0px 0px 3px #000000;}
 
+		/* Buddy list*/
+		.gca_colorpicker {border: 0px;padding: 0px;width: 24px;height: 24px;margin: -2px;}
+
+
 
 	/* Costumes Layout
 	-------------------------------------------------- */
