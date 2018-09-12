@@ -133,6 +133,7 @@ var gca_global = {
 		// Pray Buf shortcut - TODO clean code
 		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
 			this.underworld.prayBufShortCut());
+		(this.isInUnderworld && this.underworld.prayCounterBar.add());
 
 		// Browser notifications
 		(gca_options.bool("global","browser_notifications") &&
@@ -3027,6 +3028,115 @@ var gca_global = {
 
 	// Underworld related functions
 	underworld : {
+
+		// Add a prey counter bar on the header
+		prayCounterBar : {
+			isPraying : false,
+
+			add : function() {
+				var wrapper = document.createElement('div');
+				wrapper.id = 'gca_praybuff_header_values';
+
+				var icon = document.createElement('div');
+				icon.className = 'headericon_big';
+				icon.style.backgroundImage = 'url("img/buff/healing.png")';
+				//gca_tools.setTooltip(icon, [[['Test','#BA9700']]]);
+				wrapper.appendChild(icon);
+
+				var timer_text = document.createElement('div');
+				timer_text.className = 'headervalue_big';
+				wrapper.appendChild(timer_text);
+				document.getElementById('header_values_pve').appendChild(wrapper);
+
+				var bar = document.createElement('div');
+				bar.className = 'cooldown_bar';
+				bar.id = 'gca_praybuff_header_cooldown_bar';
+
+				var bar_fill = document.createElement('div');
+				bar_fill.className = 'cooldown_bar_fill cooldown_bar_fill_ready';
+				bar.appendChild(bar_fill);
+
+				var bar_text = document.createElement('div');
+				bar_text.className = 'cooldown_bar_text';
+				bar_text.textContent = '';
+				bar.appendChild(bar_text);
+
+				var action = document.createElement('a');
+				action.className = 'cooldown_bar_link';
+				action.addEventListener('click', () => {this.toggle();}, false);
+				bar.appendChild(action);
+
+				document.getElementById('header_game').appendChild(bar);
+
+				// Save variables
+				this.timer_text = timer_text;
+				this.bar_text = bar_text;
+				this.bar_fill = bar_fill;
+
+				// Check if player has the praying buff
+				var isPraying = false;
+				if (gca_section.submod == 'pray' || gca_section.submod == 'prayStart') {
+					if (document.getElementById('content').getElementById('duration')) {
+						isPraying = true;
+						// Save pray stop locale
+						gca_data.section.set('cache', 'underworld_pray_stop_locale', document.getElementById('content').getElementsByTagName('a')[0].textContent.trim());
+						// Save pray duration
+						setTimeout(() => {
+							console.log((new Date().getTime() - window.duration * 1000));
+							gca_data.section.set('cache', 'underworld_pray_started', (new Date().getTime() - window.duration * 1000));
+							this.update();
+						}, 1000);
+					}
+					else {
+						gca_data.section.del('cache', 'underworld_pray_started');
+					}
+					// Save pray locale
+					gca_data.section.set('cache', 'underworld_pray_locale', document.getElementById('content').getElementsByTagName('h1')[0].textContent.trim());
+				}
+				else {
+					let buffs = document.getElementById('localBuffs').getElementsByClassName('buff');
+					for (let i = buffs.length - 1; i >= 0; i--) {
+						if(
+							buffs[i].dataset.image == 'img/buff/healing.png' && (
+								(/\+5%/).test(buffs[i].getAttribute('title')) || 
+								(/\+5%/).test(buffs[i].getAttribute('onmousemove'))
+							)
+						){
+							isPraying = true;
+							break;
+						}
+					}
+				}
+				this.isPraying = isPraying;
+
+				// Update bars
+				this.update();
+				if (this.isPraying) {
+					setInterval(() => {this.updateTime();}, 1000);
+				}
+			},
+
+			update : function() {
+				this.updateTime();
+				this.bar_fill.className = 'cooldown_bar_fill ' + (this.isPraying ? 'cooldown_bar_fill_progress' : 'cooldown_bar_fill_ready');
+				this.bar_text.textContent = (this.isPraying ? gca_data.section.get('cache', 'underworld_pray_stop_locale', '×') : gca_data.section.get('cache', 'underworld_pray_locale', '→'));
+			},
+
+			updateTime : function () {
+				if (this.isPraying) {
+					let started = gca_data.section.get('cache', 'underworld_pray_started', -1);
+					this.timer_text.textContent = started < 0 ? '? : ? : ?' : gca_tools.time.msToHMS_String(new Date().getTime() - started, 99);
+				}
+				else {
+					this.timer_text.textContent = '-- : -- : --';
+				}
+			},
+
+			toggle : function() {
+				document.location.href = gca_getPage.link({'mod': 'underworld', 'submod': (this.isPraying ? 'prayEnd' : 'prayStart')});
+			}
+		},
+
 		// Pray Icon Shortcut
 		prayBufShortCut : function(){
 			// Get local buffs
@@ -3048,6 +3158,7 @@ var gca_global = {
 						)
 					){
 						praying = true;
+						break;
 					}
 				}
 			}

@@ -1120,6 +1120,18 @@
 
 
 
+	/* Underwold
+	-------------------------------------------------- */
+
+		/* Pray Buff Timer */
+		#gca_praybuff_header_values .headericon_big {background-size: contain;filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3)) drop-shadow(1px -1px 1px rgba(0,0,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,0,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,0,0,0.3));}
+		#gca_praybuff_header_values .headervalue_big {font-weight: lighter;font-size: 12px;line-height: 24px;text-align: center;width: 49px;}
+		#gca_praybuff_header_cooldown_bar {left: 605px;}
+		#gca_praybuff_header_cooldown_bar .cooldown_bar_fill {width: 100%; overflow: hidden;}
+		#gca_praybuff_header_cooldown_bar .cooldown_bar_link {cursor: pointer;}
+
+
+
 	/* Settings
 	-------------------------------------------------- */
 
