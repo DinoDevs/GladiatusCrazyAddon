@@ -5,7 +5,7 @@
 
 ### IMPROVEMENTS
 - **Arena**
-	- [ ] Target Players List (Managable from Family tab) [needs colors]
+	- [x] Target Players List (Managable from Family tab)
 	- [x] Hilghlight guild members on other servers
 - **Packets**
 	- [x] Double click to open packets (default off) [Beta]
