@@ -4,6 +4,8 @@
 ![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
+- **Global**
+	- [ ] Item forge info on tooltips (needs data)(needs options) [Beta]
 - **Arena**
 	- [x] Target Players List (Managable from Family tab)
 	- [x] Hilghlight guild members on other servers
