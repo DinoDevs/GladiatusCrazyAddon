@@ -42,6 +42,8 @@ var gca_forge = {
 			this.horreum.rememberStoreOptions());
 			(gca_options.bool("forge","horreum_select_meterials") &&
 			this.horreum.clickToSelectMaterial());
+
+			this.horreum.gatherInfo();
 		}
 
 		// Setting Link
@@ -356,6 +358,18 @@ var gca_forge = {
 					}
 				}
 			}
+		},
+
+		gatherInfo : function() {
+			// Get material names
+			let locale = {};
+			let option = document.getElementById('resource-type').getElementsByTagName('option');
+			for (var i = option.length - 1; i >= 0; i--) {
+				if (option[i].dataset.imageClass && option[i].dataset.imageClass.match(/item-i-18-(\d+)/i)) {
+					locale[option[i].dataset.imageClass.match(/item-i-18-(\d+)/i)[1]] = option[i].innerHTML.trim();
+				}
+			}
+			gca_data.section.set("cache", "resource_locale", locale);
 		}
 	}
 };

@@ -24,7 +24,7 @@ var gca_global = {
 			this.display.xScrollFix());
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
-			this.display.itemShadow.preload());
+			this.display.analyzeItems.itemShadow.preload());
 		// If Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
 			this.display.inventoryOptionsGroup.preload());
@@ -104,8 +104,8 @@ var gca_global = {
 
 		// If Item shadow
 		if(gca_options.bool("global","item_shadow")) {
-			this.display.itemShadow.inventory();
-			this.display.itemShadow.shop();
+			this.display.analyzeItems.itemShadow.inventory();
+			this.display.analyzeItems.itemShadow.shop();
 		}
 
 		// Event Craps Timer
@@ -160,8 +160,11 @@ var gca_global = {
 		this.update_guild_info();
 		
 		// Show durability or notifications
-		((gca_data.section.get("global", "show_durability", 0) != 0 || gca_data.section.get("global", "min_durability", 25) > 0 )&& gca_section.mod!='auction' &&
-		this.display.itemDurability.init());
+		((gca_data.section.get("global", "show_durability", 0) != 0 || gca_data.section.get("global", "min_durability", 25) > 0) && gca_section.mod!='auction' &&
+			this.display.analyzeItems.itemDurability.init());
+
+		// Show forge info
+		this.display.analyzeItems.itemForgeInfo.init();
 	},
 	
 	scripts : {
@@ -2696,176 +2699,6 @@ var gca_global = {
 			document.documentElement.className += " gca_enable_xscroll";
 		},
 
-		// Items Shadow enable
-		itemShadow : {
-
-			// Preload shadow
-			preload : function(){
-				document.documentElement.className += " do-item-shadow";
-			},
-
-			// Inject shadow into inventory
-			inventory : function(){
-				// Exit if no inventory
-				if(!document.getElementById("inv")) return;
-
-				// Add event
-				gca_tools.event.bag.onBagOpen((tab) => {
-					this.currentBag(tab);
-				});
-
-				// If bag not already loaded
-				if (document.getElementById("inv").className.match("unavailable")) {
-					// Wait first bag
-					gca_tools.event.bag.waitBag(() => {
-						this.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
-					});
-				}
-				// Else id already loaded
-				// (you can test it with ctrl+F5)
-				else {
-					// Add shadows
-					this.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
-				}
-			},
-
-			// Inject the current bag
-			currentBag : function(tab){
-				if(tab.dataset.itemShadowed) return;
-
-				// Get items
-				var items = document.getElementById('inv').getElementsByClassName("ui-draggable");
-				
-				// For each
-				for (var i = items.length - 1; i >= 0; i--) {
-					gca_tools.item.shadow.add(items[i]);
-				}
-
-				// Success
-				if(items.length)
-					tab.dataset.itemShadowed = true;
-			},
-
-			// Inject shadow into shop
-			shop : function() {
-				// Exit if no shop
-				if(!document.getElementById("shop")) return;
-
-				// Get items
-				var items = document.getElementById('shop').getElementsByClassName("ui-draggable");
-				
-				// For each
-				for (var i = items.length - 1; i >= 0; i--) {
-					gca_tools.item.shadow.add(items[i]);
-				}
-			}
-		},
-		
-		
-		// Items durability enable
-		itemDurability : {
-			init : function(){
-				// Show durability
-				if (gca_data.section.get("global", "show_durability", 0) != 0)
-					document.getElementById('content').className += ' show-item-durability';
-				
-				this.createDurability();
-				
-				// Exit if no inventory
-				if(!document.getElementById("inv")) return;
-
-				// Add event
-				gca_tools.event.bag.onBagOpen(() => {
-					this.createDurability(false);
-				});
-
-				// If bag not already loaded
-				if (document.getElementById("inv").className.match("unavailable")) {
-					// Wait first bag
-					gca_tools.event.bag.waitBag(() => {
-						this.createDurability(false);
-					});
-				}
-
-				// If in packets
-				if (gca_section.mod === "packages") {
-					// On item get
-					gca_tools.event.request.onAjaxResponce((responce) => {
-						// If package load request
-						if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
-							this.createDurability(false);
-						}
-					});
-					// On new packet page
-					gca_tools.event.addListener("packages_page_loaded", () => {
-						this.createDurability(false);
-					});
-				}
-			},
-			
-			createDurability : function(notifications=true){
-				// Get page Items
-				var items = document.querySelectorAll('div[data-content-type]');
-				var durability;
-				var low_durability_items = [];
-				let minimum_durability = (notifications)? gca_data.section.get("global", "min_durability", 25):0;
-				let show_durability = gca_data.section.get("global", "show_durability", 0);
-				// Loop page's Items
-				for (let i = 0; i < items.length; i++){
-					// If item
-					if(!items[i].dataset.gca_durability && items[i].dataset.contentType.test(/^(1|2|4|8|48|256|512|1024)$/) && items[i].dataset.durability == null){
-						items[i].dataset.gca_durability = true;
-						// Get item's durability
-						durability = items[i].dataset.tooltip.match(/\d+\\*\/\d+ \((\d+)%\)","([^"]+)"\],\["[^\/]+\/\d+ \((\d+)%\)/);
-						// If item has durability
-						if(durability){
-							let durability_per_cent = durability[1];
-							//let durability_color = durability[2]; //not used
-							let conditioning = durability[3]; //=εξευγενισμός
-							let total = (parseInt(durability_per_cent)+parseInt(conditioning));
-							
-							if (show_durability != 0){
-								// If enabled: % or ●
-								if(show_durability==1){
-									items[i].dataset.durability = (conditioning > 0)? total + "%" : (durability_per_cent) + "%";
-								}else{
-									items[i].dataset.durability = '⚒';//●
-								}
-								// Colors
-								if(conditioning > 0){
-									items[i].dataset.durabilityColor = 1;
-								}else if(durability_per_cent>=75){
-									items[i].dataset.durabilityColor = 2;
-								}else if(durability_per_cent>=50){
-									items[i].dataset.durabilityColor = 3;
-								}else if(durability_per_cent>=25){
-									items[i].dataset.durabilityColor = 4;
-								}else{
-									items[i].dataset.durabilityColor = 5;
-								}
-							}
-							
-							// Notification (if you wear it)
-							if(items[i].dataset.containerNumber <= 11 && total < minimum_durability){
-								low_durability_items.push( {'name':JSON.parse('"'+items[i].dataset.tooltip.match(/"([^"]+)"/)[1]+'"'),'durability':total} );
-							}
-						}
-					}
-				}
-				
-				// Low durability notification 
-				if (low_durability_items.length>0){
-					let items_string = ':';
-					for(let i = 0; i < low_durability_items.length; i++){
-						items_string += '\n● ' + low_durability_items[i].name + ' (' +low_durability_items[i].durability + '%)';
-					}
-					gca_notifications.error(
-						'⚒ ' + gca_locale.get("global", "low_durability_items", {number:low_durability_items.length, percent:minimum_durability}) + items_string
-					);
-				}
-			}
-		},
-
 		// Group inventory options
 		inventoryOptionsGroup : {
 			// Preload before page load
@@ -3025,6 +2858,886 @@ var gca_global = {
 				auction_gladiator.href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_gladiator', {mod : 'auction'}));
 			if (auction_mercenary)
 				auction_mercenary.href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_mercenary', {mod : 'auction', ttype : '3'}));
+		},
+
+		analyzeItems : {
+
+			// Items Shadow enable
+			itemShadow : {
+
+				// Preload shadow
+				preload : function(){
+					document.documentElement.className += " do-item-shadow";
+				},
+
+				// Inject shadow into inventory
+				inventory : function(){
+					// Exit if no inventory
+					if(!document.getElementById("inv")) return;
+
+					// Add event
+					gca_tools.event.bag.onBagOpen((tab) => {
+						this.currentBag(tab);
+					});
+
+					// If bag not already loaded
+					if (document.getElementById("inv").className.match("unavailable")) {
+						// Wait first bag
+						gca_tools.event.bag.waitBag(() => {
+							this.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+						});
+					}
+					// Else id already loaded
+					// (you can test it with ctrl+F5)
+					else {
+						// Add shadows
+						this.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+					}
+				},
+
+				// Inject the current bag
+				currentBag : function(tab){
+					if(tab.dataset.itemShadowed) return;
+
+					// Get items
+					var items = document.getElementById('inv').getElementsByClassName("ui-draggable");
+					
+					// For each
+					for (var i = items.length - 1; i >= 0; i--) {
+						gca_tools.item.shadow.add(items[i]);
+					}
+
+					// Success
+					if(items.length)
+						tab.dataset.itemShadowed = true;
+				},
+
+				// Inject shadow into shop
+				shop : function() {
+					// Exit if no shop
+					if(!document.getElementById("shop")) return;
+
+					// Get items
+					var items = document.getElementById('shop').getElementsByClassName("ui-draggable");
+					
+					// For each
+					for (var i = items.length - 1; i >= 0; i--) {
+						gca_tools.item.shadow.add(items[i]);
+					}
+				}
+			},
+			
+			// Items durability enable
+			itemDurability : {
+				init : function(){
+					// Show durability
+					if (gca_data.section.get("global", "show_durability", 0) != 0)
+						document.getElementById('content').className += ' show-item-durability';
+					
+					this.createDurability();
+					
+					// Exit if no inventory
+					if(!document.getElementById("inv")) return;
+
+					// Add event
+					gca_tools.event.bag.onBagOpen(() => {
+						this.createDurability(false);
+					});
+
+					// If bag not already loaded
+					if (document.getElementById("inv").className.match("unavailable")) {
+						// Wait first bag
+						gca_tools.event.bag.waitBag(() => {
+							this.createDurability(false);
+						});
+					}
+
+					// If in packets
+					if (gca_section.mod === "packages") {
+						// On item get
+						gca_tools.event.request.onAjaxResponce((responce) => {
+							// If package load request
+							if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
+								this.createDurability(false);
+							}
+						});
+						// On new packet page
+						gca_tools.event.addListener("packages_page_loaded", () => {
+							this.createDurability(false);
+						});
+					}
+				},
+				
+				createDurability : function(notifications=true){
+					// Get page Items
+					var items = document.querySelectorAll('div[data-content-type]');
+					var durability;
+					var low_durability_items = [];
+					let minimum_durability = (notifications)? gca_data.section.get("global", "min_durability", 25):0;
+					let show_durability = gca_data.section.get("global", "show_durability", 0);
+					// Loop page's Items
+					for (let i = 0; i < items.length; i++){
+						// If item
+						if(!items[i].dataset.gca_durability && items[i].dataset.contentType.test(/^(1|2|4|8|48|256|512|1024)$/) && items[i].dataset.durability == null){
+							items[i].dataset.gca_durability = true;
+							// Get item's durability
+							durability = items[i].dataset.tooltip.match(/\d+\\*\/\d+ \((\d+)%\)","([^"]+)"\],\["[^\/]+\/\d+ \((\d+)%\)/);
+							// If item has durability
+							if(durability){
+								let durability_per_cent = durability[1];
+								//let durability_color = durability[2]; //not used
+								let conditioning = durability[3]; //=εξευγενισμός
+								let total = (parseInt(durability_per_cent)+parseInt(conditioning));
+								
+								if (show_durability != 0){
+									// If enabled: % or ●
+									if(show_durability==1){
+										items[i].dataset.durability = (conditioning > 0)? total + "%" : (durability_per_cent) + "%";
+									}else{
+										items[i].dataset.durability = '⚒';//●
+									}
+									// Colors
+									if(conditioning > 0){
+										items[i].dataset.durabilityColor = 1;
+									}else if(durability_per_cent>=75){
+										items[i].dataset.durabilityColor = 2;
+									}else if(durability_per_cent>=50){
+										items[i].dataset.durabilityColor = 3;
+									}else if(durability_per_cent>=25){
+										items[i].dataset.durabilityColor = 4;
+									}else{
+										items[i].dataset.durabilityColor = 5;
+									}
+								}
+								
+								// Notification (if you wear it)
+								if(items[i].dataset.containerNumber <= 11 && total < minimum_durability){
+									low_durability_items.push( {'name':JSON.parse('"'+items[i].dataset.tooltip.match(/"([^"]+)"/)[1]+'"'),'durability':total} );
+								}
+							}
+						}
+					}
+					
+					// Low durability notification 
+					if (low_durability_items.length>0){
+						let items_string = ':';
+						for(let i = 0; i < low_durability_items.length; i++){
+							items_string += '\n● ' + low_durability_items[i].name + ' (' +low_durability_items[i].durability + '%)';
+						}
+						gca_notifications.error(
+							'⚒ ' + gca_locale.get("global", "low_durability_items", {number:low_durability_items.length, percent:minimum_durability}) + items_string
+						);
+					}
+				}
+			},
+
+			// jQuery('.ui-draggable')
+			itemForgeInfo : {
+
+				init : function(){
+					// Show durability
+					//if (gca_data.section.get("global", "show_durability", 0) != 0)
+					//	document.getElementById('content').className += ' show-item-durability';
+					
+					this.data = {
+						prefix : {
+							"1" : {35:21},
+							"2" : null,
+							"3" : {13:5,17:10,18:2},
+							"4" : null,
+							"5" : null,
+							"6" : {9:4,15:4,17:10},
+							"7" : {7:5,35:22},
+							"8" : null,
+							"9" : null,
+							"10" : {9:12,13:1,17:3},
+							"11" : null,
+							"12" : null,
+							"13" : {9:18,20:1},
+							"14" : {9:4,13:2,17:12,18:2},
+							"15" : null,
+							"16" : {9:14,15:2},
+							"17" : {13:1,15:2,17:14},
+							"18" : null,
+							"19" : null,
+							"20" : null,
+							"21" : {15:4,17:14,20:1},
+							"22" : {9:9,13:2,15:2},
+							"23" : {9:7,18:2,20:5},
+							"24" : {13:2,15:5,17:8,18:2},
+							"25" : null,
+							"26" : null,
+							"27" : {13:2,15:2,17:12,18:1},
+							"28" : {9:19},
+							"29" : {13:2,15:2,17:14,18:1},
+							"30" : {9:8,15:11},
+							"31" : {9:9,13:2,15:2},
+							"32" : {15:3,17:7},
+							"33" : {9:10,15:1,20:2},
+							"34" : {13:1,17:14,18:1},
+							"35" : {9:10},
+							"36" : {13:1,17:8,18:1},
+							"37" : {13:4,15:8,18:4},
+							"38" : null,
+							"39" : {9:1,15:1,17:11,18:1},
+							"40" : {9:9,13:2,15:2,18:4,20:2},
+							"41" : {9:1,17:9,20:7},
+							"42" : {9:18,15:1},
+							"43" : null,
+							"44" : {13:2,15:2,17:13,18:2},
+							"45" : {9:12,15:2,17:4,20:1},
+							"46" : {29:1,35:20},
+							"47" : {9:6,13:2,17:5,18:2,20:6},
+							"48" : {9:5,13:5,20:5},
+							"49" : {9:5,13:7,18:8},
+							"50" : {7:4,21:3,35:13,40:4},
+							"51" : {7:2,21:3,35:15,40:5},
+							"52" : {7:5,21:6,35:9,40:10},
+							"53" : {26:4,36:6,38:6,49:19},
+							"54" : {26:8,36:18,38:2,42:2,49:12},
+							"55" : {26:5,38:5,42:2,49:35},
+							"56" : null,
+							"57" : null,
+							"58" : null,
+							"59" : null,
+							"60" : {15:3,20:7},
+							"61" : {9:1,15:9,18:2},
+							"62" : {9:1,15:2,18:4,20:5},
+							"63" : null,
+							"64" : {15:13,20:1},
+							"65" : {9:2,13:11,15:1,20:1},
+							"66" : null,
+							"67" : null,
+							"68" : {9:2,13:11,15:1,18:3,20:1},
+							"69" : {15:1,18:12,20:4},
+							"70" : {9:2,13:1,15:13,20:2},
+							"71" : {9:1,13:15,15:1,20:4},
+							"72" : null,
+							"73" : {15:16,20:4},
+							"74" : {7:16,29:3,40:2},
+							"75" : {7:2,21:13,29:6,35:1},
+							"76" : {35:1,40:22},
+							"77" : {7:1,21:8,29:9,35:5,40:1},
+							"78" : {7:24},
+							"79" : {21:3,35:1,40:20},
+							"80" : {7:12,29:2,35:1,40:9},
+							"81" : {7:1,21:18,29:7,35:1,40:1},
+							"82" : {21:5,40:22},
+							"83" : {7:20,29:5,35:1,40:2},
+							"84" : {7:3,21:17,29:7,35:1},
+							"85" : {35:10,40:19},
+							"86" : {7:21,29:5,35:3,40:1},
+							"87" : null,
+							"88" : null,
+							"89" : {7:23,29:5,35:3},
+							"90" : null,
+							"91" : {11:2,26:31},
+							"92" : {11:13,42:12,49:9},
+							"93" : {11:11,26:1,36:3,38:20},
+							"94" : {11:1,26:32,49:3},
+							"95" : {11:1,26:3,42:30,49:3},
+							"96" : {11:12,26:1,36:1,38:21,49:4},
+							"97" : null,
+							"98" : {11:13,26:6,38:10,49:9},
+							"99" : {36:40},
+							"100" : null,
+							"101" : {11:17,38:13,49:11},
+							"102" : {26:13,49:29},
+							"103" : {26:29,38:10,42:1,49:1},
+							"104" : {11:6,42:33,49:4},
+							"105" : {11:21,36:23},
+							"106" : {11:10,26:35},
+							"107" : {11:7,42:34,49:4},
+							"108" : {11:14,26:1,36:7,38:24},
+							"109" : {11:6,26:20,38:9,49:12},
+							"110" : null,
+							"111" : null,
+							"112" : null,
+							"113" : null,
+							"114" : {11:11,36:4,38:21,49:12},
+							"115" : {26:48},
+							"116" : {11:2,36:17,38:7,42:9,49:13},
+							"117" : null,
+							"118" : {10:1,22:22,45:31},
+							"119" : null,
+							"120" : {38:10,42:7,49:32},
+							"121" : null,
+							"122" : {11:3,26:1,36:4,38:27,42:12,49:2},
+							"123" : null,
+							"124" : {27:4,45:42,50:4},
+							"125" : null,
+							"126" : null,
+							"127" : null,
+							"128" : null,
+							"129" : null,
+							"130" : {10:8,22:31,27:4,45:8},
+							"131" : {10:34,22:12,27:1,47:4,50:1},
+							"132" : null,
+							"133" : null,
+							"134" : null,
+							"135" : {22:48,27:2},
+							"136" : null,
+							"137" : null,
+							"138" : {10:5,22:21,27:14,45:6,50:6},
+							"139" : {10:1,27:52},
+							"140" : null,
+							"141" : null,
+							"142" : {10:4,22:18,45:30,50:3},
+							"143" : null,
+							"144" : null,
+							"145" : null,
+							"146" : {22:36,27:3,45:17},
+							"147" : null,
+							"148" : {22:13,27:4,45:30,47:8},
+							"149" : null,
+							"150" : {10:23,22:14,27:2,45:17,50:2},
+							"151" : {10:24,22:10,27:4,47:13,50:7},
+							"152" : null,
+							"153" : null,
+							"154" : null,
+							"155" : null,
+							"156" : null,
+							"157" : null,
+							"158" : null,
+							"159" : null,
+							"160" : null,
+						},
+						base : {
+							"1-1" : {1:2},
+							"1-2" : {3:1,4:1},
+							"1-3" : {3:1,4:1},
+							"1-4" : {1:1,4:2},
+							"1-5" : {3:1,4:3},
+							"1-6" : {3:2,4:2},
+							"1-7" : {2:2,3:1,4:3},
+							"1-8" : {2:1,3:1,4:3},
+							"1-9" : {1:3,3:1,4:2},
+							"1-10" : {1:1,2:2,3:1,4:3},
+							"1-11" : {1:3,3:1,4:3},
+							"1-12" : {1:4,3:1,4:3},
+							"1-13" : {3:1,4:2},
+							"1-14" : {1:2,2:2,3:1,4:4},
+							"1-15" : {2:3,4:7},
+							"1-16" : {2:3,3:1,4:7},
+							"1-17" : {2:5,4:5},
+							"1-18" : {1:7,3:1,4:3},
+							"1-19" : {1:3,4:4},
+							"1-20" : {1:5,4:4},
+							"2-1" : {1:2},
+							"2-2" : {1:2,4:1},
+							"2-3" : {1:2,4:2},
+							"2-4" : {3:5},
+							"2-5" : {2:3,4:4},
+							"2-6" : {2:3,4:4,48:1},
+							"2-7" : {2:2,3:2,4:5},
+							"2-8" : {2:2,3:2,4:6},
+							"2-9" : {2:3,3:3,4:6},
+							"2-10" : {4:12},
+							"2-11" : {1:2,4:2},
+							"2-12" : {1:4,4:2},
+							"3-1" : {3:2},
+							"3-2" : {2:1,3:1},
+							"3-3" : {2:1,3:2},
+							"3-4" : {2:2,3:1,4:2},
+							"3-5" : {4:5},
+							"3-6" : {2:5,4:2},
+							"3-7" : {2:3,4:5},
+							"3-8" : {2:3,4:6},
+							"3-9" : {2:2,3:2,4:7},
+							"3-10" : {2:2,3:2,4:7},
+							"3-11" : {3:12},
+							"3-12" : {3:3,4:2},
+							"4-1" : {3:2},
+							"4-2" : {4:2},
+							"4-3" : {2:1,4:2},
+							"4-4" : {2:1,4:2},
+							"4-5" : {2:1,4:3},
+							"4-6" : {2:3,4:3},
+							"4-7" : {3:3,4:4},
+							"4-8" : {2:6,4:3},
+							"4-9" : {2:7,4:5},
+							"4-10" : {2:7,3:1,4:4},
+							"4-11" : {2:5,3:1},
+							"4-12" : {2:7,4:3},
+							"4-13" : {4:9},
+							"5-1" : {3:2},
+							"5-2" : {2:2,3:1},
+							"5-3" : {2:2,3:2},
+							"5-4" : {3:5},
+							"5-5" : {2:3,3:4},
+							"5-6" : {3:5,4:3},
+							"5-7" : {2:1,3:5,4:3},
+							"5-8" : {3:6,4:4},
+							"5-9" : {3:7,4:5},
+							"6-1" : {2:2},
+							"6-2" : {2:2},
+							"6-3" : {2:2},
+							"6-4" : {2:2},
+							"6-5" : {2:2},
+							"6-6" : {2:2},
+							"6-7" : {2:2},
+							"6-8" : {2:2},
+							"8-1" : {1:1,3:1},
+							"8-2" : {3:3},
+							"8-3" : {3:4},
+							"8-4" : {2:1,3:4},
+							"8-5" : {2:3,3:3},
+							"8-6" : {2:3,3:4},
+							"8-7" : {3:9},
+							"8-8" : {1:2,3:5,4:3},
+							"8-9" : {2:5,3:6,4:1},
+							"8-10" : {3:7,4:6},
+							"9-1" : {2:2},
+							"9-2" : {2:2},
+							"9-3" : {2:2},
+							"9-4" : {2:2},
+							"9-5" : {2:2},
+							"9-6" : {2:2},
+							"9-7" : {2:2},
+							"9-8" : {2:2},
+							"9-9" : {2:2},
+							"9-10" : {2:2}
+						},
+						suffix : {
+							"1" : null,
+							"2" : {25:3,31:3},
+							"3" : {6:4,31:6},
+							"4" : {6:9},
+							"5" : {16:3,31:3},
+							"6" : {5:4,16:2},
+							"7" : null,
+							"8" : null,
+							"9" : {37:11,39:1},
+							"10" : null,
+							"11" : null,
+							"12" : null,
+							"13" : {5:4,6:2,25:2},
+							"14" : null,
+							"15" : {23:9,39:3},
+							"16" : {5:6},
+							"17" : {31:7},
+							"18" : null,
+							"19" : null,
+							"20" : {6:6,16:3,31:1},
+							"21" : {25:2,31:4},
+							"22" : null,
+							"23" : {23:15},
+							"24" : null,
+							"25" : null,
+							"26" : {5:5,16:4},
+							"27" : null,
+							"28" : null,
+							"29" : {16:3,25:3,31:4},
+							"30" : {5:4,25:6},
+							"31" : {6:12},
+							"32" : {23:7,37:1,39:4},
+							"33" : {37:12},
+							"34" : null,
+							"35" : {5:9,25:1},
+							"36" : null,
+							"37" : {16:6,31:5},
+							"38" : {5:2,6:2,16:2,25:2,31:2},
+							"39" : null,
+							"40" : {25:4,31:4},
+							"41" : null,
+							"42" : null,
+							"43" : null,
+							"44" : {23:1,24:11},
+							"45" : null,
+							"46" : {23:2,24:11},
+							"47" : {6:5,25:3,31:3},
+							"48" : {16:4,25:4},
+							"49" : {25:4,31:4},
+							"50" : {6:6,16:2,31:1},
+							"51" : {5:3,25:5},
+							"52" : null,
+							"53" : {16:3,25:2,31:2},
+							"54" : null,
+							"55" : {24:5,34:4,48:5},
+							"56" : {23:1,24:1,39:12},
+							"57" : null,
+							"58" : {23:2,37:4,39:6},
+							"59" : null,
+							"60" : null,
+							"61" : {6:9},
+							"62" : null,
+							"63" : {34:1,37:11},
+							"64" : null,
+							"65" : {37:6,39:6},
+							"66" : {23:1,24:11},
+							"67" : {5:7,6:2},
+							"68" : null,
+							"69" : {25:9},
+							"70" : {23:4,24:8},
+							"71" : null,
+							"72" : {5:4,6:4,25:2},
+							"73" : {6:6,14:2,16:2},
+							"74" : {23:4,24:3,34:2,48:3},
+							"75" : {23:2,24:4,37:7},
+							"76" : {28:8,32:2,46:14},
+							"77" : {19:7,30:12,41:2},
+							"78" : {23:3,24:1,39:7},
+							"79" : {5:2,14:5,31:2},
+							"80" : {23:3,34:1,39:7,48:1},
+							"81" : {5:1,6:4,14:3,25:1},
+							"82" : null,
+							"83" : {37:13},
+							"84" : {5:1,6:6,16:1,25:1},
+							"85" : null,
+							"86" : {6:3,14:5,16:1,25:1},
+							"87" : {23:1,34:1,37:10},
+							"88" : {14:4,16:3,31:3},
+							"89" : null,
+							"90" : {37:9,39:4},
+							"91" : {23:12},
+							"92" : {39:11,48:1},
+							"93" : {6:8,25:1},
+							"94" : null,
+							"95" : null,
+							"96" : {23:3,34:4,37:1,48:5},
+							"97" : {5:6,14:4,25:1},
+							"98" : {33:20},
+							"99" : {23:3,24:1,37:6,39:5},
+							"100" : null,
+							"101" : null,
+							"102" : null,
+							"103" : null,
+							"104" : null,
+							"105" : null,
+							"106" : null,
+							"107" : null,
+							"108" : null,
+							"109" : null,
+							"110" : {6:6},
+							"111" : {25:6},
+							"112" : null,
+							"113" : null,
+							"114" : {25:7},
+							"115" : {16:5,31:2},
+							"116" : {5:1,14:1,31:5},
+							"117" : {25:7},
+							"118" : {6:7},
+							"119" : null,
+							"120" : {25:8},
+							"121" : {5:2,16:6},
+							"122" : {14:8},
+							"123" : null,
+							"124" : {5:6,6:3},
+							"125" : null,
+							"126" : {25:9},
+							"127" : {5:7,6:1,16:1,31:1},
+							"128" : {6:3,14:6},
+							"129" : {25:10},
+							"130" : {5:2,6:1,16:8},
+							"131" : {14:10},
+							"132" : {25:10},
+							"133" : {5:2,16:7,25:1},
+							"134" : {6:10},
+							"135" : {6:1,25:9},
+							"136" : {5:2,6:1,16:8,25:1},
+							"137" : null,
+							"138" : null,
+							"139" : {6:5,31:7},
+							"140" : null,
+							"141" : null,
+							"142" : {5:8,6:4},
+							"143" : {39:12},
+							"144" : {23:12},
+							"145" : null,
+							"146" : {23:1,24:3,48:10},
+							"147" : {23:11,37:2},
+							"148" : {23:2,24:1,34:2,37:7},
+							"149" : {23:1,24:4,37:1,48:8},
+							"150" : null,
+							"151" : {23:2,37:10,48:2},
+							"152" : null,
+							"153" : {23:14},
+							"154" : {23:4,24:9,37:1},
+							"155" : {39:14},
+							"156" : null,
+							"157" : {23:1,24:2,34:11,37:1},
+							"158" : null,
+							"159" : {23:11,24:4},
+							"160" : {23:1,37:1,48:12},
+							"161" : null,
+							"162" : {23:15},
+							"163" : null,
+							"164" : null,
+							"165" : {23:16},
+							"166" : null,
+							"167" : {39:16},
+							"168" : null,
+							"169" : {24:10,37:6,48:2},
+							"170" : {23:5,37:12},
+							"171" : null,
+							"172" : null,
+							"173" : {37:1,39:16},
+							"174" : {23:17},
+							"175" : null,
+							"176" : {33:9,41:9},
+							"177" : null,
+							"178" : null,
+							"179" : null,
+							"180" : null,
+							"181" : null,
+							"182" : null,
+							"183" : null,
+							"184" : null,
+							"185" : {41:19},
+							"186" : null,
+							"187" : null,
+							"188" : null,
+							"189" : {41:20},
+							"190" : {12:18,33:1,41:2},
+							"191" : {30:20},
+							"192" : {33:1,41:19},
+							"193" : {19:11,33:9,52:1},
+							"194" : null,
+							"195" : null,
+							"196" : {12:15,19:4,33:1,41:2},
+							"197" : null,
+							"198" : null,
+							"199" : null,
+							"200" : null,
+							"201" : null,
+							"202" : null,
+							"203" : {19:7,30:1,33:1,41:2,52:14},
+							"204" : null,
+							"205" : {19:13,33:9,52:1},
+							"206" : null,
+							"207" : {41:23},
+							"208" : null,
+							"209" : null,
+							"210" : {28:9,43:5,46:6,51:6},
+							"211" : null,
+							"212" : null,
+							"213" : null,
+							"214" : null,
+							"215" : null,
+							"216" : null,
+							"217" : null,
+							"218" : {32:7,43:6,46:7,51:7},
+							"219" : null,
+							"220" : null,
+							"221" : {32:4,44:4,46:18},
+							"222" : null,
+							"223" : null,
+							"224" : {32:30},
+							"225" : null,
+							"226" : null,
+							"227" : null,
+							"228" : null,
+							"229" : null,
+							"230" : null,
+							"231" : null,
+							"232" : {46:22,51:2},
+							"233" : null,
+							"234" : null,
+							"235" : null,
+							"236" : null,
+							"237" : null,
+							"238" : null,
+							"239" : {32:1,43:13,44:2,46:4,51:6},
+							"240" : {28:18,32:4,43:2,44:7},
+							"241" : null,
+							"242" : null,
+							"243" : null,
+							"244" : null,
+							"245" : null,
+							"246" : null,
+							"247" : null,
+							"248" : null,
+							"249" : null,
+							"250" : null,
+							"251" : null,
+							"252" : null,
+							"253" : null,
+							"254" : null,
+							"255" : null,
+							"256" : null,
+							"257" : null,
+							"258" : null,
+							"259" : null,
+							"260" : null,
+							"261" : null,
+							"262" : null,
+							"263" : null,
+							"264" : null,
+							"265" : null,
+							"266" : null,
+							"267" : null,
+							"268" : null,
+							"269" : null,
+							"270" : null,
+							"271" : null,
+							"272" : null,
+							"273" : null,
+							"274" : null,
+							"275" : null,
+							"276" : null,
+							"277" : null,
+							"278" : null,
+							"279" : null,
+							"280" : null,
+							"281" : null,
+							"282" : null,
+							"283" : null,
+							"284" : null,
+							"285" : {32:6,43:2,44:27},
+							"286" : null,
+							"287" : null,
+							"288" : null,
+							"289" : null,
+							"290" : {53:38},
+							"291" : {53:27,56:6,59:8},
+							"292" : null,
+							"293" : {53:1,59:46},
+							"294" : null,
+							"295" : null,
+							"296" : null,
+							"297" : null,
+							"298" : null,
+							"299" : null,
+							"300" : null
+						}
+					};
+
+					var load = false;
+					
+					// If inventory exists
+					if (document.getElementById('inv')) {
+						load = true;
+						// Add bag event
+						gca_tools.event.bag.onBagOpen(() => {
+							this.showInfo();
+						});
+
+						// If bag not already loaded
+						if (document.getElementById('inv').className.match('unavailable')) {
+							// Wait first bag
+							gca_tools.event.bag.waitBag(() => {
+								this.showInfo();
+							});
+						}
+					}
+
+					// If in packets
+					if (gca_section.mod === 'packages') {
+						load = true;
+						// On item get
+						gca_tools.event.request.onAjaxResponce((responce) => {
+							// If package load request
+							if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
+								this.showInfo();
+							}
+						});
+						// On new packet page
+						gca_tools.event.addListener('packages_page_loaded', () => {
+							this.showInfo();
+						});
+					}
+
+					// If in auction
+					else if (gca_section.mod === 'auction') {
+						load = true;
+					}
+
+					if (load) {
+						this.locale = gca_data.section.get('cache', 'resource_locale', false);
+						this.showInfo();
+					}
+				},
+				
+				showInfo : function(){
+					// Get page Items
+					var items = document.querySelectorAll('div[data-content-type]');
+
+					// Loop page's Items
+					for (let i = 0; i < items.length; i++){
+						if (items[i].dataset.hash) {
+							this.showItemInfo(items[i]);
+						}
+					}
+				},
+				
+				showItemInfo : function(item){
+					if (item.dataset.forgeInfo) return;
+					// Flag item
+					item.dataset.forgeInfo = true;
+
+					// Analyze hash
+					let hash = item.dataset.hash.split('-');
+
+					// Get type (sword, helmet ...)
+					let type = parseInt(hash[1].split('').reverse().join(''), 16);
+
+					// Stats info
+					let base = parseInt(hash[1].split('').reverse().join(''), 16) + '-' + parseInt(hash[2].split('').reverse().join(''), 16);
+					let prefix = parseInt(hash[5].split('').reverse().join(''), 16);
+					let suffix = parseInt(hash[6].split('').reverse().join(''), 16);
+
+					// If not an craftable item
+					if (!this.data.base[base]) return;
+
+					// Tooltip info list
+					var info = [];
+
+					// Seperator
+					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
+
+					// Prefix
+					info.push(['[Prefix]', '#ffffff']);
+					if (this.data.prefix[prefix]) {
+						for (let mat in this.data.prefix[prefix]) {
+							if (this.data.prefix[prefix].hasOwnProperty(mat))
+								info.push(this.getInfoRow(mat, this.data.prefix[prefix][mat]));
+						}
+					}
+					else {
+						info.push(['? &times; ?', '#cccccc']);
+					}
+
+					// Base
+					info.push(['[Base]', '#ffffff']);
+					if (this.data.base[base]) {
+						for (let mat in this.data.base[base]) {
+							if (this.data.base[base].hasOwnProperty(mat))
+								info.push(this.getInfoRow(mat, this.data.base[base][mat]));
+						}
+					}
+					else {
+						info.push(['? &times; ?', '#cccccc']);
+					}
+
+					// Suffix
+					info.push(['[Suffix]', '#ffffff']);
+					if (this.data.suffix[suffix]) {
+						for (let mat in this.data.suffix[suffix]) {
+							if (this.data.suffix[suffix].hasOwnProperty(mat))
+								info.push(this.getInfoRow(mat, this.data.suffix[suffix][mat]));
+						}
+					}
+					else {
+						info.push(['? &times; ?', '#cccccc']);
+					}
+
+					// Base margin
+					info.push(['<div style="heigth:8px"></div>', '#000000']);
+
+					// Add on tooltip
+					var tooltip = JSON.parse(item.dataset.tooltip);
+					for (let i = 0; i < info.length; i++) {
+						tooltip[0].push(info[i]);
+					}
+					gca_tools.setTooltip(item, JSON.stringify(tooltip));
+				},
+
+				getInfoRow : function(material, amount) {
+					let img = '<div class="item-i-18-' + material + '" style="display:inline-block;transform: scale(0.7);margin:-12px -6px -12px -6px;"></div>';
+					let name = (this.locale) ? ' (' + this.locale[material] + ')' : '';
+					return [img + ' &times; ' + amount + name, '#cccccc'];
+				}
+			}
 		}
 	},
 
