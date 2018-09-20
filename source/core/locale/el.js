@@ -299,6 +299,7 @@ gca_languages["gr"] = {
 			category_packages$item_price : "Εμφάνιση του κόστους κάθε αντικειμένου",
 			category_packages$special_category_features : "Ενεργοποίηση ειδικών λειτουργιών ανά κατηγορία",
 			category_packages$double_click_open : "Άνοιγμα πακέτων με δυπλό κλικ",
+			category_packages$advance_filter : "Προχωρημένα φίλτρα πακέτων",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Ομαδοποίηση αποστολών",
 			category_pantheon$quests_detailed_rewards: "Ενεργοποίηση λεπτομερούς εμφάνισης των ανταμοιβών",

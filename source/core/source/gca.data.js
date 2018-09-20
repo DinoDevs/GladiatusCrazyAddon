@@ -419,7 +419,9 @@ gca_options.data = {
 		// Special category features
 		"special_category_features" : true,
 		// Open packets with double click
-		"double_click_open" : false
+		"double_click_open" : false,
+		// Advance packet filter
+		"advance_filter" : false
 	},
 
 	// Pantheon Options

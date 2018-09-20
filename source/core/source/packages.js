@@ -44,10 +44,11 @@ var gca_packages = {
 		// Open packets with double click
 		(gca_options.bool("packages", "double_click_open") && 
 			this.doubleClickToOpen.init(this));
+		// Enable advance packet filter
+		(gca_options.bool("packages", "advance_filter") && 
+			this.itemFilters.inject(this));
 		
 		this.eventItemsCategory();
-
-		this.itemFilters.inject(this);
 
 		// Setting Link
 		gca_tools.create.settingsLink("packages");
@@ -683,7 +684,6 @@ var gca_packages = {
 			if (!stats) return;
 
 			// Create Rules
-			
 			var number = '((?:\\+|\\-|)\\d+)';
 			var stat_value = ' (?:(?:\\+|\\-|)\\d+% |)\\(((?:\\+|\\-|)\\d+)\\)'; // ex. 'Χάρισμα -22% (-92)'
 			var stat_percent = ' ((?:\\+|\\-|)\\d+)%'; // ex. 'Χάρισμα -22% (-92)'
@@ -717,7 +717,6 @@ var gca_packages = {
 			this.rules.constitution_mercenary = [mercenary + ' ' + stats.constitution, stats.constitution + ':' + mercenary_stat_value];
 			this.rules.charisma_mercenary = [mercenary + ' ' + stats.charisma, stats.charisma + ':' + mercenary_stat_value];
 			this.rules.intelligence_mercenary = [mercenary + ' ' + stats.intelligence, stats.intelligence + ':' + mercenary_stat_value];
-			console.log(this.rules.intelligence_mercenary);
 			
 			// Create Advance Filter
 			var article = document.createElement('article');
