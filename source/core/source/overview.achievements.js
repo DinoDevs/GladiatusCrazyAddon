@@ -91,7 +91,7 @@ var gca_overview_achievements = {
 
 			// Total category achivements
 			var total = 0;
-			for (var i = 1; i <= 6; i++) {
+			for (var i = 1; i < 6; i++) {
 				total += document.getElementById('cat' + category).getElementsByClassName('achievement_detail_medal' + i).length;
 			}
 
