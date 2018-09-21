@@ -3669,12 +3669,12 @@ var gca_global = {
 					let hash = item.dataset.hash.split('-');
 
 					// Get type (sword, helmet ...)
-					let type = parseInt(hash[1].split('').reverse().join(''), 16);
+					//let type = this.hashDecode(hash[1]);
 
 					// Stats info
-					let base = parseInt(hash[1].split('').reverse().join(''), 16) + '-' + parseInt(hash[2].split('').reverse().join(''), 16);
-					let prefix = parseInt(hash[5].split('').reverse().join(''), 16);
-					let suffix = parseInt(hash[6].split('').reverse().join(''), 16);
+					let base = this.hashDecode(hash[1]) + '-' + this.hashDecode(hash[2]);
+					let prefix = this.hashDecode(hash[5]);
+					let suffix = this.hashDecode(hash[6]);
 
 					// If not an craftable item
 					if (!this.data.base[base]) return;
@@ -3698,7 +3698,7 @@ var gca_global = {
 					}
 
 					// Base
-					info.push(['[Base]', '#ffffff']);
+					info.push(['[Base]' + ' ' + base, '#ffffff']);
 					if (this.data.base[base]) {
 						for (let mat in this.data.base[base]) {
 							if (this.data.base[base].hasOwnProperty(mat))
@@ -3736,6 +3736,15 @@ var gca_global = {
 					let img = '<div class="item-i-18-' + material + '" style="display:inline-block;transform: scale(0.7);margin:-12px -6px -12px -6px;"></div>';
 					let name = (this.locale) ? ' (' + this.locale[material] + ')' : '';
 					return [img + ' &times; ' + amount + name, '#cccccc'];
+				},
+
+				hashDecode : function(hash) {
+					var key = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+					var code = 0;
+					for (var i = hash.length - 1; i >= 0; i--) {
+						code += key.indexOf(hash[i]) * Math.pow(key.length, hash.length - i - 1);
+					}
+					return code;
 				}
 			}
 		}
