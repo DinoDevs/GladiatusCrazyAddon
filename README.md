@@ -68,7 +68,7 @@ Use our [guide](documentation/translators/README.md) to translate the addon in y
 
 We will try to provide some more info for anyone that wants to jump into the action.
 
-[Dev docs under construction](documentation/developers/getting-started.md)
+[Dev docs under construction](documentation/)
 
 
 
