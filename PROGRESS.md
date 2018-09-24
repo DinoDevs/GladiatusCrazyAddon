@@ -1,11 +1,13 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-15-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
 	- [ ] Item forge info on tooltips (needs data)(needs options) [Beta]
+- **Overview**
+	- [x] Added material amounts on repare preview
 - **Arena**
 	- [x] Target Players List (Managable from Family tab)
 	- [x] Hilghlight guild members on other servers
