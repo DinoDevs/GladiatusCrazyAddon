@@ -439,7 +439,8 @@ var gca_overview = {
 							'ajax.php',
 							'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid=' + id + '&amount=1',
 							function (data){
-								that.showRepaireTooltip(data, id);
+								//that.showRepaireTooltip(data, id);
+								that.getMaterialsAmounts(data, id);
 							},
 							function (elem, msg, delayDuration){
 								//console.log(msg.responseText);
@@ -449,6 +450,47 @@ var gca_overview = {
 				});
 			});
 		},
+
+		getMaterialsAmounts : function(data, id) {
+			// If already have materials data
+			if (this.materialAmounts) {
+				this.showRepaireTooltip(data, id);
+				return;
+			}
+
+			// Load materials data
+			jQuery.get(gca_getPage.link({'mod':'forge','submod':'storage'}), (content) => {
+				// Get materials info
+				var info = content.match(/<input id="resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
+				if (!info || !info[1]) {
+					this.materialAmounts = false;
+					this.showRepaireTooltip(data, id);
+					return;
+				}
+
+				// Parse amounts
+				info = JSON.parse(info[1].replace(/&quot;/g, '"'));
+				this.materialAmounts = {};
+				for (let mat in info) {
+					if (info.hasOwnProperty(mat)) {
+						this.materialAmounts[mat] = [0, 0, 0, 0, 0, 0];
+						for (let quality in info[mat]) {
+							if (info[mat].hasOwnProperty(quality)) {
+								this.materialAmounts[mat][parseInt(quality, 10) + 1] = info[mat][quality];
+							}
+						}
+					}
+				}
+
+				this.showRepaireTooltip(data, id);
+			})
+			// If Request Failed
+			.fail(() => {
+				this.materialAmounts = false;
+				this.showRepaireTooltip(data, id);
+			});
+		},
+
 		showRepaireTooltip : function(data, id){
 			// Parse data string
 			data = JSON.parse(data);
@@ -477,8 +519,26 @@ var gca_overview = {
 					if (materials.hasOwnProperty(key)) {
 						// If needed
 						if(materials[key].amount > 0){
+							let mat_id = parseInt(key.match(/18(\d+)/)[1], 10);
+
+							let mats_info = '';
+							if (this.materialAmounts && this.materialAmounts[mat_id]) {
+								let sum = this.materialAmounts[mat_id][0] + this.materialAmounts[mat_id][1] + this.materialAmounts[mat_id][2] + this.materialAmounts[mat_id][3] + this.materialAmounts[mat_id][4] + this.materialAmounts[mat_id][5];
+								mats_info = 
+									' ' +
+									(sum >= materials[key].amount ?'<b style="color: green;">✔</b>' : '<b style="color: red;">✖</b>') +
+									'<div style="display:inline-block;margin-left:10px;color:#ddd;">[' +
+									'<b style="color: white;">' + this.materialAmounts[mat_id][0] + '</b>+' + 
+									'<b style="color: lime;">' + this.materialAmounts[mat_id][1] + '</b>+' + 
+									'<b style="color: #5159F7;">' + this.materialAmounts[mat_id][2] + '</b>+' + 
+									'<b style="color: #E303E0;">' + this.materialAmounts[mat_id][3] + '</b>+' + 
+									'<b style="color: #FF6A00;">' + this.materialAmounts[mat_id][4] + '</b>+' + 
+									'<b style="color: #FF0000;">' + this.materialAmounts[mat_id][5] + '</b>=' + 
+									sum + ']</div>';
+							}
+
 							tooltip[0].push([
-								'<div class="item-i-18-' + parseInt(key.match(/18(\d+)/)[1]) + '" style="display:inline-block;transform: scale(0.8);margin:0 -5px -10px 0px;"></div> &times; ' + materials[key].amount + ' (' + this.checkForUtf8Bug(materials[key].name) + ')',
+								'<div class="item-i-18-' + mat_id + '" style="display:inline-block;transform: scale(0.8);margin:0 -5px -10px 0px;"></div> &times; ' + materials[key].amount + ' (' + this.checkForUtf8Bug(materials[key].name) + ')' + mats_info,
 								"#cccccc"
 							]);
 						}
@@ -493,7 +553,7 @@ var gca_overview = {
 			}
 
 			// Error
-			else{
+			else {
 				tooltip = [[[gca_locale.get("general","error"), "#ff0000"]]];
 				this.drop_area.style.filter = "none";
 			}
