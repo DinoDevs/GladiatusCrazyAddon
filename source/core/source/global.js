@@ -3686,15 +3686,17 @@ var gca_global = {
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 
 					// Prefix
-					info.push(['[Prefix]', '#ffffff']);
-					if (this.data.prefix[prefix]) {
-						for (let mat in this.data.prefix[prefix]) {
-							if (this.data.prefix[prefix].hasOwnProperty(mat))
-								info.push(this.getInfoRow(mat, this.data.prefix[prefix][mat]));
+					if (prefix > 0) {
+						info.push(['[Prefix]', '#ffffff']);
+						if (this.data.prefix[prefix]) {
+							for (let mat in this.data.prefix[prefix]) {
+								if (this.data.prefix[prefix].hasOwnProperty(mat))
+									info.push(this.getInfoRow(mat, this.data.prefix[prefix][mat]));
+							}
 						}
-					}
-					else {
-						info.push(['? &times; ?', '#cccccc']);
+						else {
+							info.push(['? &times; ?', '#cccccc']);
+						}
 					}
 
 					// Base
@@ -3710,15 +3712,17 @@ var gca_global = {
 					}
 
 					// Suffix
-					info.push(['[Suffix]', '#ffffff']);
-					if (this.data.suffix[suffix]) {
-						for (let mat in this.data.suffix[suffix]) {
-							if (this.data.suffix[suffix].hasOwnProperty(mat))
-								info.push(this.getInfoRow(mat, this.data.suffix[suffix][mat]));
+					if (suffix > 0) {
+						info.push(['[Suffix]', '#ffffff']);
+						if (this.data.suffix[suffix]) {
+							for (let mat in this.data.suffix[suffix]) {
+								if (this.data.suffix[suffix].hasOwnProperty(mat))
+									info.push(this.getInfoRow(mat, this.data.suffix[suffix][mat]));
+							}
 						}
-					}
-					else {
-						info.push(['? &times; ?', '#cccccc']);
+						else {
+							info.push(['? &times; ?', '#cccccc']);
+						}
 					}
 
 					// Base margin
@@ -3820,7 +3824,9 @@ var gca_global = {
 					let buffs = document.getElementById('localBuffs').getElementsByClassName('buff');
 					for (let i = buffs.length - 1; i >= 0; i--) {
 						if(
-							buffs[i].dataset.image == 'img/buff/healing.png' && (
+							buffs[i].dataset.image == 'img/buff/healing.png' && 
+							buffs[i].dataset.buffType == '2' && 
+							(
 								(/\+5%/).test(buffs[i].getAttribute('title')) || 
 								(/\+5%/).test(buffs[i].getAttribute('onmousemove'))
 							)
