@@ -39,7 +39,7 @@ We suggest you to download a *stable release*. Alpha releases are for developers
 
 ### Latest dev build v4.0.6-alpha <sub><sup>(for developers)</sup></sub> <sub><sup>[[Progress Here]](PROGRESS.md)</sup></sub>
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-15-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 
 
