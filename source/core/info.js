@@ -20,23 +20,20 @@ var info = {
 			this.url = info.data.document.location.href;
 
 			// Resolve Url
-			url_resolve = this.url.match(/https?:\/\/s(\d+)-(\w+)\.gladiatus\.gameforge\.com\/game\/(index|main).php\?(.*)/i);
-			if(url_resolve){
-				// Server
-				this.server = url_resolve[1];
-				// Country
-				this.country = url_resolve[2];
-				// Domain
-				this.domain = "s" + this.server + "-" + this.country + ".gladiatus.gameforge.com";
-				// Queries
-				this.queries = this.resolveQueries(url_resolve[4]);
+			let resolve = this.url.match(/https?:\/\/s(\d+)-(\w+)\.gladiatus\.gameforge\.com\/game\/(?:index|main).php\?(.*)/i);
+			if (!resolve) return false;
 
-				// Ok
-				return true;
-			}
+			// Server
+			this.server = resolve[1];
+			// Country
+			this.country = resolve[2];
+			// Domain
+			this.domain = 's' + this.server + '-' + this.country + '.gladiatus.gameforge.com';
+			// Queries
+			this.queries = this.resolveQueries(resolve[3]);
 
-			// Failed
-			return false;
+			// Ok
+			return true;
 		},
 
 		// Resolve Queries
@@ -51,15 +48,15 @@ var info = {
 				queries[i] = queries[i].split('=');
 				// Save key - value
 				queries_obj[queries[i][0]] = queries[i][1];
-			};
+			}
 			// Return results
 			return queries_obj;
 		},
 
 		// Resolve Player Id
-		resolvePlayerId : function(queries) {
+		resolvePlayerId : function() {
 			// Resolve Player Id from cookies
-			var cookiePlayerId = info.data.document.cookie.match(new RegExp("Gladiatus_" + this.country + "_" + this.server + "=(\\d+)","i"));
+			var cookiePlayerId = info.data.document.cookie.match(new RegExp('Gladiatus_' + this.country + '_' + this.server + '=(\\d+)','i'));
 			// If cookie exist
 			if(cookiePlayerId && cookiePlayerId[1]){
 				this.playerId = cookiePlayerId[1];

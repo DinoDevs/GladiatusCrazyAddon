@@ -369,7 +369,7 @@ var gca_forge = {
 					locale[option[i].dataset.imageClass.match(/item-i-18-(\d+)/i)[1]] = option[i].innerHTML.trim();
 				}
 			}
-			gca_data.section.set("cache", "resource_locale", locale);
+			gca_data.section.set('cache', 'resource_locale', locale);
 		}
 	}
 };

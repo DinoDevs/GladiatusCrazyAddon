@@ -1,19 +1,18 @@
 ﻿/*
- * Chrome Init Script
+ * Browser Init Script
  * Gladiatus Crazy Add On
  */
 
-var init = setInterval(function(){
+var init = setInterval(() => {
 	// Wait until all ready
 	if(
+		!window ||
 		!document.head ||
-		!document.body ||
-		!window //||
-		//!window.postMessage
+		!document.body
 	) return;
 	clearInterval(init);
 
-	var Browser = (typeof browser === "undefined")? chrome : browser;
+	var Browser = typeof browser === 'undefined' ? chrome : browser;
 	
 	// Get info
 	var manifest = Browser.runtime.getManifest();
@@ -27,50 +26,9 @@ var init = setInterval(function(){
 	inject(
 		info,
 		window,
-		Browser.extension.getURL("core"),
-		{}
+		Browser.extension.getURL('core')
 	);
-			
-	/*
-	// Set up a Background page connection with storage
-	var conn = chrome.extension.connect({name : "storage"});
-
-	// on Background page Message Handler
-	conn.onMessage.addListener(function(message){
-		if(message.action == "start"){
-			// Get info
-			var manifest = chrome.runtime.getManifest();
-			var info = {
-				name : manifest.name,
-				description : manifest.description,
-				version : manifest.version
-			};
-			// Start code
-			inject(
-				info,
-				window.document,
-				chrome.extension.getURL("core"),
-				message.storage
-			);
-		}
-	});
-
-	// on Page Message Handler
-	window.addEventListener("message", function(ev){
-
-		// on Save data
-		if(ev.data.action == "save")
-			// Sent data to Background page
-			conn.postMessage({"action" : "save", "object" : ev.data.data});
-
-		// on Get data
-		else if(ev.data.action == "get")
-			// Sent data to Background page
-			conn.postMessage({"action" : "get", "object" : ev.data.data});
-
-	}, false);
-
-	// Get Storage
-	conn.postMessage({"action" : "initialize"});
-	*/
 }, 5);
+
+// ESlint defs
+/* global browser, chrome, inject */

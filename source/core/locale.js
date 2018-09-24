@@ -26,20 +26,20 @@ var locale = {
 		// Language to load
 		var lang = this.find(
 			(this.countries[info.page.country]) ? this.countries[info.page.country] : info.page.country,
-			info.data.window.localStorage.getItem("gladiatusCrazyAddonData_" + info.page.playerId + "_lang")
+			info.data.window.localStorage.getItem('gladiatusCrazyAddonData_' + info.page.playerId + '_lang')
 		);
 		
 		// Load translation script
-		tools.preloadScript("source/gca.locale.js");
+		tools.preloadScript('source/gca.locale.js');
 
 		// If not English
-		if(lang != "en") {
+		if(lang != 'en') {
 			// Load English for any unsupported translation
-			tools.preloadScript("locale/en.js");
+			tools.preloadScript('locale/en.js');
 		}
 		
 		// Load lang
-		tools.preloadScript("locale/" + lang + ".js");
+		tools.preloadScript('locale/' + lang + '.js');
 		this.loaded = lang;
 	},
 
@@ -68,3 +68,7 @@ var locale = {
 	}
 
 };
+
+// ESlint defs
+/* global info, tools */
+
