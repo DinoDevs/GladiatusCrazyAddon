@@ -165,6 +165,9 @@ var gca_global = {
 
 		// Show forge info
 		this.display.analyzeItems.itemForgeInfo.init();
+
+		// Image Cache
+		this.background.preserve_image_cache();
 	},
 	
 	scripts : {
@@ -4662,6 +4665,38 @@ var gca_global = {
 
 				// Open dialog
 				this.dialog.open();
+			}
+		},
+
+		preserve_image_cache : function() {
+			// Get resources folder id
+			let id = document.head.getElementsByTagName('link');
+			if (!id) return;
+			id = id[0].href.match(/game\/(\d+)\/css/);
+			if (!id | !id[1]) return;
+			id = id[1];
+
+			// Images to load
+			let imgs = [
+				'img/energie_rot.gif',
+				'img/item.png',
+				'img/interface.png',
+				'img/menu.png',
+				'img/spacer.gif',
+				'img/buff/cooldown.png',
+				'img/ui/bar_fill.jpg',
+				'img/ui/layout/menu_bg.jpg'
+			];
+
+			window.image_cache = [];
+			for (var i = imgs.length - 1; i >= 0; i--) {
+				let img;
+				img = document.createElement('img');
+				img.src = imgs[i];
+				window.image_cache.push(img);
+				img = document.createElement('img');
+				img.src = id + '/' + imgs[i];
+				window.image_cache.push(img);
 			}
 		}
 	},
