@@ -129,10 +129,6 @@ var gca_global = {
 		(!this.isTraveling && gca_options.bool("global","notify_new_guild_application") && 
 			this.background.notify_me.new_guild_application());
 
-		
-		// Pray Buf shortcut - TODO clean code
-		//(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
-		//	this.underworld.prayBufShortCut());
 		// Pray Buf shortcut
 		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
 			this.underworld.prayCounterBar.add());
@@ -3867,52 +3863,7 @@ var gca_global = {
 			toggle : function() {
 				document.location.href = gca_getPage.link({'mod': 'underworld', 'submod': (this.isPraying ? 'prayEnd' : 'prayStart')});
 			}
-		},
-
-		// Pray Icon Shortcut
-		/*
-		prayBufShortCut : function(){
-			// Get local buffs
-			var localBuffs = document.getElementById('localBuffs');
-			// Add gca class
-			localBuffs.getElementsByClassName('buff-container')[0].className += ' gca-buff-container';
-
-			// Check if player has the praying buff
-			var praying = (gca_section.submod=='pray' && document.getElementById('content').getElementById('duration'))?true:false;
-			
-			if(gca_section.submod!='pray'){// skip if in pray page
-				var buffs = localBuffs.getElementsByClassName('buff');
-				for(let i=0;i<buffs.length;i++){
-					if(
-						buffs[i].dataset.image == "img/buff/healing.png" && 
-						(
-							(/\+5%/).test(buffs[i].getAttribute('title')) || 
-							(/\+5%/).test(buffs[i].getAttribute('onmousemove'))
-						)
-					){
-						praying = true;
-						break;
-					}
-				}
-			}
-			
-			// Create Shotcut
-			var a = document.createElement('a');
-			a.className = 'gca-pray-buff';
-			if(praying){
-				//"index.php?mod=underworld&submod=prayEnd&sh=" + gca_section.sh;
-				a.href = gca_getPage.link({"mod":"underworld","submod":"prayEnd"});
-				a.textContent = '╳';
-				a.setAttribute('data-tooltip','[[["' + gca_locale.get("global", "pray_stop") + ' (-5% '+gca_locale.get("global", "heal") + ')","#fff"]]]');
-			}else{
-				a.href = "index.php?mod=underworld&submod=prayStart&sh=" + gca_section.sh;
-				a.setAttribute('data-tooltip','[[["' + gca_locale.get("global", "pray_start") + ' (+5% '+gca_locale.get("global", "heal") + ')","#fff"]]]');
-			}
-			a.style = 'background-image: url(img/buff/healing.png);';
-			localBuffs.getElementsByClassName('buff-container')[0].appendChild(a);
 		}
-		*/
-
 	},
 
 	// Background Functionality
