@@ -4245,70 +4245,58 @@ var gca_global = {
 			},
 			
 			collect : function(){
-				// Get saved data
-				//var data = gca_data.section.get("data", "gold_exp_data", false);
+				// Check every 5 mins
+				if (new Date().getTime() - gca_data.section.get('cache', 'gold_exp_data_last_checked', 0) < 5*60*1000) {
+					return;
+				}
 				
-				// Collect data every 15min = (600k ms)
-				// TODO - Apo fix this
-				//if (false && data && gca_tools.time.server() - data[data.length - 1][2] < 6e5*3){
-				//	return;
-				//}
-
-				// If last time failed to get data (last 5 mins)
-				if (new Date().getTime() - gca_data.section.get("cache", "gold_exp_data_failed", 0) < 3e5) {
+				// Get exp
+				var exp = document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i);
+				if (!exp) {
+					gca_data.section.set('cache', 'gold_exp_data_last_checked', new Date().getTime());
+					console.log("GCA: Could not get exp data.");
 					return;
 				}
 				
 				// Go to achievements page and collect gathered gold data
-				jQuery.get(gca_getPage.link({"mod":"overview","submod":"achievements"}), function(content){
-					// Get server date
-					var serverDate = gca_tools.time.ajaxServer(content);
+				jQuery.get(gca_getPage.link({'mod':'overview','submod':'achievements'}), (content) => {
+					// Checking now
+					gca_data.section.set('cache', 'gold_exp_data_last_checked', new Date().getTime());
 
-					// Get saved data (again just to be sure)
-					var data = gca_data.section.get("data", "gold_exp_data", []);
-
-					// Get gold
+					// Get info
 					var gold = content.match(/<section class="achievement_detail_box" id="cat0"[^>]*>\s*<[^>]+>\s*<div class="achievement_name">[^<]*<\/div>\s*<div class="achievement_detail_current">\s*([\d\.]+)/);
-					
-					// Get exp
-					var exp = document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i);
-					// If gold or exp not found
-					if(gold == null || exp == null){
-						gca_data.section.set("cache", "gold_exp_data_failed", new Date().getTime());
-						console.log("GCA: Could not get gold or exp data.");
-						// Exit
+					if (!gold) {
+						console.log('GCA: Could not get gold data.');
 						return;
 					}
+
+					// Get server date
+					var serverDate = gca_tools.time.ajaxServer(content);
+					// Get saved data (again just to be sure)
+					var data = gca_data.section.get('data', 'gold_exp_data', []);
 
 					// Calculate new data
 					var newData = [
 						// Current gold
-						parseInt(gold[1].replace(/\./g,""), 10),
+						parseInt(gold[1].replace(/\./g, ''), 10),
 						// Current EXP
 						parseInt(exp[1], 10),
 						// Server time
 						serverDate
 					];
 
-					// Get last saved data
-					var lastData = false;
-					if(data.length){
-						lastData = data[data.length - 1];
-					}
 					// If no last data
-					else{
-						// Save data
-						gca_data.section.set("data", "gold_exp_data", [newData]);
-						// Exit
+					if (!data.length) {
+						gca_data.section.set('data', 'gold_exp_data', [newData]);
 						return;
 					}
 
-					// Save data only if are different from the last time
-					if(lastData[0] != newData[0] && lastData[1] != newData[1]){
-						// Insert data
+					// Get last saved data
+					var lastData = data[data.length - 1];
+					if (lastData[0] != newData[0] && lastData[1] != newData[1]) {
 						data.push(newData);
-						// Save data
-						gca_data.section.set("data", "gold_exp_data", data);
+						gca_data.section.set('data', 'gold_exp_data', data);
+						return;
 					}
 				});
 			},
@@ -4684,63 +4672,72 @@ var gca_global = {
 			// Create the dataset
 			document.getElementById('mainmenu').getElementsByClassName('premium')[0].dataset.centurio_days = 0;
 			
+			let show = false;
+			show |= this.checkCenturio();
+			show |= this.checkPowerups();
+			if (show) this.display();
+		},
+
+		checkCenturio : function() {
 			// Get timers
 			let now = new Date().getTime();
 			
-			// CENTURIO
-			let last_time_check = gca_data.section.get("cache", "gca_centurio", null);
-			let centurio_days = gca_data.section.get("timers", "gca_centurio", null);
-			
 			// When on centurio page
-			if(gca_section.mod=='premium' && gca_section.submod=='centurio'){
+			if (gca_section.mod == 'premium' && gca_section.submod == 'centurio') {
 				let end_time = now;
-				if(document.getElementById('premium_duration')){
-					if(document.getElementById('premium_duration').getElementsByClassName('ticker').length>0){
-						end_time += parseInt(document.getElementById('premium_duration').getElementsByClassName('ticker')[0].dataset.tickerTimeLeft);
-					}else{
-						end_time += parseInt(document.getElementById('premium_duration').textContent.match(/\d+/i))*24*60*60*1000;
+
+				let duration = document.getElementById('premium_duration');
+				if (duration) {
+					if (duration.getElementsByClassName('ticker').length > 0) {
+						end_time += parseInt(duration.getElementsByClassName('ticker')[0].dataset.tickerTimeLeft, 10);
+					}
+					else {
+						end_time += parseInt(duration.textContent.match(/\d+/i), 10)*24*60*60*1000;
 					}
 				}
-				//let end_time = (document.getElementById('premium_duration'))? now + parseInt(document.getElementById('premium_duration').getElementsByClassName('ticker')[0].dataset.tickerTimeLeft) : now;
-				gca_data.section.set("cache", "gca_centurio", now);
-				gca_data.section.set("timers", "gca_centurio", end_time);
-				// Fill UI
-				this.display();
-				
-			// If checked on the last x hours return
-			}else if(last_time_check !== null && centurio_days !== null && (last_time_check + (12*60*60*1000)) > now){
-				// Already checked
-				// Fill UI
-				this.display();
-			
-			// Request page
-			}else{
-				jQuery.get(gca_getPage.link({"mod":"premium","submod":"centurio"}), function(content){
-					now = new Date().getTime();
-					gca_data.section.set("cache", "gca_centurio", now);
-					if( content.match(/<div id="premium_duration">/) ){
-						let end_time = now + parseInt(content.match(/<div id="premium_duration">[^<]+<span>[^<]+<span data-ticker-time-left="(\d+)"/)[1]);
-						gca_data.section.set("timers", "gca_centurio", end_time);
-					}else{
-						gca_data.section.set("timers", "gca_centurio", 0);
-					}
-					// Fill UI
-					gca_global.centurio_days.display();
-				});
+
+				gca_data.section.set('cache', 'gca_centurio', now);
+				gca_data.section.set('timers', 'gca_centurio', end_time);
+
+				return true;
 			}
-			
-			// POWERUPS
-			last_time_check = gca_data.section.get("cache", "gca_powerups", null);
-			let powerups_status = gca_data.section.get("timers", "gca_powerups", [
-				{enabled : 0, reload : 0, type : [null,null]},
-				{enabled : 0, reload : 0, type : [null,null]},
-				{enabled : 0, reload : 0, type : [null,null]},
-				{enabled : 0, reload : 0, type : [null,null]}
-			]);
+
+			// If checked on the last x hours return
+			let last_checked = gca_data.section.get('cache', 'gca_centurio', null);
+			let centurio_days = gca_data.section.get('timers', 'gca_centurio', null);
+			if (last_checked !== null && centurio_days !== null && (last_checked + (12 * 60*60*1000)) > now) {
+				return true;
+			}
+
+			// If no data or time to update the data, request page
+			jQuery.get(gca_getPage.link({'mod':'premium','submod':'centurio'}), (content) => {
+				let now = new Date().getTime();
+				gca_data.section.set('cache', 'gca_centurio', now);
+				if (content.match(/<div id="premium_duration">/)) {
+					let end_time = now + parseInt(content.match(/<div id="premium_duration">[^<]+<span>[^<]+<span data-ticker-time-left="(\d+)"/)[1], 10);
+					gca_data.section.set('timers', 'gca_centurio', end_time);
+				}
+				else {
+					gca_data.section.set('timers', 'gca_centurio', 0);
+				}
+				this.display();
+			});
+			return false;
+		},
+
+		checkPowerups : function() {
+			// Get timers
+			let now = new Date().getTime();
 			
 			// When on powerups page
-			if(gca_section.mod=='powerups'){
+			if (gca_section.mod == 'powerups') {
 				let powerups = document.getElementsByClassName('powerup_duration');
+				let status = gca_data.section.get('timers', 'gca_powerups', [
+					{enabled : 0, reload : 0, type : [null,null]},
+					{enabled : 0, reload : 0, type : [null,null]},
+					{enabled : 0, reload : 0, type : [null,null]},
+					{enabled : 0, reload : 0, type : [null,null]}
+				]);
 				let imgs = [
 					document.getElementsByClassName('powerUpImg1'),
 					document.getElementsByClassName('powerUpImg2'),
@@ -4748,24 +4745,26 @@ var gca_global = {
 					document.getElementsByClassName('powerUpImg4'),
 					document.getElementsByClassName('powerUpImg5')
 				];
-				for(let i=0;i<powerups.length;i++){
-					// if enabled
-					if(powerups[i].style.color=='green'){
+				for (let i = 0; i < powerups.length; i++) {
+					// Powerup is enabled
+					if(powerups[i].style.color == 'green'){
 						let time = powerups[i].textContent.match(/\d+/g);
-						if(time.length == 3){
-							powerups_status[i].enabled = now + (time[0]*24*60*60+time[1]*60*60+time[2]*60)*1000;
-						}else if(time.length == 2){
-							powerups_status[i].enabled = now + (time[0]*60*60+time[1]*60)*1000;
-						}else if(time.length == 1){
-							powerups_status[i].enabled = now + time[0]*60*1000;
+						if (time.length == 3) {
+							status[i].enabled = now + (time[0]*24*60*60+time[1]*60*60+time[2]*60)*1000;
+						}
+						else if (time.length == 2) {
+							status[i].enabled = now + (time[0]*60*60+time[1]*60)*1000;
+						}
+						else if (time.length == 1) {
+							status[i].enabled = now + time[0]*60*1000;
 						}
 						// if reload wait time
 						if(powerups[i].parentNode.getElementsByClassName('powerup_cooldown').length>0)
-							powerups_status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft);
+							status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft);
 						// find type
 						for(let j=0;j<5;j++){
 							if(imgs[j][i].style.backgroundImage.match('_border')){
-								powerups_status[i].type = [
+								status[i].type = [
 									document.getElementById('rune'+(i+1)+'_'+(j+1)).dataset.tooltip,
 									document.getElementById('rune'+(i+1)+'_'+(j+1)).style.backgroundImage
 								];
@@ -4773,63 +4772,65 @@ var gca_global = {
 						}
 					}
 				}
-				gca_data.section.set("cache", "gca_powerups", now);
-				gca_data.section.set("timers", "gca_powerups", powerups_status);
-				// Fill UI
-				this.display();
+
+				gca_data.section.set('cache', 'gca_powerups', now);
+				gca_data.section.set('timers', 'gca_powerups', status);
+				return true;
 			}
+
 			// If checked on the last x hours return
-			// TODO - Apo check this
-			//else if(last_time_check !== null && (last_time_check + (12*60*60*1000)) > now && false){
-			//	// Already checked
-			//	// Fill UI
-			//	this.display();
-			//}
+			let last_checked = gca_data.section.get('cache', 'gca_powerups', null);
+			if (last_checked !== null && (last_checked + (12 * 60*60*1000)) > now) {
+				return true;
+			}
+			
 			// Request page
-			else{
-				jQuery.get(gca_getPage.link({"mod":"powerups"}), function(content){
-					now = new Date().getTime();
-					let found = content.match(/id="rune\d_\d"\s+class="powerUpImg\d"\s+data-tooltip="[^"]+"\s+style="background-image: [^;]+;"/gi);
+			jQuery.get(gca_getPage.link({'mod':'powerups'}), (content) => {
+				let now = new Date().getTime();
+				let status = [
+					{enabled : 0, reload : 0, type : [null,null]},
+					{enabled : 0, reload : 0, type : [null,null]},
+					{enabled : 0, reload : 0, type : [null,null]},
+					{enabled : 0, reload : 0, type : [null,null]}
+				];
+
+				let found = content.match(/id="rune\d_\d"\s+class="powerUpImg\d"\s+data-tooltip="[^"]+"\s+style="background-image: [^;]+;"/gi);
+				if (found) {
 					let found2 = content.match(/<span class="powerup_duration" style="color: green;">[^<]+<\/span>/gi);
-					let found3 = content.match(/id="runeTitle\d" class="rune_title">[^<]+<\/span>\s*<\/h2>\s*<section>\s*<span class="powerup_cooldown">[^<]+<span data-ticker-time-left="\d+"/gi);
-					
-					let powerups_status = [
-						{enabled : 0, reload : 0, type : [null,null]},
-						{enabled : 0, reload : 0, type : [null,null]},
-						{enabled : 0, reload : 0, type : [null,null]},
-						{enabled : 0, reload : 0, type : [null,null]}
-					];
-					
-					if( found ){
-						for(let i=0;i<found.length;i++){
-							let temp = found[i].match(/id="rune(1|2|3|4)_\d"\s+class="powerUpImg\d"\s+data-tooltip="([^"]+)"\s+style="background-image: ([^;]+);"/i);
-							let position = parseInt(temp[1])-1;
-							powerups_status[position].type = [temp[2].replace(/&quot;/g,'"').replace(/&lt;br\\\/&gt;/g,'<br/>').replace(/&amp;nbsp;/g,' '),temp[3]];
-							temp = found2[i].match(/\d+/g);
-							if(temp.length == 3){
-								powerups_status[position].enabled = now + (temp[0]*24*60*60+temp[1]*60*60+temp[2]*60)*1000;
-							}else if(temp.length == 2){
-								powerups_status[position].enabled = now + (temp[0]*60*60+temp[1]*60)*1000;
-							}else if(temp.length == 1){
-								powerups_status[position].enabled = now + temp[0]*60*1000;
-							}
-							//powerups_status[position].reload = 0;
+					for (let i = 0; i < found.length; i++) {
+						let temp = found[i].match(/id="rune(1|2|3|4)_\d"\s+class="powerUpImg\d"\s+data-tooltip="([^"]+)"\s+style="background-image: ([^;]+);"/i);
+						let position = parseInt(temp[1], 10) - 1;
+						status[position].type = [temp[2].replace(/&quot;/g,'"').replace(/&lt;br\\\/&gt;/g,'<br/>').replace(/&amp;nbsp;/g,' '),temp[3]];
+						temp = found2[i].match(/\d+/g);
+						if (temp.length == 3) {
+							status[position].enabled = now + (temp[0]*24*60*60+temp[1]*60*60+temp[2]*60)*1000;
 						}
-						if(found3){//Cooldown
-							for(let i=0;i<found3.length;i++){
-								let temp = found3[i].match(/id="runeTitle(\d+)" class="rune_title">[^<]+<\/span>\s*<\/h2>\s*<section>\s*<span class="powerup_cooldown">[^<]+<span data-ticker-time-left="(\d+)"/i);
-								let position = parseInt(temp[1])-1;
-								powerups_status[position].reload = now + parseInt(temp[2]);
-							}
+						else if (temp.length == 2) {
+							status[position].enabled = now + (temp[0]*60*60+temp[1]*60)*1000;
+						}
+						else if (temp.length == 1) {
+							status[position].enabled = now + temp[0]*60*1000;
 						}
 					}
-					gca_data.section.set("cache", "gca_powerups", now);
-					gca_data.section.set("timers", "gca_powerups", powerups_status);
-					// Fill UI
-					gca_global.centurio_days.display();
-				});
-			}
+
+					// Cooldown
+					let found3 = content.match(/id="runeTitle\d" class="rune_title">[^<]+<\/span>\s*<\/h2>\s*<section>\s*<span class="powerup_cooldown">[^<]+<span data-ticker-time-left="\d+"/gi);
+					if (found3) {
+						for(let i=0;i<found3.length;i++){
+							let temp = found3[i].match(/id="runeTitle(\d+)" class="rune_title">[^<]+<\/span>\s*<\/h2>\s*<section>\s*<span class="powerup_cooldown">[^<]+<span data-ticker-time-left="(\d+)"/i);
+							let position = parseInt(temp[1], 10) - 1;
+							status[position].reload = now + parseInt(temp[2], 10);
+						}
+					}
+				}
+
+				gca_data.section.set('cache', 'gca_powerups', now);
+				gca_data.section.set('timers', 'gca_powerups', status);
+				this.display();
+			});
+			return false;
 		},
+
 		display : function(){
 			let now = new Date().getTime();
 			let tooltip = [];
@@ -4840,8 +4841,8 @@ var gca_global = {
 			let premium_button = document.getElementById('mainmenu').getElementsByClassName('premium')[0];
 			
 			
-			let centurio_days = gca_data.section.get("timers", "gca_centurio", null);
-			if((centurio_days-now) > 0){
+			let centurio_days = gca_data.section.get('timers', 'gca_centurio', null);
+			if (centurio_days - now > 0) {
 				if(centurio_days != null && centurio_days != premium_button.dataset.centurio_days ){
 					premium_button.dataset.centurio_days = centurio_days;
 					
@@ -4883,7 +4884,7 @@ var gca_global = {
 				}
 			}
 			
-			if(tooltip.length>0){
+			if (tooltip.length > 0) {
 				premium_button.dataset.tooltip = JSON.stringify([tooltip]);
 			}
 		}
