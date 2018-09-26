@@ -6,6 +6,7 @@
 ### IMPROVEMENTS
 - **Global**
 	- [ ] Item forge info on tooltips (needs data)(needs options) [Beta]
+	- [x] Workaround for the Gladiatus image request spam to the server (that I have reported and they don't fix it)
 - **Overview**
 	- [x] Added material amounts on repare preview
 - **Arena**
@@ -27,14 +28,14 @@
 - **Guild**
 	- [x] Guild buildings calculate missing gold for upgrade
 - **Underwold**
-	- [ ] Pray buff timer bar added on header [we need to remove old pray buff side button]
+	- [x] Pray buff timer bar added on header
 
 
 ### BUG FIXES
 - **Global**
 	- [x] Audio settings now work
 	- [x] Fixed get player ID system (Global arena works now)
-	- [x] Some code clean up and layout fixes
+	- [x] Some code clean up and fixes
 	- [x] Script execution on wrong page fixed (craps event on guild market)
 - **Horreum**
 	- [x] Workbench code now dont run on hurreum
