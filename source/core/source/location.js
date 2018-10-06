@@ -7,13 +7,13 @@
 var gca_location = {
 	inject : function(){
 		// Improve Underworld Layout
-		if(document.getElementById('underwold_enemies')){
+		if (document.getElementById('underwold_enemies')) {
 			(gca_options.bool("expedition","underworld_layout") && 
 				this.layout.improve_underworld()); // TODO : code clean
 		}
 		
 		// Normal World
-		else{
+		else {
 			(gca_options.bool("expedition","show_enemy_drops") && 
 				this.layout.show_drops.show()); // TODO : code clean
 		}
@@ -171,23 +171,21 @@ var gca_location = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_location.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_locale, gca_options, gca_tools */

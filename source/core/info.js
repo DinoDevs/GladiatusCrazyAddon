@@ -70,3 +70,6 @@ var info = {
 	}
 
 }
+
+// ESlint defs
+/* global info, locale, manager, tools */

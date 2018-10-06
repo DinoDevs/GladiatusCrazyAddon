@@ -55,21 +55,22 @@ var gca_guild = {
 	}
 };
 
-// Script Loader
+// Onload Handler
 (function(){
 	var loaded = false;
-	var load = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
 		gca_guild.inject();
-	}
-	if (document.readyState == 'complete' || document.readyState == 'loaded') load();
-	else {
-		window.addEventListener('DOMContentLoaded', load, true);
-		window.addEventListener('load', load, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
 
 // ESlint defs
-/* global gca, gca_audio, gca_build, gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_resources, gca_section, gca_tools */
-/* global jQuery, Chart, expeditionProgressBar, dungeonProgressBar, arenaProgressBar, ctProgressBar */
+/* global gca_section, gca_tools */
+/* global jQuery */

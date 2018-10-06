@@ -15,9 +15,9 @@ var gca_player = {
 			this.itemShadow.inject());
 
 		// Target Players List
-		(true && //gca_options.bool("arena","target_list") && 
-			this.targetList.inject(this));
+		this.targetList.prepare(this);
 		
+		// TODO : add option
 		this.show_buffs();
 	},
 
@@ -78,18 +78,26 @@ var gca_player = {
 
 	// Target Players List
 	targetList : {
-		inject : function(self) {
+		prepare : function(self) {
 			if (self.doll != 1 || !self.playerName) return;
 			// If not logged in and not cross server
 			let isCrossServer = (self.referrer && self.referrer.country && self.referrer.server != gca_section.server && self.referrer.country == gca_section.country && self.referrer.sh);
 			if (!self.isLoggedIn && !isCrossServer) return;
 
+			// Check if it is disabled
+			if (!isCrossServer && !gca_options.bool("arena","target_list")) return;
+
 			this.self = self;
-			this.id = self.playerId + '@' + gca_section.server;	
+			this.isCrossServer = isCrossServer;
+			this.inject();
+		},
+
+		inject : function() {
+			this.id = this.self.playerId + '@' + gca_section.server;	
 
 			// Check if target
 			this.isTarget = false;
-			if (!isCrossServer) {
+			if (!this.isCrossServer) {
 				let list = gca_data.section.get('arena', 'target-list', {});
 				this.isTarget = (list.hasOwnProperty(this.id) ? true : false);
 			}
@@ -100,8 +108,8 @@ var gca_player = {
 			this.btn.className = 'gca-target-player-list-btn';
 			this.btn.style.display = 'none';
 			char.appendChild(this.btn);
-			if (!isCrossServer) this.btn.addEventListener('click', () => {this.toggle();});
-			else this.btn.addEventListener('click', () => {this.handleCrossServer(self.referrer);});
+			if (!this.isCrossServer) this.btn.addEventListener('click', () => {this.toggle();});
+			else this.btn.addEventListener('click', () => {this.handleCrossServer(this.self.referrer);});
 			this.update();
 			this.btn.style.display = 'block';
 		},
@@ -144,78 +152,81 @@ var gca_player = {
 		if(!document.getElementById('content'))
 			return;
 		
+		var charstats = document.getElementById('charstats');
 		var stats_translations = [];
-		var j=2;
-		while( document.getElementById('charstats').getElementsByClassName('charstats_text')[j] ){
-			stats_translations.push( document.getElementById('charstats').getElementsByClassName('charstats_text')[j].textContent );
-			j++;
+		var a=2;
+		while (charstats.getElementsByClassName('charstats_text')[a]){
+			stats_translations.push(charstats.getElementsByClassName('charstats_text')[a].textContent);
+			a++;
 		}
-		var j=1;
-		while( document.getElementById('charstats').getElementsByClassName('charstats_value21')[j] ){
-			stats_translations.push( document.getElementById('charstats').getElementsByClassName('charstats_value21')[j].textContent );
-			j++;
+		var b=1;
+		while (charstats.getElementsByClassName('charstats_value21')[b]) {
+			stats_translations.push(charstats.getElementsByClassName('charstats_value21')[b].textContent);
+			b++;
 		}
 		
-		//Buffs array
-		var buffs = [];//category (1:oils, 2:max, 3:enisxiseis, 4:critical), stat(number), value 
+		// Buffs array
+		var buffs = [];// category (1:oils, 2:max, 3:enisxiseis, 4:critical), stat(number), value 
 		
-		//Find Oil buffs
-		for(var i=1;i<document.getElementById('char').getElementsByClassName('ui-droppable').length;i++){
-			if(typeof document.getElementById('char').getElementsByClassName('ui-droppable')[i].dataset.tooltip !== 'undefined'){
-				if( document.getElementById('char').getElementsByClassName('ui-droppable')[i].dataset.tooltip.match(/\+(\d+) ([^\s]+)  /i) ){
-					var buff = document.getElementById('char').getElementsByClassName('ui-droppable')[i].dataset.tooltip.match(/\+(\d+) ([^\s]+)  /i);
-					//Find the stat
-					var j=0; var found=false;
-					while( stats_translations[j] && !found){
-						if( stats_translations[j]==JSON.parse('"'+buff[2]+'"') ){
-							buff[2]=j;
-							found=true;
+		// Find Oil buffs
+		var droppables = document.getElementById('char').getElementsByClassName('ui-droppable');
+		for (let i = 1; i < droppables.length;i++) {
+			if (typeof droppables[i].dataset.tooltip !== 'undefined') {
+				if (droppables[i].dataset.tooltip.match(/\+(\d+) ([^\s]+)  /i) ){
+					var buff = droppables[i].dataset.tooltip.match(/\+(\d+) ([^\s]+)  /i);
+					// Find the stat
+					let j = 0;
+					var found = false;
+					while (stats_translations[j] && !found) {
+						if (stats_translations[j] == JSON.parse('"'+buff[2]+'"')) {
+							buff[2] = j;
+							found = true;
 						}
 						j++;
 					}
-					//Add to buffs
-					if(found)
-						buffs.push([1,buff[2],buff[1]]);
+					// Add to buffs
+					if(found) buffs.push([1,buff[2],buff[1]]);
 				}
 			}
 		}
 		
-		//Find Max/Enisxiseis buffs
-		for(var i=3;i<=10;i++){
-			//Max
-			if( document.getElementById('charstats').getElementsByClassName('charstats_bg')[i].dataset.tooltip.match(/,(\d+)\],\["#00B712"/i) ){
-				var buff = document.getElementById('charstats').getElementsByClassName('charstats_bg')[i].dataset.tooltip.match(/,(\d+)\],\["#00B712"/i)[1] - Math.round(document.getElementById('charstats').getElementsByClassName('charstats_bg')[i].dataset.tooltip.match(/,(\d+)\],\["#DDDDDD"/i)[1]*1.5 + parseInt(document.getElementById('char_level').textContent));
+		// Find Max/Enisxiseis buffs
+		var charstats_bg = charstats.getElementsByClassName('charstats_bg');
+		for (let i = 3; i <= 10; i++) {
+			// Max
+			if (charstats_bg[i].dataset.tooltip.match(/,(\d+)\],\["#00B712"/i)) {
+				let buff = charstats_bg[i].dataset.tooltip.match(/,(\d+)\],\["#00B712"/i)[1] - Math.round(charstats_bg[i].dataset.tooltip.match(/,(\d+)\],\["#DDDDDD"/i)[1]*1.5 + parseInt(document.getElementById('char_level').textContent));
 				buffs.push([2,i-3,buff+' max']);
-				//console.log(i+': +'+buff);
 			}
-			//Enisxiseis
-			if( document.getElementById('charstats').getElementsByClassName('charstats_bg')[i].dataset.tooltip.match(/\+(\d+)"\],\["#00B712"/i) ){
-				var buff = document.getElementById('charstats').getElementsByClassName('charstats_bg')[i].dataset.tooltip.match(/\+(\d+)"\],\["#00B712"/i)[1];
+			// Enisxiseis
+			if (charstats_bg[i].dataset.tooltip.match(/\+(\d+)"\],\["#00B712"/i)) {
+				let buff = charstats_bg[i].dataset.tooltip.match(/\+(\d+)"\],\["#00B712"/i)[1];
 				buffs.push([3,i-3,buff]);
-				//console.log(i+': +'+buff);
 			}
 		}
-		//Find Critical buff
-		if( document.getElementById('char_schaden_tt').dataset.tooltip.match(/>(\d+) %</i) && !document.location.href.match(/&doll=[3-6]/i)){
-			var buff = document.getElementById('char_schaden_tt').dataset.tooltip.match(/>(\d+) %</i)[1] - Math.round(document.getElementById('char_schaden_tt').dataset.tooltip.match(/,(\d+)\],\["#BA9700"/i)[1]*52/(parseInt(document.getElementById('char_level').textContent)-8)/5);
-			if( buff>0 ){
+		// Find Critical buff
+		var char_schaden_tt = document.getElementById('char_schaden_tt');
+		if (char_schaden_tt.dataset.tooltip.match(/>(\d+) %</i) && !document.location.href.match(/&doll=[3-6]/i)) {
+			let buff = char_schaden_tt.dataset.tooltip.match(/>(\d+) %</i)[1] - Math.round(char_schaden_tt.dataset.tooltip.match(/,(\d+)\],\["#BA9700"/i)[1]*52/(parseInt(document.getElementById('char_level').textContent)-8)/5);
+			if (buff > 0) {
 				buffs.push([4,9,buff+'%']);
-				stats_translations.push( document.getElementById('char_schaden_tt').dataset.tooltip.match(/([^:]+):/gi)[8].match(/([^:]+):/)[1] );
+				stats_translations.push(char_schaden_tt.dataset.tooltip.match(/([^:]+):/gi)[8].match(/([^:]+):/)[1]);
 			}
 		}
-		//Find Damage buff
-		if( document.getElementById('char_schaden_tt').dataset.tooltip.match(/(\d+)</i) ){
-			var buff = document.getElementById('char_schaden_tt').dataset.tooltip.match(/(\d+)</gi)[4].match(/(\d+)/)[1];
-			if( buff>0 ){
+		// Find Damage buff
+		if (document.getElementById('char_schaden_tt').dataset.tooltip.match(/(\d+)</i)) {
+			let buff = document.getElementById('char_schaden_tt').dataset.tooltip.match(/(\d+)</gi)[4].match(/(\d+)/)[1];
+			if (buff > 0) {
 				buffs.push([3,7,buff]);
 			}
 		}
-		//Find Life buff
-		if( document.getElementById('char_leben_tt').dataset.tooltip.match(/(\d+)</i) ){
-			var buff = document.getElementById('char_leben_tt').dataset.tooltip.match(/(\d+)</gi)[3].match(/(\d+)/)[1];
+		// Find Life buff
+		var char_leben_tt = document.getElementById('char_leben_tt');
+		if (char_leben_tt.dataset.tooltip.match(/(\d+)</i)){
+			let buff = char_leben_tt.dataset.tooltip.match(/(\d+)</gi)[3].match(/(\d+)/)[1];
 			if( buff>0 ){
 				buffs.push([3,8,buff]);
-				stats_translations[8] = document.getElementById('char_leben_tt').getElementsByClassName('charstats_text').textContent;
+				stats_translations[8] = char_leben_tt.getElementsByClassName('charstats_text').textContent;
 			}
 		}
 		
@@ -266,33 +277,32 @@ var gca_player = {
 			]
 		]
 		
-		if( buffs.length>0 ){
-			var buffbar = document.createElement("div");
+		if (buffs.length > 0) {
+			let buffbar = document.createElement("div");
 			buffbar.id = 'buffbar_old';
 			document.getElementById("blackoutDialogbod").parentNode.insertBefore(buffbar, document.getElementById("blackoutDialogbod"));
 			
-            var i=0;
-			var div, img, div2, span;
-			while( buffs[i] ){
-				div = document.createElement("div");
+            let i = 0;
+			while (buffs[i]) {
+				let div = document.createElement("div");
 				div.className = 'buff_old';
 				div.dataset.tooltip = JSON.stringify([[[ stats_translations[buffs[i][1]],'#FFD800'],['+'+buffs[i][2]+' '+stats_translations[buffs[i][1]].toLowerCase() ,'#DDDDDD']]]);
 				buffbar.appendChild(div);
-				img = document.createElement("div");
+				let img = document.createElement("div");
 				img.className = images[buffs[i][0]-1][buffs[i][1]];
 				img.style = 'width:32px;height:32px;margin-top: 3px;margin-left: 3px;margin-right: 3px;';
 				div.appendChild(img);
-				div2 = document.createElement("div");
+				let div2 = document.createElement("div");
 				div2.style = 'text-align:center;width:35px';
 				div.appendChild(div2);
-				span = document.createElement("span");
+				let span = document.createElement("span");
 				span.className = 'z';
 				span.style = 'text-align:left';
 				span.textContent = '+'+ ((buffs[i][2].match('%'))?buffs[i][2]:buffs[i][2].match(/(\d+)/i)[1]);
 				div2.appendChild(span);
-				span = document.createElement("style");
-				span.textContent = ".powerups-powerup_1{background-image: url(img/powerups/powerup_1.gif)}.powerups-powerup_3{background-image: url(img/powerups/powerup_3.gif)}.powerups-powerup_4{background-image: url(img/powerups/powerup_4.gif)}";
-				div2.appendChild(span);
+				let span2 = document.createElement("style");
+				span2.textContent = ".powerups-powerup_1{background-image: url(img/powerups/powerup_1.gif)}.powerups-powerup_3{background-image: url(img/powerups/powerup_3.gif)}.powerups-powerup_4{background-image: url(img/powerups/powerup_4.gif)}";
+				div2.appendChild(span2);
 				i++;
 			}
 			document.getElementById("buffbar_old").getElementsByClassName('buff_old')[i-1].className = 'buff_old buffende';
@@ -301,23 +311,21 @@ var gca_player = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_player.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_options, gca_section, gca_tools */

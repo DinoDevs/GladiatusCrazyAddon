@@ -174,23 +174,21 @@ var gca_guild_bank = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_guild_bank.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_locale, gca_options, gca_section, gca_tools */

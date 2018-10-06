@@ -3,15 +3,19 @@
  * Gladiatus Crazy Add On
  */
 
-var init = setInterval(() => {
+var init = () => {
 	// Wait until all ready
+	// Usually this will be true only the first time
 	if(
 		!window ||
 		!document.head ||
 		!document.body
-	) return;
-	clearInterval(init);
+	) {
+		setTimeout(init, 2);
+		return;
+	}
 
+	// Get browser object
 	var Browser = typeof browser === 'undefined' ? chrome : browser;
 	
 	// Get info
@@ -28,7 +32,8 @@ var init = setInterval(() => {
 		window,
 		Browser.extension.getURL('core')
 	);
-}, 5);
+};
+init();
 
 // ESlint defs
 /* global browser, chrome, inject */

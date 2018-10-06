@@ -354,3 +354,6 @@ var manager = {
 	}
 
 }
+
+// ESlint defs
+/* global info, locale, manager, tools */

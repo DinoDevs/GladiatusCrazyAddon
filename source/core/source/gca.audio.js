@@ -157,8 +157,8 @@ var gca_audio = {
 			if (this.audioIdObjs.hasOwnProperty(id)) {
 				if (this.audioIdObjs[id].obj) {
 					let sound = this.audioIdObjs[id];
-					sound.obj.volume = this._volume * soundObj.volume;
-					sound.obj.muted = (this._muted || soundObj.muted);
+					sound.obj.volume = (this._volume * sound.obj.volume);
+					sound.obj.muted = (this._muted || sound.obj.muted);
 				}
 			}
 		}
@@ -238,7 +238,6 @@ var gca_audio_channels = {
 		'expedition_notification'	: {sound : 'water'},
 		'dungeon_notification' 		: {sound : 'water'},
 		'arena_notification'		: {sound : 'water'},
-		'turma_notification'		: {sound : 'water'},
 		'turma_notification'		: {sound : 'water'},
 		'auction_notification'		: {sound : 'coin'},
 		'sound_toggle'				: {sound : 'water'}
@@ -341,11 +340,13 @@ var gca_audio_ui = {
 		gca_audio.load();
 		gca_audio_ui.load();
 	};
-	gca_audio_channels.preload();
-	if (document.readyState == 'complete' || document.readyState == 'loaded') {
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
 		fireLoad();
 	} else {
 		window.addEventListener('DOMContentLoaded', fireLoad, true);
 		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_audio, gca_data, gca_options, gca_resources, gca_tools */

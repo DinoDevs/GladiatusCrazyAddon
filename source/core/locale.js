@@ -70,5 +70,4 @@ var locale = {
 };
 
 // ESlint defs
-/* global info, tools */
-
+/* global info, locale, manager, tools */

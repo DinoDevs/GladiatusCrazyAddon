@@ -43,14 +43,11 @@ var gca_pantheon_mysterybox = {
 			buttonsWrapper.parentNode.style.minHeight = '140px';
 
 			// If disabled
-			if(!enabled)
-				// Exit
-				return;
+			if(!enabled) return;
 
 			// Attach onClick handler
-			var that = this;
-			this.button.addEventListener("click", function(){
-				that.handler();
+			this.button.addEventListener("click", () => {
+				this.handler();
 			}, false);
 		},
 
@@ -93,9 +90,7 @@ var gca_pantheon_mysterybox = {
 			// Set button text
 			this.button.value = gca_locale.get("pantheon", "mysterybox_open_done");
 
-			if(error){
-				this.title = error;
-			}
+			if (error) this.title = error;
 		},
 
 		run : function(){
@@ -108,7 +103,7 @@ var gca_pantheon_mysterybox = {
 			// Save instance
 			var that = this;
 			// Get count element
-			count_wrapper = document.getElementsByClassName("mysterybox_count")[0];
+			var count_wrapper = document.getElementsByClassName("mysterybox_count")[0];
 
 			// Get boxes info
 			jQuery.ajax({
@@ -216,7 +211,7 @@ var gca_pantheon_mysterybox = {
 			border.className = "mysterybox_reward_border " + reward.border;
 			wrapper.appendChild(border);
 
-			if(reward.count > 1){
+			if (reward.count > 1) {
 				let div;
 				div = document.createElement("div");
 				div.className = "mysterybox_reward_item_count mysterybox_reward_item_count_background";
@@ -311,16 +306,13 @@ var gca_pantheon_mysterybox = {
 				return;
 
 			// Get rewards
-			var div;
-			var rubies;
-			var icon;
 			var rewards = document.getElementById('content').getElementsByClassName('mysterybox_reward_item_pool');
-			for (var i = rewards.length - 1; i >= 0; i--) {
-				rubies = this.resolveReward(rewards[i]);
-				icon = document.createElement('div');
+			for (let i = rewards.length - 1; i >= 0; i--) {
+				let rubies = this.resolveReward(rewards[i]);
+				let icon = document.createElement('div');
 				icon.className = 'icon_rubies';
 				icon.setAttribute('style', 'transform: scale(0.8);');
-				div = document.createElement('div');
+				let div = document.createElement('div');
 				div.className = 'reward_pool_rubies_price';
 				div.appendChild(icon);
 				div.appendChild(document.createTextNode(((rubies > 0)? rubies : '?')));
@@ -361,23 +353,22 @@ var gca_pantheon_mysterybox = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_pantheon_mysterybox.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_getPage, gca_locale, gca_options, gca_tools */
+/* global jQuery */

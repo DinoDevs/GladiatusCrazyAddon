@@ -6,13 +6,19 @@
 // OverviewBuddylist
 var gca_overview_buddylist = {
 	// Inject Code
-	inject : function(){
+	inject : function() {
+		// Arena target list
+		if (gca_options.bool("arena","target_list")) {
+			// Handle cross server addition
+			(gca_section.gcamod == 'addtarget' &&
+				this.target_list.addCrossServer());
 
-		(gca_section.gcamod == 'addtarget' &&
-			this.target_list.addCrossServer());
+			// Show target list
+			this.target_list.create();
+		}
 
-		// Show target list
-		this.target_list.create();
+		// Setting Link
+		gca_tools.create.settingsLink("arena");
 	},
 
 	// Show target list
@@ -154,23 +160,21 @@ var gca_overview_buddylist = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function() {
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_overview_buddylist.inject();
 	};
-	if (document.readyState == "complete" || document.readyState == "loaded") {
-		fireLoadEvent();
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
 	} else {
-		window.addEventListener('DOMContentLoaded', function() {
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function() {
-			fireLoadEvent();
-		}, true);
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_options, gca_section, gca_tools */

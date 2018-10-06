@@ -70,7 +70,7 @@ var gca_auction = {
 		}
 		
 		// Create new lvl options
-		for(i=minLvl;i<=maxLvl;i=i+2){
+		for(let i = minLvl; i <= maxLvl; i += 2){
 			let lvl_option = document.createElement("option");
 			lvl_option.value = i;
 			lvl_option.textContent = i + " +";
@@ -114,8 +114,7 @@ var gca_auction = {
 		// Get items
 		var items = document.getElementById("auction_table").getElementsByClassName("auction_item_div");
 		// For each item
-		var tooltipElement, itemElement;
-		for (var i = items.length - 1; i >= 0; i--) {
+		for (let i = items.length - 1; i >= 0; i--) {
 			// Render shadow
 			gca_tools.item.shadow.add(items[i].getElementsByTagName("div")[1]);
 		}
@@ -198,17 +197,17 @@ var gca_auction = {
 	extraItemStats : function() {
 		// Run on food section
 		var e = document.getElementsByName("itemType")[0];
-		if ( e.options[e.selectedIndex].value==7 ){
+		if (e.options[e.selectedIndex].value == 7) {
 			// Translations
-			healTranslation = unescape(document.getElementById("header_values_hp_bar").dataset.tooltip.match(/"([^:]+):"/)[1]);
-			goldTranslation = unescape(document.getElementById("icon_gold").dataset.tooltip.match(/"([^"]+)"/)[1]);
+			let healTranslation = unescape(document.getElementById("header_values_hp_bar").dataset.tooltip.match(/"([^:]+):"/)[1]);
+			let goldTranslation = unescape(document.getElementById("icon_gold").dataset.tooltip.match(/"([^"]+)"/)[1]);
 			
 			// Get items
 			var items = document.getElementById("auction_table").getElementsByClassName("auction_item_div");
 			var items2 = document.getElementById("auction_table").getElementsByClassName("auction_bid_div");
 			// For each item
 			var heal, price, wrapper, indicator, re = / (\d+) /i;
-			for (var i = items.length - 1; i >= 0; i--) {
+			for (let i = items.length - 1; i >= 0; i--) {
 				// Get heal
 				heal = parseInt(items[i].getElementsByTagName("div")[1].dataset.tooltip.replace(/ 0 /g,"").match(re)[1]);
 				price = parseInt(gca_tools.strings.removeDots(items2[i].getElementsByTagName('div')[1].textContent).match(/(\d+)/i)[1], 10);
@@ -237,6 +236,7 @@ var gca_auction = {
 	},
 	
 	bidItem : function(id){
+		// TODO : Clean up this code
 		data = document.getElementById("auctionForm"+id).getElementsByTagName("input");
 		price = parseInt( data[6].value );
 		gold = parseInt( document.getElementById("sstat_gold_val").textContent.replace(/ /g,'').replace(/\./g,'') );
@@ -385,25 +385,23 @@ var gca_auction = {
 	}
 };
 
-(function() {
-	// Pre Inject
-	gca_auction.preinject();
-	// On page load
+// Onload Handler
+(function(){
 	var loaded = false;
-	var fireLoadEvent = function() {
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_auction.inject();
 	};
-	if (document.readyState == "complete" || document.readyState == "loaded") {
-		fireLoadEvent();
+	gca_auction.preinject();
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
 	} else {
-		window.addEventListener('DOMContentLoaded', function() {
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function() {
-			fireLoadEvent();
-		}, true);
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_tools */
+/* global jQuery */

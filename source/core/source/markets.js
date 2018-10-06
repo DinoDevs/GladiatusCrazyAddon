@@ -272,9 +272,9 @@ var gca_markets = {
 		});
 		
 		// Change functions
-		var calcDuesOrg = calcDues;
-		calcDues = function(){
-			calcDuesOrg();
+		var calcDues_orginal = window.calcDues;
+		window.calcDues = function(){
+			calcDues_orginal();
 			if(document.getElementById('preis').value != '' && document.querySelector('input[name=sell_mode]:checked').value == 1){
 				document.getElementById('auto_value').value = document.getElementById('preis').value;
 				document.getElementById('preis').value = 1;
@@ -321,23 +321,22 @@ var gca_markets = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_markets.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global jQuery */

@@ -69,7 +69,7 @@ var gca_server_quest = {
 		var that = this;
 		// Attack buttons
 		var buttons = document.getElementById("content").getElementsByClassName("expedition_button");
-		for(var i = buttons.length - 1; i >= 0; i--){
+		for(let i = buttons.length - 1; i >= 0; i--){
 			if(!buttons[i].className.match("disabled")){
 				buttons[i].addEventListener('click', (function(num){
 					return function(){
@@ -103,23 +103,21 @@ var gca_server_quest = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_server_quest.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_options, gca_section, gca_tools */

@@ -62,10 +62,10 @@ var gca_build = {
 		open(){
 			if(this.dialogWrapper)
 				this.dialogWrapper.style.display = "block";
-		};
+		}
 		close(){
 			if(this.dialogWrapper)
 				this.dialogWrapper.style.display = "none";
-		};
+		}
 	}
 };

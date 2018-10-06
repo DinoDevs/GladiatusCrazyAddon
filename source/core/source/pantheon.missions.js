@@ -30,7 +30,7 @@ var gca_pantheon_missions = {
 		// Get info of completed missions
 		var info = [];
 		// For each mission
-		for (var i = 0; i < completed.length; i++) {
+		for (let i = 0; i < completed.length; i++) {
 			// Get title
 			var title = completed[i].parentNode.getElementsByClassName('missions_slot_title')[0].textContent;
 			// Get Url parametes
@@ -63,7 +63,7 @@ var gca_pantheon_missions = {
 		slot.style.height = (Math.ceil(info.length/3)*63) + "px";
 
 		// For each completed mission
-		for(var i = 0; i < info.length; i++){
+		for(let i = 0; i < info.length; i++){
 			var mission = document.createElement("div");
 			mission.className = "slot_mission_completed";
 			mission.style = "font-size: 13px; font-weight: bold;";
@@ -105,14 +105,14 @@ var gca_pantheon_missions = {
 			for (var i = 0; i < info.length; i++) {
 				// Ajax - end mission
 				jQuery.get(gca_getPage.link({"mod":"missions","submod":"finishTask","missionId":info[i].id}).replace("index.php","ajax.php"), (function(data){
-					return function(content){
+					return function(){
 						// Show that mission ended
 						data.element.style.color = "#007700";
 						// Check to reload page
 						ended++;
-						if(ended >= info.length){
+						if (ended >= info.length) {
 							document.location.reload();
-						};
+						}
 					};
 				})(info[i]));
 			}
@@ -120,23 +120,22 @@ var gca_pantheon_missions = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_pantheon_missions.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_getPage, gca_options, gca_tools */
+/* global jQuery */

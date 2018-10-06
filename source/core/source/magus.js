@@ -25,30 +25,30 @@ var gca_magus = {
 	// Fade unaffordable items
 	fadeUnimprovableItems : {
 		inject : function() {
-			// Save instance
-			var that = this;
 			// Recheck items on item move
-			gca_tools.event.request.onAjaxResponce(function(){
-				that.check();
+			gca_tools.event.request.onAjaxResponce(() => {
+				this.check();
 			});
 			// Add event on bag open
-			gca_tools.event.bag.onBagOpen(function(){
+			gca_tools.event.bag.onBagOpen(() => {
 				// Find best food
-				that.check();
+				this.check();
 			});
-			gca_tools.event.bag.waitBag(function(){
+			gca_tools.event.bag.waitBag(() => {
 				// Find best food
-				that.check();
+				this.check();
 			});
 			// Run for the first time
 			this.check();
 		},
 		// Do a check
 		check : function(){
+			var items;
+
 			// Get char items
-			var items = document.getElementById('char').getElementsByClassName("ui-draggable");
+			items = document.getElementById('char').getElementsByClassName("ui-draggable");
 			// For each
-			for (var i = items.length - 1; i >= 0; i--) {
+			for (let i = items.length - 1; i >= 0; i--) {
 				// If cannot improve
 				if(parseInt(items[i].dataset.quality)>1) {
 					items[i].style.opacity = 0.6;
@@ -58,9 +58,9 @@ var gca_magus = {
 			}
 			
 			// Get inv items
-			var items = document.getElementById('inv').getElementsByClassName("ui-draggable");
+			items = document.getElementById('inv').getElementsByClassName("ui-draggable");
 			// For each
-			for (var i = items.length - 1; i >= 0; i--) {
+			for (let i = items.length - 1; i >= 0; i--) {
 				// If cannot improve
 				if(parseInt(items[i].dataset.quality)>1 || parseInt(items[i].dataset.contentType)>1024 || parseInt(items[i].dataset.contentType)==64 ) {
 					items[i].style.opacity = 0.6;
@@ -91,23 +91,21 @@ var gca_magus = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_magus.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_options, gca_tools */

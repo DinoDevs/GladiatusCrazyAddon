@@ -191,13 +191,11 @@ var gca_merchants = {
 	// Double click sell/buy
 	doubleClickActions : {
 		init : function(){
-			// Save instance
-			var that = this;
 			// Apply item events
 			this.apply();
 
 			// Add event
-			gca_tools.event.bag.onBagOpen((tab) => {
+			gca_tools.event.bag.onBagOpen(() => {
 				this.apply();
 			});
 
@@ -251,23 +249,22 @@ var gca_merchants = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_merchants.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_options, gca_tools */
+/* global jQuery */

@@ -20,7 +20,7 @@ var gca_forge = {
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
 			
-			/*this.recraft.inject();*/
+			//this.recraft.inject();
 		}
 
 		// Smelt
@@ -52,14 +52,18 @@ var gca_forge = {
 	
 	// Save forge timers
 	saveForgeTimers : function(){
-		if (typeof slotsData!=="undefined") {
-			var forgeTimes = {translation : [document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),gca_locale.get("forge","forge_ended")]};//Smeltery, Duration, Done!
+		if (typeof window.slotsData !== "undefined") {
+			let forgeTimes = {translation : [
+				document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,
+				document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),
+				gca_locale.get("forge","forge_ended")
+			]};//Smeltery, Duration, Done!
 			forgeTimes.data = [];// EndTime, Name
-			var current = new Date(); current = current.getTime();
-			for (var i = 0; i < slotsData.length; i++) {
-				if (typeof slotsData[i]['forge_slots.uend'] !== "undefined") {
-					if(slotsData[i]['forge_slots.uend'] * 1000 > current)
-						forgeTimes.data.push([slotsData[i]['forge_slots.uend'], slotsData[i].item.name]);
+			let current = new Date().getTime();
+			for (let i = 0; i < window.slotsData.length; i++) {
+				if (typeof window.slotsData[i]['forge_slots.uend'] !== "undefined") {
+					if(window.slotsData[i]['forge_slots.uend'] * 1000 > current)
+						forgeTimes.data.push([window.slotsData[i]['forge_slots.uend'], window.slotsData[i].item.name]);
 				}
 			}
 			gca_data.section.set("timers", "forge_times", forgeTimes);
@@ -68,16 +72,16 @@ var gca_forge = {
 	
 	// Save smelt timers
 	saveSmeltTimers : function(){
-		if (typeof slotsData!=="undefined") {
+		if (typeof window.slotsData !== "undefined") {
 			var smeltTimes = {translation : [
 				document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,
 				document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),
 				document.getElementById('slot-finished-succeeded').getElementsByTagName('fieldset')[0].textContent.trim().replace(/  /g,'').replace(/(?:\r\n|\r|\n)/g,' ')
 			]};//Smeltery, Duration, Done!
 			smeltTimes.data = [];// EndTime, Name
-			for(var i = 0; i < slotsData.length; i++) {
-				if(typeof slotsData[i]['forge_slots.uend'] !== "undefined"){
-					smeltTimes.data.push([slotsData[i]['forge_slots.uend'],slotsData[i].item.name]);
+			for(var i = 0; i < window.slotsData.length; i++) {
+				if (typeof window.slotsData[i]['forge_slots.uend'] !== "undefined") {
+					smeltTimes.data.push([window.slotsData[i]['forge_slots.uend'], window.slotsData[i].item.name]);
 				}
 			}
 			gca_data.section.set("timers", "smelt_times", smeltTimes);
@@ -86,15 +90,15 @@ var gca_forge = {
 	
 	// Show Fix/Sufix/Base names levels
 	showPrefixSufixBaseLevels : function(){
-		var i, options;
+		var options;
 
 		options = document.getElementById('prefix0').getElementsByTagName("option");
-		for (i = 1; i < options.length; i++) {
+		for (let i = 1; i < options.length; i++) {
 			options[i].textContent += " ("+options[i].dataset.level+"lvl)";
 		}
 		
 		options = document.getElementById('suffix0').getElementsByTagName("option");
-		for (i = 1; i < options.length; i++) {
+		for (let i = 1; i < options.length; i++) {
 			options[i].textContent += " ("+options[i].dataset.level+"lvl)";
 		}
 		
@@ -109,7 +113,7 @@ var gca_forge = {
 			1,1,1,1,1,1,1,1,1,1//Amulets
 		];
 		options = document.getElementById('basic0').getElementsByTagName("option");
-		for (i = 0; i < options.length; i++) {
+		for (let i = 0; i < options.length; i++) {
 			options[i].textContent = "("+levels[i]+"lvl) "+options[i].textContent;
 		}
 	},
@@ -118,24 +122,27 @@ var gca_forge = {
 	sourceLinks : {
 		inject : function(){
 			document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks=-1;
-			document.getElementById('forge_nav').addEventListener("click", function(event) { document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks=-1;console.log("Clicked"); });
+			document.getElementById('forge_nav').addEventListener("click", function(event) {
+				document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks = -1;
+				//console.log("Clicked");
+			});
 			this.repeat();
 		},
 		repeat : function(){
-			if(document.getElementsByClassName('crafting_requirements').length>0 && typeof document.getElementById('forge_nav').getElementsByClassName('tabActive')[0]!=="undefined" && document.getElementById("slot-opened").className!="hidden"){
+			if (document.getElementsByClassName('crafting_requirements').length > 0 && typeof document.getElementById('forge_nav').getElementsByClassName('tabActive')[0] !== "undefined" && document.getElementById("slot-opened").className != "hidden") {
 				var tab = document.getElementById('forge_nav').getElementsByClassName('tabActive')[0].className.match(/forge_(opened|closed) (\d) /i)[2];
 				
-				if(document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks!==tab){
-					document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks=tab;
+				if (document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks !== tab) {
+					document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks = tab;
 					
 					var li = document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('li');
 					var name,linkBox;
 					var all_names="";
 					var msg="";
 					var links=[];
-					for(var i=0;i<li.length;i++){
+					for (let i = 0; i < li.length; i++) {
 						//name = encodeURIComponent(li[i].getElementsByTagName('div')[0].title);
-						name = slotsData[tab].formula.needed[Object.keys(slotsData[tab].formula.needed)[i]].name;
+						name = window.slotsData[tab].formula.needed[Object.keys(window.slotsData[tab].formula.needed)[i]].name;
 						if(document.getElementsByClassName('forge_amount')[i].style.backgroundColor!="greenyellow"){
 							all_names+=name.split(" ")[name.split(" ").length-1]+" ";
 							msg+="\n - "+name+": "+(parseInt(document.getElementsByClassName('forge_amount')[i].getElementsByClassName('forge_setpoint')[0].textContent,10)-parseInt(document.getElementsByClassName('forge_amount')[i].getElementsByClassName('forge_actual_value')[0].textContent,10));
@@ -158,14 +165,14 @@ var gca_forge = {
 						linkBox.appendChild(links[1]);
 					}
 					
-					if(msg.length>0){
-						var most_probable=0;
-						var most_probable_color="";
+					if (msg.length > 0) {
+						var most_probable = 0;
+						var most_probable_color = "";
 						var qualities = document.getElementById('forge_qualities').getElementsByTagName('li');
-						for(i=0;i<qualities.length;i++){
-							if(qualities[i].textContent.match(/(\d+)%/)[1]>most_probable){
-								most_probable=qualities[i].textContent.match(/(\d+)%/)[1];
-								most_probable_color=qualities[i].textContent;
+						for (let i = 0; i < qualities.length; i++) {
+							if (qualities[i].textContent.match(/(\d+)%/)[1]>most_probable) {
+								most_probable = qualities[i].textContent.match(/(\d+)%/)[1];
+								most_probable_color = qualities[i].textContent;
 							}
 						}
 						
@@ -199,11 +206,7 @@ var gca_forge = {
 						if(msg.length == 0) return;
 						// Send message
 						var send = gca_global.background.guildMessage.send(msg, false, function(ok){
-							if(ok){
-								gca_notifications.success(gca_locale.get("global", "message_sent_success"));
-							}else{
-								gca_notifications.error(gca_locale.get("global", "message_sent_failed"));
-							}
+							gca_notifications.error(gca_locale.get("global", (ok ? "message_sent_success" : "message_sent_failed")));
 						});
 						if(!send){
 							gca_notifications.error(gca_locale.get("global", "no_data"));
@@ -213,8 +216,8 @@ var gca_forge = {
 				}
 			}
 			
-			setTimeout(function(){
-				gca_forge.sourceLinks.repeat();
+			setTimeout(() => {
+				this.repeat();
 			}, 500);
 		}
 	},
@@ -228,12 +231,14 @@ var gca_forge = {
 			recraft_button.style="margin-top: 15px;";
 			recraft_button.textContent = gca_locale.get("forge","recraft_item");
 			recraft_button.dataset.tab=-1;
-			recraft_button.addEventListener('click',function(event) {
+			recraft_button.addEventListener('click',function() {
 				rent();
 			});
 			document.getElementById('forge_button_box').appendChild(recraft_button);
 			
-			document.getElementById('forge_nav').addEventListener("click", function(event) { document.getElementById('recraft_button').dataset.tab=-1; });
+			document.getElementById('forge_nav').addEventListener("click", function() {
+				document.getElementById('recraft_button').dataset.tab = -1;
+			});
 			
 			this.repeat();
 		},
@@ -241,10 +246,10 @@ var gca_forge = {
 			if(document.getElementById("slot-finished-failed").className!="hidden"){
 				var tab = document.getElementById('forge_nav').getElementsByClassName('tabActive')[0].className.match(/forge_finished-failed (\d) tabActive/i)[1];
 				document.getElementById('recraft_button').dataset.tab=tab;
-				if (slotsData[tab]){
-					document.getElementById('recraft_button').textContent = gca_locale.get("forge","recraft_item")+": "+gca_tools.strings.insertDots(slotsData[tab].formula.rent[2])+" ";
+				if (window.slotsData[tab]){
+					document.getElementById('recraft_button').textContent = gca_locale.get("forge","recraft_item")+": "+gca_tools.strings.insertDots(window.slotsData[tab].formula.rent[2])+" ";
 					var icon_gold = document.createElement('div');
-					if(slotsData[tab].formula.rent[2]>document.getElementById('sstat_gold_val').textContent.replace(/\./g,"")){
+					if(window.slotsData[tab].formula.rent[2]>document.getElementById('sstat_gold_val').textContent.replace(/\./g,"")){
 						document.getElementById('recraft_button').className += " disabled";
 					}
 					icon_gold.className = "icon_gold";
@@ -374,24 +379,22 @@ var gca_forge = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_forge.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
 
+// ESlint defs
+/* global gca_data, gca_getPage, gca_global, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global jQuery */

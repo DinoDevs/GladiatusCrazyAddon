@@ -47,7 +47,7 @@ var gca_overview_stats = {
 		
 		// Calculate ratio
 		arena_stats.ratio = Math.round((arena_stats.wins/arena_stats.loses)*100)/100;
-		if(isNaN(arena_stats.ratio)) arena_stats.ratio = 1;
+		if (isNaN(arena_stats.ratio)) arena_stats.ratio = 1;
 		arena.ratio = document.createElement('tr');
 		temp = document.createElement('th');
 		temp.textContent = arena.wins.getElementsByTagName('th')[0].textContent.slice(0, -1) + "/" + arena.loses.getElementsByTagName('th')[0].textContent.slice(0, -1) + " Ratio" + ":";
@@ -55,7 +55,7 @@ var gca_overview_stats = {
 		temp = document.createElement('td');
 		temp.className = "stats_value";
 		temp.textContent = arena_stats.ratio;
-		if(arena_stats.ratio >= 1) temp.style.color = "green";
+		if (arena_stats.ratio >= 1) temp.style.color = "green";
 		else temp.style.color = "red";
 		arena.ratio.appendChild(temp);
 		arena.draws.parentNode.insertBefore(arena.ratio, arena.draws.nextSibling);
@@ -73,7 +73,7 @@ var gca_overview_stats = {
 		temp = document.createElement('td');
 		temp.className = "stats_value";
 		temp.textContent = gca_tools.strings.insertDots(arena_stats.hit_points_difference);
-		if(arena_stats.hit_points_difference >= 0) temp.style.color = "green";
+		if (arena_stats.hit_points_difference >= 0) temp.style.color = "green";
 		else temp.style.color = "red";
 		arena.hit_points_difference.appendChild(temp);
 		arena.hit_points_taken.parentNode.insertBefore(arena.hit_points_difference, arena.hit_points_taken.nextSibling);
@@ -92,7 +92,7 @@ var gca_overview_stats = {
 		temp.className = "stats_value";
 		temp.textContent = gca_tools.strings.insertDots(arena_stats.gold_difference) + " ";
 		temp.appendChild(arena.gold_lost.getElementsByTagName('td')[0].getElementsByTagName('img')[0].cloneNode(true));
-		if(arena_stats.gold_difference >= 0) temp.style.color = "green";
+		if (arena_stats.gold_difference >= 0) temp.style.color = "green";
 		else temp.style.color = "red";
 		arena.gold_difference.appendChild(temp);
 		arena.gold_lost.parentNode.insertBefore(arena.gold_difference, arena.gold_lost.nextSibling);
@@ -127,7 +127,7 @@ var gca_overview_stats = {
 		
 		// Calculate ratio
 		turma_stats.ratio = Math.round((turma_stats.wins/turma_stats.loses)*100)/100;
-		if(isNaN(turma_stats.ratio)) turma_stats.ratio = 1;
+		if (isNaN(turma_stats.ratio)) turma_stats.ratio = 1;
 		turma.ratio = document.createElement('tr');
 		temp = document.createElement('th');
 		temp.textContent = turma.wins.getElementsByTagName('th')[0].textContent.slice(0, -1) + "/" + turma.loses.getElementsByTagName('th')[0].textContent.slice(0, -1) + " Ratio" + ":";
@@ -135,7 +135,7 @@ var gca_overview_stats = {
 		temp = document.createElement('td');
 		temp.className = "stats_value";
 		temp.textContent = turma_stats.ratio;
-		if(turma_stats.ratio >= 1) temp.style.color = "green";
+		if (turma_stats.ratio >= 1) temp.style.color = "green";
 		else temp.style.color = "red";
 		turma.ratio.appendChild(temp);
 		turma.draws.parentNode.insertBefore(turma.ratio, turma.draws.nextSibling);
@@ -154,7 +154,7 @@ var gca_overview_stats = {
 		temp.className = "stats_value";
 		temp.textContent = gca_tools.strings.insertDots(turma_stats.gold_difference) + " ";
 		temp.appendChild(turma.gold_lost.getElementsByTagName('td')[0].getElementsByTagName('img')[0].cloneNode(true));
-		if(turma_stats.gold_difference >= 0) temp.style.color = "green";
+		if (turma_stats.gold_difference >= 0) temp.style.color = "green";
 		else temp.style.color = "red";
 		turma.gold_difference.appendChild(temp);
 		turma.gold_lost.parentNode.insertBefore(turma.gold_difference, turma.gold_lost.nextSibling);
@@ -165,23 +165,21 @@ var gca_overview_stats = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_overview_stats.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_locale, gca_options, gca_tools */

@@ -93,33 +93,30 @@ var gca_settings_character = {
 
 			// Remove frame
 			// There is a bug if you dont wait ...
-			var that = this;
-			setTimeout(function(){
-				that.frame.src = 'about:blank';
-				that.frame.parentNode.removeChild(that.frame);
-				that.frame = null;
+			setTimeout(() => {
+				this.frame.src = 'about:blank';
+				this.frame.parentNode.removeChild(this.frame);
+				this.frame = null;
 			}, 1000);
 		}
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_settings_character.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_getPage, gca_section */

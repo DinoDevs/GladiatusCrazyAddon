@@ -111,3 +111,7 @@ var gca_notifications = {
 		}
 	}
 };
+
+// ESlint defs
+/* global gca, gca_notifications, gca_resources, gca_section */
+/* global jQuery */

@@ -140,3 +140,6 @@ var gca_locale = {
 
 // Gca languages object
 var gca_languages = gca_languages || {};
+
+// ESlint defs
+/* global gca_data_manager, gca_locale, gca_section */

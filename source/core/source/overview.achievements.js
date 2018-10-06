@@ -26,7 +26,6 @@ var gca_overview_achievements = {
 	// Layout Improvements
 	layout : {
 		improve : function(){
-
 			var total = 0;
 			var competed = 0;
 			var data;
@@ -130,25 +129,22 @@ var gca_overview_achievements = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// Pre Inject
-	gca_overview_achievements.preinject();
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_overview_achievements.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	gca_overview_achievements.preinject();
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_options, gca_section */

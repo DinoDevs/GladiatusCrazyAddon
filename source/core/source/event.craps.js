@@ -29,13 +29,7 @@ var gca_craps = {
 		// Get cooldown timer
 		var cooldown = document.getElementById("crapsCooldownTimer");
 		if(cooldown && cooldown.getElementsByTagName('span').length > 0){
-			/*let timeString = cooldown.getElementsByTagName('span')[0].textContent;
-			let hours = parseInt( timeString.match(/(\d+):\d+:\d+/)[1] );
-			let minutes = parseInt( timeString.match(/\d+:(\d+):\d+/)[1] );
-			let seconds = parseInt( timeString.match(/\d+:\d+:(\d+)/)[1] );
-			availableIn += hours*60*60*1000 + minutes*60*1000 + seconds*1000;*/
-			
-			availableIn += parseInt( cooldown.getElementsByTagName('span')[0].dataset.tickerTimeLeft);
+			availableIn += parseInt(cooldown.getElementsByTagName('span')[0].dataset.tickerTimeLeft);
 			
 			// Update data
 			gca_data.section.set("timers", 'craps_available', availableIn);
@@ -48,19 +42,14 @@ var gca_craps = {
 				gca_data.section.set("timers", 'craps_available', 0);
 			}
 		}
-
 		
 		// Get number of craps
 		var freeToss = document.getElementById("tossAinfo_freeplay");
 		var craps_number = 0;
-		if(freeToss){
+		if (freeToss) {
 			craps_number = freeToss.textContent.match(/(\d+)/);
-			if(craps_number)
-				craps_number = craps_number[1];
-			else
-				craps_number = 0;
+			craps_number = craps_number ? craps_number[1] : 0;
 		}
-		
 		
 		// Save craps free toss
 		gca_data.section.set("timers", 'craps_free_toss', craps_number);
@@ -91,8 +80,7 @@ var gca_craps = {
 	patch_craps_event : function(){
 		// Check if crapsCooldown exist
 		var craps_cooldown = document.getElementById("crapsCooldown");
-		if(!craps_cooldown)
-			return;
+		if (!craps_cooldown) return;
 
 		// Save a pointer to the old function
 		gca_craps.patched.showPopup_pointer = window.showPopup;
@@ -101,23 +89,21 @@ var gca_craps = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_craps.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_global, gca_options, gca_tools */

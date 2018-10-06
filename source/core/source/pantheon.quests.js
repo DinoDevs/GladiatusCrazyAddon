@@ -48,7 +48,7 @@ var gca_pantheon_quests = {
 		if(document.getElementById("quest_header_cooldown_cancel") == null)
 			qcontent.style.height = "46px";
 
-		for(var i=0; i<this.quests_categories.length; i++){
+		for(let i = 0; i < this.quests_categories.length; i++){
 			// Create div
 			let div = document.createElement('div');
 			div.id = "qcategory_" + this.quests_categories[i];
@@ -67,7 +67,7 @@ var gca_pantheon_quests = {
 		}
 
 		// For every quest
-		for(var i=0;i<quests.length;i++){
+		for(let i = 0; i < quests.length; i++){
 			// Get quest button
 			let a = quests[i].getElementsByTagName('a')[0];
 
@@ -160,23 +160,21 @@ var gca_pantheon_quests = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_pantheon_quests.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_options, gca_tools */

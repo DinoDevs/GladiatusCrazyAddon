@@ -120,4 +120,4 @@ var tools = {
 };
 
 // ESlint defs
-/* global info, locale, manager */
+/* global info, locale, manager, tools */

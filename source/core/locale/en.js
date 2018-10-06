@@ -336,6 +336,7 @@ gca_languages["en"] = {
 			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (gladiatussimulator.tk)",
 			category_arena$sort_by_lvl : "Sort players in arena by level",
 			category_arena$highlight_guild_members : "Highlight players on other servers that may be guild members",
+			category_arena$target_list : "Players target list",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Market

@@ -98,8 +98,7 @@ var gca_settings = {
 							data.select.style.width = "120px";
 							// Create a list of languages
 							var languages = [];
-							var lang;
-							for(lang in gca_languages){
+							for(let lang in gca_languages){
 								if(gca_languages.hasOwnProperty(lang)){
 									languages.push(lang);
 								}
@@ -112,7 +111,7 @@ var gca_settings = {
 							});
 							var option;
 							for (var i = 0; i < languages.length; i++) {
-								lang = languages[i];
+								let lang = languages[i];
 								option = document.createElement("option");
 								option.value = lang;
 								option.textContent = gca_languages[lang].name;
@@ -310,8 +309,7 @@ var gca_settings = {
 							data.select = document.createElement("select");
 							// Create a list of languages
 							let durations = [ gca_locale.get("settings",'do_not_show'), gca_locale.get("settings",'show_as')+' %', gca_locale.get("settings",'show_as')+' ⚒'];//●
-							for (i = 0; i < durations.length; i++) {
-								let lang = durations[i];
+							for (let i = 0; i < durations.length; i++) {
 								let option = document.createElement("option");
 								option.value = i;
 								option.textContent = durations[i];
@@ -491,7 +489,9 @@ var gca_settings = {
 				// Sort players by level
 				"sort_by_lvl" : true,
 				// Highlight guild members on other servers
-				"highlight_guild_members" : true
+				"highlight_guild_members" : true,
+				// Players target list
+				"target_list" : true
 			},
 			
 			// Magus
@@ -520,8 +520,7 @@ var gca_settings = {
 							data.select = document.createElement("select");
 							// Create a list of languages
 							let durations = ['2h','8h','24h','48h'];
-							for (i = 0; i < durations.length; i++) {
-								let lang = durations[i];
+							for (let i = 0; i < durations.length; i++) {
 								let option = document.createElement("option");
 								option.value = i;
 								option.textContent = durations[i];
@@ -818,9 +817,9 @@ var gca_settings = {
 								this.scheme[category][label] = this.class.range(locale, _min, _step, _max, _scale, _category, _label, _db);
 								break;
 							case "custom" :
-								let _dom = this.scheme[category][label].dom;
+								var _dom = this.scheme[category][label].dom;
 								if(!_dom) _dom = 0;
-								let _save = this.scheme[category][label].save;
+								var _save = this.scheme[category][label].save;
 								if(!_save) _save = 0;
 								this.scheme[category][label] = this.class.custom(
 									gca_locale.get("settings", "category_" + category + "$" + label),
@@ -890,9 +889,9 @@ var gca_settings = {
 								);
 								break;
 							case "custom" :
-								let _dom = this.scheme[category][label].dom;
+								var _dom = this.scheme[category][label].dom;
 								if(!_dom) _dom = 0;
-								let _save = this.scheme[category][label].save;
+								var _save = this.scheme[category][label].save;
 								if(!_save) _save = 0;
 								this.scheme[category][label] = this.class.custom(
 									gca_locale.get("settings", "category_" + category + "$" + label),
@@ -1058,7 +1057,7 @@ var gca_settings = {
 				save_button : true
 			};
 			if (scheme.hasOwnProperty("__scheme")) {
-				for (option in scheme["__scheme"]) {
+				for (let option in scheme["__scheme"]) {
 					if (scheme["__scheme"].hasOwnProperty(option) && scheme_options.hasOwnProperty(option)) {
 						scheme_options[option] = scheme["__scheme"][option];
 					}
@@ -1160,7 +1159,7 @@ var gca_settings = {
 				item.data.false.name = id;
 				item.data.false.value = "false";
 				select.appendChild(item.data.false);
-				var label = document.createElement('label');
+				label = document.createElement('label');
 				label.setAttribute('for', id + "__false");
 				label.textContent = "Off";
 				select.appendChild(label);
@@ -1560,14 +1559,14 @@ var gca_settings = {
 			let settings = {data : {}};
 
 			// For each category
-			for (category in gca_options.data) {
+			for (let category in gca_options.data) {
 				if (gca_options.data.hasOwnProperty(category)) {
 					// If category exist in imported data
 					if (settings_json.data.hasOwnProperty(category)) {
 						settings.data[category] = {};
 
 						// For each item in category
-						for (item in gca_options.data[category]) {
+						for (let item in gca_options.data[category]) {
 							if (gca_options.data[category].hasOwnProperty(item)) {
 								
 								// If item exist in imported data
@@ -1661,25 +1660,22 @@ var gca_settings = {
 
 };
 
+// Onload Handler
 (function(){
-	// Pre Inject
-	gca_settings.preinject();
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_settings.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	gca_settings.preinject();
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca, gca_data, gca_data_manager, gca_getPage, gca_languages, gca_locale, gca_notifications, gca_options, gca_section */

@@ -1299,5 +1299,5 @@ var gca_tools = {
 };
 
 // ESlint defs
-/* global gca, gca_audio, gca_build, gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_resources, gca_section, gca_tools */
+/* global gca_getPage, gca_locale, gca_resources, gca_tools */
 /* global jQuery */

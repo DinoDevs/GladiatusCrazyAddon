@@ -320,13 +320,16 @@ var gca_global = {
 
 				// Display Healing Pot
 				(gca_options.bool("global","extended_hp_xp_info_potion") && 
-					this.life_potion_shortcut.create());
+					this.life_potion_shortcut.create(this));
 			},
 
 			// Life Potion Shortcut
 			life_potion_shortcut : {
 				// Create interface
-				create : function(){
+				create : function(extended_hp_xp){
+					// Save parent instance
+					this.extended_hp_xp = extended_hp_xp;
+
 					// Create Healing Pot button
 					var link = document.createElement('a');
 					link.id = "header_life_pot";
@@ -368,13 +371,13 @@ var gca_global = {
 
 				usePotion : function(potions, life){
 					// Check if life is full
-					if(life[0]){
+					if (life[0]) {
 						this.usageSet(false);
 						// Report Error
 						gca_notifications.warning( JSON.parse(document.getElementById('header_values_hp_bar').dataset.tooltip)[0][0][0][0] + " 100%" );
 						return;
 					}
-					if(potions == 0){
+					if (potions == 0) {
 						this.usageSet(false);
 						gca_notifications.error(
 							gca_locale.get("global", "life_potion_left", {number:0})
@@ -382,16 +385,12 @@ var gca_global = {
 						return;
 					}
 
-					// Save scope
-					var that = this;
-
 					// Use Potion
-					var self = this;
-					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventoryActivate","feature":"18","token":potions}), function(content){
+					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventoryActivate","feature":"18","token":potions}), (content) => {
 						// Get life info
-						var life = that.parseLifeFromHtml(content);
+						var life = this.parseLifeFromHtml(content);
 
-						self.usageSet(false);
+						this.usageSet(false);
 
 						// Report success
 						gca_notifications.success(
@@ -399,11 +398,11 @@ var gca_global = {
 							" (" + (potions-1) + " " + gca_locale.get("global", "life_potion_left", {number: potions-1}) + ")"
 						);
 						// Update HP
-						gca_global.display.extended_hp_xp.updateLife(life[1], life[2]);
+						this.extended_hp_xp.updateLife(life[1], life[2]);
 					})
 					// If Request Failed
-					.fail(function(){
-						self.usageSet(false);
+					.fail(() => {
+						this.usageSet(false);
 						// Report Error
 						gca_notifications.error(gca_locale.get("general", "error"));
 					});
@@ -411,22 +410,17 @@ var gca_global = {
 
 				// Get Potion Number
 				getPotionsNumber : function(callback){
-					var that = this;
 					// Load premium inventory page
-					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventory"}), function(content){
+					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventory"}), (content) => {
 						// Match potion number
 						var potions = content.match(/document\.location\.href='index\.php\?mod=premium&submod=inventoryActivate&feature=18&token=(\d+)&sh=/);
-						if(potions){
-							potions = parseInt(potions[1]);
-						}else{
-							potions = 0;
-						}
+						potions = potions ? parseInt(potions[1], 10) : 0;
 
 						// Get life info
-						var life = that.parseLifeFromHtml(content);
+						var life = this.parseLifeFromHtml(content);
 
 						// Update HP
-						gca_global.display.extended_hp_xp.updateLife(life[1],life[2]);
+						this.extended_hp_xp.updateLife(life[1],life[2]);
 
 						// Return result
 						callback(potions, life);
@@ -438,9 +432,7 @@ var gca_global = {
 					var life = html.match(/<div\s+id="header_values_hp_bar"\s+class="header_values_bar"\s+data-max-value="(\d+)"\s+data-value="(\d+)"\s+data-regen-per-hour="(\d+)"/m);
 
 					// If not found
-					if(!life){
-						life = [0, 0, 0];
-					}
+					if(!life) life = [0, 0, 0];
 
 					var info = [parseInt(life[1]), parseInt(life[2]), parseInt(life[3])];
 					// Push infrond true/false if life is full/notfull
@@ -455,7 +447,7 @@ var gca_global = {
 			updateLife : function(hp, maxhp){
 				var div;
 				// Update HP info
-				if(document.getElementById('header_values_hp_points')){
+				if (document.getElementById('header_values_hp_points')) {
 					div = document.getElementById('header_values_hp_points');
 					div.textContent = "";
 					var text = document.createElement('span');
@@ -469,24 +461,22 @@ var gca_global = {
 				// Stop HP bar's animation
 				jQuery(div).stop();
 				// Update HP bar
-				div.style.width = Math.round((hp*100)/maxhp) + "%";
+				div.style.width = Math.round((hp * 100) / maxhp) + "%";
 				// Update Tooltip
 				div = document.getElementById('header_values_hp_bar');
-				if(div){
+				if (div) {
 					var lifeTooltip = JSON.parse(div.dataset.tooltip);
 					lifeTooltip[0][0][0][1] = hp + " / " + maxhp;
 					// Remove Timer for Full Life
-					if(lifeTooltip[0].length >= 14){
+					if (lifeTooltip[0].length >= 14) {
 						lifeTooltip[0].pop();
 					}
 					gca_tools.setTooltip(div, JSON.stringify(lifeTooltip));
 					// Update Timer for Full Life
-					if(gca_options.bool("global","hp_timer_for_full_life")){
+					if (gca_options.bool("global","hp_timer_for_full_life")) {
 						this.timerForFullLife();
 					}
 				}
-
-				return;
 			},
 
 			// Timer for full life
@@ -715,8 +705,8 @@ var gca_global = {
 							input.id = "donate_all_button";
 							input.className = "button1";
 							input.value = gca_locale.get("global", "donate_gold_all_gold");
-							input.addEventListener('click', function(){
-								gca_global.display.shortcuts_bar.donate_gold.check();
+							input.addEventListener('click', () => {
+								this.donate_gold.check();
 							}, false);
 							div.appendChild(input);
 							instant_donate_gold.appendChild(div);
@@ -814,8 +804,8 @@ var gca_global = {
 					// Refresh button
 					link = document.createElement('a');
 					link.className = "gca-icon refresh-icon";
-					link.addEventListener('click', function(){
-						gca_global.display.shortcuts_bar.playerStats.refresh();
+					link.addEventListener('click', () => {
+						this.playerStats.refresh();
 					}, false);
 					table_wrapper.appendChild(link);
 					// Refresh spacer
@@ -833,14 +823,14 @@ var gca_global = {
 					button.appendChild(show_stats);
 					shortcutsBar.appendChild(button);
 
-					link.addEventListener('click', function(){
-						gca_global.display.shortcuts_bar.playerStats.create();
+					link.addEventListener('click', () => {
+						this.playerStats.create();
 						jQuery(show_stats).fadeToggle();
 					}, false);
 				}
 				
 				// Display Online Players
-				if(activeButtons.indexOf("onl") >= 0){
+				if (activeButtons.indexOf("onl") >= 0) {
 					button = document.createElement('div');
 					button.className = "icon-out";
 					link = document.createElement('a');
@@ -849,8 +839,8 @@ var gca_global = {
 					button.appendChild(link);
 					shortcutsBar.appendChild(button);
 
-					button.addEventListener('click', function(){
-						gca_global.display.shortcuts_bar.online_friends.open();
+					button.addEventListener('click', () => {
+						this.online_friends.open();
 					}, false);
 				}
 
@@ -902,14 +892,12 @@ var gca_global = {
 						td.setAttribute("width", "50%");
 						div = document.createElement('div');
 						div.id = "online_guild_friends";
-						//div.style.textAlign = "left";
 						td.appendChild(div);
 						tr.appendChild(td);
 						td = document.createElement('td');
 						td.setAttribute("width", "50%");
 						div = document.createElement('div');
 						div.id = "online_family_friends";
-						//div.style.textAlign = "left";
 						td.appendChild(div);
 						tr.appendChild(td);
 						table.appendChild(tr);
@@ -929,8 +917,8 @@ var gca_global = {
 						button.style.marginRight = "10px";
 						dialog.body.appendChild(button);
 
-						button.addEventListener('click', function(){
-							gca_global.display.shortcuts_bar.online_friends.refresh();
+						button.addEventListener('click', () => {
+							this.refresh();
 						}, false);
 
 						// Add close Button
@@ -953,10 +941,6 @@ var gca_global = {
 
 				// Refresh
 				refresh : function(){
-					// If dialog is open
-					if(!this.dialog || !document.getElementById('online_guild_friends') || !document.getElementById('online_family_friends'))
-						return;
-
 					// Clear Lists
 					document.getElementById('online_guild_friends').textContent = "";
 					document.getElementById('online_family_friends').textContent = "";
@@ -1317,7 +1301,7 @@ var gca_global = {
 						gca_global.scripts.chartScript.create(chartFunction);
 					}
 					// Stats not saved
-					else{
+					else {
 						tr = document.createElement("tr");
 						td = document.createElement("td");
 						td.textContent = gca_locale.get("general", "no_data");
@@ -1488,13 +1472,13 @@ var gca_global = {
 			// Get Status
 			getStatus : function(){
 				// Get gladiator auction status
-				jQuery.get(gca_getPage.link({"mod":"auction","itemLevel":"999"}), function(content){
-					gca_global.display.auction_status_bar.parseStatus("gladiator", content);
+				jQuery.get(gca_getPage.link({"mod":"auction","itemLevel":"999","itemQuality":"2"}), (content) => {
+					this.parseStatus("gladiator", content);
 				});
 
 				// Get mercenary auction status
-				jQuery.get(gca_getPage.link({"mod":"auction","ttype":"3","itemLevel":"999"}), function(content){
-					gca_global.display.auction_status_bar.parseStatus("mercenary", content);
+				jQuery.get(gca_getPage.link({"mod":"auction","ttype":"3","itemLevel":"999","itemQuality":"2"}), (content) => {
+					this.parseStatus("mercenary", content);
 				});
 			},
 
@@ -1505,7 +1489,7 @@ var gca_global = {
 				var auctionStatus = content.match(/<span\s*class="description_span_right"><b>([^<]+)<\/b><\/span>/);
 
 				// Get ui
-				var statusUI = document.getElementById("auction_status_"+type);
+				var statusUI = document.getElementById("auction_status_" + type);
 
 				// Check for error
 				if(!auctionName || !auctionStatus){
@@ -1627,8 +1611,8 @@ var gca_global = {
 				this.elements.show_premium_days.dom = document.getElementById('show_premium_days');
 				
 				// Attack a scroll event
-				window.addEventListener("scroll",function(){
-					gca_global.display.top_fixed_bar.onscroll();
+				window.addEventListener("scroll", () => {
+					this.onscroll();
 				}, false);
 				// Fire scroll event
 				this.onscroll();
@@ -2029,8 +2013,8 @@ var gca_global = {
 			inject : function(){
 				// if reports wait for update event
 				if(gca_section.mod == 'reports' && (gca_section.submod == 'showArena' || gca_section.submod == 'showCircusTurma' || gca_getPage.parameter('t') == '2' || gca_getPage.parameter('t') == '3') && document.getElementById('content').getElementsByClassName('report_statistic')){
-					gca_tools.event.addListener("arena-info-update", function(){
-						gca_global.display.attacked_timers.display();
+					gca_tools.event.addListener("arena-info-update", () => {
+						this.display();
 					});
 					return;
 				}
@@ -2078,29 +2062,25 @@ var gca_global = {
 				this.timer.arena_xs = gca_tools.time.server() - lastAttacked.arena_xs;
 				this.timer.grouparena_xs = gca_tools.time.server() - lastAttacked.grouparena_xs;
 
-				this.countdown_interval = setInterval(function(){
-					gca_global.display.attacked_timers.countdown();
+				// Timers countdowns
+				this.countdown_started = new Date().getTime();
+				setInterval(() => {
+					this.countdown();
 				}, 1000);
 				this.countdown();
 			},
 
 			// Count Down
-			countdown_interval : null,
+			countdown_started : null,
 			countdown : function(){
-				// Arena
-				this.arenaTimeElement.arena.textContent = gca_tools.time.msToHMS_String((this.timer.arena > 0) ? this.timer.arena : 0);
-				// Grouparena
-				this.arenaTimeElement.grouparena.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena > 0) ? this.timer.grouparena : 0);
-				// Arena xs
-				this.arenaTimeElement.arena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.arena_xs > 0) ? this.timer.arena_xs : 0);
-				// Grouparena xs
-				this.arenaTimeElement.grouparena_xs.textContent = gca_tools.time.msToHMS_String((this.timer.grouparena_xs > 0) ? this.timer.grouparena_xs : 0);
-				
-				// 1 sec passed
-				this.timer.arena = this.timer.arena + 1000;
-				this.timer.grouparena = this.timer.grouparena + 1000;
-				this.timer.arena_xs = this.timer.arena_xs + 1000;
-				this.timer.grouparena_xs = this.timer.grouparena_xs + 1000;
+				let passed = new Date().getTime() - this.countdown_started;
+				this.arenaTimeElement.arena.textContent = this.countdown_msToHMS(this.timer.arena + passed);
+				this.arenaTimeElement.grouparena.textContent = this.countdown_msToHMS(this.timer.grouparena + passed);
+				this.arenaTimeElement.arena_xs.textContent = this.countdown_msToHMS(this.timer.arena_xs + passed);
+				this.arenaTimeElement.grouparena_xs.textContent = this.countdown_msToHMS(this.timer.grouparena_xs + passed);
+			},
+			countdown_msToHMS : function(timer) {
+				return gca_tools.time.msToHMS_String(timer > 0 ? timer : 0);
 			},
 
 			// Create timers ui
@@ -2178,15 +2158,14 @@ var gca_global = {
 		// Timer for the Quests
 		quests_timer : {
 			inject : function(){
-				// if Quests wait for update event
-				if(gca_section.mod == 'quests'){
-					gca_tools.event.addListener("quest-info-update", function(){
-						gca_global.display.quests_timer.display();
-					});
-					return;
-				}
 				// Do not run while traveling
-				else if (gca_global.isTraveling){
+				if (gca_global.isTraveling) return;
+				
+				// if Quests wait for update event
+				if (gca_section.mod == 'quests') {
+					gca_tools.event.addListener("quest-info-update", () => {
+						this.display();
+					});
 					return;
 				}
 
@@ -2256,23 +2235,27 @@ var gca_global = {
 					}
 				}
 				// Time has NOT finished
-				else{
+				else {
 					// Refresh the countdown
-					this.countdown_interval = setInterval(function(){
-						gca_global.display.quests_timer.countdown();
-					}, 1000);
+					this.countdown_started = new Date().getTime();
+					this.countdown_interval = setInterval(() => {
+						this.countdown();
+					}, 500);
 					this.countdown();
 				}
 			},
 
 			// Count Down
+			countdown_started : null,
 			countdown_interval : null,
 			countdown : function(){
+				var timer = this.timer - (new Date().getTime() - this.countdown_started);
 				// If ready
-				if(this.timer < 0){
-					if(this.quests_free_slots == 0){
+				if (timer < 0) {
+					if (this.quests_free_slots == 0) {
 						this.questTimeElement.textContent = "(" + gca_locale.get("global", "quest_full") + ")";
-					}else{
+					}
+					else {
 						this.questTimeElement.textContent = "(" + gca_locale.get("global", "quest_new") + ")";
 					}
 					this.questTimeElement.style.color = "yellow";
@@ -2283,7 +2266,7 @@ var gca_global = {
 				}
 
 				// Convert milliseconds to Minutes:Seconds
-				var date = new Date(this.timer);
+				var date = new Date(timer);
 				var minutes = date.getMinutes();
 				var seconds = date.getSeconds();
 				// Format to 01:04
@@ -2292,9 +2275,6 @@ var gca_global = {
 
 				// Display the values
 				this.questTimeElement.textContent = '(' + minutes + ':' + seconds + ')';
-				
-				// 1 sec passed
-				this.timer = this.timer - 1000;
 			}
 		},
 
@@ -2303,15 +2283,14 @@ var gca_global = {
 			// Craps Event Timer (Dice roll event)
 			craps_timer : {
 				inject : function(){
+					// Do not run while traveling
+					if (gca_global.isTraveling) return;
+
 					// if Craps wait for update event
 					if(gca_section.mod == 'craps'){
-						gca_tools.event.addListener("craps-info-update", function(){
-							gca_global.display.event.craps_timer.display();
+						gca_tools.event.addListener("craps-info-update", () => {
+							this.display();
 						});
-						return;
-					}
-					// Do not run while traveling
-					else if (gca_global.isTraveling){
 						return;
 					}
 
@@ -2353,21 +2332,24 @@ var gca_global = {
 						}
 					}
 					// Time has NOT finished
-					else{
+					else {
 						// Refresh the countdown
-						this.countdown_interval = setInterval(function(){
-							gca_global.display.event.craps_timer.countdown();
-						}, 1000);
+						this.countdown_started = new Date().getTime();
+						this.countdown_interval = setInterval(() => {
+							this.countdown();
+						}, 500);
 						this.countdown();
 					}
 				},
 
 				// Count Down
+				countdown_started : null,
 				countdown_interval : null,
 				countdown : function(){
+					var timer = this.timer - (new Date().getTime() - this.countdown_started);
 					// If ready
-					if(this.timer < 0){
-						if(this.craps_free_toss == 0 && gca_data.section.get("timers", 'craps_last_date', 0) == gca_tools.time.serverDateString()){
+					if(timer < 0){
+						if (this.craps_free_toss == 0 && gca_data.section.get("timers", 'craps_last_date', 0) == gca_tools.time.serverDateString()) {
 							this.crapsTimeElement.textContent = "(" + gca_locale.get("global", "quest_new") + ")";
 						}
 						else{
@@ -2379,7 +2361,7 @@ var gca_global = {
 					}
 
 					// Convert milliseconds to Minutes:Seconds
-					var date = new Date(this.timer);
+					var date = new Date(timer);
 					var minutes = date.getMinutes();
 					var seconds = date.getSeconds();
 					// Format to 01:04
@@ -2388,22 +2370,6 @@ var gca_global = {
 
 					// Display the values
 					this.crapsTimeElement.textContent = '(' + minutes + ':' + seconds + ')';
-					
-					// 1 sec passed
-					this.timer = this.timer - 1000;
-				},
-
-				restart : function(){
-					// Clear interval
-					clearInterval(this.countdown_interval);
-					// If timer exist remove it :P
-					if(this.crapsTimeElement){
-						this.crapsTimeElement .parentNode.removeChild(this.crapsTimeElement );
-					}
-					this.crapsTimeElement = null;
-
-					// Restart
-					this.display();
 				}
 			},
 
@@ -2411,15 +2377,14 @@ var gca_global = {
 			// Server Quest Event Timer
 			server_quest_timer : {
 				inject : function(){
-					// if Craps wait for update event
-					if(gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc')))){
-						gca_tools.event.addListener("server_quest-info-update", function(){
-							gca_global.display.event.server_quest_timer.display();
-						});
-						return;
-					}
 					// Do not run while traveling
-					else if (gca_global.isTraveling){
+					if (gca_global.isTraveling) return;
+
+					// if Craps wait for update event
+					if (gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc')))) {
+						gca_tools.event.addListener("server_quest-info-update", () => {
+							this.display();
+						});
 						return;
 					}
 
@@ -2488,24 +2453,26 @@ var gca_global = {
 						}
 					}
 					// Time has NOT finished
-					else{
+					else {
 						// Refresh the countdown
-						this.countdown_interval = setInterval(function(){
-							gca_global.display.event.server_quest_timer.countdown();
-						}, 1000);
+						this.countdown_started = new Date().getTime();
+						this.countdown_interval = setInterval(() => {
+							this.countdown();
+						}, 500);
 						this.countdown();
 					}
 				},
 
 				// Count Down
+				countdown_started : null,
 				countdown_interval : null,
 				countdown : function(){
-					
+					var timer = this.timer - (new Date().getTime() - this.countdown_started);
 					// If ready
-					if(this.timer < 0){
-						if(this.points != 'N/A'){
+					if(timer < 0){
+						if (this.points != 'N/A') {
 							this.serverQuestPointsElement.textContent = this.points;
-						}else{
+						} else {
 							this.serverQuestPointsElement.textContent = "";
 						}
 						this.serverQuestTimeElement.textContent = "";
@@ -2515,7 +2482,7 @@ var gca_global = {
 					}
 
 					// Convert milliseconds to Minutes:Seconds
-					var date = new Date(this.timer);
+					var date = new Date(timer);
 					var minutes = date.getMinutes();
 					var seconds = date.getSeconds();
 					// Format to 01:04
@@ -2524,22 +2491,6 @@ var gca_global = {
 
 					// Display the values
 					this.serverQuestTimeElement.textContent = '- ' + minutes + ':' + seconds + '';
-					
-					// 1 sec passed
-					this.timer = this.timer - 1000;
-				},
-
-				restart : function(){
-					// Clear interval
-					clearInterval(this.countdown_interval);
-					// If timer exist remove it :P
-					if(this.serverQuestTimeElement){
-						this.serverQuestTimeElement .parentNode.removeChild(this.serverQuestTimeElement );
-					}
-					this.serverQuestTimeElement = null;
-
-					// Restart
-					this.display();
 				}
 			}
 		},
@@ -3034,573 +2985,6 @@ var gca_global = {
 			itemForgeInfo : {
 
 				init : function(){
-					// Show durability
-					//if (gca_data.section.get("global", "show_durability", 0) != 0)
-					//	document.getElementById('content').className += ' show-item-durability';
-					
-					this.data = {
-						prefix : {
-							"1" : {35:21},
-							"2" : null,
-							"3" : {13:5,17:10,18:2},
-							"4" : null,
-							"5" : null,
-							"6" : {9:4,15:4,17:10},
-							"7" : {7:5,35:22},
-							"8" : null,
-							"9" : null,
-							"10" : {9:12,13:1,17:3},
-							"11" : null,
-							"12" : null,
-							"13" : {9:18,20:1},
-							"14" : {9:4,13:2,17:12,18:2},
-							"15" : null,
-							"16" : {9:14,15:2},
-							"17" : {13:1,15:2,17:14},
-							"18" : null,
-							"19" : null,
-							"20" : null,
-							"21" : {15:4,17:14,20:1},
-							"22" : {9:9,13:2,15:2},
-							"23" : {9:7,18:2,20:5},
-							"24" : {13:2,15:5,17:8,18:2},
-							"25" : null,
-							"26" : null,
-							"27" : {13:2,15:2,17:12,18:1},
-							"28" : {9:19},
-							"29" : {13:2,15:2,17:14,18:1},
-							"30" : {9:8,15:11},
-							"31" : {9:9,13:2,15:2},
-							"32" : {15:3,17:7},
-							"33" : {9:10,15:1,20:2},
-							"34" : {13:1,17:14,18:1},
-							"35" : {9:10},
-							"36" : {13:1,17:8,18:1},
-							"37" : {13:4,15:8,18:4},
-							"38" : null,
-							"39" : {9:1,15:1,17:11,18:1},
-							"40" : {9:9,13:2,15:2,18:4,20:2},
-							"41" : {9:1,17:9,20:7},
-							"42" : {9:18,15:1},
-							"43" : null,
-							"44" : {13:2,15:2,17:13,18:2},
-							"45" : {9:12,15:2,17:4,20:1},
-							"46" : {29:1,35:20},
-							"47" : {9:6,13:2,17:5,18:2,20:6},
-							"48" : {9:5,13:5,20:5},
-							"49" : {9:5,13:7,18:8},
-							"50" : {7:4,21:3,35:13,40:4},
-							"51" : {7:2,21:3,35:15,40:5},
-							"52" : {7:5,21:6,35:9,40:10},
-							"53" : {26:4,36:6,38:6,49:19},
-							"54" : {26:8,36:18,38:2,42:2,49:12},
-							"55" : {26:5,38:5,42:2,49:35},
-							"56" : null,
-							"57" : null,
-							"58" : null,
-							"59" : null,
-							"60" : {15:3,20:7},
-							"61" : {9:1,15:9,18:2},
-							"62" : {9:1,15:2,18:4,20:5},
-							"63" : null,
-							"64" : {15:13,20:1},
-							"65" : {9:2,13:11,15:1,20:1},
-							"66" : null,
-							"67" : null,
-							"68" : {9:2,13:11,15:1,18:3,20:1},
-							"69" : {15:1,18:12,20:4},
-							"70" : {9:2,13:1,15:13,20:2},
-							"71" : {9:1,13:15,15:1,20:4},
-							"72" : null,
-							"73" : {15:16,20:4},
-							"74" : {7:16,29:3,40:2},
-							"75" : {7:2,21:13,29:6,35:1},
-							"76" : {35:1,40:22},
-							"77" : {7:1,21:8,29:9,35:5,40:1},
-							"78" : {7:24},
-							"79" : {21:3,35:1,40:20},
-							"80" : {7:12,29:2,35:1,40:9},
-							"81" : {7:1,21:18,29:7,35:1,40:1},
-							"82" : {21:5,40:22},
-							"83" : {7:20,29:5,35:1,40:2},
-							"84" : {7:3,21:17,29:7,35:1},
-							"85" : {35:10,40:19},
-							"86" : {7:21,29:5,35:3,40:1},
-							"87" : null,
-							"88" : null,
-							"89" : {7:23,29:5,35:3},
-							"90" : null,
-							"91" : {11:2,26:31},
-							"92" : {11:13,42:12,49:9},
-							"93" : {11:11,26:1,36:3,38:20},
-							"94" : {11:1,26:32,49:3},
-							"95" : {11:1,26:3,42:30,49:3},
-							"96" : {11:12,26:1,36:1,38:21,49:4},
-							"97" : null,
-							"98" : {11:13,26:6,38:10,49:9},
-							"99" : {36:40},
-							"100" : null,
-							"101" : {11:17,38:13,49:11},
-							"102" : {26:13,49:29},
-							"103" : {26:29,38:10,42:1,49:1},
-							"104" : {11:6,42:33,49:4},
-							"105" : {11:21,36:23},
-							"106" : {11:10,26:35},
-							"107" : {11:7,42:34,49:4},
-							"108" : {11:14,26:1,36:7,38:24},
-							"109" : {11:6,26:20,38:9,49:12},
-							"110" : null,
-							"111" : null,
-							"112" : null,
-							"113" : null,
-							"114" : {11:11,36:4,38:21,49:12},
-							"115" : {26:48},
-							"116" : {11:2,36:17,38:7,42:9,49:13},
-							"117" : null,
-							"118" : {10:1,22:22,45:31},
-							"119" : null,
-							"120" : {38:10,42:7,49:32},
-							"121" : null,
-							"122" : {11:3,26:1,36:4,38:27,42:12,49:2},
-							"123" : null,
-							"124" : {27:4,45:42,50:4},
-							"125" : null,
-							"126" : null,
-							"127" : null,
-							"128" : null,
-							"129" : null,
-							"130" : {10:8,22:31,27:4,45:8},
-							"131" : {10:34,22:12,27:1,47:4,50:1},
-							"132" : null,
-							"133" : null,
-							"134" : null,
-							"135" : {22:48,27:2},
-							"136" : null,
-							"137" : null,
-							"138" : {10:5,22:21,27:14,45:6,50:6},
-							"139" : {10:1,27:52},
-							"140" : null,
-							"141" : null,
-							"142" : {10:4,22:18,45:30,50:3},
-							"143" : null,
-							"144" : null,
-							"145" : null,
-							"146" : {22:36,27:3,45:17},
-							"147" : null,
-							"148" : {22:13,27:4,45:30,47:8},
-							"149" : null,
-							"150" : {10:23,22:14,27:2,45:17,50:2},
-							"151" : {10:24,22:10,27:4,47:13,50:7},
-							"152" : null,
-							"153" : null,
-							"154" : null,
-							"155" : null,
-							"156" : null,
-							"157" : null,
-							"158" : null,
-							"159" : null,
-							"160" : null,
-						},
-						base : {
-							"1-1" : {1:2},
-							"1-2" : {3:1,4:1},
-							"1-3" : {3:1,4:1},
-							"1-4" : {1:1,4:2},
-							"1-5" : {3:1,4:3},
-							"1-6" : {3:2,4:2},
-							"1-7" : {2:2,3:1,4:3},
-							"1-8" : {2:1,3:1,4:3},
-							"1-9" : {1:3,3:1,4:2},
-							"1-10" : {1:1,2:2,3:1,4:3},
-							"1-11" : {1:3,3:1,4:3},
-							"1-12" : {1:4,3:1,4:3},
-							"1-13" : {3:1,4:2},
-							"1-14" : {1:2,2:2,3:1,4:4},
-							"1-15" : {2:3,4:7},
-							"1-16" : {2:3,3:1,4:7},
-							"1-17" : {2:5,4:5},
-							"1-18" : {1:7,3:1,4:3},
-							"1-19" : {1:3,4:4},
-							"1-20" : {1:5,4:4},
-							"2-1" : {1:2},
-							"2-2" : {1:2,4:1},
-							"2-3" : {1:2,4:2},
-							"2-4" : {3:5},
-							"2-5" : {2:3,4:4},
-							"2-6" : {2:3,4:4,48:1},
-							"2-7" : {2:2,3:2,4:5},
-							"2-8" : {2:2,3:2,4:6},
-							"2-9" : {2:3,3:3,4:6},
-							"2-10" : {4:12},
-							"2-11" : {1:2,4:2},
-							"2-12" : {1:4,4:2},
-							"3-1" : {3:2},
-							"3-2" : {2:1,3:1},
-							"3-3" : {2:1,3:2},
-							"3-4" : {2:2,3:1,4:2},
-							"3-5" : {4:5},
-							"3-6" : {2:5,4:2},
-							"3-7" : {2:3,4:5},
-							"3-8" : {2:3,4:6},
-							"3-9" : {2:2,3:2,4:7},
-							"3-10" : {2:2,3:2,4:7},
-							"3-11" : {3:12},
-							"3-12" : {3:3,4:2},
-							"4-1" : {3:2},
-							"4-2" : {4:2},
-							"4-3" : {2:1,4:2},
-							"4-4" : {2:1,4:2},
-							"4-5" : {2:1,4:3},
-							"4-6" : {2:3,4:3},
-							"4-7" : {3:3,4:4},
-							"4-8" : {2:6,4:3},
-							"4-9" : {2:7,4:5},
-							"4-10" : {2:7,3:1,4:4},
-							"4-11" : {2:5,3:1},
-							"4-12" : {2:7,4:3},
-							"4-13" : {4:9},
-							"5-1" : {3:2},
-							"5-2" : {2:2,3:1},
-							"5-3" : {2:2,3:2},
-							"5-4" : {3:5},
-							"5-5" : {2:3,3:4},
-							"5-6" : {3:5,4:3},
-							"5-7" : {2:1,3:5,4:3},
-							"5-8" : {3:6,4:4},
-							"5-9" : {3:7,4:5},
-							"6-1" : {2:2},
-							"6-2" : {2:2},
-							"6-3" : {2:2},
-							"6-4" : {2:2},
-							"6-5" : {2:2},
-							"6-6" : {2:2},
-							"6-7" : {2:2},
-							"6-8" : {2:2},
-							"8-1" : {1:1,3:1},
-							"8-2" : {3:3},
-							"8-3" : {3:4},
-							"8-4" : {2:1,3:4},
-							"8-5" : {2:3,3:3},
-							"8-6" : {2:3,3:4},
-							"8-7" : {3:9},
-							"8-8" : {1:2,3:5,4:3},
-							"8-9" : {2:5,3:6,4:1},
-							"8-10" : {3:7,4:6},
-							"9-1" : {2:2},
-							"9-2" : {2:2},
-							"9-3" : {2:2},
-							"9-4" : {2:2},
-							"9-5" : {2:2},
-							"9-6" : {2:2},
-							"9-7" : {2:2},
-							"9-8" : {2:2},
-							"9-9" : {2:2},
-							"9-10" : {2:2}
-						},
-						suffix : {
-							"1" : null,
-							"2" : {25:3,31:3},
-							"3" : {6:4,31:6},
-							"4" : {6:9},
-							"5" : {16:3,31:3},
-							"6" : {5:4,16:2},
-							"7" : null,
-							"8" : null,
-							"9" : {37:11,39:1},
-							"10" : null,
-							"11" : null,
-							"12" : null,
-							"13" : {5:4,6:2,25:2},
-							"14" : null,
-							"15" : {23:9,39:3},
-							"16" : {5:6},
-							"17" : {31:7},
-							"18" : null,
-							"19" : null,
-							"20" : {6:6,16:3,31:1},
-							"21" : {25:2,31:4},
-							"22" : null,
-							"23" : {23:15},
-							"24" : null,
-							"25" : null,
-							"26" : {5:5,16:4},
-							"27" : null,
-							"28" : null,
-							"29" : {16:3,25:3,31:4},
-							"30" : {5:4,25:6},
-							"31" : {6:12},
-							"32" : {23:7,37:1,39:4},
-							"33" : {37:12},
-							"34" : null,
-							"35" : {5:9,25:1},
-							"36" : null,
-							"37" : {16:6,31:5},
-							"38" : {5:2,6:2,16:2,25:2,31:2},
-							"39" : null,
-							"40" : {25:4,31:4},
-							"41" : null,
-							"42" : null,
-							"43" : null,
-							"44" : {23:1,24:11},
-							"45" : null,
-							"46" : {23:2,24:11},
-							"47" : {6:5,25:3,31:3},
-							"48" : {16:4,25:4},
-							"49" : {25:4,31:4},
-							"50" : {6:6,16:2,31:1},
-							"51" : {5:3,25:5},
-							"52" : null,
-							"53" : {16:3,25:2,31:2},
-							"54" : null,
-							"55" : {24:5,34:4,48:5},
-							"56" : {23:1,24:1,39:12},
-							"57" : null,
-							"58" : {23:2,37:4,39:6},
-							"59" : null,
-							"60" : null,
-							"61" : {6:9},
-							"62" : null,
-							"63" : {34:1,37:11},
-							"64" : null,
-							"65" : {37:6,39:6},
-							"66" : {23:1,24:11},
-							"67" : {5:7,6:2},
-							"68" : null,
-							"69" : {25:9},
-							"70" : {23:4,24:8},
-							"71" : null,
-							"72" : {5:4,6:4,25:2},
-							"73" : {6:6,14:2,16:2},
-							"74" : {23:4,24:3,34:2,48:3},
-							"75" : {23:2,24:4,37:7},
-							"76" : {28:8,32:2,46:14},
-							"77" : {19:7,30:12,41:2},
-							"78" : {23:3,24:1,39:7},
-							"79" : {5:2,14:5,31:2},
-							"80" : {23:3,34:1,39:7,48:1},
-							"81" : {5:1,6:4,14:3,25:1},
-							"82" : null,
-							"83" : {37:13},
-							"84" : {5:1,6:6,16:1,25:1},
-							"85" : null,
-							"86" : {6:3,14:5,16:1,25:1},
-							"87" : {23:1,34:1,37:10},
-							"88" : {14:4,16:3,31:3},
-							"89" : null,
-							"90" : {37:9,39:4},
-							"91" : {23:12},
-							"92" : {39:11,48:1},
-							"93" : {6:8,25:1},
-							"94" : null,
-							"95" : null,
-							"96" : {23:3,34:4,37:1,48:5},
-							"97" : {5:6,14:4,25:1},
-							"98" : {33:20},
-							"99" : {23:3,24:1,37:6,39:5},
-							"100" : null,
-							"101" : null,
-							"102" : null,
-							"103" : null,
-							"104" : null,
-							"105" : null,
-							"106" : null,
-							"107" : null,
-							"108" : null,
-							"109" : null,
-							"110" : {6:6},
-							"111" : {25:6},
-							"112" : null,
-							"113" : null,
-							"114" : {25:7},
-							"115" : {16:5,31:2},
-							"116" : {5:1,14:1,31:5},
-							"117" : {25:7},
-							"118" : {6:7},
-							"119" : null,
-							"120" : {25:8},
-							"121" : {5:2,16:6},
-							"122" : {14:8},
-							"123" : null,
-							"124" : {5:6,6:3},
-							"125" : null,
-							"126" : {25:9},
-							"127" : {5:7,6:1,16:1,31:1},
-							"128" : {6:3,14:6},
-							"129" : {25:10},
-							"130" : {5:2,6:1,16:8},
-							"131" : {14:10},
-							"132" : {25:10},
-							"133" : {5:2,16:7,25:1},
-							"134" : {6:10},
-							"135" : {6:1,25:9},
-							"136" : {5:2,6:1,16:8,25:1},
-							"137" : null,
-							"138" : null,
-							"139" : {6:5,31:7},
-							"140" : null,
-							"141" : null,
-							"142" : {5:8,6:4},
-							"143" : {39:12},
-							"144" : {23:12},
-							"145" : null,
-							"146" : {23:1,24:3,48:10},
-							"147" : {23:11,37:2},
-							"148" : {23:2,24:1,34:2,37:7},
-							"149" : {23:1,24:4,37:1,48:8},
-							"150" : null,
-							"151" : {23:2,37:10,48:2},
-							"152" : null,
-							"153" : {23:14},
-							"154" : {23:4,24:9,37:1},
-							"155" : {39:14},
-							"156" : null,
-							"157" : {23:1,24:2,34:11,37:1},
-							"158" : null,
-							"159" : {23:11,24:4},
-							"160" : {23:1,37:1,48:12},
-							"161" : null,
-							"162" : {23:15},
-							"163" : null,
-							"164" : null,
-							"165" : {23:16},
-							"166" : null,
-							"167" : {39:16},
-							"168" : null,
-							"169" : {24:10,37:6,48:2},
-							"170" : {23:5,37:12},
-							"171" : null,
-							"172" : null,
-							"173" : {37:1,39:16},
-							"174" : {23:17},
-							"175" : null,
-							"176" : {33:9,41:9},
-							"177" : null,
-							"178" : null,
-							"179" : null,
-							"180" : null,
-							"181" : null,
-							"182" : null,
-							"183" : null,
-							"184" : null,
-							"185" : {41:19},
-							"186" : null,
-							"187" : null,
-							"188" : null,
-							"189" : {41:20},
-							"190" : {12:18,33:1,41:2},
-							"191" : {30:20},
-							"192" : {33:1,41:19},
-							"193" : {19:11,33:9,52:1},
-							"194" : null,
-							"195" : null,
-							"196" : {12:15,19:4,33:1,41:2},
-							"197" : null,
-							"198" : null,
-							"199" : null,
-							"200" : null,
-							"201" : null,
-							"202" : null,
-							"203" : {19:7,30:1,33:1,41:2,52:14},
-							"204" : null,
-							"205" : {19:13,33:9,52:1},
-							"206" : null,
-							"207" : {41:23},
-							"208" : null,
-							"209" : null,
-							"210" : {28:9,43:5,46:6,51:6},
-							"211" : null,
-							"212" : null,
-							"213" : null,
-							"214" : null,
-							"215" : null,
-							"216" : null,
-							"217" : null,
-							"218" : {32:7,43:6,46:7,51:7},
-							"219" : null,
-							"220" : null,
-							"221" : {32:4,44:4,46:18},
-							"222" : null,
-							"223" : null,
-							"224" : {32:30},
-							"225" : null,
-							"226" : null,
-							"227" : null,
-							"228" : null,
-							"229" : null,
-							"230" : null,
-							"231" : null,
-							"232" : {46:22,51:2},
-							"233" : null,
-							"234" : null,
-							"235" : null,
-							"236" : null,
-							"237" : null,
-							"238" : null,
-							"239" : {32:1,43:13,44:2,46:4,51:6},
-							"240" : {28:18,32:4,43:2,44:7},
-							"241" : null,
-							"242" : null,
-							"243" : null,
-							"244" : null,
-							"245" : null,
-							"246" : null,
-							"247" : null,
-							"248" : null,
-							"249" : null,
-							"250" : null,
-							"251" : null,
-							"252" : null,
-							"253" : null,
-							"254" : null,
-							"255" : null,
-							"256" : null,
-							"257" : null,
-							"258" : null,
-							"259" : null,
-							"260" : null,
-							"261" : null,
-							"262" : null,
-							"263" : null,
-							"264" : null,
-							"265" : null,
-							"266" : null,
-							"267" : null,
-							"268" : null,
-							"269" : null,
-							"270" : null,
-							"271" : null,
-							"272" : null,
-							"273" : null,
-							"274" : null,
-							"275" : null,
-							"276" : null,
-							"277" : null,
-							"278" : null,
-							"279" : null,
-							"280" : null,
-							"281" : null,
-							"282" : null,
-							"283" : null,
-							"284" : null,
-							"285" : {32:6,43:2,44:27},
-							"286" : null,
-							"287" : null,
-							"288" : null,
-							"289" : null,
-							"290" : {53:38},
-							"291" : {53:27,56:6,59:8},
-							"292" : null,
-							"293" : {53:1,59:46},
-							"294" : null,
-							"295" : null,
-							"296" : null,
-							"297" : null,
-							"298" : null,
-							"299" : null,
-							"300" : null
-						}
-					};
-
 					var load = false;
 					
 					// If inventory exists
@@ -3686,40 +3070,43 @@ var gca_global = {
 
 					// Prefix
 					if (prefix > 0) {
-						info.push(['[Prefix]', '#ffffff']);
 						if (this.data.prefix[prefix]) {
+							info.push(['[Prefix](' + (this.data.prefix[prefix]['l'] >= 0 ? this.data.prefix[prefix]['l'] : '??') + ' lvl)' + prefix, '#ffffff']);
 							for (let mat in this.data.prefix[prefix]) {
-								if (this.data.prefix[prefix].hasOwnProperty(mat))
+								if (this.data.prefix[prefix].hasOwnProperty(mat) && mat != 'l')
 									info.push(this.getInfoRow(mat, this.data.prefix[prefix][mat]));
 							}
 						}
 						else {
+							info.push(['[Prefix](?? lvl)' + prefix, '#ffffff']);
 							info.push(['? &times; ?', '#cccccc']);
 						}
 					}
 
 					// Base
-					info.push(['[Base]' + ' ' + base, '#ffffff']);
 					if (this.data.base[base]) {
+						info.push(['[Base](' + (this.data.base[base]['l'] >= 0 ? this.data.base[base]['l'] : '??') + ' lvl)' + base, '#ffffff']);
 						for (let mat in this.data.base[base]) {
-							if (this.data.base[base].hasOwnProperty(mat))
+							if (this.data.base[base].hasOwnProperty(mat) && mat != 'l')
 								info.push(this.getInfoRow(mat, this.data.base[base][mat]));
 						}
 					}
 					else {
+						info.push(['[Base](?? lvl)' + base, '#ffffff']);
 						info.push(['? &times; ?', '#cccccc']);
 					}
 
 					// Suffix
 					if (suffix > 0) {
-						info.push(['[Suffix]', '#ffffff']);
 						if (this.data.suffix[suffix]) {
+							info.push(['[Suffix](' + (this.data.suffix[suffix]['l'] >= 0 ? this.data.suffix[suffix]['l'] : '??') + ' lvl)' + suffix, '#ffffff']);
 							for (let mat in this.data.suffix[suffix]) {
-								if (this.data.suffix[suffix].hasOwnProperty(mat))
+								if (this.data.suffix[suffix].hasOwnProperty(mat) && mat != 'l')
 									info.push(this.getInfoRow(mat, this.data.suffix[suffix][mat]));
 							}
 						}
 						else {
+							info.push(['[Suffix](?? lvl)' + suffix, '#ffffff']);
 							info.push(['? &times; ?', '#cccccc']);
 						}
 					}
@@ -3736,9 +3123,9 @@ var gca_global = {
 				},
 
 				getInfoRow : function(material, amount) {
-					let img = '<div class="item-i-18-' + material + '" style="display:inline-block;transform: scale(0.7);margin:-12px -6px -12px -6px;"></div>';
+					let img = material + ' ' + '<div class="item-i-18-' + material + '" style="display:inline-block;transform: scale(0.7);margin:-12px -6px -12px -6px;"></div>';
 					let name = (this.locale) ? ' (' + this.locale[material] + ')' : '';
-					return [img + ' &times; ' + amount + name, '#cccccc'];
+					return [img + ' &times; ' + (amount >= 0 ? amount : '?') + name, '#cccccc'];
 				},
 
 				hashDecode : function(hash) {
@@ -3942,13 +3329,13 @@ var gca_global = {
 			// Initialize
 			init : function(){
 				// Catch page leave
-				window.addEventListener('click', function(event){
+				window.addEventListener('click', (event) => {
 					// Get Url
 					var url = (event.target && (event.target.href || (event.target.parentNode && event.target.parentNode.href) || (event.target.parentNode && event.target.parentNode.parentNode && event.target.parentNode.parentNode.href) ) ) || false;
 					// If it is a link
 					if(url && url.substring(0,8) == "https://" && url.substring(8, 8 + gca_section.domain.length) == gca_section.domain){
 						// Call event
-						gca_global.background.targetLinkEditor.onLinkClick(event, url, gca_getPage.parameters(url));
+						this.onLinkClick(event, url, gca_getPage.parameters(url));
 					}
 				}, false);
 			},
@@ -4629,15 +4016,35 @@ var gca_global = {
 
 			// Images to load
 			let imgs = [
-				'img/energie_rot.gif',
 				'img/item.png',
-				'img/interface.png',
 				'img/menu.png',
 				'img/spacer.gif',
+				'img/interface.png',
+				'img/energie_rot.gif',
+				'img/energie_gelb.gif',
+				'img/energie_gruen.gif',
+
+				/*
+				'img/buff/xp.png',
+				'img/buff/gold.png',
+				'img/buff/dungeon.png',
 				'img/buff/cooldown.png',
+				'img/buff/rubin_right.png',
+				'img/buff/points_limit.png',
+				*/
+
 				'img/ui/bar_fill.jpg',
 				'img/ui/layout/menu_bg.jpg'
 			];
+
+			// Get active buffs
+			var buffs = document.getElementById('buffbar').getElementsByClassName('buff');
+			for (var i = buffs.length - 1; i >= 0; i--) {
+				if (buffs[i].dataset.image) {
+					imgs.push(buffs[i].dataset.image);
+				}
+			}
+			
 
 			window.image_cache = [];
 			for (var i = imgs.length - 1; i >= 0; i--) {
@@ -5114,26 +4521,28 @@ var gca_global = {
 	}
 };
 
+// Forge info data
+gca_global.display.analyzeItems.itemForgeInfo.data = {
+	"prefix":{"1":{"35":21,"l":35},"2":{"9":-1,"15":-1,"l":-1},"3":{"13":5,"17":10,"18":2,"l":30},"4":{"13":5,"15":2,"17":5,"18":4,"l":25},"5":{"9":8,"15":4,"l":20},"6":{"9":4,"15":4,"17":10,"l":30},"7":{"7":5,"35":22,"l":45},"8":{"15":-1,"17":-1,"l":-1},"9":{"15":-1,"17":-1,"18":-1,"l":-1},"10":{"9":12,"13":1,"17":3,"l":27},"11":{"15":6,"17":5,"20":7,"l":28},"12":null,"13":{"9":18,"20":1,"l":32},"14":{"9":4,"13":2,"17":12,"18":2,"l":33},"15":{"9":12,"15":2,"17":2,"l":29},"16":{"9":14,"15":2,"l":26},"17":{"13":1,"15":2,"17":14,"l":29},"18":{"15":11,"20":3,"l":24},"19":{"13":19,"l":31},"20":{"17":-1,"18":-1,"20":-1,"l":-1},"21":{"15":4,"17":14,"20":1,"l":32},"22":{"9":9,"13":2,"15":2,"l":22},"23":{"9":7,"18":2,"20":5,"l":23},"24":{"13":2,"15":5,"17":8,"18":2,"l":27},"25":{"9":13,"15":1,"17":5,"l":31},"26":{"9":-1,"15":-1,"17":-1,"20":-1,"l":-1},"27":{"13":2,"15":2,"17":12,"18":1,"l":28},"28":{"9":19,"l":32},"29":{"13":2,"15":2,"17":14,"18":1,"l":30},"30":{"9":8,"15":11,"l":32},"31":{"9":9,"13":2,"15":2,"l":21},"32":{"15":3,"17":7,"l":16},"33":{"9":10,"15":1,"20":2,"l":22},"34":{"13":1,"17":14,"18":1,"l":25},"35":{"9":10,"l":16},"36":{"13":1,"17":8,"18":1,"l":16},"37":{"13":4,"15":8,"18":4,"l":26},"38":{"9":13,"13":1,"15":1,"l":25},"39":{"9":1,"15":1,"17":11,"18":1,"l":23},"40":{"9":9,"13":2,"15":2,"18":4,"20":2,"l":32},"41":{"9":1,"17":9,"20":7,"l":28},"42":{"9":18,"15":1,"l":31},"43":{"9":-1,"15":-1,"l":-1},"44":{"13":2,"15":2,"17":13,"18":2,"l":31},"45":{"9":12,"15":2,"17":4,"20":1,"l":30},"46":{"29":1,"35":20,"l":36},"47":{"9":6,"13":2,"17":5,"18":2,"20":6,"l":32},"48":{"9":5,"13":5,"20":5,"l":27},"49":{"9":5,"13":7,"18":8,"l":33},"50":{"7":4,"21":3,"35":13,"40":4,"l":40},"51":{"7":2,"21":3,"35":15,"40":5,"l":42},"52":{"7":5,"21":6,"35":9,"40":10,"l":50},"53":{"26":4,"36":6,"38":6,"49":19,"l":60},"54":{"26":8,"36":18,"38":2,"42":2,"49":12,"l":70},"55":{"26":5,"38":5,"42":2,"49":35,"l":80},"56":null,"57":null,"58":null,"59":null,"60":{"15":3,"20":7,"l":17},"61":{"9":1,"15":9,"18":2,"l":18},"62":{"9":1,"15":2,"18":4,"20":5,"l":19},"63":{"15":1,"18":10,"20":3,"l":21},"64":{"15":13,"20":1,"l":22},"65":{"9":2,"13":11,"15":1,"20":1,"l":23},"66":{"9":1,"15":1,"18":10,"20":3,"l":24},"67":{"15":11,"20":5,"l":26},"68":{"9":2,"13":11,"15":1,"18":3,"20":1,"l":27},"69":{"15":1,"18":12,"20":4,"l":28},"70":{"9":2,"13":1,"15":13,"20":2,"l":30},"71":{"9":1,"13":15,"15":1,"20":4,"l":31},"72":{"9":-1,"17":-1,"18":-1,"20":-1,"l":-1},"73":{"15":16,"20":4,"l":33},"74":{"7":16,"29":3,"40":2,"l":35},"75":{"7":2,"21":13,"29":6,"35":1,"l":36},"76":{"35":1,"40":22,"l":37},"77":{"7":1,"21":8,"29":9,"35":5,"40":1,"l":39},"78":{"7":24,"l":40},"79":{"21":3,"35":1,"40":20,"l":41},"80":{"7":12,"29":2,"35":1,"40":9,"l":42},"81":{"7":1,"21":18,"29":7,"35":1,"40":1,"l":44},"82":{"21":5,"40":22,"l":45},"83":{"7":20,"29":5,"35":1,"40":2,"l":46},"84":{"7":3,"21":17,"29":7,"35":1,"l":48},"85":{"35":10,"40":19,"l":49},"86":{"7":21,"29":5,"35":3,"40":1,"l":50},"87":null,"88":null,"89":{"7":23,"29":5,"35":3,"l":54},"90":{"36":21,"49":12,"l":55},"91":{"11":2,"26":31,"l":56},"92":{"11":13,"42":12,"49":9,"l":58},"93":{"11":11,"26":1,"36":3,"38":20,"l":59},"94":{"11":1,"26":32,"49":3,"l":60},"95":{"11":1,"26":3,"42":30,"49":3,"l":62},"96":{"11":12,"26":1,"36":1,"38":21,"49":4,"l":63},"97":null,"98":{"11":13,"26":6,"38":10,"49":9,"l":65},"99":{"36":40,"l":67},"100":null,"101":{"11":17,"38":13,"49":11,"l":69},"102":{"26":13,"49":29,"l":71},"103":{"26":29,"38":10,"42":1,"49":1,"l":72},"104":{"11":6,"42":33,"49":4,"l":73},"105":{"11":21,"36":23,"l":74},"106":{"11":10,"26":35,"l":76},"107":{"11":7,"42":34,"49":4,"l":77},"108":{"11":14,"26":1,"36":7,"38":24,"l":78},"109":{"11":6,"26":20,"38":9,"49":12,"l":80},"110":null,"111":null,"112":{"10":-1,"22":-1,"27":-1,"47":-1,"l":-1},"113":null,"114":{"11":11,"36":4,"38":21,"49":12,"l":81},"115":{"26":48,"l":81},"116":{"11":2,"36":17,"38":7,"42":9,"49":13,"l":82},"117":null,"118":{"10":1,"22":22,"45":31,"l":90},"119":null,"120":{"38":10,"42":7,"49":32,"l":83},"121":null,"122":{"11":3,"26":1,"36":4,"38":27,"42":12,"49":2,"l":84},"123":null,"124":{"27":4,"45":42,"50":4,"l":85},"125":null,"126":null,"127":null,"128":null,"129":null,"130":{"10":8,"22":31,"27":4,"45":8,"l":86},"131":{"10":34,"22":12,"27":1,"47":4,"50":1,"l":89},"132":{"27":52,"l":88},"133":null,"134":{"27":-1,"45":-1,"47":-1,"50":-1,"l":-1},"135":{"22":48,"27":2,"l":85},"136":null,"137":null,"138":{"10":5,"22":21,"27":14,"45":6,"50":6,"l":86},"139":{"10":1,"27":52,"l":90},"140":{"27":-1,"l":-1},"141":{"22":-1,"27":-1,"47":-1,"50":-1,"l":-1},"142":{"10":4,"22":18,"45":30,"50":3,"l":92},"143":{"10":-1,"22":-1,"45":-1,"47":-1,"50":-1,"l":-1},"144":{"10":-1,"22":-1,"27":-1,"45":-1,"47":-1,"l":-1},"145":{"10":-1,"22":-1,"27":-1,"47":-1,"50":-1,"l":-1},"146":{"22":36,"27":3,"45":17,"l":95},"147":{"27":-1,"l":-1},"148":{"22":13,"27":4,"45":30,"47":8,"l":96},"149":{"10":-1,"22":-1,"27":-1,"45":-1,"47":-1,"50":-1,"l":-1},"150":{"10":23,"22":14,"27":2,"45":17,"50":2,"l":98},"151":{"10":24,"22":10,"27":4,"47":13,"50":7,"l":99},"152":{"10":-1,"22":-1,"45":-1,"47":-1,"50":-1,"l":-1},"153":{"10":-1,"22":-1,"45":-1,"l":-1},"154":{"10":-1,"27":-1,"l":-1},"155":null,"156":null,"157":null,"158":null,"159":null,"160":{"10":-1,"22":-1,"45":-1,"50":-1,"l":-1},"161":null,"162":null,"163":null,"164":null,"165":null,"166":null,"167":null,"168":null,"169":null,"170":{"22":-1,"27":-1,"47":-1,"50":-1,"l":-1}},
+	"base":{"1-1":{"1":2,"l":0},"1-2":{"3":1,"4":1,"l":0},"1-3":{"3":1,"4":1,"l":0},"1-4":{"1":1,"4":2,"l":0},"1-5":{"3":1,"4":3,"l":0},"1-6":{"3":2,"4":2,"l":0},"1-7":{"2":2,"3":1,"4":3,"l":0},"1-8":{"2":1,"3":1,"4":3,"l":0},"1-9":{"1":3,"3":1,"4":2,"l":0},"1-10":{"1":1,"2":2,"3":1,"4":3,"l":0},"1-11":{"1":3,"3":1,"4":3,"l":0},"1-12":{"1":4,"3":1,"4":3,"l":0},"1-13":{"3":1,"4":2,"l":0},"1-14":{"1":2,"2":2,"3":1,"4":4,"l":0},"1-15":{"2":3,"4":7,"l":0},"1-16":{"2":3,"3":1,"4":7,"l":0},"1-17":{"2":5,"4":5,"l":0},"1-18":{"1":7,"3":1,"4":3,"l":0},"1-19":{"1":3,"4":4,"l":0},"1-20":{"1":5,"4":4,"l":0},"2-1":{"1":2,"l":0},"2-2":{"1":2,"4":1,"l":0},"2-3":{"1":2,"4":2,"l":0},"2-4":{"3":5,"l":0},"2-5":{"2":3,"4":4,"l":0},"2-6":{"2":3,"4":4,"48":1,"l":0},"2-7":{"2":2,"3":2,"4":5,"l":0},"2-8":{"2":2,"3":2,"4":6,"l":0},"2-9":{"2":3,"3":3,"4":6,"l":0},"2-10":{"4":12,"l":0},"2-11":{"1":2,"4":2,"l":0},"2-12":{"1":4,"4":2,"l":0},"3-1":{"3":2,"l":0},"3-2":{"2":1,"3":1,"l":0},"3-3":{"2":1,"3":2,"l":0},"3-4":{"2":2,"3":1,"4":2,"l":0},"3-5":{"4":5,"l":0},"3-6":{"2":5,"4":2,"l":0},"3-7":{"2":3,"4":5,"l":0},"3-8":{"2":3,"4":6,"l":0},"3-9":{"2":2,"3":2,"4":7,"l":0},"3-10":{"2":2,"3":2,"4":7,"l":0},"3-11":{"3":12,"l":0},"3-12":{"3":3,"4":2,"l":0},"4-1":{"3":2,"l":0},"4-2":{"4":2,"l":0},"4-3":{"2":1,"4":2,"l":0},"4-4":{"2":1,"4":2,"l":0},"4-5":{"2":1,"4":3,"l":0},"4-6":{"2":3,"4":3,"l":0},"4-7":{"3":3,"4":4,"l":0},"4-8":{"2":6,"4":3,"l":0},"4-9":{"2":7,"4":5,"l":0},"4-10":{"2":7,"3":1,"4":4,"l":0},"4-11":{"2":5,"3":1,"l":0},"4-12":{"2":7,"4":3,"l":0},"4-13":{"4":9,"l":0},"5-1":{"3":2,"l":0},"5-2":{"2":2,"3":1,"l":0},"5-3":{"2":2,"3":2,"l":0},"5-4":{"3":5,"l":0},"5-5":{"2":3,"3":4,"l":0},"5-6":{"3":5,"4":3,"l":0},"5-7":{"2":1,"3":5,"4":3,"l":0},"5-8":{"3":6,"4":4,"l":0},"5-9":{"3":7,"4":5,"l":0},"6-1":{"2":2,"l":0},"6-2":{"2":2,"l":0},"6-3":{"2":2,"l":0},"6-4":{"2":2,"l":0},"6-5":{"2":2,"l":0},"6-6":{"2":2,"l":0},"6-7":{"2":2,"l":0},"6-8":{"2":2,"l":0},"8-1":{"1":1,"3":1,"l":0},"8-2":{"3":3,"l":0},"8-3":{"3":4,"l":0},"8-4":{"2":1,"3":4,"l":0},"8-5":{"2":3,"3":3,"l":0},"8-6":{"2":3,"3":4,"l":0},"8-7":{"3":9,"l":0},"8-8":{"1":2,"3":5,"4":3,"l":0},"8-9":{"2":5,"3":6,"4":1,"l":0},"8-10":{"3":7,"4":6,"l":0},"9-1":{"2":2,"l":0},"9-2":{"2":2,"l":0},"9-3":{"2":2,"l":0},"9-4":{"2":2,"l":0},"9-5":{"2":2,"l":0},"9-6":{"2":2,"l":0},"9-7":{"2":2,"l":0},"9-8":{"2":2,"l":0},"9-9":{"2":2,"l":0},"9-10":{"2":2,"l":0}},
+	"suffix":{"1":{"37":-1,"l":-1},"2":{"25":3,"31":3,"l":10},"3":{"6":4,"31":6,"l":16},"4":{"6":9,"l":15},"5":{"16":3,"31":3,"l":10},"6":{"5":4,"16":2,"l":10},"7":null,"8":{"23":12,"l":20},"9":{"37":11,"39":1,"l":20},"10":null,"11":{"6":6,"l":10},"12":{"37":12,"l":20},"13":{"5":4,"6":2,"25":2,"l":15},"14":null,"15":{"23":9,"39":3,"l":20},"16":{"5":6,"l":10},"17":{"31":7,"l":12},"18":{"5":-1,"6":-1,"l":-1},"19":null,"20":{"6":6,"16":3,"31":1,"l":15},"21":{"25":2,"31":4,"l":10},"22":null,"23":{"23":15,"l":25},"24":{"24":-1,"l":-1},"25":null,"26":{"5":5,"16":4,"l":15},"27":null,"28":null,"29":{"16":3,"25":3,"31":4,"l":15},"30":{"5":4,"25":6,"l":17},"31":{"6":12,"l":19},"32":{"23":7,"37":1,"39":4,"l":20},"33":{"37":12,"l":20},"34":{"34":1,"37":9,"48":1,"l":20},"35":{"5":9,"25":1,"l":15},"36":{"23":1,"39":14,"l":25},"37":{"16":6,"31":5,"l":18},"38":{"5":2,"6":2,"16":2,"25":2,"31":2,"l":15},"39":{"5":4,"25":5,"l":14},"40":{"25":4,"31":4,"l":13},"41":null,"42":{"16":2,"31":10,"l":19},"43":{"25":-1,"l":-1},"44":{"23":1,"24":11,"l":20},"45":null,"46":{"23":2,"24":11,"l":22},"47":{"6":5,"25":3,"31":3,"l":18},"48":{"16":4,"25":4,"l":11},"49":{"25":4,"31":4,"l":13},"50":{"6":6,"16":2,"31":1,"l":14},"51":{"5":3,"25":5,"l":12},"52":{"6":5,"25":5,"l":14},"53":{"16":3,"25":2,"31":2,"l":12},"54":null,"55":{"24":5,"34":4,"48":5,"l":25},"56":{"23":1,"24":1,"39":12,"l":23},"57":null,"58":{"23":2,"37":4,"39":6,"l":20},"59":{"5":5,"6":6,"l":18},"60":null,"61":{"6":9,"l":15},"62":null,"63":{"34":1,"37":11,"l":20},"64":null,"65":{"37":6,"39":6,"l":20},"66":{"23":1,"24":11,"l":20},"67":{"5":7,"6":2,"l":15},"68":null,"69":{"25":9,"l":15},"70":{"23":4,"24":8,"l":20},"71":{"5":8,"25":2,"l":17},"72":{"5":4,"6":4,"25":2,"l":16},"73":{"6":6,"14":2,"16":2,"l":16},"74":{"23":4,"24":3,"34":2,"48":3,"l":20},"75":{"23":2,"24":4,"37":7,"l":22},"76":{"28":8,"32":2,"46":14,"l":40},"77":{"19":7,"30":12,"41":2,"l":35},"78":{"23":3,"24":1,"39":7,"l":20},"79":{"5":2,"14":5,"31":2,"l":15},"80":{"23":3,"34":1,"39":7,"48":1,"l":20},"81":{"5":1,"6":4,"14":3,"25":1,"l":15},"82":{"23":2,"24":4,"39":6,"l":20},"83":{"37":13,"l":21},"84":{"5":1,"6":6,"16":1,"25":1,"l":15},"85":{"34":3,"37":7,"39":5,"l":25},"86":{"6":3,"14":5,"16":1,"25":1,"l":15},"87":{"23":1,"34":1,"37":10,"l":20},"88":{"14":4,"16":3,"31":3,"l":15},"89":{"34":12,"l":20},"90":{"37":9,"39":4,"l":22},"91":{"23":12,"l":20},"92":{"39":11,"48":1,"l":20},"93":{"6":8,"25":1,"l":15},"94":{"23":2,"39":11,"l":21},"95":null,"96":{"23":3,"34":4,"37":1,"48":5,"l":21},"97":{"5":6,"14":4,"25":1,"l":18},"98":{"33":20,"l":33},"99":{"23":3,"24":1,"37":6,"39":5,"l":25},"100":null,"101":null,"102":null,"103":null,"104":null,"105":null,"106":null,"107":null,"108":null,"109":null,"110":{"6":6,"l":10},"111":{"25":6,"l":10},"112":null,"113":null,"114":{"25":7,"l":11},"115":{"16":5,"31":2,"l":11},"116":{"5":1,"14":1,"31":5,"l":12},"117":{"25":7,"l":12},"118":{"6":7,"l":12},"119":{"14":-1,"25":-1,"l":-1},"120":{"25":8,"l":13},"121":{"5":2,"16":6,"l":13},"122":{"14":8,"l":13},"123":{"25":9,"l":14},"124":{"5":6,"6":3,"l":14},"125":null,"126":{"25":9,"l":15},"127":{"5":7,"6":1,"16":1,"31":1,"l":15},"128":{"6":3,"14":6,"l":15},"129":{"25":10,"l":16},"130":{"5":2,"6":1,"16":8,"l":16},"131":{"14":10,"l":16},"132":{"25":10,"l":16},"133":{"5":2,"16":7,"25":1,"l":17},"134":{"6":10,"l":17},"135":{"6":1,"25":9,"l":17},"136":{"5":2,"6":1,"16":8,"25":1,"l":18},"137":{"5":2,"6":9,"l":18},"138":{"25":11,"l":18},"139":{"6":5,"31":7,"l":19},"140":null,"141":{"25":12,"l":19},"142":{"5":8,"6":4,"l":19},"143":{"39":12,"l":20},"144":{"23":12,"l":20},"145":{"37":4,"48":8,"l":20},"146":{"23":1,"24":3,"48":10,"l":21},"147":{"23":11,"37":2,"l":21},"148":{"23":2,"24":1,"34":2,"37":7,"l":21},"149":{"23":1,"24":4,"37":1,"48":8,"l":22},"150":null,"151":{"23":2,"37":10,"48":2,"l":22},"152":{"37":5,"39":8,"l":22},"153":{"23":14,"l":23},"154":{"23":4,"24":9,"37":1,"l":23},"155":{"39":14,"l":23},"156":{"23":-1,"l":-1},"157":{"23":1,"24":2,"34":11,"37":1,"l":24},"158":{"39":-1,"l":-1},"159":{"23":11,"24":4,"l":25},"160":{"23":1,"37":1,"48":12,"l":25},"161":{"39":-1,"l":-1},"162":{"23":15,"l":25},"163":{"24":-1,"l":-1},"164":{"23":9,"37":7,"l":26},"165":{"23":16,"l":26},"166":null,"167":{"39":16,"l":27},"168":{"23":16,"l":27},"169":{"24":10,"37":6,"48":2,"l":28},"170":{"23":5,"37":12,"l":28},"171":{"23":-1,"l":-1},"172":{"24":-1,"37":-1,"l":-1},"173":{"37":1,"39":16,"l":29},"174":{"23":17,"l":29},"175":{"23":6,"37":9,"48":1,"l":29},"176":{"33":9,"41":9,"l":30},"177":{"33":-1,"41":-1,"l":-1},"178":{"19":2,"33":13,"52":3,"l":30},"179":{"33":11,"41":8,"l":31},"180":{"41":-1,"l":-1},"181":{"12":12,"33":7,"l":31},"182":{"19":4,"33":2,"52":13,"l":31},"183":{"33":6,"41":13,"l":32},"184":null,"185":{"41":19,"l":32},"186":{"41":20,"l":33},"187":{"12":-1,"19":-1,"33":-1,"l":-1},"188":{"41":-1,"l":-1},"189":{"41":20,"l":34},"190":{"12":18,"33":1,"41":2,"l":34},"191":{"30":20,"l":34},"192":{"33":1,"41":19,"l":34},"193":{"19":11,"33":9,"52":1,"l":35},"194":null,"195":{"41":21,"l":35},"196":{"12":15,"19":4,"33":1,"41":2,"l":36},"197":{"30":12,"33":9,"l":36},"198":{"41":-1,"l":-1},"199":{"33":1,"41":1,"52":19,"l":37},"200":{"19":6,"30":1,"33":2,"52":14,"l":37},"201":{"19":1,"41":21,"l":37},"202":null,"203":{"19":7,"30":1,"33":1,"41":2,"52":14,"l":38},"204":null,"205":{"19":13,"33":9,"52":1,"l":38},"206":{"19":6,"33":1,"41":1,"52":16,"l":39},"207":{"41":23,"l":39},"208":{"12":16,"19":5,"33":1,"41":2,"l":39},"209":null,"210":{"28":9,"43":5,"46":6,"51":6,"l":43},"211":null,"212":null,"213":null,"214":null,"215":{"28":3,"32":1,"43":17,"44":4,"46":4,"l":48},"216":null,"217":null,"218":{"32":7,"43":6,"46":7,"51":7,"l":43},"219":null,"220":{"28":3,"32":1,"43":22,"44":1,"46":2,"51":1,"l":47},"221":{"32":4,"44":4,"46":18,"l":44},"222":{"32":27,"43":1,"l":48},"223":{"28":9,"32":3,"44":4,"46":11,"l":45},"224":{"32":30,"l":50},"225":null,"226":null,"227":null,"228":null,"229":{"28":11,"32":2,"44":5,"46":11,"l":49},"230":{"32":1,"46":3,"51":23,"l":46},"231":null,"232":{"46":22,"51":2,"l":40},"233":null,"234":{"43":1,"44":1,"46":3,"51":19,"l":41},"235":null,"236":{"32":23,"43":1,"l":41},"237":{"43":4,"44":1,"46":20,"51":4,"l":50},"238":null,"239":{"32":1,"43":13,"44":2,"46":4,"51":6,"l":42},"240":{"28":18,"32":4,"43":2,"44":7,"l":51},"241":null,"242":null,"243":null,"244":null,"245":null,"246":null,"247":null,"248":null,"249":null,"250":null,"251":null,"252":null,"253":{"28":9,"32":24,"l":55},"254":null,"255":null,"256":null,"257":null,"258":null,"259":null,"260":null,"261":null,"262":null,"263":null,"264":null,"265":null,"266":null,"267":null,"268":null,"269":null,"270":null,"271":null,"272":null,"273":null,"274":null,"275":null,"276":null,"277":null,"278":null,"279":null,"280":null,"281":null,"282":null,"283":null,"284":{"53":-1,"60":-1,"l":-1},"285":{"32":6,"43":2,"44":27,"l":60},"286":null,"287":null,"288":null,"289":{"53":-1,"56":-1,"59":-1,"l":-1},"290":{"53":38,"l":65},"291":{"53":27,"56":6,"59":8,"l":70},"292":{"53":38,"55":2,"59":1,"60":4,"l":75},"293":{"53":1,"59":46,"l":80},"294":null,"295":null,"296":null,"297":null,"298":null,"299":null,"300":null}
+};
+// Suffix 100, 101, 104, 105, 106, 107, 108 is empty
+
+// Onload Handler
 (function(){
-	// Pre Inject
-	gca_global.preinject();
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_global.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	gca_global.preinject();
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
 

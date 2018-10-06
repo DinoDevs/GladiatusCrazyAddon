@@ -45,8 +45,7 @@ var gca_messages = {
 			//	this.send_message.create());
 
 			// Guild message player info
-			(gca_options.bool("messages", "messages_layout") && 
-			 gca_options.bool("messages", "more_guild_mate_info") && 
+			(gca_options.bool("messages", "messages_layout") && gca_options.bool("messages", "more_guild_mate_info") && 
 				this.guild_message.more_info());
 
 			// Guild message parse links
@@ -750,8 +749,9 @@ var gca_messages = {
 			// Icon
 			var icon_element = document.createElement("div");
 			icon_element.className = "gca_messages_sidebar_icon";
-			for(css in icon){
-				icon_element.style[css] = icon[css];
+			for(let css in icon){
+				if (icon.hasOwnProperty(css))
+					icon_element.style[css] = icon[css];
 			}
 
 			// Object
@@ -875,6 +875,7 @@ var gca_messages = {
 
 
 	// Send message box
+	/*
 	send_message : {
 
 		// Create box
@@ -883,28 +884,27 @@ var gca_messages = {
 		}
 
 	}
+	*/
 
 };
 
+// Onload Handler
 (function(){
-	// Pre Inject
-	gca_messages.preinject();
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_messages.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	gca_messages.preinject();
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_options, gca_section, gca_tools */
+/* global jQuery */

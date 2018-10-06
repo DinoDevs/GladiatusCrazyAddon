@@ -130,12 +130,13 @@ var gca_arena = {
 						return;
 					}
 					
-					gca_arena_make_list(obj);
+					window.gca_arena_make_list(obj);
 				},
-				error: function(jqXHR, exception){
-					if(jqXHR.status == 0){
+				error: function(jqXHR){
+					if (jqXHR.status == 0) {
 						gca_notifications.error("Global Arena:\nOur server is still HTTP and not HTTPS. If you want to continue allow script load of unauthenticated sources on this page.");
-					}else{
+					}
+					else {
 						gca_notifications.error("Global Arena:\nConnection error.");
 					}
 				}
@@ -170,7 +171,7 @@ var gca_arena = {
 							document.getElementById('alert_box').textContent = "You lost the fight...";
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else if(obj.status == 'win'){
-							gca_arena_make_list(obj);
+							window.gca_arena_make_list(obj);
 							gca_notifications.success("Global Arena:\nYou won!");
 							document.getElementById('alert_box').textContent = "You won!";
 							document.getElementById('alert_box').style="color: rgb(37, 140, 42);";
@@ -383,21 +384,21 @@ var gca_arena = {
 		// New arena attack functions
 		window.gca_startFight = function(b, a) {	
 			jQuery("#errorRow").css({display: "none"});
-			sendRequest("get", "ajax/doArenaFight.php", "did=" + a + "&c=1", b)
+			window.sendRequest("get", "ajax/doArenaFight.php", "did=" + a + "&c=1", b)
 		}
 		
 		window.gca_startGroupFight = function(b, a) {
 			jQuery("#errorRow").css({display: "none"});
-			sendRequest("get", "ajax/doGroupFight.php", "did=" + a + "&c=1", b)
+			window.sendRequest("get", "ajax/doGroupFight.php", "did=" + a + "&c=1", b)
 		}
 		
 		window.gca_startProvinciarumFight = function(d, a, c, b, e) {
 			jQuery("#errorRow").css({display: "none"});
-			sendRequest("get", "ajax.php", "mod=arena&submod=confirmDoCombat&aType=" + a + "&opponentId=" + c + "&serverId=" + b + "&country=" + e, d)
+			window.sendRequest("get", "ajax.php", "mod=arena&submod=confirmDoCombat&aType=" + a + "&opponentId=" + c + "&serverId=" + b + "&country=" + e, d)
 		}
 		
 		var attack_buttons = document.getElementsByClassName('attack');
-		for(i=0;i<attack_buttons.length;i++){
+		for(let i=0;i<attack_buttons.length;i++){
 			if(attack_buttons[i].getAttribute("onclick").match(/startFight|startGroupFight|startProvinciarumFight/i))
 				attack_buttons[i].setAttribute("onclick","gca_"+attack_buttons[i].getAttribute("onclick"));
 		}
@@ -485,23 +486,22 @@ var gca_arena = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_arena.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global jQuery */

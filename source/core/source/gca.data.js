@@ -205,9 +205,9 @@ var gca_options = {
 			return;
 
 		// Loop all categories
-		for(category in dataStorage){
+		for(let category in dataStorage){
 			// Loop options in category
-			for(label in dataStorage[category]){
+			for(let label in dataStorage[category]){
 				// Check if option exist
 				if(this.data.hasOwnProperty(category) && this.data[category].hasOwnProperty(label)){
 					this.data[category][label] = dataStorage[category][label];
@@ -500,7 +500,9 @@ gca_options.data = {
 		// Sort players by level
 		"sort_by_lvl" : true,
 		// Highlight guild members on other servers
-		"highlight_guild_members" : true
+		"highlight_guild_members" : true,
+		// Players target list
+		"target_list" : true
 	},
 	
 	// Magus

@@ -28,10 +28,9 @@ var gca_overview_costumes = {
 			// Get costumes boxes
 			var costumes_boxes = document.getElementsByClassName("costumes_box");
 			// For each box
-			var parts;
-			for (var i = costumes_boxes.length - 1; i >= 0; i--) {
+			for (let i = costumes_boxes.length - 1; i >= 0; i--) {
 				// Get parts
-				parts = this.parseCostume(costumes_boxes[i]);
+				let parts = this.parseCostume(costumes_boxes[i]);
 				// Create counter
 				this.createIndicator(parts, costumes_boxes[i]);
 			}
@@ -62,25 +61,22 @@ var gca_overview_costumes = {
 
 };
 
+// Onload Handler
 (function(){
-	// Pre Inject
-	gca_overview_costumes.preinject();
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_overview_costumes.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	gca_overview_costumes.preinject();
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_options */

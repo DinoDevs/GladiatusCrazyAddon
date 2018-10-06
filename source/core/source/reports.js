@@ -18,14 +18,15 @@ var gca_reports = {
 		this.resolveSubmod();
 
 		// Combat reports
-		if(this.submod == 'showCombatReport' && document.getElementById('reportHeader')){
+		if (this.submod == 'showCombatReport' && document.getElementById('reportHeader')) {
 			
 			// If Combat report
 			if (this.combatReport == "reportExpedition") {
 				// Log items found for statistics
 				(gca_options.bool("reports", "found_items") &&
 					this.report_found_items());
-			}else if (this.combatReport == "reportDungeon"){
+			}
+			else if (this.combatReport == "reportDungeon") {
 				// Dungeon battle analyzer
 				this.dungeon_analyzer();
 			}
@@ -48,7 +49,7 @@ var gca_reports = {
 		}
 		
 		// Report Lists
-		else{
+		else {
 			// Save arena timer
 			((this.submod == 'showArena' || this.submod == 'showCircusTurma') && gca_options.bool("global", "attacked_timers") &&
 				this.save_reports_info());
@@ -72,46 +73,46 @@ var gca_reports = {
 		this.submod = gca_section.submod;
 
 		// If submod is null
-		if(gca_section.submod == null){
+		if (gca_section.submod == null) {
 
 			// Wanna be submod parse
-			if(gca_getPage.parameter('showExpeditions') != undefined){
+			if (gca_getPage.parameter('showExpeditions') != undefined) {
 				this.submod = "showExpeditions";
 			}
-			else{
+			else {
 				// Get type parameter
 				let t = gca_getPage.parameter('t');
 
 				// Expeditions type
-				if(t === "-1") this.submod = "showExpeditions";
+				if (t === "-1") this.submod = "showExpeditions";
 				// Arena type
-				else if(t === "2") this.submod = "showArena";
+				else if (t === "2") this.submod = "showArena";
 				// CircusTurma type
-				else if(t === "3") this.submod = "showCircusTurma";
+				else if (t === "3") this.submod = "showCircusTurma";
 				// Dungeons type
-				else if(t === "1") this.submod = "showDungeons";
+				else if (t === "1") this.submod = "showDungeons";
 
 				else this.submod = "showExpeditions";
 			}
 		}
 		// Combat Report
-		else if(gca_section.submod === "showCombatReport"){
+		else if (gca_section.submod === "showCombatReport") {
 			// Get type parameter
 			let t = gca_getPage.parameter('t');
 
 			// Expeditions type
-			if(t === "0") this.combatReport = "reportExpedition";
+			if (t === "0") this.combatReport = "reportExpedition";
 			// Arena type
-			else if(t === "2") this.combatReport = "reportArena";
+			else if (t === "2") this.combatReport = "reportArena";
 			// CircusTurma type
-			else if(t === "3") this.combatReport = "reportCircusTurma";
+			else if (t === "3") this.combatReport = "reportCircusTurma";
 			// Dungeons type
-			else if(t === "1" || t === "4") this.combatReport = "reportDungeon";
+			else if (t === "1" || t === "4") this.combatReport = "reportDungeon";
 
 			else this.combatReport = "reportExpedition";
 		}
 		// Else
-		else{
+		else {
 			this.combatReport = null;
 		}
 	},
@@ -125,23 +126,21 @@ var gca_reports = {
 		reportDate = new Date(reportDate[3], reportDate[2] - 1, reportDate[1], reportDate[4], reportDate[5], reportDate[6])
 		var timePassed = (gca_tools.time.server() - reportDate.getTime())/1000;//in sec
 		
-		if( timePassed>5 )
-			return;
+		if (timePassed > 5) return;
 			
 		// Reward exist?
 		var rewards = document.getElementsByClassName('reportReward');
 		var data = gca_data.section.get('data', 'enemy_drops', []);//enemy,item
 		// Fix wrong data type of previous versions
-		if(data.constructor != Array){
+		if (data.constructor != Array) {
 			data = [];
 		}
-		var item, enemy;
-		for(var i=0;i<rewards.length;i++){
+		for(let i = 0; i < rewards.length; i++) {
 			if(typeof rewards[i].getElementsByTagName('div')[1]!=='undefined'){
 				if(rewards[i].getElementsByTagName('div')[1].className.match(/item-i-18-\d+/)){
-					item = rewards[i].getElementsByTagName('div')[1].className.match(/item-i-(18-\d+)/)[1];
-					enemy = document.getElementById('defenderAvatar11').getElementsByTagName('div')[2].style.backgroundImage.match(/url\("\d+\/img\/npc\/(\d+\/\d+_\d+....")\)/)[1];
-					data.push([enemy,item]);
+					let item = rewards[i].getElementsByTagName('div')[1].className.match(/item-i-(18-\d+)/)[1];
+					let enemy = document.getElementById('defenderAvatar11').getElementsByTagName('div')[2].style.backgroundImage.match(/url\("\d+\/img\/npc\/(\d+\/\d+_\d+....")\)/)[1];
+					data.push([enemy, item]);
 				}
 			}
 		}
@@ -166,18 +165,18 @@ var gca_reports = {
 			line[0].getElementsByTagName('th')[2].style.textAlign = "right";
 
 			// If no reports
-			if(line.length <= 2)
+			if (line.length <= 2)
 				// Kill it with fire
 				return;
 
 			// For every row
-			while(line[row]){
+			while (line[row]) {
 				// If a td exist
-				if(line[row].getElementsByTagName('td').length > 0){
+				if (line[row].getElementsByTagName('td').length > 0) {
 					// Get date
 					let date = line[row].getElementsByTagName('td')[0].textContent.match(/(\d+\.\d+\.\d+)/i)[1];
 					// If this is a new line
-					if(last_date != date){
+					if (last_date != date) {
 						last_date = date;
 						// Insert a new line
 						let tr = document.createElement("tr");
@@ -188,7 +187,7 @@ var gca_reports = {
 						tr.appendChild(td);
 						line[row].parentNode.insertBefore(tr, line[row]);
 					}
-					else{
+					else {
 						// Remove style
 						line[row].getElementsByTagName('td')[0].removeAttribute('style');
 						// Leave only time
@@ -197,13 +196,13 @@ var gca_reports = {
 						line[row].getElementsByTagName('td')[2].style.textAlign = "right";
 
 						// If report has a reward
-						if(line[row].getElementsByTagName('td')[3].getElementsByTagName('div').length > 0 && line[row].getElementsByTagName('td')[3].getElementsByTagName('div')[0].className == "icon_itemreward"){
+						if (line[row].getElementsByTagName('td')[3].getElementsByTagName('div').length > 0 && line[row].getElementsByTagName('td')[3].getElementsByTagName('div')[0].className == "icon_itemreward") {
 							// Get report id
 							let report_id = line[row].getElementsByTagName('td')[4].getElementsByTagName('a')[0].href.match(/reportId=(\d+)&/i)[1];
 							// Get report t parm
 							let report_t = line[row].getElementsByTagName('td')[4].getElementsByTagName('a')[0].href.match(/t=(\d+)&/i)[1];
 							// Load Loot
-							if(load_loot){
+							if (load_loot) {
 								// Set a loading tooltip
 								let icon = line[row].getElementsByTagName('td')[3].getElementsByTagName('div')[0];
 								icon.id = 'report_reward_item_' + report_id;
@@ -245,7 +244,7 @@ var gca_reports = {
 				// If found token tooltip
 				if(match_tooltips){
 					// For each tooltip
-					for (var i = 0; i < match_tooltips.length; i++) {
+					for (let i = 0; i < match_tooltips.length; i++) {
 						// Match loot tooltip
 						tooltips.push(match_tooltips[i].match(/data-tooltip="([^"]+)"/im));
 					}
@@ -257,19 +256,18 @@ var gca_reports = {
 					gca_tools.setTooltip(icon, JSON.stringify([[[title, "white"], [gca_locale.get("general", "error"), "white"]]]));
 				}
 				// Tooltip replace
-				else{
+				else {
 					// Add title on tooltip
 					var reward_tooltip = [[[title, "white"]]];
 					// For each tooltip
-					var i, j, tooltip;
-					for (i = 0; i < tooltips.length; i++) {
+					for (let i = 0; i < tooltips.length; i++) {
 						// Parse tooltip
-						tooltip = JSON.parse(tooltips[i][1].replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
+						let tooltip = JSON.parse(tooltips[i][1].replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
 						// Add space
 						if(i != 0)
 							reward_tooltip[0].push(["&nbsp;", "white"]);
 						// Add tooltip rows
-						for (j = 0; j < tooltip[0].length; j++) {
+						for (let j = 0; j < tooltip[0].length; j++) {
 							reward_tooltip[0].push(tooltip[0][j]);
 						}
 					}
@@ -284,36 +282,34 @@ var gca_reports = {
 	save_reports_info : function(){
 		// Check if section exist
 		var section = document.getElementById('content').getElementsByTagName('section');
-		if(section.length == 0)
-			return;
+		if(section.length == 0) return;
 		section = section[0];
 		// Check if table exist
 		var table = section.getElementsByTagName('table');
-		if(table.length == 0)
-			return;
+		if(table.length == 0) return;
 		table = table[0];
 
 		// Time variable
 		var time = [false, false];
 
 		// Reports
-		if(table.getElementsByClassName('icon_defense').length > 0){
+		if (table.getElementsByClassName('icon_defense').length > 0) {
 			var reports = table.getElementsByTagName('tr');
-			for(var i = 1; i < reports.length; i++){
+			for (let i = 1; i < reports.length; i++) {
 				// If defence attack
 				if(reports[i].getElementsByClassName('icon_defense').length){
 					// Cross server
-					if(time[1] == false && reports[i].getElementsByTagName('a')[0].textContent.match(/\s+\(\d+\)/i)){
+					if (time[1] == false && reports[i].getElementsByTagName('a')[0].textContent.match(/\s+\(\d+\)/i)) {
 						// Get time
 						time[1] = gca_tools.time.parse(reports[i].getElementsByTagName('td')[0].textContent.trim());
 					}
 					// Same server
-					else if(time[0] == false){
+					else if (time[0] == false) {
 						// Get time
 						time[0] = gca_tools.time.parse(reports[i].getElementsByTagName('td')[0].textContent.trim());
 					}
 					// Both times found
-					else if(time[0] != false && time[1] != false){
+					else if (time[0] != false && time[1] != false) {
 						break;
 					}
 				}
@@ -321,16 +317,16 @@ var gca_reports = {
 		}
 
 		// Normal
-		if(time[0]){
-			if(this.submod == 'showArena')
+		if (time[0]) {
+			if (this.submod == 'showArena')
 				gca_data.section.set("timers", 'arena_attacked', time[0]);
 			else
 				gca_data.section.set("timers", 'grouparena_attacked', time[0]);
 		}
 
 		// Cross
-		if(time[1]){
-			if(this.submod == 'showArena')
+		if (time[1]) {
+			if (this.submod == 'showArena')
 				gca_data.section.set("timers", 'arena_xs_attacked', time[1]);
 			else
 				gca_data.section.set("timers", 'grouparena_xs_attacked', time[1]);
@@ -346,7 +342,7 @@ var gca_reports = {
 		// Get pagings
 		var pagings = document.getElementsByClassName("paging");
 		// Parse each
-		for(var i = pagings.length - 1; i >= 0; i--){
+		for(let i = pagings.length - 1; i >= 0; i--){
 			gca_tools.pagination.parse(pagings[i]);
 		}
 	},
@@ -358,10 +354,10 @@ var gca_reports = {
 		if(rewards.length == 0) return;
 
 		// For each reward
-		for (var i = 0; i < rewards.length; i++) {
+		for (let i = 0; i < rewards.length; i++) {
 			// Get divs inside reward
-			var divs = rewards[i].getElementsByTagName("div");
-			if(divs.length > 1){
+			let divs = rewards[i].getElementsByTagName("div");
+			if (divs.length > 1) {
 				gca_tools.item.shadow.add(divs[1]);
 			}
 		}
@@ -393,35 +389,33 @@ var gca_reports = {
 					gca_notifications.warning("The force is strong with this one!");
 				}
 			}
-			
 		}
 
 	},
 	
 	// Dungeon analyzer
 	dungeon_analyzer : function() {
-		var errors = 0;
 		var life_points = document.getElementById('attackerCharStats1').getElementsByClassName('charstats_text')[0].innerHTML;
 		var enemies = [];
 		var players = [];
 
 		// Find enemies
-		for(var i=1; i<=5; i++) {
-			if(document.getElementById('defenderAvatar1'+i)){
-				var name = document.getElementById('defenderAvatar1'+i).getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
-				var life = document.getElementById('defenderCharStats1'+i).getElementsByClassName('charstats_value3_mirrored')[0].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,'');
-				found = false;
-				index = 0;
-				for(var j=0; j<enemies.length; j++){
-					if(enemies[j][0]==name){
+		for (let i = 1; i <= 5; i++) {
+			if (document.getElementById('defenderAvatar1'+i)) {
+				let name = document.getElementById('defenderAvatar1'+i).getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
+				let life = document.getElementById('defenderCharStats1'+i).getElementsByClassName('charstats_value3_mirrored')[0].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,'');
+				let found = false;
+				let index = 0;
+				for (let j = 0; j < enemies.length; j++) {
+					if (enemies[j][0] == name) {
 						found = true;
 						index = j;
 						break;
 					}
 				}
-				if(!found)
+				if (!found)
 					enemies.push([name, parseInt(life), parseInt(life), 0, 1]);
-				else{//else add him in the same name as 2 in 1
+				else {//else add him in the same name as 2 in 1
 					enemies[index][4] ++;
 					enemies[index][1] += life;
 					enemies[index][2] += life;
@@ -430,22 +424,22 @@ var gca_reports = {
 		}
 
 		// Find players
-		for(var i=1; i<=5; i++) {
-			if(document.getElementById('attackerAvatar'+i)){
-				var name = document.getElementById('attackerAvatar'+i).getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
-				var life = parseInt(document.getElementById('attackerCharStats'+i).getElementsByClassName('charstats_value3')[0].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,''));
-				found = false;
-				index = 0;
-				for(var j=0; j<players.length; j++){
-					if(players[j][0]==name){
+		for (let i = 1; i <= 5; i++) {
+			if (document.getElementById('attackerAvatar'+i)) {
+				let name = document.getElementById('attackerAvatar'+i).getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
+				let life = parseInt(document.getElementById('attackerCharStats'+i).getElementsByClassName('charstats_value3')[0].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,''));
+				let found = false;
+				let index = 0;
+				for (let j = 0; j < players.length; j++) {
+					if (players[j][0] == name) {
 						found = true;
 						index = j;
 						break;
 					}
 				}
-				if(!found)
+				if (!found)
 					players.push([name, parseInt(life), parseInt(life), 0, 1]);
-				else{//else add him in the same name as 2 in 1
+				else {//else add him in the same name as 2 in 1
 					players[index][4] ++;
 					players[index][1] += life;
 					players[index][2] += life;
@@ -460,10 +454,10 @@ var gca_reports = {
 			
 			div.setAttribute('style','position: absolute; left: 70px; padding: 2px 0px 2px 2px;overflow: hidden;');
 			
-			for (var i=0; i<enemies.length; i++){
+			for (let i=0; i<enemies.length; i++){
 				enemies[i][3] = 0;
 			}
-			for (var i=0; i<players.length; i++){
+			for (let i=0; i<players.length; i++){
 				players[i][3] = 0;
 			}
 			
@@ -472,13 +466,12 @@ var gca_reports = {
 			while(element && element.getElementsByClassName('table_border_bottom').length==0){
 				rows.push(element);
 				if(element.getElementsByTagName('font').length>0){
-					var text = element.getElementsByTagName('font')[0].innerHTML.replace(/\*(Ο\/Η)*\s*/g,'').replace(/<\/*b>/g,'');
+					let text = element.getElementsByTagName('font')[0].innerHTML.replace(/\*(Ο\/Η)*\s*/g,'').replace(/<\/*b>/g,'');
 					if(text.match(/\d+/)) {
-						var isHealing = (element.getElementsByTagName('font')[0].getAttribute('color')=='green')?true:false;
-						var value = parseInt(text.match(/\d+/)[0]);
-						var found = false;
-						var action = null;
-						for(var j=0; j<enemies.length; j++){
+						let isHealing = (element.getElementsByTagName('font')[0].getAttribute('color')=='green')?true:false;
+						let value = parseInt(text.match(/\d+/)[0]);
+						let found = false;
+						for(let j=0; j<enemies.length; j++){
 							if(text.match(enemies[j][0]+' ')){
 								found = true;
 								if(isHealing){
@@ -488,12 +481,11 @@ var gca_reports = {
 									enemies[j][1] -= value;
 									enemies[j][3] -= value;
 								}
-								action = enemies[j][0];
 								break;
 							}
 						}
 						if(!found){
-							for(var j=0; j<players.length; j++){
+							for(let j=0; j<players.length; j++){
 								if(text.match(players[j][0]+' ')){
 									found = true;
 									if(isHealing){
@@ -508,12 +500,11 @@ var gca_reports = {
 						}
 						if(!found){
 							element.getElementsByTagName('font')[0].innerHTML += "<br>[Analyzer Data Error]";
-							errors ++;
 						}
 					}
 				}
 				element = element.nextElementSibling;
-			};
+			}
 			
 			var roundName = this.innerHTML;
 			
@@ -537,8 +528,8 @@ var gca_reports = {
 			div.appendChild(temp_div);
 			
 			let temp_div4;
-			for (var i=0; i<enemies.length; i++){
-				var persent = ((((enemies[i][1]>0)?enemies[i][1]:0)/enemies[i][2])*100);
+			for (let i=0; i<enemies.length; i++){
+				let persent = ((((enemies[i][1]>0)?enemies[i][1]:0)/enemies[i][2])*100);
 				
 				temp_div2 = document.createElement('div');
 				temp_div2.style = "width: 200px;";
@@ -568,8 +559,8 @@ var gca_reports = {
 				temp_div.appendChild(temp_div2);
 			}
 			
-			for (var i=0; i<players.length; i++){
-				var persent = ((((players[i][1]>0)?players[i][1]:0)/players[i][2])*100);
+			for (let i=0; i<players.length; i++){
+				let persent = ((((players[i][1]>0)?players[i][1]:0)/players[i][2])*100);
 				
 				temp_div2 = document.createElement('div');
 				temp_div2.style = "width: 200px;";
@@ -609,37 +600,31 @@ var gca_reports = {
 			for(var i=0; i<rows.length; i++){
 				height -= rows[i].clientHeight;
 			}
-			if(height>0){
-				height = height;
+			if(height > 0){
 				var tr = document.createElement('tr');
 				tr.style.height = height+'px';
 				rows[rows.length-1].parentNode.insertBefore(tr, rows[rows.length-1].nextSibling);
 			}
 		});
-
-		//if(errors>0)
-		//	console.log('ERRORS : '+errors);
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_reports.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
 
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global jQuery */

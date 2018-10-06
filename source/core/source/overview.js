@@ -446,9 +446,83 @@ var gca_overview = {
 								//console.log(msg.responseText);
 							}
 						);
+
+
+						jQuery.ajax({
+							type: "POST",
+							url: 'ajax.php',
+							data: {
+								"mod":"forge",
+								"submod":"getSmeltingPreview",
+								"mode":"smelting",
+								"slot":"5",
+								"amount":"1",
+								"iid":id,
+								"a" : new Date().getTime(),
+								"sh" : window.secureHash
+							},
+							success: function(data){
+								that.logData(data);
+							},
+							error: function(){
+							}
+						});
 					}
 				});
 			});
+		},
+
+		logData : function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			//console.log(data.slots[5].formula);
+
+			let formula = data.slots[5].formula;
+
+			let Prefix	=	[7, 9, 10, 11, 13, 15, 17, 18, 20, 21, 22, 26, 27, 29, 35, 36, 38, 40, 42, 45, 47, 49, 50];
+			let Base	=	[1, 2, 3, 4, 48];
+			let Suffix	=	[5, 6, 12, 14, 16, 19, 23, 24, 25, 28, 30, 31, 32, 33, 34, 37, 39, 41, 43, 44, 46, 48, 51, 52, 53, 55, 56, 59, 60];
+
+			let mats = {
+				prefix : {'l':-1},
+				base : {},
+				suffix : {'l':-1},
+				other : {}
+			};
+			for (let mat in formula.needed) {
+				if (formula.needed.hasOwnProperty(mat)) {
+					let id = parseInt(mat, 10) - 18000;
+
+					if (Prefix.indexOf(id) >= 0) {
+						mats.prefix[id] = -1;//formula.needed[mat].amount;
+					}
+					else if (Base.indexOf(id) >= 0) {
+						mats.base[id] = -1;//formula.needed[mat].amount;
+					}
+					else if (Suffix.indexOf(id) >= 0) {
+						mats.suffix[id] = -1;//formula.needed[mat].amount;
+					}
+					else {
+						mats.other[id] = -1;//formula.needed[mat].amount;
+					}
+				}
+			}
+
+			console.log(mats);
+
+			let prefix = {};
+			prefix[formula.prefix] = mats.prefix;
+			console.log('prefix', JSON.stringify(prefix));
+
+			let base = {};
+			base['-'] = mats.base;
+			console.log('base', JSON.stringify(base));
+
+			let suffix = {};
+			suffix[formula.suffix] = mats.suffix;
+			console.log('suffix', JSON.stringify(suffix));
+
+			console.log('other', JSON.stringify(mats.other));
 		},
 
 		getMaterialsAmounts : function(data, id) {
@@ -1244,10 +1318,11 @@ var gca_overview = {
 
 		// Add timers on the buffs
 		addTimers : function(){
+			this.timer_started = new Date().getTime();
 			// Get buffs
 			var buffs = document.getElementsByClassName("buff_old");
 			// For each buff
-			for(var i = buffs.length - 1; i >= 0; i--){
+			for (var i = buffs.length - 1; i >= 0; i--) {
 				// Get buff
 				let buff = buffs[i].getElementsByClassName("buff_inner")[0];
 				// Copy old timer
@@ -1258,33 +1333,28 @@ var gca_overview = {
 		},
 
 		initTimer : function(buff){
-			// Save instance
-			var that = this;
-
 			// Create new line in tooltip
 			var tooltip = JSON.parse(buff.dataset.tooltip);
 			tooltip[0].push(["...", "#DDD;text-align:right;"]);
 			gca_tools.setTooltip(buff, JSON.stringify(tooltip));
 
 			// Interval varisble
-			var interval;
-			// Every 1 sec
-			interval = setInterval(function(){
-				that.updateTimer(buff);
+			var interval = setInterval(() => {
+				this.updateTimer(buff, interval);
 			}, 1000);
 		},
 
-		updateTimer : function(buff){
+		updateTimer : function(buff, interval){
 			// Get time left
-			var time_left = parseInt(buff.dataset.timeLeft, 10);
+			var time_left = parseInt(buff.dataset.timeLeft, 10) - (new Date().getTime() - this.timer_started);
 
 			// Get tooltip
 			var tooltip = JSON.parse(buff.dataset.tooltip);
 			tooltip[0][tooltip[0].length - 1] = [gca_tools.time.msToString(time_left), "#DDD;text-align:right;"];
 			gca_tools.setTooltip(buff, JSON.stringify(tooltip));
 
-			// Update time
-			buff.dataset.timeLeft = (time_left - 1000);
+			// If timer ended
+			if (time_left <= 0) clearInterval(interval);
 		}
 	},
 
@@ -1479,13 +1549,12 @@ var gca_overview = {
 			// Info list
 			this.list = [];
 
-			var info, pic;
 			// For each doll
-			for (var i = 1; i < dolls.length; i++) {
+			for (let i = 1; i < dolls.length; i++) {
 				// Mercenary
-				info = {};
+				let info = {};
 				// Get pic
-				pic = dolls[i].getElementsByClassName("charmercpic")[0];
+				let pic = dolls[i].getElementsByClassName("charmercpic")[0];
 				// If player exist
 				if(pic.className.match("doll") != null){
 					// Get info
@@ -1603,7 +1672,7 @@ var gca_overview = {
 
 			// Get basics values
 			var basics = tooltip[0][1][0][1];
-			var max = tooltip[0][2][0][1];
+			//var max = tooltip[0][2][0][1];
 
 			// Calculate point from percents 
 			var percentsPoints = 0;
@@ -1631,23 +1700,22 @@ var gca_overview = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_overview.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_options, gca_section, gca_tools */
+/* global jQuery */

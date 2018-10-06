@@ -17,6 +17,9 @@ var gca_packages = {
 
 	// Inject Code
 	inject : function(){
+		// Exit if not traveling
+		if(!document.getElementById('submenu1')) return;
+
 		// Set filters styling if enabled
 		(gca_options.bool("packages", "filters_layout") && 
 			this.layout.groupSideFilters());
@@ -243,14 +246,14 @@ var gca_packages = {
 			// Apply pagination shadow
 			this.paginationApply(document);
 
-			gca_tools.event.request.onBeforeAjaxResponce(function(responce){
+			gca_tools.event.request.onBeforeAjaxResponce((responce) => {
 				// If package load request
 				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
 					// Parse code
 					var wrapper = document.createElement("div");
 					wrapper.innerHTML = responce.data.pagination;
 					// Parse pagination
-					gca_packages.layout.paginationApply(wrapper);
+					this.paginationApply(wrapper);
 					// Patch code
 					responce.data.pagination = wrapper.innerHTML;
 				}
@@ -652,23 +655,16 @@ var gca_packages = {
 	},
 	
 	eventItemsCategory : function(){
-		// Code based on:	https://github.com/Sheldan/GladiatusScripts/blob/master/gladi_fixes.tamper.js
-		// Author:			Sheldan
-
 		// Fixes the missing option for items with the category 21 (presumably Event items)
 		var option = document.createElement("option");
 		option.setAttribute('value', 21);
 		option.textContent = gca_locale.get("packages", "event_items");
 		document.getElementsByName('f')[0].appendChild(option);
 		
-		// Gladiatus doesn't autoselect options which are not there server side
-		var isFiltered = function() {
-			if (document.location.href.indexOf('f=') != -1){
-				return ( parseInt(document.location.href.match(/f=(\d+)/)[1]) == 21 );
-			}
-			return false;
-		};
-		if (isFiltered()){document.getElementsByName('f')[0].value = 21;}
+		// Select it if needed
+		if (gca_getPage.parameter('f') == '21') {
+			document.getElementsByName('f')[0].value = 21;
+		}
 	},
 
 	itemFilters : {
@@ -905,26 +901,23 @@ var gca_packages = {
 	}
 };
 
+// Onload Handler
 (function(){
-	// Pre Inject
-	gca_packages.preinject();
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// While not traveling
-		if(document.getElementById('submenu1') !== null)
-			gca_packages.inject();
+		gca_packages.inject();
 	};
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	gca_packages.preinject();
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_data, gca_getPage, gca_locale, gca_options, gca_tools */
+/* global jQuery */

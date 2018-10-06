@@ -97,16 +97,14 @@ var gca_guild_library = {
 			// Exit if no inventory
 			if(!document.getElementById("inv")) return;
 
-			var that = this;
-
 			// Add event
-			gca_tools.event.bag.onBagOpen(function(tab){
-				that.applyToBag(tab);
+			gca_tools.event.bag.onBagOpen((tab) => {
+				this.applyToBag(tab);
 			});
 
 			// Wait first bag
-			gca_tools.event.bag.waitBag(function(){
-				that.applyToBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
+			gca_tools.event.bag.waitBag(() => {
+				this.applyToBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
 			});
 		},
 
@@ -165,23 +163,21 @@ var gca_guild_library = {
 
 };
 
+// Onload Handler
 (function(){
-	// On page load
 	var loaded = false;
-	var fireLoadEvent = function(){
+	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		// Call handler
 		gca_guild_library.inject();
-	}
-	if(document.readyState == "complete" || document.readyState == "loaded"){
-		fireLoadEvent();
-	}else{
-		window.addEventListener('DOMContentLoaded', function(){
-			fireLoadEvent();
-		}, true);
-		window.addEventListener('load', function(){
-			fireLoadEvent();
-		}, true);
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') {
+		fireLoad();
+	} else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
 	}
 })();
+
+// ESlint defs
+/* global gca_locale, gca_options, gca_section, gca_tools */
