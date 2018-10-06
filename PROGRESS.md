@@ -1,10 +1,11 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-15-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-17-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
+	- [x] Addon speedup
 	- [ ] Item forge info on tooltips (needs data)(needs options) [Beta]
 	- [x] Workaround for the Gladiatus image request spam to the server (that I have reported and they don't fix it)
 - **Overview**
@@ -17,7 +18,7 @@
 	- [ ] Advance Packages filter [Beta] (needs options)
 	- [x] Small items layout (default off)
 - **Merchants**
-	- [x] Double click to sell/buy items [Beta]
+	- [ ] Double click to sell/buy items [Alpha] (Buggy feature)
 	- [x] Display shop's total items gold and rubies
 - **Horreum**
 	- [x] Horreum UI improvements (ex. colors on numbers)
@@ -37,6 +38,8 @@
 	- [x] Fixed get player ID system (Global arena works now)
 	- [x] Some code clean up and fixes
 	- [x] Script execution on wrong page fixed (craps event on guild market)
+- **New Message**
+	- [x] Fixed friend list modal bug 
 - **Horreum**
 	- [x] Workbench code now dont run on hurreum
 
