@@ -10,8 +10,12 @@ var gca_server_quest = {
 		if(!document.getElementById("content"))
 			return;
 		
-		// Enemies
-		if(gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc'))){
+		// Server Event highscore
+		if (gca_section.submod == 'serverQuestHighscore') {
+			this.hilightGuildMates();
+		}
+		// Server Event Enemies
+		else if(gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc'))){
 			// Save server quest time
 			if(gca_options.bool("events", "server_quest_timer")){
 				this.save_info();
@@ -100,6 +104,29 @@ var gca_server_quest = {
 		gca_data.section.set("timers", 'server_quest_available', availableIn);
 		gca_data.section.set("timers", 'server_quest_points', points)
 		gca_data.section.set("timers", 'server_quest_last_date', gca_tools.time.serverDateString());
+	},
+
+	// Hilight guild mates
+	hilightGuildMates : function() {
+		// Check if correct page
+		if (!document.getElementById('highscore_range')) return;
+
+		// Check if you are in a guild
+		if(!gca_data.section.get("guild", "inGuild", false)) return;
+
+		var mates = [];
+		var matesInfo = gca_data.section.get("guild", "mates", {});
+		for (let i in matesInfo){
+			mates.push(matesInfo[i].id);
+		}
+
+		var players = document.querySelectorAll('#content table td a');
+		for (let i = players.length - 1; i >= 0; i--) {
+			let id = players[i].href.match(/&p=(\d+)&/i) || [0,'invalid'];
+			if (mates.indexOf(id[1]) >= 0) {
+				players[i].className += ' highlight_guildmember';
+			}
+		}
 	}
 };
 
