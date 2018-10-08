@@ -1,7 +1,7 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-17-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-18-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
@@ -30,6 +30,8 @@
 	- [x] Guild buildings calculate missing gold for upgrade
 - **Underwold**
 	- [x] Pray buff timer bar added on header
+- **Server Quests**
+	- [x] Hilight guild mates on highscore
 
 
 ### BUG FIXES
