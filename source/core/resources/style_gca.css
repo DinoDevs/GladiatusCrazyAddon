@@ -1149,15 +1149,20 @@
 		.gca_rtl #settings_logo .title{right: auto;left: 10px;}
 
 		/* Box */
-		#settings_box {width: 500px;margin: 15px auto 0px auto;}
-		#settings_box section{text-align: right;}
-		#settings_box .icon{float:left;background-image:url('icons/settings_icon.png');width:48px;height:48px;}
-		#settings_box .description{margin: 6px 0px 6px 10px;line-height: 18px;float: left;text-align: left;}
-		#settings_box .space{height:10px;clear:both;}
-		#settings_box input{margin-bottom: 4px;}
-		.gca_rtl #settings_box section{text-align: left;}
-		.gca_rtl #settings_box .icon{float:right;}
-		.gca_rtl #settings_box .description{margin: 6px 10px 6px 0px;float: right;text-align: right;}
+		#addon_box {width: 500px;margin: 15px auto 0px auto;}
+		#addon_box hr {border-top: 1px solid #bba86e;border-bottom: 0px;}
+		#addon_box .info_box {text-align: left;font-size: 12px;font-style: italic;}
+
+		#addon_box .settings_box {text-align: right;padding: 10px 0px;}
+		#addon_box .settings_box h2 {text-align: left;padding: 0px 5px;}
+		#addon_box .settings_box .icon{float:left;background-image:url('icons/settings_icon.png');width:48px;height:48px;margin:5px;}
+		#addon_box .settings_box .description{margin: 10px 0px 10px 10px;line-height: 18px;float: left;text-align: left;}
+		#addon_box .settings_box .space{height:10px;clear:both;}
+		#addon_box .settings_box input{margin-bottom: 4px;}
+
+		.gca_rtl #addon_box .settings_box section{text-align: left;}
+		.gca_rtl #addon_box .settings_box .icon{float:right;}
+		.gca_rtl #addon_box .settings_box .description{margin: 6px 10px 6px 0px;float: right;text-align: right;}
 
 		/* Side menu */
 		#settings_menu {width: 150px;float: left;}

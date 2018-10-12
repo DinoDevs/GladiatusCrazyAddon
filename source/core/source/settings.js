@@ -26,30 +26,195 @@ var gca_settings = {
 
 	// Options
 	options : {
+		urls : {
+			bug_report : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues/new?template=bug.md',
+			idea_request : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues/new?template=feature-request.md',
+			translate_addon : 'https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/documentation/translators/README.md',
+
+			github_link : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues',
+			facebook_link : 'https://www.facebook.com/GladiatusCrazyAddOn/',
+			donation_link : 'https://paypal.me/gcadonation/5'
+		},
+
 		// Create box on settings
 		createBox : function(){
 			// GCA Box
 			var wrapper = document.createElement("div");
-			wrapper.id = "settings_box";
+			wrapper.id = "addon_box";
 			var title = document.createElement("h2");
 			title.className = "section-header";
-			title.textContent = gca.name + " v" + gca.version + " - " + gca_locale.get("settings", "settings");
+			title.textContent = gca.name + " - v" + gca.version;
 			wrapper.appendChild(title);
-			var box = document.createElement("section");
-			box.style.display = "block";
-			wrapper.appendChild(box);
+			var section = document.createElement("section");
+			section.style.display = "block";
+			wrapper.appendChild(section);
 			document.getElementById("content").appendChild(wrapper);
 
+			var box;
+			box = document.createElement("div");
+			this.createBox_description(box);
+			section.appendChild(box);
+			section.appendChild(document.createElement("hr"));
+			box = document.createElement("div");
+			this.createBox_settings(box);
+			section.appendChild(box);
+		},
+
+		createBox_description : function(box) {
+			box.className = "info_box";
+
+			// Subtitle
+			let suptitle = document.createElement("div");
+			suptitle.textContent = "Making gladiatus great since 2010!";
+			box.appendChild(suptitle);
+
+			// Create letter
+			let letter = document.createElement("div");
+			letter.style.padding = "10px 30px 10px 20px";
+
+			let p, icon, a;
+
+			// Letter start
+			let start = document.createElement("div");
+			start.appendChild(document.createTextNode("Ave Gladiator,"));
+
+			// Letter body
+			let body = document.createElement("div");
+			body.style.marginLeft = "40px";
+			body.style.paddingTop = "10px";
+			body.style.textAlign = "justify";
+			body.style.textJustify = "inter-word";
+
+			p = document.createElement("div");
+			p.style.paddingBottom = "10px";
+			p.appendChild(document.createTextNode("Thank you for using Gladiatus Crazy Addon."));
+			body.appendChild(p);
+
+			p = document.createElement("div");
+			p.style.paddingBottom = "10px";
+			p.appendChild(document.createTextNode("If you find a "));
+			icon = document.createElement("div");
+			icon.className = "gca_windows_icon gca_windows_icon-bug";
+			p.appendChild(icon);
+			p.appendChild(document.createTextNode(" "));
+			a = document.createElement("a");
+			a.setAttribute("href", this.urls.bug_report);
+			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noreferrer");
+			a.style.color = "#b50604";
+			a.style.textDecoration = "underline";
+			a.textContent = "bug";
+			p.appendChild(a);
+			p.appendChild(document.createTextNode(" or you have a nice "));
+			icon = document.createElement("div");
+			icon.className = "gca_windows_icon gca_windows_icon-idea";
+			p.appendChild(icon);
+			p.appendChild(document.createTextNode(" "));
+			a = document.createElement("a");
+			a.setAttribute("href", this.urls.idea_request);
+			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noreferrer");
+			a.style.color = "#545454";
+			a.style.textDecoration = "underline";
+			a.textContent = "idea";
+			p.appendChild(a);
+			p.appendChild(document.createTextNode(" for a new feature, you can open an issue on our "));
+			icon = document.createElement("div");
+			icon.className = "gca_windows_icon gca_windows_icon-github";
+			p.appendChild(icon);
+			p.appendChild(document.createTextNode(" "));
+			a = document.createElement("a");
+			a.setAttribute("href", this.urls.github_link);
+			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noreferrer");
+			a.style.color = "#000";
+			a.style.textDecoration = "underline";
+			a.textContent = "Github page";
+			p.appendChild(a);
+			p.appendChild(document.createTextNode(" or send us a "));
+			icon = document.createElement("div");
+			icon.className = "gca_windows_icon gca_windows_icon-facebook";
+			p.appendChild(icon);
+			p.appendChild(document.createTextNode(" "));
+			a = document.createElement("a");
+			a.setAttribute("href", this.urls.facebook_link);
+			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noreferrer");
+			a.style.color = "#3c5b9b";
+			a.style.textDecoration = "underline";
+			a.textContent = "Facebook message";
+			p.appendChild(a);
+			p.appendChild(document.createTextNode("."));
+			body.appendChild(p);
+
+			p = document.createElement("div");
+			p.style.paddingBottom = "10px";
+			p.appendChild(document.createTextNode("We need your support! Buy us a "));
+			icon = document.createElement("div");
+			icon.className = "gca_windows_icon gca_windows_icon-beer";
+			p.appendChild(icon);
+			p.appendChild(document.createTextNode(" "));
+			a = document.createElement("a");
+			a.setAttribute("href", this.urls.donation_link);
+			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noreferrer");
+			a.style.color = "#af790f";
+			a.style.textDecoration = "underline";
+			a.textContent = "beer";
+			p.appendChild(a);
+			p.appendChild(document.createTextNode(" by donating and also help us by "));
+			icon = document.createElement("div");
+			icon.className = "gca_windows_icon gca_windows_icon-translation";
+			p.appendChild(icon);
+			p.appendChild(document.createTextNode(" "));
+			a = document.createElement("a");
+			a.setAttribute("href", this.urls.translate_addon);
+			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noreferrer");
+			a.style.color = "#3278ee";
+			a.style.textDecoration = "underline";
+			a.textContent = "translating the addon";
+			p.appendChild(a);
+			p.appendChild(document.createTextNode(" in your language!"));
+			body.appendChild(p);
+
+			p = document.createElement("div");
+			p.style.paddingBottom = "10px";
+			p.appendChild(document.createTextNode("Do not forget to check the addon's settings bellow, so that you can enable or disable any feature you want."));
+			body.appendChild(p);
+
+			// Letter end
+			let end = document.createElement("div");
+			end.appendChild(document.createTextNode("Yours,"));
+			end.appendChild(document.createElement("br"));
+			end.appendChild(document.createTextNode("GreatApo & DarkThanos"));
+
+			// Build letter
+			letter.appendChild(start);
+			letter.appendChild(body);
+			letter.appendChild(end);
+			box.appendChild(letter);
+		},
+
+		createBox_settings : function(box) {
+			box.className = "settings_box";
+
+			// Title
+			var title = document.createElement('h2');
+			title.textContent = gca_locale.get("settings", "settings");
+			box.appendChild(title);
+
 			// Icon
-			var icon = document.createElement("div");
-			icon.className = "icon";
+			var icon = document.createElement('div');
+			icon.className = 'icon';
 			box.appendChild(icon);
+
 			// Description
-			var desc = document.createElement("div");
-			desc.className = "description";
-			desc.appendChild(document.createTextNode(gca_locale.get("settings", "description")));
-			desc.appendChild(document.createElement("br"));
-			desc.appendChild(document.createTextNode(gca_locale.get("settings", "description_click_button")));
+			var desc = document.createElement('div');
+			desc.className = 'description';
+			desc.appendChild(document.createTextNode(gca_locale.get('settings', 'description')));
+			desc.appendChild(document.createElement('br'));
+			desc.appendChild(document.createTextNode(gca_locale.get('settings', 'description_click_button')));
 			box.appendChild(desc);
 
 			// Clear
@@ -64,8 +229,8 @@ var gca_settings = {
 			button.value = gca_locale.get("settings", "settings");
 			box.appendChild(button);
 			// Add on click event
-			button.addEventListener("click", function(){
-				gca_settings.options.open();
+			button.addEventListener("click", () => {
+				this.open();
 			}, false);
 		},
 
