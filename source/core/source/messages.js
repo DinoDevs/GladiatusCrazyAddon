@@ -45,8 +45,10 @@ var gca_messages = {
 			//	this.send_message.create());
 
 			// Guild message player info
-			(gca_options.bool("messages", "messages_layout") && gca_options.bool("messages", "more_guild_mate_info") && 
-				this.guild_message.more_info());
+			(gca_options.bool("messages", "messages_layout") && gca_options.bool("messages", "more_guild_mate_info") && (
+				this.guild_message.more_info() ||
+				this.private_message.more_info()
+			));
 
 			// Guild message parse links
 			(gca_options.bool("messages", "show_message_links") &&
@@ -383,12 +385,12 @@ var gca_messages = {
 
 			// Load guild mates
 			var mates = gca_data.section.get("guild", "mates", []);
-			for(var i = mates.length - 1; i >= 0; i--){
+			for(let i = mates.length - 1; i >= 0; i--){
 				this.mates[mates[i].id] = mates[i];
 			}
 
 			// For each message
-			for(var i = 0; i < messages.length; i++){
+			for(let i = 0; i < messages.length; i++){
 				// Load battle
 				this.load_info(messages[i]);
 			}
@@ -402,12 +404,14 @@ var gca_messages = {
 			var mate = this.mates[id];
 
 			// If player in list
-			if(mate){
+			if (mate) {
 				// Insert more info
 				var info = document.createElement("span");
 				info.textContent = "[ lv" + mate.level + " - " + mate.rank + " ]";
 				message.title.appendChild(info);
-			}else if(!this.refreshed){
+			}
+			// If guild member was not found, we should refresh our list
+			else if(!this.refreshed) {
 				// Set refresh time null
 				gca_data.section.set("timers", "guild_info_update", null);
 				// Refresh guild info (for next time)
@@ -458,6 +462,56 @@ var gca_messages = {
 			message.body.parentNode.appendChild(wrapper);
 		}
 
+	},
+
+
+	// Private message functions
+	private_message : {
+
+		// Guild mates
+		mates : {},
+
+		// Load
+		more_info : function(){
+			// If no guild
+			if(!gca_data.section.get("guild", "inGuild", false))
+				return;
+
+			// List
+			var messages = gca_messages.messages.type.personal;
+
+			// If no messages
+			if(messages.length == 0)
+				return;
+
+			// Load guild mates
+			var mates = gca_data.section.get("guild", "mates", []);
+			for(let i = mates.length - 1; i >= 0; i--){
+				this.mates[mates[i].id] = mates[i];
+			}
+
+			// For each message
+			for(let i = 0; i < messages.length; i++){
+				// Load battle
+				this.load_info(messages[i]);
+			}
+		},
+
+		// Load info
+		load_info : function(message){
+			// Get player id
+			var id = message.title.getElementsByTagName('a')[0].href.match(/&p=(\d+)/i)[1];
+			// Get player info
+			var mate = this.mates[id];
+
+			// If player in list
+			if (mate) {
+				// Insert more info
+				var info = document.createElement("span");
+				info.textContent = "[ lv" + mate.level + " - " + mate.rank + " ]";
+				message.title.appendChild(info);
+			}
+		}
 	},
 
 
@@ -906,5 +960,5 @@ var gca_messages = {
 })();
 
 // ESlint defs
-/* global gca_data, gca_getPage, gca_locale, gca_options, gca_section, gca_tools */
+/* global gca_data, gca_getPage, gca_global, gca_locale, gca_options, gca_section, gca_tools */
 /* global jQuery */

@@ -574,6 +574,9 @@ var gca_global = {
 							temp.className = "button1";
 							temp.value = gca_locale.get("global", "message_send");
 							temp.addEventListener('click', function(){
+								// Check if sending...
+								if (loading.style.display == "block") return;
+
 								// Get message
 								var msg = instant_message_textarea.value;
 								// Get exclude me data
@@ -581,6 +584,11 @@ var gca_global = {
 
 								// Dont send small messages
 								if(msg.length == 0) return;
+
+								var warning_on_leave = function (event) {
+									event.returnValue = "You are sending a message!\nAre you sure you want to leave the page?";
+								}
+								window.addEventListener('beforeunload', warning_on_leave);
 
 								// Disable message
 								loading.style.display = "block";
@@ -608,9 +616,12 @@ var gca_global = {
 									}else{
 										gca_notifications.error(gca_locale.get("global", "message_sent_failed"));
 									}
+									window.removeEventListener('beforeunload', warning_on_leave);
 								});
 								if(!send){
+									loading.style.display = "none";
 									gca_notifications.error(gca_locale.get("general", "no_data"));
+									window.removeEventListener('beforeunload', warning_on_leave);
 								}
 							}, false);
 							div.appendChild(temp);
