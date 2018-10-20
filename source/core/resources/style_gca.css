@@ -136,40 +136,40 @@
 	.loading{width: 41px; height: 6px; background: transparent url('loading.gif') no-repeat;}
 
 /* Top Fixed Bar */
-	#topFixedBar{color: #DCBB96; background: url('interface/top_bar_bg.png') repeat-x scroll 0 -4px transparent; z-index: 9000; position: fixed; top: 0px; left: 0px; right: 0px; height: 24px; display: none; line-height: 24px;}
+	#topFixedBar{color: #DCBB96; background: url('interface/top_bar_bg.png') repeat-x scroll 0 -4px transparent; z-index: 900; position: fixed; top: 0px; left: 0px; right: 0px; height: 24px; display: none; line-height: 24px;}
 	#topFixedBar a{color: #DCBB96;display: inline-block;margin-left: 6px;}
 	#topFixedBar .scroll-to-top{border-radius: 6px;border: 1px solid #4A3615;color: black;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 8px;float: right;text-align: center;margin-top: 2px;margin-right: 10px;cursor: pointer;font-size: 0.8em;vertical-align: bottom;}
 	@media screen and (max-width: 1080px) {
 		#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
 	}
 	.bar-fixed-bar{display: inline!important;}
-	.icon_gold-fixed-bar, .icon_rubies-fixed-bar{z-index: 9001; position: fixed; top: 3px;}
-	.gold_val-fixed-bar, .ruby_val-fixed-bar{z-index: 9001; position: fixed; top: 3px; margin-left: 18px;}
+	.icon_gold-fixed-bar, .icon_rubies-fixed-bar{z-index: 901; position: fixed; top: 3px;}
+	.gold_val-fixed-bar, .ruby_val-fixed-bar{z-index: 901; position: fixed; top: 3px; margin-left: 18px;}
 	.gca_rtl .gold_val-fixed-bar, .gca_rtl  .ruby_val-fixed-bar{margin-right: 18px;margin-left: auto;}
-	.icon_expeditionpoints-fixed-bar, .icon_arena-fixed-bar{z-index: 9001; position: fixed; top: -1px; cursor: pointer;}
+	.icon_expeditionpoints-fixed-bar, .icon_arena-fixed-bar{z-index: 901; position: fixed; top: -1px; cursor: pointer;}
 	.icon_expeditionpoints-fixed-bar, .icon_dungeonpoints-fixed-bar, .icon_arena-fixed-bar .headericon_big, .icon_grouparena-fixed-bar .headericon_big{border-radius: 5px;width: 16px;height: 16px;margin-top: 4px;}
 	.icon_arena-fixed-bar .headervalue_big, .icon_grouparena-fixed-bar .headervalue_big{font-size: 12px;margin-top: 4px;}
-	.expeditionpoints_value-fixed-bar{z-index: 9001; position: fixed; top: 1px; margin-left: 20px; cursor: pointer;font-size: 12px;}
+	.expeditionpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 20px; cursor: pointer;font-size: 12px;}
 	.gca_rtl .expeditionpoints_value-fixed-bar{margin-right: 28px;margin-left: auto;}
-	.icon_dungeonpoints-fixed-bar, .icon_grouparena-fixed-bar{z-index: 9001; position: fixed; top: -1px; margin-left: 60px; cursor: pointer;}
+	.icon_dungeonpoints-fixed-bar, .icon_grouparena-fixed-bar{z-index: 901; position: fixed; top: -1px; margin-left: 60px; cursor: pointer;}
 	.gca_rtl  .icon_dungeonpoints-fixed-bar, .gca_rtl .icon_grouparena-fixed-bar{margin-right: 100px;margin-left: auto;}
-	.dungeonpoints_value-fixed-bar{z-index: 9001; position: fixed; top: 1px; margin-left: 80px; cursor: pointer;font-size: 12px;}
+	.dungeonpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 80px; cursor: pointer;font-size: 12px;}
 	.gca_rtl .dungeonpoints_value-fixed-bar{margin-right: 128px;margin-left: auto;}
 	/*.header_values_ressources-fixed-bar, .header_values_general-fixed-bar{padding-top: 18px;}*/
-	#header_values_hp.header_values_hp-fixed-bar{z-index: 9001;position: fixed;top: 6px;margin-left: 90px;left: auto;}
+	#header_values_hp.header_values_hp-fixed-bar{z-index: 901;position: fixed;top: 6px;margin-left: 90px;left: auto;}
 	#header_values_hp.header_values_hp_extend.header_values_hp-fixed-bar{top: -4px;}
 	#header_values_hp.header_values_hp-fixed-bar #header_values_hp_points{margin-top: -10px;font-size: 8px;text-align: right;padding-right: 35px;}
 	#header_values_hp.header_values_hp-fixed-bar #header_values_hp_points span{font-size: 10px!important;}
 	#header_values_hp.header_values_hp-fixed-bar #header_life_pot{display: none;}
 	.gca_rtl #header_values_hp.header_values_hp-fixed-bar{margin-left: auto;margin-right: 90px;right: auto;}
 	.gca_rtl #header_values_hp.header_values_hp-fixed-bar #header_values_hp_points{text-align: left;padding-right: 0;padding-left: 35px;}
-	.show_premium_days-fixed-bar{z-index: 9001 !important; position: fixed !important;cursor: pointer;top: -7px !important;}
+	.show_premium_days-fixed-bar{z-index: 901 !important; position: fixed !important;cursor: pointer;top: -7px !important;}
 	.show_premium_days-fixed-bar h4{top: 4px;height: 15px;line-height: 16px;}
 
 /* Show Prem Days */
-	.show_prem_days{position: absolute;right: 4px;width: 170px;padding: 4px 0 4px 4px;z-index: 9000;top: 0px;}
+	.show_prem_days{position: absolute;right: 4px;width: 170px;padding: 4px 0 4px 4px;z-index: 900;top: 0px;}
 	.gca_rtl .show_prem_days{left: 4px;right: auto;}
-	.show_prem_days_text{z-index: 9001;height: 18px;border-radius: 7px;position: relative;background: url('interface/top_bar_item_bg.png') repeat-x 0 -36px;top: 0px;padding: 3px 5px;text-align: center;color: #dcbb96;}
+	.show_prem_days_text{z-index: 901;height: 18px;border-radius: 7px;position: relative;background: url('interface/top_bar_item_bg.png') repeat-x 0 -36px;top: 0px;padding: 3px 5px;text-align: center;color: #dcbb96;}
 
 /* Show Centurio Days */
 	.show_centurio_days{float: right;margin-left: -22px;margin-right: 6px;margin-top: 2px;width: 16px;height: 16px;color: white;text-align: center;font-weight: bold;font-size: 11px;}
