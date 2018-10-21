@@ -3291,7 +3291,7 @@ var gca_global = {
 						gca_data.section.set('cache', 'underworld_pray_stop_locale', document.getElementById('content').getElementsByTagName('a')[0].textContent.trim());
 						// Save pray duration
 						setTimeout(() => {
-							console.log((new Date().getTime() - window.duration * 1000));
+							//console.log((new Date().getTime() - window.duration * 1000));
 							gca_data.section.set('cache', 'underworld_pray_started', (new Date().getTime() - window.duration * 1000));
 							this.update();
 						}, 500);
@@ -3303,15 +3303,18 @@ var gca_global = {
 					gca_data.section.set('cache', 'underworld_pray_locale', document.getElementById('content').getElementsByTagName('h1')[0].textContent.trim());
 				}
 				else {
+					let started = gca_data.section.get('cache', 'underworld_pray_started', 0);
+					started = Math.round((new Date().getTime() - started) / 1000);
 					let buffs = document.getElementById('localBuffs').getElementsByClassName('buff');
 					for (let i = buffs.length - 1; i >= 0; i--) {
 						if(
 							buffs[i].dataset.image == 'img/buff/healing.png' && 
-							buffs[i].dataset.buffType == '2' && 
+							//buffs[i].dataset.buffType == '8' && 
 							(
 								(/\+5%/).test(buffs[i].getAttribute('title')) || 
 								(/\+5%/).test(buffs[i].getAttribute('onmousemove'))
-							)
+							) &&
+							Math.abs(Math.abs(parseInt(buffs[i].dataset.castStart, 10)) - started) < 5
 						){
 							isPraying = true;
 							break;
