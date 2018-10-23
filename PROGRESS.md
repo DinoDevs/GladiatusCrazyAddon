@@ -6,19 +6,19 @@
 ### IMPROVEMENTS
 - **Global**
 	- [x] Addon speedup
-	- [ ] Item forge info on tooltips (needs data)(needs options) [Beta]
-	- [x] Workaround for the Gladiatus image request spam to the server (that I have reported and they don't fix it)
+	- [ ] Item forge info on tooltips (needs data and options) [Beta]
+	- [x] Workaround for the Gladiatus image request spam to the server (a gladiatus bug, that I have reported and they won't fix it)
 - **Overview**
 	- [x] Added material amounts on repare preview
 - **Arena**
 	- [x] Target Players List (Managable from Family tab)
 	- [x] Hilghlight guild members on other servers
 - **Packets**
-	- [x] Double click to open packets (default off) [Beta]
-	- [ ] Advance Packages filter [Beta] (needs options)
+	- [ ] Double click to open packets (default off) [Alpha] (Buggy feature)
+	- [ ] Advance Packages filter [Beta] (needs options and translations)
 	- [x] Small items layout (default off)
 - **Merchants**
-	- [ ] Double click to sell/buy items [Alpha] (Buggy feature)
+	- [ ] Double click to sell/buy items (default off) [Alpha] (Buggy feature)
 	- [x] Display shop's total items gold and rubies
 - **Horreum**
 	- [x] Horreum UI improvements (ex. colors on numbers)
@@ -27,22 +27,22 @@
 - **Auction**
 	- [x] Save last search and load it as default page
 - **Guild**
-	- [x] Guild buildings calculate missing gold for upgrade
+	- [x] Guild buildings calculate needed gold for an upgrade
 - **Underwold**
 	- [x] Pray buff timer bar added on header
 - **Server Quests**
-	- [x] Hilight guild mates on highscore
+	- [x] Highlight guild mates on event highscore
 
 
 ### BUG FIXES
 - **Global**
+	- [x] General code clean up and fixes
 	- [x] Audio settings now work
 	- [x] Fixed get player ID system (Global arena works now)
-	- [x] Some code clean up and fixes
 	- [x] Script execution on wrong page fixed (craps event on guild market)
 - **New Message**
 	- [x] Friend list modal bug 
-	- [x] Friend list was running on "add to familly" message
+	- [x] Friend list now don't run on "add to familly" message
 - **Horreum**
 	- [x] Workbench code now don't run on hurreum
 
