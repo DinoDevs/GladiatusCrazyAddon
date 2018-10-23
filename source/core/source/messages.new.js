@@ -25,7 +25,7 @@ var gca_new_message = {
 				this.newMessage.setFocus());
 			
 			// Add friend list
-			if(gca_options.bool("messages","new_message_friend_list") && 
+			if(gca_options.bool("messages","new_message_friend_list") && !gca_getPage.parameter('addBuddy') &&
 				this.newMessage.friendList.inject());
 		}
 	},

@@ -94,7 +94,7 @@ var gca_overview_buddylist = {
 			td = document.createElement('td');
 			let a = document.createElement('a');
 			if (server == gca_section.server) {
-				a.setAttribute("href", gca_getPage.link({'mod' : 'player', 'p' : id}));
+				a.setAttribute("href", gca_getPage.link({'mod' : 'player', 'p' : playerId}));
 			}
 			else {
 				a.setAttribute("href", "https://s" + server + "-" + gca_section.country + ".gladiatus.gameforge.com/game/index.php?mod=player&p=" + playerId);
