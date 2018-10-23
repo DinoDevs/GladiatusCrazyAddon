@@ -41,9 +41,10 @@
 	- [x] Some code clean up and fixes
 	- [x] Script execution on wrong page fixed (craps event on guild market)
 - **New Message**
-	- [x] Fixed friend list modal bug 
+	- [x] Friend list modal bug 
+	- [x] Friend list was running on "add to familly" message
 - **Horreum**
-	- [x] Workbench code now dont run on hurreum
+	- [x] Workbench code now don't run on hurreum
 
 
 ### TRANSLATIONS
