@@ -434,7 +434,7 @@ var gca_overview = {
 				jQuery(drop_area).droppable({
 					drop: function(event, ui) {
 						var id = jQuery(ui.draggable).data('itemId');
-						sendAjax(
+						window.sendAjax(
 							this,
 							'ajax.php',
 							'mod=forge&submod=getWorkbenchPreview&mode=workbench&slot=5&iid=' + id + '&amount=1',
@@ -447,7 +447,8 @@ var gca_overview = {
 							}
 						);
 
-
+						/*
+						// This is used by us (the developers) to easy print the item's forge data
 						jQuery.ajax({
 							type: "POST",
 							url: 'ajax.php',
@@ -467,11 +468,14 @@ var gca_overview = {
 							error: function(){
 							}
 						});
+						*/
 					}
 				});
 			});
 		},
 
+		/*
+		// This is used by us (the developers) to easy print the item's forge data
 		logData : function(data) {
 			data = JSON.parse(data);
 			console.log(data);
@@ -524,6 +528,7 @@ var gca_overview = {
 
 			console.log('other', JSON.stringify(mats.other));
 		},
+		*/
 
 		getMaterialsAmounts : function(data, id) {
 			// If already have materials data
@@ -595,12 +600,12 @@ var gca_overview = {
 						if(materials[key].amount > 0){
 							let mat_id = parseInt(key.match(/18(\d+)/)[1], 10);
 
+							let mats_exists = '';
 							let mats_info = '';
 							if (this.materialAmounts && this.materialAmounts[mat_id]) {
 								let sum = this.materialAmounts[mat_id][0] + this.materialAmounts[mat_id][1] + this.materialAmounts[mat_id][2] + this.materialAmounts[mat_id][3] + this.materialAmounts[mat_id][4] + this.materialAmounts[mat_id][5];
 								mats_info = 
 									' ' +
-									(sum >= materials[key].amount ?'<b style="color: green;">✔</b>' : '<b style="color: red;">✖</b>') +
 									'<div style="display:inline-block;margin-left:10px;color:#ddd;">[' +
 									'<b style="color: white;">' + this.materialAmounts[mat_id][0] + '</b>+' + 
 									'<b style="color: lime;">' + this.materialAmounts[mat_id][1] + '</b>+' + 
@@ -609,10 +614,11 @@ var gca_overview = {
 									'<b style="color: #FF6A00;">' + this.materialAmounts[mat_id][4] + '</b>+' + 
 									'<b style="color: #FF0000;">' + this.materialAmounts[mat_id][5] + '</b>=' + 
 									sum + ']</div>';
+								mats_exists = (sum >= materials[key].amount ?'<b style="color: green;">✔</b>' : '<b style="color: red;">✖</b>');
 							}
 
 							tooltip[0].push([
-								'<div class="item-i-18-' + mat_id + '" style="display:inline-block;transform: scale(0.8);margin:0 -5px -10px 0px;"></div> &times; ' + materials[key].amount + ' (' + this.checkForUtf8Bug(materials[key].name) + ')' + mats_info,
+								mats_exists + '<div class="item-i-18-' + mat_id + '" style="display:inline-block;transform: scale(0.8);margin:0 -5px -12px 0px;"></div> &times; ' + materials[key].amount + ' (' + this.checkForUtf8Bug(materials[key].name) + ')' + mats_info,
 								"#cccccc"
 							]);
 						}
