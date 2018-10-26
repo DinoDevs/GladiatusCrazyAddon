@@ -716,15 +716,14 @@ var gca_packages = {
 			
 			// Create Advance Filter
 			var article = document.createElement('article');
-			article.style.marginTop = '20px';
+			article.className = 'package-advance-filters';
 			var title = document.createElement('h2');
 			title.className = 'section-header';
-			title.textContent = 'Advance Page Filters (Beta Feature)';
+			title.textContent = gca_locale.get("packages", "advance_filters");
 			article.appendChild(title);
+			var info = document.createElement('span');
+			title.appendChild(info);
 			var section = document.createElement('section');
-			section.style.display = 'block';
-			section.style.textAlign = 'left';
-			section.style.padding = '5px 10px';
 			article.appendChild(section);
 			document.getElementById('content').appendChild(article);
 			
@@ -733,11 +732,10 @@ var gca_packages = {
 
 			// Active rules
 			var box_active = document.createElement('div');
-			box_active.style.marginTop = '10px';
-			box_active.style.padding = '10px 15px';
-			box_active.style.border = '1px solid #876e3e';
+			box_active.className = "active-filters";
 			for (var r = 0; r < active_rules.length; r++) {
 				let rule = document.createElement('div');
+				rule.className = 'filter-rule';
 				rule.textContent = active_rules[r][3];
 				box_active.appendChild(rule);
 			}
@@ -745,7 +743,7 @@ var gca_packages = {
 
 			// Add rule box
 			var div = document.createElement('div');
-			div.style.margin = '10px 0px';
+			div.className = 'filter-add';
 
 			var input_rule, input_comp, input_value, btn_add;
 			input_rule = document.createElement('select');
@@ -782,14 +780,10 @@ var gca_packages = {
 				if (input_value.value.length == 0) return;
 
 				let txt = this.rules[input_rule.value][0] + ' ' + this.comparators[input_comp.value] + ' ' + input_value.value;
-				active_rules.push([
-					this.rules[input_rule.value][1],
-					this.comparators[input_comp.value],
-					input_value.value,
-					txt
-				]);
+				active_rules.push([this.rules[input_rule.value][1], this.comparators[input_comp.value], input_value.value, txt]);
 
 				let rule = document.createElement('div');
+				rule.className = 'filter-rule';
 				rule.textContent = txt;
 				box_active.appendChild(rule);
 
@@ -801,34 +795,34 @@ var gca_packages = {
 			var btn = document.createElement('button');
 			var clear = document.createElement('button');
 
-			clear.textContent = 'Clear Rules';
+			clear.textContent = gca_locale.get("packages", "advance_filters_clear");
 			clear.className = 'awesome-button';
 			section.appendChild(clear);
 			clear.addEventListener('click', () => {
 				active_rules = [];
 				box_active.innerHTML = '';
-				var packages = document.getElementById('packages').getElementsByClassName('ui-draggable');
-				for (var i = 0; i < packages.length; i++) {
+				let packages = document.getElementById('packages').getElementsByClassName('ui-draggable');
+				for (let i = 0; i < packages.length; i++) {
 					packages[i].parentNode.parentNode.style.opacity = 1;
 				}
 				gca_data.section.del('packages', 'advance_filters');
 				active_rules_running = false;
-				btn.textContent = 'Run Filter';
+				info.textContent = '';
 			});
 			
-			btn.textContent = 'Run Filter';
+			btn.textContent = gca_locale.get("packages", "advance_filters_apply");
 			btn.className = 'awesome-button';
 			section.appendChild(btn);
 			btn.addEventListener('click', () => {
 				let items = this.applyFilter(active_rules);
-				btn.textContent = 'Run Filter (found ' + items.length + ')';
+				info.textContent = gca_locale.get("packages", "advance_filters_found", {items : items.length});
 				gca_data.section.set('packages', 'advance_filters', active_rules);
 				active_rules_running = true;
 			});
 
 			if (active_rules.length) {
 				let items = this.applyFilter(active_rules);
-				btn.textContent = 'Run Filter (found ' + items.length + ')';
+				info.textContent = gca_locale.get("packages", "advance_filters_found", {items : items.length});
 				active_rules_running = true;
 			}
 
@@ -836,14 +830,14 @@ var gca_packages = {
 			gca_tools.event.request.onAjaxResponce(() => {
 				if (active_rules_running) {
 					let items = this.applyFilter(active_rules);
-					btn.textContent = 'Run Filter (found ' + items.length + ')';
+					info.textContent = gca_locale.get("packages", "advance_filters_found", {items : items.length});
 				}
 			});
 			// On packages page load
 			self.loadPackets.onPageLoad(() => {
 				if (active_rules_running) {
 					let items = this.applyFilter(active_rules);
-					btn.textContent = 'Run Filter (found ' + items.length + ')';
+					info.textContent = gca_locale.get("packages", "advance_filters_found", {items : items.length});
 				}
 			});
 		},

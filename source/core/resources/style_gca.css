@@ -906,6 +906,20 @@
 		.gca_rtl.gca_packages_filters_layout #content .side_container  input[type="submit"]{float: right;}
 		.gca_rtl.gca_packages_filters_layout #content .side_container .actions_container input[type="submit"]{float: left;}
 
+		/* Advace Filters */
+		.package-advance-filters {margin-top: 20px;}
+		.package-advance-filters h2.section-header+section {text-align: left;}
+		.package-advance-filters h2 span {float: right;font-size: 10px;line-height: 22px;}
+		.package-advance-filters section {display: block;padding: 5px 10px;}
+		.package-advance-filters .active-filters {margin-top: 10px;padding: 5px 5px;border: 1px solid rgb(135, 110, 62);min-height: 24px;}
+		.package-advance-filters .active-filters .filter-rule {border: 1px solid #bba86e;display: inline-block;padding: 0px 5px;border-radius: 6px;margin: 2px 2px;background: #d3c195;cursor: default;}
+		.package-advance-filters .filter-add {margin: 10px 0px;}
+		.package-advance-filters .filter-add select, .package-advance-filters .filter-add input, .package-advance-filters .filter-add button {margin: 2px;}
+		.package-advance-filters .filter-add select:nth-child(1) {width: 280px;}
+		.package-advance-filters .filter-add select:nth-child(2) {width: 38px;}
+		.package-advance-filters .filter-add input:nth-child(3) {width: 85px;}
+		.package-advance-filters .filter-add button {width: 52px;margin-top: 0px;}
+
 
 
 	/* Quests Layout

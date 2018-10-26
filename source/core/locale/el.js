@@ -200,7 +200,11 @@ gca_languages["gr"] = {
 		packages : {
 			event_items : "Αντικείμενα εκδηλώσεων",
 			known_scroll : "Γνωστός πάπυρος",
-			unknown_scroll : "Άγνωστος πάπυρος"
+			unknown_scroll : "Άγνωστος πάπυρος",
+			advance_filters : "Φίλτρα για προχωρημένους",
+			advance_filters_apply : "Εφαρμογή φίλτρων",
+			advance_filters_clear : "Απαλοιφή φίλτρων",
+			advance_filters_found : "(βρέθηκαν {{items}})"
 		},
 		
 		// Settings
@@ -299,7 +303,7 @@ gca_languages["gr"] = {
 			category_packages$item_price : "Εμφάνιση του κόστους κάθε αντικειμένου",
 			category_packages$special_category_features : "Ενεργοποίηση ειδικών λειτουργιών ανά κατηγορία",
 			category_packages$double_click_open : "Άνοιγμα πακέτων με δυπλό κλικ",
-			category_packages$advance_filter : "Προχωρημένα φίλτρα πακέτων",
+			category_packages$advance_filter : "Φίλτρα πακέτων για προχωρημένους",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Ομαδοποίηση αποστολών",
 			category_pantheon$quests_detailed_rewards: "Ενεργοποίηση λεπτομερούς εμφάνισης των ανταμοιβών",

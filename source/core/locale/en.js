@@ -203,7 +203,11 @@ gca_languages["en"] = {
 		packages : {
 			event_items : "Event items",
 			known_scroll : "You know this scroll",
-			unknown_scroll : "You don't know this scroll"
+			unknown_scroll : "You don't know this scroll",
+			advance_filters : "Advance filters",
+			advance_filters_apply : "Apply filters",
+			advance_filters_clear : "Clear filters",
+			advance_filters_found : "(found {{items}})"
 		},
 
 		// Settings
