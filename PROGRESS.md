@@ -15,7 +15,7 @@
 	- [x] Hilghlight guild members on other servers
 - **Packets**
 	- [ ] Double click to open packets (default off) [Alpha] (Buggy feature)
-	- [ ] Advance Packages filter [Beta] (needs options and translations)
+	- [x] Advance Packages filter
 	- [x] Small items layout (default off)
 - **Merchants**
 	- [ ] Double click to sell/buy items (default off) [Alpha] (Buggy feature)
