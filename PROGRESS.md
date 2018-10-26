@@ -6,7 +6,7 @@
 ### IMPROVEMENTS
 - **Global**
 	- [x] Addon speedup
-	- [ ] Item forge info on tooltips (needs data and options) [Beta]
+	- [x] Item forge info on tooltips (default off)
 	- [x] Workaround for the Gladiatus image request spam to the server (a gladiatus bug, that I have reported and they won't fix it)
 - **Overview**
 	- [x] Added material amounts on repare preview
@@ -14,11 +14,11 @@
 	- [x] Target Players List (Managable from Family tab)
 	- [x] Hilghlight guild members on other servers
 - **Packets**
-	- [ ] Double click to open packets (default off) [Alpha] (Buggy feature)
+	- [x] Double click to open packets (default off) [Alpha] (Buggy feature)
 	- [x] Advance Packages filter
 	- [x] Small items layout (default off)
 - **Merchants**
-	- [ ] Double click to sell/buy items (default off) [Alpha] (Buggy feature)
+	- [x] Double click to sell/buy items (default off) [Alpha] (Buggy feature)
 	- [x] Display shop's total items gold and rubies
 - **Horreum**
 	- [x] Horreum UI improvements (ex. colors on numbers)
