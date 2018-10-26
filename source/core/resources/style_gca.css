@@ -1218,10 +1218,10 @@
 		.gca_rtl #settings_tab .type-wrapper.type-integer .switch-field input{text-align: right;}
 
 		/* Other styles */
-		.language_select select, .sell_duration_select select, .show_durability_select select{float:right;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
+		.language_select select, .sell_duration_select select, .gca_settings_select select{float:right;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-align: left;text-shadow: none;padding: 2px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-moz-transition: all 0.1s ease-in-out;}
 		.language_select .translate-percent {text-align: right;font-size: 10px;font-style: italic;}
 		.language_select .translated-by {text-align: right;font-size: 10px;font-style: italic;}
 		.settings-file-input {width: 348px;padding: 5px;border-radius: 4px;background-color: #d9cea2;color: black;font-size: 10px;font-weight: normal;text-shadow: none;border: 1px solid rgba(0, 0, 0, 0.2);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);}
-		.gca_rtl .language_select select, .sell_duration_select select, .show_durability_select select{float:right;text-align: left;}
+		.gca_rtl .language_select select, .sell_duration_select select, .gca_settings_select select{float:right;text-align: left;}
 		.gca_rtl .language_select .translate-percent {text-align: left;}
 		.gca_rtl .language_select .translated-by {text-align: left;}

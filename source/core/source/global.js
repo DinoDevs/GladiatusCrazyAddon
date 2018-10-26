@@ -157,7 +157,8 @@ var gca_global = {
 			this.display.analyzeItems.itemDurability.init());
 
 		// Show forge info
-		this.display.analyzeItems.itemForgeInfo.init();
+		(gca_data.section.get("global", "show_forge_info", 0) != 0 && 
+			this.display.analyzeItems.itemForgeInfo.init());
 
 		// Image Cache
 		this.background.preserve_image_cache();
@@ -2991,8 +2992,12 @@ var gca_global = {
 
 			// jQuery('.ui-draggable')
 			itemForgeInfo : {
-
 				init : function(){
+					var style = gca_data.section.get("global", "show_forge_info", 0);
+					if (style == 1) this.extendedInfo = false;
+					else if (style == 2) this.extendedInfo = true;
+					else return;
+
 					var load = false;
 					
 					// If inventory exists
@@ -3069,61 +3074,40 @@ var gca_global = {
 
 					// If not an craftable item
 					if (!this.data.base[base]) return;
-
-					/*
-					// Tooltip info list
-					var info = [];
-
-					// Seperator
-					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
-
-					// Prefix
-					if (prefix > 0) {
-						if (this.data.prefix[prefix]) {
-							info.push(['[Prefix](' + (this.data.prefix[prefix]['l'] >= 0 ? this.data.prefix[prefix]['l'] : '??') + ' lvl)' + prefix, '#ffffff']);
-							for (let mat in this.data.prefix[prefix]) {
-								if (this.data.prefix[prefix].hasOwnProperty(mat) && mat != 'l')
-									info.push(this.getInfoRow(mat, this.data.prefix[prefix][mat]));
-							}
-						}
-						else {
-							info.push(['[Prefix](?? lvl)' + prefix, '#ffffff']);
-							info.push(['? &times; ?', '#cccccc']);
-						}
-					}
-
-					// Base
-					if (this.data.base[base]) {
-						info.push(['[Base](' + (this.data.base[base]['l'] >= 0 ? this.data.base[base]['l'] : '??') + ' lvl)' + base, '#ffffff']);
-						for (let mat in this.data.base[base]) {
-							if (this.data.base[base].hasOwnProperty(mat) && mat != 'l')
-								info.push(this.getInfoRow(mat, this.data.base[base][mat]));
-						}
+					
+					// Build forge info
+					var info;
+					if (this.extendedInfo) {
+						info = this.style_extended(prefix, base, suffix);
 					}
 					else {
-						info.push(['[Base](?? lvl)' + base, '#ffffff']);
-						info.push(['? &times; ?', '#cccccc']);
+						info = this.style_normal(prefix, base, suffix);
 					}
 
-					// Suffix
-					if (suffix > 0) {
-						if (this.data.suffix[suffix]) {
-							info.push(['[Suffix](' + (this.data.suffix[suffix]['l'] >= 0 ? this.data.suffix[suffix]['l'] : '??') + ' lvl)' + suffix, '#ffffff']);
-							for (let mat in this.data.suffix[suffix]) {
-								if (this.data.suffix[suffix].hasOwnProperty(mat) && mat != 'l')
-									info.push(this.getInfoRow(mat, this.data.suffix[suffix][mat]));
-							}
-						}
-						else {
-							info.push(['[Suffix](?? lvl)' + suffix, '#ffffff']);
-							info.push(['? &times; ?', '#cccccc']);
-						}
+					// Add on tooltip
+					var tooltip = JSON.parse(item.dataset.tooltip);
+					for (let i = 0; i < info.length; i++) {
+						tooltip[0].push(info[i]);
 					}
+					gca_tools.setTooltip(item, JSON.stringify(tooltip));
+				},
 
-					// Base margin
-					info.push(['<div style="heigth:8px"></div>', '#000000']);
-					*/
-				
+				getInfoRow : function(material, amount) {
+					let img = '<div class="item-i-18-' + material + '" style="display:inline-block;transform: scale(0.7);margin:-12px -4px -12px -4px;"></div>';
+					let name = (this.locale) ? ' (' + this.locale[material] + ')' : '';
+					return [img + ' &times; ' + (amount >= 0 ? amount : '?') + name, '#cccccc'];
+				},
+
+				hashDecode : function(hash) {
+					var key = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+					var code = 0;
+					for (var i = hash.length - 1; i >= 0; i--) {
+						code += key.indexOf(hash[i]) * Math.pow(key.length, hash.length - i - 1);
+					}
+					return code;
+				},
+
+				style_normal : function(prefix, base, suffix) {
 					// Tooltip info list
 					var info = [];
 
@@ -3204,33 +3188,72 @@ var gca_global = {
 					row_dev += '</tr>';
 					row_mats += '</tr>';
 
+					// Clear dev data
+					row_dev = '';
+
 					// Add table
 					info.push(['<table style="color: #ffffff;font-size: 10px;border-spacing: 0px;">' + row_type + row_mats + row_info + row_dev + '</table>', '#000000']);
 
 					// Base margin
 					info.push(['<div style="heigth:8px"></div>', '#000000']);
 
-					// Add on tooltip
-					var tooltip = JSON.parse(item.dataset.tooltip);
-					for (let i = 0; i < info.length; i++) {
-						tooltip[0].push(info[i]);
-					}
-					gca_tools.setTooltip(item, JSON.stringify(tooltip));
+					return info;
 				},
 
-				getInfoRow : function(material, amount) {
-					let img = material + ' ' + '<div class="item-i-18-' + material + '" style="display:inline-block;transform: scale(0.7);margin:-12px -4px -12px -4px;"></div>';
-					let name = (this.locale) ? ' (' + this.locale[material] + ')' : '';
-					return [img + ' &times; ' + (amount >= 0 ? amount : '?') + name, '#cccccc'];
-				},
+				style_extended : function(prefix, base, suffix) {
+					// Tooltip info list
+					var info = [];
 
-				hashDecode : function(hash) {
-					var key = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-					var code = 0;
-					for (var i = hash.length - 1; i >= 0; i--) {
-						code += key.indexOf(hash[i]) * Math.pow(key.length, hash.length - i - 1);
+					// Seperator
+					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
+
+					// Prefix
+					if (prefix > 0) {
+						if (this.data.prefix[prefix]) {
+							info.push(['[Prefix](' + (this.data.prefix[prefix]['l'] >= 0 ? this.data.prefix[prefix]['l'] : '??') + ' lvl)', '#ffffff']);
+							for (let mat in this.data.prefix[prefix]) {
+								if (this.data.prefix[prefix].hasOwnProperty(mat) && mat != 'l')
+									info.push(this.getInfoRow(mat, this.data.prefix[prefix][mat]));
+							}
+						}
+						else {
+							info.push(['[Prefix](?? lvl)', '#ffffff']);
+							info.push(['? &times; ?', '#cccccc']);
+						}
 					}
-					return code;
+
+					// Base
+					if (this.data.base[base]) {
+						info.push(['[Base](' + (this.data.base[base]['l'] >= 0 ? this.data.base[base]['l'] : '??') + ' lvl)', '#ffffff']);
+						for (let mat in this.data.base[base]) {
+							if (this.data.base[base].hasOwnProperty(mat) && mat != 'l')
+								info.push(this.getInfoRow(mat, this.data.base[base][mat]));
+						}
+					}
+					else {
+						info.push(['[Base](?? lvl)', '#ffffff']);
+						info.push(['? &times; ?', '#cccccc']);
+					}
+
+					// Suffix
+					if (suffix > 0) {
+						if (this.data.suffix[suffix]) {
+							info.push(['[Suffix](' + (this.data.suffix[suffix]['l'] >= 0 ? this.data.suffix[suffix]['l'] : '??') + ' lvl)', '#ffffff']);
+							for (let mat in this.data.suffix[suffix]) {
+								if (this.data.suffix[suffix].hasOwnProperty(mat) && mat != 'l')
+									info.push(this.getInfoRow(mat, this.data.suffix[suffix][mat]));
+							}
+						}
+						else {
+							info.push(['[Suffix](?? lvl)', '#ffffff']);
+							info.push(['? &times; ?', '#cccccc']);
+						}
+					}
+
+					// Base margin
+					info.push(['<div style="heigth:8px"></div>', '#000000']);
+
+					return info;
 				}
 			}
 		}

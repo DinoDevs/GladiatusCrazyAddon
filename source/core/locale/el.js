@@ -267,6 +267,7 @@ gca_languages["gr"] = {
 			category_global$centurio_powerups_timers : "Εμφάνιση χρονομέτρων για τον Εκατόνταρχο και τις Συμφωνίες επάνω στο κουμπί Premium",
 			category_global$show_durability : "Εμφάνιση της ανθεκτικότητας των αντικειμένων στην κάτω αριστερή τους γωνία",
 			category_global$min_durability : "Ειδοποίηση όταν η ανθεκτικότητα+εξευγενισμός είναι κάτω από μια τιμή % (επιλέξτε 0 για απενεργοποίηση)",
+			category_global$show_forge_info : "Εμφάνιση των πρώτων υλών του αντικειμένου στο tooltip",
 			// Settings - Overview
 			category_overview$analyze_items: "Ανάλυση των αντικειμένων του παίκτη",
 			category_overview$food_life_gain : "Εμφάνιση των πόντων ζωής που δίνει το κάθε αναλώσιμο",

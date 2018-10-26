@@ -469,11 +469,11 @@ var gca_settings = {
 						"type" : "custom",
 						"dom" : function(data, title, wrapper){
 							if(wrapper.className.length > 0) wrapper.className += " ";
-							wrapper.className += "show_durability_select";
+							wrapper.className += "gca_settings_select";
 							// Create select
 							data.select = document.createElement("select");
-							// Create a list of languages
-							let durations = [ gca_locale.get("settings",'do_not_show'), gca_locale.get("settings",'show_as')+' %', gca_locale.get("settings",'show_as')+' ⚒'];//●
+							// Create a list
+							let durations = [ gca_locale.get("settings",'do_not_show'), gca_locale.get("settings",'show_as')+' %', gca_locale.get("settings",'show_as')+' ⚒'];
 							for (let i = 0; i < durations.length; i++) {
 								let option = document.createElement("option");
 								option.value = i;
@@ -498,7 +498,34 @@ var gca_settings = {
 					"max" : 200,
 					"scale" : 1,
 					"db" : "section",
-				}
+				},
+				
+				// Show item forge info
+				"show_forge_info" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							if(wrapper.className.length > 0) wrapper.className += " ";
+							wrapper.className += "gca_settings_select";
+							// Create select
+							data.select = document.createElement("select");
+							// Create a list
+							let styles = [gca_locale.get("settings",'do_not_show'), gca_locale.get("settings",'show_as')+' ↔', gca_locale.get("settings",'show_as')+' ↕'];
+							for (let i = 0; i < styles.length; i++) {
+								let option = document.createElement("option");
+								option.value = i;
+								option.textContent = styles[i];
+								data.select.appendChild(option);
+							}
+							data.select.selectedIndex = gca_data.section.get("global", "show_forge_info", 0);
+							return data.select;
+						},
+						"save" : function(data){
+							gca_data.section.set("global", "show_forge_info", data.select.value);
+						}
+					};
+					return scheme;
+				})(),
 			},
 
 			// Overview Options

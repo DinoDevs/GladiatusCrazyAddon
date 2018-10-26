@@ -339,6 +339,9 @@ gca_options.data = {
 		
 		// Show item durability
 		"show_durability" : 0,
+
+		// Show item forge info
+		"show_forge_info" : 0,
 		
 		// Minimum durability alert
 		"min_durability" : 25
