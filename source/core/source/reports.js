@@ -222,8 +222,16 @@ var gca_reports = {
 
 		// Get loot item
 		getLootItem : function(id, t, icon, title){
+			// Check cache
+			let cache = this.getLootItemFromCache(id);
+			if (cache) {
+				//console.log('Report ' + id + ' loot loaded from cache!');
+				gca_tools.setTooltip(icon, cache);
+				return;
+			}
+			
 			// Get Report
-			jQuery.get(gca_getPage.link({"mod":"reports","submod":"showCombatReport","reportId":id,"t":t}), function(content){
+			jQuery.get(gca_getPage.link({"mod":"reports","submod":"showCombatReport","reportId":id,"t":t}), (content) => {
 				var tooltips = [];
 
 				// Match Loot
@@ -258,7 +266,7 @@ var gca_reports = {
 				// Tooltip replace
 				else {
 					// Add title on tooltip
-					var reward_tooltip = [[[title, "white"]]];
+					let reward_tooltip = [[[title, "white"]]];
 					// For each tooltip
 					for (let i = 0; i < tooltips.length; i++) {
 						// Parse tooltip
@@ -272,9 +280,38 @@ var gca_reports = {
 						}
 					}
 					// Show tooltip
-					gca_tools.setTooltip(icon, JSON.stringify(reward_tooltip));
+					reward_tooltip = JSON.stringify(reward_tooltip);
+					gca_tools.setTooltip(icon, reward_tooltip);
+
+					// Save in cache
+					this.setLootItemOnCache(id, reward_tooltip);
 				}
 			});
+		},
+
+		lootCache : false,
+		initLootItemCache : function(reportid){
+			if (this.lootCache) return;
+			this.lootCache = gca_data.section.get('cache', 'reports-loot', []);
+			if (this.lootCache.length > 50) {
+				this.lootCache = this.lootCache.slice(0, 30);
+				gca_data.section.set('cache', 'reports-loot', this.lootCache);
+			}
+		},
+		getLootItemFromCache : function(reportid){
+			this.initLootItemCache();
+
+			for (let i = 0; i < this.lootCache.length; i++) {
+				if (this.lootCache[i].i == reportid) {
+					return this.lootCache[i].t;
+				}
+			}
+			return false;
+		},
+		setLootItemOnCache : function(reportid, tooltip){
+			this.initLootItemCache();
+			this.lootCache.unshift({i:reportid, t:tooltip});
+			gca_data.section.set('cache', 'reports-loot', this.lootCache);
 		}
 	},
 
