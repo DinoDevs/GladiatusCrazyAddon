@@ -1,7 +1,7 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-18-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-7-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-17-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-7-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
@@ -17,6 +17,8 @@
 	- [x] Double click to open packets (default off) [Alpha] (Buggy feature)
 	- [x] Advance Packages filter
 	- [x] Small items layout (default off)
+- **Reports List**
+	- [x] Cache rewards tooltips
 - **Merchants**
 	- [x] Double click to sell/buy items (default off) [Alpha] (Buggy feature)
 	- [x] Display shop's total items gold and rubies
