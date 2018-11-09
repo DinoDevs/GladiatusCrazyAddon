@@ -43,6 +43,8 @@ var gca_forge = {
 			(gca_options.bool("forge","horreum_select_meterials") &&
 			this.horreum.clickToSelectMaterial());
 
+			this.horreum.openAllCategoriesButton();
+
 			this.horreum.gatherInfo();
 		}
 
@@ -363,6 +365,16 @@ var gca_forge = {
 					}
 				}
 			}
+		},
+
+		openAllCategoriesButton : function() {
+			let btn = document.createElement('a');
+			btn.className = 'horreum-click-to-open-categories';
+			btn.textContent = '↓';
+			btn.addEventListener('click', function() {
+				jQuery('#resource-list tbody').css('display','table-row-group');
+			}, false);
+			document.getElementById('content').getElementsByTagName('article')[0].appendChild(btn);
 		},
 
 		gatherInfo : function() {
