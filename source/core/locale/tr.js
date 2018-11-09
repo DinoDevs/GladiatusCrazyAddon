@@ -246,7 +246,7 @@ gca_languages["tr"] = {
 			category_forge$horreum_materials_names : "Hammadde ismini göster (Hammadde Deposu)",
 			category_forge$horreum_remember_options : "Son seçilen hammadde bloğunu hatırla (Hammadde Deposu)",
 			category_forge$horreum_select_meterials : "Hammaddeyi seçmek için tıkla (Hammadde Deposu)",
-			category_arena$ignore_attack_confirmations : "Saldırı yetiylerini yoksay (5'den fazla saldırı mesajı)",
+			category_arena$ignore_attack_confirmations : "5 defadan fazla saldıramazsınız mesajını yoksay",
 			category_arena$show_simulator_imagelink : "Simülasyona bir resim bağlantısı gösterin (gladiatussimulator.tk)",
 			category_magus$fade_unimprovable_items : "Geliştiremediğiniz öğeleri soluk gösterin",
 			category_arena$sort_by_lvl : "Arenadaki oyuncuları seviyeye göre sırala",
