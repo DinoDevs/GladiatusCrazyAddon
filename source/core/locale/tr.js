@@ -3,7 +3,7 @@
  * Name : Turkish (Türkiye)
  * Code : TR
  * Tag  : tr-TR
- * Translator: Xus (s25), Anonim, Falconrock
+ * Translator: Xus (s25), Anonim, Falconrock, Emefar (s33)
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages["tr"] = {
 	name : "Türkçe (Turkish)",
-	translators : ["Xus (s25)", "Anonim", "Falconrock"],
+	translators : ["Xus (s25)", "Anonim", "Falconrock","Emefar (s33)"],
 	locale : {
 		info : {
 			description : "Gladiatus için yapılmış en güzel eklenti!"
@@ -94,6 +94,14 @@ gca_languages["tr"] = {
 		expedition : {
 			material_drop_chance : "Bu malzemenin düşme şansı %{{number}} "
 		},
+		arena : {
+			global_arena_title : "Global Arena (Crazy Addon)",
+			global_arena_description : "Bu nihai arena, dünyanın her yerinden gladyatörleri bir araya toplar! Bu alanda, gladyatörler altın ya da deneyim için savaşmazlar, dünyanın en iyiler listesinde bir yer için savaşırlar!",
+			global_arena_load : "Düşman listesini yükle",
+			target_list : "Hedef Listesi",
+			target_list_add : "Hedef listesine ekle",
+			target_list_remove : "Hedef listesinden çıkar"
+		},
 		training : {
 			stats_points : "Eğitim Puanı",
 			points_breakdown : "Eğitim Dağılımı",
@@ -121,7 +129,11 @@ gca_languages["tr"] = {
 		packages : {
 			event_items : "Etkinlik öğeleri",
 			known_scroll : "Bu parşömeni daha önce okudun",
-			unknown_scroll : "Bu parşömeni daha önce okumadın"
+			unknown_scroll : "Bu parşömeni daha önce okumadın",
+			advance_filters : "Gelişmiş Filtreleme",
+			advance_filters_apply : "Filtreyi uygula",
+			advance_filters_clear : "Filtreyi sıfırla",
+			advance_filters_found : "({{items}} adet bulundu)"
 		},
 		settings : {
 			settings : "Ayarlar",
@@ -176,6 +188,7 @@ gca_languages["tr"] = {
 			category_global$centurio_powerups_timers : "Premium menüsü üzerinde anlaşmaların kalan zamanlarını göster",
 			category_global$show_durability : "Ürünün sol alt köşesinde dayanıklılığı göster",
 			category_global$min_durability : "Seçmiş olduğun % nin altında dayanıklılığı olan itemleri göster (Devre dışı bırakmak için 0 yapın)",
+			category_global$show_forge_info : "İtemlerin hammadde gereksinimlerini ipucu olarak göster",
 			category_overview$analyze_items : "Eşya durumlarını analiz edin (eğitim için gereklidir)",
 			category_overview$food_life_gain : "Malzemelerden hayat kazancını göster",
 			category_overview$block_avoid_caps : "Blokları gösterin başlıklardan kaçının",
@@ -203,10 +216,13 @@ gca_languages["tr"] = {
 			category_packages$filters_layout : "Filtre düzenini geliştirin",
 			category_packages$compact_info_layout : "Bilgi düzenini kompakt hale getirin",
 			category_packages$items_layout : "Eşyaların düzenini iyileştirin",
+			category_packages$small_items_layout : "Eşyaları küçük göster",
 			category_packages$load_more_pages : "Daha fazla sayfa yükle",
 			category_packages$pages_to_load : "Yüklenecek sayfa sayısı",
 			category_packages$item_price : "Ögelerin fiyatını göster",
 			category_packages$special_category_features : "Özel kategori özelliklerini etkinleştir",
+			category_packages$double_click_open : "Paketleri açmak için çift tıklama",
+			category_packages$advance_filter : "Gelişmiş kasa filtreleme",
 			category_pantheon$quests_reorder : "Görev grubunu göster",
 			category_pantheon$quests_detailed_rewards : "Görevlerin ödüllerini ayrıntılı göster",
 			category_pantheon$missions_show_completed : "Tamamlanan görevleri göster",
@@ -223,16 +239,25 @@ gca_languages["tr"] = {
 			category_training$show_analyze_items_data : "Analiz edilen kalem verilerini araç ipuçlarında göster",
 			category_training$show_points_after_upgrade : "Yükseltmeden sonraki eğitim puanını göster",
 			category_merchants$fade_unaffordable_items : "Alamadığınız nesneleri soluk göster",
+			category_merchants$show_shop_info : "Perakende tüccarında toplam altın/elmas bilgilerini göster",
+			category_merchants$double_click_actions : "İtemleri almak/satmak için çift tıklama",
 			category_forge$material_links : "Her malzeme ihtiyacı için paketleri ve pazar kısayollarını gösterin (Demirhane / Tamir)",
-			category_forge$show_levels : "Temel öğe düzeyini isim yanında gösterin ÖnEk / SonEk (Demirhane)",
-			category_arena$ignore_attack_confirmations : "Saldırı yetiylerini yoksay (5'den fazla saldırı mesajı)",
+			category_forge$show_levels : "Temel öğe düzeyini, isim yanında gösterin. Ön ek / Son ek (Demirhane)",
+			category_forge$horreum_materials_names : "Hammadde ismini göster (Hammadde Deposu)",
+			category_forge$horreum_remember_options : "Son seçilen hammadde bloğunu hatırla (Hammadde Deposu)",
+			category_forge$horreum_select_meterials : "Hammaddeyi seçmek için tıkla (Hammadde Deposu)",
+			category_arena$ignore_attack_confirmations : "5 defadan fazla saldıramazsınız mesajını yoksay",
 			category_arena$show_simulator_imagelink : "Simülasyona bir resim bağlantısı gösterin (gladiatussimulator.tk)",
 			category_magus$fade_unimprovable_items : "Geliştiremediğiniz öğeleri soluk gösterin",
+			category_arena$sort_by_lvl : "Arenadaki oyuncuları seviyeye göre sırala",
+			category_arena$highlight_guild_members : "Diğer sunucularda oynayan ittifak üyelerini vurgula",
+			category_arena$target_list : "Hedef listesi özelliğini aktifleştirme",
 			category_market$soulbound_warning : "Ruha bağlı ürünlerde onay alın",
 			category_market$one_gold_warning : "1 Altına maal olan ürünlerde alırken onay al",
 			category_market$cancel_all_button : "Tümünü iptal et butonunu gösterin",
 			category_market$remember_sell_duration : "Son seçilen satış süresini hatırla",
 			category_market$sell_duration : "Varsayılan satış süresini seçin",
+			category_market$one_gold_mode : "Satış fiyatını her zaman 1 altın olarak değiştir butonu",
 			category_market$remember_sort : "Son sıralama düzenini hatırla",
 			category_expedition$show_enemy_drops : "Düşecek olan hammaddeleri gösterin",
 			category_expedition$underworld_layout : "Keşifler gibi yeraltı dünyasının düşman düzenini göster",
@@ -250,6 +275,7 @@ gca_languages["tr"] = {
 			category_auction$x3_items_per_line : "Satır başına 3 eşya göster",
 			category_auction$multi_bids : "Sayfa yenilemeden teklif verin",
 			category_auction$extra_item_stats : "Eşya resimlerinde ekstra istatistikleri göster",
+			category_auction$save_last_state : "Müzayede de son seçilen ayarları hatırla (İsim / Seviye / Çeşit / Kalite)",
 			category_events$craps_timer : "Zar olayında zamanlayıcıyı en üstte göster",
 			category_events$server_quest_timer : "Sunucu görevini veya konum olayının zamanlayıcısını en üstte göster",
 			category_sound$enabled : "Ses sistemini ektinleştir",
