@@ -251,7 +251,7 @@ gca_languages["tr"] = {
 			category_magus$fade_unimprovable_items : "Geliştiremediğiniz öğeleri soluk gösterin",
 			category_arena$sort_by_lvl : "Arenadaki oyuncuları seviyeye göre sırala",
 			category_arena$highlight_guild_members : "Diğer sunucularda oynayan ittifak üyelerini vurgula",
-			category_arena$target_list : "Hedef listesi ayarı",
+			category_arena$target_list : "Hedef listesi özelliğini aktifleştirme",
 			category_market$soulbound_warning : "Ruha bağlı ürünlerde onay alın",
 			category_market$one_gold_warning : "1 Altına maal olan ürünlerde alırken onay al",
 			category_market$cancel_all_button : "Tümünü iptal et butonunu gösterin",
