@@ -287,11 +287,11 @@ var gca_tools = {
 				y: cords_item.y + (cords_target.y - cords_item.y)/2
 			};
 
-			this._move.fireMouseEvent(item, 'mousedown', {clientX: cords_item.x, clientY: cords_item.y});
-			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_item.x, clientY: cords_item.y});
-			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_middle.x, clientY: cords_middle.y});
-			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_target.x, clientY: cords_target.y});
-			this._move.fireMouseEvent(document, 'mouseup', {clientX: cords_target.x, clientY: cords_target.y});
+			this._move.fireMouseEvent(item, 'mousedown', {clientX: cords_item.x - window.scrollX, clientY: cords_item.y - window.scrollY});
+			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_item.x - window.scrollX, clientY: cords_item.y - window.scrollY});
+			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_middle.x - window.scrollX, clientY: cords_middle.y - window.scrollY});
+			this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_target.x - window.scrollX, clientY: cords_target.y - window.scrollY});
+			this._move.fireMouseEvent(document, 'mouseup', {clientX: cords_target.x - window.scrollX, clientY: cords_target.y - window.scrollY});
 		},
 
 		_move : {
