@@ -3,7 +3,7 @@
  * Name : Turkish (Türkiye)
  * Code : TR
  * Tag  : tr-TR
- * Translator: Xus (s25), Anonim, Falconrock, Emefar (s33)
+ * Translator: Xus (s25), Anonim, Emefar (s33)
  */
 
 // Languages Object
