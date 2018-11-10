@@ -2846,7 +2846,7 @@ var gca_global = {
 							this.currentBag(document.getElementById("inventory_nav").getElementsByClassName("current")[0]);
 						});
 					}
-					// Else id already loaded
+					// Else if already loaded
 					// (you can test it with ctrl+F5)
 					else {
 						// Add shadows

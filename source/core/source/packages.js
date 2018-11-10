@@ -471,13 +471,10 @@ var gca_packages = {
 		// Insert Packet
 		// Just like the page do
 		insertPacket : function(data){
-			// Save instance
-			var that = this;
-
 			var item = jQuery(data.newPackage);
 			var item_dragable = item.find(".ui-draggable");
 			jQuery("#packages").append(item);
-			DragDrop.makeDraggable(item_dragable);
+			window.DragDrop.makeDraggable(item_dragable);
 			item_dragable.removeClass("ui-droppable");
 			this.updatePagePriceInGold(item_dragable, +1);
 			item.find("[data-container-number]").data("removeFunction",
