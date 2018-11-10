@@ -1812,8 +1812,19 @@ var gca_settings = {
 		},
 
 		// Define addon's storages
-		addonStorages : ["advanced-menu", "cache", "data", "guild", "lang", "messages", "overview", "settings", "sound", "stats", "timers"],
-		
+		addonStorages : ["advanced-menu", "arena", "cache", "data", "global", "guild", "lang", "market", "messages", "overview", "packages", "settings", "sound", "stats", "timers"],
+		/*
+		// Easy find storages
+		(function(){
+			var s = '';
+			for (let key in localStorage) {
+				let storage = key.match(/^gladiatusCrazyAddonData_\d+_(.+)$/);
+				if (storage) s += (s.length > 0 ? ', ':'') + '"' + storage[1] + '"'; 
+			}
+			console.log('[' + s + ']');
+		})();
+		 */
+
 		// Clear all data
 		clearAll : function() {
 			// Clear all storages
