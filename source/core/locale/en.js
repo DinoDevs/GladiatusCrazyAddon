@@ -385,6 +385,7 @@ gca_languages["en"] = {
 			category_data$import_settings : "Import settings data from file",
 			category_data$reset_settings : "Reset addon's settings",
 			category_data$clear_data : "Clear all addon's data",
+			category_data$cross_browser_login : "Cross browser login sync",
 
 			// Buttons
 			save : "Save",
@@ -394,6 +395,7 @@ gca_languages["en"] = {
 			clear : "Clear",
 			do_not_show : "Do not show",
 			show_as : "Show as",
+			show_info : "Show information",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",

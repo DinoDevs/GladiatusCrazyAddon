@@ -210,6 +210,11 @@ var manager = {
 			// Other Player Overview
 			else if(info.page.queries.submod == null){
 				tools.loadScript("source/player.js");
+				
+				// Sync
+				if(info.page.queries.gcamod == "sync"){
+					tools.loadScript("source/sync.js");
+				}
 			}
 		},
 		

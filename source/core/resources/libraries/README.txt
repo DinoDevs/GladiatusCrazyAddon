@@ -10,3 +10,9 @@ Information about the libraries we are using
 		Version 	:	2.22.2
 		Zip 		:	https://github.com/moment/moment/archive/2.22.2.zip
 		File		:	<zip>/moment-2.22.2/moment.js
+
+	jquery.qrcode.js
+		Website 	:	https://github.com/jeromeetienne/jquery-qrcode
+		Version 	:	1.0
+		Zip 		:	https://github.com/jeromeetienne/jquery-qrcode/archive/v1.0.zip
+		File		:	<zip>/jquery-qrcode-1.0/jquery.qrcode.min.js

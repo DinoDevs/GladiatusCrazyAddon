@@ -961,6 +961,28 @@ var gca_settings = {
 						}
 					};
 					return scheme;
+				})(),
+
+				// Sync
+				"cross_browser_login" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.show = document.createElement("input");
+							data.show.setAttribute("type", "button");
+							data.show.className = "awesome-button";
+							data.show.style.float = "right";
+							data.show.value = gca_locale.get("settings", "show_info");
+							data.show.addEventListener("click", () => {
+								gca_settings.sync.show();
+							}, false);
+
+							// Add change event
+							return [data.show];
+						}
+					};
+					return scheme;
 				})()
 			}
 		},
@@ -1861,6 +1883,92 @@ var gca_settings = {
 			} while(Math.abs(bytes) >= 1024 && u < units.length - 1);
 			return bytes.toFixed(1) + '' + units[u];
 		}
+	},
+
+	sync : {
+		show : function() {
+			this.wrapper = document.createElement('div');
+			this.wrapper.textContent = 'Loading ...';
+			// Create confirm modal
+			var modal = new gca_tools.Modal(
+				'Cross browser player login sync',
+				this.wrapper,
+				() => {
+					modal.destroy();
+				},
+				() => {
+					modal.destroy();
+				}
+			);
+			modal.button('Ok', true);
+			modal.window.style.marginTop = '-225px';
+			modal.body_wrapper.style.height = '200px';
+			modal.show();
+			this.modal = modal;
+			this.loadScript();
+		},
+
+		loadScript : function() {
+			if (this.scriptLoaded) {
+				this.loadHash();
+				return;
+			}
+			// Load moment.js
+			gca_tools.load.script('libraries/jquery.qrcode.min.js', () => {
+				this.scriptLoaded = true;
+				this.loadHash();
+			}, true);
+		},
+
+		loadHash : function() {
+			if (this.hash) {
+				this.displayInfo();
+				return;
+			}
+			// Load hash
+			jQuery.ajax({
+				method: "GET",
+				url: 'main.php',
+				success : (responce) => {
+					let match = responce.match(/socket\.emit\('authenticate',\s*\{\s*session:\s*'([0-9a-f]+)',\s*id:\s*(\d+)\s*\}\);/i);
+					if (!match) {
+						modal.body(gca_locale('general', 'error'));
+						return;
+					}
+					this.hash = match[1];
+					this.player = match[2];
+					this.displayInfo();
+				}
+			});
+		},
+
+		displayInfo : function() {
+			let url = 'https://s' + gca_section.server + '-' + gca_section.country + '.gladiatus.gameforge.com/game/index.php?mod=player&p=' + this.player + '&gcamod=sync&s=' + this.hash;
+
+			this.wrapper.innerHTML = '';
+			this.wrapper.style.textAlign = 'left';
+
+			let qrcode = document.createElement('div');
+			qrcode.style.float = 'right';
+			this.wrapper.appendChild(qrcode);
+
+			this.wrapper.appendChild(document.createTextNode('You must have Gladiatus Crazy Addon installed on the other browser.'));
+			this.wrapper.appendChild(document.createElement('br'));
+			this.wrapper.appendChild(document.createElement('br'));
+			let input = document.createElement('input');
+			input.value = url;
+			input.style.width = '205px';
+			this.wrapper.appendChild(input);
+			this.wrapper.appendChild(document.createElement('br'));
+			this.wrapper.appendChild(document.createTextNode('Copy the url and paste it on the other browser, or use the qrcode.'));
+
+			this.wrapper.appendChild(document.createElement('br'));
+			this.wrapper.appendChild(document.createElement('br'));
+			this.wrapper.appendChild(document.createElement('br'));
+
+			jQuery(qrcode).qrcode({width: 180, height: 180, text: url});
+		}
+
 	}
 
 };
