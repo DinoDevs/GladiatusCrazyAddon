@@ -163,8 +163,10 @@ var gca_global = {
 		// Image Cache
 		this.background.preserve_image_cache();
 
-		// Mobile item move helper
-		this.accessibility.item_move.init();
+		// Mobile item move helper - Run on android
+		if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
+			this.accessibility.item_move.init();
+		}
 	},
 	
 	scripts : {
@@ -4468,31 +4470,35 @@ var gca_global = {
 			init : function() {
 				// Create ui
 				this.bar = document.createElement('div');
-				this.bar.style = 'position: fixed;z-index: 9999;left: 0px;right: 0px;bottom: 0px;display: none;background: #30140a;height: 32px;font-size: 16px;line-height: 32px;color: white;';
+				this.bar.className = 'accessibility-item-move-bar';
 				let cancel = document.createElement('a');
-				cancel.textContent = '[x]';
+				cancel.className = 'close-btn';
+				cancel.textContent = '✕';
 				cancel.addEventListener('click', () => {
 					this.unselect();
 				}, false);
 				this.bar.appendChild(cancel);
 				this.bar_name = document.createElement('span');
+				this.bar_name.className = 'title';
 				this.bar.appendChild(this.bar_name);
 				let move = document.createElement('a');
-				move.textContent = '[Move]';
+				move.className = 'btn';
+				move.textContent = 'Move';
 				move.addEventListener('click', () => {
-					console.log('test');
 					this.overlay.style.display = 'block';
 				}, false);
 				this.bar.appendChild(move);
 				document.body.appendChild(this.bar);
 
-				this.overlay = document.createElement('div');
-				this.overlay.style = 'background: rgba(0,0,0,0.5);position: absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 9998;display:none;';
+				this.overlay = document.createElement('a');
+				this.overlay.className = 'accessibility-item-move-overlay';
 				this.overlay.addEventListener('click', (e) => {
 					this.move(e);
 				}, false);
+				this.overlay.addEventListener('touch', (e) => {
+					this.move(e);
+				}, false);
 				document.body.appendChild(this.overlay);
-
 
 				// Apply listeners
 				this.apply();
@@ -4502,14 +4508,20 @@ var gca_global = {
 			},
 			apply : function() {
 				window.jQuery('.ui-draggable').each((index, item) => {
-					if (item.dataset.accessibilityItemMove) return;
-					item.dataset.accessibilityItemMove = true;
-
+					//if (item.dataset.accessibilityItemMove) return;
+					//item.dataset.accessibilityItemMove = true;
+					/*
 					item.addEventListener('contextmenu', (e) => {
 						e.preventDefault();
 						this.select(item);
 						return false;
 					}, false);
+					*/
+					item.oncontextmenu = (e) => {
+						e.preventDefault();
+						this.select(item);
+						return false;
+					};
 				});
 			},
 
@@ -4522,7 +4534,7 @@ var gca_global = {
 					name : tooltip[0][0][0]
 				};
 				item.style.border = '2px solid white';
-				item.style.backgroundColor = 'white';
+				item.style.backgroundColor = 'rgba(255,255,255,0.6)';
 				item.style.margin = '-2px';
 				item.style.borderRadius = '10px';
 				this.refresh();
@@ -4556,7 +4568,7 @@ var gca_global = {
 				}
 				let item = this.selected.item;
 				this.unselect();
-				gca_tools.item.drag(item, null, e.clientX, e.clientY);
+				gca_tools.item.drag(item, null, e.clientX + window.scrollX, e.clientY + window.scrollY);
 			}
 		}
 	}

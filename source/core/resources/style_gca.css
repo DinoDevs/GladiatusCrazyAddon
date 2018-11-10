@@ -1227,3 +1227,20 @@
 		.gca_rtl .language_select select, .sell_duration_select select, .gca_settings_select select{float:right;text-align: left;}
 		.gca_rtl .language_select .translate-percent {text-align: left;}
 		.gca_rtl .language_select .translated-by {text-align: left;}
+
+
+
+	/* Accessibility
+	-------------------------------------------------- */
+
+		/* Item Move */
+		.accessibility-item-move-bar {position: fixed;z-index: 9999;left: 0;right: 0;bottom: 0;background: #30140a;height: 64px;font-size: 32px;line-height: 64px;color: white;display: none;}
+		.accessibility-item-move-bar a, .accessibility-item-move-bar span {margin: 10px 10px;border: 2px solid transparent;padding: 5px 5px;border-radius: 8px;display: inline-block;height: 30px;line-height: 30px;}
+		.accessibility-item-move-bar a {cursor: pointer;text-decoration: none;}
+		.accessibility-item-move-bar a:hover {text-decoration: none;}
+		.accessibility-item-move-bar .close-btn {color: #f44336;border: 2px solid #f44336;}
+		.accessibility-item-move-bar .title {}
+		.accessibility-item-move-bar .btn {color: #ffeb3b;border: 2px solid #ffeb3b;float: right;}
+		.accessibility-item-move-overlay {background: rgba(0,0,0,0.5);position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 9998;display:none;}
+
+
