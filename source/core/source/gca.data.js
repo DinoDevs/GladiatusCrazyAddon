@@ -422,7 +422,7 @@ gca_options.data = {
 		// Special category features
 		"special_category_features" : true,
 		// Open packets with double click
-		"double_click_open" : false,
+		"double_click_open" : true,
 		// Advance packet filter
 		"advance_filter" : false
 	},
@@ -528,7 +528,9 @@ gca_options.data = {
 		// 1 gold mode
 		"one_gold_mode" : true,
 		// Remember sorting 
-		"remember_sort" : false
+		"remember_sort" : false,
+		// Double click to select
+		"double_click_select" : true
 	},
 
 	// Expedition Options

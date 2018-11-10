@@ -352,6 +352,7 @@ gca_languages["en"] = {
 			category_market$sell_duration : "Select default sell duration",
 			category_market$one_gold_mode : "Toggle button changing sell price always to 1 gold",
 			category_market$remember_sort : "Remember last sort order",
+			category_market$double_click_select : "Select item with double click",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",
 			category_expedition$underworld_layout : "Show underworld's enemies layout like expedition's",

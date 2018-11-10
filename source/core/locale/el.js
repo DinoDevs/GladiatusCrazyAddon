@@ -348,6 +348,7 @@ gca_languages["gr"] = {
 			category_market$sell_duration : "Ορισμός προεπιλεγμένης διάρκειας πώλησης",
 			category_market$one_gold_mode : "Επιλογή για σταθερή τιμή πώλησης στο 1 χρυσό",
 			category_market$remember_sort : "Να θυμάται το πρόσθετο την τελευταία ταξινόμηση",
+			category_market$double_click_select : "Επιλογή αντικειμένου με δυπλό κλικ",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Εμφάνιση των υλών σιδηρουργείου που δίνει ο κάθε εχθρός",
 			category_expedition$underworld_layout : "Μετατροπή της εμφάνισης των εχθρών του κάτω κόσμου όπως στις εξορμήσεις",

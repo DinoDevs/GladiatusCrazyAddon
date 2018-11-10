@@ -297,7 +297,7 @@ var gca_tools = {
 		_move : {
 
 			getTargetSpot : function(item, target) {
-				var grid, size;
+				var cords_grid, grid, size;
 				if (target == 'shop') {
 					grid = document.getElementById('shop');
 					size = [8, 6];
@@ -305,6 +305,15 @@ var gca_tools = {
 				else if (target == 'inv') {
 					grid = document.getElementById('inv');
 					size = [5, 8];
+				}
+				else if (target == 'market') {
+					grid = document.getElementById('market_sell');
+					cords_grid = jQuery(grid).offset();
+					return {
+						x: (cords_grid.left + 32 + 1),
+						y: (cords_grid.top + 32 + 1),
+						parent : grid
+					};
 				}
 				else {
 					return false;
@@ -317,7 +326,7 @@ var gca_tools = {
 				);
 				if (!spot) return false;
 
-				var cords_grid = jQuery(grid).offset();
+				cords_grid = jQuery(grid).offset();
 				cords_grid = {x: cords_grid.left, y: cords_grid.top};
 				spot = {
 					x: (cords_grid.x + (32 * spot.x) + 1),

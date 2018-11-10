@@ -50,6 +50,10 @@ var gca_markets = {
 		// Levels you can see
 		this.levelsYouCanSee();
 
+		// Double click select
+		(gca_options.bool("market", "double_click_select") && 
+			this.doubleClickToSelect.init());
+
 		// Setting Link
 		gca_tools.create.settingsLink("market");
 	},
@@ -318,7 +322,44 @@ var gca_markets = {
 		if (url.hasOwnProperty("s")) {
 			document.getElementById('sellForm').action += '&s='+url.s[0];
 		}
-	}
+	},
+
+	// On double click item to select for selling
+	doubleClickToSelect : {
+		init : function(){
+			// Add event
+			gca_tools.event.bag.onBagOpen(() => {
+				this.apply();
+			});
+
+			// If bag not already loaded
+			if (document.getElementById('inv').className.match('unavailable')) {
+				// Wait first bag
+				gca_tools.event.bag.waitBag(() => {
+					this.apply();
+				});
+			}
+			else {
+				this.apply();
+			}
+		},
+		apply : function(){
+			// For each
+			jQuery("#inv .ui-draggable").each((i, item) => {
+				// If already parsed
+				if(item.dataset.gcaFlag_doubleClickEvent)
+					return;
+				// Flag as parsed
+				item.dataset.gcaFlag_doubleClickEvent = true;
+				// Add event
+				item.addListener('dblclick', this.handler);
+			});
+		},
+		handler : function() {
+			gca_tools.item.move(this, 'market');
+		}
+	},
+
 };
 
 // Onload Handler
