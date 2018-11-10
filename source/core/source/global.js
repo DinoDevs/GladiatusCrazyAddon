@@ -162,6 +162,9 @@ var gca_global = {
 
 		// Image Cache
 		this.background.preserve_image_cache();
+
+		// Mobile item move helper
+		this.accessibility.item_move.init();
 	},
 	
 	scripts : {
@@ -4458,6 +4461,104 @@ var gca_global = {
 				}
 			}
 		});
+	},
+
+	accessibility : {
+		item_move : {
+			init : function() {
+				// Create ui
+				this.bar = document.createElement('div');
+				this.bar.style = 'position: fixed;z-index: 9999;left: 0px;right: 0px;bottom: 0px;display: none;background: #30140a;height: 32px;font-size: 16px;line-height: 32px;color: white;';
+				let cancel = document.createElement('a');
+				cancel.textContent = '[x]';
+				cancel.addEventListener('click', () => {
+					this.unselect();
+				}, false);
+				this.bar.appendChild(cancel);
+				this.bar_name = document.createElement('span');
+				this.bar.appendChild(this.bar_name);
+				let move = document.createElement('a');
+				move.textContent = '[Move]';
+				move.addEventListener('click', () => {
+					console.log('test');
+					this.overlay.style.display = 'block';
+				}, false);
+				this.bar.appendChild(move);
+				document.body.appendChild(this.bar);
+
+				this.overlay = document.createElement('div');
+				this.overlay.style = 'background: rgba(0,0,0,0.5);position: absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 9998;display:none;';
+				this.overlay.addEventListener('click', (e) => {
+					this.move(e);
+				}, false);
+				document.body.appendChild(this.overlay);
+
+
+				// Apply listeners
+				this.apply();
+				setInterval(()=>{
+					this.apply();
+				}, 200);
+			},
+			apply : function() {
+				window.jQuery('.ui-draggable').each((index, item) => {
+					if (item.dataset.accessibilityItemMove) return;
+					item.dataset.accessibilityItemMove = true;
+
+					item.addEventListener('contextmenu', (e) => {
+						e.preventDefault();
+						this.select(item);
+						return false;
+					}, false);
+				});
+			},
+
+			selected : null,
+			select : function(item) {
+				if (this.selected) this.unselect();
+				let tooltip = JSON.parse(item.dataset.tooltip);
+				this.selected = {
+					item : item,
+					name : tooltip[0][0][0]
+				};
+				item.style.border = '2px solid white';
+				item.style.backgroundColor = 'white';
+				item.style.margin = '-2px';
+				item.style.borderRadius = '10px';
+				this.refresh();
+			},
+			unselect : function() {
+				if (this.selected) {
+					this.selected.item.style.backgroundColor = 'transparent';
+					this.selected.item.style.border = '0';
+					this.selected.item.style.margin = '0';
+					this.selected.item.style.borderRadius = '0';
+					this.selected = null;
+				}
+				this.refresh();
+			},
+
+			refresh : function() {
+				if (!this.selected) {
+					this.overlay.style.display = 'none';
+					this.bar.style.display = 'none';
+					return;
+				}
+
+				this.bar.style.display = 'block';
+				this.bar_name.textContent = this.selected.name;
+			},
+
+			move : function(e) {
+				if (!this.selected) {
+					this.refresh();
+					return;
+				}
+				let item = this.selected.item;
+				this.unselect();
+				gca_tools.item.drag(item, null, e.clientX, e.clientY);
+			}
+		}
 	}
 };
 
