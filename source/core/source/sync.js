@@ -14,7 +14,7 @@ var gca_sync = {
 
 		// Create confirm modal
 		var modal = new gca_tools.Modal(
-			'Cross browser player login sync',
+			gca_locale.get("settings", "category_data$cross_browser_login"),
 			null,
 			() => {
 				let expire = new Date();
@@ -29,9 +29,9 @@ var gca_sync = {
 				modal.destroy();
 			}
 		);
-		modal.body('Are you sure you want to login as this player?');
-		modal.button('Yes', true);
-		modal.button('No', false);
+		modal.body(gca_locale.get("Sync", "are_you_sure"));
+		modal.button(gca_locale.get("Sync", "yes"), true);
+		modal.button(gca_locale.get("Sync", "no"), false);
 		modal.show();
 	},
 
