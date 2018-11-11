@@ -1,7 +1,7 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-20-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-7-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-20-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
@@ -47,6 +47,8 @@
 - **New Message**
 	- [x] Friend list modal bug 
 	- [x] Friend list now don't run on "add to familly" message
+- **Forge**
+	- [x] Forge features now run run on forge submod
 - **Horreum**
 	- [x] Workbench code now don't run on hurreum
 
