@@ -29,7 +29,7 @@ var gca_sync = {
 				modal.destroy();
 			}
 		);
-		modal.body(gca_locale.get('sync', 'are_you_sure'));
+		modal.body(gca_locale.get('sync', 'are_you_sure', {name : data.name}));
 		modal.button(gca_locale.get('general', 'yes'), true);
 		modal.button(gca_locale.get('general', 'no'), false);
 		modal.show();
@@ -37,14 +37,19 @@ var gca_sync = {
 
 	resolve : function() {
 		let player = gca_getPage.parameter('p');
-		if (!player.match(/^\d+$/)) return;
+		if (!player.match(/^\d+$/)) return false;
 		let securehash = gca_getPage.parameter('s');
-		if (!securehash.match(/^[0-9a-z]+$/)) return;
+		if (!securehash.match(/^[0-9a-z]+$/)) return false;
 		//let sessionid = gca_getPage.parameter('i');
 		//if (!sessionid.match(/^[0-9a-z]+$/)) return;
+		let name = document.getElementsByClassName('playername');
+		if (!name.length) name = document.getElementsByClassName('playername_achievement');
+		if (!name.length) return false;
+		name = name[0].textContent.trim();
 
 		return {
 			player : player,
+			name : name,
 			securehash : securehash,
 			//sessionid : sessionid
 		};

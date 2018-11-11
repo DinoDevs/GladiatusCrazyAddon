@@ -215,7 +215,7 @@ gca_languages["en"] = {
 
 		// Cross-Browser Sync
 		sync : {
-			are_you_sure : "Are you sure you want to login as this player?",
+			are_you_sure : "Are you sure you want to login as the player {{name}}?",
 			gladiatus_crazy_addon_dependency : "You must have Gladiatus Crazy Addon installed on the other browser.",
 			how_to_sync_info : "Copy the url and paste it on the other browser, or scan the qrcode."
 		},
