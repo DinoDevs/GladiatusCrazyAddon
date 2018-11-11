@@ -126,7 +126,7 @@ gca_languages["tr"] = {
 			are_you_sure_you_want_to_buy : "Bu eşyayı gerçekten almak istiyor musunuz?"
 		},
 		forge : {
-			forge_ended : "Eşya üretimi Bitti",
+			forge_ended : "Eşya üretimi bitti",
 			recraft_item : "Eşyayı yeniden oluştur"
 		},
 		packages : {
@@ -139,7 +139,7 @@ gca_languages["tr"] = {
 			advance_filters_found : "({{items}} adet bulundu)"
 		},
 		sync : {
-			are_you_sure:"Bu oyuncu ile giriş yapmak istediğinize emin misiniz?",
+			are_you_sure:"{{name}} olarak giriş yapmak istediğinize emin misiniz?",
 			gladiatus_crazy_addon_dependency : "Gladiatus Crazy Addon eklentisinin diğer tarayıcıda da yüklü olduğundan emin olun.",
 			how_to_sync_info : "Üstte gözüken URL'yi diğer tarayıcıya yapıştırın veya QR kodunu kullanın."
 		},
