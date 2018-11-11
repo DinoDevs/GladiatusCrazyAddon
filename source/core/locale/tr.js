@@ -24,7 +24,10 @@ gca_languages["tr"] = {
 			confirm : "Onayla",
 			cancel : "İptal Et",
 			close : "Kapat",
-			error : "Hata"
+			error : "Hata",
+			yes : "Evet",
+			no : "Hayır",
+			ok : "Tamam"
 		},
 		global : {
 			life_potion_use : "Şifa İksiri Kullan",
@@ -134,6 +137,11 @@ gca_languages["tr"] = {
 			advance_filters_apply : "Filtreyi uygula",
 			advance_filters_clear : "Filtreyi sıfırla",
 			advance_filters_found : "({{items}} adet bulundu)"
+		},
+		sync : {
+			are_you_sure:"Bu oyuncu ile giriş yapmak istediğinize emin misiniz?",
+			gladiatus_crazy_addon_dependency : "Gladiatus Crazy Addon eklentisinin diğer tarayıcıda da yüklü olduğundan emin olun.",
+			how_to_sync_info : "Üstte gözüken URL'yi diğer tarayıcıya yapıştırın veya QR kodunu kullanın."
 		},
 		settings : {
 			settings : "Ayarlar",
@@ -286,8 +294,6 @@ gca_languages["tr"] = {
 			category_data$reset_settings : "Eklenti ayarlarını sıfırla",
 			category_data$clear_data : "Tüm eklenti verilerini temizle",
 			category_data$cross_browser_login : "Çift tarayıcıda oynama",
-			category_data$cross_browser_login_warning1 : "Gladiatus Crazy Addon eklentisinin diğer tarayıcıda da yüklü olduğundan emin olun.",
-			category_data$cross_browser_login_warning2 : "Üstte gözüken URL'yi diğer tarayıcıya yapıştırın veya QR kodunu kullanın.",
 			
 			save : "Kaydet",
 			export : "Dışarı aktar",
@@ -297,17 +303,11 @@ gca_languages["tr"] = {
 			do_not_show : "Gösterme",
 			show_as : "Olarak göster",
 			show_info : "Bilgileri göster",
-			ok : "Tamam",
 			translated_percent : "Çeviri durumu: %{{number}}",
 			translated_by : "Çeviren: {{string}}",
 			reset_settings_confirm : "Eklenti ayarlarını sıfırlamak istediğinize emin misiniz?",
 			clear_data_confirm : "Tüm eklenti ayarlarını silmek istediğinize emin misiniz?",
 			notification_reload : "Değişikliklerin geçerli olması için sayfayı yeniden yükleyin",
-		},
-		Sync : {
-			are_you_sure:"Bu oyuncu ile giriş yapmak istediğinize emin misiniz?",
-			yes:"Evet",
-			no:"Hayır"
 		}
 	}
 }

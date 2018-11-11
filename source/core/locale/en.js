@@ -34,11 +34,14 @@ gca_languages["en"] = {
 			// No data
 			no_data : "No data",
 
-			// Modal buttons
+			// Buttons
 			confirm : "Confirm",
 			cancel : "Cancel",
 			close : "Close",
 			error : "Error",
+			yes : "Yes",
+			no : "No",
+			ok : "OK"
 		},
 
 		// Global
@@ -208,6 +211,13 @@ gca_languages["en"] = {
 			advance_filters_apply : "Apply filters",
 			advance_filters_clear : "Clear filters",
 			advance_filters_found : "(found {{items}})"
+		},
+
+		// Cross-Browser Sync
+		sync : {
+			are_you_sure : "Are you sure you want to login as this player?",
+			gladiatus_crazy_addon_dependency : "You must have Gladiatus Crazy Addon installed on the other browser.",
+			how_to_sync_info : "Copy the url and paste it on the other browser, or scan the qrcode."
 		},
 
 		// Settings
@@ -386,9 +396,6 @@ gca_languages["en"] = {
 			category_data$reset_settings : "Reset addon's settings",
 			category_data$clear_data : "Clear all addon's data",
 			category_data$cross_browser_login : "Cross browser login sync",
-			category_data$cross_browser_login_warning1 : "You must have Gladiatus Crazy Addon installed on the other browser.",
-			category_data$cross_browser_login_warning2 : "Copy the url and paste it on the other browser, or use the qrcode.",
-			
 
 			// Buttons
 			save : "Save",
@@ -399,7 +406,6 @@ gca_languages["en"] = {
 			do_not_show : "Do not show",
 			show_as : "Show as",
 			show_info : "Show information",
-			ok : "OK",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",
@@ -409,14 +415,6 @@ gca_languages["en"] = {
 
 			// Notifications
 			notification_reload : "Reload the page for the changes to take effect",
-			
-			
-		},
-		// SYNC
-		Sync : {
-			are_you_sure:"Are you sure you want to login as this player?",
-			yes:"Yes",
-			no:"No"
 		}
 	}
 }

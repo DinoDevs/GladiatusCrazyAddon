@@ -1893,17 +1893,13 @@ var gca_settings = {
 			this.wrapper.textContent = 'Loading ...';
 			// Create confirm modal
 			var modal = new gca_tools.Modal(
-				gca_locale.get("settings", "category_data$cross_browser_login"),
+				gca_locale.get('settings', 'category_data$cross_browser_login'),
 				this.wrapper,
-				() => {
-					modal.destroy();
-				},
-				() => {
-					modal.destroy();
-				}
+				() => {modal.destroy();},
+				() => {modal.destroy();}
 			);
 			
-			modal.button(gca_locale.get("settings", "ok"), true);
+			modal.button(gca_locale.get('general', 'ok'), true);
 			modal.window.style.marginTop = '-225px';
 			modal.body_wrapper.style.height = '200px';
 			modal.show();
@@ -1916,7 +1912,7 @@ var gca_settings = {
 				this.loadHash();
 				return;
 			}
-			// Load moment.js
+			// Load qrcode library
 			gca_tools.load.script('libraries/jquery.qrcode.min.js', () => {
 				this.scriptLoaded = true;
 				this.loadHash();
@@ -1956,7 +1952,7 @@ var gca_settings = {
 			qrcode.style.float = 'right';
 			this.wrapper.appendChild(qrcode);
 
-			this.wrapper.appendChild(document.createTextNode(gca_locale.get("settings", "category_data$cross_browser_login_warning1")));
+			this.wrapper.appendChild(document.createTextNode(gca_locale.get('sync', 'gladiatus_crazy_addon_dependency')));
 			this.wrapper.appendChild(document.createElement('br'));
 			this.wrapper.appendChild(document.createElement('br'));
 			let input = document.createElement('input');
@@ -1965,10 +1961,8 @@ var gca_settings = {
 			this.wrapper.appendChild(input);
 			this.wrapper.appendChild(document.createElement('br'));
 			this.wrapper.appendChild(document.createElement('br'));
-			this.wrapper.appendChild(document.createTextNode(gca_locale.get("settings", "category_data$cross_browser_login_warning2")));
+			this.wrapper.appendChild(document.createTextNode(gca_locale.get('sync', 'how_to_sync_info')));
 
-			this.wrapper.appendChild(document.createElement('br'));
-			this.wrapper.appendChild(document.createElement('br'));
 			this.wrapper.appendChild(document.createElement('br'));
 
 			jQuery(qrcode).qrcode({width: 180, height: 180, text: url});
@@ -1996,4 +1990,5 @@ var gca_settings = {
 })();
 
 // ESlint defs
-/* global gca, gca_data, gca_data_manager, gca_getPage, gca_languages, gca_locale, gca_notifications, gca_options, gca_section */
+/* global gca, gca_data, gca_data_manager, gca_getPage, gca_languages, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global jQuery */
