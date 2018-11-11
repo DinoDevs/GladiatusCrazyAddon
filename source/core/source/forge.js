@@ -11,7 +11,7 @@ var gca_forge = {
 			return;
 		
 		// Forge
-		if(gca_section.submod == null){
+		if(gca_section.submod == null || gca_section.submod == 'forge'){
 			this.saveForgeTimers();
 			
 			(gca_options.bool("forge","show_levels") &&
