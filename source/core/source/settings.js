@@ -1221,7 +1221,9 @@ var gca_settings = {
 				let title = gca_locale.get("settings", "category_" + category);
 				let li = document.createElement('li');
 				li.dataset.category = category;
-				li.textContent = title;
+				let a = document.createElement('a');
+				a.textContent = title;
+				li.appendChild(a);
 				menu.appendChild(li);
 				li.addEventListener('click', (function(tabname, title, that){
 					return function(){
@@ -1932,7 +1934,7 @@ var gca_settings = {
 				success : (responce) => {
 					let match = responce.match(/socket\.emit\('authenticate',\s*\{\s*session:\s*'([0-9a-f]+)',\s*id:\s*(\d+)\s*\}\);/i);
 					if (!match) {
-						modal.body(gca_locale('general', 'error'));
+						this.wrapper.textContent = gca_locale('general', 'error');
 						return;
 					}
 					this.hash = match[1];
@@ -1945,7 +1947,7 @@ var gca_settings = {
 		displayInfo : function() {
 			let url = 'https://s' + gca_section.server + '-' + gca_section.country + '.gladiatus.gameforge.com/game/index.php?mod=player&p=' + this.player + '&gcamod=sync&s=' + this.hash;
 
-			this.wrapper.innerHTML = '';
+			this.wrapper.textContent = '';
 			this.wrapper.style.textAlign = 'left';
 
 			let qrcode = document.createElement('div');
