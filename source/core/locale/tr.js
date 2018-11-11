@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages["tr"] = {
 	name : "Türkçe (Turkish)",
-	translators : ["Xus (s25)", "Anonim", "Falconrock","Emefar (s33)"],
+	translators : ["Xus (s25)", "Anonim", "Emefar (s33)"],
 	locale : {
 		info : {
 			description : "Gladiatus için yapılmış en güzel eklenti!"
