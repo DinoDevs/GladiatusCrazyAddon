@@ -1891,7 +1891,7 @@ var gca_settings = {
 			this.wrapper.textContent = 'Loading ...';
 			// Create confirm modal
 			var modal = new gca_tools.Modal(
-				'Cross browser player login sync',
+				gca_locale.get("settings", "category_data$cross_browser_login"),
 				this.wrapper,
 				() => {
 					modal.destroy();
@@ -1900,7 +1900,8 @@ var gca_settings = {
 					modal.destroy();
 				}
 			);
-			modal.button('Ok', true);
+			
+			modal.button(gca_locale.get("settings", "ok"), true);
 			modal.window.style.marginTop = '-225px';
 			modal.body_wrapper.style.height = '200px';
 			modal.show();
@@ -1943,6 +1944,7 @@ var gca_settings = {
 		},
 
 		displayInfo : function() {
+			
 			let url = 'https://s' + gca_section.server + '-' + gca_section.country + '.gladiatus.gameforge.com/game/index.php?mod=player&p=' + this.player + '&gcamod=sync&s=' + this.hash;
 
 			this.wrapper.innerHTML = '';
@@ -1952,7 +1954,7 @@ var gca_settings = {
 			qrcode.style.float = 'right';
 			this.wrapper.appendChild(qrcode);
 
-			this.wrapper.appendChild(document.createTextNode('You must have Gladiatus Crazy Addon installed on the other browser.'));
+			this.wrapper.appendChild(document.createTextNode(gca_locale.get("settings", "category_data$cross_browser_login_warning1")));
 			this.wrapper.appendChild(document.createElement('br'));
 			this.wrapper.appendChild(document.createElement('br'));
 			let input = document.createElement('input');
@@ -1960,7 +1962,8 @@ var gca_settings = {
 			input.style.width = '205px';
 			this.wrapper.appendChild(input);
 			this.wrapper.appendChild(document.createElement('br'));
-			this.wrapper.appendChild(document.createTextNode('Copy the url and paste it on the other browser, or use the qrcode.'));
+			this.wrapper.appendChild(document.createElement('br'));
+			this.wrapper.appendChild(document.createTextNode(gca_locale.get("settings", "category_data$cross_browser_login_warning2")));
 
 			this.wrapper.appendChild(document.createElement('br'));
 			this.wrapper.appendChild(document.createElement('br'));
