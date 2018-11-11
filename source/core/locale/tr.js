@@ -285,6 +285,10 @@ gca_languages["tr"] = {
 			category_data$import_settings : "Eklenti ayarlarını içeri aktar",
 			category_data$reset_settings : "Eklenti ayarlarını sıfırla",
 			category_data$clear_data : "Tüm eklenti verilerini temizle",
+			category_data$cross_browser_login : "Çift tarayıcıda oynama",
+			category_data$cross_browser_login_warning1 : "Gladiatus Crazy Addon eklentisinin diğer tarayıcıda da yüklü olduğundan emin olun.",
+			category_data$cross_browser_login_warning2 : "Üstte gözüken URL'yi diğer tarayıcıya yapıştırın veya QR kodunu kullanın.",
+			
 			save : "Kaydet",
 			export : "Dışarı aktar",
 			import : "İçeri aktar",
@@ -292,11 +296,18 @@ gca_languages["tr"] = {
 			clear : "Temizle",
 			do_not_show : "Gösterme",
 			show_as : "Olarak göster",
+			show_info : "Bilgileri göster",
+			ok : "Tamam",
 			translated_percent : "Çeviri durumu: %{{number}}",
 			translated_by : "Çeviren: {{string}}",
 			reset_settings_confirm : "Eklenti ayarlarını sıfırlamak istediğinize emin misiniz?",
 			clear_data_confirm : "Tüm eklenti ayarlarını silmek istediğinize emin misiniz?",
-			notification_reload : "Değişikliklerin geçerli olması için sayfayı yeniden yükleyin"
+			notification_reload : "Değişikliklerin geçerli olması için sayfayı yeniden yükleyin",
+		},
+		Sync : {
+			are_you_sure:"Bu oyuncu ile giriş yapmak istediğinize emin misiniz?",
+			yes:"Evet",
+			no:"Hayır"
 		}
 	}
 }
