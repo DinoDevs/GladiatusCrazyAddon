@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Gladiatus Crazy Addon Translation
  * Name : Engish (United States)
  * Code : US
@@ -386,6 +386,9 @@ gca_languages["en"] = {
 			category_data$reset_settings : "Reset addon's settings",
 			category_data$clear_data : "Clear all addon's data",
 			category_data$cross_browser_login : "Cross browser login sync",
+			category_data$cross_browser_login_warning1 : "You must have Gladiatus Crazy Addon installed on the other browser.",
+			category_data$cross_browser_login_warning2 : "Copy the url and paste it on the other browser, or use the qrcode.",
+			
 
 			// Buttons
 			save : "Save",
@@ -396,6 +399,7 @@ gca_languages["en"] = {
 			do_not_show : "Do not show",
 			show_as : "Show as",
 			show_info : "Show information",
+			ok : "OK",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",
@@ -404,7 +408,15 @@ gca_languages["en"] = {
 			clear_data_confirm : "Are you sure you want to clear all the addon's data?",
 
 			// Notifications
-			notification_reload : "Reload the page for the changes to take effect"
+			notification_reload : "Reload the page for the changes to take effect",
+			
+			
+		},
+		// SYNC
+		Sync : {
+			are_you_sure:"Are you sure you want to login as this player?",
+			yes:"Yes",
+			no:"No"
 		}
 	}
 }
