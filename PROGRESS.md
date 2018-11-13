@@ -1,7 +1,7 @@
 ## Progress on Version 4.0.6
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-20-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-20-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-9-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-16-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
@@ -44,6 +44,7 @@
 	- [x] Audio settings now work
 	- [x] Fixed get player ID system (Global arena works now)
 	- [x] Script execution on wrong page fixed (craps event on guild market)
+	- [x] Get centurio days fixed
 - **New Message**
 	- [x] Friend list modal bug 
 	- [x] Friend list now don't run on "add to familly" message
