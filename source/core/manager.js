@@ -105,6 +105,11 @@ var manager = {
 				case "market":
 					this.section.markets();
 					break;
+					
+				// Highscore
+				case "highscore":
+					this.section.highscore();
+					break;
 
 			// Settings
 				// Location
@@ -291,6 +296,11 @@ var manager = {
 		// Markets
 		markets : function() {
 			tools.loadScript("source/markets.js");
+		},
+
+		// Highscore
+		highscore : function() {
+			tools.loadScript("source/highscore.js");
 		},
 
 		// Settings
