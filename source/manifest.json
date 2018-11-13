@@ -36,10 +36,5 @@
 		"core/resources/*",
 		"core/source/*"
 	],
-	"manifest_version": 2,
-	"browser_specific_settings": {
-		"gecko": {
-			"id": "gladiatuscrazyaddon@dinodevs.com"
-		}
-	}
+	"manifest_version": 2
 }
