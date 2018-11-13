@@ -330,15 +330,22 @@ var gca_audio_ui = {
 	}
 };
 
+window.gca_audio_loader = function() {
+	if (typeof gca_tools === 'undefined') return;
+	gca_audio_channels.load();
+	gca_audio.load();
+	gca_audio_ui.load();
+	window.gca_audio_loader = false;
+};
+
 // Onload Handler
 (function(){
 	var loaded = false;
 	var fireLoad = function() {
 		if(loaded) return;
 		loaded = true;
-		gca_audio_channels.load();
-		gca_audio.load();
-		gca_audio_ui.load();
+		if (window.gca_audio_loader)
+			window.gca_audio_loader();
 	};
 	if (document.readyState == 'interactive' || document.readyState == 'complete') {
 		fireLoad();

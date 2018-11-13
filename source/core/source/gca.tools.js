@@ -1308,6 +1308,11 @@ var gca_tools = {
 
 };
 
+// Load More Stuff
+(function(){
+	if (window.gca_audio_loader) window.gca_audio_loader();
+})();
+
 // ESlint defs
 /* global gca_getPage, gca_locale, gca_resources, gca_tools */
 /* global jQuery */
