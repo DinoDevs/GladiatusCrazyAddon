@@ -44,6 +44,12 @@ var gca_settings = {
 			var title = document.createElement("h2");
 			title.className = "section-header";
 			title.textContent = gca.name + " - v" + gca.version;
+			var changelog = document.createElement('a');
+			changelog.href = 'https://github.com/DinoDevs/GladiatusCrazyAddon/releases/tag/' + 'v' + gca.version;
+			changelog.textContent = '[Changelog v' + gca.version + ']';
+			changelog.setAttribute('target', '_black');
+			changelog.style.float = 'right';
+			title.appendChild(changelog);
 			wrapper.appendChild(title);
 			var section = document.createElement("section");
 			section.style.display = "block";
