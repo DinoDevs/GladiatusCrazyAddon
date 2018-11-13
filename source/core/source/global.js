@@ -4234,8 +4234,22 @@ var gca_global = {
 				let now = new Date().getTime();
 				gca_data.section.set('cache', 'gca_centurio', now);
 				if (content.match(/<div id="premium_duration">/)) {
-					let end_time = now + parseInt(content.match(/<div id="premium_duration">[^<]+<span>[^<]+<span data-ticker-time-left="(\d+)"/)[1], 10);
-					gca_data.section.set('timers', 'gca_centurio', end_time);
+					let timer = content.match(/<div id="premium_duration">[^<]+<span>[^<]+<span data-ticker-time-left="(\d+)"/);
+					if (timer) {
+						let end_time = now + parseInt(timer[1], 10);
+						gca_data.section.set('timers', 'gca_centurio', end_time);
+						return;
+					}
+
+					let days = content.match(/<div id="premium_duration">([^<]+)</)[1];
+					days = days.match(/\d+/);
+					if (days) {
+						let end_time = now + (parseInt(days[0], 10) * 24 * 60 * 60 * 1000);
+						gca_data.section.set('timers', 'gca_centurio', end_time);
+						return;
+					}
+
+					gca_data.section.set('timers', 'gca_centurio', 0);
 				}
 				else {
 					gca_data.section.set('timers', 'gca_centurio', 0);
