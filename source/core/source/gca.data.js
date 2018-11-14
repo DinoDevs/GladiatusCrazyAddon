@@ -593,5 +593,11 @@ gca_options.data = {
 	}
 };
 
-// Initiate Options
-gca_options.init();
+// Load Stuff
+(function(){
+	// Initiate Options
+	gca_options.init();
+
+	// Load audio
+	if (window.gca_audio_loader) window.gca_audio_loader();
+})();
