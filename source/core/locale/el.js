@@ -149,7 +149,7 @@ gca_languages["gr"] = {
 		// Arena section
 		arena : {
 			global_arena_title : "Παγκόσμια Αρένα (Crazy Addon)",
-			global_arena_description : "Αυτή είναι η υπέρτατη αρένα που μαζεύει μονομάχους από όλο τον κόσμο! Σε αυτή την αρένα οι μονομάχοι δεν μάχοντε για χρυσό ή εμπειρία, μάχοντε για μια θέση στην παγκόσμια κατάσταση!",
+			global_arena_description : "Αυτή είναι η υπέρτατη αρένα που μαζεύει μονομάχους από όλο τον κόσμο! Σε αυτή την αρένα οι μονομάχοι δεν μάχονται για χρυσό ή εμπειρία, μάχονται για μια θέση στην παγκόσμια κατάσταση!",
 			global_arena_load : "Φόρτωμα λίστας αντιπάλων"
 		},
 
@@ -212,7 +212,7 @@ gca_languages["gr"] = {
 			// Settings
 			settings: "Ρυθμίσεις",
 			// Description
-			description: "Ενεργοποίησε ή απενεργοποίησε οποιοδήποτε μέσα στο προσθέτου!",
+			description: "Ενεργοποίησε ή απενεργοποίησε οποιοδήποτε μέσα στο πρόσθετο!",
 			description_click_button: "Πατήστε το κουμπί από κάτω για να μεταβείτε στις ρυθμίσεις...",
 			
 			// Categories
@@ -236,7 +236,7 @@ gca_languages["gr"] = {
 			category_data : "Δεδομένα",
 
 			// Settings - Global
-			category_global$language_select: "Αλλαγή της γλώσσας του προσθέτου",
+			category_global$language_select: "Αλλαγή της γλώσσας του πρόσθετου",
 			category_global$sound_notifications: "Ενεργοποίηση των ήχων ειδοποίησης για αποστολές, μπουντρούμια και αρένες",
 			category_global$browser_notifications : "Ενεργοποίηση των ειδοποιήσεων φυλλομετρητή (browser)",
 			category_global$extended_hp_xp_info: "Προβολή εκτεταμένων πληροφοριών για HP και XP",
@@ -331,13 +331,13 @@ gca_languages["gr"] = {
 			category_forge$material_links : "Εμφάνιση συντομεύσεων αγοράς & πακέτων για κάθε απαιτούμενο υλικό (σιδηρουργείο/πάγκος εργασίας)",
 			category_forge$show_levels : "Εμφάνιση επιπέδων Προθεμάτων/Επιθεμάτων/Βασικών αντικειμένων δίπλα στα ονόματα τους (σιδηρουργείο)",
 			category_forge$horreum_materials_names : "Προβολή των ονομάτων των υλών (Αποθήκη πρώτων υλών)",
-			category_forge$horreum_remember_options : "Αποθήκευση των τελευτέων επιλογών της αποθήκης (Αποθήκη πρώτων υλών)",
+			category_forge$horreum_remember_options : "Αποθήκευση των τελευταίων επιλογών της αποθήκης (Αποθήκη πρώτων υλών)",
 			category_forge$horreum_select_meterials : "Επιλογή πρώτων υλών με κλικ (Αποθήκη πρώτων υλών)",
 			// Settings - Arena
-			category_arena$ignore_attack_confirmations : "Αγνοήστε τις επιβεβαιώσεις επίθεση (μηνύματα για την υπέρβαση των 5 επιθέσεων κλπ)",
+			category_arena$ignore_attack_confirmations : "Αγνοήστε την επιβεβαίωση επίθεσης (μηνύματα για την υπέρβαση των 5 επιθέσεων κλπ)",
 			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (gladiatussimulator.tk)",
 			category_arena$sort_by_lvl : "Ταξινόμηση παιχτών κατά επίπεδο στην αρένα",
-			category_arena$highlight_guild_members : "Χρωμάτισμα παιχτών από άλλους σέρβερς που μπορεί να έιναι μέλη του τάγματος",
+			category_arena$highlight_guild_members : "Χρωμάτισμα παιχτών από άλλους σέρβερς που μπορεί να είναι μέλη του τάγματος",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να βελτιωθούν",
 			// Settings - Market
@@ -348,7 +348,7 @@ gca_languages["gr"] = {
 			category_market$sell_duration : "Ορισμός προεπιλεγμένης διάρκειας πώλησης",
 			category_market$one_gold_mode : "Επιλογή για σταθερή τιμή πώλησης στο 1 χρυσό",
 			category_market$remember_sort : "Να θυμάται το πρόσθετο την τελευταία ταξινόμηση",
-			category_market$double_click_select : "Επιλογή αντικειμένου με δυπλό κλικ",
+			category_market$double_click_select : "Επιλογή αντικειμένου με διπλό κλικ",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Εμφάνιση των υλών σιδηρουργείου που δίνει ο κάθε εχθρός",
 			category_expedition$underworld_layout : "Μετατροπή της εμφάνισης των εχθρών του κάτω κόσμου όπως στις εξορμήσεις",
@@ -394,8 +394,8 @@ gca_languages["gr"] = {
 			// Info
 			translated_percent : "Μεταφρασμένα τις εκατό: {{number}}%",
 			translated_by : "Μετάφραση από: {{string}}",
-			reset_settings_confirm : "Είστε σίγουρος πως θέλετε να επαναφέρετε τις ρυθμίσεις του προσθέτου;",
-			clear_data_confirm : "Είστε σίγουρος πως θέλετε να εκκαθαρίσετε τις ρυθμίσεις του προσθέτου;",
+			reset_settings_confirm : "Είστε σίγουρος πως θέλετε να επαναφέρετε τις ρυθμίσεις του πρόσθετου;",
+			clear_data_confirm : "Είστε σίγουρος πως θέλετε να εκκαθαρίσετε τις ρυθμίσεις του πρόσθετου;",
 
 			// Notifications
 			notification_reload: "Επαναφορτώστε την σελίδα για να ενεργοποιηθούν οι αλλαγές"
