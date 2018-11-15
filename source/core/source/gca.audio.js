@@ -331,7 +331,7 @@ var gca_audio_ui = {
 };
 
 window.gca_audio_loader = function() {
-	if (typeof gca_tools === 'undefined') return;
+	if (typeof gca_tools === 'undefined' || typeof gca_data === 'undefined') return;
 	gca_audio_channels.load();
 	gca_audio.load();
 	gca_audio_ui.load();
