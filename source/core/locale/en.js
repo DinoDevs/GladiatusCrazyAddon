@@ -31,6 +31,9 @@ gca_languages["en"] = {
 			days : "day(s)",
 			// Minutes
 			minutes : "minute",
+			//Hours
+			hour : "hour",
+			hours : "hours",
 			// No data
 			no_data : "No data",
 
@@ -53,6 +56,12 @@ gca_languages["en"] = {
 			
 			// Life points recovery
 			life_recover_full : "Full life recover",
+			
+			// Expedition points recovery
+			expedition_recover_full : "Full expedition recover",
+			
+			// Dungeon points recovery
+			dungeon_recover_full : "Full expedition recover",
 
 			// Button bar - Message
 			message_private_write : "Write private message",
@@ -255,6 +264,8 @@ gca_languages["en"] = {
 			category_global$extended_hp_xp_info : "Display extended HP and XP header info",
 			category_global$extended_hp_xp_info_potion : "Display life potion use icon",
 			category_global$hp_timer_for_full_life : "Display minutes left to full heal",
+			category_global$expedition_timer_for_full_expedition : "Display minutes left to full expedition",
+			category_global$dungeon_timer_for_full_dungeon : "Display minutes left to full dungeon",
 			category_global$shortcuts_bar : "Enable the shortcuts bar",
 			category_global$shortcuts_bar_buttons : "Select shortcuts for the shortcuts bar",
 			category_global$auction_status_bar : "Display auction status bar",
