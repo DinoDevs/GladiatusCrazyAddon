@@ -51,7 +51,14 @@ var gca_global = {
 		// Minutes left for full life
 		(gca_options.bool("global","hp_timer_for_full_life") && 
 			this.display.extended_hp_xp.timerForFullLife());
-		
+			
+			// Show Expedition Recover
+			(gca_options.bool("global","expedition_timer_for_full_expedition") && 
+			this.display.recovers.expedition());
+			// Show Dungeon Recover
+			(gca_options.bool("global","dungeon_timer_for_full_dungeon") && 
+			this.display.recovers.dungeon());
+					
 		// Buttons' main bar
 		(gca_options.bool("global","shortcuts_bar") &&
 			this.display.shortcuts_bar.create());
@@ -284,6 +291,78 @@ var gca_global = {
 			}
 		},
 
+		recovers : {
+			expedition : function(){
+				// Expedition tooltip div
+				var div = document.getElementById('icon_expeditionpoints');
+				// Get current expedition
+				var current_expedition_point = document.getElementById("expeditionpoints_value_point").innerText;
+				// Get maximum expedition
+				var max_expedition_point = document.getElementById("expeditionpoints_value_pointmax").innerText;
+				// Get tooltip
+				var tooltip = JSON.parse(document.getElementById('icon_expeditionpoints').dataset.tooltip);
+				//Deleting whole texts and finding recovery percent
+				let find_recover_percent = tooltip[0][1][0].match(/\d+/g).map(Number);
+				// Find server speed
+				let server_speed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
+				// Find left expedition count
+				var left_expedition_count = (max_expedition_point - current_expedition_point);
+				// Find 1 Expedition time.
+				var one_expendition_time= Math.ceil((90/server_speed)/((parseInt(find_recover_percent)+100)/100));
+				//Find recover time minutes
+				var recover_time_minutes = one_expendition_time*left_expedition_count;
+					
+				var hours_left = Math.floor(recover_time_minutes / 60);          
+				recover_time_minutes = recover_time_minutes % 60;
+				 
+				if(hours_left == 0)  var hours_left_text="";
+				else  var hours_left_text=hours_left + " " + gca_locale.get("general", "hours");
+				 
+				tooltip[0].push([[gca_locale.get("global", "expedition_recover_full") + " " +hours_left_text+ " " + recover_time_minutes + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
+					
+				gca_tools.setTooltip(div, JSON.stringify(tooltip));
+				
+			},
+			dungeon : function(){
+				
+				// Dungeon tooltip div
+				var div = document.getElementById('icon_dungeonpoints');
+				// Get current dungeon
+				var current_dungeon_point = document.getElementById("dungeonpoints_value_point").innerText;
+				// Get maximum dungeon
+				var max_dungeon_point = document.getElementById("dungeonpoints_value_pointmax").innerText;
+				// Get tooltip
+				var tooltip = JSON.parse(document.getElementById('icon_dungeonpoints').dataset.tooltip);
+				//Deleting whole texts and finding recovery percent
+				let find_recover_percent = tooltip[0][1][0].match(/\d+/g).map(Number);
+				// Find server speed
+				let server_speed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
+				// Find left dungeon count
+				var left_dungeon_count = (max_dungeon_point - current_dungeon_point);
+				// Find 1 dungeon time.
+				var one_expendition_time= Math.ceil((90/server_speed)/((parseInt(find_recover_percent)+100)/100));
+				//Find recover time minutes
+				var recover_time_minutes = one_expendition_time*left_dungeon_count;
+					
+				var hours_left = Math.floor(recover_time_minutes / 60);          
+				recover_time_minutes = recover_time_minutes % 60;
+				 
+				if(hours_left == 0)  var hours_left_text="";
+				else  var hours_left_text=hours_left + " " + gca_locale.get("general", "hours");
+				 
+				tooltip[0].push([[gca_locale.get("global", "dungeon_recover_full") + " " +hours_left_text+ " " + recover_time_minutes + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
+					
+				gca_tools.setTooltip(div, JSON.stringify(tooltip));
+				
+				
+				
+				
+				
+			}
+			
+			
+		},
+		
 		// Extended Health and Experience bars
 		extended_hp_xp : {
 			// Display More info
@@ -484,6 +563,7 @@ var gca_global = {
 
 			// Timer for full life
 			timerForFullLife : function(){
+				
 				// Life tooltip div
 				var div = document.getElementById('header_values_hp_bar');
 				// Get tooltip
@@ -496,12 +576,23 @@ var gca_global = {
 				var restore = parseInt(lifeTooltip[0][5][0][1].match(/(\d+)/)[1]);
 
 				// Calculate minites left to full life
-				var minites_left = Math.ceil(((parseInt(hp[2]) - parseInt(hp[1])) * 60) / restore);
+				var minutes_left = Math.ceil(((parseInt(hp[2]) - parseInt(hp[1])) * 60) / restore);
 				// Return if 0 minites
-				if(minites_left <= 0) return;
+				if(minutes_left <= 0) return;
+				
+				//Convert minutes to hours 00:00
+				 var hours_left = Math.floor(minutes_left / 60);          
+				 minutes_left = minutes_left % 60;
+				 
+				 if(hours_left == 0)  var hours_left_text="";
+				 else  var hours_left_text=hours_left + " " + gca_locale.get("general", "hours");
 				// Add data on the tooltip
-				lifeTooltip[0].push([[gca_locale.get("global", "life_recover_full"), minites_left + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
+				lifeTooltip[0].push([[gca_locale.get("global", "life_recover_full") + " " +hours_left_text+ " " + minutes_left + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
 				gca_tools.setTooltip(div, JSON.stringify(lifeTooltip));
+				
+				
+				
+				
 			}
 		},
 
