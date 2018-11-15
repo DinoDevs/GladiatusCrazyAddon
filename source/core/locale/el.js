@@ -303,13 +303,13 @@ gca_languages["gr"] = {
 			category_packages$pages_to_load: "Μέγιστος αριθμός σελίδων που φορτώνονται",
 			category_packages$item_price : "Εμφάνιση του κόστους κάθε αντικειμένου",
 			category_packages$special_category_features : "Ενεργοποίηση ειδικών λειτουργιών ανά κατηγορία",
-			category_packages$double_click_open : "Άνοιγμα πακέτων με δυπλό κλικ",
+			category_packages$double_click_open : "Άνοιγμα πακέτων με διπλό κλικ",
 			category_packages$advance_filter : "Φίλτρα πακέτων για προχωρημένους",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Ομαδοποίηση αποστολών",
 			category_pantheon$quests_detailed_rewards: "Ενεργοποίηση λεπτομερούς εμφάνισης των ανταμοιβών",
 			category_pantheon$missions_show_completed : "Εμφάνιση διεκπεραιωμένων επιδιώξεων",
-			category_pantheon$gods_show_points_percent : "Εμφάνιση των πόντων θεών τις εκατό",
+			category_pantheon$gods_show_points_percent : "Εμφάνιση των πόντων θεών τοις εκατό",
 			category_pantheon$open_many_mysteryboxes : "Άνοιγμα πολλαπλών σεντουκιών",
 			category_pantheon$show_mysterybox_rewards_rubies : "Εμφάνιση τις αξίας των ανταμοιβών από τα σεντούκια σε ρουμπίνια",
 			// Settings - Reports
@@ -392,7 +392,7 @@ gca_languages["gr"] = {
 			show_as : "Εμφάνιση ως",
 
 			// Info
-			translated_percent : "Μεταφρασμένα τις εκατό: {{number}}%",
+			translated_percent : "Μεταφρασμένα τοις εκατό: {{number}}%",
 			translated_by : "Μετάφραση από: {{string}}",
 			reset_settings_confirm : "Είστε σίγουρος πως θέλετε να επαναφέρετε τις ρυθμίσεις του πρόσθετου;",
 			clear_data_confirm : "Είστε σίγουρος πως θέλετε να εκκαθαρίσετε τις ρυθμίσεις του πρόσθετου;",
