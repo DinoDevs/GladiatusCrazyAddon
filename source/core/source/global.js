@@ -51,14 +51,10 @@ var gca_global = {
 		// Minutes left for full life
 		(gca_options.bool("global","hp_timer_for_full_life") && 
 			this.display.extended_hp_xp.timerForFullLife());
-			
-			// Show Expedition Recover
-			(gca_options.bool("global","expedition_timer_for_full_expedition") && 
-			this.display.recovers.expedition());
-			// Show Dungeon Recover
-			(gca_options.bool("global","dungeon_timer_for_full_dungeon") && 
-			this.display.recovers.dungeon());
-					
+		// Show Expedition Recover
+		(gca_options.bool("global","expedition_dungeon_points_recover_timer") && 
+			this.display.showPointsRecover.init());
+		
 		// Buttons' main bar
 		(gca_options.bool("global","shortcuts_bar") &&
 			this.display.shortcuts_bar.create());
@@ -291,76 +287,67 @@ var gca_global = {
 			}
 		},
 
-		recovers : {
-			expedition : function(){
-				// Expedition tooltip div
-				var div = document.getElementById('icon_expeditionpoints');
-				// Get current expedition
-				var current_expedition_point = document.getElementById("expeditionpoints_value_point").innerText;
-				// Get maximum expedition
-				var max_expedition_point = document.getElementById("expeditionpoints_value_pointmax").innerText;
-				// Get tooltip
-				var tooltip = JSON.parse(document.getElementById('icon_expeditionpoints').dataset.tooltip);
-				//Deleting whole texts and finding recovery percent
-				let find_recover_percent = tooltip[0][1][0].match(/\d+/g).map(Number);
+		// Points recover timers
+		showPointsRecover : {
+			init : function() {
 				// Find server speed
 				let server_speed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
-				// Find left expedition count
-				var left_expedition_count = (max_expedition_point - current_expedition_point);
-				// Find 1 Expedition time.
-				var one_expendition_time= Math.ceil((90/server_speed)/((parseInt(find_recover_percent)+100)/100));
-				//Find recover time minutes
-				var recover_time_minutes = one_expendition_time*left_expedition_count;
-					
-				var hours_left = Math.floor(recover_time_minutes / 60);          
-				recover_time_minutes = recover_time_minutes % 60;
-				 
-				if(hours_left == 0)  var hours_left_text="";
-				else  var hours_left_text=hours_left + " " + gca_locale.get("general", "hours");
-				 
-				tooltip[0].push([[gca_locale.get("global", "expedition_recover_full") + " " +hours_left_text+ " " + recover_time_minutes + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
-					
-				gca_tools.setTooltip(div, JSON.stringify(tooltip));
-				
+
+				// Show timers
+				this.showTimer('expedition', server_speed);
+				this.showTimer('dungeon', server_speed);
 			},
-			dungeon : function(){
-				
-				// Dungeon tooltip div
-				var div = document.getElementById('icon_dungeonpoints');
-				// Get current dungeon
-				var current_dungeon_point = document.getElementById("dungeonpoints_value_point").innerText;
-				// Get maximum dungeon
-				var max_dungeon_point = document.getElementById("dungeonpoints_value_pointmax").innerText;
+
+			showTimer : function(type, server_speed) {
+				// Expedition tooltip div
+				let icon = document.getElementById('icon_' + type + 'points');
+
 				// Get tooltip
-				var tooltip = JSON.parse(document.getElementById('icon_dungeonpoints').dataset.tooltip);
-				//Deleting whole texts and finding recovery percent
-				let find_recover_percent = tooltip[0][1][0].match(/\d+/g).map(Number);
-				// Find server speed
-				let server_speed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
-				// Find left dungeon count
-				var left_dungeon_count = (max_dungeon_point - current_dungeon_point);
-				// Find 1 dungeon time.
-				var one_expendition_time= Math.ceil((90/server_speed)/((parseInt(find_recover_percent)+100)/100));
-				//Find recover time minutes
-				var recover_time_minutes = one_expendition_time*left_dungeon_count;
-					
-				var hours_left = Math.floor(recover_time_minutes / 60);          
-				recover_time_minutes = recover_time_minutes % 60;
-				 
-				if(hours_left == 0)  var hours_left_text="";
-				else  var hours_left_text=hours_left + " " + gca_locale.get("general", "hours");
-				 
-				tooltip[0].push([[gca_locale.get("global", "dungeon_recover_full") + " " +hours_left_text+ " " + recover_time_minutes + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
-					
-				gca_tools.setTooltip(div, JSON.stringify(tooltip));
-				
-				
-				
-				
-				
+				let tooltip = JSON.parse(icon.dataset.tooltip);
+				// Get recovery rate
+				let recover_rate = tooltip[0][1][0].match(/\d+/);
+				if (!recover_rate) return; // Error
+				recover_rate = parseInt(recover_rate[0], 10);
+				recover_rate = (recover_rate + 100) / 100;
+
+				// Get points left to fill
+				let point_missing = parseInt(document.getElementById(type + 'points_value_pointmax').innerText, 10) - parseInt(document.getElementById(type + 'points_value_point').innerText, 10);
+				if (point_missing === 0) return; // Nothing to do
+
+				// Get time left for next point 
+				let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
+				if (next_point) {
+					let now = new Date(gca_tools.time.server());
+					now.setSeconds(0);
+					let next = new Date(now.getTime());
+					next.setHours(parseInt(next_point[1], 10));
+					next.setMinutes(parseInt(next_point[2], 10));
+					// Next point in minutes
+					next_point = (next - now) / (1000 * 60);
+					// If day changed
+					if (next_point < 0) {
+						next.setDate(next.getDate() + 1);
+						next_point = (next - now) / (1000 * 60);
+					}
+				}
+				else {
+					next_point = Math.round((90 / server_speed) / recover_rate);
+				}
+
+				// Find recover time in hours and minutes
+				// let minutes = Math.round((90 / server_speed) / recover_rate) * point_missing;
+				let minutes = (Math.round((90 / server_speed) / recover_rate) * (point_missing - 1)) + next_point;
+				let hours = Math.floor(minutes / 60);
+				minutes = minutes % 60;
+
+				// Convert them to text
+				hours = hours === 0 ? '' : ' ' + hours + ' ' + gca_locale.get("general", "hours");
+				minutes = minutes === 0 ? '' : ' ' + minutes + ' ' + gca_locale.get("general", "minutes");
+
+				// Show timer
+				tooltip[0].push([[gca_locale.get("global", type + "_recover_full") + hours + minutes], ["#BA9700","#BA9700"]]);
+				gca_tools.setTooltip(icon, JSON.stringify(tooltip));
 			}
-			
-			
 		},
 		
 		// Extended Health and Experience bars

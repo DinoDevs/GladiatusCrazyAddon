@@ -382,9 +382,8 @@ var gca_settings = {
 				"extended_hp_xp_info_potion" : true,
 				"hp_timer_for_full_life" : true,
 				
-				// Expedition - Dungeon Recover
-				"expedition_timer_for_full_expedition" : true,
-				"dungeon_timer_for_full_dungeon" : true,
+				// Expedition/Dungeon Points Recover Timer
+				"expedition_dungeon_points_recover_timer" : true,
 
 				// Shortcuts bar
 				"shortcuts_bar" : true,
