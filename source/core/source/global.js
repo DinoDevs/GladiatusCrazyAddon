@@ -250,6 +250,19 @@ var gca_global = {
 			window.gca_rtl = false;
 			return;
 		}
+
+		/*
+		// Force left-to-right
+		let links = document.querySelectorAll('link');
+		for (var i = links.length - 1; i >= 0; i--) {
+			if (links[i].getAttribute("href").match("rtl"))
+				links[i].href = links[i].getAttribute("href").replace(/rtl_?/, '');
+		}
+		window.gca_rtl = false;
+		localStorage.removeItem('gca_rtl');
+		return;
+		*/
+	
 		// Else its a right to left server
 		window.gca_rtl = true;
 		if (document.documentElement.className.length)
