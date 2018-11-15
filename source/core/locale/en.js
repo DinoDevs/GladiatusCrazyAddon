@@ -32,7 +32,6 @@ gca_languages["en"] = {
 			// Minutes
 			minutes : "minute",
 			//Hours
-			hour : "hour",
 			hours : "hours",
 			// No data
 			no_data : "No data",

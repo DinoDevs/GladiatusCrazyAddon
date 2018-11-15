@@ -20,7 +20,6 @@ gca_languages["tr"] = {
 		general : {
 			days : "Gün",
 			minutes : "Dakika",
-			hour : "Saat",
 			hours : "Saat",
 			no_data : "Bilgi Bulunmuyor",
 			confirm : "Onayla",
