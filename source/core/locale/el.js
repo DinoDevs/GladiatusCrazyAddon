@@ -15,7 +15,7 @@ gca_languages["gr"] = {
 	// Language name
 	name : "Ελληνικά (Greek)",
 	// Translators (authors of this script)
-	translators : ["DarkThanos", "GreatApo"],
+	translators : ["DarkThanos (s4)", "GreatApo (s4)", "jimstath (s4)"],
 
 	// Translations object
 	locale: {
