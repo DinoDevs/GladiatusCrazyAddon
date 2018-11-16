@@ -52,7 +52,7 @@ var gca_global = {
 		(gca_options.bool("global","hp_timer_for_full_life") && 
 			this.display.extended_hp_xp.timerForFullLife());
 		// Show Expedition Recover
-		(gca_options.bool("global","expedition_dungeon_points_recover_timer") && 
+		(!this.isInUnderworld && gca_options.bool("global","expedition_dungeon_points_recover_timer") && 
 			this.display.showPointsRecover.init());
 		
 		// Buttons' main bar
