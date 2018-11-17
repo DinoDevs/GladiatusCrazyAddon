@@ -673,8 +673,22 @@
 
 
 
+	/* Reports Layout
+	-------------------------------------------------- */
+
+		/* Reward Shadow */
+		.icon_itemreward.reward-white{border: 1px solid rgb(255,255,255);border-radius: 5px;margin: -1px;}
+		.icon_itemreward.reward-green{border: 1px solid rgb(0,255,0);border-radius: 5px;margin: -1px;}
+		.icon_itemreward.reward-blue{border: 1px solid rgb(81,89,247);border-radius: 5px;margin: -1px;}
+		.icon_itemreward.reward-purple{border: 1px solid rgb(227,3,224);border-radius: 5px;margin: -1px;}
+		.icon_itemreward.reward-orange{border: 1px solid rgb(255,106,0);border-radius: 5px;margin: -1px;}
+		.icon_itemreward.reward-red{border: 1px solid rgb(255,0,0);border-radius: 5px;margin: -1px;}
+
+
+
 	/* Overview Layout
 	-------------------------------------------------- */
+
 		/* Show life gain */
 		.gca_life_gain_info {margin-right: -20px;margin-top: -6px;font-size: 10px;}
 		.gca_rtl .gca_life_gain_info {margin-right: auto;margin-left: -20px;}
@@ -1089,6 +1103,7 @@
 
 	/* Market
 	-------------------------------------------------- */
+
 		/* 1g sell mode */
 		#market_sell_box .switch-field{float: right;margin-top: -48px;margin-right: 23px;}
 		#market_sell_box .switch-field input{display: none;}

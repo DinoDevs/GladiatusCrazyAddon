@@ -226,7 +226,8 @@ var gca_reports = {
 			let cache = this.getLootItemFromCache(id);
 			if (cache) {
 				//console.log('Report ' + id + ' loot loaded from cache!');
-				gca_tools.setTooltip(icon, cache);
+				icon.className += ' reward-' + this.getStringFromColorNumber(cache.q);
+				gca_tools.setTooltip(icon, cache.t);
 				return;
 			}
 			
@@ -267,10 +268,21 @@ var gca_reports = {
 				else {
 					// Add title on tooltip
 					let reward_tooltip = [[[title, "white"]]];
+					// Init quality
+					let quality_best = 0;
 					// For each tooltip
 					for (let i = 0; i < tooltips.length; i++) {
 						// Parse tooltip
 						let tooltip = JSON.parse(tooltips[i][1].replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
+						let quality = gca_tools.item.shadow.getColor(tooltip);
+						switch(quality) {
+							case 'white':  	if(quality_best < 0) quality_best = 0; break;
+							case 'green': 	if(quality_best < 1) quality_best = 1; break;
+							case 'blue': 	if(quality_best < 2) quality_best = 2; break;
+							case 'purple': 	if(quality_best < 3) quality_best = 3; break;
+							case 'orange': 	if(quality_best < 4) quality_best = 4; break;
+							case 'red': 	if(quality_best < 5) quality_best = 5; break;
+						}
 						// Add space
 						if(i != 0)
 							reward_tooltip[0].push(["&nbsp;", "white"]);
@@ -281,10 +293,11 @@ var gca_reports = {
 					}
 					// Show tooltip
 					reward_tooltip = JSON.stringify(reward_tooltip);
+					icon.className += ' reward-' + this.getStringFromColorNumber(quality_best);
 					gca_tools.setTooltip(icon, reward_tooltip);
 
 					// Save in cache
-					this.setLootItemOnCache(id, reward_tooltip);
+					this.setLootItemOnCache(id, reward_tooltip, quality_best);
 				}
 			});
 		},
@@ -293,8 +306,8 @@ var gca_reports = {
 		initLootItemCache : function(reportid){
 			if (this.lootCache) return;
 			this.lootCache = gca_data.section.get('cache', 'reports-loot', []);
-			if (this.lootCache.length > 50) {
-				this.lootCache = this.lootCache.slice(0, 30);
+			if (this.lootCache.length > 60) {
+				this.lootCache = this.lootCache.slice(0, 50);
 				gca_data.section.set('cache', 'reports-loot', this.lootCache);
 			}
 		},
@@ -303,15 +316,27 @@ var gca_reports = {
 
 			for (let i = 0; i < this.lootCache.length; i++) {
 				if (this.lootCache[i].i == reportid) {
-					return this.lootCache[i].t;
+					return this.lootCache[i];
 				}
 			}
 			return false;
 		},
-		setLootItemOnCache : function(reportid, tooltip){
+		setLootItemOnCache : function(reportid, tooltip, quality){
 			this.initLootItemCache();
-			this.lootCache.unshift({i:reportid, t:tooltip});
+			this.lootCache.unshift({i:reportid, t:tooltip, q:quality});
 			gca_data.section.set('cache', 'reports-loot', this.lootCache);
+		},
+
+		getStringFromColorNumber : function(quality) {
+			switch(quality) {
+				case 0: return 'white';
+				case 1: return 'green';
+				case 2: return 'blue';
+				case 3: return 'purple';
+				case 4: return 'orange';
+				case 5: return 'red';
+				default: return 'white';
+			}
 		}
 	},
 
