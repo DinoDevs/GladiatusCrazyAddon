@@ -122,7 +122,7 @@ var gca_arena = {
 					try {
 						var obj = JSON.parse(content);
 					} catch (e) {
-						gca_notifications.error("Global Arena:\nSomething went wrong.");
+						gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_something_went_wrong"));
 						return;
 					}
 					if (obj.error) {
@@ -137,7 +137,7 @@ var gca_arena = {
 						gca_notifications.error("Global Arena:\nOur server is still HTTP and not HTTPS. If you want to continue allow script load of unauthenticated sources on this page.");
 					}
 					else {
-						gca_notifications.error("Global Arena:\nConnection error.");
+						gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_connection_error"));
 					}
 				}
 			});
@@ -155,45 +155,45 @@ var gca_arena = {
 					try {
 						var obj = JSON.parse(content);
 					} catch (e) {
-						gca_notifications.error("Global Arena:\nSomething went wrong.");
-						document.getElementById('alert_box').textContent = "Something went wrong.";
+						gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_something_went_wrong"));
+						document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_something_went_wrong");
 						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						return;
 					}
 					
 					if(obj.error){
-						gca_notifications.error("Global Arena:\nSomething went wrong.");
-						document.getElementById('alert_box').textContent = "Something went wrong.";
+						gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_something_went_wrong"));
+						document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_something_went_wrong");
 						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 					}else if(obj.status){
 						if(obj.status == 'lost'){
-							gca_notifications.error("Global Arena:\nYou lost the fight...");
+							gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_lose"));
 							document.getElementById('alert_box').textContent = "You lost the fight...";
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else if(obj.status == 'win'){
 							window.gca_arena_make_list(obj);
-							gca_notifications.success("Global Arena:\nYou won!");
-							document.getElementById('alert_box').textContent = "You won!";
+							gca_notifications.success("Global Arena:\n"+gca_locale.get("arena", "global_arena_won"));
+							document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_won");
 							document.getElementById('alert_box').style="color: rgb(37, 140, 42);";
 						}else if(obj.status == 'cooldown' && obj.cooldown){
-							gca_notifications.warning("Global Arena:\nYou are tired.\nPlease rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec.")));
-							document.getElementById('alert_box').textContent = "You are tired. Please rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
+							gca_notifications.warning("Global Arena:\n"+gca_locale.get("arena", "global_arena_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):(obj.cooldown+gca_locale.get("general", "seconds"))));
+							document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):(obj.cooldown+gca_locale.get("general", "seconds")));
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else{
-							gca_notifications.error("Global Arena:\nSomething went wrong.");
-							document.getElementById('alert_box').textContent = "Something went wrong.";
+							gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_something_went_wrong"));
+							document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_something_went_wrong");
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}
 					}else{
-						gca_notifications.error("Global Arena:\nSomething went wrong.");
-						document.getElementById('alert_box').textContent = "Something went wrong.";
+						gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_something_went_wrong"));
+						document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_something_went_wrong");
 						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 					}
 					document.getElementById('spiner_box').style.display = 'none';
 				},
 				error: function(){
-					gca_notifications.error("Global Arena:\nConnection error.");
-					document.getElementById('alert_box').textContent = "Connection error.";
+					gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_connection_error"));
+					document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_connection_error");
 					document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 					
 					document.getElementById('spiner_box').style.display = 'none';
@@ -217,7 +217,7 @@ var gca_arena = {
 			temp_element = document.createElement('p');
 			temp_element.id = 'alert_box';
 			if(obj.cooldown){
-				temp_element.textContent = "You are tired. Please rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
+				temp_element.textContent = gca_locale.get("arena", "global_arena_tired")+((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):(obj.cooldown+gca_locale.get("general", "seconds")));
 				temp_element.style="color: rgba(255, 30, 30, 1);";
 			}
 			div.appendChild(temp_element);
@@ -335,7 +335,7 @@ var gca_arena = {
 				temp_element3 = document.createElement("div");
 				temp_element3.className = "attack";
 				temp_element3.setAttribute("onclick","gca_arena_attack_enemy('"+list[i].country+"',"+list[i].server+","+list[i].id+")");
-				temp_element3.dataset.tooltip = '[[["Attack '+list[i].name+'","#fff;font-size:12px;"]]]';
+				temp_element3.dataset.tooltip = '[[["'+gca_locale.get("arena", "global_arena_attack")+list[i].name+'","#fff;font-size:12px;"]]]';
 				temp_element2.appendChild(temp_element3);
 			}
 			
