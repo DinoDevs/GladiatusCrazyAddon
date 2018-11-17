@@ -1063,8 +1063,8 @@
 	-------------------------------------------------- */
 
 		/* Quality Number Color */
-		#resource-list td[data-quality="-1"]{color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.6), -1px 1px 2px rgba(0,0,0,0.6), -1px -1px 2px rgba(0,0,0,0.6), 1px -1px 2px rgba(0,0,0,0.6);}
-		#resource-list td[data-quality="0"]{color: lime; text-shadow: 1px 1px 2px rgba(0,0,0,0.3), -1px 1px 2px rgba(0,0,0,0.3), -1px -1px 2px rgba(0,0,0,0.3), 1px -1px 2px rgba(0,0,0,0.3);}
+		#resource-list td[data-quality="-1"]{color: white; text-shadow: 0px 0px 2px rgba(0,0,0,0.6), -1px 1px 2px rgba(0,0,0,0.6), -1px -1px 2px rgba(0,0,0,0.6), 1px -1px 2px rgba(0,0,0,0.6);}
+		#resource-list td[data-quality="0"]{color: #009e00;}
 		#resource-list td[data-quality="1"]{color: #5159F7;}
 		#resource-list td[data-quality="2"]{color: #E303E0;}
 		#resource-list td[data-quality="3"]{color: #FF6A00;}

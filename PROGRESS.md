@@ -6,11 +6,12 @@
 ### IMPROVEMENTS
 - **General**
 	- [ ] Show time until full expedition/dungeon points recovery
+	- [x] Horreum numbers readability changes (white & green colors adjustments)
 
 
 ### BUG FIXES
 - **General**
-	- [x] Audio random dependacy error fix
+	- [x] Audio random dependency error fix
 
 
 ### TRANSLATIONS
