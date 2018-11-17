@@ -134,7 +134,7 @@ var gca_arena = {
 				},
 				error: function(jqXHR){
 					if (jqXHR.status == 0) {
-						gca_notifications.error("Global Arena:\nOur server is still HTTP and not HTTPS. If you want to continue allow script load of unauthenticated sources on this page.");
+						gca_notifications.error("Global Arena:\nSomething blocks the access to GCA server (www.gladiatuscrazyaddon.tk).");
 					}
 					else {
 						gca_notifications.error("Global Arena:\nConnection error.");

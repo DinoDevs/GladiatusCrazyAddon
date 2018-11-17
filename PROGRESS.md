@@ -8,10 +8,15 @@
 	- [ ] Show time until full expedition/dungeon points recovery
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
 
+- **Reports**
+	- [x] Rewarded items have border based on their quality
+
 
 ### BUG FIXES
 - **General**
 	- [x] Audio random dependency error fix
+- **Arena**
+	- [x] Fixed wrong error message when Global Arena request is blocked
 
 
 ### TRANSLATIONS
