@@ -29,6 +29,8 @@ gca_languages["en"] = {
 
 			// Days
 			days : "day(s)",
+			// Seconds
+			seconds : "second",
 			// Minutes
 			minutes : "minute",
 			// Hours
@@ -158,6 +160,12 @@ gca_languages["en"] = {
 			global_arena_title : "Global Arena (Crazy Addon)",
 			global_arena_description : "This is the ultimate arena, gathering gladiators from all around the world! In this arena, gladiators do not fight for gold or experience, they fight for a place on the world top list!",
 			global_arena_load : "Load enemies list",
+			global_arena_attack : "Attack ",
+			global_arena_won : "You won!",
+			global_arena_lose : "You lost the fight...",
+			global_arena_tired : "You are tired.\nPlease rest for ",
+			global_arena_something_went_wrong: "Something went wrong.",
+			global_arena_connection_error: "Connection error.",
 			target_list : "Target List",
 			target_list_add : "Add to target list",
 			target_list_remove : "Remove from target list"
