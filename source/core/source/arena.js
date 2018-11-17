@@ -176,8 +176,8 @@ var gca_arena = {
 							document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_won");
 							document.getElementById('alert_box').style="color: rgb(37, 140, 42);";
 						}else if(obj.status == 'cooldown' && obj.cooldown){
-							gca_notifications.warning("Global Arena:\n"+gca_locale.get("arena", "global_arena_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):(obj.cooldown+gca_locale.get("general", "seconds"))));
-							document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):(obj.cooldown+gca_locale.get("general", "seconds")));
+							gca_notifications.warning("Global Arena:\n"+gca_locale.get("arena", "global_arena_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):" "+(obj.cooldown+gca_locale.get("general", "seconds"))));
+							document.getElementById('alert_box').textContent = gca_locale.get("arena", "global_arena_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):" "+(obj.cooldown+gca_locale.get("general", "seconds")));
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else{
 							gca_notifications.error("Global Arena:\n"+gca_locale.get("arena", "global_arena_something_went_wrong"));
@@ -217,7 +217,7 @@ var gca_arena = {
 			temp_element = document.createElement('p');
 			temp_element.id = 'alert_box';
 			if(obj.cooldown){
-				temp_element.textContent = gca_locale.get("arena", "global_arena_tired")+((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):(obj.cooldown+gca_locale.get("general", "seconds")));
+				temp_element.textContent = gca_locale.get("arena", "global_arena_tired")+((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" "+gca_locale.get("general", "minutes")):" "+(obj.cooldown+gca_locale.get("general", "seconds")));
 				temp_element.style="color: rgba(255, 30, 30, 1);";
 			}
 			div.appendChild(temp_element);
