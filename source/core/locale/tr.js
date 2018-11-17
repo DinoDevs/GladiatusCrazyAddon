@@ -19,6 +19,7 @@ gca_languages["tr"] = {
 		},
 		general : {
 			days : "Gün",
+			seconds : "Saniye",
 			minutes : "Dakika",
 			hours : "Saat",
 			no_data : "Bilgi Bulunmuyor",
@@ -104,6 +105,12 @@ gca_languages["tr"] = {
 			global_arena_title : "Global Arena (Crazy Addon)",
 			global_arena_description : "Bu nihai arena, dünyanın her yerinden gladyatörleri bir araya toplar! Bu alanda, gladyatörler altın ya da deneyim için savaşmazlar, dünyanın en iyiler listesinde bir yer için savaşırlar!",
 			global_arena_load : "Düşman listesini yükle",
+			global_arena_attack : "Saldır ",
+			global_arena_won : "Kazandın!",
+			global_arena_lose : "Savaşı kaybettin...",
+			global_arena_tired : "Çok yorgunsun.\nBeklemen gereken süre: ",
+			global_arena_something_went_wrong: "Bir şeyler yanlış gitti.",
+			global_arena_connection_error: "Bağlantı hatası.",
 			target_list : "Hedef Listesi",
 			target_list_add : "Hedef listesine ekle",
 			target_list_remove : "Hedef listesinden çıkar"
