@@ -18,7 +18,7 @@ var gca_arena = {
 			this.ignore_attack_confirmations());
 
 		// Highlight guild members on other severs
-		((this.isNormalArena || this.isCrossNormalArena) && gca_options.bool("arena", "highlight_guild_members") &&
+		((this.isCrossTurmaArena || this.isCrossNormalArena) && gca_options.bool("arena", "highlight_guild_members") &&
 			this.highlight_mates());
 
 		this.highlight_targets();
@@ -451,7 +451,7 @@ var gca_arena = {
 		for (let i = objects.length - 1; i >= 0; i--) {
 			mates.push(objects[i].name);
 		}
-
+		
 		// Highlight players
 		for (var i = links.length - 1; i >= 0; i--) {
 			if (mates.indexOf(links[i].textContent.trim()) >= 0) {

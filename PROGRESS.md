@@ -7,7 +7,6 @@
 - **General**
 	- [ ] Show time until full expedition/dungeon points recovery
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
-
 - **Reports**
 	- [x] Rewarded items have border based on their quality
 
@@ -16,7 +15,10 @@
 - **General**
 	- [x] Audio random dependency error fix
 - **Arena**
+	- [x] Guild members on other severs were not highlighted in cross-server turma
 	- [x] Fixed wrong error message when Global Arena request is blocked
+- **Guild**
+	- [x] Guild buildings script not loading on update
 
 
 ### TRANSLATIONS
