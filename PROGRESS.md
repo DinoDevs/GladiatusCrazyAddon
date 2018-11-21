@@ -5,7 +5,7 @@
 
 ### IMPROVEMENTS
 - **General**
-	- [ ] Show time until full expedition/dungeon points recovery
+	- [x] Show time until full expedition/dungeon points recovery
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
 - **Reports**
 	- [x] Rewarded items have border based on their quality
@@ -24,4 +24,5 @@
 ### TRANSLATIONS
 -  **Updates**
 	- [x] Greek updated
+	- [x] Romanian updated
 	- [x] Turkish updated
