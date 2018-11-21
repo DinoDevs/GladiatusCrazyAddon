@@ -1,56 +1,56 @@
-/*			
- * Gladiatus Crazy Addon Translation			
- * Name : Romanian (România)			
- * Code : [none]			
- * Tag  : ro-RO			
- * Translator: MrMitza, The Breaker			
- */			
-			
-// Languages Object			
-var gca_languages = gca_languages || {};			
-			
-// Set Language			
-gca_languages["ro"] = {			
-			
-	// Language name		
-	name : "Romanian (România)",		
-	// Translators (authors of this script)		
-	translators : ["MrMitza", "The Breaker"],		
-			
-	// Translations object		
-	locale : {		
-		// Addon info	
-		info : {	
+/*
+ * Gladiatus Crazy Addon Translation
+ * Name : Romanian (România)
+ * Code : RO
+ * Tag  : ro-RO
+ * Translator: MrMitza, The Breaker
+ */
+
+// Languages Object
+var gca_languages = gca_languages || {};
+
+// Set Language
+gca_languages["ro"] = {
+
+	// Language name
+	name : "Romanian (România)",
+	// Translators (authors of this script)
+	translators : ["MrMitza", "The Breaker"],
+
+	// Translations object
+	locale : {
+		// Addon info
+		info : {
 			description : "Cel mai nebunesc add-on făcut vreodată pentru Gladiatus!"
-		},	
-			
-		// General	
-		general : {	
-			
+		},
+
+		// General
+		general : {
+
 			// Days
 			days : "zile",
 			// Minutes
 			minutes : "minute",
 			// No data
 			no_data : "Nu există date",
-			
+
 			// Modal buttons
 			confirm : "Confirmă",
 			cancel : "Renunță",
 			close : "Închide",
 			error : "Eroare",
-		},	
-			
-		// Global	
-		global : {	
+		},
+
+		// Global
+		global : {
 			// Use a life potion
 			life_potion_use : "Folosește o Poţiune de Vindecare 100%",
 			life_potion_used : "o Poţiune de Vindecare 100% a fost utilizată",
 			life_potion_left : "Mai ai {{number}} Poțiuni de vindecare 100%",
-			
+
 			// Life points recovery
 			life_recover_full : "Vindecare completă în",
-			
+
 			// Button bar - Message
 			message_private_write : "Scrie mesaj privat",
 			message_guild_write : "Scrie mesaj către breaslă",
@@ -59,7 +59,7 @@ gca_languages["ro"] = {
 			message_sent_failed : "Trimiterea mesajului către breaslă a eşuat",
 			message_empty : "Mesajul către breaslă este gol",
 			message_exclude_me : "Exclude-mă",
-			
+
 			// Button bar buttons
 			guild_market_goto : "Mergi către piaţa breslei",
 			guild_storage_goto : "Mergi către depozitul breslei",
@@ -71,32 +71,32 @@ gca_languages["ro"] = {
 			simulator_goto : "Mergi la simulator",
 			stats_display : "Afişează-mi statisticile",
 			online_display : "Afişează jucătorii online",
-			
+
 			// Online friends
 			online_friends : "Prieteni Online",
 			guild_friends : "Colegi de breaslă",
 			family_friends : "Membrii Familiei",
-			
+
 			// Guild donate
 			donate_gold_confirm : "Ești sigur că vrei să donezi {{number}} aur?",
 			donate_gold_success : "Aurul a fost donat",
 			donate_gold_failed : "Donarea aurului a eșuat",
 			donate_gold_no_gold : "Nu există aur pentru donat",
 			donate_gold_all_gold : "Donează tot aurul",
-			
+
 			// Quest timer
 			quest_full : "Plin",
 			quest_new : "Nou",
-			
+
 			// Pray icon
 			pray_start : "Începe să te rogi",
 			pray_stop : "Oprește-te din rugăciune",
 			heal : "vindecă",
-			
+
 			// Notifications
 			notification_guild_application : "Există o aplicaţie în breaslă nerezolvată!",
 			low_durability_items : "Există {{number}} obiect(e) cu durabilitatea sub {{percent}}%",
-			
+
 			// Gold - Exp data
 			gold_exp_data : "Date despre aur și experiență",
 			gold_exp_data_today : "Ultimele 24 de ore",
@@ -107,57 +107,57 @@ gca_languages["ro"] = {
 			gold_exp_data_measurements : "Statistici",
 			gold_exp_data_total_exp : "Experiență totală",
 			gold_exp_data_total_gold : "Aur total",
-		},	
-			
-		// Overview	
-		overview : {	
+		},
+
+		// Overview
+		overview : {
 			// Stats Difference
 			stats_difference : "Dierență",
 			// Drop items to see materials to repair feature
 			drop_item_see_materials_repair : "Trage un obiect pentru a vedea materialele necesare pentru reparație",
 			workbench_6th_slot_empty : "Al 6-lea Banc de lucru trebuie să fie gol",
-		},	
-			
-		// Pantheon section	
-		pantheon : {	
+		},
+
+		// Pantheon section
+		pantheon : {
 			// Mystery box
 			mysterybox_open_all : "Deschide-le pe toate",
 			mysterybox_open_stop : "Oprește",
 			mysterybox_open_done : "Gata!"
-		},	
-			
-		// Guild section	
-		guild : {	
+		},
+
+		// Guild section
+		guild : {
 			// Guild Bank
 			bank_all_gold : "Adaugă tot aurul tău",
-			
+
 			// Library
 			library_per_point_cost : "Cost de activare",
 			library_gold_left : "Aurul rămas breslei, după activare",
-			
+
 			// Medic
 			medic_lost_points : "Puncte pierdute",
 			medic_points_to_heal : "Puncte de vindecare",
 			medic_life_after_heal : "Viaţa după vindecare"
-		},	
-			
-		// Expedition	
-		expedition : {	
+		},
+
+		// Expedition
+		expedition : {
 			material_drop_chance : "{{number}}% șansă, între resursele posibile"
-		},	
-			
-		// Arena section	
-		arena : {	
+		},
+
+		// Arena section
+		arena : {
 			global_arena_title : "Global Arena (Crazy Addon)",
 			global_arena_description : "Aceasta este Arena Supremă, aici se adună Gladiatori din toată lumea! În această arenă, gladiatorii nu luptă pentru aur sau experiență, ci pentru un loc în Clasamentul Mondial!",
 			global_arena_load : "Încarcă lista adversarilor",
 			target_list : "Lista adversarilor",
 			target_list_add : "Adaugă la listă",
 			target_list_remove : "Șterge din listă"
-		},	
-			
-		// Training section	
-		training : {	
+		},
+
+		// Training section
+		training : {
 			// Points analysis
 			stats_points : "Statistica Puncte",
 			points_breakdown : "Desfăsurarea Punctelor",
@@ -166,10 +166,10 @@ gca_languages["ro"] = {
 			total_cost : "Costuri Totale",
 			// Discount show
 			costs_discount : "Discont costuri antrenamente: {{number}}%"
-		},	
-			
-		// Auction section	
-		auction : {	
+		},
+
+		// Auction section
+		auction : {
 			// Info
 			items_info : "Informații despre obiecte",
 			// Number of items in the page
@@ -179,41 +179,41 @@ gca_languages["ro"] = {
 			// Message on items that you can buy and sell at the same price
 			hide_your_gold_here : "Ascunde-ţi aurul aici",
 			// Price of item equals to its value
-			price_value_function : "Preţ = Valoare + {{number}}"
+			price_value_function : "Preţ = Valoare + {{number}}",
 			// Levels you can see
 			levels_you_can_see : "You can see items from level {{min}} to level {{max}}.",
-		},	
-			
-		// Markets section	
-		markets : {	
+		},
+
+		// Markets section
+		markets : {
 			// Warnings
 			item_cost_only_x_gold : "Acest obiect costă doar {{number}} aur.",
 			item_is_soulbound : "Acest obiect este personalizat.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Ești sigur că vrei să cumperi acest obiect?"
-		},	
-			
-		// Forge	
-		forge : {	
+		},
+
+		// Forge
+		forge : {
 			forge_ended : "Forja s-a încheiat!",
 			recraft_item : "Re-forjează obiectul"
-		},	
-			
-		// Packages	
-		packages : {	
+		},
+
+		// Packages
+		packages : {
 			event_items : "Obiecte de Eveniment",
 			known_scroll : "Cunoști acest pergament",
 			unknown_scroll : "Nu ai învățat acest pergament"
-		},	
-			
-		// Settings	
-		settings : {	
+		},
+
+		// Settings
+		settings : {
 			// Settings
 			settings : "Settings",
 			// Description
 			description : "Permite sau dezactivează oricare caracteristică dorită a addon-ului!",
 			description_click_button : "Mergi la setările addon-ului",
-			
+
 			// Categories
 			category_global : "Setări Generale",
 			category_overview : "Previzualizează setările",
@@ -228,17 +228,17 @@ gca_languages["ro"] = {
 			category_magus : "Magus Hermeticus",
 			category_market : "Piață",
 			category_expedition : "Expediții",
-			category_guild : "Breaslă”,
+			category_guild : "Breaslă",
 			category_auction : "Licitaţie",
 			category_events : "Evenimente",
 			category_sound : "Sunete",
 			category_data : "Date",
-			
+
 			// Settings - Global
 			category_global$language_select : "Alege limba interfeței addon-ului",
 			category_global$sound_notifications : "Activează notificările prin sunet",
 			category_global$browser_notifications : "Activează notificările în browser",
-			category_global$extended_hp_xp_info : ""Afişează extinderea vieţii şi a experienţei pe informaţiile de antet",
+			category_global$extended_hp_xp_info : "Afişează extinderea vieţii şi a experienţei pe informaţiile de antet",
 			category_global$extended_hp_xp_info_potion : "Afișează scurtătura pentru poțiunea de vindecare 100%",
 			category_global$hp_timer_for_full_life : "Afișează minutele rămase până la vindecarea completă",
 			category_global$shortcuts_bar : "Activează bara scurtăturilor",
@@ -253,7 +253,7 @@ gca_languages["ro"] = {
 			category_global$quest_timer : "Afișează timpul sau starea Misiunilor",
 			category_global$merchants_timer : "Afișează timpul pentru negustori",
 			category_global$forge_timers : "Afișează timpul pentru forje/topiri",
-			category_global$cooldown_sound_notifications : "Permite sunet de notificare pentru misiuni, temniţe şi arene"",
+			category_global$cooldown_sound_notifications : "Permite sunet de notificare pentru misiuni, temniţe şi arene",
 			category_global$notify_new_guild_application : "Notifică-mă la apariția unei aplicații pentru breaslă",
 			category_global$notify_new_guild_application_interval : "Verifică pentru aplicații la fiecare (minutes)",
 			category_global$x_scroll : "Activează scroll-ul orizontal pentru Gladiatus",
@@ -379,7 +379,7 @@ gca_languages["ro"] = {
 			category_data$import_settings : "Importă datele setărilor din fișier",
 			category_data$reset_settings : "Resetează setările addon-ului",
 			category_data$clear_data : "Șterge toatele datele addon-ului",
-			
+
 			// Buttons
 			save : "Salvează",
 			export : "Exportă",
@@ -388,15 +388,17 @@ gca_languages["ro"] = {
 			clear : "Șterge",
 			do_not_show : "Nu arăta",
 			show_as : "Arată ca",
-			
+
 			// Info
 			translated_percent : "Procent traducere: {{number}}%",
 			translated_by : "Translated by: {{string}}",
 			reset_settings_confirm : "Ești sigur(ă) că vrei să resetezi setările addon-ului?",
 			clear_data_confirm : "Ești sigur(ă) că vrei să ștergi toate datele addon-ului?",
-			
+
 			// Notifications
 			notification_reload : "Reîncarcă pagina pentru ca opţiunile să aibă efect"
-		}	
-	}		
-}			
+		}
+	}
+}
+
+gca_languages._active = "ro";
