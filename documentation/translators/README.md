@@ -43,7 +43,7 @@ You can find all the translations on the `GladiatusCrazyAddon/source/core/locale
 		// Translators (authors of this script)
 		translators : ["<your name here>"],
 	```
- 3. Insert the missing rows translated on your language file.
+ 3. Translate any text inside quotes ex. `dont_translate_me : "But translate me!"`.
 	```
 	// Change the line from english
 	number_of_items : "Number of items : {{number}}",
