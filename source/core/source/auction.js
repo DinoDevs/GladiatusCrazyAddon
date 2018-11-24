@@ -368,7 +368,8 @@ var gca_auction = {
 		form.addEventListener('submit', () => {
 			let data = {
 				mod : 'auction',
-				doll : form.doll.value,
+				// Ignore doll because this will change the selected doll
+				//doll : form.doll.value,
 				qry : form.qry.value,
 				itemLevel : form.itemLevel.value,
 				itemType : form.itemType.value,
