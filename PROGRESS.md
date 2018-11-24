@@ -9,6 +9,8 @@
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
 - **Reports**
 	- [x] Rewarded items have border based on their quality
+- **Market**
+	- [x] "Value" as price button added
 
 
 ### BUG FIXES
