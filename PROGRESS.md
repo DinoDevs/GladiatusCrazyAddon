@@ -21,6 +21,7 @@
 	- [x] Fixed wrong error message when Global Arena request is blocked
 - **Guild**
 	- [x] Guild buildings script not loading on update
+	- [x] Guild storage character items were not highlighted based on quality
 
 
 ### TRANSLATIONS
