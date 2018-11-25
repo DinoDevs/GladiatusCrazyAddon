@@ -1066,6 +1066,7 @@ var gca_global = {
 							if(gca_data.section.get("guild", "inGuild", false)){
 								gca_data.section.set("guild", "inGuild", false);
 								gca_data.section.del("guild", "mates");
+								gca_data.section.del("guild", "name");
 							}
 						}
 						// You are in a guild, so update guild data
@@ -1094,6 +1095,10 @@ var gca_global = {
 								// Update guild data
 								gca_data.section.set("guild", "inGuild", true);
 								gca_data.section.set("guild", "mates", guild_players);
+								
+								let guild_name = content.match(/<h2 class="section-header">([^<]+)<\/h2>/)[1];
+								guild_name = guild_name.match(/([a-zA-Z0-9\-#@\[\]\.\+\:\*_]+) \[([a-zA-Z0-9\-#@\[\]\.\+\:\*_]+)\]/i)[1];
+								gca_data.section.set("guild", "name", guild_name);
 							}
 						}
 

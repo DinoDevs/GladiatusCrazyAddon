@@ -101,18 +101,28 @@ var gca_arena = {
 		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
 		// Add text
 		temp_element = document.createElement('p');
-		temp_element.textContent = gca_locale.get("arena", "global_arena_description");
+		temp_element.textContent = gca_locale.get("arena", "global_arena_description")+" ";
 		temp_element.style="text-align: justify;";
 		document.getElementById('global_arena_box').appendChild(temp_element);
+		// Add link
+		temp_element = document.createElement('a');
+		temp_element.className = "awesome-button";
+		temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗";
+		temp_element.style = "margin-bottom: 15px;padding: 1.5px 6px;margin-right: 20px;";
+		temp_element.href = "http://gladiatuscrazyaddon.tk/index.php?mode=highscore";
+		temp_element.setAttribute("target","_blank");
+		document.getElementById('global_arena_box').appendChild(temp_element);//.getElementsByTagName('p')[0]
 		// Add button
 		temp_element = document.createElement('input');
 		temp_element.type = "button";
 		temp_element.className = "awesome-button";
-		temp_element.value = gca_locale.get("arena", "global_arena_load");
+		temp_element.value = gca_locale.get("arena", "global_arena_load")+" ⚔";
 		temp_element.style = "margin-bottom: 15px;";
 		temp_element.id = "load_global_arena";
 		temp_element.setAttribute("onclick","gca_arena_load_enemies()");
 		document.getElementById('global_arena_box').appendChild(temp_element);
+		
+		
 		
 		window.gca_arena_load_enemies = function() {
 			jQuery.ajax({
@@ -204,6 +214,8 @@ var gca_arena = {
 		window.gca_arena_make_list = function(obj) {
 			let list = obj.list;
 			let div = document.getElementById('global_arena_box');
+			let guild_name = gca_data.section.get("guild", "name", "-");
+			
 			while(div.firstChild){
 				div.removeChild(div.firstChild);
 			}
@@ -213,6 +225,22 @@ var gca_arena = {
 			temp_element.textContent = gca_locale.get("arena", "global_arena_description");
 			temp_element.style="text-align: justify;";
 			div.appendChild(temp_element);
+			// Add link
+			temp_element = document.createElement('a');
+			temp_element.className = "awesome-button";
+			temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗";
+			temp_element.style = "margin-bottom: 15px;padding: 1.5px 6px;margin-right: 20px;";
+			temp_element.href = "http://gladiatuscrazyaddon.tk/index.php?mode=highscore";
+			temp_element.setAttribute("target","_blank");
+			document.getElementById('global_arena_box').appendChild(temp_element);//.getElementsByTagName('p')[0]
+			// Add button
+			temp_element = document.createElement('input');
+			temp_element.type = "button";
+			temp_element.className = "awesome-button";
+			temp_element.value = gca_locale.get("arena", "global_arena_load")+" ⚔";
+			temp_element.style = "margin-bottom: 15px;";
+			temp_element.disabled = true;
+			document.getElementById('global_arena_box').appendChild(temp_element);
 			
 			temp_element = document.createElement('p');
 			temp_element.id = 'alert_box';
@@ -232,6 +260,7 @@ var gca_arena = {
 			
 			temp_element = document.createElement("table");
 			temp_element.width = "100%";
+			temp_element.style = "margin-bottom: 15px;";
 			div.appendChild(temp_element);
 			
 			let div2 = document.getElementById('content').getElementsByTagName('article')[0].getElementsByClassName('right')[0].getElementsByTagName('tr');
@@ -259,13 +288,13 @@ var gca_arena = {
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("th");
-			temp_element2.textContent = 'Country';
+			temp_element2.textContent = gca_locale.get("arena", "country");
 			temp_element2.width = "10%";
 			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("th");
-			temp_element2.textContent = 'Server';
+			temp_element2.textContent = gca_locale.get("arena", "server");
 			temp_element2.width = "10%";
 			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
@@ -287,16 +316,21 @@ var gca_arena = {
 				temp_element.appendChild(temp_element2);
 				
 				temp_element2 = document.createElement("td");
-				//temp_element2.textContent = list[i].name;
 				temp_element.appendChild(temp_element2);
-				
-				//https://s4-gr.gladiatus.gameforge.com/game/index.php?mod=player&p=119682
 				temp_element3 = document.createElement("a");
 				temp_element3.href = "https://s"+list[i].server+"-"+list[i].country+".gladiatus.gameforge.com/game/index.php?mod=player&p="+list[i].id;
-				temp_element3.textContent = list[i].name;
 				temp_element3.setAttribute("target","_blank");
+				if(list[i].server==gca_section.server && list[i].country==gca_section.country && guild_name==list[i].guild){
+					// Guild mate
+					let temp_element4 = document.createElement("span");
+					temp_element4.textContent = list[i].name;
+					temp_element4.style = "color:green;";
+					temp_element3.appendChild(temp_element4);
+				}else{
+					// Common player
+					temp_element3.textContent = list[i].name;
+				}
 				temp_element2.appendChild(temp_element3);
-				
 				
 				temp_element2 = document.createElement("td");
 				temp_element2.textContent = (list[i].guild_id>0)?'':'-';
@@ -340,11 +374,13 @@ var gca_arena = {
 			}
 			
 			temp_element = document.createElement("tr");
+			temp_element.className = "highlight";
 			div.getElementsByTagName('table')[0].appendChild(temp_element);
 			
 			temp_element2 = document.createElement("th");
 			temp_element2.textContent = list[list.length-1].position+1;
 			temp_element2.style= "text-align: center;";
+			temp_element2.className = "first";
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("th");
@@ -352,10 +388,10 @@ var gca_arena = {
 			temp_element.appendChild(temp_element2);
 			
 			temp_element2 = document.createElement("th");
-			temp_element2.textContent = '';
+			temp_element2.textContent = guild_name;
 			temp_element.appendChild(temp_element2);
 			
-			temp_element2 = document.createElement("td");
+			temp_element2 = document.createElement("th");
 			//temp_element2.textContent = "("+gca_section.country.toUpperCase()+") ";
 			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
@@ -375,6 +411,7 @@ var gca_arena = {
 			
 			temp_element2 = document.createElement("td");
 			temp_element2.textContent = " ";
+			temp_element2.className = "last";
 			temp_element.appendChild(temp_element2);
 		}
 	},
