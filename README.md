@@ -19,7 +19,7 @@
 
 ## :paperclip: Downloads
 
-We suggest you to download a *stable release*. Alpha releases are for developers (exept if you want to check out the latest features and give us some feedback).
+We suggest you to download a *stable release*. Alpha and Beta releases are for developers (unless you want to check out the latest features and give us some feedback).
 
 ### Latest public release v4.1.0 <sub><sup>(recommended)</sup></sub>
 
