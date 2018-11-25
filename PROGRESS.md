@@ -10,7 +10,12 @@
 - **Reports**
 	- [x] Rewarded items have border based on their quality
 - **Market**
-	- [x] "Value" as price button added
+	- [x] Added button that changes the price to item's value
+- **Arena**
+	- [x] Global Arena: link to global highscore added
+	- [x] Global Arena: your guild name is now visible
+	- [x] Global Arena: guild-mates appear green
+	- [x] Global Arena: more translations added
 
 
 ### BUG FIXES
