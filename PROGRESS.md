@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-3-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-7-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -16,12 +16,16 @@
 ### BUG FIXES
 - **General**
 	- [x] Audio random dependency error fix
+- **Packages**
+	- [ ] Learned/Unlearned scrolls detect fix [testing]
 - **Arena**
 	- [x] Guild members on other severs were not highlighted in cross-server turma
 	- [x] Fixed wrong error message when Global Arena request is blocked
 - **Guild**
 	- [x] Guild buildings script not loading on update
 	- [x] Guild storage character items were not highlighted based on quality
+- **Auction**
+	- [ ] Do not save player/mercenary (doll) on auction remember feature [testing]
 
 
 ### TRANSLATIONS
