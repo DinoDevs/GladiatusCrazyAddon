@@ -550,29 +550,46 @@ var gca_packages = {
 				// Load scroll data
 
 				loadData : function(){
-					// Save instance
-					var that = this;
-
 					// Make request
 					jQuery.ajax({
 						type: "GET",
 						url: gca_getPage.link({"mod":"forge"}),
-						success: function(result){
+						success: (result) => {
 							// Get each name
-							var scrollNamesCode = result.match(/<option value="\d+" data-level="\d+" data-name="[^"]+">/gim);
-							// Parse names
-							var list = [];
-							for(var i = scrollNamesCode.length - 1; i >= 0; i--){
-								// Add on the list
-								list.unshift(scrollNamesCode[i].match(/data-name="([^"]+)">/i)[1]);
+							let scrolls = result.match(/<option value="\d+" (selected |)data-level="\d+" data-name="[^"]*">[^<]*<\/option>/gim);
+
+							// If error
+							if (scrolls.length < 2) {
+								this.prefix = false;
+								this.suffix = false;
+								return;
 							}
 
-							// Same list
-							that.name = list;
-							// Save regexp code
-							that.nameRegexp = "(" + list.join("|") + ")";
+							// Parse scrolls
+							let prefix = []; 
+							let suffix = [];
+
+							var i = 1;
+							// Get prefixes
+							while (i < scrolls.length) {
+								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
+								i++;
+								if (id == 0) break;
+								prefix.push(id);
+							}
+							// Get suffixes
+							while (i < scrolls.length) {
+								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
+								i++;
+								suffix.push(id);
+							}
+
+							// Save lists
+							this.prefix = prefix;
+							this.suffix = suffix;
+
 							// Check scrolls
-							that.showIsLearned();
+							this.showIsLearned();
 						},
 						error: function(){}
 					});
@@ -581,31 +598,27 @@ var gca_packages = {
 				// Apply 
 				showIsLearned : function(){
 					// If no data return
-					if(!this.name)
-						return;
-
-					// Save instance
-					var that = this;
+					if(!this.prefix) return;
 					
 					// For each item
-					jQuery("#packages .ui-draggable").each(function(){
+					jQuery("#packages .ui-draggable").each((i, item) => {
 						// If already parsed
-						if(this.dataset.gcaFlag_isLearned)
-							return;
+						if(item.dataset.gcaFlag_isLearned) return;
 						// Flag as parsed
-						this.dataset.gcaFlag_isLearned = true;
-						
-						// Get item
-						let item = jQuery(this);
+						item.dataset.gcaFlag_isLearned = true;
+
+						// Get hash
+						let hash = gca_tools.item.hash(item);
+						if (!hash) return;
 						// Check if own
-						let own = item.data("tooltip")[0][0][0].match(new RegExp(that.nameRegexp,'i'));
-						if(own){
-							this.style.filter = "drop-shadow(2px 2px 1px rgba(255,0,0,0.4)) drop-shadow( 2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(255,0,0,0.4))";
-							item.data("tooltip")[0].push([gca_locale.get("packages","known_scroll"), "red"]);
+						let known = (this.prefix.indexOf(hash.prefix) >= 0 || this.suffix.indexOf(hash.suffix) >= 0);
+						if (known) {
+							item.style.filter = "drop-shadow(2px 2px 1px rgba(255,0,0,0.4)) drop-shadow( 2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(255,0,0,0.4))";
+							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","known_scroll"), "red"]);
 						}
-						else{
-							this.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
-							item.data("tooltip")[0].push([gca_locale.get("packages","unknown_scroll"), "green"]);
+						else {
+							item.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
+							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","unknown_scroll"), "green"]);
 						}
 					});
 				}
