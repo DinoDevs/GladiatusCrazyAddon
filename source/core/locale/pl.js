@@ -1,9 +1,9 @@
 /*
  * Gladiatus Crazy Addon Translation
  * Name : Polish
- * Code : [none]
+ * Code : pol
  * Tag  : pl
- * Translator: wupload, Legiss
+ * Translator: wupload, Legiss,Vanish_Si
  */
 
 // Languages Object
