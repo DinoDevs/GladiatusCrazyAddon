@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['pl'] = {
 	name : 'Polski (Polish)',
-	translators : ["wupload", "Legiss"],
+	translators : ["wupload", "Legiss", "Vanish_Si"],
 	locale : {
 		info : {
 			description : "Zwariowany dodatek dla Gladiatus"
