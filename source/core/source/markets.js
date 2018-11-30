@@ -169,7 +169,7 @@ var gca_markets = {
 							data: 'buyid=' + id + '&cancel=' + cancel,
 							success: function(){
 								if(document.getElementById('cancelAllButton').dataset.current==document.getElementById('cancelAllButton').dataset.max-1){
-									document.location.href=document.location.href;
+									document.location.href=document.location.href.replace(/&p=\d+/i,"");
 									return;
 								}
 								document.getElementById('cancelAllButton').dataset.current++;

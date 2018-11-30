@@ -31,6 +31,8 @@
 	- [x] Guild storage character items were not highlighted based on quality
 - **Auction**
 	- [ ] Do not save player/mercenary (doll) on auction remember feature [testing]
+- **Market**
+	- [x] Fixed bug when canceling all the packages in the last page of the market resulting in showing no packets after
 
 
 ### TRANSLATIONS
