@@ -40,3 +40,4 @@
 	- [x] Greek updated
 	- [x] Romanian updated
 	- [x] Turkish updated
+	- [x] Polish updated
