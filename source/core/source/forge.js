@@ -454,16 +454,16 @@ var gca_forge = {
 
 				// Parse lists
 				for (let i = 1; i <= 64; i++) {
-					a[i] = {'-1' : 0, '0' : 0, '1' : 0, '2' : 0, '3' : 0};
+					a[i] = {'-1' : 0, '0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0};
 					if (_a[i]) {
-						for (let j = -1; j <= 3; j++) {
+						for (let j = -1; j <= 4; j++) {
 							if (_a[i][j]) a[i][j] = _a[i][j];
 						}
 					}
 
-					b[i] = {'-1' : 0, '0' : 0, '1' : 0, '2' : 0, '3' : 0};
+					b[i] = {'-1' : 0, '0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0};
 					if (_b[i]) {
-						for (let j = -1; j <= 3; j++) {
+						for (let j = -1; j <= 4; j++) {
 							if (_b[i][j]) b[i][j] = _b[i][j];
 						}
 					}
@@ -474,7 +474,7 @@ var gca_forge = {
 
 				// Compare
 				for (let i = 1; i <= 64; i++) {
-					for (let j = -1; j <= 3; j++) {
+					for (let j = -1; j <= 4; j++) {
 						if (a[i][j] > b[i][j]) {
 							removed.push([i, j, a[i][j] - b[i][j]]);
 						}
