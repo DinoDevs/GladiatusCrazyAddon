@@ -43,8 +43,9 @@ var gca_forge = {
 			(gca_options.bool("forge","horreum_select_meterials") &&
 			this.horreum.clickToSelectMaterial());
 
-			this.horreum.openAllCategoriesButton();
+			this.horreum.trackStorageMaterialsChanges.inject();
 
+			this.horreum.openAllCategoriesButton();
 			this.horreum.gatherInfo();
 		}
 
@@ -387,6 +388,108 @@ var gca_forge = {
 				}
 			}
 			gca_data.section.set('cache', 'resource_locale', locale);
+		},
+
+		trackStorageMaterialsChanges : {
+			inject : function() {
+				window.forgeStorage._original_done = window.forgeStorage.done;
+				window.forgeStorage._original_ajax = window.forgeStorage.ajax;
+
+				window.forgeStorage.done = (e) => {
+					window.forgeStorage._original_done(e);
+					this.showChanges();
+				}
+				window.forgeStorage.ajax = (f, h, g) => {
+					window.forgeStorage._original_ajax(f, h, g);
+					this.storageMaterials = JSON.parse(JSON.stringify(
+						jQuery('#resource-amount').data('max')
+					));
+				}
+			},
+
+			showChanges : function() {
+				if (!this.storageMaterials) {
+					return;
+				}
+
+				// Detect changes
+				let changes = this.detectStorageChange(
+					this.storageMaterials,
+					window.jQuery('#resource-amount').data('max')
+				);
+				
+				if (changes.added.length == 0 && changes.removed.length == 0) {
+					return;
+				}
+
+				// Constract notification
+				let info = document.createElement('div');
+				info.className = 'show-item-quality';
+				for (let i = 0; i < changes.added.length; i++) {
+					this.addNotificationIcon(changes.added[i], '+', info);
+				}
+				for (let i = 0; i < changes.removed.length; i++) {
+					this.addNotificationIcon(changes.removed[i], '-', info);
+				}
+				gca_notifications.info(info);
+			},
+
+			addNotificationIcon : function(list, prefix, info) {
+				let icon = document.createElement('span');
+				icon.className = 'item-i-18-' + list[0];
+				icon.dataset.level = '1';
+				icon.dataset.basis = '18-';
+				icon.dataset.quality = list[1];
+				icon.dataset.amount = ' ' + prefix + list[2];
+				icon.style.display = 'inline-block';
+				icon.style.marginBottom = '-5px';
+				icon.style.position = 'relative';
+				info.appendChild(icon);
+				info.appendChild(document.createTextNode(' '));
+			},
+
+			detectStorageChange : function(_a, _b) {
+				let a = {};
+				let b = {};
+
+				// Parse lists
+				for (let i = 1; i <= 64; i++) {
+					a[i] = {'-1' : 0, '0' : 0, '1' : 0, '2' : 0, '3' : 0};
+					if (_a[i]) {
+						for (let j = -1; j <= 3; j++) {
+							if (_a[i][j]) a[i][j] = _a[i][j];
+						}
+					}
+
+					b[i] = {'-1' : 0, '0' : 0, '1' : 0, '2' : 0, '3' : 0};
+					if (_b[i]) {
+						for (let j = -1; j <= 3; j++) {
+							if (_b[i][j]) b[i][j] = _b[i][j];
+						}
+					}
+				}
+
+				var added = [];
+				var removed = [];
+
+				// Compare
+				for (let i = 1; i <= 64; i++) {
+					for (let j = -1; j <= 3; j++) {
+						if (a[i][j] > b[i][j]) {
+							removed.push([i, j, a[i][j] - b[i][j]]);
+						}
+						else if (a[i][j] < b[i][j]) {
+							added.push([i, j, b[i][j] - a[i][j]]);
+						}
+					}
+				}
+
+				// Return changes
+				return {
+					added : added,
+					removed : removed
+				}
+			}
 		}
 	}
 };
