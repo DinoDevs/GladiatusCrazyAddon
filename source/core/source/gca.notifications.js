@@ -33,8 +33,15 @@ var gca_notifications = {
 	},
 	notificationMsg : function(message, type, parent){
 		var element = document.createElement('div');
-		//element.appendChild(document.createElement('div'));
-		element.appendChild(document.createTextNode(message));
+		var icon = document.createElement('div');
+		icon.className = 'icon';
+		element.appendChild(icon);
+		if (message.tagName) {
+			element.appendChild(message);
+		}
+		else {
+			element.appendChild(document.createTextNode(message));
+		}
 		element.className = "notification-box "+type;
 		jQuery.hide(element);
 		parent.appendChild(element);

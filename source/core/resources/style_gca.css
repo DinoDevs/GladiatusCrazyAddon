@@ -481,24 +481,6 @@
 	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;margin-top: 96px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));}
 	#exp_and_gold_stats_icon:hover{filter: drop-shadow(1px 1px 1px rgba(191, 174, 84,0.5));}
 
-/* Notifications */
-	.notification-area{position: fixed;z-index: 9999;top: 42px;left: 12px;font-family: century gothic;}
-	.gca_rtl .notification-area{right: 12px;left: auto;}
-	.notification-box{cursor: pointer;background-position: 15px center;background-repeat: no-repeat;-moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px; border-radius: 3px 3px 3px 3px;-moz-box-shadow: 0 0 12px #999999;-webkit-box-shadow: 0 0 12px #999999;-o-box-shadow: 0 0 12px #999999;box-shadow: 0 0 12px #999999;color: #FFFFFF;margin: 0 0 6px;filter: alpha(opacity=80);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";opacity: 0.8;padding: 8px 8px 8px 30px;width: 200px;white-space: pre-wrap;}
-	.gca_rtl .notification-box{padding: 8px 30px 8px 8px;}
-	.notification-normal{/*background-color: #030303;*/background-color: #555555;}
-	.notification-success{background-color: #51A351;}
-	.notification-error{background-color: #BD362F;}
-	.notification-info{background-color: #2F96B4;}
-	.notification-warning{background-color: #F89406;}
-	.notification-box div{float: left;margin-left:-22px;background-repeat: no-repeat;width: 16px;height:16px;}
-	.gca_rtl .notification-box div{float: right;margin-left:auto;margin-right:-22px;}
-	.notification-normal div{background-image: url('icons/notifications.png');background-position: -64px 0px;}
-	.notification-success div{background-image: url('icons/notifications.png');background-position: 0px 0px;}
-	.notification-error div{background-image: url('icons/notifications.png');background-position: -32px 0px;}
-	.notification-info div{background-image: url('icons/notifications.png');background-position: -48px 0px;}
-	.notification-warning div{background-image: url('icons/notifications.png');background-position: -16px 0px;}
-
 /* Missions */
 	#gca_completed_mission .slot_mission_completed{font-size: 13px;font-weight: bold;margin: 0 20px;height: 21px;line-height: 21px;}
 	#gca_completed_mission .contentboard_slot_active{width: 555px;}
@@ -609,6 +591,28 @@
 		.show-item-durability [data-durability][data-durability-color='3']:after {color: #8baf00;}
 		.show-item-durability [data-durability][data-durability-color='4']:after {color: #ff7700;}
 		.show-item-durability [data-durability][data-durability-color='5']:after {color: #ff0000;}
+
+
+
+		/* Notifications
+		-------------------------------------------------- */
+		.notification-area {position: fixed;z-index: 9999;top: 42px;left: 12px;font-family: century gothic;}
+		.gca_rtl .notification-area {right: 12px;left: auto;}
+		.notification-box {cursor: pointer;background-position: 15px center;background-repeat: no-repeat;box-shadow: 0 0 12px #000;color: #FFFFFF;margin: 0 0 6px;opacity: 0.9;padding: 5px 5px 5px 28px;width: 200px;white-space: pre-wrap;}
+		.gca_rtl .notification-box {padding: 8px 30px 8px 8px;}
+		.notification-normal {background-color: #555555;border: 1px solid #353535;}
+		.notification-success {background-color: #51A351;border: 1px solid #418141;}
+		.notification-error {background-color: #BD362F;border: 1px solid #942c26;}
+		.notification-info {background-color: #2F96B4;border: 1px solid #267890;}
+		.notification-warning {background-color: #F89406;border: 1px solid #c27507;}
+		.notification-box .icon{float: left;margin-left:-22px;background-repeat: no-repeat;width: 16px;height:16px;}
+		.gca_rtl .notification-box .icon{float: right;margin-left:auto;margin-right:-22px;}
+		.notification-normal .icon {background-image: url('icons/notifications.png');background-position: -64px 0px;}
+		.notification-success .icon {background-image: url('icons/notifications.png');background-position: 0px 0px;}
+		.notification-error .icon {background-image: url('icons/notifications.png');background-position: -32px 0px;}
+		.notification-info .icon {background-image: url('icons/notifications.png');background-position: -48px 0px;}
+		.notification-warning .icon {background-image: url('icons/notifications.png');background-position: -16px 0px;}
+
 
 
 	/* Advanced main menu Layout
