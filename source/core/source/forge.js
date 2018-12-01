@@ -425,25 +425,28 @@ var gca_forge = {
 				// Constract notification
 				let info = document.createElement('div');
 				info.className = 'show-item-quality';
+				info.appendChild(document.createTextNode('Horreum material change')); // TODO - add locale
+				info.appendChild(document.createElement('br'));
 				for (let i = 0; i < changes.added.length; i++) {
-					this.addNotificationIcon(changes.added[i], '+', info);
+					this.addNotificationIcon(changes.added[i], true, info);
 				}
 				for (let i = 0; i < changes.removed.length; i++) {
-					this.addNotificationIcon(changes.removed[i], '-', info);
+					this.addNotificationIcon(changes.removed[i], false, info);
 				}
-				gca_notifications.info(info);
+				gca_notifications.normal(info);
 			},
 
-			addNotificationIcon : function(list, prefix, info) {
+			addNotificationIcon : function(list, added, info) {
 				let icon = document.createElement('span');
 				icon.className = 'item-i-18-' + list[0];
 				icon.dataset.level = '1';
 				icon.dataset.basis = '18-';
 				icon.dataset.quality = list[1];
-				icon.dataset.amount = ' ' + prefix + list[2];
+				icon.dataset.amount = ' ' + (added ? '+' : '-') + list[2];
 				icon.style.display = 'inline-block';
 				icon.style.marginBottom = '-5px';
 				icon.style.position = 'relative';
+				//icon.style.filter = added ? 'drop-shadow(0px 0px 3px rgba(0,255,0,1))' : 'drop-shadow(0px 0px 3px rgba(255,0,0,1))';
 				info.appendChild(icon);
 				info.appendChild(document.createTextNode(' '));
 			},
