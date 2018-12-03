@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-7-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-9-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -22,7 +22,7 @@
 - **General**
 	- [x] Audio random dependency error fix
 - **Packages**
-	- [ ] Learned/Unlearned scrolls detect fix [testing]
+	- [x] Learned/Unlearned scrolls detect fix
 - **Arena**
 	- [x] Guild members on other severs were not highlighted in cross-server turma
 	- [x] Fixed wrong error message when Global Arena request is blocked
@@ -30,7 +30,8 @@
 	- [x] Guild buildings script not loading on update
 	- [x] Guild storage character items were not highlighted based on quality
 - **Auction**
-	- [ ] Do not save player/mercenary (doll) on auction remember feature [testing]
+	- [x] Do not save player/mercenary (doll) on auction remember feature
+	- [x] The bid button will be disabled after a successful bid
 - **Market**
 	- [x] Fixed bug when canceling all the packages in the last page of the market resulting in showing no packets after
 
