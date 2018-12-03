@@ -226,69 +226,93 @@ var gca_auction = {
 	
 	multiBids : function(){
 		// Get item forms
-		var itemForms = document.getElementById("auction_table").getElementsByTagName("form");
-		for (var i = itemForms.length - 1; i >= 0; i--) {
-			// Each item
-			document.getElementById("auction_table").getElementsByTagName("form")[i].getElementsByTagName("input")[7].setAttribute("type","button");
-			document.getElementById("auction_table").getElementsByTagName("form")[i].getElementsByTagName("input")[7].setAttribute("id", itemForms[i].id.match(/\d+/) );
-			document.getElementById("auction_table").getElementsByTagName("form")[i].getElementsByTagName("input")[7].addEventListener('click',function(){gca_auction.bidItem(this.id);},false);
+		var itemforms = document.getElementById("auction_table").getElementsByTagName("form");
+		// For each item
+		for (let i = itemforms.length - 1; i >= 0; i--) {
+			let id = itemforms[i].id.match(/\d+/)[0];
+			let button = itemforms[i].getElementsByTagName("input")[7];
+			button.setAttribute("type","button");
+			button.addEventListener('click', () => {
+				this.bidItem(id);
+			},false);
 		}
 	},
 	
 	bidItem : function(id){
-		// TODO : Clean up this code
-		data = document.getElementById("auctionForm"+id).getElementsByTagName("input");
-		price = parseInt( data[6].value );
-		gold = parseInt( document.getElementById("sstat_gold_val").textContent.replace(/ /g,'').replace(/\./g,'') );
+		var itemform = document.getElementById("auctionForm"+id);
+		var inputs = itemform.getElementsByTagName("input");
+		var price = parseInt(inputs[6].value, 10);
 		
 		// Create dataset time in gold
 		document.getElementById("sstat_gold_val").dataset.updateTime = 0;
 		
-		post_data = "auctionid="+ data[0].value +"&qry="+ data[1].value +"&itemType="+ data[2].value +"&itemLevel="+ data[3].value +"&itemQuality="+ data[4].value +"&buyouthd="+ data[5].value +"&bid_amount="+price+"&bid="+ data[7].value ;
+		var data = 
+			"auctionid=" + inputs[0].value +
+			"&qry=" + inputs[1].value +
+			"&itemType=" + inputs[2].value +
+			"&itemLevel=" + inputs[3].value +
+			"&itemQuality=" + inputs[4].value +
+			"&buyouthd=" + inputs[5].value +
+			"&bid_amount=" + price +
+			"&bid="+ inputs[7].value;
 		
 		//Create Spinner
-		spinner = document.createElement("img");
+		var spinner = document.createElement("img");
 		spinner.src = "img/ui/spinner.gif";
 		spinner.id = "spinner"+id;
-		spinner.style = "position: absolute;margin-top: -90px;margin-left: 115px;margin-right: 115px;height: 40px;";
-		document.getElementById("auctionForm"+id).appendChild(spinner);
+		spinner.style = "position:absolute;margin-top:-90px;margin-left:115px;margin-right:115px;height:40px;";
+		itemform.appendChild(spinner);
 		
 		// Post to the server
 		jQuery.ajax({
 			type: "POST",
-			url:  document.getElementById("auctionForm"+id).getAttribute('action'),
-			data: post_data,
+			url:  itemform.getAttribute('action'),
+			data: data,
 			success: function(content){
-				document.getElementById("auctionForm"+id).removeChild(document.getElementById("spinner"+id));
-				if( content.match(/message fail">([^<]+)<\/div/i) ){
-					// Get date - gold
-					let timestamp = content.match(/<span id="server-time" data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]/i);
-					timestamp = new Date(timestamp[1],timestamp[2],timestamp[3],timestamp[4],timestamp[5],timestamp[6],timestamp[7]).getTime();
-					let gold = content.match(/id="sstat_gold_val">([^<]+)<\/div>/i)[1];
-					if ( parseInt(document.getElementById("sstat_gold_val").dataset.updateTime) < timestamp){
-						document.getElementById("sstat_gold_val").textContent = gold;
-						document.getElementById("sstat_gold_val").dataset.updateTime = timestamp;
+				// Remove spiner
+				itemform.removeChild(spinner);
+
+				// Get status
+				let status = 
+					content.match(/message fail">([^<]+)<\/div/i) ? 'failed' :
+					(content.match(/message success">([^<]+)<\/div/i) ? 'success' :
+					'unknown');
+
+				// Update gold info
+				if (status != 'unknown') {
+					let time = content.match(/<span id="server-time" data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]/i);
+					time = new Date(time[1], time[2], time[3], time[4], time[5], time[6], time[7]).getTime();
+					let gold = document.getElementById("sstat_gold_val");
+					if (parseInt(gold.dataset.updateTime, 10) < time){
+						gold.textContent = content.match(/id="sstat_gold_val">([^<]+)<\/div>/i)[1];
+						gold.dataset.updateTime = time;
 					}
+				}
+
+				// If Bid failed
+				if (status == 'failed') {
 					// Notification
-					gca_notifications.error( content.match(/message fail">([^<]+)<\/div/i)[1] );
-				}else if( content.match(/message success">([^<]+)<\/div/i) ){
-					// Get date - gold
-					let timestamp = content.match(/<span id="server-time" data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]/i);
-					timestamp = new Date(timestamp[1],timestamp[2],timestamp[3],timestamp[4],timestamp[5],timestamp[6],timestamp[7]).getTime();
-					let gold = content.match(/id="sstat_gold_val">([^<]+)<\/div>/i)[1];
-					if ( parseInt(document.getElementById("sstat_gold_val").dataset.updateTime) < timestamp){
-						document.getElementById("sstat_gold_val").textContent = gold;
-						document.getElementById("sstat_gold_val").dataset.updateTime = timestamp;
-					}
+					gca_notifications.error(content.match(/message fail">([^<]+)<\/div/i)[1]);
+				}
+
+				// If Bid was success full
+				else if (status == 'success'){
+					let message = content.match(/message success">([^<]+)<\/div/i)[1];
 					// Notification
-					gca_notifications.success( content.match(/message success">([^<]+)<\/div/i)[1] );
-					//document.getElementById("sstat_gold_val").textContent = gca_tools.strings.insertDots(gold-price);
-					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].setAttribute('style','color: blue;height: 48px;');
-					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[1].setAttribute('style','display:none;');
-					document.getElementById("auctionForm"+id).getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div")[0].textContent = content.match(/message success">([^<]+)<\/div/i)[1];
-					document.getElementById("auctionForm"+id).getElementsByTagName("input")[6].value = Math.floor(price*1.05)+1;
-					document.getElementById("auctionForm"+id).getElementsByTagName("input")[6].setAttribute("style","");
-				}else{
+					gca_notifications.success(message);
+					let divs = itemform.getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div");
+					divs[0].style.color = 'blue';
+					divs[0].style.height = '48px';
+					divs[1].style.display = 'none';
+					divs[0].textContent = message;
+					inputs[6].value = Math.floor(price * 1.05) + 1;
+					inputs[6].removeAttribute("style");
+					// Disable button
+					inputs[7].setAttribute('disabled', 'disabled');
+				}
+
+				// Unknown error
+				else {
 					gca_notifications.error(gca_locale.get("general", "error"));
 				}
 			},
