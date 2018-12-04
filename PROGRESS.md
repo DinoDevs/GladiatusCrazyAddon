@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-9-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-10-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -34,6 +34,8 @@
 	- [x] The bid button will be disabled after a successful bid
 - **Market**
 	- [x] Fixed bug when canceling all the packages in the last page of the market resulting in showing no packets after
+- **Server Quests**
+	- [x] Fixed event cooldown timers to scale based on server's speed
 
 
 ### TRANSLATIONS
