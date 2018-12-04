@@ -5,6 +5,13 @@
 
 // Reports
 var gca_reports = {
+	preinject : function() {
+		// Resolve submod
+		this.resolveSubmod();
+
+		// Check event timers
+		this.eventTimers();
+	},
 	inject : function(){
 		// Check for errors
 		if(!document.getElementById("content"))
@@ -13,9 +20,6 @@ var gca_reports = {
 		// Check getting out from underworld
 		if(document.getElementById('content').getElementsByTagName('img')[0] && document.getElementById('content').getElementsByTagName('img')[0].src.match('/ceres.png'))
 			return;
-
-		// Resolve submod
-		this.resolveSubmod();
 
 		// Combat reports
 		if (this.submod == 'showCombatReport' && document.getElementById('reportHeader')) {
@@ -38,8 +42,7 @@ var gca_reports = {
 			}
 
 			// If arena attacked right now
-			let referrer = gca_getPage.parameters(document.referrer);
-			if (this.combatReport == "reportArena" && referrer.mod == "arena") {
+			if (this.combatReport == "reportArena" && this.referrer.mod == "arena") {
 				this.attacked.arena();
 			}
 
@@ -71,10 +74,12 @@ var gca_reports = {
 	resolveSubmod : function(){
 		// Get url submod
 		this.submod = gca_section.submod;
+		this.combatReport = null;
+		this.reportId = gca_getPage.parameter('reportId') || false;
+		this.referrer = gca_getPage.parameters(document.referrer);
 
 		// If submod is null
-		if (gca_section.submod == null) {
-
+		if (this.submod == null) {
 			// Wanna be submod parse
 			if (gca_getPage.parameter('showExpeditions') != undefined) {
 				this.submod = "showExpeditions";
@@ -95,6 +100,7 @@ var gca_reports = {
 				else this.submod = "showExpeditions";
 			}
 		}
+
 		// Combat Report
 		else if (gca_section.submod === "showCombatReport") {
 			// Get type parameter
@@ -110,10 +116,6 @@ var gca_reports = {
 			else if (t === "1" || t === "4") this.combatReport = "reportDungeon";
 
 			else this.combatReport = "reportExpedition";
-		}
-		// Else
-		else {
-			this.combatReport = null;
 		}
 	},
 
@@ -668,6 +670,26 @@ var gca_reports = {
 				rows[rows.length-1].parentNode.insertBefore(tr, rows[rows.length-1].nextSibling);
 			}
 		});
+	},
+
+	// Update event timers
+	eventTimers: function() {
+		let event = gca_data.section.get("timers", 'server_quest_attack', false);
+
+		// If this is a report
+		if (this.submod == 'showCombatReport' && this.reportId && event) {
+			// Check referrer
+			if (this.referrer.submod == 'serverQuest') {
+				gca_data.section.set("timers", 'server_quest_available', event.available);
+				gca_data.section.set("timers", 'server_quest_points', event.points);
+				gca_data.section.set("timers", 'server_quest_last_date', event.last_date);
+			}
+		}
+
+		if (event) gca_data.section.del("timers", 'server_quest_attack');
+
+		// Fire server quest info updated
+		gca_tools.event.fireOnce("server_quest-info-update");
 	}
 };
 
@@ -679,6 +701,7 @@ var gca_reports = {
 		loaded = true;
 		gca_reports.inject();
 	};
+	gca_reports.preinject();
 	if (document.readyState == 'interactive' || document.readyState == 'complete') {
 		fireLoad();
 	} else {

@@ -2490,8 +2490,8 @@ var gca_global = {
 					// Do not run while traveling
 					if (gca_global.isTraveling) return;
 
-					// if Craps wait for update event
-					if (gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc')))) {
+					// if server quest or report page wait for update event
+					if (gca_section.mod == 'reports' || gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc')))) {
 						gca_tools.event.addListener("server_quest-info-update", () => {
 							this.display();
 						});
