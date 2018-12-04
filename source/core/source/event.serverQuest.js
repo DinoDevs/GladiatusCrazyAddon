@@ -90,7 +90,7 @@ var gca_server_quest = {
 		if(this.handle_attack_atomicity) return;
 		this.handle_attack_atomicity = true;
 
-		var points = parseInt(gca_data.section.get("timers", 'server_quest_points'));
+		var points = parseInt(gca_data.section.get("timers", 'server_quest_points'), 10);
 		if(isNaN(points)) return;
 
 		points --;
@@ -98,7 +98,7 @@ var gca_server_quest = {
 		if(points < 0) points = 0;
 
 		// Server quests availiable in 5 mins
-		var availableIn = gca_tools.time.server() + 5*60*1000 + 1000;
+		var availableIn = gca_tools.time.server() + gca_tools.time.speedvert(5*60*1000) + 1000;
 
 		// Update data
 		gca_data.section.set("timers", 'server_quest_available', availableIn);

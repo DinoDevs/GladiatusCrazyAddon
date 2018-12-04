@@ -53,6 +53,8 @@ var gca_tools = {
 	// time.msToString(date)
 	// time.prepForStamp(dateString)
 	// time.ajaxServer(html)
+	// time.speedvert(integer)
+	// time.serverSpeed()
 	// -------------------------------------------------- //
 	time : {
 		// Server's Timestamp
@@ -191,6 +193,17 @@ var gca_tools = {
 				parseInt(time[6], 10),
 				parseInt(time[7], 10)
 			).getTime();
+		},
+
+		// Convert time to server's speed
+		speedvert : function(base) {
+			return base / this.serverSpeed();
+		},
+
+		// Get and return server's speed
+		serverSpeed : function() {
+			if (this._serverSpeed) return this._serverSpeed;
+			this._serverSpeed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
 		}
 	},
 

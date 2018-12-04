@@ -304,7 +304,7 @@ var gca_global = {
 		showPointsRecover : {
 			init : function() {
 				// Find server speed
-				let server_speed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
+				let server_speed = gca_tools.time.serverSpeed();
 
 				// Show timers
 				this.showTimer('expedition', server_speed);
