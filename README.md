@@ -1,6 +1,6 @@
 
 [![latest stable](https://img.shields.io/badge/latest%20stable-v4.1.0-green.svg?style=flat-square&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAABmJLR0QA%2FwD%2FAP%2BgvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AkXFAgfNwj38gAAAjZJREFUOMuN00%2BIlVUYBvDf%2Bb6vMroYckstqmEaHWcMhUxXLaUgqKWraBEJQUobFdSBIBVXE4kbV7lTKNwKIgRBUYEltZlmZIKZyejPMCGjyXS%2FP6fF%2BW73jqsOnLM4532e932e9z0BO6Y%2FcGnnuK7o%2F63AzC0rR095M0xP%2Be7IIXtiKfTfY4pZvyIxpPuIrBA%2FuuBmMfG8bn1fGAbESMgIOXfvcmeVZ7aQFdQlIVCXwuSobhErYrk%2BSxY4Oc1PP%2FPow5QVM%2FPc%2FoOFL9jYSeFNRRFrYi8BITbsP8ipw5x9n7pJZWeBa1%2BxIRskjBWFoQryjANHOXeMF7ZRrg0MqbF%2FXwvsE9QMJATul8wvsWuUujfkZBy4P2yqaohg4TduzrF3IoFjsx4QWnNnF%2BlV7B5LEjI1i7f5cZZuhz%2F%2FQklTJuKmJFS8e5aDZxh5go8vMb%2BYJGR55MNP2D3K3jGufs3Sr4kkli1Zj50jTD7LIxnnD3P9G7KGrOxx8QjHL7C8wvlD7HqbL39ImftVVL2U8dYCn9%2FgvTeoytaD6h8%2BO0HV8M4rbH2c16eYfI5X9yQPrn%2FPS9uZeIrxLVRrfRNrVlf5e41NHYqcbZu5coKrN%2Fh2hiLjtRfZN55i79zjsQ2oxUJFp6DTabtVM%2FYkI11e3j7oYIY8TwO1dWM7tbWQzf5iJW%2FEppf09jVnNUXDQzHtvO1705qaN%2BLckuWA8dMHXJ54WjfGB%2F9fOwnpjP%2F9RMz9bnnqU2%2F9CwFg%2FBEGU%2FDFAAAAAElFTkSuQmCC)](https://github.com/DinoDevs/GladiatusCrazyAddon/releases/latest)
-[![latest alpha](https://img.shields.io/badge/latest%20alpha-v4.1.1--alpha-yellow.svg?style=flat-square&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAABmJLR0QA%2FwD%2FAP%2BgvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AkXFAgfNwj38gAAAjZJREFUOMuN00%2BIlVUYBvDf%2Bb6vMroYckstqmEaHWcMhUxXLaUgqKWraBEJQUobFdSBIBVXE4kbV7lTKNwKIgRBUYEltZlmZIKZyejPMCGjyXS%2FP6fF%2BW73jqsOnLM4532e932e9z0BO6Y%2FcGnnuK7o%2F63AzC0rR095M0xP%2Be7IIXtiKfTfY4pZvyIxpPuIrBA%2FuuBmMfG8bn1fGAbESMgIOXfvcmeVZ7aQFdQlIVCXwuSobhErYrk%2BSxY4Oc1PP%2FPow5QVM%2FPc%2FoOFL9jYSeFNRRFrYi8BITbsP8ipw5x9n7pJZWeBa1%2BxIRskjBWFoQryjANHOXeMF7ZRrg0MqbF%2FXwvsE9QMJATul8wvsWuUujfkZBy4P2yqaohg4TduzrF3IoFjsx4QWnNnF%2BlV7B5LEjI1i7f5cZZuhz%2F%2FQklTJuKmJFS8e5aDZxh5go8vMb%2BYJGR55MNP2D3K3jGufs3Sr4kkli1Zj50jTD7LIxnnD3P9G7KGrOxx8QjHL7C8wvlD7HqbL39ImftVVL2U8dYCn9%2FgvTeoytaD6h8%2BO0HV8M4rbH2c16eYfI5X9yQPrn%2FPS9uZeIrxLVRrfRNrVlf5e41NHYqcbZu5coKrN%2Fh2hiLjtRfZN55i79zjsQ2oxUJFp6DTabtVM%2FYkI11e3j7oYIY8TwO1dWM7tbWQzf5iJW%2FEppf09jVnNUXDQzHtvO1705qaN%2BLckuWA8dMHXJ54WjfGB%2F9fOwnpjP%2F9RMz9bnnqU2%2F9CwFg%2FBEGU%2FDFAAAAAElFTkSuQmCC)](https://github.com/DinoDevs/GladiatusCrazyAddon/releases/latest)
+[![latest alpha](https://img.shields.io/badge/latest%20dev-v4.1.1--beta-yellow.svg?style=flat-square&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAABmJLR0QA%2FwD%2FAP%2BgvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AkXFAgfNwj38gAAAjZJREFUOMuN00%2BIlVUYBvDf%2Bb6vMroYckstqmEaHWcMhUxXLaUgqKWraBEJQUobFdSBIBVXE4kbV7lTKNwKIgRBUYEltZlmZIKZyejPMCGjyXS%2FP6fF%2BW73jqsOnLM4532e932e9z0BO6Y%2FcGnnuK7o%2F63AzC0rR095M0xP%2Be7IIXtiKfTfY4pZvyIxpPuIrBA%2FuuBmMfG8bn1fGAbESMgIOXfvcmeVZ7aQFdQlIVCXwuSobhErYrk%2BSxY4Oc1PP%2FPow5QVM%2FPc%2FoOFL9jYSeFNRRFrYi8BITbsP8ipw5x9n7pJZWeBa1%2BxIRskjBWFoQryjANHOXeMF7ZRrg0MqbF%2FXwvsE9QMJATul8wvsWuUujfkZBy4P2yqaohg4TduzrF3IoFjsx4QWnNnF%2BlV7B5LEjI1i7f5cZZuhz%2F%2FQklTJuKmJFS8e5aDZxh5go8vMb%2BYJGR55MNP2D3K3jGufs3Sr4kkli1Zj50jTD7LIxnnD3P9G7KGrOxx8QjHL7C8wvlD7HqbL39ImftVVL2U8dYCn9%2FgvTeoytaD6h8%2BO0HV8M4rbH2c16eYfI5X9yQPrn%2FPS9uZeIrxLVRrfRNrVlf5e41NHYqcbZu5coKrN%2Fh2hiLjtRfZN55i79zjsQ2oxUJFp6DTabtVM%2FYkI11e3j7oYIY8TwO1dWM7tbWQzf5iJW%2FEppf09jVnNUXDQzHtvO1705qaN%2BLckuWA8dMHXJ54WjfGB%2F9fOwnpjP%2F9RMz9bnnqU2%2F9CwFg%2FBEGU%2FDFAAAAAElFTkSuQmCC)](https://github.com/DinoDevs/GladiatusCrazyAddon/releases/latest)
 
 
 
@@ -19,7 +19,7 @@
 
 ## :paperclip: Downloads
 
-We suggest you to download a *stable release*. Alpha releases are for developers (exept if you want to check out the latest features and give us some feedback).
+We suggest you to download a *stable release*. Alpha and Beta releases are for developers (unless you want to check out the latest features and give us some feedback).
 
 ### Latest public release v4.1.0 <sub><sup>(recommended)</sup></sub>
 
@@ -37,9 +37,9 @@ We suggest you to download a *stable release*. Alpha releases are for developers
 [![version](https://img.shields.io/badge/version-v4.1.0-green.svg?style=flat-square&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAABNElEQVR4AWJgqAD0SQcQDUVRGMetIpCkwiKBQjJLKQBRUYCEqKQqtqGogAkAEUCgAgQIIRBRkAUBCgggBVJUtao%2FvpvPwfBznnvv%2BXZ33rtNMqjTcysmUcAC8ranKqlZtQk7eMCvqaKCsRjizVncqOFb1f2obniI3%2BBcB55whDJK2MOzAqo6M6G%2B%2BhSwpI1ddGE8zGQ03OwqzuASc3q%2BQDH9goWcpXmo5lJAD6Z0aF%2Bb2yhgDetYRUV7n6ozKaBRzd1484FFWv%2FSczEFNChgPl0xBjgLKMWATTs0iz4MYcAMam0Y7TFg2QK2bIjUGmzKOXtN71ix8IxqB8ro%2FV8PB44V8KF6j1Oc4BovWs%2BnrzEGZHFX601IvwfEkDYc4NWD5BGHaPa%2F4Pzz7cQ0iljECFriEP8AsBC7uWBeNyIAAAAASUVORK5CYII%3D)](https://github.com/DinoDevs/GladiatusCrazyAddon/releases/latest)
 
 
-### Latest dev build v4.1.1-alpha <sub><sup>(for developers)</sup></sub> <sub><sup>[[Progress Here]](PROGRESS.md)</sup></sub>
+### Latest dev build v4.1.1-beta <sub><sup>(for developers)</sup></sub> <sub><sup>[[Progress Here]](PROGRESS.md)</sup></sub>
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-0-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-0-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-3-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
 
 
@@ -97,7 +97,6 @@ Contact us to leave us your feedback or to express your thoughts.
 
 [![github-issues](documentation/resources/social-icons/github_32x32.png "Github issues")](https://github.com/DinoDevs/GladiatusCrazyAddon/issues)
 [![facebook-page](documentation/resources/social-icons/facebook_32x32.png "Facebook page")](https://www.facebook.com/GladiatusCrazyAddOn)
-[![userecho-page](documentation/resources/social-icons/userecho_32x32.png "UserEcho page")](http://gca.userecho.com/)
 
 
 

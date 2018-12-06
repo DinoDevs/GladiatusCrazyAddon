@@ -70,27 +70,24 @@ var gca_server_quest = {
 
 	// Listen for any attacks
 	listen_attacks : function(){
-		var that = this;
 		// Attack buttons
 		var buttons = document.getElementById("content").getElementsByClassName("expedition_button");
 		for(let i = buttons.length - 1; i >= 0; i--){
-			if(!buttons[i].className.match("disabled")){
-				buttons[i].addEventListener('click', (function(num){
-					return function(){
-						that.handle_attack(num);
-					};
-				})(i), false);
+			if (!buttons[i].className.match("disabled")) {
+				buttons[i].addEventListener('click', () => {
+					this.handle_attack();
+				}, false);
 			}
 		}
 	},
 
 	// Handle an attack
 	handle_attack_atomicity : false,
-	handle_attack : function(type){
+	handle_attack : function(){
 		if(this.handle_attack_atomicity) return;
 		this.handle_attack_atomicity = true;
 
-		var points = parseInt(gca_data.section.get("timers", 'server_quest_points'));
+		var points = parseInt(gca_data.section.get("timers", 'server_quest_points'), 10);
 		if(isNaN(points)) return;
 
 		points --;
@@ -98,12 +95,18 @@ var gca_server_quest = {
 		if(points < 0) points = 0;
 
 		// Server quests availiable in 5 mins
-		var availableIn = gca_tools.time.server() + 5*60*1000 + 1000;
+		var availableIn = gca_tools.time.server() + gca_tools.time.speedvert(5*60*1000) + 1000;
 
-		// Update data
-		gca_data.section.set("timers", 'server_quest_available', availableIn);
-		gca_data.section.set("timers", 'server_quest_points', points)
-		gca_data.section.set("timers", 'server_quest_last_date', gca_tools.time.serverDateString());
+		// Save data to be updated (report page will update them)
+		gca_data.section.set("timers", 'server_quest_attack', {
+			available : availableIn,
+			points : points,
+			last_date : gca_tools.time.serverDateString()
+		});
+		// Old way - instant update
+		//gca_data.section.set("timers", 'server_quest_available', availableIn);
+		//gca_data.section.set("timers", 'server_quest_points', points);
+		//gca_data.section.set("timers", 'server_quest_last_date', gca_tools.time.serverDateString());
 	},
 
 	// Hilight guild mates

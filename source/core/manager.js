@@ -147,6 +147,10 @@ var manager = {
 					this.section.markets();
 					break;
 			
+				// Storage
+				case "guildStorage":
+					this.section.storage();
+					break;
 			// Events
 			// 
 				// Craps (Dices)
@@ -348,6 +352,11 @@ var manager = {
 		// Guild Medic section
 		guild_medic : function() {
 			tools.loadScript("source/guild.medic.js");
+		},
+		
+		// Guild Storage section
+		storage : function() {
+			tools.loadScript("source/guild.storage.js");
 		},
 
 		// Events

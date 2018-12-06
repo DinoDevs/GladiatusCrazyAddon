@@ -169,7 +169,7 @@ var gca_markets = {
 							data: 'buyid=' + id + '&cancel=' + cancel,
 							success: function(){
 								if(document.getElementById('cancelAllButton').dataset.current==document.getElementById('cancelAllButton').dataset.max-1){
-									document.location.href=document.location.href;
+									document.location.href=document.location.href.replace(/&p=\d+/i,"");
 									return;
 								}
 								document.getElementById('cancelAllButton').dataset.current++;
@@ -255,35 +255,71 @@ var gca_markets = {
 		modeSwitch.appendChild(oneG_mode);
 		modeSwitch.appendChild(oneG_mode_label);
 		
+		let cost_mode = document.createElement("input");
+		cost_mode.type = "radio";
+		cost_mode.id = "cost_mode";
+		cost_mode.name = "sell_mode";
+		cost_mode.value = 2;
+		if(selected_mode === 2)
+			cost_mode.checked = true;
+		let cost_mode_label = document.createElement("label");
+		cost_mode_label.setAttribute("for", "cost_mode");
+		cost_mode_label.textContent = gca_data.section.get("cache", "value_tanslation", "Value");
+		wrapper.appendChild(modeSwitch);
+		modeSwitch.appendChild(cost_mode);
+		modeSwitch.appendChild(cost_mode_label);
+		
 		let auto_value = document.createElement("input");
 		auto_value.id = "auto_value";
 		auto_value.value = 0;
 		auto_value.style = "display:none";
 		modeSwitch.appendChild(auto_value);
 		
-		// Save last selected mode
-		modeSwitch.addEventListener('change',function(){
+		var get_translation = (gca_data.section.get("cache", "value_tanslation", "true")=="true")?true:false;
+		
+		// Item drop function
+		//var marketDrop_orginal = window.marketDrop; //original function is not used
+		window.marketDrop = function(d, a) {
+			let c = jQuery("#sellForm");
+			jQuery('[name="sellid"]', c).val(d.data("itemId"));
+			let b = d.data("priceGold") || 0;
+			b = Math.floor(b * a / 1.5);
+			jQuery('[name="preis"]', c).val(b);
+			document.getElementById('auto_value').value = b;
+			modeSwitchFunction(); // calcDues(); is called within this function
+			
+			//Save "Value" translation
+			if(get_translation){
+				let item_tooltip = d.data("tooltip")[0];
+				let found = false;
+				for(i=2;i<item_tooltip.length;i++){
+					if(item_tooltip[i][0].match(/([^\s]+) [\d+|\.]+ <div class="icon_gold">/)){
+						let value_tanslation = item_tooltip[i][0].match(/([^\s]+) [\d+|\.]+ <div class="icon_gold">/)[1];
+						//console.log(value_tanslation);
+						gca_data.section.set("cache", "value_tanslation", value_tanslation);
+						cost_mode_label.textContent = value_tanslation;
+						break;
+					}
+				}
+			}
+		}
+		
+		// Change mode
+		modeSwitchFunction = function(){
 			let selected = parseInt(document.querySelector('input[name=sell_mode]:checked').value);
-			gca_data.section.set("cache", "last_sell_1g_mode", selected);
+			gca_data.section.set("cache", "last_sell_1g_mode", selected); // Save last selected mode
 			if(document.getElementById('preis').value != ''){
 				if(selected == 1){
-					document.getElementById('auto_value').value = document.getElementById('preis').value;
 					document.getElementById('preis').value = 1;
+				}else if(selected == 2){
+					document.getElementById('preis').value = Math.round(document.getElementById('auto_value').value*0.375);
 				}else{
 					document.getElementById('preis').value = document.getElementById('auto_value').value;
 				}
 			}
-		});
-		
-		// Change functions
-		var calcDues_orginal = window.calcDues;
-		window.calcDues = function(){
-			calcDues_orginal();
-			if(document.getElementById('preis').value != '' && document.querySelector('input[name=sell_mode]:checked').value == 1){
-				document.getElementById('auto_value').value = document.getElementById('preis').value;
-				document.getElementById('preis').value = 1;
-			}
-		}
+			calcDues();
+		};
+		modeSwitch.addEventListener('change',modeSwitchFunction);
 	},
 
 	// Layout

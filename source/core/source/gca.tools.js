@@ -53,6 +53,8 @@ var gca_tools = {
 	// time.msToString(date)
 	// time.prepForStamp(dateString)
 	// time.ajaxServer(html)
+	// time.speedvert(integer)
+	// time.serverSpeed()
 	// -------------------------------------------------- //
 	time : {
 		// Server's Timestamp
@@ -191,6 +193,17 @@ var gca_tools = {
 				parseInt(time[6], 10),
 				parseInt(time[7], 10)
 			).getTime();
+		},
+
+		// Convert time to server's speed
+		speedvert : function(base) {
+			return base / this.serverSpeed();
+		},
+
+		// Get and return server's speed
+		serverSpeed : function() {
+			if (this._serverSpeed) return this._serverSpeed;
+			this._serverSpeed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
 		}
 	},
 
@@ -211,6 +224,7 @@ var gca_tools = {
 	// item.shadow.add(item)
 	// item.shadow.getColor(tooltip)
 	// item.move(item, target[, size])
+	// item.hash(item)
 	// -------------------------------------------------- //
 	item : {
 
@@ -470,8 +484,72 @@ var gca_tools = {
 				elem.dispatchEvent(event);
 			}
 
+		},
+		
+		hash : function(item) {
+			if (!item || !item.dataset.hash) return null;
+
+			// Decode
+			let hash = this._hash.decode(item.dataset.hash);
+			
+			// Check type
+			switch(hash.length) {
+				case 18:
+					return {
+						player : hash[0],
+						category : hash[1],
+						subcategory : hash[2],
+						price : hash[3],
+						//unknown_part_4 : hash[4],
+						prefix : hash[5],
+						suffix : hash[6],
+						//unknown_part_7 : hash[7],
+						sold : hash[8],
+						//unknown_part_9 : hash[9],
+						//unknown_part_10 : hash[10],
+						//unknown_part_11 : hash[11],
+						//unknown_part_12 : hash[12],
+						//unknown_part_13 : hash[13],
+						//unknown_part_14 : hash[14],
+						durability : hash[15],
+						//unknown_part_16 : hash[16],
+						soulbound : hash[17]
+					};
+
+				case 7:
+					return {
+						player : hash[0],
+						category : hash[1],
+						subcategory : hash[2],
+						price : hash[3],
+						//unknown_part_4 : hash[4],
+						prefix : hash[5],
+						suffix : hash[6]
+					};
+			}
+			return null;
+		},
+		
+		_hash : {
+			decode : function(hash) {
+				if (typeof hash != 'string' || hash.length <= 2)
+					return [];
+				
+				let parts = hash.split('-');
+				for (let i = 0; i < parts.length; i++) {
+					parts[i] = this.decodeValue(parts[i]);
+				}
+				return parts;
+			},
+			decodeValue : function(value) {
+				let key = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+				let code = 0;
+				for (let i = value.length - 1; i >= 0; i--) {
+					code += key.indexOf(value[i]) * Math.pow(key.length, value.length - i - 1);
+				}
+				return code;
+			}
 		}
-		//*/
 	},
 
 

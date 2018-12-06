@@ -43,6 +43,12 @@ var gca_new_message = {
 				
 			// Create button to open dialog
 			inject : function() {
+				// Check if correct inputs
+				if (document.getElementById("messageForm").getElementsByTagName("input")[0].name != 'messageRecipient') {
+					// Maybe it is a reply 
+					return;
+				}
+
 				// Create a friends button
 				var div = document.createElement("div");
 				div.className = "gca_new_message_select_user";

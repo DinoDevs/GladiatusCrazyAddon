@@ -1,126 +1,401 @@
 /*
  * Gladiatus Crazy Addon Translation
- * Name : Romanian
- * Code : [none]
- * Tag  : ro
- * Translator: TheBreaker
+ * Name : Romanian (România)
+ * Code : RO
+ * Tag  : ro-RO
+ * Translator: MrMitza, The Breaker
  */
 
 // Languages Object
 var gca_languages = gca_languages || {};
 
 // Set Language
-gca_languages['ro'] = {
-	name : 'Română (Romanian)',
-	translators : ["TheBreaker"],
+gca_languages["ro"] = {
+
+	// Language name
+	name : "Romanian (România)",
+	// Translators (authors of this script)
+	translators : ["MrMitza", "The Breaker"],
+
+	// Translations object
 	locale : {
+		// Addon info
 		info : {
-			description : "Cel mai nebunesc add-on făcut vreodată pentru gladiatus!"
+			description : "Cel mai nebunesc add-on făcut vreodată pentru Gladiatus!"
 		},
+
+		// General
 		general : {
+
+			// Days
 			days : "zile",
+			// Minutes
 			minutes : "minute",
+			// No data
 			no_data : "Nu există date",
-			confirm : "Confirma",
-			cancel : "Cancel",
+
+			// Modal buttons
+			confirm : "Confirmă",
+			cancel : "Renunță",
 			close : "Închide",
-			error : "Eroare"
+			error : "Eroare",
 		},
+
+		// Global
 		global : {
+			// Use a life potion
+			life_potion_use : "Folosește o Poţiune de Vindecare 100%",
+			life_potion_used : "o Poţiune de Vindecare 100% a fost utilizată",
+			life_potion_left : "Mai ai {{number}} Poțiuni de vindecare 100%",
+
+			// Life points recovery
 			life_recover_full : "Vindecare completă în",
+
+			// Button bar - Message
 			message_private_write : "Scrie mesaj privat",
 			message_guild_write : "Scrie mesaj către breaslă",
 			message_send : "Trimite",
 			message_sent_success : "Mesajul către breaslă a fost trimis",
 			message_sent_failed : "Trimiterea mesajului către breaslă a eşuat",
-			message_empty : "Mesajul breslei este gol",
+			message_empty : "Mesajul către breaslă este gol",
 			message_exclude_me : "Exclude-mă",
+
+			// Button bar buttons
 			guild_market_goto : "Mergi către piaţa breslei",
 			guild_storage_goto : "Mergi către depozitul breslei",
 			guild_bank_goto : "Mergi către banca breslei",
 			guild_warcamp_goto : "Mergi către Sala Maestrului Războiului",
-			guild_jail_goto : "Mergi către închisoarea breslei",
+			guild_jail_goto : "Mergi către Negotium X – închisoarea breslei",
 			guild_library_goto : "Mergi către biblioteca breslei",
 			guild_medic_goto : "Mergi către Villa Medici",
-			simulator_goto : "Mergi către simulator",
+			simulator_goto : "Mergi la simulator",
 			stats_display : "Afişează-mi statisticile",
 			online_display : "Afişează jucătorii online",
+
+			// Online friends
 			online_friends : "Prieteni Online",
-			guild_friends : "Prietenii Breslei",
-			family_friends : "Prietenii Familiei",
-			donate_gold_confirm : "Esti sigur ca vrei sa donezi",
-			donate_gold_success : "Aurul tău a fost donat",
-			donate_gold_failed : "Donarea aurului a eşuat",
-			donate_gold_all_gold : "Donează-ţi toţi banii",
+			guild_friends : "Colegi de breaslă",
+			family_friends : "Membrii Familiei",
+
+			// Guild donate
+			donate_gold_confirm : "Ești sigur că vrei să donezi {{number}} aur?",
+			donate_gold_success : "Aurul a fost donat",
+			donate_gold_failed : "Donarea aurului a eșuat",
+			donate_gold_no_gold : "Nu există aur pentru donat",
+			donate_gold_all_gold : "Donează tot aurul",
+
+			// Quest timer
 			quest_full : "Plin",
 			quest_new : "Nou",
+
+			// Pray icon
+			pray_start : "Începe să te rogi",
+			pray_stop : "Oprește-te din rugăciune",
+			heal : "vindecă",
+
+			// Notifications
 			notification_guild_application : "Există o aplicaţie în breaslă nerezolvată!",
-			gold_exp_data_to_level_up : "Zile rămase până la urmatorul nivel"
+			low_durability_items : "Există {{number}} obiect(e) cu durabilitatea sub {{percent}}%",
+
+			// Gold - Exp data
+			gold_exp_data : "Date despre aur și experiență",
+			gold_exp_data_today : "Ultimele 24 de ore",
+			gold_exp_data_week : "Ultimele 7 zile",
+			gold_exp_data_avg_day : "Valoare medie pe zi",
+			gold_exp_data_to_level_up : "Zile rămase până la următorul nivel",
+			gold_exp_data_package_tax : "Aur cheltuit săptămânal cu taxa de pachete",
+			gold_exp_data_measurements : "Statistici",
+			gold_exp_data_total_exp : "Experiență totală",
+			gold_exp_data_total_gold : "Aur total",
 		},
+
+		// Overview
 		overview : {
+			// Stats Difference
+			stats_difference : "Dierență",
+			// Drop items to see materials to repair feature
+			drop_item_see_materials_repair : "Trage un obiect pentru a vedea materialele necesare pentru reparație",
+			workbench_6th_slot_empty : "Al 6-lea Banc de lucru trebuie să fie gol",
 		},
+
+		// Pantheon section
 		pantheon : {
+			// Mystery box
+			mysterybox_open_all : "Deschide-le pe toate",
+			mysterybox_open_stop : "Oprește",
+			mysterybox_open_done : "Gata!"
 		},
+
+		// Guild section
 		guild : {
-			bank_all_gold : "Adaugă tot aurul",
-			medic_lost_points : "Punctele pierdute",
+			// Guild Bank
+			bank_all_gold : "Adaugă tot aurul tău",
+
+			// Library
+			library_per_point_cost : "Cost de activare",
+			library_gold_left : "Aurul rămas breslei, după activare",
+
+			// Medic
+			medic_lost_points : "Puncte pierdute",
 			medic_points_to_heal : "Puncte de vindecare",
 			medic_life_after_heal : "Viaţa după vindecare"
 		},
+
+		// Expedition
 		expedition : {
+			material_drop_chance : "{{number}}% șansă, între resursele posibile"
 		},
+
+		// Arena section
+		arena : {
+			global_arena_title : "Global Arena (Crazy Addon)",
+			global_arena_description : "Aceasta este Arena Supremă, aici se adună Gladiatori din toată lumea! În această arenă, gladiatorii nu luptă pentru aur sau experiență, ci pentru un loc în Clasamentul Mondial!",
+			global_arena_load : "Încarcă lista adversarilor",
+			target_list : "Lista adversarilor",
+			target_list_add : "Adaugă la listă",
+			target_list_remove : "Șterge din listă"
+		},
+
+		// Training section
 		training : {
+			// Points analysis
+			stats_points : "Statistica Puncte",
+			points_breakdown : "Desfăsurarea Punctelor",
+			stats_calculated_with_yourself_as_an_opponent : "* Statisticile sunt calculate în ideea atacului în care tu ești adversarul tau.",
+			// Cost calculator
+			total_cost : "Costuri Totale",
+			// Discount show
+			costs_discount : "Discont costuri antrenamente: {{number}}%"
 		},
+
+		// Auction section
 		auction : {
-			number_of_items : "Numarul obiectelor : {{number}}",
+			// Info
+			items_info : "Informații despre obiecte",
+			// Number of items in the page
+			number_of_items : "Numărul obiectelor : {{number}}",
+			// Number of items that have been bidden in the page
 			number_of_bided_items : "Numărul obiectelor licitate : {{number}}",
-			hide_your_gold_here : "Ascude-ţi aici aurul",
-			price_value_function : "Preţ = Valuare + {{number}}"
+			// Message on items that you can buy and sell at the same price
+			hide_your_gold_here : "Ascunde-ţi aurul aici",
+			// Price of item equals to its value
+			price_value_function : "Preţ = Valoare + {{number}}",
+			// Levels you can see
+			levels_you_can_see : "You can see items from level {{min}} to level {{max}}.",
 		},
+
+		// Markets section
 		markets : {
+			// Warnings
+			item_cost_only_x_gold : "Acest obiect costă doar {{number}} aur.",
+			item_is_soulbound : "Acest obiect este personalizat.",
+			// Are you sure
+			are_you_sure_you_want_to_buy : "Ești sigur că vrei să cumperi acest obiect?"
 		},
+
+		// Forge
 		forge : {
+			forge_ended : "Forja s-a încheiat!",
+			recraft_item : "Re-forjează obiectul"
 		},
+
+		// Packages
 		packages : {
+			event_items : "Obiecte de Eveniment",
+			known_scroll : "Cunoști acest pergament",
+			unknown_scroll : "Nu ai învățat acest pergament"
 		},
+
+		// Settings
 		settings : {
-			settings : "Setări",
-			description : "Permite sau dezactivează oricare trăsătura caracteristică a addonului pe care o vrei!",
-			description_click_button : "Fă click pe butonul de mai jos pentru a merge la setările addonului",
+			// Settings
+			settings : "Settings",
+			// Description
+			description : "Permite sau dezactivează oricare caracteristică dorită a addon-ului!",
+			description_click_button : "Mergi la setările addon-ului",
+
+			// Categories
 			category_global : "Setări Generale",
 			category_overview : "Previzualizează setările",
-			category_messages : "Setările mesajelor",
-			category_packages : "Setări pentru pachete",
-			category_reports : "Setări pentru rapoarte",
-			category_training : "Setări pentru antrenament",
-			category_merchants : "Setările pentru negustori",
-			category_guild : "Setări pentru breaslă",
-			category_auction : "Setarile licitaţiilor",
-			category_global$language_select : "Schimbare adăugată limbii",
-			category_global$sound_notifications : "Permite sonor pentru notificările misiunilor, temniţelor şi arenelor",
+			category_messages : "Mesaje",
+			category_packages : "Pachete",
+			category_pantheon : "Pantheon",
+			category_reports : "Rapoarte",
+			category_training : "Antrenamente",
+			category_merchants : "Negustori",
+			category_forge : "Forjă",
+			category_arena : "Arenă",
+			category_magus : "Magus Hermeticus",
+			category_market : "Piață",
+			category_expedition : "Expediții",
+			category_guild : "Breaslă",
+			category_auction : "Licitaţie",
+			category_events : "Evenimente",
+			category_sound : "Sunete",
+			category_data : "Date",
+
+			// Settings - Global
+			category_global$language_select : "Alege limba interfeței addon-ului",
+			category_global$sound_notifications : "Activează notificările prin sunet",
+			category_global$browser_notifications : "Activează notificările în browser",
 			category_global$extended_hp_xp_info : "Afişează extinderea vieţii şi a experienţei pe informaţiile de antet",
-			category_global$shortcuts_bar : "Afişează bara de la capătul paginii",
-			category_global$auction_status_bar : "Afişează bara licitaţiilor",
-			category_global$top_fixed_bar : "Permite bara de sus a onscrollului",
-			category_global$advance_main_menu : "Îmbunătăţeşte meniul principal",
-			category_global$remember_tabs : "Salvează ultima filă accesată de la negustori şi inventar",
-			category_global$merchants_timer : "Afişează timpul de la negustori",
-			category_overview$analyze_items : "Analizează obiectele jucatorului",
-			category_overview$more_statistics : "Furnizează mai multe statistici pentru jucător",
-			category_messages$messages_layout : "Îmbunătăţeşte interfaţa mesajelor",
+			category_global$extended_hp_xp_info_potion : "Afișează scurtătura pentru poțiunea de vindecare 100%",
+			category_global$hp_timer_for_full_life : "Afișează minutele rămase până la vindecarea completă",
+			category_global$shortcuts_bar : "Activează bara scurtăturilor",
+			category_global$shortcuts_bar_buttons : "Alege scurtăturile pe care le dorești afișate în bară",
+			category_global$auction_status_bar : "Afișează bara licitațiilor",
+			category_global$auction_status_notification : "Notificare la schimbarea timpilor la licitații",
+			category_global$top_fixed_bar : "Permite bara de sus a onscroll-ului",
+			category_global$advance_main_menu : "Îmbunătățește meniul principal",
+			category_global$submenu_click_to_change : "Submeniul se schimbă la click",
+			category_global$remember_tabs : "Revino la ultimul tab utilizat la negustori",
+			category_global$attacked_timers : "Arată cronometre de protecție la atac",
+			category_global$quest_timer : "Afișează timpul sau starea Misiunilor",
+			category_global$merchants_timer : "Afișează timpul pentru negustori",
+			category_global$forge_timers : "Afișează timpul pentru forje/topiri",
+			category_global$cooldown_sound_notifications : "Permite sunet de notificare pentru misiuni, temniţe şi arene",
+			category_global$notify_new_guild_application : "Notifică-mă la apariția unei aplicații pentru breaslă",
+			category_global$notify_new_guild_application_interval : "Verifică pentru aplicații la fiecare (minutes)",
+			category_global$x_scroll : "Activează scroll-ul orizontal pentru Gladiatus",
+			category_global$item_shadow : "Activează umbra la obiecte",
+			category_global$inventory_options_group : "Grupează opțiunile pachetelor",
+			category_global$inventory_gold_info : "Arată prețul în aur al obiectelor din pachete",
+			category_global$pagination_layout : "Schimbă interfața modulelor paginii",
+			category_global$gold_exp_data : "Afișează datele despre Aur și Experiență",
+			category_global$pray_shorcut : "Afișează scurtătura pentru rugăciune când te afli în Lumea de Dincolo",
+			category_global$centurio_powerups_timers : "Afișează cronometre pentru Cont Centurio & Pacte pe butonul Centurio",
+			category_global$show_durability : "Afișează durabilitatea în colțul de stânga jos al obiectelor",
+			category_global$min_durability : "Notificare pentru obiectele cu durabilitate + condiționare sub _% (mută la 0 pentru dezactivare)",
+			// Settings - Overview
+			category_overview$analyze_items : "Analizează calitățile obiectelor (necesare pentru antrenament)",
+			category_overview$food_life_gain : "Arată viața câștigată prin mâncare",
+			category_overview$block_avoid_caps : "Arată valorile pentru blocare și evitare",
+			category_overview$best_food : "Indică cea mai bună mâncare",
+			category_overview$overfeed_food : "Întuneca mâncarea care te va supra-vindeca",
+			category_overview$daily_bonus_log : "Bonusul zilnic de logare",
+			category_overview$buffs_detailed_time : "Arată cronometre detaliate la săltările pentru breaslă",
+			category_overview$mercenaries_manager : "Afișează managerul pentru mercenari",
+			category_overview$mercenary_tooltip_show : "Arată indicațiile pentru mercenari",
+			category_overview$more_statistics : "Arată mai multe date în Tab-ul statisticilor",
+			category_overview$achivements_layout : "Îmbunătățește interfața realizărilor",
+			category_overview$costumes_layout : "Îmbunătățește interfața costumelor",
+			category_overview$items_repair_overview : "Arată căsuța pentru materialele necesare reparării",
+			// Settings - Messages
+			category_messages$messages_layout : "Îmbunătățește interfața mesajelor",
+			category_messages$show_unread : "Indică mesajele necitite",
+			category_messages$separate_days : "Separă mesajele din zile diferite",
+			category_messages$send_message_box : "Activează folderul pentru mesajele trimise",
+			category_messages$more_guild_mate_info : "Arată informații despre colegii de breaslă",
+			category_messages$show_message_links : "Afișează link-urile incluse în mesaje",
+			category_messages$get_guild_battle_info : "Încarcă automat rezultatul luptelor cu breasla",
+			category_messages$show_sidebar : "Afișează bara laterală pentru mesaje",
+			category_messages$fix_header_links : "Repară bug-ul la click pe link în numele mesajului",
 			category_messages$new_message_focus : "Setează focus instant pe conţinut",
-			category_messages$new_message_friend_list : "Permite butonul pentru lista prietenilor",
-			category_packages$pages_to_load : "Număr maxim de pagini pentru încărcare",
-			category_reports$style_change : "Îmbunătăţeste interfaţa pentru lista rapoartelor",
-			category_guild$jail_layout : "Îmbunătăţeşte interfaţa închisorii",
-			category_guild$library_layout : "Îmbunătăţeşte interfaţa bibliotecii",
+			category_messages$new_message_friend_list : "Permite butonul de mesaj pentru lista prietenilor",
+			// Settings - Packages
+			category_packages$filters_layout : "Îmbunătățește interfața de filtrare",
+			category_packages$compact_info_layout : "Compactează interfața de informații",
+			category_packages$items_layout : "Îmbunătățește interfața obiectelor",
+			category_packages$small_items_layout : "Micșorează obiectele",
+			category_packages$load_more_pages : "Încarcă mai multe pagini",
+			category_packages$pages_to_load : "Numărul paginilor de încărcat",
+			category_packages$item_price : "Arată prețul obiectelor",
+			category_packages$special_category_features : "Activează caracteristici speciale în fiecare categorie",
+			category_packages$double_click_open : "Dublu click pe pachete pentru a le deschide",
+			category_packages$advance_filter : "Filtrare avansată a pachetelor",
+			// Settings - Pantheon
+			category_pantheon$quests_reorder : "Permite gruparea misiunilor",
+			category_pantheon$quests_detailed_rewards : "Afișează detaliat recompensele misiunilor",
+			category_pantheon$missions_show_completed : "Afișează misiunile completate",
+			category_pantheon$gods_show_points_percent : "Arată procentul punctelor de la Zei",
+			category_pantheon$open_many_mysteryboxes : "Deschide multiple cufere ale credinței divine",
+			category_pantheon$show_mysterybox_rewards_rubies : "Afișeaza costul în rubine al cufarului credinței divine",
+			// Settings - Reports
+			category_reports$style_change : "Îmbunătățește interfața listei rapoartelor",
+			category_reports$load_loot_tooltips : "Încarcă recompensa fiecărui raport",
+			category_reports$found_items : "Adună date despre obiectele găsite",
+			// Settings - Training
+			category_training$show_discount : "Afișează discontul pentru antrenamente",
+			category_training$show_basics_in_bars : "Arată antrenamentele de bază în linie",
+			category_training$multiple_train : "Activează multiplu pentru antrenamente",
+			category_training$calculator_train : "Activeaza calculator pentru costuri",
+			category_training$show_analyze_items_data : "Analizează obiectele jucatorului",
+			category_training$show_points_after_upgrade : "Arată punctele după un viitor antrenament",
+			// Settings - Merchants
+			category_merchants$fade_unaffordable_items : "Intunecă obiectele pe care nu ți le poți permite",
+			category_merchants$show_shop_info : "Arată informații de cumpărare (aur total și rubine)",
+			category_merchants$double_click_actions : "Dublu click pentru vinderea/cumpărarea unui obiect",
+			// Settings - Forge
+			category_forge$material_links : "[Forjă/Banc de Lucru] Arată scurtături către pachete&piață pentru fiecare resursă necesară",
+			category_forge$show_levels : "[Forjă] Arată Prefixul/Sufixul/Nivelul obiectului de bază lângă numele acestuia",
+			category_forge$horreum_materials_names : "[Horreum] Afișeaza numele resursei",
+			category_forge$horreum_remember_options : "[Horreum] Repetă ultimele setări de stocare",
+			category_forge$horreum_select_meterials : "[Horreum] Alege resursa cu un click",
+			// Settings - Arena
+			category_arena$ignore_attack_confirmations : "Ignoră confirmarea de atac (mesajul de peste 5 atacuri etc.)",
+			category_arena$show_simulator_imagelink : "Arată o imagine-link către simulator (gladiatussimulator.tk)",
+			category_arena$sort_by_lvl : "Aranjeaza jucătorii în arenă în funcție de nivel",
+			category_arena$highlight_guild_members : "Indică jucătorii de pe alte servere care ar putea fi membri ai breslei tale",
+			category_arena$target_list : "Lista advesarilor țintă",
+			// Settings - Magus
+			category_magus$fade_unimprovable_items : "Întunecă obiectele pe care nu pe poți îmbunătăți",
+			// Settings - Market
+			category_market$soulbound_warning : "Confirmare pentru cumpărarea obiectelor personalizate",
+			category_market$one_gold_warning : "Confirmare pentru cumpararea obiectelor care costă 1 aur",
+			category_market$cancel_all_button : "Arată butonul Retrage toate",
+			category_market$remember_sell_duration : "Repetă ultima durată de vânzare aleasă",
+			category_market$sell_duration : "Alege durata de vânzare favorită",
+			category_market$one_gold_mode : "Afișează butonul de selecție pentru schimbarea prețului de vânzare cu 1 aur",
+			category_market$remember_sort : "Repetă ultima ordine de sortare aleasă",
+			// Settings - Expedition
+			category_expedition$show_enemy_drops : "Arată resursele pe care le poate oferi fiecare adversar",
+			category_expedition$underworld_layout : "Afișeaza interfața adversarilor din Lumea de Dincolo la fel  ca în cazul expedițiilor",
+			// Settings - Guild
+			category_guild$jail_layout : "Îmbunătățește interfața pentru Negotium X",
+			category_guild$library_layout : "Îmbunătățește interfața pentru bibliotecă",
+			category_guild$library_fade_non_scrolls : "Întunecă obiectele care nu sunt pergamente la Bibliotecă",
+			category_guild$library_tooltip_data : "Adaugă mai multe date în indicațiile de la Biblioteca",
 			category_guild$bank_donate_layout : "Îmbunătăţeşte interfaţa băncii",
 			category_guild$bank_book_layout : "Îmbunătăţeşte interfaţa ghidului băncii",
 			category_guild$medic_layout : "Îmbunătăţeşte interfaţa pentru Villa Medici",
-			category_auction$items_counters : "Afişează numărul obiectelor",
-			category_auction$item_level : "Afişează nivelul obiectelor",
-			category_auction$x3_items_per_line : "Afişează 3 obiecte pe linie",
-			save : "Salvează totul",
+			// Settings - Auction
+			category_auction$items_counters : "Numără obiectele și obiectele deja licitate",
+			category_auction$more_search_levels : "Arată mai multe nivele la opțiunile de căutare",
+			category_auction$item_price_analyze : "Analizează prețul obiectelor",
+			category_auction$item_level : "Arată nivelul obiectelor",
+			category_auction$x3_items_per_line : "Schimbă interfața la 3 obiecte pe linie",
+			category_auction$multi_bids : "Licitează mai multe obiecte fără a reîncărca pagina",
+			category_auction$extra_item_stats : "Arată mai multe date în imaginile obiectelor",
+			category_auction$save_last_state : "Căutarea la licitație odată salvată, va fi încărcată din start, data viitoare",
+			// Settings - Events
+			category_events$craps_timer : "Afișează deasupra cronometrul evenimentului cu zaruri",
+			category_events$server_quest_timer : "Afișează deasupra cronometrul misiunilor pe server sau pe cel al locațiilor evenimentelor",
+			// Settings - Sound
+			category_sound$enabled : "Activează setarile pentru sunet",
+			category_sound$muted : "Oprește/Porneșe sunetul",
+			category_sound$volume : "Volum sunet",
+			// Settings - Data
+			category_data$export_settings : "Exportă datele setărilor în fișier",
+			category_data$import_settings : "Importă datele setărilor din fișier",
+			category_data$reset_settings : "Resetează setările addon-ului",
+			category_data$clear_data : "Șterge toatele datele addon-ului",
+
+			// Buttons
+			save : "Salvează",
+			export : "Exportă",
+			import : "Importă",
+			reset : "Resetează",
+			clear : "Șterge",
+			do_not_show : "Nu arăta",
+			show_as : "Arată ca",
+
+			// Info
+			translated_percent : "Procent traducere: {{number}}%",
+			translated_by : "Translated by: {{string}}",
+			reset_settings_confirm : "Ești sigur(ă) că vrei să resetezi setările addon-ului?",
+			clear_data_confirm : "Ești sigur(ă) că vrei să ștergi toate datele addon-ului?",
+
+			// Notifications
 			notification_reload : "Reîncarcă pagina pentru ca opţiunile să aibă efect"
 		}
 	}

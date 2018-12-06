@@ -304,7 +304,7 @@ var gca_global = {
 		showPointsRecover : {
 			init : function() {
 				// Find server speed
-				let server_speed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
+				let server_speed = gca_tools.time.serverSpeed();
 
 				// Show timers
 				this.showTimer('expedition', server_speed);
@@ -1066,6 +1066,7 @@ var gca_global = {
 							if(gca_data.section.get("guild", "inGuild", false)){
 								gca_data.section.set("guild", "inGuild", false);
 								gca_data.section.del("guild", "mates");
+								gca_data.section.del("guild", "name");
 							}
 						}
 						// You are in a guild, so update guild data
@@ -1094,6 +1095,10 @@ var gca_global = {
 								// Update guild data
 								gca_data.section.set("guild", "inGuild", true);
 								gca_data.section.set("guild", "mates", guild_players);
+								
+								let guild_name = content.match(/<h2 class="section-header">([^<]+)<\/h2>/)[1];
+								guild_name = guild_name.match(/([a-zA-Z0-9\-#@\[\]\.\+\:\*_]+) \[([a-zA-Z0-9\-#@\[\]\.\+\:\*_]+)\]/i)[1];
+								gca_data.section.set("guild", "name", guild_name);
 							}
 						}
 
@@ -2485,8 +2490,8 @@ var gca_global = {
 					// Do not run while traveling
 					if (gca_global.isTraveling) return;
 
-					// if Craps wait for update event
-					if (gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc')))) {
+					// if server quest or report page wait for update event
+					if (gca_section.mod == 'reports' || gca_section.mod == 'location' && (gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc')))) {
 						gca_tools.event.addListener("server_quest-info-update", () => {
 							this.display();
 						});

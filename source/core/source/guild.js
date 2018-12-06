@@ -12,7 +12,7 @@ var gca_guild = {
 			this.adminMail.auto_focus_all();
 		}
 		// If guild buildings
-		else if (gca_section.submod == 'buildings') {
+		else if (gca_section.submod == 'buildings' || gca_section.submod == 'updateBuilding') {
 			this.buildings.builingsCostDifference.show();
 		}
 
