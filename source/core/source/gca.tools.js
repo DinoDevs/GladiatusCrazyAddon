@@ -204,6 +204,7 @@ var gca_tools = {
 		serverSpeed : function() {
 			if (this._serverSpeed) return this._serverSpeed;
 			this._serverSpeed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
+			return this._serverSpeed;
 		}
 	},
 
