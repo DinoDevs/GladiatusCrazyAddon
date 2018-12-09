@@ -233,6 +233,14 @@ var gca_player = {
 				stats_translations[8] = char_leben_tt.getElementsByClassName('charstats_text').textContent;
 			}
 		}
+		// Check if in Underworld + praying
+		if (char_leben_tt.dataset.tooltip.match(/\+(\d+)% \(\+(\d+)\)"\],\["#00B712","#00B712"\]\]\]\]/i)) {
+			// Life refresh rate
+			let buff = char_leben_tt.dataset.tooltip.match(/\+(\d+)% \(\+(\d+)\)"\],\["#00B712","#00B712"\]\]\]\]/i)[1];
+			buffs.push([4,10,buff+"%"]);
+			// Life refresh rate translation
+			stats_translations[10] = JSON.parse('"'+(char_leben_tt.dataset.tooltip.match(/,\[\["([^:]+):","[^"]+"\],\["#BA9700","#BA9700"\]\]/i)[1])+'"');
+		}
 		
 		// Buff images
 		var images = [
@@ -267,7 +275,7 @@ var gca_player = {
 				['item-i-13-7'],
 				['item-i-13-6']
 			],
-			[// Critical
+			[// Other
 				[''],
 				[''],
 				[''],
@@ -277,7 +285,8 @@ var gca_player = {
 				[''],
 				[''],
 				[''],
-				['powerups-powerup_3']
+				['powerups-powerup_3'], // Critical
+				['powerups-heal'] // Life refresh rate
 			]
 		]
 		
@@ -304,11 +313,14 @@ var gca_player = {
 				span.style = 'text-align:left';
 				span.textContent = '+'+ ((buffs[i][2].match('%'))?buffs[i][2]:buffs[i][2].match(/(\d+)/i)[1]);
 				div2.appendChild(span);
-				let span2 = document.createElement("style");
-				span2.textContent = ".powerups-powerup_1{background-image: url(img/powerups/powerup_1.gif)}.powerups-powerup_3{background-image: url(img/powerups/powerup_3.gif)}.powerups-powerup_4{background-image: url(img/powerups/powerup_4.gif)}";
-				div2.appendChild(span2);
 				i++;
 			}
+			
+			// CSS
+			let span2 = document.createElement("style");
+			span2.textContent = ".powerups-powerup_1{background-image: url(img/powerups/powerup_1.gif)} .powerups-powerup_3{background-image: url(img/powerups/powerup_3.gif)} .powerups-powerup_4{background-image: url(img/powerups/powerup_4.gif)} .powerups-heal{background-image: url(img/buff/healing.png);background-position: center;}";
+			buffbar.appendChild(span2);
+			
 			document.getElementById("buffbar_old").getElementsByClassName('buff_old')[i-1].className = 'buff_old buffende';
 		}
 		
@@ -417,7 +429,7 @@ var gca_player = {
 						items[i].dataset.durabilityColor = 5;
 					}
 					
-					console.log(hash_data.category + "("+level+"): "+ durability+"%" + ", c: "+ c + ", q: "+ q + ", Max: "+max_durability);
+					//console.log(hash_data.category + "("+level+"): "+ durability+"%" + ", c: "+ c + ", q: "+ q + ", Max: "+max_durability);
 				}
 			}
 			i++;
