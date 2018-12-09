@@ -16,6 +16,8 @@
 	- [x] Global Arena: your guild name is now visible
 	- [x] Global Arena: guild-mates appear green
 	- [x] Global Arena: more translations added
+- **Player**
+	- [ ] Show the durability % of other players' items [testing]
 
 
 ### BUG FIXES
@@ -32,6 +34,7 @@
 - **Auction**
 	- [x] Do not save player/mercenary (doll) on auction remember feature
 	- [x] The bid button will be disabled after a successful bid
+	- [x] "Levels you can see" were not shown at the top of the page
 - **Market**
 	- [x] Fixed bug when canceling all the packages in the last page of the market resulting in showing no packets after
 - **Server Quests**
