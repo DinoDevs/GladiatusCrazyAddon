@@ -323,20 +323,42 @@ var gca_player = {
 		
 		// Item category factor table
 		let category_factor = [
-			/*Weapon (1)*/ 0.15617,
-			/*Shield (2)*/ 0.141421,
-			/*Armor (3)*/ 0.1291,
+			/*Weapon (1)*/ 1,
+			/*Shield (2)*/ 1,
+			/*Armor (3)*/ 1,
 			/*Helmet (4)*/ 0.13484,
 			/*Gloves (5)*/ 0.13484,
 			/*Ring (6)*/ 1,
-			0,
+			/* - (7)*/ 0,
 			/*Shoes (8)*/ 0.13484,
 			/*Amulet (9)*/ 1
 		];
 		
+		// Item sub category (base) factor table
+		let sub_category_factor = [
+				// Weapons
+				[0.21175, 0.18257, 0.16893, 0.15617, 0.18898, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222, 0.16222],
+				// Shield
+				[0.141421, 0.141421, 0.141421, 0.141421, 0.141421, 0.141421, 0.141421, 0.141421, 0.141421, 0.141421, 0.141421, 0.141421],
+				// Armor (3)
+				[0.1291, 0.1291, 0.1291, 0.1291, 0.1291, 0.1291, 0.1291, 0.1291, 0.1291, 0.1291, 0.1291, 0.1291],
+				// Helmet (4)
+				[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+				// Gloves (5)
+				[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+				// Ring (6)
+				[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+				// - (6)
+				[0],
+				// Shoes (8)
+				[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+				// Amulet (9)
+				[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		];
+		
 		// Item quality factor table
 		let quality_factor = [
-			/*Green (0)*/ 2,
+			/*White-Green (0)*/ 2,
 			/*Blue (1)*/ 3,
 			/*Purple (2)*/ 5,
 			/*Orange (3)*/ 6,
@@ -360,7 +382,7 @@ var gca_player = {
 					// Calculate factors
 					level = items[i].dataset.level;
 					q = (items[i].dataset.quality!=undefined)?quality_factor[items[i].dataset.quality]:quality_factor[0];
-					c = category_factor[hash_data.category-1];
+					c = category_factor[hash_data.category-1] * sub_category_factor[hash_data.category-1][hash_data.subcategory-1];
 					
 					// 100% durability
 					max_durability = 120 * q * level / c;
