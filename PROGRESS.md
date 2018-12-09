@@ -18,6 +18,7 @@
 	- [x] Global Arena: more translations added
 - **Player**
 	- [ ] Show the durability % of other players' items [testing]
+	- [x] Buff bar: added life refresh rate buff (underworld + pray)
 
 
 ### BUG FIXES
