@@ -19,6 +19,10 @@ var gca_player = {
 		
 		// TODO : add option
 		this.show_buffs();
+		
+		// Show enemy durability
+		(gca_data.section.get("global", "show_durability", 0) > 0 &&
+			this.show_durability());
 	},
 
 	// Resolve Page
@@ -308,6 +312,88 @@ var gca_player = {
 			document.getElementById("buffbar_old").getElementsByClassName('buff_old')[i-1].className = 'buff_old buffende';
 		}
 		
+	},
+	
+	show_durability : function() {
+		if(!document.getElementById('content'))
+			return;
+		
+		// Durability display type
+		let show_durability = gca_data.section.get("global", "show_durability", 0);
+		
+		// Item category factor table
+		let category_factor = [
+			/*Weapon (1)*/ 0.15617,
+			/*Shield (2)*/ 0.141421,
+			/*Armor (3)*/ 0.1291,
+			/*Helmet (4)*/ 0.13484,
+			/*Gloves (5)*/ 0.13484,
+			/*Ring (6)*/ 1,
+			0,
+			/*Shoes (8)*/ 0.13484,
+			/*Amulet (9)*/ 1
+		];
+		
+		// Item quality factor table
+		let quality_factor = [/*Green (0)*/ 2,/*Blue (1)*/ 3,/*Purple (2)*/ 5,/*Orange (3)*/ 6,/*Red (4)*/ 7];
+		
+		// Item list
+		let items = document.getElementById('char').getElementsByClassName('ui-droppable');
+		
+		// Define variable
+		let data, durability, q, c, level;
+		
+		let i = 0;
+		while (items[i]) {
+			if(items[i].dataset.itemId != undefined){
+				// if durability not visible
+				if(items[i].dataset.durability == undefined){
+					// Get data from item hash
+					hash_data = gca_tools.item.hash(items[i]);
+					
+					// Calculate factors
+					level = items[i].dataset.level
+					q = quality_factor[items[i].dataset.quality]
+					c = category_factor[hash_data.category-1]
+					
+					// 100% durability
+					max_durability = 120 * q * level / c;
+					
+					// Calculate current durability
+					// 0% - 100%
+					if (max_durability<hash_data.durability){
+						durability = 100 + Math.round( (hash_data.durability - max_durability) / (max_durability * 0.25) * 100 );
+					
+					// 100% - 200%
+					}else{
+						durability = Math.round( hash_data.durability / max_durability * 100 );
+					}
+					
+					// If enabled: % or ●
+					if(show_durability==1){
+						items[i].dataset.durability = durability + "%";
+					}else{
+						items[i].dataset.durability = '⚒';//●
+					}
+					
+					// Colors
+					if(durability > 100){
+						items[i].dataset.durabilityColor = 1;
+					}else if(durability>=75){
+						items[i].dataset.durabilityColor = 2;
+					}else if(durability>=50){
+						items[i].dataset.durabilityColor = 3;
+					}else if(durability>=25){
+						items[i].dataset.durabilityColor = 4;
+					}else{
+						items[i].dataset.durabilityColor = 5;
+					}
+					
+					//console.log(hash_data.category + "("+level+"): "+ durability+"%" + ", c: "+ c + ", q: "+ q + ", Max: "+max_durability);
+				}
+			}
+			i++;
+		}
 	}
 };
 
