@@ -486,6 +486,54 @@ var gca_tools = {
 			}
 
 		},
+
+		info : function(item) {
+			if (!item) return null;
+			let info = this.hash(item) || {};
+
+			if (item.dataset.contentType)
+				info.contentType = parseInt(item.dataset.contentType, 10);
+			if (item.dataset.contentSize)
+				info.contentSize = parseInt(item.dataset.contentSize, 10);
+
+			if (!info.price && item.dataset.priceGold)
+				info.price = parseInt(item.dataset.priceGold, 10);
+			if (item.dataset.level)
+				info.level = parseInt(item.dataset.level, 10);
+			if (item.dataset.amount)
+				info.amount = parseInt(item.dataset.amount, 10);
+			if (item.dataset.positionX)
+				info.positionX = parseInt(item.dataset.positionX, 10);
+			if (item.dataset.positionY)
+				info.positionY = parseInt(item.dataset.positionY, 10);
+			if (item.dataset.measurementX)
+				info.measurementX = parseInt(item.dataset.measurementX, 10);
+			if (item.dataset.measurementY)
+				info.measurementY = parseInt(item.dataset.measurementY, 10);
+			if (!info.category && item.dataset.basis) {
+				let basis = item.dataset.basis.match(/^(\d+)-(\d+)$/i);
+				info.category = parseInt(basis[1], 10);
+				info.subcategory = parseInt(basis[2], 10);
+			}
+
+			if (item.dataset.tooltip) {
+				let tooltip = item.dataset.tooltip;
+				// White
+				if(tooltip.match("white")) info.quality = -1;
+				// Green
+				else if(tooltip.match("lime")) info.quality = 0;
+				// Blue
+				else if(tooltip.match("#5159F7")) info.quality = 1;
+				// Purple
+				else if(tooltip.match("#E303E0")) info.quality = 2;
+				// Orange
+				else if(tooltip.match("#FF6A00")) info.quality = 3;
+				// Red
+				else if(tooltip.match("#FF0000")) info.quality = 4;
+			}
+
+			return info;
+		},
 		
 		hash : function(item) {
 			if (!item || !item.dataset.hash) return null;
