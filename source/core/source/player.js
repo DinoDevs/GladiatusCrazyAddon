@@ -335,7 +335,13 @@ var gca_player = {
 		];
 		
 		// Item quality factor table
-		let quality_factor = [/*Green (0)*/ 2,/*Blue (1)*/ 3,/*Purple (2)*/ 5,/*Orange (3)*/ 6,/*Red (4)*/ 7];
+		let quality_factor = [
+			/*Green (0)*/ 2,
+			/*Blue (1)*/ 3,
+			/*Purple (2)*/ 5,
+			/*Orange (3)*/ 6,
+			/*Red (4)*/ 7
+		];
 		
 		// Item list
 		let items = document.getElementById('char').getElementsByClassName('ui-droppable');
@@ -352,9 +358,9 @@ var gca_player = {
 					hash_data = gca_tools.item.hash(items[i]);
 					
 					// Calculate factors
-					level = items[i].dataset.level
-					q = quality_factor[items[i].dataset.quality]
-					c = category_factor[hash_data.category-1]
+					level = items[i].dataset.level;
+					q = (items[i].dataset.quality!=undefined)?quality_factor[items[i].dataset.quality]:quality_factor[0];
+					c = category_factor[hash_data.category-1];
 					
 					// 100% durability
 					max_durability = 120 * q * level / c;
@@ -389,7 +395,7 @@ var gca_player = {
 						items[i].dataset.durabilityColor = 5;
 					}
 					
-					//console.log(hash_data.category + "("+level+"): "+ durability+"%" + ", c: "+ c + ", q: "+ q + ", Max: "+max_durability);
+					console.log(hash_data.category + "("+level+"): "+ durability+"%" + ", c: "+ c + ", q: "+ q + ", Max: "+max_durability);
 				}
 			}
 			i++;
