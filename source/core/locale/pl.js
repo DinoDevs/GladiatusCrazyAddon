@@ -3,7 +3,7 @@
  * Name : Polish
  * Code : pol
  * Tag  : pl
- * Translator: wupload, Legiss,Vanish_Si
+ * Translator: wupload, Legiss, Vanish_Si, Sorky96
  */
 
 // Languages Object
@@ -12,10 +12,10 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['pl'] = {
 	name : 'Polski (Polish)',
-	translators : ["wupload", "Legiss", "Vanish_Si"],
+	translators : ["wupload", "Legiss", "Vanish_Si", "Sorky96"],
 	locale : {
 		info : {
-			description : "Zwariowany dodatek dla Gladiatus"
+			description : "Zwariowany dodatek dla Gladiatusa"
 		},
 		general : {
 			days : "Dni",
@@ -34,14 +34,14 @@ gca_languages['pl'] = {
 			message_private_write : "Napisz prywatną wiadomość",
 			message_guild_write : "Napisz wiadomość do gildii",
 			message_send : "Wyślij",
-			message_sent_success : "Wysłano wiadomość gildii",
+			message_sent_success : "Wysłano wiadomość do gildii",
 			message_sent_failed : "Błąd podczas wysyłania wiadomości",
 			message_empty : "Brak wiadomości",
 			message_exclude_me : "Wyklucz mnie",
 			guild_market_goto : "Idź do rynku gildii",
 			guild_storage_goto : "Przejdź do Magazynu",
 			guild_bank_goto : "Przejdź do Banku Gildii",
-			guild_warcamp_goto : "Przejdź do Wojenna Hala Sław",
+			guild_warcamp_goto : "Przejdź do Wojennej Hali Sław",
 			guild_jail_goto : "Przejdź do Negotium X",
 			guild_library_goto : "Przejdź do Biblioteki",
 			guild_medic_goto : "Przejdź do Medyka",
@@ -50,7 +50,7 @@ gca_languages['pl'] = {
 			online_display : "Wyświetl graczy online",
 			online_friends : "Przyjaciele online",
 			guild_friends : "Przyjaciele gildyjni",
-			family_friends : "Rodzina",
+			family_friends : "Familia",
 			donate_gold_confirm : "Czy na pewno chcesz przekazać {{number}} złota?",
 			donate_gold_success : "Twoje złoto zostało przekazane",
 			donate_gold_failed : "Wystąpił błąd podczas przekazywania złota",
@@ -90,21 +90,21 @@ gca_languages['pl'] = {
 			medic_life_after_heal : "Życie po uleczeniu"
 		},
 		expedition : {
-			material_drop_chance : "{{number}}% szans na drop materiału"
+			material_drop_chance : "{{number}}% szans na upuszczenie materiału"
 		},
 		training : {
 			stats_points : "Punkty statystyk",
 			points_breakdown : "Rozłożenie punktów",
 			stats_calculated_with_yourself_as_an_opponent : "* Statystyki są obliczane na podstawie ataku samego siebie.",
 			total_cost : "Suma ",
-		        costs_discount : "Zniżka treningu: {{number}}%"
+			costs_discount : "Zniżka treningu: {{number}}%"
 		},
 		auction : {
 			number_of_items : "Liczba przedmiotów : {{number}}",
 			number_of_bided_items : "Liczba licytowanych przedmiotów : {{number}}",
 			hide_your_gold_here : "Tutaj spakuj swoje złoto",
 			price_value_function : "Cena = Wartość + {{number}}",
-			levels_you_can_see : "Możesz widzieć przedmioty od poziomu  {{min}} do poziomu {{max}}.",
+			levels_you_can_see : "Możesz widzieć przedmioty od poziomu {{min}} do poziomu {{max}}.",
 		},
 		markets : {
 			item_cost_only_x_gold : "Przedmiot kosztuje {{number}} złota.",
@@ -128,7 +128,7 @@ gca_languages['pl'] = {
 			settings : "Ustawienia",
 			description : "Włącz lub wyłącz odpowiadające Ci funkcje!",
 			description_click_button : "Kliknij przycisk poniżej, aby przejść do ustawień...",
-			category_global : "Generalne ustawienia",
+			category_global : "Ustawienia ogólne",
 			category_overview : "Przegląd ustawień",
 			category_messages : "Wiadomości",
 			category_packages : "Paczki",
@@ -159,12 +159,12 @@ gca_languages['pl'] = {
 			category_global$auction_status_notification : "Pokaż zmianę statusu aukcji",
 			category_global$top_fixed_bar : "Włącz górny pasek przewijania",
 			category_global$advance_main_menu : "Popraw główne menu",
-			category_global$submenu_click_to_change : "Zmiana podmenu po kliknięciu",
+			category_global$submenu_click_to_change : "Zmiana karty (miasto/wyprawa) na kliknięcie",
 			category_global$remember_tabs : "Pamiętaj ostatnią wybraną kartę u kupców",
 			category_global$attacked_timers : "Pokaż licznik atakujących",
-			category_global$quest_timer : "Pokaż status zadańlub licznik",
-			category_global$merchants_timer : "Wyświetl czas kupcówr",
-			category_global$forge_timers : "Wyświetl czas w kuźni/roztapiarki",
+			category_global$quest_timer : "Pokaż status zadań lub licznik",
+			category_global$merchants_timer : "Wyświetl czas kupców",
+			category_global$forge_timers : "Wyświetl czas w kuźni/roztapiarce",
 			category_global$cooldown_sound_notifications : "Włącz dźwięk powiadomień (wyprawy, lochy, arena)",
 			category_global$notify_new_guild_application : "Powiadom mnie, gdy pojawi się nowe podanie do gildii",
 			category_global$notify_new_guild_application_interval : "Sprawdzaj podania do gildii (minuty)",
@@ -181,7 +181,6 @@ gca_languages['pl'] = {
 			category_global$show_forge_info : "Pokaż potrzebne składniki do wykucia przedmiotu",
 			category_overview$analyze_items : "Analizuj statystyki przedmiotu",
 			category_overview$food_life_gain : "Pokaż ile zdrowia przywraca jedzenie",
-			category_overview$block_avoid_caps : "Show block and Avoid caps",
 			category_overview$best_food : "Podświetl najbardziej odpowiednie jedzenie w stosunku do obecnego zdrowia",
 			category_overview$overfeed_food : "Przyciemnij jedzenie, które leczy zbyt dużo zdrowia",
 			category_overview$daily_bonus_log : "Dzienne bonusy logowania",
