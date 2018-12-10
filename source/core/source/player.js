@@ -384,7 +384,7 @@ var gca_player = {
 					c = category_factor[hash_data.category-1][hash_data.subcategory-1];
 					
 					// 100% durability
-					max_durability = q * level * c;
+					max_durability = Math.ceil(q * level * c);
 					
 					// Calculate current durability
 					// 0% - 100%
