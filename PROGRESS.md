@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-11-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-12-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -24,6 +24,8 @@
 ### BUG FIXES
 - **General**
 	- [x] Audio random dependency error fix
+- **Messages**
+	- [x] Fixed new guild member detetion bug
 - **Packages**
 	- [x] Learned/Unlearned scrolls detect fix
 - **Arena**
