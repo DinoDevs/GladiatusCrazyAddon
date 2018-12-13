@@ -4523,11 +4523,10 @@ var gca_global = {
 	update_guild_info : function(){
 		// Get timers
 		let now = new Date().getTime();
-		let last_time = gca_data.section.get("timers", "guild_info_update", null);
+		let last_time = gca_data.section.get("timers", "guild_info_update", 0);
 		
 		// If updated the last x hours return
-		if(last_time !== null && (last_time + (24*60*60*1000)) > now)
-			return;
+		if(last_time + (24*60*60*1000) > now) return;
 
 		// Save time shown
 		gca_data.section.set("timers", "guild_info_update", now);

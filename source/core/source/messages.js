@@ -411,14 +411,25 @@ var gca_messages = {
 				message.title.appendChild(info);
 			}
 			// If guild member was not found, we should refresh our list
-			else if(!this.refreshed) {
-				// Set refresh time null
-				gca_data.section.set("timers", "guild_info_update", null);
-				// Refresh guild info (for next time)
-				gca_global.update_guild_info();
-				// Run once
-				this.refreshed = true;
+			else {
+				this.update_guild_info();
 			}
+		},
+
+		// Update guild info
+		update_guild_info : function() {
+			if (typeof gca_global !== 'object') {
+				setTimeout(() => function() {
+					this.update_guild_info();
+				}, 100);
+				return;
+			}
+			if (this.guild_info_updated) return;
+			this.guild_info_updated = true;
+			// Set refresh time null
+			gca_data.section.set("timers", "guild_info_update", 0);
+			// Refresh guild info (for next time)
+			gca_global.update_guild_info();
 		},
 
 
