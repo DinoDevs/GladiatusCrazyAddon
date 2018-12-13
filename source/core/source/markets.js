@@ -221,7 +221,9 @@ var gca_markets = {
 	// 1g mode
 	oneGoldMode : function(){
 		// Create mode switch
-		let wrapper = document.getElementById("market_sell_box").getElementsByTagName("section")[0];
+		let wrapper = document.createElement('div');
+		let fields = document.getElementById("market_sell_fields");
+		fields.parentNode.insertBefore(wrapper, fields.nextSibling);
 		
 		let selected_mode = gca_data.section.get("cache", "last_sell_1g_mode", 0);
 		
