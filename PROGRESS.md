@@ -40,6 +40,7 @@
 	- [x] "Levels you can see" were not shown at the top of the page
 - **Market**
 	- [x] Fixed bug when canceling all the packages in the last page of the market resulting in showing no packets after
+	- [x] Fixed layout bug on the sell mode (firefox browser)
 - **Server Quests**
 	- [x] Fixed event cooldown timers to scale based on server's speed
 	- [ ] Fixed timer cooldown after server quest attack failed [testing]
