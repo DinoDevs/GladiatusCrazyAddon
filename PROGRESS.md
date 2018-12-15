@@ -1,12 +1,13 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-13-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-11-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
 	- [x] Show time until full expedition/dungeon points recovery
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
+	- [x] Craft material for more items added
 - **Reports**
 	- [x] Rewarded items have border based on their quality
 - **Market**
@@ -17,7 +18,7 @@
 	- [x] Global Arena: guild-mates appear green
 	- [x] Global Arena: more translations added
 - **Player**
-	- [ ] Show the durability % of other players' items [testing]
+	- [x] Show the durability % of other players' items [testing]
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
 
 
