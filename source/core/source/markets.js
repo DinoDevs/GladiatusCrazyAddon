@@ -36,6 +36,10 @@ var gca_markets = {
 			// Default sell duration
 				this.sell_duration();
 			}
+			
+			// Special category features
+			(gca_options.bool("packages", "special_category_features") && 
+				this.specialCategory.resolve(this));
 
 			this.layout.changeSortArrows();
 		}
@@ -397,6 +401,100 @@ var gca_markets = {
 			gca_tools.item.move(this, 'market');
 		}
 	},
+	
+	// Special Categories
+	specialCategory : {
+		
+		// Resolve category
+		resolve : function(self){
+			var category = parseInt(document.getElementsByName("f")[0].value);
+			switch(category){
+				case 20:
+					this.categories.scroll.loadData(self);
+					break;
+			}
+		},
+
+		// Categories
+		categories : {
+			
+			// Scrolls Category
+			scroll : {
+				loadData : function(){
+					// Make request
+					jQuery.ajax({
+						type: "GET",
+						url: gca_getPage.link({"mod":"forge"}),
+						success: (result) => {
+							// Get each name
+							let scrolls = result.match(/<option value="\d+" (selected |)data-level="\d+" data-name="[^"]*">[^<]*<\/option>/gim);
+
+							// If error
+							if (scrolls.length < 2) {
+								this.prefix = false;
+								this.suffix = false;
+								return;
+							}
+
+							// Parse scrolls
+							let prefix = []; 
+							let suffix = [];
+
+							var i = 1;
+							// Get prefixes
+							while (i < scrolls.length) {
+								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
+								i++;
+								if (id == 0) break;
+								prefix.push(id);
+							}
+							// Get suffixes
+							while (i < scrolls.length) {
+								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
+								i++;
+								suffix.push(id);
+							}
+
+							// Save lists
+							this.prefix = prefix;
+							this.suffix = suffix;
+
+							// Check scrolls
+							this.showIsLearned();
+						},
+						error: function(){}
+					});
+				},
+				// Apply 
+				showIsLearned : function(){
+					// If no data return
+					if(!this.prefix) return;
+					
+					// For each item
+					jQuery("#market_table div").each((i, item) => {
+						// If already parsed
+						if(item.dataset.gcaFlag_isLearned) return;
+						// Flag as parsed
+						item.dataset.gcaFlag_isLearned = true;
+
+						// Get hash
+						let hash = gca_tools.item.hash(item);
+						if (!hash) return;
+						// Check if own
+						let known = (this.prefix.indexOf(hash.prefix) >= 0 || this.suffix.indexOf(hash.suffix) >= 0);
+						if (known) {
+							item.style.filter = "drop-shadow(2px 2px 1px rgba(255,0,0,0.4)) drop-shadow( 2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(255,0,0,0.4))";
+							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","known_scroll"), "red"]);
+						}
+						else {
+							item.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
+							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","unknown_scroll"), "green"]);
+						}
+					});
+				}
+			}
+		}
+	}
 
 };
 
