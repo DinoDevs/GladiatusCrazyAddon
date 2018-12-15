@@ -12,7 +12,7 @@
 	- [x] Rewarded items have border based on their quality
 - **Market**
 	- [x] Added button that changes the price to item's value
-	- [x] Red/Green shadow added on scrolls you know/don't know (when searching for scrolls)
+	- [ ] Red/Green shadow added on scrolls you know/don't know (when searching for scrolls)
 - **Arena**
 	- [x] Global Arena: link to global highscore added
 	- [x] Global Arena: your guild name is now visible
