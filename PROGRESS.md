@@ -26,11 +26,11 @@
 - **General**
 	- [x] Audio random dependency error fix
 - **Messages**
-	- [x] Fixed new guild member detetion bug
+	- [x] Fixed new guild member detection bug
 - **Packages**
 	- [x] Learned/Unlearned scrolls detect fix
 - **Arena**
-	- [x] Guild members on other severs were not highlighted in cross-server turma
+	- [x] Guild members were not highlighted in cross-server turma
 	- [x] Fixed wrong error message when Global Arena request is blocked
 - **Guild**
 	- [x] Guild buildings script not loading on update
@@ -41,10 +41,10 @@
 	- [x] "Levels you can see" were not shown at the top of the page
 - **Market**
 	- [x] Fixed bug when canceling all the packages in the last page of the market resulting in showing no packets after
-	- [x] Fixed layout bug on the sell mode (firefox browser)
+	- [x] Fixed layout bug on the sell mode (Firefox browser)
 - **Server Quests**
-	- [x] Fixed event cooldown timers to scale based on server's speed
-	- [ ] Fixed timer cooldown after server quest attack failed [testing]
+	- [x] Fixed event cool-down timers to scale based on server's speed
+	- [ ] Fixed timer cool-down after server quest attack failed [testing]
 
 
 ### TRANSLATIONS
