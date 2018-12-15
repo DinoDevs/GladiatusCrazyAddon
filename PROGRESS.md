@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-11-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-12-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -12,6 +12,7 @@
 	- [x] Rewarded items have border based on their quality
 - **Market**
 	- [x] Added button that changes the price to item's value
+	- [x] Red/Green shadow added on scrolls you know/don't know (when searching for scrolls)
 - **Arena**
 	- [x] Global Arena: link to global highscore added
 	- [x] Global Arena: your guild name is now visible
