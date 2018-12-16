@@ -939,6 +939,8 @@
 		.package-advance-filters .filter-add input:nth-child(3) {width: 85px;}
 		.package-advance-filters .filter-add button {width: 52px;margin-top: 0px;}
 
+		/* Soul-bound items */
+		#packages_wrapper div[data-soulbound-to]:after {content: "🔗";color: #ccc;line-height: 9px;right: 2px;font-size: 9px;font-weight: bold;top: 2px;text-align: right;}
 
 
 	/* Quests Layout
