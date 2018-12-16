@@ -166,10 +166,9 @@ var gca_global = {
 		// Image Cache
 		this.background.preserve_image_cache();
 
-		// Mobile item move helper - Run on android
-		if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
-			this.accessibility.item_move.init();
-		}
+		// Mobile item move helper - Run on mobiles
+		(this.isMobile &&
+			this.accessibility.item_move.init());
 	},
 	
 	scripts : {
@@ -237,6 +236,12 @@ var gca_global = {
 
 		if(document.getElementById("banner_event_link")){
 			this.isEvent.bar = true;
+		}
+
+		this.isMobile = false;
+		// If android
+		if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
+			this.isMobile = true;
 		}
 	},
 

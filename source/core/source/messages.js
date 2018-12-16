@@ -9,6 +9,11 @@ var gca_messages = {
 	preinject : function(){
 		// Messages
 		if(gca_section.submod == 'messageShow' || gca_section.submod == 'messageMoveDelete'){
+			// If mobile
+			if(navigator.userAgent.toLowerCase().indexOf('android') > -1)
+				// Add class tag
+				document.documentElement.className += " gca_mobile_device";
+			
 			// Check if style is active
 			if(gca_options.bool("messages","messages_layout"))
 				// Add class tag
