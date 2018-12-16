@@ -148,7 +148,7 @@ gca_languages["gr"] = {
 
 		// Arena section
 		arena : {
-			global_arena_title : "Παγκόσμια Αρένα (Crazy Addon)",
+			global_arena_title : "Παγκόσμια Αρένα",
 			global_arena_description : "Αυτή είναι η υπέρτατη αρένα που μαζεύει μονομάχους από όλο τον κόσμο! Σε αυτή την αρένα οι μονομάχοι δεν μάχονται για χρυσό ή εμπειρία, μάχονται για μια θέση στην παγκόσμια κατάταξη!",
 			global_arena_load : "Φόρτωση λίστας αντιπάλων",
 			global_highscore : "Παγκόσμια Βαθμολογία",
@@ -156,7 +156,12 @@ gca_languages["gr"] = {
 			server : "Επαρχία",
 			target_list : "Λίστα στόχων",
 			target_list_add : "Προσθήκη στη λίστα στόχων",
-			target_list_remove : "Αφαίρεση από τη λίστα στόχων"
+			target_list_remove : "Αφαίρεση από τη λίστα στόχων",
+			error_sth_went_wrong : "Κάτι πήγε στραβά",
+			error_response : "Ο διακομιστής απάντησε με σφάλμα",
+			error_blocked_access : "Κάτι μπλοκάρει την πρόσβαση στον διακομιστή του GCA ({{url}})",
+			error_connection : "Σφάλμα σύνδεσης",
+			attack_player : "Επίθεση στον “{{name}}”",
 		},
 
 		// Training section
