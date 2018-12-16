@@ -776,6 +776,7 @@
 		.gca_messages_styling .message_box .message_box_content .message_footer{background-color: #E6DCB7;height: 18px;}
 		.gca_messages_styling .message_box .message_box_content .message_footer a{display: none;}
 		.gca_messages_styling .message_box:hover .message_box_content .message_footer a{display: block;}
+		.gca_mobile_device.gca_messages_styling .message_box .message_box_content .message_footer a{display: block;}
 		.gca_messages_styling .message_box:hover .messageSubject{border: 1px solid #7D714A;}
 		.gca_messages_styling .message_box:hover .message_box_content{border-left: 1px solid #7D714A;border-right: 1px solid #7D714A;border-bottom: 1px solid #7D714A;}
 		.message_box.gca_messages_separator{margin-top: 15px;border-bottom: 2px solid #bba86e;}
