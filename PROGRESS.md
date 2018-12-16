@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-12-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -21,6 +21,8 @@
 - **Player**
 	- [x] Show the durability % of other players' items [testing]
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
+- **Packages**
+	- [x] New 🔗 icon indicating a soul-bound item
 
 
 ### BUG FIXES

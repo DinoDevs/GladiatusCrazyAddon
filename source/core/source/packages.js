@@ -52,6 +52,9 @@ var gca_packages = {
 			this.itemFilters.inject(this));
 		
 		this.eventItemsCategory();
+		
+		// Add icon to soul-bound items 
+		this.showSoulbound();
 
 		// Setting Link
 		gca_tools.create.settingsLink("packages");
@@ -60,7 +63,7 @@ var gca_packages = {
 	// Layout Improvements
 	layout : {
 
-		// Improve Info dipslay
+		// Improve Info display
 		compactInfo : function(){
 			// Gold info spacing
 			document.getElementById('content').getElementsByTagName('article')[0].getElementsByTagName('h2')[0].style.marginTop = "8px";
@@ -674,6 +677,16 @@ var gca_packages = {
 		// Select it if needed
 		if (gca_getPage.parameter('f') == '21') {
 			document.getElementsByName('f')[0].value = 21;
+		}
+	},
+	
+	showSoulbound : function(){
+		var items = document.getElementById('packages_wrapper').getElementsByClassName('ui-draggable');
+		for (let i=0; i<items.length; i++) {
+			console.log(i);
+			if (items[i].dataset.soulboundTo) {
+				items[i].parentNode.dataset.gcaSoulbound = true;
+			}
 		}
 	},
 

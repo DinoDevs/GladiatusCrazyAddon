@@ -939,7 +939,7 @@
 		.package-advance-filters .filter-add button {width: 52px;margin-top: 0px;}
 
 		/* Soul-bound items */
-		#packages_wrapper div[data-soulbound-to]:after {content: "🔗";color: #ccc;line-height: 9px;right: 2px;font-size: 9px;font-weight: bold;top: 2px;text-align: right;}
+		#packages_wrapper div[data-gca-soulbound]:after {content: "🔗";color: #ccc;font-size: 9px;font-weight: bold;float: right;}
 
 
 	/* Quests Layout
