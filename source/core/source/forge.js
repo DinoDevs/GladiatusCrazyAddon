@@ -49,8 +49,14 @@ var gca_forge = {
 			this.horreum.gatherInfo();
 		}
 		
-		// Show/Hide player doll
-		this.showHideDoll();
+		// If char box exist
+		if (document.getElementById('char')){
+			// Show/Hide player doll
+			this.showHideDoll();
+			// If Item shadow
+			(gca_options.bool("global","item_shadow") && 
+				this.itemShadow.inject());
+		}
 
 		// Setting Link
 		gca_tools.create.settingsLink("forge");
@@ -58,9 +64,6 @@ var gca_forge = {
 	
 	// Show/Hide player doll
 	showHideDoll : function(){
-		if (!document.getElementById('char'))
-			return;
-		
 		// Define top position
 		document.getElementById('content').style.position = "relative";
 		// Create button
@@ -85,6 +88,25 @@ var gca_forge = {
 		// Check last saved option
 		if( gca_data.section.get("cache", "forge_show_char" , false) )
 			document.getElementById('char').style.display = "block";
+	},
+	
+	// Items Shadow Inject
+	itemShadow : {
+		inject : function(){
+			this.dollItems();
+		},
+
+		// Add shadow to doll items
+		dollItems : function(){
+			// Get doll items
+			var items = document.getElementById("char").getElementsByClassName("ui-draggable");
+
+			// Add shadow to each item
+			for(var i = items.length - 1; i >= 0; i--){
+				gca_tools.item.shadow.add(items[i]);
+			}
+
+		}
 	},
 	
 	// Save forge timers
