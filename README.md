@@ -39,7 +39,7 @@ We suggest you to download a *stable release*. Alpha and Beta releases are for d
 
 ### Latest dev build v4.1.1-beta <sub><sup>(for developers)</sup></sub> <sub><sup>[[Progress Here]](PROGRESS.md)</sup></sub>
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-3-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-16-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 
 
@@ -71,13 +71,15 @@ Use our [guide](documentation/translators/README.md) to translate the addon in y
 
 Gladiatus Crazy Addon : [https://gladiatuscrazyaddon.tk](https://gladiatuscrazyaddon.tk)
 
-Gladiatus Simulator : [https://gladiatussimulator.tk/beta/](https://gladiatussimulator.tk/beta/)
+Gladiatus Simulator : [https://gladiatussimulator.tk](https://gladiatussimulator.tk)
 
 Gladiatus Forum GCA thread : [https://forum.gladiatus.gameforge.com/forum/thread/263-gladiatus-crazy-add-on/](https://forum.gladiatus.gameforge.com/forum/thread/263-gladiatus-crazy-add-on/)
 
 ### Other links/pages
 
-Skarsburning's Gladiatus Fansite : [https://gladiatus.gamerz-bg.com/](https://gladiatus.gamerz-bg.com/) *(we love your site)*
+Skarsburning's Gladiatus Fansite : [https://gladiatus.gamerz-bg.com](https://gladiatus.gamerz-bg.com) *(we love your site)*
+
+Michalus' Gladiatus Tools : [https://gladiatus-tools.pl](https://gladiatus-tools.pl) in Polish ([google translated here](https://translate.google.gr/translate?sl=pl&tl=en&u=https%3A%2F%2Fgladiatus-tools.pl))
 
 *(We would be happy to add your Gladiatus related page here too)*
 
