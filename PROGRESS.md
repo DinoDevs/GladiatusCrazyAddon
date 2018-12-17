@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-16-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -29,6 +29,7 @@
 
 ### BUG FIXES
 - **General**
+	- [x] Stability improvements and tweaks
 	- [x] Audio random dependency error fix
 - **Messages**
 	- [x] Fixed new guild member detection bug
@@ -46,7 +47,9 @@
 	- [x] "Levels you can see" were not shown at the top of the page
 - **Market**
 	- [x] Fixed bug when canceling all the packages in the last page of the market resulting in showing no packets after
-	- [x] Fixed layout bug on the sell mode (Firefox browser)
+	- [x] Fixed layout bug on the sell mode (bug on Firefox based browsers)
+- **Dice Event**
+	- [x] Fixed timer/info bugs
 - **Server Quests**
 	- [x] Fixed event cool-down timers to scale based on server's speed
 	- [ ] Fixed timer cool-down after server quest attack failed [testing]
