@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -23,6 +23,8 @@
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
 - **Packages**
 	- [x] New 🔗 icon indicating a soul-bound item
+- **Forge**
+	- [x] Added button to show/hide player dolls at forge/smelt/workbench
 
 
 ### BUG FIXES
