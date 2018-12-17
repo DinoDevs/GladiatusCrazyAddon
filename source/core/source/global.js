@@ -2397,8 +2397,8 @@ var gca_global = {
 
 					// if Craps wait for update event
 					if(gca_section.mod == 'craps'){
-						gca_tools.event.addListener("craps-info-update", () => {
-							this.display();
+						gca_tools.event.addListener('craps-info-update', () => {
+							this.reset();
 						});
 						return;
 					}
@@ -2479,6 +2479,18 @@ var gca_global = {
 
 					// Display the values
 					this.crapsTimeElement.textContent = '(' + minutes + ':' + seconds + ')';
+				},
+
+				reset : function() {
+					// Clear any interval
+					if (this.countdown_interval) clearInterval(this.countdown_interval);
+					// Remove elements
+					if (this.crapsTimeElement) {
+						this.crapsTimeElement.parentNode.removeChild(this.crapsTimeElement);
+						this.crapsTimeElement = null;
+					}
+					// Re-create
+					this.display();
 				}
 			},
 

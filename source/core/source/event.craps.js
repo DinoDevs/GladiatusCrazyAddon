@@ -63,16 +63,15 @@ var gca_craps = {
 	patched : {
 		showPopup_pointer : null,
 		showPopup_wrapper : function(prizes){
+			// Call original
 			gca_craps.patched.showPopup_pointer(prizes);
-			
 			// Reset timer
 			document.getElementById("crapsCooldownTimer").getElementsByTagName('span')[0].dataset.tickerTimeLeft = 600000;
-			
-			// Stall a little
-			window.setTimeout(function(){
+			// Sync menu timer
+			window.setTimeout(() => {
 				gca_craps.save_craps_info();
-				gca_global.display.event.craps_timer.restart();
-			}, 10);
+				//gca_global.display.event.craps_timer.restart();
+			}, 0);
 		}
 	},
 
@@ -83,9 +82,9 @@ var gca_craps = {
 		if (!craps_cooldown) return;
 
 		// Save a pointer to the old function
-		gca_craps.patched.showPopup_pointer = window.showPopup;
+		this.patched.showPopup_pointer = window.showPopup;
 		// Patch function
-		window.showPopup = gca_craps.patched.showPopup_wrapper;
+		window.showPopup = this.patched.showPopup_wrapper;
 	}
 };
 
