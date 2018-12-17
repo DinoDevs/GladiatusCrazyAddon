@@ -211,7 +211,8 @@ gca_languages["en"] = {
 		// Forge
 		forge : {
 			forge_ended : "Forge ended!",
-			recraft_item : "Re-craft item"
+			recraft_item : "Re-craft item",
+			show_hide_doll : "Show/Hide player dolls"
 		},
 		
 		// Packages

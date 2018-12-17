@@ -48,9 +48,43 @@ var gca_forge = {
 			this.horreum.openAllCategoriesButton();
 			this.horreum.gatherInfo();
 		}
+		
+		// Show/Hide player doll
+		this.showHideDoll();
 
 		// Setting Link
 		gca_tools.create.settingsLink("forge");
+	},
+	
+	// Show/Hide player doll
+	showHideDoll : function(){
+		if (!document.getElementById('char'))
+			return;
+		
+		// Define top position
+		document.getElementById('content').style.position = "relative";
+		// Create button
+		let temp_element = document.createElement('input');
+		temp_element.type = "button";
+		temp_element.className = "awesome-button";
+		temp_element.value = gca_locale.get("forge", "show_hide_doll");
+		temp_element.style.position = "absolute";
+		temp_element.style.top = "5px";
+		temp_element.style.width = "300px";
+		temp_element.onclick = function(){
+			if(document.getElementById('char').style.display == "block"){
+				document.getElementById('char').style.display = "none";
+				gca_data.section.set("cache", "forge_show_char", false);
+			}else{
+				document.getElementById('char').style.display = "block";
+				gca_data.section.set("cache", "forge_show_char", true);
+			}
+		};
+		document.getElementById('char').parentNode.appendChild(temp_element);
+		
+		// Check last saved option
+		if( gca_data.section.get("cache", "forge_show_char" , false) )
+			document.getElementById('char').style.display = "block";
 	},
 	
 	// Save forge timers

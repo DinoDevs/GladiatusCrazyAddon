@@ -204,7 +204,8 @@ gca_languages["gr"] = {
 		// Forge
 		forge : {
 			forge_ended : "Η σφυρηλάτηση τελείωσε!",
-			recraft_item : "Σφυρηλάτηση ξανά"
+			recraft_item : "Σφυρηλάτηση ξανά",
+			show_hide_doll : "Εμφάνιση/Απόκρυψη χαρακτήρα παίχτη"
 		},
 
 		// Packages
