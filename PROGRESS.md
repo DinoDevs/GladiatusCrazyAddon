@@ -19,7 +19,7 @@
 	- [x] Global Arena: guild-mates appear green
 	- [x] Global Arena: more translations added
 - **Player**
-	- [x] Show the durability % of other players' items [testing]
+	- [x] Show the durability % of other players' items
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
 - **Packages**
 	- [x] New 🔗 icon indicating a soul-bound item
