@@ -625,6 +625,15 @@ var gca_tools = {
 			// If no callback, no one is listening
 			if(!callback) return;
 
+			// If event exist
+			if(this.event_list[name]){
+				this.event_list[name].push(callback);
+			}
+			// New list for this event name
+			else{
+				this.event_list[name] = [callback];
+			}
+
 			// If event once exist
 			if(typeof this.once_event[name] != "undefined"){
 				// Asynchronously call
@@ -635,17 +644,8 @@ var gca_tools = {
 						}
 					})(callback, this.once_event[name])
 				, 0);
-				return;
 			}
-
-			// If event exist
-			if(this.event_list[name]){
-				this.event_list[name].push(callback);
-			}
-			// New list for this event name
-			else{
-				this.event_list[name] = [callback];
-			}
+			
 			return;
 		},
 
