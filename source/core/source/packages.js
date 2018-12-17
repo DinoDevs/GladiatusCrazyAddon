@@ -20,6 +20,7 @@ var gca_packages = {
 		// Exit if not traveling
 		if(!document.getElementById('submenu1')) return;
 
+
 		// Set filters styling if enabled
 		(gca_options.bool("packages", "filters_layout") && 
 			this.layout.groupSideFilters());
@@ -38,6 +39,8 @@ var gca_packages = {
 		// Pagination layout
 		(gca_options.bool("global", "pagination_layout") && 
 			this.layout.pagination());
+		// Add icon to soul-bound items 
+		this.showSoulbound.init();
 		// Load more pages
 		(gca_options.bool("packages", "load_more_pages") && 
 			this.loadPackets.load());
@@ -51,6 +54,7 @@ var gca_packages = {
 		(gca_options.bool("packages", "advance_filter") && 
 			this.itemFilters.inject(this));
 		
+		// Add new category selection "Event items"
 		this.eventItemsCategory();
 
 		// Setting Link
@@ -60,7 +64,7 @@ var gca_packages = {
 	// Layout Improvements
 	layout : {
 
-		// Improve Info dipslay
+		// Improve Info display
 		compactInfo : function(){
 			// Gold info spacing
 			document.getElementById('content').getElementsByTagName('article')[0].getElementsByTagName('h2')[0].style.marginTop = "8px";
@@ -174,7 +178,7 @@ var gca_packages = {
 			},
 			apply : function(){
 				// For each
-				jQuery("#packages .ui-draggable").each(function(){	
+				jQuery("#packages .ui-draggable").each(function(){
 					// If already parsed
 					if(this.dataset.gcaFlag_itemShadow)
 						return;
@@ -182,6 +186,8 @@ var gca_packages = {
 					this.dataset.gcaFlag_itemShadow = true;
 					// Add shadow
 					gca_tools.item.shadow.add(this);
+					// Add icon to soul-bound items 
+					gca_packages.showSoulbound.addIcon(this);
 				});
 			}
 		},
@@ -674,6 +680,19 @@ var gca_packages = {
 		// Select it if needed
 		if (gca_getPage.parameter('f') == '21') {
 			document.getElementsByName('f')[0].value = 21;
+		}
+	},
+	
+	showSoulbound : {
+		init : function(){
+			var items = document.getElementById('packages_wrapper').getElementsByClassName('ui-draggable');
+			for (let i=0; i<items.length; i++) {
+				this.addIcon(items[i]);
+			}
+		},
+		addIcon : function(that){
+			if (that.dataset.soulboundTo)
+				that.parentNode.dataset.gcaSoulbound = true;
 		}
 	},
 

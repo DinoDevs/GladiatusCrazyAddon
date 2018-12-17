@@ -91,8 +91,7 @@ var gca_arena = {
 		// Add header
 		temp_element = document.createElement('h2');
 		temp_element.className = "section-header global_arena_header";
-		temp_element.textContent = gca_locale.get("arena", "global_arena_title");
-		//temp_element.style = "cursor: pointer;";
+		temp_element.textContent = gca_locale.get("arena", "global_arena_title")+" (Crazy Addon)";
 		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
 		// Add box
 		temp_element = document.createElement('section');
@@ -107,16 +106,16 @@ var gca_arena = {
 		// Add link
 		temp_element = document.createElement('a');
 		temp_element.className = "awesome-button";
-		temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗";
+		temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗"; // chain icon
 		temp_element.style = "margin-bottom: 15px;padding: 1.5px 6px;margin-right: 20px;";
 		temp_element.href = "http://gladiatuscrazyaddon.tk/index.php?mode=highscore";
 		temp_element.setAttribute("target","_blank");
-		document.getElementById('global_arena_box').appendChild(temp_element);//.getElementsByTagName('p')[0]
+		document.getElementById('global_arena_box').appendChild(temp_element);
 		// Add button
 		temp_element = document.createElement('input');
 		temp_element.type = "button";
 		temp_element.className = "awesome-button";
-		temp_element.value = gca_locale.get("arena", "global_arena_load")+" ⚔";
+		temp_element.value = gca_locale.get("arena", "global_arena_load")+" ⚔"; // swords icon
 		temp_element.style = "margin-bottom: 15px;";
 		temp_element.id = "load_global_arena";
 		temp_element.setAttribute("onclick","gca_arena_load_enemies()");
@@ -132,11 +131,11 @@ var gca_arena = {
 					try {
 						var obj = JSON.parse(content);
 					} catch (e) {
-						gca_notifications.error("Global Arena:\nSomething went wrong.");
+						gca_notifications.error( gca_locale.get("arena", "global_arena_title") + ":\n" + gca_locale.get("arena", "error_sth_went_wrong") );
 						return;
 					}
 					if (obj.error) {
-						gca_notifications.error("Global Arena:\nThe server responded with an error.");
+						gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_response") );
 						return;
 					}
 					
@@ -144,10 +143,9 @@ var gca_arena = {
 				},
 				error: function(jqXHR){
 					if (jqXHR.status == 0) {
-						gca_notifications.error("Global Arena:\nSomething blocks the access to GCA server (www.gladiatuscrazyaddon.tk).");
-					}
-					else {
-						gca_notifications.error("Global Arena:\nConnection error.");
+						gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_blocked_access", {url : gca.homepage}) );
+					}else {
+						gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_connection") );
 					}
 				}
 			});
@@ -165,45 +163,45 @@ var gca_arena = {
 					try {
 						var obj = JSON.parse(content);
 					} catch (e) {
-						gca_notifications.error("Global Arena:\nSomething went wrong.");
-						document.getElementById('alert_box').textContent = "Something went wrong.";
+						gca_notifications.error( gca_locale.get("arena", "global_arena_title") + ":\n" + gca_locale.get("arena", "error_sth_went_wrong") );
+						document.getElementById('alert_box').textContent = gca_locale.get("arena", "error_sth_went_wrong");
 						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						return;
 					}
 					
 					if(obj.error){
-						gca_notifications.error("Global Arena:\nSomething went wrong.");
-						document.getElementById('alert_box').textContent = "Something went wrong.";
+						gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_response") );
+						document.getElementById('alert_box').textContent = gca_locale.get("arena", "error_response");
 						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 					}else if(obj.status){
 						if(obj.status == 'lost'){
-							gca_notifications.error("Global Arena:\nYou lost the fight...");
+							gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\nYou lost the fight...");
 							document.getElementById('alert_box').textContent = "You lost the fight...";
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else if(obj.status == 'win'){
 							window.gca_arena_make_list(obj);
-							gca_notifications.success("Global Arena:\nYou won!");
+							gca_notifications.success( gca_locale.get("arena", "global_arena_title")+":\nYou won!");
 							document.getElementById('alert_box').textContent = "You won!";
 							document.getElementById('alert_box').style="color: rgb(37, 140, 42);";
 						}else if(obj.status == 'cooldown' && obj.cooldown){
-							gca_notifications.warning("Global Arena:\nYou are tired.\nPlease rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec.")));
+							gca_notifications.warning( gca_locale.get("arena", "global_arena_title")+":\nYou are tired.\nPlease rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec.")));
 							document.getElementById('alert_box').textContent = "You are tired. Please rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else{
-							gca_notifications.error("Global Arena:\nSomething went wrong.");
-							document.getElementById('alert_box').textContent = "Something went wrong.";
+							gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\nIt's a draw!.");
+							document.getElementById('alert_box').textContent = "You will have to attack again to define a winer.";
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}
 					}else{
-						gca_notifications.error("Global Arena:\nSomething went wrong.");
-						document.getElementById('alert_box').textContent = "Something went wrong.";
+						gca_notifications.error( gca_locale.get("arena", "global_arena_title") + ":\n" + gca_locale.get("arena", "error_sth_went_wrong") );
+						document.getElementById('alert_box').textContent = gca_locale.get("arena", "error_sth_went_wrong");
 						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 					}
 					document.getElementById('spiner_box').style.display = 'none';
 				},
 				error: function(){
-					gca_notifications.error("Global Arena:\nConnection error.");
-					document.getElementById('alert_box').textContent = "Connection error.";
+					gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_connection") );
+					document.getElementById('alert_box').textContent = gca_locale.get("arena", "error_connection");
 					document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 					
 					document.getElementById('spiner_box').style.display = 'none';
@@ -228,16 +226,16 @@ var gca_arena = {
 			// Add link
 			temp_element = document.createElement('a');
 			temp_element.className = "awesome-button";
-			temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗";
+			temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗"; // chain icon
 			temp_element.style = "margin-bottom: 15px;padding: 1.5px 6px;margin-right: 20px;";
 			temp_element.href = "http://gladiatuscrazyaddon.tk/index.php?mode=highscore";
 			temp_element.setAttribute("target","_blank");
-			document.getElementById('global_arena_box').appendChild(temp_element);//.getElementsByTagName('p')[0]
+			document.getElementById('global_arena_box').appendChild(temp_element);
 			// Add button
 			temp_element = document.createElement('input');
 			temp_element.type = "button";
 			temp_element.className = "awesome-button";
-			temp_element.value = gca_locale.get("arena", "global_arena_load")+" ⚔";
+			temp_element.value = gca_locale.get("arena", "global_arena_load")+" ⚔"; // swords icon
 			temp_element.style = "margin-bottom: 15px;";
 			temp_element.disabled = true;
 			document.getElementById('global_arena_box').appendChild(temp_element);
@@ -369,7 +367,7 @@ var gca_arena = {
 				temp_element3 = document.createElement("div");
 				temp_element3.className = "attack";
 				temp_element3.setAttribute("onclick","gca_arena_attack_enemy('"+list[i].country+"',"+list[i].server+","+list[i].id+")");
-				temp_element3.dataset.tooltip = '[[["Attack '+list[i].name+'","#fff;font-size:12px;"]]]';
+				temp_element3.dataset.tooltip = '[[["'+ gca_locale.get("arena", "attack_player", {name:list[i].name}) +'","#fff;font-size:12px;"]]]';
 				temp_element2.appendChild(temp_element3);
 			}
 			

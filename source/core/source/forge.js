@@ -48,9 +48,65 @@ var gca_forge = {
 			this.horreum.openAllCategoriesButton();
 			this.horreum.gatherInfo();
 		}
+		
+		// If char box exist
+		if (document.getElementById('char')){
+			// Show/Hide player doll
+			this.showHideDoll();
+			// If Item shadow
+			(gca_options.bool("global","item_shadow") && 
+				this.itemShadow.inject());
+		}
 
 		// Setting Link
 		gca_tools.create.settingsLink("forge");
+	},
+	
+	// Show/Hide player doll
+	showHideDoll : function(){
+		// Define top position
+		document.getElementById('content').style.position = "relative";
+		// Create button
+		let temp_element = document.createElement('input');
+		temp_element.type = "button";
+		temp_element.className = "awesome-button";
+		temp_element.value = gca_locale.get("forge", "show_hide_doll");
+		temp_element.style.position = "absolute";
+		temp_element.style.top = "5px";
+		temp_element.style.width = "300px";
+		temp_element.onclick = function(){
+			if(document.getElementById('char').style.display == "block"){
+				document.getElementById('char').style.display = "none";
+				gca_data.section.set("cache", "forge_show_char", false);
+			}else{
+				document.getElementById('char').style.display = "block";
+				gca_data.section.set("cache", "forge_show_char", true);
+			}
+		};
+		document.getElementById('char').parentNode.appendChild(temp_element);
+		
+		// Check last saved option
+		if( gca_data.section.get("cache", "forge_show_char" , false) )
+			document.getElementById('char').style.display = "block";
+	},
+	
+	// Items Shadow Inject
+	itemShadow : {
+		inject : function(){
+			this.dollItems();
+		},
+
+		// Add shadow to doll items
+		dollItems : function(){
+			// Get doll items
+			var items = document.getElementById("char").getElementsByClassName("ui-draggable");
+
+			// Add shadow to each item
+			for(var i = items.length - 1; i >= 0; i--){
+				gca_tools.item.shadow.add(items[i]);
+			}
+
+		}
 	},
 	
 	// Save forge timers
