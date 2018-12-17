@@ -521,7 +521,7 @@ var gca_global = {
 					// If not found
 					if(!life) life = [0, 0, 0];
 
-					var info = [parseInt(life[1]), parseInt(life[2]), parseInt(life[3])];
+					var info = [parseInt(life[1], 10), parseInt(life[2], 10), parseInt(life[3], 10)];
 					// Push infrond true/false if life is full/notfull
 					info.unshift( info[0] == info[1] );
 
@@ -568,7 +568,6 @@ var gca_global = {
 
 			// Timer for full life
 			timerForFullLife : function(){
-				
 				// Life tooltip div
 				var div = document.getElementById('header_values_hp_bar');
 				// Get tooltip
@@ -578,26 +577,21 @@ var gca_global = {
 				// Return if life is full
 				if(hp[1] == hp[2]) return;
 				// Get Life Points restore rate
-				var restore = parseInt(lifeTooltip[0][5][0][1].match(/(\d+)/)[1]);
+				var restore = parseInt(lifeTooltip[0][5][0][1].match(/(\d+)/)[1], 10);
 
 				// Calculate minites left to full life
-				var minutes_left = Math.ceil(((parseInt(hp[2]) - parseInt(hp[1])) * 60) / restore);
+				var minutes_left = Math.ceil(((parseInt(hp[2], 10) - parseInt(hp[1], 10)) * 60) / restore);
 				// Return if 0 minites
 				if(minutes_left <= 0) return;
 				
-				//Convert minutes to hours 00:00
-				 var hours_left = Math.floor(minutes_left / 60);          
-				 minutes_left = minutes_left % 60;
-				 
-				 if(hours_left == 0)  var hours_left_text="";
-				 else  var hours_left_text=hours_left + " " + gca_locale.get("general", "hours");
+				// Convert minutes to hours 00:00
+				var hours_left = Math.floor(minutes_left / 60);          
+				minutes_left = minutes_left % 60;
+				
+				var hours_left_text = (hours_left == 0) ? '' : hours_left + " " + gca_locale.get("general", "hours");
 				// Add data on the tooltip
-				lifeTooltip[0].push([[gca_locale.get("global", "life_recover_full") + " " +hours_left_text+ " " + minutes_left + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
+				lifeTooltip[0].push([[gca_locale.get("global", "life_recover_full") + " " + hours_left_text + " " + minutes_left + " " + gca_locale.get("general", "minutes")], ["#BA9700","#BA9700"]]);
 				gca_tools.setTooltip(div, JSON.stringify(lifeTooltip));
-				
-				
-				
-				
 			}
 		},
 
@@ -1286,7 +1280,7 @@ var gca_global = {
 					// Get gold with dots
 					var gold_txt = gca_tools.strings.trim(document.getElementById('sstat_gold_val').textContent);
 					// Parse gold in number
-					var gold = parseInt(gca_tools.strings.removeDots(gold_txt));
+					var gold = parseInt(gca_tools.strings.removeDots(gold_txt), 10);
 					
 					// If no gold or parse failed
 					if(gold == 0 || isNaN(gold)){
@@ -1736,7 +1730,7 @@ var gca_global = {
 			// On Page Scroll
 			onscroll : function(){
 				// Get scroll offset
-				var vscroll = parseInt((document.all ? document.scrollTop : window.pageYOffset));
+				var vscroll = parseInt((document.all ? document.scrollTop : window.pageYOffset), 10);
 				// For each element to be moved on the bar
 				for(var i in this.elements){
 					// If element exist
@@ -1944,7 +1938,7 @@ var gca_global = {
 				if(!gca_global.isTraveling){
 
 					// Player Level
-					var level = parseInt( document.getElementById('header_values_level').textContent );
+					var level = parseInt(document.getElementById('header_values_level').textContent, 10);
 
 					// If player over lvl 2
 					if(level > 2){
@@ -2159,13 +2153,13 @@ var gca_global = {
 				// Get Last arena attack
 				var lastAttacked = {
 					// Arena
-					arena : parseInt(gca_data.section.get("timers", 'arena_attacked', 0)),
+					arena : parseInt(gca_data.section.get("timers", 'arena_attacked', 0), 10),
 					// Grouparena
-					grouparena : parseInt(gca_data.section.get("timers", 'grouparena_attacked', 0)),
+					grouparena : parseInt(gca_data.section.get("timers", 'grouparena_attacked', 0), 10),
 					// Arena xs
-					arena_xs : parseInt(gca_data.section.get("timers", 'arena_xs_attacked', 0)),
+					arena_xs : parseInt(gca_data.section.get("timers", 'arena_xs_attacked', 0), 10),
 					// Grouparena xs
-					grouparena_xs : parseInt(gca_data.section.get("timers", 'grouparena_xs_attacked', 0))
+					grouparena_xs : parseInt(gca_data.section.get("timers", 'grouparena_xs_attacked', 0), 10)
 				};
 
 				// Create timers UI
@@ -2290,9 +2284,9 @@ var gca_global = {
 			// Display timers
 			display : function(){
 				// Time when quests will be refreshed
-				var nextAvailable = parseInt(gca_data.section.get("timers", 'quest_available', 0));
+				var nextAvailable = parseInt(gca_data.section.get("timers", 'quest_available', 0), 10);
 				// Quest free slots
-				this.quests_free_slots = parseInt(gca_data.section.get("timers", 'quests_free_slots','N/A'));
+				this.quests_free_slots = parseInt(gca_data.section.get("timers", 'quests_free_slots', '-1'), 10);
 
 				// Get menu
 				var menu;
@@ -2338,8 +2332,8 @@ var gca_global = {
 						this.questTimeElement.appendChild(font);
 						this.questTimeElement.appendChild(document.createTextNode(")"));
 					}
-					// Do i have data saved? (N/A is the default value)
-					else if(this.quests_free_slots != 'N/A'){
+					// Do i have data saved? (-1 is the default value)
+					else if(this.quests_free_slots != -1){
 						this.questTimeElement.textContent = "";
 						this.questTimeElement.appendChild(document.createTextNode("("));
 						let font = document.createElement("font");
@@ -2419,9 +2413,9 @@ var gca_global = {
 						return;
 
 					// Time when craps will be refreshed
-					var nextAvailable = parseInt(gca_data.section.get("timers", 'craps_available', 0));
+					var nextAvailable = parseInt(gca_data.section.get("timers", 'craps_available', 0), 10);
 					// Craps free toss
-					this.craps_free_toss = parseInt(gca_data.section.get("timers", 'craps_free_toss','N/A'));
+					this.craps_free_toss = parseInt(gca_data.section.get("timers", 'craps_free_toss', '-1'), 10);
 
 					// Get link
 					var link = document.getElementById('submenu1').getElementsByTagName('a')[0];
@@ -2442,7 +2436,7 @@ var gca_global = {
 							this.crapsTimeElement.textContent = "(" + gca_locale.get("global", "quest_new") + ")";
 						}
 						// Do i have data saved?
-						else if(this.craps_free_toss != 'N/A'){
+						else if(this.craps_free_toss >= 0){
 							this.crapsTimeElement.textContent = "(" + this.craps_free_toss + ")";
 						}
 					}
@@ -2521,7 +2515,7 @@ var gca_global = {
 					}
 
 					// Time when server quest is available
-					var nextAvailable = parseInt(gca_data.section.get("timers", 'server_quest_available', 0));
+					var nextAvailable = parseInt(gca_data.section.get("timers", 'server_quest_available', 0), 10);
 					// Server quest point
 					this.points = gca_data.section.get("timers", 'server_quest_points','N/A');
 					
@@ -2715,7 +2709,7 @@ var gca_global = {
 			// Display timers
 			display : function(){
 				// Time when new items will arrive
-				var itemsRefresh = parseInt(gca_data.section.get("timers", 'merchants_refresh', 0));
+				var itemsRefresh = parseInt(gca_data.section.get("timers", 'merchants_refresh', 0), 10);
 				this.text = gca_data.section.get("timers", 'merchants_refresh_text', " ");
 
 				// Time difference
@@ -3052,7 +3046,7 @@ var gca_global = {
 								let durability_per_cent = durability[1];
 								//let durability_color = durability[2]; //not used
 								let conditioning = durability[3]; //=εξευγενισμός
-								let total = (parseInt(durability_per_cent)+parseInt(conditioning));
+								let total = (parseInt(durability_per_cent, 10) + parseInt(conditioning, 10));
 								
 								if (show_durability != 0){
 									// If enabled: % or ●
@@ -4395,7 +4389,7 @@ var gca_global = {
 						}
 						// if reload wait time
 						if(powerups[i].parentNode.getElementsByClassName('powerup_cooldown').length>0)
-							status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft);
+							status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft, 10);
 						// find type
 						for(let j=0;j<5;j++){
 							if(imgs[j][i].style.backgroundImage.match('_border')){
