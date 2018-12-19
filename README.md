@@ -79,7 +79,7 @@ Gladiatus Forum GCA thread : [https://forum.gladiatus.gameforge.com/forum/thread
 
 Skarsburning's Gladiatus Fansite : [https://gladiatus.gamerz-bg.com](https://gladiatus.gamerz-bg.com) *(we love your site)*
 
-Michalus' Gladiatus Tools : [https://gladiatus-tools.pl](https://gladiatus-tools.pl) in Polish ([google translated here](https://translate.google.gr/translate?sl=pl&tl=en&u=https%3A%2F%2Fgladiatus-tools.pl))
+Michalus' Gladiatus Tools : [https://gladiatus-tools.com](https://gladiatus-tools.com)
 
 *(We would be happy to add your Gladiatus related page here too)*
 
