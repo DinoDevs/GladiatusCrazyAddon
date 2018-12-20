@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-16-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-17-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -35,6 +35,7 @@
 	- [x] Fixed new guild member detection bug
 - **Packages**
 	- [x] Learned/Unlearned scrolls detect fix
+	- [x] Packages item gold fix for amounts
 - **Arena**
 	- [x] Guild members were not highlighted in cross-server turma
 	- [x] Fixed wrong error message when Global Arena request is blocked
