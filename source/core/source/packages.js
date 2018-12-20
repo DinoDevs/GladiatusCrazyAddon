@@ -226,6 +226,7 @@ var gca_packages = {
 
 					// Get item's gold
 					var gold = parseInt(this.dataset.priceGold, 10);
+					var amount = parseInt(this.dataset.amount, 10);
 					
 					// Create text
 					var div = document.createElement("div");
@@ -237,7 +238,7 @@ var gca_packages = {
 					div.style.marginTop = "-44px";
 					div.style.width = "70px";
 					div.style.textShadow = "0px 0px 2px #000";
-					div.textContent = gca_tools.strings.insertDots(gold);
+					div.textContent = gca_tools.strings.insertDots(gold * amount);
 					var icon = document.createElement("div");
 					icon.className = "icon_gold";
 					icon.style.transform = "scale(0.8)";
