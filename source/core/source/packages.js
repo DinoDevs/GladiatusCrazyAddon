@@ -20,6 +20,7 @@ var gca_packages = {
 		// Exit if not traveling
 		if(!document.getElementById('submenu1')) return;
 
+		this.resolve();
 
 		// Set filters styling if enabled
 		(gca_options.bool("packages", "filters_layout") && 
@@ -43,7 +44,7 @@ var gca_packages = {
 		this.showSoulbound.init();
 		// Load more pages
 		(gca_options.bool("packages", "load_more_pages") && 
-			this.loadPackets.load());
+			this.loadPackets.load(this));
 		// Special category features
 		(gca_options.bool("packages", "special_category_features") && 
 			this.specialCategory.resolve(this));
@@ -59,6 +60,26 @@ var gca_packages = {
 
 		// Setting Link
 		gca_tools.create.settingsLink("packages");
+	},
+
+	info : {
+		page_last : 1,
+		page_current : 1
+	},
+
+	resolve : function() {
+		let tmp;
+		tmp = document.getElementsByClassName('paging_numbers_current');
+		if (!tmp.length) return;
+		
+		this.info.page_current = parseInt(tmp[0].textContent, 10);
+		this.info.page_last = this.info.page_current;
+
+		tmp = document.getElementsByClassName('paging_right_full');
+		if (tmp.length) {
+			tmp = tmp[0].href.match(/(?:&|&amp;)page=(\d+)$/);
+			this.info.page_last = tmp ? parseInt(tmp[1], 10) : this.info.page_current;
+		}
 	},
 
 	// Layout Improvements
@@ -303,7 +324,7 @@ var gca_packages = {
 	loadPackets : {
 
 		// Inject
-		load : function(){
+		load : function(self){
 			// Get page
 			var page = this.getPage();
 			if(page <= 0) return;
@@ -316,7 +337,7 @@ var gca_packages = {
 			// Patch ajax responce
 			this.patchAjaxResponce();
 			// Load pages
-			this.loadPages(page, pages, urlParams)
+			this.loadPages(page, pages, urlParams, self.info);
 		},
 
 		// Get Page
@@ -410,17 +431,16 @@ var gca_packages = {
 		},
 
 		// Load more pages
-		loadPages : function(page, pages, urlParams){
+		loadPages : function(page, pages, urlParams, info){
 			// Pages to load
 			this.pageLoadArray = [];
 
 			// Create url object for each page
-			var urlObj;
-			for(var i=1; i<pages; i++){
+			for (let i = 1; i < pages && page + i <= info.page_last; i++) {
 				// Init url object for this page
-				urlObj = {};
+				let urlObj = {};
 				// Copy url parametes
-				for (param in urlParams) {
+				for (let param in urlParams) {
 					if (urlParams.hasOwnProperty(param)) {
 						urlObj[param] = urlParams[param];
 					}
@@ -431,8 +451,31 @@ var gca_packages = {
 				this.pageLoadArray.push(urlObj);
 			}
 
-			// Load page auter page
-			this.loadPage();
+			// Create place holders for each page
+			let wrapper = document.getElementById('packages');
+			for (let i = 0; i < this.pageLoadArray.length; i++) {
+				let page_number = this.pageLoadArray[i].page;
+				let page_spot = document.createElement('div');
+				page_spot.id = 'gca-page-spot-' + page_number;
+				wrapper.appendChild(page_spot);
+				for (let j = 0; j < 15; j++) {
+					// packageItem
+					let ghost = document.createElement('div');
+					ghost.className = 'packageItem gca-ghost-page-' + page_number;
+					let loading = document.createElement('div');
+					loading.className = 'loading';
+					loading.style.height = '100%';
+					loading.style.width = '100%';
+					loading.style.backgroundPosition = 'center center';
+					ghost.appendChild(loading);
+					wrapper.appendChild(ghost);
+				}
+			}
+
+			// Load pages in parallel (max 4 workers)
+			for (var i = 1; i < pages && i <= 4; i++) {
+				this.loadPage();
+			}
 		},
 
 		// Load a page
@@ -444,35 +487,46 @@ var gca_packages = {
 			// Get page
 			var page = this.pageLoadArray.shift();
 
-			// Save instance
-			var that = this;
-
 			// Get packets
-			jQuery.get(gca_getPage.link(page), function(content){
+			jQuery.get(gca_getPage.link(page), (content) => {
 				// Get page number
 				var responce_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
 				if(responce_page) responce_page = parseInt(responce_page[1], 10);
 				else responce_page = -1;
 
 				// Validate responce page
-				if(page.page != responce_page)
+				if(page.page != responce_page) {
+					this.removeGhosts(page.page);
 					return;
+				}
 
 				// Parse items form content
 				var items = content.match(/<div\s+class="packageItem">[^<]*<input\s+[^>]+>[^<]*<div[^>]+>[^<]*<\/div>[^<]*<div[^>]*>[^<]*<div[^>]*>[^<]*<\/div>[^<]*<\/div>[^<]*<div>[^<]*[^<]*<span[^>]*>[^<]*<\/span>[^<]*<\/div>[^<]*<\/div>/gim);
 				if(items == null) return;
 				// For each item
-				for (var i=0; i<items.length; i++){
+				for (let i = 0; i < items.length; i++) {
 					// Insert item on page
-					that.insertPacket({newPackage : items[i]});
+					this.insertPacket({
+						page : page.page,
+						newPackage : items[i]
+					});
 				}
+				this.removeGhosts(page.page);
 
 				// Fire page load event
 				gca_tools.event.fire('packages_page_loaded');
 
 				// Load next page
-				that.loadPage();
+				this.loadPage();
 			});
+		},
+
+		removeGhosts : function(page) {
+			// Remove ghosts
+			let ghosts = document.getElementsByClassName('gca-ghost-page-' + page);
+			for (let i = ghosts.length - 1; i >= 0; i--) {
+				ghosts[i].parentNode.removeChild(ghosts[i]);
+			}
 		},
 
 		// Insert Packet
@@ -480,7 +534,8 @@ var gca_packages = {
 		insertPacket : function(data){
 			var item = jQuery(data.newPackage);
 			var item_dragable = item.find(".ui-draggable");
-			jQuery("#packages").append(item);
+			//jQuery("#packages").append(item);
+			jQuery(item).insertBefore("#gca-page-spot-" + data.page);
 			window.DragDrop.makeDraggable(item_dragable);
 			item_dragable.removeClass("ui-droppable");
 			this.updatePagePriceInGold(item_dragable, +1);
