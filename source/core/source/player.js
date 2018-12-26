@@ -370,7 +370,7 @@ var gca_player = {
 		let i = 0;
 		while (items.length > i) {
 			// Check if item and if durability not visible
-			if (items[i].dataset.itemId && !items[i].dataset.durability) {
+			if (items[i].dataset.itemId && items[i].dataset.contentTypeAccept != '16384' && !items[i].dataset.durability) {
 				// Get data from item hash
 				let data = gca_tools.item.hash(items[i]);
 				
