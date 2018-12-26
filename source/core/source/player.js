@@ -367,57 +367,53 @@ var gca_player = {
 		// Item list
 		let items = document.getElementById('char').getElementsByClassName('ui-droppable');
 		
-		// Define variable
-		let data, durability, q, c, level;
-		
 		let i = 0;
-		while (items[i]) {
-			if(items[i].dataset.itemId != undefined){
-				// if durability not visible
-				if(items[i].dataset.durability == undefined){
-					// Get data from item hash
-					hash_data = gca_tools.item.hash(items[i]);
-					
-					// Calculate factors
-					level = items[i].dataset.level;
-					q = (items[i].dataset.quality!=undefined)?quality_factor[items[i].dataset.quality]:quality_factor[0];
-					c = category_factor[hash_data.category-1][hash_data.subcategory-1];
-					
-					// 100% durability
-					max_durability = Math.ceil(q * level * c);
-					
-					// Calculate current durability
-					// 0% - 100%
-					if (max_durability<hash_data.durability){
-						durability = 100 + Math.round( (hash_data.durability - max_durability) / (max_durability * 0.25) * 100 );
-					
-					// 100% - 200%
-					}else{
-						durability = Math.round( hash_data.durability / max_durability * 100 );
-					}
-					
-					// If enabled: % or ●
-					if(show_durability==1){
-						items[i].dataset.durability = durability + "%";
-					}else{
-						items[i].dataset.durability = '⚒';//●
-					}
-					
-					// Colors
-					if(durability > 100){
-						items[i].dataset.durabilityColor = 1;
-					}else if(durability>=75){
-						items[i].dataset.durabilityColor = 2;
-					}else if(durability>=50){
-						items[i].dataset.durabilityColor = 3;
-					}else if(durability>=25){
-						items[i].dataset.durabilityColor = 4;
-					}else{
-						items[i].dataset.durabilityColor = 5;
-					}
-					
-					//console.log(hash_data.category + "("+level+"): "+ durability+"%" + ", c: "+ c + ", q: "+ q + ", Max: "+max_durability);
+		while (items.length > i) {
+			// Check if item and if durability not visible
+			if (items[i].dataset.itemId && !items[i].dataset.durability) {
+				// Get data from item hash
+				let data = gca_tools.item.hash(items[i]);
+				
+				// Calculate factors
+				let level = items[i].dataset.level;
+				let q = items[i].dataset.quality ? quality_factor[items[i].dataset.quality] : quality_factor[0];
+				let c = category_factor[data.category - 1][data.subcategory - 1];
+				
+				// 100% durability
+				let max_durability = Math.ceil(q * level * c);
+				
+				// Calculate current durability
+				// 0% - 100%
+				let durability;
+				if (max_durability < data.durability) {
+					durability = 100 + Math.round((data.durability - max_durability) / (max_durability * 0.25) * 100);
 				}
+				// 100% - 200%
+				else {
+					durability = Math.round(data.durability / max_durability * 100);
+				}
+				
+				// If enabled: % or ●
+				if (show_durability == 1) {
+					items[i].dataset.durability = durability + "%";
+				} else {
+					items[i].dataset.durability = '⚒';//●
+				}
+				
+				// Colors
+				if (durability > 100) {
+					items[i].dataset.durabilityColor = 1;
+				} else if(durability >= 75) {
+					items[i].dataset.durabilityColor = 2;
+				} else if(durability >= 50) {
+					items[i].dataset.durabilityColor = 3;
+				} else if(durability >= 25) {
+					items[i].dataset.durabilityColor = 4;
+				} else {
+					items[i].dataset.durabilityColor = 5;
+				}
+				
+				//console.log(data.category + "("+level+"): "+ durability+"%" + ", c: "+ c + ", q: "+ q + ", Max: "+max_durability);
 			}
 			i++;
 		}
