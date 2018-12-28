@@ -549,19 +549,19 @@ var gca_tools = {
 						category : hash[1],
 						subcategory : hash[2],
 						price : hash[3],
-						//unknown_part_4 : hash[4],
+					//unknown_part_4 : hash[4],
 						prefix : hash[5],
 						suffix : hash[6],
-						//unknown_part_7 : hash[7],
+					//unknown_part_7 : hash[7],
 						sold : hash[8],
-						//unknown_part_9 : hash[9],
-						//unknown_part_10 : hash[10],
-						//unknown_part_11 : hash[11],
-						//unknown_part_12 : hash[12],
-						//unknown_part_13 : hash[13],
-						//unknown_part_14 : hash[14],
+					//unknown_part_9 : hash[9],
+					//unknown_part_10 : hash[10],
+					//unknown_part_11 : hash[11], // enchant_1_level
+					//unknown_part_12 : hash[12],
+					//enchant_2_timer : hash[13], // new Date(x * 1000)
+						quality : hash[14],
 						durability : hash[15],
-						//unknown_part_16 : hash[16],
+					//unknown_part_16 : hash[16],
 						soulbound : hash[17]
 					};
 
