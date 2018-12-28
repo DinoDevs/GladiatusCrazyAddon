@@ -7,6 +7,8 @@
 var gca_markets = {
 	inject : function(){
 		// Check for errors
+		if(gca_section.submod === 'control')
+			return;
 		if(!document.getElementById("content"))
 			return;
 		
