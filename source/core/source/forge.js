@@ -64,29 +64,31 @@ var gca_forge = {
 	
 	// Show/Hide player doll
 	showHideDoll : function(){
-		// Define top position
-		document.getElementById('content').style.position = "relative";
 		// Create button
-		let temp_element = document.createElement('input');
-		temp_element.type = "button";
-		temp_element.className = "awesome-button";
-		temp_element.value = gca_locale.get("forge", "show_hide_doll");
-		temp_element.style.position = "absolute";
-		temp_element.style.top = "5px";
-		temp_element.style.width = "300px";
-		temp_element.onclick = function(){
-			if(document.getElementById('char').style.display == "block"){
-				document.getElementById('char').style.display = "none";
+		let btn = document.createElement('input');
+		btn.type = "button";
+		btn.className = "awesome-button";
+		btn.value = gca_locale.get("forge", "show_hide_doll");
+		btn.style.position = "absolute";
+		btn.style.marginTop = "-30px";
+		btn.style.width = "300px";
+		btn.addEventListener('click', () => {
+			let char = document.getElementById('char');
+			if (char.style.display == "block"){
+				char.style.display = "none";
 				gca_data.section.set("cache", "forge_show_char", false);
-			}else{
-				document.getElementById('char').style.display = "block";
+			}
+			else {
+				char.style.display = "block";
 				gca_data.section.set("cache", "forge_show_char", true);
 			}
-		};
-		document.getElementById('char').parentNode.appendChild(temp_element);
+		}, false);
+
+		var doll = document.getElementById('plDoll');
+		doll.parentNode.insertBefore(btn, doll);
 		
 		// Check last saved option
-		if( gca_data.section.get("cache", "forge_show_char" , false) )
+		if (gca_data.section.get("cache", "forge_show_char" , false))
 			document.getElementById('char').style.display = "block";
 	},
 	
