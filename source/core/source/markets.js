@@ -98,7 +98,7 @@ var gca_markets = {
 				if (typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined") {
 					if(rows[i].getElementsByTagName("div")[0].dataset.soulboundTo != gca_section.playerId){// not to you
 						rows[i].style.backgroundColor = "rgba(255, 0, 0,0.2)";
-						document.buyForm[i-1].addEventListener("submit", function(e){
+						document.buyForm[i-1].addEventListener("submit", function(event){
 							if (
 								!confirm(
 									gca_locale.get("markets", "item_is_soulbound") + "\n" +
