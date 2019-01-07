@@ -13,12 +13,16 @@ var gca_forge = {
 		// Forge
 		if(gca_section.submod == null || gca_section.submod == 'forge'){
 			this.saveForgeTimers();
+			this.detectForgeEvents();
 			
 			(gca_options.bool("forge","show_levels") &&
 			this.showPrefixSufixBaseLevels());
 			
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
+
+			// Add gladiatus tools links
+			this.gladiatusTools.inject();
 			
 			//this.recraft.inject();
 		}
@@ -26,12 +30,21 @@ var gca_forge = {
 		// Smelt
 		else if(gca_section.submod == 'smeltery') {
 			this.saveSmeltTimers();
+			this.detectForgeEvents();
+
+			// Add gladiatus tools links
+			this.gladiatusTools.inject();
 		}
 
 		// Repair
 		else if(gca_section.submod == 'workbench') {
+			this.detectForgeEvents();
+
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
+
+			// Add gladiatus tools links
+			this.gladiatusTools.inject();
 		}
 
 		// Horreum
@@ -60,6 +73,66 @@ var gca_forge = {
 
 		// Setting Link
 		gca_tools.create.settingsLink("forge");
+	},
+
+	// Setup events
+	detectForgeEvents : function() {
+		if (!document.getElementById('forge_infobox')) return;
+
+		// Timer to delay event fire
+		var atomic = null;
+		// Event handler
+		var handler = () => {
+			let active = 0;
+			let tabs = document.getElementById('forge_nav').getElementsByTagName('div');
+			for (let i = 0; i < tabs.length; i++) {
+				if (tabs[i].className.match('tabActive')) {
+					active = i;
+					break;
+				}
+			}
+			let info = window.slotsData[active];
+			let item = {
+				prefix : 0,
+				base : '0-0',
+				suffix : 0
+			};
+			if (info.item) {
+				item.prefix = info.item.prefix || 0;
+				item.base = (info.item.image.match(/item-i-(\d+-\d+)/) || ['','0-0'])[1];
+				item.suffix = info.item.prefix || 0;
+			}
+			gca_tools.event.fireOnce('forge-infobox-update', {
+				tab : active,
+				info : info,
+				item : {
+					prefix : item.prefix,
+					base : item.base,
+					suffix : item.prefix
+				}
+			});
+		}
+		// Setup element observer
+		var observer = new MutationObserver((mutationsList) => {
+			for (let mutation of mutationsList) {
+				if (mutation.type == 'childList') {
+					// Fire only 1 time 
+					clearTimeout(atomic);
+					atomic = setTimeout(handler, 1);
+					break;
+				}
+			}
+		});
+		// Observe info box
+		observer.observe(
+			document.getElementById('forge_infobox'),// forge_infobox or crafting_infos
+			{attributes: false, childList: true, subtree: true}
+		);
+
+		// If already
+		if (document.getElementById('forge_item_name')) {
+			handler();
+		}
 	},
 	
 	// Show/Hide player doll
@@ -163,7 +236,7 @@ var gca_forge = {
 			options[i].textContent += " ("+options[i].dataset.level+"lvl)";
 		}
 		
-		var levels =[
+		var levels = [
 			1,1,1,2,3,3,4,4,4,5,6,6,2,7,8,9,8,9,5,7,//Weapons
 			1,2,3,4,5,6,7,8,9,10,3,5,//Shields
 			1,1,2,3,4,5,6,7,8,9,10,4,//Armor
@@ -182,104 +255,142 @@ var gca_forge = {
 	// Shortcuts for materials in packages and market
 	sourceLinks : {
 		inject : function(){
-			document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks=-1;
-			document.getElementById('forge_nav').addEventListener("click", function(event) {
-				document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks = -1;
-				//console.log("Clicked");
+			// Detect changes
+			gca_tools.event.addListener('forge-infobox-update', (data) => {
+				this.updateLinks(data);
 			});
-			this.repeat();
 		},
-		repeat : function(){
-			if (document.getElementsByClassName('crafting_requirements').length > 0 && typeof document.getElementById('forge_nav').getElementsByClassName('tabActive')[0] !== "undefined" && document.getElementById("slot-opened").className != "hidden") {
-				var tab = document.getElementById('forge_nav').getElementsByClassName('tabActive')[0].className.match(/forge_(opened|closed) (\d) /i)[2];
-				
-				if (document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks !== tab) {
-					document.getElementsByClassName('crafting_requirements')[0].dataset.runlinks = tab;
-					
-					var li = document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('li');
-					var name,linkBox;
-					var all_names="";
-					var msg="";
-					var links=[];
-					for (let i = 0; i < li.length; i++) {
-						//name = encodeURIComponent(li[i].getElementsByTagName('div')[0].title);
-						name = window.slotsData[tab].formula.needed[Object.keys(window.slotsData[tab].formula.needed)[i]].name;
-						if(document.getElementsByClassName('forge_amount')[i].style.backgroundColor!="greenyellow"){
-							all_names+=name.split(" ")[name.split(" ").length-1]+" ";
-							msg+="\n - "+name+": "+(parseInt(document.getElementsByClassName('forge_amount')[i].getElementsByClassName('forge_setpoint')[0].textContent,10)-parseInt(document.getElementsByClassName('forge_amount')[i].getElementsByClassName('forge_actual_value')[0].textContent,10));
-						}
-						linkBox = document.createElement('div');
-						//linkBox.className = 'forge_amount';
-						linkBox.style = 'background-color: #bba86e;font-size: 14px;position: absolute;width: 16px;margin-top: -46px;margin-left: 32px;line-height: 23px;';
-						li[i].appendChild(linkBox);
-						links[0] = document.createElement('a');
-						links[0].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"packages","qry":name,"&f":"18"})+"';");
-						links[0].title = document.getElementById("menue_packages").title+": "+name;
-						links[0].textContent = '⧉ ';
-						links[0].style = "text-decoration:none;cursor:pointer;";
-						linkBox.appendChild(links[0]);
-						links[1] = document.createElement('a');
-						links[1].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"market","qry":name,"&f":"18"})+"';");
-						links[1].title = ((document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].href.match("mod=market"))?document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].textContent+": ":"") + name;
-						links[1].textContent = ' ⚖';
-						links[1].style = "text-decoration:none;cursor:pointer;";
-						linkBox.appendChild(links[1]);
-					}
-					
-					if (msg.length > 0) {
-						var most_probable = 0;
-						var most_probable_color = "";
-						var qualities = document.getElementById('forge_qualities').getElementsByTagName('li');
-						for (let i = 0; i < qualities.length; i++) {
-							if (qualities[i].textContent.match(/(\d+)%/)[1]>most_probable) {
-								most_probable = qualities[i].textContent.match(/(\d+)%/)[1];
-								most_probable_color = qualities[i].textContent;
-							}
-						}
-						
-						msg = document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('legend')[0].textContent+" ("+most_probable_color+")"+msg;
-					}
-					
-					linkBox = document.createElement('div');
-					linkBox.style = 'width: 16px;font-size: 12px;position: absolute;margin-top: -46px;line-height: 16px;';
-					document.getElementsByClassName('crafting_requirements')[0].getElementsByTagName('ul')[0].appendChild(linkBox);
-					links[0] = document.createElement('a');
-					links[0].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"packages","qry":all_names,"&f":"18"})+"';");
-					links[0].title = document.getElementById("menue_packages").title+": "+all_names;
-					links[0].textContent = ' ⧉ ';
-					links[0].style = "text-decoration:none;cursor:pointer;";
-					linkBox.appendChild(links[0]);
-					links[1] = document.createElement('a');
-					links[1].setAttribute("onclick","document.location.href='"+gca_getPage.link({"mod":"market","qry":all_names,"&f":"18"})+"';");
-					links[1].title = ((document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].href.match("mod=market"))?document.getElementById("submenu1").getElementsByClassName("menuitem")[document.getElementById("submenu1").getElementsByClassName("menuitem").length-2].textContent+": ":"") + all_names;
-					links[1].textContent = ' ⚖ ';
-					links[1].style = "text-decoration:none;cursor:pointer;";
-					linkBox.appendChild(links[1]);
-					links[2] = document.createElement('a');
-					links[2].title = gca_locale.get("global", "message_guild_write");
-					links[2].textContent = ' ✉ ';
-					links[2].style = "text-decoration:none;cursor:pointer;";
-					links[2].dataset.msg = msg;
-					links[2].addEventListener('click', function(){
-						// Get message
-						var msg = this.dataset.msg;
-						// Dont send if no materials are needed
-						if(msg.length == 0) return;
-						// Send message
-						var send = gca_global.background.guildMessage.send(msg, false, function(ok){
-							gca_notifications.error(gca_locale.get("global", (ok ? "message_sent_success" : "message_sent_failed")));
-						});
-						if(!send){
-							gca_notifications.error(gca_locale.get("global", "no_data"));
-						}
-					}, false);
-					linkBox.appendChild(links[2]);
+		updateLinks : function (data){
+			var requirements = document.getElementsByClassName('crafting_requirements');
+			var li = requirements[0].getElementsByTagName('li');
+
+			// Check if already loaded
+			if (li.length == 0 || li[0].dataset.linksLoaded) return;
+			li[0].dataset.linksLoaded = true;
+
+			// Locales
+			var locale_packages = document.getElementById("menue_packages").title + ': ';
+			var locale_market = document.getElementById("submenu1").getElementsByClassName("menuitem");
+			locale_market = locale_market[locale_market.length - 2].href.match('mod=market') ? locale_market[locale_market.length - 2].textContent + ': ': '';
+
+			var all_names = "";
+			var guild_msg = '';
+
+			var amounts = document.getElementsByClassName('forge_amount');
+			for (let i = 0; i < li.length; i++) {
+				let name = data.info.formula.needed[Object.keys(data.info.formula.needed)[i]].name;
+				if (amounts[i].style.backgroundColor != 'greenyellow'){
+					all_names += name.split(" ")[name.split(" ").length-1]+" ";
+					guild_msg += "\n - "+name+": "+(parseInt(amounts[i].getElementsByClassName('forge_setpoint')[0].textContent, 10) - parseInt(amounts[i].getElementsByClassName('forge_actual_value')[0].textContent, 10));
 				}
+				let box = document.createElement('div');
+				box.className = 'gca_forge_material_links';
+				li[i].appendChild(box);
+				let link = document.createElement('a');
+				link.title = locale_packages + name;
+				link.href = gca_getPage.link({"mod":"packages","qry":name,"&f":"18"});
+				link.textContent = '⧉ ';
+				box.appendChild(link);
+				link = document.createElement('a');
+				link.title = locale_market + name;
+				link.href = gca_getPage.link({"mod":"market","qry":name,"&f":"18"});
+				link.textContent = ' ⚖';
+				box.appendChild(link);
 			}
 			
-			setTimeout(() => {
-				this.repeat();
-			}, 500);
+			if (guild_msg.length > 0) {
+				let most_probable = 0;
+				let most_probable_color = "";
+				let qualities = document.getElementById('forge_qualities').getElementsByTagName('li');
+				for (let i = 0; i < qualities.length; i++) {
+					if (parseInt(qualities[i].textContent.match(/(\d+)%/)[1], 10) > most_probable) {
+						most_probable = qualities[i].textContent.match(/(\d+)%/)[1];
+						most_probable_color = qualities[i].textContent;
+					}
+				}
+
+				guild_msg = data.info.item.name + '\n' + requirements[0].getElementsByTagName('legend')[0].textContent + (most_probable_color.length ? ' (' + most_probable_color + ')' : '') + guild_msg;
+			}
+			
+			let fieldset = requirements[0].getElementsByTagName('fieldset')[0];
+			let box = fieldset.getElementsByClassName('gca_forge_materials_links');
+			if (box.length) box[0].parentElement.removeChild(box[0]);
+
+			box = document.createElement('div');
+			box.className = 'gca_forge_materials_links';
+			fieldset.appendChild(box);
+			let link = document.createElement('a');
+			link.href = gca_getPage.link({"mod":"packages","qry":all_names,"&f":"18"});
+			link.title = locale_packages + all_names;
+			link.textContent = ' ⧉ ';
+			box.appendChild(link);
+			link = document.createElement('a');
+			link.href = gca_getPage.link({"mod":"market","qry":all_names,"&f":"18"});
+			link.title = locale_market + all_names;
+			link.textContent = ' ⚖ ';
+			box.appendChild(link);
+			link = document.createElement('a');
+			link.title = gca_locale.get("global", "message_guild_write");
+			link.textContent = ' ✉ ';
+			link.addEventListener('click', () => {this.sendMessageModal(guild_msg);}, false);
+			box.appendChild(link);
+		},
+
+		sendMessageModal : function(message) {
+			if (!this.info) {
+				this.info = {};
+
+				let wrapper = document.createElement('div');
+				wrapper.style.textAlign = 'center';
+				this.info.textarea = document.createElement('textarea');
+				this.info.textarea.style.width = '100%';
+				this.info.textarea.style.height = '80px';
+				this.info.textarea.style.marginBottom = '18px';
+				wrapper.appendChild(this.info.textarea);
+
+				let btn_cancel = document.createElement('input');
+				btn_cancel.className = 'awesome-button';
+				btn_cancel.type = 'button';
+				btn_cancel.value = gca_locale.get('general', 'cancel');
+				btn_cancel.style.width = '80px';
+				btn_cancel.style.padding = '5px';
+				btn_cancel.style.margin = '0px 10px';
+				wrapper.appendChild(btn_cancel);
+
+				let btn_send = document.createElement('input');
+				btn_send.className = 'awesome-button';
+				btn_send.type = 'button';
+				btn_send.value = gca_locale.get('global', 'message_send');
+				btn_send.style.width = '80px';
+				btn_send.style.padding = '5px';
+				btn_send.style.margin = '0px 10px';
+				wrapper.appendChild(btn_send);
+
+				// Construct modal
+				this.info.modal = new gca_tools.Modal(gca_locale.get('global', 'message_guild_write'), wrapper, () => {
+					// Get message
+					let message = this.info.textarea.value;
+					if(message.length == 0) return;
+					// Send message
+					let send = gca_global.background.guildMessage.send(message, false, (ok) => {
+						gca_notifications.error(gca_locale.get('global', (ok ? 'message_sent_success' : 'message_sent_failed')));
+					});
+					if (!send) {
+						gca_notifications.error(gca_locale.get('global', 'no_data'));
+					}
+				}, () => {});
+
+				// Buttons handlers
+				btn_send.addEventListener('click', () => {
+					this.info.modal.confirm();
+				}, false);
+				btn_cancel.addEventListener('click', () => {
+					this.info.modal.cancel();
+				}, false);
+			}
+			
+			this.info.textarea.value = message;
+			this.info.modal.show();
 		}
 	},
 	
@@ -325,7 +436,6 @@ var gca_forge = {
 	},
 
 	horreum : {
-
 		clickToSelectMaterial : function() {
 			let resource_type = document.getElementById('resource-type');
 			let resource_quality = document.getElementById('resource-quality');
@@ -551,6 +661,57 @@ var gca_forge = {
 					removed : removed
 				}
 			}
+		}
+	},
+
+	gladiatusTools : {
+		inject : function() {
+			// Generate server url
+			this.url = 'https://' + gca_section.country + '.gladiatus-tools.com/';
+			
+			// Detect changes
+			gca_tools.event.addListener('forge-infobox-update', (data) => {
+				this.updateItemLink(data);
+			});
+
+			// Show links to gladiatus tools
+			this.attribution();
+		},
+
+		updateItemLink : function(data) {
+			let name = document.getElementById('forge_item_name');
+			let link = name.getElementsByTagName('a')[0];
+
+			// Link exists
+			if (link) return;
+
+			// Create item link
+			let wrapper = name.getElementsByTagName('span')[0];
+			link = document.createElement('a');
+			link.setAttribute('target', '_blank');
+			link.setAttribute('rel', 'noopener noreferrer');
+			link.textContent = wrapper.textContent;
+			link.title = 'Gladiatus Tools';
+			wrapper.textContent = '';
+			wrapper.appendChild(link);
+			link.href = this.url + 'equipment?item=' + data.item.prefix + ',' + data.item.base + ',' + data.item.suffix;
+		},
+
+		attribution : function() {
+			// Create info box
+			let info = document.createElement('div');
+			info.id = 'gca_forge_links';
+
+			// Add links
+			let link = document.createElement('a');
+			link.setAttribute('target', '_blank');
+			link.setAttribute('rel', 'noopener noreferrer');
+			link.textContent = this.url;
+			link.href = this.url;
+			info.appendChild(link);
+
+			let forgeInfo = document.getElementById('forge_infobox');
+			forgeInfo.parentNode.insertBefore(info, forgeInfo.nextSibling);
 		}
 	}
 };
