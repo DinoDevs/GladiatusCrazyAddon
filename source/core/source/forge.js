@@ -83,15 +83,8 @@ var gca_forge = {
 		var atomic = null;
 		// Event handler
 		var handler = () => {
-			let active = 0;
-			let tabs = document.getElementById('forge_nav').getElementsByTagName('div');
-			for (let i = 0; i < tabs.length; i++) {
-				if (tabs[i].className.match('tabActive')) {
-					active = i;
-					break;
-				}
-			}
-			let info = window.slotsData[active];
+			let tab = window.activeForgeBox;
+			let info = window.slotsData[tab];
 			let item = {
 				prefix : 0,
 				base : '0-0',
@@ -103,7 +96,7 @@ var gca_forge = {
 				item.suffix = info.item.prefix || 0;
 			}
 			gca_tools.event.fireOnce('forge-infobox-update', {
-				tab : active,
+				tab : tab,
 				info : info,
 				item : {
 					prefix : item.prefix,
