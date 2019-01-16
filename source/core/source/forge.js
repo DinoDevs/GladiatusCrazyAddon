@@ -93,7 +93,7 @@ var gca_forge = {
 			if (info.item) {
 				item.prefix = info.item.prefix || 0;
 				item.base = (info.item.image.match(/item-i-(\d+-\d+)/) || ['','0-0'])[1];
-				item.suffix = info.item.prefix || 0;
+				item.suffix = info.item.suffix || 0;
 			}
 			gca_tools.event.fireOnce('forge-infobox-update', {
 				tab : tab,
@@ -101,7 +101,7 @@ var gca_forge = {
 				item : {
 					prefix : item.prefix,
 					base : item.base,
-					suffix : item.prefix
+					suffix : item.suffix
 				}
 			});
 		}
