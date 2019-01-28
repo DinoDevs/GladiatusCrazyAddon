@@ -7,6 +7,9 @@
 var gca_global = {
 	// Pre Inject code
 	preinject : function(){
+		// Resolve Game Modes
+		this.gameModePreResolve();
+
 		// If Event bar was active
 		(gca_data.section.get("cache", "event_bar_active", 0) && (gca_options.bool("global","shortcuts_bar") || gca_options.bool("global","auction_status_bar") || gca_options.bool("global","extended_hp_xp_info")) &&
 			this.display.event_bar_move.preload());
@@ -28,10 +31,15 @@ var gca_global = {
 		// If Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
 			this.display.inventoryOptionsGroup.preload());
+		// If mobile add css class
+		if (this.isMobile) {
+			if (document.documentElement.className.length)
+				document.documentElement.className += " ";
+			document.documentElement.className += "gca_mobile_device";
+		}
 	},
 	// Inject Code
 	inject : function(){
-
 		// Resolve Game Modes
 		this.gameModeResolve();
 		// Resolve Page direction
@@ -187,6 +195,13 @@ var gca_global = {
 	},
 
 	// Game Modes Check
+	gameModePreResolve : function(){
+		this.isMobile = false;
+		// If android
+		if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
+			this.isMobile = true;
+		}
+	},
 	gameModeResolve : function(){
 		// Default Values
 		this.isLoggedIn = true;
@@ -236,12 +251,6 @@ var gca_global = {
 
 		if(document.getElementById("banner_event_link")){
 			this.isEvent.bar = true;
-		}
-
-		this.isMobile = false;
-		// If android
-		if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
-			this.isMobile = true;
 		}
 	},
 
