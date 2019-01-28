@@ -26,7 +26,6 @@ gca_languages["en"] = {
 
 		// General
 		general : {
-
 			// Days
 			days : "day(s)",
 			// Minutes
@@ -123,6 +122,12 @@ gca_languages["en"] = {
 			// Drop items to see materials to repair feature
 			drop_item_see_materials_repair : "Drop an item to see the materials needed to repair it",
 			workbench_6th_slot_empty : "Workbench\'s 6th slot needs to be empty",
+
+			// More player info
+			more_player_info : "More player information",
+			can_use_max_item_level : "Can use items up to {{max}} level.",
+			can_see_market_max_item_level : "Can see items on the market up to {{max}} level.",
+			can_see_auction_item_levels : "Can see items on the auction from {{min}} to {{max}} level."
 		},
 
 		// Pantheon section

@@ -17,12 +17,18 @@ var gca_player = {
 		// Target Players List
 		this.targetList.prepare(this);
 		
+		// Show more buffs (if any)
 		// TODO : add option
+		// TODO : move CSS to the style file
 		this.show_buffs();
 		
 		// Show enemy durability
 		(gca_data.section.get("global", "show_durability", 0) > 0 &&
 			this.show_durability());
+
+		// Show more info about the player
+		// TODO : add option
+		this.more_info.show();
 	},
 
 	// Resolve Page
@@ -170,17 +176,17 @@ var gca_player = {
 		}
 		
 		// Buffs array
-		var buffs = [];// category (1:oils, 2:max, 3:enisxiseis, 4:critical), stat(number), value 
+		var buffs = [];// category (1:oils, 2:max, 3:enchantments, 4:critical), stat(number), value 
 		
 		// Find Oil buffs
 		var droppables = document.getElementById('char').getElementsByClassName('ui-droppable');
 		for (let i = 1; i < droppables.length;i++) {
 			if (typeof droppables[i].dataset.tooltip !== 'undefined') {
 				if (droppables[i].dataset.tooltip.match(/\+(\d+) ([^\s]+)  /i) ){
-					var buff = droppables[i].dataset.tooltip.match(/\+(\d+) ([^\s]+)  /i);
+					let buff = droppables[i].dataset.tooltip.match(/\+(\d+) ([^\s]+)  /i);
 					// Find the stat
 					let j = 0;
-					var found = false;
+					let found = false;
 					while (stats_translations[j] && !found) {
 						if (stats_translations[j] == JSON.parse('"'+buff[2]+'"')) {
 							buff[2] = j;
@@ -189,7 +195,7 @@ var gca_player = {
 						j++;
 					}
 					// Add to buffs
-					if(found) buffs.push([1,buff[2],buff[1]]);
+					if(found) buffs.push([1, buff[2], buff[1]]);
 				}
 			}
 		}
@@ -264,7 +270,7 @@ var gca_player = {
 				[''],
 				['']
 			],
-			[// enisxiseis
+			[// enchantments
 				['item-i-13-1'],
 				['item-i-13-2'],
 				['item-i-13-3'],
@@ -323,9 +329,9 @@ var gca_player = {
 			
 			document.getElementById("buffbar_old").getElementsByClassName('buff_old')[i-1].className = 'buff_old buffende';
 		}
-		
 	},
 	
+	// Analyze items and show there durability
 	show_durability : function() {
 		if(!document.getElementById('content'))
 			return;
@@ -416,6 +422,65 @@ var gca_player = {
 				//console.log(data.category + "("+level+"): "+ durability+"%" + ", c: "+ c + ", q: "+ q + ", Max: "+max_durability);
 			}
 			i++;
+		}
+	},
+
+	// Show more info about the player
+	more_info : {
+		show : function() {
+			if(!document.getElementById('content')) return;
+
+			let info = this.getInfo();
+			this.create(info);
+		},
+
+		getInfo : function() {
+			var info = [];
+
+			// Get player's level
+			var level = parseInt(document.getElementById('char_level').textContent, 10);
+
+			// Generate info
+			info.push(gca_locale.get('overview', 'can_use_max_item_level', {max : (level + 16)}));
+			info.push(gca_locale.get('overview', 'can_see_market_max_item_level', {max : (level + 9)}));
+			info.push(gca_locale.get('overview', 'can_see_auction_item_levels', {
+				min : (level - Math.ceil(level/4) > 0 ? level - Math.ceil(level/4) : 1),
+				max : (level + 14)
+			}));
+
+			return info;
+		},
+
+		create : function(info) {
+			// Create Box
+			let wrapper = document.createElement('div');
+			wrapper.style.clear = 'both';
+			wrapper.style.margin = '20px';
+			wrapper.style.maxWidth = '490px';
+
+			// Title
+			let title = document.createElement('h2');
+			title.className = 'section-header';
+			title.style.cursor = 'pointer';
+			title.textContent = gca_locale.get('overview', 'more_player_info');
+			wrapper.appendChild(title);
+
+			// Section
+			let section = document.createElement('section');
+			section.style.display = 'block';
+			let list = document.createElement('ul');
+			list.style.padding = '0';
+			list.style.listStyle = 'none';
+			for (let i = 0; i < info.length; i++) {
+				let item = document.createElement('li');
+				item.textContent = info[i];
+				list.appendChild(item);
+			}
+			section.appendChild(list);
+			wrapper.appendChild(section);
+
+			// Insert on page
+			document.getElementById('content').appendChild(wrapper);
 		}
 	}
 };
