@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-17-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-19-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-19-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -10,6 +10,8 @@
 	- [x] Craft material for more items added
 - **Reports**
 	- [x] Rewarded items have border based on their quality
+- **Expedition**
+	- [x] Added material's name on the material drop tooltip
 - **Market**
 	- [x] Added button that changes the price to item's value
 	- [ ] Red/Green shadow added on scrolls you know/don't know (when searching for scrolls)
@@ -21,10 +23,14 @@
 - **Player**
 	- [x] Show the durability % of other players' items
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
+	- [x] Show additional player information under their description
 - **Packages**
 	- [x] New 🔗 icon indicating a soul-bound item
+	- [x] Added placeholders for pages to be loaded
 - **Forge**
 	- [x] Added button to show/hide player dolls at forge/smelt/workbench
+	- [x] Send guild message for needed materials now can be edited
+	- [ ] Item links to gladiatus-tools.com for more items information [under construction]
 
 
 ### BUG FIXES
@@ -49,11 +55,13 @@
 - **Market**
 	- [x] Fixed bug when canceling all the packages in the last page of the market resulting in showing no packets after
 	- [x] Fixed layout bug on the sell mode (bug on Firefox based browsers)
+	- [x] Fixed wrong market links on advance menu
+	- [x] Guild Market script now don't run on admin page
 - **Dice Event**
 	- [x] Fixed timer/info bugs
 - **Server Quests**
 	- [x] Fixed event cool-down timers to scale based on server's speed
-	- [ ] Fixed timer cool-down after server quest attack failed [testing]
+	- [ ] Fixed timer cool-down after server quest attack failed [testing, attack while working]
 
 
 ### TRANSLATIONS
