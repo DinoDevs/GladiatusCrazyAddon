@@ -26,19 +26,23 @@ gca_languages["gr"] = {
 
 		// General
 		general: {
-
 			// Days
 			days: "ημέρες",
 			// Minutes
 			minutes: "λεπτά",
+			// Hours
+			hours : "ώρες",
 			// No data
 			no_data: "Δεν υπάρχουν δεδομένα.",
 
-			// Modal buttons
+			// Buttons
 			confirm : "Επιβεβαίωση",
 			cancel : "Ακύρωση",
 			close: "Κλείσιμο",
-			error: "Σφάλμα"
+			error: "Σφάλμα",
+			yes : "Ναι",
+			no : "Όχι",
+			ok : "Εντάξει"
 		},
 
 		// Global
@@ -50,6 +54,8 @@ gca_languages["gr"] = {
 			
 			// Life points recovery
 			life_recover_full: "Ολική αναγέννηση της ζωής σε",
+			expedition_recover_full : "Ολική ανανέωση των πόντων αποστολής",
+			dungeon_recover_full : "Ολική ανανέωση των πόντων μπουντρουμιού",
 
 			// Button bar - Message
 			message_private_write: "Γράψε προσωπικό μήνυμα",
@@ -113,9 +119,15 @@ gca_languages["gr"] = {
 		overview: {
 			// Stats Difference
 			stats_difference : "Διαφορά",
-			drop_item_see_materials_repair : "Ρίξτε ένα αντικείμενο για να δείτε τα υλικά που χρειάζεται για να επισκευαστεί",
 			// Drop items to see materials to repair feature
+			drop_item_see_materials_repair : "Ρίξτε ένα αντικείμενο για να δείτε τα υλικά που χρειάζεται για να επισκευαστεί",
 			workbench_6th_slot_empty : "Η 6η θέση στον Πάγκο Εργασίας πρέπει να είναι ελεύθερη",
+
+			// More player info
+			more_player_info : "Περισσότερες πληροφορίες μονομάχου",
+			can_use_max_item_level : "Μπορέι να χρησιμοποιήσει αντικείμενα επιπέδου μέχρι {{max}}.",
+			can_see_market_max_item_level : "Μπορέι να δει αντικείμενα στην αγορά επιπέδου μέχρι {{max}}.",
+			can_see_auction_item_levels : "Μπορέι να δει αντικείμενα στο δημοπρατήριο επιπέδου από {{min}} μέχρι {{max}}."
 		},
 
 		// Pantheon section
@@ -218,6 +230,13 @@ gca_languages["gr"] = {
 			advance_filters_clear : "Απαλοιφή φίλτρων",
 			advance_filters_found : "(βρέθηκαν {{items}})"
 		},
+
+		// Cross-Browser Sync
+		sync : {
+			are_you_sure : "Είσαι σίγουρος πως θες να συνδεθείς σαν τον μονομάχο {{name}};",
+			gladiatus_crazy_addon_dependency : "Πρέπει να έχεις το Gladiatus Crazy Addon εγκατεστημένο στον άλλο περιηγητή διαδικτύου.",
+			how_to_sync_info : "Κάνε αντιγραφή του συνδέσμου και επικόλληση στον άλλο περιηγητή διαδικτύου, ή σκάναρε το qrcode."
+		},
 		
 		// Settings
 		settings : {
@@ -254,6 +273,7 @@ gca_languages["gr"] = {
 			category_global$extended_hp_xp_info: "Προβολή εκτεταμένων πληροφοριών για HP και XP",
 			category_global$extended_hp_xp_info_potion : "Προβολή εικονιδίου χρήσης φίλτρου ζωής",
 			category_global$hp_timer_for_full_life : "Προβολή υπολειπόμενων λεπτών για πλήρη ζωή",
+			category_global$expedition_dungeon_points_recover_timer : "Προβολή των υπολειπόμενων λεπτών για πλήρη ανανέωση πόντων αποστολής/μπουντρουμιού",
 			category_global$shortcuts_bar: "Προβολή της μπάρας κουμπιών",
 			category_global$shortcuts_bar_buttons : "Επιλογή συντομεύσεων για την μπάρα κουμπιών",
 			category_global$auction_status_bar: "Προβολή της μπάρας κατάστασης δημοπρατηρίου",
@@ -350,6 +370,7 @@ gca_languages["gr"] = {
 			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (gladiatussimulator.tk)",
 			category_arena$sort_by_lvl : "Ταξινόμηση παιχτών κατά επίπεδο στην αρένα",
 			category_arena$highlight_guild_members : "Χρωμάτισμα παιχτών από άλλους σέρβερς που μπορεί να είναι μέλη του τάγματος",
+			category_arena$target_list : "Λίστα στόχων",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να βελτιωθούν",
 			// Settings - Market
@@ -393,6 +414,7 @@ gca_languages["gr"] = {
 			category_data$import_settings : "Εισαγωγή των δεδομένων ρυθμίσεων από αρχείο",
 			category_data$reset_settings : "Επαναφορά των ρυθμίσεων του προσθέτου",
 			category_data$clear_data : "Εκκαθάριση όλων των δεδομένων του προσθέτου",
+			category_data$cross_browser_login : "Ταυτόχρονη δύνδεση σε πολλαπλούς περιηγητές",
 
 			// Buttons
 			save: "Αποθήκευση",
@@ -402,6 +424,7 @@ gca_languages["gr"] = {
 			clear : "Εκκαθάριση",
 			do_not_show : "Να μην φαίνεται",
 			show_as : "Εμφάνιση ως",
+			show_info : "Εμφάνιση πληροφοριών",
 
 			// Info
 			translated_percent : "Μεταφρασμένα τοις εκατό: {{number}}%",
