@@ -90,7 +90,13 @@ var gca_forge = {
 				base : '0-0',
 				suffix : 0
 			};
-			if (info.item) {
+			if (info.item && info.item.data && info.item.data.hash) {
+				let hash = gca_tools.item.hash(info.item.data.hash);
+				item.prefix = hash.prefix;
+				item.base = hash.category + '-' + hash.subcategory;
+				item.suffix = hash.suffix;
+			}
+			else if (info.item) {
 				item.prefix = info.item.prefix || 0;
 				item.base = (info.item.image.match(/item-i-(\d+-\d+)/) || ['','0-0'])[1];
 				item.suffix = info.item.suffix || 0;
@@ -680,11 +686,12 @@ var gca_forge = {
 
 			// Create item link
 			let wrapper = name.getElementsByTagName('span')[0];
+			let item_name = wrapper.textContent.trim();
 			link = document.createElement('a');
 			link.setAttribute('target', '_blank');
 			link.setAttribute('rel', 'noopener noreferrer');
-			link.textContent = wrapper.textContent;
-			link.title = 'Gladiatus Tools';
+			link.textContent = item_name;
+			link.title = 'Gladiatus Tools > ' + item_name;
 			wrapper.textContent = '';
 			wrapper.appendChild(link);
 			link.href = this.url + 'equipment?item=' + data.item.prefix + ',' + data.item.base + ',' + data.item.suffix;

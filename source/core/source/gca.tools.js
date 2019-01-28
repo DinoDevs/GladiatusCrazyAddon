@@ -536,10 +536,21 @@ var gca_tools = {
 		},
 		
 		hash : function(item) {
-			if (!item || !item.dataset.hash) return null;
+			if (!item) return null;
 
-			// Decode
-			let hash = this._hash.decode(item.dataset.hash);
+			var hash;
+			if (typeof item == 'string') {
+				// Decode from string
+				hash = this._hash.decode(item);
+				if (hash.length == 0) return null;
+			}
+			else if (item.dataset && item.dataset.hash) {
+				// Decode from element
+				hash = this._hash.decode(item.dataset.hash);
+			}
+			else {
+				return null;
+			}
 			
 			// Check type
 			switch(hash.length) {
