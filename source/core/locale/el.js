@@ -125,9 +125,9 @@ gca_languages["gr"] = {
 
 			// More player info
 			more_player_info : "Περισσότερες πληροφορίες μονομάχου",
-			can_use_max_item_level : "Μπορέι να χρησιμοποιήσει αντικείμενα επιπέδου μέχρι {{max}}.",
-			can_see_market_max_item_level : "Μπορέι να δει αντικείμενα στην αγορά επιπέδου μέχρι {{max}}.",
-			can_see_auction_item_levels : "Μπορέι να δει αντικείμενα στο δημοπρατήριο επιπέδου από {{min}} μέχρι {{max}}."
+			can_use_max_item_level : "Μπορεί να χρησιμοποιήσει αντικείμενα επιπέδου μέχρι {{max}}.",
+			can_see_market_max_item_level : "Μπορεί να δει αντικείμενα στην αγορά επιπέδου μέχρι {{max}}.",
+			can_see_auction_item_levels : "Μπορεί να δει αντικείμενα στο δημοπρατήριο επιπέδου από {{min}} μέχρι {{max}}."
 		},
 
 		// Pantheon section
