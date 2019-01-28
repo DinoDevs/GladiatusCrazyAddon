@@ -1961,8 +1961,8 @@ var gca_global = {
 						if(this.info.market){
 							this.convertMenu.addTabs("market", this.info.market, this.info.market_active, [
 								{href : gca_getPage.link({"mod":"market","f":"7","s":"p"}), img : {class : "item-i-7-2", style : "margin:-2px;"}},
-								{href : gca_getPage.link({"mod":"market","f":"11","s":"p"}), img : {class : "item-i-12-8", style : "margin:-2px;"}},
-								{href : gca_getPage.link({"mod":"market","f":"12","s":"p"}), img : {class : "item-i-11-7", style : "margin:-2px;"}},
+								{href : gca_getPage.link({"mod":"market","f":"12","s":"p"}), img : {class : "item-i-12-8", style : "margin:-2px;"}},
+								{href : gca_getPage.link({"mod":"market","f":"11","s":"p"}), img : {class : "item-i-11-7", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"18","s":"p"}), img : {class : "item-i-18-49", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"market","f":"20","s":"p"}), img : {class : "item-i-20-11", style : "margin:-2px;"}}
 							]);
