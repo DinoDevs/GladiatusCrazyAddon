@@ -1951,11 +1951,11 @@ var gca_settings = {
 		},
 
 		displayInfo : function() {
-			
 			let url = 'https://s' + gca_section.server + '-' + gca_section.country + '.gladiatus.gameforge.com/game/index.php?mod=player&p=' + this.player + '&gcamod=sync&s=' + this.hash;
 
 			this.wrapper.textContent = '';
 			this.wrapper.style.textAlign = 'left';
+			this.wrapper.style.height = '186px';
 
 			let qrcode = document.createElement('div');
 			qrcode.style.float = 'right';
@@ -1975,6 +1975,10 @@ var gca_settings = {
 			this.wrapper.appendChild(document.createElement('br'));
 
 			jQuery(qrcode).qrcode({width: 180, height: 180, text: url});
+
+			input.addEventListener('click', function(){
+				this.select();
+			}, false);
 		}
 
 	}
