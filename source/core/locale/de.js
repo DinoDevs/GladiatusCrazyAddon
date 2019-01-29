@@ -26,19 +26,23 @@ gca_languages['de'] = {
 
 		// General
 		general : {
-
 			// Days
 			days : "Tag(e)",
 			// Minutes
 			minutes : "Minute(n)",
+			// Hours
+			hours : "Stunde(n)",
 			// No data
 			no_data : "Keine Daten vorhanden",
 
-			// Modal buttons
+			// Buttons
 			confirm : "bestätigen",
 			cancel : "abbrechen",
 			close : "schließen",
-			error : "Fehler"
+			error : "Fehler",
+			yes : "Ja",
+			no : "Nein",
+			ok : "OK"
 		},
 
 		// Global
