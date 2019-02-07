@@ -770,6 +770,13 @@ var gca_packages = {
 			var stat_percent = ' ((?:\\+|\\-|)\\d+)%'; // ex. 'Χάρισμα -22% (-92)'
 			var mercenary_stat_value = ' (\\d+)';
 			var mercenary = document.getElementById('pf').f.getElementsByTagName('option')[14].textContent.trim();
+			
+			// Exceptions
+			// Lithuanian : https://github.com/DinoDevs/GladiatusCrazyAddon/issues/135
+			if (gca_section.country === 'lt') {
+				stats.healing = 'Gydymas';
+				stats.threat = 'Grėsmė';
+			}
 
 			this.rules.level = [stats.level, stats.level + ' (\\d+)'];
 			this.rules.strength = [stats.strength, stats.strength + stat_value];
@@ -790,7 +797,7 @@ var gca_packages = {
 			this.rules.damage_max = [stats.damage + ' max', stats.damage + ' \\d+ - (\\d+)'];
 			this.rules.healing = [stats.healing, stats.healing + ' ' + number];
 			this.rules.threat = [stats.threat, stats.threat + ' ' + number];
-			//this.RULES.life_points = stats.life_points + ': ' + number;
+			//this.rules.life_points = stats.life_points + ': ' + number;
 			
 			this.rules.strength_mercenary = [mercenary + ' ' + stats.strength, stats.strength + ':' + mercenary_stat_value];
 			this.rules.dexterity_mercenary = [mercenary + ' ' + stats.dexterity, stats.dexterity + ':' + mercenary_stat_value];
