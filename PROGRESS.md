@@ -1,7 +1,9 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-19-green.svg?style=flat-square) ![bug fixes](https://img.shields.io/badge/bug%20fixes-19-red.svg?style=flat-square) ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-19-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-21-red.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -42,6 +44,7 @@
 - **Packages**
 	- [x] Learned/Unlearned scrolls detect fix
 	- [x] Packages item gold fix for amounts
+	- [x] Added lithuanian exception (threat, healing) on advance packages filters
 - **Arena**
 	- [x] Guild members were not highlighted in cross-server turma
 	- [x] Fixed wrong error message when Global Arena request is blocked
@@ -62,6 +65,8 @@
 - **Server Quests**
 	- [x] Fixed event cool-down timers to scale based on server's speed
 	- [ ] Fixed timer cool-down after server quest attack failed [testing, attack while working]
+- **Mobile Accessibility**
+	- [x] Messages actions are visible without mouseover
 
 
 ### TRANSLATIONS
@@ -70,3 +75,4 @@
 	- [x] Romanian updated
 	- [x] Turkish updated
 	- [x] Polish updated
+	- [x] German updated
