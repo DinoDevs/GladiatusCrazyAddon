@@ -496,8 +496,8 @@ var gca_tools = {
 			if (item.dataset.contentSize)
 				info.contentSize = parseInt(item.dataset.contentSize, 10);
 
-			if (!info.price && item.dataset.priceGold)
-				info.price = parseInt(item.dataset.priceGold, 10);
+			if (!info.price_gold && item.dataset.priceGold)
+				info.price_gold = parseInt(item.dataset.priceGold, 10);
 			if (item.dataset.level)
 				info.level = parseInt(item.dataset.level, 10);
 			if (item.dataset.amount)
@@ -559,15 +559,15 @@ var gca_tools = {
 						player : hash[0],
 						category : hash[1],
 						subcategory : hash[2],
-						price : hash[3],
-					//unknown_part_4 : hash[4],
+						price_gold : hash[3],
+						price_rubies : hash[4],
 						prefix : hash[5],
 						suffix : hash[6],
-					//unknown_part_7 : hash[7],
+					//unknown_part_7 : hash[7], // auction ?
 						sold : hash[8],
 					//unknown_part_9 : hash[9],
-					//unknown_part_10 : hash[10],
-					//unknown_part_11 : hash[11], // enchant_1_level
+					//unknown_part_10 : hash[10], // upgrade_1_type (upgrade subcategory)
+					//unknown_part_11 : hash[11], // upgrade_1_level
 					//unknown_part_12 : hash[12],
 					//enchant_2_timer : hash[13], // new Date(x * 1000)
 						quality : hash[14],
@@ -576,13 +576,52 @@ var gca_tools = {
 						soulbound : hash[17]
 					};
 
+				case 10: // Upgrades
+					return {
+						player : hash[0],
+						category : hash[1],
+						subcategory : hash[2],
+						price_gold : hash[3],
+						price_rubies : hash[4],
+					//unknown_part_5 : hash[5],
+					//unknown_part_6 : hash[6],
+						quality : hash[7],
+						soulbound : hash[8],
+						upgrade_level : hash[9]
+					};
+
+				case 9: // Recipes
+					return {
+						player : hash[0],
+						category : hash[1],
+						subcategory : hash[2],
+						price_gold : hash[3],
+						price_rubies : hash[4],
+					//unknown_part_5 : hash[5],
+						quality : hash[6],
+						soulbound : hash[7],
+						recipes_level : hash[8]
+					};
+
+				case 8: // Snowballs, Pumpkins, Rune, Bunny
+					return {
+						player : hash[0],
+						category : hash[1],
+						subcategory : hash[2],
+						price_gold : hash[3],
+						price_rubies : hash[4],
+					//unknown_part_5 : hash[5],
+						quality : hash[6],
+						soulbound : hash[7]
+					};
+
 				case 7:
 					return {
 						player : hash[0],
 						category : hash[1],
 						subcategory : hash[2],
-						price : hash[3],
-						//unknown_part_4 : hash[4],
+						price_gold : hash[3],
+						price_rubies : hash[4],
 						prefix : hash[5],
 						suffix : hash[6]
 					};
