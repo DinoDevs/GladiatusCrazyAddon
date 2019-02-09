@@ -28,7 +28,8 @@ var gca_player = {
 
 		// Show more info about the player
 		// TODO : add option
-		this.more_info.show();
+		if (this.doll === 1 &&
+			this.more_info.show());
 	},
 
 	// Resolve Page
