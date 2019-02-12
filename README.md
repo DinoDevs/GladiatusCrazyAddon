@@ -84,6 +84,10 @@ Gladiatus Forum GCA thread : [https://forum.gladiatus.gameforge.com/forum/thread
 
 [Michalus](https://forum.gladiatus.gameforge.com/user/69-michalus/)' Gladiatus Tools : [https://gladiatus-tools.com](https://gladiatus-tools.com)
 
+Unofficial Gladiatus Redit : [https://www.reddit.com/r/Gladiatus/](https://www.reddit.com/r/Gladiatus/) (by [Williaf](https://www.reddit.com/user/Williaf))
+
+Discord Server of Gladitatus Redit : [https://discord.gg/uXEGq9Q](https://discord.gg/uXEGq9Q)
+
 *(We would be happy to add your Gladiatus related page here too)*
 
 
