@@ -86,7 +86,7 @@ var gca_global = {
 		(gca_options.bool("global","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.apply());
 		// Bind auction last seach
-		(gca_options.bool("auction","save_last_state") && 
+		(!this.isTraveling && gca_options.bool("auction","save_last_state") && 
 			this.display.auctionLoadLastState());
 
 		// Attacked Timers
@@ -98,7 +98,7 @@ var gca_global = {
 			this.display.quests_timer.inject());
 
 		// Merchants Timer
-		(gca_options.bool("global","merchants_timer") &&
+		(!this.isTraveling && gca_options.bool("global","merchants_timer") &&
 			this.display.merchants_timer.inject(this));
 
 		// Inventory options group
@@ -168,7 +168,7 @@ var gca_global = {
 			this.display.analyzeItems.itemDurability.init());
 
 		// Show forge info
-		(gca_data.section.get("global", "show_forge_info", 0) != 0 && 
+		(!this.isTraveling && gca_data.section.get("global", "show_forge_info", 0) != 0 && 
 			this.display.analyzeItems.itemForgeInfo.init());
 
 		// Image Cache

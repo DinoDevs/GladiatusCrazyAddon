@@ -28,7 +28,8 @@ var gca_player = {
 
 		// Show more info about the player
 		// TODO : add option
-		this.more_info.show();
+		if (this.doll === 1 &&
+			this.more_info.show());
 	},
 
 	// Resolve Page
@@ -381,8 +382,9 @@ var gca_player = {
 				let data = gca_tools.item.hash(items[i]);
 				
 				// Calculate factors
-				let level = items[i].dataset.level;
-				let q = items[i].dataset.quality ? quality_factor[items[i].dataset.quality] : quality_factor[0];
+				let level = parseInt(items[i].dataset.level, 10);
+				let q = parseInt(items[i].dataset.quality, 10);
+				q = q > 0 ? quality_factor[items[i].dataset.quality] : quality_factor[0];
 				let c = category_factor[data.category - 1][data.subcategory - 1];
 				
 				// 100% durability
