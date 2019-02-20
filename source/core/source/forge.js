@@ -666,7 +666,7 @@ var gca_forge = {
 	gladiatusTools : {
 		inject : function() {
 			// Generate server url
-			this.url = 'https://' + gca_section.country + '.gladiatus-tools.com/';
+			this.url = gca_links.get('gladiatus-tools-server') + '/';
 			
 			// Detect changes
 			gca_tools.event.addListener('forge-infobox-update', (data) => {
@@ -733,5 +733,5 @@ var gca_forge = {
 })();
 
 // ESlint defs
-/* global gca_data, gca_getPage, gca_global, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global gca_data, gca_getPage, gca_global, gca_links, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
 /* global jQuery */

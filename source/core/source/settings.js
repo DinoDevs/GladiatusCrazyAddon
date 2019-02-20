@@ -27,13 +27,13 @@ var gca_settings = {
 	// Options
 	options : {
 		urls : {
-			bug_report : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues/new?template=bug.md',
-			idea_request : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues/new?template=feature-request.md',
-			translate_addon : 'https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/documentation/translators/README.md',
+			bug_report : gca_links.get('addon-github') + '/issues/new?template=bug.md',
+			idea_request : gca_links.get('addon-github') + '/issues/new?template=feature-request.md',
+			translate_addon : gca_links.get('addon-github') + '/blob/master/documentation/translators/README.md',
 
-			github_link : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues',
-			facebook_link : 'https://www.facebook.com/GladiatusCrazyAddOn/',
-			donation_link : 'https://paypal.me/gcadonation/5'
+			github_link : gca_links.get('addon-github') + '/issues',
+			facebook_link : gca_links.get('addon-facebook'),
+			donation_link : gca_links.get('addon-donation')
 		},
 
 		// Create box on settings
@@ -45,7 +45,7 @@ var gca_settings = {
 			title.className = "section-header";
 			title.textContent = gca.name + " - v" + gca.version;
 			var changelog = document.createElement('a');
-			changelog.href = 'https://github.com/DinoDevs/GladiatusCrazyAddon/releases/tag/' + 'v' + gca.version;
+			changelog.href = gca_links.get('addon-github') + '/releases/tag/' + 'v' + gca.version;
 			changelog.textContent = '[Changelog v' + gca.version + ']';
 			changelog.setAttribute('target', '_black');
 			changelog.style.float = 'right';
@@ -63,6 +63,10 @@ var gca_settings = {
 			section.appendChild(document.createElement("hr"));
 			box = document.createElement("div");
 			this.createBox_settings(box);
+			section.appendChild(box);
+			section.appendChild(document.createElement("hr"));
+			box = document.createElement("div");
+			this.createBox_links(box);
 			section.appendChild(box);
 		},
 
@@ -238,6 +242,115 @@ var gca_settings = {
 			button.addEventListener("click", () => {
 				this.open();
 			}, false);
+		},
+
+		createBox_links : function(box) {
+			box.className = "links_box";
+
+			// Title
+			var title = document.createElement('h2');
+			title.textContent = 'Gladiatus related links';
+			box.appendChild(title);
+
+			// SubTitle
+			title = document.createElement('h3');
+			title.textContent = 'Addon links';
+			box.appendChild(title);
+
+			// Links
+			let wrapper, group;
+
+			group = document.createElement('div');
+			group.className = 'group';
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Gladiatus Crazy Addon : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-page'), gca_links.get('addon-page'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Gladiatus Forum : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-forum-thread'), gca_links.get('addon-forum-thread'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Facebook : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-facebook'), gca_links.get('addon-facebook'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Github : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-github'), gca_links.get('addon-github'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Install on Firefox : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-mozilla'), gca_links.get('addon-mozilla'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Install on Chrome : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-chrome'), gca_links.get('addon-chrome'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			box.appendChild(group);
+
+			// SubTitle
+			title = document.createElement('h3');
+			title.textContent = 'Other links';
+			box.appendChild(title);
+			
+			group = document.createElement('div');
+			group.className = 'group';
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Gladiatus Simulator : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-simulator'), gca_links.get('gladiatus-simulator'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('skarsburning@forum'), 'Skarsburning\'s', {target: '_blank'}));
+			wrapper.appendChild(document.createTextNode(' Gladiatus Fansite : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-fansite'), gca_links.get('gladiatus-fansite'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('michalus@forum'), 'Michalus\'', {target: '_blank'}));
+			wrapper.appendChild(document.createTextNode(' Gladiatus Tools : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-tools-server'), gca_links.get('gladiatus-tools-server'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Unofficial Gladiatus Reddit : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('unofficial-reddit'), gca_links.get('unofficial-reddit'), {target: '_blank'}));
+			wrapper.appendChild(document.createTextNode(' by '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('williaf@reddit'), 'Williaf', {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Discord Server of Gladitatus Reddit : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('reddit-discord'), gca_links.get('reddit-discord'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			box.appendChild(group);
+
+
+			let info = document.createElement('div');
+			info.className = 'info';
+			info.textContent = '(Contact us to add your link here.)';
+			box.appendChild(document.createElement('br'));
+			box.appendChild(info);
+			
+			/*
+Other links/pages
+Skarsburning's Gladiatus Fansite : https://gladiatus.gamerz-bg.com (we love your site)
+
+Michalus' Gladiatus Tools : https://gladiatus-tools.com
+
+Unofficial Gladiatus Reddit : https://www.reddit.com/r/Gladiatus/ (by Williaf)
+
+Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
+			 */
 		},
 
 		preinject : {
@@ -2003,5 +2116,5 @@ var gca_settings = {
 })();
 
 // ESlint defs
-/* global gca, gca_data, gca_data_manager, gca_getPage, gca_languages, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global gca, gca_data, gca_data_manager, gca_getPage, gca_languages, gca_links, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
 /* global jQuery */

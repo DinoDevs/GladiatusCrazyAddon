@@ -70,7 +70,7 @@ var gca_arena = {
 	show_simulator : function(){
 		let link = document.createElement('a');
 		link.className = "gca_arena-simulator-link";
-		link.href = "https://gladiatussimulator.tk/";
+		link.href = gca_links.get('gladiatus-simulator');
 		link.setAttribute("target","_blank");
 		document.getElementById('content').getElementsByTagName('article')[0].parentNode.insertBefore(link, document.getElementById('content').getElementsByTagName('article')[0]);
 		
@@ -108,7 +108,7 @@ var gca_arena = {
 		temp_element.className = "awesome-button";
 		temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗"; // chain icon
 		temp_element.style = "margin-bottom: 15px;padding: 1.5px 6px;margin-right: 20px;";
-		temp_element.href = "http://gladiatuscrazyaddon.tk/index.php?mode=highscore";
+		temp_element.href = gca_links.get('addon-page') + "/index.php?mode=highscore";
 		temp_element.setAttribute("target","_blank");
 		document.getElementById('global_arena_box').appendChild(temp_element);
 		// Add button
@@ -126,7 +126,7 @@ var gca_arena = {
 		window.gca_arena_load_enemies = function() {
 			jQuery.ajax({
 				type: "GET",
-				url: "https://gladiatuscrazyaddon.tk/arena/ajax.php?player_id="+gca_section.playerId+"&server="+gca_section.server+"&country="+gca_section.country,
+				url: gca_links.get('addon-page') + "/arena/ajax.php?player_id="+gca_section.playerId+"&server="+gca_section.server+"&country="+gca_section.country,
 				success: function(content){
 					try {
 						var obj = JSON.parse(content);
@@ -158,7 +158,7 @@ var gca_arena = {
 			document.getElementById('spiner_box').style.display = 'block';
 			jQuery.ajax({
 				type: "GET",
-				url: "https://gladiatuscrazyaddon.tk/arena/ajax.php?player_id_A="+gca_section.playerId+"&server_A="+gca_section.server+"&country_A="+gca_section.country+"&player_id_B="+player_id_B+"&server_B="+server_B+"&country_B="+country_B,
+				url: gca_links.get('addon-page') + "/arena/ajax.php?player_id_A="+gca_section.playerId+"&server_A="+gca_section.server+"&country_A="+gca_section.country+"&player_id_B="+player_id_B+"&server_B="+server_B+"&country_B="+country_B,
 				success: function(content){
 					try {
 						var obj = JSON.parse(content);
@@ -228,7 +228,7 @@ var gca_arena = {
 			temp_element.className = "awesome-button";
 			temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗"; // chain icon
 			temp_element.style = "margin-bottom: 15px;padding: 1.5px 6px;margin-right: 20px;";
-			temp_element.href = "http://gladiatuscrazyaddon.tk/index.php?mode=highscore";
+			temp_element.href = gca_links.get('addon-page') + "/index.php?mode=highscore";
 			temp_element.setAttribute("target","_blank");
 			document.getElementById('global_arena_box').appendChild(temp_element);
 			// Add button
@@ -347,10 +347,8 @@ var gca_arena = {
 				temp_element2.style= "text-align: center;";
 				temp_element.appendChild(temp_element2);
 				
-				temp_element3 = document.createElement("img");
-				temp_element3.src = "https://flags.fmcdn.net/data/flags/h20/"+list[i].country.replace(/^en$/,'gb')+".png";
-				temp_element3.className = "flag";
-				temp_element3.setAttribute("align","absmiddle");
+				temp_element3 = gca_tools.create.flagIcon(list[i].country);
+				temp_element3.className = 'flag';
 				//temp_element3.dataset.tooltip = '[[[["Country:","'+list[i].country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+list[i].server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
 				temp_element3.dataset.tooltip = '[[["'+list[i].country.toUpperCase()+'","#fff;font-size:12px;"]]]';
 				temp_element2.appendChild(temp_element3);
@@ -394,10 +392,8 @@ var gca_arena = {
 			temp_element2.style= "text-align: center;";
 			temp_element.appendChild(temp_element2);
 			
-			temp_element3 = document.createElement("img");
-			temp_element3.src = "https://flags.fmcdn.net/data/flags/h20/"+gca_section.country.replace(/^en$/,'gb')+".png";
+			temp_element3 = gca_tools.create.flagIcon(gca_section.country);
 			temp_element3.className = "flag";
-			temp_element3.setAttribute("align","absmiddle");
 			//temp_element3.dataset.tooltip = '[[[["Country:","'+gca_section.country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+gca_section.server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
 			temp_element3.dataset.tooltip = '[[["'+gca_section.country.toUpperCase()+'","#fff;font-size:12px;"]]]';
 			temp_element2.appendChild(temp_element3);
@@ -511,7 +507,6 @@ var gca_arena = {
 
 		// Highlight players
 		for (var i = links.length - 1; i >= 0; i--) {
-			// https://s13-gr.gladiatus.gameforge.com/game/index.php?mod=player&p=153593
 			let info = links[i].href.match(/\:\/\/s(\d+)-\w+\.gladiatus\.gameforge\.com\/game\/index\.php\?mod=player&p=(\d+)/i);
 			if (info && targets.hasOwnProperty(info[2] + '@' + info[1])) {
 				let id = info[2] + '@' + info[1];
@@ -538,5 +533,5 @@ var gca_arena = {
 })();
 
 // ESlint defs
-/* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global gca_data, gca_getPage, gca_links, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
 /* global jQuery */

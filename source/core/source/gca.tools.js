@@ -1452,6 +1452,13 @@ var gca_tools = {
 		rubiesIcon : function() {
 			return this.icon('img/res3.gif');
 		},
+		flagIcon : function(country) {
+			country = country.toLowerCase();
+			if (!(/^[a-zA-Z]{2,2}$/).test(country))
+				return this.icon('');
+			else if (country == 'en') country = 'gb';
+			return this.icon('https://flags.fmcdn.net/data/flags/h20/' + country + '.png');
+		},
 
 		icon : function(src) {
 			var img = document.createElement("img");
@@ -1468,10 +1475,28 @@ var gca_tools = {
 			link.setAttribute("href", gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : category}));
 			document.getElementById("footer").appendChild(link);
 			gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "white"]]]));
+		},
+
+		link : function(url, text = false, options = {}) {
+			let link = document.createElement('a');
+			link.href = url;
+			if (text)
+				link.textContent = text;
+			if (options.hasOwnProperty('className'))
+				link.className = options.className;
+			if (options.hasOwnProperty('target'))
+				link.setAttribute('target', options.target);
+
+			return link;	
 		}
 
 	},
 
+
+	// Load
+	// -------------------------------------------------- //
+	// script(url, function done(){}, isAddonResource)
+	// -------------------------------------------------- //
 	load : {
 		script : function(link, callback = false, resource = false) {
 			var script = document.createElement('script');

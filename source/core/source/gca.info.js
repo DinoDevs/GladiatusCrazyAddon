@@ -13,7 +13,7 @@ var gca = {
 		"GreatApo",
 		"DarkThanos"
 	],
-	homepage : "http://gladiatuscrazyaddon.tk/"
+	homepage : "https://gladiatuscrazyaddon.tk"
 };
 
 // Page info
@@ -96,5 +96,39 @@ var gca_getPage = {
 		for(var array=url.match(/\?(.*)$/i)[1].split("&"),par={},i=0;i<array.length;i++)
 			array[i]=array[i].split("="),par[array[i][0]]=array[i][1];
 		return par;
+	}
+};
+
+// Links
+var gca_links = {
+	raw : {
+		// Our links
+		'addon-page' : gca.homepage,
+		'addon-mozilla' : 'https://addons.mozilla.org/firefox/addon/gladiatus-crazy-add-on',
+		'addon-chrome' : 'https://chrome.google.com/webstore/detail/gladiatus-crazy-add-on/dfbmiedjenagoegiiabjfjpkhfocifkp',
+		'gladiatus-simulator' : 'https://gladiatussimulator.tk',
+		'addon-forum-thread' : 'https://forum.gladiatus.gameforge.com/forum/thread/263',
+		'addon-github' : 'https://github.com/DinoDevs/GladiatusCrazyAddon',
+		'addon-facebook' : 'https://www.facebook.com/GladiatusCrazyAddOn',
+		'addon-donation' : 'https://paypal.me/gcadonation/5',
+
+		// Other links
+		
+		'gladiatus-tools' : 'https://gladiatus-tools.com',
+		'gladiatus-tools-server' : 'https://' + gca_section.country + '.gladiatus-tools.com',
+		'skarsburning@forum' : 'https://forum.gladiatus.gameforge.com/user/369-skarsburning',
+
+		'gladiatus-fansite' : 'https://gladiatus.gamerz-bg.com',
+		'michalus@forum' : 'https://forum.gladiatus.gameforge.com/user/69-michalus',
+
+		'unofficial-reddit' : 'https://www.reddit.com/r/Gladiatus',
+		'reddit-discord' : 'https://discord.gg/uXEGq9Q',
+		'williaf@reddit' : 'https://www.reddit.com/user/Williaf'
+	},
+
+	get : function(id) {
+		if (this.raw.hasOwnProperty(id))
+			return this.raw[id];
+		return null;
 	}
 };

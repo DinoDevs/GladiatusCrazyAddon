@@ -887,7 +887,7 @@ var gca_global = {
 					button.className = "icon-out";
 					link = document.createElement('a');
 					link.className = "icon swords-icon";
-					link.href = 'http://gladiatussimulator.tk/';
+					link.href = gca_links.get('gladiatus-simulator');
 					link.title = gca_locale.get("global", "simulator_goto");
 					link.setAttribute("target", "_blank");
 					button.appendChild(link);
@@ -1699,7 +1699,7 @@ var gca_global = {
 				var div = document.createElement("div");
 				div.id = "topFixedBar";
 				var link = document.createElement("a");
-				link.href = "http://gladiatuscrazyaddon.tk/";
+				link.href = gca_links.get('addon-page');
 				link.setAttribute("target", "_blank");
 				link.textContent = 'Gladiatus Crazy Addon v' + gca.version;
 				div.appendChild(link);
@@ -1930,7 +1930,7 @@ var gca_global = {
 				]);
 
 				// Inject Highscore Link
-				//this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : "http://gladiatuscrazyaddon.tk/index.php?mode=highscore", target : "_blank"});
+				//this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : gca_links.get('addon-page') + "/index.php?mode=highscore", target : "_blank"});
 
 				// Inject Pantheon Link
 				this.convertMenu.addPlus(this.info.pantheon, this.info.pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
@@ -4731,5 +4731,5 @@ gca_global.display.analyzeItems.itemForgeInfo.data = {
 })();
 
 // ESlint defs
-/* global gca, gca_audio, gca_build, gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_resources, gca_section, gca_tools */
+/* global gca, gca_audio, gca_build, gca_data, gca_getPage, gca_links, gca_locale, gca_notifications, gca_options, gca_resources, gca_section, gca_tools */
 /* global jQuery, Chart, expeditionProgressBar, dungeonProgressBar, arenaProgressBar, ctProgressBar */
