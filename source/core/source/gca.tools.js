@@ -664,6 +664,9 @@ var gca_tools = {
 	// event.request.onAjaxResponce(callback)
 	// event.bag.waitBag(callback)
 	// event.bag.onBagOpen(callback)
+	// event.onExit.init()
+	// event.onExit.listen(id, message)
+	// event.onExit.remove(id)
 	// -------------------------------------------------- //
 	event : {
 		// List of events
@@ -727,8 +730,7 @@ var gca_tools = {
 			delete this.event_list[name];
 			delete this.once_event[name];
 		},
-	
-
+		
 		// Item events
 		item : {
 			// Is it loaded?
@@ -754,7 +756,7 @@ var gca_tools = {
 				});
 
 				// Attack an item drop event
-				jQuery(document).on('dragend', function(e){
+				jQuery(document).on('dragend', function(){
 					gca_tools.event.item.dropEventHandler();
 				});
 			},
@@ -963,10 +965,41 @@ var gca_tools = {
 				// Set a listener
 				gca_tools.event.addListener('bagOpen', callback);
 			}
+		},
 
+		// Exit
+		onExit : {
+			// Initialize
+			init : function() {
+				if (this.checklist) return;
+				this.checklist = {};
+
+				// On window unload
+				window.onbeforeunload = () => {
+					var message = null;
+					// Check if there are pending actions
+					for (let id in this.checklist) {
+						if (this.checklist.hasOwnProperty(id) && this.checklist[id]) {
+							message = this.checklist[id];
+							break;
+						}
+					}
+					return message;
+				};
+			},
+
+			// Set an action as pending
+			listen : function(id, message) {
+				this.init();
+				this.checklist[id] = message;
+			},
+
+			// Set an action as completed
+			remove : function(id) {
+				if (this.checklist && this.checklist.hasOwnProperty(id))
+					delete this.checklist[id];
+			}
 		}
-
-
 	},
 
 
@@ -1439,6 +1472,50 @@ var gca_tools = {
 	})(),
 
 
+	// Easter Eggs
+	// -------------------------------------------------- //
+	// You are not supposed to see this!
+	// -------------------------------------------------- //
+	easter_eggs : {
+		lucky : function () {
+			return (Math.random() * 100 <= 1 ? true : false);
+		},
+
+		check : function (callback = false, data = []) {
+			if (this.lucky()) {
+				if (!callback) {
+					this.poem();
+					return true;
+				}
+				else {
+					callback.apply(this, data);
+					return true;
+				}
+			}
+			else {
+				return false;
+			}
+		},
+
+		poem : function () {
+			let poem = ['Rubies are red,', 'potions are blue,', 'while you click,', 'I work for you.'];
+			gca_notifications.error(poem[0]);
+			gca_notifications.info(poem[1]);
+			gca_notifications.warning(poem[2]);
+			gca_notifications.success(poem[3]);
+		},
+
+		fight : function (won) {
+			if (won) {
+				gca_notifications.success("Are you not Entertained?");
+			}
+			else {
+				gca_notifications.warning("The force is strong with this one!");
+			}
+		}
+	},
+
+
 	// Create
 	// -------------------------------------------------- //
 	// create.goldIcon()
@@ -1516,5 +1593,5 @@ var gca_tools = {
 })();
 
 // ESlint defs
-/* global gca_getPage, gca_locale, gca_resources, gca_tools */
+/* global gca_getPage, gca_locale, gca_notifications, gca_resources, gca_tools */
 /* global jQuery */
