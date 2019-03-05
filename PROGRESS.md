@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-19-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-20-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-21-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
@@ -10,6 +10,7 @@
 	- [x] Show time until full expedition/dungeon points recovery
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
 	- [x] Craft material for more items added
+	- [x] Guild message text cache
 - **Reports**
 	- [x] Rewarded items have border based on their quality
 - **Expedition**
@@ -32,7 +33,7 @@
 - **Forge**
 	- [x] Added button to show/hide player dolls at forge/smelt/workbench
 	- [x] Send guild message for needed materials now can be edited
-	- [ ] Item links to gladiatus-tools.com for more items information [under construction]
+	- [x] Item links to gladiatus-tools.com for more items information
 
 
 ### BUG FIXES
