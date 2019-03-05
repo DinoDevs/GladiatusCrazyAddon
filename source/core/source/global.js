@@ -670,9 +670,21 @@ var gca_global = {
 							loading.className = "loading";
 							textareaDiv.appendChild(loading);
 
-							let instant_message_textarea = document.createElement('textarea');
-							instant_message_textarea.dataset.sendGuildMessage = "true";
-							textareaDiv.appendChild(instant_message_textarea);
+							let textarea = document.createElement('textarea');
+							textarea.dataset.sendGuildMessage = "true";
+							textareaDiv.appendChild(textarea);
+
+							// Cache message on keypress
+							textarea.value = gca_data.section.get("cache", "guild_message", '');
+							textarea.addEventListener('keyup', function(){
+								gca_data.section.set("cache", "guild_message", this.value);
+							}, false);
+							textarea.addEventListener('change', function(){
+								gca_data.section.set("cache", "guild_message", this.value);
+							}, false);
+
+							// Initialize on window exit
+							gca_tools.event.onExit.init();
 
 							temp = document.createElement('input');
 							temp.type = "button";
@@ -683,50 +695,41 @@ var gca_global = {
 								if (loading.style.display == "block") return;
 
 								// Get message
-								var msg = instant_message_textarea.value;
+								var msg = textarea.value;
 								// Get exclude me data
 								var exclude_me = (document.getElementById('qgm_exclude_me').checked) ? true : false;
 
 								// Dont send small messages
 								if(msg.length == 0) return;
 
-								var warning_on_leave = function (event) {
-									event.returnValue = "You are sending a message!\nAre you sure you want to leave the page?";
-								}
-								window.addEventListener('beforeunload', warning_on_leave);
+								// Set pending action
+								gca_tools.event.onExit.listen(
+									'guild_message',
+									// Not even displayed
+									'You are sending a message!\nAre you sure you want to leave the page?'
+								);
 
 								// Disable message
 								loading.style.display = "block";
 								// Send message
-								var send = gca_global.background.guildMessage.send(instant_message_textarea.value, exclude_me, function(ok){
+								var send = gca_global.background.guildMessage.send(textarea.value, exclude_me, function(ok){
 									// Eanble messages
 									loading.style.display = "none";
-									if(ok){
-										instant_message_textarea.value = "";
-										if (Math.random()*1000 <= 1) {
-											let poem = [
-												"Rubies are red,",
-												"potions are blue,",
-												"while you click,",
-												"I work for you."
-											];
-											gca_notifications.error(poem[0]);
-											gca_notifications.info(poem[1]);
-											gca_notifications.warning(poem[2]);
-											gca_notifications.success(poem[3]);
-										}
-										else {
+									if (ok) {
+										textarea.value = "";
+										gca_data.section.del("cache", "guild_message");
+										if (!gca_tools.easter_eggs.check()) {
 											gca_notifications.success(gca_locale.get("global", "message_sent_success"));
 										}
-									}else{
+									} else {
 										gca_notifications.error(gca_locale.get("global", "message_sent_failed"));
 									}
-									window.removeEventListener('beforeunload', warning_on_leave);
+									gca_tools.event.onExit.remove('guild_message');
 								});
 								if(!send){
 									loading.style.display = "none";
 									gca_notifications.error(gca_locale.get("general", "no_data"));
-									window.removeEventListener('beforeunload', warning_on_leave);
+									gca_tools.event.onExit.remove('guild_message');
 								}
 							}, false);
 							div.appendChild(temp);

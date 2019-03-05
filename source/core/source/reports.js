@@ -445,14 +445,10 @@ var gca_reports = {
 				result = 0;		// Draw
 			}
 
-			if (Math.random()*1000 <= 1) {
-				if (result == 1) {
-					gca_notifications.success("Are you not Entertained?");
-				}
-				else {
-					gca_notifications.warning("The force is strong with this one!");
-				}
-			}
+			gca_tools.easter_eggs.check(
+				gca_tools.easter_eggs.fight,
+				[(result == 1)]
+			);
 		}
 
 	},
