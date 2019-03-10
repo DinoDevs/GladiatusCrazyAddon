@@ -471,6 +471,7 @@ var gca_player = {
 			let section = document.createElement('section');
 			section.style.display = 'block';
 			let list = document.createElement('ul');
+			list.style.margin = '0';
 			list.style.padding = '0';
 			list.style.listStyle = 'none';
 			for (let i = 0; i < info.length; i++) {
