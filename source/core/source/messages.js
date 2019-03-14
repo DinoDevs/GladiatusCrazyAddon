@@ -25,7 +25,7 @@ var gca_messages = {
 	inject : function(){
 		// Messages
 		if(gca_section.submod == 'messageShow' || gca_section.submod == 'messageMoveDelete'){
-			
+
 			// Parse messages
 			this.messages.resolve();
 
@@ -65,7 +65,7 @@ var gca_messages = {
 
 			// Sidebar
 			(gca_options.bool("messages", "show_sidebar") &&
-				this.sidebar.inject());
+				this.sidebar.inject(this));
 
 			// Header links fix
 			(gca_options.bool("messages", "fix_header_links") &&
@@ -135,7 +135,7 @@ var gca_messages = {
 			}
 
 			// Guild message
-			else if(message.image.match(/\d+-\d+\.png/)){
+			else if(message.image.match(/\d*-\d*\.png/)){
 				message.type = "guild";
 			}
 
@@ -741,7 +741,7 @@ var gca_messages = {
 		element : null,
 
 		// Inject
-		inject : function(){
+		inject : function(self){
 			// Create sidebar
 			this.element = document.createElement("div");
 			this.element.className = "gca_messages_sidebar";
@@ -750,47 +750,47 @@ var gca_messages = {
 			content.insertBefore(this.element, content.firstChild);
 
 			// Create Icons
-			this.createIcons();
+			this.createIcons(self.messages);
 		},
 
 		// Create Icons
-		createIcons : function(){
+		createIcons : function(messages){
 			// Personal
-			if(gca_messages.messages.type.personal.length){
+			if(messages.type.personal.length){
 				let icon = this.addIcon({
 					backgroundImage : "url(img/interface_ar/messages.gif)"
-				}, gca_messages.messages.type.personal.length, this.handleClick);
+				}, messages.type.personal.length, this.handleClick);
 				icon.cur = -1;
-				icon.list = gca_messages.messages.type.personal;
+				icon.list = messages.type.personal;
 			}
 
 			// Guild
-			if(gca_messages.messages.type.guild.length){
-				let img = gca_messages.messages.type.guild[0].element.getElementsByClassName("message_icon")[0].style.backgroundImage;
+			if(messages.type.guild.length){
+				let img = messages.type.guild[0].element.getElementsByClassName("message_icon")[0].style.backgroundImage;
 				let icon = this.addIcon({
 					backgroundImage : img,
 					backgroundSize : "100% 111%"
-				}, gca_messages.messages.type.guild.length, this.handleClick);
+				}, messages.type.guild.length, this.handleClick);
 				icon.cur = -1;
-				icon.list = gca_messages.messages.type.guild;
+				icon.list = messages.type.guild;
 			}
 
 			// News
-			if(gca_messages.messages.type.news.length){
+			if(messages.type.news.length){
 				let icon = this.addIcon({
 					backgroundImage : "url(img/news/icon_7.gif)"
-				}, gca_messages.messages.type.news.length, this.handleClick);
+				}, messages.type.news.length, this.handleClick);
 				icon.cur = -1;
-				icon.list = gca_messages.messages.type.news;
+				icon.list = messages.type.news;
 			}
 
 			// Guild Battle
-			if(gca_messages.messages.type.guild_battle.length){
+			if(messages.type.guild_battle.length){
 				let icon = this.addIcon({
 					backgroundImage : "url(img/news/icon_4.gif)"
-				}, gca_messages.messages.type.guild_battle.length, this.handleClick);
+				}, messages.type.guild_battle.length, this.handleClick);
 				icon.cur = -1;
-				icon.list = gca_messages.messages.type.guild_battle;
+				icon.list = messages.type.guild_battle;
 			}
 		},
 
