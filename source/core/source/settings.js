@@ -383,7 +383,7 @@ Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
 							// Create a list of languages
 							var languages = [];
 							for(let lang in gca_languages){
-								if(gca_languages.hasOwnProperty(lang)){
+								if(gca_languages.hasOwnProperty(lang) && lang[0] !== '_'){
 									languages.push(lang);
 								}
 							}
@@ -479,6 +479,7 @@ Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
 							return [data.select, clearboth, data.info_translators, data.info_completed];
 						},
 						"save" : function(data){
+							if (!gca_languages.hasOwnProperty(data.select.value) || !gca_languages[data.select.value].hasOwnProperty('name')) return;
 							gca_locale._setLang(data.select.value);
 						}
 					};
