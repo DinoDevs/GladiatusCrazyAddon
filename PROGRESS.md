@@ -81,8 +81,9 @@
 	- [x] German updated
 	- [x] Chinese updated
 
+----
 
 ### TODO
-	- [ ] Fix tooltips materials
-	- [ ] Improve mobile accesibility
+- [ ] Fix tooltips materials
+- [ ] Improve mobile accesibility
 
