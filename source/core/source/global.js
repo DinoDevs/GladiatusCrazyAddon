@@ -49,9 +49,6 @@ var gca_global = {
 		// Resolve Page direction
 		this.pageDirectionResolve();
 
-		// Display gca version on footer
-		this.display.version();
-
 		// Server Service wait screen
 		if (!this.isLoggedIn) {
 			return;
@@ -181,6 +178,11 @@ var gca_global = {
 		// Mobile item move helper - Run on mobiles
 		(this.isMobile &&
 			this.accessibility.item_move.init());
+
+		// Display reddit link on header
+		this.display.reddit();
+		// Display gca version on footer
+		this.display.version();
 	},
 	
 	scripts : {
@@ -298,9 +300,9 @@ var gca_global = {
 		// Display the GCA version on the bottom of the page
 		version : function(){
 			// Add version on the <html> tag as a class-name
-			if(document.documentElement.className.length>0)
-				document.documentElement.className += " ";
-			document.documentElement.className += gca.shortName + "_v" + gca.version;
+			//if(document.documentElement.className.length>0)
+			//	document.documentElement.className += " ";
+			//document.documentElement.className += gca.shortName + "_v" + gca.version;
 
 			// Check if links on footer exist
 			var footerLinks = document.getElementsByClassName("footer_links");
@@ -310,6 +312,24 @@ var gca_global = {
 				link.href = gca.homepage;
 				link.setAttribute("target", "_blank");
 				link.textContent = gca.shortName + ' v' + gca.version;
+				
+				// Create a link seperator
+				footerLinks[0].appendChild(document.createTextNode(" | "));
+				// Insert link
+				footerLinks[0].appendChild(link);
+			}
+		},
+		
+		// Display the Reddit link on the bottom of the page
+		reddit : function(){
+			// Check if links on footer exist
+			var footerLinks = document.getElementsByClassName("footer_links");
+			if(footerLinks.length > 0){
+				// Create a reddit link
+				let link = document.createElement('a');
+				link.href = gca_links.get('unofficial-reddit');
+				link.setAttribute('target', '_blank');
+				link.textContent = 'Unofficial Reddit';
 				
 				// Create a link seperator
 				footerLinks[0].appendChild(document.createTextNode(" | "));
