@@ -35,7 +35,7 @@ var gca_messages = {
 
 			// Unread messages
 			(gca_options.bool("messages", "show_unread") &&
-				this.unread.show());
+				this.unread.show(this));
 
 			// Pagination layout
 			(gca_options.bool("global", "pagination_layout") && 
@@ -43,7 +43,7 @@ var gca_messages = {
 
 			// Separate days
 			(gca_options.bool("messages", "separate_days") && 
-				this.separator.days());
+				this.separator.days(this));
 
 			// Send message box
 			//(gca_options.bool("messages", "send_message_box") && // TODO : Send message
@@ -51,8 +51,8 @@ var gca_messages = {
 
 			// Guild message player info
 			(gca_options.bool("messages", "messages_layout") && gca_options.bool("messages", "more_guild_mate_info") && (
-				this.guild_message.more_info() ||
-				this.private_message.more_info()
+				this.guild_message.more_info(this) ||
+				this.private_message.more_info(this)
 			));
 
 			// Guild message parse links
@@ -69,7 +69,7 @@ var gca_messages = {
 
 			// Header links fix
 			(gca_options.bool("messages", "fix_header_links") &&
-				this.fix.headerLinks());
+				this.fix.headerLinks(this));
 		}
 
 		// Setting Link
@@ -326,12 +326,12 @@ var gca_messages = {
 		last : 0,
 
 		// Show unread messages
-		show : function(){
+		show : function(self){
 			// Load last message
 			this.last = gca_data.section.get("messages", 'last_read_message', 0);
 
 			// List
-			var messages = gca_messages.messages.list;
+			var messages = self.messages.list;
 
 			// If messages
 			if(messages.length > 0){
@@ -376,13 +376,13 @@ var gca_messages = {
 		refreshed : false,
 
 		// Load
-		more_info : function(){
+		more_info : function(self){
 			// If no guild
 			if(!gca_data.section.get("guild", "inGuild", false))
 				return;
 
 			// List
-			var messages = gca_messages.messages.type.guild;
+			var messages = self.messages.type.guild;
 
 			// If no messages
 			if(messages.length == 0)
@@ -452,7 +452,7 @@ var gca_messages = {
 		// Parse links
 		parse_links : function(message){
 			// Match links
-			var links = message.body.textContent.match(/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/g);
+			var links = message.body.textContent.match(/(http|https):\/\/[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,3}(\/\S*)?/g);
 
 			// If no links found return
 			if(!links)
@@ -488,13 +488,13 @@ var gca_messages = {
 		mates : {},
 
 		// Load
-		more_info : function(){
+		more_info : function(self){
 			// If no guild
 			if(!gca_data.section.get("guild", "inGuild", false))
 				return;
 
 			// List
-			var messages = gca_messages.messages.type.personal;
+			var messages = self.messages.type.personal;
 
 			// If no messages
 			if(messages.length == 0)
@@ -870,20 +870,20 @@ var gca_messages = {
 	separator : {
 		
 		// Separate days
-		days : function(){
+		days : function(self){
 			// List
-			var messages = gca_messages.messages.list;
+			var messages = self.messages.list;
 			// If messages
 			if(messages.length > 1){
 				// Get previus date
-				var prev_date = gca_messages.messages.parseDate(messages[0]).day;
+				var prev_date = self.messages.parseDate(messages[0]).day;
 				// Next date variable
 				var next_date;
 
 				// For each message
 				for(var i = 1; i < messages.length; i++){
 					// Get date
-					next_date = gca_messages.messages.parseDate(messages[i]).day;
+					next_date = self.messages.parseDate(messages[i]).day;
 					// If new date
 					if(next_date != prev_date){
 						// Add separator
@@ -915,9 +915,9 @@ var gca_messages = {
 	fix : {
 
 		// Fix messages header links
-		headerLinks : function(){
+		headerLinks : function(self){
 			// List
-			var messages = gca_messages.messages.list;
+			var messages = self.messages.list;
 
 			var links;
 			// For each message
@@ -942,7 +942,6 @@ var gca_messages = {
 		}
 
 	},
-
 
 	// Send message box
 	/*
