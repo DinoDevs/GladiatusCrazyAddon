@@ -31,6 +31,10 @@ var gca_global = {
 		// If Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
 			this.display.inventoryOptionsGroup.preload());
+
+		// Image Cache
+		this.background.preserve_image_cache.preload();
+
 		// If mobile add css class
 		if (this.isMobile) {
 			if (document.documentElement.className.length)
@@ -53,6 +57,9 @@ var gca_global = {
 			return;
 		}
 		
+		// Image Cache
+		this.background.preserve_image_cache.load();
+
 		// Extended info on Health and Experience bars
 		(gca_options.bool("global","extended_hp_xp_info") && 
 			this.display.extended_hp_xp.info());
@@ -170,9 +177,6 @@ var gca_global = {
 		// Show forge info
 		(!this.isTraveling && gca_data.section.get("global", "show_forge_info", 0) != 0 && 
 			this.display.analyzeItems.itemForgeInfo.init());
-
-		// Image Cache
-		this.background.preserve_image_cache();
 
 		// Mobile item move helper - Run on mobiles
 		(this.isMobile &&
@@ -4254,55 +4258,78 @@ var gca_global = {
 			}
 		},
 
-		preserve_image_cache : function() {
-			// Get resources folder id
-			let id = document.head.getElementsByTagName('link');
-			if (!id) return;
-			id = id[0].href.match(/game\/(\d+)\/css/);
-			if (!id | !id[1]) return;
-			id = id[1];
+		preserve_image_cache : {
+			preload : function() {
+				// Images to cache
+				let imgs = [
+					'img/item.png',
+					'img/menu.png',
+					'img/spacer.gif',
+					'img/interface.png',
+					'img/energie_rot.gif',
+					'img/energie_gelb.gif',
+					'img/energie_gruen.gif',
 
-			// Images to load
-			let imgs = [
-				'img/item.png',
-				'img/menu.png',
-				'img/spacer.gif',
-				'img/interface.png',
-				'img/energie_rot.gif',
-				'img/energie_gelb.gif',
-				'img/energie_gruen.gif',
+					/*
+					'img/buff/xp.png',
+					'img/buff/gold.png',
+					'img/buff/dungeon.png',
+					'img/buff/cooldown.png',
+					'img/buff/rubin_right.png',
+					'img/buff/points_limit.png',
+					*/
 
-				/*
-				'img/buff/xp.png',
-				'img/buff/gold.png',
-				'img/buff/dungeon.png',
-				'img/buff/cooldown.png',
-				'img/buff/rubin_right.png',
-				'img/buff/points_limit.png',
-				*/
+					'img/ui/spinner.gif',
+					'img/ui/bar_fill.jpg',
+					'img/ui/bar_fill_green.jpg',
+					'img/ui/layout/menu_bg.jpg',
+					'img/ui/layout/banner_top.png'
+				];
 
-				'img/ui/bar_fill.jpg',
-				'img/ui/layout/menu_bg.jpg'
-			];
+				this.cacheImages(imgs);
+			},
 
-			// Get active buffs
-			var buffs = document.getElementById('buffbar').getElementsByClassName('buff');
-			for (var i = buffs.length - 1; i >= 0; i--) {
-				if (buffs[i].dataset.image) {
-					imgs.push(buffs[i].dataset.image);
+			load : function() {
+				// Images to load
+				let imgs = [];
+
+				// Get active buffs
+				let buffs = document.getElementById('buffbar').getElementsByClassName('buff');
+				for (let i = buffs.length - 1; i >= 0; i--) {
+					if (buffs[i].dataset.image) {
+						imgs.push(buffs[i].dataset.image);
+					}
 				}
-			}
-			
+				
+				this.cacheImages(imgs);
+			},
 
-			window.image_cache = [];
-			for (var i = imgs.length - 1; i >= 0; i--) {
-				let img;
-				img = document.createElement('img');
-				img.src = imgs[i];
-				window.image_cache.push(img);
-				img = document.createElement('img');
-				img.src = id + '/' + imgs[i];
-				window.image_cache.push(img);
+			// Get resources folder id
+			getId : function() {
+				if (!this.id) {
+					let id = document.head.getElementsByTagName('link');
+					if (!id) return;
+					id = id[0].href.match(/game\/(\d+)\/css/);
+					if (!id | !id[1]) return false;
+					id = id[1];
+					this.id = id;
+				}
+				return this.id;
+			},
+
+			cacheImages : function(imgs) {
+				let id = this.getId();
+				if (!window.image_cache) window.image_cache = [];
+				imgs.forEach((src) => {
+					let img = document.createElement('img');
+					img.src = src;
+					if (id && src.indexOf('://') == -1) {
+						window.image_cache.push(img);
+						img = document.createElement('img');
+						img.src = id + '/' + src;
+						window.image_cache.push(img);
+					}
+				});
 			}
 		}
 	},
