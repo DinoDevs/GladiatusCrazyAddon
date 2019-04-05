@@ -131,6 +131,7 @@ var gca_player = {
 		},
 
 		toggle : function() {
+			gca_data.section.sync('arena');
 			let list = gca_data.section.get('arena', 'target-list', {});
 			// Remove from the list
 			if (this.isTarget) {
