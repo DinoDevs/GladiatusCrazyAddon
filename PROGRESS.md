@@ -27,7 +27,7 @@
 - **Player**
 	- [x] Show the durability % of other players' items
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
-	- [x] Show additional player information under their description
+	- [ ] Show additional player information under their description
 - **Packages**
 	- [x] New 🔗 icon indicating a soul-bound item
 	- [x] Added placeholders for pages to be loaded
