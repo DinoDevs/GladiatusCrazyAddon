@@ -71,6 +71,9 @@ var gca_forge = {
 				this.itemShadow.inject());
 		}
 
+		//resource-quality
+		this.showAvailableItemsOnQuality.inject();
+		
 		// Setting Link
 		gca_tools.create.settingsLink("forge");
 	},
@@ -132,6 +135,121 @@ var gca_forge = {
 		if (document.getElementById('forge_item_name')) {
 			handler();
 		}
+	},
+	
+	// Show available items on each quality
+	showAvailableItemsOnQuality : {
+		inject : function(){
+			// Get available materials
+			this.getMaterialsAmounts();
+		},
+		
+		getMaterialsAmounts : function() {
+			// If already have materials data
+			if (this.materialAmounts) {
+				return;
+			}
+
+			// Load materials data
+			jQuery.get(gca_getPage.link({'mod':'forge','submod':'storage'}), (content) => {
+				// Get materials info
+				var info = content.match(/<input id="resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
+				if (!info || !info[1]) {
+					this.materialAmounts = false;
+					return;
+				}
+
+				// Parse amounts
+				info = JSON.parse(info[1].replace(/&quot;/g, '"'));
+				this.materialAmounts = {};
+				for (let mat in info) {
+					if (info.hasOwnProperty(mat)) {
+						this.materialAmounts[mat] = [0, 0, 0, 0, 0, 0];
+						for (let quality in info[mat]) {
+							if (info[mat].hasOwnProperty(quality)) {
+								this.materialAmounts[mat][parseInt(quality, 10) + 1] = info[mat][quality];
+							}
+						}
+					}
+				}
+				
+				this.showMaterialsAmounts();
+			})
+			// If Request Failed
+			.fail(() => {
+				this.materialAmounts = false;
+			});
+			
+			// Detect changes
+			gca_tools.event.addListener('forge-infobox-update', (data) => {
+				//console.log(data);
+				this.showMaterialsAmounts();
+			});
+		},
+		
+		showMaterialsAmounts : function() {
+			// If materials data were not found
+			if (!this.materialAmounts) return;
+			
+			// Save selection the on first run
+			if (!this.selectionsText){
+				this.selectionsText = ["", "", "", "", "", ""];
+				for (i=0; i<=5; i++)
+					this.selectionsText[i] = document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent;
+			}
+			
+			if (!document.getElementsByClassName("crafting_requirements")[0]) return;
+			let materials = document.getElementsByClassName("crafting_requirements")[0].getElementsByTagName("li");
+
+			// Check if already loaded
+			if (materials.length == 0 || materials[0].dataset.amountsLoaded) return;
+			materials[0].dataset.amountsLoaded = true;
+			
+			// Mark that the code has already run
+			document.getElementById("resource-quality").dataset.amounts = true;
+			
+			// No item in slot
+			if ( document.getElementById("resource-quality").parentNode.style.display != "block" )
+				return;
+			
+			// Amount on each quality = Standard, Green, Blue, Purple, Orange, Red
+			let qualities = [0, 0, 0, 0, 0, 0];
+			
+			let totalRequired = 0;
+			
+			// Get item's materials
+			Array.prototype.slice.call(materials).forEach((mat, index) => {
+				let required = parseInt(mat.getElementsByClassName("forge_setpoint")[0].textContent) - parseInt(mat.getElementsByClassName("forge_actual_value")[0].textContent);
+				if( required > 0 ){
+					let mat_id = parseInt(mat.getElementsByTagName("div")[0].className.match(/18-(\d+)/)[1], 10);
+					totalRequired += required;
+					for (i=0; i<=5; i++)
+						qualities[i] += Math.min( required, this.materialAmounts[mat_id][i] );
+					
+					//console.log("Item:"+mat_id+" Required:"+required+" Available:"+this.materialAmounts[mat_id][0]+","+this.materialAmounts[mat_id][1]+","+this.materialAmounts[mat_id][2]+","+this.materialAmounts[mat_id][3]+","+this.materialAmounts[mat_id][4]+","+this.materialAmounts[mat_id][5]);
+				}
+			});
+			
+			let colors = ["white", "#009e00", "#5159F7", "#E303E0", "#FF6A00", "#FF0000"];
+			let select = false;
+			for (i=0; i<=5; i++){
+				document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent = this.selectionsText[i] + "("+qualities[i]+"/"+totalRequired+")";
+				
+				if( qualities[i]>0 ){
+					document.getElementById("resource-quality").getElementsByTagName("option")[i].style.color = colors[i];
+					
+					// Auto select the first option
+					if(!select){
+						document.getElementById("resource-quality").getElementsByTagName("option")[i].selected = true;
+						select = true;
+					}
+				}else{
+					document.getElementById("resource-quality").getElementsByTagName("option")[i].style.color = "grey";
+				}
+			}
+			
+		}
+		
 	},
 	
 	// Show/Hide player doll
@@ -277,6 +395,9 @@ var gca_forge = {
 
 			var amounts = document.getElementsByClassName('forge_amount');
 			for (let i = 0; i < li.length; i++) {
+				if(!Object.keys(data.info.formula.needed)[i])
+					break;
+			
 				let name = data.info.formula.needed[Object.keys(data.info.formula.needed)[i]].name;
 				if (amounts[i].style.backgroundColor != 'greenyellow'){
 					all_names += name.split(" ")[name.split(" ").length-1]+" ";
