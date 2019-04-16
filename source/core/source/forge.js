@@ -23,6 +23,9 @@ var gca_forge = {
 
 			// Add gladiatus tools links
 			this.gladiatusTools.inject();
+
+			// Show available items on quality menu
+			this.showAvailableItemsOnQuality.inject();
 			
 			//this.recraft.inject();
 		}
@@ -45,6 +48,9 @@ var gca_forge = {
 
 			// Add gladiatus tools links
 			this.gladiatusTools.inject();
+
+			// Show available items on quality menu
+			this.showAvailableItemsOnQuality.inject();
 		}
 
 		// Horreum
@@ -70,9 +76,6 @@ var gca_forge = {
 			(gca_options.bool("global","item_shadow") && 
 				this.itemShadow.inject());
 		}
-
-		//resource-quality
-		this.showAvailableItemsOnQuality.inject();
 		
 		// Setting Link
 		gca_tools.create.settingsLink("forge");
@@ -378,9 +381,11 @@ var gca_forge = {
 			});
 		},
 		updateLinks : function (data){
+			if(!data.info.formula.hasOwnProperty("needed")) return;
+			
 			var requirements = document.getElementsByClassName('crafting_requirements');
 			var li = requirements[0].getElementsByTagName('li');
-
+			
 			// Check if already loaded
 			if (li.length == 0 || li[0].dataset.linksLoaded) return;
 			li[0].dataset.linksLoaded = true;
