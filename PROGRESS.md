@@ -37,6 +37,8 @@
 	- [x] Item links to gladiatus-tools.com for more items information
 	- [x] Total available in Horreum materials are shown in the quality drop-down
 	- [x] Fist available quality material is auto selected in the drop-down
+- **Pantheon**
+	- [x] Show amounts of owned rewards
 
 
 ### BUG FIXES
