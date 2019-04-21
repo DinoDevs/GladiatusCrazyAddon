@@ -1,8 +1,8 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-20-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-22-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-21-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-23-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -11,6 +11,7 @@
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
 	- [x] Craft material for more items added
 	- [x] Guild message text cache
+	- [x] Image cache improvements
 - **Reports**
 	- [x] Rewarded items have border based on their quality
 - **Expedition**
@@ -26,7 +27,7 @@
 - **Player**
 	- [x] Show the durability % of other players' items
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
-	- [x] Show additional player information under their description
+	- [ ] Show additional player information under their description
 - **Packages**
 	- [x] New 🔗 icon indicating a soul-bound item
 	- [x] Added placeholders for pages to be loaded
@@ -34,6 +35,8 @@
 	- [x] Added button to show/hide player dolls at forge/smelt/workbench
 	- [x] Send guild message for needed materials now can be edited
 	- [x] Item links to gladiatus-tools.com for more items information
+	- [x] Total available in Horreum materials are shown in the quality drop-down
+	- [x] Fist available quality material is auto selected in the drop-down
 
 
 ### BUG FIXES
@@ -49,6 +52,7 @@
 - **Arena**
 	- [x] Guild members were not highlighted in cross-server turma
 	- [x] Fixed wrong error message when Global Arena request is blocked
+	- [x] Add to target list now works when on multiple opened tabs
 - **Guild**
 	- [x] Guild buildings script not loading on update
 	- [x] Guild storage character items were not highlighted based on quality
