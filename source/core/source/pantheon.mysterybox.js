@@ -12,6 +12,9 @@ var gca_pantheon_mysterybox = {
 		// Show rewards value in rubies
 		(gca_options.bool("pantheon", "show_mysterybox_rewards_rubies") && 
 			this.rewardsValue.show());
+		// Show rewards owned number
+		(gca_options.bool("pantheon", "show_mysterybox_rewards_owned") && 
+			this.rewardsOwnedNumber.show());
 
 		// Setting Link
 		gca_tools.create.settingsLink("pantheon");
@@ -349,6 +352,46 @@ var gca_pantheon_mysterybox = {
 				return -1;
 			}
 
+		}
+	},
+
+
+	// Show for each reward how many you own
+	rewardsOwnedNumber : {
+
+		show : function() {
+			// Check if valid page
+			if (!document.getElementById('content'))
+				return;
+
+			// Get rewards
+			var rewards = document.getElementById('content').getElementsByClassName('mysterybox_reward_item_pool');
+			for (let i = rewards.length - 1; i >= 0; i--) {
+				let owned = this.resolveReward(rewards[i]);
+				if (owned >= 0) {
+					let div = document.createElement('div');
+					div.className = 'reward_pool_owned_number';
+					div.appendChild(document.createTextNode(owned));
+					rewards[i].appendChild(div);
+				}
+			}
+		},
+
+		resolveReward : function(reward){
+			let tooltip = reward.dataset.tooltip;
+			if (!tooltip) return -1;
+			tooltip = JSON.parse(tooltip);
+
+			// If other kind of tooltip (not 3 columns on 2 first rows)
+			if (!(tooltip.length >= 1 && tooltip[0].length >= 2 && tooltip[0][0].length == 3 && tooltip[0][1].length == 3))
+				return -1;
+			// If the 2 first rows have other colors
+			if (!(tooltip[0][0][1] == '#BA9700' && tooltip[0][1][1] == '#00B712'))
+				return -1;
+
+			let number = tooltip[0][1][0].match(/\d+/);
+			if(!number) return -1;
+			return parseInt(number[0], 10);
 		}
 	}
 };

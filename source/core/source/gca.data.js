@@ -443,7 +443,9 @@ gca_options.data = {
 		// Open many mysteryboxes button
 		"open_many_mysteryboxes" : true,
 		// Show mysterybox reward's value in rubies
-		"show_mysterybox_rewards_rubies" : true
+		"show_mysterybox_rewards_rubies" : true,
+		// Show mysterybox reward's owned number
+		"show_mysterybox_rewards_owned" : true
 	},
 
 	// Reports

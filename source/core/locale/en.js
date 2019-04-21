@@ -344,6 +344,7 @@ gca_languages["en"] = {
 			category_pantheon$gods_show_points_percent : "Show god points percent",
 			category_pantheon$open_many_mysteryboxes : "Open multiple mystery boxes",
 			category_pantheon$show_mysterybox_rewards_rubies : "Show mystery-box reward's value in rubies",
+			category_pantheon$show_mysterybox_rewards_owned : "Show mystery-box reward's owned amount",
 			// Settings - Reports
 			category_reports$style_change : "Improve reports' list layout",
 			category_reports$load_loot_tooltips : "Load each report's reward",

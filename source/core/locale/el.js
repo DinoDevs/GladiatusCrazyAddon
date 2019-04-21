@@ -344,6 +344,7 @@ gca_languages["gr"] = {
 			category_pantheon$gods_show_points_percent : "Εμφάνιση των πόντων θεών τοις εκατό",
 			category_pantheon$open_many_mysteryboxes : "Άνοιγμα πολλαπλών σεντουκιών",
 			category_pantheon$show_mysterybox_rewards_rubies : "Εμφάνιση τις αξίας των ανταμοιβών από τα σεντούκια σε ρουμπίνια",
+			category_pantheon$show_mysterybox_rewards_owned : "Εμφάνιση της ποστητας των ανταμοιβών από τα σεντούκια που έχεις ήδη",
 			// Settings - Reports
 			category_reports$style_change: "Βελτίωση του interface της λίστας αναφορών",
 			category_reports$load_loot_tooltips : "Φόρτωση των ανταμοιβών τις κάθε αναφοράς",
