@@ -8,6 +8,7 @@
 ### IMPROVEMENTS
 - **General**
 	- [x] Show time until full expedition/dungeon points recovery
+	- [x] Show dungeon points when in areas without dungeons
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
 	- [x] Craft material for more items added
 	- [x] Guild message text cache
