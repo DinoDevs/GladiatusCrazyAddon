@@ -76,6 +76,8 @@
 	- [x] Messages actions are visible without mouseover
 - **Settings**
 	- [x] Empty language select option removed
+- **Player**
+	- [x] Show critical buff fix
 
 
 ### TRANSLATIONS
