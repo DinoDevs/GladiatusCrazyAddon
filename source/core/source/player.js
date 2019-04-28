@@ -445,10 +445,10 @@ var gca_player = {
 
 			// Generate info
 			info.push(gca_locale.get('overview', 'can_use_max_item_level', {max : (level + 16)}));
-			info.push(gca_locale.get('overview', 'can_see_market_max_item_level', {max : (level + 9)}));
+			info.push(gca_locale.get('overview', 'can_see_market_max_item_level', {max : ( ( level+9<Math.floor(1.25*level) )? level+9 : Math.floor(1.25*level) ) }));
 			info.push(gca_locale.get('overview', 'can_see_auction_item_levels', {
-				min : (level - Math.ceil(level/4) > 0 ? level - Math.ceil(level/4) : 1),
-				max : (level + 14)
+				min : ( Math.floor(level* 0.75) ),
+				max : ( ( level+14<Math.ceil(1.25*level+5.75) )? level+14 : Math.ceil(1.25*level+5.75) )
 			}));
 
 			return info;
