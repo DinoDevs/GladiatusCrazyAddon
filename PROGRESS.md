@@ -15,6 +15,7 @@
 	- [x] Image cache improvements
 - **Reports**
 	- [x] Rewarded items have border based on their quality
+	- [x] Attack back/again button next to each arena/turma report (↺)
 - **Expedition**
 	- [x] Added material's name on the material drop tooltip
 - **Market**
