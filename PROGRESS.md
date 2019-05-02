@@ -11,7 +11,7 @@
 	- [x] Show dungeon points when in areas without dungeons
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
 	- [x] Craft material for more items added
-	- [x] Guild message text cache
+	- [x] Guild message text cache (what ever you type on the quick guild message is drafted)
 	- [x] Image cache improvements
 - **Reports**
 	- [x] Rewarded items have border based on their quality
@@ -47,6 +47,7 @@
 - **General**
 	- [x] Stability improvements and tweaks
 	- [x] Audio random dependency error fix
+	- [x] Removed recipe materials' amounts from the tooltips (were invalid)
 - **Messages**
 	- [x] Fixed new guild member detection bug
 - **Packages**
