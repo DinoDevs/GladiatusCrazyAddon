@@ -1,19 +1,21 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-21-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-22-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-23-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
 	- [x] Show time until full expedition/dungeon points recovery
+	- [x] Show dungeon points when in areas without dungeons
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
 	- [x] Craft material for more items added
 	- [x] Guild message text cache
 	- [x] Image cache improvements
 - **Reports**
 	- [x] Rewarded items have border based on their quality
+	- [x] Attack back/again button next to each arena/turma report (↺)
 - **Expedition**
 	- [x] Added material's name on the material drop tooltip
 - **Market**
@@ -37,6 +39,8 @@
 	- [x] Item links to gladiatus-tools.com for more items information
 	- [x] Total available in Horreum materials are shown in the quality drop-down
 	- [x] Fist available quality material is auto selected in the drop-down
+- **Pantheon**
+	- [x] Show amounts of owned rewards
 
 
 ### BUG FIXES
@@ -74,6 +78,8 @@
 	- [x] Messages actions are visible without mouseover
 - **Settings**
 	- [x] Empty language select option removed
+- **Player**
+	- [x] Show critical buff fix
 
 
 ### TRANSLATIONS

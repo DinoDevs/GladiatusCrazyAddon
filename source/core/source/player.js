@@ -218,11 +218,11 @@ var gca_player = {
 		}
 		// Find Critical buff
 		var char_schaden_tt = document.getElementById('char_schaden_tt');
-		if (char_schaden_tt.dataset.tooltip.match(/>(\d+) %</i) && !document.location.href.match(/&doll=[3-6]/i)) {
-			let buff = char_schaden_tt.dataset.tooltip.match(/>(\d+) %</i)[1] - Math.round(char_schaden_tt.dataset.tooltip.match(/,(\d+)\],\["#BA9700"/i)[1]*52/(parseInt(document.getElementById('char_level').textContent)-8)/5);
+		if (char_schaden_tt.dataset.tooltip.match(/"(\d+) %"/i) && !document.location.href.match(/&doll=[3-6]/i)) {
+			let buff = char_schaden_tt.dataset.tooltip.match(/"(\d+) %"/i)[1] - Math.round(char_schaden_tt.dataset.tooltip.match(/,(\d+)\],\["#BA9700"/i)[1]*52/(parseInt(document.getElementById('char_level').textContent)-8)/5);
 			if (buff > 0) {
 				buffs.push([4,9,buff+'%']);
-				stats_translations.push(char_schaden_tt.dataset.tooltip.match(/([^:]+):/gi)[8].match(/([^:]+):/)[1]);
+				stats_translations.push(JSON.parse('"'+(char_schaden_tt.dataset.tooltip.match(/([^:]+):/gi)[8].match(/([^:"]+):/)[1])+'"').replace(/&nbsp;/g,""));
 			}
 		}
 		// Find Damage buff
@@ -445,10 +445,10 @@ var gca_player = {
 
 			// Generate info
 			info.push(gca_locale.get('overview', 'can_use_max_item_level', {max : (level + 16)}));
-			info.push(gca_locale.get('overview', 'can_see_market_max_item_level', {max : (level + 9)}));
+			info.push(gca_locale.get('overview', 'can_see_market_max_item_level', {max : ( ( level+9<Math.floor(1.25*level) )? level+9 : Math.floor(1.25*level) ) }));
 			info.push(gca_locale.get('overview', 'can_see_auction_item_levels', {
-				min : (level - Math.ceil(level/4) > 0 ? level - Math.ceil(level/4) : 1),
-				max : (level + 14)
+				min : ( Math.floor(level* 0.75) ),
+				max : ( ( level+14<Math.ceil(1.25*level+5.75) )? level+14 : Math.ceil(1.25*level+5.75) )
 			}));
 
 			return info;

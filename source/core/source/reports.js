@@ -216,10 +216,52 @@ var gca_reports = {
 								this.getLootItem(report_id, report_t, icon, title);
 							}
 						}
+						
+						// Attack again link
+						if(gca_reports.submod == 'showArena' || gca_reports.submod == 'showCircusTurma'){
+							//let icon = (line[row].getElementsByTagName('div')[0].className=="icon_defense")? "⚔️" : "(↺)";
+							let icon = "(↺)";
+							
+							// Create click icon
+							let attack_again = document.createElement("span");
+							attack_again.textContent = icon;
+							attack_again.setAttribute('style', "float:right;font-weight:normal;cursor:pointer;");
+							//attack_again.style.color = line[row].getElementsByTagName('a')[0].style.color; // color same as link
+							
+							// Get opponent id
+							let opponent_id = line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].href.match(/&p=(\d+)/i)[1];
+							let server = line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].href.match(/s(\d+)-(\w+)\./i);
+							//console.log(server);
+							attack_again.setAttribute('onclick', "gca_reports.reports_style.startProvinciarumFight(this, "+ ((gca_reports.submod == 'showArena')?2:3) +", "+opponent_id+", "+server[1]+", '"+server[2]+"')");
+							//gca_tools.setTooltip(attack_again, JSON.stringify([[['Attack back',"white"]]]));
+							
+							// Tooltip
+							let name = line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].textContent;
+							//attack_again.dataset.tooltip = '[[["'+ gca_locale.get("arena", "attack_player", {name}) +'","#fff;font-size:12px;"]]]';
+							gca_tools.setTooltip(attack_again, JSON.stringify([[[ gca_locale.get("arena", "attack_player", {name}), line[row].getElementsByTagName('a')[0].style.color+";font-size:12px;" ]]]));
+							
+							// Add click icon
+							line[row].getElementsByTagName('td')[0].appendChild(attack_again);
+						}
 					}
 				}
 				row++;
 			}
+			
+			// Add attack error box
+			let error_box = document.createElement("div");
+			error_box.id = "errorRow";
+			error_box.setAttribute('style', "display:none;margin:10px;border:2px solid #bba86e;background-color: #eddac4;padding:10px");
+			document.getElementById("content").insertBefore(error_box, document.getElementById("content").getElementsByTagName('div')[0]);
+			let error_text = document.createElement("div");
+			error_text.id = "errorText";
+			document.getElementById("errorRow").appendChild(error_text);
+		},
+		
+		// Gladiatus Attack code
+		startProvinciarumFight :function(d, a, c, b, e) {
+			jQuery("#errorRow").css({display: "none"});
+			sendRequest("get", "ajax.php", "mod=arena&submod=confirmDoCombat&aType=" + a + "&opponentId=" + c + "&serverId=" + b + "&country=" + e, d)
 		},
 
 		// Get loot item

@@ -347,8 +347,20 @@ var gca_global = {
 				// Show timers
 				this.showTimer('expedition', server_speed);
 				this.showTimer('dungeon', server_speed);
+				
+				// Show dungeon points if hidden (eg. when in Britannia)
+				this.showDungeon();
 			},
-
+			showDungeon : function(){
+				if(!document.getElementById("icon_dungeonpoints"))
+					return;
+				
+				if( document.getElementById("icon_dungeonpoints").parentNode.style.display == "none" ){
+					document.getElementById("icon_dungeonpoints").parentNode.style.display = "block";
+					document.getElementById("icon_dungeonpoints").parentNode.style.filter = "grayscale(100%)";
+					document.getElementById("icon_dungeonpoints").parentNode.style.opacity = 0.4;
+				}
+			},
 			showTimer : function(type, server_speed) {
 				// Expedition tooltip div
 				let icon = document.getElementById('icon_' + type + 'points');
