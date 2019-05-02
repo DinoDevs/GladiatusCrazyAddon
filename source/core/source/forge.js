@@ -26,6 +26,9 @@ var gca_forge = {
 
 			// Show available items on quality menu
 			this.showAvailableItemsOnQuality.inject();
+
+			// Show selected quality on dropdown
+			this.showSelectedQuality.inject();
 			
 			//this.recraft.inject();
 		}
@@ -51,6 +54,9 @@ var gca_forge = {
 
 			// Show available items on quality menu
 			this.showAvailableItemsOnQuality.inject();
+
+			// Show selected quality on dropdown
+			this.showSelectedQuality.inject();
 		}
 
 		// Horreum
@@ -197,7 +203,7 @@ var gca_forge = {
 			// Save selection the on first run
 			if (!this.selectionsText){
 				this.selectionsText = ["", "", "", "", "", ""];
-				for (i=0; i<=5; i++)
+				for (let i = 0; i <= 5; i++)
 					this.selectionsText[i] = document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent;
 			}
 			
@@ -226,7 +232,7 @@ var gca_forge = {
 				if( required > 0 ){
 					let mat_id = parseInt(mat.getElementsByTagName("div")[0].className.match(/18-(\d+)/)[1], 10);
 					totalRequired += required;
-					for (i=0; i<=5; i++)
+					for (let i = 0; i <= 5; i++)
 						qualities[i] += Math.min( required, this.materialAmounts[mat_id][i] );
 					
 					//console.log("Item:"+mat_id+" Required:"+required+" Available:"+this.materialAmounts[mat_id][0]+","+this.materialAmounts[mat_id][1]+","+this.materialAmounts[mat_id][2]+","+this.materialAmounts[mat_id][3]+","+this.materialAmounts[mat_id][4]+","+this.materialAmounts[mat_id][5]);
@@ -235,24 +241,55 @@ var gca_forge = {
 			
 			let colors = ["white", "#009e00", "#5159F7", "#E303E0", "#FF6A00", "#FF0000"];
 			let select = false;
-			for (i=0; i<=5; i++){
-				document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent = this.selectionsText[i] + "("+qualities[i]+"/"+totalRequired+")";
+			let resource = document.getElementById("resource-quality");
+			let options = resource.getElementsByTagName("option");
+			for (let i = 0; i <= 5; i++) {
+				options[i].textContent = this.selectionsText[i] + "("+qualities[i]+"/"+totalRequired+")";
 				
-				if( qualities[i]>0 ){
-					document.getElementById("resource-quality").getElementsByTagName("option")[i].style.color = colors[i];
+				if (qualities[i] > 0) {
+					options[i].style.color = colors[i];
 					
 					// Auto select the first option
-					if(!select){
-						document.getElementById("resource-quality").getElementsByTagName("option")[i].selected = true;
+					if (!select) {
+						//options[i].selected = true;
+						options[i].selectedIndex = i;
 						select = true;
 					}
-				}else{
-					document.getElementById("resource-quality").getElementsByTagName("option")[i].style.color = "grey";
+				} else {
+					options[i].style.color = "grey";
 				}
 			}
 			
 		}
 		
+	},
+
+	// Show selected quality on dropdown
+	showSelectedQuality : {
+		inject : function() {
+			this.dropdown = document.getElementById('resource-quality');
+			if (!this.dropdown) return;
+
+			this.dropdown.addEventListener('change', () => {this.update();}, false);
+			this.update();
+		},
+
+		update : function() {
+			if (!this.dropdown) return;
+
+			let color = false;
+			switch(this.dropdown.value) {
+				case '-1': color = 'rgb(255, 255, 255)';break;
+				case  '0': color = 'rgb(0, 158, 0)';break;
+				case  '1': color = 'rgb(81, 89, 247)';break;
+				case  '2': color = 'rgb(227, 3, 224)';break;
+				case  '3': color = 'rgb(255, 106, 0)';break;
+				case  '4': color = 'rgb(255, 0, 0)';break;
+			}
+
+			if (!color) this.dropdown.removeAttribute('style');
+			else this.dropdown.setAttribute('style', 'border-color:' + color + ';box-shadow:inset 0px 0px 4px ' + color + ';');
+		}
 	},
 	
 	// Show/Hide player doll
