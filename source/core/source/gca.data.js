@@ -278,8 +278,10 @@ gca_options.data = {
 			// gst : guild storge
 			// gbn : guild bank
 			// gwr : guild war room
+			// gar : guild arena battle reports
 			// gjl : guild jail
 			// glb : guild library
+			// gtm : guild templum
 			// sim : battle simulator
 			// stt : show my stats
 			// onl : online friends

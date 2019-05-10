@@ -97,6 +97,8 @@
 	.swords-icon:hover{background: transparent url('buttons/main_buttons.png') -70px -25px no-repeat;}
 	.report-icon{background: transparent url('buttons/main_buttons.png') -95px 0px no-repeat;}
 	.report-icon:hover{background: transparent url('buttons/main_buttons.png') -95px -25px no-repeat;}
+	.report2-icon{background: transparent url('buttons/main_buttons.png') -345px 0px no-repeat;}
+	.report2-icon:hover{background: transparent url('buttons/main_buttons.png') -345px -25px no-repeat;}
 	.box-icon{background: transparent url('buttons/main_buttons.png') -120px 0px no-repeat;}
 	.box-icon:hover{background: transparent url('buttons/main_buttons.png') -120px -25px no-repeat;}
 	.castle-icon{background: transparent url('buttons/main_buttons.png') -145px 0px no-repeat;}
@@ -115,6 +117,8 @@
 	.scrol-icon:hover{background: transparent url('buttons/main_buttons.png') -295px -25px no-repeat;}
 	.refresh-icon{background: transparent url('buttons/main_buttons.png') -320px 0px no-repeat;}
 	.refresh-icon:hover{background: transparent url('buttons/main_buttons.png') -320px -25px no-repeat;}
+	.pillar-icon{background: transparent url('buttons/main_buttons.png') -370px 0px no-repeat;}
+	.pillar-icon:hover{background: transparent url('buttons/main_buttons.png') -370px -25px no-repeat;}
 
 /* Auction Status Bar */
 	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 110px;}

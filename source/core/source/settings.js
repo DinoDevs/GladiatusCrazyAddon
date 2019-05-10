@@ -507,17 +507,19 @@ Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
 					// gst : guild storge
 					// gbn : guild bank
 					// gwr : guild war room
+					// gar : guild arena battle reports
 					// gjl : guild jail
 					// glb : guild library
+					// gtm : guild templum
 					// sim : battle simulator
 					// stt : show my stats
 					// onl : online friends
 				"shortcuts_bar_buttons" : (function(){
 					var scheme = {
 						"type" : "enumerator",
-						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gjl|glb|sim|stt|onl'
+						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gar|gjl|glb|gtm|sim|stt|onl'
 					};
-					var icons = ["message-icon", "cross-icon", "market-icon", "box-icon", "gold-icon", "report-icon", "castle-icon", "notebook-icon", "swords-icon", "people-icon", "online-icon"];
+					var icons = ["message-icon", "cross-icon", "market-icon", "box-icon", "gold-icon", "report-icon", "report2-icon", "castle-icon", "notebook-icon", "pillar-icon", "swords-icon", "people-icon", "online-icon"];
 					scheme.values_dom = [];
 					var tmp;
 					for (var i = 0; i < icons.length; i++) {

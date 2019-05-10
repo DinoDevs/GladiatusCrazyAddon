@@ -893,6 +893,18 @@ var gca_global = {
 							shortcutsBar.appendChild(button);
 						}
 						
+						// Create a Link to guild's arena battle reports
+						if(activeButtons.indexOf("gar") >= 0){
+							button = document.createElement('div');
+							button.className = "icon-out";
+							link = document.createElement('a');
+							link.className = "icon report2-icon";
+							link.href = gca_getPage.link({"mod":"guild_warcamp","submod":"guild_member_reports"});
+							link.title = gca_locale.get("global", "guild_arenareports_goto");
+							button.appendChild(link);
+							shortcutsBar.appendChild(button);
+						}
+						
 						// Create a Link to guild's jail
 						if(activeButtons.indexOf("gjl") >= 0){
 							button = document.createElement('div');
@@ -913,6 +925,18 @@ var gca_global = {
 							link.className = "icon notebook-icon";
 							link.href = gca_getPage.link({"mod":"guildLibrary"});
 							link.title = gca_locale.get("global", "guild_library_goto");
+							button.appendChild(link);
+							shortcutsBar.appendChild(button);
+						}
+						
+						// Create a Link to guild's templum
+						if(activeButtons.indexOf("gtm") >= 0){
+							button = document.createElement('div');
+							button.className = "icon-out";
+							link = document.createElement('a');
+							link.className = "icon pillar-icon";
+							link.href = gca_getPage.link({"mod":"guildTemple"});
+							link.title = gca_locale.get("global", "guild_templum_goto");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
