@@ -297,10 +297,10 @@ var gca_tools = {
 			var cords_item = jQuery(item).offset();
 			cords_item = {x: cords_item.left, y: cords_item.top};
 			var cords_target = {x: x, y: y};
-			var cords_middle = {
-				x: cords_item.x + (cords_target.x - cords_item.x)/2,
-				y: cords_item.y + (cords_target.y - cords_item.y)/2
-			};
+			//var cords_middle = {
+			//	x: cords_item.x + (cords_target.x - cords_item.x)/2,
+			//	y: cords_item.y + (cords_target.y - cords_item.y)/2
+			//};
 			//let scroll = {x : window.scrollX, y : window.scrollY};
 			this._move.fireMouseEvent(item, 'mousedown', {clientX: cords_item.x - window.scrollX, clientY: cords_item.y - window.scrollY});
 			//this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_item.x - window.scrollX, clientY: cords_item.y - window.scrollY});
@@ -321,6 +321,16 @@ var gca_tools = {
 				else if (target == 'inv') {
 					grid = document.getElementById('inv');
 					size = [5, 8];
+
+					// If gold
+					if (item.dataset.basis == '14-1') {
+						cords_grid = jQuery(grid).offset();
+						return {
+							x: (cords_grid.left + 1),
+							y: (cords_grid.top + 32 * (size[0] - 1) + 1),
+							parent : grid
+						}
+					}
 				}
 				else if (target == 'market') {
 					grid = document.getElementById('market_sell');
@@ -335,10 +345,11 @@ var gca_tools = {
 					return false;
 				}
 
-				var spot = this.findGridSpot(
+				var items = this.getGridItems(grid);
+				var spot = this.findSameItemSpot(item, items) || this.findGridSpot(
 					item.dataset.measurementY,
 					item.dataset.measurementX,
-					this.getGridMap(size[0], size[1], this.getGridItems(grid))
+					this.getGridMap(size[0], size[1], items)
 				);
 				if (!spot) return false;
 
@@ -362,7 +373,8 @@ var gca_tools = {
 						y : parseInt(dragables[i].style.top, 10)/32,
 						x : parseInt(dragables[i].style.left, 10)/32,
 						h : parseInt(dragables[i].dataset.measurementY, 10),
-						w : parseInt(dragables[i].dataset.measurementX, 10)
+						w : parseInt(dragables[i].dataset.measurementX, 10),
+						hash : dragables[i].dataset.hash
 					});
 				}
 				return items;
@@ -391,6 +403,17 @@ var gca_tools = {
 				}
 
 				return table;
+			},
+
+			// Find a spot on the grid that you can stack this item
+			// -------------------------------------------------- //
+			findSameItemSpot : function(item, items) {
+				for (var i = items.length - 1; i >= 0; i--) {
+					if (items[i].hash == item.dataset.hash) {
+						return {y : items[i].y, x : items[i].x};
+					}
+				}
+				return false;
 			},
 
 			// Find a spot on the grid
