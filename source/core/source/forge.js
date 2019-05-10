@@ -251,13 +251,21 @@ var gca_forge = {
 					
 					// Auto select the first option
 					if (!select) {
-						//options[i].selected = true;
-						options[i].selectedIndex = i;
+						options[i].selected = true;
 						select = true;
 					}
 				} else {
 					options[i].style.color = "grey";
 				}
+			}
+
+			// Fire change event
+			if ('createEvent' in document) {
+				var evt = document.createEvent('HTMLEvents');
+				evt.initEvent('change', false, true);
+				resource.dispatchEvent(evt);
+			} else {
+				resource.fireEvent('onchange');
 			}
 			
 		}
