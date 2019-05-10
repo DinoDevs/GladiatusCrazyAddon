@@ -519,12 +519,27 @@ Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
 						"type" : "enumerator",
 						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gar|gjl|glb|gtm|sim|stt|onl'
 					};
-					var icons = ["message-icon", "cross-icon", "market-icon", "box-icon", "gold-icon", "report-icon", "report2-icon", "castle-icon", "notebook-icon", "pillar-icon", "swords-icon", "people-icon", "online-icon"];
+					var btns = [
+						{icon : "message-icon", title : gca_locale.get("global", "message_private_write")},
+						{icon : "cross-icon", title : gca_locale.get("global", "guild_medic_goto")},
+						{icon : "market-icon", title : gca_locale.get("global", "guild_market_goto")},
+						{icon : "box-icon", title : gca_locale.get("global", "guild_storage_goto")},
+						{icon : "gold-icon", title : gca_locale.get("global", "guild_bank_goto")},
+						{icon : "report-icon", title : gca_locale.get("global", "guild_warcamp_goto")},
+						{icon : "report2-icon", title : gca_locale.get("global", "guild_arenareports_goto")},
+						{icon : "castle-icon", title : gca_locale.get("global", "guild_jail_goto")},
+						{icon : "notebook-icon", title : gca_locale.get("global", "guild_library_goto")},
+						{icon : "pillar-icon", title : gca_locale.get("global", "guild_templum_goto")},
+						{icon : "swords-icon", title : gca_locale.get("global", "simulator_goto")},
+						{icon : "people-icon", title : gca_locale.get("global", "stats_display")},
+						{icon : "online-icon", title : gca_locale.get("global", "online_display")}
+					];
 					scheme.values_dom = [];
 					var tmp;
-					for (var i = 0; i < icons.length; i++) {
+					for (var i = 0; i < btns.length; i++) {
 						tmp = document.createElement("span");
-						tmp.className = icons[i];
+						tmp.className = btns[i].icon;
+						tmp.title = btns[i].title;
 						tmp.style.width = "25px";
 						tmp.style.height = "25px";
 						tmp.style.display = "block";
