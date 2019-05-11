@@ -1,8 +1,8 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-22-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-24-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-23-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-26-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -13,6 +13,8 @@
 	- [x] Craft material for more items added
 	- [x] Guild message text cache (what ever you type on the quick guild message is drafted)
 	- [x] Image cache improvements
+	- [x] Added 2 more shortcut buttons (disabled by default)
+	- [x] Double click will stack same items instead of loading them on a new spot
 - **Reports**
 	- [x] Rewarded items have border based on their quality
 	- [x] Attack back/again button next to each arena/turma report (↺)
@@ -48,6 +50,7 @@
 	- [x] Stability improvements and tweaks
 	- [x] Audio random dependency error fix
 	- [x] Removed recipe materials' amounts from the tooltips (were invalid)
+	- [x] Item tooltips materials are now correct (but no amounts, too big data to load on every refresh)
 - **Messages**
 	- [x] Fixed new guild member detection bug
 - **Packages**
@@ -58,6 +61,8 @@
 	- [x] Guild members were not highlighted in cross-server turma
 	- [x] Fixed wrong error message when Global Arena request is blocked
 	- [x] Add to target list now works when on multiple opened tabs
+- **Merchants**
+	- [x] Double click does not buy items that worth rubies anymore (to avoid mistakes)
 - **Guild**
 	- [x] Guild buildings script not loading on update
 	- [x] Guild storage character items were not highlighted based on quality
@@ -95,6 +100,5 @@
 ----
 
 ### TODO
-- [ ] Fix tooltips materials
 - [ ] Improve mobile accesibility
 
