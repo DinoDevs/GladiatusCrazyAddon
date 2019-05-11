@@ -104,6 +104,7 @@ gca_languages["gr"] = {
 			// Notifications
 			notification_guild_application: "Υπάρχει μια αίτηση στο τάγμα σε αναμονή!",
 			low_durability_items : "Υπάρχουν {{number}} αντικείμενα με ανθεκτικότητα κάτω από {{percent}}%",
+			item_worth_rubies : "Αυτό το αντικείμενο αξίζει ρουμπίνια!",
 
 			// Gold - Exp data
 			gold_exp_data: "Δεδομένα Χρυσού και Εμπειρίας",

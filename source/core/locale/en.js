@@ -104,6 +104,7 @@ gca_languages["en"] = {
 			// Notifications
 			notification_guild_application : "There is a pending guild application!",
 			low_durability_items : "There are {{number}} item(s) with durability under {{percent}}%",
+			item_worth_rubies : "That item woth rubies!",
 
 			// Gold - Exp data
 			gold_exp_data : "Gold and Experience Data",
