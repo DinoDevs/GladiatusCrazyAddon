@@ -1977,10 +1977,10 @@ var gca_global = {
 
 			// Create Advance menu
 			create : function(){
-				// Resolve menu
-				this.resolve();
 				// Tag menu
 				this.tagMainMenu();
+				// Resolve menu
+				this.resolve();
 
 				// Inject Overview Link
 				this.convertMenu.addTabs("overview", this.info.overview, this.info.overview_active, [
