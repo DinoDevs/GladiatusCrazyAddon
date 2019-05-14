@@ -1894,7 +1894,9 @@ Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
 			let file = document.createElement('a');
 			file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(settings_data));
 			file.setAttribute('download', "settings_" + gca_section.country + "_s" + gca_section.server + "_" + gca_section.playerId + ".gca");
-			file.click();
+			var e = document.createEvent('MouseEvents');
+			e.initEvent('click', true, false);
+			file.dispatchEvent(e);
 		},
 		// Import gca settings
 		import : function(settings_data) {
