@@ -435,6 +435,7 @@ gca_languages["en"] = {
 			translated_by : "Translated by: {{string}}",
 			reset_settings_confirm : "Are you sure you want to reset addon's settings?",
 			clear_data_confirm : "Are you sure you want to clear all the addon's data?",
+			data_exported_save_the_file : "Data were exported. Save the file.",
 
 			// Notifications
 			notification_reload : "Reload the page for the changes to take effect",

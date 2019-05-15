@@ -1872,83 +1872,124 @@ Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
 		// Export gca settings
 		export : function() {
 			// Get settings data
-			let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings");
-			// If no data set to no data
-			if(settings_data === null){
-				settings_data = "{\"data\":{}}";
-			}
+			let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
+			// Get arena data
+			let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
 
 			// Check for errors
 			try {
 				JSON.parse(settings_data);
+				JSON.parse(arena_data);
 			} catch (e) {
 				// Set to no data
-				settings_data = "{\"data\":{}}";
+				gca_notifications.error(gca_locale.get("general", "error"));
+				return false;
 			}
 
-			// Beautify data
-			let settings_json = JSON.parse(settings_data);
-			settings_data = JSON.stringify(settings_json, null, "\t");
+			// Format data
+			let data = {
+				settings : JSON.parse(settings_data),
+				arena : JSON.parse(arena_data),
+				version : 2
+			};
+			data = JSON.stringify(data, null, "\t");
 
 			// Download file
+			gca_notifications.success(gca_locale.get("settings", "data_exported_save_the_file"));
+			this.downloadFile("settings_" + gca_section.country + "_s" + gca_section.server + "_" + gca_section.playerId + ".gca", data);
+		},
+
+		// Download file
+		downloadFile : function(name, text) {
+			// Create file
 			let file = document.createElement('a');
-			file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(settings_data));
-			file.setAttribute('download', "settings_" + gca_section.country + "_s" + gca_section.server + "_" + gca_section.playerId + ".gca");
+			file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			file.setAttribute('download', name);
+			// Fire download
 			var e = document.createEvent('MouseEvents');
 			e.initEvent('click', true, false);
 			file.dispatchEvent(e);
 		},
+
 		// Import gca settings
-		import : function(settings_data) {
+		import : function(data) {
 			// Check for json errors
 			try {
 				// Parse json
-				JSON.parse(settings_data);
+				JSON.parse(data);
 			}
 			catch (e) {
 				return "Parse error";
 			}
 
 			// Parse data
-			let settings_json = JSON.parse(settings_data);
+			data = JSON.parse(data);
+			let settings_json = null;
+			let arena_json = null;
 
-			// If no valid structure
-			if (!settings_json.hasOwnProperty("data") || typeof settings_json.data !== "object") {
-				return "Data error";
+			// Old version file
+			if (data.hasOwnProperty('data')) {
+				settings_json = data;
 			}
+			// Newer version
+			else if (data.hasOwnProperty('version')) {
+				settings_json = data.settings;
+				arena_json = data.arena;
+			}
+			// Error
+			else {
+				return "Parse error";
+			}
+			
+			// Parse settings
+			if (settings_json) {
+				// If no valid structure
+				if (!settings_json.hasOwnProperty("data") || typeof settings_json.data !== "object") {
+					return "Data error";
+				}
 
-			// Start reading data
-			let settings = {data : {}};
+				// Start reading data
+				let settings = {data : {}};
 
-			// For each category
-			for (let category in gca_options.data) {
-				if (gca_options.data.hasOwnProperty(category)) {
-					// If category exist in imported data
-					if (settings_json.data.hasOwnProperty(category)) {
-						settings.data[category] = {};
+				// For each category
+				for (let category in gca_options.data) {
+					if (gca_options.data.hasOwnProperty(category)) {
+						// If category exist in imported data
+						if (settings_json.data.hasOwnProperty(category)) {
+							settings.data[category] = {};
 
-						// For each item in category
-						for (let item in gca_options.data[category]) {
-							if (gca_options.data[category].hasOwnProperty(item)) {
-								
-								// If item exist in imported data
-								if (settings_json.data[category].hasOwnProperty(item)) {
-									// Save data
-									settings.data[category][item] = settings_json.data[category][item];
+							// For each item in category
+							for (let item in gca_options.data[category]) {
+								if (gca_options.data[category].hasOwnProperty(item)) {
+									
+									// If item exist in imported data
+									if (settings_json.data[category].hasOwnProperty(item)) {
+										// Save data
+										settings.data[category][item] = settings_json.data[category][item];
+									}
+
 								}
-
 							}
-						}
 
+						}
+						
 					}
-					
+				}
+
+				// Prepare data
+				let imported_data = JSON.stringify(settings);
+				// Save data
+				window.localStorage.setItem(gca_data_manager.name + "_settings", imported_data);
+			}
+			
+			// Parse arena
+			if (arena_json) {
+				// Save arena list
+				if (arena_json.hasOwnProperty('target-list')) {
+					gca_data.section.set('arena', 'target-list', arena_json['target-list']);
 				}
 			}
-
-			// Prepare data
-			let imported_data = JSON.stringify(settings);
-			// Save data
-			window.localStorage.setItem(gca_data_manager.name + "_settings", imported_data);
+			
 
 			// No errors
 			return false;
