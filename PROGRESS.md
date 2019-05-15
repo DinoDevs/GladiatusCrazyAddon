@@ -1,8 +1,8 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-23-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-26-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-24-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-27-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -31,7 +31,7 @@
 - **Player**
 	- [x] Show the durability % of other players' items
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
-	- [ ] Show additional player information under their description
+	- [x] Show additional player information under their description
 - **Packages**
 	- [x] New 🔗 icon indicating a soul-bound item
 	- [x] Added placeholders for pages to be loaded
@@ -43,6 +43,8 @@
 	- [x] Fist available quality material is auto selected in the drop-down
 - **Pantheon**
 	- [x] Show amounts of owned rewards
+- **Settings**
+	- [x] Data export includes arena target list data
 
 
 ### BUG FIXES
@@ -86,6 +88,8 @@
 	- [x] Empty language select option removed
 - **Player**
 	- [x] Show critical buff fix
+- **Settings**
+	- [x] Export data was not working on Firefox
 
 
 ### TRANSLATIONS
