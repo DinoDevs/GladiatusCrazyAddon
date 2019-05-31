@@ -322,15 +322,15 @@ var gca_tools = {
 					grid = document.getElementById('inv');
 					size = [5, 8];
 
-					// If gold
-					if (item.dataset.basis == '14-1') {
-						cords_grid = jQuery(grid).offset();
-						return {
-							x: (cords_grid.left + 1),
-							y: (cords_grid.top + 32 * (size[0] - 1) + 1),
-							parent : grid
-						}
-					}
+					// If gold (works, but the subtracted gold from the counters is wrong)
+					//if (item.dataset.basis == '14-1') {
+					//	cords_grid = jQuery(grid).offset();
+					//	return {
+					//		x: (cords_grid.left + 1),
+					//		y: (cords_grid.top + 32 * (size[0] - 1) + 1),
+					//		parent : grid
+					//	}
+					//}
 				}
 				else if (target == 'market') {
 					grid = document.getElementById('market_sell');
