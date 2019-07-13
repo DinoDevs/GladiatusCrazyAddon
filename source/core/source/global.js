@@ -4328,10 +4328,13 @@ var gca_global = {
 					*/
 
 					'img/ui/spinner.gif',
+					'img/ui/bar.jpg',
 					'img/ui/bar_fill.jpg',
 					'img/ui/bar_fill_green.jpg',
 					'img/ui/layout/menu_bg.jpg',
-					'img/ui/layout/banner_top.png'
+					'img/ui/layout/banner_top.png',
+					'img/ui/layout/bg_body_game.jpg',
+					'img/ui/layout/bg_header_game.jpg'
 				];
 
 				this.cacheImages(imgs);
