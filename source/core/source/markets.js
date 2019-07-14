@@ -34,8 +34,9 @@ var gca_markets = {
 			// If remember sell duration
 			if(gca_options.bool("market","remember_sell_duration")){
 				this.remember_sell_duration();
-			}else{
+			}
 			// Default sell duration
+			else{
 				this.sell_duration();
 			}
 			
@@ -48,10 +49,14 @@ var gca_markets = {
 		
 		// Insert sort options in POST-URL on sell form
 		this.sortOptionsOnSell();
-			
+		
 		// 1 gold mode
 		(gca_options.bool("market","one_gold_mode") &&
 			this.oneGoldMode());
+
+		this.sellWarnings.soulbound(this);
+		this.sellWarnings.undercost(this);
+		this.sellWarnings.canNotBuyBack(this);
 			
 		// Levels you can see
 		this.levelsYouCanSee();
@@ -81,7 +86,7 @@ var gca_markets = {
 	// Show item levels you can see
 	levelsYouCanSee : function(){
 		var playerLvl = parseInt(document.getElementById("header_values_level").textContent);
-		var maxLvl = ( playerLvl+9<Math.floor(1.25*playerLvl) )? playerLvl+9 : Math.floor(1.25*playerLvl);
+		var maxLvl = (playerLvl + 9 < Math.floor(1.25 * playerLvl)) ? playerLvl + 9 : Math.floor(1.25 * playerLvl);
 		
 		var baseElement = document.getElementsByClassName("buildingDesc")[1].getElementsByTagName("p")[0];
 		baseElement.appendChild(document.createElement("br"));
@@ -144,6 +149,64 @@ var gca_markets = {
 				}
 			}
 		}
+	},
+
+	// Show warnings on item selling
+	sellWarnings : {
+
+		init : function() {
+			if (this.icons) return;
+			this.icons = {};
+
+			this.icons.wrapper = document.createElement('div');
+			//this.icons.wrapper.className = 'market-sell-warnings';
+			this.icons.wrapper.style.float = 'right';
+			this.icons.wrapper.style.cursor = 'default';
+			this.icons.wrapper.style.color = '#d42b1e';
+			document.getElementById('market_sell_box').getElementsByTagName('h2')[0].appendChild(this.icons.wrapper);
+
+			this.icons.soulbound = document.createElement('span');
+			this.icons.soulbound.style.display = 'none';
+			this.icons.soulbound.textContent = '🔗';
+			this.icons.soulbound.title = 'This item is soulbound.';
+			this.icons.wrapper.appendChild(this.icons.soulbound);
+
+			this.icons.buyback = document.createElement('span');
+			this.icons.buyback.style.display = 'none';
+			this.icons.buyback.textContent = '♺';
+			this.icons.buyback.title = 'You wil not be able to buy this item back.';
+			this.icons.wrapper.appendChild(this.icons.buyback);
+
+			gca_tools.event.addListener('market-sell-item-remove', (data) => {
+				this.icons.soulbound.style.display = 'none';
+				this.icons.buyback.style.display = 'none';
+				//this.icons.soulbound.style.display = 'none';
+			});
+		},
+
+		soulbound : function(self) {
+			this.init();
+			self.detectMarketSellItemDrop();
+			gca_tools.event.addListener('market-sell-item-drop', (data) => {
+				let hash = gca_tools.item.hash(data.item[0]);
+				this.icons.soulbound.style.display = (!hash || !hash.soulbound || hash.soulbound == 0) ? 'none' : 'block';
+			});
+		},
+		undercost : function(self) {
+			//this.init();
+			// ToDo
+		},
+		canNotBuyBack : function(self) {
+			this.init();
+			let playerLevel = parseInt(document.getElementById('header_values_level').textContent, 10);
+
+			self.detectMarketSellItemDrop();
+			gca_tools.event.addListener('market-sell-item-drop', (data) => {
+				let itemLevel = parseInt(data.item[0].dataset.level, 10);
+				let maxVisible = ((playerLevel + 9 < Math.floor(1.25 * playerLevel)) ? playerLevel + 9 : Math.floor(1.25 * playerLevel));
+				this.icons.buyback.style.display = (!itemLevel || itemLevel <= maxVisible) ? 'none' : 'block';
+			});
+		},
 	},
 	
 	// Cancel all button
@@ -224,6 +287,31 @@ var gca_markets = {
 		}, false);
 	},
 	
+	detectMarketSellItemDrop : function() {
+		if (this.detectMarketSellItemDrop_injected) return;
+		this.detectMarketSellItemDrop_injected = true;
+
+		window.marketDrop_original = window.marketDrop;
+		window.marketDrop = function(item, amount) {
+			var val = window.marketDrop_original(item, amount);
+			gca_tools.event.fire('market-sell-item-drop', {item, amount});
+			return val;
+		}
+		window.marketRemove_original = window.marketRemove;
+		window.marketRemove = function() {
+			var val = window.marketRemove_original();
+			gca_tools.event.fire('market-sell-item-remove');
+			return val;
+		}
+		/*
+		this.detectMarketSellItemDrop();
+		gca_tools.event.addListener('market-sell-item-drop', (data) => {
+			// data.item
+			// data.amount
+		});
+		*/
+	},
+
 	// 1g mode
 	oneGoldMode : function(){
 		// Create mode switch
@@ -284,15 +372,12 @@ var gca_markets = {
 		modeSwitch.appendChild(auto_value);
 		
 		var get_translation = (gca_data.section.get("cache", "value_tanslation", "true")=="true")?true:false;
-		
-		// Item drop function
-		//var marketDrop_orginal = window.marketDrop; //original function is not used
-		window.marketDrop = function(d, a) {
-			let c = jQuery("#sellForm");
-			jQuery('[name="sellid"]', c).val(d.data("itemId"));
-			let b = d.data("priceGold") || 0;
-			b = Math.floor(b * a / 1.5);
-			jQuery('[name="preis"]', c).val(b);
+
+		// On item drop function
+		this.detectMarketSellItemDrop();
+		gca_tools.event.addListener('market-sell-item-drop', (data) => {
+			let b = data.item.data("priceGold") || 0;
+			b = Math.floor(b * data.amount / 1.5);
 			document.getElementById('auto_value').value = b;
 			modeSwitchFunction(); // calcDues(); is called within this function
 			
@@ -310,10 +395,10 @@ var gca_markets = {
 					}
 				}
 			}
-		}
+		});
 		
 		// Change mode
-		modeSwitchFunction = function(){
+		var modeSwitchFunction = function(){
 			let selected = parseInt(document.querySelector('input[name=sell_mode]:checked').value);
 			gca_data.section.set("cache", "last_sell_1g_mode", selected); // Save last selected mode
 			if(document.getElementById('preis').value != ''){
@@ -325,9 +410,9 @@ var gca_markets = {
 					document.getElementById('preis').value = document.getElementById('auto_value').value;
 				}
 			}
-			calcDues();
+			window.calcDues();
 		};
-		modeSwitch.addEventListener('change',modeSwitchFunction);
+		modeSwitch.addEventListener('change', modeSwitchFunction);
 	},
 
 	// Layout
