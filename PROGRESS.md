@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-29-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-27-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-28-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -53,6 +53,8 @@
 	- [x] Audio random dependency error fix
 	- [x] Removed recipe materials' amounts from the tooltips (were invalid)
 	- [x] Item tooltips materials are now correct (but no amounts, too big data to load on every refresh)
+- **Reports**
+	- [x] Improved battle analyzer (better name matching and conflicts handling)
 - **Messages**
 	- [x] Fixed new guild member detection bug
 - **Packages**
