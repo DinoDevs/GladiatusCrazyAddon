@@ -32,7 +32,13 @@ var gca_reports = {
 			}
 			else if (this.combatReport == "reportDungeon") {
 				// Dungeon battle analyzer
-				this.dungeon_analyzer();
+				(gca_options.bool("reports", "battle_analyzer") &&
+					this.battle_analyzer.run());
+			}
+			else if (this.combatReport == "reportCircusTurma") {
+				// Turma battle analyzer
+				(gca_options.bool("reports", "battle_analyzer") &&
+					this.battle_analyzer.run());
 			}
 
 			if (this.combatReport == "reportExpedition" || this.combatReport == "reportDungeon") {
@@ -231,7 +237,6 @@ var gca_reports = {
 							// Get opponent id
 							let opponent_id = line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].href.match(/&p=(\d+)/i)[1];
 							let server = line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].href.match(/s(\d+)-(\w+)\./i);
-							//console.log(server);
 							attack_again.setAttribute('onclick', "gca_reports.reports_style.startProvinciarumFight(this, "+ ((gca_reports.submod == 'showArena')?2:3) +", "+opponent_id+", "+server[1]+", '"+server[2]+"')");
 							//gca_tools.setTooltip(attack_again, JSON.stringify([[['Attack back',"white"]]]));
 							
@@ -269,7 +274,6 @@ var gca_reports = {
 			// Check cache
 			let cache = this.getLootItemFromCache(id);
 			if (cache) {
-				//console.log('Report ' + id + ' loot loaded from cache!');
 				icon.className += ' reward-' + this.getStringFromColorNumber(cache.q);
 				gca_tools.setTooltip(icon, cache.t);
 				return;
@@ -495,219 +499,248 @@ var gca_reports = {
 
 	},
 	
-	// Dungeon analyzer
-	dungeon_analyzer : function() {
-		var life_points = document.getElementById('attackerCharStats1').getElementsByClassName('charstats_text')[0].innerHTML;
-		var enemies = [];
-		var players = [];
+	// Battle Analyzer (Turma & Dungeons)
+	battle_analyzer : {
+		run : function() {
+			// Error counter
+			this.errors = 0;
 
-		// Find enemies
-		for (let i = 1; i <= 5; i++) {
-			if (document.getElementById('defenderAvatar1'+i)) {
-				let name = document.getElementById('defenderAvatar1'+i).getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
-				let life = document.getElementById('defenderCharStats1'+i).getElementsByClassName('charstats_value3_mirrored')[0].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,'');
-				let found = false;
-				let index = 0;
-				for (let j = 0; j < enemies.length; j++) {
-					if (enemies[j][0] == name) {
-						found = true;
-						index = j;
-						break;
-					}
-				}
-				if (!found)
-					enemies.push([name, parseInt(life), parseInt(life), 0, 1]);
-				else {//else add him in the same name as 2 in 1
-					enemies[index][4] ++;
-					enemies[index][1] += life;
-					enemies[index][2] += life;
-				}
-			}
-		}
-
-		// Find players
-		for (let i = 1; i <= 5; i++) {
-			if (document.getElementById('attackerAvatar'+i)) {
-				let name = document.getElementById('attackerAvatar'+i).getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
-				let life = parseInt(document.getElementById('attackerCharStats'+i).getElementsByClassName('charstats_value3')[0].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,''));
-				let found = false;
-				let index = 0;
-				for (let j = 0; j < players.length; j++) {
-					if (players[j][0] == name) {
-						found = true;
-						index = j;
-						break;
-					}
-				}
-				if (!found)
-					players.push([name, parseInt(life), parseInt(life), 0, 1]);
-				else {//else add him in the same name as 2 in 1
-					players[index][4] ++;
-					players[index][1] += life;
-					players[index][2] += life;
-				}
-			}
-		}
-
-		jQuery('.dungeon_report_statistic:eq(1) table th.table_border_bottom').each(function(index){
-			var div = document.createElement('div');
-			div.id = "dungeon_life_report_"+index;
-			div.className = "title2_box dungeon_life_report";
+			// Initialize translations
+			this.initTranslations();
+			// Get players names
+			this.initPlayers();
 			
-			div.setAttribute('style','position: absolute; left: 70px; padding: 2px 0px 2px 2px;overflow: hidden;');
-			
-			for (let i=0; i<enemies.length; i++){
-				enemies[i][3] = 0;
-			}
-			for (let i=0; i<players.length; i++){
-				players[i][3] = 0;
+			// Parse each round
+			jQuery('.dungeon_report_statistic:eq(1) table th.table_border_bottom').each((index, element) => {
+				this.parseRound(element.parentNode, element, index);
+			});
+		},
+
+		// Parse round by index
+		parseRound : function(round_row, round_title, index) {
+			// Player life change on this round init
+			for (let i = 0; i < this.players.length; i++) {
+				this.players[i][3] = 0;
 			}
 			
-			var rows = [this.parentNode];
-			var element = this.parentNode.nextElementSibling;
-			while(element && element.getElementsByClassName('table_border_bottom').length==0){
+			var rows = [round_row];
+			var element = round_title.parentNode.nextElementSibling;
+			while (element && element.getElementsByClassName('table_border_bottom').length == 0) {
 				rows.push(element);
-				if(element.getElementsByTagName('font').length>0){
-					let text = element.getElementsByTagName('font')[0].innerHTML.replace(/\*(Ο\/Η)*\s*/g,'').replace(/<\/*b>/g,'');
-					if(text.match(/\d+/)) {
-						let isHealing = (element.getElementsByTagName('font')[0].getAttribute('color')=='green')?true:false;
-						let value = parseInt(text.match(/\d+/)[0]);
+				if (element.getElementsByTagName('font').length > 0) {
+					// Get action text
+					let text = element.getElementsByTagName('font')[0].innerHTML.replace(/<\/*b>/g,'');
+					// If there is a number on the action
+					if ((/\d+/).test(text)) {
+						// Check if action is a healing (green font)
+						let isHealing = element.getElementsByTagName('font')[0].getAttribute('color') == 'green' ? true : false;
+						// Get action number value
+						let value = parseInt(text.match(/\d+/)[0], 10);
+						value = isHealing ? value : -1 * value;
+						
 						let found = false;
-						for(let j=0; j<enemies.length; j++){
-							if(text.match(enemies[j][0]+' ')){
+						for (let i = 0; i < this.players.length; i++) {
+							if (text.match(this.players[i][0])) {
 								found = true;
-								if(isHealing){
-									enemies[j][1] += value;
-									enemies[j][3] += value;
-								}else{
-									enemies[j][1] -= value;
-									enemies[j][3] -= value;
-								}
+								this.players[i][1] += value;
+								this.players[i][3] += value;
 								break;
 							}
 						}
-						if(!found){
-							for(let j=0; j<players.length; j++){
-								if(text.match(players[j][0]+' ')){
-									found = true;
-									if(isHealing){
-										players[j][1] += value;
-										players[j][3] += value;
-									}else{
-										players[j][1] -= value;
-										players[j][3] -= value;
-									}
-								}
-							}
-						}
-						if(!found){
-							element.getElementsByTagName('font')[0].innerHTML += "<br>[Analyzer Data Error]";
+						if (!found) {
+							let error = document.createElement('span');
+							error.style.cursor = 'default';
+							error.style.color = '#ff0000';
+							error.textContent = '⚠';
+							error.title = 'Analyzer Error: Player was not found';
+							element.getElementsByTagName('font')[0].parentNode.appendChild(document.createTextNode(' '));
+							element.getElementsByTagName('font')[0].parentNode.appendChild(error);
+							this.errors++;
+							console.log('Analyzer Parsing Error:' + '"' + text + '"');
 						}
 					}
 				}
 				element = element.nextElementSibling;
 			}
+
+			// Create side table info
+			let round_report = document.createElement('div');
+			round_report.id = "dungeon_life_report_" + index;
+			round_report.className = "title2_box dungeon_life_report";
+			round_report.setAttribute('style','position: absolute; left: 70px; padding: 2px 0px 2px 2px;overflow: hidden;');
 			
-			var roundName = this.innerHTML;
+			// Create side shadow from the main page body
+			let sideShadow = document.createElement('div');
+			sideShadow.style = "position: absolute;background-color: rgba(0,0,0,0.3);width: 1px;top: -1px;bottom: -1px;right: 0px;z-index: 1;box-shadow: 0px 0px 6px black;";
+			round_report.appendChild(sideShadow);
+
+			// Create round report table
+			let table = document.createElement('div');
+			table.style = "margin-top: 0px;width: 200px;overflow: hidden;";
+			table.className = "charstats_nomargin";
+			let table_top_border = document.createElement('div');
+			table_top_border.style = "background-image:url(img/char_status_kopf_b.jpg);width:262px;height:5px;overflow:hidden";
+			table.appendChild(table_top_border);
+			let table_title = document.createElement('div');
+			table_title.style = "text-align: center; width: 200px;";
+			table_title.className = "charstats_bg2";
+			let table_title_span = document.createElement('span');
+			table_title_span.textContent = round_title.textContent + " - " + this.translation_life_points;
+			table_title.appendChild(table_title_span);
+			table.appendChild(table_title);
+			round_report.appendChild(table);
 			
-			let temp_div = document.createElement('div');
-			temp_div.style = "position: absolute;background-color: rgba(0,0,0,0.3);width: 1px;top: -1px;bottom: -1px;right: 0px;z-index: 1;box-shadow: 0px 0px 6px black;";
-			div.appendChild(temp_div);
-			temp_div = document.createElement('div');
-			temp_div.style = "margin-top: 0px;width: 200px;overflow: hidden;";
-			temp_div.className = "charstats_nomargin";
-				let temp_div2 = document.createElement('div');
-				temp_div2.style = "background-image:url(img/char_status_kopf_b.jpg);width:262px;height:5px;overflow:hidden";
-				temp_div.appendChild(temp_div2);
-				
-				temp_div2 = document.createElement('div');
-				temp_div2.style = "text-align: center; width: 200px;";
-				temp_div2.className = "charstats_bg2";
-					let temp_div3 = document.createElement('span');
-					temp_div3.textContent = roundName + " - " + life_points;
-					temp_div2.appendChild(temp_div3);
-				temp_div.appendChild(temp_div2);
-			div.appendChild(temp_div);
+			this.addPlayerInfo(this.attackers, table, 'charstats_balken_misc');
+			this.addPlayerInfo(this.defenders, table, 'charstats_balken_leben');
+			this.addPlayerInfo(this.ignored, table, 'charstats_balken_xp', '⚠');
 			
-			let temp_div4;
-			for (let i=0; i<enemies.length; i++){
-				let persent = ((((enemies[i][1]>0)?enemies[i][1]:0)/enemies[i][2])*100);
-				
-				temp_div2 = document.createElement('div');
-				temp_div2.style = "width: 200px;";
-				temp_div2.className = "charstats_bg2";
-					temp_div3 = document.createElement('span');
-					temp_div3.className = 'charstats_text';
-					temp_div3.textContent = ((enemies[i][4]>1)?'['+enemies[i][4]+'] ':'')+enemies[i][0];
-					if(enemies[i][3]!=0){
-						temp_div4 = document.createElement('span');
-						temp_div4.style = 'color:'+((enemies[i][3]>0)?'rgb(0, 100, 0)':'rgb(100, 0, 0)')+';position: absolute;display: block;font-size: 11px;right: 80px;top: 0px;background: rgba(183, 153, 99, 0.5);';
-						temp_div4.textContent = ((enemies[i][3]>0)?'+':'')+enemies[i][3]
-						temp_div3.appendChild(temp_div4);
-					}
-					temp_div2.appendChild(temp_div3);
-					temp_div3 = document.createElement('div');
-					temp_div3.className = 'charstats_balken';
-						temp_div4 = document.createElement('div');
-						temp_div4.className = 'charstats_balken_leben';
-						temp_div4.style = 'width:'+persent+'%';
-						temp_div3.appendChild(temp_div4);
-					temp_div2.appendChild(temp_div3);
-					temp_div3 = document.createElement('span');
-					temp_div3.className = 'charstats_value3';
-					temp_div3.style = 'font-weight: normal;font-size: 11px;';
-					temp_div3.textContent = enemies[i][1]+' / '+enemies[i][2];
-					temp_div2.appendChild(temp_div3);
-				temp_div.appendChild(temp_div2);
-			}
+			let table_bottom_border = document.createElement('div');
+			table_bottom_border.style = "clear:both;background-image:url(img/char_status_abschluss_b.jpg);width:262px;height:5px;overflow:hidden";
+			table.appendChild(table_bottom_border);
 			
-			for (let i=0; i<players.length; i++){
-				let persent = ((((players[i][1]>0)?players[i][1]:0)/players[i][2])*100);
-				
-				temp_div2 = document.createElement('div');
-				temp_div2.style = "width: 200px;";
-				temp_div2.className = "charstats_bg2";
-					temp_div3 = document.createElement('span');
-					temp_div3.className = 'charstats_text';
-					temp_div3.textContent = ((players[i][4]>1)?'['+players[i][4]+'] ':'')+players[i][0];
-					if(players[i][3]!=0){
-						temp_div4 = document.createElement('span');
-						temp_div4.style = 'color:'+((players[i][3]>0)?'rgb(0, 100, 0)':'rgb(100, 0, 0)')+';position: absolute;display: block;font-size: 11px;right: 80px;top: 0px;background: rgba(183, 153, 99, 0.5);';
-						temp_div4.textContent = ((players[i][3]>0)?'+':'')+players[i][3]
-						temp_div3.appendChild(temp_div4);
-					}
-					temp_div2.appendChild(temp_div3);
-					temp_div3 = document.createElement('div');
-					temp_div3.className = 'charstats_balken';
-						temp_div4 = document.createElement('div');
-						temp_div4.className = 'charstats_balken_misc';
-						temp_div4.style = 'width:'+persent+'%';
-						temp_div3.appendChild(temp_div4);
-					temp_div2.appendChild(temp_div3);
-					temp_div3 = document.createElement('span');
-					temp_div3.className = 'charstats_value3';
-					temp_div3.style = 'font-weight: normal;font-size: 11px;'+((persent<=10)?'font-weight:bold;':'');
-					temp_div3.textContent = players[i][1]+' / '+players[i][2];
-					temp_div2.appendChild(temp_div3);
-				temp_div.appendChild(temp_div2);
-			}
+			round_row.insertBefore(round_report, this.nextSibling);
 			
-			temp_div2 = document.createElement('div');
-			temp_div2.style = "clear:both;background-image:url(img/char_status_abschluss_b.jpg);width:262px;height:5px;overflow:hidden";
-			temp_div.appendChild(temp_div2);
-			
-			this.parentNode.insertBefore(div, this.nextSibling);
-			
-			var height = div.clientHeight+10;
-			for(var i=0; i<rows.length; i++){
+			// Adds spacer if not enough height to fit info table
+			let height = round_report.clientHeight + 10;
+			for (let i = 0; i < rows.length; i++) {
 				height -= rows[i].clientHeight;
 			}
-			if(height > 0){
-				var tr = document.createElement('tr');
-				tr.style.height = height+'px';
-				rows[rows.length-1].parentNode.insertBefore(tr, rows[rows.length-1].nextSibling);
+			if (height > 0) {
+				let spacer = document.createElement('tr');
+				spacer.style.height = height + 'px';
+				rows[rows.length - 1].parentNode.insertBefore(spacer, rows[rows.length-1].nextSibling);
 			}
-		});
+		},
+
+		// Add player info on table
+		addPlayerInfo : function(players, table, bar_style, custom_text) {
+			for (let i = 0; i < players.length; i++) {
+				
+				let row = document.createElement('div');
+				row.style = "width: 200px;";
+				row.className = "charstats_bg2";
+
+				let name = document.createElement('span');
+				name.className = 'charstats_text';
+				name.textContent = players[i][0] + (players[i][4] > 1 ? ' ×' + players[i][4]: '');
+				if (players[i][3] != 0) {
+					let change = document.createElement('span');
+					change.style = 'color:' + (players[i][3] > 0 ? 'rgb(0, 100, 0)' : 'rgb(100, 0, 0)') + ';position: absolute;display: block;font-size: 11px;right: 80px;top: 0px;background: rgba(183, 153, 99, 0.5);';
+					change.textContent = (players[i][3] > 0 ? '+' : '') + players[i][3];
+					name.appendChild(change);
+				}
+				row.appendChild(name);
+				
+				let bar_wrapper = document.createElement('div');
+				bar_wrapper.className = 'charstats_balken';
+				let bar_life = document.createElement('div');
+				bar_life.className = bar_style;
+				bar_life.style = 'width:' + (((players[i][1] > 0 ? players[i][1] : 0) / players[i][2]) * 100) + '%';
+				bar_wrapper.appendChild(bar_life);
+				row.appendChild(bar_wrapper);
+
+				let life = document.createElement('span');
+				life.className = 'charstats_value3';
+				life.style = 'font-weight: normal;font-size: 11px;';
+				life.textContent = custom_text ? custom_text : players[i][1] + ' / ' + players[i][2];
+				row.appendChild(life);
+
+				table.appendChild(row);
+			}
+		},
+
+		// Initialize translations
+		initTranslations : function() {
+			// Get translation "Life Points"
+			let stats = null;
+			for (let i = 1; i <= 5; i++) {
+				stats = document.getElementById('attackerCharStats1');
+				if (stats) break;
+			}
+			this.translation_life_points = stats.getElementsByClassName('charstats_text')[0].innerHTML.trim();
+		},
+
+		// Get players names
+		initPlayers : function() {
+			// Get players
+			this.attackers = this.getPlayers('attacker');
+			this.defenders = this.getPlayers('defender');
+			this.ignored = [];
+
+			// Check if there are same names between the players
+			for (let i = this.attackers.length - 1; i >= 0; i--) {
+				for (let j = this.defenders.length - 1; j >= 0; j--) {
+					// If the 2 players have the same name
+					if (this.attackers[i][0] == this.defenders[j][0]) {
+						//console.log('Analyzer Ignore Warning:' + '"' + this.attackers[i][0] + '"');
+						this.ignored.push([
+							this.attackers[i][0],
+							this.attackers[i][1] + this.defenders[j][1],
+							this.attackers[i][2] + this.defenders[j][2],
+							0,
+							this.attackers[i][4] + this.defenders[j][4]
+						]);
+						// Remove both
+						this.attackers.splice(i, 1);
+						this.defenders.splice(j, 1);
+						break;
+					}
+				}
+			}
+
+			// Join players arrays
+			this.players = this.attackers.concat(this.defenders).concat(this.ignored);
+			// Sort by name length
+			this.players.sort((a, b) => {
+				if (a[0].length < b[0].length) return 1;
+				if (a[0].length > b[0].length) return -1;
+				return 0;
+			});
+		},
+
+		// Get players of the battle
+		getPlayers : function(type) {
+			let players = [];
+
+			// For each player
+			for (let i = 1; i <= 5; i++) {
+				// Find player, if exists
+				let avatar = document.getElementById(type + 'Avatar' + i) || document.getElementById(type + 'Avatar1' + i);
+				let stats = document.getElementById(type + 'CharStats' + i) || document.getElementById(type + 'CharStats1'+i);
+				if (!avatar || !stats) continue;
+
+				// Get player stats
+				let name = avatar.getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
+				let life = stats.getElementsByClassName('charstats_bg2')[1].getElementsByTagName('span')[1].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,'');
+				if (!name || !life) continue;
+
+				// Check if there is an player with the same name
+				let found = -1;
+				for (let j = 0; j < players.length; j++) {
+					if (players[j][0] == name) {
+						found = j;
+						break;
+					}
+				}
+
+				// Parse life points
+				life = parseInt(life, 10);
+
+				// Unique name
+				if (found == -1) {
+					// name, life point, max life points, damage taken, number of players
+					players.push([name, life, life, 0, 1]);
+				}
+				// Treat players with the same name as 1 player
+				else {
+					players[found][4] ++;
+					players[found][1] += life;
+					players[found][2] += life;
+				}
+			}
+
+			return players;
+		}
 	},
 
 	// Update event timers

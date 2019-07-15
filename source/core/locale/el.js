@@ -353,6 +353,7 @@ gca_languages["gr"] = {
 			category_reports$style_change: "Βελτίωση του interface της λίστας αναφορών",
 			category_reports$load_loot_tooltips : "Φόρτωση των ανταμοιβών τις κάθε αναφοράς",
 			category_reports$found_items : "Συλλογή δεδομένων από τα αντικείμενα που πέφτουν",
+			category_reports$battle_analyzer : "Ανάλυση αναφορας και εμφάνιση στατιστικών ζωής",
 			// Settings - Training
 			category_training$show_discount : "Εμφάνιση έκπτωσης εκπαίδευσης",
 			category_training$show_basics_in_bars : "Εμφάνιση βασικών εκπαιδεύσεων στις μπάρες",

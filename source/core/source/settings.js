@@ -772,7 +772,9 @@ Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
 				"style_change" : true,
 				"load_loot_tooltips" : true,
 				// Item found
-				"found_items" : true
+				"found_items" : true,
+				// Analyze battle reports
+				"battle_analyzer" : true
 			},
 
 			"training" : {

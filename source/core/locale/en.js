@@ -353,6 +353,7 @@ gca_languages["en"] = {
 			category_reports$style_change : "Improve reports' list layout",
 			category_reports$load_loot_tooltips : "Load each report's reward",
 			category_reports$found_items : "Gather data about found items",
+			category_reports$battle_analyzer : "Analyze report and show life stats",
 			// Settings - Training
 			category_training$show_discount : "Show training discount",
 			category_training$show_basics_in_bars : "Show basics in bars",
