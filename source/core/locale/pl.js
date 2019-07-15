@@ -104,7 +104,7 @@ gca_languages['pl'] = {
 			number_of_bided_items : "Liczba licytowanych przedmiotów : {{number}}",
 			hide_your_gold_here : "Tutaj spakuj swoje złoto",
 			price_value_function : "Cena = Wartość + {{number}}",
-			levels_you_can_see : "Możesz widzieć przedmioty od poziomu {{min}} do poziomu {{max}}.",
+			levels_you_can_see : "Możesz widzieć przedmioty od {{min}} poziomu do {{max}} poziomu.",
 		},
 		markets : {
 			item_cost_only_x_gold : "Przedmiot kosztuje {{number}} złota.",
