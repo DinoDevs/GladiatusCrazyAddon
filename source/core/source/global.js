@@ -4639,40 +4639,45 @@ var gca_global = {
 			// Match All active players
 			let guild_players_data = content.match(/<tr>\s*<td>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+">([^<]+)<\/a>\s*<\/td>\s*<td>([^<]+)<\/td>\s*<td>(\d+)<\/td>\s*<td align="right">\s*[^<]*(<span[^>]*>[^<]*<\/span>|)\s*<\/td>\s*<td align="right"><span style="color:[^>]+>([^<]*)</mg);
 				
-			// Check if you are on a guild
+			// Check if you are not on a guild
 			if(!guild_players_data && content.match(/<form\s+action="index.php\?mod=guild&submod=create&sh=/i)){
 				// Save that you are not on guild
-				if(gca_data.section.get("guild", "inGuild", false)){
+				if (gca_data.section.get("guild", "inGuild", false)) {
 					gca_data.section.set("guild", "inGuild", false);
 					gca_data.section.del("guild", "mates");
 				}
+				return;
 			}
-			// You are in a guild, so update guild data
-			else{
-				let guild_players = [];
 			
-				// For each player
-				for (let i = 0; i < guild_players_data.length; i++){
-					// Match player's info
-					let player = guild_players_data[i].match(/<tr>\s*<td>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+">([^<]+)<\/a>\s*<\/td>\s*<td>([^<]+)<\/td>\s*<td>(\d+)<\/td>\s*<td align="right">\s*[^<]*(<span[^>]*>[^<]*<\/span>|)\s*<\/td>\s*<td align="right"><span style="color:[^>]+>([^<]*)</mi);
-					let player_info = {
-						id : player[1],
-						name : player[2],
-						rank : player[3],
-						level : player[4]
-					};
-					player_info.name = gca_tools.strings.trim(player_info.name);
-					player_info.rank = gca_tools.strings.trim(player_info.rank);
-					// Update guild players
-					guild_players.push(player_info);
-				}
+			// Unknown error
+			if (!guild_players_data) {
+				return;
+			}
 
-				// If guild players, update them
-				if(guild_players.length > 0){
-					// Update guild data
-					gca_data.section.set("guild", "inGuild", true);
-					gca_data.section.set("guild", "mates", guild_players);
-				}
+			// You are in a guild, so update guild data
+			let guild_players = [];
+		
+			// For each player
+			for (let i = 0; i < guild_players_data.length; i++){
+				// Match player's info
+				let player = guild_players_data[i].match(/<tr>\s*<td>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+">([^<]+)<\/a>\s*<\/td>\s*<td>([^<]+)<\/td>\s*<td>(\d+)<\/td>\s*<td align="right">\s*[^<]*(<span[^>]*>[^<]*<\/span>|)\s*<\/td>\s*<td align="right"><span style="color:[^>]+>([^<]*)</mi);
+				let player_info = {
+					id : player[1],
+					name : player[2],
+					rank : player[3],
+					level : player[4]
+				};
+				player_info.name = gca_tools.strings.trim(player_info.name);
+				player_info.rank = gca_tools.strings.trim(player_info.rank);
+				// Update guild players
+				guild_players.push(player_info);
+			}
+
+			// If guild players, update them
+			if(guild_players.length > 0){
+				// Update guild data
+				gca_data.section.set("guild", "inGuild", true);
+				gca_data.section.set("guild", "mates", guild_players);
 			}
 		});
 	},
