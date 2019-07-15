@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-30-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-29-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-30-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -80,6 +80,7 @@
 	- [x] Fixed layout bug on the sell mode (bug on Firefox based browsers)
 	- [x] Fixed wrong market links on advance menu
 	- [x] Guild Market script now don't run on admin page
+	- [x] Fixed no confirmation box bug (on soulbond or 1g items)
 - **Dice Event**
 	- [x] Fixed timer/info bugs
 - **Server Quests**
