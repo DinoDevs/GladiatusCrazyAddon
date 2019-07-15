@@ -212,6 +212,7 @@ gca_languages["gr"] = {
 			// Warnings
 			item_cost_only_x_gold : "Αυτό το αντικείμενο κοστίζει μόνο {{number}} χρυσό.",
 			item_is_soulbound : "Αυτό το αντικείμενο είναι ψυχικά δεμένο.",
+			item_cant_buy_back : "Δεν θα μπορείς να αγοράσεις πίσω αυτό το αντικείμενο.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Θέλεις πραγματικά να αγοράσεις αυτό το αντικείμενο;"
 		},
@@ -386,6 +387,7 @@ gca_languages["gr"] = {
 			category_market$one_gold_mode : "Επιλογή για σταθερή τιμή πώλησης στο 1 χρυσό",
 			category_market$remember_sort : "Να θυμάται το πρόσθετο την τελευταία ταξινόμηση",
 			category_market$double_click_select : "Επιλογή αντικειμένου με διπλό κλικ",
+			category_market$sell_warning_icons : "Προειδοποιητικά εικονίδια πώλησης αντικειμένου",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Εμφάνιση των υλών σιδηρουργείου που δίνει ο κάθε εχθρός",
 			category_expedition$underworld_layout : "Μετατροπή της εμφάνισης των εχθρών του κάτω κόσμου όπως στις εξορμήσεις",

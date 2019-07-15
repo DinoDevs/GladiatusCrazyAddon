@@ -51,13 +51,15 @@ var gca_markets = {
 		this.sortOptionsOnSell();
 		
 		// 1 gold mode
-		(gca_options.bool("market","one_gold_mode") &&
+		(gca_options.bool("market", "one_gold_mode") &&
 			this.oneGoldMode());
 
-		this.sellWarnings.soulbound(this);
-		this.sellWarnings.undercost(this);
-		this.sellWarnings.canNotBuyBack(this);
-			
+		// Item sell warning icons
+		if (gca_options.bool("market", "sell_warning_icons")) {
+			this.sellWarnings.soulbound(this);
+			this.sellWarnings.canNotBuyBack(this);
+		}
+
 		// Levels you can see
 		this.levelsYouCanSee();
 
@@ -158,6 +160,7 @@ var gca_markets = {
 			if (this.icons) return;
 			this.icons = {};
 
+			// Icon wrapper
 			this.icons.wrapper = document.createElement('div');
 			//this.icons.wrapper.className = 'market-sell-warnings';
 			this.icons.wrapper.style.float = 'right';
@@ -165,25 +168,28 @@ var gca_markets = {
 			this.icons.wrapper.style.color = '#d42b1e';
 			document.getElementById('market_sell_box').getElementsByTagName('h2')[0].appendChild(this.icons.wrapper);
 
+			// Soulbound icon
 			this.icons.soulbound = document.createElement('span');
 			this.icons.soulbound.style.display = 'none';
 			this.icons.soulbound.textContent = '🔗';
-			this.icons.soulbound.title = 'This item is soulbound.';
+			this.icons.soulbound.title = gca_locale.get("markets", "item_is_soulbound");
 			this.icons.wrapper.appendChild(this.icons.soulbound);
 
+			// Buy back warning icon
 			this.icons.buyback = document.createElement('span');
 			this.icons.buyback.style.display = 'none';
 			this.icons.buyback.textContent = '♺';
-			this.icons.buyback.title = 'You wil not be able to buy this item back.';
+			this.icons.buyback.title = gca_locale.get("markets", "item_cant_buy_back");
 			this.icons.wrapper.appendChild(this.icons.buyback);
 
+			// On item remove, clear icons
 			gca_tools.event.addListener('market-sell-item-remove', (data) => {
 				this.icons.soulbound.style.display = 'none';
 				this.icons.buyback.style.display = 'none';
-				//this.icons.soulbound.style.display = 'none';
 			});
 		},
 
+		// Detect soulbound items
 		soulbound : function(self) {
 			this.init();
 			self.detectMarketSellItemDrop();
@@ -192,10 +198,8 @@ var gca_markets = {
 				this.icons.soulbound.style.display = (!hash || !hash.soulbound || hash.soulbound == 0) ? 'none' : 'block';
 			});
 		},
-		undercost : function(self) {
-			//this.init();
-			// ToDo
-		},
+
+		// Detect items that the player will not be able to buy back
 		canNotBuyBack : function(self) {
 			this.init();
 			let playerLevel = parseInt(document.getElementById('header_values_level').textContent, 10);
