@@ -1,7 +1,7 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-29-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-30-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-28-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
@@ -22,6 +22,7 @@
 	- [x] Added material's name on the material drop tooltip
 - **Market**
 	- [x] Added button that changes the price to item's value
+	- [x] Red/Green shadow added on scrolls you know/don't know (when searching for scrolls)
 	- [x] Warning icons when selling item (soulbound & can't buy back)
 - **Arena**
 	- [x] Global Arena: link to global highscore added
