@@ -100,22 +100,41 @@ var gca_markets = {
 	itemsWarnings : {
 		// Point out which items are soulbound
 		soulboundItems : function(){
+			let buyForms = [];
+			let forms = document.getElementsByTagName('form');
+			for (let i = 0; i < forms.length; i++) {
+				if (forms[i].name == "buyForm") {
+					buyForms.push(forms[i]);
+				}
+			}
+
+			let message = gca_locale.get("markets", "item_is_soulbound");
 			let rows = document.getElementById("market_table").getElementsByTagName("tr");
 			for (let i = 1; i <= rows.length - 1; i++) {
-				if (typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined") {
-					if(rows[i].getElementsByTagName("div")[0].dataset.soulboundTo != gca_section.playerId){// not to you
+				if (
+					typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" &&
+					typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"
+				) {
+					// not to you
+					if (rows[i].getElementsByTagName("div")[0].dataset.soulboundTo != gca_section.playerId) {
 						rows[i].style.backgroundColor = "rgba(255, 0, 0,0.2)";
-						document.buyForm[i-1].addEventListener("submit", function(event){
-							if (
-								!confirm(
-									gca_locale.get("markets", "item_is_soulbound") + "\n" +
+
+						let form = buyForms[i-1];
+						if (form.dataset.confirmMessage) {
+							form.dataset.confirmMessage += '\n' + message;
+						}
+						else {
+							form.dataset.confirmMessage = message;
+							form.addEventListener("submit", function (event) {
+								if (!confirm(
+									this.dataset.confirmMessage + '\n\n' +
 									gca_locale.get("markets", "are_you_sure_you_want_to_buy")
-								)
-							) {
-								event.preventDefault();
-								return false;
-							}
-						});
+								)) {
+									event.preventDefault();
+									return false;
+								}
+							});
+						}
 					}
 				}
 			}
@@ -133,21 +152,40 @@ var gca_markets = {
 		
 		// Point out which items cost 1 gold
 		oneGoldItems : function(){
+			let buyForms = [];
+			let forms = document.getElementsByTagName('form');
+			for (let i = 0; i < forms.length; i++) {
+				if (forms[i].name == "buyForm") {
+					buyForms.push(forms[i]);
+				}
+			}
+
+			let message = gca_locale.get("markets", "item_cost_only_x_gold", {number : 1});
 			let rows = document.getElementById("market_table").getElementsByTagName("tr");
 			for (let i = 1; i <= rows.length - 1; i++) {
-				if (gca_tools.strings.parseGold(rows[i].getElementsByTagName("td")[2].textContent) === 1 && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined" && rows[i].style.backgroundColor != "rgba(0, 255, 0,0.2)"){
+				if (
+					gca_tools.strings.parseGold(rows[i].getElementsByTagName("td")[2].textContent) === 1 &&
+					typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined" &&
+					rows[i].style.backgroundColor != "rgba(0, 255, 0,0.2)"
+				) {
 					rows[i].style.backgroundColor = "rgba(255, 152, 0,0.2)";
-					document.buyForm[i-1].addEventListener("submit", function(e){
-						if (
-							!confirm(
-								gca_locale.get("markets", "item_cost_only_x_gold", {number : 1}) + "\n" +
+					
+					let form = buyForms[i-1];
+					if (form.dataset.confirmMessage) {
+						form.dataset.confirmMessage += '\n' + message;
+					}
+					else {
+						form.dataset.confirmMessage = message;
+						form.addEventListener("submit", function (event) {
+							if (!confirm(
+								this.dataset.confirmMessage + '\n\n' +
 								gca_locale.get("markets", "are_you_sure_you_want_to_buy")
-							)
-						) {
-							event.preventDefault();
-							return false;
-						}
-					});
+							)) {
+								event.preventDefault();
+								return false;
+							}
+						});
+					}
 				}
 			}
 		}
