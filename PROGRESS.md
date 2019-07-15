@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-30-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-28-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-29-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -84,7 +84,7 @@
 	- [x] Fixed timer/info bugs
 - **Server Quests**
 	- [x] Fixed event cool-down timers to scale based on server's speed
-	- [ ] Fixed timer cool-down after server quest attack failed [testing, attack while working]
+	- [x] Fixed timer cool-down after server quest attack failed [testing, attack while working]
 - **Mobile Accessibility**
 	- [x] Messages actions are visible without mouseover
 - **Settings**
@@ -108,5 +108,4 @@
 
 ### TODO
 - [ ] Improve mobile accesibility
-- [ ] Red/Green shadow added on scrolls you know/don't know (when searching for scrolls)
 
