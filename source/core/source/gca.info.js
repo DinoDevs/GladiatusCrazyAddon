@@ -83,6 +83,12 @@ var gca_getPage = {
 		}
 		return s.protocol + "//" + s.domain + "/game/" + link;
 	},
+	crossServerLink : function(s, x, path){
+		return this.crossLink({
+			protocol : gca_section.protocol,
+			domain : 's' + s.server + '-' + s.country + '.gladiatus.gameforge.com'
+		}, x, path);
+	},
 	fullLink : function(x){
 		return gca_section.protocol + "//" + gca_section.domain + "/game/" + this.link(x);
 	},

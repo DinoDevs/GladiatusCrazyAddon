@@ -29,7 +29,7 @@ var gca_arena = {
 
 		// Global Arena
 		(this.isNormalArena &&
-			this.show_gca_global_arena());
+			this.global_arena.show());
 
 		// Setting Link
 		gca_tools.create.settingsLink("arena");
@@ -83,330 +83,655 @@ var gca_arena = {
 		image.appendChild(text);
 	},
 	
-	// Show GCA Global Arena
-	show_gca_global_arena : function(){
-		// Add br
-		let temp_element = document.createElement('br');
-		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
-		// Add header
-		temp_element = document.createElement('h2');
-		temp_element.className = "section-header global_arena_header";
-		temp_element.textContent = gca_locale.get("arena", "global_arena_title")+" (Crazy Addon)";
-		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
-		// Add box
-		temp_element = document.createElement('section');
-		temp_element.id = "global_arena_box";
-		temp_element.style = "display: block;";
-		document.getElementById('content').getElementsByTagName('article')[0].appendChild(temp_element);
-		// Add text
-		temp_element = document.createElement('p');
-		temp_element.textContent = gca_locale.get("arena", "global_arena_description")+" ";
-		temp_element.style="text-align: justify;";
-		document.getElementById('global_arena_box').appendChild(temp_element);
-		// Add link
-		temp_element = document.createElement('a');
-		temp_element.className = "awesome-button";
-		temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗"; // chain icon
-		temp_element.style = "margin-bottom: 15px;padding: 1.5px 6px;margin-right: 20px;";
-		temp_element.href = gca_links.get('addon-page') + "/index.php?mode=highscore";
-		temp_element.setAttribute("target","_blank");
-		document.getElementById('global_arena_box').appendChild(temp_element);
-		// Add button
-		temp_element = document.createElement('input');
-		temp_element.type = "button";
-		temp_element.className = "awesome-button";
-		temp_element.value = gca_locale.get("arena", "global_arena_load")+" ⚔"; // swords icon
-		temp_element.style = "margin-bottom: 15px;";
-		temp_element.id = "load_global_arena";
-		temp_element.setAttribute("onclick","gca_arena_load_enemies()");
-		document.getElementById('global_arena_box').appendChild(temp_element);
-		
-		
-		
-		window.gca_arena_load_enemies = function() {
+	// GCA Global Arena
+	global_arena : {
+
+		// Get API link
+		getLink : function(x){
+			let link = gca_links.get('addon-page') + '/arena/ajax.php';
+			let front = "?";
+			for(let i in x){
+				link += front + i + "=" + x[i];
+				if(front == "?") front = "&";
+			}
+			return link;
+		},
+
+		show : function() {
+			this.getInfo();
+			this.create();
+			this.report.init(this);
+		},
+
+		getInfo : function() {
+			let arena_rows = document.getElementById('content').getElementsByTagName('article')[0].getElementsByClassName('right')[0].getElementsByTagName('tr');
+			
+			this.info = {};
+			this.info.locale_position = arena_rows[0].getElementsByTagName('th')[0].textContent.trim();
+			this.info.locale_name = arena_rows[0].getElementsByTagName('th')[1].textContent.trim();
+			this.info.locale_guild = document.getElementById('mainmenu').getElementsByClassName('menuitem')[2].textContent;
+			this.info.player_name = arena_rows[arena_rows.length - 1].getElementsByTagName('td')[0].textContent.trim();
+			this.info.guild_name = gca_data.section.get("guild", "name", "-").trim();
+		},
+
+		create : function() {
+			let article = document.getElementById('content').getElementsByTagName('article')[0];
+
+			// Add br
+			article.appendChild(document.createElement('br'));
+			
+			// Add header
+			let header = document.createElement('h2');
+			header.className = "section-header global_arena_header";
+			header.textContent = gca_locale.get("arena", "global_arena_title") + ' ' + '(Crazy Addon)';
+			article.appendChild(header);
+			
+			// Add box
+			let box = document.createElement('section');
+			box.id = "global_arena_box";
+			box.style.display = 'block';
+			article.appendChild(box);
+			this.box = box;
+
+			// Add text
+			let description = document.createElement('p');
+			description.textContent = gca_locale.get("arena", "global_arena_description")+" ";
+			description.style="text-align: justify;";
+			box.appendChild(description);
+
+			// Add link to highscore
+			let highscore_link = document.createElement('a');
+			highscore_link.className = "awesome-button";
+			highscore_link.textContent = gca_locale.get("arena", "global_highscore") + ' 🔗';
+			highscore_link.style = "margin-bottom: 15px;padding: 2px 6px;margin-right: 20px;";
+			highscore_link.href = gca_links.get('addon-page') + "/index.php?mode=highscore";
+			highscore_link.setAttribute("target","_blank");
+			box.appendChild(highscore_link);
+
+			// Add button
+			let load_btn = document.createElement('input');
+			load_btn.type = "button";
+			load_btn.className = "awesome-button";
+			load_btn.value = gca_locale.get("arena", "global_arena_load") + ' ⚔';
+			load_btn.style = "margin-bottom: 15px;padding: 2px 6px;";
+			load_btn.id = "load_global_arena";
+			load_btn.addEventListener('click', () => {
+				this.loadList();
+			}, false);
+			box.appendChild(load_btn);
+			this.load_btn = load_btn;
+
+			// Status
+			let status = document.createElement('p');
+			status.id = 'alert_box';
+			status.style.display = 'none';
+			box.appendChild(status);
+			this.status = status;
+			
+			// Spinner
+			let spinner = document.createElement('div');
+			spinner.id = 'spiner_box';
+			spinner.style.display = 'none';
+			box.appendChild(spinner);
+			this.spinner = spinner;
+			let img = document.createElement('img');
+			img.src = 'img/ui/spinner.gif';
+			spinner.appendChild(img);
+			
+			let table = document.createElement("table");
+			table.width = "100%";
+			table.style.marginBottom = '15px';
+			box.appendChild(table);
+			this.table = table;
+		},
+
+		// Load arena list
+		loadList : function() {
+			this.spinner.style.display = 'block';
+			this.table.style.height = '100px';
+			this.table.style.opacity = '0.5';
+			this.spinner.style.height = this.table.offsetHeight;
+			this.spinner.getElementsByTagName('img')[0].style.marginTop = (this.table.offsetHeight / 2 - 16) + 'px';
+
 			jQuery.ajax({
 				type: "GET",
-				url: gca_links.get('addon-page') + "/arena/ajax.php?player_id="+gca_section.playerId+"&server="+gca_section.server+"&country="+gca_section.country,
-				success: function(content){
+				url: this.getLink({'player_id' : gca_section.playerId, 'server' : gca_section.server, 'country' : gca_section.country}),
+				success: (content) => {
+					this.table.style.height = 'auto';
+					this.table.style.opacity = '1';
+					this.spinner.style.display = 'none';
+					var json = false;
 					try {
-						var obj = JSON.parse(content);
+						json = JSON.parse(content);
 					} catch (e) {
-						gca_notifications.error( gca_locale.get("arena", "global_arena_title") + ":\n" + gca_locale.get("arena", "error_sth_went_wrong") );
+						gca_notifications.error(
+							gca_locale.get("arena", "global_arena_title") + '\n' +
+							gca_locale.get("arena", "error_sth_went_wrong")
+						);
 						return;
 					}
-					if (obj.error) {
-						gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_response") );
+
+					if (json.error) {
+						gca_notifications.error(
+							gca_locale.get("arena", "global_arena_title") + '\n' +
+							gca_locale.get("arena", "error_response")
+						);
 						return;
 					}
 					
-					window.gca_arena_make_list(obj);
+					this.createList(json);
 				},
 				error: function(jqXHR){
+					this.spinner.style.display = 'none';
 					if (jqXHR.status == 0) {
-						gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_blocked_access", {url : gca.homepage}) );
-					}else {
-						gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_connection") );
+						gca_notifications.error(
+							gca_locale.get("arena", "global_arena_title") + '\n' +
+							gca_locale.get("arena", "error_blocked_access", {url : gca.homepage})
+						);
+					}
+					else {
+						gca_notifications.error(
+							gca_locale.get("arena", "global_arena_title") + '\n' +
+							gca_locale.get("arena", "error_connection")
+						);
 					}
 				}
 			});
-		}
-		
-		window.gca_arena_attack_enemy = function(country_B,server_B,player_id_B) {
+		},
+
+		// Show cooldown
+		cooldown : function(cooldown) {
+			if (this.cooldown_interval) clearInterval(this.cooldown_interval);
+			this.cooldown_interval = null;
+
+			// Display cooldown
+			if (cooldown) {
+				this.status.style.display = 'block';
+				this.status.style.color = 'rgba(255, 30, 30, 1)';
+				this.status.innerHTML = '';
+				this.status.appendChild(document.createTextNode(gca_locale.get("arena", "player_tired")));
+				this.status.appendChild(document.createElement('br'));
+
+				let timer = document.createElement('span');
+				timer.dataset.value = new Date().getTime() + (cooldown * 1000);
+				
+				this.cooldown_interval = setInterval(() => {
+					let left = timer.dataset.value - new Date().getTime();
+					console.log(left);
+					if (left > 0) {
+						timer.textContent = gca_tools.time.msToString(left);
+					}
+					else {
+						timer.textContent = '';
+						clearInterval(this.cooldown_interval);
+						this.cooldown_interval = null;
+						if (timer.parentNode) timer.parentNode.style.display = 'none';
+					}
+				}, 1000);
+				
+				timer.textContent = gca_tools.time.msToString(cooldown * 1000);
+				this.status.appendChild(timer);
+			}
+			else {
+				this.status.style.display = 'none';
+			}
+		},
+
+		// Create global arena list of players
+		createList : function(json) {
+			// Empty table
+			this.table.innerHTML = '';
+			// Disable load list
+			this.load_btn.disabled = true;
+
+			// Display cooldown
+			this.cooldown(json.cooldown ? json.cooldown : false);
 			
-			document.getElementById('spiner_box').style.height = document.getElementById('global_arena_box').getElementsByTagName('table')[0].offsetHeight;
-			document.getElementById('spiner_box').getElementsByTagName('img')[0].style.marginTop = (document.getElementById('global_arena_box').getElementsByTagName('table')[0].offsetHeight/2-16) +'px';
-			document.getElementById('spiner_box').style.display = 'block';
+			// Create table header
+			let header = document.createElement("tr");
+			this.table.appendChild(header);
+			
+			let th = document.createElement("th");
+			th.textContent = this.info.locale_position;
+			th.width = "10%";
+			th.style.textAlign = 'center';
+			header.appendChild(th);
+			
+			th = document.createElement("th");
+			th.textContent = name;
+			th.width = "20%";
+			header.appendChild(th);
+			
+			th = document.createElement("th");
+			th.textContent = this.info.locale_guild;
+			th.width = "30%";
+			header.appendChild(th);
+			
+			th = document.createElement("th");
+			th.textContent = gca_locale.get("arena", "country");
+			th.width = "10%";
+			th.style.textAlign = 'center';
+			header.appendChild(th);
+			
+			th = document.createElement("th");
+			th.textContent = gca_locale.get("arena", "server");
+			th.width = "10%";
+			th.style.textAlign = 'center';
+			header.appendChild(th);
+			
+			th = document.createElement("th");
+			th.width = "10%";
+			th.textContent = " ";
+			header.appendChild(th);
+			
+			// For each player on the list
+			json.list.forEach((player) => {
+				let isGuildMate = (player.server == gca_section.server && player.country == gca_section.country && this.info.guild_name == player.guild) ? true : false;
+				let row = document.createElement('tr');
+				this.table.appendChild(row);
+
+				let th = document.createElement('th');
+				th.textContent = player.position;
+				th.style.textAlign = 'center';
+				th.style.padding = '5px 0px';
+				row.appendChild(th);
+				
+				let td, link;
+				td = document.createElement('td');
+				row.appendChild(td);
+				link = document.createElement('a');
+				link.href = gca_getPage.crossServerLink({server : player.server, country : player.country}, {mod : 'player', p : player.id});
+				link.setAttribute('target', '_blank');
+				link.textContent = player.name;
+				// If guild mate
+				if (isGuildMate) link.style.color = 'green';
+				td.appendChild(link);
+				
+				td = document.createElement('td');
+				row.appendChild(td);
+				if (player.guild_id > 0) {
+					link = document.createElement('a');
+					link.href = gca_getPage.crossServerLink({server : player.server, country : player.country}, {mod : 'guild', submod : 'forumGladiatorius', i : player.guild_id});
+					link.setAttribute('target', '_blank');
+					link.textContent = player.guild;
+					if (isGuildMate) link.style.color = 'green';
+					td.appendChild(link);
+				}
+				else {
+					td.textContent = '-';
+				}
+				
+				td = document.createElement('td');
+				td.style.textAlign = 'center';
+				let flag = gca_tools.create.flagIcon(player.country);
+				flag.className = 'flag';
+				flag.dataset.tooltip = '[[["'+player.country.toUpperCase()+'","#fff;font-size:12px;"]]]';
+				td.appendChild(flag);
+				row.appendChild(td);
+				
+				td = document.createElement('td');
+				td.textContent = player.server;
+				td.style.textAlign = 'center';
+				row.appendChild(td);
+				
+				td = document.createElement("td");
+				let btn = document.createElement('div');
+				btn.className = "attack";
+				btn.dataset.tooltip = '[[["'+ gca_locale.get("arena", "attack_player", {name:player.name}) +'","#fff;font-size:12px;"]]]';
+				td.appendChild(btn);
+				row.appendChild(td);
+
+				// Player attack on click
+				btn.addEventListener('click', () => {
+					this.attack(player.country, player.server, player.id);
+				}, false);
+			});
+
+			
+			let tr = document.createElement('tr');
+			tr.className = "highlight";
+			this.table.appendChild(tr);
+			
+			th = document.createElement("th");
+			th.textContent = json.list[json.list.length - 1].position + 1;
+			th.style.textAlign = 'center';
+			th.className = 'first';
+			tr.appendChild(th);
+			
+			th = document.createElement("th");
+			th.textContent = this.info.player_name;
+			tr.appendChild(th);
+			
+			th = document.createElement("th");
+			th.textContent = this.info.guild_name;
+			tr.appendChild(th);
+			
+			th = document.createElement("th");
+			th.style.textAlign = 'center';
+			tr.appendChild(th);
+			
+			let flag = gca_tools.create.flagIcon(gca_section.country);
+			flag.className = "flag";
+			flag.dataset.tooltip = '[[["'+gca_section.country.toUpperCase()+'","#fff;font-size:12px;"]]]';
+			th.appendChild(flag);
+			
+			td = document.createElement("td");
+			td.textContent = gca_section.server;
+			td.style.textAlign = 'center';
+			tr.appendChild(td);
+			
+			td = document.createElement("td");
+			td.textContent = " ";
+			td.className = "last";
+			tr.appendChild(td);
+		},
+
+		attack : function(country, server, player_id) {
+			if (this.attack_lock) return;
+			this.attack_lock = true;
+
+			this.spinner.style.display = 'block';
+			this.spinner.style.height = this.table.offsetHeight;
+			this.spinner.getElementsByTagName('img')[0].style.marginTop = (this.table.offsetHeight / 2 - 16) + 'px';
+
 			jQuery.ajax({
 				type: "GET",
-				url: gca_links.get('addon-page') + "/arena/ajax.php?player_id_A="+gca_section.playerId+"&server_A="+gca_section.server+"&country_A="+gca_section.country+"&player_id_B="+player_id_B+"&server_B="+server_B+"&country_B="+country_B,
-				success: function(content){
+				url: this.getLink({
+					'player_id_A' : gca_section.playerId, 'server_A' : gca_section.server, 'country_A' : gca_section.country,
+					'player_id_B' : player_id, 'server_B' : server, 'country_B' : country
+				}),
+				success: (content) => {
+					this.attack_lock = false;
+					document.getElementById('spiner_box').style.display = 'none';
+
 					try {
-						var obj = JSON.parse(content);
+						var json = JSON.parse(content);
 					} catch (e) {
-						gca_notifications.error( gca_locale.get("arena", "global_arena_title") + ":\n" + gca_locale.get("arena", "error_sth_went_wrong") );
-						document.getElementById('alert_box').textContent = gca_locale.get("arena", "error_sth_went_wrong");
-						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
+						gca_notifications.error(
+							gca_locale.get("arena", "global_arena_title") + '\n' +
+							gca_locale.get("arena", "error_sth_went_wrong")
+						);
 						return;
 					}
 					
-					if(obj.error){
-						gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_response") );
-						document.getElementById('alert_box').textContent = gca_locale.get("arena", "error_response");
-						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
-					}else if(obj.status){
-						if(obj.status == 'lost'){
-							gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n"+gca_locale.get("arena", "fight_lost"));
-							document.getElementById('alert_box').textContent = gca_locale.get("arena", "fight_lost");
-							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
-						}else if(obj.status == 'win'){
-							window.gca_arena_make_list(obj);
-							gca_notifications.success( gca_locale.get("arena", "global_arena_title")+":\n"+gca_locale.get("arena", "fight_won"));
-							document.getElementById('alert_box').textContent = gca_locale.get("arena", "fight_won");
-							document.getElementById('alert_box').style="color: rgb(37, 140, 42);";
-						}else if(obj.status == 'cooldown' && obj.cooldown){
-							gca_notifications.warning( gca_locale.get("arena", "global_arena_title")+":\n"+gca_locale.get("arena", "player_tired"));
-							document.getElementById('alert_box').textContent = gca_locale.get("arena", "player_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
-							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
-						}else{
-							gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\nIt's a draw!.");
-							document.getElementById('alert_box').textContent = "You will have to attack again to define a winer.";
-							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
-						}
-					}else{
-						gca_notifications.error( gca_locale.get("arena", "global_arena_title") + ":\n" + gca_locale.get("arena", "error_sth_went_wrong") );
-						document.getElementById('alert_box').textContent = gca_locale.get("arena", "error_sth_went_wrong");
-						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
+					if (json.error) {
+						gca_notifications.error(
+							gca_locale.get("arena", "global_arena_title") + '\n' +
+							gca_locale.get("arena", "error_response")
+						);
+						this.status.style.display = 'block';
+						this.status.textContent = gca_locale.get("arena", "error_response");
+						this.status.style.color = 'rgba(255, 30, 30, 1)';
+						return;
 					}
-					document.getElementById('spiner_box').style.display = 'none';
+
+					if (json.status) {
+						if (json.status == 'lost') {
+							gca_notifications.error(
+								gca_locale.get("arena", "global_arena_title") + '\n' +
+								gca_locale.get("arena", "fight_lost")
+							);
+							this.status.style.display = 'block';
+							this.status.textContent = gca_locale.get("arena", "fight_lost");
+							this.status.style.color = 'rgba(255, 30, 30, 1)';
+						}
+						else if (json.status == 'win') {
+							gca_notifications.success(
+								gca_locale.get("arena", "global_arena_title") + '\n' +
+								gca_locale.get("arena", "fight_won")
+							);
+							this.status.style.display = 'block';
+							this.status.textContent = gca_locale.get("arena", "fight_won");
+							this.status.style.color = 'rgb(37, 140, 42)';
+
+							this.createList(json);
+						}
+
+						// Display cooldown
+						if (json.cooldown) {
+							this.cooldown(json.cooldown);
+						}
+						// Display report
+						if (json.report) {
+							this.report.show(json.report);
+						}
+					}
+					else {
+						gca_notifications.error(
+							gca_locale.get("arena", "global_arena_title") + '\n' +
+							gca_locale.get("arena", "error_response")
+						);
+						return;
+					}
 				},
 				error: function(){
-					gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n" + gca_locale.get("arena", "error_connection") );
-					document.getElementById('alert_box').textContent = gca_locale.get("arena", "error_connection");
-					document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
-					
-					document.getElementById('spiner_box').style.display = 'none';
+					this.attack_lock = false;
+					gca_notifications.error(
+						gca_locale.get("arena", "global_arena_title") + '\n' +
+						gca_locale.get("arena", "error_connection")
+					);
+					this.status.style.display = 'block';
+					this.status.textContent = gca_locale.get("arena", "error_connection");
+					this.status.style.color = 'rgba(255, 30, 30, 1)';
+					this.spinner.style.display = 'none';
 				}
 			});
-		}
-		
-		window.gca_arena_make_list = function(obj) {
-			let list = obj.list;
-			let div = document.getElementById('global_arena_box');
-			let guild_name = gca_data.section.get("guild", "name", "-");
-			
-			while(div.firstChild){
-				div.removeChild(div.firstChild);
-			}
-			
-			// Add text
-			let temp_element = document.createElement('p');
-			temp_element.textContent = gca_locale.get("arena", "global_arena_description");
-			temp_element.style="text-align: justify;";
-			div.appendChild(temp_element);
-			// Add link
-			temp_element = document.createElement('a');
-			temp_element.className = "awesome-button";
-			temp_element.textContent = gca_locale.get("arena", "global_highscore")+" 🔗"; // chain icon
-			temp_element.style = "margin-bottom: 15px;padding: 1.5px 6px;margin-right: 20px;";
-			temp_element.href = gca_links.get('addon-page') + "/index.php?mode=highscore";
-			temp_element.setAttribute("target","_blank");
-			document.getElementById('global_arena_box').appendChild(temp_element);
-			// Add button
-			temp_element = document.createElement('input');
-			temp_element.type = "button";
-			temp_element.className = "awesome-button";
-			temp_element.value = gca_locale.get("arena", "global_arena_load")+" ⚔"; // swords icon
-			temp_element.style = "margin-bottom: 15px;";
-			temp_element.disabled = true;
-			document.getElementById('global_arena_box').appendChild(temp_element);
-			
-			temp_element = document.createElement('p');
-			temp_element.id = 'alert_box';
-			if(obj.cooldown){
-				temp_element.textContent = gca_locale.get("arena", "player_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
-				temp_element.style="color: rgba(255, 30, 30, 1);";
-			}
-			div.appendChild(temp_element);
-			
-			temp_element = document.createElement('div');
-			temp_element.id = 'spiner_box';
-			div.appendChild(temp_element);
-			
-			let temp_element2 = document.createElement('img');
-			temp_element2.src = 'img/ui/spinner.gif';
-			temp_element.appendChild(temp_element2);
-			
-			temp_element = document.createElement("table");
-			temp_element.width = "100%";
-			temp_element.style = "margin-bottom: 15px;";
-			div.appendChild(temp_element);
-			
-			let div2 = document.getElementById('content').getElementsByTagName('article')[0].getElementsByClassName('right')[0].getElementsByTagName('tr');
-			let position = div2[0].getElementsByTagName('th')[0].textContent;
-			let name = div2[0].getElementsByTagName('th')[1].textContent;
-			let my_name = div2[div2.length-1].getElementsByTagName('td')[0].textContent;
-			
-			temp_element = document.createElement("tr");
-			div.getElementsByTagName('table')[0].appendChild(temp_element);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.textContent = position;
-			temp_element2.width = "10%";
-			temp_element2.style= "text-align: center;";
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.textContent = name;
-			temp_element2.width = "20%";
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.textContent = document.getElementById('mainmenu').getElementsByClassName('menuitem')[2].textContent;
-			temp_element2.width = "30%";
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.textContent = gca_locale.get("arena", "country");
-			temp_element2.width = "10%";
-			temp_element2.style= "text-align: center;";
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.textContent = gca_locale.get("arena", "server");
-			temp_element2.width = "10%";
-			temp_element2.style= "text-align: center;";
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.width = "10%";
-			temp_element2.textContent = " ";
-			temp_element.appendChild(temp_element2);
-			
-			let temp_element3;
-			
-			for(let i=0;i<list.length;i++){
-				temp_element = document.createElement("tr");
-				div.getElementsByTagName('table')[0].appendChild(temp_element);
-				
-				temp_element2 = document.createElement("th");
-				temp_element2.textContent = list[i].position;
-				temp_element2.style= "text-align: center;";
-				temp_element.appendChild(temp_element2);
-				
-				temp_element2 = document.createElement("td");
-				temp_element.appendChild(temp_element2);
-				temp_element3 = document.createElement("a");
-				temp_element3.href = "https://s"+list[i].server+"-"+list[i].country+".gladiatus.gameforge.com/game/index.php?mod=player&p="+list[i].id;
-				temp_element3.setAttribute("target","_blank");
-				if(list[i].server==gca_section.server && list[i].country==gca_section.country && guild_name==list[i].guild){
-					// Guild mate
-					let temp_element4 = document.createElement("span");
-					temp_element4.textContent = list[i].name;
-					temp_element4.style = "color:green;";
-					temp_element3.appendChild(temp_element4);
-				}else{
-					// Common player
-					temp_element3.textContent = list[i].name;
+		},
+
+		// Parse Global Arena report
+		report : {
+
+			init : function(self) {
+				this.self = self;
+			},
+
+			show : function(report) {
+				var report = this.parse(report);
+				document.getElementById('content').innerHTML = '';
+				document.getElementById('content').appendChild(report);
+			},
+
+			parse : function(report) {
+				var wrapper = document.createElement('div');
+
+				// Battle result
+				var elements = this.result(report[0]);
+				for (let i = 0; i < elements.length; i++) {
+					wrapper.appendChild(elements[i]);
 				}
-				temp_element2.appendChild(temp_element3);
-				
-				temp_element2 = document.createElement("td");
-				temp_element2.textContent = (list[i].guild_id>0)?'':'-';
-				temp_element.appendChild(temp_element2);
-				
-				if(list[i].guild_id>0){
-					temp_element3 = document.createElement("a");
-					temp_element3.href = "https://s"+list[i].server+"-"+list[i].country+".gladiatus.gameforge.com/game/index.php?mod=guild&submod=forumGladiatorius&i="+list[i].guild_id;
-					temp_element3.textContent = list[i].guild;
-					temp_element3.setAttribute("target","_blank");
-					temp_element2.appendChild(temp_element3);
+
+				// Title
+				var title = document.createElement('h2');
+				title.className = 'section-header';
+				title.style.cursor = 'pointer';
+				title.textContent = 'Battle Report';
+				wrapper.appendChild(title);
+
+				// Results
+				var section = document.createElement('section');
+				section.style.display = 'block';
+				section.className = 'dungeon_report_statistic';
+				var table = document.createElement('table');
+				table.setAttribute('width', '100%');
+				table.setAttribute('border', '0');
+				table.setAttribute('cellspacing', '0');
+				table.setAttribute('cellpadding', '3');
+				table.className = 'table_border_bottom';
+
+				// Battle rounds
+				for (let i = 1; i < report.length; i++) {
+					let elements = this.round(report[i], 'Round ' + i, 'Attacker', 'Defender');
+					for (let j = 0; j < elements.length; j++) {
+						table.appendChild(elements[j]);
+					}
 				}
-				
-				temp_element2 = document.createElement("td");
-				//temp_element2.textContent = "("+list[i].country.toUpperCase()+") ";
-				temp_element2.style= "text-align: center;";
-				temp_element.appendChild(temp_element2);
-				
-				temp_element3 = gca_tools.create.flagIcon(list[i].country);
-				temp_element3.className = 'flag';
-				//temp_element3.dataset.tooltip = '[[[["Country:","'+list[i].country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+list[i].server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
-				temp_element3.dataset.tooltip = '[[["'+list[i].country.toUpperCase()+'","#fff;font-size:12px;"]]]';
-				temp_element2.appendChild(temp_element3);
-				
-				temp_element2 = document.createElement("td");
-				temp_element2.textContent = list[i].server;
-				temp_element2.style= "text-align: center;";
-				temp_element.appendChild(temp_element2);
-				
-				temp_element2 = document.createElement("td");
-				//temp_element2.textContent = list[i].id;
-				temp_element.appendChild(temp_element2);
-				
-				temp_element3 = document.createElement("div");
-				temp_element3.className = "attack";
-				temp_element3.setAttribute("onclick","gca_arena_attack_enemy('"+list[i].country+"',"+list[i].server+","+list[i].id+")");
-				temp_element3.dataset.tooltip = '[[["'+ gca_locale.get("arena", "attack_player", {name:list[i].name}) +'","#fff;font-size:12px;"]]]';
-				temp_element2.appendChild(temp_element3);
+
+				section.appendChild(table);
+				wrapper.appendChild(section);
+				return wrapper;
+			},
+
+			result : function(result) {
+				var elements = [];
+
+				// Title
+				var title = document.createElement('h2');
+				title.className = 'section-header';
+				title.style.cursor = 'pointer';
+				title.textContent = 'Stats';
+				elements.push(title);
+
+				// Results
+				var section = document.createElement('section');
+				section.style.display = 'block';
+				var fieldset = document.createElement('fieldset');
+				fieldset.className = 'dungeon_report_statistic';
+				var table = document.createElement('table');
+				table.setAttribute('width', '100%');
+				table.setAttribute('border', '0');
+				table.setAttribute('cellspacing', '0');
+				table.setAttribute('cellpadding', '3');
+				table.className = 'table_border_bottom';
+				var tr, td;
+
+				tr = document.createElement('tr');
+				td = document.createElement('td');
+				td.textContent = 'Name';
+				tr.appendChild(td);
+				td = document.createElement('td');
+				td.textContent = 'Hitpoints';
+				tr.appendChild(td);
+				td = document.createElement('td');
+				td.textContent = 'Life points';
+				tr.appendChild(td);
+				table.appendChild(tr);
+
+				tr = document.createElement('tr');
+				td = document.createElement('td');
+				td.textContent = 'Attacker';
+				tr.appendChild(td);
+				td = document.createElement('td');
+				td.textContent = result[0][0];
+				tr.appendChild(td);
+				td = document.createElement('td');
+				td.textContent = result[0][1];
+				tr.appendChild(td);
+				table.appendChild(tr);
+
+				tr = document.createElement('tr');
+				td = document.createElement('td');
+				td.textContent = 'Attacker';
+				tr.appendChild(td);
+				td = document.createElement('td');
+				td.textContent = result[1][0];
+				tr.appendChild(td);
+				td = document.createElement('td');
+				td.textContent = result[1][1];
+				tr.appendChild(td);
+				table.appendChild(tr);
+
+				fieldset.appendChild(table);
+				section.appendChild(fieldset);
+				elements.push(section);
+
+				return elements;
+			},
+
+
+			flags : {
+				REPORT_ATTACKER : 1,
+				REPORT_DEFENDER : 2,
+
+				REPORT_ACTION_HIT : 1,
+				REPORT_ACTION_KILL : 2,
+
+				HIT_NORMAL : 1,
+				HIT_CRITICAL : 2,
+				HIT_AVOIDED_CRITICAL : 3,
+				HIT_BLOCKED : 4,
+				HIT_MISSED : 5
+			},
+
+			round : function(round, round_name, attacker_name, defender_name) {
+				var elements = [];
+				var tr, td, span, text;
+
+				// Tile
+				tr = document.createElement('tr');
+				tr.style.backgroundColor = '#B5AB83';
+				td = document.createElement('th');
+				td.setAttribute('colspan', '2');
+				td.className = 'table_border_bottom';
+				td.textContent = round_name;
+				tr.appendChild(td);
+				elements.push(tr);
+
+				// For each action
+				for (let i = 0; i < round.length; i++) {
+					tr = document.createElement('tr');
+					if (round[i][0] == this.flags.REPORT_DEFENDER) {
+						tr.style.backgroundColor = '#CFC7A3';
+					}
+					td = document.createElement('td');
+					if (round[i][1] == this.flags.REPORT_ACTION_HIT || round[i][1] == this.flags.REPORT_ACTION_KILL) {
+						if (round[i][0] == this.flags.REPORT_ATTACKER){
+							td.textContent = attacker_name + ' hits ' + defender_name + '.';
+						}
+						else if (round[i][0] == this.flags.REPORT_DEFENDER){
+							td.textContent = defender_name + ' hits ' + attacker_name + '.';
+						}
+					}
+					tr.appendChild(td);
+					td = document.createElement('td');
+					td.style.textAlign = 'center';
+					if (round[i][1] == this.flags.REPORT_ACTION_HIT || round[i][1] == this.flags.REPORT_ACTION_KILL) {
+						text = '';
+						span = document.createElement('span');
+						if (round[i][2] == this.flags.HIT_MISSED) {
+							text = 'missed';
+						}
+						else if (round[i][2] == this.flags.HIT_BLOCKED) {
+							text = 'blocked';
+						}
+						else {
+							span.style.color = 'red';
+							if (round[i][0] == this.flags.REPORT_ATTACKER){
+								text = defender_name + ' takes ' + round[i][3] + ' damage.';
+							}
+							else if (round[i][0] == this.flags.REPORT_DEFENDER){
+								text = attacker_name + ' takes ' + round[i][3] + ' damage.';
+							}
+							if (round[i][2] == this.flags.HIT_CRITICAL) {
+								span.style.fontWeight = 'bold';
+								text = '*' + text + '*';
+							}
+							else if (round[i][2] == this.flags.HIT_AVOIDED_CRITICAL) {
+								span.style.color = 'dimgray';
+								text = '*' + text + '*';
+							}
+						}
+						span.textContent = text;
+						td.appendChild(span);
+
+						if (round[i][1] == this.flags.REPORT_ACTION_KILL) {
+							td.appendChild(document.createElement('br'));
+							span = document.createElement('b');
+							if (round[i][0] == this.flags.REPORT_ATTACKER){
+								span.textContent = '*' + defender_name + ' dies*';
+							}
+							else if (round[i][0] == this.flags.REPORT_DEFENDER){
+								span.textContent = '*' + attacker_name + ' dies*';
+							}
+							td.appendChild(span);
+						}
+					}
+
+					tr.appendChild(td);
+					elements.push(tr);
+				}
+
+				return elements;
 			}
-			
-			temp_element = document.createElement("tr");
-			temp_element.className = "highlight";
-			div.getElementsByTagName('table')[0].appendChild(temp_element);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.textContent = list[list.length-1].position+1;
-			temp_element2.style= "text-align: center;";
-			temp_element2.className = "first";
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.textContent = my_name;
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("th");
-			temp_element2.textContent = guild_name;
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("th");
-			//temp_element2.textContent = "("+gca_section.country.toUpperCase()+") ";
-			temp_element2.style= "text-align: center;";
-			temp_element.appendChild(temp_element2);
-			
-			temp_element3 = gca_tools.create.flagIcon(gca_section.country);
-			temp_element3.className = "flag";
-			//temp_element3.dataset.tooltip = '[[[["Country:","'+gca_section.country.toUpperCase()+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]],[["Server:","'+gca_section.server+'"],["#fff;font-size:12px;","#fff;font-size:12px;"]]]]';
-			temp_element3.dataset.tooltip = '[[["'+gca_section.country.toUpperCase()+'","#fff;font-size:12px;"]]]';
-			temp_element2.appendChild(temp_element3);
-			
-			temp_element2 = document.createElement("td");
-			temp_element2.textContent = gca_section.server;
-			temp_element2.style= "text-align: center;";
-			temp_element.appendChild(temp_element2);
-			
-			temp_element2 = document.createElement("td");
-			temp_element2.textContent = " ";
-			temp_element2.className = "last";
-			temp_element.appendChild(temp_element2);
 		}
 	},
 	
