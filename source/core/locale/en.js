@@ -177,6 +177,9 @@ gca_languages["en"] = {
 			error_blocked_access : "Something blocks the access to GCA server ({{url}})",
 			error_connection : "Connection error",
 			attack_player : "Click to attack “{{name}}”",
+			fight_won : "You won the fight!",
+			fight_lost : "You lost the fight...",
+			player_tired : "You are tired. You need to rest."
 		},
 
 		// Training section

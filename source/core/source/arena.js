@@ -175,17 +175,17 @@ var gca_arena = {
 						document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 					}else if(obj.status){
 						if(obj.status == 'lost'){
-							gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\nYou lost the fight...");
-							document.getElementById('alert_box').textContent = "You lost the fight...";
+							gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\n"+gca_locale.get("arena", "fight_lost"));
+							document.getElementById('alert_box').textContent = gca_locale.get("arena", "fight_lost");
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else if(obj.status == 'win'){
 							window.gca_arena_make_list(obj);
-							gca_notifications.success( gca_locale.get("arena", "global_arena_title")+":\nYou won!");
-							document.getElementById('alert_box').textContent = "You won!";
+							gca_notifications.success( gca_locale.get("arena", "global_arena_title")+":\n"+gca_locale.get("arena", "fight_won"));
+							document.getElementById('alert_box').textContent = gca_locale.get("arena", "fight_won");
 							document.getElementById('alert_box').style="color: rgb(37, 140, 42);";
 						}else if(obj.status == 'cooldown' && obj.cooldown){
-							gca_notifications.warning( gca_locale.get("arena", "global_arena_title")+":\nYou are tired.\nPlease rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec.")));
-							document.getElementById('alert_box').textContent = "You are tired. Please rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
+							gca_notifications.warning( gca_locale.get("arena", "global_arena_title")+":\n"+gca_locale.get("arena", "player_tired"));
+							document.getElementById('alert_box').textContent = gca_locale.get("arena", "player_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
 							document.getElementById('alert_box').style="color: rgba(255, 30, 30, 1);";
 						}else{
 							gca_notifications.error( gca_locale.get("arena", "global_arena_title")+":\nIt's a draw!.");
@@ -243,7 +243,7 @@ var gca_arena = {
 			temp_element = document.createElement('p');
 			temp_element.id = 'alert_box';
 			if(obj.cooldown){
-				temp_element.textContent = "You are tired. Please rest for "+ ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
+				temp_element.textContent = gca_locale.get("arena", "player_tired") + ((obj.cooldown>60)?(Math.round(obj.cooldown/60)+" min."):(obj.cooldown+" sec."));
 				temp_element.style="color: rgba(255, 30, 30, 1);";
 			}
 			div.appendChild(temp_element);

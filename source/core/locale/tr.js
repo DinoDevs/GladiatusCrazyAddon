@@ -109,7 +109,9 @@ gca_languages["tr"] = {
 			server : "Sunucu",
 			target_list : "Hedef Listesi",
 			target_list_add : "Hedef listesine ekle",
-			target_list_remove : "Hedef listesinden çıkar"
+			target_list_remove : "Hedef listesinden çıkar",
+			error_sth_went_wrong : "Bir şeyler yanlış gitti",
+			error_connection : "Bağlantı hatası"
 		},
 		training : {
 			stats_points : "Eğitim Puanı",
