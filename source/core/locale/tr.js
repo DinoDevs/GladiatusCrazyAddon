@@ -19,7 +19,6 @@ gca_languages["tr"] = {
 		},
 		general : {
 			days : "Gün",
-			seconds : "Saniye",
 			minutes : "Dakika",
 			hours : "Saat",
 			no_data : "Bilgi Bulunmuyor",
@@ -108,15 +107,11 @@ gca_languages["tr"] = {
 			global_highscore : "Yüksek Skor (Global)",
 			country : "Ülke",
 			server : "Sunucu",
-			global_arena_attack : "Saldır ",
-			global_arena_won : "Kazandın!",
-			global_arena_lose : "Savaşı kaybettin...",
-			global_arena_tired : "Çok yorgunsun.\nBeklemen gereken süre: ",
-			global_arena_something_went_wrong: "Bir şeyler yanlış gitti.",
-			global_arena_connection_error: "Bağlantı hatası.",
 			target_list : "Hedef Listesi",
 			target_list_add : "Hedef listesine ekle",
-			target_list_remove : "Hedef listesinden çıkar"
+			target_list_remove : "Hedef listesinden çıkar",
+			error_sth_went_wrong : "Bir şeyler yanlış gitti",
+			error_connection : "Bağlantı hatası"
 		},
 		training : {
 			stats_points : "Eğitim Puanı",

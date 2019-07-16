@@ -28,8 +28,6 @@ gca_languages["en"] = {
 		general : {
 			// Days
 			days : "day(s)",
-			// Seconds
-			seconds : "second",
 			// Minutes
 			minutes : "minute",
 			// Hours
@@ -171,12 +169,6 @@ gca_languages["en"] = {
 			global_highscore : "Global Highscore",
 			country : "Country",
 			server : "Server",
-			global_arena_attack : "Attack ",
-			global_arena_won : "You won!",
-			global_arena_lose : "You lost the fight...",
-			global_arena_tired : "You are tired.\nPlease rest for ",
-			global_arena_something_went_wrong: "Something went wrong.",
-			global_arena_connection_error: "Connection error.",
 			target_list : "Target List",
 			target_list_add : "Add to target list",
 			target_list_remove : "Remove from target list",
@@ -185,6 +177,9 @@ gca_languages["en"] = {
 			error_blocked_access : "Something blocks the access to GCA server ({{url}})",
 			error_connection : "Connection error",
 			attack_player : "Click to attack “{{name}}”",
+			fight_won : "You won the fight!",
+			fight_lost : "You lost the fight...",
+			player_tired : "You are tired. You need to rest."
 		},
 
 		// Training section
