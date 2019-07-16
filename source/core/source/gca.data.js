@@ -278,8 +278,10 @@ gca_options.data = {
 			// gst : guild storge
 			// gbn : guild bank
 			// gwr : guild war room
+			// gar : guild arena battle reports
 			// gjl : guild jail
 			// glb : guild library
+			// gtm : guild templum
 			// sim : battle simulator
 			// stt : show my stats
 			// onl : online friends
@@ -443,7 +445,9 @@ gca_options.data = {
 		// Open many mysteryboxes button
 		"open_many_mysteryboxes" : true,
 		// Show mysterybox reward's value in rubies
-		"show_mysterybox_rewards_rubies" : true
+		"show_mysterybox_rewards_rubies" : true,
+		// Show mysterybox reward's owned number
+		"show_mysterybox_rewards_owned" : true
 	},
 
 	// Reports
@@ -452,7 +456,9 @@ gca_options.data = {
 		"style_change" : true,
 		"load_loot_tooltips" : true,
 		// Item found
-		"found_items" : true
+		"found_items" : true,
+		// Analyze battle reports
+		"battle_analyzer" : true
 	},
 
 
@@ -533,7 +539,9 @@ gca_options.data = {
 		// Remember sorting 
 		"remember_sort" : false,
 		// Double click to select
-		"double_click_select" : true
+		"double_click_select" : true,
+		// Item sell warning icons
+		"sell_warning_icons" : true
 	},
 
 	// Expedition Options

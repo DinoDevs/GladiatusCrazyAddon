@@ -27,13 +27,13 @@ var gca_settings = {
 	// Options
 	options : {
 		urls : {
-			bug_report : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues/new?template=bug.md',
-			idea_request : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues/new?template=feature-request.md',
-			translate_addon : 'https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/documentation/translators/README.md',
+			bug_report : gca_links.get('addon-github') + '/issues/new?template=bug.md',
+			idea_request : gca_links.get('addon-github') + '/issues/new?template=feature-request.md',
+			translate_addon : gca_links.get('addon-github') + '/blob/master/documentation/translators/README.md',
 
-			github_link : 'https://github.com/DinoDevs/GladiatusCrazyAddon/issues',
-			facebook_link : 'https://www.facebook.com/GladiatusCrazyAddOn/',
-			donation_link : 'https://paypal.me/gcadonation/5'
+			github_link : gca_links.get('addon-github') + '/issues',
+			facebook_link : gca_links.get('addon-facebook'),
+			donation_link : gca_links.get('addon-donation')
 		},
 
 		// Create box on settings
@@ -45,7 +45,7 @@ var gca_settings = {
 			title.className = "section-header";
 			title.textContent = gca.name + " - v" + gca.version;
 			var changelog = document.createElement('a');
-			changelog.href = 'https://github.com/DinoDevs/GladiatusCrazyAddon/releases/tag/' + 'v' + gca.version;
+			changelog.href = gca_links.get('addon-github') + '/releases/tag/' + 'v' + gca.version;
 			changelog.textContent = '[Changelog v' + gca.version + ']';
 			changelog.setAttribute('target', '_black');
 			changelog.style.float = 'right';
@@ -63,6 +63,10 @@ var gca_settings = {
 			section.appendChild(document.createElement("hr"));
 			box = document.createElement("div");
 			this.createBox_settings(box);
+			section.appendChild(box);
+			section.appendChild(document.createElement("hr"));
+			box = document.createElement("div");
+			this.createBox_links(box);
 			section.appendChild(box);
 		},
 
@@ -240,6 +244,115 @@ var gca_settings = {
 			}, false);
 		},
 
+		createBox_links : function(box) {
+			box.className = "links_box";
+
+			// Title
+			var title = document.createElement('h2');
+			title.textContent = 'Gladiatus related links';
+			box.appendChild(title);
+
+			// SubTitle
+			title = document.createElement('h3');
+			title.textContent = 'Addon links';
+			box.appendChild(title);
+
+			// Links
+			let wrapper, group;
+
+			group = document.createElement('div');
+			group.className = 'group';
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Gladiatus Crazy Addon : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-page'), gca_links.get('addon-page'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Gladiatus Forum : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-forum-thread'), gca_links.get('addon-forum-thread'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Facebook : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-facebook'), gca_links.get('addon-facebook'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Github : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-github'), gca_links.get('addon-github'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Install on Firefox : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-mozilla'), gca_links.get('addon-mozilla'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Install on Chrome : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-chrome'), gca_links.get('addon-chrome'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			box.appendChild(group);
+
+			// SubTitle
+			title = document.createElement('h3');
+			title.textContent = 'Other links';
+			box.appendChild(title);
+			
+			group = document.createElement('div');
+			group.className = 'group';
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Gladiatus Simulator : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-simulator'), gca_links.get('gladiatus-simulator'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('skarsburning@forum'), 'Skarsburning\'s', {target: '_blank'}));
+			wrapper.appendChild(document.createTextNode(' Gladiatus Fansite : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-fansite'), gca_links.get('gladiatus-fansite'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('michalus@forum'), 'Michalus\'', {target: '_blank'}));
+			wrapper.appendChild(document.createTextNode(' Gladiatus Tools : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-tools-server'), gca_links.get('gladiatus-tools-server'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Unofficial Gladiatus Reddit : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('unofficial-reddit'), gca_links.get('unofficial-reddit'), {target: '_blank'}));
+			wrapper.appendChild(document.createTextNode(' by '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('williaf@reddit'), 'Williaf', {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Discord Server of Gladitatus Reddit : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('reddit-discord'), gca_links.get('reddit-discord'), {target: '_blank'}));
+			group.appendChild(wrapper);
+
+			box.appendChild(group);
+
+
+			let info = document.createElement('div');
+			info.className = 'info';
+			info.textContent = '(Contact us to add your link here.)';
+			box.appendChild(document.createElement('br'));
+			box.appendChild(info);
+			
+			/*
+Other links/pages
+Skarsburning's Gladiatus Fansite : https://gladiatus.gamerz-bg.com (we love your site)
+
+Michalus' Gladiatus Tools : https://gladiatus-tools.com
+
+Unofficial Gladiatus Reddit : https://www.reddit.com/r/Gladiatus/ (by Williaf)
+
+Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
+			 */
+		},
+
 		preinject : {
 			active : false,
 			hideContent : function(){
@@ -270,7 +383,7 @@ var gca_settings = {
 							// Create a list of languages
 							var languages = [];
 							for(let lang in gca_languages){
-								if(gca_languages.hasOwnProperty(lang)){
+								if(gca_languages.hasOwnProperty(lang) && lang[0] !== '_'){
 									languages.push(lang);
 								}
 							}
@@ -366,6 +479,7 @@ var gca_settings = {
 							return [data.select, clearboth, data.info_translators, data.info_completed];
 						},
 						"save" : function(data){
+							if (!gca_languages.hasOwnProperty(data.select.value) || !gca_languages[data.select.value].hasOwnProperty('name')) return;
 							gca_locale._setLang(data.select.value);
 						}
 					};
@@ -393,22 +507,39 @@ var gca_settings = {
 					// gst : guild storge
 					// gbn : guild bank
 					// gwr : guild war room
+					// gar : guild arena battle reports
 					// gjl : guild jail
 					// glb : guild library
+					// gtm : guild templum
 					// sim : battle simulator
 					// stt : show my stats
 					// onl : online friends
 				"shortcuts_bar_buttons" : (function(){
 					var scheme = {
 						"type" : "enumerator",
-						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gjl|glb|sim|stt|onl'
+						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gar|gjl|glb|gtm|sim|stt|onl'
 					};
-					var icons = ["message-icon", "cross-icon", "market-icon", "box-icon", "gold-icon", "report-icon", "castle-icon", "notebook-icon", "swords-icon", "people-icon", "online-icon"];
+					var btns = [
+						{icon : "message-icon", title : gca_locale.get("global", "message_private_write")},
+						{icon : "cross-icon", title : gca_locale.get("global", "guild_medic_goto")},
+						{icon : "market-icon", title : gca_locale.get("global", "guild_market_goto")},
+						{icon : "box-icon", title : gca_locale.get("global", "guild_storage_goto")},
+						{icon : "gold-icon", title : gca_locale.get("global", "guild_bank_goto")},
+						{icon : "report-icon", title : gca_locale.get("global", "guild_warcamp_goto")},
+						{icon : "report2-icon", title : gca_locale.get("global", "guild_arenareports_goto")},
+						{icon : "castle-icon", title : gca_locale.get("global", "guild_jail_goto")},
+						{icon : "notebook-icon", title : gca_locale.get("global", "guild_library_goto")},
+						{icon : "pillar-icon", title : gca_locale.get("global", "guild_templum_goto")},
+						{icon : "swords-icon", title : gca_locale.get("global", "simulator_goto")},
+						{icon : "people-icon", title : gca_locale.get("global", "stats_display")},
+						{icon : "online-icon", title : gca_locale.get("global", "online_display")}
+					];
 					scheme.values_dom = [];
 					var tmp;
-					for (var i = 0; i < icons.length; i++) {
+					for (var i = 0; i < btns.length; i++) {
 						tmp = document.createElement("span");
-						tmp.className = icons[i];
+						tmp.className = btns[i].icon;
+						tmp.title = btns[i].title;
 						tmp.style.width = "25px";
 						tmp.style.height = "25px";
 						tmp.style.display = "block";
@@ -630,7 +761,9 @@ var gca_settings = {
 				// Open many mysteryboxes button
 				"open_many_mysteryboxes" : true,
 				// Show mysterybox reward's value in rubies
-				"show_mysterybox_rewards_rubies" : true
+				"show_mysterybox_rewards_rubies" : true,
+				// Show mysterybox reward's owned number
+				"show_mysterybox_rewards_owned" : true
 			},
 
 			// Reports
@@ -639,7 +772,9 @@ var gca_settings = {
 				"style_change" : true,
 				"load_loot_tooltips" : true,
 				// Item found
-				"found_items" : true
+				"found_items" : true,
+				// Analyze battle reports
+				"battle_analyzer" : true
 			},
 
 			"training" : {
@@ -741,7 +876,9 @@ var gca_settings = {
 				// Remember sorting 
 				"remember_sort" : false,
 				// Double click to select
-				"double_click_select" : true
+				"double_click_select" : true,
+				// Item sell warning icons
+				"sell_warning_icons" : true
 			},
 			
 			// Expedition Options
@@ -1739,81 +1876,124 @@ var gca_settings = {
 		// Export gca settings
 		export : function() {
 			// Get settings data
-			let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings");
-			// If no data set to no data
-			if(settings_data === null){
-				settings_data = "{\"data\":{}}";
-			}
+			let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
+			// Get arena data
+			let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
 
 			// Check for errors
 			try {
 				JSON.parse(settings_data);
+				JSON.parse(arena_data);
 			} catch (e) {
 				// Set to no data
-				settings_data = "{\"data\":{}}";
+				gca_notifications.error(gca_locale.get("general", "error"));
+				return false;
 			}
 
-			// Beautify data
-			let settings_json = JSON.parse(settings_data);
-			settings_data = JSON.stringify(settings_json, null, "\t");
+			// Format data
+			let data = {
+				settings : JSON.parse(settings_data),
+				arena : JSON.parse(arena_data),
+				version : 2
+			};
+			data = JSON.stringify(data, null, "\t");
 
 			// Download file
-			let file = document.createElement('a');
-			file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(settings_data));
-			file.setAttribute('download', "settings_" + gca_section.country + "_s" + gca_section.server + "_" + gca_section.playerId + ".gca");
-			file.click();
+			gca_notifications.success(gca_locale.get("settings", "data_exported_save_the_file"));
+			this.downloadFile("settings_" + gca_section.country + "_s" + gca_section.server + "_" + gca_section.playerId + ".gca", data);
 		},
+
+		// Download file
+		downloadFile : function(name, text) {
+			// Create file
+			let file = document.createElement('a');
+			file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			file.setAttribute('download', name);
+			// Fire download
+			var e = document.createEvent('MouseEvents');
+			e.initEvent('click', true, false);
+			file.dispatchEvent(e);
+		},
+
 		// Import gca settings
-		import : function(settings_data) {
+		import : function(data) {
 			// Check for json errors
 			try {
 				// Parse json
-				JSON.parse(settings_data);
+				JSON.parse(data);
 			}
 			catch (e) {
 				return "Parse error";
 			}
 
 			// Parse data
-			let settings_json = JSON.parse(settings_data);
+			data = JSON.parse(data);
+			let settings_json = null;
+			let arena_json = null;
 
-			// If no valid structure
-			if (!settings_json.hasOwnProperty("data") || typeof settings_json.data !== "object") {
-				return "Data error";
+			// Old version file
+			if (data.hasOwnProperty('data')) {
+				settings_json = data;
 			}
+			// Newer version
+			else if (data.hasOwnProperty('version')) {
+				settings_json = data.settings;
+				arena_json = data.arena;
+			}
+			// Error
+			else {
+				return "Parse error";
+			}
+			
+			// Parse settings
+			if (settings_json) {
+				// If no valid structure
+				if (!settings_json.hasOwnProperty("data") || typeof settings_json.data !== "object") {
+					return "Data error";
+				}
 
-			// Start reading data
-			let settings = {data : {}};
+				// Start reading data
+				let settings = {data : {}};
 
-			// For each category
-			for (let category in gca_options.data) {
-				if (gca_options.data.hasOwnProperty(category)) {
-					// If category exist in imported data
-					if (settings_json.data.hasOwnProperty(category)) {
-						settings.data[category] = {};
+				// For each category
+				for (let category in gca_options.data) {
+					if (gca_options.data.hasOwnProperty(category)) {
+						// If category exist in imported data
+						if (settings_json.data.hasOwnProperty(category)) {
+							settings.data[category] = {};
 
-						// For each item in category
-						for (let item in gca_options.data[category]) {
-							if (gca_options.data[category].hasOwnProperty(item)) {
-								
-								// If item exist in imported data
-								if (settings_json.data[category].hasOwnProperty(item)) {
-									// Save data
-									settings.data[category][item] = settings_json.data[category][item];
+							// For each item in category
+							for (let item in gca_options.data[category]) {
+								if (gca_options.data[category].hasOwnProperty(item)) {
+									
+									// If item exist in imported data
+									if (settings_json.data[category].hasOwnProperty(item)) {
+										// Save data
+										settings.data[category][item] = settings_json.data[category][item];
+									}
+
 								}
-
 							}
-						}
 
+						}
+						
 					}
-					
+				}
+
+				// Prepare data
+				let imported_data = JSON.stringify(settings);
+				// Save data
+				window.localStorage.setItem(gca_data_manager.name + "_settings", imported_data);
+			}
+			
+			// Parse arena
+			if (arena_json) {
+				// Save arena list
+				if (arena_json.hasOwnProperty('target-list')) {
+					gca_data.section.set('arena', 'target-list', arena_json['target-list']);
 				}
 			}
-
-			// Prepare data
-			let imported_data = JSON.stringify(settings);
-			// Save data
-			window.localStorage.setItem(gca_data_manager.name + "_settings", imported_data);
+			
 
 			// No errors
 			return false;
@@ -1951,11 +2131,11 @@ var gca_settings = {
 		},
 
 		displayInfo : function() {
-			
 			let url = 'https://s' + gca_section.server + '-' + gca_section.country + '.gladiatus.gameforge.com/game/index.php?mod=player&p=' + this.player + '&gcamod=sync&s=' + this.hash;
 
 			this.wrapper.textContent = '';
 			this.wrapper.style.textAlign = 'left';
+			this.wrapper.style.height = '186px';
 
 			let qrcode = document.createElement('div');
 			qrcode.style.float = 'right';
@@ -1975,6 +2155,10 @@ var gca_settings = {
 			this.wrapper.appendChild(document.createElement('br'));
 
 			jQuery(qrcode).qrcode({width: 180, height: 180, text: url});
+
+			input.addEventListener('click', function(){
+				this.select();
+			}, false);
 		}
 
 	}
@@ -1999,5 +2183,5 @@ var gca_settings = {
 })();
 
 // ESlint defs
-/* global gca, gca_data, gca_data_manager, gca_getPage, gca_languages, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global gca, gca_data, gca_data_manager, gca_getPage, gca_languages, gca_links, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
 /* global jQuery */

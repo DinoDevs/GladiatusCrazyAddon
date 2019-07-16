@@ -204,6 +204,7 @@ var gca_tools = {
 		serverSpeed : function() {
 			if (this._serverSpeed) return this._serverSpeed;
 			this._serverSpeed = parseInt((document.getElementById('header_game').getElementsByTagName('span')[7].textContent.match(/Speed x(\d+)/) || [null, '1'])[1], 10);
+			return this._serverSpeed;
 		}
 	},
 
@@ -296,10 +297,10 @@ var gca_tools = {
 			var cords_item = jQuery(item).offset();
 			cords_item = {x: cords_item.left, y: cords_item.top};
 			var cords_target = {x: x, y: y};
-			var cords_middle = {
-				x: cords_item.x + (cords_target.x - cords_item.x)/2,
-				y: cords_item.y + (cords_target.y - cords_item.y)/2
-			};
+			//var cords_middle = {
+			//	x: cords_item.x + (cords_target.x - cords_item.x)/2,
+			//	y: cords_item.y + (cords_target.y - cords_item.y)/2
+			//};
 			//let scroll = {x : window.scrollX, y : window.scrollY};
 			this._move.fireMouseEvent(item, 'mousedown', {clientX: cords_item.x - window.scrollX, clientY: cords_item.y - window.scrollY});
 			//this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_item.x - window.scrollX, clientY: cords_item.y - window.scrollY});
@@ -320,6 +321,16 @@ var gca_tools = {
 				else if (target == 'inv') {
 					grid = document.getElementById('inv');
 					size = [5, 8];
+
+					// If gold (works, but the subtracted gold from the counters is wrong)
+					//if (item.dataset.basis == '14-1') {
+					//	cords_grid = jQuery(grid).offset();
+					//	return {
+					//		x: (cords_grid.left + 1),
+					//		y: (cords_grid.top + 32 * (size[0] - 1) + 1),
+					//		parent : grid
+					//	}
+					//}
 				}
 				else if (target == 'market') {
 					grid = document.getElementById('market_sell');
@@ -334,10 +345,11 @@ var gca_tools = {
 					return false;
 				}
 
-				var spot = this.findGridSpot(
+				var items = this.getGridItems(grid);
+				var spot = this.findSameItemSpot(item, items) || this.findGridSpot(
 					item.dataset.measurementY,
 					item.dataset.measurementX,
-					this.getGridMap(size[0], size[1], this.getGridItems(grid))
+					this.getGridMap(size[0], size[1], items)
 				);
 				if (!spot) return false;
 
@@ -361,7 +373,8 @@ var gca_tools = {
 						y : parseInt(dragables[i].style.top, 10)/32,
 						x : parseInt(dragables[i].style.left, 10)/32,
 						h : parseInt(dragables[i].dataset.measurementY, 10),
-						w : parseInt(dragables[i].dataset.measurementX, 10)
+						w : parseInt(dragables[i].dataset.measurementX, 10),
+						hash : dragables[i].dataset.hash
 					});
 				}
 				return items;
@@ -390,6 +403,17 @@ var gca_tools = {
 				}
 
 				return table;
+			},
+
+			// Find a spot on the grid that you can stack this item
+			// -------------------------------------------------- //
+			findSameItemSpot : function(item, items) {
+				for (var i = items.length - 1; i >= 0; i--) {
+					if (items[i].hash == item.dataset.hash) {
+						return {y : items[i].y, x : items[i].x};
+					}
+				}
+				return false;
 			},
 
 			// Find a spot on the grid
@@ -485,12 +509,71 @@ var gca_tools = {
 			}
 
 		},
+
+		info : function(item) {
+			if (!item) return null;
+			let info = this.hash(item) || {};
+
+			if (item.dataset.contentType)
+				info.contentType = parseInt(item.dataset.contentType, 10);
+			if (item.dataset.contentSize)
+				info.contentSize = parseInt(item.dataset.contentSize, 10);
+
+			if (!info.price_gold && item.dataset.priceGold)
+				info.price_gold = parseInt(item.dataset.priceGold, 10);
+			if (item.dataset.level)
+				info.level = parseInt(item.dataset.level, 10);
+			if (item.dataset.amount)
+				info.amount = parseInt(item.dataset.amount, 10);
+			if (item.dataset.positionX)
+				info.positionX = parseInt(item.dataset.positionX, 10);
+			if (item.dataset.positionY)
+				info.positionY = parseInt(item.dataset.positionY, 10);
+			if (item.dataset.measurementX)
+				info.measurementX = parseInt(item.dataset.measurementX, 10);
+			if (item.dataset.measurementY)
+				info.measurementY = parseInt(item.dataset.measurementY, 10);
+			if (!info.category && item.dataset.basis) {
+				let basis = item.dataset.basis.match(/^(\d+)-(\d+)$/i);
+				info.category = parseInt(basis[1], 10);
+				info.subcategory = parseInt(basis[2], 10);
+			}
+
+			if (item.dataset.tooltip) {
+				let tooltip = item.dataset.tooltip;
+				// White
+				if(tooltip.match("white")) info.quality = -1;
+				// Green
+				else if(tooltip.match("lime")) info.quality = 0;
+				// Blue
+				else if(tooltip.match("#5159F7")) info.quality = 1;
+				// Purple
+				else if(tooltip.match("#E303E0")) info.quality = 2;
+				// Orange
+				else if(tooltip.match("#FF6A00")) info.quality = 3;
+				// Red
+				else if(tooltip.match("#FF0000")) info.quality = 4;
+			}
+
+			return info;
+		},
 		
 		hash : function(item) {
-			if (!item || !item.dataset.hash) return null;
+			if (!item) return null;
 
-			// Decode
-			let hash = this._hash.decode(item.dataset.hash);
+			var hash;
+			if (typeof item == 'string') {
+				// Decode from string
+				hash = this._hash.decode(item);
+				if (hash.length == 0) return null;
+			}
+			else if (item.dataset && item.dataset.hash) {
+				// Decode from element
+				hash = this._hash.decode(item.dataset.hash);
+			}
+			else {
+				return null;
+			}
 			
 			// Check type
 			switch(hash.length) {
@@ -499,21 +582,60 @@ var gca_tools = {
 						player : hash[0],
 						category : hash[1],
 						subcategory : hash[2],
-						price : hash[3],
-						//unknown_part_4 : hash[4],
+						price_gold : hash[3],
+						price_rubies : hash[4],
 						prefix : hash[5],
 						suffix : hash[6],
-						//unknown_part_7 : hash[7],
+					//unknown_part_7 : hash[7], // auction ?
 						sold : hash[8],
-						//unknown_part_9 : hash[9],
-						//unknown_part_10 : hash[10],
-						//unknown_part_11 : hash[11],
-						//unknown_part_12 : hash[12],
-						//unknown_part_13 : hash[13],
-						//unknown_part_14 : hash[14],
+					//unknown_part_9 : hash[9],
+					//unknown_part_10 : hash[10], // upgrade_1_type (upgrade subcategory)
+					//unknown_part_11 : hash[11], // upgrade_1_level
+					//unknown_part_12 : hash[12],
+					//enchant_2_timer : hash[13], // new Date(x * 1000)
+						quality : hash[14],
 						durability : hash[15],
-						//unknown_part_16 : hash[16],
+					//unknown_part_16 : hash[16],
 						soulbound : hash[17]
+					};
+
+				case 10: // Upgrades
+					return {
+						player : hash[0],
+						category : hash[1],
+						subcategory : hash[2],
+						price_gold : hash[3],
+						price_rubies : hash[4],
+					//unknown_part_5 : hash[5],
+					//unknown_part_6 : hash[6],
+						quality : hash[7],
+						soulbound : hash[8],
+						upgrade_level : hash[9]
+					};
+
+				case 9: // Recipes
+					return {
+						player : hash[0],
+						category : hash[1],
+						subcategory : hash[2],
+						price_gold : hash[3],
+						price_rubies : hash[4],
+					//unknown_part_5 : hash[5],
+						quality : hash[6],
+						soulbound : hash[7],
+						recipes_level : hash[8]
+					};
+
+				case 8: // Snowballs, Pumpkins, Rune, Bunny
+					return {
+						player : hash[0],
+						category : hash[1],
+						subcategory : hash[2],
+						price_gold : hash[3],
+						price_rubies : hash[4],
+					//unknown_part_5 : hash[5],
+						quality : hash[6],
+						soulbound : hash[7]
 					};
 
 				case 7:
@@ -521,8 +643,8 @@ var gca_tools = {
 						player : hash[0],
 						category : hash[1],
 						subcategory : hash[2],
-						price : hash[3],
-						//unknown_part_4 : hash[4],
+						price_gold : hash[3],
+						price_rubies : hash[4],
 						prefix : hash[5],
 						suffix : hash[6]
 					};
@@ -565,6 +687,9 @@ var gca_tools = {
 	// event.request.onAjaxResponce(callback)
 	// event.bag.waitBag(callback)
 	// event.bag.onBagOpen(callback)
+	// event.onExit.init()
+	// event.onExit.listen(id, message)
+	// event.onExit.remove(id)
 	// -------------------------------------------------- //
 	event : {
 		// List of events
@@ -576,6 +701,15 @@ var gca_tools = {
 			// If no callback, no one is listening
 			if(!callback) return;
 
+			// If event exist
+			if(this.event_list[name]){
+				this.event_list[name].push(callback);
+			}
+			// New list for this event name
+			else{
+				this.event_list[name] = [callback];
+			}
+
 			// If event once exist
 			if(typeof this.once_event[name] != "undefined"){
 				// Asynchronously call
@@ -586,17 +720,8 @@ var gca_tools = {
 						}
 					})(callback, this.once_event[name])
 				, 0);
-				return;
 			}
-
-			// If event exist
-			if(this.event_list[name]){
-				this.event_list[name].push(callback);
-			}
-			// New list for this event name
-			else{
-				this.event_list[name] = [callback];
-			}
+			
 			return;
 		},
 
@@ -628,8 +753,7 @@ var gca_tools = {
 			delete this.event_list[name];
 			delete this.once_event[name];
 		},
-	
-
+		
 		// Item events
 		item : {
 			// Is it loaded?
@@ -655,7 +779,7 @@ var gca_tools = {
 				});
 
 				// Attack an item drop event
-				jQuery(document).on('dragend', function(e){
+				jQuery(document).on('dragend', function(){
 					gca_tools.event.item.dropEventHandler();
 				});
 			},
@@ -864,10 +988,41 @@ var gca_tools = {
 				// Set a listener
 				gca_tools.event.addListener('bagOpen', callback);
 			}
+		},
 
+		// Exit
+		onExit : {
+			// Initialize
+			init : function() {
+				if (this.checklist) return;
+				this.checklist = {};
+
+				// On window unload
+				window.onbeforeunload = () => {
+					var message = null;
+					// Check if there are pending actions
+					for (let id in this.checklist) {
+						if (this.checklist.hasOwnProperty(id) && this.checklist[id]) {
+							message = this.checklist[id];
+							break;
+						}
+					}
+					return message;
+				};
+			},
+
+			// Set an action as pending
+			listen : function(id, message) {
+				this.init();
+				this.checklist[id] = message;
+			},
+
+			// Set an action as completed
+			remove : function(id) {
+				if (this.checklist && this.checklist.hasOwnProperty(id))
+					delete this.checklist[id];
+			}
 		}
-
-
 	},
 
 
@@ -1340,6 +1495,50 @@ var gca_tools = {
 	})(),
 
 
+	// Easter Eggs
+	// -------------------------------------------------- //
+	// You are not supposed to see this!
+	// -------------------------------------------------- //
+	easter_eggs : {
+		lucky : function () {
+			return (Math.random() * 100 <= 1 ? true : false);
+		},
+
+		check : function (callback = false, data = []) {
+			if (this.lucky()) {
+				if (!callback) {
+					this.poem();
+					return true;
+				}
+				else {
+					callback.apply(this, data);
+					return true;
+				}
+			}
+			else {
+				return false;
+			}
+		},
+
+		poem : function () {
+			let poem = ['Rubies are red,', 'potions are blue,', 'while you click,', 'I work for you.'];
+			gca_notifications.error(poem[0]);
+			gca_notifications.info(poem[1]);
+			gca_notifications.warning(poem[2]);
+			gca_notifications.success(poem[3]);
+		},
+
+		fight : function (won) {
+			if (won) {
+				gca_notifications.success("Are you not Entertained?");
+			}
+			else {
+				gca_notifications.warning("The force is strong with this one!");
+			}
+		}
+	},
+
+
 	// Create
 	// -------------------------------------------------- //
 	// create.goldIcon()
@@ -1352,6 +1551,13 @@ var gca_tools = {
 		},
 		rubiesIcon : function() {
 			return this.icon('img/res3.gif');
+		},
+		flagIcon : function(country) {
+			country = country.toLowerCase();
+			if (!(/^[a-zA-Z]{2,2}$/).test(country))
+				return this.icon('');
+			else if (country == 'en') country = 'gb';
+			return this.icon('https://flags.fmcdn.net/data/flags/h20/' + country + '.png');
 		},
 
 		icon : function(src) {
@@ -1369,10 +1575,28 @@ var gca_tools = {
 			link.setAttribute("href", gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : category}));
 			document.getElementById("footer").appendChild(link);
 			gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "white"]]]));
+		},
+
+		link : function(url, text = false, options = {}) {
+			let link = document.createElement('a');
+			link.href = url;
+			if (text)
+				link.textContent = text;
+			if (options.hasOwnProperty('className'))
+				link.className = options.className;
+			if (options.hasOwnProperty('target'))
+				link.setAttribute('target', options.target);
+
+			return link;	
 		}
 
 	},
 
+
+	// Load
+	// -------------------------------------------------- //
+	// script(url, function done(){}, isAddonResource)
+	// -------------------------------------------------- //
 	load : {
 		script : function(link, callback = false, resource = false) {
 			var script = document.createElement('script');
@@ -1392,5 +1616,5 @@ var gca_tools = {
 })();
 
 // ESlint defs
-/* global gca_getPage, gca_locale, gca_resources, gca_tools */
+/* global gca_getPage, gca_locale, gca_notifications, gca_resources, gca_tools */
 /* global jQuery */

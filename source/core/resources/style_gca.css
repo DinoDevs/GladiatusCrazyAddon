@@ -97,6 +97,8 @@
 	.swords-icon:hover{background: transparent url('buttons/main_buttons.png') -70px -25px no-repeat;}
 	.report-icon{background: transparent url('buttons/main_buttons.png') -95px 0px no-repeat;}
 	.report-icon:hover{background: transparent url('buttons/main_buttons.png') -95px -25px no-repeat;}
+	.report2-icon{background: transparent url('buttons/main_buttons.png') -345px 0px no-repeat;}
+	.report2-icon:hover{background: transparent url('buttons/main_buttons.png') -345px -25px no-repeat;}
 	.box-icon{background: transparent url('buttons/main_buttons.png') -120px 0px no-repeat;}
 	.box-icon:hover{background: transparent url('buttons/main_buttons.png') -120px -25px no-repeat;}
 	.castle-icon{background: transparent url('buttons/main_buttons.png') -145px 0px no-repeat;}
@@ -115,6 +117,8 @@
 	.scrol-icon:hover{background: transparent url('buttons/main_buttons.png') -295px -25px no-repeat;}
 	.refresh-icon{background: transparent url('buttons/main_buttons.png') -320px 0px no-repeat;}
 	.refresh-icon:hover{background: transparent url('buttons/main_buttons.png') -320px -25px no-repeat;}
+	.pillar-icon{background: transparent url('buttons/main_buttons.png') -370px 0px no-repeat;}
+	.pillar-icon:hover{background: transparent url('buttons/main_buttons.png') -370px -25px no-repeat;}
 
 /* Auction Status Bar */
 	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 110px;}
@@ -135,36 +139,6 @@
 	
 	.loading{width: 41px; height: 6px; background: transparent url('loading.gif') no-repeat;}
 
-/* Top Fixed Bar */
-	#topFixedBar{color: #DCBB96; background: url('interface/top_bar_bg.png') repeat-x scroll 0 -4px transparent; z-index: 900; position: fixed; top: 0px; left: 0px; right: 0px; height: 24px; display: none; line-height: 24px;}
-	#topFixedBar a{color: #DCBB96;display: inline-block;margin-left: 6px;}
-	#topFixedBar .scroll-to-top{border-radius: 6px;border: 1px solid #4A3615;color: black;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 8px;float: right;text-align: center;margin-top: 2px;margin-right: 10px;cursor: pointer;font-size: 0.8em;vertical-align: bottom;}
-	@media screen and (max-width: 1080px) {
-		#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
-	}
-	.bar-fixed-bar{display: inline!important;}
-	.icon_gold-fixed-bar, .icon_rubies-fixed-bar{z-index: 901; position: fixed; top: 3px;}
-	.gold_val-fixed-bar, .ruby_val-fixed-bar{z-index: 901; position: fixed; top: 3px; margin-left: 18px;}
-	.gca_rtl .gold_val-fixed-bar, .gca_rtl  .ruby_val-fixed-bar{margin-right: 18px;margin-left: auto;}
-	.icon_expeditionpoints-fixed-bar, .icon_arena-fixed-bar{z-index: 901; position: fixed; top: -1px; cursor: pointer;}
-	.icon_expeditionpoints-fixed-bar, .icon_dungeonpoints-fixed-bar, .icon_arena-fixed-bar .headericon_big, .icon_grouparena-fixed-bar .headericon_big{border-radius: 5px;width: 16px;height: 16px;margin-top: 4px;}
-	.icon_arena-fixed-bar .headervalue_big, .icon_grouparena-fixed-bar .headervalue_big{font-size: 12px;margin-top: 4px;}
-	.expeditionpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 20px; cursor: pointer;font-size: 12px;}
-	.gca_rtl .expeditionpoints_value-fixed-bar{margin-right: 28px;margin-left: auto;}
-	.icon_dungeonpoints-fixed-bar, .icon_grouparena-fixed-bar{z-index: 901; position: fixed; top: -1px; margin-left: 60px; cursor: pointer;}
-	.gca_rtl  .icon_dungeonpoints-fixed-bar, .gca_rtl .icon_grouparena-fixed-bar{margin-right: 100px;margin-left: auto;}
-	.dungeonpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 80px; cursor: pointer;font-size: 12px;}
-	.gca_rtl .dungeonpoints_value-fixed-bar{margin-right: 128px;margin-left: auto;}
-	/*.header_values_ressources-fixed-bar, .header_values_general-fixed-bar{padding-top: 18px;}*/
-	#header_values_hp.header_values_hp-fixed-bar{z-index: 901;position: fixed;top: 6px;margin-left: 90px;left: auto;}
-	#header_values_hp.header_values_hp_extend.header_values_hp-fixed-bar{top: -4px;}
-	#header_values_hp.header_values_hp-fixed-bar #header_values_hp_points{margin-top: -10px;font-size: 8px;text-align: right;padding-right: 35px;}
-	#header_values_hp.header_values_hp-fixed-bar #header_values_hp_points span{font-size: 10px!important;}
-	#header_values_hp.header_values_hp-fixed-bar #header_life_pot{display: none;}
-	.gca_rtl #header_values_hp.header_values_hp-fixed-bar{margin-left: auto;margin-right: 90px;right: auto;}
-	.gca_rtl #header_values_hp.header_values_hp-fixed-bar #header_values_hp_points{text-align: left;padding-right: 0;padding-left: 35px;}
-	.show_premium_days-fixed-bar{z-index: 901 !important; position: fixed !important;cursor: pointer;top: -7px !important;}
-	.show_premium_days-fixed-bar h4{top: 4px;height: 15px;line-height: 16px;}
 
 /* Show Prem Days */
 	.show_prem_days{position: absolute;right: 4px;width: 170px;padding: 4px 0 4px 4px;z-index: 900;top: 0px;}
@@ -664,6 +638,45 @@
 
 
 
+	
+	/* Top Fixed Bar
+	-------------------------------------------------- */
+	#topFixedBar {color: #DCBB96; background: url('interface/top_bar_bg.png') repeat-x scroll 0 -4px transparent; z-index: 900; position: fixed; top: 0px; left: 0px; right: 0px; height: 24px; display: none; line-height: 24px;}
+	#topFixedBar a{color: #DCBB96;display: inline-block;margin-left: 6px;}
+	#topFixedBar .scroll-to-top{border-radius: 6px;border: 1px solid #4A3615;color: black;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 8px;float: right;text-align: center;margin-top: 2px;margin-right: 10px;cursor: pointer;font-size: 0.8em;vertical-align: bottom;}
+	@media screen and (max-width: 1080px) {
+		#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
+	}
+	.bar-fixed-bar{display: inline!important;}
+	.icon_gold-fixed-bar, .icon_rubies-fixed-bar{z-index: 901; position: fixed; top: 3px;}
+	.gold_val-fixed-bar, .ruby_val-fixed-bar{z-index: 901; position: fixed; top: 3px; margin-left: 18px;}
+	.gca_rtl .gold_val-fixed-bar, .gca_rtl  .ruby_val-fixed-bar{margin-right: 18px;margin-left: auto;}
+	.icon_expeditionpoints-fixed-bar, .icon_arena-fixed-bar{z-index: 901; position: fixed; top: -1px; cursor: pointer;}
+	.icon_expeditionpoints-fixed-bar, .icon_dungeonpoints-fixed-bar, .icon_arena-fixed-bar .headericon_big, .icon_grouparena-fixed-bar .headericon_big{border-radius: 5px;width: 16px;height: 16px;margin-top: 4px;}
+	.icon_arena-fixed-bar .headervalue_big, .icon_grouparena-fixed-bar .headervalue_big{font-size: 12px;margin-top: 4px;}
+	.expeditionpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 20px; cursor: pointer;font-size: 12px;}
+	.gca_rtl .expeditionpoints_value-fixed-bar{margin-right: 28px;margin-left: auto;}
+	.icon_dungeonpoints-fixed-bar, .icon_grouparena-fixed-bar{z-index: 901; position: fixed; top: -1px; margin-left: 60px; cursor: pointer;}
+	.gca_rtl  .icon_dungeonpoints-fixed-bar, .gca_rtl .icon_grouparena-fixed-bar{margin-right: 100px;margin-left: auto;}
+	.dungeonpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 80px; cursor: pointer;font-size: 12px;}
+	.gca_rtl .dungeonpoints_value-fixed-bar{margin-right: 128px;margin-left: auto;}
+	/*.header_values_ressources-fixed-bar, .header_values_general-fixed-bar{padding-top: 18px;}*/
+	#header_values_hp.header_values_hp-fixed-bar{z-index: 901;position: fixed;top: 6px;margin-left: 90px;left: auto;}
+	#header_values_hp.header_values_hp_extend.header_values_hp-fixed-bar{top: -4px;}
+	#header_values_hp.header_values_hp-fixed-bar #header_values_hp_points{margin-top: -10px;font-size: 8px;text-align: right;padding-right: 35px;}
+	#header_values_hp.header_values_hp-fixed-bar #header_values_hp_points span{font-size: 10px!important;}
+	#header_values_hp.header_values_hp-fixed-bar #header_life_pot{display: none;}
+	.gca_rtl #header_values_hp.header_values_hp-fixed-bar{margin-left: auto;margin-right: 90px;right: auto;}
+	.gca_rtl #header_values_hp.header_values_hp-fixed-bar #header_values_hp_points{text-align: left;padding-right: 0;padding-left: 35px;}
+	.show_premium_days-fixed-bar{z-index: 901 !important; position: fixed !important;cursor: pointer;top: -7px !important;}
+	.show_premium_days-fixed-bar h4{top: 4px;height: 15px;line-height: 16px;}
+	@media screen and (min-width: 1300px) {
+		#header_menue.header_menu-fixed-bar {position: fixed;top: 0;z-index: 901;margin: -8px 0 0 -50px;transform: scale(0.60);left: auto;}
+		.gca_rtl #header_menue.header_menu-fixed-bar {margin: -8px -50px 0 0;right: auto;}
+	}
+
+
+	
 	/* Inventory Layout
 	-------------------------------------------------- */
 		.inventory_options_group .inventoryBox #itemOptions{display: none;margin-top: 5px;}
@@ -755,6 +768,8 @@
 		/* Reward in Rubies Style */
 		.reward_pool_rubies_price {position: absolute;top: 5px;left: 4px;font-size: 11px;color: #c7b68a;font-weight: bold;text-shadow: 1px 1px 2px black, 1px -1px 2px black, -1px 1px 2px black, -1px -1px 2px black;}
 		.gca_rtl .reward_pool_rubies_price {left: auto;right: 4px;}
+		.reward_pool_owned_number {position: absolute;bottom: 5px;left: 8px;font-size: 11px;color: #00B712;font-weight: bold;text-shadow: 1px 1px 2px black, 1px -1px 2px black, -1px 1px 2px black, -1px -1px 2px black;}
+		.gca_rtl .reward_pool_owned_number {left: auto;right: 8px;}
 		
 
 
@@ -776,6 +791,7 @@
 		.gca_messages_styling .message_box .message_box_content .message_footer{background-color: #E6DCB7;height: 18px;}
 		.gca_messages_styling .message_box .message_box_content .message_footer a{display: none;}
 		.gca_messages_styling .message_box:hover .message_box_content .message_footer a{display: block;}
+		.gca_mobile_device.gca_messages_styling .message_box .message_box_content .message_footer a{display: block;}
 		.gca_messages_styling .message_box:hover .messageSubject{border: 1px solid #7D714A;}
 		.gca_messages_styling .message_box:hover .message_box_content{border-left: 1px solid #7D714A;border-right: 1px solid #7D714A;border-bottom: 1px solid #7D714A;}
 		.message_box.gca_messages_separator{margin-top: 15px;border-bottom: 2px solid #bba86e;}
@@ -938,6 +954,8 @@
 		.package-advance-filters .filter-add input:nth-child(3) {width: 85px;}
 		.package-advance-filters .filter-add button {width: 52px;margin-top: 0px;}
 
+		/* Soul-bound items */
+		#packages_wrapper div[data-gca-soulbound]:after {content: "🔗";color: #ccc;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
 
 
 	/* Quests Layout
@@ -1081,6 +1099,17 @@
 		.gca-shop-info img{vertical-align: sub;transform: scale(0.8);}
 		
 	
+	/* Forge
+	-------------------------------------------------- */
+		/* Meterials Packages/Market Links */
+		.gca_forge_material_links {background-color: #bba86e;font-size: 12px;position: absolute;width: 16px;margin-top: -46px;margin-left: 32px;line-height: 23px;}
+		.gca_forge_materials_links {width: 16px;font-size: 12px;position: absolute;margin-top: -46px;line-height: 16px;}
+		.gca_forge_material_links a, .gca_forge_materials_links a {text-decoration: none!important;cursor: pointer;}
+		/* Links under forge info */
+		#gca_forge_links {text-align: right; font-size: 10px; margin: 30px 0 -10px 0; padding: 0 8px;}
+		.gca_rtl #gca_forge_links {text-align: left;}
+		
+	
 	/* Horreum
 	-------------------------------------------------- */
 
@@ -1113,7 +1142,7 @@
 	-------------------------------------------------- */
 
 		/* 1g sell mode */
-		#market_sell_box .switch-field{float: right;margin-top: -48px;margin-right: 23px;}
+		#market_sell_box .switch-field{float: right;padding: 0px 5px;}
 		#market_sell_box .switch-field input{display: none;}
 		#market_sell_box .switch-field label{float: left;width:auto;}
 		#market_sell_box .switch-field label{display: inline-block;background-color: #d9cea2;color: black;font-size: 9px;font-weight: normal;text-align: center;text-shadow: none;padding: 1px 6px;border: 1px solid rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);-webkit-transition: all 0.1s ease-in-out;-moz-transition: all 0.1s ease-in-out;transition: all 0.1s ease-in-out;}
@@ -1122,6 +1151,7 @@
 		#market_sell_box .switch-field label:first-of-type{border-radius: 4px 0 0 4px;}
 		#market_sell_box .switch-field label:last-of-type{border-radius: 0 4px 4px 0;}
 		.gca_rtl #market_sell_box .switch-field label{float: right;}
+		.gca_rtl #market_sell_box .switch-field{float: left;}
 		/* Change sort arrows */
 		.gca_change_sort_arrows #market_table th a {padding-right: 0px;background-image: none;}
 		.gca_rtl .gca_change_sort_arrows #market_table th a {padding-right: auto;padding-left: 0px;}
@@ -1202,6 +1232,12 @@
 		.gca_rtl #addon_box .settings_box section{text-align: left;}
 		.gca_rtl #addon_box .settings_box .icon{float:right;}
 		.gca_rtl #addon_box .settings_box .description{margin: 6px 10px 6px 0px;float: right;text-align: right;}
+
+		#addon_box .links_box {text-align: left;padding: 10px 5px;}
+		#addon_box .links_box h3 {font-size: 90%!important;padding: 15px 0px 5px 0px!important;}
+		#addon_box .links_box .group {padding-left : 10px;}
+		#addon_box .links_box .group > div {padding: 5px 0px 0px 0px;}
+		#addon_box .links_box .info {font-size: 10px; font-style: italic;}
 
 		/* Side menu */
 		#settings_menu {width: 150px;float: left;}

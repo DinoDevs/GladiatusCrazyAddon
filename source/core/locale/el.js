@@ -26,19 +26,23 @@ gca_languages["gr"] = {
 
 		// General
 		general: {
-
 			// Days
 			days: "ημέρες",
 			// Minutes
 			minutes: "λεπτά",
+			// Hours
+			hours : "ώρες",
 			// No data
 			no_data: "Δεν υπάρχουν δεδομένα.",
 
-			// Modal buttons
+			// Buttons
 			confirm : "Επιβεβαίωση",
 			cancel : "Ακύρωση",
 			close: "Κλείσιμο",
-			error: "Σφάλμα"
+			error: "Σφάλμα",
+			yes : "Ναι",
+			no : "Όχι",
+			ok : "Εντάξει"
 		},
 
 		// Global
@@ -50,6 +54,8 @@ gca_languages["gr"] = {
 			
 			// Life points recovery
 			life_recover_full: "Ολική αναγέννηση της ζωής σε",
+			expedition_recover_full : "Ολική ανανέωση των πόντων αποστολής",
+			dungeon_recover_full : "Ολική ανανέωση των πόντων μπουντρουμιού",
 
 			// Button bar - Message
 			message_private_write: "Γράψε προσωπικό μήνυμα",
@@ -65,8 +71,10 @@ gca_languages["gr"] = {
 			guild_storage_goto: "Πήγαινε στην αποθήκη τάγματος",
 			guild_bank_goto: "Πήγαινε την τράπεζα τάγματος",
 			guild_warcamp_goto: "Πήγαινε στην αίθουσα του άρχοντα του πολέμου",
+			guild_arenareports_goto: "Πήγαινε στις ταγματικές αναφορές μάχης αρένας",
 			guild_jail_goto: "Πήγαινε στην φυλακή τάγματος",
 			guild_library_goto: "Πήγαινε στην βιβλιοθήκη τάγματος",
+			guild_templum_goto : "Πήγαινε στο ναό του τάγματος",
 			guild_medic_goto: "Πήγαινε στο ιατρικό κέντρο",
 			simulator_goto: "Μεταβίβαση στον προσομοιωτή",
 			stats_display: "Εμφάνιση των στατιστικών μου",
@@ -96,6 +104,7 @@ gca_languages["gr"] = {
 			// Notifications
 			notification_guild_application: "Υπάρχει μια αίτηση στο τάγμα σε αναμονή!",
 			low_durability_items : "Υπάρχουν {{number}} αντικείμενα με ανθεκτικότητα κάτω από {{percent}}%",
+			item_worth_rubies : "Αυτό το αντικείμενο αξίζει ρουμπίνια!",
 
 			// Gold - Exp data
 			gold_exp_data: "Δεδομένα Χρυσού και Εμπειρίας",
@@ -113,9 +122,15 @@ gca_languages["gr"] = {
 		overview: {
 			// Stats Difference
 			stats_difference : "Διαφορά",
-			drop_item_see_materials_repair : "Ρίξτε ένα αντικείμενο για να δείτε τα υλικά που χρειάζεται για να επισκευαστεί",
 			// Drop items to see materials to repair feature
+			drop_item_see_materials_repair : "Ρίξτε ένα αντικείμενο για να δείτε τα υλικά που χρειάζεται για να επισκευαστεί",
 			workbench_6th_slot_empty : "Η 6η θέση στον Πάγκο Εργασίας πρέπει να είναι ελεύθερη",
+
+			// More player info
+			more_player_info : "Περισσότερες πληροφορίες μονομάχου",
+			can_use_max_item_level : "Μπορεί να χρησιμοποιήσει αντικείμενα επιπέδου μέχρι {{max}}.",
+			can_see_market_max_item_level : "Μπορεί να δει αντικείμενα στην αγορά επιπέδου μέχρι {{max}}.",
+			can_see_auction_item_levels : "Μπορεί να δει αντικείμενα στο δημοπρατήριο επιπέδου από {{min}} μέχρι {{max}}."
 		},
 
 		// Pantheon section
@@ -148,7 +163,7 @@ gca_languages["gr"] = {
 
 		// Arena section
 		arena : {
-			global_arena_title : "Παγκόσμια Αρένα (Crazy Addon)",
+			global_arena_title : "Παγκόσμια Αρένα",
 			global_arena_description : "Αυτή είναι η υπέρτατη αρένα που μαζεύει μονομάχους από όλο τον κόσμο! Σε αυτή την αρένα οι μονομάχοι δεν μάχονται για χρυσό ή εμπειρία, μάχονται για μια θέση στην παγκόσμια κατάταξη!",
 			global_arena_load : "Φόρτωση λίστας αντιπάλων",
 			global_highscore : "Παγκόσμια Βαθμολογία",
@@ -156,7 +171,12 @@ gca_languages["gr"] = {
 			server : "Επαρχία",
 			target_list : "Λίστα στόχων",
 			target_list_add : "Προσθήκη στη λίστα στόχων",
-			target_list_remove : "Αφαίρεση από τη λίστα στόχων"
+			target_list_remove : "Αφαίρεση από τη λίστα στόχων",
+			error_sth_went_wrong : "Κάτι πήγε στραβά",
+			error_response : "Ο διακομιστής απάντησε με σφάλμα",
+			error_blocked_access : "Κάτι μπλοκάρει την πρόσβαση στον διακομιστή του GCA ({{url}})",
+			error_connection : "Σφάλμα σύνδεσης",
+			attack_player : "Επίθεση στον “{{name}}”",
 		},
 
 		// Training section
@@ -192,6 +212,7 @@ gca_languages["gr"] = {
 			// Warnings
 			item_cost_only_x_gold : "Αυτό το αντικείμενο κοστίζει μόνο {{number}} χρυσό.",
 			item_is_soulbound : "Αυτό το αντικείμενο είναι ψυχικά δεμένο.",
+			item_cant_buy_back : "Δεν θα μπορείς να αγοράσεις πίσω αυτό το αντικείμενο.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Θέλεις πραγματικά να αγοράσεις αυτό το αντικείμενο;"
 		},
@@ -199,7 +220,8 @@ gca_languages["gr"] = {
 		// Forge
 		forge : {
 			forge_ended : "Η σφυρηλάτηση τελείωσε!",
-			recraft_item : "Σφυρηλάτηση ξανά"
+			recraft_item : "Σφυρηλάτηση ξανά",
+			show_hide_doll : "Εμφάνιση/Απόκρυψη χαρακτήρα παίχτη"
 		},
 
 		// Packages
@@ -211,6 +233,13 @@ gca_languages["gr"] = {
 			advance_filters_apply : "Εφαρμογή φίλτρων",
 			advance_filters_clear : "Απαλοιφή φίλτρων",
 			advance_filters_found : "(βρέθηκαν {{items}})"
+		},
+
+		// Cross-Browser Sync
+		sync : {
+			are_you_sure : "Είσαι σίγουρος πως θες να συνδεθείς σαν τον μονομάχο {{name}};",
+			gladiatus_crazy_addon_dependency : "Πρέπει να έχεις το Gladiatus Crazy Addon εγκατεστημένο στον άλλο περιηγητή διαδικτύου.",
+			how_to_sync_info : "Κάνε αντιγραφή του συνδέσμου και επικόλληση στον άλλο περιηγητή διαδικτύου, ή σκάναρε το qrcode."
 		},
 		
 		// Settings
@@ -248,6 +277,7 @@ gca_languages["gr"] = {
 			category_global$extended_hp_xp_info: "Προβολή εκτεταμένων πληροφοριών για HP και XP",
 			category_global$extended_hp_xp_info_potion : "Προβολή εικονιδίου χρήσης φίλτρου ζωής",
 			category_global$hp_timer_for_full_life : "Προβολή υπολειπόμενων λεπτών για πλήρη ζωή",
+			category_global$expedition_dungeon_points_recover_timer : "Προβολή των υπολειπόμενων λεπτών για πλήρη ανανέωση πόντων αποστολής/μπουντρουμιού",
 			category_global$shortcuts_bar: "Προβολή της μπάρας κουμπιών",
 			category_global$shortcuts_bar_buttons : "Επιλογή συντομεύσεων για την μπάρα κουμπιών",
 			category_global$auction_status_bar: "Προβολή της μπάρας κατάστασης δημοπρατηρίου",
@@ -318,10 +348,12 @@ gca_languages["gr"] = {
 			category_pantheon$gods_show_points_percent : "Εμφάνιση των πόντων θεών τοις εκατό",
 			category_pantheon$open_many_mysteryboxes : "Άνοιγμα πολλαπλών σεντουκιών",
 			category_pantheon$show_mysterybox_rewards_rubies : "Εμφάνιση τις αξίας των ανταμοιβών από τα σεντούκια σε ρουμπίνια",
+			category_pantheon$show_mysterybox_rewards_owned : "Εμφάνιση της ποστητας των ανταμοιβών από τα σεντούκια που έχεις ήδη",
 			// Settings - Reports
 			category_reports$style_change: "Βελτίωση του interface της λίστας αναφορών",
 			category_reports$load_loot_tooltips : "Φόρτωση των ανταμοιβών τις κάθε αναφοράς",
 			category_reports$found_items : "Συλλογή δεδομένων από τα αντικείμενα που πέφτουν",
+			category_reports$battle_analyzer : "Ανάλυση αναφορας και εμφάνιση στατιστικών ζωής",
 			// Settings - Training
 			category_training$show_discount : "Εμφάνιση έκπτωσης εκπαίδευσης",
 			category_training$show_basics_in_bars : "Εμφάνιση βασικών εκπαιδεύσεων στις μπάρες",
@@ -344,6 +376,7 @@ gca_languages["gr"] = {
 			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (gladiatussimulator.tk)",
 			category_arena$sort_by_lvl : "Ταξινόμηση παιχτών κατά επίπεδο στην αρένα",
 			category_arena$highlight_guild_members : "Χρωμάτισμα παιχτών από άλλους σέρβερς που μπορεί να είναι μέλη του τάγματος",
+			category_arena$target_list : "Λίστα στόχων",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να βελτιωθούν",
 			// Settings - Market
@@ -355,6 +388,7 @@ gca_languages["gr"] = {
 			category_market$one_gold_mode : "Επιλογή για σταθερή τιμή πώλησης στο 1 χρυσό",
 			category_market$remember_sort : "Να θυμάται το πρόσθετο την τελευταία ταξινόμηση",
 			category_market$double_click_select : "Επιλογή αντικειμένου με διπλό κλικ",
+			category_market$sell_warning_icons : "Προειδοποιητικά εικονίδια πώλησης αντικειμένου",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Εμφάνιση των υλών σιδηρουργείου που δίνει ο κάθε εχθρός",
 			category_expedition$underworld_layout : "Μετατροπή της εμφάνισης των εχθρών του κάτω κόσμου όπως στις εξορμήσεις",
@@ -387,6 +421,7 @@ gca_languages["gr"] = {
 			category_data$import_settings : "Εισαγωγή των δεδομένων ρυθμίσεων από αρχείο",
 			category_data$reset_settings : "Επαναφορά των ρυθμίσεων του προσθέτου",
 			category_data$clear_data : "Εκκαθάριση όλων των δεδομένων του προσθέτου",
+			category_data$cross_browser_login : "Ταυτόχρονη δύνδεση σε πολλαπλούς περιηγητές",
 
 			// Buttons
 			save: "Αποθήκευση",
@@ -396,6 +431,7 @@ gca_languages["gr"] = {
 			clear : "Εκκαθάριση",
 			do_not_show : "Να μην φαίνεται",
 			show_as : "Εμφάνιση ως",
+			show_info : "Εμφάνιση πληροφοριών",
 
 			// Info
 			translated_percent : "Μεταφρασμένα τοις εκατό: {{number}}%",

@@ -35,6 +35,9 @@ var gca_auction = {
 		(gca_options.bool("auction","save_last_state") &&
 			this.saveLastState());
 
+		// Levels you can see
+		this.levelsYouCanSee();
+			
 		// Setting Link
 		gca_tools.create.settingsLink("auction");
 	},

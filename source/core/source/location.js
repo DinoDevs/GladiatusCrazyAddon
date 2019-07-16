@@ -6,20 +6,22 @@
 // Location
 var gca_location = {
 	inject : function(){
-		// Improve Underworld Layout
+		
+		// If underworld
 		if (document.getElementById('underwold_enemies')) {
-			(gca_options.bool("expedition","underworld_layout") && 
-				this.layout.improve_underworld()); // TODO : code clean
+			// Improve Underworld Layout
+			(gca_options.bool('expedition', 'underworld_layout') && 
+				this.layout.improve_underworld());
 		}
 		
 		// Normal World
 		else {
-			(gca_options.bool("expedition","show_enemy_drops") && 
-				this.layout.show_drops.show()); // TODO : code clean
+			(gca_options.bool('expedition', 'show_enemy_drops') && 
+				this.layout.show_drops.show());
 		}
 
 		// Setting Link
-		gca_tools.create.settingsLink("expedition");
+		gca_tools.create.settingsLink('expedition');
 	},
 
 	// Layout Improvements
@@ -131,40 +133,49 @@ var gca_location = {
 			},
 
 			// Show
-			show : function(){
-				var i = 0;
+			show : function () {
+				// Get resources locale
+				this.locale = gca_data.section.get('cache', 'resource_locale', false);
+				// Get enemies
 				let pictures = document.getElementsByClassName('expedition_picture');
 
 				// For each enemy
+				let i = 0;
 				while (pictures[i] && pictures[i].getElementsByTagName('img')[0]) {
 					// Get enemy id
 					let enemy = pictures[i].getElementsByTagName('img')[0].getAttribute('src').match(/img\/(npc|expedition)\/([^.]+)\.(jpg|png)/i)[2];
 
+					// If we have data for this enemy
 					if (this.drops[enemy]) {
+
+						// Two drops
 						if (this.drops[enemy].length > 1) {
-							let div;
-							// First drop
-							div = document.createElement("div");
-							div.className = "item-i-18-" + this.drops[enemy][0] + " enemyDrop";
-							gca_tools.setTooltip(div, JSON.stringify([[[gca_locale.get("expedition", "material_drop_chance", {number : 45}), "white"]]]));
-							pictures[i].appendChild(div);
-							// Second drop
-							div = document.createElement("div");
-							div.className = "item-i-18-" + this.drops[enemy][1] + " enemyDrop enemyDrop2";
-							gca_tools.setTooltip(div, JSON.stringify([[[gca_locale.get("expedition", "material_drop_chance", {number : 25}), "white"]]]));
-							pictures[i].appendChild(div);
+							this.createDropIcon(pictures[i], this.drops[enemy][0], '1', 45);
+							this.createDropIcon(pictures[i], this.drops[enemy][1], '2', 25);
 						}
+
+						// Only one drop
 						else {
-							let div;
-							// Only drop
-							div = document.createElement("div");
-							div.className = "item-i-18-" + this.drops[enemy][0] + " enemyDrop enemyDropOnly1";
-							gca_tools.setTooltip(div, JSON.stringify([[[gca_locale.get("expedition", "material_drop_chance", {number : 70}), "white"]]]));
-							pictures[i].appendChild(div);
+							this.createDropIcon(pictures[i], this.drops[enemy][0], 'Only1', 70);
 						}
+
 					}
 					i++;
 				}
+			},
+
+			createDropIcon : function(enemy, material, type, percent) {
+				// Create tooltip
+				let tooltip = [[[gca_locale.get('expedition', 'material_drop_chance', {number : percent}), 'white']]];
+				if (this.locale) {
+					tooltip[0].unshift([this.locale[material], 'white']);
+				}
+
+				// Create drop icon
+				let drop = document.createElement("div");
+				drop.className = 'item-i-18-' + material + ' enemyDrop enemyDrop' + type;
+				gca_tools.setTooltip(drop, JSON.stringify(tooltip));
+				enemy.appendChild(drop);
 			}
 		}
 
@@ -188,4 +199,4 @@ var gca_location = {
 })();
 
 // ESlint defs
-/* global gca_locale, gca_options, gca_tools */
+/* global gca_data, gca_locale, gca_options, gca_tools */

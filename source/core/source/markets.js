@@ -7,6 +7,8 @@
 var gca_markets = {
 	inject : function(){
 		// Check for errors
+		if(gca_section.submod === 'control')
+			return;
 		if(!document.getElementById("content"))
 			return;
 		
@@ -32,21 +34,32 @@ var gca_markets = {
 			// If remember sell duration
 			if(gca_options.bool("market","remember_sell_duration")){
 				this.remember_sell_duration();
-			}else{
+			}
 			// Default sell duration
+			else{
 				this.sell_duration();
 			}
+			
+			// Special category features
+			(gca_options.bool("packages", "special_category_features") && 
+				this.specialCategory.resolve(this));
 
 			this.layout.changeSortArrows();
 		}
 		
 		// Insert sort options in POST-URL on sell form
 		this.sortOptionsOnSell();
-			
+		
 		// 1 gold mode
-		(gca_options.bool("market","one_gold_mode") &&
+		(gca_options.bool("market", "one_gold_mode") &&
 			this.oneGoldMode());
-			
+
+		// Item sell warning icons
+		if (gca_options.bool("market", "sell_warning_icons")) {
+			this.sellWarnings.soulbound(this);
+			this.sellWarnings.canNotBuyBack(this);
+		}
+
 		// Levels you can see
 		this.levelsYouCanSee();
 
@@ -75,7 +88,7 @@ var gca_markets = {
 	// Show item levels you can see
 	levelsYouCanSee : function(){
 		var playerLvl = parseInt(document.getElementById("header_values_level").textContent);
-		var maxLvl = ( playerLvl+9<Math.floor(1.25*playerLvl) )? playerLvl+9 : Math.floor(1.25*playerLvl);
+		var maxLvl = (playerLvl + 9 < Math.floor(1.25 * playerLvl)) ? playerLvl + 9 : Math.floor(1.25 * playerLvl);
 		
 		var baseElement = document.getElementsByClassName("buildingDesc")[1].getElementsByTagName("p")[0];
 		baseElement.appendChild(document.createElement("br"));
@@ -87,22 +100,41 @@ var gca_markets = {
 	itemsWarnings : {
 		// Point out which items are soulbound
 		soulboundItems : function(){
+			let buyForms = [];
+			let forms = document.getElementsByTagName('form');
+			for (let i = 0; i < forms.length; i++) {
+				if (forms[i].name == "buyForm") {
+					buyForms.push(forms[i]);
+				}
+			}
+
+			let message = gca_locale.get("markets", "item_is_soulbound");
 			let rows = document.getElementById("market_table").getElementsByTagName("tr");
 			for (let i = 1; i <= rows.length - 1; i++) {
-				if (typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined") {
-					if(rows[i].getElementsByTagName("div")[0].dataset.soulboundTo != gca_section.playerId){// not to you
+				if (
+					typeof rows[i].getElementsByTagName("div")[0].dataset.soulboundTo !== "undefined" &&
+					typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined"
+				) {
+					// not to you
+					if (rows[i].getElementsByTagName("div")[0].dataset.soulboundTo != gca_section.playerId) {
 						rows[i].style.backgroundColor = "rgba(255, 0, 0,0.2)";
-						document.buyForm[i-1].addEventListener("submit", function(e){
-							if (
-								!confirm(
-									gca_locale.get("markets", "item_is_soulbound") + "\n" +
+
+						let form = buyForms[i-1];
+						if (form.dataset.confirmMessage) {
+							form.dataset.confirmMessage += '\n' + message;
+						}
+						else {
+							form.dataset.confirmMessage = message;
+							form.addEventListener("submit", function (event) {
+								if (!confirm(
+									this.dataset.confirmMessage + '\n\n' +
 									gca_locale.get("markets", "are_you_sure_you_want_to_buy")
-								)
-							) {
-								event.preventDefault();
-								return false;
-							}
-						});
+								)) {
+									event.preventDefault();
+									return false;
+								}
+							});
+						}
 					}
 				}
 			}
@@ -120,24 +152,103 @@ var gca_markets = {
 		
 		// Point out which items cost 1 gold
 		oneGoldItems : function(){
+			let buyForms = [];
+			let forms = document.getElementsByTagName('form');
+			for (let i = 0; i < forms.length; i++) {
+				if (forms[i].name == "buyForm") {
+					buyForms.push(forms[i]);
+				}
+			}
+
+			let message = gca_locale.get("markets", "item_cost_only_x_gold", {number : 1});
 			let rows = document.getElementById("market_table").getElementsByTagName("tr");
 			for (let i = 1; i <= rows.length - 1; i++) {
-				if (gca_tools.strings.parseGold(rows[i].getElementsByTagName("td")[2].textContent) === 1 && typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined" && rows[i].style.backgroundColor != "rgba(0, 255, 0,0.2)"){
+				if (
+					gca_tools.strings.parseGold(rows[i].getElementsByTagName("td")[2].textContent) === 1 &&
+					typeof rows[i].getElementsByTagName("input")['buy'] !== "undefined" &&
+					rows[i].style.backgroundColor != "rgba(0, 255, 0,0.2)"
+				) {
 					rows[i].style.backgroundColor = "rgba(255, 152, 0,0.2)";
-					document.buyForm[i-1].addEventListener("submit", function(e){
-						if (
-							!confirm(
-								gca_locale.get("markets", "item_cost_only_x_gold", {number : 1}) + "\n" +
+					
+					let form = buyForms[i-1];
+					if (form.dataset.confirmMessage) {
+						form.dataset.confirmMessage += '\n' + message;
+					}
+					else {
+						form.dataset.confirmMessage = message;
+						form.addEventListener("submit", function (event) {
+							if (!confirm(
+								this.dataset.confirmMessage + '\n\n' +
 								gca_locale.get("markets", "are_you_sure_you_want_to_buy")
-							)
-						) {
-							event.preventDefault();
-							return false;
-						}
-					});
+							)) {
+								event.preventDefault();
+								return false;
+							}
+						});
+					}
 				}
 			}
 		}
+	},
+
+	// Show warnings on item selling
+	sellWarnings : {
+
+		init : function() {
+			if (this.icons) return;
+			this.icons = {};
+
+			// Icon wrapper
+			this.icons.wrapper = document.createElement('div');
+			//this.icons.wrapper.className = 'market-sell-warnings';
+			this.icons.wrapper.style.float = 'right';
+			this.icons.wrapper.style.cursor = 'default';
+			this.icons.wrapper.style.color = '#d42b1e';
+			document.getElementById('market_sell_box').getElementsByTagName('h2')[0].appendChild(this.icons.wrapper);
+
+			// Soulbound icon
+			this.icons.soulbound = document.createElement('span');
+			this.icons.soulbound.style.display = 'none';
+			this.icons.soulbound.textContent = '🔗';
+			this.icons.soulbound.title = gca_locale.get("markets", "item_is_soulbound");
+			this.icons.wrapper.appendChild(this.icons.soulbound);
+
+			// Buy back warning icon
+			this.icons.buyback = document.createElement('span');
+			this.icons.buyback.style.display = 'none';
+			this.icons.buyback.textContent = '♺';
+			this.icons.buyback.title = gca_locale.get("markets", "item_cant_buy_back");
+			this.icons.wrapper.appendChild(this.icons.buyback);
+
+			// On item remove, clear icons
+			gca_tools.event.addListener('market-sell-item-remove', (data) => {
+				this.icons.soulbound.style.display = 'none';
+				this.icons.buyback.style.display = 'none';
+			});
+		},
+
+		// Detect soulbound items
+		soulbound : function(self) {
+			this.init();
+			self.detectMarketSellItemDrop();
+			gca_tools.event.addListener('market-sell-item-drop', (data) => {
+				let hash = gca_tools.item.hash(data.item[0]);
+				this.icons.soulbound.style.display = (!hash || !hash.soulbound || hash.soulbound == 0) ? 'none' : 'block';
+			});
+		},
+
+		// Detect items that the player will not be able to buy back
+		canNotBuyBack : function(self) {
+			this.init();
+			let playerLevel = parseInt(document.getElementById('header_values_level').textContent, 10);
+
+			self.detectMarketSellItemDrop();
+			gca_tools.event.addListener('market-sell-item-drop', (data) => {
+				let itemLevel = parseInt(data.item[0].dataset.level, 10);
+				let maxVisible = ((playerLevel + 9 < Math.floor(1.25 * playerLevel)) ? playerLevel + 9 : Math.floor(1.25 * playerLevel));
+				this.icons.buyback.style.display = (!itemLevel || itemLevel <= maxVisible) ? 'none' : 'block';
+			});
+		},
 	},
 	
 	// Cancel all button
@@ -218,10 +329,37 @@ var gca_markets = {
 		}, false);
 	},
 	
+	detectMarketSellItemDrop : function() {
+		if (this.detectMarketSellItemDrop_injected) return;
+		this.detectMarketSellItemDrop_injected = true;
+
+		window.marketDrop_original = window.marketDrop;
+		window.marketDrop = function(item, amount) {
+			var val = window.marketDrop_original(item, amount);
+			gca_tools.event.fire('market-sell-item-drop', {item, amount});
+			return val;
+		}
+		window.marketRemove_original = window.marketRemove;
+		window.marketRemove = function() {
+			var val = window.marketRemove_original();
+			gca_tools.event.fire('market-sell-item-remove');
+			return val;
+		}
+		/*
+		this.detectMarketSellItemDrop();
+		gca_tools.event.addListener('market-sell-item-drop', (data) => {
+			// data.item
+			// data.amount
+		});
+		*/
+	},
+
 	// 1g mode
 	oneGoldMode : function(){
 		// Create mode switch
-		let wrapper = document.getElementById("market_sell_box").getElementsByTagName("section")[0];
+		let wrapper = document.createElement('div');
+		let fields = document.getElementById("market_sell_fields");
+		fields.parentNode.insertBefore(wrapper, fields.nextSibling);
 		
 		let selected_mode = gca_data.section.get("cache", "last_sell_1g_mode", 0);
 		
@@ -276,15 +414,12 @@ var gca_markets = {
 		modeSwitch.appendChild(auto_value);
 		
 		var get_translation = (gca_data.section.get("cache", "value_tanslation", "true")=="true")?true:false;
-		
-		// Item drop function
-		//var marketDrop_orginal = window.marketDrop; //original function is not used
-		window.marketDrop = function(d, a) {
-			let c = jQuery("#sellForm");
-			jQuery('[name="sellid"]', c).val(d.data("itemId"));
-			let b = d.data("priceGold") || 0;
-			b = Math.floor(b * a / 1.5);
-			jQuery('[name="preis"]', c).val(b);
+
+		// On item drop function
+		this.detectMarketSellItemDrop();
+		gca_tools.event.addListener('market-sell-item-drop', (data) => {
+			let b = data.item.data("priceGold") || 0;
+			b = Math.floor(b * data.amount / 1.5);
 			document.getElementById('auto_value').value = b;
 			modeSwitchFunction(); // calcDues(); is called within this function
 			
@@ -302,10 +437,10 @@ var gca_markets = {
 					}
 				}
 			}
-		}
+		});
 		
 		// Change mode
-		modeSwitchFunction = function(){
+		var modeSwitchFunction = function(){
 			let selected = parseInt(document.querySelector('input[name=sell_mode]:checked').value);
 			gca_data.section.set("cache", "last_sell_1g_mode", selected); // Save last selected mode
 			if(document.getElementById('preis').value != ''){
@@ -317,9 +452,9 @@ var gca_markets = {
 					document.getElementById('preis').value = document.getElementById('auto_value').value;
 				}
 			}
-			calcDues();
+			window.calcDues();
 		};
-		modeSwitch.addEventListener('change',modeSwitchFunction);
+		modeSwitch.addEventListener('change', modeSwitchFunction);
 	},
 
 	// Layout
@@ -395,6 +530,100 @@ var gca_markets = {
 			gca_tools.item.move(this, 'market');
 		}
 	},
+	
+	// Special Categories
+	specialCategory : {
+		
+		// Resolve category
+		resolve : function(self){
+			var category = parseInt(document.getElementsByName("f")[0].value);
+			switch(category){
+				case 20:
+					this.categories.scroll.loadData(self);
+					break;
+			}
+		},
+
+		// Categories
+		categories : {
+			
+			// Scrolls Category
+			scroll : {
+				loadData : function(){
+					// Make request
+					jQuery.ajax({
+						type: "GET",
+						url: gca_getPage.link({"mod":"forge"}),
+						success: (result) => {
+							// Get each name
+							let scrolls = result.match(/<option value="\d+" (selected |)data-level="\d+" data-name="[^"]*">[^<]*<\/option>/gim);
+
+							// If error
+							if (scrolls.length < 2) {
+								this.prefix = false;
+								this.suffix = false;
+								return;
+							}
+
+							// Parse scrolls
+							let prefix = []; 
+							let suffix = [];
+
+							var i = 1;
+							// Get prefixes
+							while (i < scrolls.length) {
+								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
+								i++;
+								if (id == 0) break;
+								prefix.push(id);
+							}
+							// Get suffixes
+							while (i < scrolls.length) {
+								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
+								i++;
+								suffix.push(id);
+							}
+
+							// Save lists
+							this.prefix = prefix;
+							this.suffix = suffix;
+
+							// Check scrolls
+							this.showIsLearned();
+						},
+						error: function(){}
+					});
+				},
+				// Apply 
+				showIsLearned : function(){
+					// If no data return
+					if(!this.prefix) return;
+					
+					// For each item
+					jQuery("#market_table div").each((i, item) => {
+						// If already parsed
+						if(item.dataset.gcaFlag_isLearned) return;
+						// Flag as parsed
+						item.dataset.gcaFlag_isLearned = true;
+
+						// Get hash
+						let hash = gca_tools.item.hash(item);
+						if (!hash) return;
+						// Check if own
+						let known = (this.prefix.indexOf(hash.prefix) >= 0 || this.suffix.indexOf(hash.suffix) >= 0);
+						if (known) {
+							item.style.filter = "drop-shadow(2px 2px 1px rgba(255,0,0,0.4)) drop-shadow( 2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(255,0,0,0.4))";
+							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","known_scroll"), "red"]);
+						}
+						else {
+							item.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
+							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","unknown_scroll"), "green"]);
+						}
+					});
+				}
+			}
+		}
+	}
 
 };
 

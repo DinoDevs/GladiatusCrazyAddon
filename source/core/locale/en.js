@@ -26,7 +26,6 @@ gca_languages["en"] = {
 
 		// General
 		general : {
-
 			// Days
 			days : "day(s)",
 			// Seconds
@@ -74,8 +73,10 @@ gca_languages["en"] = {
 			guild_storage_goto : "Go to guild's storage",
 			guild_bank_goto : "Go to guild's bank",
 			guild_warcamp_goto : "Go to guild's war camp",
+			guild_arenareports_goto : "Go to guild's arena battle reports",
 			guild_jail_goto : "Go to guild's jail",
 			guild_library_goto : "Go to guild's library",
+			guild_templum_goto : "Go to guild's templum",
 			guild_medic_goto : "Go to guild's medic center",
 			simulator_goto : "Go to simulator",
 			stats_display : "Display my stats",
@@ -105,6 +106,7 @@ gca_languages["en"] = {
 			// Notifications
 			notification_guild_application : "There is a pending guild application!",
 			low_durability_items : "There are {{number}} item(s) with durability under {{percent}}%",
+			item_worth_rubies : "That item woth rubies!",
 
 			// Gold - Exp data
 			gold_exp_data : "Gold and Experience Data",
@@ -125,6 +127,12 @@ gca_languages["en"] = {
 			// Drop items to see materials to repair feature
 			drop_item_see_materials_repair : "Drop an item to see the materials needed to repair it",
 			workbench_6th_slot_empty : "Workbench\'s 6th slot needs to be empty",
+
+			// More player info
+			more_player_info : "More player information",
+			can_use_max_item_level : "Can use items up to {{max}} level.",
+			can_see_market_max_item_level : "Can see items on the market up to {{max}} level.",
+			can_see_auction_item_levels : "Can see items on the auction from {{min}} to {{max}} level."
 		},
 
 		// Pantheon section
@@ -157,7 +165,7 @@ gca_languages["en"] = {
 
 		// Arena section
 		arena : {
-			global_arena_title : "Global Arena (Crazy Addon)",
+			global_arena_title : "Global Arena",
 			global_arena_description : "This is the ultimate arena, gathering gladiators from all around the world! In this arena, gladiators do not fight for gold or experience, they fight for a place on the world top list!",
 			global_arena_load : "Load enemies list",
 			global_highscore : "Global Highscore",
@@ -171,7 +179,12 @@ gca_languages["en"] = {
 			global_arena_connection_error: "Connection error.",
 			target_list : "Target List",
 			target_list_add : "Add to target list",
-			target_list_remove : "Remove from target list"
+			target_list_remove : "Remove from target list",
+			error_sth_went_wrong : "Something went wrong",
+			error_response : "Server responded with an error",
+			error_blocked_access : "Something blocks the access to GCA server ({{url}})",
+			error_connection : "Connection error",
+			attack_player : "Click to attack “{{name}}”",
 		},
 
 		// Training section
@@ -207,6 +220,7 @@ gca_languages["en"] = {
 			// Warnings
 			item_cost_only_x_gold : "This item costs only {{number}} gold.",
 			item_is_soulbound : "This item is soulbound.",
+			item_cant_buy_back : "You will not be able to buy back this item.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Do you really want to buy this item?"
 		},
@@ -214,7 +228,8 @@ gca_languages["en"] = {
 		// Forge
 		forge : {
 			forge_ended : "Forge ended!",
-			recraft_item : "Re-craft item"
+			recraft_item : "Re-craft item",
+			show_hide_doll : "Show/Hide player dolls"
 		},
 		
 		// Packages
@@ -341,10 +356,12 @@ gca_languages["en"] = {
 			category_pantheon$gods_show_points_percent : "Show god points percent",
 			category_pantheon$open_many_mysteryboxes : "Open multiple mystery boxes",
 			category_pantheon$show_mysterybox_rewards_rubies : "Show mystery-box reward's value in rubies",
+			category_pantheon$show_mysterybox_rewards_owned : "Show mystery-box reward's owned amount",
 			// Settings - Reports
 			category_reports$style_change : "Improve reports' list layout",
 			category_reports$load_loot_tooltips : "Load each report's reward",
 			category_reports$found_items : "Gather data about found items",
+			category_reports$battle_analyzer : "Analyze report and show life stats",
 			// Settings - Training
 			category_training$show_discount : "Show training discount",
 			category_training$show_basics_in_bars : "Show basics in bars",
@@ -379,6 +396,7 @@ gca_languages["en"] = {
 			category_market$one_gold_mode : "Toggle button changing sell price always to 1 gold",
 			category_market$remember_sort : "Remember last sort order",
 			category_market$double_click_select : "Select item with double click",
+			category_market$sell_warning_icons : "Warning icon when selling items",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",
 			category_expedition$underworld_layout : "Show underworld's enemies layout like expedition's",
@@ -428,6 +446,7 @@ gca_languages["en"] = {
 			translated_by : "Translated by: {{string}}",
 			reset_settings_confirm : "Are you sure you want to reset addon's settings?",
 			clear_data_confirm : "Are you sure you want to clear all the addon's data?",
+			data_exported_save_the_file : "Data were exported. Save the file.",
 
 			// Notifications
 			notification_reload : "Reload the page for the changes to take effect",

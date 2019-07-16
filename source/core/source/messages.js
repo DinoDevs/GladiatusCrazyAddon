@@ -9,6 +9,11 @@ var gca_messages = {
 	preinject : function(){
 		// Messages
 		if(gca_section.submod == 'messageShow' || gca_section.submod == 'messageMoveDelete'){
+			// If mobile
+			if(navigator.userAgent.toLowerCase().indexOf('android') > -1)
+				// Add class tag
+				document.documentElement.className += " gca_mobile_device";
+			
 			// Check if style is active
 			if(gca_options.bool("messages","messages_layout"))
 				// Add class tag
@@ -20,7 +25,7 @@ var gca_messages = {
 	inject : function(){
 		// Messages
 		if(gca_section.submod == 'messageShow' || gca_section.submod == 'messageMoveDelete'){
-			
+
 			// Parse messages
 			this.messages.resolve();
 
@@ -30,7 +35,7 @@ var gca_messages = {
 
 			// Unread messages
 			(gca_options.bool("messages", "show_unread") &&
-				this.unread.show());
+				this.unread.show(this));
 
 			// Pagination layout
 			(gca_options.bool("global", "pagination_layout") && 
@@ -38,7 +43,7 @@ var gca_messages = {
 
 			// Separate days
 			(gca_options.bool("messages", "separate_days") && 
-				this.separator.days());
+				this.separator.days(this));
 
 			// Send message box
 			//(gca_options.bool("messages", "send_message_box") && // TODO : Send message
@@ -46,8 +51,8 @@ var gca_messages = {
 
 			// Guild message player info
 			(gca_options.bool("messages", "messages_layout") && gca_options.bool("messages", "more_guild_mate_info") && (
-				this.guild_message.more_info() ||
-				this.private_message.more_info()
+				this.guild_message.more_info(this) ||
+				this.private_message.more_info(this)
 			));
 
 			// Guild message parse links
@@ -60,11 +65,11 @@ var gca_messages = {
 
 			// Sidebar
 			(gca_options.bool("messages", "show_sidebar") &&
-				this.sidebar.inject());
+				this.sidebar.inject(this));
 
 			// Header links fix
 			(gca_options.bool("messages", "fix_header_links") &&
-				this.fix.headerLinks());
+				this.fix.headerLinks(this));
 		}
 
 		// Setting Link
@@ -130,7 +135,7 @@ var gca_messages = {
 			}
 
 			// Guild message
-			else if(message.image.match(/\d+-\d+\.png/)){
+			else if(message.image.match(/\d*-\d*\.png/)){
 				message.type = "guild";
 			}
 
@@ -321,12 +326,12 @@ var gca_messages = {
 		last : 0,
 
 		// Show unread messages
-		show : function(){
+		show : function(self){
 			// Load last message
 			this.last = gca_data.section.get("messages", 'last_read_message', 0);
 
 			// List
-			var messages = gca_messages.messages.list;
+			var messages = self.messages.list;
 
 			// If messages
 			if(messages.length > 0){
@@ -371,13 +376,13 @@ var gca_messages = {
 		refreshed : false,
 
 		// Load
-		more_info : function(){
+		more_info : function(self){
 			// If no guild
 			if(!gca_data.section.get("guild", "inGuild", false))
 				return;
 
 			// List
-			var messages = gca_messages.messages.type.guild;
+			var messages = self.messages.type.guild;
 
 			// If no messages
 			if(messages.length == 0)
@@ -411,14 +416,25 @@ var gca_messages = {
 				message.title.appendChild(info);
 			}
 			// If guild member was not found, we should refresh our list
-			else if(!this.refreshed) {
-				// Set refresh time null
-				gca_data.section.set("timers", "guild_info_update", null);
-				// Refresh guild info (for next time)
-				gca_global.update_guild_info();
-				// Run once
-				this.refreshed = true;
+			else {
+				this.update_guild_info();
 			}
+		},
+
+		// Update guild info
+		update_guild_info : function() {
+			if (typeof gca_global !== 'object') {
+				setTimeout(() => function() {
+					this.update_guild_info();
+				}, 100);
+				return;
+			}
+			if (this.guild_info_updated) return;
+			this.guild_info_updated = true;
+			// Set refresh time null
+			gca_data.section.set("timers", "guild_info_update", 0);
+			// Refresh guild info (for next time)
+			gca_global.update_guild_info();
 		},
 
 
@@ -436,7 +452,7 @@ var gca_messages = {
 		// Parse links
 		parse_links : function(message){
 			// Match links
-			var links = message.body.textContent.match(/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/g);
+			var links = message.body.textContent.match(/(http|https):\/\/[a-zA-Z0-9\-.]+\.[a-zA-Z]{2,3}(\/\S*)?/g);
 
 			// If no links found return
 			if(!links)
@@ -472,13 +488,13 @@ var gca_messages = {
 		mates : {},
 
 		// Load
-		more_info : function(){
+		more_info : function(self){
 			// If no guild
 			if(!gca_data.section.get("guild", "inGuild", false))
 				return;
 
 			// List
-			var messages = gca_messages.messages.type.personal;
+			var messages = self.messages.type.personal;
 
 			// If no messages
 			if(messages.length == 0)
@@ -725,7 +741,7 @@ var gca_messages = {
 		element : null,
 
 		// Inject
-		inject : function(){
+		inject : function(self){
 			// Create sidebar
 			this.element = document.createElement("div");
 			this.element.className = "gca_messages_sidebar";
@@ -734,47 +750,47 @@ var gca_messages = {
 			content.insertBefore(this.element, content.firstChild);
 
 			// Create Icons
-			this.createIcons();
+			this.createIcons(self.messages);
 		},
 
 		// Create Icons
-		createIcons : function(){
+		createIcons : function(messages){
 			// Personal
-			if(gca_messages.messages.type.personal.length){
+			if(messages.type.personal.length){
 				let icon = this.addIcon({
 					backgroundImage : "url(img/interface_ar/messages.gif)"
-				}, gca_messages.messages.type.personal.length, this.handleClick);
+				}, messages.type.personal.length, this.handleClick);
 				icon.cur = -1;
-				icon.list = gca_messages.messages.type.personal;
+				icon.list = messages.type.personal;
 			}
 
 			// Guild
-			if(gca_messages.messages.type.guild.length){
-				let img = gca_messages.messages.type.guild[0].element.getElementsByClassName("message_icon")[0].style.backgroundImage;
+			if(messages.type.guild.length){
+				let img = messages.type.guild[0].element.getElementsByClassName("message_icon")[0].style.backgroundImage;
 				let icon = this.addIcon({
 					backgroundImage : img,
 					backgroundSize : "100% 111%"
-				}, gca_messages.messages.type.guild.length, this.handleClick);
+				}, messages.type.guild.length, this.handleClick);
 				icon.cur = -1;
-				icon.list = gca_messages.messages.type.guild;
+				icon.list = messages.type.guild;
 			}
 
 			// News
-			if(gca_messages.messages.type.news.length){
+			if(messages.type.news.length){
 				let icon = this.addIcon({
 					backgroundImage : "url(img/news/icon_7.gif)"
-				}, gca_messages.messages.type.news.length, this.handleClick);
+				}, messages.type.news.length, this.handleClick);
 				icon.cur = -1;
-				icon.list = gca_messages.messages.type.news;
+				icon.list = messages.type.news;
 			}
 
 			// Guild Battle
-			if(gca_messages.messages.type.guild_battle.length){
+			if(messages.type.guild_battle.length){
 				let icon = this.addIcon({
 					backgroundImage : "url(img/news/icon_4.gif)"
-				}, gca_messages.messages.type.guild_battle.length, this.handleClick);
+				}, messages.type.guild_battle.length, this.handleClick);
 				icon.cur = -1;
-				icon.list = gca_messages.messages.type.guild_battle;
+				icon.list = messages.type.guild_battle;
 			}
 		},
 
@@ -854,20 +870,20 @@ var gca_messages = {
 	separator : {
 		
 		// Separate days
-		days : function(){
+		days : function(self){
 			// List
-			var messages = gca_messages.messages.list;
+			var messages = self.messages.list;
 			// If messages
 			if(messages.length > 1){
 				// Get previus date
-				var prev_date = gca_messages.messages.parseDate(messages[0]).day;
+				var prev_date = self.messages.parseDate(messages[0]).day;
 				// Next date variable
 				var next_date;
 
 				// For each message
 				for(var i = 1; i < messages.length; i++){
 					// Get date
-					next_date = gca_messages.messages.parseDate(messages[i]).day;
+					next_date = self.messages.parseDate(messages[i]).day;
 					// If new date
 					if(next_date != prev_date){
 						// Add separator
@@ -899,9 +915,9 @@ var gca_messages = {
 	fix : {
 
 		// Fix messages header links
-		headerLinks : function(){
+		headerLinks : function(self){
 			// List
-			var messages = gca_messages.messages.list;
+			var messages = self.messages.list;
 
 			var links;
 			// For each message
@@ -926,7 +942,6 @@ var gca_messages = {
 		}
 
 	},
-
 
 	// Send message box
 	/*

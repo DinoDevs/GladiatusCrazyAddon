@@ -234,8 +234,17 @@ var gca_merchants = {
 				if(this.dataset.gcaFlag_doubleClickEvent) return;
 				// Flag as parsed
 				this.dataset.gcaFlag_doubleClickEvent = true;
-				// Add event
-				this.addListener('dblclick', that.handler);
+				// Check if cost rubies
+				let info = gca_tools.item.hash(this);
+				// If item cost rubies
+				if (info.price_rubies && info.price_rubies > 0) {
+					// Add rubies event
+					this.addListener('dblclick', that.handler_rubies);
+				}
+				else {
+					// Add event
+					this.addListener('dblclick', that.handler);
+				}
 			});
 		},
 		handler : function() {
@@ -245,6 +254,9 @@ var gca_merchants = {
 			else if (this.parentNode.id == 'shop') {
 				gca_tools.item.move(this, 'inv');
 			}
+		},
+		handler_rubies : function() {
+			gca_notifications.error(gca_locale.get("global", "item_worth_rubies"));
 		}
 	}
 };
@@ -266,5 +278,5 @@ var gca_merchants = {
 })();
 
 // ESlint defs
-/* global gca_data, gca_options, gca_tools */
+/* global gca_data, gca_locale, gca_notifications, gca_options, gca_tools */
 /* global jQuery */
