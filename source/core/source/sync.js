@@ -12,19 +12,56 @@ var gca_sync = {
 		// Parse data
 		let data = this.resolve();
 
+		// Create loading layer
+		var loading = document.createElement('div');
+		loading.className = 'loading';
+		loading.style = 'position: fixed;top: 0;bottom: 0;left: 0;right: 0;width: auto;height: auto;background-position: center center;background-color: rgba(0,0,0,0.5);z-index: 9999;';
+		loading.style.display = 'none';
+		document.body.appendChild(loading);
+
 		// Create confirm modal
 		var modal = new gca_tools.Modal(
 			gca_locale.get('settings', 'category_data$cross_browser_login'),
 			null,
+
+			// On login
 			() => {
+				// Calculate expiration date
 				let expire = new Date();
-				expire.setTime(expire.getTime() + (15*24*60*60*1000));
+				expire.setTime(expire.getTime() + (15 * 24*60*60*1000)); // 15 days
 				expire = expire.toUTCString();
+				// Create cookies
 				document.cookie = "Gladiatus_" + gca_section.country + "_" + gca_section.server + "=" + data.player + "%3B" + data.securehash + "; expires=" + expire + ";path=/";
-				//document.cookie = "PHPSESSID=" + data.sessionid + "; expires=" + expire + ";path=/";
-				document.location.href = 'index.php';
+
+				// Show loading
+				loading.style.display = 'block';
+
+				// Close modal
 				modal.destroy();
+
+				// Get secure hash
+				window.jQuery.get('main.php').success((html) => {
+					// Get hash
+					let match = html.match(/<iframe\s+src="index\.php\?mod=overview&sh=([0-9a-f]+)"/);
+
+					// If found
+					if (match) {
+						// Redirect
+						document.location.href = 'index.php?mod=overview&sh=' + match[1];
+					}
+
+					// If not found
+					else {
+						gca_notifications.error(gca_locale.get('general', 'error'));
+						loading.style.display = 'none';
+					}
+				}).error(() => {
+					gca_notifications.error(gca_locale.get('general', 'error'));
+					loading.style.display = 'none';
+				});
 			},
+
+			// On cancel
 			() => {
 				modal.destroy();
 			}
@@ -73,4 +110,4 @@ var gca_sync = {
 })();
 
 // ESlint defs
-/* global gca_getPage, gca_locale, gca_section, gca_tools */
+/* global gca_getPage, gca_locale, gca_notifications, gca_section, gca_tools */
