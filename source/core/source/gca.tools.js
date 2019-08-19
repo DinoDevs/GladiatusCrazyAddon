@@ -374,6 +374,7 @@ var gca_tools = {
 						x : parseInt(dragables[i].style.left, 10)/32,
 						h : parseInt(dragables[i].dataset.measurementY, 10),
 						w : parseInt(dragables[i].dataset.measurementX, 10),
+						amount : parseInt(dragables[i].dataset.amount, 10),
 						hash : dragables[i].dataset.hash
 					});
 				}
@@ -408,8 +409,9 @@ var gca_tools = {
 			// Find a spot on the grid that you can stack this item
 			// -------------------------------------------------- //
 			findSameItemSpot : function(item, items) {
-				for (var i = items.length - 1; i >= 0; i--) {
-					if (items[i].hash == item.dataset.hash) {
+				let amount = item.dataset.amount ? parseInt(item.dataset.amount, 10) : 1;
+				for (var i = 0; i < items.length; i++) {
+					if (items[i].hash == item.dataset.hash && items[i].amount + amount <= 100) {
 						return {y : items[i].y, x : items[i].x};
 					}
 				}
