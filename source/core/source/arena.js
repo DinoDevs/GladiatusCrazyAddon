@@ -221,7 +221,7 @@ var gca_arena = {
 					
 					this.createList(json);
 				},
-				error: function(jqXHR){
+				error: (jqXHR) => {
 					this.spinner.style.display = 'none';
 					if (jqXHR.status == 0) {
 						gca_notifications.error(
