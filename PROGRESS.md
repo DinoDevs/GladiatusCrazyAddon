@@ -1,4 +1,4 @@
-## Progress on Version 4.1.1
+## Progress on Version 4.2.0
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-31-green.svg?style=flat-square)
@@ -10,7 +10,7 @@
 	- [x] Show time until full expedition/dungeon points recovery
 	- [x] Show dungeon points when in areas without dungeons
 	- [x] Horreum numbers readability changes (white & green colors adjustments)
-	- [x] Craft material for more items added
+	- [x] All required craft materials db added (based on Michalus' data)
 	- [x] Guild message text cache (what ever you type on the quick guild message is drafted)
 	- [x] Image cache improvements
 	- [x] Added 2 more shortcut buttons (disabled by default)
@@ -106,9 +106,4 @@
 	- [x] Polish updated
 	- [x] German updated
 	- [x] Chinese updated
-
-----
-
-### TODO
-- [ ] Improve mobile accesibility
 
