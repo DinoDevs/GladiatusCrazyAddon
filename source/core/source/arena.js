@@ -415,7 +415,7 @@ var gca_arena = {
 			flag.dataset.tooltip = '[[["'+gca_section.country.toUpperCase()+'","#fff;font-size:12px;"]]]';
 			th.appendChild(flag);
 			
-			td = document.createElement("td");
+			let td = document.createElement("td");
 			td.textContent = gca_section.server;
 			td.style.textAlign = 'center';
 			tr.appendChild(td);
@@ -492,8 +492,8 @@ var gca_arena = {
 							this.cooldown(json.cooldown);
 						}
 						// Display report
-						if (json.report) {
-							this.report.show(json.report);
+						if (json.report_header && json.report) {
+							this.report.show(json.report_header, json.report);
 						}
 					}
 					else {
@@ -525,17 +525,18 @@ var gca_arena = {
 				this.self = self;
 			},
 
-			show : function(report) {
-				var report = this.parse(report);
+			show : function(header, report) {
+				report = this.parse(header, report);
 				document.getElementById('content').innerHTML = '';
 				document.getElementById('content').appendChild(report);
+				window.scrollTo(window.scrollX, 0);
 			},
 
-			parse : function(report) {
+			parse : function(header, report) {
 				var wrapper = document.createElement('div');
 
 				// Battle result
-				var elements = this.result(report[0]);
+				var elements = this.result(header, report[0]);
 				for (let i = 0; i < elements.length; i++) {
 					wrapper.appendChild(elements[i]);
 				}
@@ -560,7 +561,7 @@ var gca_arena = {
 
 				// Battle rounds
 				for (let i = 1; i < report.length; i++) {
-					let elements = this.round(report[i], 'Round ' + i, 'Attacker', 'Defender');
+					let elements = this.round(report[i], 'Round ' + i, header.attacker.name, header.defender.name);
 					for (let j = 0; j < elements.length; j++) {
 						table.appendChild(elements[j]);
 					}
@@ -571,44 +572,70 @@ var gca_arena = {
 				return wrapper;
 			},
 
-			result : function(result) {
-				var elements = [];
+			result : function(header, result) {
+				let elements = [];
+
+				// Header
+				let head = document.createElement('div');
+				head.id = 'reportHeader';
+				head.className = 'report' + (header.won ? 'Win' : header.lost ? 'Lose' : 'Draw');
+				let table = document.createElement('table');
+				table.setAttribute('width', '100%');
+				table.setAttribute('border', '0');
+				table.setAttribute('cellspacing', '0');
+				table.setAttribute('cellpadding', '3');
+				table.style.borderSpacing = 0;
+				let tr, td;
+				tr = document.createElement('tr');
+				td = document.createElement('td');
+				td.textContent = 'Winner: ' + (header.won ? header.attacker.name : header.lost ? header.defender.name : '---');
+				tr.appendChild(td);
+				table.appendChild(tr);
+				head.appendChild(table);
+				elements.push(head);
 
 				// Title
-				var title = document.createElement('h2');
+				let title = document.createElement('h2');
 				title.className = 'section-header';
 				title.style.cursor = 'pointer';
 				title.textContent = 'Stats';
 				elements.push(title);
 
 				// Results
-				var section = document.createElement('section');
+				let section = document.createElement('section');
 				section.style.display = 'block';
-				var fieldset = document.createElement('fieldset');
+				let fieldset = document.createElement('fieldset');
 				fieldset.className = 'dungeon_report_statistic';
-				var table = document.createElement('table');
+				table = document.createElement('table');
 				table.setAttribute('width', '100%');
 				table.setAttribute('border', '0');
 				table.setAttribute('cellspacing', '0');
 				table.setAttribute('cellpadding', '3');
-				table.className = 'table_border_bottom';
-				var tr, td;
+				
+				let link;
 
 				tr = document.createElement('tr');
-				td = document.createElement('td');
+				td = document.createElement('th');
+				td.style.textAlign = 'left';
 				td.textContent = 'Name';
 				tr.appendChild(td);
-				td = document.createElement('td');
+				td = document.createElement('th');
+				td.style.textAlign = 'left';
 				td.textContent = 'Hitpoints';
 				tr.appendChild(td);
-				td = document.createElement('td');
+				td = document.createElement('th');
+				td.style.textAlign = 'left';
 				td.textContent = 'Life points';
 				tr.appendChild(td);
 				table.appendChild(tr);
 
 				tr = document.createElement('tr');
 				td = document.createElement('td');
-				td.textContent = 'Attacker';
+				link = document.createElement('a');
+				link.href = gca_getPage.crossServerLink({server : header.attacker.server, country : header.attacker.country}, {mod : 'player', p : header.attacker.id});
+				link.setAttribute('target', '_blank');
+				link.textContent = header.attacker.name;
+				td.appendChild(link);
 				tr.appendChild(td);
 				td = document.createElement('td');
 				td.textContent = result[0][0];
@@ -620,7 +647,11 @@ var gca_arena = {
 
 				tr = document.createElement('tr');
 				td = document.createElement('td');
-				td.textContent = 'Attacker';
+				link = document.createElement('a');
+				link.href = gca_getPage.crossServerLink({server : header.defender.server, country : header.defender.country}, {mod : 'player', p : header.defender.id});
+				link.setAttribute('target', '_blank');
+				link.textContent = header.defender.name;
+				td.appendChild(link);
 				tr.appendChild(td);
 				td = document.createElement('td');
 				td.textContent = result[1][0];
@@ -858,5 +889,5 @@ var gca_arena = {
 })();
 
 // ESlint defs
-/* global gca_data, gca_getPage, gca_links, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global gca, gca_data, gca_getPage, gca_links, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
 /* global jQuery */
