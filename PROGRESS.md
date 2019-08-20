@@ -1,8 +1,8 @@
 ## Progress on Version 4.1.1
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-30-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-30-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-31-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-31-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -29,6 +29,7 @@
 	- [x] Global Arena: your guild name is now visible
 	- [x] Global Arena: guild-mates appear green
 	- [x] Global Arena: more translations added
+	- [x] Global Arena: battle reports added
 - **Player**
 	- [x] Show the durability % of other players' items
 	- [x] Buff bar: added life refresh rate buff (underworld + pray)
@@ -94,6 +95,7 @@
 	- [x] Show critical buff fix
 - **Settings**
 	- [x] Export data was not working on Firefox
+	- [x] Cross browser login updeated to work with latest gladiatus version
 
 
 ### TRANSLATIONS
