@@ -121,7 +121,7 @@ DinoDevs members working on this project:
   <dt>GreatApo ~ https://github.com/GreatApo</dt>
   <dd>Description not found!</dd>
 
-  <dt>GramThanos (aka DarkThanos) ~ https://github.com/GramThanos</dt>
+  <dt>GramThanos ~ https://github.com/GramThanos</dt>
   <dd>I like to code!</dd>
 </dl>
 
@@ -130,7 +130,7 @@ DinoDevs members working on this project:
 
 ## :thumbsup: Special Thanks
 
-We need to give some attribute on all the people of the community that help us maintain the code by reporting bugs, translating the addon and contributing to our code.
+We need to give some attribute on all the people of the community that help us maintain the code by reporting bugs, translating the addon, contributing to our code and donating to the project. Thank YOU!
 
 
 
