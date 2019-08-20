@@ -346,7 +346,7 @@ var gca_tools = {
 				}
 
 				var items = this.getGridItems(grid);
-				var spot = this.findSameItemSpot(item, items) || this.findGridSpot(
+				var spot = (target != 'shop' && this.findSameItemSpot(item, items)) || this.findGridSpot(
 					item.dataset.measurementY,
 					item.dataset.measurementX,
 					this.getGridMap(size[0], size[1], items)
