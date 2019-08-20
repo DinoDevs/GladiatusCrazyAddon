@@ -233,7 +233,7 @@ var gca_markets = {
 			self.detectMarketSellItemDrop();
 			gca_tools.event.addListener('market-sell-item-drop', (data) => {
 				let hash = gca_tools.item.hash(data.item[0]);
-				this.icons.soulbound.style.display = (!hash || !hash.soulbound || hash.soulbound == 0) ? 'none' : 'block';
+				this.icons.soulbound.style.display = (!hash || !hash.soulbound || hash.soulbound == 0 || hash.soulbound == 2) ? 'none' : 'block';
 			});
 		},
 
@@ -423,14 +423,12 @@ var gca_markets = {
 			document.getElementById('auto_value').value = b;
 			modeSwitchFunction(); // calcDues(); is called within this function
 			
-			//Save "Value" translation
-			if(get_translation){
-				let item_tooltip = d.data("tooltip")[0];
-				let found = false;
-				for(i=2;i<item_tooltip.length;i++){
-					if(item_tooltip[i][0].match(/([^\s]+) [\d+|\.]+ <div class="icon_gold">/)){
-						let value_tanslation = item_tooltip[i][0].match(/([^\s]+) [\d+|\.]+ <div class="icon_gold">/)[1];
-						//console.log(value_tanslation);
+			// Save "Value" translation
+			if (get_translation) {
+				let tooltip = data.item.data("tooltip")[0];
+				for (let i = 2; i < tooltip.length; i++) {
+					if (typeof tooltip[i][0] === "string" && tooltip[i][0].match(/(\S+) [1-9][0-9.]* <div class="icon_gold">/)) {
+						let value_tanslation = tooltip[i][0].match(/(\S+) [1-9][0-9.]* <div class="icon_gold">/)[1];
 						gca_data.section.set("cache", "value_tanslation", value_tanslation);
 						cost_mode_label.textContent = value_tanslation;
 						break;
