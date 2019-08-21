@@ -543,7 +543,8 @@ var gca_forge = {
 					if(message.length == 0) return;
 					// Send message
 					let send = gca_global.background.guildMessage.send(message, false, (ok) => {
-						gca_notifications.error(gca_locale.get('global', (ok ? 'message_sent_success' : 'message_sent_failed')));
+						if (ok) gca_notifications.success(gca_locale.get('global', 'message_sent_success'));
+						else gca_notifications.error(gca_locale.get('global', 'message_sent_failed'));
 					});
 					if (!send) {
 						gca_notifications.error(gca_locale.get('global', 'no_data'));
