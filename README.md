@@ -84,7 +84,7 @@ Gladiatus Forum GCA thread : [https://forum.gladiatus.gameforge.com/forum/thread
 
 [Skarsburning](https://forum.gladiatus.gameforge.com/user/369-skarsburning/)'s Gladiatus Fansite : [https://gladiatus.gamerz-bg.com](https://gladiatus.gamerz-bg.com) *(we love your site)*
 
-[Michalus](https://forum.gladiatus.gameforge.com/user/69-michalus/)' Gladiatus Tools : [https://gladiatus-tools.com](https://gladiatus-tools.com)
+[Michalus](https://forum.gladiatus.gameforge.com/user/69-michalus/)' Gladiatus Tools : [https://en.gladiatus-tools.com](https://en.gladiatus-tools.com)
 
 Unofficial Gladiatus Reddit : [https://www.reddit.com/r/Gladiatus/](https://www.reddit.com/r/Gladiatus/) (by [Williaf](https://www.reddit.com/user/Williaf))
 
