@@ -310,6 +310,7 @@ gca_languages["gr"] = {
 			category_overview$block_avoid_caps: "Προβολή των τιμών cap για την Προσαρμοστικότητα και την Αξία Κλειδώματος",
 			category_overview$best_food : "Επισήμανση του πιο κατάλληλου αναλώσιμου",
 			category_overview$overfeed_food : "Ημιδιαφάνεια στα αναλώσιμα που δίνουν παραπάνω πόντους ζωής",
+			category_overview$double_click_consume : "Διπλό κλικ για κατανάλωση αντικειμένων",
 			category_overview$daily_bonus_log : "Καταγραφή του καθημερινού μπόνους",
 			category_overview$buffs_detailed_time : "Εμφάνιση λεπτομερών χρονομετρητών για τα μπόνους του τάγματος",
 			category_overview$mercenaries_manager : "Εμφάνιση του διαχειριστή μισθοφόρων",

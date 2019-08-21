@@ -313,6 +313,7 @@ gca_languages["en"] = {
 			category_overview$block_avoid_caps : "Show block and Avoid caps",
 			category_overview$best_food : "Highlight best food",
 			category_overview$overfeed_food : "Fade foods that will over-heal you",
+			category_overview$double_click_consume : "Double click items to consume them",
 			category_overview$daily_bonus_log : "Log daily bonus",
 			category_overview$buffs_detailed_time : "Show detailed timers on guild buffs",
 			category_overview$mercenaries_manager : "Show mercenaries manager",

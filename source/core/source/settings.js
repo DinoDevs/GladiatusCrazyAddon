@@ -340,17 +340,6 @@ var gca_settings = {
 			info.textContent = '(Contact us to add your link here.)';
 			box.appendChild(document.createElement('br'));
 			box.appendChild(info);
-			
-			/*
-Other links/pages
-Skarsburning's Gladiatus Fansite : https://gladiatus.gamerz-bg.com (we love your site)
-
-Michalus' Gladiatus Tools : https://gladiatus-tools.com
-
-Unofficial Gladiatus Reddit : https://www.reddit.com/r/Gladiatus/ (by Williaf)
-
-Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
-			 */
 		},
 
 		preinject : {
@@ -680,6 +669,8 @@ Discord Server of Gladitatus Reddit : https://discord.gg/uXEGq9Q
 				"best_food" : true,
 				// Transparent food gives you more life than you need
 				"overfeed_food" : true,
+				// Double click to consume item
+				"double_click_consume" : false,
 				// Daily Bonus Log
 				"daily_bonus_log" : true,
 				// Detailed buffs timer

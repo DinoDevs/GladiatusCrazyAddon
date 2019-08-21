@@ -364,6 +364,8 @@ gca_options.data = {
 		"best_food" : true,
 		// Trasparent food gives you more life than you need
 		"overfeed_food" : true,
+		// Double click to consume item
+		"double_click_consume" : false,
 		// Daily Bonus Log
 		"daily_bonus_log" : true,
 		// Detailed buffs timer

@@ -341,6 +341,15 @@ var gca_tools = {
 						parent : grid
 					};
 				}
+				else if (target == 'avatar') {
+					grid = document.getElementById('avatar');
+					cords_grid = jQuery(grid).offset();
+					return {
+						x: (cords_grid.left + 168/2),
+						y: (cords_grid.top + 194/2),
+						parent : grid
+					};
+				}
 				else {
 					return false;
 				}

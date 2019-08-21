@@ -21,7 +21,8 @@ var gca_overview = {
 			this.analyzeItems.show(this));
 
 		// If underworld
-		if(document.getElementById('wrapper_game').className == 'underworld'){
+		let isUnderworld = (document.getElementById('wrapper_game').className == 'underworld');
+		if (isUnderworld) {
 			(this.doll == 1 && 
 				this.foodStuff.underworld.fadeFoods(this));
 		}
@@ -67,6 +68,10 @@ var gca_overview = {
 		// Repair overview
 		(gca_options.bool("overview", "items_repair_overview") && this.doll == 1 &&
 			this.repair_overview.inject());
+
+		// Double click consume
+		(!isUnderworld && this.doll == 1 && gca_options.bool("overview", "double_click_consume") && 
+			this.doubleClickToConsume.init());
 
 		// Setting Link
 		gca_tools.create.settingsLink("overview");
@@ -1703,7 +1708,46 @@ var gca_overview = {
 				JSON.stringify(tooltip)
 			);
 		}
-	}
+	},
+
+	// On double click item to consume it
+	doubleClickToConsume : {
+
+		init : function(){
+			// Add event
+			gca_tools.event.bag.onBagOpen(() => {
+				this.apply();
+			});
+
+			// If bag not already loaded
+			if (document.getElementById('inv').className.match('unavailable')) {
+				// Wait first bag
+				gca_tools.event.bag.waitBag(() => {
+					this.apply();
+				});
+			}
+			else {
+				this.apply();
+			}
+		},
+		apply : function(){
+			// For each
+			jQuery("#inv .ui-draggable").each((i, item) => {
+				// If already parsed
+				if (item.dataset.gcaFlag_doubleClickConsumeEvent) return;
+				// If not consumable
+				let type = item.dataset.basis.split('-');
+				if (!['7', '11', '21'].includes(type[0])) return;
+				// Flag as parsed
+				item.dataset.gcaFlag_doubleClickConsumeEvent = true;
+				// Add event
+				item.addListener('dblclick', this.handler);
+			});
+		},
+		handler : function() {
+			gca_tools.item.move(this, 'avatar');
+		}
+	},
 };
 
 // Onload Handler
