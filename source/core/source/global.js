@@ -1168,7 +1168,7 @@ var gca_global = {
 								gca_data.section.set("guild", "mates", guild_players);
 								
 								let guild_name = content.match(/<h2 class="section-header">([^<]+)<\/h2>/)[1];
-								guild_name = guild_name.match(/([a-zA-Z0-9\-#@\[\]\.\+\:\*_]+) \[([a-zA-Z0-9\-#@\[\]\.\+\:\*_]+)\]/i)[1];
+								guild_name = guild_name.match(/([a-zA-Z0-9\-#@\[\]\.\+\:\*_]+) \[([^\]]+)\]/i)[1];
 								gca_data.section.set("guild", "name", guild_name);
 							}
 						}
