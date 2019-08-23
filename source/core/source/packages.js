@@ -741,8 +741,8 @@ var gca_packages = {
 	
 	showSoulbound : {
 		init : function(){
-			var items = document.getElementById('packages_wrapper').getElementsByClassName('ui-draggable');
-			for (let i=0; i<items.length; i++) {
+			var items = document.getElementById("packages").getElementsByClassName('ui-draggable');
+			for (let i = 0; i < items.length; i++) {
 				this.addIcon(items[i]);
 			}
 		},

@@ -955,7 +955,7 @@
 		.package-advance-filters .filter-add button {width: 52px;margin-top: 0px;}
 
 		/* Soul-bound items */
-		#packages_wrapper div[data-gca-soulbound]:after {content: "🔗";color: #ccc;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
+		#packages div[data-gca-soulbound]:after {content: "🔗";color: #ccc;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
 
 
 	/* Quests Layout
