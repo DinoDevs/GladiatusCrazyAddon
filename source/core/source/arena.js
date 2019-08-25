@@ -602,6 +602,7 @@ var gca_arena = {
 
 				// Results
 				let section = document.createElement('section');
+				section.className = 'global-arena-header';
 				section.style.display = 'block';
 				let fieldset = document.createElement('fieldset');
 				fieldset.className = 'dungeon_report_statistic';
@@ -615,15 +616,12 @@ var gca_arena = {
 
 				tr = document.createElement('tr');
 				td = document.createElement('th');
-				td.style.textAlign = 'left';
 				td.textContent = 'Name';
 				tr.appendChild(td);
 				td = document.createElement('th');
-				td.style.textAlign = 'left';
 				td.textContent = 'Hitpoints';
 				tr.appendChild(td);
 				td = document.createElement('th');
-				td.style.textAlign = 'left';
 				td.textContent = 'Life points';
 				tr.appendChild(td);
 				table.appendChild(tr);

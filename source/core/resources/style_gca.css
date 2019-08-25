@@ -1104,6 +1104,11 @@
 		#global_arena_box .highlight{background-color: #fdc733;}
 		#global_arena_box .highlight .first{border-radius: 10px 0px 0px 10px;border: 0px;}
 		#global_arena_box .highlight .last{border-radius: 0px 10px 10px 0px;border: 0px;}
+		.gca_rtl #global_arena_box .highlight .first{border-radius: 0px 10px 10px 0px;}
+		.gca_rtl #global_arena_box .highlight .last{border-radius: 10px 0px 0px 10px;}
+		/* Global Arena Report */
+		.global-arena-header th {text-align: left;}
+		.gca_rtl .global-arena-header th {text-align: right;}
 	
 
 	/* Merchants
