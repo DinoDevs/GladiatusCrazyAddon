@@ -179,10 +179,8 @@ var gca_global = {
 		(this.isMobile &&
 			this.accessibility.item_move.init());
 
-		// Display reddit link on header
-		this.display.reddit();
-		// Display gca version on footer
-		this.display.version();
+		// Display links on footer
+		this.display.footerLinks();
 	},
 	
 	scripts : {
@@ -296,46 +294,53 @@ var gca_global = {
 
 	// Display stuf
 	display : {
-		
-		// Display the GCA version on the bottom of the page
-		version : function(){
-			// Add version on the <html> tag as a class-name
-			//if(document.documentElement.className.length>0)
-			//	document.documentElement.className += " ";
-			//document.documentElement.className += gca.shortName + "_v" + gca.version;
 
-			// Check if links on footer exist
-			var footerLinks = document.getElementsByClassName("footer_links");
-			if(footerLinks.length > 0){
-				// Create a gca link
-				var link = document.createElement("a");
-				link.href = gca.homepage;
-				link.setAttribute("target", "_blank");
-				link.textContent = gca.shortName + ' v' + gca.version;
-				
-				// Create a link seperator
-				footerLinks[0].appendChild(document.createTextNode(" | "));
-				// Insert link
-				footerLinks[0].appendChild(link);
+		// Footer notes
+		footerLinks : function () {
+			var footerLinks = document.getElementsByClassName('footer_links');
+			if (footerLinks.length == 0) return;
+
+			var gca_links = document.createElement('div');
+			gca_links.id = 'gca-footer-links';
+			gca_links.style.display = 'inline-block';
+			footerLinks[0].appendChild(gca_links);
+
+			if (!window.gca_rtl) {
+				this.reddit(gca_links);
+				this.version(gca_links);
+			}
+			else {
+				this.version(gca_links);
+				this.reddit(gca_links);
 			}
 		},
 		
+		// Display the GCA version on the bottom of the page
+		version : function(wrapper){
+			// Create a gca link
+			var link = document.createElement('a');
+			link.href = gca.homepage;
+			link.setAttribute('target', '_blank');
+			link.textContent = gca.shortName + ' v' + gca.version;
+			
+			// Create a link seperator
+			wrapper.appendChild(document.createTextNode(' | '));
+			// Insert link
+			wrapper.appendChild(link);
+		},
+		
 		// Display the Reddit link on the bottom of the page
-		reddit : function(){
-			// Check if links on footer exist
-			var footerLinks = document.getElementsByClassName("footer_links");
-			if(footerLinks.length > 0){
-				// Create a reddit link
-				let link = document.createElement('a');
-				link.href = gca_links.get('unofficial-reddit');
-				link.setAttribute('target', '_blank');
-				link.textContent = 'Unofficial Reddit';
-				
-				// Create a link seperator
-				footerLinks[0].appendChild(document.createTextNode(" | "));
-				// Insert link
-				footerLinks[0].appendChild(link);
-			}
+		reddit : function(wrapper){
+			// Create a reddit link
+			let link = document.createElement('a');
+			link.href = gca_links.get('unofficial-reddit');
+			link.setAttribute('target', '_blank');
+			link.textContent = 'Unofficial Reddit';
+			
+			// Create a link seperator
+			wrapper.appendChild(document.createTextNode(" | "));
+			// Insert link
+			wrapper.appendChild(link);
 		},
 
 		// Points recover timers
