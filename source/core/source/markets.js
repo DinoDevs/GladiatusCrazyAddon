@@ -200,10 +200,7 @@ var gca_markets = {
 
 			// Icon wrapper
 			this.icons.wrapper = document.createElement('div');
-			//this.icons.wrapper.className = 'market-sell-warnings';
-			this.icons.wrapper.style.float = 'right';
-			this.icons.wrapper.style.cursor = 'default';
-			this.icons.wrapper.style.color = '#d42b1e';
+			this.icons.wrapper.className = 'gca-market-sell-warnings';
 			document.getElementById('market_sell_box').getElementsByTagName('h2')[0].appendChild(this.icons.wrapper);
 
 			// Soulbound icon
@@ -233,7 +230,7 @@ var gca_markets = {
 			self.detectMarketSellItemDrop();
 			gca_tools.event.addListener('market-sell-item-drop', (data) => {
 				let hash = gca_tools.item.hash(data.item[0]);
-				this.icons.soulbound.style.display = (!hash || !hash.soulbound || hash.soulbound == 0 || hash.soulbound == 2) ? 'none' : 'block';
+				this.icons.soulbound.style.display = (!hash || !hash.soulbound || hash.soulbound == 0 || hash.soulbound == 2) ? 'none' : 'inline-block';
 			});
 		},
 
@@ -246,7 +243,7 @@ var gca_markets = {
 			gca_tools.event.addListener('market-sell-item-drop', (data) => {
 				let itemLevel = parseInt(data.item[0].dataset.level, 10);
 				let maxVisible = ((playerLevel + 9 < Math.floor(1.25 * playerLevel)) ? playerLevel + 9 : Math.floor(1.25 * playerLevel));
-				this.icons.buyback.style.display = (!itemLevel || itemLevel <= maxVisible) ? 'none' : 'block';
+				this.icons.buyback.style.display = (!itemLevel || itemLevel <= maxVisible) ? 'none' : 'inline-block';
 			});
 		},
 	},

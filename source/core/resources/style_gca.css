@@ -1177,9 +1177,14 @@
 		#market_sell_box .switch-field label:last-of-type{border-radius: 0 4px 4px 0;}
 		.gca_rtl #market_sell_box .switch-field label{float: right;}
 		.gca_rtl #market_sell_box .switch-field{float: left;}
+		.gca_rtl #market_sell_box .switch-field label:first-of-type{border-radius: 0 4px 4px 0;}
+		.gca_rtl #market_sell_box .switch-field label:last-of-type{border-radius: 4px 0 0 4px;}
 		/* Change sort arrows */
 		.gca_change_sort_arrows #market_table th a {padding-right: 0px;background-image: none;}
 		.gca_rtl .gca_change_sort_arrows #market_table th a {padding-right: auto;padding-left: 0px;}
+		/* Sell Warnings */
+		.gca-market-sell-warnings{float: right; cursor: default; color: rgb(212, 43, 30);}
+		.gca_rtl .gca-market-sell-warnings{float: left;}
 		
 	
 	/* Tools
