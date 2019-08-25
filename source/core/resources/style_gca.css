@@ -1116,6 +1116,7 @@
 	-------------------------------------------------- */
 		/* Meterials Packages/Market Links */
 		.gca_forge_material_links {background-color: #bba86e;font-size: 12px;position: absolute;width: 16px;margin-top: -46px;margin-left: 32px;line-height: 23px;}
+		.gca_rtl .gca_forge_material_links {margin-right: 32px;margin-left: auto;}
 		.gca_forge_materials_links {width: 16px;font-size: 12px;position: absolute;margin-top: -46px;line-height: 16px;}
 		.gca_forge_material_links a, .gca_forge_materials_links a {text-decoration: none!important;cursor: pointer;}
 		/* Links under forge info */
@@ -1136,9 +1137,19 @@
 		#resource-list td[data-quality="-1"], #resource-list td[data-quality="0"], #resource-list td[data-quality="1"], #resource-list td[data-quality="2"], #resource-list td[data-quality="3"], #resource-list td[data-quality="4"] {font-weight: bold;}
 		/* Upgrade Arrows center */
 		.upgrade.q0, .upgrade.q1, .upgrade.q2, .upgrade.q3, .upgrade.q4 {margin-left: 10px;margin-right: -8px;}
+		.gca_rtl .upgrade.q0, .upgrade.q1, .upgrade.q2, .upgrade.q3, .upgrade.q4 {margin-right: 10px;margin-left: -8px;}
+		/* Upgrade Arrows Direction Fix */
+		.gca_rtl .upgrade {border-left: 0;border-right: 15px solid transparent;}
+		.gca_rtl .upgrade.q0 {border-right-color: lime;}
+		.gca_rtl .upgrade.q1 {border-right-color: #5159f7;}
+		.gca_rtl .upgrade.q2 {border-right-color: #e303e0;}
+		.gca_rtl .upgrade.q3 {border-right-color: #FF6A00;}
+		.gca_rtl .upgrade.q4 {border-right-color: #FF0000;}
 		/* Show resources names */
 		#resource-list.show-resource-names td:first-child {line-height: 32px;text-align: left;}
 		#resource-list.show-resource-names td:first-child div {float: left;}
+		.gca_rtl #resource-list.show-resource-names td:first-child {text-align: right;}
+		.gca_rtl #resource-list.show-resource-names td:first-child div {float: right;}
 		/* Click to select material */
 		#resource-list.resource-click-to-select td:first-child,
 		#resource-list.resource-click-to-select td[data-quality="-1"],
@@ -1149,6 +1160,7 @@
 		#resource-list.resource-click-to-select td[data-quality="4"] {cursor: pointer;}
 		/* Click to open all categories */
 		.horreum-click-to-open-categories {position: absolute;margin-top: 16px;right: 61px;width: 16px;height: 16px;text-align: center;line-height: 16px;color: #dace9e!important;background: #4c1300;border: 2px solid #ddd0ae;box-shadow: 0px 0px 2px black;text-decoration: none!important;border-radius: 10px;font-size: 10px;cursor: pointer;}
+		.gca_rtl .horreum-click-to-open-categories {right: auto;left: 61px;}
 
 
 	/* Market

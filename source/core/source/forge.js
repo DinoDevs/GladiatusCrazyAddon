@@ -169,7 +169,7 @@ var gca_forge = {
 				}
 
 				// Parse amounts
-				info = JSON.parse(info[1].replace(/&quot;/g, '"'));
+				info = JSON.parse(info[1].replace(/&quot;/g, '"')); // This may be empty
 				this.materialAmounts = {};
 				for (let mat in info) {
 					if (info.hasOwnProperty(mat)) {
@@ -218,7 +218,7 @@ var gca_forge = {
 			document.getElementById("resource-quality").dataset.amounts = true;
 			
 			// No item in slot
-			if ( document.getElementById("resource-quality").parentNode.style.display != "block" )
+			if (document.getElementById("resource-quality").parentNode.style.display != "block")
 				return;
 			
 			// Amount on each quality = Standard, Green, Blue, Purple, Orange, Red
@@ -227,13 +227,17 @@ var gca_forge = {
 			let totalRequired = 0;
 			
 			// Get item's materials
-			Array.prototype.slice.call(materials).forEach((mat, index) => {
+			Array.prototype.slice.call(materials).forEach((mat) => {
 				let required = parseInt(mat.getElementsByClassName("forge_setpoint")[0].textContent) - parseInt(mat.getElementsByClassName("forge_actual_value")[0].textContent);
 				if( required > 0 ){
 					let mat_id = parseInt(mat.getElementsByTagName("div")[0].className.match(/18-(\d+)/)[1], 10);
+
 					totalRequired += required;
-					for (let i = 0; i <= 5; i++)
-						qualities[i] += Math.min( required, this.materialAmounts[mat_id][i] );
+					if (this.materialAmounts.hasOwnProperty(mat_id)) {
+						for (let i = 0; i <= 5; i++) {
+							qualities[i] += Math.min(required, this.materialAmounts[mat_id][i]);
+						}
+					}
 					
 					//console.log("Item:"+mat_id+" Required:"+required+" Available:"+this.materialAmounts[mat_id][0]+","+this.materialAmounts[mat_id][1]+","+this.materialAmounts[mat_id][2]+","+this.materialAmounts[mat_id][3]+","+this.materialAmounts[mat_id][4]+","+this.materialAmounts[mat_id][5]);
 				}
