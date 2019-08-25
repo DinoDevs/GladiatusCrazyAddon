@@ -710,6 +710,7 @@
 		.analyzer_life_charstats .charstats_bg2{width: 200px;}
 		.gca_rtl .analyzer_life_charstats .charstats_bg2{background-position: right;}
 		.analyzer_life_charstats .charstats_text span{position: absolute;display: block;font-size: 11px;right: 80px;top: 0px;background: rgba(183, 153, 99, 0.5);}
+		.gca_rtl .analyzer_life_charstats .charstats_text span{right: auto;left: 80px;}
 		.analyzer_life_charstats .charstats_value3{font-weight: normal;font-size: 11px;}
 		.analyzer_life_charstats_border{width: 200px;height: 5px;overflow: hidden;clear: both;}
 		.gca_rtl .analyzer_life_charstats_border{background-position: right;}
