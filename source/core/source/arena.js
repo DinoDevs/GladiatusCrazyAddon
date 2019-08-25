@@ -257,7 +257,6 @@ var gca_arena = {
 				
 				this.cooldown_interval = setInterval(() => {
 					let left = timer.dataset.value - new Date().getTime();
-					console.log(left);
 					if (left > 0) {
 						timer.textContent = gca_tools.time.msToString(left);
 					}
