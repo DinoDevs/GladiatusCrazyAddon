@@ -266,7 +266,7 @@ var gca_reports = {
 		// Gladiatus Attack code
 		startProvinciarumFight :function(d, a, c, b, e) {
 			jQuery("#errorRow").css({display: "none"});
-			sendRequest("get", "ajax.php", "mod=arena&submod=confirmDoCombat&aType=" + a + "&opponentId=" + c + "&serverId=" + b + "&country=" + e, d)
+			window.sendRequest("get", "ajax.php", "mod=arena&submod=confirmDoCombat&aType=" + a + "&opponentId=" + c + "&serverId=" + b + "&country=" + e, d)
 		},
 
 		// Get loot item
@@ -351,7 +351,7 @@ var gca_reports = {
 		},
 
 		lootCache : false,
-		initLootItemCache : function(reportid){
+		initLootItemCache : function(){
 			if (this.lootCache) return;
 			this.lootCache = gca_data.section.get('cache', 'reports-loot', []);
 			if (this.lootCache.length > 60) {
@@ -565,27 +565,26 @@ var gca_reports = {
 
 			// Create side table info
 			let round_report = document.createElement('div');
-			round_report.id = "dungeon_life_report_" + index;
-			round_report.className = "title2_box dungeon_life_report";
-			round_report.setAttribute('style','position: absolute; left: 70px; padding: 2px 0px 2px 2px;overflow: hidden;');
+			//round_report.id = "dungeon_life_report_" + index;
+			round_report.className = 'title2_box analyzer_life_report';
 			
 			// Create side shadow from the main page body
 			let sideShadow = document.createElement('div');
-			sideShadow.style = "position: absolute;background-color: rgba(0,0,0,0.3);width: 1px;top: -1px;bottom: -1px;right: 0px;z-index: 1;box-shadow: 0px 0px 6px black;";
+			sideShadow.className = 'analyzer_life_shadow';
 			round_report.appendChild(sideShadow);
 
 			// Create round report table
 			let table = document.createElement('div');
-			table.style = "margin-top: 0px;width: 200px;overflow: hidden;";
-			table.className = "charstats_nomargin";
+			table.className = "charstats_nomargin analyzer_life_charstats";
 			let table_top_border = document.createElement('div');
-			table_top_border.style = "background-image:url(img/char_status_kopf_b.jpg);width:262px;height:5px;overflow:hidden";
+			table_top_border.className = 'analyzer_life_charstats_border';
+			table_top_border.style.backgroundImage = 'url(img/char_status_kopf_b.jpg)';
 			table.appendChild(table_top_border);
 			let table_title = document.createElement('div');
-			table_title.style = "text-align: center; width: 200px;";
 			table_title.className = "charstats_bg2";
+			table_title.style.textAlign = 'center';
 			let table_title_span = document.createElement('span');
-			table_title_span.textContent = round_title.textContent + " - " + this.translation_life_points;
+			table_title_span.textContent = round_title.textContent + ' - ' + this.translation_life_points;
 			table_title.appendChild(table_title_span);
 			table.appendChild(table_title);
 			round_report.appendChild(table);
@@ -595,7 +594,8 @@ var gca_reports = {
 			this.addPlayerInfo(this.ignored, table, 'charstats_balken_xp', '⚠');
 			
 			let table_bottom_border = document.createElement('div');
-			table_bottom_border.style = "clear:both;background-image:url(img/char_status_abschluss_b.jpg);width:262px;height:5px;overflow:hidden";
+			table_bottom_border.className = 'analyzer_life_charstats_border';
+			table_bottom_border.style.backgroundImage = 'url(img/char_status_abschluss_b.jpg)';
 			table.appendChild(table_bottom_border);
 			
 			round_row.insertBefore(round_report, this.nextSibling);
@@ -617,15 +617,14 @@ var gca_reports = {
 			for (let i = 0; i < players.length; i++) {
 				
 				let row = document.createElement('div');
-				row.style = "width: 200px;";
-				row.className = "charstats_bg2";
+				row.className = 'charstats_bg2';
 
 				let name = document.createElement('span');
 				name.className = 'charstats_text';
 				name.textContent = players[i][0] + (players[i][4] > 1 ? ' ×' + players[i][4]: '');
 				if (players[i][3] != 0) {
 					let change = document.createElement('span');
-					change.style = 'color:' + (players[i][3] > 0 ? 'rgb(0, 100, 0)' : 'rgb(100, 0, 0)') + ';position: absolute;display: block;font-size: 11px;right: 80px;top: 0px;background: rgba(183, 153, 99, 0.5);';
+					change.style.color = (players[i][3] > 0 ? 'rgb(0, 100, 0)' : 'rgb(100, 0, 0)');
 					change.textContent = (players[i][3] > 0 ? '+' : '') + players[i][3];
 					name.appendChild(change);
 				}
@@ -641,7 +640,6 @@ var gca_reports = {
 
 				let life = document.createElement('span');
 				life.className = 'charstats_value3';
-				life.style = 'font-weight: normal;font-size: 11px;';
 				life.textContent = custom_text ? custom_text : players[i][1] + ' / ' + players[i][2];
 				row.appendChild(life);
 
@@ -782,5 +780,5 @@ var gca_reports = {
 })();
 
 // ESlint defs
-/* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
+/* global gca_data, gca_getPage, gca_locale, gca_options, gca_section, gca_tools */
 /* global jQuery */
