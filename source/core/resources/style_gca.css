@@ -643,7 +643,9 @@
 	-------------------------------------------------- */
 		#topFixedBar {color: #DCBB96; background: url('interface/top_bar_bg.png') repeat-x scroll 0 -4px transparent; z-index: 900; position: fixed; top: 0px; left: 0px; right: 0px; height: 24px; display: none; line-height: 24px;}
 		#topFixedBar a{color: #DCBB96;display: inline-block;margin-left: 6px;}
+		.gca_rtl #topFixedBar a{margin-left: auto;margin-right: 6px;}
 		#topFixedBar .scroll-to-top{border-radius: 6px;border: 1px solid #4A3615;color: black;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 8px;float: right;text-align: center;margin-top: 2px;margin-right: 10px;cursor: pointer;font-size: 0.8em;vertical-align: bottom;}
+		.gca_rtl #topFixedBar .scroll-to-top{float: auto;margin-right: auto;float: left;margin-left: 10px;}
 		@media screen and (max-width: 1080px) {
 			#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
 		}
