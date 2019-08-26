@@ -4358,6 +4358,14 @@ var gca_global = {
 				}
 				
 				this.cacheImages(imgs);
+
+				// Right to Left servers have some more
+				if (window.gca_rtl) {
+					imgs = [
+						'img/menu_rtl.png'
+					];
+					this.cacheImages(imgs);
+				}
 			},
 
 			// Get resources folder id
@@ -4379,8 +4387,8 @@ var gca_global = {
 				imgs.forEach((src) => {
 					let img = document.createElement('img');
 					img.src = src;
+					window.image_cache.push(img);
 					if (id && src.indexOf('://') == -1) {
-						window.image_cache.push(img);
 						img = document.createElement('img');
 						img.src = id + '/' + src;
 						window.image_cache.push(img);
