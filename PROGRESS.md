@@ -6,6 +6,8 @@
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
+- **General**
+	- [x] After gold donation show gold left (in case the page was outdated)
 - **Overview**
 	- [x] Double click to consume item (disabled by default)
 
