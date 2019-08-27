@@ -1366,16 +1366,15 @@ var gca_global = {
 						return;
 					}
 
-					var that = this;
 					// Create confirm modal
 					var modal = new gca_tools.Modal(
 						gca_locale.get("global", "donate_gold_all_gold"),
 						null,
-						function(){
-							that.donate(gold);
+						() => {
+							this.donate(gold);
 							modal.destroy();
 						},
-						function(){
+						() => {
 							modal.destroy();
 						}
 					);
@@ -1404,8 +1403,14 @@ var gca_global = {
 						type: "POST",
 						url: gca_getPage.link({"mod":"guildBankingHouse","submod":"donate"}),
 						data: 'donation=' + gold + '&doDonation=Donate All',
-						success: function(){
-							document.getElementById('sstat_gold_val').textContent = 0;
+						success: function(html){
+							let gold_left = 0;
+							let match = html.match(/<div class="headervalue_small" id="sstat_gold_val">([^<]+)<\/div>/);
+							if (match) {
+								gold_left = parseInt(gca_tools.strings.removeDots(match[1]), 10);
+							}
+
+							document.getElementById('sstat_gold_val').textContent = gca_tools.strings.insertDots(gold_left);
 							gca_notifications.success(gca_locale.get("global", "donate_gold_success"));
 						},
 						error: function(){
