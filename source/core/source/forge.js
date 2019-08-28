@@ -38,6 +38,9 @@ var gca_forge = {
 			this.saveSmeltTimers();
 			this.detectForgeEvents();
 
+			// Don't allow items dropped from char
+			this.disallowCharItemsDrop();
+
 			// Add gladiatus tools links
 			this.gladiatusTools.inject();
 		}
@@ -57,6 +60,9 @@ var gca_forge = {
 
 			// Show selected quality on dropdown
 			this.showSelectedQuality.inject();
+
+			// Don't allow items dropped from char
+			this.disallowCharItemsDrop();
 		}
 
 		// Horreum
@@ -889,6 +895,21 @@ var gca_forge = {
 			let forgeInfo = document.getElementById('forge_infobox');
 			forgeInfo.parentNode.insertBefore(info, forgeInfo.nextSibling);
 		}
+	},
+
+	// Don't allow items dropped from char
+	disallowCharItemsDrop : function() {
+		// Get itembox info
+		let itembox = jQuery('#itembox');
+		let defaultContentTypeAccept = itembox.data("contentTypeAccept") || 0;
+
+		// Patch content type
+		jQuery(document).on("dragstart", (e) => {
+			itembox.data("contentTypeAccept", (e.target.parentNode.parentNode.id == 'char') ? 0 : defaultContentTypeAccept);
+		});
+		jQuery(document).on("dragend", (e) => {
+			itembox.data("contentTypeAccept", defaultContentTypeAccept);
+		});
 	}
 };
 
