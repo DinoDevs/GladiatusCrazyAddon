@@ -38,6 +38,9 @@ var gca_forge = {
 			this.saveSmeltTimers();
 			this.detectForgeEvents();
 
+			// Send all as package
+			this.sendAllCompletedSmeltsAsPackage();
+
 			// Don't allow items dropped from char
 			this.disallowCharItemsDrop();
 
@@ -909,6 +912,58 @@ var gca_forge = {
 		});
 		jQuery(document).on("dragend", (e) => {
 			itembox.data("contentTypeAccept", defaultContentTypeAccept);
+		});
+	},
+
+	// Smeltery
+	sendAllCompletedSmeltsAsPackage : function() {
+		// Get forge tabs
+		let tabs = [...document.getElementById('forge_nav').getElementsByTagName('div')];
+
+		// Get completed tabs
+		let completed = [];
+		tabs.forEach((tab, index) => {
+			if (tab.classList.contains('forge_finished-succeeded')) {
+				completed.push(index);
+			}
+		});
+
+		// Exit if none or only one completed
+		if (completed.length <= 1) return;
+
+		// Create get all button
+		let box = document.getElementById('forge_box');
+		let btn = document.createElement('div');
+		btn.className = 'awesome-button';
+		btn.style.position = 'absolute';
+		btn.style.bottom = '-35px';
+		btn.style.left = '0';
+		btn.style.right = '0';
+		btn.textContent = completed.length + '× ' + document.getElementById('forge_lootbox').textContent;
+		box.appendChild(btn);
+
+		// Handle get all
+		btn.addEventListener('click', () => {
+			// Disable button
+			btn.disabled = 'disabled';
+
+			// Make ajax requests
+			let pending = completed.length;
+			completed.forEach((slot) => {
+				jQuery.post('ajax.php', {
+					mod: 'forge',
+					submod: 'lootbox',
+					mode: 'smelting',
+					slot: slot,
+					a: new Date().getTime(),
+					sh: window.secureHash
+				}).always(() => {
+					pending--;
+					if (pending === 0) {
+						document.location.href = document.location.href;
+					}
+				});
+			});
 		});
 	}
 };
