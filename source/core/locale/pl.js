@@ -269,7 +269,7 @@ gca_languages['pl'] = {
 			do_not_show : "Nie pokazuj",
 			show_as : "Pokaż jako",
 			show_info : "Pokaż informacje",
-			translated_percent : "Przetłumaczone: {number}}%",
+			translated_percent : "Przetłumaczone: {{number}}%",
 			translated_by : "Przetłumaczone przez: {{string}}",
 			reset_settings_confirm : "Jesteś pewny że chcesz zresetować ustawienia dodatku?",
 			clear_data_confirm : "Jesteś pewny że chcesz wyczyścić wszystkie dane dodatku?",
