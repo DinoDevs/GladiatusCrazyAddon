@@ -917,13 +917,10 @@ var gca_forge = {
 
 	// Smeltery
 	sendAllCompletedSmeltsAsPackage : function() {
-		// Get forge tabs
-		let tabs = [...document.getElementById('forge_nav').getElementsByTagName('div')];
-
-		// Get completed tabs
+		// Get completed slots
 		let completed = [];
-		tabs.forEach((tab, index) => {
-			if (tab.classList.contains('forge_finished-succeeded')) {
+		window.slotsData.forEach((slot, index) => {
+			if (slot.state === 'finished-succeeded') {
 				completed.push(index);
 			}
 		});
@@ -932,13 +929,13 @@ var gca_forge = {
 		if (completed.length <= 1) return;
 
 		// Create get all button
-		let box = document.getElementById('forge_box');
+		let box = document.getElementById('forge_box').parentNode;
 		let btn = document.createElement('div');
 		btn.className = 'awesome-button';
 		btn.style.position = 'absolute';
-		btn.style.bottom = '-35px';
-		btn.style.left = '0';
-		btn.style.right = '0';
+		btn.style.bottom = '-28px';
+		btn.style.left = '12px';
+		btn.style.right = '10px';
 		btn.textContent = completed.length + '× ' + document.getElementById('forge_lootbox').textContent;
 		box.appendChild(btn);
 
