@@ -36,10 +36,13 @@ var inject = function(_info, _window, _folder){
 	// Resources Load
 	tools.loadCode(
 		'\n' +
-		'var gca_resources = {\n' +
-		'	folder : "' + _folder + '/resources/",\n' +
-		'	audio : "' + _folder + '/resources/audio/",\n' +
-		'};\n'
+		'var gca_resources = ' + JSON.stringify({
+			folder : _folder + '/resources/',
+			audio : _folder + '/resources/audio/'
+		}, '', '\t') + ';\n' +
+		'var gca_extension = ' + JSON.stringify({
+			id : _info.extension
+		}, '', '\t') + ';\n'
 	);
 
 	// Info
