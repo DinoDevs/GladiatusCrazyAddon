@@ -161,6 +161,21 @@ var manager = {
 
 	},
 
+	// Handle messages
+	tools : function(element) {
+		// Forward requests to the background page
+		element.addEventListener('gca-ping', (e) => {
+			if (!e.detail.id || !e.detail.message) return;
+
+			let id = e.detail.id;
+			Browser.runtime.sendMessage(e.detail.message, (message) => {
+				element.dataset['message-' + id] = JSON.stringify(message);
+				let e = new CustomEvent('gca-pong', {detail: {id, message}});
+				element.dispatchEvent(e);
+			});
+		});
+	},
+
 	// Section Actions
 	section : {
 
@@ -373,8 +388,6 @@ var manager = {
 			}
 
 		}
-
-
 	}
 
 }

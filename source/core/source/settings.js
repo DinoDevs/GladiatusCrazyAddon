@@ -639,7 +639,13 @@ var gca_settings = {
 							// Create select
 							data.select = document.createElement("select");
 							// Create a list
-							let styles = [gca_locale.get("settings",'do_not_show'), gca_locale.get("settings",'show_as')+' ↔', gca_locale.get("settings",'show_as')+' ↕'];
+							let styles = [
+								gca_locale.get("settings",'do_not_show'),
+								gca_locale.get("settings",'show_as')+' ↔',
+								gca_locale.get("settings",'show_as')+' ↕',
+								gca_locale.get("settings",'show_as')+' ×? ↔',
+								gca_locale.get("settings",'show_as')+' ×? ↕'
+							];
 							for (let i = 0; i < styles.length; i++) {
 								let option = document.createElement("option");
 								option.value = i;

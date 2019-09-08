@@ -3,6 +3,9 @@
  * Gladiatus Crazy Add On
  */
 
+// Get browser object
+var Browser = typeof browser === 'undefined' ? chrome : browser;
+
 var init = () => {
 	// Wait until all ready
 	// Usually this will be true only the first time
@@ -14,16 +17,14 @@ var init = () => {
 		setTimeout(init, 2);
 		return;
 	}
-
-	// Get browser object
-	var Browser = typeof browser === 'undefined' ? chrome : browser;
 	
 	// Get info
 	var manifest = Browser.runtime.getManifest();
 	var info = {
 		name : manifest.name,
 		description : manifest.description,
-		version : manifest.version
+		version : manifest.version,
+		extension : Browser.runtime.id
 	};
 	
 	// Start code

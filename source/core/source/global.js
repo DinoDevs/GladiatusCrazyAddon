@@ -3173,7 +3173,7 @@ var gca_global = {
 						}
 					}
 					
-					// Low durability notification 
+					// Low durability notification
 					if (low_durability_items.length>0){
 						let items_string = ':';
 						for(let i = 0; i < low_durability_items.length; i++){
@@ -3186,16 +3186,17 @@ var gca_global = {
 				}
 			},
 
-			// jQuery('.ui-draggable')
 			itemForgeInfo : {
 				init : function(){
 					var style = gca_data.section.get("global", "show_forge_info", 0);
-					if (style == 1) this.extendedInfo = false;
-					else if (style == 2) this.extendedInfo = true;
+					if (style == 1) this.style = 'minimal';
+					else if (style == 2) this.style = 'extended';
+					else if (style == 3) this.style = 'minimal-amounts';
+					else if (style == 4) this.style = 'extended-amounts';
 					else return;
 
 					var load = false;
-					
+
 					// If inventory exists
 					if (document.getElementById('inv')) {
 						load = true;
@@ -3270,15 +3271,37 @@ var gca_global = {
 
 					// If not an craftable item
 					if (!gca_data_recipes.isCraftable(base)) return;
-					
+
 					// Build forge info
+					if (this.style === 'minimal' || this.style === 'extended') {
+						this.tooltip(item, prefix, base, suffix);
+					}
+					else if (this.style === 'minimal-amounts' || this.style === 'extended-amounts') {
+						//let Browser = typeof window.browser === 'undefined' ? window.chrome : window.browser;
+						//Browser.runtime.sendMessage(window.gca_extension.id, {action: 'get-recipe', prefix: prefix, base: base, suffix : suffix}, (data) => {
+						//	this.tooltip(item, prefix, base, suffix, data);
+						//});
+						gca_tools.extension.sendMessage({action: 'get-recipe', prefix: prefix, base: base, suffix : suffix}, (data) => {
+							this.tooltip(item, prefix, base, suffix, data);
+						});
+					}
+				},
+
+				tooltip : function(item, prefix, base, suffix, recipe = false) {
 					var info;
-					if (this.extendedInfo) {
+					if (this.style === 'extended') {
 						info = this.style_extended(prefix, base, suffix);
 					}
-					else {
+					else if (this.style === 'minimal') {
 						info = this.style_normal(prefix, base, suffix);
 					}
+					else if (this.style === 'extended-amounts' && recipe) {
+						info = this.style_extended_amounts(prefix, base, suffix, recipe);
+					}
+					else if (this.style === 'minimal-amounts' && recipe) {
+						info = this.style_normal_amounts(prefix, base, suffix, recipe);
+					}
+					else return;
 
 					// Add on tooltip
 					var tooltip = JSON.parse(item.dataset.tooltip);
@@ -3288,10 +3311,11 @@ var gca_global = {
 					gca_tools.setTooltip(item, JSON.stringify(tooltip));
 				},
 
-				getInfoRow : function(material) {
-					let img = '<div class="item-i-18-' + material + '" style="display:inline-block;transform: scale(0.7);margin:-12px -4px -12px -4px;"></div>';
+				getInfoRow : function(material, n = 0) {
+					let img = '<div class="item-i-18-' + material + '" style="display:inline-block;transform: scale(0.7);margin:-12px 4px -12px -4px;"></div>';
 					let name = (this.locale) ? ' ' + this.locale[material] + '' : '';
-					return [img + ' ' + name, '#cccccc'];
+					let amount = n > 0 ? '<div style="display:inline-block;width:35px;">&times; ' + n + '</div>' : '';
+					return [img + amount + name, '#cccccc'];
 				},
 
 				hashDecode : function(hash) {
@@ -3310,7 +3334,6 @@ var gca_global = {
 					var row_mats = '<tr style="height: 18px;color: #cccccc;">';
 					var row_dev = '<tr>';
 
-					//var data = this.data;
 					var data = gca_data_recipes.getRecipe(prefix, base, suffix);
 
 					// Prefix
@@ -3388,6 +3411,37 @@ var gca_global = {
 					return info;
 				},
 
+				style_normal_amounts : function(prefix, base, suffix, recipe) {
+					let count = recipe.keys.length;
+					// Create rows for the tooltip
+					let row_type = '<tr style="color: #ffffff;"><td colspan="' + count + '">';
+					row_type += (prefix > 0) ? '' + '[Prefix ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' + '' : '';
+					row_type += '' + '[Base ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' + '';
+					row_type += (suffix > 0) ? '' + '[Suffix ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' + '' : '';
+
+					let row_mats = '<tr style="color: #cccccc;text-align:center;">';
+					let row_icons = '<tr style="height: 18px;text-align:center;">';
+					recipe.keys.forEach((i) => {
+						row_mats += '<td>' + recipe.mats[i] + '&times;</td>';
+						row_icons += '<td><div class="item-i-18-' + i + '" style="display:inline-block;transform: scale(0.7);margin:-12px -4px -12px -4px;"></div></td>';
+					});
+
+					row_type += '</tr>';
+					row_mats += '</tr>';
+					row_icons += '</tr>';
+
+					// Tooltip info list
+					let info = [];
+					// Seperator
+					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
+					// Add table
+					info.push(['<table style="color: #ffffff;font-size: 10px;border-spacing: 0px;">' + row_type + row_mats + row_icons + '</table>', '#000000']);
+					// Base margin
+					info.push(['<div style="heigth:8px"></div>', '#000000']);
+
+					return info;
+				},
+
 				style_extended : function(prefix, base, suffix) {
 					// Tooltip info list
 					var info = [];
@@ -3437,6 +3491,31 @@ var gca_global = {
 							info.push(['?', '#cccccc']);
 						}
 					}
+
+					// Base margin
+					info.push(['<div style="heigth:8px"></div>', '#000000']);
+
+					return info;
+				},
+
+				style_extended_amounts : function(prefix, base, suffix, recipe) {
+					// Tooltip info list
+					var info = [];
+
+					// Seperator
+					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
+
+					// Create rows for the tooltip
+					info.push([
+						((prefix > 0) ? '[Prefix ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' : '') +
+						'[Base ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' +
+						((suffix > 0) ? '[Suffix ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' : ''),
+						'#ffffff'
+					]);
+
+					recipe.keys.forEach((i) => {
+						info.push(this.getInfoRow(i, recipe.mats[i]));
+					});
 
 					// Base margin
 					info.push(['<div style="heigth:8px"></div>', '#000000']);

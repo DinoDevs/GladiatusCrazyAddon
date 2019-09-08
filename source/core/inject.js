@@ -51,7 +51,7 @@ var inject = function(_info, _window, _folder){
 	tools.preloadScript('source/gca.data.js');
 	tools.preloadScript('source/gca.data.recipes.js');
 	// Functions
-	tools.preloadScript('source/gca.tools.js');
+	let toolsScript = tools.preloadScript('source/gca.tools.js');
 	// Audio
 	tools.preloadScript('source/gca.audio.js');
 	// Notifications
@@ -61,6 +61,7 @@ var inject = function(_info, _window, _folder){
 
 	// Manager Load
 	manager.load();
+	manager.tools(toolsScript);
 
 	return;
 };
@@ -89,6 +90,7 @@ var tools = {
 			this.postloadScripts();
 		}, false);
 		info.data.document.head.appendChild(script);
+		return script;
 	},
 
 

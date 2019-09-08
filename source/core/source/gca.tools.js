@@ -1617,14 +1617,80 @@ var gca_tools = {
 			}, false);
 			document.getElementsByTagName('head')[0].appendChild(script);
 		}
+	},
+
+
+	// Extension functions
+	// -------------------------------------------------- //
+	// sendMessage(message, callback)
+	// -------------------------------------------------- //
+	extension : {
+		sendMessage : function (message, callback) {/* Code Below */}
+	}
+};
+
+// Init extension sendMessage functions
+(function(){
+	// On chromium based browsers
+	if (window.chrome && window.chrome.runtime && window.chrome.runtime.sendMessage) {
+		// Send Message to the extension
+		gca_tools.extension.sendMessage = function (message, callback) {
+			window.chrome.runtime.sendMessage(window.gca_extension.id, message, (response) => {
+				callback(response);
+			});
+		}
 	}
 
-};
+	else {
+		(function(){
+			// Talk to the extension script through events on this script's element
+			// the extension script will forward the request to the background page
+			// We send messages through the `gca-pin` event
+			// receive messages through the `gca-pong` event
+
+			// Hold current script in a variable
+			let element = document.currentScript;
+			// Increment to flag each request
+			let increment = 0;
+			// Hold the request here
+			let callbacks = {};
+
+			// Send Message to the extension
+			gca_tools.extension.sendMessage = function (message, callback) {
+				let id = ++increment + '';
+				callbacks[id] = callback;
+				// Fire custom event
+				let e = new CustomEvent('gca-ping', {detail: {id, message}});
+				element.dispatchEvent(e);
+			}
+
+			// Get response from the extension
+			element.addEventListener('gca-pong', (e) => {
+				for (let id in callbacks) {
+					let msg = 'message-' + id;
+					if (element.dataset.hasOwnProperty(msg)) {
+						let message = element.dataset[msg];
+						delete element.dataset[msg];
+						message = (message === 'undefined') ? undefined : JSON.parse(message);
+						if (callbacks.hasOwnProperty(id) && typeof callbacks[id] === 'function') {
+							let callback = callbacks[id];
+							delete callbacks[id];
+							setTimeout(() => {callback(message)}, 0);
+						}
+					}
+				}
+			});
+		})();
+	}
+})();
 
 // Load More Stuff
 (function(){
 	if (window.gca_audio_loader) window.gca_audio_loader();
 })();
+
+// Remove script
+document.currentScript.remove();
 
 // ESlint defs
 /* global gca_getPage, gca_locale, gca_notifications, gca_resources, gca_tools */
