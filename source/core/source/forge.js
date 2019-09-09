@@ -21,7 +21,7 @@ var gca_forge = {
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
 
-			// Add gladiatus tools links
+			// Add Gladiatus tools links
 			this.gladiatusTools.inject();
 
 			// Show available items on quality menu
@@ -44,7 +44,7 @@ var gca_forge = {
 			// Don't allow items dropped from char
 			this.disallowCharItemsDrop();
 
-			// Add gladiatus tools links
+			// Add Gladiatus tools links
 			this.gladiatusTools.inject();
 		}
 
@@ -55,7 +55,7 @@ var gca_forge = {
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
 
-			// Add gladiatus tools links
+			// Add Gladiatus tools links
 			this.gladiatusTools.inject();
 
 			// Show available items on quality menu
@@ -774,7 +774,7 @@ var gca_forge = {
 					return;
 				}
 
-				// Constract notification
+				// Construct notification
 				let info = document.createElement('div');
 				info.className = 'show-item-quality';
 				info.appendChild(document.createTextNode('Horreum material change')); // TODO - add locale
@@ -858,7 +858,7 @@ var gca_forge = {
 				this.updateItemLink(data);
 			});
 
-			// Show links to gladiatus tools
+			// Show links to Gladiatus tools
 			this.attribution();
 		},
 

@@ -88,7 +88,7 @@ var gca_training = {
 				skill.cost = parseInt(skill.bar.parentNode.getElementsByClassName("training_costs")[0].textContent.replace(/\./g,""));
 			}
 
-			// Calculate discound
+			// Calculate discount
 			this.discount = Math.round(100 - (this.skills.strength.cost * 100 / Math.pow(this.skills.strength.base - 4, this.skills.strength.coeff)));
 			// Save default discount
 			this.initial_discount = this.discount;
@@ -701,7 +701,6 @@ var gca_training = {
 		// Init elements
 		skillAfterUpgradeInit : function(name){
 			// Get data
-			//var stats = this.stats[name];
 			var skill = this.self.data.skills[name];
 
 			// Create data
@@ -876,7 +875,7 @@ var gca_training = {
 				// Heal gain
 					let healGain = Math.round(totalChange*4/5*100)/100;
 					write_breakdown_stat(0,"Heal: +"+Math.floor(healGain)+" (+"+healGain+")");
-				// Critical Healling Chance
+				// Critical Healing Chance
 					let player_level = parseInt(document.getElementById("header_values_level").textContent);
 					if(Math.round((this.specialStats["critical_healing"].item_points+Math.floor(totalOld/5))*52/(player_level-8)/7)>=90){
 						write_breakdown_stat(2,"Crit heal: MAX");

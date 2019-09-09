@@ -84,7 +84,7 @@ var gca_messages = {
 		list : [],
 		// Messages by type
 		type : {
-			// Unknowned messages
+			// Unknown messages
 			"other" : [],
 
 			// Messages
@@ -158,7 +158,7 @@ var gca_messages = {
 				}
 
 				// Auction item won
-				// The anounsment has the same title and body
+				// The announcement has the same title and body
 				else if(message.title.textContent == message.body.textContent){
 					message.type = "news";
 				}
@@ -231,7 +231,7 @@ var gca_messages = {
 					this.template.guild_battle(message);
 					break;
 
-				// Unknowned messages
+				// Unknown messages
 				case "other":
 					break;
 			}
@@ -322,7 +322,7 @@ var gca_messages = {
 	// Unread messages
 	unread : {
 
-		// Last readed
+		// Last read
 		last : 0,
 
 		// Show unread messages
@@ -353,7 +353,7 @@ var gca_messages = {
 		checkMessage : function(message){
 			// If unread message
 			if(this.getId(message) > this.last)
-				// Hilight unread message
+				// Highlight unread message
 				message.element.className += " gca_messages_unread_message";
 		},
 
@@ -875,7 +875,7 @@ var gca_messages = {
 			var messages = self.messages.list;
 			// If messages
 			if(messages.length > 1){
-				// Get previus date
+				// Get previous date
 				var prev_date = self.messages.parseDate(messages[0]).day;
 				// Next date variable
 				var next_date;

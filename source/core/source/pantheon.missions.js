@@ -33,7 +33,7 @@ var gca_pantheon_missions = {
 		for (let i = 0; i < completed.length; i++) {
 			// Get title
 			var title = completed[i].parentNode.getElementsByClassName('missions_slot_title')[0].textContent;
-			// Get Url parametes
+			// Get Url parameters
 			var parameters = gca_getPage.parameters(completed[i].href);
 			// Add info on list
 			info.push({
@@ -42,7 +42,7 @@ var gca_pantheon_missions = {
 			});
 		}
 
-		// Get Comtent
+		// Get Content
 		var content = document.getElementById("content");
 
 		// Create Wrapper

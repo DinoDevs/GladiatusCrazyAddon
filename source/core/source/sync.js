@@ -77,8 +77,6 @@ var gca_sync = {
 		if (!player.match(/^\d+$/)) return false;
 		let securehash = gca_getPage.parameter('s');
 		if (!securehash.match(/^[0-9a-z]+$/)) return false;
-		//let sessionid = gca_getPage.parameter('i');
-		//if (!sessionid.match(/^[0-9a-z]+$/)) return;
 		let name = document.getElementsByClassName('playername');
 		if (!name.length) name = document.getElementsByClassName('playername_achievement');
 		if (!name.length) return false;
@@ -87,8 +85,7 @@ var gca_sync = {
 		return {
 			player : player,
 			name : name,
-			securehash : securehash,
-			//sessionid : sessionid
+			securehash : securehash
 		};
 	}
 };

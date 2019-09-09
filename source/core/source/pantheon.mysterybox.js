@@ -1,5 +1,5 @@
 /*
- * Addon Pantheon Mysterybox Script
+ * Addon Pantheon Mystery box Script
  * Author: DarkThanos, GreatApo
  */
 
@@ -20,7 +20,7 @@ var gca_pantheon_mysterybox = {
 		gca_tools.create.settingsLink("pantheon");
 	},
 
-	// Open many mysteryboxes
+	// Open many mystery boxes
 	openManyMysteryboxes : {
 		// Flags
 		running : false,
@@ -28,7 +28,7 @@ var gca_pantheon_mysterybox = {
 
 		// Inject
 		inject : function(){
-			// Check if ponts
+			// Check if points
 			if(document.getElementsByClassName("mysterybox_count").length < 1)
 				return;
 
@@ -236,7 +236,7 @@ var gca_pantheon_mysterybox = {
 		valueTable : {
 			token : {
 
-				// Mobilisation
+				// Mobilization
 				// game/assets/img/premium/token/5.jpg
 				"5" : {rubies : 3},
 

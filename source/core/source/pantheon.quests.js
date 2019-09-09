@@ -31,7 +31,7 @@ var gca_pantheon_quests = {
 
 	// Quests Reorder
 	quests_reorder : function(){
-		// Check if contentboard exist
+		// Check if content board exist
 		if(document.getElementsByClassName('contentboard_start').length != 1)
 			return;
 
@@ -120,7 +120,7 @@ var gca_pantheon_quests = {
 		
 	},
 
-	// Save quest infomations
+	// Save quest information
 	save_quest_info : function(){
 		// Check if quest_header_accepted exist
 		var quest_header = document.getElementById("quest_header_accepted")

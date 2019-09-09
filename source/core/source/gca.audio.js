@@ -121,7 +121,7 @@ var gca_audio = {
 			obj : false
 		};
 
-		// Custom prefereces
+		// Custom preferences
 		if (obj) {
 			// External or Internal url
 			if (obj.url) {

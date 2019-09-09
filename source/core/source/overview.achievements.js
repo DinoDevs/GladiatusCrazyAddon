@@ -68,7 +68,7 @@ var gca_overview_achievements = {
 			// Get title
 			var totalPoints = document.getElementsByClassName('achievement_header_points')[0];
 
-			// Create persent text
+			// Create percent text
 			var text = document.createElement('small');
 			text.className = "gca_achievement_percent_text";
 			text.textContent = "(" + Math.floor(percent) + "%)";
@@ -88,13 +88,13 @@ var gca_overview_achievements = {
 				return [0,0];
 			}
 
-			// Total category achivements
+			// Total category achievements
 			var total = 0;
 			for (var i = 1; i < 6; i++) {
 				total += document.getElementById('cat' + category).getElementsByClassName('achievement_detail_medal' + i).length;
 			}
 
-			// Completed category achivements
+			// Completed category achievements
 			var competed = document.getElementById('cat' + category).getElementsByClassName('active').length;
 
 			// Completed percent
@@ -105,7 +105,7 @@ var gca_overview_achievements = {
 			var bar = this.createProgressBar(percent);
 			document.getElementById('CAT_' + category).parentNode.insertBefore(bar, document.getElementById('CAT_' + category).nextSibling);
 
-			// Create persent text
+			// Create percent text
 			var text = document.createElement('small');
 			text.className = "gca_achievement_percent_text";
 			text.textContent = "(" + Math.floor(percent) + "%)";

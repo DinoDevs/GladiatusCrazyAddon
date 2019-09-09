@@ -10,7 +10,7 @@ var gca_magus = {
 		if(!document.getElementById("content"))
 			return;
 		
-		// Fade unimprovable items
+		// Fade non improvable items
 		(gca_options.bool("magus","fade_unimprovable_items") &&
 			this.fadeUnimprovableItems.inject());
 
@@ -22,11 +22,11 @@ var gca_magus = {
 		gca_tools.create.settingsLink("magus");
 	},
 
-	// Fade unaffordable items
+	// Fade non affordable items
 	fadeUnimprovableItems : {
 		inject : function() {
 			// Recheck items on item move
-			gca_tools.event.request.onAjaxResponce(() => {
+			gca_tools.event.request.onAjaxResponse(() => {
 				this.check();
 			});
 			// Add event on bag open

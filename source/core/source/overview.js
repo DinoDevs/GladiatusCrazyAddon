@@ -133,7 +133,7 @@ var gca_overview = {
 
 			// If costume found
 			else{
-				// Get custome code
+				// Get costume code
 				costume = [
 					// Type
 					parseInt(costume[1], 10),
@@ -337,7 +337,7 @@ var gca_overview = {
 						}
 					}
 
-					// Items enchanced stats
+					// Items enhanced stats
 					else {
 						match = line.match(new RegExp("([\\+-]\\d+) " + stat.name, "i"));
 						if (match) {
@@ -430,7 +430,7 @@ var gca_overview = {
 				])
 			);
 
-			// Save element for layter use
+			// Save element for later use
 			this.drop_area = drop_area;
 
 			// Add event
@@ -647,7 +647,7 @@ var gca_overview = {
 			gca_tools.setTooltip(this.drop_area, JSON.stringify(tooltip));
 		},
 
-		// Calculate repaire costs
+		// Calculate repair costs
 		getRepairCost : function() {
 			return gca_tools.strings.insertDots(parseInt(document.getElementById('header_values_level').textContent) * 10 + 10, 10);
 		},
@@ -702,10 +702,10 @@ var gca_overview = {
 				this.caps[2] = true;
 				
 				// Attach event on request response
-				gca_tools.event.request.onAjaxResponce(function(r){
-					// If the response changes the tooplit
+				gca_tools.event.request.onAjaxResponse(function(r){
+					// If the response changes the tooltip
 					if (r.hasOwnProperty('data') && r.data.hasOwnProperty('status') && r.data.status.hasOwnProperty('panzer') && r.data.status.panzer.hasOwnProperty('tooltip') ){
-						// Apply the new tooplit
+						// Apply the new tooltip
 						gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(r.data.status.panzer.tooltip));
 						// Call this function
 						gca_overview.blockAvoidCaps.calculateCaps();
@@ -729,7 +729,7 @@ var gca_overview = {
 					}
 					i++;
 				}
-				// Apply the changed tooplit
+				// Apply the changed tooltip
 				gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(parseDataset));
 			
 			// Show Critical hit caps
@@ -748,7 +748,7 @@ var gca_overview = {
 					}
 					i++;
 				}
-				// Apply the changed tooplit
+				// Apply the changed tooltip
 				gca_tools.setTooltip(document.getElementById("char_schaden_tt"),JSON.stringify(parseDataset));
 			
 			// Show Critical heal caps
@@ -766,7 +766,7 @@ var gca_overview = {
 					}
 					i++;
 				}
-				// Apply the changed tooplit
+				// Apply the changed tooltip
 				gca_tools.setTooltip(document.getElementById("char_healing_tt"),JSON.stringify(parseDataset));
 		}
 	},
@@ -834,12 +834,12 @@ var gca_overview = {
 			if(callback && typeof callback == "function")
 				gca_tools.event.addListener("overviewFoodLifeChange", callback);
 
-			// If not already setuped
+			// If not already setup
 			if(!this.keepLifeDataUpdated_active){
 				// Set it done
 				this.keepLifeDataUpdated_active = true;
 				// Attach event on request response
-				gca_tools.event.request.onAjaxResponce(function(r){
+				gca_tools.event.request.onAjaxResponse(function(r){
 					// Parse life
 					gca_overview.foodStuff.parseLifeRequest(r);
 					// Fire event
@@ -903,7 +903,7 @@ var gca_overview = {
 				gca_overview.foodStuff.patchItems();
 			});
 			
-			// Attach on item grag event
+			// Attach on item drag event
 			gca_tools.event.item.onDrag(function(item){
 				// If is food
 				if(gca_overview.foodStuff.isItemFood(item)){
@@ -936,7 +936,7 @@ var gca_overview = {
 				let vitality = this.getItemVitality(items[i]);
 				// If item is food
 				if(vitality != false){
-					// If possitive vitality
+					// If positive vitality
 					if(vitality > 0){
 						// Save vitality
 						items[i].dataset.vitality = vitality;
@@ -996,7 +996,7 @@ var gca_overview = {
 			this.custom_elements.info.textContent = "+" + gain + "%";
 			// Calculate max healing
 			var lifeLost = 100 - this.life[2];
-			// Frame gain inside the posible
+			// Frame gain inside the possible
 			gain = ((lifeLost > gain) ? gain : lifeLost);
 			// Show gain bar
 			this.custom_elements.bar.style.width = gain + "%";
@@ -1049,7 +1049,7 @@ var gca_overview = {
 			if(this.life[2] == 100)
 				return;
 
-			// Set max distanse
+			// Set max distance
 			var distance = this.life[1]+1;
 			var food = null;
 
@@ -1061,13 +1061,13 @@ var gca_overview = {
 				let vitality = this.getItemVitality(items[i]);
 				// If item is food
 				if(vitality != false){
-					// If possitive vitality
+					// If positive vitality
 					if(vitality > 0){
 						// Calculate how close to 100% it is
 						let thisDistance = Math.abs(this.life[1] - (this.life[0] + vitality));
 						// If closer than the last one
 						if(thisDistance < distance){
-							// We have a new canditate
+							// We have a new candidate
 							distance = thisDistance;
 							food = items[i];
 						}
@@ -1115,7 +1115,7 @@ var gca_overview = {
 				let vitality = this.getItemVitality(items[i]);
 				// If item is food
 				if(vitality != false){
-					// If possitive vitality
+					// If positive vitality
 					if(vitality > 0){
 						// If overfeed
 						if(this.life[1] - this.life[0] < vitality){
@@ -1156,7 +1156,7 @@ var gca_overview = {
 					let vitality = self.foodStuff.getItemVitality(items[i]);
 					// If item is food
 					if(vitality != false){
-						// If possitive vitality
+						// If positive vitality
 						if(vitality > 0){
 							items[i].style.opacity = 0.6;
 							items[i].style.webkitFilter = 'drop-shadow(black 0px 0px 1px) drop-shadow(red 0px 0px 3px) drop-shadow(red 0px 0px 3px)';
@@ -1349,7 +1349,7 @@ var gca_overview = {
 			tooltip[0].push(["...", "#DDD;text-align:right;"]);
 			gca_tools.setTooltip(buff, JSON.stringify(tooltip));
 
-			// Interval varisble
+			// Interval variable
 			var interval = setInterval(() => {
 				this.updateTimer(buff, interval);
 			}, 1000);
@@ -1484,7 +1484,7 @@ var gca_overview = {
 				td.appendChild(btn);
 				tr.appendChild(td);
 
-				// Dont take with you
+				// Don't take with you
 				td = document.createElement("td");
 				td.style.width = "30px";
 				td.style.textAlign = "center";

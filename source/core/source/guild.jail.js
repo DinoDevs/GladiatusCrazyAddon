@@ -91,9 +91,9 @@ var gca_guild_jail = {
 				}
 
 				// Update info using the database
-				// If matching data, updata
+				// If matching data, update
 				if(this.jail_dataBase[lvl] && this.jail_dataBase[lvl].name){
-					// Update prioner image
+					// Update prisoner image
 					info['img'] = this.jail_dataBase[lvl].image;
 				// If data have many prisoners
 				}else if(this.jail_dataBase[lvl]){
@@ -101,7 +101,7 @@ var gca_guild_jail = {
 					for(var label in this.jail_dataBase[lvl]){
 						// if name match
 						if( name.indexOf(label)>=0 ){
-							// Update prioner image
+							// Update prisoner image
 							info['img'] = this.jail_dataBase[lvl][label].image;
 						}
 					}

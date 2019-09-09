@@ -213,7 +213,7 @@ var gca_tools = {
 	// -------------------------------------------------- //
 	setTooltip : function(el, data){
 		el.dataset.tooltip = data;
-		// If function is availiable
+		// If function is available
 		if(typeof window.tooltips != "undefined"){
 			window.tooltips.set(el, data);
 		}
@@ -694,8 +694,8 @@ var gca_tools = {
 	// event.clearEventListeners(name)
 	// event.item.onDrag(callback)
 	// event.item.onDrop(callback)
-	// event.request.onBeforeAjaxResponce(callback)
-	// event.request.onAjaxResponce(callback)
+	// event.request.onBeforeAjaxResponse(callback)
+	// event.request.onAjaxResponse(callback)
 	// event.bag.waitBag(callback)
 	// event.bag.onBagOpen(callback)
 	// event.onExit.init()
@@ -853,15 +853,15 @@ var gca_tools = {
 			},
 
 			// on Before Callback data
-			beforeAjaxResponce : {
+			beforeAjaxResponse : {
 				list : []
 			},
 			// on Before Callback
-			onBeforeAjaxResponce : function(callback){
+			onBeforeAjaxResponse : function(callback){
 				if(!this.loaded)
 					this.init();
 				// Set an injector
-				this.beforeAjaxResponce.list.push(callback);
+				this.beforeAjaxResponse.list.push(callback);
 			},
 
 			// Sent Ajax wrapper
@@ -874,8 +874,8 @@ var gca_tools = {
 						elem : elem
 					};
 
-					// Before responce
-					var before = gca_tools.event.request.beforeAjaxResponce;
+					// Before response
+					var before = gca_tools.event.request.beforeAjaxResponse;
 					if(before.list.length){
 						for(var i = 0; i < before.list.length; i++){
 							before.list[i](arg);
@@ -888,16 +888,16 @@ var gca_tools = {
 					}
 
 					// Fire event
-					gca_tools.event.fire('ajaxresponce', {elem : arg.elem, data : arg.data});
+					gca_tools.event.fire('ajaxresponse', {elem : arg.elem, data : arg.data});
 				}, callbackFail, option);
 			},
 
 			// Ajax Event wrapper
-			onAjaxResponce : function(callback){
+			onAjaxResponse : function(callback){
 				// Init it
 				this.init();
 				// Set a listener
-				gca_tools.event.addListener('ajaxresponce', callback);
+				gca_tools.event.addListener('ajaxresponse', callback);
 			}
 		},
 
@@ -924,7 +924,7 @@ var gca_tools = {
 					var events = jQuery._data( document.getElementById("inventory_nav"), "events").click[0];
 					that.original.openBag = events.handler;
 
-					// Overide
+					// Override
 					events.handler = function(){
 						// Call original handler
 						that.original.openBag.call(this);

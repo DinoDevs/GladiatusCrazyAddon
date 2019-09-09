@@ -77,7 +77,7 @@ var gca_guild_medic = {
 			tmp = charstats_value[3];
 			tmp.textContent = afterPersent + '%';
 
-			// Add tolltips
+			// Add tooltips
 			gca_tools.setTooltip(charstats_bg[0], JSON.stringify([[[
 				[
 					document.getElementById('char_leben_tt').getElementsByClassName('charstats_text')[0].textContent,

@@ -75,7 +75,7 @@ var gca_settings = {
 
 			// Subtitle
 			let suptitle = document.createElement("div");
-			suptitle.textContent = "Making gladiatus great since 2010!";
+			suptitle.textContent = "Making Gladiatus great since 2010!";
 			box.appendChild(suptitle);
 
 			// Create letter
@@ -279,7 +279,7 @@ var gca_settings = {
 			group.appendChild(wrapper);
 			
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Github : '));
+			wrapper.appendChild(document.createTextNode('GitHub : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-github'), gca_links.get('addon-github'), {target: '_blank'}));
 			group.appendChild(wrapper);
 			
@@ -328,7 +328,7 @@ var gca_settings = {
 			group.appendChild(wrapper);
 
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Discord Server of Gladitatus Reddit : '));
+			wrapper.appendChild(document.createTextNode('Discord Server of Gladiatus Reddit : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('reddit-discord'), gca_links.get('reddit-discord'), {target: '_blank'}));
 			group.appendChild(wrapper);
 
@@ -589,7 +589,7 @@ var gca_settings = {
 					// Pray Shortcut
 					"pray_shorcut" : true,
 				
-				// Centurio & PowerUps timers
+				// Centurion & PowerUps timers
 				"centurio_powerups_timers" : false,
 				
 				// Show item durability
@@ -755,11 +755,11 @@ var gca_settings = {
 				"missions_show_completed" : true,
 				// Show gods points percent
 				"gods_show_points_percent" : true,
-				// Open many mysteryboxes button
+				// Open many mystery boxes button
 				"open_many_mysteryboxes" : true,
-				// Show mysterybox reward's value in rubies
+				// Show mystery box reward's value in rubies
 				"show_mysterybox_rewards_rubies" : true,
-				// Show mysterybox reward's owned number
+				// Show mystery box reward's owned number
 				"show_mysterybox_rewards_owned" : true
 			},
 
@@ -803,11 +803,11 @@ var gca_settings = {
 			"forge" : {
 				// Packages & market shortcuts for each material need (forge/repair)
 				"material_links" : true,
-				// Show Prefix/Sufix/Base levels
+				// Show Prefix/Suffix/Base levels
 				"show_levels" : true,
 				// Show materials names
 				"horreum_materials_names" : true,
-				// Rmember options
+				// Remember options
 				"horreum_remember_options" : true,
 				// Select material with click
 				"horreum_select_meterials" : true
@@ -1303,7 +1303,7 @@ var gca_settings = {
 			var that = this;
 			// Catch history events
 			window.addEventListener("popstate", function (event) {
-				// Previus tab
+				// Previous tab
 				if(event.state){
 					var tabname = event.state.category;
 					// Open Global tab
@@ -1370,12 +1370,12 @@ var gca_settings = {
 				menu.appendChild(li);
 				li.addEventListener('click', (function(tabname, title, that){
 					return function(){
-						// Get url
+						// Get URL
 						var url = gca_getPage.parameters();
 						url.category = tabname;
 						url.gcamod = "settings";
 						delete url.sh;
-						// Change Url
+						// Change URL
 						window.history.pushState({category : tabname}, "GCA - Settings", gca_getPage.link(url));
 
 						that.openTab(tabname, title);
@@ -1413,7 +1413,7 @@ var gca_settings = {
 
 		tabItems : null,
 		createTab : function(name, titleText, scheme){
-			// Get sceme options
+			// Get scheme options
 			var scheme_options = {
 				save_button : true
 			};
@@ -1468,7 +1468,7 @@ var gca_settings = {
 		},
 
 		createItem : function(id, scheme, container){
-			// Costruck known type
+			// Construct known type
 			switch(scheme.type){
 				case "boolean": return this.construct.boolean(id, scheme, container);
 				case "integer": return this.construct.integer(id, scheme, container);
@@ -2098,7 +2098,7 @@ var gca_settings = {
 				this.loadHash();
 				return;
 			}
-			// Load qrcode library
+			// Load QRcode library
 			gca_tools.load.script('libraries/jquery.qrcode.min.js', () => {
 				this.scriptLoaded = true;
 				this.loadHash();
@@ -2114,8 +2114,8 @@ var gca_settings = {
 			jQuery.ajax({
 				method: "GET",
 				url: 'main.php',
-				success : (responce) => {
-					let match = responce.match(/socket\.emit\('authenticate',\s*\{\s*session:\s*'([0-9a-f]+)',\s*id:\s*(\d+)\s*\}\);/i);
+				success : (response) => {
+					let match = response.match(/socket\.emit\('authenticate',\s*\{\s*session:\s*'([0-9a-f]+)',\s*id:\s*(\d+)\s*\}\);/i);
 					if (!match) {
 						this.wrapper.textContent = gca_locale('general', 'error');
 						return;

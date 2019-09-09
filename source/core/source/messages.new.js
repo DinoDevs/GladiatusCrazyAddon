@@ -293,7 +293,7 @@ var gca_new_message = {
 						}
 					});
 					
-					// Get online family memebers
+					// Get online family members
 					jQuery.get(gca_getPage.link({"mod":"overview","submod":"buddylist"}), (content) => {
 						// Match All active players
 						var online_players = content.match(/<tr>\s*<td[^>]*>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+"[^>]*>([^<]+)<\/a>\s*<\/td>\s*<td><a href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"[^>]*>\s*\[([^\]]+)\]\s*<\/a><\/td>\s*<td>(\d+)<\/td>\s*<td><span style="color:\s*([^;]+);[^"]*" title="on">([^<]*)</mg);

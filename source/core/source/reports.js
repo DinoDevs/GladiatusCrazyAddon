@@ -307,7 +307,7 @@ var gca_reports = {
 					}
 				}
 				
-				// Error - not fould loot
+				// Error - not found loot
 				if(tooltips.length == 0){
 					// Display error message
 					gca_tools.setTooltip(icon, JSON.stringify([[[title, "white"], [gca_locale.get("general", "error"), "white"]]]));
@@ -388,7 +388,7 @@ var gca_reports = {
 		}
 	},
 
-	// Save reports infomation
+	// Save reports information
 	save_reports_info : function(){
 		// Check if section exist
 		var section = document.getElementById('content').getElementsByTagName('section');
@@ -406,7 +406,7 @@ var gca_reports = {
 		if (table.getElementsByClassName('icon_defense').length > 0) {
 			var reports = table.getElementsByTagName('tr');
 			for (let i = 1; i < reports.length; i++) {
-				// If defence attack
+				// If defense attack
 				if(reports[i].getElementsByClassName('icon_defense').length){
 					// Cross server
 					if (time[1] == false && reports[i].getElementsByTagName('a')[0].textContent.match(/\s+\(\d+\)/i)) {

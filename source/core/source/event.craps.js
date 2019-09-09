@@ -20,7 +20,7 @@ var gca_craps = {
 		this.color_free_toss();
 	},
 
-	// Save craps infomations
+	// Save craps infomation
 	save_craps_info : function(){
 		// Check if crapsCooldown exist
 		var craps_cooldown = document.getElementById("crapsCooldown")

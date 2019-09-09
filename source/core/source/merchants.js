@@ -10,7 +10,7 @@ var gca_merchants = {
 		if(!document.getElementById("content"))
 			return;
 		
-		// Fade unaffordable items
+		// Fade non affordable items
 		(gca_options.bool("merchants","fade_unaffordable_items") &&
 			this.fadeUnaffordableItems.inject());
 
@@ -22,7 +22,7 @@ var gca_merchants = {
 		(gca_options.bool("global","merchants_timer") &&
 			this.save_merchants_info());
 
-		// Fade unaffordable items
+		// Fade non affordable items
 		(gca_options.bool("merchants","show_shop_info") &&
 			this.containerItemsInfo.prepare());
 
@@ -34,13 +34,13 @@ var gca_merchants = {
 		gca_tools.create.settingsLink("merchants");
 	},
 
-	// Fade unaffordable items
+	// Fade non affordable items
 	fadeUnaffordableItems : {
 		inject : function() {
 			// Save instance
 			var that = this;
 			// Recheck items on item move
-			gca_tools.event.request.onAjaxResponce(function(){
+			gca_tools.event.request.onAjaxResponse(function(){
 				that.check();
 			});
 			// Run for the first time
@@ -98,7 +98,7 @@ var gca_merchants = {
 		}
 	},
 
-	// Save merchants infomations
+	// Save merchants information
 	save_merchants_info : function(){
 		// Check for errors
 		if(!document.getElementById("shop") || !document.getElementById("shop_nav"))
@@ -150,7 +150,7 @@ var gca_merchants = {
 			this.refresh();
 
 			// On item move
-			gca_tools.event.request.onAjaxResponce((data) => {
+			gca_tools.event.request.onAjaxResponse((data) => {
 				if (
 					data.hasOwnProperty("data") && data.data &&
 					data.data.hasOwnProperty("to") && data.data.to &&
@@ -208,7 +208,7 @@ var gca_merchants = {
 			}
 
 			// On item move
-			gca_tools.event.request.onAjaxResponce((data) => {
+			gca_tools.event.request.onAjaxResponse((data) => {
 				if (
 					data.hasOwnProperty("data") && data.data &&
 					data.data.hasOwnProperty("to") && data.data.to &&

@@ -36,7 +36,7 @@ var gca_guild = {
 				var guildGold = document.getElementById('mainbox').getElementsByTagName('section')[0].textContent.match(/[0-9.]+/)[0];
 				guildGold = gca_tools.strings.parseGold(guildGold);
 
-				// Show defference for each building
+				// Show deference for each building
 				var builingsGold = document.getElementsByClassName('guild_gold');
 				for (var i = builingsGold.length - 1; i >= 0; i--) {
 					this.perBuilding(builingsGold[i], guildGold);

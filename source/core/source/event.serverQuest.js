@@ -12,7 +12,7 @@ var gca_server_quest = {
 		
 		// Server Event highscore
 		if (gca_section.submod == 'serverQuestHighscore') {
-			this.hilightGuildMates();
+			this.highlightGuildMates();
 		}
 		// Server Event Enemies
 		else if(gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc'))){
@@ -24,7 +24,7 @@ var gca_server_quest = {
 		}
 	},
 
-	// Save server quest infomations
+	// Save server quest infomation
 	save_info : function(){
 		// Server time
 		var availableIn = gca_tools.time.server();
@@ -94,7 +94,7 @@ var gca_server_quest = {
 		//if(type == 3) points --;
 		if(points < 0) points = 0;
 
-		// Server quests availiable in 5 mins
+		// Server quests available in 5 mins
 		var availableIn = gca_tools.time.server() + gca_tools.time.speedvert(5*60*1000) + 1000;
 
 		// Save data to be updated (report page will update them)
@@ -109,8 +109,8 @@ var gca_server_quest = {
 		//gca_data.section.set("timers", 'server_quest_last_date', gca_tools.time.serverDateString());
 	},
 
-	// Hilight guild mates
-	hilightGuildMates : function() {
+	// Highlight guild mates
+	highlightGuildMates : function() {
 		// Check if correct page
 		if (!document.getElementById('highscore_range')) return;
 

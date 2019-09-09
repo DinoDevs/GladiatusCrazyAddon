@@ -66,7 +66,7 @@ var gca_settings_character = {
 
 		loaded : false,
 		show : function(frameDocument) {
-			// If alredy loaded
+			// If already loaded
 			if (this.loaded) {
 				return;
 			}
@@ -92,7 +92,7 @@ var gca_settings_character = {
 			document.getElementById('content').appendChild(preview);
 
 			// Remove frame
-			// There is a bug if you dont wait ...
+			// There is a bug if you don't wait ...
 			setTimeout(() => {
 				this.frame.src = 'about:blank';
 				this.frame.parentNode.removeChild(this.frame);

@@ -272,7 +272,7 @@ var gca_auction = {
 			url:  itemform.getAttribute('action'),
 			data: data,
 			success: function(content){
-				// Remove spiner
+				// Remove spinner
 				itemform.removeChild(spinner);
 
 				// Get status
@@ -331,7 +331,7 @@ var gca_auction = {
 		// Get auction element
 		var auction = document.getElementById("auction_table");
 
-		// If no autction or many items, return
+		// If no auction or not many items, return
 		if(!auction || items <= 5) return;
 
 		// Add style

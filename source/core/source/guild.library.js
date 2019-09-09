@@ -56,7 +56,7 @@ var gca_guild_library = {
 				// Get recipe gold
 				let recepGold = gca_tools.strings.parseGold(recipes[i].getElementsByTagName('td')[1].textContent);
 
-				// If not enought gold or is active
+				// If not enough gold or is active
 				if(parseInt(recipes[i].getElementsByTagName('td')[3].getElementsByTagName('span')[0].dataset.tickerTimeLeft, 10) >= 0 || recepGold > guildGold){
 					// Disable recipe
 					recipes[i].style = 'opacity:0.7;';

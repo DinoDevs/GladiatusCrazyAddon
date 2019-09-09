@@ -187,9 +187,9 @@ var gca_packages = {
 				this.apply();
 
 				// On new items reapply
-				gca_tools.event.request.onAjaxResponce(function(responce){
+				gca_tools.event.request.onAjaxResponse(function(response){
 					// If package load request
-					if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+					if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
 						that.apply();
 				});
 				// On packages page load
@@ -222,9 +222,9 @@ var gca_packages = {
 				this.apply();
 
 				// On new items reapply
-				gca_tools.event.request.onAjaxResponce(function(responce){
+				gca_tools.event.request.onAjaxResponse(function(response){
 					// If package load request
-					if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+					if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
 						that.apply();
 				});
 				// On packages page load
@@ -274,16 +274,16 @@ var gca_packages = {
 			// Apply pagination shadow
 			this.paginationApply(document);
 
-			gca_tools.event.request.onBeforeAjaxResponce((responce) => {
+			gca_tools.event.request.onBeforeAjaxResponse((response) => {
 				// If package load request
-				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
+				if(response.data.newPackages && response.data.pagination && response.data.worthTotal){
 					// Parse code
 					var wrapper = document.createElement("div");
-					wrapper.innerHTML = responce.data.pagination;
+					wrapper.innerHTML = response.data.pagination;
 					// Parse pagination
 					this.paginationApply(wrapper);
 					// Patch code
-					responce.data.pagination = wrapper.innerHTML;
+					response.data.pagination = wrapper.innerHTML;
 				}
 			});
 		},
@@ -334,15 +334,15 @@ var gca_packages = {
 			var pages = gca_options.get("packages", "pages_to_load");
 			// Patch ajax url
 			this.patchAjaxUrl(pages);
-			// Patch ajax responce
-			this.patchAjaxResponce();
+			// Patch ajax response
+			this.patchAjaxResponse();
 			// Load pages
 			this.loadPages(page, pages, urlParams, self.info);
 		},
 
 		// Get Page
 		getPage : function(){
-			// Get cerrent page from paginator
+			// Get current page from paginator
 			var page = document.getElementsByClassName("paging_numbers_current");
 			
 			// Check if other page exist
@@ -386,48 +386,48 @@ var gca_packages = {
 			window.ajaxUrl = gca_getPage.link(url, 'ajax.php');
 		},
 
-		// Patch Ajax Responce
-		patchAjaxResponce : function(){
+		// Patch Ajax Response
+		patchAjaxResponse : function(){
 			// Save scope
 			var that = this;
 
 			// Save Items
 			jQuery(".packageItem > [data-container-number]").each(function(){
-				that.patchAjaxResponceItems.push( -1 * jQuery(this).data("containerNumber") );
+				that.patchAjaxResponseItems.push( -1 * jQuery(this).data("containerNumber") );
 			})
 
-			// Before Responce
-			gca_tools.event.request.onBeforeAjaxResponce(function(responce){
+			// Before Response
+			gca_tools.event.request.onBeforeAjaxResponse(function(response){
 				// If package load request
-				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+				if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
 					// Handle items
-					that.patchAjaxResponceHandler(responce);
+					that.patchAjaxResponseHandler(response);
 			});
 		},
 
 		// Handle
-		patchAjaxResponceItems : [],
-		patchAjaxResponceHandler : function(responce){
+		patchAjaxResponseItems : [],
+		patchAjaxResponseHandler : function(response){
 			// Save scope
 			var that = this;
 
 			// Remove empty boxes
 			jQuery(".packageItem > [data-container-number]:not(:has(div))").each(function(){
-				var index = that.patchAjaxResponceItems.indexOf(-1 * jQuery(this).data("containerNumber"));
+				var index = that.patchAjaxResponseItems.indexOf(-1 * jQuery(this).data("containerNumber"));
 				if(index > -1){
-					that.patchAjaxResponceItems.splice(index, 1);
+					that.patchAjaxResponseItems.splice(index, 1);
 				}
 			})
 
 			// Add items on list
-			for(var i = this.patchAjaxResponceItems.length - 1; i >= 0; i--){
-				var index = responce.data.newPackages.indexOf(this.patchAjaxResponceItems[i]);
+			for(var i = this.patchAjaxResponseItems.length - 1; i >= 0; i--){
+				var index = response.data.newPackages.indexOf(this.patchAjaxResponseItems[i]);
 				if(index == -1){
-					responce.data.newPackages.unshift( this.patchAjaxResponceItems[i] );
+					response.data.newPackages.unshift( this.patchAjaxResponseItems[i] );
 				}
 			}
 
-			JSON.stringify(responce.data.newPackages);
+			JSON.stringify(response.data.newPackages);
 		},
 
 		// Load more pages
@@ -490,12 +490,12 @@ var gca_packages = {
 			// Get packets
 			jQuery.get(gca_getPage.link(page), (content) => {
 				// Get page number
-				var responce_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
-				if(responce_page) responce_page = parseInt(responce_page[1], 10);
-				else responce_page = -1;
+				var response_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
+				if(response_page) response_page = parseInt(response_page[1], 10);
+				else response_page = -1;
 
-				// Validate responce page
-				if(page.page != responce_page) {
+				// Validate response page
+				if(page.page != response_page) {
 					this.removeGhosts(page.page);
 					return;
 				}
@@ -545,7 +545,7 @@ var gca_packages = {
 			);
 
 			// Save Item
-			this.patchAjaxResponceItems.push( -1 * item.find("[data-container-number]").data("containerNumber") );
+			this.patchAjaxResponseItems.push( -1 * item.find("[data-container-number]").data("containerNumber") );
 
 			// If Item shadow
 			//(gca_options.bool("global","item_shadow") && 
@@ -597,9 +597,9 @@ var gca_packages = {
 					this.loadData();
 
 					// On new items reapply
-					gca_tools.event.request.onAjaxResponce(function(responce){
+					gca_tools.event.request.onAjaxResponse(function(response){
 						// If package load request
-						if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+						if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
 							that.showIsLearned();
 					});
 
@@ -697,9 +697,9 @@ var gca_packages = {
 			this.apply();
 
 			// On new items reapply
-			gca_tools.event.request.onAjaxResponce(function(responce){
+			gca_tools.event.request.onAjaxResponse(function(response){
 				// If package load request
-				if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal)
+				if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
 					that.apply();
 			});
 			// On packages page load
@@ -919,7 +919,7 @@ var gca_packages = {
 			}
 
 			// On new items reapply
-			gca_tools.event.request.onAjaxResponce(() => {
+			gca_tools.event.request.onAjaxResponse(() => {
 				if (active_rules_running) {
 					let items = this.applyFilter(active_rules);
 					info.textContent = gca_locale.get("packages", "advance_filters_found", {items : items.length});

@@ -89,7 +89,7 @@ var gca_global = {
 		// Advance main menu - submenu click to change
 		(gca_options.bool("global","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.apply());
-		// Bind auction last seach
+		// Bind auction last search
 		(!this.isTraveling && gca_options.bool("auction","save_last_state") && 
 			this.display.auctionLoadLastState());
 
@@ -160,7 +160,7 @@ var gca_global = {
 		(!this.isTraveling && gca_options.bool("global","forge_timers") &&
 			this.display.forge_timer());
 		
-		// Centurio & PowerUps timers
+		// Centurion & PowerUps timers
 		(gca_options.bool("global","centurio_powerups_timers") &&
 			this.centurio_days.init());
 		
@@ -229,7 +229,7 @@ var gca_global = {
 		else if(document.getElementById('submenu1') == null){
 			this.isTraveling = true;
 		}
-		// Otherwise Check if is Underwold
+		// Otherwise Check if is Underworld
 		else if(document.getElementById('wrapper_game').className == 'underworld'){
 			this.isInUnderworld = true;
 		}
@@ -337,7 +337,7 @@ var gca_global = {
 			link.setAttribute('target', '_blank');
 			link.textContent = 'Unofficial Reddit';
 			
-			// Create a link seperator
+			// Create a link separator
 			wrapper.appendChild(document.createTextNode(" | "));
 			// Insert link
 			wrapper.appendChild(link);
@@ -572,7 +572,7 @@ var gca_global = {
 					if(!life) life = [0, 0, 0];
 
 					var info = [parseInt(life[1], 10), parseInt(life[2], 10), parseInt(life[3], 10)];
-					// Push infrond true/false if life is full/notfull
+					// Push in frond true/false if life is full/notfull
 					info.unshift( info[0] == info[1] );
 
 					// Return life info
@@ -629,9 +629,9 @@ var gca_global = {
 				// Get Life Points restore rate
 				var restore = parseInt(lifeTooltip[0][5][0][1].match(/(\d+)/)[1], 10);
 
-				// Calculate minites left to full life
+				// Calculate minutes left to full life
 				var minutes_left = Math.ceil(((parseInt(hp[2], 10) - parseInt(hp[1], 10)) * 60) / restore);
-				// Return if 0 minites
+				// Return if 0 minutes
 				if(minutes_left <= 0) return;
 				
 				// Convert minutes to hours 00:00
@@ -740,7 +740,7 @@ var gca_global = {
 								// Get exclude me data
 								var exclude_me = (document.getElementById('qgm_exclude_me').checked) ? true : false;
 
-								// Dont send small messages
+								// Don't send small messages
 								if(msg.length == 0) return;
 
 								// Set pending action
@@ -754,7 +754,7 @@ var gca_global = {
 								loading.style.display = "block";
 								// Send message
 								var send = gca_global.background.guildMessage.send(textarea.value, exclude_me, function(ok){
-									// Eanble messages
+									// Enable messages
 									loading.style.display = "none";
 									if (ok) {
 										textarea.value = "";
@@ -994,7 +994,7 @@ var gca_global = {
 					spacer.style.height = "26px";
 					table_wrapper.appendChild(spacer);
 					
-					// Shotcut button
+					// Shortcut button
 					button = document.createElement('div');
 					button.className = "icon-out";
 					link = document.createElement('a');
@@ -1260,7 +1260,7 @@ var gca_global = {
 						}
 					});
 					
-					// Get online family memebers
+					// Get online family members
 					jQuery.get(gca_getPage.link({"mod":"overview","submod":"buddylist"}), function(content){
 						// Match All active players
 						var online_players = content.match(/<tr>\s*<td[^>]*>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+"[^>]*>([^<]+)<\/a>\s*<\/td>\s*<td><a href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"[^>]*>\s*\[([^\]]+)\]\s*<\/a><\/td>\s*<td>(\d+)<\/td>\s*<td><span style="color: (green|#406000|#804000);[^"]*" title="on">([^<]*)</mg);
@@ -1679,7 +1679,7 @@ var gca_global = {
 				// Get Auction Status
 				var auctionStatus = content.match(/<span\s*class="description_span_right"><b>([^<]+)<\/b><\/span>/);
 
-				// Get ui
+				// Get UI
 				var statusUI = document.getElementById("auction_status_" + type);
 
 				// Check for error
@@ -1693,7 +1693,7 @@ var gca_global = {
 				auctionName = auctionName[1];
 				auctionStatus = auctionStatus[1];
 
-				// If status ui
+				// If status UI
 				if(statusUI){
 					statusUI.textContent = auctionName + ": " + auctionStatus;
 				}
@@ -2947,7 +2947,7 @@ var gca_global = {
 				}
 
 				// On item move
-				gca_tools.event.request.onAjaxResponce((data) => {
+				gca_tools.event.request.onAjaxResponse((data) => {
 					if (
 						data.hasOwnProperty("data") && data.data &&
 						data.data.hasOwnProperty("to") && data.data.to &&
@@ -3110,9 +3110,9 @@ var gca_global = {
 					// If in packets
 					if (gca_section.mod === "packages") {
 						// On item get
-						gca_tools.event.request.onAjaxResponce((responce) => {
+						gca_tools.event.request.onAjaxResponse((response) => {
 							// If package load request
-							if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
+							if(response.data.newPackages && response.data.pagination && response.data.worthTotal){
 								this.createDurability(false);
 							}
 						});
@@ -3218,9 +3218,9 @@ var gca_global = {
 					if (gca_section.mod === 'packages') {
 						load = true;
 						// On item get
-						gca_tools.event.request.onAjaxResponce((responce) => {
+						gca_tools.event.request.onAjaxResponse((response) => {
 							// If package load request
-							if(responce.data.newPackages && responce.data.pagination && responce.data.worthTotal){
+							if(response.data.newPackages && response.data.pagination && response.data.worthTotal){
 								this.showInfo();
 							}
 						});
@@ -3401,7 +3401,7 @@ var gca_global = {
 
 					// Tooltip info list
 					var info = [];
-					// Seperator
+					// Separator
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 					// Add table
 					info.push(['<table style="color: #ffffff;font-size: 10px;border-spacing: 0px;width:100%;">' + row_type + row_mats + row_info + row_dev + '</table>', '#000000']);
@@ -3432,7 +3432,7 @@ var gca_global = {
 
 					// Tooltip info list
 					let info = [];
-					// Seperator
+					// Separator
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 					// Add table
 					info.push(['<table style="color: #ffffff;font-size: 10px;border-spacing: 0px;">' + row_type + row_mats + row_icons + '</table>', '#000000']);
@@ -3446,7 +3446,7 @@ var gca_global = {
 					// Tooltip info list
 					var info = [];
 
-					// Seperator
+					// Separator
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 
 					//var data = this.data;
@@ -3502,7 +3502,7 @@ var gca_global = {
 					// Tooltip info list
 					var info = [];
 
-					// Seperator
+					// Separator
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 
 					// Create rows for the tooltip
@@ -3826,7 +3826,7 @@ var gca_global = {
 		guildMessage : {
 			// Message sending
 			sending : false,
-			// Sent guilde message
+			// Sent guild message
 			send : function(message, exclude_me, callback){
 				// Check 
 				if(this.sending) return;
@@ -4482,7 +4482,7 @@ var gca_global = {
 		}
 	},
 	
-	//Display Centurio & PowerUps days every 12h
+	// Display Centurion & PowerUps days every 12h
 	centurio_days : {
 		init : function(){
 			// Create the dataset
@@ -4498,7 +4498,7 @@ var gca_global = {
 			// Get timers
 			let now = new Date().getTime();
 			
-			// When on centurio page
+			// When on centurion page
 			if (gca_section.mod == 'premium' && gca_section.submod == 'centurio') {
 				let end_time = now;
 

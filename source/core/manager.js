@@ -66,7 +66,7 @@ var manager = {
 					this.section.gods();
 					break;
 
-				// Mysterybox
+				// Mystery box
 				case "mysterybox":
 					this.section.mysterybox();
 					break;
@@ -189,11 +189,11 @@ var manager = {
 			else if(info.page.queries.submod == 'stats'){
 				tools.loadScript("source/overview.stats.js");
 			}
-			// Player Achivements
+			// Player Achievements
 			else if(info.page.queries.submod == 'achievements'){
 				tools.loadScript("source/overview.achievements.js");
 			}
-			// Buddylist
+			// Buddy list
 			else if(info.page.queries.submod == "buddylist"){
 				tools.loadScript("source/overview.buddylist.js");
 			}
@@ -227,7 +227,7 @@ var manager = {
 			if(info.page.queries.submod == 'stats'){
 				tools.loadScript("source/overview.stats.js");
 			}
-			// Player Achivements
+			// Player Achievements
 			else if(info.page.queries.submod == 'achievements'){
 				tools.loadScript("source/overview.achievements.js");
 			}
@@ -267,7 +267,7 @@ var manager = {
 			tools.loadScript("source/pantheon.gods.js");
 		},
 
-		// Mysterybox
+		// Mystery box
 		mysterybox : function(){
 			tools.loadScript("source/pantheon.mysterybox.js");
 		},
