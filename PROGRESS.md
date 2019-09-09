@@ -1,13 +1,14 @@
 ## Progress on Version 4.2.1 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-3-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-1-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
 	- [x] After gold donation show gold left (in case the page was outdated)
+	- [x] Full recipes info were added, new options added for materials on tooltips (data load on the background)
 - **Overview**
 	- [x] Double click to consume item (disabled by default)
 - **Smeltery**
