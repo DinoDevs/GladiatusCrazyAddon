@@ -323,6 +323,7 @@ var gca_forge = {
 		btn.style.position = "absolute";
 		btn.style.marginTop = "-30px";
 		btn.style.width = "300px";
+		btn.style.right = '95px';
 		btn.addEventListener('click', () => {
 			let char = document.getElementById('char');
 			if (char.style.display == "block"){
