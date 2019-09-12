@@ -13,7 +13,7 @@ var gca_languages = gca_languages || {};
 gca_languages["et"] = {
 
 	// Language name
-	name : "Eesti keel",
+	name : "Eesti keel (Estonian)",
 	translators : ["4Karl", "Legend", "Zuslik"],
 
 	// Translations object
@@ -50,7 +50,7 @@ gca_languages["et"] = {
 			life_potion_use : "Kasuta elueliksiiri!",
 			life_potion_used : "Elueliksiir kasutatud!",
 			life_potion_left : "Nüüd on sul {{number}} elupunkti!",
-			
+
 			// Life/Expedition/Dungeon points recovery
 			life_recover_full : "Elupunktid täis!",
 			expedition_recover_full : "Ekspeditsiooni punktid on taastunud",
@@ -123,7 +123,7 @@ gca_languages["et"] = {
 			stats_difference : "Vahe",
 			// Drop items to see materials to repair feature
 			drop_item_see_materials_repair : "Lohist ese, et näha, mis materjale vaja parandamiseks.",
-			workbench_6th_slot_empty : "Tööpingi kuues koht on vaja vabaks teha."
+			workbench_6th_slot_empty : "Tööpingi kuues koht on vaja vabaks teha.",
 
 			// More player info
 			more_player_info : "Veel informatsiooni mängija kohta",
@@ -213,24 +213,24 @@ gca_languages["et"] = {
 		markets : {
 			// Warnings
 			item_cost_only_x_gold : "Ese maksab ainult {{number}} kulda.",
-			item_is_soulbound : "Ese on hingesugulusega."
+			item_is_soulbound : "Ese on hingesugulusega.",
 			item_cant_buy_back : "Seda eset ei saa tagasi osta.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Kas oled kindel, et soovid eset osta?"
 		},
-		
+
 		// Forge
 		forge : {
-				forge_ended : "Sulatamine lõpetatud!",
-			recraft_item : "Proovi uuesti!"
+			forge_ended : "Sulatamine lõpetatud!",
+			recraft_item : "Proovi uuesti!",
 			show_hide_doll : "Näita/Peida mängija varustus"
 		},
-		
+
 		// Packages
 		packages : {
 			event_items : "Sündmuse esemed",
 			known_scroll : "Kirjarull õpitud!",
-			unknown_scroll : "Kirjarull õppimata!"
+			unknown_scroll : "Kirjarull õppimata!",
 			advance_filters : "Täpsustavad filtrid",
 			advance_filters_apply : "Kasuta filtrit",
 			advance_filters_clear : "Kustuta filter",
@@ -251,7 +251,7 @@ gca_languages["et"] = {
 			// Description
 			description : "Aktiveeri või deaktiveeri laienduse lisasid.",
 			description_click_button : "Vali milliseid laienduse seadeid soovid muuta...",
-			
+
 			// Categories
 			category_global : "Üldine",
 			category_overview : "Ülevaade",
@@ -448,3 +448,5 @@ gca_languages["et"] = {
 		}
 	}
 }
+
+gca_languages._active = "et";
