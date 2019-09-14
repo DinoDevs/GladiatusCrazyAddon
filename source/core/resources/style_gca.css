@@ -769,7 +769,7 @@
 		.gca_rtl .gca_achivements_styling .achievement_description_box{left: auto;right: 0;}
 
 		/* Progress Bars */
-		.gca_achivements_styling .achievement_progress_bar{position: absolute;height: 3px;left: -2px;right: -2px;border: 2px solid rgb(187, 168, 110);background-color: rgba(135,87,32,0.5);}
+		.gca_achivements_styling .achievement_progress_bar{position: absolute;height: 3px;left: -2px;right: -2px;border: 2px solid rgb(187, 168, 110);background-color: rgba(135,87,32,0.5);bottom: -7px;}
 		.gca_achivements_styling .achievement_progress_bar .achievement_progress_bar_percent{height: 100%;background-color: #E1BD33;}
 
 		/* Percent Text */
