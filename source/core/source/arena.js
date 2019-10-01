@@ -765,27 +765,49 @@ var gca_arena = {
 	
 	// Ignore attack confirmations
 	ignore_attack_confirmations : function(){
-		// New arena attack functions
-		window.gca_startFight = function(b, a) {	
-			jQuery("#errorRow").css({display: "none"});
-			window.sendRequest("get", "ajax/doArenaFight.php", "did=" + a + "&c=1", b)
+		// Check if functions exists
+		let existsHandler = {
+			startFightConfirmed :
+				typeof window.startFightConfirmed === 'function' &&
+				//typeof window.blackoutDialogDivId !== 'undefined' &&
+				document.getElementById('blackoutDialogbod'),
+			startProvinciarumFightConfirmed :
+				typeof window.startProvinciarumFightConfirmed === 'function' &&
+				typeof window.arenaType !== 'undefined' &&
+				typeof window.provinciarumDefenderId !== 'undefined' &&
+				typeof window.provinciarumServer !== 'undefined' &&
+				typeof window.provinciarumCountry !== 'undefined'
+		};
+
+		// Function wrappers
+		if (existsHandler.startFightConfirmed) {
+			window.gca_startFightConfirmed = function (d, a) {
+				window.blackoutDialogDivId = 'blackoutDialogbod';
+				window.startFightConfirmed(d, a);
+			}
 		}
-		
-		window.gca_startGroupFight = function(b, a) {
-			jQuery("#errorRow").css({display: "none"});
-			window.sendRequest("get", "ajax/doGroupFight.php", "did=" + a + "&c=1", b)
+		if (existsHandler.startProvinciarumFightConfirmed) {
+			window.gca_startProvinciarumFightConfirmed = function (d, a, c, b, e) {
+				window.arenaType = a;
+				window.provinciarumDefenderId = c;
+				window.provinciarumServer = b;
+				window.provinciarumCountry = e;
+				window.startProvinciarumFightConfirmed(d);
+			}
 		}
-		
-		window.gca_startProvinciarumFight = function(d, a, c, b, e) {
-			jQuery("#errorRow").css({display: "none"});
-			window.sendRequest("get", "ajax.php", "mod=arena&submod=confirmDoCombat&aType=" + a + "&opponentId=" + c + "&serverId=" + b + "&country=" + e, d)
-		}
-		
-		var attack_buttons = document.getElementsByClassName('attack');
-		for(let i=0;i<attack_buttons.length;i++){
-			if(attack_buttons[i].getAttribute("onclick").match(/startFight|startGroupFight|startProvinciarumFight/i))
-				attack_buttons[i].setAttribute("onclick","gca_"+attack_buttons[i].getAttribute("onclick"));
-		}
+
+		// Get attack buttons
+		var buttons = [...document.getElementsByClassName('attack')];
+		buttons.forEach((button) => {
+			let onclick = button.getAttribute('onclick');
+
+			if (existsHandler.startFightConfirmed && (/^startFight\(/i).test(onclick)) {
+				button.setAttribute('onclick', onclick.replace(/^startFight\(/i, 'gca_startFightConfirmed('));
+			}
+			else if (existsHandler.startProvinciarumFightConfirmed && (/^startProvinciarumFight\(/i).test(onclick)) {
+				button.setAttribute('onclick', onclick.replace(/^startProvinciarumFight\(/i, 'gca_startProvinciarumFightConfirmed('));
+			}
+		});
 	},
 	
 	// Re-arrange by lvl
