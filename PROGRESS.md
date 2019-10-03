@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-9-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-2-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -26,6 +26,7 @@
 - **Packages**
 	- [x] Fixed souldbound icons bug (caused the script to crash)
 - **Arena**
+	- [x] Ignore attack confirmations rescripted
 	- [x] Fixed crash when less than 5 players on the list (thanks laku)
 - **Achivements**
 	- [x] Fixed rtl servers visual bug
