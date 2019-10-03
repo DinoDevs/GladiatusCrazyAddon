@@ -821,11 +821,14 @@ var gca_arena = {
 		let rows = (document.getElementById('own2') != null) ? document.getElementById('own2').getElementsByTagName('tr') : document.getElementById('own3').getElementsByTagName('tr');
 		// Create players object
 		let players = [];
-		for (let i = 1; i <= 5; i++) {
-			players.push({
-				level : parseInt(rows[i].getElementsByTagName('td')[1].textContent, 10),
-				element : rows[i]
-			});
+		for (let i = 1; i < rows.length; i++) {
+			let cols = rows[i].getElementsByTagName('td');
+			if (cols.length > 0) {
+				players.push({
+					level : parseInt(cols[1].textContent, 10),
+					element : rows[i]
+				});
+			}
 		}
 		// Sort players
 		players.sort(function(a,b) {return (a.level > b.level) ? 1 : ((b.level > a.level) ? -1 : 0);});
