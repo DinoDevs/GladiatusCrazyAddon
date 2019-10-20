@@ -4017,6 +4017,7 @@ var gca_global = {
 
 					// If no last data
 					if (!data.length) {
+						console.log('GCA: Collected first gold and exp data.', newData);
 						gca_data.section.set('data', 'gold_exp_data', [newData]);
 						return;
 					}
@@ -4024,10 +4025,22 @@ var gca_global = {
 					// Get last saved data
 					var lastData = data[data.length - 1];
 					if (lastData[0] != newData[0] && lastData[1] != newData[1]) {
+						console.log('GCA: Collected more gold and exp data.', newData);
 						data.push(newData);
 						gca_data.section.set('data', 'gold_exp_data', data);
 						return;
 					}
+
+					// If not enough data saved
+					if (data.length < 2) {
+						console.log('GCA: Collected dummy gold and exp data.', newData);
+						data.push(newData);
+						gca_data.section.set('data', 'gold_exp_data', data);
+						return;
+					}
+
+					// Else
+					//console.log('GCA: No new gold and exp data.', newData);
 				});
 			},
 			
@@ -4234,7 +4247,9 @@ var gca_global = {
 					newdata.push(data[i-1]);
 					
 					// Save only last 7 days data
-					gca_data.section.set("data", "gold_exp_data", newdata);
+					if (newdata.length > 1) {
+						gca_data.section.set("data", "gold_exp_data", newdata);
+					}
 					
 					// If there are no data
 					if(expData.length<1 || goldData.length<1){
