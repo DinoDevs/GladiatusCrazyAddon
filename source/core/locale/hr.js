@@ -3,7 +3,7 @@
  * Name : Croatian
  * Code : [none]
  * Tag  : hr
- * Translator: [Dark_Knight, Tharacius
+ * Translator: Dark_Knight, Tharacius
  */
 
 // Languages Object
@@ -35,11 +35,11 @@ gca_languages['hr'] = {
 		global : {
 			// Use a life potion
 			life_potion_use : "Iskoristi napitak Života",
-			life_potion_used : "Napitak Života iskorišćen",
+			life_potion_used : "Napitak Života iskorišten",
 			life_potion_left : "Preostalo vam je {{number}} napitaka Života",
 			
 			// Life/Expedition/Dungeon points recovery
-			life_recover_full : "Život će biti pun za",
+			life_recover_full : "Životni bodovi će biti puni za",
 			expedition_recover_full : "Bodovi za ekspedicije će biti pune za",
 			dungeon_recover_full : "Bodovi za tamnice će biti pune za",
 
@@ -72,7 +72,7 @@ gca_languages['hr'] = {
 			family_friends : "Familija",
 
 			// Guild donate
-			donate_gold_confirm : "Da li ste sigurno da želite da donirate {{number}} zlata?",
+			donate_gold_confirm : "Da li ste sigurni da želite da donirate {{number}} zlata?",
 			donate_gold_success : "Zlato uspešno donirano",
 			donate_gold_failed : "Zlato neuspešno donirano",
 			donate_gold_no_gold : "Nemate zlata da donirate",
@@ -110,10 +110,10 @@ gca_languages['hr'] = {
 			stats_difference : "Razlika",
 			// Drop items to see materials to repair feature
 			drop_item_see_materials_repair : "Prikaži materijale potrebne za popravku",
-			workbench_6th_slot_empty : "Workbench\'s 6th slot needs to be empty",
+			workbench_6th_slot_empty : "Šesti prozor na radnom stolu mora biti prazan!",
 
 			// More player info
-			more_player_info : "Više informacija i igraču",
+			more_player_info : "Više informacija o igraču",
 			can_use_max_item_level : "Može koristiti predmete do {{max}} levela.",
 			can_see_market_max_item_level : "Može da vidi predmete na marketu do {{max}} levela.",
 			can_see_auction_item_levels : "Može da vidi predmete na aukciji od {{min}} do {{max}} levela."
@@ -133,7 +133,7 @@ gca_languages['hr'] = {
 			bank_all_gold : "Dodaj sve svoje zlato",
 
 			// Library
-			library_per_point_cost : "Cena po bodu stata",
+			library_per_point_cost : "Cena po bodu temeljnog",
 			library_gold_left : "Preostalo savezno zlato nakon aktivacije",
 
 			// Medic
@@ -257,14 +257,14 @@ gca_languages['hr'] = {
 			category_auction : "Aukcija",
 			category_events : "Eventovi",
 			category_sound : "Zvukovi",
-			category_data : "Data",
+			category_data : "Podaci",
 
 			// Settings - Global
 			category_global$language_select : "Odaberite jezik addona",
 			category_global$sound_notifications : "Uključi zvučne notifikacije",
 			category_global$browser_notifications : "Uključi browser notifikacije",
 			category_global$extended_hp_xp_info : "Prikaži prošireno HP i XP zaglavlje",
-			category_global$extended_hp_xp_info_potion : "Prikaži ikonicu za korišćene napitka Života",
+			category_global$extended_hp_xp_info_potion : "Prikaži ikonicu za korišćenje napitka Života",
 			category_global$hp_timer_for_full_life : "Prikaži preostale minute do regeneracije svih životnih bodova",
 			category_global$expedition_dungeon_points_recover_timer : "Prikaži minute do regeneracije svih bodova za ekspedicije/tamnice",
 			category_global$shortcuts_bar : "Uključi bar za prečice",
@@ -274,7 +274,7 @@ gca_languages['hr'] = {
 			category_global$top_fixed_bar : "Uključi gornji fiksirani bar",
 			category_global$advance_main_menu : "Poboljšaj glavni meni",
 			category_global$submenu_click_to_change : "Promena pod-menija na klik",
-			category_global$remember_tabs : "Zapamti prozore prodavca",
+			category_global$remember_tabs : "Zapamti aktivni prozor kod prodavca",
 			category_global$attacked_timers : "Prikaži tajmere za napade",
 			category_global$quest_timer : "Prikaži status zadataka ili tajmer",
 			category_global$merchants_timer : "Prikaži vremenski indikator kod prodavca",
@@ -324,7 +324,7 @@ gca_languages['hr'] = {
 			category_packages$filters_layout : "Poboljšaj izgled filtera",
 			category_packages$compact_info_layout : "Napravi sadržaj filtera kompaktan",
 			category_packages$items_layout : "Poboljšaj izgled informacija o predmetu",
-			category_packages$small_items_layout : "Smanji izgled predmeta u veličini",
+			category_packages$small_items_layout : "Smanji izgled predmeta u veličini unutar paketa",
 			category_packages$load_more_pages : "Učitaj više stranica",
 			category_packages$pages_to_load : "Broj stranica za učitavanje",
 			category_packages$item_price : "Prikaži cenu predmeta",
@@ -337,7 +337,7 @@ gca_languages['hr'] = {
 			category_pantheon$missions_show_completed : "Prikaži završene zadatke",
 			category_pantheon$gods_show_points_percent : "Prikaži procenat milosti za bogove",
 			category_pantheon$open_many_mysteryboxes : "Otvori više Kovčega Božanske sudbine",
-			category_pantheon$show_mysterybox_rewards_rubies : "Prikažo vrednost nagrada unutar Kovčega Božanske sudbine u rubinima",
+			category_pantheon$show_mysterybox_rewards_rubies : "Prikaži vrednost nagrada unutar Kovčega Božanske sudbine u rubinima",
 			category_pantheon$show_mysterybox_rewards_owned : "Prikaži broj vlastitih nagrada unutar Kočega Božanske sudbine",
 			// Settings - Reports
 			category_reports$style_change : "Poboljšaj izgled liste izveštaja",
@@ -349,15 +349,15 @@ gca_languages['hr'] = {
 			category_training$show_basics_in_bars : "Prikazi temeljne unutar barova",
 			category_training$multiple_train : "Uključi višestruko treniranje odjednom",
 			category_training$calculator_train : "Uključi kalkulator za cenu treniranja",
-			category_training$show_analyze_items_data : "Prikaži analizirane podatke o predmetima data unutar tooltipa",
+			category_training$show_analyze_items_data : "Prikaži analizirane podatke o predmetima unutar tooltipa",
 			category_training$show_points_after_upgrade : "Prikaži vrednost temeljnih nakog poboljšanja",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Izbledi predmete koje ne možete kupiti",
 			category_merchants$show_shop_info : "Prikaži informacije o prodavcu (ukupno zlata i rubina)",
 			category_merchants$double_click_actions : "Dvoklik na predmete da ih kupimo/prodamo",
 			// Settings - Forge
-			category_forge$material_links : "[Forge/Repair] Prikaži prečice za pakete i market za svaki potreban materijal",
-			category_forge$show_levels : "[Forge] Prikaži Prefix/Sufix/Osnovu nivo predmeta pored naziva",
+			category_forge$material_links : "[Kovačnica/Radni stol] Prikaži prečice za pakete i market za svaki potreban materijal",
+			category_forge$show_levels : "[Kovačnica] Prikaži Prefix/Sufix/Osnovu nivo predmeta pored naziva",
 			category_forge$horreum_materials_names : "[Horreum] Prikaži naziv materijala",
 			category_forge$horreum_remember_options : "[Horreum] Zapamti podešavanja za pohranjivanje resursa unutar horreuma",
 			category_forge$horreum_select_meterials : "[Horreum] Odaberi materijal na klik",
@@ -393,7 +393,7 @@ gca_languages['hr'] = {
 			// Settings - Auction
 			category_auction$items_counters : "Prebroj predmete i broj ponuda",
 			category_auction$more_search_levels : "Prkaži više filtera za levele predmeta",
-			category_auction$item_price_analyze : "Analiziraj cene predmeta",
+			category_auction$item_price_analyze : "Analiziraj cijene predmeta",
 			category_auction$item_level : "Prikaži level predmeta",
 			category_auction$x3_items_per_line : "Promeni izgled na po 3 predmeta po liniji",
 			category_auction$multi_bids : "Stavi ponudu na predmet bez osvežavanja stranice",
