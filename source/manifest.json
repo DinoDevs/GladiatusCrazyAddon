@@ -34,7 +34,8 @@
 	"background": {
 		"scripts": [
 			"core/background.js"
-		]
+		],
+		"persistent": false
 	},
 	"externally_connectable": {
 		"matches": [
