@@ -4645,7 +4645,7 @@ var gca_global = {
 					for (let i = 0; i < found.length; i++) {
 						let temp = found[i].match(/id="rune(1|2|3|4)_\d"\s+class="powerUpImg\d"\s+data-tooltip="([^"]+)"\s+style="background-image: ([^;]+);"/i);
 						let position = parseInt(temp[1], 10) - 1;
-						status[position].type = [temp[2].replace(/&quot;/g,'"').replace(/&lt;br\\\/&gt;/g,'<br/>').replace(/&amp;nbsp;/g,' '),temp[3]];
+						status[position].type = [temp[2].replace(/&quot;/g,'"').replace(/&lt;br\s*\\\/&gt;/g,'<br/>').replace(/&amp;nbsp;/g,' '),temp[3]];
 						temp = found2[i].match(/\d+/g);
 						if (temp.length == 3) {
 							status[position].enabled = now + (temp[0]*24*60*60+temp[1]*60*60+temp[2]*60)*1000;
