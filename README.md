@@ -74,8 +74,6 @@ Use our [guide](documentation/translators/README.md) to translate the addon in y
 
 ### Our links
 
-Gladiatus Crazy Addon : [https://gladiatuscrazyaddon.tk](https://gladiatuscrazyaddon.tk)
-
 Gladiatus Simulator : [https://gladiatussimulator.tk](https://gladiatussimulator.tk)
 
 Gladiatus Forum GCA thread : [https://forum.gladiatus.gameforge.com/forum/thread/263-gladiatus-crazy-add-on/](https://forum.gladiatus.gameforge.com/forum/thread/263-gladiatus-crazy-add-on/)
