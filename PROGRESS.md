@@ -2,8 +2,8 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-9-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-2-blue.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-13-red.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -21,8 +21,12 @@
 
 ### BUG FIXES
 - **General**
+	- [x] GCA homepage and Simulator links changed
+	- [x] Edge browser compatibility fixes
 	- [x] Fixed many right-to-left UI bugs (reports, global arena, horreum, market)
 	- [x] Fixed failed to match guild tag when checking online players
+	- [x] Fixes for Gold/Exp data charts N/A bug #40
+	- [x] Fixed active bonuses bug #163
 - **Packages**
 	- [x] Fixed souldbound icons bug (caused the script to crash)
 - **Arena**
@@ -41,4 +45,5 @@
 -  **Updates**
 	- [x] Fixed pl translation mistake
 	- [x] Updated Estonian by [R3alSt4r](https://github.com/R3alSt4r)
+	- [x] Updated Croatian by [Tharacius](https://github.com/Tharacius)
 
