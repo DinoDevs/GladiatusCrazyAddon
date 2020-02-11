@@ -226,7 +226,7 @@ gca_languages['lt'] = {
 			category_forge$material_links : "Rodyti paketų ir turgaus nuorodas kiekvienam reikalingam resursui (kalimas/remontas)",
 			category_forge$show_levels : "Rodyti Priešdelio/Daikto/Priesagos lygį šalia vardo (kalimas)",
 			category_arena$ignore_attack_confirmations : "Ignoruoti atakų patvirtinimą (viršijus 5 atakas ir pan.)",
-			category_arena$show_simulator_imagelink : "Rodyti nuorodą-paveiksliuką į simuliatorių (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Rodyti nuorodą-paveiksliuką į simuliatorių (simulator.dinodevs.com)",
 			category_magus$fade_unimprovable_items : "Pablukinti daiktus kurių negalima patobulinti",
 			category_market$soulbound_warning : "Pririštų daiktų pirkimo patvirtinimas",
 			category_market$one_gold_warning : "Daiktų pirkimo už 1 auksą patvirtinimas",

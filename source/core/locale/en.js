@@ -377,7 +377,7 @@ gca_languages["en"] = {
 			category_forge$horreum_select_meterials : "[Horreum] Select material on click",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
-			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Sort players in arena by level",
 			category_arena$highlight_guild_members : "Highlight players on other servers that may be guild members",
 			category_arena$target_list : "Players target list",

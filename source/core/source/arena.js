@@ -88,7 +88,7 @@ var gca_arena = {
 
 		// Get API link
 		getLink : function(x){
-			let link = gca_links.get('addon-page') + '/arena/ajax.php';
+			let link = gca_links.get('addon-page') + '/services/global_arena.php';
 			let front = "?";
 			for(let i in x){
 				link += front + i + "=" + x[i];

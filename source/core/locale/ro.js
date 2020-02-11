@@ -333,7 +333,7 @@ gca_languages["ro"] = {
 			category_forge$horreum_select_meterials : "[Horreum] Alege resursa cu un click",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignoră confirmarea de atac (mesajul de peste 5 atacuri etc.)",
-			category_arena$show_simulator_imagelink : "Arată o imagine-link către simulator (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Arată o imagine-link către simulator (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Aranjeaza jucătorii în arenă în funcție de nivel",
 			category_arena$highlight_guild_members : "Indică jucătorii de pe alte servere care ar putea fi membri ai breslei tale",
 			category_arena$target_list : "Lista advesarilor țintă",

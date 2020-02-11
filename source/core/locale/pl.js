@@ -226,7 +226,7 @@ gca_languages['pl'] = {
 			category_forge$material_links : "[Kuźnia/Stół warsztatowy] Pokaż skróty do rynku/paczek do poszczególnych składników",
 			category_forge$show_levels : "[Kuźnia] Pokaż poziom przedmiotu/prefixu/sufixu przed nazwą",
 			category_arena$ignore_attack_confirmations : "Ignoruj ataki (powyżej 5 powiadomień ataku)",
-			category_arena$show_simulator_imagelink : "Pokaż link do symulatora (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Pokaż link do symulatora (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Sortuj graczy na arenie według poziomu",
 			category_arena$highlight_guild_members : "Podświetl graczy na innym serwerze gdty mogą to być członkowie gildii",
 			category_arena$target_list : "Lista zaznaczonych graczy",

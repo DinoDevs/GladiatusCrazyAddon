@@ -185,7 +185,7 @@ gca_languages['ru'] = {
 			category_training$multiple_train : "Включить множественную тренировку",
 			category_training$calculator_train : "Включить калькулятор затрат",
 			category_arena$ignore_attack_confirmations : "Игнорировать подтверждения атак (сообщение о более 5 атаках и т.д.)",
-			category_arena$show_simulator_imagelink : "Показывать изображение-ссылку на симулятор (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Показывать изображение-ссылку на симулятор (simulator.dinodevs.com)",
 			category_market$soulbound_warning : "Подтверждение покупки связанных с душами предметов",
 			category_market$one_gold_warning : "Подтверждение покупки предметов, стоимость которых составляет 1 золото",
 			category_market$cancel_all_button : "Показать кнопку отмены всего",

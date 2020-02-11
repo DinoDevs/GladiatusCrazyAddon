@@ -312,7 +312,7 @@ gca_languages['de'] = {
 			category_forge$show_levels : "Stufe neben dem Namen anzeigen",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignoriere Angriffsbestätigungen (mehr als 5 Angriffe usw.)",
-			category_arena$show_simulator_imagelink : "Zeige einen Link zum Simulator (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Zeige einen Link zum Simulator (simulator.dinodevs.com)",
 			// Settings - Magus
 				category_magus$fade_unimprovable_items : "Verblasse Gegenstände die sich nicht verbessern lassen",
 			// Settings - Market

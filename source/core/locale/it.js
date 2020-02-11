@@ -226,7 +226,7 @@ gca_languages["it"] = {
 			category_forge$material_links : "Mostra pacchetti e scorciatoie di mercato per ogni esigenza materiale (forgia / ripara)",
 			category_forge$show_levels : "Mostra i livelli degli oggetti Prefix / Sufix / Base accanto ai nomi (forge)",
 			category_arena$ignore_attack_confirmations : "Ignora le conferme di attacco (messaggio di oltre 5 attacchi ecc.)",
-			category_arena$show_simulator_imagelink : "Mostra un collegamento immagine al simulatore (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Mostra un collegamento immagine al simulatore (simulator.dinodevs.com)",
 			category_magus$fade_unimprovable_items : "Oscura gli oggetti che non puoi migliorare",
 			category_market$soulbound_warning : "Conferma per l'acquisto degli oggetti legati all'anima",
 			category_market$one_gold_warning : "Conferma per l'acquisto degli oggetti che costano 1 sesterzo",

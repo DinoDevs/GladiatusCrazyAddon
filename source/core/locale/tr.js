@@ -264,7 +264,7 @@ gca_languages["tr"] = {
 			category_forge$horreum_remember_options : "Son seçilen hammadde bloğunu hatırla (Hammadde Deposu)",
 			category_forge$horreum_select_meterials : "Hammaddeyi seçmek için tıkla (Hammadde Deposu)",
 			category_arena$ignore_attack_confirmations : "5 defadan fazla saldıramazsınız mesajını yoksay",
-			category_arena$show_simulator_imagelink : "Arena ve Sirk Turma'da simulasyon bağlantısını göster (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Arena ve Sirk Turma'da simulasyon bağlantısını göster (simulator.dinodevs.com)",
 			category_magus$fade_unimprovable_items : "Geliştirilemeyen itemleri soluk göster",
 			category_arena$sort_by_lvl : "Arenadaki oyuncuları seviyeye göre sırala",
 			category_arena$highlight_guild_members : "Diğer sunucularda oynayan ittifak üyelerini vurgula",

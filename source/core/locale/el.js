@@ -374,7 +374,7 @@ gca_languages["gr"] = {
 			category_forge$horreum_select_meterials : "Επιλογή πρώτων υλών με κλικ (Αποθήκη πρώτων υλών)",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Αγνοήστε την επιβεβαίωση επίθεσης (μηνύματα για την υπέρβαση των 5 επιθέσεων κλπ)",
-			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Ταξινόμηση παιχτών κατά επίπεδο στην αρένα",
 			category_arena$highlight_guild_members : "Χρωμάτισμα παιχτών από άλλους σέρβερς που μπορεί να είναι μέλη του τάγματος",
 			category_arena$target_list : "Λίστα στόχων",

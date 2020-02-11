@@ -367,7 +367,7 @@ gca_languages['zh'] = {
 			category_forge$horreum_select_meterials : "[Horreum] 點擊可選取材料",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "忽略過度攻擊證據 (超過5次攻擊以後的消息)",
-			category_arena$show_simulator_imagelink : "顯示一個到模擬器的圖像鏈接 (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "顯示一個到模擬器的圖像鏈接 (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "在競技場中以玩家等級排序",
 			category_arena$highlight_guild_members : "高亮其他服務器可能是公會成員的玩家",
 			category_arena$target_list : "玩家目標列表",

@@ -13,7 +13,7 @@ var gca = {
 		"GreatApo",
 		"DarkThanos"
 	],
-	homepage : "https://gladiatuscrazyaddon.tk"
+	homepage : "https://gladiatus.dinodevs.com"
 };
 
 // Page info
@@ -112,7 +112,7 @@ var gca_links = {
 		'addon-page' : gca.homepage,
 		'addon-mozilla' : 'https://addons.mozilla.org/firefox/addon/gladiatus-crazy-add-on',
 		'addon-chrome' : 'https://chrome.google.com/webstore/detail/gladiatus-crazy-add-on/dfbmiedjenagoegiiabjfjpkhfocifkp',
-		'gladiatus-simulator' : 'https://gladiatussimulator.tk',
+		'gladiatus-simulator' : 'https://simulator.dinodevs.com',
 		'addon-forum-thread' : 'https://forum.gladiatus.gameforge.com/forum/thread/263',
 		'addon-github' : 'https://github.com/DinoDevs/GladiatusCrazyAddon',
 		'addon-facebook' : 'https://www.facebook.com/GladiatusCrazyAddOn',

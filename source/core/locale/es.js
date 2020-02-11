@@ -238,7 +238,7 @@ gca_languages['es'] = {
 			category_forge$material_links : "Mostrar paquetes y atajos del mercado por cada material necesario (forja/reparar)",
 			category_forge$show_levels : "Mostrar prefijo/sufijo/base niveles de objetos al lado de los nombres (forja)",
 			category_arena$ignore_attack_confirmations : "Ignorar confirmación de ataques (mas de 5 mensajes de ataques etc)",
-			category_arena$show_simulator_imagelink : "Mostrar una imagen a el simulador (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Mostrar una imagen a el simulador (simulator.dinodevs.com)",
 			category_magus$fade_unimprovable_items : "Fundir objetos que no puedes mejorar",
 			category_market$soulbound_warning : "Confirmación al comprar objetos ligados al alma",
 			category_market$one_gold_warning : "Confirmación al comprar objetos que cuestan 1 de oro",

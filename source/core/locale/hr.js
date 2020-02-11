@@ -363,7 +363,7 @@ gca_languages['hr'] = {
 			category_forge$horreum_select_meterials : "[Horreum] Odaberi materijal na klik",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignoriši obavijest o višestrukom napadu (poruka kada pokušamo da napadnemo istog igrača više od 5 puta)",
-			category_arena$show_simulator_imagelink : "Prikaži an sliku sa linkom do simulatora (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Prikaži an sliku sa linkom do simulatora (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Prikaži protivnike u areni po levelu",
 			category_arena$highlight_guild_members : "Označi igrače na drugim serverima koji su možda saveznici",
 			category_arena$target_list : "Players target list",

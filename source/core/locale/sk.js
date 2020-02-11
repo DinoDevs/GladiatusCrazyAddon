@@ -226,7 +226,7 @@ gca_languages['sk'] = {
 			category_forge$material_links : "Odkazy Balíky/Trh na potrebné suroviny pre (Vyhňa/Opravovňa)",
 			category_forge$show_levels : "Vyhňa - zobraziť úroveň pri Prefix/Sufix/Predmet",
 			category_arena$ignore_attack_confirmations : "Ignorovať potvrdenie o útokoch (správa viac ako 5 útokov atď.)",
-			category_arena$show_simulator_imagelink : "Zobraziť obrázok-odkaz na simulátor boja (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Zobraziť obrázok-odkaz na simulátor boja (simulator.dinodevs.com)",
 			category_magus$fade_unimprovable_items : "Stmaviť predmety ktoré nie je možné vylepšiť",
 			category_market$soulbound_warning : "Potvrdenie pri kúpe predmetov zviazaných s dušou.",
 			category_market$one_gold_warning : "Potvrdenie pri kúpe predmetov za cenu 1 zlato",

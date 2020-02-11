@@ -376,7 +376,7 @@ gca_languages["et"] = {
 			category_forge$horreum_select_meterials : "[Horreum] Vali materjal klikkides",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignoreeri liigründamise hoiatusi",
-			category_arena$show_simulator_imagelink : "Näita areeni simulaatori pilt-linki (gladiatussimulator.tk)",
+			category_arena$show_simulator_imagelink : "Näita areeni simulaatori pilt-linki (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Sorteeri mängijad areenil leveli järgi",
 			category_arena$highlight_guild_members : "Too esile mängijad, kes võivad olla sõbrad või gildi kaaslased teistes serverites",
 			category_arena$target_list : "Mängijate sihtmärgid",
