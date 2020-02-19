@@ -36,6 +36,7 @@ var gca_section = {
 		return data;
 	},
 	// Get Player's id
+	// WARNING: Whenever this change, also change the gca_data_manager.getPlayerId
 	resolvePlayerId : function(){
 		// Resolve Player Id from cookies
 		var cookiePlayerId = (this.sh) ? document.cookie.match(new RegExp("Gca_" + this.country + "_" + this.server + "=(\\d+)_" + this.sh.substring(0, this.sh.length/4),"i")) : false;
