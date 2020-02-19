@@ -1640,19 +1640,20 @@ var gca_tools = {
 			});
 		}
 	}
-
+	// On other browsers (Firefox)
 	else {
+		// Setup communication with the background page
 		(function(){
 			// Talk to the extension script through events on this script's element
-			// the extension script will forward the request to the background page
-			// We send messages through the `gca-pin` event
-			// receive messages through the `gca-pong` event
+			// The extension script will forward the request to the background page
+			//  - the `gca-ping` event, to send messages
+			//  - the `gca-pong` event, to receive messages
 
-			// Hold current script in a variable
+			// Hold the current script in a variable
 			let element = document.currentScript;
 			// Increment to flag each request
 			let increment = 0;
-			// Hold the request here
+			// Hold the requests here
 			let callbacks = {};
 
 			// Send Message to the extension
@@ -1665,17 +1666,22 @@ var gca_tools = {
 			}
 
 			// Get response from the extension
-			element.addEventListener('gca-pong', (e) => {
+			element.addEventListener('gca-pong', () => {
+				// For each callback waiting for a response
 				for (let id in callbacks) {
-					let msg = 'message-' + id;
-					if (element.dataset.hasOwnProperty(msg)) {
-						let message = element.dataset[msg];
-						delete element.dataset[msg];
-						message = (message === 'undefined') ? undefined : JSON.parse(message);
-						if (callbacks.hasOwnProperty(id) && typeof callbacks[id] === 'function') {
-							let callback = callbacks[id];
-							delete callbacks[id];
-							setTimeout(() => {callback(message)}, 0);
+					if (callbacks.hasOwnProperty(id)) {
+						// Check if response for that callback was received
+						let msg = 'message-' + id;
+						if (element.dataset.hasOwnProperty(msg)) {
+							let message = element.dataset[msg];
+							delete element.dataset[msg];
+							// Parse the message from JSON string
+							message = (message === 'undefined') ? undefined : JSON.parse(message);
+							if (typeof callbacks[id] === 'function') {
+								let callback = callbacks[id];
+								delete callbacks[id];
+								setTimeout(() => {callback(message)}, 0);
+							}
 						}
 					}
 				}
@@ -1693,5 +1699,5 @@ var gca_tools = {
 document.currentScript.remove();
 
 // ESlint defs
-/* global gca_getPage, gca_locale, gca_notifications, gca_resources, gca_tools */
+/* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_resources, gca_tools */
 /* global jQuery */
