@@ -1095,9 +1095,39 @@ var gca_settings = {
 
 							// Create info
 							data.info = document.createElement("div");
-							data.info.style.textAlign = "right";
+							data.info.style.float = "right";
 							data.info.style.padding = "0px 5px";
 							data.info.textContent = gca_settings.backup.getStorageSize(true);
+
+							// Add change event
+							return [data.clear, data.info];
+						}
+					};
+					return scheme;
+				})(),
+
+				// Clear
+				"clear_cache_data" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.clear = document.createElement("input");
+							data.clear.setAttribute("type", "button");
+							data.clear.className = "awesome-button";
+							data.clear.style.float = "right";
+							data.clear.value = gca_locale.get("settings", "clear");
+							data.clear.addEventListener("click", () => {
+								gca_settings.backup.clearCache();
+								//gca_notifications.info(gca_locale.get("settings", "notification_reload"));
+								document.location.href = document.location.href;
+							}, false);
+
+							// Create info
+							data.info = document.createElement("div");
+							data.info.style.float = "right";
+							data.info.style.padding = "0px 5px";
+							data.info.textContent = gca_settings.backup.getStorageSize(true, 'cache');
 
 							// Add change event
 							return [data.clear, data.info];
@@ -2105,15 +2135,30 @@ var gca_settings = {
 			}
 		},
 
+		// Clear cache data
+		clearCache : function() {
+			// Clear cache storage
+			window.localStorage.removeItem(gca_data_manager.name + "_" + "cache");
+		},
+
 		// Count size of db
-		getStorageSize : function(humanReadable = false) {
+		getStorageSize : function(humanReadable = false, storage = false) {
 			var bytes = 0;
 			// Count all storages
-			for (let i = this.addonStorages.length - 1; i >= 0; i--) {
-				let data = window.localStorage.getItem(gca_data_manager.name + "_" + this.addonStorages[i]);
+			if (storage) {
+				let data = window.localStorage.getItem(gca_data_manager.name + "_" + storage);
 				if (typeof data === "string") {
 					// https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
 					bytes += encodeURI(data).split(/%(?:u[0-9A-F]{2})?[0-9A-F]{2}|./).length - 1;
+				}
+			}
+			else {
+				for (let i = this.addonStorages.length - 1; i >= 0; i--) {
+					let data = window.localStorage.getItem(gca_data_manager.name + "_" + this.addonStorages[i]);
+					if (typeof data === "string") {
+						// https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string
+						bytes += encodeURI(data).split(/%(?:u[0-9A-F]{2})?[0-9A-F]{2}|./).length - 1;
+					}
 				}
 			}
 
