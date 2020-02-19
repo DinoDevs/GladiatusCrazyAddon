@@ -927,7 +927,7 @@ var gca_forge = {
 		});
 
 		// Exit if none or only one completed
-		if (completed.length <= 1) return;
+		if (completed.length < 1) return;
 
 		// Create get all button
 		let box = document.getElementById('forge_box').parentNode;
