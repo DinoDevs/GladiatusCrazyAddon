@@ -95,7 +95,6 @@ var gca_data = {
 			};
 		}
 	}
-
 }
 
 // Data Manager
@@ -117,20 +116,18 @@ var gca_data_manager = {
 	},
 	// Get Player Id
 	getPlayerId : function(){
-		// Page info
-		var url = document.location.href;
-		
-		// Get server info
-		var country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)) ? url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1] : null;
-		var server = (url.match(/s\d+-/i)) ? url.match(/s(\d+)-/i)[1] : null;
+		let url = document.location.href;
+		let country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
+		let server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
+		let sh = (url.match(/sh=[0-9a-fA-F]+/i))?url.match(/sh=([0-9a-fA-F]+)/i)[1]:null;
 
 		// Resolve Player Id from cookies
-		var playerId = document.cookie.match(new RegExp("Gladiatus_" + country + "_" + server + "=(\\d+)","i"));
+		var cookiePlayerId = (sh) ? document.cookie.match(new RegExp("Gca_" + country + "_" + server + "=(\\d+)_" + sh.substring(0, sh.length/4),"i")) : false;
 		// If cookie exist
-		if(playerId && playerId[1]){
-			return playerId[1];
+		if(cookiePlayerId && cookiePlayerId[1]){
+			return cookiePlayerId[1];
 		}
-		// Else ... Error?
+		// Else
 		else{
 			return 0;
 		}

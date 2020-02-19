@@ -426,6 +426,7 @@ gca_languages["en"] = {
 			category_data$reset_settings : "Reset addon's settings",
 			category_data$clear_data : "Clear all addon's data",
 			category_data$cross_browser_login : "Cross browser login sync",
+			category_data$export_error_player_settings : "Export usererror's settings data to file",
 
 			// Buttons
 			save : "Save",

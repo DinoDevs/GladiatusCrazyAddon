@@ -1126,6 +1126,28 @@ var gca_settings = {
 						}
 					};
 					return scheme;
+				})(),
+
+				// Export Error Player
+				// TODO: this may be removed in the future
+				"export_error_player_settings" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.export = document.createElement("input");
+							data.export.setAttribute("type", "button");
+							data.export.className = "awesome-button";
+							data.export.style.float = "right";
+							data.export.value = gca_locale.get("settings", "export");
+							data.export.addEventListener("click", () => {
+								gca_settings.backup.export_player_error();
+							}, false);
+							// Add change event
+							return [data.export];
+						}
+					};
+					return scheme;
 				})()
 			}
 		},
@@ -1877,27 +1899,57 @@ var gca_settings = {
 			// Get arena data
 			let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
 
-			// Check for errors
+			this.export_data({
+				country : gca_section.country,
+				server : gca_section.server,
+				playerId : gca_section.playerId
+			}, {
+				settings : settings_data,
+				arena : arena_data
+			}, 3);
+		},
+
+		// Export gca error player settings
+		export_player_error : function() {
+			// Get settings data
+			let settings_data = window.localStorage.getItem(gca_data_manager.mod + "_0" + "_settings") || "{\"data\":{}}";
+			// Get arena data
+			let arena_data = window.localStorage.getItem(gca_data_manager.mod + "_0" + "_arena") || "{\"target-list\":{}}";
+
+			this.export_data({
+				country : gca_section.country,
+				server : gca_section.server,
+				playerId : 0
+			}, {
+				settings : settings_data,
+				arena : arena_data
+			}, 3);
+		},
+
+		// Handle data export
+		export_data : function(info, data, version) {
+			// Handle errors
 			try {
-				JSON.parse(settings_data);
-				JSON.parse(arena_data);
+				// Parse JSON data
+				for (let section in data) {
+					if (data.hasOwnProperty(section)) {
+						data[section] = JSON.parse(data[section]);
+					}
+				}
 			} catch (e) {
 				// Set to no data
 				gca_notifications.error(gca_locale.get("general", "error"));
 				return false;
 			}
 
-			// Format data
-			let data = {
-				settings : JSON.parse(settings_data),
-				arena : JSON.parse(arena_data),
-				version : 2
-			};
+			// Set data version
+			data.version = version;
+			data.info = info;
 			data = JSON.stringify(data, null, "\t");
 
 			// Download file
 			gca_notifications.success(gca_locale.get("settings", "data_exported_save_the_file"));
-			this.downloadFile("settings_" + gca_section.country + "_s" + gca_section.server + "_" + gca_section.playerId + ".gca", data);
+			this.downloadFile("settings_" + info.country + "_s" + info.server + "_" + info.playerId + ".gca", data);
 		},
 
 		// Download file
@@ -1941,6 +1993,16 @@ var gca_settings = {
 			else {
 				return "Parse error";
 			}
+
+			// Check user info
+			//if (data.hasOwnProperty('info')) {
+			//	if (
+			//		!(data.info.country == gca_section.country && data.info.server == gca_section.server && data.info.playerId == gca_section.playerId) &&
+			//		confirm(gca_locale.get("settings", "load_settings_confirm", {})) == false
+			//	) {
+			//		return "Import aborted";
+			//	}
+			//}
 			
 			// Parse settings
 			if (settings_json) {
