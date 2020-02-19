@@ -545,51 +545,24 @@ var gca_markets = {
 			// Scrolls Category
 			scroll : {
 				loadData : function(){
-					// Make request
-					jQuery.ajax({
-						type: "GET",
-						url: gca_getPage.link({"mod":"forge"}),
-						success: (result) => {
-							// Get each name
-							let scrolls = result.match(/<option value="\d+" (selected |)data-level="\d+" data-name="[^"]*">[^<]*<\/option>/gim);
-
-							// If error
-							if (scrolls.length < 2) {
-								this.prefix = false;
-								this.suffix = false;
-								return;
-							}
-
-							// Parse scrolls
-							let prefix = []; 
-							let suffix = [];
-
-							var i = 1;
-							// Get prefixes
-							while (i < scrolls.length) {
-								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
-								i++;
-								if (id == 0) break;
-								prefix.push(id);
-							}
-							// Get suffixes
-							while (i < scrolls.length) {
-								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
-								i++;
-								suffix.push(id);
-							}
-
+					gca_tools.ajax.cached.known_scrolls().then(
+						(result) => {
 							// Save lists
-							this.prefix = prefix;
-							this.suffix = suffix;
+							this.prefix = result.id.prefix;
+							this.suffix = result.id.suffix;
 
 							// Check scrolls
 							this.showIsLearned();
 						},
-						error: function(){}
-					});
+						() => {
+							// On error
+							//setTimeout(() => {
+							//	this.loadData();
+							//}, 10 * 1000);
+						}
+					);
 				},
-				// Apply 
+				// Apply
 				showIsLearned : function(){
 					// If no data return
 					if(!this.prefix) return;

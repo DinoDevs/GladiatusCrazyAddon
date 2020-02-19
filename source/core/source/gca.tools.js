@@ -1620,6 +1620,157 @@ var gca_tools = {
 	},
 
 
+	// Cached
+	// -------------------------------------------------- //
+	// cached.run(id, () => {return 100;}, limit);
+	// cached.promise(id, (resolve, reject) => {resolve(100);}, limit).then(result => {}, error => {});
+	// cached.clear(id);
+	// -------------------------------------------------- //
+	cached : {
+		_getCache : function(id, limit) {
+			let last = gca_data.section.get('cache', 'cached-date-#' + id, 0);
+			if (last + limit < new Date().getTime()) {
+				return undefined;
+			}
+			else {
+				return gca_data.section.get('cache', 'cached-value-#' + id, null);
+			}
+		},
+		_setCache : function(id, value) {
+			gca_data.section.set('cache', 'cached-date-#' + id, new Date().getTime());
+			gca_data.section.set('cache', 'cached-value-#' + id, value);
+		},
+		_delCache : function(id) {
+			gca_data.section.del('cache', 'cached-date-#' + id);
+			gca_data.section.del('cache', 'cached-value-#' + id);
+		},
+
+		run : function(id, func, limit = 10 * 60 * 1000, cache_only = false) {
+			let cache = this._getCache(id, limit);
+			if (cache != undefined) {
+				return cache;
+			}
+			else if (cache_only) {
+				return undefined;
+			}
+			else {
+				return func();
+			}
+		},
+		promise : function(id, func, limit = 10 * 60 * 1000, cache_only = false) {
+			return new Promise((resolve, reject) => {
+				let cache = this._getCache(id, limit);
+				if (cache != undefined) {
+					resolve(cache);
+					return;
+				}
+				else if (cache_only) {
+					reject('Not found in cache.');
+					return;
+				}
+				else {
+					func((result) => {
+						this._setCache(id, result);
+						resolve(result);
+					}, reject);
+				}
+			});
+		},
+		clear : function(id) {
+			this._delCache(id);
+		},
+	},
+
+
+	// Ajax
+	// -------------------------------------------------- //
+	// ajax.get(url).then(result => {}, error => {});
+	// 
+	// ajax.cached.known_scrolls().then(result => {}, error => {});
+	// -------------------------------------------------- //
+	ajax : {
+		'get' : function(url) {
+			return new Promise(function(resolve, reject) {
+				return jQuery.ajax({
+					type: 'GET',
+					url: (typeof url === 'string') ? url : gca_getPage.link(url),
+					success: function(result) {resolve(result);},
+					error: function(jqXHR, textStatus, errorThrown) {reject(new Error(errorThrown));},
+				});
+			});
+		},
+
+		cached : {
+			known_scrolls : function(options = {}) {
+				if (options.hasOwnProperty('clear')) {
+					gca_tools.cached.clear('ajax-known-scrolls');
+					return;
+				}
+				return gca_tools.cached.promise('ajax-known-scrolls', (resolve, reject) => {
+					gca_tools.ajax.get({"mod":"forge"}).then(
+						(result) => {
+							// Get each scroll
+							let scrolls = result.match(/<option value="\d+" (selected |)data-level="\d+" data-name="[^"]*">[^<]*<\/option>/gim);
+							let bases = result.match(/<option value="\d+-\d+">[^<]*<\/option>/gim);
+
+							// If error
+							if (scrolls.length < 2) {
+								reject(new Error('Failed to parse page.'));
+							}
+
+							// Parse scrolls
+							let info = {
+								id : {
+									prefix : [],
+									base : [],
+									suffix : [],
+								},
+								name : {
+									prefix : {},
+									base : {},
+									suffix : {},
+								}
+							};
+
+							var i = 1;
+							// Get prefixes
+							while (i < scrolls.length) {
+								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
+								let name = scrolls[i].match(/ data-name="([^"]*)"/i)[1];
+								i++;
+								if (id == 0) break;
+								info.id.prefix.push(id);
+								info.name.prefix[id] = name;
+							}
+							// Get suffixes
+							while (i < scrolls.length) {
+								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
+								let name = scrolls[i].match(/ data-name="([^"]*)"/i)[1];
+								i++;
+								info.id.suffix.push(id);
+								info.name.suffix[id] = name;
+							}
+							// Get bases
+							for (let i = 0; i < bases.length; i++) {
+								let id = bases[i].match(/ value="(\d+-\d+)"/i)[1];
+								let name = gca_tools.strings.trim(bases[i].match(/">([^<]*)<\/option>/i)[1]);
+								info.id.base.push(id);
+								info.name.base[id] = name;
+							}
+
+							// Send results
+							resolve(info);
+						},
+						(error) => {
+							reject(error);
+						}
+					);
+				}, 1 * 60 * 60 * 1000);
+			}
+		}
+	},
+
+
 	// Extension functions
 	// -------------------------------------------------- //
 	// sendMessage(message, callback)

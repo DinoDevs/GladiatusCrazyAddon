@@ -399,6 +399,13 @@ var gca_overview = {
 			stats.threat = spans[3].textContent.trim();
 			gca_data.section.set("overview", "stats_locale", stats);
 		}
+
+		// Clear scroll cache data
+		if (this.doll == 1) {
+			gca_tools.event.request.onAjaxResponse(() => {
+				gca_tools.ajax.cached.known_scrolls({clear:true});
+			});
+		}
 	},
 	
 	// Items Repair Overview

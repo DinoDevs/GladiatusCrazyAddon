@@ -590,74 +590,43 @@ var gca_packages = {
 
 				// Load
 				load : function(self){
-					// Save instance
-					var that = this;
-
 					// Get data
 					this.loadData();
 
 					// On new items reapply
-					gca_tools.event.request.onAjaxResponse(function(response){
+					gca_tools.event.request.onAjaxResponse((response) => {
 						// If package load request
-						if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
-							that.showIsLearned();
+						if (response.data.newPackages && response.data.pagination && response.data.worthTotal)
+							this.showIsLearned();
 					});
 
 					// On packages page load
-					self.loadPackets.onPageLoad(function(){
-						that.showIsLearned();
+					self.loadPackets.onPageLoad(() => {
+						this.showIsLearned();
 					});
 				},
 
 				// Load scroll data
-
 				loadData : function(){
-					// Make request
-					jQuery.ajax({
-						type: "GET",
-						url: gca_getPage.link({"mod":"forge"}),
-						success: (result) => {
-							// Get each name
-							let scrolls = result.match(/<option value="\d+" (selected |)data-level="\d+" data-name="[^"]*">[^<]*<\/option>/gim);
-
-							// If error
-							if (scrolls.length < 2) {
-								this.prefix = false;
-								this.suffix = false;
-								return;
-							}
-
-							// Parse scrolls
-							let prefix = []; 
-							let suffix = [];
-
-							var i = 1;
-							// Get prefixes
-							while (i < scrolls.length) {
-								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
-								i++;
-								if (id == 0) break;
-								prefix.push(id);
-							}
-							// Get suffixes
-							while (i < scrolls.length) {
-								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
-								i++;
-								suffix.push(id);
-							}
-
+					gca_tools.ajax.cached.known_scrolls().then(
+						(result) => {
 							// Save lists
-							this.prefix = prefix;
-							this.suffix = suffix;
+							this.prefix = result.id.prefix;
+							this.suffix = result.id.suffix;
 
 							// Check scrolls
 							this.showIsLearned();
 						},
-						error: function(){}
-					});
+						() => {
+							// On error
+							//setTimeout(() => {
+							//	this.loadData();
+							//}, 10 * 1000);
+						}
+					);
 				},
 
-				// Apply 
+				// Apply
 				showIsLearned : function(){
 					// If no data return
 					if(!this.prefix) return;
