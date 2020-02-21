@@ -118,11 +118,11 @@ var gca_guild_bank = {
 			var wrapper = document.getElementById("content").getElementsByTagName("section");
 			if(!wrapper) return;
 
-			// Improve donators interface
+			// Improve donations interface
 			this.donators(self, wrapper[0].getElementsByTagName("table")[0]);
 		},
 
-		// Improve donators
+		// Improve donations
 		donators : function(self, wrapper){
 			// Full width
 			wrapper.style.width = "100%";
@@ -131,7 +131,7 @@ var gca_guild_bank = {
 			var row = wrapper.getElementsByTagName("tr");
 			// For each row
 			var gold;
-			for (var i = row.length - 1; i >= 2; i--) {
+			for (let i = row.length - 1; i >= 2; i--) {
 				// If row and above don't have a link
 				if(
 					row[i].getElementsByTagName("a").length == 0 &&
@@ -156,12 +156,12 @@ var gca_guild_bank = {
 
 			// Donated gold
 			var guildGold = 0;
-			for (var i = row.length - 1; i >= 1; i--) {
+			for (let i = row.length - 1; i >= 1; i--) {
 				guildGold += gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
 			}
 
 			// Show data
-			for (var i = row.length - 1; i >= 1; i--) {
+			for (let i = row.length - 1; i >= 1; i--) {
 				// Show percent
 				gold = gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
 				row[i].getElementsByTagName("td")[2].textContent += " (" + (Math.round((gold * 1000) / guildGold) / 10) + "%)";
