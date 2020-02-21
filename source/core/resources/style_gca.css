@@ -1007,6 +1007,10 @@
 		
 		/* Buildings Layout */
 		.gca_guild_buildings_cost_difference {width: 100px; position: absolute; right: 166px; top: 5px; text-align: right; font-size: 10px;}
+		
+		/* Guild's Book (Donations) */
+		.gca_donation_difference {display: block;margin-top: -8px;margin-bottom: -2px;margin-left: 10px;height: 10px;font-size: 10px;color: green;}
+		.gca_rtl .gca_donation_difference {margin-right: 10px;margin-left: auto;}
 
 
 

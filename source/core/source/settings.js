@@ -897,6 +897,7 @@ var gca_settings = {
 				// Bank Layouts
 				"bank_donate_layout" : true,
 				"bank_book_layout" : true,
+				"bank_book_show_changes" : true,
 				// Medic Layout
 				"medic_layout" : true
 			},

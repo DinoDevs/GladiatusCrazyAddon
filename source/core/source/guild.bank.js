@@ -33,6 +33,10 @@ var gca_guild_bank = {
 		// Bank Book Layout improve
 		(gca_options.bool("guild","bank_book_layout") && 
 			this.bookLayout.improve(this));
+
+		// Changes since last visit
+		(gca_options.bool("guild","bank_book_show_changes") && 
+			this.book_show_donation_changes());
 	},
 
 	// Bank Improve
@@ -171,6 +175,40 @@ var gca_guild_bank = {
 				}
 			}
 		}
+	},
+
+	book_show_donation_changes : function() {
+		// Get wrappers
+		var wrapper = document.getElementById('content').getElementsByTagName('section');
+		if(!wrapper) return;
+
+		// Players
+		var players = {};
+		var memory = gca_data.section.get("cache", "guild_donations", {});
+
+		// Get rows
+		var row = wrapper[0].getElementsByTagName("table")[0].getElementsByTagName('tr');
+		// For each row
+		for (let i = 1; i < row.length; i++) {
+			let a = row[i].getElementsByTagName('a');
+			// If this is a player
+			if (a.length && a[0].href.match(/(?:&amp;|&)p=\d+(?:&amp;|&)sh=/i)) {
+				let id = parseInt(a[0].href.match(/(?:&amp;|&)p=(\d+)(?:&amp;|&)sh=/i)[1], 10);
+				let gold = gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
+				players[id] = gold;
+				// If player info on memory
+				if (memory.hasOwnProperty(id) && gold - memory[id] > 0) {
+					let info = document.createElement('span');
+					info.className = 'gca_donation_difference';
+					info.textContent = '+' + gca_tools.strings.insertDots(gold - memory[id]);
+					row[i].getElementsByTagName('td')[2].appendChild(info);
+				}
+			}
+			else break;
+		}
+
+		// Save new data
+		gca_data.section.set("cache", "guild_donations", players);
 	}
 };
 
@@ -191,4 +229,4 @@ var gca_guild_bank = {
 })();
 
 // ESlint defs
-/* global gca_locale, gca_options, gca_section, gca_tools */
+/* global gca_data, gca_locale, gca_options, gca_section, gca_tools */

@@ -403,6 +403,7 @@ gca_languages["en"] = {
 			category_guild$library_tooltip_data : "Add more data on library's tooltips",
 			category_guild$bank_donate_layout : "Improve bank's donate layout",
 			category_guild$bank_book_layout : "Improve bank's book layout",
+			category_guild$bank_book_show_changes : "Show donation changes since last visit on bank's book",
 			category_guild$medic_layout : "Improve medic's layout",
 			// Settings - Auction
 			category_auction$items_counters : "Count items and bidden items",
