@@ -144,7 +144,7 @@ var gca_arena = {
 			highscore_link.className = "awesome-button";
 			highscore_link.textContent = gca_locale.get("arena", "global_highscore") + ' 🔗';
 			highscore_link.style = "margin-bottom: 15px;padding: 2px 6px;margin-right: 20px;";
-			highscore_link.href = gca_links.get('addon-page') + "/index.php?mode=highscore";
+			highscore_link.href = gca_links.get('addon-page') + "/global-arena.php";
 			highscore_link.setAttribute("target","_blank");
 			box.appendChild(highscore_link);
 
