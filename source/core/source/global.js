@@ -49,6 +49,11 @@ var gca_global = {
 		// Resolve Page direction
 		this.pageDirectionResolve();
 
+		// If server backup
+		if (this.isServerBuckup) {
+			this.backup.inject();
+			return;
+		}
 		// Server Service wait screen
 		if (!this.isLoggedIn) {
 			return;
@@ -209,6 +214,7 @@ var gca_global = {
 	gameModeResolve : function(){
 		// Default Values
 		this.isLoggedIn = true;
+		this.isServerBuckup = false;
 		this.isTraveling = false;
 		this.isInUnderworld = false;
 
@@ -221,8 +227,14 @@ var gca_global = {
 		};
 
 		// Logged Out
-		if (document.getElementById('container_infobox') || document.getElementById('login')){
+		if (document.getElementById('login')){
 			this.isLoggedIn = false;
+			return;
+		}
+		// If server backup
+		else if (document.getElementById('container_infobox')){
+			this.isLoggedIn = false;
+			this.isServerBuckup = true;
 			return;
 		}
 		// Check if traveling
@@ -4792,6 +4804,33 @@ var gca_global = {
 				gca_data.section.set("guild", "mates", guild_players);
 			}
 		});
+	},
+
+	backup : {
+		inject : function() {
+			// Fix redirect links
+			this.redirect_fix();
+		},
+
+		redirect_fix : function() {
+			let content = document.getElementById('content_infobox');
+			if (!content) return;
+
+			// Get correct URL
+			let url = gca_getPage.link({'mod':'overview'});
+
+			// Fix ticker link
+			let tickers = content.getElementsByClassName('ticker');
+			if (tickers.length && tickers[0].dataset.tickerLoc == 'index.php?mod=start') {
+				tickers[0].dataset.tickerLoc = url;
+			}
+
+			// Fix button link
+			let button = content.getElementsByClassName('awesome-button');
+			if (button.length && button[0].getAttribute('onclick') == "document.location.href='index.php?mod=start'") {
+				button[0].setAttribute('onclick', "document.location.href='" + url + "'");
+			}
+		},
 	},
 
 	accessibility : {
