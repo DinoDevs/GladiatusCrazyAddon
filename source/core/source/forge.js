@@ -88,7 +88,7 @@ var gca_forge = {
 			// Show/Hide player doll
 			this.showHideDoll();
 			// If Item shadow
-			(gca_options.bool("global","item_shadow") && 
+			(gca_options.bool("global","item_shadow") &&
 				this.itemShadow.inject());
 		}
 		
@@ -136,7 +136,7 @@ var gca_forge = {
 		var observer = new MutationObserver((mutationsList) => {
 			for (let mutation of mutationsList) {
 				if (mutation.type == 'childList') {
-					// Fire only 1 time 
+					// Fire only 1 time
 					clearTimeout(atomic);
 					atomic = setTimeout(handler, 1);
 					break;
@@ -280,7 +280,6 @@ var gca_forge = {
 			} else {
 				resource.fireEvent('onchange');
 			}
-			
 		}
 		
 	},
@@ -370,7 +369,8 @@ var gca_forge = {
 				document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,
 				document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),
 				gca_locale.get("forge","forge_ended")
-			]};//Smeltery, Duration, Done!
+			]};
+			//Smeltery, Duration, Done!
 			forgeTimes.data = [];// EndTime, Name
 			let current = new Date().getTime();
 			for (let i = 0; i < window.slotsData.length; i++) {
@@ -390,7 +390,8 @@ var gca_forge = {
 				document.getElementById('mainnav').getElementsByClassName('current')[0].textContent,
 				document.getElementById('forge_duration').textContent.match(/([^:]+):/)[1].trim(),
 				document.getElementById('slot-finished-succeeded').getElementsByTagName('fieldset')[0].textContent.trim().replace(/  /g,'').replace(/(?:\r\n|\r|\n)/g,' ')
-			]};//Smeltery, Duration, Done!
+			]};
+			//Smeltery, Duration, Done!
 			smeltTimes.data = [];// EndTime, Name
 			for(var i = 0; i < window.slotsData.length; i++) {
 				if (typeof window.slotsData[i]['forge_slots.uend'] !== "undefined") {
@@ -401,7 +402,7 @@ var gca_forge = {
 		}
 	},
 	
-	// Show Fix/Sufix/Base names levels
+	// Show Fix/Suffix/Base names levels
 	showPrefixSufixBaseLevels : function(){
 		var options;
 
@@ -579,46 +580,46 @@ var gca_forge = {
 		}
 	},
 	
-	recraft : {
-		inject : function(){
-			// Make button
-			var recraft_button = document.createElement('div');
-			recraft_button.className = "awesome-button";
-			recraft_button.id = "recraft_button";
-			recraft_button.style="margin-top: 15px;";
-			recraft_button.textContent = gca_locale.get("forge","recraft_item");
-			recraft_button.dataset.tab=-1;
-			recraft_button.addEventListener('click',function() {
-				rent();
-			});
-			document.getElementById('forge_button_box').appendChild(recraft_button);
-			
-			document.getElementById('forge_nav').addEventListener("click", function() {
-				document.getElementById('recraft_button').dataset.tab = -1;
-			});
-			
-			this.repeat();
-		},
-		repeat : function(){
-			if(document.getElementById("slot-finished-failed").className!="hidden"){
-				var tab = document.getElementById('forge_nav').getElementsByClassName('tabActive')[0].className.match(/forge_finished-failed (\d) tabActive/i)[1];
-				document.getElementById('recraft_button').dataset.tab=tab;
-				if (window.slotsData[tab]){
-					document.getElementById('recraft_button').textContent = gca_locale.get("forge","recraft_item")+": "+gca_tools.strings.insertDots(window.slotsData[tab].formula.rent[2])+" ";
-					var icon_gold = document.createElement('div');
-					if(window.slotsData[tab].formula.rent[2]>document.getElementById('sstat_gold_val').textContent.replace(/\./g,"")){
-						document.getElementById('recraft_button').className += " disabled";
-					}
-					icon_gold.className = "icon_gold";
-					document.getElementById('recraft_button').appendChild(icon_gold);
-				}
-			}
-			
-			setTimeout(function(){
-				gca_forge.recraft.repeat();
-			}, 500);
-		}
-	},
+	//recraft : {
+	//	inject : function(){
+	//		// Make button
+	//		var recraft_button = document.createElement('div');
+	//		recraft_button.className = "awesome-button";
+	//		recraft_button.id = "recraft_button";
+	//		recraft_button.style="margin-top: 15px;";
+	//		recraft_button.textContent = gca_locale.get("forge","recraft_item");
+	//		recraft_button.dataset.tab=-1;
+	//		recraft_button.addEventListener('click',function() {
+	//			rent();
+	//		});
+	//		document.getElementById('forge_button_box').appendChild(recraft_button);
+	//		
+	//		document.getElementById('forge_nav').addEventListener("click", function() {
+	//			document.getElementById('recraft_button').dataset.tab = -1;
+	//		});
+	//		
+	//		this.repeat();
+	//	},
+	//	repeat : function(){
+	//		if(document.getElementById("slot-finished-failed").className!="hidden"){
+	//			var tab = document.getElementById('forge_nav').getElementsByClassName('tabActive')[0].className.match(/forge_finished-failed (\d) tabActive/i)[1];
+	//			document.getElementById('recraft_button').dataset.tab=tab;
+	//			if (window.slotsData[tab]){
+	//				document.getElementById('recraft_button').textContent = gca_locale.get("forge","recraft_item")+": "+gca_tools.strings.insertDots(window.slotsData[tab].formula.rent[2])+" ";
+	//				var icon_gold = document.createElement('div');
+	//				if(window.slotsData[tab].formula.rent[2]>document.getElementById('sstat_gold_val').textContent.replace(/\./g,"")){
+	//					document.getElementById('recraft_button').className += " disabled";
+	//				}
+	//				icon_gold.className = "icon_gold";
+	//				document.getElementById('recraft_button').appendChild(icon_gold);
+	//			}
+	//		}
+	//		
+	//		setTimeout(function(){
+	//			gca_forge.recraft.repeat();
+	//		}, 500);
+	//	}
+	//},
 
 	horreum : {
 		clickToSelectMaterial : function() {
@@ -661,7 +662,6 @@ var gca_forge = {
 			fromInventory.checked = gca_data.section.get('cache', 'horreum_from_inventory', false);
 			fromInventory.addEventListener('change', function() {
 				gca_data.section.set('cache', 'horreum_from_inventory', this.checked);
-				console.log(this.checked);
 			}, false);
 
 			// Handle load from packages
@@ -669,10 +669,9 @@ var gca_forge = {
 			fromPackages.checked = gca_data.section.get('cache', 'horreum_from_packages', false);
 			fromPackages.addEventListener('change', function() {
 				gca_data.section.set('cache', 'horreum_from_packages', this.checked);
-				console.log(this.checked);
 			}, false);
 
-			// Handle overlow action
+			// Handle overflow action
 			let overflowAction = document.getElementsByName('sell-excess');
 			if (gca_data.section.get('cache', 'horreum_overflow_action', 'sell') != 'sell') {
 				overflowAction[0].checked = false;
