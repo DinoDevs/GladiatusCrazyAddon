@@ -29,6 +29,9 @@ var gca_forge = {
 
 			// Show selected quality on dropdown
 			this.showSelectedQuality.inject();
+
+			// Show item shadow
+			this.showItemShadow();
 			
 			//this.recraft.inject();
 		}
@@ -43,6 +46,9 @@ var gca_forge = {
 
 			// Don't allow items dropped from char
 			this.disallowCharItemsDrop();
+
+			// Show item shadow
+			this.showItemShadow();
 
 			// Add Gladiatus tools links
 			this.gladiatusTools.inject();
@@ -282,6 +288,17 @@ var gca_forge = {
 			}
 		}
 		
+	},
+
+	showItemShadow : function() {
+		// Item
+		let itemBox = document.getElementById('forge_itembox');
+		// Detect changes
+		gca_tools.event.addListener('forge-infobox-update', () => {
+			let items = itemBox.getElementsByTagName('div');
+			if (items.length)
+				gca_tools.item.shadow.add(items[0]);
+		});
 	},
 
 	// Show selected quality on dropdown
