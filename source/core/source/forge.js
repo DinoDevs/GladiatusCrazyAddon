@@ -166,6 +166,12 @@ var gca_forge = {
 		inject : function(){
 			// Get available materials
 			this.getMaterialsAmounts();
+
+			// Detect changes
+			gca_tools.event.addListener('forge-infobox-update', (data) => {
+				//console.log(data);
+				this.showMaterialsAmounts();
+			});
 		},
 		
 		getMaterialsAmounts : function() {
@@ -203,12 +209,6 @@ var gca_forge = {
 			.fail(() => {
 				this.materialAmounts = false;
 			});
-			
-			// Detect changes
-			gca_tools.event.addListener('forge-infobox-update', (data) => {
-				//console.log(data);
-				this.showMaterialsAmounts();
-			});
 		},
 		
 		showMaterialsAmounts : function() {
@@ -232,59 +232,101 @@ var gca_forge = {
 			// Mark that the code has already run
 			document.getElementById("resource-quality").dataset.amounts = true;
 			
-			// No item in slot
-			if (document.getElementById("resource-quality").parentNode.style.display != "block")
-				return;
-			
 			// Amount on each quality = Standard, Green, Blue, Purple, Orange, Red
+			let info = [];
 			let qualities = [0, 0, 0, 0, 0, 0];
 			
 			let totalRequired = 0;
 			
 			// Get item's materials
 			Array.prototype.slice.call(materials).forEach((mat) => {
+				// Parse required amount for this material
 				let required = parseInt(mat.getElementsByClassName("forge_setpoint")[0].textContent) - parseInt(mat.getElementsByClassName("forge_actual_value")[0].textContent);
-				if( required > 0 ){
+				if (required > 0) {
+					// Parse material id
 					let mat_id = parseInt(mat.getElementsByTagName("div")[0].className.match(/18-(\d+)/)[1], 10);
-
+					// Count total materials needed
 					totalRequired += required;
+					// If material exists
 					if (this.materialAmounts.hasOwnProperty(mat_id)) {
+						// For each quality, add amount you have
 						for (let i = 0; i <= 5; i++) {
 							qualities[i] += Math.min(required, this.materialAmounts[mat_id][i]);
 						}
+						// Save material info
+						info.push({
+							id : mat_id,
+							title : mat.getElementsByTagName("div")[0].title,
+							required : required,
+							amounts : this.materialAmounts[mat_id]
+						});
 					}
 					
 					//console.log("Item:"+mat_id+" Required:"+required+" Available:"+this.materialAmounts[mat_id][0]+","+this.materialAmounts[mat_id][1]+","+this.materialAmounts[mat_id][2]+","+this.materialAmounts[mat_id][3]+","+this.materialAmounts[mat_id][4]+","+this.materialAmounts[mat_id][5]);
 				}
 			});
-			
-			let colors = ["white", "#009e00", "#5159F7", "#E303E0", "#FF6A00", "#FF0000"];
-			let select = false;
-			let resource = document.getElementById("resource-quality");
-			let options = resource.getElementsByTagName("option");
-			for (let i = 0; i <= 5; i++) {
-				options[i].textContent = this.selectionsText[i] + "("+qualities[i]+"/"+totalRequired+")";
-				
-				if (qualities[i] > 0) {
-					options[i].style.color = colors[i];
-					
-					// Auto select the first option
-					if (!select) {
-						options[i].selected = true;
-						select = true;
-					}
-				} else {
-					options[i].style.color = "grey";
-				}
-			}
 
-			// Fire change event
-			if ('createEvent' in document) {
-				var evt = document.createEvent('HTMLEvents');
-				evt.initEvent('change', false, true);
-				resource.dispatchEvent(evt);
-			} else {
-				resource.fireEvent('onchange');
+			// Quality colors
+			let colors = ["white", "#009e00", "#5159F7", "#E303E0", "#FF6A00", "#FF0000"];
+			
+			// Item in slot
+			if (document.getElementById("resource-quality").parentNode.style.display == "block") {
+				let select = false;
+				let resource = document.getElementById("resource-quality");
+				let options = resource.getElementsByTagName("option");
+				for (let i = 0; i <= 5; i++) {
+					options[i].textContent = this.selectionsText[i] + "("+qualities[i]+"/"+totalRequired+")";
+					
+					if (qualities[i] > 0) {
+						options[i].style.color = colors[i];
+						
+						// Auto select the first option
+						if (!select) {
+							options[i].selected = true;
+							select = true;
+						}
+					} else {
+						options[i].style.color = "grey";
+					}
+				}
+
+				// Fire change event
+				if ('createEvent' in document) {
+					var evt = document.createEvent('HTMLEvents');
+					evt.initEvent('change', false, true);
+					resource.dispatchEvent(evt);
+				} else {
+					resource.fireEvent('onchange');
+				}
+
+				// Hide info table
+				jQuery('#gca-crafting-horreum-amounts').hide();
+
+			}
+			// No item in slot
+			else {
+				let table = jQuery('<table></table>').css({width:'100%'});
+				info.forEach((mat) => {
+					let row = jQuery('<tr></tr>');
+					row.append(jQuery('<td></td>').text(mat.title));
+					let needed = mat.required;
+					for (let i = 0; i <= 5; i++) {
+						needed -= mat.amounts[i];
+						row.append(jQuery('<td></td>').css({color:colors[i],textAlign:'right',width:'23px'}).text(mat.amounts[i]));
+					}
+					row.prepend(jQuery('<td></td>').css({color: (needed <= 0 ? 'green' : 'red')}).text((needed <= 0 ? '✓' : '✕')));
+					table.append(row);
+				});
+
+				// Create and populate
+				let wrapper = jQuery('#gca-crafting-horreum-amounts');
+				if (!wrapper.length) {
+					wrapper = jQuery('<fieldset></fieldset>').attr('id','gca-crafting-horreum-amounts');
+					jQuery('#forge_infobox .crafting_requirements').append(wrapper);
+				}
+				wrapper.show();
+				wrapper.empty();
+				wrapper.append(table);
 			}
 		}
 		
