@@ -308,7 +308,7 @@ var gca_forge = {
 				let table = jQuery('<table></table>').css({width:'100%'});
 				info.forEach((mat) => {
 					let row = jQuery('<tr></tr>');
-					row.append(jQuery('<td></td>').append(jQuery('<div></div>').attr('class','item-i-18-' + mat.id).css({transform:'scale(0.75)', margin:'-8px'})));
+					row.append(jQuery('<td></td>').append(jQuery('<div></div>').attr('class','item-i-18-' + mat.id).css({transform:'scale(0.75)', margin:'-5px -6px'})));
 					row.append(jQuery('<td></td>').text(mat.title));
 					for (let i = 1; i <= 5; i++) {
 						row.append(jQuery('<td></td>').css({color:colors[i],textAlign:'right',width:'23px'}).text(mat.amounts[i] >= mat.required ? '✓' : '-' + (mat.required - mat.amounts[i])).attr('title', mat.amounts[i]));
