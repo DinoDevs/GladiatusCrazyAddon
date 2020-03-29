@@ -207,7 +207,7 @@ var manager = {
 		// Messages section
 		messages : function() {
 			// Messages List
-			if(info.page.queries.submod == 'messageShow' || info.page.queries.submod == 'messageMoveDelete'){
+			if(info.page.queries.submod == null || info.page.queries.submod == 'messageShow' || info.page.queries.submod == 'messageMoveDelete'){
 				tools.loadScript("source/messages.js");
 			}
 			// New Message

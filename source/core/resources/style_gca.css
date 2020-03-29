@@ -829,6 +829,11 @@
 		.gca_rtl .gca_messages_sidebar .gca_messages_sidebar_icon_wrapper .gca_messages_sidebar_text{float: left;margin-left: auto;margin-right: -10px;}
 		.gca_rtl .gca_messages_sidebar .gca_messages_sidebar_icon_wrapper .gca_messages_sidebar_icon{float: right;}
 
+		.gca_messages_sidebar_folders{width: 22px;margin-left: -40px;margin-top: 40px;position: absolute;z-index: 50;}
+		.gca_messages_sidebar_folders .gca_messages_sidebar_folder{display: block;float: left;width: 20px;height: 20px;border-radius:16px;border:1px solid #8b5a0e;background-color: #480200;text-align: center;text-decoration: none!important;font-size: 10px;line-height: 20px;color: #e6dcb7!important;box-shadow: 0px 0px 3px black;margin-bottom: 2px;}
+		.gca_rtl .gca_messages_sidebar_folders{margin-left: auto;margin-right: -50px;}
+		.gca_rtl .gca_messages_sidebar_folders .gca_messages_sidebar_folder{float: right;}
+
 		/* Messages Guild */
 		.gca_messages_styling .message_box .messageSubject .message_box_title .message_title span{margin-left: 5px;font-size: 10px;color: #8a6b35;font-style: italic;}
 		.message_box .message_box_content .message_text.gca_message_links{font-size: 10px;font-style: italic;margin-top: 20px;background-color: rgba(0,0,0,0.1);}

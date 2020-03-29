@@ -70,6 +70,13 @@ var gca_messages = {
 			// Header links fix
 			(gca_options.bool("messages", "fix_header_links") &&
 				this.fix.headerLinks(this));
+
+			this.folders.show();
+		}
+
+		// Folders
+		else if (gca_section.submod == null) {
+			this.folders.detect();
 		}
 
 		// Setting Link
@@ -942,6 +949,56 @@ var gca_messages = {
 		}
 
 	},
+
+	// Folders
+	folders : {
+		detect : function() {
+			console.log(123);
+			let list = jQuery('#content table .tdn a');
+			if (!list[0]) return;
+
+			let folders = {};
+			for (let i = 0; i < list.length; i++) {
+				if (list[i].href) {
+					let id = list[i].href.match(/index\.php\?mod=messages&submod=messageShow&folder=(\d+)&sh=[^"]*/i);
+					let name = list[i].textContent;
+					if (id && name) {
+						folders[parseInt(id[1], 10)] = gca_tools.strings.trim(name);
+					}
+				}
+			}
+
+			// Save folders
+			gca_data.section.set("cache", "message_folders", folders);
+		},
+
+		show : function() {
+			// Get folders
+			let folders = gca_data.section.get("cache", "message_folders", null);
+			if (!folders) return;
+
+			// Create wrapper
+			let wrapper = document.createElement('div');
+			wrapper.className = 'gca_messages_sidebar_folders';
+
+			// For each folder create icon link
+			for (let id in folders) {
+				if (folders.hasOwnProperty(id)) {
+					let a = document.createElement('a');
+					a.className = 'gca_messages_sidebar_folder';
+					a.title = folders[id];
+					a.href = gca_getPage.link({'mod':'messages','submod':'messageShow','folder':id});
+					//a.textContent = id;
+					a.textContent = folders[id].substring(0,2);
+					wrapper.appendChild(a);
+				}
+			}
+
+			// Add wrapper in page
+			var content = document.getElementById('content');
+			content.insertBefore(wrapper, content.firstChild);
+		}
+	}
 
 	// Send message box
 	/*
