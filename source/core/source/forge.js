@@ -202,7 +202,20 @@ var gca_forge = {
 						}
 					}
 				}
-				
+
+				// Get quality translations
+				info = content.match(/<select id="resource-quality"[^>]*>[^<]*<option value="-1">([^<]*)<\/option>[^<]*<option value="0">([^<]*)<\/option>[^<]*<option value="1">([^<]*)<\/option>[^<]*<option value="2">([^<]*)<\/option>[^<]*<option value="3">([^<]*)<\/option>[^<]*<option value="4">([^<]*)<\/option>[^<]*<\/select>/i);
+				let translations = {};
+				if (!info) {
+					for (let i = -1; i <= 4; i++) translations.push('');
+				}
+				else {
+					for (let i = 0, j = 1; i <= 5; i++, j++) {
+						translations[i] = gca_tools.strings.trim(info[j]);
+					}
+				}
+				this.qualityTranslations = translations;
+
 				this.showMaterialsAmounts();
 			})
 			// If Request Failed
@@ -217,9 +230,9 @@ var gca_forge = {
 			
 			// Save selection the on first run
 			if (!this.selectionsText){
-				this.selectionsText = ["", "", "", "", "", ""];
+				this.selectionsText = [];
 				for (let i = 0; i <= 5; i++)
-					this.selectionsText[i] = document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent;
+					this.selectionsText.push(document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent);
 			}
 			
 			if (!document.getElementsByClassName("crafting_requirements")[0]) return;
@@ -237,14 +250,18 @@ var gca_forge = {
 			let qualities = [0, 0, 0, 0, 0, 0];
 			
 			let totalRequired = 0;
+
+			// Quality colors
+			let colors = ["white", "#009e00", "#5159F7", "#E303E0", "#FF6A00", "#FF0000"];
 			
 			// Get item's materials
 			Array.prototype.slice.call(materials).forEach((mat) => {
 				// Parse required amount for this material
 				let required = parseInt(mat.getElementsByClassName("forge_setpoint")[0].textContent) - parseInt(mat.getElementsByClassName("forge_actual_value")[0].textContent);
 				if (required > 0) {
+					let icon = mat.getElementsByTagName("div")[0];
 					// Parse material id
-					let mat_id = parseInt(mat.getElementsByTagName("div")[0].className.match(/18-(\d+)/)[1], 10);
+					let mat_id = parseInt(icon.className.match(/18-(\d+)/)[1], 10);
 					// Count total materials needed
 					totalRequired += required;
 					// If material exists
@@ -256,18 +273,21 @@ var gca_forge = {
 						// Save material info
 						info.push({
 							id : mat_id,
-							title : mat.getElementsByTagName("div")[0].title,
+							title : icon.title,
 							required : required,
 							amounts : this.materialAmounts[mat_id]
 						});
+
+						let tooltip = [];
+						tooltip.push([icon.title, "#DDD"]);
+						for (let i = 0; i <= 5; i++) {
+							tooltip.push([this.materialAmounts[mat_id][i] + ' &times; ' + this.qualityTranslations[i], colors[i]]);
+						}
+						gca_tools.setTooltip(icon, [tooltip]);
+						icon.removeAttribute('title');
 					}
-					
-					//console.log("Item:"+mat_id+" Required:"+required+" Available:"+this.materialAmounts[mat_id][0]+","+this.materialAmounts[mat_id][1]+","+this.materialAmounts[mat_id][2]+","+this.materialAmounts[mat_id][3]+","+this.materialAmounts[mat_id][4]+","+this.materialAmounts[mat_id][5]);
 				}
 			});
-
-			// Quality colors
-			let colors = ["white", "#009e00", "#5159F7", "#E303E0", "#FF6A00", "#FF0000"];
 			
 			// Item in slot
 			if (document.getElementById("resource-quality").parentNode.style.display == "block") {
