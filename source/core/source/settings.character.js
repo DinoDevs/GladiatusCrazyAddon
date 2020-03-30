@@ -81,9 +81,10 @@ var gca_settings_character = {
 			// Get player's description
 			var description = frameDocument.getElementById('content').getElementsByTagName('section')[0].parentNode;
 			// Clone player's description
-			//var preview = description.cloneNode(true);
 			var preview = document.importNode(description, true);
 			preview.style.margin = '20px 25px 0px 25px';
+			var section = preview.getElementsByTagName('section');
+			if (section && section[0]) section[0].style.display = 'block';
 
 			// Remove loading
 			this.loading.parentNode.removeChild(this.loading);
