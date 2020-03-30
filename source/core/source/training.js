@@ -802,6 +802,9 @@ var gca_training = {
 			// Impact on various stats
 			var write_breakdown_stat = function(td,txt){
 				document.getElementById(name+"_breakdownBox").getElementsByTagName("td")[td].textContent = txt;
+				if (td % 2 == 1) {
+					document.getElementById(name+"_breakdownBox").getElementsByTagName("td")[td].setAttribute('rowspan', 2);
+				}
 			}
 			if(name=='strength'){
 				// Damage gain

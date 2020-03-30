@@ -1066,7 +1066,7 @@
 		#trainingPage .switch-field label:last-of-type{border-radius: 0 4px 4px 0;}
 		#trainingPage .breakdownBox{top: -18px;width: 260px;right: 140px;height: 30px;}
 		#trainingPage .breakdownBox table{width:100%;}
-		#trainingPage .breakdownBox td{font-size: 10px;width:50%;line-height: 10px;color: #000000;}
+		#trainingPage .breakdownBox td{font-size: 10px;width:50%;line-height: 10px;color: #33280f;vertical-align: top;}
 		.gca_rtl #trainingPage .switch-field label{float: left;}
 		.gca_rtl #trainingPage .breakdownBox{right: auto;left: 140px;}
 
