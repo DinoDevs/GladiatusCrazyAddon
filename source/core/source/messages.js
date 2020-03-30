@@ -982,14 +982,15 @@ var gca_messages = {
 			wrapper.className = 'gca_messages_sidebar_folders';
 
 			// For each folder create icon link
+			let links = [];
 			for (let id in folders) {
 				if (folders.hasOwnProperty(id)) {
 					let a = document.createElement('a');
 					a.className = 'gca_messages_sidebar_folder';
-					a.title = folders[id];
 					a.href = gca_getPage.link({'mod':'messages','submod':'messageShow','folder':id});
-					//a.textContent = id;
 					a.textContent = folders[id].substring(0,2);
+					a.dataset.name = folders[id];
+					links.push(a);
 					wrapper.appendChild(a);
 				}
 			}
@@ -997,6 +998,11 @@ var gca_messages = {
 			// Add wrapper in page
 			var content = document.getElementById('content');
 			content.insertBefore(wrapper, content.firstChild);
+
+			// Add tooltips
+			links.forEach((a) => {
+				gca_tools.setTooltip(a, [[[a.dataset.name, '#ffffff']]]);
+			});
 		}
 	}
 
