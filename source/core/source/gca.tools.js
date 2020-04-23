@@ -285,11 +285,19 @@ var gca_tools = {
 
 		// Move
 		move : function(item, target){
+			// Get spot to move it to
 			var spot = this._move.getTargetSpot(item, target);
 			if(!spot) return false;
 
+			// Lock spots
+			this._move.lockSlotSpots(spot.slot);
+			
+			//console.log(spot);
+			//console.log('<' + spot.slot.x + ',' + spot.slot.y + '>');
+			//return false;
+
+			// Drag item to spot
 			this.drag(item, spot.parent, spot.x, spot.y);
-		
 			return true;
 		},
 
@@ -312,15 +320,52 @@ var gca_tools = {
 
 		_move : {
 
+			_lockedSpots : {
+				inv : {},
+				shop: {},
+				lockDuration: 2000
+			},
+			lockSlotSpots : function (slot) {
+				// Slot stucture:
+				// slot : {
+				//		target : target,
+				//		x : spot.x,
+				//		y : spot.y,
+				//		h : item_size.y,
+				//		w : item_size.x
+				// }
+				// If don't need to lock spot
+				if (slot.target != 'inv' && slot.target != 'shop') {
+					return;
+				}
+				// Create spots tags
+				let tags = [];
+				for (let x = 0; x < slot.w; x++) {
+					for (let y = 0; y < slot.h; y++) {
+						tags.push('<' + (slot.x + x) + ',' + (slot.y + y) + '>');
+					}
+				}
+				// Create timestamp untill
+				let lockTime = new Date().getTime() + this._lockedSpots.lockDuration;
+				// Lock spots
+				tags.forEach((tag) => {
+					this._lockedSpots[slot.target][tag] = lockTime;
+				});
+				return;
+			},
+
 			getTargetSpot : function(item, target) {
 				var cords_grid, grid, size;
+				var checkLock = false;
 				if (target == 'shop') {
 					grid = document.getElementById('shop');
 					size = [8, 6];
+					checkLock = 'shop';
 				}
 				else if (target == 'inv') {
 					grid = document.getElementById('inv');
 					size = [5, 8];
+					checkLock = 'inv';
 
 					// If gold (works, but the subtracted gold from the counters is wrong)
 					//if (item.dataset.basis == '14-1') {
@@ -355,10 +400,14 @@ var gca_tools = {
 				}
 
 				var items = this.getGridItems(grid);
+				var item_size = {
+					x : parseInt(item.dataset.measurementX, 10),
+					y : parseInt(item.dataset.measurementY, 10)
+				}
 				var spot = (target != 'shop' && this.findSameItemSpot(item, items)) || this.findGridSpot(
-					item.dataset.measurementY,
-					item.dataset.measurementX,
-					this.getGridMap(size[0], size[1], items)
+					item_size.y,
+					item_size.x,
+					this.getGridMap(size[0], size[1], items, checkLock)
 				);
 				if (!spot) return false;
 
@@ -367,7 +416,14 @@ var gca_tools = {
 				spot = {
 					x: (cords_grid.x + (32 * spot.x) + 1),
 					y: (cords_grid.y + (32 * spot.y) + 1),
-					parent : grid
+					parent : grid,
+					slot : {
+						target : target,
+						x : spot.x,
+						y : spot.y,
+						h : item_size.y,
+						w : item_size.x
+					}
 				};
 
 				return spot;
@@ -391,23 +447,38 @@ var gca_tools = {
 			},
 
 			// Create a grid map of free spaces
-			getGridMap : function(height, width, items){
+			getGridMap : function(height, width, items, checkLock){
 				var table = [];
-				var y, x;
 				
 				// Create table
-				for (y = 0; y < height; y++) {
+				for (let y = 0; y < height; y++) {
 					table.push([]);
-					for (x = 0; x < width; x++) {
+					for (let x = 0; x < width; x++) {
 						table[y].push(false);
 					}
 				}
 
 				// Set item occupied spaces
-				for (var i = items.length - 1; i >= 0; i--) {
-					for (y = 0; y < items[i].h; y++) {
-						for (x = 0; x < items[i].w; x++) {
+				for (let i = items.length - 1; i >= 0; i--) {
+					for (let y = 0; y < items[i].h; y++) {
+						for (let x = 0; x < items[i].w; x++) {
 							table[items[i].y + y][items[i].x + x] = true;
+						}
+					}
+				}
+
+				// Check locked slots
+				if (checkLock) {
+					let lock = this._lockedSpots[checkLock];
+					let now = new Date().getTime();
+					for (let y = 0; y < height; y++) {
+						for (let x = 0; x < width; x++) {
+							if (!table[y][x]) {
+								let tag = '<' + x + ',' + y + '>';
+								if (lock.hasOwnProperty(tag) && lock[tag] >= now) {
+									table[y][x] = true;
+								}
+							}
 						}
 					}
 				}
