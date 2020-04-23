@@ -39,8 +39,10 @@ var gca_guild_jail = {
 			"83" : { name : "Fenrirson", image : "img/npc/0/2_15.jpg"},
 			"88" : { name : "Zagrash", image : "img/npc/0/2_6.jpg"},
 			"90" : {
+				"Papa" : {name : "Papa Sasama", image : "img/npc/1/2_2.jpg"},
 				"Sasama" : {name : "Papa Sasama", image : "img/npc/1/2_2.jpg"},
-				"Frank" : {name : "Frank N. Stein", image : "img/npc/2/2_3.jpg"}
+				"Frank" : {name : "Frank N. Stein", image : "img/npc/2/2_3.jpg"},
+				"Stein" : {name : "Frank N. Stein", image : "img/npc/2/2_3.jpg"}
 			},
 			"96" : { name : "Shetu bin Seth", image : "img/npc/1/2_16.jpg"},
 			"100" : { name : "Corruption", image : "img/npc/1/2_8.jpg"},
