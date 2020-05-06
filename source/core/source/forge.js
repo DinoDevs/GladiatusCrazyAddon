@@ -11,7 +11,7 @@ var gca_forge = {
 			return;
 		
 		// Forge
-		if(gca_section.submod == null || gca_section.submod == 'forge'){
+		if(gca_section.submod == null || gca_section.submod == 'forge' || gca_section.submod == 'index'){
 			this.saveForgeTimers();
 			this.detectForgeEvents();
 			
@@ -244,6 +244,11 @@ var gca_forge = {
 			
 			// Mark that the code has already run
 			document.getElementById("resource-quality").dataset.amounts = true;
+
+			// Check if status
+			let isCrafting = !document.getElementById('slot-crafting').classList.contains('hidden');
+			// Nothing to do in crafting mode
+			if (isCrafting) return;
 			
 			// Amount on each quality = Standard, Green, Blue, Purple, Orange, Red
 			let info = [];
