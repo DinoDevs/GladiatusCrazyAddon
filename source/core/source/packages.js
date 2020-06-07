@@ -28,7 +28,7 @@ var gca_packages = {
 		// Set Compact layout
 		(gca_options.bool("packages", "compact_info_layout") && 
 			this.layout.compactInfo());
-		// If Item shadow
+		// If Item shadow (also soul-bound icon)
 		(gca_options.bool("global","item_shadow") && 
 			this.layout.itemShadow.init(this));
 		// Show item's price
@@ -40,8 +40,6 @@ var gca_packages = {
 		// Pagination layout
 		(gca_options.bool("global", "pagination_layout") && 
 			this.layout.pagination());
-		// Add icon to soul-bound items 
-		this.showSoulbound.init();
 		// Load more pages
 		(gca_options.bool("packages", "load_more_pages") && 
 			this.loadPackets.load(this));
