@@ -574,8 +574,18 @@ var gca_packages = {
 		resolve : function(self){
 			var category = parseInt(document.getElementById("pf").f.value);
 			switch(category){
-				case 20:
+				case 20: // Scrolls
 					this.categories.scroll.load(self);
+					break;
+				case 1: // Weapons
+				case 2: // Shields
+				case 3: // Chest
+				case 4: // Helmet
+				case 5: //  Gloves
+				case 6: //  Rings
+				case 8:	// Shoes
+				case 9: // Amulets
+					this.categories.forgeProposeSymbol.load(self);
 					break;
 			}
 		},
@@ -649,6 +659,70 @@ var gca_packages = {
 							item.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
 							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","unknown_scroll"), "green"]);
 						}
+					});
+				}
+			},
+			
+			// Forge-able items Category
+			forgeProposeSymbol : {
+
+				// Load
+				load : function(self){
+					// Get data
+					this.loadData();
+
+					// On new items reapply
+					gca_tools.event.request.onAjaxResponse((response) => {
+						// If package load request
+						if (response.data.newPackages && response.data.pagination && response.data.worthTotal)
+							this.showToForgepProposeIcon();
+					});
+
+					// On packages page load
+					self.loadPackets.onPageLoad(() => {
+						this.showToForgepProposeIcon();
+					});
+				},
+
+				// Load scroll data
+				loadData : function(){
+					gca_tools.ajax.cached.known_scrolls().then(
+						(result) => {
+							// Save lists
+							this.prefix = result.id.prefix;
+							this.suffix = result.id.suffix;
+
+							// Check scrolls
+							this.showToForgepProposeIcon();
+						},
+						() => {
+							// On error
+							//setTimeout(() => {
+							//	this.loadData();
+							//}, 10 * 1000);
+						}
+					);
+				},
+
+				// Apply
+				showToForgepProposeIcon : function(){
+					// If no data return
+					if(!this.prefix) return;
+					
+					// For each item
+					jQuery("#packages .ui-draggable").each((i, item) => {
+						// If already parsed
+						if(item.dataset.gcaFlag_isForge) return;
+						// Flag as parsed
+						item.dataset.gcaFlag_isForge = true;
+
+						// Get hash
+						let hash = gca_tools.item.hash(item);
+						if (!hash) return;
+						// Check if own
+						let known = (this.prefix.indexOf(hash.prefix) >= 0 && this.suffix.indexOf(hash.suffix) >= 0);
+						if (!known)
+							item.parentNode.dataset.gcaForgeProposal = true;
 					});
 				}
 			}
