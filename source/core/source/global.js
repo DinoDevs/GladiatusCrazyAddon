@@ -304,7 +304,7 @@ var gca_global = {
 			localStorage.setItem('gca_rtl', 'true');
 	},
 
-	// Display stuf
+	// Display stuff
 	display : {
 
 		// Footer notes
