@@ -565,7 +565,12 @@
 		.show-item-durability [data-durability][data-durability-color='3']:after {color: #8baf00;}
 		.show-item-durability [data-durability][data-durability-color='4']:after {color: #ff7700;}
 		.show-item-durability [data-durability][data-durability-color='5']:after {color: #ff0000;}
-
+		/* Do not show 100% durability in packages */
+		.show-item-durability [data-durability][data-durability="100%"]:not([data-container-number]):after {content: "" !important;}
+		
+		/* Remove level on gold item in packages) */
+		.show-item-level [data-level][data-basis="14-1"]:before {content: "";line-height: 9px;}
+		
 
 
 		/* Notifications
