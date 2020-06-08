@@ -283,9 +283,16 @@ let suffix_recipes = {
 '97':[18,5,14,25],
 '98':[33,33],
 '99':[25,23,24,37,39],
+'100':[-1], // no resources?
+'101':[-1], // no resources?
 '102':[3], // no resources?
+'103':[-1], // no resources?
 '104':[5], // no resources?
+'105':[6], // no resources?
+'106':[7], // no resources?
 '107':[8], // no resources?
+'108':[-1], // no resources?
+'109':[-1], // no resources?
 '110':[10,6],
 '111':[10,25],
 '112':[-1],
