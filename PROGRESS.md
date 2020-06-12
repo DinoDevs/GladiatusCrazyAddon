@@ -1,7 +1,7 @@
 ## Progress on Version 4.2.1 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-18-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-19-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-19-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
@@ -26,6 +26,7 @@
 	- [x] Added double-click to guild storage
 - **Packages**
 	- [x] Show icon 📜 on items that consist of unknown scrolls (doesn't when in category "all")
+	- [x] UI improvements: Remove level on gold item and durability when 100%
 - **Search**
 	- [x] Added guild mates and target list highlighting
 - **Settings**
