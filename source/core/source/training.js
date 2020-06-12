@@ -148,6 +148,9 @@ var gca_training = {
 			// Save skill data
 			this.skills = {};
 
+			// Save available free points (from underworld)
+			let freepoints = parseInt( document.getElementsByClassName("training_link")[6].textContent.match(/\:\s*(\d+)/)[1] );
+
 			// For each skill
 			for(let i in this.self.data.skills){
 				// Reference skill
@@ -196,6 +199,14 @@ var gca_training = {
 				data.imgs[0].parentNode.removeChild(data.imgs[0].previousSibling);
 				data.imgs[0].parentNode.insertBefore(data.cost, data.imgs[0]);
 
+
+				// Save available free points (from underworld)
+				data.freepoints = freepoints;
+				
+				let buttonsParentNode = data.imgs[0].parentNode.parentNode;
+				if(freepoints > 0) // on more element exists (<s>)
+					buttonsParentNode = buttonsParentNode.parentNode;
+				
 				// Make train links
 				data.trainButton = {};
 				data.trainButton.disabed = document.createElement('a');
@@ -212,15 +223,16 @@ var gca_training = {
 					data.trainButton.original = data.imgs[1];
 				}
 				else{
-					let tmp = data.imgs[0].parentNode.parentNode.getElementsByTagName('a');
+					let tmp = buttonsParentNode.getElementsByTagName('a');
+				
 					if(tmp.length){
 						tmp[0].style.display = "none";
 						data.trainButton.original = tmp[0];
 					}
 				}
 				// Insert train links
-				data.imgs[0].parentNode.parentNode.appendChild(data.trainButton.disabed);
-				data.imgs[0].parentNode.parentNode.appendChild(data.trainButton.active);
+				buttonsParentNode.appendChild(data.trainButton.disabed);
+				buttonsParentNode.appendChild(data.trainButton.active);
 				// Multiple training link
 				data.trainButton.active.addEventListener('click', () => {
 					this.prepareTraining(data);
@@ -229,6 +241,7 @@ var gca_training = {
 				// Save cost for 1
 				data.initCost = skill.cost;
 				data.currentCost = skill.cost;
+				
 
 				// Save data
 				data.count = 1;
@@ -280,14 +293,18 @@ var gca_training = {
 			}
 
 			// Calculate cost
-			if(data.count == 1 && this.self.data.initial_discount == this.self.data.discount){
-				data.currentCost = data.initCost;
-			}
-			else if(data.count == 0){
+			if(data.count == 0){
 				data.currentCost = 0;
 			}
+			else if( data.count == 1 && this.self.data.initial_discount == this.self.data.discount ){ // initial
+				data.currentCost = data.initCost;
+			}
 			else{
-				data.currentCost = this.self.costs.calculate(data.skill, data.count, this.self.data.discount);
+				// Show save cost with free points or real cost after save points are used
+				if( data.count <= data.freepoints )
+					data.currentCost = this.self.costs.calculate(data.skill, data.count, this.self.data.discount);
+				else
+					data.currentCost = this.self.costs.calculate(data.skill, data.count-data.freepoints, this.self.data.discount);
 			}
 
 			// Update display
@@ -337,12 +354,20 @@ var gca_training = {
 			data.number.textContent = data.count;
 			// Update cost
 			data.cost.textContent = gca_tools.strings.insertDots(data.currentCost) + " ";
+			// Show/Hide strike-through line (when having free points)
+			if( data.freepoints>0 ){
+				if( data.count == 0 || data.count > data.freepoints || (this.self.calculatorTrain.enabled && this.self.data.initial_discount !== this.self.data.discount)) // Hide
+					data.imgs[0].parentNode.className = "disable-s"; 
+				else // Show
+					data.imgs[0].parentNode.className = "";
+			}
 
 			// Get player gold
 			var gold = parseInt(document.getElementById("sstat_gold_val").textContent.replace(/\./g,""));
 
 			// If discount is changed
 			if (this.self.calculatorTrain.enabled && this.self.data.initial_discount !== this.self.data.discount) {
+				// If not using free points
 				data.trainButton.original.style.display = "none";
 				data.trainButton.disabed.style.display = "none";
 				data.trainButton.active.style.display = "none";
@@ -361,13 +386,13 @@ var gca_training = {
 					data.trainButton.disabed.style.display = "none";
 					data.trainButton.active.style.display = "none";
 				}
-				// If you don't have the gold
-				else if(data.currentCost > gold){
+				// If you don't have the gold and the free points
+				else if(data.currentCost > gold && data.count > data.freepoints){
 					data.trainButton.original.style.display = "none";
 					data.trainButton.disabed.style.display = "block";
 					data.trainButton.active.style.display = "none";
 				}
-				// You have the gold
+				// You have the gold or the free points
 				else{
 					data.trainButton.original.style.display = "none";
 					data.trainButton.disabed.style.display = "none";

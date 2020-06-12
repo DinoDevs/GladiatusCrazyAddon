@@ -214,7 +214,7 @@
 	/* Info Box */
 		.gca_rtl .info_box{margin-right: 13px!important;margin-left: auto!important;}
 
-/* Traning */
+/* Training */
 	.gca-training-info{width: 240px!important;right: 140px!important;}
 	.gca_rtl .gca-training-info{left: 140px!important;right: auto!important;}
 	.gca-training-value{width: 48px!important;}
@@ -225,6 +225,7 @@
 	.gca-training-discount .icon{position: absolute;right: -28px;cursor: pointer;}
 	.gca_rtl .gca-training-discount .icon{left: -28px;right: auto;}
 	.guild-flag{height: 20px;width: 21px;background: transparent url('buttons/main_buttons.png') no-repeat -210px -50px;}
+	.disable-s{text-decoration: none;}
 	/* Cost Calculator */
 	.training_cost_calculator_table{border: 1px solid #af8e50;background-color: #ded8c6;padding: 5px;}
 	.small_button{background: transparent url('buttons/button4.jpg') 0px 0px no-repeat;border: 0 none;color: #453011;font-size: 11px;font-weight: bold;height: 26px;width: 37px;}
