@@ -1719,8 +1719,14 @@ var gca_global = {
 					// Get old status
 					var oldStatus = gca_data.section.get("cache", "auction_status_"+type, false);
 					if(oldStatus && oldStatus != auctionStatus){
+						// Get link
+						let linkUrl;
+						if(type == "gladiator")
+							linkUrl = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_gladiator', {mod : 'auction'}));
+						else
+							linkUrl = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_mercenary', {mod : 'auction', ttype : '3'}));
 						// Display Message
-						gca_notifications.info( auctionName + " : " + auctionStatus, jQuery(".menuitem:contains(Auction house)")[0].href);
+						gca_notifications.info( auctionName + " : " + auctionStatus, linkUrl);
 						// If sound notifications
 						if(gca_options.bool("global","sound_notifications")){
 							// Make a sound
@@ -2734,7 +2740,7 @@ var gca_global = {
 					for(let i=0;i<smeltTimes.data.length;i++){
 						if(smeltTimes.data[i][0]*1000<=current){
 							type = 'green';
-							gca_notifications.success(smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2], jQuery(".menuitem:contains(Smelter)")[0].href);
+							gca_notifications.success( smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2], gca_getPage.link({"mod":"forge","submod":"smeltery"}) );
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+smeltTimes.translation[2]+'"],["#DDD","#00ff00"]]';
 						}else{
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+'"],["#DDD","#DDD"]]';
@@ -3196,8 +3202,7 @@ var gca_global = {
 							items_string += '\n● ' + low_durability_items[i].name + ' (' +low_durability_items[i].durability + '%)';
 						}
 						gca_notifications.error(
-							'⚒ ' + gca_locale.get("global", "low_durability_items", {number:low_durability_items.length, percent:minimum_durability}) + items_string,
-                            jQuery(".menuitem:contains(Workbench)")[0].href
+							'⚒ ' + gca_locale.get("global", "low_durability_items", {number:low_durability_items.length, percent:minimum_durability}) + items_string, gca_getPage.link({"mod":"forge","submod":"workbench"})
 						);
 					}
 				}
@@ -3984,7 +3989,7 @@ var gca_global = {
 				var lastTime = gca_data.section.get("timers", "notify_new_guild_application", 0);
 				// If an application is pending
 				if(lastTime == -1){
-					gca_notifications.info(gca_locale.get("global", "notification_guild_application"));
+					gca_notifications.info(gca_locale.get("global", "notification_guild_application"), gca_getPage.link({"mod":"guild","submod":"admin"}));
 					// Save time
 					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
 				}
@@ -3999,7 +4004,7 @@ var gca_global = {
 							// Save
 							gca_data.section.set("timers", "notify_new_guild_application", -1);
 							// Notify
-							gca_notifications.info(gca_locale.get("global", "notification_guild_application"));
+							gca_notifications.info(gca_locale.get("global", "notification_guild_application"), gca_getPage.link({"mod":"guild","submod":"admin"}));
 						}
 					});
 				}
@@ -4011,7 +4016,7 @@ var gca_global = {
 				var lastTime = gca_data.section.get("timers", "notify_guild_attack_ready", 0);
 				// If an application is pending
 				if(lastTime == -1){
-					gca_notifications.info(gca_locale.get("global", "notification_guild_attack_ready"));
+					gca_notifications.info(gca_locale.get("global", "notification_guild_attack_ready"), gca_getPage.link({"mod":"guild_warcamp"}));
 					// Save time
 					gca_data.section.set("timers", "notify_guild_attack_ready", gca_tools.time.server());
 				}
@@ -4026,7 +4031,7 @@ var gca_global = {
 							// Save
 							gca_data.section.set("timers", "notify_guild_attack_ready", -1);
 							// Notify
-							gca_notifications.info(gca_locale.get("global", "notification_guild_attack_ready"));
+							gca_notifications.info(gca_locale.get("global", "notification_guild_attack_ready"), gca_getPage.link({"mod":"guild_warcamp"}));
 						}
 					});
 				}
