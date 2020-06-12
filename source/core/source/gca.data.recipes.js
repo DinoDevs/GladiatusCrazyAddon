@@ -291,7 +291,7 @@ let suffix_recipes = {
 '105':[6], // no resources?
 '106':[7], // no resources?
 '107':[8], // no resources?
-'108':[-1], // no resources?
+'108':[9], // no resources?
 '109':[-1], // no resources?
 '110':[10,6],
 '111':[10,25],
