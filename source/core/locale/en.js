@@ -103,6 +103,7 @@ gca_languages["en"] = {
 
 			// Notifications
 			notification_guild_application : "There is a pending guild application!",
+			notification_guild_attack_ready : "Guild war attack cooldown is over!",
 			low_durability_items : "There are {{number}} item(s) with durability under {{percent}}%",
 			item_worth_rubies : "That item woth rubies!",
 
@@ -296,6 +297,8 @@ gca_languages["en"] = {
 			category_global$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
 			category_global$notify_new_guild_application_interval : "Check for applications every (minutes)",
+			category_global$notify_guild_attack_ready : "Notify me when guild war attack cooldown",
+			category_global$notify_guild_attack_ready_interval : "Check the guild war cooldown every (minutes)",
 			category_global$x_scroll : "Enable gladiatus' horizontal scroll",
 			category_global$item_shadow : "Enable items shadows",
 			category_global$inventory_options_group : "Group inventory options",

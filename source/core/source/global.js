@@ -148,6 +148,10 @@ var gca_global = {
 		// Notification : Guild application alert
 		(!this.isTraveling && gca_options.bool("global","notify_new_guild_application") && 
 			this.background.notify_me.new_guild_application());
+		
+		// Notification : Guild attack ready alert
+		(!this.isTraveling && gca_options.bool("global","notify_guild_attack_ready") && 
+			this.background.notify_me.guild_attack_ready());
 
 		// Pray Buf shortcut
 		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
@@ -3208,7 +3212,6 @@ var gca_global = {
 					else return;
 
 					var load = false;
-					
 					// If inventory exists
 					if (document.getElementById('inv')) {
 						load = true;
@@ -3996,6 +3999,33 @@ var gca_global = {
 							gca_data.section.set("timers", "notify_new_guild_application", -1);
 							// Notify
 							gca_notifications.info(gca_locale.get("global", "notification_guild_application"));
+						}
+					});
+				}
+			},
+			
+			// Check if guild attack ready
+			guild_attack_ready : function(){
+				// Get saved data
+				var lastTime = gca_data.section.get("timers", "notify_guild_attack_ready", 0);
+				// If an application is pending
+				if(lastTime == -1){
+					gca_notifications.info(gca_locale.get("global", "notification_guild_attack_ready"));
+					// Save time
+					gca_data.section.set("timers", "notify_guild_attack_ready", gca_tools.time.server());
+				}
+				// Else if it's time to check
+				else if(gca_tools.time.server() - lastTime >= gca_options.int("global","notify_guild_attack_ready_interval") * 60000){
+					// Save time
+					gca_data.section.set("timers", "notify_guild_attack_ready", gca_tools.time.server());
+					// Check guild if attack is ready
+					jQuery.get(gca_getPage.link({"mod":"guild_warcamp"}), function(content){
+						// If application exist
+						if(!content.match('data-ticker-loc')){
+							// Save
+							gca_data.section.set("timers", "notify_guild_attack_ready", -1);
+							// Notify
+							gca_notifications.info(gca_locale.get("global", "notification_guild_attack_ready"));
 						}
 					});
 				}

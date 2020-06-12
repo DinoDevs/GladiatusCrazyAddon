@@ -103,6 +103,7 @@ gca_languages["gr"] = {
 
 			// Notifications
 			notification_guild_application: "Υπάρχει μια αίτηση στο τάγμα σε αναμονή!",
+			notification_guild_attack_ready : "Το τάγμα είναι έτοιμο να επιτεθεί ξανά!",
 			low_durability_items : "Υπάρχουν {{number}} αντικείμενα με ανθεκτικότητα κάτω από {{percent}}%",
 			item_worth_rubies : "Αυτό το αντικείμενο αξίζει ρουμπίνια!",
 
@@ -293,6 +294,8 @@ gca_languages["gr"] = {
 			category_global$cooldown_sound_notifications : "Ενεργοποίηση των ήχων ειδοποίησης (επιδρομής, μπουντρούμι, αρένα)",
 			category_global$notify_new_guild_application : "Ειδοποίηση για νέες αιτήσεις στο τάγμα",
 			category_global$notify_new_guild_application_interval : "Έλεγχος για νέες αιτήσεις κάθε (λεπτά)",
+			category_global$notify_guild_attack_ready : "Ειδοποίηση όταν το τάγμα είναι έτοιμο να επιτεθεί",
+			category_global$notify_guild_attack_ready_interval : "Έλεγχος αν το τάγμα είναι έτοιμο να επιτεθεί κάθε (λεπτά)",
 			category_global$x_scroll : "Ενεργοποίηση της οριζόντιας κύλισης του gladiatus",
 			category_global$item_shadow : "Ενεργοποίηση των σκιών των αντικειμένων",
 			category_global$inventory_options_group : "Ομαδοποίηση των επιλογών της τσάντας",

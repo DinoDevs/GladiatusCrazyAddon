@@ -567,6 +567,10 @@ var gca_settings = {
 				"notify_new_guild_application" : false,
 				// Notifications Interval in minutes
 				"notify_new_guild_application_interval" : 60,
+				// Notifications
+				"notify_guild_attack_ready" : false,
+				// Notifications Interval in minutes
+				"notify_guild_attack_ready_interval" : 15,
 			
 				// Enable x-scroll
 				"x_scroll" : true,
