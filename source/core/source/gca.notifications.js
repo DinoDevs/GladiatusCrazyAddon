@@ -11,27 +11,27 @@ var gca_notifications = {
 		this.notification.className = "notification-area";
 		document.body.appendChild(this.notification);
 	},
-	normal : function(message){
+	normal : function(message, url  ){
 		if(!this.notification) this.run();
-		return (new this.notificationMsg(message, "notification-normal", this.notification) );
+		return (new this.notificationMsg(message, url, "notification-normal", this.notification) );
 	},
-	success : function(message){
+	success : function(message, url){
 		if(!this.notification) this.run();
-		return (new this.notificationMsg(message, "notification-success", this.notification) );
+		return (new this.notificationMsg(message, url, "notification-success", this.notification) );
 	},
-	error : function(message){
+	error : function(message, url){
 		if(!this.notification) this.run();
-		return (new this.notificationMsg(message, "notification-error", this.notification) );
+		return (new this.notificationMsg(message, url, "notification-error", this.notification) );
 	},
-	info : function(message){
+	info : function(message, url){
 		if(!this.notification) this.run();
-		return (new this.notificationMsg(message, "notification-info", this.notification) );
+		return (new this.notificationMsg(message, url, "notification-info", this.notification) );
 	},
-	warning : function(message){
+	warning : function(message, url){
 		if(!this.notification) this.run();
-		return (new this.notificationMsg(message, "notification-warning", this.notification) );
+		return (new this.notificationMsg(message, url, "notification-warning", this.notification) );
 	},
-	notificationMsg : function(message, type, parent){
+	notificationMsg : function(message, url, type, parent){
 		var element = document.createElement('div');
 		var icon = document.createElement('div');
 		icon.className = 'icon';
@@ -55,6 +55,11 @@ var gca_notifications = {
 
 		element.addEventListener('click', function(){
 			if(!display) return;
+            
+            if(url){
+                window.location = url;
+            }
+
 			display = false;
 			gca_notifications.fadeOut(element);
 		}, false);
