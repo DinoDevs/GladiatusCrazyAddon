@@ -3208,7 +3208,7 @@ var gca_global = {
 					else return;
 
 					var load = false;
-
+					
 					// If inventory exists
 					if (document.getElementById('inv')) {
 						load = true;
@@ -3305,7 +3305,7 @@ var gca_global = {
 						info = this.style_extended(prefix, base, suffix);
 					}
 					else if (this.style === 'minimal') {
-						info = this.style_normal(prefix, base, suffix);
+						info = this.style_normal(prefix, base, suffix, item); // developer mode available
 					}
 					else if (this.style === 'extended-amounts' && recipe) {
 						info = this.style_extended_amounts(prefix, base, suffix, recipe);
@@ -3339,7 +3339,10 @@ var gca_global = {
 					return code;
 				},
 
-				style_normal : function(prefix, base, suffix) {
+				style_normal : function(prefix, base, suffix, item) {
+					// Switch for developers: show IDs and print unknown levels
+					var developerMode = false;
+					
 					// Create rows for the tooltip
 					var row_type = '<tr style="color: #ffffff;">';
 					var row_info = '<tr style="color: #cccccc;">';
@@ -3347,6 +3350,28 @@ var gca_global = {
 					var row_dev = '<tr>';
 
 					var data = gca_data_recipes.getRecipe(prefix, base, suffix);
+					
+					// Try to calculate unknown levels
+					if(item != null){
+						// Check if needed / possible
+						if( data.suffix.level*data.prefix.level < 0 ){
+							var unknownLevel = item.dataset.level - ((prefix > 0) ? data.prefix.level : 0) - ((data.base) ? data.base.level : 0) - ((suffix > 0) ? data.suffix.level : 0) - 1; // -1 because the unknown would be -(-1)=1
+							if(unknownLevel > 0){
+								let logType = "Prefix "+prefix;
+								if(data.prefix.level < 0)
+									data.prefix.level = unknownLevel;
+								else{
+									data.suffix.level = unknownLevel;
+									logType = "Suffix "+suffix;
+								}
+								
+								if(developerMode){
+									console.log( logType+" = "+unknownLevel+" lvl");
+									alert( logType+" = "+unknownLevel+" lvl");
+								}
+							}
+						}
+					}
 
 					// Prefix
 					if (prefix > 0) {
@@ -3409,7 +3434,8 @@ var gca_global = {
 					row_mats += '</tr>';
 
 					// Clear dev data
-					row_dev = '';
+					if(!developerMode)
+						row_dev = '';
 
 					// Tooltip info list
 					var info = [];
