@@ -1720,7 +1720,7 @@ var gca_global = {
 					var oldStatus = gca_data.section.get("cache", "auction_status_"+type, false);
 					if(oldStatus && oldStatus != auctionStatus){
 						// Display Message
-						gca_notifications.info( auctionName + " : " + auctionStatus );
+						gca_notifications.info( auctionName + " : " + auctionStatus, jQuery(".menuitem:contains(Auction house)")[0].href);
 						// If sound notifications
 						if(gca_options.bool("global","sound_notifications")){
 							// Make a sound
@@ -2734,7 +2734,7 @@ var gca_global = {
 					for(let i=0;i<smeltTimes.data.length;i++){
 						if(smeltTimes.data[i][0]*1000<=current){
 							type = 'green';
-							gca_notifications.success(smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2]);
+							gca_notifications.success(smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2], jQuery(".menuitem:contains(Smelter)")[0].href);
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+smeltTimes.translation[2]+'"],["#DDD","#00ff00"]]';
 						}else{
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+'"],["#DDD","#DDD"]]';
@@ -3196,7 +3196,8 @@ var gca_global = {
 							items_string += '\n● ' + low_durability_items[i].name + ' (' +low_durability_items[i].durability + '%)';
 						}
 						gca_notifications.error(
-							'⚒ ' + gca_locale.get("global", "low_durability_items", {number:low_durability_items.length, percent:minimum_durability}) + items_string
+							'⚒ ' + gca_locale.get("global", "low_durability_items", {number:low_durability_items.length, percent:minimum_durability}) + items_string,
+                            jQuery(".menuitem:contains(Workbench)")[0].href
 						);
 					}
 				}
