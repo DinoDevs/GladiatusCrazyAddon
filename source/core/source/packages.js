@@ -720,9 +720,16 @@ var gca_packages = {
 						let hash = gca_tools.item.hash(item);
 						if (!hash) return;
 						// Check if own
-						let known = (this.prefix.indexOf(hash.prefix) >= 0 && this.suffix.indexOf(hash.suffix) >= 0);
-						if (!known)
-							item.parentNode.dataset.gcaForgeProposal = true;
+						let known_prefix = ( this.prefix.indexOf(hash.prefix) >= 0 );
+						let known_suffix = ( this.suffix.indexOf(hash.suffix) >= 0 );
+						if ( !(known_prefix && known_suffix) ){
+							// Both unknown
+							if( !known_prefix && !known_suffix )
+								item.parentNode.dataset.gcaForgeProposal = 2;
+							// One unknown
+							else
+								item.parentNode.dataset.gcaForgeProposal = 1;
+						}
 					});
 				}
 			}

@@ -982,8 +982,9 @@
 
 		/* Soul-bound items */
 		#packages div[data-gca-soulbound]:after {content: "🔗";color: #ccc;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
-		/* Proposed to forge items */
+		/* Proposed to forge items (unknown prefix/suffix) */
 		#packages div[data-gca-forge-proposal]:after {content: "📜";color: #ff6600;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
+		#packages div[data-gca-forge-proposal="2"]:after {content: "📜📜";}
 
 
 	/* Quests Layout
