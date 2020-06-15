@@ -1,7 +1,7 @@
 ## Progress on Version 4.2.1 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-19-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-21-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-19-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
@@ -33,6 +33,9 @@
 	- [x] Added option to clear cached data
 - **Messages**
 	- [x] Added shortcut links to messages folders when in messages
+- **Reports**
+	- [x] Threat calculation on each round added in turma reports analyzer
+	- [x] Turma reports analyzer improvements (identify same name mercenaries of different owner)
 
 
 ### BUG FIXES
