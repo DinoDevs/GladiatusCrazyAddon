@@ -527,6 +527,13 @@ var gca_reports = {
 			var element = round_title.parentNode.nextElementSibling;
 			while (element && element.getElementsByClassName('table_border_bottom').length == 0) {
 				rows.push(element);
+				
+				// Get attacker or defender
+				let isAttacker = (element.style.backgroundColor=="");
+				
+
+				// Hit / Heal
+				let value = 0;
 				if (element.getElementsByTagName('font').length > 0) {
 					// Get action text
 					let text = element.getElementsByTagName('font')[0].innerHTML.replace(/<\/*b>/g,'');
@@ -535,12 +542,19 @@ var gca_reports = {
 						// Check if action is a healing (green font)
 						let isHealing = element.getElementsByTagName('font')[0].getAttribute('color') == 'green' ? true : false;
 						// Get action number value
-						let value = parseInt(text.match(/\d+/)[0], 10);
+						value = parseInt(text.match(/\s\d+/)[0], 10);
 						value = isHealing ? value : -1 * value;
 						
+						// Revert duplicate names
+						let renameFix = ( !isAttacker )?"¹":"²";
+						if (isHealing)
+							renameFix = ( isAttacker )?"¹":"²";
+							
+				
+						// Check for player
 						let found = false;
 						for (let i = 0; i < this.players.length; i++) {
-							if (text.match(this.players[i][0])) {
+							if ( text.match(this.players[i][0].replace(renameFix,"")) ) {
 								found = true;
 								this.players[i][1] += value;
 								this.players[i][3] += value;
@@ -560,6 +574,70 @@ var gca_reports = {
 						}
 					}
 				}
+				// Misses
+				else{
+					// nothing
+				}
+				
+				// Who attacks/heals?
+				if (element.getElementsByTagName('td').length > 0) {
+					let text = element.getElementsByTagName('td')[0].textContent;
+					
+					// Revert duplicate names
+					let renameFixA = (isAttacker)?"¹":"²";
+					let renameFixD = (!isAttacker)?"¹":"²";
+						
+					// Check for player, 2 players are in the string, the first one is searched
+					let foundA = -1;
+					let n = text.length;
+					let foundD = -1;
+					let m = 0;
+					for (let i = 0; i < this.players.length; i++) {
+						// Find Attacker
+						let playerI = this.players[i][0].replace(renameFixA,"");
+						if ( text.match(playerI) && n > text.indexOf(playerI) ){
+							n = text.indexOf(playerI)
+							foundA = i;
+						}
+						
+						// Find Defender
+						playerI = this.players[i][0].replace(renameFixD,"");
+						if ( text.match(playerI) && m < text.indexOf(playerI) ){
+							m = text.indexOf(playerI)
+							foundD = i;
+						}
+					}
+					
+					// Attacker
+					if( foundA > -1){
+						// Add hit, heal or miss
+						if( value == 0 ) // Miss
+							this.players[foundA][9] += 1;
+						else if( value > 0 ){ // Heal
+							this.players[foundA][8] += 1;
+						}else{ // Hit
+							this.players[foundA][7] += 1;
+						}
+						
+						// Calculate current threat
+						this.players[foundA][6] += 2 * this.players[foundA][5] + (value<0?-2:1) * value;
+					}
+					
+					// Defender
+					if( foundD > -1){
+						// Add hit, heal or miss
+						if( value < 0 ){ // Got hit
+							this.players[foundD][10] += 1;
+						}else if(value == 0){ // Dodge
+							this.players[foundD][11] += 1;
+							//this.players[foundD][6] += Math.round(this.players[foundA][5]*0.15);
+						}
+						
+						if( value <= 0 ){
+						}
+					}
+				}
+				
 				element = element.nextElementSibling;
 			}
 
@@ -614,14 +692,24 @@ var gca_reports = {
 
 		// Add player info on table
 		addPlayerInfo : function(players, table, bar_style, custom_text) {
+			// Calculate total threat
+			let totalThreat = 0;
+			for (let i = 0; i < players.length; i++) {
+				if( players[i][1] > 1 ) // if not dead
+					totalThreat += players[i][6];
+			}
+			
+			// Create each player row
 			for (let i = 0; i < players.length; i++) {
 				
+				// Name and life
 				let row = document.createElement('div');
 				row.className = 'charstats_bg2';
 
 				let name = document.createElement('span');
 				name.className = 'charstats_text';
 				name.textContent = players[i][0] + (players[i][4] > 1 ? ' ×' + players[i][4]: '');
+				name.style = "font-weight: bold;";
 				if (players[i][3] != 0) {
 					let change = document.createElement('span');
 					change.style.color = (players[i][3] > 0 ? 'rgb(0, 100, 0)' : 'rgb(100, 0, 0)');
@@ -644,8 +732,55 @@ var gca_reports = {
 				row.appendChild(life);
 
 				table.appendChild(row);
+				
+				// Threat
+				row = document.createElement('div');
+				row.className = 'charstats_bg2';
+
+				let threat_value = Math.round(((players[i][6] > 0 && players[i][1] > 1 ? players[i][6] : 0) / totalThreat) * 100) + '%';
+				
+				bar_wrapper = document.createElement('div');
+				bar_wrapper.className = 'charstats_balken';
+				bar_wrapper.style = "margin-top: 2px;background-image: none;";
+				let bar_threat = document.createElement('div');
+				bar_threat.className = 'charstats_balken_xp';
+				//bar_threat.style = 'margin-left:10px;position: absolute;width:' + threat_value;
+				bar_threat.style = 'width:' + threat_value;
+				bar_wrapper.appendChild(bar_threat);
+				row.appendChild(bar_wrapper);
+
+				let threat = document.createElement('span');
+				threat.className = 'charstats_text';
+				threat.textContent = "Threat";
+				threat.style = "font-size: .8em;margin-top: 8px;";
+				row.appendChild(threat);
+				
+				let threatTxt = document.createElement('span');
+				threatTxt.className = 'charstats_value3';
+				threatTxt.textContent = threat_value;
+				row.appendChild(threatTxt);
+
+				table.appendChild(row);
 			}
 		},
+
+		/*
+		// Players variable structure
+		this.players = [
+			0: name,
+			1: current life,
+			2: total life,
+			3: damage or heal taken,
+			4: number of players (for when merged)
+			5: base threat
+			6: current threat to 0
+			7: hits
+			8: heals
+			9: misses
+			10: got hit
+			11: dodge
+		]
+		*/
 
 		// Initialize translations
 		initTranslations : function() {
@@ -671,6 +806,9 @@ var gca_reports = {
 					// If the 2 players have the same name
 					if (this.attackers[i][0] == this.defenders[j][0]) {
 						//console.log('Analyzer Ignore Warning:' + '"' + this.attackers[i][0] + '"');
+						
+						/*
+						// Old merge way
 						this.ignored.push([
 							this.attackers[i][0],
 							this.attackers[i][1] + this.defenders[j][1],
@@ -681,6 +819,12 @@ var gca_reports = {
 						// Remove both
 						this.attackers.splice(i, 1);
 						this.defenders.splice(j, 1);
+						*/
+						
+						// New rename way
+						this.attackers[i][0] += "¹"
+						this.defenders[j][0] += "²"
+						
 						break;
 					}
 				}
@@ -710,7 +854,10 @@ var gca_reports = {
 				// Get player stats
 				let name = avatar.getElementsByClassName('player_name_bg')[0].getElementsByTagName('div')[0].innerHTML.trim();
 				let life = stats.getElementsByClassName('charstats_bg2')[1].getElementsByTagName('span')[1].innerHTML.match(/\/\s*([^ ]+)$/i)[1].replace(/\./g,'');
-				if (!name || !life) continue;
+				let threat = stats.getElementsByClassName('charstats_bg2')[15].getElementsByTagName('span')[1].textContent.replace(/\./g,'');
+				let isHealer = (stats.getElementsByClassName('charstats_bg2')[16].style.display=="");
+				
+				if (!name || !life ) continue;
 
 				// Check if there is an player with the same name
 				let found = -1;
@@ -723,11 +870,15 @@ var gca_reports = {
 
 				// Parse life points
 				life = parseInt(life, 10);
+				// Parse threat
+				threat = parseInt(threat, 10);
+				if(isHealer)
+					threat = 0;
 
 				// Unique name
 				if (found == -1) {
-					// name, life point, max life points, damage taken, number of players
-					players.push([name, life, life, 0, 1]);
+					// name, life point, max life points, damage taken, number of players, base threat, current threat, hits, heals, misses, got hit, dodge
+					players.push([name, life, life, 0, 1, threat, 0, 0, 0, 0, 0, 0]);
 				}
 				// Treat players with the same name as 1 player
 				else {
