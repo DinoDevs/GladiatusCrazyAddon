@@ -290,7 +290,8 @@ var gca_tools = {
 			if(!spot) return false;
 
 			// Lock spots
-			this._move.lockSlotSpots(spot.slot);
+			if(spot.slot) // Markets & avatar do not return slot info
+				this._move.lockSlotSpots(spot.slot);
 			
 			//console.log(spot);
 			//console.log('<' + spot.slot.x + ',' + spot.slot.y + '>');
@@ -326,7 +327,7 @@ var gca_tools = {
 				lockDuration: 2000
 			},
 			lockSlotSpots : function (slot) {
-				// Slot stucture:
+				// Slot structure:
 				// slot : {
 				//		target : target,
 				//		x : spot.x,
@@ -345,7 +346,7 @@ var gca_tools = {
 						tags.push('<' + (slot.x + x) + ',' + (slot.y + y) + '>');
 					}
 				}
-				// Create timestamp untill
+				// Create timestamp until
 				let lockTime = new Date().getTime() + this._lockedSpots.lockDuration;
 				// Lock spots
 				tags.forEach((tag) => {
