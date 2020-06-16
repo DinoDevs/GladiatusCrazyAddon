@@ -22,7 +22,7 @@ gca_languages['cs'] = {
 		general : {
 			days : "dny",
 			minutes : "minut",
-//hours : "hours",
+//hours : "Hod.",
 			no_data : "Nejsou vyplněny žádná hodnoty",
 			
 			// Buttons
@@ -362,17 +362,17 @@ gca_languages['cs'] = {
 			category_merchants$show_shop_info : "Zobrazit info obchodu (celkové zlato a rubíny)",
 			category_merchants$double_click_actions : "Dvojklik pro prodat/koupit",
 			// Settings - Forge
-//category_forge$material_links : "[Forge/Repair] Show packages & market shortcuts for each material need",
-//category_forge$show_levels : "[Forge] Show Prefix/Sufix/Base item levels next to names",
-//category_forge$horreum_materials_names : "[Horreum] Show material name",
-//category_forge$horreum_remember_options : "[Horreum] Remember last selected store settings",
-//category_forge$horreum_select_meterials : "[Horreum] Select material on click",
+//category_forge$material_links : "[Kovárna/Oprava] Zobrazit zkratky zásilek & tržiště pro každý potřebný materiál",
+//category_forge$show_levels : "[Kovárna] Zobrazit základní level Prefixu/Sufixu/Základního předmětů vedle názvů",
+//category_forge$horreum_materials_names : "[Stodola] Zobrazit název suroviny",
+//category_forge$horreum_remember_options : "[Stodola] Zapamatovat si poslední nastavení pro uložení surovin",
+//category_forge$horreum_select_meterials : "[Stodola] Zvolit surovinu kliknutím",
 			// Settings - Arena
-//category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
-//category_arena$show_simulator_imagelink : "Show an image-link to the simulator (simulator.dinodevs.com)",
-//category_arena$sort_by_lvl : "Sort players in arena by level",
-//category_arena$highlight_guild_members : "Highlight players on other servers that may be guild members",
-//category_arena$target_list : "Players target list",
+//category_arena$ignore_attack_confirmations : "Ignorovat potvrzení pro útoky (přes 5 útoků zpráva apd.)",
+//category_arena$show_simulator_imagelink : "Zobrazovat obrázkový odkaz do simulátoru (simulator.dinodevs.com)",
+//category_arena$sort_by_lvl : "Třídit hráče podle levelu",
+//category_arena$highlight_guild_members : "Zvýraznit hráče na jiných serverech kteří můžou být členové gildy",
+//category_arena$target_list : "Hráčovo seznam cílů",
 
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Nechat vyblednout předměty, které nelze zdokonalit",
