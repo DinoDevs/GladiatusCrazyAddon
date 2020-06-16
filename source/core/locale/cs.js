@@ -399,7 +399,7 @@ gca_languages['cs'] = {
 			category_auction$extra_item_stats : "Zobrazit extra staty na obrázcích předmětů",
 			category_auction$save_last_state : "Zapamatuje si hledání v aukcích a pokaždé jej načte",
 			// Settings - Events
-			category_events$craps_timer : "Zobrat odpočet eventu kostek navrchu",
+			category_events$craps_timer : "Zobrazit odpočet eventu kostek navrchu",
 			category_events$server_quest_timer : "Zobrazit odpočet eventu/události navrchu",
 			// Settings - Sound
 			category_sound$enabled : "Povolit zvukový systém",
