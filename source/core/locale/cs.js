@@ -362,7 +362,7 @@ gca_languages['cs'] = {
 			category_merchants$show_shop_info : "Zobrazit info obchodu (celkové zlato a rubíny)",
 			category_merchants$double_click_actions : "Dvojklik pro prodat/koupit",
 			// Settings - Forge
-//category_forge$material_links : "[Kovárna/Oprava] Zobrazit zkratky zásilek & tržiště pro každý potřebný materiál",
+//category_forge$material_links : "[Kovárna/Pracovní stůl] Zobrazit zkratky zásilek & tržiště pro každý potřebný materiál",
 //category_forge$show_levels : "[Kovárna] Zobrazit základní level Prefixu/Sufixu/Základního předmětů vedle názvů",
 //category_forge$horreum_materials_names : "[Stodola] Zobrazit název suroviny",
 //category_forge$horreum_remember_options : "[Stodola] Zapamatovat si poslední nastavení pro uložení surovin",
