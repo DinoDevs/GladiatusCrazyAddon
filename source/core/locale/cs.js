@@ -23,10 +23,6 @@ gca_languages['cs'] = {
 			days : "dny",
 			minutes : "minut",
 			no_data : "Nejsou vyplněny žádná hodnoty",
-			confirm : "Potvrdit",
-			cancel : "Zrušit",
-			close : "Zavřít",
-			error : "Chyba"
 			
 			// Buttons
 			confirm : "Potvrdit",
@@ -118,7 +114,7 @@ gca_languages['cs'] = {
 			stats_difference : "Rozdíl",
 			// Drop items to see materials to repair feature
 			drop_item_see_materials_repair : "Položte položku a zobrazte materiály potřebné k její opravě",
-			workbench_6th_slot_empty : "6. slot prac. stolu musí být prázdný"
+			workbench_6th_slot_empty : "6. slot prac. stolu musí být prázdný",
 			
 			// More player info
 			more_player_info : "Více informací o hráči",
@@ -174,7 +170,6 @@ gca_languages['cs'] = {
 			fight_lost : "Prohrál jsi souboj...",
 			player_tired : "Jsi unavený.Musíš si odpočinout."
 		},
- 
 		
 		// Training section
 		training : {
@@ -217,7 +212,7 @@ gca_languages['cs'] = {
 		// Forge
 		forge : {
 			forge_ended : "Je potřeba kovárna!",
-			recraft_item : "Znovu vykovat předmět"
+			recraft_item : "Znovu vykovat předmět",
 			show_hide_doll : "Zobrazit/Skrýt postavy hráče"
 		},
 		
@@ -225,11 +220,11 @@ gca_languages['cs'] = {
 		packages : {
 			event_items : "Eventový předmět",
 			known_scroll : "Tento svitek už znáš",
-			unknown_scroll : "Tento svitek ještě neznáš"
+			unknown_scroll : "Tento svitek ještě neznáš",
 			advance_filters : "Pokročilé filtry",
 			advance_filters_apply : "Použít filtry",
 			advance_filters_clear : "Smazat filtry",
-			advance_filters_found : "(nalezeno {{items}})"			
+			advance_filters_found : "(nalezeno {{items}})"		
 		},
 		
 		// Cross-Browser Sync
@@ -415,7 +410,7 @@ gca_languages['cs'] = {
 			category_data$export_error_player_settings : "Export uživatelských dat nastavení do souboru",
 			
 			// Buttons
-                        save : "Uložit",
+			save : "Uložit",
 			export : "Export",
 			import : "Import",
 			reset : "Reset",
