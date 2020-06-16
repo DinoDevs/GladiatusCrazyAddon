@@ -310,7 +310,7 @@ gca_languages['cs'] = {
 			category_overview$overfeed_food : "Nechat zblednout jídlo, léčící více než je potřeba",
 			category_overview$daily_bonus_log : "Denní přihlašovací bonus",
 			category_overview$more_statistics : "Rozšířené zobrazení statů",
-			category_overview$block_avoid_caps : "Show block and Avoid caps",
+			category_overview$block_avoid_caps : "Zobrazit blok a předejít caps",
 			category_overview$double_click_consume : "Dvojité kliknu na předměty pro jejich konzumaci",
 			category_overview$buffs_detailed_time : "Zobrazit podrobné časovače bonusů gildy",
 			category_overview$mercenaries_manager : "Zobrazit manažera žoldáků",
