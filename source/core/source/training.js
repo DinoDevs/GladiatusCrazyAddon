@@ -48,12 +48,18 @@ var gca_training = {
 			charisma : {id : "char_f4", index: 5, coeff : 2.5},
 			intelligence : {id : "char_f5", index: 6, coeff : 2.4}
 		},
+		
+		// Base max 
+		base_max : 0,
 
 		// Discount
 		discount : 0,
 
 		// Load Data
 		load : function(){
+			// Calculate base maximum
+			this.base_max = 5 * parseInt( document.getElementById("header_values_level").textContent, 10 );
+			
 			// For each attribute
 			for(let id in this.skills){
 				// Reference
@@ -288,8 +294,9 @@ var gca_training = {
 			if(data.count < 0){
 				data.count = 0;
 			}
-			else if(data.count > 99){
-				data.count = 99;
+			// Limit train to maximum base
+			else if(data.count > Math.max(this.self.data.base_max - data.skill.base + 5, 99)){
+				data.count = Math.max(this.self.data.base_max - data.skill.base + 5, 99);
 			}
 
 			// Calculate cost
@@ -366,8 +373,7 @@ var gca_training = {
 			var gold = parseInt(document.getElementById("sstat_gold_val").textContent.replace(/\./g,""));
 
 			// If discount is changed
-			if (this.self.calculatorTrain.enabled && this.self.data.initial_discount !== this.self.data.discount) {
-				// If not using free points
+			if (this.self.calculatorTrain.enabled && this.self.data.initial_discount !== this.self.data.discount || data.count > (this.self.data.base_max - data.skill.base)) {
 				data.trainButton.original.style.display = "none";
 				data.trainButton.disabed.style.display = "none";
 				data.trainButton.active.style.display = "none";

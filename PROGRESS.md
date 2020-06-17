@@ -1,7 +1,7 @@
 ## Progress on Version 4.2.1 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-21-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-23-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-19-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
@@ -36,6 +36,9 @@
 - **Reports**
 	- [x] Threat calculation on each round added in turma reports analyzer
 	- [x] Turma reports analyzer improvements (identify same name mercenaries of different owner)
+- **Training**
+	- [x] Multi-train is now limited to maximum training possible at the current level
+	- [x] Cost estimate in not limited to 99 trainings anymore, if such trainings are possible at the current or next level
 
 
 ### BUG FIXES
