@@ -486,8 +486,8 @@
 	#forgeAllItems_button{margin-left:35px;margin-top:6px;}
 	.gca_rtl #forgeAllItems_button{margin-right:35px;margin-left:auto;}
 
-/* Underworld Expendition */
-	/* Expendition */
+/* Underworld Expedition */
+	/* Expedition */
 	.gca-underwold_enemies {width: auto !important;}
 	.gca-underwold_enemies #expedition_container{overflow: inherit !important;width:auto !important;margin-left: -6px;}
 	.gca-underwold_enemies .expedition_box{left:auto !important;width:auto !important;margin: 0px;}
@@ -498,7 +498,7 @@
 	.gca-buff-container{overflow: visible!important;}
 	.gca-pray-buff{border: 1px solid #FEC046;border-radius: 100%;width: 32px;height: 32px;text-align: center;line-height: 32px;font-size: 2em;background-color: #C9AE79;background-position: center;background-repeat: no-repeat;color: #930006!important;box-shadow: 0px 0px 3px black;float:left;margin-top:20px;text-decoration:none!important;}
 	
-/* Expendition Drops */
+/* Expedition Drops */
 	.enemyDrop {position: absolute;bottom: 0px;right: 0px;transform: scale(0.75);filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3)) drop-shadow( 1px -1px 1px rgba(0,0,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,0,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,0,0,0.3));}
 	.gca_rtl .enemyDrop{right: auto;left: 0px;}
 	.enemyDrop2{right: 25px;}
@@ -966,7 +966,7 @@
 		.gca_rtl.gca_packages_filters_layout #content .side_container  input[type="submit"]{float: right;}
 		.gca_rtl.gca_packages_filters_layout #content .side_container .actions_container input[type="submit"]{float: left;}
 
-		/* Advace Filters */
+		/* Advance Filters */
 		.package-advance-filters {margin-top: 20px;}
 		.package-advance-filters h2.section-header+section {text-align: left;}
 		.package-advance-filters h2 span {float: right;font-size: 10px;line-height: 22px;}
@@ -980,11 +980,15 @@
 		.package-advance-filters .filter-add input:nth-child(3) {width: 85px;}
 		.package-advance-filters .filter-add button {width: 52px;margin-top: 0px;}
 
+		/* Item icons at the top right corner */
 		/* Soul-bound items */
-		#packages div[data-gca-soulbound]:after {content: "🔗";color: #ccc;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
+		#packages div[data-gca-soulbound]:not[data-gca-forge-proposal]:after {content: "🔗";color: #ccc;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
 		/* Proposed to forge items (unknown prefix/suffix) */
-		#packages div[data-gca-forge-proposal]:after {content: "📜";color: #ff6600;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
-		#packages div[data-gca-forge-proposal="2"]:after {content: "📜📜";}
+		#packages div[data-gca-forge-proposal]:not[data-gca-soulbound]:after {content: "📜";color: #ff6600;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
+		#packages div[data-gca-forge-proposal="2"]:not[data-gca-soulbound]:after {content: "📜📜";}
+		/* Both */
+		#packages div[data-gca-soulbound][data-gca-soulbound]:after {content: "📜🔗";color: #ff6600;font-size: 10px;font-weight: bold;float: right;margin: 1px;}
+		#packages div[data-gca-soulbound=2][data-gca-soulbound]:after {content: "📜📜🔗";}
 
 
 	/* Quests Layout
@@ -1043,7 +1047,7 @@
 		/* Basic points in bars */
 		#training_box .gca-bases-bar{height:4px;margin-top:-6px;border:1px solid #766531;}
 
-		/* Basec points in bars */
+		/* Basic points in bars */
 		#training_box.gca_multiple_training .loading{position: absolute;background-color: rgba(0,0,0,0.4);top: 0px;bottom: 0px;left: 0px;right: 0px;z-index: 1;border-radius: 5px;width: auto;height: auto;background-position: center center;}
 		#training_box.gca_multiple_training .training_link{right: 35px;}
 		#training_box.gca_multiple_training .gca_multiple{position: absolute;width: 29px;top: 2px;right: 4px;}
@@ -1139,7 +1143,7 @@
 	
 	/* Forge
 	-------------------------------------------------- */
-		/* Meterials Packages/Market Links */
+		/* Materials Packages/Market Links */
 		.gca_forge_material_links {background-color: #bba86e;font-size: 12px;position: absolute;width: 16px;margin-top: -46px;margin-left: 32px;line-height: 23px;}
 		.gca_rtl .gca_forge_material_links {margin-right: 32px;margin-left: auto;}
 		.gca_forge_materials_links {width: 16px;font-size: 12px;position: absolute;margin-top: -46px;line-height: 16px;}
@@ -1252,7 +1256,7 @@
 
 
 
-	/* Underwold
+	/* Underworld
 	-------------------------------------------------- */
 
 		/* Pray Buff Timer */
