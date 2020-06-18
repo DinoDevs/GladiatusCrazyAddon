@@ -228,6 +228,12 @@ gca_languages["en"] = {
 			show_hide_doll : "Show/Hide player dolls"
 		},
 		
+		// Merchants
+		merchants : {
+			search_item_in_merchants : "Search item in merchants",
+			no_such_item : "No such item found."
+		},
+		
 		// Packages
 		packages : {
 			event_items : "Event items",

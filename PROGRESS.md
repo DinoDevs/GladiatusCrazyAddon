@@ -39,6 +39,8 @@
 - **Training**
 	- [x] Multi-train is now limited to maximum training possible at the current level
 	- [x] Cost estimate in not limited to 99 trainings anymore, if such trainings are possible at the current or next level
+- **Merchants**
+	- [x] Added search-box to find items in merchants
 
 
 ### BUG FIXES

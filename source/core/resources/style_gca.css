@@ -1140,6 +1140,11 @@
 		.gca-shop-info{margin-top: -22px;padding: 0px 6px;text-align: right;font-size: 10px;color: white;text-shadow: 0px 0px 4px black;}
 		.gca-shop-info img{vertical-align: sub;transform: scale(0.8);}
 		
+		/* Search */
+		.gca-merchants-search-container{float: right;margin-right: 15px;margin-top: -10px;}
+		.gca-merchants-search-container .gca-search-input{margin-right: 4px;border-radius: 6px;}
+		.gca_rtl .gca-merchants-search-container{float: left;margin-left: 15px;}
+		.gca_rtl .gca-merchants-search-container .gca-search-input{margin-left: 4px;}
 	
 	/* Forge
 	-------------------------------------------------- */

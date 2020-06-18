@@ -29,9 +29,90 @@ var gca_merchants = {
 		// Double click to sell/buy items
 		(gca_options.bool("merchants","double_click_actions") &&
 			this.doubleClickActions.init());
+		
+		// Merchants Search
+		this.itemsSearchBox();
 
 		// Setting Link
 		gca_tools.create.settingsLink("merchants");
+	},
+
+	// Merchants Search
+	itemsSearchBox : function(){
+		// Create UI
+		let container = document.createElement("div");
+		container.id = 'gca-item-search-small';
+		container.className = "gca-merchants-search-container";
+		
+		let searchInput = document.createElement("input");
+		searchInput.className = 'inputText gca-search-input';
+		searchInput.id = 'gca-search-input';
+		searchInput.type = 'text';
+		searchInput.placeholder = gca_locale.get("merchants", "search_item_in_merchants");
+		container.appendChild(searchInput);
+		
+		let searchButton = document.createElement("input");
+		searchButton.className = 'awesome-button gca-search-submit';
+		searchButton.type = 'button';
+		searchButton.value = '🔎';
+		searchButton.onclick = "self.scrollTo(0,10000);";
+		container.appendChild(searchButton);
+		
+		document.getElementById('mainnav').appendChild(container);
+		
+		searchButton.addEventListener('click', this.searchItems, false);
+	},
+	
+	searchItems : function(){
+		let searchValue = document.getElementById('gca-search-input').value.toLowerCase();
+		if( searchValue.trim() === "" || searchValue.match(/[<>=+-]/i))
+			return;
+		
+		// Search all merchants
+		for(y=1;y<=5;y++){
+			for(c=0;c<=1;c++){
+				// Post to the server
+				jQuery.ajax({
+					url: gca_getPage.link({"mod":"inventory","subsub":c,"sub":y}),
+					success: function(html){
+						
+						if( !html.match(/class="shopTab"/i) ){
+							// error
+							gca_notifications.error( gca_locale.get("general", "error") );
+							return;
+						}
+						
+						let dealerName = html.match(/class="awesome-tabs current">([^<]+)<\/a>/i)[1].trim();
+						let dealerNum = html.match(/data-container-number="(\d+)"/i)[1];
+						
+						let tab = "N/A";
+						if(html.match(/shopTab [dynamic ]*active">([^<]+)<\/div/i))
+							tab = html.match(/shopTab [dynamic ]*active">([^<]+)<\/div/i)[1];
+						
+						let items = html.match(/data-container-number="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-item-id="[^"]*" data-price-gold="[^"]*" data-tooltip="\[\[\[&quot;([^&]*)&/gim);
+						if( !items )
+							items = [];
+						
+						let temp_name = 'Unknown';
+						let temp_img = null;
+						for (let i in items){
+							if ( typeof items[i] != "string" )
+								continue;
+							temp_name = decodeURIComponent(JSON.parse("\""+items[i].match(/data-tooltip="\[\[\[&quot;([^&]*)/i)[1]+"\""));
+							if(temp_name.toLowerCase().match(searchValue) && parseInt(items[i].match(/data-container-number="(\d+)"/)[1]) > 20){
+								gca_notifications.success( dealerName+" ["+tab+"]:\n"+temp_name);
+							}
+						}
+						
+						if( temp_img == null )
+							gca_notifications.warning( dealerName+" "+tab+":\n"+gca_locale.get("merchants", "no_such_item") );
+					},
+					error: function(){
+						gca_notifications.error( gca_locale.get("general", "error") );
+					}
+				});
+			}
+		}
 	},
 
 	// Fade non affordable items

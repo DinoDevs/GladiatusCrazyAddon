@@ -224,6 +224,12 @@ gca_languages["gr"] = {
 			recraft_item : "Σφυρηλάτηση ξανά",
 			show_hide_doll : "Εμφάνιση/Απόκρυψη χαρακτήρα παίχτη"
 		},
+		
+		// Merchants
+		merchants : {
+			search_item_in_merchants : "Αναζήτηση στους πωλητές",
+			no_such_item : "Δεν βρέθηκε τέτοιο αντικείμενο."
+		},
 
 		// Packages
 		packages : {
