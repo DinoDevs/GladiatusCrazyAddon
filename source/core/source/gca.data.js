@@ -426,7 +426,7 @@ gca_options.data = {
 		// Show item's price
 		"item_price" : false,
 		// Special category features
-		"special_category_features" : true,
+		"special_category_features" : 0,
 		// Open packets with double click
 		"double_click_open" : true,
 		// Advance packet filter

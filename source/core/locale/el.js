@@ -348,7 +348,7 @@ gca_languages["gr"] = {
 			category_packages$load_more_pages : "Φόρτωση περισσοτέρων σελίδων",
 			category_packages$pages_to_load: "Μέγιστος αριθμός σελίδων που φορτώνονται",
 			category_packages$item_price : "Εμφάνιση του κόστους κάθε αντικειμένου",
-			category_packages$special_category_features : "Ενεργοποίηση ειδικών λειτουργιών ανά κατηγορία",
+			category_packages$special_category_features : "Ενεργοποίηση ειδικών λειτουργιών ανά κατηγορία\n• Εμφάνιση εάν ο πάπυρος είναι γνωστός/άγνωστος\n• Εμφάνιση εικονιδίου εάν το πρόθεμα/επίθεμα του αντικειμένου είναι άγνωστο",
 			category_packages$double_click_open : "Άνοιγμα πακέτων με διπλό κλικ",
 			category_packages$advance_filter : "Φίλτρα πακέτων για προχωρημένους",
 			// Settings - Pantheon
@@ -358,12 +358,12 @@ gca_languages["gr"] = {
 			category_pantheon$gods_show_points_percent : "Εμφάνιση των πόντων θεών τοις εκατό",
 			category_pantheon$open_many_mysteryboxes : "Άνοιγμα πολλαπλών σεντουκιών",
 			category_pantheon$show_mysterybox_rewards_rubies : "Εμφάνιση τις αξίας των ανταμοιβών από τα σεντούκια σε ρουμπίνια",
-			category_pantheon$show_mysterybox_rewards_owned : "Εμφάνιση της ποστητας των ανταμοιβών από τα σεντούκια που έχεις ήδη",
+			category_pantheon$show_mysterybox_rewards_owned : "Εμφάνιση της ποσότητας των ανταμοιβών από τα σεντούκια που έχεις ήδη",
 			// Settings - Reports
 			category_reports$style_change: "Βελτίωση του interface της λίστας αναφορών",
 			category_reports$load_loot_tooltips : "Φόρτωση των ανταμοιβών τις κάθε αναφοράς",
 			category_reports$found_items : "Συλλογή δεδομένων από τα αντικείμενα που πέφτουν",
-			category_reports$battle_analyzer : "Ανάλυση αναφορας και εμφάνιση στατιστικών ζωής",
+			category_reports$battle_analyzer : "Ανάλυση αναφοράς και εμφάνιση στατιστικών ζωής",
 			// Settings - Training
 			category_training$show_discount : "Εμφάνιση έκπτωσης εκπαίδευσης",
 			category_training$show_basics_in_bars : "Εμφάνιση βασικών εκπαιδεύσεων στις μπάρες",
@@ -442,6 +442,9 @@ gca_languages["gr"] = {
 			do_not_show : "Να μην φαίνεται",
 			show_as : "Εμφάνιση ως",
 			show_info : "Εμφάνιση πληροφοριών",
+			each_category : "Ενεργό στην κάθε κατηγορία",
+			all_category : "Ενεργό στην κάθε κατηγορία & στην Όλα",
+			do_not_run : "Απενεργοποίηση",
 
 			// Info
 			translated_percent : "Μεταφρασμένα τοις εκατό: {{number}}%",

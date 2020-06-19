@@ -351,7 +351,7 @@ gca_languages["en"] = {
 			category_packages$load_more_pages : "Load more pages",
 			category_packages$pages_to_load : "Number of pages to load",
 			category_packages$item_price : "Show items' price",
-			category_packages$special_category_features : "Enable special features per category",
+			category_packages$special_category_features : "Enable special features per category\n•Show if scrolls are know/unknown\n•Show scroll icon item's prefix/suffix is unknown",
 			category_packages$double_click_open : "Double click packets to open them",
 			category_packages$advance_filter : "Advance packages filters",
 			// Settings - Pantheon
@@ -448,6 +448,9 @@ gca_languages["en"] = {
 			do_not_show : "Do not show",
 			show_as : "Show as",
 			show_info : "Show information",
+			each_category : "Run on target category",
+			all_category : "Run on target category & all",
+			do_not_run : "Do not run",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",

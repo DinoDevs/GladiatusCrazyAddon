@@ -742,7 +742,32 @@ var gca_settings = {
 				// Show item's price
 				"item_price" : false,
 				// Special category features
-				"special_category_features" : true,
+				"special_category_features" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							if(wrapper.className.length > 0) wrapper.className += " ";
+							wrapper.className += "gca_settings_select";
+							// Create select
+							data.select = document.createElement("select");
+							// Create a list
+							let options = [ gca_locale.get("settings",'each_category'), gca_locale.get("settings",'all_category'), gca_locale.get("settings",'do_not_run')];
+							for (let i = 0; i < options.length; i++) {
+								let option = document.createElement("option");
+								option.value = i;
+								option.textContent = options[i];
+								data.select.appendChild(option);
+							}
+							data.select.selectedIndex = gca_data.section.get("packages", "special_category_features", 0);
+							return data.select;
+						},
+						"save" : function(data){
+							gca_data.section.set("packages", "special_category_features", data.select.value);
+						}
+					};
+					return scheme;
+				})(),
+				
 				// Open packets with double click
 				"double_click_open" : true,
 				// Advance packet filter
