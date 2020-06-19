@@ -13,6 +13,7 @@
 	- [x] Added notification when guild war attack cooldown is over (default disabled)
 	- [x] Clicking some notification will redirect you to the relevant page (auction, smeltery, workbench, guild etc) (thanks mehmetkaradeniz)
 	- [x] Reserving position when auto-moving items
+	- [x] Display mercenaries real names (type) on tooltips
 - **Overview**
 	- [x] Double click to consume item (disabled by default)
 - **Forge & Smeltery**

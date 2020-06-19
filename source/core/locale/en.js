@@ -117,6 +117,9 @@ gca_languages["en"] = {
 			gold_exp_data_measurements : "Measurements",
 			gold_exp_data_total_exp : "Total experience",
 			gold_exp_data_total_gold : "Total gold",
+			
+			// Items
+			merchenary_type : "Type: {{name}} ({{number}})",
 		},
 
 		// Overview
@@ -316,6 +319,7 @@ gca_languages["en"] = {
 			category_global$show_durability : "Display durability on item's bottom-left corner",
 			category_global$min_durability : "Notification for items with durability+conditioning under _% (move to 0 to disable it)",
 			category_global$show_forge_info : "Display item's forge materials on tooltips",
+			category_global$show_mercenaries_real_name : "Display mercenaries real names (type) on tooltips",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",

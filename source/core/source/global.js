@@ -183,6 +183,10 @@ var gca_global = {
 		// Show forge info
 		(!this.isTraveling && gca_data.section.get("global", "show_forge_info", 0) != 0 && 
 			this.display.analyzeItems.itemForgeInfo.init());
+		
+		// Edit Mercenaries tooltips
+		(gca_options.bool("global","show_mercenaries_real_name") &&
+			this.display.analyzeItems.mercenaries.init());
 
 		// Mobile item move helper - Run on mobiles
 		(this.isMobile &&
@@ -3568,6 +3572,96 @@ var gca_global = {
 					info.push(['<div style="heigth:8px"></div>', '#000000']);
 
 					return info;
+				}
+			},
+			
+			// Add mercenaries types
+			mercenaries : {
+				// Load
+				init : function(self){
+					// Get data
+					this.showMerchenaryType();
+					
+					// Exit if no inventory
+					if(!document.getElementById("inv")) return;
+
+					// Add event
+					gca_tools.event.bag.onBagOpen(() => {
+						this.showMerchenaryType();
+					});
+
+					// If bag not already loaded
+					if (document.getElementById("inv").className.match("unavailable")) {
+						// Wait first bag
+						gca_tools.event.bag.waitBag(() => {
+							this.showMerchenaryType();
+						});
+					}
+
+					// If in packets
+					if (gca_section.mod === "packages") {
+						// On item get
+						gca_tools.event.request.onAjaxResponse((response) => {
+							// If package load request
+							if(response.data.newPackages && response.data.pagination && response.data.worthTotal){
+								this.showMerchenaryType();
+							}
+						});
+						// On new packet page
+						gca_tools.event.addListener("packages_page_loaded", () => {
+							this.showMerchenaryType();
+						});
+					}
+				},
+				
+				names : [
+					"Hoplomachus",//1
+					"Medicus",//2
+					"Thracian",//3
+					"Murmillo",//4
+					"Samnit",//5
+					"Elite Spear Carrier",//6
+					"Medicine Man",//7
+					"Archer",//8
+					"Experienced Archer",//9
+					"Sword Wolf",//10
+					"Eagle Wing",//11
+					"Herbalist",//12
+					"Bear Warrior",//13
+					"Scorpion Warrior",
+					"Axe Warrior",//15
+					"Grandmaster",//16
+					"Druid Master",//17
+					"The Ranger",//18
+					"Axe Thrower",//19
+					"Chariot Driver"//20
+				],
+
+				// Show if scroll is Learned
+				showMerchenaryType : function(){
+					// For each item
+					jQuery(".ui-draggable").each((i, item) => {
+						// If already parsed
+						if(item.dataset.gcaFlag_isMerchenaryType) return;
+						// Flag as parsed
+						item.dataset.gcaFlag_isMerchenaryType = true;
+
+						// Get hash
+						let hash = gca_tools.item.hash(item);
+						if (!hash) return;
+						
+						// Check if item is a mercenary
+						if (hash.category!=15) return;
+						
+						let original_name = ( hash.subcategory <= this.names.length ) ? this.names[hash.subcategory-1] : "n/a" ;
+						jQuery(item).data("tooltip")[0].splice(1, 0, [ gca_locale.get("global", "merchenary_type", {name:original_name, number:hash.subcategory}), "gray; font-size: 0.8em;"]);
+						
+						// Remove all last gray rows of tooltips
+						for(let i = 0; i < 2; i++){
+							if( jQuery(item).data("tooltip")[0][jQuery(item).data("tooltip")[0].length-1][1]=="#808080" )
+								jQuery(item).data("tooltip")[0].pop()
+						}
+					});
 				}
 			}
 		}

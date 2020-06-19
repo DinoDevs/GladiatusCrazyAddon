@@ -348,7 +348,10 @@ gca_options.data = {
 		"show_forge_info" : 0,
 		
 		// Minimum durability alert
-		"min_durability" : 25
+		"min_durability" : 25,
+		
+		// Show mercenaries real name
+		"show_mercenaries_real_name" : false
 	},
 
 	// Overview Options

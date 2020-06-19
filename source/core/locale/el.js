@@ -117,6 +117,9 @@ gca_languages["gr"] = {
 			gold_exp_data_measurements : "Μετρήσεις",
 			gold_exp_data_total_exp : "Συνολική εμπειρία",
 			gold_exp_data_total_gold : "Συνολικός χρυσός",
+			
+			// Items
+			merchenary_type : "Τύπος: {{name}} ({{number}})",
 		},
 
 		// Overview
@@ -313,6 +316,7 @@ gca_languages["gr"] = {
 			category_global$show_durability : "Εμφάνιση της ανθεκτικότητας των αντικειμένων στην κάτω αριστερή τους γωνία",
 			category_global$min_durability : "Ειδοποίηση όταν η ανθεκτικότητα+εξευγενισμός είναι κάτω από μια τιμή % (επιλέξτε 0 για απενεργοποίηση)",
 			category_global$show_forge_info : "Εμφάνιση των πρώτων υλών του αντικειμένου στο tooltip",
+			category_global$show_mercenaries_real_name : "Εμφάνιση του πραγματικού ονόματος (τύπος) στα tooltip",
 			// Settings - Overview
 			category_overview$analyze_items: "Ανάλυση των αντικειμένων του παίκτη",
 			category_overview$food_life_gain : "Εμφάνιση των πόντων ζωής που δίνει το κάθε αναλώσιμο",

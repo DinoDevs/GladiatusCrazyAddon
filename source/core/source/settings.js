@@ -665,6 +665,9 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
+				
+				// Show mercenaries real name
+				"show_mercenaries_real_name" : false,
 			},
 
 			// Overview Options
