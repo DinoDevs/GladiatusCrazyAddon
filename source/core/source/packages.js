@@ -301,10 +301,9 @@ var gca_packages = {
 				this.paginationCurrent = page.current;
 			}
 
-			var page;
-			for(var i = pagings.length - 1; i >= 0; i--){
+			for(let i = pagings.length - 1; i >= 0; i--){
 				// Pagination info
-				page = gca_tools.pagination.getInfo(pagings[i], skipping);
+				let page = gca_tools.pagination.getInfo(pagings[i], skipping);
 				// Check current page
 				if(this.paginationCurrent < 0 || this.paginationCurrent > page.current){
 					this.paginationCurrent = page.current;
