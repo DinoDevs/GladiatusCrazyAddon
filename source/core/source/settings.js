@@ -668,6 +668,9 @@ var gca_settings = {
 				
 				// Show mercenaries real name
 				"show_mercenaries_real_name" : false,
+				
+				// Attacked Timer
+				"global_arena_timer" : true,
 			},
 
 			// Overview Options

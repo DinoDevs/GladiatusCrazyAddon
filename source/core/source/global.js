@@ -110,13 +110,16 @@ var gca_global = {
 		(!this.isTraveling && gca_options.bool("global","merchants_timer") &&
 			this.display.merchants_timer.inject(this));
 
+		// Global Arena Timer
+		(gca_options.bool("global","global_arena_timer") &&
+			this.display.global_arena.inject());
+
 		// Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
 			this.display.inventoryOptionsGroup.create());
 		// Inventory info box
 		(gca_options.bool("global","inventory_gold_info") &&
 			this.display.inventoryInfo.prepare());
-
 
 		// Daily Bonus Log
 		(gca_options.bool("overview", "daily_bonus_log") && 
@@ -2506,6 +2509,98 @@ var gca_global = {
 
 				// Display the values
 				this.questTimeElement.textContent = '(' + minutes + ':' + seconds + ')';
+			}
+		},
+		
+		// Global Arena
+		global_arena : {
+			inject : function(){
+				// Do not run while traveling
+				//if (gca_global.isTraveling) return;
+				
+				// if Quests wait for update event
+				/*
+				if (gca_section.mod == 'arena' && gca_section.submod == null) {
+					gca_tools.event.addListener("quest-info-update", () => {
+						this.display();
+					});
+					return;
+				}*/
+
+				this.display();
+			},
+
+			// Display timer
+			display : function(){
+				// Time when ready to attack
+				var nextAvailable = parseInt(gca_data.section.get("timers", 'global_arena', 0), 10);
+				// Time difference
+				this.timer = (nextAvailable - new Date().getTime());
+				// Global Arena Position
+				this.global_arena_position = gca_data.section.get("timers", 'global_arena_position', 'n/a');
+
+				// Change Style
+				document.getElementById('header_game').className += " gca-global-arena-timer-on";
+
+				// Create timer
+				let gaCooldownBar = document.createElement("div");
+				gaCooldownBar.id = "cooldown_bar_ga";
+				gaCooldownBar.className = "cooldown_bar global_arena_global_timer";
+				this.globalArenaCooldownProgressBar = document.createElement("div");
+				this.globalArenaCooldownProgressBar.className = "cooldown_bar_fill cooldown_bar_fill_"+(this.timer <= 0 ? "ready" : "progress" );
+				this.globalArenaCooldownProgressBar.id = "cooldown_bar_fill_ga";
+				this.globalArenaCooldownProgressBar.style = "width: 100%;";
+				gaCooldownBar.appendChild(this.globalArenaCooldownProgressBar);
+				this.globalArenaCooldownText = document.createElement("div");
+				this.globalArenaCooldownText.className = "cooldown_bar_text";
+				this.globalArenaCooldownText.id = "cooldown_bar_text_ga";
+				this.globalArenaCooldownText.textContent = gca_locale.get("arena", "global_arena_title");
+				gaCooldownBar.appendChild(this.globalArenaCooldownText);
+				let a = document.createElement("a");
+				a.className = "cooldown_bar_link";
+				a.href = gca_getPage.link({"mod":"arena"})+"#global_arena_box";
+				gaCooldownBar.appendChild(a);
+				document.getElementById('header_game').appendChild(gaCooldownBar);
+				
+				// Check if the time has finished
+				if(this.timer > 0){
+					// Time has NOT finished
+					
+					// Refresh the countdown
+					this.countdown_started = new Date().getTime();
+					this.countdown_interval = setInterval(() => {
+						this.countdown();
+					}, 500);
+					this.countdown();
+				}
+			},
+
+			// Count Down
+			countdown_started : null,
+			countdown_interval : null,
+			countdown : function(){
+				var timer = this.timer - (new Date().getTime() - this.countdown_started);
+				
+				// If ready
+				if (timer < 0) {
+					this.globalArenaCooldownText.textContent = gca_locale.get("arena", "global_arena_title");
+					this.globalArenaCooldownProgressBar.className = "cooldown_bar_fill cooldown_bar_fill_ready";
+
+					// Clear timer
+					clearInterval(this.countdown_interval);
+					return;
+				}
+
+				// Convert milliseconds to Minutes:Seconds
+				var date = new Date(timer);
+				var minutes = date.getMinutes();
+				var seconds = date.getSeconds();
+				// Format to 01:04
+				if(minutes < 10){minutes = '0'+minutes;}
+				if(seconds < 10){seconds = '0'+seconds;}
+
+				// Display the values
+				this.globalArenaCooldownText.textContent = '0:' + minutes + ':' + seconds;
 			}
 		},
 

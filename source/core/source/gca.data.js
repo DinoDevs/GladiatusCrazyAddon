@@ -351,7 +351,10 @@ gca_options.data = {
 		"min_durability" : 25,
 		
 		// Show mercenaries real name
-		"show_mercenaries_real_name" : false
+		"show_mercenaries_real_name" : false,
+		
+		// Global Arena timer
+		"global_arena_timer" : true
 	},
 
 	// Overview Options

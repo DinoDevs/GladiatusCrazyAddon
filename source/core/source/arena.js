@@ -183,6 +183,12 @@ var gca_arena = {
 			table.style.marginBottom = '15px';
 			box.appendChild(table);
 			this.table = table;
+			
+			// if link opens global arena
+			if ( document.location.href.match("#global_arena_box") ){
+				this.loadList();
+				header.scrollIntoView();
+			}
 		},
 
 		// Load arena list
@@ -254,6 +260,9 @@ var gca_arena = {
 
 				let timer = document.createElement('span');
 				timer.dataset.value = new Date().getTime() + (cooldown * 1000);
+				
+				// Save global arena timer
+				gca_data.section.set("timers", 'global_arena', timer.dataset.value);
 				
 				this.cooldown_interval = setInterval(() => {
 					let left = timer.dataset.value - new Date().getTime();
@@ -391,8 +400,12 @@ var gca_arena = {
 			tr.className = "highlight";
 			this.table.appendChild(tr);
 			
+			// Global Arena Position
+			let user_position = json.list[json.list.length - 1].position + 1;
+			gca_data.section.set("timers", 'global_arena_position', user_position);
+			
 			th = document.createElement("th");
-			th.textContent = json.list[json.list.length - 1].position + 1;
+			th.textContent = user_position;
 			th.style.textAlign = 'center';
 			th.className = 'first';
 			tr.appendChild(th);

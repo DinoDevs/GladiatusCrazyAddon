@@ -188,7 +188,14 @@
 	.attacked_timers_table .timer-icon-arena{background: transparent url('buttons/main_buttons.png') -250px -51px no-repeat;}
 	.attacked_timers_table .timer-icon-grouparena{background: transparent url('buttons/main_buttons.png') -268px -51px no-repeat;}
 	.gca_rtl  .attacked_timers_table .timer-icon{margin-right: 0;margin-left: 2px;float: right;}
+
+/* Global Arena Timer */
+	.gca-global-arena-timer-on #cooldown_bar_arena {height: 16px; top: 43px !important;}
+	.gca-global-arena-timer-on #cooldown_bar_ct {height: 16px; top: 62px;}
+	.gca-global-arena-timer-on #cooldown_bar_ga {left: 850px; height: 16px; top: 81px;}
+	.gca_rtl .gca-global-arena-timer-on #cooldown_bar_ga {right: 850px;}
 	
+
 /* OverView */
 	/* Inv Manager */
 		.inv_manager_box{position: relative;float: left;margin-right: 12px;margin-bottom: 10px;}
