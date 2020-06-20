@@ -221,7 +221,8 @@ gca_languages["gr"] = {
 			item_is_soulbound : "Αυτό το αντικείμενο είναι ψυχικά δεμένο.",
 			item_cant_buy_back : "Δεν θα μπορείς να αγοράσεις πίσω αυτό το αντικείμενο.",
 			// Are you sure
-			are_you_sure_you_want_to_buy : "Θέλεις πραγματικά να αγοράσεις αυτό το αντικείμενο;"
+			are_you_sure_you_want_to_buy : "Θέλεις πραγματικά να αγοράσεις αυτό το αντικείμενο;",
+			click_enter_to_sell : "πατήστε enter ⏎ για πώληση"
 		},
 		
 		// Forge

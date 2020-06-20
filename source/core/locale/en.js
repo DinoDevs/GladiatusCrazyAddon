@@ -221,7 +221,8 @@ gca_languages["en"] = {
 			item_is_soulbound : "This item is soulbound.",
 			item_cant_buy_back : "You will not be able to buy back this item.",
 			// Are you sure
-			are_you_sure_you_want_to_buy : "Do you really want to buy this item?"
+			are_you_sure_you_want_to_buy : "Do you really want to buy this item?",
+			click_enter_to_sell : "click enter ⏎ to sell"
 		},
 		
 		// Forge
