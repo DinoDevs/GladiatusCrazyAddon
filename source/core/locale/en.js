@@ -183,7 +183,7 @@ gca_languages["en"] = {
 			attack_player : "Click to attack “{{name}}”",
 			fight_won : "You won the fight!",
 			fight_lost : "You lost the fight...",
-			player_tired : "You are tired. You need to rest."
+			player_tired : "You are tire; you need to wait."
 		},
 
 		// Training section

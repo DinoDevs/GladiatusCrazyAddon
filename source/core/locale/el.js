@@ -181,6 +181,9 @@ gca_languages["gr"] = {
 			error_blocked_access : "Κάτι μπλοκάρει την πρόσβαση στον διακομιστή του GCA ({{url}})",
 			error_connection : "Σφάλμα σύνδεσης",
 			attack_player : "Επίθεση στον “{{name}}”",
+			fight_won : "Νίκησες τη μάχη!",
+			fight_lost : "Έχασες τη μάχη...",
+			player_tired : "Είσαι κουρασμένος, πρέπει να περιμένεις."
 		},
 
 		// Training section
