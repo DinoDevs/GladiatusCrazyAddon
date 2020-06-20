@@ -183,7 +183,10 @@ gca_languages["gr"] = {
 			attack_player : "Επίθεση στον “{{name}}”",
 			fight_won : "Νίκησες τη μάχη!",
 			fight_lost : "Έχασες τη μάχη...",
-			player_tired : "Είσαι κουρασμένος, πρέπει να περιμένεις."
+			player_tired : "Είσαι κουρασμένος, πρέπει να περιμένεις.",
+			player1_hits_player2 : "Ο {{name1}} χτυπά τον {{name2}}",
+			player_takes_x_damage :"Ο {{name}} δέχεται {{number}} ζημιά",
+			player_dies :"Ο {{name}} πέθανε"
 		},
 
 		// Training section

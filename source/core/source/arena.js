@@ -545,6 +545,21 @@ var gca_arena = {
 			},
 
 			parse : function(header, report) {
+				// Load saved locale
+				this.locale = {
+					winner : "Winner",
+					stats : "Stats",
+					battle_report : "Battle Report",
+					name : "Name",
+					guild : "Guild",
+					hitpoints : "Hitpoints",
+					life_points : "Life points",
+					round : "Round",
+					miss : "misses",
+					block : "blocked"
+				};
+				this.locale = gca_data.section.get('cache', 'reports_locale', this.locale);
+				
 				var wrapper = document.createElement('div');
 
 				// Battle result
@@ -557,7 +572,7 @@ var gca_arena = {
 				var title = document.createElement('h2');
 				title.className = 'section-header';
 				title.style.cursor = 'pointer';
-				title.textContent = 'Battle Report';
+				title.textContent = this.locale.battle_report;
 				wrapper.appendChild(title);
 
 				// Results
@@ -573,7 +588,7 @@ var gca_arena = {
 
 				// Battle rounds
 				for (let i = 1; i < report.length; i++) {
-					let elements = this.round(report[i], 'Round ' + i, header.attacker.name, header.defender.name);
+					let elements = this.round(report[i], this.locale.round+' ' + i, header.attacker.name, header.defender.name);
 					for (let j = 0; j < elements.length; j++) {
 						table.appendChild(elements[j]);
 					}
@@ -600,7 +615,7 @@ var gca_arena = {
 				let tr, td;
 				tr = document.createElement('tr');
 				td = document.createElement('td');
-				td.textContent = 'Winner: ' + (header.won ? header.attacker.name : header.lost ? header.defender.name : '---');
+				td.textContent = this.locale.winner+': ' + (header.won ? header.attacker.name : header.lost ? header.defender.name : '---');
 				tr.appendChild(td);
 				table.appendChild(tr);
 				head.appendChild(table);
@@ -610,7 +625,7 @@ var gca_arena = {
 				let title = document.createElement('h2');
 				title.className = 'section-header';
 				title.style.cursor = 'pointer';
-				title.textContent = 'Stats';
+				title.textContent = this.locale.stats;
 				elements.push(title);
 
 				// Results
@@ -629,13 +644,13 @@ var gca_arena = {
 
 				tr = document.createElement('tr');
 				td = document.createElement('th');
-				td.textContent = 'Name';
+				td.textContent = this.locale.name;
 				tr.appendChild(td);
 				td = document.createElement('th');
-				td.textContent = 'Hitpoints';
+				td.textContent = this.locale.hitpoints;
 				tr.appendChild(td);
 				td = document.createElement('th');
-				td.textContent = 'Life points';
+				td.textContent = this.locale.life_points;
 				tr.appendChild(td);
 				table.appendChild(tr);
 
@@ -716,10 +731,10 @@ var gca_arena = {
 					td = document.createElement('td');
 					if (round[i][1] == this.flags.REPORT_ACTION_HIT || round[i][1] == this.flags.REPORT_ACTION_KILL) {
 						if (round[i][0] == this.flags.REPORT_ATTACKER){
-							td.textContent = attacker_name + ' hits ' + defender_name + '.';
+							td.textContent = gca_locale.get("arena", "player1_hits_player2", {name1:attacker_name, name2:defender_name})+"."
 						}
 						else if (round[i][0] == this.flags.REPORT_DEFENDER){
-							td.textContent = defender_name + ' hits ' + attacker_name + '.';
+							td.textContent = gca_locale.get("arena", "player1_hits_player2", {name1:defender_name, name2:attacker_name})+"."
 						}
 					}
 					tr.appendChild(td);
@@ -729,18 +744,19 @@ var gca_arena = {
 						text = '';
 						span = document.createElement('span');
 						if (round[i][2] == this.flags.HIT_MISSED) {
-							text = 'missed';
+							text = this.locale.miss;
 						}
 						else if (round[i][2] == this.flags.HIT_BLOCKED) {
-							text = 'blocked';
+							text = this.locale.block;
+							span.style.color = 'dimgray';
 						}
 						else {
 							span.style.color = 'red';
 							if (round[i][0] == this.flags.REPORT_ATTACKER){
-								text = defender_name + ' takes ' + round[i][3] + ' damage.';
+								text = gca_locale.get("arena", "player_takes_x_damage", {name:defender_name, number:round[i][3]})+"."
 							}
 							else if (round[i][0] == this.flags.REPORT_DEFENDER){
-								text = attacker_name + ' takes ' + round[i][3] + ' damage.';
+								text = gca_locale.get("arena", "player_takes_x_damage", {name:attacker_name, number:round[i][3]})+"."
 							}
 							if (round[i][2] == this.flags.HIT_CRITICAL) {
 								span.style.fontWeight = 'bold';
@@ -758,10 +774,10 @@ var gca_arena = {
 							td.appendChild(document.createElement('br'));
 							span = document.createElement('b');
 							if (round[i][0] == this.flags.REPORT_ATTACKER){
-								span.textContent = '*' + defender_name + ' dies*';
+								span.textContent = '*' + gca_locale.get("arena", "player_dies", {name:defender_name}) + "*";
 							}
 							else if (round[i][0] == this.flags.REPORT_DEFENDER){
-								span.textContent = '*' + attacker_name + ' dies*';
+								span.textContent = '*' + gca_locale.get("arena", "player_dies", {name:attacker_name}) + "*";
 							}
 							td.appendChild(span);
 						}

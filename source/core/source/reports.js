@@ -47,6 +47,11 @@ var gca_reports = {
 					this.itemShadow());
 			}
 
+			if (this.combatReport != "reportCircusTurma" && this.combatReport != "reportDungeon") {
+				// Save reports locale/translations
+				this.saveReportsLocale();
+			}
+
 			// If arena attacked right now
 			if (this.combatReport == "reportArena" && this.referrer.mod == "arena") {
 				this.attacked.arena();
@@ -54,7 +59,6 @@ var gca_reports = {
 
 			// Fire reports info updated
 			gca_tools.event.fireOnce("arena-info-update");
-
 		}
 		
 		// Report Lists
@@ -123,6 +127,39 @@ var gca_reports = {
 
 			else this.combatReport = "reportExpedition";
 		}
+	},
+
+	// Save Reports Locale/Translations
+	saveReportsLocale : function(){
+		
+		let locale = {
+			winner : document.getElementById("reportHeader").getElementsByTagName("td")[1].textContent.match(/([^:]+)+:/i)[1],
+			stats : document.getElementsByTagName("h2")[1].textContent.match(/([^-]+)-/i)[1].trim(),
+			battle_report : document.getElementsByTagName("h2")[2].textContent.match(/([^-]+)-/i)[1].trim(),
+			name : document.getElementsByClassName("dungeon_report_statistic")[0].getElementsByTagName("td")[0].textContent,
+			guild : document.getElementsByClassName("dungeon_report_statistic")[0].getElementsByTagName("td")[1].textContent,
+			hitpoints : document.getElementsByClassName("dungeon_report_statistic")[0].getElementsByTagName("td")[2].textContent,
+			life_points : document.getElementsByClassName("dungeon_report_statistic")[0].getElementsByTagName("td")[3].textContent,
+			round : document.getElementsByClassName("table_border_bottom")[1].textContent.replace('1','').trim(),
+			miss : "misses",
+			block : "blocked"
+		};
+		
+		let report_table_rows = document.getElementsByClassName("table_border_bottom")[0].getElementsByTagName("tr");
+		for(let i = 0; i < report_table_rows.length; i++) {
+			if( report_table_rows[i].style.backgroundColor != "rgb(181, 171, 131)" ){
+				if ( report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font").length == 0 )
+					locale.miss = report_table_rows[i].getElementsByTagName("td")[1].textContent.trim();
+				else{
+					if ( report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font")[0].color == "dimgray" && !report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font")[0].textContent.match(/\d+/i) )
+						locale.block = report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font")[0].textContent.trim();
+				}
+			}
+		}
+		
+		console.log(locale);
+		
+		gca_data.section.set('cache', 'reports_locale', locale);
 	},
 
 	// Log items found for statistics
