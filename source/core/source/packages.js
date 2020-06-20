@@ -916,7 +916,9 @@ var gca_packages = {
 			section.appendChild(clear);
 			clear.addEventListener('click', () => {
 				active_rules = [];
-				box_active.innerHTML = '';
+				while(box_active.firstChild){ // clear box_active
+					box_active.removeChild(box_active.firstChild);
+				}
 				let packages = document.getElementById('packages').getElementsByClassName('ui-draggable');
 				for (let i = 0; i < packages.length; i++) {
 					packages[i].parentNode.parentNode.style.opacity = 1;
