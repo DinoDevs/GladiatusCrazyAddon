@@ -910,7 +910,9 @@ var gca_settings = {
 				// Double click to select
 				"double_click_select" : true,
 				// Item sell warning icons
-				"sell_warning_icons" : true
+				"sell_warning_icons" : true,
+				// Sell with enter
+				"sell_with_enter" : true
 			},
 			
 			// Expedition Options

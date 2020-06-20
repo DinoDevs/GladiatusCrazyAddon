@@ -222,7 +222,7 @@ gca_languages["en"] = {
 			item_cant_buy_back : "You will not be able to buy back this item.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Do you really want to buy this item?",
-			click_enter_to_sell : "click enter ⏎ to sell"
+			click_enter_to_sell : "press enter ⏎ to sell"
 		},
 		
 		// Forge
@@ -408,6 +408,7 @@ gca_languages["en"] = {
 			category_market$remember_sort : "Remember last sort order",
 			category_market$double_click_select : "Select item with double click",
 			category_market$sell_warning_icons : "Warning icon when selling items",
+			category_market$sell_with_enter : "Sell items by pressing ENTER ⏎",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",
 			category_expedition$underworld_layout : "Show underworld's enemies layout like expedition's",

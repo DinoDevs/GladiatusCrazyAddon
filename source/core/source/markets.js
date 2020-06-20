@@ -48,7 +48,8 @@ var gca_markets = {
 		}
 		
 		// Trigger sell with enter
-		this.enterTriggerSell();
+		(gca_options.bool("market", "sell_with_enter") && 
+			this.enterTriggerSell());
 
 		// Insert sort options in POST-URL on sell form
 		this.sortOptionsOnSell();
