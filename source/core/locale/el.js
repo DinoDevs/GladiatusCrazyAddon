@@ -320,7 +320,7 @@ gca_languages["gr"] = {
 			category_global$show_durability : "Εμφάνιση της ανθεκτικότητας των αντικειμένων στην κάτω αριστερή τους γωνία",
 			category_global$min_durability : "Ειδοποίηση όταν η ανθεκτικότητα+εξευγενισμός είναι κάτω από μια τιμή % (επιλέξτε 0 για απενεργοποίηση)",
 			category_global$show_forge_info : "Εμφάνιση των πρώτων υλών του αντικειμένου στο tooltip",
-			category_global$show_mercenaries_real_name : "Εμφάνιση του πραγματικού ονόματος (τύπος) στα tooltip",
+			category_global$show_mercenaries_real_name : "Εμφάνιση του πραγματικού ονόματος (τύπος) μισθοφόρου στα tooltip",
 			category_global$global_arena_timer : "Προβολή του χρονομέτρου της Παγκόσμιας Αρένας",
 			// Settings - Overview
 			category_overview$analyze_items: "Ανάλυση των αντικειμένων του παίκτη",
