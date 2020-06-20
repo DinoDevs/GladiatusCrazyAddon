@@ -699,6 +699,9 @@ var gca_reports = {
 					totalThreat += players[i][6];
 			}
 			
+			// Threat translation
+			let threat_translation = document.getElementById("charstatsCombat").getElementsByClassName("charstats_value21")[8].textContent;
+			
 			// Create each player row
 			for (let i = 0; i < players.length; i++) {
 				
@@ -751,7 +754,7 @@ var gca_reports = {
 
 				let threat = document.createElement('span');
 				threat.className = 'charstats_text';
-				threat.textContent = "Threat";
+				threat.textContent = threat_translation;
 				threat.style = "font-size: .8em;margin-top: 8px;";
 				row.appendChild(threat);
 				
