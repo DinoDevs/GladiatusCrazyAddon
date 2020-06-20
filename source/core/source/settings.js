@@ -754,7 +754,7 @@ var gca_settings = {
 							// Create select
 							data.select = document.createElement("select");
 							// Create a list
-							let options = [ gca_locale.get("settings",'each_category'), gca_locale.get("settings",'all_category'), gca_locale.get("settings",'do_not_run')];
+							let options = [gca_locale.get("settings",'each_category'), gca_locale.get("settings",'all_category'), gca_locale.get("settings",'do_not_run')];
 							for (let i = 0; i < options.length; i++) {
 								let option = document.createElement("option");
 								option.value = i;
@@ -902,7 +902,7 @@ var gca_settings = {
 				})(),
 				// 1 gold mode
 				"one_gold_mode" : true,
-				// Remember sorting 
+				// Remember sorting
 				"remember_sort" : false,
 				// Double click to select
 				"double_click_select" : true,
@@ -991,7 +991,7 @@ var gca_settings = {
 							for (let channel in channels) {
 								if (channels.hasOwnProperty(channel)) {
 									let div = document.createElement('div');
-									div.innerHTML = channel;
+									div.textContent = channel;
 									section.appendChild(div);
 								}
 							}
@@ -1472,7 +1472,7 @@ var gca_settings = {
 		activeTab : null,
 		openTab : function(tabname, title){
 			// Clear tab
-			this.tab_div.innerHTML = "";
+			this.tab_div.textContent = '';
 
 			// If tabname not exist
 			if(!tabname || !this.scheme[tabname]){

@@ -248,7 +248,7 @@ var gca_arena = {
 			if (cooldown) {
 				this.status.style.display = 'block';
 				this.status.style.color = 'rgba(255, 30, 30, 1)';
-				this.status.innerHTML = '';
+				this.status.textContent = '';
 				this.status.appendChild(document.createTextNode(gca_locale.get("arena", "player_tired")));
 				this.status.appendChild(document.createElement('br'));
 
@@ -279,7 +279,7 @@ var gca_arena = {
 		// Create global arena list of players
 		createList : function(json) {
 			// Empty table
-			this.table.innerHTML = '';
+			this.table.textContent = '';
 			// Disable load list
 			this.load_btn.disabled = true;
 
@@ -526,7 +526,7 @@ var gca_arena = {
 
 			show : function(header, report) {
 				report = this.parse(header, report);
-				document.getElementById('content').innerHTML = '';
+				document.getElementById('content').textContent = '';
 				document.getElementById('content').appendChild(report);
 				window.scrollTo(window.scrollX, 0);
 			},

@@ -45,7 +45,7 @@ var gca_overview_buddylist = {
 		},
 
 		update : function() {
-			this.wrapper.innerHTML = '';
+			this.wrapper.textContent = '';
 
 			// Get target players
 			let list = gca_data.section.get('arena', 'target-list', {});
@@ -133,7 +133,7 @@ var gca_overview_buddylist = {
 			td.style.textAlign = 'right';
 			let btn = document.createElement('button');
 			btn.className = 'awesome-button';
-			btn.innerHTML = '&times;';
+			btn.textContent = '×';
 			td.appendChild(btn);
 			btn.addEventListener('click', () => {this.remove(id);});
 			tr.appendChild(td);

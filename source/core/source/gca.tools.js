@@ -1146,7 +1146,7 @@ var gca_tools = {
 
 			var linkWrapper = wrapper.getElementsByClassName("paging_numbers")[0];
 			// Clear links
-			linkWrapper.innerHTML = "";
+			linkWrapper.textContent = "";
 
 			var a;
 
