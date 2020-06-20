@@ -193,6 +193,7 @@
 	.gca-global-arena-timer-on #cooldown_bar_arena {height: 16px; top: 43px !important;}
 	.gca-global-arena-timer-on #cooldown_bar_ct {height: 16px; top: 62px;}
 	.gca-global-arena-timer-on #cooldown_bar_ga {left: 850px; height: 16px; top: 81px;}
+	.gca-global-arena-timer-on #cooldown_bar_arena a.cooldown_bar_link, .gca-global-arena-timer-on #cooldown_bar_ct a.cooldown_bar_link, .gca-global-arena-timer-on #cooldown_bar_ga a.cooldown_bar_link,.gca-global-arena-timer-on #cooldown_bar_arena .cooldown_bar_fill, .gca-global-arena-timer-on #cooldown_bar_ct .cooldown_bar_fill, .gca-global-arena-timer-on #cooldown_bar_ga .cooldown_bar_fill	{height: 14px;}
 	.gca_rtl .gca-global-arena-timer-on #cooldown_bar_ga {right: 850px;}
 	
 
