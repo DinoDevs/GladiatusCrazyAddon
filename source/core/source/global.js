@@ -2590,6 +2590,8 @@ var gca_global = {
 					clearInterval(this.countdown_interval);
 					return;
 				}
+				
+				this.globalArenaCooldownProgressBar.style = "width: "+ (1-timer/(10*60*1000))*100 +"%;";
 
 				// Convert milliseconds to Minutes:Seconds
 				var date = new Date(timer);
