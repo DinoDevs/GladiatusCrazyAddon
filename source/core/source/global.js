@@ -1448,9 +1448,8 @@ var gca_global = {
 				create : function(){
 					// Get stats
 					var stats = gca_data.section.get("stats", "player", false);
-					// Clear table
+					// Get Container
 					var statsHtmlTable = document.getElementById("gca_player_stats_table");
-					statsHtmlTable.innerHTML = "";
 
 					var tr, td;
 					// If stats are saved
@@ -1466,6 +1465,8 @@ var gca_global = {
 							"damage"
 						];
 
+						var new_table = document.createElement("table");
+						new_table.id = "gca_player_stats_table";
 						for(var i = 0; i < attributes.length; i++){
 							tr = document.createElement("tr");
 							td = document.createElement("td");
@@ -1478,8 +1479,9 @@ var gca_global = {
 							td.className = "cssAlign";
 							td.textContent = stats[attributes[i]][1];
 							tr.appendChild(td);
-							statsHtmlTable.appendChild(tr);
+							new_table.appendChild(tr);
 						}
+						statsHtmlTable.parentNode.replaceChild(new_table, statsHtmlTable);
 						
 						var chartFunction = function(){
 							new Chart(document.getElementById("stats_canvas"), {
@@ -1513,11 +1515,15 @@ var gca_global = {
 					}
 					// Stats not saved
 					else {
+						let statsHtmlTable = document.getElementById("gca_player_stats_table");
+						new_table = document.createElement("table");
+						new_table.id = "gca_player_stats_table";
 						tr = document.createElement("tr");
 						td = document.createElement("td");
 						td.textContent = gca_locale.get("general", "no_data");
 						tr.appendChild(td);
-						statsHtmlTable.appendChild(tr);
+						new_table.appendChild(tr);
+						statsHtmlTable.parentNode.replaceChild(new_table, statsHtmlTable);
 					}
 				},
 				// loading
@@ -1528,18 +1534,20 @@ var gca_global = {
 					if(this.loading) return;
 					this.loading = true;
 
-					// Clear table
+					// Get Container
 					var statsHtmlTable = document.getElementById("gca_player_stats_table");
-					statsHtmlTable.innerHTML = "";
 
 					// Display loading
+					var new_table = document.createElement("table");
+					new_table.id = "gca_player_stats_table";
 					var tr = document.createElement("tr");
 					var td = document.createElement("td");
 					var span = document.createElement("span");
 					span.className = "loading";
 					td.appendChild(span);
 					tr.appendChild(td);
-					statsHtmlTable.appendChild(tr);
+					new_table.appendChild(tr);
+					statsHtmlTable.parentNode.replaceChild(new_table, statsHtmlTable);
 
 					// Save instance
 					var self = this;
@@ -1567,14 +1575,18 @@ var gca_global = {
 						
 						else{
 							// Error
-							statsHtmlTable.innerHTML = "";
+							statsHtmlTable = document.getElementById("gca_player_stats_table");
+							var new_table = document.createElement("table");
+							new_table.id = "gca_player_stats_table";
 							var tr = document.createElement("tr");
 							var td = document.createElement("td");
 							var span = document.createElement("span");
-							span.className = gca_locale.get("general", "error");
+							span.textContent = gca_locale.get("general", "error");
+							span.style.color = "red";
 							td.appendChild(span);
 							tr.appendChild(td);
-							statsHtmlTable.appendChild(tr);
+							new_table.appendChild(tr);
+							statsHtmlTable.parentNode.replaceChild(new_table, statsHtmlTable);
 						}
 					});
 				},
