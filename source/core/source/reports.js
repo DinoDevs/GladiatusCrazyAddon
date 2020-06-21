@@ -132,7 +132,12 @@ var gca_reports = {
 	// Save Reports Locale/Translations
 	saveReportsLocale : function(){
 		
-		let locale = {
+		let locale = gca_data.section.get('cache', 'reports_locale', null);
+		if( locale && locale.all_translated == 1 )
+			return;
+		
+		// Default values
+		locale = {
 			winner : document.getElementById("reportHeader").getElementsByTagName("td")[1].textContent.match(/([^:]+)+:/i)[1],
 			stats : document.getElementsByTagName("h2")[1].textContent.match(/([^-]+)-/i)[1].trim(),
 			battle_report : document.getElementsByTagName("h2")[2].textContent.match(/([^-]+)-/i)[1].trim(),
@@ -142,23 +147,32 @@ var gca_reports = {
 			life_points : document.getElementsByClassName("dungeon_report_statistic")[0].getElementsByTagName("td")[3].textContent,
 			round : document.getElementsByClassName("table_border_bottom")[1].textContent.replace('1','').trim(),
 			miss : "misses",
-			block : "blocked"
+			block : "blocked",
+			all_translated : 0
 		};
 		
+		// Get values
 		let report_table_rows = document.getElementsByClassName("table_border_bottom")[0].getElementsByTagName("tr");
+		let translated = [false, false];
 		for(let i = 0; i < report_table_rows.length; i++) {
 			if( report_table_rows[i].style.backgroundColor != "rgb(181, 171, 131)" ){
-				if ( report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font").length == 0 )
+				if ( report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font").length == 0 ){
 					locale.miss = report_table_rows[i].getElementsByTagName("td")[1].textContent.trim();
-				else{
-					if ( report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font")[0].color == "dimgray" && !report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font")[0].textContent.match(/\d+/i) )
+					translated[0] = true;
+				}else{
+					if ( report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font")[0].color == "dimgray" && !report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font")[0].textContent.match(/\d+/i) ){
 						locale.block = report_table_rows[i].getElementsByTagName("td")[1].getElementsByTagName("font")[0].textContent.trim();
+						translated[1] = true;
+					}
 				}
 			}
 		}
 		
-		console.log(locale);
+		if ( translated[0] == true && translated[1] == true )
+			locale.all_translated = 1;
 		
+		console.log(locale);
+		// Save
 		gca_data.section.set('cache', 'reports_locale', locale);
 	},
 
