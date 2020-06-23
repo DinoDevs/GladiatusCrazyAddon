@@ -1348,7 +1348,7 @@ var gca_global = {
 								name.href = gca_getPage.link({"mod":"player","p":player_list[i].id});
 								name.style.color = "black";
 								name.style.fontFamily = "century gothic";
-								name.dataset.tooltip = '[[["Test","white"]]]';
+								//name.dataset.tooltip = '[[["Test","white"]]]';
 								name.textContent = player_list[i].name;
 								name.title = player_list[i].time;
 								parent.appendChild(name);
@@ -2538,6 +2538,8 @@ var gca_global = {
 				this.timer = (nextAvailable - new Date().getTime());
 				// Global Arena Position
 				this.global_arena_position = gca_data.section.get("timers", 'global_arena_position', 'n/a');
+				if ( isNaN(this.global_arena_position) || this.global_arena_position <= 0 )
+					this.global_arena_position = 'n/a';
 
 				// Change Style
 				document.getElementById('header_game').className += " gca-global-arena-timer-on";
@@ -2546,15 +2548,17 @@ var gca_global = {
 				let gaCooldownBar = document.createElement("div");
 				gaCooldownBar.id = "cooldown_bar_ga";
 				gaCooldownBar.className = "cooldown_bar global_arena_global_timer";
+				gaCooldownBar.dataset.tooltip = '[[["'+gca_locale.get("arena", "global_arena_title")+' : '+this.global_arena_position+'","white"]]]';
+								
 				this.globalArenaCooldownProgressBar = document.createElement("div");
-				this.globalArenaCooldownProgressBar.className = "cooldown_bar_fill cooldown_bar_fill_"+(this.timer <= 0 ? "ready" : "progress" );
+				this.globalArenaCooldownProgressBar.className = "cooldown_bar_fill cooldown_bar_fill_"+( this.timer <= 0 ? "ready" : "progress" );
 				this.globalArenaCooldownProgressBar.id = "cooldown_bar_fill_ga";
 				this.globalArenaCooldownProgressBar.style = "width: 100%;";
 				gaCooldownBar.appendChild(this.globalArenaCooldownProgressBar);
 				this.globalArenaCooldownText = document.createElement("div");
 				this.globalArenaCooldownText.className = "cooldown_bar_text";
 				this.globalArenaCooldownText.id = "cooldown_bar_text_ga";
-				this.globalArenaCooldownText.textContent = gca_locale.get("arena", "global_arena_title");
+				this.globalArenaCooldownText.textContent = gca_global.isTraveling ? "-" : gca_locale.get("arena", "global_arena_title");
 				gaCooldownBar.appendChild(this.globalArenaCooldownText);
 				let a = document.createElement("a");
 				a.className = "cooldown_bar_link";
@@ -3331,6 +3335,7 @@ var gca_global = {
 					else return;
 
 					var load = false;
+this.showInfo();
 					// If inventory exists
 					if (document.getElementById('inv')) {
 						load = true;
@@ -3463,7 +3468,7 @@ var gca_global = {
 
 				style_normal : function(prefix, base, suffix, item) {
 					// Switch for developers: show IDs and print unknown levels
-					var developerMode = false;
+					var developerMode = true;
 					
 					// Create rows for the tooltip
 					var row_type = '<tr style="color: #ffffff;">';
