@@ -3335,7 +3335,6 @@ var gca_global = {
 					else return;
 
 					var load = false;
-this.showInfo();
 					// If inventory exists
 					if (document.getElementById('inv')) {
 						load = true;
@@ -3468,7 +3467,7 @@ this.showInfo();
 
 				style_normal : function(prefix, base, suffix, item) {
 					// Switch for developers: show IDs and print unknown levels
-					var developerMode = true;
+					var developerMode = false;
 					
 					// Create rows for the tooltip
 					var row_type = '<tr style="color: #ffffff;">';
