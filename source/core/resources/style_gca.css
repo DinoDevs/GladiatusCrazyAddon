@@ -1040,6 +1040,7 @@
 		.gca_rtl .gca_donation_difference {margin-right: 10px;margin-left: auto;}
 		
 		/* War Camp */
+		.gca_guild_warcamp_gladiatorius {display: inline-block;background-image:url(icons/2d-medieval-fantasy-castle.png);background-repeat: no-repeat;height: 20px;width:21px}
 		.gca_guild_warcamp_life {display: inline-block;background-image:url(icons/guild_life.gif);background-repeat: no-repeat;height: 20px;width:34px}
 		.gca_guild_warcamp_direct_attack {background-repeat: no-repeat;height: 20px;border: 0;background-color: transparent;color: transparent;cursor: pointer;}
 
