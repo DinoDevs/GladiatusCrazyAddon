@@ -124,6 +124,29 @@ var gca_auction = {
 	},
 
 	itemsValuesShow : function() {
+		// Create show/hide button
+		let filters = document.getElementsByTagName("section")[1];
+		let button = document.createElement("a");
+		button.className = "gca-auction-show-hide-button";
+		button.dataset.tooltip = '[[["'+ gca_locale.get("auction", "hide_your_gold_here") +'","#fff;font-size:12px;"]]]';
+		button.dataset.status = false;
+		button.style.filter = "grayscale(100%)";
+		button.addEventListener('click', function () {
+			// Show/hide items
+			if ( this.dataset.status == "false" ){
+				jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").hide();
+				jQuery('input[name ="buyout"]').hide();
+				this.style.filter = "grayscale(0%)";
+			}else{
+				jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").show();
+				jQuery('input[name ="buyout"]').show();
+				this.style.filter = "grayscale(100%)";
+			}
+			this.dataset.status = ( this.dataset.status == "false" );
+		}, false);
+		filters.appendChild(button);
+		filters.appendChild(document.createElement("br"));
+		
 		// Get items
 		var items = document.getElementById("auction_table").getElementsByClassName("auction_bid_div");
 		var itemsIconDiv = document.getElementById("auction_table").getElementsByClassName("auction_item_div");

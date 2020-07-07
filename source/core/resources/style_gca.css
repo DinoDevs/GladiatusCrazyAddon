@@ -1110,7 +1110,11 @@
 		.gca_auction .gca-auction-price-value-percent {float: right;margin-right: -5px;}
 		.gca_rtl .gca_auction .gca-auction-price-value-percent {float: left;margin-right: auto;margin-left: -5px;}
 		.gca_auction .gca-auction-can-not-buy{opacity: 0.7;color: rgb(102, 0, 0);}
-
+		
+		/* Hide gold show/hide button */
+		.gca_auction .gca-auction-show-hide-button {display: inline-block;background: url(icons/coin.png);height: 20px;width:27px;border: 0px;padding: 0px;cursor:pointer;float:right;}
+		.gca_rtl .gca_auction .gca_auction .gca-auction-show-hide-button {float: left;}
+		
 		/* 3 Items per row */
 		.gca_auction .gca-x3columns{padding-left: 279px;padding-top: 10px;z-index: 35;margin: 27px -1px 0px -280px;background: url(interface/auction_img_midle.jpg) left top repeat-y;}
 		.gca_auction .gca-x3columns table{margin: 0px 0px 0px -265px;width: 806px!important;}
