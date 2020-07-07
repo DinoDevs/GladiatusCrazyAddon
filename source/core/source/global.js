@@ -4296,18 +4296,31 @@ var gca_global = {
 						serverDate
 					];
 
-					// If no last data
+					// First time saving data
 					if (!data.length) {
-						console.log('GCA: Collected first gold and exp data.', newData);
+						console.log('GCA: Collected gold and exp data for the first time.', newData);
 						gca_data.section.set('data', 'gold_exp_data', [newData]);
 						return;
 					}
 
 					// Get last saved data
 					var lastData = data[data.length - 1];
-					if (lastData[0] != newData[0] && lastData[1] != newData[1]) {
+					if (lastData[0] != newData[0] || lastData[1] != newData[1]) {
 						console.log('GCA: Collected more gold and exp data.', newData);
+						// Push data
 						data.push(newData);
+						
+						// Toss old data
+						let clear_data = [];
+						let seventh_day_timestamp = serverDate - 6048e5; // Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
+						for (let i = 0; i < data.length; i++) {
+							// If time is in the last 7 days
+							if(data[i][2] >= seventh_day_timestamp)
+								clear_data.push(data[i]);
+						}
+						data = clear_data;
+						
+						// Save data
 						gca_data.section.set('data', 'gold_exp_data', data);
 						return;
 					}
@@ -4321,7 +4334,8 @@ var gca_global = {
 					}
 
 					// Else
-					//console.log('GCA: No new gold and exp data.', newData);
+					console.log('GCA: No new gold and exp data.', newData);
+					//console.log('Saved data:', data);
 				});
 			},
 			
@@ -4528,9 +4542,11 @@ var gca_global = {
 					newdata.push(data[i-1]);
 					
 					// Save only last 7 days data
+					/* now done when data are saved
 					if (newdata.length > 1) {
 						gca_data.section.set("data", "gold_exp_data", newdata);
 					}
+					*/
 					
 					// If there are no data
 					if(expData.length<1 || goldData.length<1){
