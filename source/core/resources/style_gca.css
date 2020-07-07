@@ -1038,7 +1038,10 @@
 		/* Guild's Book (Donations) */
 		.gca_donation_difference {display: block;margin-top: -8px;margin-bottom: -2px;margin-left: 10px;height: 10px;font-size: 10px;color: green;}
 		.gca_rtl .gca_donation_difference {margin-right: 10px;margin-left: auto;}
-
+		
+		/* War Camp */
+		.gca_guild_warcamp_life {display: inline-block;background-image:url(icons/guild_life.gif);background-repeat: no-repeat;height: 20px;width:34px}
+		.gca_guild_warcamp_direct_attack {background-repeat: no-repeat;height: 20px;border: 0;background-color: transparent;color: transparent;cursor: pointer;}
 
 
 	/* Training
