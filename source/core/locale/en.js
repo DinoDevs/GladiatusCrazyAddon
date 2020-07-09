@@ -258,7 +258,8 @@ gca_languages["en"] = {
 			avg_heal : "Average heal",
 			total_hits : "Total hits",
 			hits : "Hits",
-			dodge : "Dodges or Blocks"
+			dodge : "Dodges or Blocks",
+			points : "Points"
 		},
 
 		// Cross-Browser Sync

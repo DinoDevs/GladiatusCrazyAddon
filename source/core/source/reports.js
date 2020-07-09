@@ -677,7 +677,7 @@ var gca_reports = {
 						let th = document.createElement("th");
 						th.setAttribute('rowspan',2);
 						th.className = 'table_border_bottom';
-						th.textContent = 'Points';
+						th.textContent = gca_locale.get("reports", "points");
 						element.appendChild(th);
 					}
 				}

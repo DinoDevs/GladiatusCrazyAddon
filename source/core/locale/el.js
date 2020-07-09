@@ -258,7 +258,8 @@ gca_languages["gr"] = {
 			avg_heal : "Μέση θεραπεία",
 			total_hits : "Συνολικά χτυπήματα",
 			hits : "Χτυπήματα",
-			dodge : "Αποφυγή ή Μπλοκ"
+			dodge : "Αποφυγή ή Μπλοκ",
+			points : "Πόντοι"
 		},
 		
 		// Cross-Browser Sync
