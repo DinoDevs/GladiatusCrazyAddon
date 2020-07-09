@@ -74,7 +74,7 @@ gca_languages["en"] = {
 			guild_arenareports_goto : "Go to guild's arena battle reports",
 			guild_jail_goto : "Go to guild's jail",
 			guild_library_goto : "Go to guild's library",
-			guild_templum_goto : "Go to guild's templum",
+			guild_templum_goto : "Go to guild's temple",
 			guild_medic_goto : "Go to guild's medic center",
 			simulator_goto : "Go to simulator",
 			stats_display : "Display my stats",
@@ -105,7 +105,7 @@ gca_languages["en"] = {
 			notification_guild_application : "There is a pending guild application!",
 			notification_guild_attack_ready : "Guild war attack cooldown is over!",
 			low_durability_items : "There are {{number}} item(s) with durability under {{percent}}%",
-			item_worth_rubies : "That item woth rubies!",
+			item_worth_rubies : "That item worth rubies!",
 
 			// Gold - Exp data
 			gold_exp_data : "Gold and Experience Data",
@@ -250,6 +250,15 @@ gca_languages["en"] = {
 			advance_filters_apply : "Apply filters",
 			advance_filters_clear : "Clear filters",
 			advance_filters_found : "(found {{items}})"
+		},
+		
+		// Report
+		reports : {
+			avg_damage : "Average damage",
+			avg_heal : "Average heal",
+			total_hits : "Total hits",
+			hits : "Hits",
+			dodge : "Dodges or Blocks"
 		},
 
 		// Cross-Browser Sync
@@ -432,7 +441,7 @@ gca_languages["en"] = {
 			category_auction$x3_items_per_line : "Change layout to 3 items per line",
 			category_auction$multi_bids : "Bid many items without page refresh",
 			category_auction$extra_item_stats : "Show extra stats on item images",
-			category_auction$save_last_state : "Implemented auction save seach and load it by default",
+			category_auction$save_last_state : "Implemented auction save search and load it by default",
 			// Settings - Events
 			category_events$craps_timer : "Display dice event's timer on top",
 			category_events$server_quest_timer : "Display server-quest or location event's timer on top",
@@ -447,7 +456,7 @@ gca_languages["en"] = {
 			category_data$clear_data : "Clear all addon's data",
 			category_data$clear_cache_data : "Clear addon's cache data",
 			category_data$cross_browser_login : "Cross browser login sync",
-			category_data$export_error_player_settings : "Export usererror's settings data to file",
+			category_data$export_error_player_settings : "Export user error's settings data to file",
 
 			// Buttons
 			save : "Save",

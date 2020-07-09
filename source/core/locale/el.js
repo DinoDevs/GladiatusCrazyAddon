@@ -251,7 +251,16 @@ gca_languages["gr"] = {
 			advance_filters_clear : "Απαλοιφή φίλτρων",
 			advance_filters_found : "(βρέθηκαν {{items}})"
 		},
-
+		
+		// Report
+		reports : {
+			avg_damage : "Μέση ζημιά",
+			avg_heal : "Μέση θεραπεία",
+			total_hits : "Συνολικά χτυπήματα",
+			hits : "Χτυπήματα",
+			dodge : "Αποφυγή ή Μπλοκ"
+		},
+		
 		// Cross-Browser Sync
 		sync : {
 			are_you_sure : "Είσαι σίγουρος πως θες να συνδεθείς σαν τον μονομάχο {{name}};",
