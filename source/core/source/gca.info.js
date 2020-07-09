@@ -130,7 +130,9 @@ var gca_links = {
 
 		'unofficial-reddit' : 'https://www.reddit.com/r/Gladiatus',
 		'reddit-discord' : 'https://discord.gg/uXEGq9Q',
-		'williaf@reddit' : 'https://www.reddit.com/user/Williaf'
+		'williaf@reddit' : 'https://www.reddit.com/user/Williaf',
+		
+		'official-discord' : 'https://discord.gg/uacMu7'
 	},
 
 	get : function(id) {

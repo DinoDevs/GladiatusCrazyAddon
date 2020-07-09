@@ -326,10 +326,17 @@ var gca_settings = {
 			wrapper.appendChild(document.createTextNode(' by '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('williaf@reddit'), 'Williaf', {target: '_blank'}));
 			group.appendChild(wrapper);
-
+			
+			/*
 			wrapper = document.createElement('div');
 			wrapper.appendChild(document.createTextNode('Discord Server of Gladiatus Reddit : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('reddit-discord'), gca_links.get('reddit-discord'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			*/
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Official Gladiatus Discord Server : '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('official-discord'), gca_links.get('official-discord'), {target: '_blank'}));
 			group.appendChild(wrapper);
 
 			box.appendChild(group);
