@@ -1,4 +1,4 @@
-## Progress on Version 4.2.1 [Beta]
+## Progress on Version 4.3.0 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-30-green.svg?style=flat-square)
@@ -64,7 +64,7 @@
 	- [x] Fixed active bonuses bug #163
 	- [x] Fixed 0 user id (this may clear your data)
 	- [x] Avoid the use of innerHTML in a number of scripts
-	- [x] Fixed Gold & Exp data tracker
+	- [x] Fixed Gold & Exp data tracker bug #40
 - **Packages**
 	- [x] Fixed souldbound icons bug (caused the script to crash)
 	- [x] Soul-bound icon code was running twice
@@ -94,7 +94,3 @@
 	- [x] Updated English and Greek
 	- [x] Updated Estonian by [R3alSt4r](https://github.com/R3alSt4r)
 	- [x] Updated Croatian by [Tharacius](https://github.com/Tharacius)
-
-
-#### Know issues
-- Gold/Exp data charts N/A bug #40
