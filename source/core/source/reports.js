@@ -571,8 +571,11 @@ var gca_reports = {
 		
 		moreStats : function() {
 			
-			let points = document.getElementsByClassName("standalone")[0].textContent.match(/\d+/gi);
 			let points_sum = 0;
+			let points = null;
+			// If winner points are shown (Turma fight and not dungeon)
+			if ( document.getElementsByClassName("standalone").length > 0 )
+				points = document.getElementsByClassName("standalone")[0].textContent.match(/\d+/gi);
 			
 			// Parse each player
 			jQuery('.dungeon_report_statistic:eq(0) table tr').each((index, element) => {
@@ -658,17 +661,19 @@ var gca_reports = {
 					element.getElementsByTagName("td")[2].appendChild(span);
 					
 					// Points
-					let points_index = (points[0] > points_sum ? 0 : 1);
-					points_sum += total_damage + total_heal / 2;
-					let td = document.createElement("td");
-					td.style = 'text-align:center;';
-					if ( element.getElementsByTagName("td")[0].className == 'table_border_top' )
-						td.className = 'table_border_top';
-					td.textContent = ((points[points_index]>0) ? Math.round((total_damage + total_heal / 2)/points[points_index]*100) : '--')+'%';
-					element.appendChild(td);
+					if (points){
+						let points_index = (points[0] > points_sum ? 0 : 1);
+						points_sum += total_damage + total_heal / 2;
+						let td = document.createElement("td");
+						td.style = 'text-align:center;';
+						if ( element.getElementsByTagName("td")[0].className == 'table_border_top' )
+							td.className = 'table_border_top';
+						td.textContent = ((points[points_index]>0) ? Math.round((total_damage + total_heal / 2)/points[points_index]*100) : '--')+'%';
+						element.appendChild(td);
+					}
 				}else{
 					// Points
-					if ( element.getElementsByTagName("th")[0].getAttribute('rowspan') ){
+					if ( points && element.getElementsByTagName("th")[0].getAttribute('rowspan') ){
 						let th = document.createElement("th");
 						th.setAttribute('rowspan',2);
 						th.className = 'table_border_bottom';
