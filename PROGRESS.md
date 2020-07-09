@@ -1,9 +1,9 @@
 ## Progress on Version 4.2.1 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-23-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-19-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-30-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-21-red.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **General**
@@ -14,20 +14,23 @@
 	- [x] Clicking some notification will redirect you to the relevant page (auction, smeltery, workbench, guild etc) (thanks mehmetkaradeniz)
 	- [x] Reserving position when auto-moving items
 	- [x] Display mercenaries real names (type) on tooltips
+	- [x] Added Global Arena timer
 - **Overview**
 	- [x] Double click to consume item (disabled by default)
 - **Forge & Smeltery**
-	- [x] Added button to send all completed smelts as packages
+	- [x] Smeltery: Added button to gather all completed smelts
 	- [x] Added item shadow on forge and smeltery
 	- [x] Added horreum materials info under forge (before forge start)
 	- [x] Forge: Added tooltips on materials with owned amounts per quality
 - **Guild**
-	- [x] Added player rank on application accept (no Admin rank for now)
-	- [x] Added show changes since last visit on guild donations book
-	- [x] Added double-click to guild storage
+	- [x] Applications: Added player rank on application accept (no Admin rank for now)
+	- [x] Donation Book: Highlight donations changes since last visit
+	- [x] Storage: Added move by double-click
+	- [x] War Camp: Added link to Gladiatorius and direct attack button for each enemy guild 
 - **Packages**
-	- [x] Show icon 📜 on items that consist of unknown scrolls (doesn't when in category "all")
+	- [x] Show icon 📜 on items that consist of unknown scrolls
 	- [x] UI improvements: Remove level on gold item and durability when 100%
+	- [x] More settings for special category features
 - **Search**
 	- [x] Added guild mates and target list highlighting
 - **Settings**
@@ -35,13 +38,21 @@
 - **Messages**
 	- [x] Added shortcut links to messages folders when in messages
 - **Reports**
-	- [x] Threat calculation on each round added in turma reports analyzer
-	- [x] Turma reports analyzer improvements (identify same name mercenaries of different owner)
+	- [x] Turma reports analyzer improvements
+		- Identify same name mercenaries of different owner
+		- Calculate threat on each round
+		- Show more fight stats (average damage/heal, misses/hits, points %)
 - **Training**
 	- [x] Multi-train is now limited to maximum training possible at the current level
 	- [x] Cost estimate in not limited to 99 trainings anymore, if such trainings are possible at the current or next level
 - **Merchants**
 	- [x] Added search-box to find items in merchants
+- **Arena**
+	- [x] Added Global Arena fight reports
+- **Market**
+	- [x] Items placed in the sell box can now be sold by pressing [ENTER]
+- **Auction**
+	- [x] New button (coin icon) that hides/shows items that have a lower value than bid price
 
 
 ### BUG FIXES
@@ -52,6 +63,8 @@
 	- [x] Fixed failed to match guild tag when checking online players
 	- [x] Fixed active bonuses bug #163
 	- [x] Fixed 0 user id (this may clear your data)
+	- [x] Avoid the use of innerHTML in a number of scripts
+	- [x] Fixed Gold & Exp data tracker
 - **Packages**
 	- [x] Fixed souldbound icons bug (caused the script to crash)
 	- [x] Soul-bound icon code was running twice
@@ -78,6 +91,7 @@
 ### TRANSLATIONS
 -  **Updates**
 	- [x] Fixed pl translation mistake
+	- [x] Updated English and Greek
 	- [x] Updated Estonian by [R3alSt4r](https://github.com/R3alSt4r)
 	- [x] Updated Croatian by [Tharacius](https://github.com/Tharacius)
 

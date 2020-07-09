@@ -1,7 +1,7 @@
 
 ## Progress on Version 4.0.0
 
-
+(This list is outdated)
 
 
 ### Global Script
@@ -28,11 +28,11 @@
 			- [x] Player stats
 		- [x] Auction status bar + notifications
 		- [x] Move event bar (if button bar / auction status / hp-xp info)
-		- [x] Top bar when scrolling down, showing varius info
+		- [x] Top bar when scrolling down, showing various info
 			- [x] Add life bar on scroll bar
 		- [x] Advance menu
 			- [x] Remember toggle tabs
-		- [x] ✎ Attacked timers (bug on reports)
+		- [x] Attacked timers
 		- [x] Quest timer
 		- [x] Merchants Timer
 		- [x] Forge Timers (forge/smelt)
@@ -47,18 +47,17 @@
 		- [x] Inventory gold info
 		- [x] Durability+Conditioning is shown on items, bottom left (default disabled)
 		- [x] Warning when durability+conditioning of your gear is under a % (default 25%)
-		- [ ] Player update in the GCA Highscore OR make a Global Arena
 		- [ ] "New version" installed message
-		- [ ] Improved Traveling Inteface (disabled buttons and menus that you can not visit)
+		- [ ] Improved Traveling Interface (disabled buttons and menus that you can not visit)
 		- [ ] Packages Expire Warning (Set the number of hours for the warning +  Tooltip with the next expire hours on packages button)
 		- [ ] Share an item's stats to guild message
 		- [ ] Bag Interface:
-			- [ ] Storage Info (Under every bag! Guild, Overview, Merchants...)
+			- [x] Storage Info (Under every bag! Guild, Overview, Merchants...)
 			- [x] Move checkbox on the side
 		- [ ] Work / Pray / Traveling, The exact finish time (date-time) is shown next to remaining time
-		- [ ] Link to the addon's settings page
+		- [x] Link to addon's relevant settings page (bottom right corner)
 		- [x] Show durability on items (like level indicator)
-		- [ ] Tooltips comapare enable-disable on mouse press (or on some pages)
+		- [ ] Tooltips compare enable-disable on mouse press (or on some pages)
 
 
 
@@ -71,8 +70,8 @@
 		- [x] Food life gain (onmouseover)
 		- [x] Items that will give you more Life Point than you need will be transparent
 		- [x] Food show best food (yellow shadow)
-		- [ ] Show red when in underworld
-	- [x] ✎ Daily bonus log (Needs testing / Not in settings)
+		- [X] Show red when in underworld
+	- [x] Daily bonus log
 	- [x] Show the cap values of Resilience and Block
 	- [x] Display for each mercenary its tooltip (base stats)
 	- [x] Mercenaries management Interface
@@ -151,7 +150,7 @@
 		- [x] The sum of donations (total) is displayed 
 		- [x] Percent of donated amount of each player 
 		- [x] Ex-guild members are combine
-		- [ ] Merge continued donations of the same player 
+		- [ ] Merge multiple donations of the same player 
 		- [ ] Day separators
 		- [x] Highlight me
 
@@ -162,6 +161,7 @@
 
 
 - **Guild War Camp**
+	- [X] Link to Gladiatorius and direct attack button for each enemy guild
 	- [ ] More stats & better win-lost-draw icons features
 	- [ ] Member reports features
 	- [ ] Button that shows the raided gold next to each attack 
@@ -176,12 +176,12 @@
 	- [ ] Check all by default (like what?)
 
 
-- **Guild Memebers List Interface**
+- **Guild Members List Interface**
 	- [ ] See which members have been attacked within 75 min 
 
 
 - **Guild Admin Interface**
-	- [ ] Search for players with no guild, from the guild admin page 
+	- [ ] Search for players with no guild, from the guild admin page
 
 
 
@@ -197,6 +197,7 @@
 ### Arena Script
 
 - **Arena**
+	- [x] Global Arena
 	- [x] Order players by level on Cross Server Arenas
 	- [ ] Show "Nemesis list"
 	- [ ] Simulator buttons
@@ -212,7 +213,7 @@
 	- [x] Show stats changes on upgrade
 	- [x] Training Cost calculator
 	- [ ] Propose points to upgrade
-	- [x] ✎ Stats breakdown calculator (Block, Critical hits, Avoid critical, Double hits, hits, heal etc...)
+	- [x] Stats breakdown calculator (Block, Critical hits, Avoid critical, Double hits, hits, heal etc...)
 	- [ ] Advance calculation (load heal from dungeon player + choose target player to calculate hits etc)
 
 
@@ -221,7 +222,7 @@
 ### Merchants Script
 
 - **Merchants**
-	- [ ] Mouse click events (double click sell buy)
+	- [x] Mouse click events (double click sell buy)
 	- [x] Remember merchants tabs
 	- [x] Fade items you can not buy
 	- [x] Colored items based on quality
@@ -242,7 +243,7 @@
 	- [x] Hide your gold system / More info about prices (value compared to price) 
 	- [ ] Advance search options (Gold limit, Damage for weapons, etc) 
 	- [ ] Item Preffix/Suffix search list
-	- [ ] More levels in the search options 
+	- [x] More levels in the search options 
 	- [x] Level of each item is visible (up-right corner) 
 	- [x] Item levels you can see in auction are shown in building's description
 	- [x] Number of Price/Value % on auction Auction (ex. "(153%)")
@@ -294,7 +295,7 @@
 		- [x] Private message
 		- [x] Announcement
 		- [x] Guild Mates informations (level - rank)
-	- [x] Hilight unread messages
+	- [x] Highlight unread messages
 	- [x] Day separators
 	- [x] Show message links below
 	- [x] Load guild battles report
