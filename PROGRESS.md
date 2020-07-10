@@ -3,7 +3,7 @@
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-1-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-1-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-1-blue.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-2-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Auction**
@@ -18,3 +18,4 @@
 ### TRANSLATIONS
 -  **Updates**
 	- [x] Spanish fixes by [Senakhtenre](https://github.com/Senakhtenre)
+	- [x] Czech updates by [FrutyX](https://github.com/FrutyX)
