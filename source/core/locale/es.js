@@ -378,7 +378,8 @@ gca_languages['es'] = {
 			each_category : "Ejecutar en la categoría seleccionada",
 			all_category : "Ejecutar en todas las categorías",
 			do_not_run : "No ejecutar",
-			data_exported_save_the_file : "La información fue exportada. Guarde el archivo."
+			data_exported_save_the_file : "La información fue exportada. Guarde el archivo.",
+			missing_translations : "Traducciones faltantes"
 		}
 	}
 }
