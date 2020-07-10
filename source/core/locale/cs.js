@@ -107,6 +107,9 @@ gca_languages['cs'] = {
 			gold_exp_data_measurements : "Měření",
 			gold_exp_data_total_exp : "Celková zkušenost",
 			gold_exp_data_total_gold : "Celkem zlato"
+			
+			// Items
+			merchenary_type : "Typ: {{name}} ({{number}})",
 		},
 		
 		// Overview
@@ -170,6 +173,9 @@ gca_languages['cs'] = {
 			fight_won : "Vyhrál jsi souboj!",
 			fight_lost : "Prohrál jsi souboj...",
 			player_tired : "Jsi unavený.Musíš si odpočinout."
+			player1_hits_player2 : "{{name1}} zasáhl {{name2}}",
+			player_takes_x_damage :"{{name}} utržil {{number}} poškození",
+			player_dies :"{{name}} zemřel"
 		},
 		
 		// Training section
@@ -218,6 +224,12 @@ gca_languages['cs'] = {
 			show_hide_doll : "Zobrazit/Skrýt postavy hráče"
 		},
 		
+				// Merchants
+		merchants : {
+			search_item_in_merchants : "Hledat předmět u obchodníků",
+			no_such_item : "Předmět nenalezen."
+		},
+		
 		// Packages
 		packages : {
 			event_items : "Eventový předmět",
@@ -227,6 +239,16 @@ gca_languages['cs'] = {
 			advance_filters_apply : "Použít filtry",
 			advance_filters_clear : "Smazat filtry",
 			advance_filters_found : "(nalezeno {{items}})"		
+		},
+		
+		// Report
+		reports : {
+			avg_damage : "Průměrné poškození",
+			avg_heal : "Průměrné léčení",
+			total_hits : "Celkem zásahů",
+			hits : "Zásahy",
+			dodge : "Úhyb či Blok",
+			points : "Body"
 		},
 		
 		// Cross-Browser Sync
