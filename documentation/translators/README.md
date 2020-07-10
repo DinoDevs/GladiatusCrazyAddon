@@ -20,9 +20,9 @@ You can find all the translations on the `GladiatusCrazyAddon/source/core/locale
 	number_of_items : "Anzahl der Teile : {{number}}",
 	```
 	To easily find the missing translations:
-	- a. Go to GCA settings in Gladiatus (Profile → Scroll down → Settings)
-	- b. Select the language you want to translate
-	- c. click the "Missing Translations" button
+	- a) Go to GCA settings in Gladiatus (Profile → Scroll down → Settings)
+	- b) Select the language you want to translate
+	- c) click the "Missing Translations" button
  4. Open an [issue](https://github.com/DinoDevs/GladiatusCrazyAddon/issues/new?template=translation.md) with the translation or better create a pull request
 
 ### Translation Create Steps
