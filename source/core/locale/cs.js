@@ -208,6 +208,7 @@ gca_languages['cs'] = {
 			item_cant_buy_back : "Nebudeš moci koupit tento předmět zpět.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Vážně chceš koupit tento předmět?"
+			click_enter_to_sell : "Stisknutím enter ⏎ prodejte"
 		},
 		
 		// Forge
@@ -299,6 +300,8 @@ gca_languages['cs'] = {
 			category_global$show_durability : "Zobrazit životnost předmětu v levém dolním rohu",
 			category_global$min_durability : "Upozornění pro předměty s životností+zdokonalení pod _% (posuň na 0 pro vypnutí)",
 			category_global$show_forge_info : "Zobrazit suroviny předmětu v popisku",
+			category_global$show_mercenaries_real_name : "Zobrazit reálná jména žoldáků (typ) v popiscích",
+			category_global$global_arena_timer : "Zobrazit časovač Globální Arény",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
 			category_overview$food_life_gain : "Zobrazit počet životů obdržený z jídla",
@@ -386,6 +389,7 @@ gca_languages['cs'] = {
 			category_market$remember_sort : "Zapamatovat poslední zvolené seřazení",
 			category_market$double_click_select : "Vybrat předmět dvojitým klikem",
 			category_market$sell_warning_icons : "Ikona varování při prodávání předmětů",
+			category_market$sell_with_enter : "Prodávat předměty stisknutím klávesy ENTER ⏎",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Zobrazit materiály padající z nepřátel",
 			category_expedition$underworld_layout : "Zobrazit nepřátele v podzemí stejně jako u výprav",
@@ -432,6 +436,9 @@ gca_languages['cs'] = {
 			do_not_show : "Nezobrazovat",
 			show_as : "Zobrazit jako",
 			show_info : "Zobrazit informace",
+			each_category : "Na vybrané kategorii",
+			all_category : "Na vybrané kategorii & všechny",
+			do_not_run : "Nikoliv",
 			
 			// Info
 			translated_percent : "Přeloženo: {{number}}%",
