@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-1-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-1-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-2-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-2-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -13,6 +13,8 @@
 ### BUG FIXES
 - **Packages**
 	- [x] Package filters: Threat option not visible fix (Issue #185)
+- **Market**
+	- [x] Known/Unknown scrolls feature fix
 
 
 ### TRANSLATIONS

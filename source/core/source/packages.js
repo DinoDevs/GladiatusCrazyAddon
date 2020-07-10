@@ -44,7 +44,6 @@ var gca_packages = {
 		(gca_options.bool("packages", "load_more_pages") && 
 			this.loadPackets.load(this));
 		// Special category features
-		//(gca_options.bool("packages", "special_category_features") && 
 		(gca_data.section.get("packages", "special_category_features", 0) != 2 &&
 			this.specialCategory.resolve(this));
 		// Open packets with double click
