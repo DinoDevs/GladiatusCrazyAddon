@@ -106,10 +106,10 @@ gca_languages['cs'] = {
 			gold_exp_data_package_tax : "Týdenní daň za ukádání do zásilek",
 			gold_exp_data_measurements : "Měření",
 			gold_exp_data_total_exp : "Celková zkušenost",
-			gold_exp_data_total_gold : "Celkem zlato"
+			gold_exp_data_total_gold : "Celkem zlato",
 			
 			// Items
-			merchenary_type : "Typ: {{name}} ({{number}})",
+			merchenary_type : "Typ: {{name}} ({{number}})"
 		},
 		
 		// Overview
@@ -172,7 +172,7 @@ gca_languages['cs'] = {
 			attack_player : "Klikni pro útok “{{name}}”",
 			fight_won : "Vyhrál jsi souboj!",
 			fight_lost : "Prohrál jsi souboj...",
-			player_tired : "Jsi unavený.Musíš si odpočinout."
+			player_tired : "Jsi unavený.Musíš si odpočinout.",
 			player1_hits_player2 : "{{name1}} zasáhl {{name2}}",
 			player_takes_x_damage :"{{name}} utržil {{number}} poškození",
 			player_dies :"{{name}} zemřel"
