@@ -391,6 +391,8 @@ var gca_overview = {
 			stats.armour = spans[1].textContent.trim();
 			stats.damage = spans[2].textContent.trim();
 			stats.healing = spans[3].textContent.trim();
+			if ( !stats.threat )
+				stats.threat = 'Threat'; // Set default value for threat
 			gca_data.section.set("overview", "stats_locale", stats);
 		}
 		else if (this.doll == 2) {
