@@ -129,21 +129,11 @@ var gca_auction = {
 		let button = document.createElement("a");
 		button.className = "gca-auction-show-hide-button";
 		button.dataset.tooltip = '[[["'+ gca_locale.get("auction", "hide_your_gold_here") +'","#fff;font-size:12px;"]]]';
-		button.dataset.status = false;
-		button.style.filter = "grayscale(100%)";
-		button.addEventListener('click', function () {
-			// Show/hide items
-			if ( this.dataset.status == "false" ){
-				jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").hide();
-				jQuery('input[name ="buyout"]').hide();
-				this.style.filter = "grayscale(0%)";
-			}else{
-				jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").show();
-				jQuery('input[name ="buyout"]').show();
-				this.style.filter = "grayscale(100%)";
-			}
-			this.dataset.status = ( this.dataset.status == "false" );
-		}, false);
+		button.addEventListener('click', function(){
+			let status = gca_data.section.get("cache", "auction_show_hide_button_status", false );
+			gca_data.section.set("cache", "auction_show_hide_button_status", !status );
+			gca_auction.showHideNonHideYourGoldItems(this, !status);
+		} , false);
 		filters.appendChild(button);
 		filters.appendChild(document.createElement("br"));
 		
@@ -194,6 +184,27 @@ var gca_auction = {
 			// Display if you can buy it out
 			tmp = gca_tools.strings.removeDots(items[i].textContent).match(/\s*(\d+)\s*(\d+)\s*$/);
 			document.getElementsByName('buyout')[i].className += (gold < parseInt(tmp[1], 10) || rubies < parseInt(tmp[2], 10)) ? " gca-auction-can-not-buy" : " gca-auction-can-buy";
+		}
+		
+		// Set button status
+		// True = hide items, False = do not hide
+		let status = gca_data.section.get("cache", "auction_show_hide_button_status", false);
+		if ( status )
+			this.showHideNonHideYourGoldItems(button, status);
+		else
+			button.style.filter = "grayscale(100%)";
+	},
+	
+	showHideNonHideYourGoldItems : function(that, status) {
+		// Show/hide items
+		if ( status == true ){
+			jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").hide();
+			jQuery('input[name ="buyout"]').hide();
+			that.style.filter = "grayscale(0%)";
+		}else{
+			jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").show();
+			jQuery('input[name ="buyout"]').show();
+			that.style.filter = "grayscale(100%)";
 		}
 	},
 
