@@ -207,7 +207,7 @@ gca_languages['cs'] = {
 			item_is_soulbound : "Předmět má duševní pouto",
 			item_cant_buy_back : "Nebudeš moci koupit tento předmět zpět.",
 			// Are you sure
-			are_you_sure_you_want_to_buy : "Vážně chceš koupit tento předmět?"
+			are_you_sure_you_want_to_buy : "Vážně chceš koupit tento předmět?",
 			click_enter_to_sell : "Stisknutím enter ⏎ prodejte"
 		},
 		
