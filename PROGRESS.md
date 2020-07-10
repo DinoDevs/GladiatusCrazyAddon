@@ -21,5 +21,7 @@
 
 ### TRANSLATIONS
 -  **Updates**
+	- [x] Spanish fixes
 	- [x] Spanish fixes by [Senakhtenre](https://github.com/Senakhtenre)
 	- [x] Czech updates by [FrutyX](https://github.com/FrutyX)
+	- [x] Turkish updates by [Emefar](https://github.com/Emefar)

@@ -183,7 +183,7 @@ gca_languages["en"] = {
 			attack_player : "Click to attack “{{name}}”",
 			fight_won : "You won the fight!",
 			fight_lost : "You lost the fight...",
-			player_tired : "You are tire; you need to wait.",
+			player_tired : "You are tired; you need to wait.",
 			player1_hits_player2 : "{{name1}} hits {{name2}}",
 			player_takes_x_damage :"{{name}} takes {{number}} damage",
 			player_dies :"{{name}} dies"
