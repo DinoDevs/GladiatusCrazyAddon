@@ -41,7 +41,7 @@ var gca_markets = {
 			}
 			
 			// Special category features
-			(gca_options.bool("packages", "special_category_features") && 
+			(gca_data.section.get("packages", "special_category_features", 0) != 2 &&
 				this.specialCategory.resolve(this));
 
 			this.layout.changeSortArrows();
@@ -562,6 +562,10 @@ var gca_markets = {
 		resolve : function(self){
 			var category = parseInt(document.getElementsByName("f")[0].value);
 			switch(category){
+				case 0: // All
+					if(gca_data.section.get("packages", "special_category_features", 0) == 1)
+						this.categories.scroll.loadData(self);
+					break;
 				case 20:
 					this.categories.scroll.loadData(self);
 					break;

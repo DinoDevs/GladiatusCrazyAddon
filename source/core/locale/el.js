@@ -432,6 +432,7 @@ gca_languages["gr"] = {
 			category_guild$library_tooltip_data : "Εισαγωγή περισσοτέρων πληροφοριών στα tooltip της βιβλιοθήκης",
 			category_guild$bank_donate_layout: "Βελτίωση του interface της τράπεζας",
 			category_guild$bank_book_layout: "Βελτίωση του interface του βιβλίου δωρεών της τράπεζας",
+			category_guild$bank_book_show_changes : "Εμφάνιση μεταβολής των δωρεών από την τελευταία επίσκεψη",
 			category_guild$medic_layout: "Βελτίωση του interface του ιατρικού κέντρου",
 			// Settings - Auction
 			category_auction$items_counters: "Εμφάνιση του αριθμού των αντικειμένων",
@@ -440,7 +441,7 @@ gca_languages["gr"] = {
 			category_auction$item_level: "Προβολή του επιπέδου του κάθε αντικειμένου",
 			category_auction$x3_items_per_line: "Προβολή 3ων αντικειμένων ανά γραμμή",
 			category_auction$multi_bids: "Ενεργοποίηση πολλαπλών δημοπρατήσεων (χωρίς ανανέωση)",
-			category_auction$extra_item_stats : "Εμφάνιση επιπλέων στατιστικών πάνω στις εικόνες των αντικειμένων",
+			category_auction$extra_item_stats : "Εμφάνιση επιπλέον στατιστικών πάνω στις εικόνες των αντικειμένων",
 			category_auction$save_last_state : "Αποθήκευση της τελευταίας αναζήτησης και φόρτωμα της σαν αρχική",
 			// Settings - Events
 			category_events$craps_timer : "Εμφάνιση χρονομέτρου για τα event ζαριών στην κορυφή",
@@ -454,7 +455,8 @@ gca_languages["gr"] = {
 			category_data$import_settings : "Εισαγωγή των δεδομένων ρυθμίσεων από αρχείο",
 			category_data$reset_settings : "Επαναφορά των ρυθμίσεων του προσθέτου",
 			category_data$clear_data : "Εκκαθάριση όλων των δεδομένων του προσθέτου",
-			category_data$cross_browser_login : "Ταυτόχρονη δύνδεση σε πολλαπλούς περιηγητές",
+			category_data$clear_cache_data : "Εκκαθάριση δεδομένων προσθέτου",
+			category_data$cross_browser_login : "Ταυτόχρονη σύνδεση σε πολλαπλούς περιηγητές",
 
 			// Buttons
 			save: "Αποθήκευση",
@@ -474,6 +476,8 @@ gca_languages["gr"] = {
 			translated_by : "Μετάφραση από: {{string}}",
 			reset_settings_confirm : "Είστε σίγουρος πως θέλετε να επαναφέρετε τις ρυθμίσεις του πρόσθετου;",
 			clear_data_confirm : "Είστε σίγουρος πως θέλετε να εκκαθαρίσετε τις ρυθμίσεις του πρόσθετου;",
+			data_exported_save_the_file : "Τα δεδομένα εξήχθησαν. Αποθηκεύστε το αρχείο.",
+			missing_translations : "Ελλιπείς μεταφράσεις",
 
 			// Notifications
 			notification_reload: "Επαναφορτώστε την σελίδα για να ενεργοποιηθούν οι αλλαγές"

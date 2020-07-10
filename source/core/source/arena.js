@@ -401,8 +401,10 @@ var gca_arena = {
 			this.table.appendChild(tr);
 			
 			// Global Arena Position
-			let user_position = json.list[json.list.length - 1].position + 1;
+			let user_position = (json.list.length > 0 ) ? json.list[json.list.length - 1].position + 1 : 1;
 			gca_data.section.set("timers", 'global_arena_position', user_position);
+			if( document.getElementById('cooldown_bar_ga') )
+				document.getElementById('cooldown_bar_ga').dataset.tooltip = '[[["'+gca_locale.get("arena", "global_arena_title")+' : '+user_position+'","white"]]]';
 			
 			th = document.createElement("th");
 			th.textContent = user_position;
