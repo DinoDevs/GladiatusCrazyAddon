@@ -436,6 +436,9 @@ gca_languages['cs'] = {
 			do_not_show : "Nezobrazovat",
 			show_as : "Zobrazit jako",
 			show_info : "Zobrazit informace",
+			each_category : "Na vybrané kategorii",
+			all_category : "Na vybrané kategorii & všechny",
+			do_not_run : "Nikoliv",
 			
 			// Info
 			translated_percent : "Přeloženo: {{number}}%",
