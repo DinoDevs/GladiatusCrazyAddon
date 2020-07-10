@@ -14,7 +14,9 @@
 - **Packages**
 	- [x] Package filters: Threat option not visible fix (Issue #185)
 - **Market**
-	- [x] Known/Unknown scrolls feature fix
+	- [x] Known/Unknown scrolls feature fix (Issue #187)
+- **Arena**
+	- [x] Global Arena position fix for 1st gladiator
 
 
 ### TRANSLATIONS
