@@ -46182,7 +46182,7 @@ getRecipe : function(prefix, base, suffix) {
 		mats : {}
 	};
 
-	let id = prefix + '-' + suffix;
+	let id = prefix + '-' + ( ( suffix < 100 || suffix > 109 ) ? suffix : 0 ); // 100 to 109 are the +1, +2 etc suffixes
 	if (this.prefix_suffix_mats.hasOwnProperty(id)) {
 		let mats = this.prefix_suffix_mats[id];
 		for (let i in mats) {

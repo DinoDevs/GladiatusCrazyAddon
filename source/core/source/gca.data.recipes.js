@@ -478,6 +478,7 @@ let suffix_recipes = {
 '292':[75,53,55,59,60],
 '293':[80,53,59]
 };
+/* TODO: currently not used */
 let suffix_stats = {
 // [0] Damage, [2] Armor, [2] Health, [3] Strength, [4] Strength %, [5] Dexterity, [6] Dexterity %, [7] Agility, [8] Agility %, [9] Constitution, [10] Constitution %, [11] Charisma, [12] Charisma %, [13] Intelligence, [14] Intelligence %, [15] Healing, [16] Critical healing value, [17] Critical attack value, [18] Block value, [19] Hardening value, [20] Threat, [21] Level
 '1':[2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25],
