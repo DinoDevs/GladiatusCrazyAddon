@@ -422,6 +422,7 @@ var gca_settings = {
 							// Create refresh info function
 							data.refreshInfo = function() {
 								var lang = gca_languages[data.select.value];
+								gca_languages._active = data.select.value;
 								var info = "";
 
 								// Completed percent
@@ -446,6 +447,12 @@ var gca_settings = {
 								}
 								info = Math.round(translated_items * 100 / data.translated_items);
 								data.info_completed.textContent = gca_locale.get("settings", "translated_percent", {number: info});
+								
+								if( translated_items < data.translated_items ){
+									data.show.style.display = "block";
+									//data.select.value
+								}else
+									data.show.style.display = "none";
 
 								// Translators
 								info = "";
@@ -469,10 +476,21 @@ var gca_settings = {
 							data.info_completed.className = "translate-percent";
 							data.info_translators = document.createElement("div");
 							data.info_translators.className = "translated-by";
+							
+							// Create missing translation button
+							data.show = document.createElement("input");
+							data.show.setAttribute("type", "button");
+							data.show.className = "awesome-button";
+							data.show.style.float = "left";
+							data.show.value = gca_locale.get("settings", "missing_translations");
+							data.show.addEventListener("click", () => {
+								gca_settings.translation_help.show();
+							}, false);
+							
 							data.refreshInfo();
 							// Add change event
 							data.select.addEventListener("change", data.refreshInfo, false);
-							return [data.select, clearboth, data.info_translators, data.info_completed];
+							return [data.select, clearboth, data.info_translators, data.info_completed, data.show];
 						},
 						"save" : function(data){
 							if (!gca_languages.hasOwnProperty(data.select.value) || !gca_languages[data.select.value].hasOwnProperty('name')) return;
@@ -893,7 +911,7 @@ var gca_settings = {
 							wrapper.className += "sell_duration_select";
 							// Create select
 							data.select = document.createElement("select");
-							// Create a list of languages
+							// Create a list of durations
 							let durations = ['2h','8h','24h','48h'];
 							for (let i = 0; i < durations.length; i++) {
 								let option = document.createElement("option");
@@ -2304,6 +2322,73 @@ var gca_settings = {
 			this.wrapper.appendChild(document.createElement('br'));
 
 			jQuery(qrcode).qrcode({width: 180, height: 180, text: url});
+
+			input.addEventListener('click', function(){
+				this.select();
+			}, false);
+		}
+
+	},
+	
+	translation_help : {
+		show : function() {
+			this.wrapper = document.createElement('div');
+			this.wrapper.textContent = 'Loading ...';
+			// Create confirm modal
+			var modal = new gca_tools.Modal(
+				gca_locale.get('settings', 'missing_translations'),
+				this.wrapper,
+				() => {modal.destroy();},
+				() => {modal.destroy();}
+			);
+			
+			modal.button(gca_locale.get('general', 'ok'), true);
+			modal.window.style.marginTop = '-225px';
+			modal.body_wrapper.style.height = '200px';
+			modal.show();
+			this.modal = modal;
+			this.displayInfo();
+		},
+
+		displayInfo : function() {
+			// Select language
+			let l = gca_languages._active;
+			let missing_translations = "/*\n\tMissing translations for "+gca_languages[l].name+" ("+l+")\n\tAdd these values in the existing file or\n\ttranslate them and send them at:\n\thttps://github.com/DinoDevs/GladiatusCrazyAddon/issues/new?template=translation.md\n*/\n";
+			// create an array of the keys in the locale object
+			let main_keys = Object.keys(gca_languages['en'].locale);
+			// loop through the array of object keys
+			for (let i = 0; i < main_keys.length; i++) {
+				let keys = Object.keys(gca_languages['en'].locale[main_keys[i]]);
+				
+				if ( !gca_languages[l].locale[main_keys[i]] )
+					missing_translations += "\n"+main_keys[i]+" : {\n\t/* ALL TRANSLATIONS IN THIS SECTION ARE MISSING, copy them from en.js */\n} ";
+				else{
+					let translations = "";
+					for (let j = 0; j < keys.length; j++) {
+						if ( !gca_languages[l].locale[main_keys[i]][keys[j]] ){
+							translations += "\n\t"+keys[j]+ " : \""+gca_languages['en'].locale[main_keys[i]][keys[j]]+"\",";
+						}
+					}
+					if ( translations != "" )
+						missing_translations += "\n"+main_keys[i]+" : {"+translations.slice(0, -1)+"\n}";
+				}
+			}
+			
+			this.wrapper.textContent = '';
+			this.wrapper.style.textAlign = 'left';
+			this.wrapper.style.height = '186px';
+
+			let code = document.createElement('div');
+			code.style.float = 'right';
+			this.wrapper.appendChild(code);
+
+			let input = document.createElement('textarea');
+			input.value = missing_translations;
+			input.style.width = '100%';
+			input.style.height = '94%';
+			this.wrapper.appendChild(input);
+
+			this.wrapper.appendChild(document.createElement('br'));
 
 			input.addEventListener('click', function(){
 				this.select();

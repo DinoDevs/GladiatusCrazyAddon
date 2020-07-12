@@ -183,7 +183,7 @@ gca_languages["en"] = {
 			attack_player : "Click to attack “{{name}}”",
 			fight_won : "You won the fight!",
 			fight_lost : "You lost the fight...",
-			player_tired : "You are tire; you need to wait.",
+			player_tired : "You are tired; you need to wait.",
 			player1_hits_player2 : "{{name1}} hits {{name2}}",
 			player_takes_x_damage :"{{name}} takes {{number}} damage",
 			player_dies :"{{name}} dies"
@@ -432,7 +432,7 @@ gca_languages["en"] = {
 			category_guild$library_tooltip_data : "Add more data on library's tooltips",
 			category_guild$bank_donate_layout : "Improve bank's donate layout",
 			category_guild$bank_book_layout : "Improve bank's book layout",
-			category_guild$bank_book_show_changes : "Show donation changes since last visit on bank's book",
+			category_guild$bank_book_show_changes : "Show donation variations since last visit on bank's book",
 			category_guild$medic_layout : "Improve medic's layout",
 			// Settings - Auction
 			category_auction$items_counters : "Count items and bidden items",
@@ -478,6 +478,7 @@ gca_languages["en"] = {
 			reset_settings_confirm : "Are you sure you want to reset addon's settings?",
 			clear_data_confirm : "Are you sure you want to clear all the addon's data?",
 			data_exported_save_the_file : "Data were exported. Save the file.",
+			missing_translations : "Missing translations",
 
 			// Notifications
 			notification_reload : "Reload the page for the changes to take effect",

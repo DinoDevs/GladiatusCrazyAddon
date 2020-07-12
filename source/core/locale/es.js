@@ -3,7 +3,7 @@
  * Name : Spanish
  * Code : [none]
  * Tag  : es
- * Translator: Francisco Carvajal, McINTYRE, JotaFraG, Kaenidas, Dodis [kirigayadodis@gmail.com], hola, Cronos_Vzla [juniorperez002@gmail.com], ElCosmo [elangelcaido.bm@gmail.com]
+ * Translator: Francisco Carvajal, McINTYRE, JotaFraG, Kaenidas, Dodis [kirigayadodis@gmail.com], hola, Cronos_Vzla [juniorperez002@gmail.com], ElCosmo [elangelcaido.bm@gmail.com], Senakhtenre [senakhtenre@gladiatus.es]
  */
 
 // Languages Object
@@ -12,25 +12,29 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['es'] = {
 	name : 'Español (Spanish)',
-	translators : ["Francisco Carvajal", "McINTYRE", "JotaFraG", "Kaenidas", "Dodis", "hola", "Cronos_Vzla", "ElCosmo"],
+	translators : ["Francisco Carvajal", "McINTYRE", "JotaFraG", "Kaenidas", "Dodis", "hola", "Cronos_Vzla", "ElCosmo", "Senakhtenre"],
 	locale : {
 		info : {
 			description : "¡El addon más loco de Gladiatus jamás creado!"
 		},
 		general : {
 			days : "día(s)",
-			minutes : "minuto",
+			minutes : "minuto(s)",
+			hours : "hora(s)",
 			no_data : "No hay datos.",
 			confirm : "Confirmar",
 			cancel : "Cancelar",
 			close : "Cerrar",
-			error : "Error"
+			error : "Error",
+			yes : "Sí",
+			no : "No",
+			ok : "OK"
 		},
 		global : {
 			life_potion_use : "Usar una poción de vida",
 			life_potion_used : "Se ha usado una poción de vida",
 			life_potion_left : "Tienes {{number}} punto(s) de vida",
-			life_recover_full : "Recuperación de vida completa",
+			life_recover_full : "Recuperación completa de vida en",
 			message_private_write : "Escribir mensaje privado",
 			message_guild_write : "Escribir mensaje para la alianza",
 			message_send : "Enviar",
@@ -51,7 +55,7 @@ gca_languages['es'] = {
 			online_friends : "Amigos en línea",
 			guild_friends : "Amigos de alianza",
 			family_friends : "Amigos de familia",
-			donate_gold_confirm : "Estas seguro de donar {{number}} oro? ",
+			donate_gold_confirm : "¿Estás seguro de que quieres donar {{number}} oro?",
 			donate_gold_success : "Tu oro fue donado",
 			donate_gold_failed : "Tu donación de oro ha fallado",
 			donate_gold_no_gold : "No hay oro para donar",
@@ -71,12 +75,23 @@ gca_languages['es'] = {
 			gold_exp_data_package_tax : "Impuesto semanal de oro del paquete",
 			gold_exp_data_measurements : "Mediciones ",
 			gold_exp_data_total_exp : "Experiencia total",
-			gold_exp_data_total_gold : "Oro total"
+			gold_exp_data_total_gold : "Oro total",
+			expedition_recover_full : "Recuperación completa de puntos de expedición en",
+			dungeon_recover_full : "Recuperación completa de puntos de mazmorra en",
+			guild_arenareports_goto : "Ir a los reportes de batalla de la alianza",
+			guild_templum_goto : "Ir al templo de la alianza",
+			notification_guild_attack_ready : "¡El tiempo de espera para atacar en la guerra de alianzas ha terminado!",
+			item_worth_rubies : "¡Ese objeto vale rubíes!",
+			merchenary_type : "Tipo: {{name}} ({{number}})"
 		},
 		overview : {
 			stats_difference : "Diferencia",
 			drop_item_see_materials_repair : "Coloca un objeto para ver los materiales necesarios para su reparación ",
-			workbench_6th_slot_empty : "La sexta ranura del banco de trabajo debe estar vacía "
+			workbench_6th_slot_empty : "La sexta ranura del banco de trabajo debe estar vacía ",
+			more_player_info : "Más información del jugador",
+			can_use_max_item_level : "Puede usar objetos hasta el nivel {{max}}.",
+			can_see_market_max_item_level : "Puede ver objetos en el mercado hasta el nivel {{max}}.",
+			can_see_auction_item_levels : "Puede ver objetos en la subasta desde el nivel {{min}} hasta {{max}}."
 		},
 		pantheon : {
 			mysterybox_open_all : "Abrir todo",
@@ -94,6 +109,28 @@ gca_languages['es'] = {
 		expedition : {
 			material_drop_chance : "{{number}}% probabilidad entre objetos colocados"
 		},
+		arena : {
+			global_arena_title : "Arena global",
+			global_arena_description : "¡Esta es la arena definitiva, reuniendo a los gladiadores de todas las partes del mundo! En esta arena, los jugadores no luchan por oro u experiencia, ¡luchan por ser los primeros en la clasificación mundial!",
+			global_arena_load : "Cargar lista de enemigos",
+			global_highscore : "Clasificación global",
+			country : "País",
+			server : "Servidor",
+			target_list : "Lista de objetivos",
+			target_list_add : "Añadir a la lista de objetivos",
+			target_list_remove : "Eliminar de la lista de objetivos",
+			error_sth_went_wrong : "Algo salió mal",
+			error_response : "El servidor respondió con un error",
+			error_blocked_access : "Algo bloqueó el acceso al servidor de GCA ({{url}})",
+			error_connection : "Error de conexión",
+			attack_player : "Clic para atacar a “{{name}}”",
+			fight_won : "¡Has ganado la batalla!",
+			fight_lost : "Has perdido la fatalla...",
+			player_tired : "Estás cansado; necesitas esperar.",
+			player1_hits_player2 : "{{name1}} golpea a {{name2}}",
+			player_takes_x_damage :"{{name}} recibe {{number}} de daño",
+			player_dies :"{{name}} muere"
+		},
 		training : {
 			stats_points : "Puntos de estadistica",
 			points_breakdown : "Perdida de puntos",
@@ -107,21 +144,45 @@ gca_languages['es'] = {
 			number_of_bided_items : "Numero de items guardados : {{number}}",
 			hide_your_gold_here : "Oculta tu oro aquí",
 			price_value_function : "Precio = Valor + {{number}}",
-			levels_you_can_see : "Puedes ver objetos desde el nivel {{min}} hasta nivel {{max}}"
+			levels_you_can_see : "Puedes ver objetos desde el nivel {{min}} hasta el nivel {{max}}"
 		},
 		markets : {
 			item_cost_only_x_gold : "Este objeto solo cuesta {{number}} de oro.",
 			item_is_soulbound : "Este objeto está vinculado al alma",
-			are_you_sure_you_want_to_buy : "¿Realmente quieres comprar este objeto?"
+			are_you_sure_you_want_to_buy : "¿Realmente quieres comprar este objeto?",
+			item_cant_buy_back : "No podrás volver a comprar este objeto.",
+			click_enter_to_sell : "pulsa enter ⏎ para vender"
 		},
 		forge : {
 			forge_ended : "¡Forja terminada!",
-			recraft_item : "Reconstruir objeto"
+			recraft_item : "Reconstruir objeto",
+			show_hide_doll : "Mostrar/Ocultar los muñecos del personaje"
+		},
+		merchants : {
+			search_item_in_merchants : "Buscar objetos",
+			no_such_item : "No se encontró el objeto."
 		},
 		packages : {
 			event_items : "Objetos de evento",
 			known_scroll : "Conoces este pergamino",
-			unknown_scroll : "No conoces este pergamino"
+			unknown_scroll : "No conoces este pergamino",
+			advance_filters : "Filtros avanzados",
+			advance_filters_apply : "Aplicar filtros",
+			advance_filters_clear : "Eliminar filtros",
+			advance_filters_found : "(encontrado {{items}})"
+		},
+		reports : {
+			avg_damage : "Daño medio",
+			avg_heal : "Sanación media",
+			total_hits : "Golpes totales",
+			hits : "Golpes",
+			dodge : "Esquivado o Bloqueado",
+			points : "Puntos"
+		},
+		sync : {
+			are_you_sure : "¿Estás seguro de que quieres conectarte como el jugador {{name}}?",
+			gladiatus_crazy_addon_dependency : "Debes tener Gladiatus Crazy Addon instalado en otro navegador.",
+			how_to_sync_info : "Copia el enlace y pégalo en el otro navegador, u escanea el código QR."
 		},
 		settings : {
 			settings : "Configuración",
@@ -212,7 +273,7 @@ gca_languages['es'] = {
 			category_messages$new_message_focus : "Enfoque en el cuerpo del mensaje",
 			category_messages$new_message_friend_list : "Habilitar botón de seleccionar amigo de la lista",
 			category_packages$pages_to_load : "Máximo número de páginas por carga",
-			category_packages$filters_layout : "mejorar interfaz de filtros",
+			category_packages$filters_layout : "Mejorar interfaz de filtros",
 			category_packages$compact_info_layout : "Hacer compacta la interfaz de información",
 			category_packages$items_layout : "Mejorar diseño de objetos",
 			category_packages$load_more_pages : "Cargar más paginas",
@@ -284,7 +345,41 @@ gca_languages['es'] = {
 			translated_by : "Traducido por: {{string}}",
 			reset_settings_confirm : "¿Estás seguro que deseas restablecer las opciones del addon?",
 			clear_data_confirm : "¿Estás seguro que deseas borrar toda la información del addon?",
-			notification_reload : "Recargar la pagina para que los cambios hagan efecto"
+			notification_reload : "Recargar la pagina para que los cambios hagan efecto",
+			category_global$expedition_dungeon_points_recover_timer : "Mostrar los minutos restantes para la recuperación completa de puntos de expedición/mazmorra",
+			category_global$notify_guild_attack_ready : "Avisarme cuando pueda atacar de nuevo en la guerra de alianzas",
+			category_global$notify_guild_attack_ready_interval : "Comprobar el tiempo de espera de la guerra alianzas cada (minutos)",
+			category_global$show_forge_info : "Mostrar en la información los materiales de forja de los objetos",
+			category_global$show_mercenaries_real_name : "Mostrar el nombre real de los mercenarios (tipo) en la información",
+			category_global$global_arena_timer : "Mostrar el temporizador de la arena global",
+			category_overview$double_click_consume : "Hacer doble clic en un objeto lo consumirá",
+			category_packages$small_items_layout : "Hacer el tamaño de los objetos más pequeño",
+			category_packages$double_click_open : "Hacer doble clic en los paquetes los abrirá",
+			category_packages$advance_filter : "Mostrar filtros avanzados en los paquetes",
+			category_pantheon$show_mysterybox_rewards_owned : "Mostrar cantidad de objetos ya obtenidos en el baúl de la providencia divina",
+			category_reports$battle_analyzer : "Analizar reportes y mostrar estadísticas de vida",
+			category_merchants$show_shop_info : "Mostrar información de la tienda (cantidad total de oro y rubíes)",
+			category_merchants$double_click_actions : "Hacer doble clic en un objeto lo venderá/comprará",
+			category_forge$horreum_materials_names : "[Depósito de recursos] Mostrar nombre del material",
+			category_forge$horreum_remember_options : "[Depósito de recursos] Recordar la última configuración elegida",
+			category_forge$horreum_select_meterials : "[Depósito de recursos] Elegir material al hacer clic",
+			category_arena$sort_by_lvl : "Ordenar jugadores en la arena por su nivel",
+			category_arena$highlight_guild_members : "Resaltar jugadores en otros servidores que pueden ser miembro de alianza",
+			category_arena$target_list : "Mostrar lista de objetivos",
+			category_market$double_click_select : "Seleccionar el objeto haciendo doble clic",
+			category_market$sell_warning_icons : "Mostrar icono de advertencia vendiendo objetos",
+			category_market$sell_with_enter : "Vender objetos presionando ENTER ⏎",
+			category_guild$bank_book_show_changes : "Mostrar cambios en las donaciones desde la última visita al libro de donaciones",
+			category_auction$save_last_state : "Activar el guardado de filtros en la subasta y cargarlos por defecto",
+			category_data$clear_cache_data : "Limpiar los datos de caché del addon",
+			category_data$cross_browser_login : "Sincronizar identificación entre navegadores",
+			category_data$export_error_player_settings : "Exportar los errores de opciones del usuario al archivo",
+			show_info : "Mostrar información",
+			each_category : "Ejecutar en la categoría seleccionada",
+			all_category : "Ejecutar en todas las categorías",
+			do_not_run : "No ejecutar",
+			data_exported_save_the_file : "La información fue exportada. Guarde el archivo.",
+			missing_translations : "Traducciones faltantes"
 		}
 	}
 }
