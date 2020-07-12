@@ -28,11 +28,12 @@ var gca_sync = {
 			() => {
 				// Calculate expiration date
 				let expire = new Date();
-				expire.setTime(expire.getTime() + (15 * 24*60*60*1000)); // 15 days
+				expire.setTime(expire.getTime() + (364 * 24*60*60*1000));
 				expire = expire.toUTCString();
 				// Create cookies
 				document.cookie = "Gladiatus_" + gca_section.country + "_" + gca_section.server + "=" + data.player + "%3B" + data.securehash + "; expires=" + expire + ";path=/";
-
+				document.cookie = "Gca_" + gca_section.country + "_" + gca_section.server + "=" + data.player + "_" + data.securehash.substring(0, data.securehash.length/4) + "; expires=" + expire + ";path=/";
+				
 				// Show loading
 				loading.style.display = 'block';
 

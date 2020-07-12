@@ -56,13 +56,15 @@ var info = {
 		// Resolve Player Id
 		resolvePlayerId : function() {
 			// Resolve Player Id from cookies
-			var cookiePlayerId = info.data.document.cookie.match(new RegExp('Gladiatus_' + this.country + '_' + this.server + '=(\\d+)','i'));
+			var cookiePlayerId =
+				info.data.document.cookie.match(new RegExp('Gladiatus_' + this.country + '_' + this.server + '=(\\d+)','i')) ||
+				info.data.document.cookie.match(new RegExp('Gca_' + this.country + '_' + this.server + '=(\\d+)','i'));
 			// If cookie exist
-			if(cookiePlayerId && cookiePlayerId[1]){
+			if (cookiePlayerId && cookiePlayerId[1]) {
 				this.playerId = cookiePlayerId[1];
 			}
 			// Else
-			else{
+			else {
 				this.playerId = 0;
 			}
 		}
