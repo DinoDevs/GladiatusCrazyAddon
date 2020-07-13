@@ -215,6 +215,12 @@ gca_languages["en"] = {
 			price_value_function : "Price = Value + {{number}}",
 			// Levels you can see
 			levels_you_can_see : "You can see items from level {{min}} to level {{max}}.",
+			// Sort
+			sort : "Sort",
+			sort_by : "Sort by",
+			sort_order : "Order",
+			asc : "Ascending",
+			desc : "Descending"
 		},
 
 		// Markets section

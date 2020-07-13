@@ -214,7 +214,13 @@ gca_languages["gr"] = {
 			// Price of item equals to its value
 			price_value_function: "Τιμή = Αξία + {{number}}",
 			// Levels you can see
-			levels_you_can_see: "Μπορείς να δεις αντικείμενα επιπέδου από {{min}} έως {{max}}."
+			levels_you_can_see: "Μπορείς να δεις αντικείμενα επιπέδου από {{min}} έως {{max}}.",
+			// Sort
+			sort : "Ταξινόμηση",
+			sort_by : "Ταξινόμηση ανά",
+			sort_order : "Σειρά ταξινόμησης",
+			asc : "Αύξουσα",
+			desc : "Φθίνουσα"
 		},
 
 		// Markets section

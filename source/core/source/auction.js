@@ -5,8 +5,6 @@
 
 // Auction
 var gca_auction = {
-    sortKeywordMap: {},
-
 	// Pre Inject code
 	preinject : function(){
 		// Add class tag
@@ -56,6 +54,7 @@ var gca_auction = {
 		baseElement.appendChild(document.createElement("br"));
 		baseElement.appendChild(document.createTextNode(gca_locale.get("auction", "levels_you_can_see", {min : minLvl, max : maxLvl})));
 	},
+	
 	moreSearchLevels : function(){
 		let playerLvl = parseInt(document.getElementById("header_values_level").textContent);
 		let minLvl = Math.floor(playerLvl* 0.75);
@@ -449,35 +448,114 @@ var gca_auction = {
 		tabs[0].href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_gladiator', {mod : 'auction'}));
 		tabs[1].href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_mercenary', {mod : 'auction', ttype : '3'}));
 	},
+	
+
+	// Initiate item sort
     itemsSort: function () {1
         this.initSortKeywordMap();
         this.parseItems();
         this.injectSortSection();
     },
+	
+    sortKeywordMap: {},
+	
     initSortKeywordMap: function () {
-        this.sortKeywordMap = {
-            "damage": {
-                name: "damage",
-                display: "Max Damage", // todo localize
-                pattern: /(\d+) - (\d+)/,
-            },
-            "armour": {
-                name: "armour",
-                display: "Armour",
-                pattern: /-?\d+/
-            },
-            "health": {
-                name: "health",
-                display: "Health",
-                pattern: /-?\d+/
-            },
-            "healing": {
-                name: "healing",
-                display: "Healing",
-                pattern: /-?\d+/
-            },
-        }
+		
+		let locale = gca_data.section.get("overview", 'stats_locale', null);
+		
+		if(locale){
+			// Damage
+			let damage = locale.damage.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[damage.toLowerCase()] = {
+				name: damage,
+				display: locale.damage,
+				pattern: /(:?\d+ - )*-?(\d+)/, // match weapons and other items
+			}
+			// Armour
+			let armour = locale.armour.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[armour] = {
+				name: armour,
+				display: locale.armour,
+				pattern: /-?\d+/,
+			}
+			
+			// strength
+			let strength = locale.strength.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[strength] = {
+				name: strength,
+				display: locale.strength,
+				pattern: /-?\d+\)*$/,
+			}
+			// Agility
+			let agility = locale.agility.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[agility] = {
+				name: agility,
+				display: locale.agility,
+				pattern: /-?\d+\)*$/,
+			}
+			// dexterity
+			let dexterity = locale.dexterity.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[dexterity] = {
+				name: dexterity,
+				display: locale.dexterity,
+				pattern: /-?\d+\)*$/,
+			}
+			// constitution
+			let constitution = locale.constitution.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[constitution] = {
+				name: constitution,
+				display: locale.constitution,
+				pattern: /-?\d+\)*$/,
+			}
+			// charisma
+			let charisma = locale.charisma.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[charisma] = {
+				name: charisma,
+				display: locale.charisma,
+				pattern: /-?\d+\)*$/,
+			}
+			// intelligence
+			let intelligence = locale.intelligence.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[intelligence] = {
+				name: intelligence,
+				display: locale.intelligence,
+				pattern: /-?\d+\)*$/,
+			}
+			// healing
+			let healing = locale.healing.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[healing] = {
+				name: healing,
+				display: locale.healing,
+				pattern: /-?\d+/,
+			}
+			// life_points
+			let life_points = locale.life_points.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[life_points] = {
+				name: life_points,
+				display: locale.life_points,
+				pattern: /-?\d+/,
+			}
+			// threat
+			let threat = locale.threat.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[threat] = {
+				name: threat,
+				display: locale.threat,
+				pattern: /-?\d+/,
+			}
+		}else{
+			locale.level = jQuery('#icon_level').data().tooltip[0][0][0];
+		}
+		
+		if( locale.level ){
+			let level = locale.level.split(' ')[0].toLowerCase();
+			this.sortKeywordMap[level] = {
+				name: level,
+				display: locale.level,
+				pattern: /\d+/,
+			}
+		}
     },
+	
     // Parse tooltip of each auction item and set parsed data to item's container
     parseItems: function () {
         jQuery("#auction_table td:has(form)").each(function () {
@@ -489,6 +567,7 @@ var gca_auction = {
             });
         });
     },
+	
     parseItemData: function (itemElement) {
         let itemData = {};
         let props = jQuery(itemElement).data().tooltip[0];
@@ -500,8 +579,10 @@ var gca_auction = {
                 prop = prop[0];
             }
 
+            //let propName = decodeURIComponent(JSON.parse("\""+prop.split(" ")[0]+"\"")).toLowerCase();
             let propName = prop.split(" ")[0].toLowerCase();
             let kw = this.sortKeywordMap[propName];
+			console.log(propName+" -> "+kw);
             if (kw) {
                 let match = prop.match(kw.pattern);
                 if (match) {
@@ -526,6 +607,8 @@ var gca_auction = {
 
         return itemData;
     },
+	
+	// Create sort menu / options
     injectSortSection: function () {
         let sectionHeader = this.createSortSectionHeader();
         let section = this.createSortSection();
@@ -534,18 +617,20 @@ var gca_auction = {
         jQuery(nextSection).before(jQuery(sectionHeader));
         jQuery(nextSection).before(jQuery(section));
     },
+	
     createSortSectionHeader: function () {
         let h2 = document.createElement("h2");
         h2.className = "section-header";
         h2.id = "gca-auction-sort-section-header";
         h2.style.cursor = "pointer";
-        h2.textContent = "Sort";
+        h2.textContent = gca_locale.get("auction", "sort");;
 
         h2.addEventListener("click", function () {
             jQuery("#gca-auction-sort-section").toggle();
         });
         return h2;
     },
+	
     createSortSection: function () {
         let button, select, tr, td;
         let section = document.createElement("section");
@@ -567,7 +652,7 @@ var gca_auction = {
         td = document.createElement("td");
         td.style.width = "50%";
         td.style.textAlign = "center";
-        td.textContent = "Sort By";
+        td.textContent = gca_locale.get("auction", "sort_by");
         tr.appendChild(td);
 
         td = document.createElement("td");
@@ -591,18 +676,18 @@ var gca_auction = {
         td = document.createElement("td");
         td.style.width = "50%";
         td.style.textAlign = "center";
-        td.textContent = "Order";
+        td.textContent = gca_locale.get("auction", "sort_order");
         tr.appendChild(td);
 
         td = document.createElement("td");
         select = document.createElement("select");
         select.id = "gca-auction-sort-order-select";
         option = document.createElement("option");
-        option.text = "Descending";
+        option.text = gca_locale.get("auction", "desc");
         option.value = "desc";
         select.add(option);
         option = document.createElement("option");
-        option.text = "Ascending";
+        option.text = gca_locale.get("auction", "asc");
         option.value = "asc";
         select.add(option);
 
@@ -619,7 +704,7 @@ var gca_auction = {
         button = document.createElement("button");
         button.classList.add("awesome-button");
         button.classList.add("gca-auction-sort-button");
-        button.textContent = "Sort";
+        button.textContent = gca_locale.get("auction", "sort");
         button.type = "button";
         button.addEventListener('click', function () {
             let propName = document.getElementById("gca-auction-sort-select").value;
@@ -641,6 +726,7 @@ var gca_auction = {
 
         return section;
     },
+	
     sortItems: function (propName, order) {
         // clone and sort items
         let clonedTds = jQuery("#auction_table td:has(form)").clone();

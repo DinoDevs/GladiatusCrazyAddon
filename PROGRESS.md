@@ -7,7 +7,8 @@
 
 ### IMPROVEMENTS
 - **Auction**
-	- [x] Auction: Show/Hide button remember selection (Issue #167)
+	- [x] Show/Hide button remember selection (Issue #167)
+	- [x] Items sort by [mehmetkaradeniz](https://github.com/mehmetkaradeniz) (Issue #181)
 - **Settings**
 	- [x] Language: New "Missing translations" button to help translators
 
