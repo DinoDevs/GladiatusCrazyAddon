@@ -5,6 +5,8 @@
 
 // Auction
 var gca_auction = {
+    sortKeywordMap: {},
+
 	// Pre Inject code
 	preinject : function(){
 		// Add class tag
@@ -28,6 +30,8 @@ var gca_auction = {
 				this.multiBids());
 			(gca_options.bool("auction","extra_item_stats") &&
 				this.extraItemStats());
+
+            this.itemsSort();
 		}
 		
 		(gca_options.bool("auction","more_search_levels") &&
@@ -444,7 +448,225 @@ var gca_auction = {
 		let tabs = document.getElementById('mainnav').getElementsByTagName('a');
 		tabs[0].href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_gladiator', {mod : 'auction'}));
 		tabs[1].href = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_mercenary', {mod : 'auction', ttype : '3'}));
-	}
+	},
+    itemsSort: function () {1
+        this.initSortKeywordMap();
+        this.parseItems();
+        this.injectSortSection();
+    },
+    initSortKeywordMap: function () {
+        this.sortKeywordMap = {
+            "damage": {
+                name: "damage",
+                display: "Max Damage", // todo localize
+                pattern: /(\d+) - (\d+)/,
+            },
+            "armour": {
+                name: "armour",
+                display: "Armour",
+                pattern: /-?\d+/
+            },
+            "health": {
+                name: "health",
+                display: "Health",
+                pattern: /-?\d+/
+            },
+            "healing": {
+                name: "healing",
+                display: "Healing",
+                pattern: /-?\d+/
+            },
+        }
+    },
+    // Parse tooltip of each auction item and set parsed data to item's container
+    parseItems: function () {
+        jQuery("#auction_table td:has(form)").each(function () {
+            let itemElement = jQuery(this).find(".ui-draggable").first();
+            let itemData = gca_auction.parseItemData(itemElement);
+            let frm = jQuery(this).find("form").first();
+            jQuery.each(itemData, function (key, val) {
+                jQuery(frm).attr("data-" + key, val);
+            });
+        });
+    },
+    parseItemData: function (itemElement) {
+        let itemData = {};
+        let props = jQuery(itemElement).data().tooltip[0];
+        itemData["name"] = props[0][0];
+        for (let i = 1; i < props.length; i++) {
+            let prop = props[i][0];
+            // if blue or above quality, it's an array so we get first element
+            if (Array.isArray(prop)) {
+                prop = prop[0];
+            }
+
+            let propName = prop.split(" ")[0].toLowerCase();
+            let kw = this.sortKeywordMap[propName];
+            if (kw) {
+                let match = prop.match(kw.pattern);
+                if (match) {
+                    let val = match[match.length - 1];
+                    let floatVal = parseFloat(val);
+                    if (isNaN(floatVal)) {
+                        itemData[kw.name] = val;
+                    }
+                    else {
+                        itemData[kw.name] = floatVal;
+                    }
+                }
+            }
+        }
+
+        // if item doesnt have sort property, add that property with value 0
+        jQuery.each(this.sortKeywordMap, function (key, val) {
+            if (itemData[key] == undefined) {
+                itemData[key] = 0.0;
+            }
+        });
+
+        return itemData;
+    },
+    injectSortSection: function () {
+        let sectionHeader = this.createSortSectionHeader();
+        let section = this.createSortSection();
+        let nextSection = jQuery("#content > article > h2:nth-child(5)");
+
+        jQuery(nextSection).before(jQuery(sectionHeader));
+        jQuery(nextSection).before(jQuery(section));
+    },
+    createSortSectionHeader: function () {
+        let h2 = document.createElement("h2");
+        h2.className = "section-header";
+        h2.id = "gca-auction-sort-section-header";
+        h2.style.cursor = "pointer";
+        h2.textContent = "Sort";
+
+        h2.addEventListener("click", function () {
+            jQuery("#gca-auction-sort-section").toggle();
+        });
+        return h2;
+    },
+    createSortSection: function () {
+        let button, select, tr, td;
+        let section = document.createElement("section");
+        section.id = "gca-auction-sort-section";
+        section.style.display = "block";
+
+        // create form
+        let form = document.createElement("form");
+
+        let table = document.createElement("table");
+        table.border = "0";
+        table.style.textAlign = "center";
+        table.style.marginLeft = "auto";
+        table.style.marginRight = "auto";
+        let tbody = document.createElement("tbody");
+
+        // sortBy select
+        tr = document.createElement("tr");
+        td = document.createElement("td");
+        td.style.width = "50%";
+        td.style.textAlign = "center";
+        td.textContent = "Sort By";
+        tr.appendChild(td);
+
+        td = document.createElement("td");
+        select = document.createElement("select");
+        select.id = "gca-auction-sort-select";
+
+        // add sort keywords to select
+        jQuery.each(this.sortKeywordMap, function (key, val) {
+            let option = document.createElement("option");
+            option.text = val.display;
+            option.value = val.name;
+            select.add(option);
+        });
+
+        td.appendChild(select);
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+
+        // order select
+        tr = document.createElement("tr");
+        td = document.createElement("td");
+        td.style.width = "50%";
+        td.style.textAlign = "center";
+        td.textContent = "Order";
+        tr.appendChild(td);
+
+        td = document.createElement("td");
+        select = document.createElement("select");
+        select.id = "gca-auction-sort-order-select";
+        option = document.createElement("option");
+        option.text = "Descending";
+        option.value = "desc";
+        select.add(option);
+        option = document.createElement("option");
+        option.text = "Ascending";
+        option.value = "asc";
+        select.add(option);
+
+        td.appendChild(select);
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+
+        // sort button
+        tr = document.createElement("tr");
+        td = document.createElement("td");
+        td.colSpan = "2";
+        td.style.textAlign = "center";
+
+        button = document.createElement("button");
+        button.classList.add("awesome-button");
+        button.classList.add("gca-auction-sort-button");
+        button.textContent = "Sort";
+        button.type = "button";
+        button.addEventListener('click', function () {
+            let propName = document.getElementById("gca-auction-sort-select").value;
+            let order = document.getElementById("gca-auction-sort-order-select").value;
+            gca_auction.sortItems(propName, order);
+
+            // register bid events
+            (gca_options.bool("auction", "multi_bids") &&
+                gca_auction.multiBids());
+        }, false);
+
+        td.appendChild(button);
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+
+        table.appendChild(tbody);
+        form.appendChild(table);
+        section.appendChild(form);
+
+        return section;
+    },
+    sortItems: function (propName, order) {
+        // clone and sort items
+        let clonedTds = jQuery("#auction_table td:has(form)").clone();
+        let clonedSortedTds = jQuery(clonedTds).sort(function (a, b) {
+            let aVal = jQuery(a).find("form").first().data()[propName];
+            let bVal = jQuery(b).find("form").first().data()[propName];
+
+            if (aVal == bVal) {
+                return 0;
+            }
+
+            if (order == "asc") {
+                return aVal > bVal ? 1 : -1;
+            }
+            else {
+                return aVal > bVal ? -1 : 1;
+            }
+        });
+
+        // sort ui
+        jQuery('#auction_table td:has(form)').each(function (index, item) {
+            let html = jQuery(clonedSortedTds[index]).html();
+            jQuery(item).html(html);
+        });
+    },
+
 };
 
 // Onload Handler
