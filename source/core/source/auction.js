@@ -582,7 +582,7 @@ var gca_auction = {
             //let propName = decodeURIComponent(JSON.parse("\""+prop.split(" ")[0]+"\"")).toLowerCase();
             let propName = prop.split(" ")[0].toLowerCase();
             let kw = this.sortKeywordMap[propName];
-			console.log(propName+" -> "+kw);
+			//console.log(propName+" -> "+kw);
             if (kw) {
                 let match = prop.match(kw.pattern);
                 if (match) {
