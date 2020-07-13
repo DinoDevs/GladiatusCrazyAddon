@@ -98,8 +98,7 @@ var gca_merchants = {
 							let tab = "N/A";
 							if(html.match(/shopTab [dynamic ]*active">([^<]+)<\/div/i))
 								tab = html.match(/shopTab [dynamic ]*active">([^<]+)<\/div/i)[1];
-							
-							let items = html.match(/data-container-number="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-item-id="[^"]*" [data-price-gold="\d+" ]*data-tooltip="\[\[\[&quot;([^&]*)&/gim);
+							let items = html.match(/data-container-number="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-item-id="[^"]*" (?:data-price-gold="\d+" )*data-tooltip="\[\[\[&quot;([^&]*)&/gim);
 							if( !items )
 								items = [];
 							

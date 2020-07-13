@@ -3,7 +3,7 @@
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-2-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Auction**
@@ -22,6 +22,8 @@
 	- [x] Known/Unknown scrolls feature fix (Issue #187)
 - **Arena**
 	- [x] Global Arena position fix for 1st gladiator
+- **Mercenaries**
+	- [x] Mercenaries search fixed
 
 
 ### TRANSLATIONS
