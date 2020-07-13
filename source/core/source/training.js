@@ -155,7 +155,7 @@ var gca_training = {
 			this.skills = {};
 
 			// Save available free points (from underworld)
-			let freepoints = parseInt( document.getElementsByClassName("training_link")[6].textContent.match(/\:\s*(\d+)/)[1] );
+			let freepoints = parseInt( document.getElementsByClassName("training_link")[6].textContent.match(/\:*\s*(\d+)/)[1] );
 
 			// For each skill
 			for(let i in this.self.data.skills){

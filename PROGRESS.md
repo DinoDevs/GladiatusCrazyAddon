@@ -24,6 +24,8 @@
 	- [x] Global Arena position fix for 1st gladiator
 - **Mercenaries**
 	- [x] Mercenaries search fixed
+- **Training**
+	- [x] Training features crash on some servers because of different locale (Issue #195)
 
 
 ### TRANSLATIONS
