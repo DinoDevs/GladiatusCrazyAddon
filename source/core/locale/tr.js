@@ -128,9 +128,9 @@ gca_languages["tr"] = {
 			fight_won : "Savaşı kazandın!",
 			fight_lost : "Savaşı kaybettin...",
 			player_tired : "Çok yorgunsun, biraz dinlenmelisin.",
-			player1_hits_player2 : "{{name1}} şu kişiye vurdu: {{name2}}",
-			player_takes_x_damage :"{{name}}, {{number}} hasar aldı",
-			player_dies :"{{name}} öldü"
+			player1_hits_player2 : "{{name1}} tarafından vurulan: {{name2}}.",
+			player_takes_x_damage :"{{name}}, {{number}} hasar alır",
+			player_dies :"{{name}} ölür"
 		},
 		training : {
 			stats_points : "Eğitim Puanı",
