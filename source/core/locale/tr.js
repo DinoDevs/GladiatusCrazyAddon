@@ -121,7 +121,16 @@ gca_languages["tr"] = {
 			target_list_add : "Hedef listesine ekle",
 			target_list_remove : "Hedef listesinden çıkar",
 			error_sth_went_wrong : "Bir şeyler yanlış gitti",
-			error_connection : "Bağlantı hatası"
+			error_response : "Sunucu bir hata ile karşılaştı",
+			error_blocked_access : "Bir şeyler GCA sunucusuna bağlanmanızı engelliyor ({{url}})",
+			error_connection : "Bağlantı hatası",
+			attack_player : "Saldırmak için tıkla “{{name}}”",
+			fight_won : "Savaşı kazandın!",
+			fight_lost : "Savaşı kaybettin...",
+			player_tired : "Çok yorgunsun, biraz dinlenmelisin.",
+			player1_hits_player2 : "{{name1}} şu kişiye vurdu: {{name2}}",
+			player_takes_x_damage :"{{name}}, {{number}} hasar aldı",
+			player_dies :"{{name}} öldü"
 		},
 		training : {
 			stats_points : "Eğitim Puanı",
