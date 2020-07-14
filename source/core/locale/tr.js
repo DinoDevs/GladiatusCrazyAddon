@@ -136,7 +136,12 @@ gca_languages["tr"] = {
 			number_of_bided_items : "Teklif verilen eşya sayısı : {{number}}",
 			hide_your_gold_here : "Altını burada saklayabilirsin.",
 			price_value_function : "Ücret = Değer + {{number}}",
-			levels_you_can_see : "Burada görebileceğiniz itemler {{min}} den {{max}}."
+			levels_you_can_see : "Burada görebileceğiniz itemler {{min}} den {{max}}.",
+			sort : "Sıralama",
+			sort_by : "Sırala",
+			sort_order : "Düzen",
+			asc : "Artan",
+			desc : "Azalan"
 		},
 		markets : {
 			item_cost_only_x_gold : "Bu itemin maaliyeti sadece {{number}} altın.",
