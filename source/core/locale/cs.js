@@ -468,6 +468,7 @@ gca_languages['cs'] = {
 			reset_settings_confirm : "Opravdu chcete obnovit nastavení aplikace Addon?",
 			clear_data_confirm : "Opravdu chcete vymazat všechna data addonu?",
 			data_exported_save_the_file : "Data byla exportována. Soubor uložen.",
+			missing_translations : "Chybějící překlady",
 			
 			// Notifications
 			notification_reload : "Znovu načíst stránku pro projevení změn"
