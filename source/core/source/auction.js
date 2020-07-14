@@ -451,7 +451,7 @@ var gca_auction = {
 	
 
 	// Initiate item sort
-    itemsSort: function () {1
+    itemsSort: function () {
         this.initSortKeywordMap();
         this.parseItems();
         this.injectSortSection();
@@ -612,10 +612,10 @@ var gca_auction = {
     injectSortSection: function () {
         let sectionHeader = this.createSortSectionHeader();
         let section = this.createSortSection();
-        let nextSection = jQuery("#content > article > h2:nth-child(5)");
+        let filterSection = jQuery("form[name='filterForm']").closest("section");
 
-        jQuery(nextSection).before(jQuery(sectionHeader));
-        jQuery(nextSection).before(jQuery(section));
+        jQuery(filterSection).after(jQuery(section));
+        jQuery(filterSection).after(jQuery(sectionHeader));
     },
 	
     createSortSectionHeader: function () {
