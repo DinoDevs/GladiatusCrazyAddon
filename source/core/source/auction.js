@@ -451,7 +451,7 @@ var gca_auction = {
 	
 
 	// Initiate item sort
-    itemsSort: function () {1
+    itemsSort: function () {
         this.initSortKeywordMap();
         this.parseItems();
         this.injectSortSection();
