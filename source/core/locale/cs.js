@@ -204,6 +204,12 @@ gca_languages['cs'] = {
 			price_value_function : "Cena = Hodnota + {{number}}",
 			// Levels you can see
 			levels_you_can_see : "Vidíš předměty od úrovně {{min}} do úrovně {{max}}."
+			// Sort
+			sort : "Třídit",
+			sort_by : "Třídit podle",
+			sort_order : "Řazení",
+			asc : "Vzestupně",
+			desc : "Sestupně"
 		},
 		
 		// Markets section
