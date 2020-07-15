@@ -203,7 +203,7 @@ gca_languages['cs'] = {
 			// Price of item equals to its value
 			price_value_function : "Cena = Hodnota + {{number}}",
 			// Levels you can see
-			levels_you_can_see : "Vidíš předměty od úrovně {{min}} do úrovně {{max}}."
+			levels_you_can_see : "Vidíš předměty od úrovně {{min}} do úrovně {{max}}.",
 			// Sort
 			sort : "Třídit",
 			sort_by : "Třídit podle",
