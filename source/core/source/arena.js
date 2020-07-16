@@ -109,6 +109,8 @@ var gca_arena = {
 			this.info = {};
 			this.info.locale_position = arena_rows[0].getElementsByTagName('th')[0].textContent.trim();
 			this.info.locale_name = arena_rows[0].getElementsByTagName('th')[1].textContent.trim();
+			this.info.locale_best = document.getElementById('content').getElementsByTagName('article')[0].getElementsByClassName('left')[0].getElementsByTagName('h2')[0].textContent.trim();
+			this.info.locale_level = jQuery('#icon_level').data().tooltip[0][0][0];
 			this.info.locale_guild = document.getElementById('mainmenu').getElementsByClassName('menuitem')[2].textContent;
 			this.info.player_name = arena_rows[arena_rows.length - 1].getElementsByTagName('td')[0].textContent.trim();
 			this.info.guild_name = gca_data.section.get("guild", "name", "-").trim();
@@ -178,6 +180,13 @@ var gca_arena = {
 			img.src = 'img/ui/spinner.gif';
 			spinner.appendChild(img);
 			
+			let rankings_table = document.createElement("table");
+			rankings_table.width = "100%";
+			rankings_table.style.display = "none";
+			rankings_table.style.marginBottom = '15px';
+			box.appendChild(rankings_table);
+			this.rankings_table = rankings_table;
+			
 			let table = document.createElement("table");
 			table.width = "100%";
 			table.style.marginBottom = '15px';
@@ -199,9 +208,11 @@ var gca_arena = {
 			this.spinner.style.height = this.table.offsetHeight;
 			this.spinner.getElementsByTagName('img')[0].style.marginTop = (this.table.offsetHeight / 2 - 16) + 'px';
 
+			this.level = document.getElementById('header_values_level').textContent;
+
 			jQuery.ajax({
 				type: "GET",
-				url: this.getLink({'player_id' : gca_section.playerId, 'server' : gca_section.server, 'country' : gca_section.country}),
+				url: this.getLink({'player_id' : gca_section.playerId, 'server' : gca_section.server, 'country' : gca_section.country, 'level' : this.level}),
 				success: (content) => {
 					this.table.style.height = 'auto';
 					this.table.style.opacity = '1';
@@ -287,6 +298,8 @@ var gca_arena = {
 
 		// Create global arena list of players
 		createList : function(json) {
+			// Empty rankings_table
+			this.rankings_table.textContent = '';
 			// Empty table
 			this.table.textContent = '';
 			// Disable load list
@@ -294,6 +307,124 @@ var gca_arena = {
 
 			// Display cooldown
 			this.cooldown(json.cooldown ? json.cooldown : false);
+			
+			// Create rankings header
+			if( json.level_list.length > 0){
+				this.rankings_table.style.display = "block";
+				let rankings_header = document.createElement("tr");
+				this.rankings_table.appendChild(rankings_header);
+				
+				let rankings_th = document.createElement("th");
+				rankings_th.textContent = this.info.locale_best.replace("5",json.level_list.length) + " (" + this.info.locale_level + " " + (Math.floor(this.level/5)*5+5) +"-"+ (Math.floor(this.level/5)*5) +")";
+				rankings_th.width = "100%";
+				rankings_th.style.textAlign = 'center';
+				rankings_th.setAttribute('colspan','7');
+				rankings_header.appendChild(rankings_th);
+				
+				rankings_header = document.createElement("tr");
+				this.rankings_table.appendChild(rankings_header);
+				
+				rankings_th = document.createElement("th");
+				rankings_th.textContent = this.info.locale_position;
+				rankings_th.width = "10%";
+				rankings_th.style.textAlign = 'center';
+				rankings_header.appendChild(rankings_th);
+				
+				rankings_th = document.createElement("th");
+				rankings_th.textContent = this.info.locale_name;
+				rankings_th.width = "20%";
+				rankings_header.appendChild(rankings_th);
+				
+				rankings_th = document.createElement("th");
+				rankings_th.textContent = this.info.locale_guild;
+				rankings_th.style.fontSize = 'font-size: 0.8em;';
+				rankings_th.width = "20%";
+				rankings_header.appendChild(rankings_th);
+				
+				rankings_th = document.createElement("th");
+				rankings_th.textContent = this.info.locale_level;
+				rankings_th.width = "10%";
+				rankings_header.appendChild(rankings_th);
+				
+				rankings_th = document.createElement("th");
+				rankings_th.textContent = gca_locale.get("arena", "country");
+				rankings_th.width = "10%";
+				rankings_th.style.textAlign = 'center';
+				rankings_header.appendChild(rankings_th);
+				
+				rankings_th = document.createElement("th");
+				rankings_th.textContent = gca_locale.get("arena", "server");
+				rankings_th.width = "10%";
+				rankings_th.style.textAlign = 'center';
+				rankings_header.appendChild(rankings_th);
+				
+				rankings_th = document.createElement("th");
+				rankings_th.width = "10%";
+				rankings_th.textContent = " ";
+				rankings_th.style.textAlign = 'center';
+				rankings_header.appendChild(rankings_th);
+				
+				// For each player on the list
+				json.level_list.forEach((player) => {
+					let isGuildMate = (player.server == gca_section.server && player.country == gca_section.country && this.info.guild_name == player.guild) ? true : false;
+					let row = document.createElement('tr');
+					this.rankings_table.appendChild(row);
+
+					let th = document.createElement('th');
+					th.textContent = player.position;
+					th.style.textAlign = 'center';
+					th.style.padding = '5px 0px';
+					row.appendChild(th);
+					
+					let td, link;
+					td = document.createElement('td');
+					row.appendChild(td);
+					link = document.createElement('a');
+					link.href = gca_getPage.crossServerLink({server : player.server, country : player.country}, {mod : 'player', p : player.id});
+					link.setAttribute('target', '_blank');
+					link.textContent = player.name;
+					// If guild mate
+					if (isGuildMate) link.style.color = 'green';
+					td.appendChild(link);
+					
+					td = document.createElement('td');
+					row.appendChild(td);
+					if (player.guild_id > 0) {
+						link = document.createElement('a');
+						link.href = gca_getPage.crossServerLink({server : player.server, country : player.country}, {mod : 'guild', submod : 'forumGladiatorius', i : player.guild_id});
+						link.setAttribute('target', '_blank');
+						link.textContent = player.guild;
+						if (isGuildMate) link.style.color = 'green';
+						td.appendChild(link);
+					}
+					else {
+						td.textContent = '-';
+					}
+					
+					td = document.createElement('td');
+					td.style.textAlign = 'center';
+					td.textContent = player.level >= 5 ? player.level : 'n/a' ;
+					row.appendChild(td);
+					
+					td = document.createElement('td');
+					td.style.textAlign = 'center';
+					let flag = gca_tools.create.flagIcon(player.country);
+					flag.className = 'flag';
+					flag.dataset.tooltip = '[[["'+player.country.toUpperCase()+'","#fff;font-size:12px;"]]]';
+					td.appendChild(flag);
+					row.appendChild(td);
+					
+					td = document.createElement('td');
+					td.textContent = player.server;
+					td.style.textAlign = 'center';
+					row.appendChild(td);
+					
+					td = document.createElement('td');
+					td.textContent = " ";
+					td.style.textAlign = 'center';
+					row.appendChild(td);
+				});
+			}
 			
 			// Create table header
 			let header = document.createElement("tr");
@@ -306,13 +437,19 @@ var gca_arena = {
 			header.appendChild(th);
 			
 			th = document.createElement("th");
-			th.textContent = name;
+			th.textContent = this.info.locale_name;
 			th.width = "20%";
 			header.appendChild(th);
 			
 			th = document.createElement("th");
 			th.textContent = this.info.locale_guild;
-			th.width = "30%";
+			th.style.fontSize = 'font-size: 0.8em;';
+			th.width = "20%";
+			header.appendChild(th);
+				
+			th = document.createElement("th");
+			th.textContent = this.info.locale_level;
+			th.width = "10%";
 			header.appendChild(th);
 			
 			th = document.createElement("th");
@@ -368,6 +505,11 @@ var gca_arena = {
 				else {
 					td.textContent = '-';
 				}
+				
+				td = document.createElement('td');
+				td.style.textAlign = 'center';
+				td.textContent = player.level >= 5 ? player.level : 'n/a' ;
+				row.appendChild(td);
 				
 				td = document.createElement('td');
 				td.style.textAlign = 'center';
