@@ -138,7 +138,7 @@ var gca_arena = {
 			// Add text
 			let description = document.createElement('p');
 			description.textContent = gca_locale.get("arena", "global_arena_description")+" ";
-			description.style="text-align: justify;";
+			description.style = "text-align: justify;";
 			box.appendChild(description);
 
 			// Add link to highscore
@@ -189,6 +189,7 @@ var gca_arena = {
 			
 			let table = document.createElement("table");
 			table.width = "100%";
+			table.style.display = "none";
 			table.style.marginBottom = '15px';
 			box.appendChild(table);
 			this.table = table;
@@ -429,6 +430,7 @@ var gca_arena = {
 			// Create table header
 			let header = document.createElement("tr");
 			this.table.appendChild(header);
+			this.table.style.display = "block";
 			
 			let th = document.createElement("th");
 			th.textContent = this.info.locale_position;
@@ -560,6 +562,11 @@ var gca_arena = {
 			
 			th = document.createElement("th");
 			th.textContent = this.info.guild_name;
+			tr.appendChild(th);
+			
+			th = document.createElement("th");
+			th.style.textAlign = 'center';
+			th.textContent = document.getElementById('header_values_level').textContent;
 			tr.appendChild(th);
 			
 			th = document.createElement("th");
