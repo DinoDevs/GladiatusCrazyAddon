@@ -372,6 +372,7 @@ gca_languages["tr"] = {
 			reset_settings_confirm : "Eklenti ayarlarını sıfırlamak istediğinize emin misiniz?",
 			clear_data_confirm : "Tüm eklenti ayarlarını silmek istediğinize emin misiniz?",
 			data_exported_save_the_file : "Veriyi dışarı aktarma başarılı",
+			missing_translations : "Eksik Çeviri",
 			notification_reload : "Değişikliklerin geçerli olması için sayfayı yeniden yükleyin",
 		}
 	}
