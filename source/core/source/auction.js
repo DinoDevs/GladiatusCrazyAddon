@@ -574,7 +574,7 @@ var gca_auction = {
         itemData["name"] = props[0][0];
         for (let i = 1; i < props.length; i++) {
             let prop = props[i][0];
-            // if blue or above quality, it's an array so we get first element
+            // if prop has durability bonus, it's an array so we get first element
             if (Array.isArray(prop)) {
                 prop = prop[0];
             }
@@ -751,7 +751,41 @@ var gca_auction = {
             let html = jQuery(clonedSortedTds[index]).html();
             jQuery(item).html(html);
         });
+        
+        this.annotateKeywordOnItemTooltips(propName);
     },
+
+    annotateKeywordOnItemTooltips: function (keyword) {
+        keyword = keyword.toLowerCase();
+
+        jQuery("#auction_table td form .ui-draggable").each(function () {
+            let tooltips = jQuery(this).data().tooltip;
+
+            for (let i = 0; i < tooltips.length; i++) {
+                let tooltip = tooltips[i];
+
+                for (let j = 0; j < tooltip.length; j++) {
+                    let prop = tooltip[j];
+
+                    // if prop has durability bonus, it's an array so we get first element
+                    if (Array.isArray(prop[0])) {
+                        let propName = prop[0][0].split(" ")[0].toLowerCase();
+                        if (propName == keyword && prop[1][0] !== undefined) {
+                            prop[1][0] = "orange";
+                        }
+                    }
+                    else {
+                        let propName = prop[0].split(" ")[0].toLowerCase();
+                        if (propName == keyword && prop[1] !== undefined) {
+                            prop[1] = "orange";
+                        }
+                    }
+                }
+            }
+
+            jQuery(this).data("tooltip", tooltips);
+        });
+    }
 
 };
 
