@@ -28,8 +28,8 @@ var gca_auction = {
 				this.multiBids());
 			(gca_options.bool("auction","extra_item_stats") &&
 				this.extraItemStats());
-
-            this.itemsSort();
+			(gca_options.bool("auction","item_sort_functions") &&
+				this.itemsSort.init());
 		}
 		
 		(gca_options.bool("auction","more_search_levels") &&
@@ -127,15 +127,16 @@ var gca_auction = {
 	},
 
 	itemsValuesShow : function() {
+		let that = this;
 		// Create show/hide button
 		let filters = document.getElementsByTagName("section")[1];
 		let button = document.createElement("a");
 		button.className = "gca-auction-show-hide-button";
 		button.dataset.tooltip = '[[["'+ gca_locale.get("auction", "hide_your_gold_here") +'","#fff;font-size:12px;"]]]';
 		button.addEventListener('click', function(){
-			let status = gca_data.section.get("cache", "auction_show_hide_button_status", false );
+			let status = gca_data.section.get("cache", "auction_show_hide_button_status", false);
 			gca_data.section.set("cache", "auction_show_hide_button_status", !status );
-			gca_auction.showHideNonHideYourGoldItems(this, !status);
+			that.showHideNonHideYourGoldItems(this, !status);
 		} , false);
 		filters.appendChild(button);
 		filters.appendChild(document.createElement("br"));
@@ -451,340 +452,357 @@ var gca_auction = {
 	
 
 	// Initiate item sort
-    itemsSort: function () {
-        this.initSortKeywordMap();
-        this.parseItems();
-        this.injectSortSection();
-    },
-	
-    sortKeywordMap: {},
-	
-    initSortKeywordMap: function () {
-		
-		let locale = gca_data.section.get("overview", 'stats_locale', null);
-		
-		if(locale){
-			// Damage
-			let damage = locale.damage.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[damage.toLowerCase()] = {
-				name: damage,
-				display: locale.damage,
-				pattern: /(:?\d+ - )*-?(\d+)/, // match weapons and other items
-			}
-			// Armour
-			let armour = locale.armour.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[armour] = {
-				name: armour,
-				display: locale.armour,
-				pattern: /-?\d+/,
+	itemsSort : {
+		init : function() {
+			this.initKeywordMap();
+			this.parseItems();
+			this.injectSection();
+		},
+
+		initKeywordMap: function () {
+			this.keywordMap = {};
+			let locale = gca_data.section.get("overview", 'stats_locale', null);
+			if (locale) {
+				// Damage
+				let damage = locale.damage.split(' ')[0].toLowerCase();
+				this.keywordMap[damage.toLowerCase()] = {
+					name: damage,
+					display: locale.damage,
+					pattern: /(:?\d+ - )*-?(\d+)/, // match weapons and other items
+				};
+				// Armour
+				let armour = locale.armour.split(' ')[0].toLowerCase();
+				this.keywordMap[armour] = {
+					name: armour,
+					display: locale.armour,
+					pattern: /-?\d+/,
+				};
+				// strength
+				let strength = locale.strength.split(' ')[0].toLowerCase();
+				this.keywordMap[strength] = {
+					name: strength,
+					display: locale.strength,
+					pattern: /-?\d+\)*$/,
+				};
+				// Agility
+				let agility = locale.agility.split(' ')[0].toLowerCase();
+				this.keywordMap[agility] = {
+					name: agility,
+					display: locale.agility,
+					pattern: /-?\d+\)*$/,
+				};
+				// dexterity
+				let dexterity = locale.dexterity.split(' ')[0].toLowerCase();
+				this.keywordMap[dexterity] = {
+					name: dexterity,
+					display: locale.dexterity,
+					pattern: /-?\d+\)*$/,
+				};
+				// constitution
+				let constitution = locale.constitution.split(' ')[0].toLowerCase();
+				this.keywordMap[constitution] = {
+					name: constitution,
+					display: locale.constitution,
+					pattern: /-?\d+\)*$/,
+				};
+				// charisma
+				let charisma = locale.charisma.split(' ')[0].toLowerCase();
+				this.keywordMap[charisma] = {
+					name: charisma,
+					display: locale.charisma,
+					pattern: /-?\d+\)*$/,
+				};
+				// intelligence
+				let intelligence = locale.intelligence.split(' ')[0].toLowerCase();
+				this.keywordMap[intelligence] = {
+					name: intelligence,
+					display: locale.intelligence,
+					pattern: /-?\d+\)*$/,
+				};
+				// healing
+				let healing = locale.healing.split(' ')[0].toLowerCase();
+				this.keywordMap[healing] = {
+					name: healing,
+					display: locale.healing,
+					pattern: /-?\d+/,
+				};
+				// life_points
+				let life_points = locale.life_points.split(' ')[0].toLowerCase();
+				this.keywordMap[life_points] = {
+					name: life_points,
+					display: locale.life_points,
+					pattern: /-?\d+/,
+				};
+				// threat
+				let threat = locale.threat.split(' ')[0].toLowerCase();
+				this.keywordMap[threat] = {
+					name: threat,
+					display: locale.threat,
+					pattern: /-?\d+/,
+				};
+			} else {
+				locale.level = jQuery('#icon_level').data().tooltip[0][0][0];
 			}
 			
-			// strength
-			let strength = locale.strength.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[strength] = {
-				name: strength,
-				display: locale.strength,
-				pattern: /-?\d+\)*$/,
+			if (locale.level) {
+				let level = locale.level.split(' ')[0].toLowerCase();
+				this.keywordMap[level] = {
+					name: level,
+					display: locale.level,
+					pattern: /\d+/,
+				};
 			}
-			// Agility
-			let agility = locale.agility.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[agility] = {
-				name: agility,
-				display: locale.agility,
-				pattern: /-?\d+\)*$/,
+		},
+	
+		// Parse tooltip of each auction item and set parsed data to item's container
+		parseItems: function () {
+			let that = this;
+			jQuery("#auction_table td:has(form)").each(function () {
+				let itemElement = jQuery(this).find(".ui-draggable").first();
+				let itemData = that.parseItemData(itemElement);
+				let frm = jQuery(this).find("form").first();
+				jQuery.each(itemData, function (key, val) {
+					jQuery(frm).attr("data-" + key, val);
+				});
+			});
+		},
+		parseItemData: function (itemElement) {
+			let itemData = {};
+			let props = jQuery(itemElement).data().tooltip[0];
+			itemData["name"] = props[0][0];
+			for (let i = 1; i < props.length; i++) {
+				let prop = props[i][0];
+				// if prop has durability bonus, it's an array so we get first element
+				if (Array.isArray(prop)) {
+					prop = prop[0];
+				}
+
+				//let propName = decodeURIComponent(JSON.parse("\""+prop.split(" ")[0]+"\"")).toLowerCase();
+				let propName = prop.split(" ")[0].toLowerCase();
+				let kw = this.keywordMap[propName];
+				//console.log(propName+" -> "+kw);
+				if (kw) {
+					let match = prop.match(kw.pattern);
+					if (match) {
+						let val = match[match.length - 1];
+						let floatVal = parseFloat(val);
+						if (isNaN(floatVal)) {
+							itemData[kw.name] = val;
+						}
+						else {
+							itemData[kw.name] = floatVal;
+						}
+					}
+				}
 			}
-			// dexterity
-			let dexterity = locale.dexterity.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[dexterity] = {
-				name: dexterity,
-				display: locale.dexterity,
-				pattern: /-?\d+\)*$/,
-			}
-			// constitution
-			let constitution = locale.constitution.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[constitution] = {
-				name: constitution,
-				display: locale.constitution,
-				pattern: /-?\d+\)*$/,
-			}
-			// charisma
-			let charisma = locale.charisma.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[charisma] = {
-				name: charisma,
-				display: locale.charisma,
-				pattern: /-?\d+\)*$/,
-			}
-			// intelligence
-			let intelligence = locale.intelligence.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[intelligence] = {
-				name: intelligence,
-				display: locale.intelligence,
-				pattern: /-?\d+\)*$/,
-			}
-			// healing
-			let healing = locale.healing.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[healing] = {
-				name: healing,
-				display: locale.healing,
-				pattern: /-?\d+/,
-			}
-			// life_points
-			let life_points = locale.life_points.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[life_points] = {
-				name: life_points,
-				display: locale.life_points,
-				pattern: /-?\d+/,
-			}
-			// threat
-			let threat = locale.threat.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[threat] = {
-				name: threat,
-				display: locale.threat,
-				pattern: /-?\d+/,
-			}
-		}else{
-			locale.level = jQuery('#icon_level').data().tooltip[0][0][0];
-		}
+
+			// if item doesnt have sort property, add that property with value 0
+			jQuery.each(this.keywordMap, function (key, val) {
+				if (itemData[key] == undefined) {
+					itemData[key] = 0.0;
+				}
+			});
+
+			return itemData;
+		},
+
+		// Create sort menu / options
+		injectSection: function () {
+			let sectionHeader = this.createSectionHeader();
+			let section = this.createSection();
+			let filterSection = jQuery("form[name='filterForm']").closest("section");
+
+			jQuery(filterSection).after(jQuery(section));
+			jQuery(filterSection).after(jQuery(sectionHeader));
+		},
 		
-		if( locale.level ){
-			let level = locale.level.split(' ')[0].toLowerCase();
-			this.sortKeywordMap[level] = {
-				name: level,
-				display: locale.level,
-				pattern: /\d+/,
-			}
+		createSectionHeader: function () {
+			let h2 = document.createElement("h2");
+			h2.className = "section-header";
+			h2.id = "gca-auction-sort-section-header";
+			h2.style.cursor = "pointer";
+			h2.textContent = gca_locale.get("auction", "sort");
+
+			h2.addEventListener("click", function () {
+				jQuery("#gca-auction-sort-section").toggle();
+			}, false);
+			return h2;
+		},
+		
+		createSection: function () {
+			let button, select, tr, td;
+			let section = document.createElement("section");
+			section.id = "gca-auction-sort-section";
+			section.style.display = "block";
+
+			// create form
+			let form = document.createElement("form");
+
+			let table = document.createElement("table");
+			table.border = "0";
+			table.style.textAlign = "center";
+			table.style.marginLeft = "auto";
+			table.style.marginRight = "auto";
+			let tbody = document.createElement("tbody");
+
+			// sortBy select
+			tr = document.createElement("tr");
+			td = document.createElement("td");
+			td.style.width = "50%";
+			td.style.textAlign = "center";
+			td.textContent = gca_locale.get("auction", "sort_by");
+			tr.appendChild(td);
+
+			td = document.createElement("td");
+			select = document.createElement("select");
+			select.id = "gca-auction-sort-select";
+
+			// add sort keywords to select
+			jQuery.each(this.keywordMap, function (key, val) {
+				let option = document.createElement("option");
+				option.text = val.display;
+				option.value = val.name;
+				select.add(option);
+			});
+
+			td.appendChild(select);
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
+			// order select
+			tr = document.createElement("tr");
+			td = document.createElement("td");
+			td.style.width = "50%";
+			td.style.textAlign = "center";
+			td.textContent = gca_locale.get("auction", "sort_order");
+			tr.appendChild(td);
+
+			td = document.createElement("td");
+			select = document.createElement("select");
+			select.id = "gca-auction-sort-order-select";
+			let option = document.createElement("option");
+			option.text = gca_locale.get("auction", "desc");
+			option.value = "desc";
+			select.add(option);
+			option = document.createElement("option");
+			option.text = gca_locale.get("auction", "asc");
+			option.value = "asc";
+			select.add(option);
+
+			td.appendChild(select);
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
+			// sort button
+			tr = document.createElement("tr");
+			td = document.createElement("td");
+			td.colSpan = "2";
+			td.style.textAlign = "center";
+
+			button = document.createElement("button");
+			button.classList.add("awesome-button");
+			button.classList.add("gca-auction-sort-button");
+			button.textContent = gca_locale.get("auction", "sort");
+			button.type = "button";
+			button.addEventListener('click', () => {
+				let propName = document.getElementById("gca-auction-sort-select").value;
+				let order = document.getElementById("gca-auction-sort-order-select").value;
+				this.sortItems(propName, order);
+				this.annotateKeywordOnItemTooltips(propName);
+			}, false);
+
+			td.appendChild(button);
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
+			table.appendChild(tbody);
+			form.appendChild(table);
+			section.appendChild(form);
+
+			return section;
+		},
+		
+		sortItems: function (propName, order) {
+			// Get item containers
+			let tds = jQuery('#auction_table td:has(form)');
+			// Get item info
+			let items = [];
+			tds.each((index, item) => {
+				let val = jQuery(item).find('form').first().data()[propName];
+				items.push({
+					value : val,
+					nodes : [...item.childNodes]
+				});
+				let text = jQuery(item).find('.gca-auction-sort-value');
+				if (!text.length) {
+					let div = document.createElement('div');
+					div.className = 'gca-auction-sort-value';
+					div.textContent = this.keywordMap[propName].display + ' ' + val;
+					jQuery(item).find('.auction_item_div>div').append(div);
+				}
+				else {
+					text[0].textContent = this.keywordMap[propName].display + ' ' + val;
+				}
+			});
+			// Sort items
+			items = items.sort(function (a, b) {
+				if (a.value == b.value) {
+					return 0;
+				}
+				if (order == 'asc') {
+					return a.value > b.value ? 1 : -1;
+				}
+				else {
+					return a.value > b.value ? -1 : 1;
+				}
+			});
+			// Place sorted items in containers
+			tds.each(function (index, td) {
+				let item = items[index];
+				for (var i = 0; i < item.nodes.length; i++) {
+					td.appendChild(item.nodes[i]);
+				}
+			});
+		},
+
+		annotateKeywordOnItemTooltips: function (keyword) {
+			keyword = keyword.toLowerCase();
+
+			jQuery("#auction_table td form .ui-draggable").each(function () {
+				let tooltips = jQuery(this).data().tooltip;
+
+				for (let i = 0; i < tooltips.length; i++) {
+					let tooltip = tooltips[i];
+
+					for (let j = 0; j < tooltip.length; j++) {
+						let prop = tooltip[j];
+
+						// if prop has durability bonus, it's an array so we get first element
+						if (Array.isArray(prop[0])) {
+							let propName = prop[0][0].split(" ")[0].toLowerCase();
+							if (propName == keyword && prop[1][0] !== undefined) {
+								prop[1][0] = "orange";
+							}
+							else if (prop[1][0] == "orange") {
+								prop[1][0] = "#DDD";
+							}
+						}
+						else {
+							let propName = prop[0].split(" ")[0].toLowerCase();
+							if (propName == keyword && prop[1] !== undefined) {
+								prop[1] = "orange";
+							}
+							else if (prop[1] == "orange") {
+								prop[1] = "#DDD";
+							}
+						}
+					}
+				}
+
+				jQuery(this).data("tooltip", tooltips);
+			});
 		}
-    },
-	
-    // Parse tooltip of each auction item and set parsed data to item's container
-    parseItems: function () {
-        jQuery("#auction_table td:has(form)").each(function () {
-            let itemElement = jQuery(this).find(".ui-draggable").first();
-            let itemData = gca_auction.parseItemData(itemElement);
-            let frm = jQuery(this).find("form").first();
-            jQuery.each(itemData, function (key, val) {
-                jQuery(frm).attr("data-" + key, val);
-            });
-        });
-    },
-	
-    parseItemData: function (itemElement) {
-        let itemData = {};
-        let props = jQuery(itemElement).data().tooltip[0];
-        itemData["name"] = props[0][0];
-        for (let i = 1; i < props.length; i++) {
-            let prop = props[i][0];
-            // if prop has durability bonus, it's an array so we get first element
-            if (Array.isArray(prop)) {
-                prop = prop[0];
-            }
-
-            //let propName = decodeURIComponent(JSON.parse("\""+prop.split(" ")[0]+"\"")).toLowerCase();
-            let propName = prop.split(" ")[0].toLowerCase();
-            let kw = this.sortKeywordMap[propName];
-			//console.log(propName+" -> "+kw);
-            if (kw) {
-                let match = prop.match(kw.pattern);
-                if (match) {
-                    let val = match[match.length - 1];
-                    let floatVal = parseFloat(val);
-                    if (isNaN(floatVal)) {
-                        itemData[kw.name] = val;
-                    }
-                    else {
-                        itemData[kw.name] = floatVal;
-                    }
-                }
-            }
-        }
-
-        // if item doesnt have sort property, add that property with value 0
-        jQuery.each(this.sortKeywordMap, function (key, val) {
-            if (itemData[key] == undefined) {
-                itemData[key] = 0.0;
-            }
-        });
-
-        return itemData;
-    },
-	
-	// Create sort menu / options
-    injectSortSection: function () {
-        let sectionHeader = this.createSortSectionHeader();
-        let section = this.createSortSection();
-        let filterSection = jQuery("form[name='filterForm']").closest("section");
-
-        jQuery(filterSection).after(jQuery(section));
-        jQuery(filterSection).after(jQuery(sectionHeader));
-    },
-	
-    createSortSectionHeader: function () {
-        let h2 = document.createElement("h2");
-        h2.className = "section-header";
-        h2.id = "gca-auction-sort-section-header";
-        h2.style.cursor = "pointer";
-        h2.textContent = gca_locale.get("auction", "sort");;
-
-        h2.addEventListener("click", function () {
-            jQuery("#gca-auction-sort-section").toggle();
-        });
-        return h2;
-    },
-	
-    createSortSection: function () {
-        let button, select, tr, td;
-        let section = document.createElement("section");
-        section.id = "gca-auction-sort-section";
-        section.style.display = "block";
-
-        // create form
-        let form = document.createElement("form");
-
-        let table = document.createElement("table");
-        table.border = "0";
-        table.style.textAlign = "center";
-        table.style.marginLeft = "auto";
-        table.style.marginRight = "auto";
-        let tbody = document.createElement("tbody");
-
-        // sortBy select
-        tr = document.createElement("tr");
-        td = document.createElement("td");
-        td.style.width = "50%";
-        td.style.textAlign = "center";
-        td.textContent = gca_locale.get("auction", "sort_by");
-        tr.appendChild(td);
-
-        td = document.createElement("td");
-        select = document.createElement("select");
-        select.id = "gca-auction-sort-select";
-
-        // add sort keywords to select
-        jQuery.each(this.sortKeywordMap, function (key, val) {
-            let option = document.createElement("option");
-            option.text = val.display;
-            option.value = val.name;
-            select.add(option);
-        });
-
-        td.appendChild(select);
-        tr.appendChild(td);
-        tbody.appendChild(tr);
-
-        // order select
-        tr = document.createElement("tr");
-        td = document.createElement("td");
-        td.style.width = "50%";
-        td.style.textAlign = "center";
-        td.textContent = gca_locale.get("auction", "sort_order");
-        tr.appendChild(td);
-
-        td = document.createElement("td");
-        select = document.createElement("select");
-        select.id = "gca-auction-sort-order-select";
-        option = document.createElement("option");
-        option.text = gca_locale.get("auction", "desc");
-        option.value = "desc";
-        select.add(option);
-        option = document.createElement("option");
-        option.text = gca_locale.get("auction", "asc");
-        option.value = "asc";
-        select.add(option);
-
-        td.appendChild(select);
-        tr.appendChild(td);
-        tbody.appendChild(tr);
-
-        // sort button
-        tr = document.createElement("tr");
-        td = document.createElement("td");
-        td.colSpan = "2";
-        td.style.textAlign = "center";
-
-        button = document.createElement("button");
-        button.classList.add("awesome-button");
-        button.classList.add("gca-auction-sort-button");
-        button.textContent = gca_locale.get("auction", "sort");
-        button.type = "button";
-        button.addEventListener('click', function () {
-            let propName = document.getElementById("gca-auction-sort-select").value;
-            let order = document.getElementById("gca-auction-sort-order-select").value;
-            gca_auction.sortItems(propName, order);
-            gca_auction.annotateKeywordOnItemTooltips(propName);
-
-            // register bid events
-            (gca_options.bool("auction", "multi_bids") &&
-                gca_auction.multiBids());
-        }, false);
-
-        td.appendChild(button);
-        tr.appendChild(td);
-        tbody.appendChild(tr);
-
-        table.appendChild(tbody);
-        form.appendChild(table);
-        section.appendChild(form);
-
-        return section;
-    },
-	
-    sortItems: function (propName, order) {
-        // clone and sort items
-        let clonedTds = jQuery("#auction_table td:has(form)").clone();
-        let clonedSortedTds = jQuery(clonedTds).sort(function (a, b) {
-            let aVal = jQuery(a).find("form").first().data()[propName];
-            let bVal = jQuery(b).find("form").first().data()[propName];
-
-            if (aVal == bVal) {
-                return 0;
-            }
-
-            if (order == "asc") {
-                return aVal > bVal ? 1 : -1;
-            }
-            else {
-                return aVal > bVal ? -1 : 1;
-            }
-        });
-
-        // sort ui
-        jQuery('#auction_table td:has(form)').each(function (index, item) {
-            let html = jQuery(clonedSortedTds[index]).html();
-            jQuery(item).html(html);
-        });
-    },
-
-    annotateKeywordOnItemTooltips: function (keyword) {
-        keyword = keyword.toLowerCase();
-
-        jQuery("#auction_table td form .ui-draggable").each(function () {
-            let tooltips = jQuery(this).data().tooltip;
-
-            for (let i = 0; i < tooltips.length; i++) {
-                let tooltip = tooltips[i];
-
-                for (let j = 0; j < tooltip.length; j++) {
-                    let prop = tooltip[j];
-
-                    // if prop has durability bonus, it's an array so we get first element
-                    if (Array.isArray(prop[0])) {
-                        let propName = prop[0][0].split(" ")[0].toLowerCase();
-                        if (propName == keyword && prop[1][0] !== undefined) {
-                            prop[1][0] = "orange";
-                        }
-                    }
-                    else {
-                        let propName = prop[0].split(" ")[0].toLowerCase();
-                        if (propName == keyword && prop[1] !== undefined) {
-                            prop[1] = "orange";
-                        }
-                    }
-                }
-            }
-
-            jQuery(this).data("tooltip", tooltips);
-        });
-    }
+	}
 
 };
 

@@ -1125,6 +1125,9 @@
 		.gca_rtl .gca_auction .gca-x3columns table{margin: 0px -265px 0px 0px;}
 		.gca_rtl .gca_auction .gca-x3columns .gca-x3columns-top{margin-left: auto;margin-right: -279px;}
 		.gca_rtl .gca_auction .gca-x3columns .gca-x3columns-bottom{margin-left: auto;margin-right: -279px;}
+		
+		/* Item Sort */
+		.gca-auction-sort-value {position: absolute;bottom: -98px;color: orange;text-align: right;font-size: 9px;overflow: hidden;width: 62px;text-shadow: rgb(0, 0, 0) 0px 0px 2px;}
 
 		
 	/* Arena

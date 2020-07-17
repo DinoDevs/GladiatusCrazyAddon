@@ -594,7 +594,9 @@ gca_options.data = {
 		// Show extra stats on items
 		"extra_item_stats" : true,
 		// Save auction last search
-		"save_last_state" : true
+		"save_last_state" : true,
+		// Show item sort functions
+		"item_sort_functions" : true
 	},
 
 	"events" : {
