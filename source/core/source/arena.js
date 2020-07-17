@@ -309,7 +309,7 @@ var gca_arena = {
 			this.cooldown(json.cooldown ? json.cooldown : false);
 			
 			// Create rankings header
-			if( json.level_list.length > 0){
+			if( json.level_list ){
 				this.rankings_table.style.display = "block";
 				let rankings_header = document.createElement("tr");
 				this.rankings_table.appendChild(rankings_header);
