@@ -403,7 +403,7 @@ var gca_arena = {
 					
 					td = document.createElement('td');
 					td.style.textAlign = 'center';
-					td.textContent = player.level >= 5 ? player.level : 'n/a' ;
+					td.textContent = player.level >= 1 ? player.level : 'n/a' ;
 					row.appendChild(td);
 					
 					td = document.createElement('td');
@@ -508,7 +508,7 @@ var gca_arena = {
 				
 				td = document.createElement('td');
 				td.style.textAlign = 'center';
-				td.textContent = player.level >= 5 ? player.level : 'n/a' ;
+				td.textContent = player.level >= 1 ? player.level : 'n/a' ;
 				row.appendChild(td);
 				
 				td = document.createElement('td');
