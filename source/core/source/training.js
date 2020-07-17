@@ -58,7 +58,7 @@ var gca_training = {
 		// Load Data
 		load : function(){
 			// Calculate base maximum
-			this.base_max = 5 * parseInt( document.getElementById("header_values_level").textContent, 10 );
+			this.base_max = Math.max( 5 * parseInt( document.getElementById("header_values_level").textContent, 10 ), 200);
 			
 			// For each attribute
 			for(let id in this.skills){

@@ -9,12 +9,12 @@
 - **Arena**
 	- [x] Global Arena improvements (show enemy levels and top 3 players every 5 levels)
 
-- **Arena**
+- **Auction**
 	- [x] Annotate sorted stat on item tooltips after sorting the auction items by [mehmetkaradeniz](https://github.com/mehmetkaradeniz) (Issue #205)
 
 ### BUG FIXES
-- **Global**
-	- [x] TBA
+- **Training**
+	- [x] Fix training for players under 40 lvl (base stats are capped to 200 not 5*lvl)
 
 
 ### TRANSLATIONS
