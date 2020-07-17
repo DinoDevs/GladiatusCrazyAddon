@@ -710,6 +710,7 @@ var gca_auction = {
             let propName = document.getElementById("gca-auction-sort-select").value;
             let order = document.getElementById("gca-auction-sort-order-select").value;
             gca_auction.sortItems(propName, order);
+            gca_auction.annotateKeywordOnItemTooltips(propName);
 
             // register bid events
             (gca_options.bool("auction", "multi_bids") &&
@@ -751,8 +752,6 @@ var gca_auction = {
             let html = jQuery(clonedSortedTds[index]).html();
             jQuery(item).html(html);
         });
-        
-        this.annotateKeywordOnItemTooltips(propName);
     },
 
     annotateKeywordOnItemTooltips: function (keyword) {
