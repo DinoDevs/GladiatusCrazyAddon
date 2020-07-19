@@ -24,7 +24,7 @@
 
 We suggest you to download a *stable release*. Alpha and Beta releases are for developers (unless you want to check out the latest features and give us some feedback).
 
-### Latest public release v4.3.1 <sub><sup>(recommended)</sup></sub>
+### Latest public release v4.3.3 <sub><sup>(recommended)</sup></sub>
 
 <sub>Fast install from Google web store & Firefox addons' page :</sub>
 
