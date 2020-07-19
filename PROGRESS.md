@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.3 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-3-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-2-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-1-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-2-blue.svg?style=flat-square)
 
@@ -11,7 +11,7 @@
 
 - **Auction**
 	- [x] Annotate sorted stat on item tooltips after sorting the auction items by [mehmetkaradeniz](https://github.com/mehmetkaradeniz) (Issue #205)
-	- [x] Sort items based on stats improvements and settings (Issue #205)
+
 
 ### BUG FIXES
 - **Training**
