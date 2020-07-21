@@ -89,7 +89,7 @@ gca_languages['cs'] = {
 			// Pray icon
 			pray_start : "Stiskněte pro začátek modlitby",
 			pray_stop : "Stisknutím tlačítka se přestanete modlit",
-			heal : "léčit",
+			heal : "Léčit",
 			
 			// Notifications
 			notification_guild_application : "Nová gildovní přihláška!",
