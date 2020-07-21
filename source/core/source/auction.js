@@ -665,12 +665,12 @@ var gca_auction = {
 				select.add(option);
 			});
 
-            defVal = select.options[0].value;
-            selectVal = gca_data.section.get("cache", "auction-sort-value", defVal);
-            jQuery(select).val(selectVal);
-            select.addEventListener("change", function(){
-			    gca_data.section.set("cache", "auction-sort-value", this.value);
-            });
+			defVal = select.options[0].value;
+			selectVal = gca_data.section.get("cache", "auction-sort-value", defVal);
+			jQuery(select).val(selectVal);
+			select.addEventListener("change", function(){
+				gca_data.section.set("cache", "auction-sort-value", this.value);
+			});
 
 			td.appendChild(select);
 			tr.appendChild(td);
@@ -696,12 +696,12 @@ var gca_auction = {
 			option.value = "asc";
 			select.add(option);
 
-            defVal = select.options[0].value;
-            selectVal = gca_data.section.get("cache", "auction-sort-order", defVal);
-            jQuery(select).val(selectVal);
-            select.addEventListener("change", function(){
-			    gca_data.section.set("cache", "auction-sort-order", this.value);
-            });
+			defVal = select.options[0].value;
+			selectVal = gca_data.section.get("cache", "auction-sort-order", defVal);
+			jQuery(select).val(selectVal);
+			select.addEventListener("change", function(){
+				gca_data.section.set("cache", "auction-sort-order", this.value);
+			});
 
 			td.appendChild(select);
 			tr.appendChild(td);
