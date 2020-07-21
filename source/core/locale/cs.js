@@ -225,7 +225,7 @@ gca_languages['cs'] = {
 		
 		// Forge
 		forge : {
-			forge_ended : "Je potřeba kovárna!",
+			forge_ended : "Kování skončilo!",
 			recraft_item : "Znovu vykovat předmět",
 			show_hide_doll : "Zobrazit/Skrýt postavy hráče"
 		},
