@@ -129,7 +129,7 @@ gca_languages['cs'] = {
 		
 		// Pantheon section
 		pantheon : {
-			mysterybox_open_all : "Otevřete vše",
+			mysterybox_open_all : "Otevřít vše",
 			mysterybox_open_stop : "Stop",
 			mysterybox_open_done : "Hotovo!"
 		},
