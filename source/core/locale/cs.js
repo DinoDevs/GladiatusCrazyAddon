@@ -355,7 +355,7 @@ gca_languages['cs'] = {
 			category_messages$get_guild_battle_info : "Automaticky načíst info z gildovní bitvy",
 			category_messages$show_sidebar : "Zobrazit postranní panel zpráv",
 			category_messages$fix_header_links : "Opravit chybu odkazu pro nadpis zpráv při kliknutí",
-			category_messages$new_message_focus : "Nastavit pozadí",
+			category_messages$new_message_focus : "Okamžité psaní zprávy (ignorovat předmět)",
 			category_messages$new_message_friend_list : "Zobrazit seznam přátel ve zprávách",
 			// Settings - Packages
 			category_packages$filters_layout : "Vylepšit rozložení filtrů",
