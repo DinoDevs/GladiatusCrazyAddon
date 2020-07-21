@@ -630,7 +630,7 @@ var gca_auction = {
 		},
 		
 		createSection: function () {
-			let button, select, tr, td;
+			let button, select, tr, td, defVal, selectVal;
 			let section = document.createElement("section");
 			section.id = "gca-auction-sort-section";
 			section.style.display = "block";
@@ -665,6 +665,13 @@ var gca_auction = {
 				select.add(option);
 			});
 
+            defVal = select.options[0].value;
+            selectVal = gca_data.section.get("cache", "auction-sort-value", defVal);
+            jQuery(select).val(selectVal);
+            select.addEventListener("change", function(){
+			    gca_data.section.set("cache", "auction-sort-value", this.value);
+            });
+
 			td.appendChild(select);
 			tr.appendChild(td);
 			tbody.appendChild(tr);
@@ -688,6 +695,13 @@ var gca_auction = {
 			option.text = gca_locale.get("auction", "asc");
 			option.value = "asc";
 			select.add(option);
+
+            defVal = select.options[0].value;
+            selectVal = gca_data.section.get("cache", "auction-sort-order", defVal);
+            jQuery(select).val(selectVal);
+            select.addEventListener("change", function(){
+			    gca_data.section.set("cache", "auction-sort-order", this.value);
+            });
 
 			td.appendChild(select);
 			tr.appendChild(td);
