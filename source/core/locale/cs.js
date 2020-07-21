@@ -23,7 +23,7 @@ gca_languages['cs'] = {
 			days : "dny",
 			minutes : "minut",
 			hours : "Hod.",
-			no_data : "Nejsou vyplněny žádná hodnoty",
+			no_data : "Nejsou vyplněny žádné hodnoty",
 			
 			// Buttons
 			confirm : "Potvrdit",
@@ -38,7 +38,7 @@ gca_languages['cs'] = {
 		// Global
 		global : {
 			// Use a life potion
-			life_potion_use : "Použijte lektvar života",
+			life_potion_use : "Použít lektvar života",
 			life_potion_used : "Byl použit lektvar života",
 			life_potion_left : "Nyní máš {{number}} léčivých lektvar(ů)",
 			
@@ -80,7 +80,7 @@ gca_languages['cs'] = {
 			donate_gold_success : "Tvé zlato bylo darováno",
 			donate_gold_failed : "Darování tvého zlata SELHALO",
 			donate_gold_no_gold : "Nemáš žádné zlato",
-			donate_gold_all_gold : "Věnovat všechno zlato",
+			donate_gold_all_gold : "Darovat všechno zlato",
 			
 			// Quest timer
 			quest_full : "Plné",
@@ -88,11 +88,11 @@ gca_languages['cs'] = {
 			
 			// Pray icon
 			pray_start : "Stiskněte pro začátek modlitby",
-			pray_stop : "Stisknutím tlačítka přestanete se modlit",
-			heal : "vyléčit",
+			pray_stop : "Stisknutím tlačítka se přestanete modlit",
+			heal : "léčit",
 			
 			// Notifications
-			notification_guild_application : "Nová gildovní aplikace",
+			notification_guild_application : "Nová gildovní přihláška!",
 			notification_guild_attack_ready : "Čekání na gildovní bitvu je u konce!",
 			low_durability_items : "Existují {{number}} položky s trvanlivostí pod {{percent}}%",
 			item_worth_rubies : "Předmět s hodnotou rubínů!",
@@ -137,7 +137,7 @@ gca_languages['cs'] = {
 		// Guild section
 		guild : {
 			// Guild Bank
-			bank_all_gold : "Přidej všechno zlato",
+			bank_all_gold : "Zvolit všechno zlato",
 			
 			// Library
 			library_per_point_cost : "Cena za bod schopnosti",
@@ -232,7 +232,7 @@ gca_languages['cs'] = {
 		
 				// Merchants
 		merchants : {
-			search_item_in_merchants : "Hledat předmět u obchodníků",
+			search_item_in_merchants : "Hledat předmět v obchodě",
 			no_such_item : "Předmět nenalezen."
 		},
 		
@@ -259,7 +259,7 @@ gca_languages['cs'] = {
 		
 		// Cross-Browser Sync
 		sync : {
-			are_you_sure : "Jsi si jistý že se chceš přihlásit jako {{name}}?",
+			are_you_sure : "Jsi si jistý, že se chceš přihlásit jako {{name}}?",
 			gladiatus_crazy_addon_dependency : "Musíš mít Gladiatus Crazy Addon nainstalovaný v dalším prohlížeči.",
 			how_to_sync_info : "Zkopíruj adresu url a vlož jí do dalšího prohlížeče,nebo naskenuj QR kód."
 		},
@@ -477,7 +477,7 @@ gca_languages['cs'] = {
 			missing_translations : "Chybějící překlady",
 			
 			// Notifications
-			notification_reload : "Znovu načíst stránku pro projevení změn"
+			notification_reload : "Znovu načtěte stránku pro provedení změn"
 		}
 	}
 }
