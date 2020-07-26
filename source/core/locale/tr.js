@@ -90,9 +90,9 @@ gca_languages["tr"] = {
 			drop_item_see_materials_repair : "Gerekli Tamir Malzemesini Görmek İçin Eşyayı Üzerine Sürükleyin",
 			workbench_6th_slot_empty : "Tezgahın 6. Yuvasının Boş Olması Gerekir",
 			more_player_info : "Ekstra kullanıcı bilgileri",
-			can_use_max_item_level : "Bu kullanıcı maksimmum {{max}} seviye itemleri kullanabilir.",
+			can_use_max_item_level : "Bu kullanıcı ana karakterinde maksimum {{max}} seviye itemleri kullanabilir.",
 			can_see_market_max_item_level : "Bu kullanıcı markette maksimum {{max}} seviye itemleri görebilir.",
-			can_see_auction_item_levels : "Bu kullanıcı müzayede salonunda {{min}} ile {{max}} seviye arası itemleri görebilir.."
+			can_see_auction_item_levels : "Bu kullanıcı müzayede salonunda {{min}} ile {{max}} seviye arası itemleri görebilir."
 		},
 		pantheon : {
 			mysterybox_open_all : "Hepsini Aç",
