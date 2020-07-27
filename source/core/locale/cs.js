@@ -102,7 +102,7 @@ gca_languages['cs'] = {
 			gold_exp_data_today : "Posledních 24 hodin",
 			gold_exp_data_week : "Posledních 7 dní",
 			gold_exp_data_avg_day : "Průměrné denní hodnoty",
-			gold_exp_data_to_level_up : "počet zbývajících dnů do levelu",
+			gold_exp_data_to_level_up : "Počet zbývajících dnů do dalšího levelu",
 			gold_exp_data_package_tax : "Týdenní daň za ukádání do zásilek",
 			gold_exp_data_measurements : "Měření",
 			gold_exp_data_total_exp : "Celková zkušenost",
