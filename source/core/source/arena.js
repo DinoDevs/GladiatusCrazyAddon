@@ -317,7 +317,7 @@ var gca_arena = {
 				this.rankings_table.appendChild(rankings_header);
 				
 				let rankings_th = document.createElement("th");
-				rankings_th.textContent = this.info.locale_best.replace("5",json.level_list.length) + " (" + this.info.locale_level + " " + (Math.floor(this.level/5)*5+5) +"-"+ (Math.floor(this.level/5)*5) +")";
+				rankings_th.textContent = this.info.locale_best.replace("5",json.level_list.length) + " (" + this.info.locale_level + " " + (Math.floor(this.level/5)*5) +"-"+ (Math.floor(this.level/5)*5+5) +")";
 				rankings_th.width = "100%";
 				rankings_th.style.textAlign = 'center';
 				rankings_th.setAttribute('colspan','6');
