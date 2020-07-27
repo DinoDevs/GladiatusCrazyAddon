@@ -477,15 +477,6 @@
 	.gca_rtl .mercenaries_fight_type{right:10px;left:auto;}
 	.gca_rtl .merc_back{margin-right: 228px;}
 
-	
-/* Travel */
-	.menue_news_disable{background: url('icons/travel-icons.gif') 0px 0px no-repeat!important;cursor:default;}
-	.menue_news_disable:hover{background: url('icons/travel-icons.gif') 0px 0px no-repeat!important;}
-	.menue_reports_disable{background: url('icons/travel-icons.gif') -42px 0px no-repeat!important;cursor:default;}
-	.menue_reports_disable:hover{background: url('icons/travel-icons.gif') -42px 0px no-repeat!important;}
-	.menue_packages_disable{background: url('icons/travel-icons.gif') -84px 0px no-repeat!important;cursor:default;}
-	.menue_packages_disable:hover{background: url('icons/travel-icons.gif') -84px 0px no-repeat!important;}
-
 /* More Player Images */
 	.more_profile_images_from_photobucket{width: 120px;margin: 3px;cursor:pointer;}
 
@@ -581,6 +572,14 @@
 		/* Remove level on gold item in packages) */
 		.show-item-level [data-level][data-basis="14-1"]:before {content: "";line-height: 9px;}
 		
+		
+		/* Traveling */
+		.gca-traveling .menue_news, .gca-traveling .menue_news_highlight{background: url('icons/travel-icons.gif') 0px 0px no-repeat!important;cursor:default;}
+		.gca-traveling .menue_news:hover, .gca-traveling .menue_news_highlight:hover{background: url('icons/travel-icons.gif') 0px 0px no-repeat!important;}
+		.gca-traveling .menue_reports, .gca-traveling .menue_reports_highlight{background: url('icons/travel-icons.gif') -42px 0px no-repeat!important;cursor:default;}
+		.gca-traveling .menue_reports:hover, .gca-traveling .menue_reports_highlight:hover{background: url('icons/travel-icons.gif') -42px 0px no-repeat!important;}
+		.gca-traveling .menue_packages, .gca-traveling .menue_packages_highlight{background: url('icons/travel-icons.gif') -84px 0px no-repeat!important;cursor:default;}
+		.gca-traveling .menue_packages:hover, .gca-traveling .menue_packages_highlight:hover{background: url('icons/travel-icons.gif') -84px 0px no-repeat!important;}
 
 
 		/* Notifications
