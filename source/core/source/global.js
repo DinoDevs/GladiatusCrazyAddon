@@ -76,6 +76,11 @@ var gca_global = {
 		(gca_options.bool("global","shortcuts_bar") &&
 			this.display.shortcuts_bar.create());
 
+		
+		// Display auction status
+		(this.isTraveling && 
+			this.display.traveling_style_fixes());
+
 		// Display auction status
 		(!this.isTraveling && 
 			this.display.auction_status_bar.create());
@@ -364,6 +369,12 @@ var gca_global = {
 			wrapper.appendChild(document.createTextNode(" | "));
 			// Insert link
 			wrapper.appendChild(link);
+		},
+		
+		// Traveling
+		traveling_style_fixes : function () {
+			let header = document.getElementById('header_game');
+			header.className += ' gca-traveling';
 		},
 
 		// Points recover timers
