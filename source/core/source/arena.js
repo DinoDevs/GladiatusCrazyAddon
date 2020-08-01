@@ -184,6 +184,7 @@ var gca_arena = {
 			rankings_table.width = "100%";
 			rankings_table.style.display = "none";
 			rankings_table.style.marginBottom = '15px';
+			rankings_table.style.wordBreak = 'break-word';
 			box.appendChild(rankings_table);
 			this.rankings_table = rankings_table;
 			
@@ -191,6 +192,7 @@ var gca_arena = {
 			table.width = "100%";
 			table.style.border = "0px";
 			table.style.marginBottom = '15px';
+			table.style.wordBreak = 'break-word';
 			box.appendChild(table);
 			this.table = table;
 			
