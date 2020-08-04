@@ -562,7 +562,7 @@ var gca_auction = {
 				let itemData = that.parseItemData(itemElement);
 				let frm = jQuery(this).find("form").first();
 				jQuery.each(itemData, function (key, val) {
-					jQuery(frm).attr("data-" + key, val);
+					jQuery(frm)[0].dataset["item_" + key] = val;
 				});
 			});
 		},
@@ -742,7 +742,7 @@ var gca_auction = {
 			// Get item info
 			let items = [];
 			tds.each((index, item) => {
-				let val = jQuery(item).find('form').first().data()[propName];
+				let val = jQuery(item).find('form').first()[0].dataset['item_' + propName];
 				items.push({
 					value : val,
 					nodes : [...item.childNodes]
