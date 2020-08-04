@@ -42,7 +42,7 @@ var gca_forge = {
 			this.detectForgeEvents();
 
 			// Send all as package
-			this.sendAllCompletedSmeltsAsPackage();
+			this.sendAllCompletedSmelts();
 
 			// Don't allow items dropped from char
 			this.disallowCharItemsDrop();
@@ -999,7 +999,7 @@ var gca_forge = {
 	},
 
 	// Smeltery
-	sendAllCompletedSmeltsAsPackage : function() {
+	sendAllCompletedSmelts : function() {
 		// Get completed slots
 		let completed = [];
 		window.slotsData.forEach((slot, index) => {
@@ -1013,26 +1013,37 @@ var gca_forge = {
 
 		// Create get all button
 		let box = document.getElementById('forge_box').parentNode;
-		let btn = document.createElement('div');
-		btn.className = 'awesome-button';
-		btn.style.position = 'absolute';
-		btn.style.bottom = '-28px';
-		btn.style.left = '12px';
-		btn.style.right = '10px';
-		btn.textContent = completed.length + '× ' + document.getElementById('forge_lootbox').textContent;
-		box.appendChild(btn);
+		// Button to packages
+		let packets = document.createElement('div');
+		packets.className = 'awesome-button';
+		packets.style.position = 'absolute';
+		packets.style.bottom = '-28px';
+		packets.style.left = '12px';
+		packets.style.right = '10px';
+		packets.textContent = completed.length + '× ' + document.getElementById('forge_lootbox').textContent;
+		box.appendChild(packets);
+		// Button to horreum
+		let horreum = document.createElement('div');
+		horreum.className = 'awesome-button';
+		horreum.style.position = 'absolute';
+		horreum.style.bottom = '-60px';
+		horreum.style.left = '12px';
+		horreum.style.right = '10px';
+		horreum.textContent = completed.length + '× ' + document.getElementById('forge_horreum').textContent;
+		box.appendChild(horreum);
 
-		// Handle get all
-		btn.addEventListener('click', () => {
+		// Make requests
+		let makeGatherRequests = (type) => {
 			// Disable button
-			btn.disabled = 'disabled';
+			packets.disabled = 'disabled';
+			horreum.disabled = 'disabled';
 
 			// Make ajax requests
 			let pending = completed.length;
 			completed.forEach((slot) => {
 				jQuery.post('ajax.php', {
 					mod: 'forge',
-					submod: 'lootbox',
+					submod: type,
 					mode: 'smelting',
 					slot: slot,
 					a: new Date().getTime(),
@@ -1044,7 +1055,11 @@ var gca_forge = {
 					}
 				});
 			});
-		});
+		};
+
+		// Handle get all
+		packets.addEventListener('click', () => {makeGatherRequests('lootbox');});
+		horreum.addEventListener('click', () => {makeGatherRequests('storeSmelted');});
 	}
 };
 
