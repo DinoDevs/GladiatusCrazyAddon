@@ -110,6 +110,7 @@ var gca_forge = {
 		var atomic = null;
 		// Event handler
 		var handler = () => {
+			atomic = null;
 			let tab = window.activeForgeBox;
 			let info = window.slotsData[tab];
 			let item = {
@@ -137,14 +138,20 @@ var gca_forge = {
 					suffix : item.suffix
 				}
 			});
-		}
+		};
 		// Setup element observer
 		var observer = new MutationObserver((mutationsList) => {
 			for (let mutation of mutationsList) {
 				if (mutation.type == 'childList') {
 					// Fire only 1 time
-					clearTimeout(atomic);
-					atomic = setTimeout(handler, 1);
+					if (window.requestIdleCallback) {
+						cancelIdleCallback(atomic);
+						requestIdleCallback(handler, {timeout : 250});
+					}
+					else {
+						clearTimeout(atomic);
+						atomic = setTimeout(handler, 50);
+					}
 					break;
 				}
 			}
