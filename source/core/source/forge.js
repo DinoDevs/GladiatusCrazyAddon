@@ -681,6 +681,8 @@ var gca_forge = {
 			}
 			gca_notifications.success(gca_locale.get("global", "done"));
 			slot.item.el.addClass('ui-draggable').addClass('ui-droppable');
+			gca_tools.setTooltip(slot.item.el[0], JSON.stringify(slot.item.el.data('tooltip')));
+			gca_tools.item.shadow.add(slot.item.el[0]);
 			let wrapper = jQuery(slot.wrapper);
 			wrapper.data('containerNumber', slot.item.id);
 			wrapper.append(slot.item.el);
