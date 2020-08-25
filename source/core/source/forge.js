@@ -239,7 +239,7 @@ var gca_forge = {
 			let materials = document.getElementsByClassName("crafting_requirements")[0].getElementsByTagName("li");
 
 			// Check if already loaded
-			if (materials.length == 0 || materials[0].dataset.amountsLoaded) return;
+			if (materials.length == 0 || materials[0].dataset.amountsLoaded || !materials[0].getElementsByClassName("forge_setpoint").length) return;
 			materials[0].dataset.amountsLoaded = true;
 			
 			// Mark that the code has already run
