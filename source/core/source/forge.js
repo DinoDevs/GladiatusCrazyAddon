@@ -70,6 +70,9 @@ var gca_forge = {
 			// Show selected quality on dropdown
 			this.showSelectedQuality.inject();
 
+			// Get repaired item
+			this.getRepairedItem.init();
+
 			// Don't allow items dropped from char
 			this.disallowCharItemsDrop();
 		}
@@ -513,6 +516,173 @@ var gca_forge = {
 		for (let i = 0; i < options.length; i++) {
 			options[i].textContent = "("+levels[i]+"lvl) "+options[i].textContent;
 		}
+	},
+
+	getRepairedItem : {
+		init : function() {
+
+			// Create box
+			this.wrapper = document.createElement('div');
+			this.wrapper.style.position = 'relative';
+			this.wrapper.style.border = '1px solid #6c6c6c';
+			this.wrapper.style.margin = '10px 10px 10px 6px';
+			this.wrapper.style.padding = '10px';
+			this.wrapper.style.display = 'none';
+			document.getElementById('forge_box').parentNode.parentNode.appendChild(this.wrapper);
+
+			// Create fetch button
+			this.button = document.createElement('div');
+			this.button.className = "awesome-button";
+			this.button.textContent = document.getElementById('forge_lootbox').textContent;
+			this.button.addEventListener('click', () => {
+				this.getItem();
+			}, false);
+			this.wrapper.appendChild(this.button);
+
+			// Loading
+			this.loading = document.createElement('div');
+			this.loading.className = 'loading';
+			this.wrapper.appendChild(this.loading);
+
+			// Init slots
+			this.slots = [];
+			for (let i = 0; i < 6; i++) {
+				let wrapper = document.createElement('div');
+				wrapper.className = "magus_itembox";
+				wrapper.style.display = 'none';
+				wrapper.style.position = 'relative';
+				this.wrapper.appendChild(wrapper);
+				this.slots.push({
+					triggered : false,
+					active : false,
+					slot : i,
+					item : null,
+					wrapper : wrapper
+				});
+			}
+
+			// Detect changes
+			gca_tools.event.addListener('forge-infobox-update', (data) => {
+				this.uiUpdate(data);
+			});
+		},
+
+		uiUpdate : function(data, force = false) {
+			// If not finished item exit
+			if (!force && data.info.state != "finished-succeeded") {
+				this.wrapper.style.display = 'none';
+				return;
+			}
+			// Show wrapper
+			this.wrapper.style.display = 'block';
+			// If slot already active
+			let slot = this.slots[window.activeForgeBox];
+			if (slot && slot.active && !force) {
+				return;
+			}
+			// Update slots
+			for (let i = 0; i < 6; i++) {
+				this.slots[i].active = false;
+				this.slots[i].wrapper.style.display = 'none';
+			}
+			this.button.style.display = 'none';
+			this.loading.style.display = 'none';
+			// Update slot
+			slot.active = true;
+			if (slot.item) {
+				slot.wrapper.style.display = 'block';
+			}
+			else if (slot.triggered) {
+				this.loading.style.display = 'block';
+			}
+			else {
+				this.button.style.display = 'inline-block';
+			}
+		},
+
+		getItem : function() {
+			let slot = this.slots[window.activeForgeBox];
+			if (slot.triggered) return;
+			slot.triggered = true;
+			this.uiUpdate(null, true);
+			// Get item info
+			let el = jQuery('#forge_itembox div:eq(0)');
+			let clone = el.clone(true);
+			clone[0].dataset.amount = 1;
+			//clone
+			let info = {
+				el : clone,
+				basis : el.data('basis'),
+				priceGold : el.data('priceGold'),
+				hash : el.data('hash'),
+				quality : el.data('quality'),
+				level : el.data('level'),
+			};
+
+			// Make request and handle it
+			window.sendAjax(jQuery(slot.wrapper), "ajax.php", "mod=forge&submod=lootbox&mode=workbench&slot=" + window.activeForgeBox, (dataPlain) => {
+				if (!dataPlain.match('document.location.href')) {
+					return window.updateSlots(dataPlain);
+				}
+				setTimeout(() => {
+					this.searchItem(slot, info, [9999, 1]);
+				}, 1000);
+			}, window.error, {spinnerVisible: false})
+		},
+
+		searchItem : function(slot, info, pages) {
+			if (!pages.length) {
+				gca_notifications.error(gca_locale.get("global", "error"));
+				return;
+			}
+			
+			let page = pages.shift();
+			jQuery.ajax({
+				type: "GET",
+				url: gca_getPage.link({
+					mod : 'packages',
+					f : info.basis.match(/(\d+)-(\d+)/)[1],
+					fq : parseInt(info.basis.match(/(\d+)-(\d+)/)[2], 10) - 2,
+					page : page,
+				}),
+				success: (html) => {
+					if (html.match('data-hash="' + info.hash + '"')) {
+						let code = html.match(new RegExp('<div data-no-combine="true" data-no-destack="true" data-container-number="(-\\d+)"\\s*>\\s*<div style="[^"]*" class="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-price-gold="' + info.priceGold + '" data-tooltip="[^"]*" data-comparison-tooltip="[^"]*" data-soulbound-to="[^"]*" data-level="' + info.level + '" data-quality="[^"]*" data-hash="' + info.hash + '"[^>]*><\\/div>', 'i'));
+						if (code) {
+							slot.item = info;
+							slot.item.id = code[1];
+						}
+						else {
+							gca_notifications.error(gca_locale.get("global", "error"));
+							slot.item = null;
+						}
+						this.showItem(slot);
+					} else {
+						this.searchItem(slot, info, pages);
+					}
+				},
+				error: function(){
+					gca_notifications.error(gca_locale.get("global", "error"));
+				}
+			});
+		},
+
+		showItem : function(slot) {
+			if (!slot || !slot.item || !slot.item.id) {
+				gca_notifications.error(gca_locale.get("global", "error"));
+				return;
+			}
+			gca_notifications.success(gca_locale.get("global", "done"));
+			slot.item.el.addClass('ui-draggable').addClass('ui-droppable');
+			let wrapper = jQuery(slot.wrapper);
+			wrapper.data('containerNumber', slot.item.id);
+			wrapper.append(slot.item.el);
+			DragDrop.makeDraggable(slot.item.el, false);
+			DragDrop.makeDroppable(slot.item.el);
+			this.uiUpdate(null, true);
+		}
+
+		//jQuery('#forge_itembox div:eq(0)').clone()
 	},
 	
 	// Shortcuts for materials in packages and market
