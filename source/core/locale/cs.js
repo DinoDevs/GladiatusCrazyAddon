@@ -44,8 +44,8 @@ gca_languages['cs'] = {
 			
 			// Life/Expedition/Dungeon points recovery
 			life_recover_full : "Plné životy se doplní za",
-			expedition_recover_full : "Úplná obnova výprav",
-			dungeon_recover_full : "Úplná obnova bodů bludiště",
+			expedition_recover_full : "Úplná obnova výprav za",
+			dungeon_recover_full : "Úplná obnova bodů bludiště za",
 			
 			// Button bar - Message
 			message_private_write : "Napsat soukromou zprávu",
