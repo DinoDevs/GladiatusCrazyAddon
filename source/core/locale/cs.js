@@ -43,7 +43,7 @@ gca_languages['cs'] = {
 			life_potion_left : "Nyní máš {{number}} léčivých lektvar(ů)",
 			
 			// Life/Expedition/Dungeon points recovery
-			life_recover_full : "Plné životy se doplní",
+			life_recover_full : "Plné životy se doplní za",
 			expedition_recover_full : "Úplná obnova výprav",
 			dungeon_recover_full : "Úplná obnova bodů bludiště",
 			
@@ -238,7 +238,7 @@ gca_languages['cs'] = {
 		
 		// Packages
 		packages : {
-			event_items : "Eventový předmět",
+			event_items : "Eventový předměty",
 			known_scroll : "Tento svitek už znáš",
 			unknown_scroll : "Tento svitek ještě neznáš",
 			advance_filters : "Pokročilé filtry",
