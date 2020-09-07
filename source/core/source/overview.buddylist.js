@@ -71,6 +71,7 @@ var gca_overview_buddylist = {
 			});
 
 			for (var i = 0; i < players.length; i++) {
+				this.create_error_row();
 				this.create_row(players[i].id, players[i].server, players[i].playerId, players[i].name, players[i].color);
 			}
 
@@ -82,6 +83,26 @@ var gca_overview_buddylist = {
 				tr.appendChild(td);
 				this.wrapper.appendChild(tr);
 			}
+		},
+
+		create_error_row: function () {
+			let tr = document.createElement('tr');
+			let td = document.createElement('td');
+
+			let errorRow = document.createElement('div');
+			errorRow.id = 'errorRow';
+			errorRow.className = 'messages error-row';
+			errorRow.style.margin = "5px auto";
+			errorRow.style.display = "none";
+
+			let errorText = document.createElement('div');
+			errorText.id = 'errorText';
+			errorText.className = 'fail error-text';
+
+			errorRow.appendChild(errorText);
+			td.appendChild(errorRow);
+			tr.appendChild(td);
+			this.wrapper.appendChild(tr);
 		},
 
 		create_row : function(id, server, playerId, name, color) {
@@ -128,6 +149,43 @@ var gca_overview_buddylist = {
 			td.appendChild(color_picker);
 			tr.appendChild(td);
 
+			// Arena Attack Column
+			td = document.createElement('td');
+			td.style.textAlign = 'right';
+			const currentServer = window.location.host.split('-')[0].replace('s','').trim();
+			if (server == currentServer) {
+				let div = document.createElement('div');
+				div.className = 'attack';
+				div.textContent = "A";
+				div.style.textAlign = "center";
+				div.style.fontSize = "18px";
+				div.style.color = "red";
+				td.appendChild(div);
+				div.addEventListener('click', () => {
+					this.setupBeforeAttack(tr);
+					this.startArenaFightWithName(name);
+				});
+			}
+			tr.appendChild(td);
+
+			// Circus Attack Column
+			td = document.createElement('td');
+			td.style.textAlign = 'right';
+			if (server == currentServer) {
+				let div = document.createElement('div');
+				div.className = 'attack';
+				div.textContent = "C";
+				div.style.textAlign = "center";
+				div.style.fontSize = "18px";
+				div.style.color = "red";
+				td.appendChild(div);
+				div.addEventListener('click', () => {
+					this.setupBeforeAttack(tr);
+					this.startCircusFightWithName(name);
+				});
+			}
+			tr.appendChild(td);
+
 			// Remove Column
 			td = document.createElement('td');
 			td.style.textAlign = 'right';
@@ -156,6 +214,40 @@ var gca_overview_buddylist = {
 			let list = gca_data.section.get('arena', 'target-list', {});
 			list[data.target_id + '@' + data.target_server] = [data.target_server, data.target_id, data.target_name, '#ffff00'];
 			gca_data.section.set('arena', 'target-list', list);
+		},
+
+		startArenaFightWithName: function (playerName) {
+			sendRequest("get", "ajax/doArenaFight.php", "dname=" + encodeURIComponent(playerName), undefined);
+		},
+
+		startCircusFightWithName: function (playerName) {
+			sendRequest("get", "ajax/doGroupFight.php", "dname=" + encodeURIComponent(playerName), undefined);
+		},
+
+		// response of arena/circus fight requests contains javascript functions
+		// that is implemented by gameforge to set error message to #errorRow > #errorText 
+		// in case of error. In order to adapt to this, we keep single element with id #errorRow
+		// and it's child with #errorText, so the response's error message is displayed on the
+		// correct row's error message
+		setupBeforeAttack: function (tr) {
+			this.cleanUpErrorRows();
+			this.setErrorRow(tr);
+		},
+
+		cleanUpErrorRows: function () {
+			let errorRows = jQuery(".error-row");
+			for (let i = 0; i < errorRows.length; i++) {
+				jQuery(errorRows[i]).removeAttr('id');
+				jQuery(errorRows[i]).css('display', 'none');
+				jQuery(errorRows[i]).find('.error-text').removeAttr('id');
+			}
+		},
+
+		setErrorRow: function (tr) {
+			let errorRow = jQuery(tr).prev().find('.error-row');
+			jQuery(errorRow).css('display', '');
+			jQuery(errorRow).attr('id', 'errorRow');
+			jQuery(errorRow).find('.error-text').attr('id', 'errorText');
 		}
 	}
 };
