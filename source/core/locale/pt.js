@@ -93,7 +93,7 @@ gca_languages['pt'] = {
 			donate_gold_all_gold : "Doar todo o seu ouro",
 			
 			// Quest timer
-			quest_full : "Completa",
+			quest_full : "Cheio",
 			quest_new : "Nova",
 			
 			// Pray icon
