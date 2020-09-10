@@ -485,7 +485,7 @@ gca_languages['pt'] = {
 			reset_settings_confirm : "Tem certeza de que deseja redefinir as configurações do addon?",
 			clear_data_confirm : "Tem certeza de que deseja limpar todos os dados do addon?",
 			data_exported_save_the_file : "Os dados foram exportados. Salve o arquivo.",
-			missing_translations : "Faltando traduções",
+			missing_translations : "Traduções faltantes",
 			
 			// Notifications
 			notification_reload : "Recarregar a página, para que as opções tenham efeito"
