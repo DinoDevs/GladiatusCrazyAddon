@@ -3,7 +3,7 @@
  * Name : Magyar (Hungarian)
  * Code : [none]
  * Tag  : hu
- * Translator: Adamus23
+ * Translator: Adamus23, Saiid
  */
 
 // Languages Object
