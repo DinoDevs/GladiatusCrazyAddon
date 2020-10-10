@@ -15,7 +15,7 @@ gca_languages['pt'] = {
 	// Language name
 	name : 'Português (Brasil)',
 	// Translators (authors of this script)
-	translators : ["Gearfrity","HarveySpecter", "Led_Zeppelin", "tfmvl", "kelmaxine", "alansoft", "patrick_"],
+	translators : ["Gearfrity", "HarveySpecter", "Led_Zeppelin", "tfmvl", "kelmaxine", "alansoft", "patrick_"],
 	
 	// Translations object
 	locale : {
@@ -491,6 +491,6 @@ gca_languages['pt'] = {
 			notification_reload : "Recarregar a página, para que as opções tenham efeito"
 		}
 	}
-}
+};
 
 gca_languages._active = "pt";
