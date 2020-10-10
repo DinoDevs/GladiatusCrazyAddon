@@ -999,6 +999,15 @@
 		#packages div[data-gca-forge-proposal=2][data-gca-soulbound]:after {content: "📜📜🔗";}
 
 
+
+	/* Family
+	-------------------------------------------------- */
+
+		/* Target List */
+		.gca-target-list .attack {text-align: center; font-size: 12px; color: #2c1e0f; line-height: 34px;}
+
+
+
 	/* Quests Layout
 	-------------------------------------------------- */
 		

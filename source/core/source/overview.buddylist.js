@@ -25,6 +25,7 @@ var gca_overview_buddylist = {
 	target_list : {
 		create : function() {
 			let article = document.createElement('article');
+			article.className = 'gca-target-list';
 			article.style.marginTop = '20px';
 			let title = document.createElement('h2');
 			title.className = 'section-header';
@@ -73,6 +74,7 @@ var gca_overview_buddylist = {
 			for (var i = 0; i < players.length; i++) {
 				this.create_row(players[i].id, players[i].server, players[i].playerId, players[i].name, players[i].color);
 			}
+			this.handle_eval_errors();
 
 			if (players.length == 0) {
 				let tr = document.createElement('tr');
@@ -128,6 +130,35 @@ var gca_overview_buddylist = {
 			td.appendChild(color_picker);
 			tr.appendChild(td);
 
+			// Arena Attack Column
+			td = document.createElement('td');
+			td.style.textAlign = 'right';
+			const currentServer = window.location.host.split('-')[0].replace('s','').trim();
+			if (server == currentServer) {
+				let div = document.createElement('div');
+				div.className = 'attack';
+				div.textContent = "A";
+				td.appendChild(div);
+				div.addEventListener('click', () => {
+					this.startArenaFightWithName(name);
+				});
+			}
+			tr.appendChild(td);
+
+			// Circus Attack Column
+			td = document.createElement('td');
+			td.style.textAlign = 'right';
+			if (server == currentServer) {
+				let div = document.createElement('div');
+				div.className = 'attack';
+				div.textContent = "C";
+				td.appendChild(div);
+				div.addEventListener('click', () => {
+					this.startCircusFightWithName(name);
+				});
+			}
+			tr.appendChild(td);
+
 			// Remove Column
 			td = document.createElement('td');
 			td.style.textAlign = 'right';
@@ -156,6 +187,41 @@ var gca_overview_buddylist = {
 			let list = gca_data.section.get('arena', 'target-list', {});
 			list[data.target_id + '@' + data.target_server] = [data.target_server, data.target_id, data.target_name, '#ffff00'];
 			gca_data.section.set('arena', 'target-list', list);
+		},
+
+		startArenaFightWithName: function (playerName) {
+			window.sendRequest("get", "ajax/doArenaFight.php", "dname=" + encodeURIComponent(playerName), undefined);
+		},
+
+		startCircusFightWithName: function (playerName) {
+			window.sendRequest("get", "ajax/doGroupFight.php", "dname=" + encodeURIComponent(playerName), undefined);
+		},
+
+		// Response of arena/circus fight requests contains javascript functions
+		// that is implemented by gameforge to set error message to #errorRow > #errorText 
+		// in case of error. In order to adapt to this, we keep single element with id #errorRow
+		// and it's child with #errorText, so the response's error message is detected using
+		// an mutations observer
+		handle_eval_errors: function () {
+			// Create #errorRow > #errorText to catch arena eval errors
+			let error_wrapper = document.createElement('div');
+			error_wrapper.style.display = 'none';
+			let error_row = document.createElement('div');
+			error_row.id = 'errorRow';
+			let error_text = document.createElement('div');
+			error_text.id = 'errorText';
+			error_row.appendChild(error_text);
+			error_wrapper.appendChild(error_row);
+			document.getElementById('content').appendChild(error_wrapper);
+			// Detect eval errors
+			var observer = new MutationObserver(function (mutations) {
+				mutations.forEach(function(mutation) {
+					if (mutation.type == 'childList') {
+						gca_notifications.error(error_text.textContent);
+					}
+				});
+			});
+			observer.observe(error_text, {characterData: false, attributes: false, childList: true, subtree: false});
 		}
 	}
 };
