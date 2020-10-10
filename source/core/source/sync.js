@@ -28,7 +28,7 @@ var gca_sync = {
 			() => {
 				// Calculate expiration date
 				let expire = new Date();
-				expire.setTime(expire.getTime() + (364 * 24*60*60*1000));
+				expire.setTime(expire.getTime() + (14 * 24*60*60*1000));
 				expire = expire.toUTCString();
 				// Create cookies
 				document.cookie = "Gladiatus_" + gca_section.country + "_" + gca_section.server + "=" + data.player + "%3B" + data.securehash + "; expires=" + expire + ";path=/";
