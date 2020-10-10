@@ -25,6 +25,7 @@ var gca_overview_buddylist = {
 	target_list : {
 		create : function() {
 			let article = document.createElement('article');
+			article.className = 'gca-target-list';
 			article.style.marginTop = '20px';
 			let title = document.createElement('h2');
 			title.className = 'section-header';
@@ -71,9 +72,9 @@ var gca_overview_buddylist = {
 			});
 
 			for (var i = 0; i < players.length; i++) {
-				this.create_error_row();
 				this.create_row(players[i].id, players[i].server, players[i].playerId, players[i].name, players[i].color);
 			}
+			this.handle_eval_errors();
 
 			if (players.length == 0) {
 				let tr = document.createElement('tr');
@@ -83,26 +84,6 @@ var gca_overview_buddylist = {
 				tr.appendChild(td);
 				this.wrapper.appendChild(tr);
 			}
-		},
-
-		create_error_row: function () {
-			let tr = document.createElement('tr');
-			let td = document.createElement('td');
-
-			let errorRow = document.createElement('div');
-			errorRow.id = 'errorRow';
-			errorRow.className = 'messages error-row';
-			errorRow.style.margin = "5px auto";
-			errorRow.style.display = "none";
-
-			let errorText = document.createElement('div');
-			errorText.id = 'errorText';
-			errorText.className = 'fail error-text';
-
-			errorRow.appendChild(errorText);
-			td.appendChild(errorRow);
-			tr.appendChild(td);
-			this.wrapper.appendChild(tr);
 		},
 
 		create_row : function(id, server, playerId, name, color) {
@@ -157,12 +138,8 @@ var gca_overview_buddylist = {
 				let div = document.createElement('div');
 				div.className = 'attack';
 				div.textContent = "A";
-				div.style.textAlign = "center";
-				div.style.fontSize = "18px";
-				div.style.color = "red";
 				td.appendChild(div);
 				div.addEventListener('click', () => {
-					this.setupBeforeAttack(tr);
 					this.startArenaFightWithName(name);
 				});
 			}
@@ -175,12 +152,8 @@ var gca_overview_buddylist = {
 				let div = document.createElement('div');
 				div.className = 'attack';
 				div.textContent = "C";
-				div.style.textAlign = "center";
-				div.style.fontSize = "18px";
-				div.style.color = "red";
 				td.appendChild(div);
 				div.addEventListener('click', () => {
-					this.setupBeforeAttack(tr);
 					this.startCircusFightWithName(name);
 				});
 			}
@@ -217,37 +190,38 @@ var gca_overview_buddylist = {
 		},
 
 		startArenaFightWithName: function (playerName) {
-			sendRequest("get", "ajax/doArenaFight.php", "dname=" + encodeURIComponent(playerName), undefined);
+			window.sendRequest("get", "ajax/doArenaFight.php", "dname=" + encodeURIComponent(playerName), undefined);
 		},
 
 		startCircusFightWithName: function (playerName) {
-			sendRequest("get", "ajax/doGroupFight.php", "dname=" + encodeURIComponent(playerName), undefined);
+			window.sendRequest("get", "ajax/doGroupFight.php", "dname=" + encodeURIComponent(playerName), undefined);
 		},
 
-		// response of arena/circus fight requests contains javascript functions
+		// Response of arena/circus fight requests contains javascript functions
 		// that is implemented by gameforge to set error message to #errorRow > #errorText 
 		// in case of error. In order to adapt to this, we keep single element with id #errorRow
-		// and it's child with #errorText, so the response's error message is displayed on the
-		// correct row's error message
-		setupBeforeAttack: function (tr) {
-			this.cleanUpErrorRows();
-			this.setErrorRow(tr);
-		},
-
-		cleanUpErrorRows: function () {
-			let errorRows = jQuery(".error-row");
-			for (let i = 0; i < errorRows.length; i++) {
-				jQuery(errorRows[i]).removeAttr('id');
-				jQuery(errorRows[i]).css('display', 'none');
-				jQuery(errorRows[i]).find('.error-text').removeAttr('id');
-			}
-		},
-
-		setErrorRow: function (tr) {
-			let errorRow = jQuery(tr).prev().find('.error-row');
-			jQuery(errorRow).css('display', '');
-			jQuery(errorRow).attr('id', 'errorRow');
-			jQuery(errorRow).find('.error-text').attr('id', 'errorText');
+		// and it's child with #errorText, so the response's error message is detected using
+		// an mutations observer
+		handle_eval_errors: function () {
+			// Create #errorRow > #errorText to catch arena eval errors
+			let error_wrapper = document.createElement('div');
+			error_wrapper.style.display = 'none';
+			let error_row = document.createElement('div');
+			error_row.id = 'errorRow';
+			let error_text = document.createElement('div');
+			error_text.id = 'errorText';
+			error_row.appendChild(error_text);
+			error_wrapper.appendChild(error_row);
+			document.getElementById('content').appendChild(error_wrapper);
+			// Detect eval errors
+			var observer = new MutationObserver(function (mutations) {
+				mutations.forEach(function(mutation) {
+					if (mutation.type == 'childList') {
+						gca_notifications.error(error_text.textContent);
+					}
+				});
+			});
+			observer.observe(error_text, {characterData: false, attributes: false, childList: true, subtree: false});
 		}
 	}
 };
