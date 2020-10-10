@@ -2560,7 +2560,7 @@ var gca_global = {
 				gaCooldownBar.id = "cooldown_bar_ga";
 				gaCooldownBar.className = "cooldown_bar global_arena_global_timer";
 				gaCooldownBar.dataset.tooltip = '[[["'+gca_locale.get("arena", "global_arena_title")+' : '+this.global_arena_position+'","white"]]]';
-								
+				gaCooldownBar.style.display = 'none';
 				this.globalArenaCooldownProgressBar = document.createElement("div");
 				this.globalArenaCooldownProgressBar.className = "cooldown_bar_fill cooldown_bar_fill_"+( this.timer <= 0 ? "ready" : "progress" );
 				this.globalArenaCooldownProgressBar.id = "cooldown_bar_fill_ga";
