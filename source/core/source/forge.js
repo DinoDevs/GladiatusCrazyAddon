@@ -533,13 +533,16 @@ var gca_forge = {
 			this.wrapper.style.position = 'relative';
 			this.wrapper.style.border = '1px solid #6c6c6c';
 			this.wrapper.style.margin = '10px 10px 10px 6px';
-			this.wrapper.style.padding = '10px';
+			this.wrapper.style.padding = '0px 20px 14px 0px';
+			this.wrapper.style.textAlign = 'center';
+			this.wrapper.style.backgroundColor = 'rgb(230 221 183)';
 			this.wrapper.style.display = 'none';
 			document.getElementById('forge_box').parentNode.parentNode.appendChild(this.wrapper);
 
 			// Create fetch button
 			this.button = document.createElement('div');
 			this.button.className = "awesome-button";
+			this.button.style = 'position: absolute; top: 38px; left: 50%; margin-left: -82px; width: 150px; z-index: 2;';
 			this.button.textContent = document.getElementById('forge_lootbox').textContent;
 			this.button.addEventListener('click', () => {
 				this.getItem();
@@ -549,6 +552,7 @@ var gca_forge = {
 			// Loading
 			this.loading = document.createElement('div');
 			this.loading.className = 'loading';
+			this.loading.style = 'position: absolute; top: 50%; left: 50%; margin-left: -20px; margin-top: -3px;z-index: 1;';
 			this.wrapper.appendChild(this.loading);
 
 			// Init slots
@@ -558,6 +562,7 @@ var gca_forge = {
 				wrapper.className = "magus_itembox";
 				wrapper.style.display = 'none';
 				wrapper.style.position = 'relative';
+				wrapper.style.margin = '0 auto';
 				this.wrapper.appendChild(wrapper);
 				this.slots.push({
 					triggered : false,
@@ -598,12 +603,17 @@ var gca_forge = {
 			slot.active = true;
 			if (slot.item) {
 				slot.wrapper.style.display = 'block';
+				slot.wrapper.style.opacity = '1';
 			}
 			else if (slot.triggered) {
 				this.loading.style.display = 'block';
+				slot.wrapper.style.display = 'block';
+				slot.wrapper.style.opacity = '0.5';
 			}
 			else {
 				this.button.style.display = 'inline-block';
+				slot.wrapper.style.display = 'block';
+				slot.wrapper.style.opacity = '0.5';
 			}
 		},
 
@@ -616,7 +626,7 @@ var gca_forge = {
 			let el = jQuery('#forge_itembox div:eq(0)');
 			let clone = el.clone(true);
 			clone[0].dataset.amount = 1;
-			//clone
+			// Clone
 			let info = {
 				el : clone,
 				basis : el.data('basis'),
@@ -649,7 +659,8 @@ var gca_forge = {
 				url: gca_getPage.link({
 					mod : 'packages',
 					f : info.basis.match(/(\d+)-(\d+)/)[1],
-					fq : parseInt(info.basis.match(/(\d+)-(\d+)/)[2], 10) - 2,
+					//fq : parseInt(info.basis.match(/(\d+)-(\d+)/)[2], 10) - 2,
+					fq : info.quality,
 					page : page,
 				}),
 				success: (html) => {
@@ -675,20 +686,46 @@ var gca_forge = {
 		},
 
 		showItem : function(slot) {
+			// Check if Failed
 			if (!slot || !slot.item || !slot.item.id) {
-				gca_notifications.error(gca_locale.get("global", "error"));
+				gca_notifications.error(gca_locale.get('general', 'error'));
 				return;
 			}
-			gca_notifications.success(gca_locale.get("global", "done"));
+			
+			// Show success message
+			gca_notifications.success(gca_locale.get('general', 'ok'));
+			
+			// Prepare item
 			slot.item.el.addClass('ui-draggable').addClass('ui-droppable');
+			slot.item.el[0].dataset.contentType = 'unknown';
+			slot.item.el[0].dataset.gcaSource = 'packages';
 			gca_tools.setTooltip(slot.item.el[0], JSON.stringify(slot.item.el.data('tooltip')));
 			gca_tools.item.shadow.add(slot.item.el[0]);
+			
+			// Add item on page
 			let wrapper = jQuery(slot.wrapper);
 			wrapper.data('containerNumber', slot.item.id);
+			wrapper[0].dataset.gcaSource = 'packages';
 			wrapper.append(slot.item.el);
-			DragDrop.makeDraggable(slot.item.el, false);
-			DragDrop.makeDroppable(slot.item.el);
+			window.DragDrop.makeDraggable(slot.item.el, false);
+			window.DragDrop.makeDroppable(slot.item.el);
 			this.uiUpdate(null, true);
+
+			// Handle item on drop
+			if (!this.dropHandler) {
+				this.dropHandler = true;
+				gca_tools.event.item.onDrop(function(item) {
+					// If item was moved
+					if (item.dataset.gcaSource == 'packages' && item.parentNode.dataset.source != 'packages') {
+						// Reload page
+						setInterval(() => {
+							if (item.className.match(/disabled/i)) {
+								document.location.reload();
+							}
+						}, 128);
+					}
+				});
+			}
 		}
 
 		//jQuery('#forge_itembox div:eq(0)').clone()
