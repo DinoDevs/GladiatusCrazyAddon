@@ -11,7 +11,7 @@
 - **Forge**
 	- [x] Added button to store all resourses at horreum
 - **Workbench**
-	- [x] Fetch item from packages after repair [testing]
+	- [x] Fetch item from packages after repair
 - **Target List**
 	- [x] Added option to attack players from the same server
 
