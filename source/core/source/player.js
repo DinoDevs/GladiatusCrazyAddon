@@ -92,7 +92,7 @@ var gca_player = {
 		prepare : function(self) {
 			if (self.doll != 1 || !self.playerName) return;
 			// If not logged in and not cross server
-			let isCrossServer = (self.referrer && self.referrer.country && self.referrer.server != gca_section.server && self.referrer.country == gca_section.country && self.referrer.sh);
+			let isCrossServer = (self.referrer && self.referrer.country && self.referrer.server != gca_section.server && self.referrer.country == gca_section.country);
 			if (!self.isLoggedIn && !isCrossServer) return;
 
 			// Check if it is disabled
@@ -104,7 +104,14 @@ var gca_player = {
 		},
 
 		inject : function() {
-			this.id = this.self.playerId + '@' + gca_section.server;	
+			this.id = this.self.playerId + '@' + gca_section.server;
+
+			// Retrieve player info
+			if (this.isCrossServer && !this.self.referrer.sh) {
+				let player = this.crossServerInfo(this.self.referrer.country, this.self.referrer.server);
+				if (!player) return false;
+				this.self.referrer.sh = player.sh;
+			}
 
 			// Check if target
 			this.isTarget = false;
@@ -123,6 +130,43 @@ var gca_player = {
 			else this.btn.addEventListener('click', () => {this.handleCrossServer(this.self.referrer);});
 			this.update();
 			this.btn.style.display = 'block';
+		},
+
+		crossServerInfo : function(country, server) {
+			// Retrieve players list
+			let cookie_name = 'gca_players';
+			let players = (() => {
+				let name = cookie_name + '=';
+				let ca = decodeURIComponent(document.cookie);
+				ca = ca.split(';');
+				for(let i = 0; i < ca.length; i++) {
+					let c = ca[i];
+					while (c.charAt(0) == ' ') {
+						c = c.substring(1);
+					}
+					if (c.indexOf(name) == 0) {
+						let v = c.substring(name.length, c.length);
+						return v.length ? v.split('|') : [];
+					}
+				}
+				return [];
+			})();
+			// Update list of players
+			let entry = country + '-' + server;
+			let match = new RegExp('^' + entry + '-' + '(\\d+)' + '-' + '([^-]+)' + '-' + '(.+)', 'i');
+			for (let i = players.length - 1; i >= 0; i--) {
+				console.log(players[i]);
+				console.log(match);
+				let info = players[i].match(match);
+				if (info) {
+					return {
+						id : info[1],
+						sh : info[2],
+						name : info[3]
+					};
+				}
+			}
+			return false;
 		},
 
 		update : function() {

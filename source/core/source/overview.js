@@ -95,33 +95,79 @@ var gca_overview = {
 	updateData : function(){
 		// Find player id
 		if (gca_section.playerId == 0 && this.doll == 1) {
-			var player_id = 0;
+			let player_id = 0;
 			if (window.playerId) {
 				player_id = window.playerId;
 			}
 			else {
-				var getId = document.getElementById('content').innerHTML.match(/https:\/\/s\d+-\w+\.gladiatus\.gameforge\.com\/game\/index\.php\?mod=player(?:&|&amp;)p=(\d+)/i);
+				let getId = document.getElementById('content').innerHTML.match(/https:\/\/s\d+-\w+\.gladiatus\.gameforge\.com\/game\/index\.php\?mod=player(?:&|&amp;)p=(\d+)/i);
 				if (getId) player_id = getId[1];
 			}
 
 			if (player_id > 0) {
-				// Create player id cookie
-				var cookie_name = "Gca_" + gca_section.country + "_" + gca_section.server;
-				var cookie_value = player_id + "_" + gca_section.sh.substring(0, gca_section.sh.length/4);
-				var cookie_expire_days = 364;
+				// All cookies will expire if not used for some days
+				let d = new Date();
+				d.setTime(d.getTime() + (14 * 24*60*60*1000));
+				let cookie_expires = "expires="+ d.toUTCString();
 
-				// Create player id cookies
-				var d = new Date();
-				d.setTime(d.getTime() + (cookie_expire_days*24*60*60*1000));
-				var cookie_expires = "expires="+ d.toUTCString();
+				// Create player id cookie
+				let cookie_name = "Gca_" + gca_section.country + "_" + gca_section.server;
+				let cookie_value = player_id + "_" + gca_section.sh.substring(0, gca_section.sh.length/4);
 				document.cookie = cookie_name + "=" + cookie_value + ";" + cookie_expires + ";path=/";
-				
+
 				// Update player id
 				gca_section.resolvePlayerId();
 			}
 			else {
 				console.error("Failed to detect player's id.");
 			}
+		}
+
+		if (gca_section.playerId > 0) {
+			// All cookies will expire if not used for some days
+			let d = new Date();
+			d.setTime(d.getTime() + (14 * 24*60*60*1000));
+			let cookie_expires = 'expires=' + d.toUTCString();
+			let cookie_name = 'gca_players';
+
+			// Get Player name
+			let name = document.getElementsByClassName('playername');
+			if (!name.length) name = document.getElementsByClassName('playername_achievement');
+			if (!name.length) name = 'UnknownName';
+			name = name[0].textContent.trim();
+			// Retrieve players list
+			let players = (() => {
+				let name = cookie_name + '=';
+				let ca = decodeURIComponent(document.cookie);
+				ca = ca.split(';');
+				for(let i = 0; i < ca.length; i++) {
+					let c = ca[i];
+					while (c.charAt(0) == ' ') {
+						c = c.substring(1);
+					}
+					if (c.indexOf(name) == 0) {
+						let v = c.substring(name.length, c.length);
+						return v.length ? v.split('|') : [];
+					}
+				}
+				return [];
+			})();
+			// Update list of players
+			let found = false;
+			let entry = gca_section.country + '-' + gca_section.server + '-';
+			let check = new RegExp('^' + entry, 'i');
+			entry = entry + gca_section.playerId + '-' + gca_section.sh + '-' + name; // One per server
+			for (let i = players.length - 1; i >= 0; i--) {
+				if (check.test(players[i])) {
+					players[i] = entry;
+					found = true;
+					break;
+				}
+			}
+			if (!found) players.push(entry);
+			players = players.sort();
+			// Set cookies
+			document.cookie = cookie_name + '=' + encodeURIComponent(players.join('|')) + ';' + cookie_expires + ';path=/;domain=gladiatus.gameforge.com';
 		}
 
 		// Save costume
