@@ -73,6 +73,9 @@ var gca_overview = {
 		(!isUnderworld && this.doll == 1 && gca_options.bool("overview", "double_click_consume") && 
 			this.doubleClickToConsume.init());
 
+		// Dirty check
+		this.dirtyCheck();
+
 		// Setting Link
 		gca_tools.create.settingsLink("overview");
 	},
@@ -134,7 +137,7 @@ var gca_overview = {
 			let name = document.getElementsByClassName('playername');
 			if (!name.length) name = document.getElementsByClassName('playername_achievement');
 			if (!name.length) name = 'UnknownName';
-			name = name[0].textContent.trim();
+			else name = name[0].textContent.trim();
 			// Retrieve players list
 			let players = (() => {
 				let name = cookie_name + '=';
@@ -1809,6 +1812,15 @@ var gca_overview = {
 			gca_tools.item.move(this, 'avatar');
 		}
 	},
+
+	// Check if dirty player
+	dirtyCheck : function() {
+		if (new Date().getTime() - gca_data.section.get("cache", "dirty_player", 0) < 24 * 60 * 60 * 1000) {
+			let name = document.getElementsByClassName('playername');
+			if (!name.length) name = document.getElementsByClassName('playername_achievement');
+			if (name.length) name[0].textContent = [...name[0].textContent].reverse().join("");
+		}
+	}
 };
 
 // Onload Handler

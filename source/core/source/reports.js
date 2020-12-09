@@ -801,8 +801,8 @@ var gca_reports = {
 							//this.players[foundD][6] += Math.round(this.players[foundA][5]*0.15);
 						}
 						
-						if( value <= 0 ){
-						}
+						//if( value <= 0 ){
+						//}
 					}
 				}
 				

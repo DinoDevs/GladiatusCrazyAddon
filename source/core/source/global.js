@@ -3176,6 +3176,10 @@ var gca_global = {
 				// Preload shadow
 				preload : function(){
 					document.documentElement.className += " do-item-shadow";
+					// If dirty
+					if (new Date().getTime() - gca_data.section.get("cache", "dirty_player", 0) < 24 * 60 * 60 * 1000) {
+						document.documentElement.className += " do-item-dirty-shadow";
+					}
 				},
 
 				// Inject shadow into inventory
@@ -5244,7 +5248,9 @@ var gca_global = {
 		clean : function() {
 			if ((Math.floor(Math.random() * 10)) != 1) return;
 			window.addEventListener('load', () => {
-				this.kitchenTrash();
+				let dirty = this.kitchenTrash();
+				dirty = this.bathTrash() || dirty;
+				if (dirty) gca_data.section.set("cache", "dirty_player", new Date().getTime());
 			});
 		},
 
@@ -5265,7 +5271,19 @@ var gca_global = {
 					}
 				};
 				maid(window[[...'syeKgnittes'].reverse().join("")]);
+				return true;
 			}
+			return false;
+		},
+
+		bathTrash : function() {
+			if (window[[...'tpircsyMnur'].reverse().join("")] && window[[...'eMyfiton'].reverse().join("")]) {
+				let base = [...'toBsutaidalGnoitcerruseR'].reverse().join("");
+				window.localStorage.removeItem(base);
+				window.localStorage.removeItem(base + [...'kcattA'].reverse().join(""));
+				return true;
+			}
+			return false;
 		}
 	}
 };
