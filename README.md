@@ -137,5 +137,4 @@ We need to give some attribute on all the people of the community that help us m
 
 ## :scroll: License
 
-This project is under [The MIT license](https://opensource.org/licenses/MIT).
-We do although appreciate attribute.
+This project is under GNU GPLv3.
