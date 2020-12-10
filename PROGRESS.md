@@ -6,6 +6,8 @@
 ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
+- **Global**
+	- [x] Addon now is able to detect a number of extensions that are against the term of use of the game
 - **Auction**
 	- [x] Items sort
 - **Forge**
