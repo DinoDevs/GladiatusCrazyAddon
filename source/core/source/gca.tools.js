@@ -1618,6 +1618,13 @@ var gca_tools = {
 			else {
 				gca_notifications.warning("The force is strong with this one!");
 			}
+		},
+
+		isDirty : function () {
+			if (new Date().getTime() - gca_data.section.get("cache", "dirty_player", 0) < 48 * 60 * 60 * 1000) {
+				return true;
+			}
+			return false;
 		}
 	},
 

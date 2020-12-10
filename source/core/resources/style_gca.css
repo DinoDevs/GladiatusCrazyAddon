@@ -1262,12 +1262,26 @@
 		.do-item-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,106,0,0.4));}
 		.do-item-shadow .item-i-red{filter: drop-shadow(1px 1px 1px rgba(255,0,0,0.4)) drop-shadow(1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,0,0,0.4));}
 		/* Dirty Shadow */
-		.do-item-dirty-shadow .item-i-white{filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.5)) drop-shadow(2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.5));}
-		.do-item-dirty-shadow .item-i-green{filter: drop-shadow(1px 1px 1px rgba(0,255,0,0.3)) drop-shadow( 1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,255,0,0.3)) drop-shadow(2px 2px 1px rgba(0,0,0,0.5)) drop-shadow(2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.5));}
-		.do-item-dirty-shadow .item-i-blue{filter: drop-shadow(1px 1px 1px rgba(81,89,247,0.4)) drop-shadow(1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px 1px 1px rgba(81,89,247,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.5)) drop-shadow(2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.5));}
-		.do-item-dirty-shadow .item-i-purple{filter: drop-shadow(1px 1px 1px rgba(227,3,224,0.4)) drop-shadow(1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px 1px 1px rgba(227,3,224,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.5)) drop-shadow(2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.5));}
-		.do-item-dirty-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.5)) drop-shadow(2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.5));}
-		.do-item-dirty-shadow .item-i-red{filter: drop-shadow(1px 1px 1px rgba(255,0,0,0.4)) drop-shadow(1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,0,0,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.5)) drop-shadow(2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.5)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.5));}
+		/*
+		.gca_is_dirty.do-item-shadow .item-i-white{filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.4)) drop-shadow(2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-green{filter: drop-shadow(1px 1px 1px rgba(0,255,0,0.3)) drop-shadow( 1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,255,0,0.3)) drop-shadow(2px 2px 1px rgba(0,0,0,0.4)) drop-shadow(2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-blue{filter: drop-shadow(1px 1px 1px rgba(81,89,247,0.4)) drop-shadow(1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px 1px 1px rgba(81,89,247,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.4)) drop-shadow(2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-purple{filter: drop-shadow(1px 1px 1px rgba(227,3,224,0.4)) drop-shadow(1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px 1px 1px rgba(227,3,224,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.4)) drop-shadow(2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.4)) drop-shadow(2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-red{filter: drop-shadow(1px 1px 1px rgba(255,0,0,0.4)) drop-shadow(1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,0,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,0,0,0.4)) drop-shadow(2px 2px 1px rgba(0,0,0,0.4)) drop-shadow(2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,0,0,0.4));}
+		*/
+		.gca_is_dirty.do-item-shadow .item-i-white{filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-green{filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.4)) drop-shadow(1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.4)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-blue{filter: drop-shadow(1px 1px 1px rgba(0,255,0,0.3)) drop-shadow( 1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px -1px 1px rgba(0,255,0,0.3)) drop-shadow(-1px 1px 1px rgba(0,255,0,0.3));}
+		.gca_is_dirty.do-item-shadow .item-i-purple{filter: drop-shadow(1px 1px 1px rgba(81,89,247,0.4)) drop-shadow(1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px -1px 1px rgba(81,89,247,0.4)) drop-shadow(-1px 1px 1px rgba(81,89,247,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-orange{filter: drop-shadow(1px 1px 1px rgba(227,3,224,0.4)) drop-shadow(1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px -1px 1px rgba(227,3,224,0.4)) drop-shadow(-1px 1px 1px rgba(227,3,224,0.4));}
+		.gca_is_dirty.do-item-shadow .item-i-red{filter: drop-shadow(1px 1px 1px rgba(255,106,0,0.4)) drop-shadow(1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px -1px 1px rgba(255,106,0,0.4)) drop-shadow(-1px 1px 1px rgba(255,106,0,0.4));}
+		.gca_is_dirty .show-item-quality [data-level]:before {color: white !important}
+		.gca_is_dirty .show-item-quality [data-quality="-1"]:before {color: white !important}
+		.gca_is_dirty .show-item-quality [data-quality="1"]:before {color: lime !important}
+		.gca_is_dirty .show-item-quality [data-quality="2"]:before {color: #5159f7 !important}
+		.gca_is_dirty .show-item-quality [data-quality="3"]:before {color: #e303e0 !important}
+		.gca_is_dirty .show-item-quality [data-quality="4"]:before {color: #ff6a00 !important}
 
 		/* Modal */
 		.gca_modal_wrapper .gca_modal_window{position: fixed;z-index: 999999;top: 50%;left: 50%;margin-top: -125px;margin-left: -309px;}
@@ -1407,4 +1421,9 @@
 		.accessibility-item-move-bar .btn {color: #ffeb3b;border: 2px solid #ffeb3b;float: right;}
 		.accessibility-item-move-overlay {background: rgba(0,0,0,0.5);position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 9998;display:none;}
 
-
+	/* Ester Eggs
+	-------------------------------------------------- */
+		
+		/* Needs cleaning! */
+		.gca_is_dirty .reportWin, .gca_is_dirty .reportLose {filter: grayscale(100%);}
+		.gca_is_dirty .tooltips>div::after {content: "*";float: right;color: #2d2d2d;padding: 0px 5px 0px 5px;margin-top: -18px;font-size: 2em;line-height: 18px;border-bottom: 1px solid #474747;border-right: 1px solid #474747;}

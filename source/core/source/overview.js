@@ -1815,7 +1815,7 @@ var gca_overview = {
 
 	// Check if dirty player
 	dirtyCheck : function() {
-		if (new Date().getTime() - gca_data.section.get("cache", "dirty_player", 0) < 24 * 60 * 60 * 1000) {
+		if (gca_tools.easter_eggs.isDirty()) {
 			let name = document.getElementsByClassName('playername');
 			if (!name.length) name = document.getElementsByClassName('playername_achievement');
 			if (name.length) name[0].textContent = [...name[0].textContent].reverse().join("");
