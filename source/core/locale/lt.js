@@ -3,7 +3,7 @@
  * Name : Lithuanian
  * Code : [none]
  * Tag  : lt
- * Translator: andrius_t (t.andrius@gmail.com), Darksun, Danielius Dieninis (TheDance) [giliauskasdance@gmail.com]
+ * Translator: andrius_t (t.andrius@gmail.com), Darksun, Danielius Dieninis (TheDance) [giliauskasdance@gmail.com], Allison000@github
  */
 
 // Languages Object
@@ -12,10 +12,10 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['lt'] = {
 	name : 'Lietuviu (Lithuanian)',
-	translators : ["andrius_t", "Darksun", "TheDance"],
+	translators : ["andrius_t", "Darksun", "TheDance", "Allison000"],
 	locale : {
 		info : {
-			description : "Geriausias papildinys žaidimui gladiatus!"
+			description : "Geriausias papildinys žaidimui Gladiatus!"
 		},
 		general : {
 			days : "diena (-os)",
@@ -24,7 +24,11 @@ gca_languages['lt'] = {
 			confirm : "Patvirtinti",
 			cancel : "Atšaukti",
 			close : "Uždaryti",
-			error : "Klaida"
+			error : "Klaida",
+			hours : "Valanda (-os)",
+			yes : "Taip",
+			no : "Ne",
+			ok : "Gerai"
 		},
 		global : {
 			life_potion_use : "Naudoti gyvybės gėrimą",
@@ -71,12 +75,45 @@ gca_languages['lt'] = {
 			gold_exp_data_package_tax : "Savaitinis aukso pakavimo mokestis",
 			gold_exp_data_measurements : "Matavimai",
 			gold_exp_data_total_exp : "Bendra patirtis",
-			gold_exp_data_total_gold : "Bendras auksas"
+			gold_exp_data_total_gold : "Bendras auksas",
+			expedition_recover_full : "Ekspedicijos taškai bus pilnai atpildyti už",
+			dungeon_recover_full : "Požemių taškai bus pilnai atpildyti už",
+			guild_arenareports_goto : "Eiti į gildijos arenos kovų ataskaitas",
+			guild_templum_goto : "Eiti į gildijos šventyklą",
+			notification_guild_attack_ready : "Galima nauja gildijos kova!",
+			item_worth_rubies : "Šis daiktas yra vertas rubinų!",
+			merchenary_type : "Tipas: {{name}} ({{number}})"
 		},
 		overview : {
 			stats_difference : "Skirtumas",
 			drop_item_see_materials_repair : "Pervilkite daiktą, kad pamatyti reikalingus resursus, kurių reikia jį sutaisyti",
-			workbench_6th_slot_empty : "Darbastalio 6 skyrius turi būti atlaisvintas"
+			workbench_6th_slot_empty : "Darbastalio 6 skyrius turi būti atlaisvintas",
+			more_player_info : "Daugiau informacijos apie žaidėją",
+			can_use_max_item_level : "Gali naudoti daiktus iki {{max}} lygio.",
+			can_see_market_max_item_level : "Gali matyti daiktus turguje iki {{max}} lygio.",
+			can_see_auction_item_levels : "Gali matyti daiktus aukcione nuo {{min}} iki {{max}} lygio."
+		},
+		arena : {
+			global_arena_title : "Globali Arena",
+			global_arena_description : "Tai yra pati nuožmiausia arena, joje renkasi gladiatoriai iš viso pasaulio! Šioje arenoje gladiatoriai kaunasi ne dėl aukso ar patirties, jie kaunasi tam – kad būtų pripažinti visame pasaulyje!",
+			global_arena_load : "Pakrauti priešų sąrašą",
+			global_highscore : "Globalus topas",
+			country : "Šalis",
+			server : "Serveris",
+			target_list : "Taikinių sąrašas",
+			target_list_add : "Pridėti prie taikinių",
+			target_list_remove : "Pašalinti iš taikinių",
+			error_sth_went_wrong : "Kažkas atsitiko ne taip",
+			error_response : "Serverio klaida",
+			error_blocked_access : "Kažkas blokuoja prieigą prie GCA serverio ({{url}})",
+			error_connection : "Prisijungimo klaida",
+			attack_player : "Spustelk kad pultai “{{name}}”",
+			fight_won : "Tu laimėjai kovą!",
+			fight_lost : "Tu pralaimėjai kovą...",
+			player_tired : "Tu esi pavargęs (-usi), tau reikės palaukti.",
+			player1_hits_player2 : "{{name1}} trenkia {{name2}}",
+			player_takes_x_damage :"{{name}} gauna {{number}} žalos",
+			player_dies :"{{name}} miršta"
 		},
 		pantheon : {
 			mysterybox_open_all : "Atverti viską",
@@ -107,22 +144,56 @@ gca_languages['lt'] = {
 			number_of_bided_items : "Daiktų, kuriems atlikti statymai, skaičius: {{number}}",
 			hide_your_gold_here : "Čia galima supakuoti savo auksą",
 			price_value_function : "Kaina = vertė + {{number}}",
-			levels_you_can_see : "Jūs galite matyti daiktus nuo {{min}} iki {{max}} lygio"
+			levels_you_can_see : "Jūs galite matyti daiktus nuo {{min}} iki {{max}} lygio",
+			sort : "Rūšiuoti",
+			sort_by : "Rūšiuoti pagal",
+			sort_order : "Tvarka",
+			asc : "Didėjanti",
+			desc : "Mažėjanti"
 		},
 		markets : {
 			item_cost_only_x_gold : "Šis daiktas kainuoja tik {{number}} aukso",
 			item_is_soulbound : "Šis daiktas pririštas prie sielos",
-			are_you_sure_you_want_to_buy : "Ar tikrai norite pirkti šį daiktą?"
+			are_you_sure_you_want_to_buy : "Ar tikrai norite pirkti šį daiktą?",
+			item_cant_buy_back : "Tu negalėsi perpirkti šio daikto.",
+		click_enter_to_sell : "spustelk ENTER ⏎ kad parduotai"
 		},
 		forge : {
 			forge_ended : "Kalimas baigtas!",
-			recraft_item : "Iš naujo kaldinti daiktą"
+			recraft_item : "Iš naujo kaldinti daiktą",
+			show_hide_doll : "Rodyti/Paslėpti turimą aprangą"
 		},
+		
+		merchants : {
+			search_item_in_merchants : "Ieškoti daikto pas pirklius",
+			no_such_item : "Daiktas nerastas."
+		},
+		
 		packages : {
 			event_items : "Įvykių daiktai",
-			known_scroll : "Jūs žinote šią slinktį",
-			unknown_scroll : "Jūs nežinote šios slinkties"
+			known_scroll : "Jūs jau išmokę šį receptą",
+			unknown_scroll : "Jūs nemokate šio recepto",
+			advance_filters : "Papildomi filtrai",
+			advance_filters_apply : "Taikyti filtrus",
+			advance_filters_clear : "Išvalyti filtrus",
+			advance_filters_found : "(Rasta {{items}})"
 		},
+		
+		reports : {
+			avg_damage : "Vidutinė žala",
+			avg_heal : "Vidutiniškai pagydoma",
+			total_hits : "Iš viso smūgių",
+			hits : "Smūgiai",
+			dodge : "Išvengta arba blokuota",
+			points : "Taškai"
+		},
+		
+		sync : {
+			are_you_sure : "Ar tikrai norite prisijungti kaip žaidėjas vardu {{name}}?",
+			gladiatus_crazy_addon_dependency : "Jūs privalote turėti Gladiatus Crazy Addon įrašytą kitoje naršyklėje.",
+			how_to_sync_info : "Nukopijokite nuorodą ir ją įklijuokite kitoje naršyklėje, arba nuskanuokite QR kodą."
+		},
+		
 		settings : {
 			settings : "Nustatymai",
 			description : "Įjungti arba išjungti papildinio galimybes",
@@ -175,7 +246,7 @@ gca_languages['lt'] = {
 			category_global$pray_shorcut : "Rodyti meldimosi nuorodą esant Požemių pasaulyje",
 			category_global$centurio_powerups_timers : "Rodyti Centuriono ir sutarčių galiojimo laikus ant Premium nuorodos",
 			category_global$show_durability : "Rodyti daiktų patvarumą daikto kairiajame apatiniame kampe",
-			category_global$min_durability : "Įspėtjimas kai daikto patvarumas yra mažesnis nei % (pasirinkti 0 kad išjungti)",
+			category_global$min_durability : "Įspėjimas kai daikto patvarumas yra mažesnis nei % (pasirinkti 0 kad išjungti)",
 			category_overview$analyze_items : "Analizuoti daikto duomenis (reikalingus lavinimuisi)",
 			category_overview$food_life_gain : "Rodyti maisto duodamą gyvybės atstatymą",
 			category_overview$block_avoid_caps : "Rodyti blokavimo ir išvengimo caps",
@@ -268,10 +339,44 @@ gca_languages['lt'] = {
 			do_not_show : "Nerodyti",
 			show_as : "Rodyti kaip",
 			translated_percent : "Vertimo apimtis: {{percent}}%",
-			translated_by : "Išverstė: {{string}}",
+			translated_by : "Išversta pagal: {{string}}",
 			reset_settings_confirm : "Ar tikrai norite atstatyti papildinio nustatymus ?",
 			clear_data_confirm : "Ar tikrai norite ištrinti visus papildinio duomenis?",
-			notification_reload : "Perkrauti puslapį, kad pakeitimai įsigaliotų"
+			notification_reload : "Perkrauti puslapį, kad pakeitimai įsigaliotų",
+			category_global$expedition_dungeon_points_recover_timer : "Rodyti kiek liko minučių iki kol ekspedicijos bei požemių taškai bus pilni",
+			category_global$notify_guild_attack_ready : "Pranešti kuomet bus galima pulti gildiją",
+			category_global$notify_guild_attack_ready_interval : "Kas kiek laiko tikrinti kiek liko iki kito galimo gildijos puolimo (minutėmis)",
+			category_global$show_forge_info : "Rodyti daikto kalimo resursus",
+			category_global$show_mercenaries_real_name : "Rodyti samdinių tikrus vardus (tipus)",
+			category_global$global_arena_timer : "Rodyti globalios arenos laikmatį",
+			category_overview$double_click_consume : "Spustelti du kartus ant daiktų, kad juos sunaudotumėte",
+			category_packages$small_items_layout : "Sumažinti daiktų dydį",
+			category_packages$double_click_open : "Spustelti du kartus ant paketų, kad juos atidarytumėte",
+			category_packages$advance_filter : "Papildomi paketų filtrai",
+			category_pantheon$show_mysterybox_rewards_owned : "Rodyti dieviškos lemties skrynios laimėjimų turimus kiekius",
+			category_reports$battle_analyzer : "Analyze report and show life stats",
+			category_merchants$show_shop_info : "Rodyti parduotuvių informaciją (kiek iš viso aukso ir rubinų)",
+			category_merchants$double_click_actions : "Spustelti du kartus ant daiktų norint juos pirkti ar parduoti",
+			category_forge$horreum_materials_names : "[Svirna] Rodyti resurso pavadinimą",
+			category_forge$horreum_remember_options : "[Svirna] Prisiminti paskutinius pasirinktus nustatymus",
+			category_forge$horreum_select_meterials : "[Svirna] Pasirinkti resursą jį nuspaudžiant",
+			category_arena$sort_by_lvl : "Rūšiuoti žaidėjus arenoje pagal lygį",
+			category_arena$highlight_guild_members : "Paryškinti žaidėjus iš kitų serverių kurie galėtų būti gildijos nariai",
+			category_arena$target_list : "Žaidėjų taikinių sąrašas",
+			category_market$double_click_select : "Pasirinkti daiktą dvigubu mygtuko paspaudimu",
+			category_market$sell_warning_icons : "Pranešimo ikona parduodant daiktus",
+			category_market$sell_with_enter : "Parduoti daiktus nuspaudžiant ENTER ⏎",
+			category_guild$bank_book_show_changes : "Rodyti aukų pokyčius nuo paskutinio apsilankymo aukojimo knygoje",
+			category_auction$save_last_state : "Išsaugoti ir numatytai naudoti paskutinę aukciono paiešką",
+			category_data$clear_cache_data : "Išvalyti plėtinio slapukų duomenis",
+			category_data$cross_browser_login : "Sinchronizacija tarp naršyklių",
+			category_data$export_error_player_settings : "Eksportuoti vartotojo nustatymų klaidas į failą",
+			show_info : "Rodyti informaciją",
+			each_category : "Leisti objekto kategorijoje",
+			all_category : "Leisti objekto kategorijoje ir kitur",
+			do_not_run : "Neleisti",
+			data_exported_save_the_file : "Duomenys buvo eksportuoti. Išsaugoti failą.",
+			missing_translations : "Trūkstami vertimai"
 		}
 	}
 }
