@@ -35,3 +35,4 @@
 	- [x] Turkish update by @Emefar
 	- [x] Portuguese update by @WagnerNarde
 	- [x] Hungarian update by Saiid
+	- [x] Lithuanian update by @Allison000
