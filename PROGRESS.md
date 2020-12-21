@@ -12,6 +12,8 @@
 	- [x] Items sort
 - **Forge**
 	- [x] Added button to store all resourses at horreum
+- **Horreum**
+	- [ ] Basic version of a Scroll Book added (no button to access it yet)
 - **Workbench**
 	- [x] Fetch item from packages after repair
 - **Target List**
