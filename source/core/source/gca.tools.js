@@ -1808,6 +1808,11 @@ var gca_tools = {
 									prefix : {},
 									base : {},
 									suffix : {},
+								},
+								level : {
+									prefix : [],
+									base : [],
+									suffix : [],
 								}
 							};
 
@@ -1816,25 +1821,31 @@ var gca_tools = {
 							while (i < scrolls.length) {
 								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
 								let name = scrolls[i].match(/ data-name="([^"]*)"/i)[1];
+								let level = parseInt(scrolls[i].match(/ data-level="(\d+)"/i)[1], 10);
 								i++;
 								if (id == 0) break;
 								info.id.prefix.push(id);
 								info.name.prefix[id] = name;
+								info.level.prefix.push(level);
 							}
 							// Get suffixes
 							while (i < scrolls.length) {
 								let id = parseInt(scrolls[i].match(/ value="(\d+)"/i)[1], 10);
 								let name = scrolls[i].match(/ data-name="([^"]*)"/i)[1];
+								let level = parseInt(scrolls[i].match(/ data-level="(\d+)"/i)[1], 10);
 								i++;
 								info.id.suffix.push(id);
 								info.name.suffix[id] = name;
+								info.level.suffix.push(level);
 							}
 							// Get bases
 							for (let i = 0; i < bases.length; i++) {
 								let id = bases[i].match(/ value="(\d+-\d+)"/i)[1];
 								let name = gca_tools.strings.trim(bases[i].match(/">([^<]*)<\/option>/i)[1]);
+								let level = parseInt(scrolls[i].match(/ data-level="(\d+)"/i)[1], 10);
 								info.id.base.push(id);
 								info.name.base[id] = name;
+								info.level.base.push(level);
 							}
 
 							// Send results

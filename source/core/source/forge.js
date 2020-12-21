@@ -90,6 +90,8 @@ var gca_forge = {
 
 			this.horreum.openAllCategoriesButton();
 			this.horreum.gatherInfo();
+
+			this.scrollBook.inject();
 		}
 		
 		// If char box exist
@@ -1276,6 +1278,217 @@ var gca_forge = {
 		// Handle get all
 		packets.addEventListener('click', () => {makeGatherRequests('lootbox');});
 		horreum.addEventListener('click', () => {makeGatherRequests('storeSmelted');});
+	},
+
+	// Create Scroll Books
+	scrollBook : {
+		inject : function() {
+
+			this.el = {
+				contentOld: document.getElementById('content'),
+				contentNew: document.createElement('div')
+			}
+			this.active = false;
+			this.loaded = false;
+			this.el.contentNew.style.display = 'none';
+			this.el.contentNew.setAttribute('id', 'content_2nd');
+			this.el.contentOld.parentNode.appendChild(this.el.contentNew);
+
+			this.create();
+			//this.toggle();
+			//gca_forge.scrollBook.toggle()
+		},
+
+		toggle : function() {
+			if (this.active) {
+				this.el.contentNew.style.display = 'none';
+				this.el.contentOld.style.display = 'block';
+			}
+			else {
+				this.el.contentOld.style.display = 'none';
+				this.el.contentNew.style.display = 'block';
+			}
+			this.active = !this.active;
+
+			if (this.active) {
+				this.update();
+			}
+		},
+
+		create : function() {
+			this.wrapper = document.createElement('div');
+			let aside, h2, section, table, tbody, tr, th;
+
+			aside = document.createElement('aside');
+			aside.className = 'left';
+			aside.style.width = 'calc(50% - 6px)';
+			h2 = document.createElement('h2');
+			h2.className = 'section-header';
+			h2.textContent = 'Prefix';
+			h2.appendChild(document.createTextNode(' '));
+			this.prefixNote = document.createElement('small');
+			h2.appendChild(this.prefixNote);
+			aside.appendChild(h2);
+			section = document.createElement('section');
+			section.style.display = 'block';
+			aside.appendChild(section);
+			table = document.createElement('table');
+			table.setAttribute('width', '100%');
+			section.appendChild(table);
+			tbody = document.createElement('tbody');
+			table.appendChild(tbody);
+			tr = document.createElement('tr');
+			tbody.appendChild(tr);
+			th = document.createElement('tr');
+			th.textContent = 'loading';
+			tr.appendChild(th);
+			this.prefixWrapper = tbody;
+			this.wrapper.appendChild(aside);
+
+			aside = document.createElement('aside');
+			aside.className = 'right';
+			aside.style.width = 'calc(50% - 6px)';
+			h2 = document.createElement('h2');
+			h2.className = 'section-header';
+			h2.textContent = 'Suffix';
+			h2.appendChild(document.createTextNode(' '));
+			this.suffixNote = document.createElement('small');
+			h2.appendChild(this.suffixNote);
+			aside.appendChild(h2);
+			section = document.createElement('section');
+			section.style.display = 'block';
+			aside.appendChild(section);
+			table = document.createElement('table');
+			table.setAttribute('width', '100%');
+			section.appendChild(table);
+			tbody = document.createElement('tbody');
+			table.appendChild(tbody);
+			tr = document.createElement('tr');
+			tbody.appendChild(tr);
+			th = document.createElement('tr');
+			th.textContent = 'loading';
+			tr.appendChild(th);
+			this.suffixWrapper = tbody;
+			this.wrapper.appendChild(aside);
+
+			this.el.contentNew.appendChild(this.wrapper);
+		},
+
+		update : function() {
+			// If not scroll info not loaded
+			if (!this.loaded) {
+				gca_tools.ajax.cached.known_scrolls().then(
+					(result) => {
+						this.loaded = true;
+						
+						this.info = {
+							prefix : new Array(187 +1).fill(null),
+							suffix : new Array(293 +1).fill(null)
+						};
+
+						// Prefix
+						for (let i = 0; i < result.id.prefix.length; i++) {
+							let id = result.id.prefix[i];
+							this.info.prefix[id] = {
+								id : id,
+								level : result.level.prefix[i],
+								name : result.name.prefix[id]
+							}
+						}
+						// Suffix
+						for (let i = 0; i < result.id.suffix.length; i++) {
+							let id = result.id.suffix[i];
+							this.info.suffix[id] = {
+								id : id,
+								level : result.level.suffix[i],
+								name : result.name.suffix[id]
+							}
+						}
+
+						this.update();
+					}
+				);
+				return;
+			}
+
+			// Update screen info
+			let exclude;
+
+			let prefix_all = 0;
+			let prefix_learned = 0;
+			this.prefixWrapper.textContent = '';
+			exclude = [0, 12, 56, 57, 58, 59, 87, 88, 97, 100, 110, 111, 113, 117, 119, 121, 123, 125, 126, 127, 128, 129, 133, 136, 137];
+			for (let i = 0; i < this.info.prefix.length; i++) {
+				if (exclude.includes(i)) continue;
+				prefix_all++;
+				let info = this.info.prefix[i];
+				let tr = document.createElement('tr');
+				if (!info) {
+					info = {id : i, name : '????', level : '??'};
+					tr.style.color = '#656565';
+				}
+				else {
+					prefix_learned++;
+				}
+				let td = document.createElement('td');
+				//td.textContent = info.id;
+				//tr.appendChild(td);
+				//td = document.createElement('td');
+				td.textContent = info.name;
+				tr.appendChild(td);
+				td = document.createElement('td');
+				td.textContent = info.level;
+				tr.appendChild(td);
+				td = document.createElement('td');
+				let a = document.createElement('a');
+				a.textContent = '🔗';
+				a.setAttribute('href', gca_links.get('gladiatus-tools-server') + '/equipment?item=' + info.id + ',1-1,0');
+				a.setAttribute('target', '_blank');
+				a.setAttribute('rel', 'noopener noreferrer');
+				td.appendChild(a);
+				tr.appendChild(td);
+				
+				this.prefixWrapper.appendChild(tr);
+			}
+			this.prefixNote.textContent = '(' + prefix_learned + '/' + prefix_all + ')';
+
+			let suffix_all = 0;
+			let suffix_learned = 0;
+			this.suffixWrapper.textContent = '';
+			exclude = [0, 10, 14, 19, 22, 25, 27, 28, 41, 45, 57, 60, 62, 64, 68, 95, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 112, 113, 125, 140, 166, 184, 194, 202, 204, 209, 211, 212, 213, 214, 216, 217, 219, 225, 226, 227, 228, 231, 233, 235, 238];
+			for (let i = 0; i < this.info.suffix.length; i++) {
+				if (exclude.includes(i)) continue;
+				suffix_all++;
+				let info = this.info.suffix[i];
+				let tr = document.createElement('tr');
+				if (!info) {
+					info = {id : i, name : '????', level : '??'};
+					tr.style.color = '#656565';
+				}
+				else {
+					suffix_learned++;
+				}
+				let td = document.createElement('td');
+				//td.textContent = info.id;
+				//tr.appendChild(td);
+				//td = document.createElement('td');
+				td.textContent = info.name;
+				tr.appendChild(td);
+				td = document.createElement('td');
+				td.textContent = info.level;
+				tr.appendChild(td);
+				td = document.createElement('td');
+				let a = document.createElement('a');
+				a.textContent = '🔗';
+				a.setAttribute('href', gca_links.get('gladiatus-tools-server') + '/equipment?item=0,1-1,' + info.id + '');
+				a.setAttribute('target', '_blank');
+				a.setAttribute('rel', 'noopener noreferrer');
+				td.appendChild(a);
+				tr.appendChild(td);
+				this.suffixWrapper.appendChild(tr);
+			}
+			this.suffixNote.textContent = '(' + suffix_learned + '/' + suffix_all + ')';
+		}
 	}
 };
 
