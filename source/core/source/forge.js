@@ -30,6 +30,9 @@ var gca_forge = {
 			// Show selected quality on dropdown
 			this.showSelectedQuality.inject();
 
+			// Add link to the scroll book
+			this.scrollBook.inject();
+
 			// Show item shadow
 			this.showItemShadow();
 			
@@ -52,6 +55,9 @@ var gca_forge = {
 
 			// Add Gladiatus tools links
 			this.gladiatusTools.inject();
+
+			// Add link to the scroll book
+			this.scrollBook.inject();
 		}
 
 		// Repair
@@ -86,12 +92,17 @@ var gca_forge = {
 			(gca_options.bool("forge","horreum_select_meterials") &&
 			this.horreum.clickToSelectMaterial());
 
+			// Track material changes
 			this.horreum.trackStorageMaterialsChanges.inject();
 
+			// Add button to quickly expand all categories
 			this.horreum.openAllCategoriesButton();
-			this.horreum.gatherInfo();
 
+			// Add link to the scroll book
 			this.scrollBook.inject();
+
+			// Gather Horreum info
+			this.horreum.gatherInfo();
 		}
 		
 		// If char box exist
@@ -1283,17 +1294,20 @@ var gca_forge = {
 	// Create Scroll Books
 	scrollBook : {
 		inject : function() {
-
+			// Prepare Element references
 			this.el = {
 				contentOld: document.getElementById('content'),
 				contentNew: document.createElement('div')
 			}
-			this.active = false;
-			this.loaded = false;
 			this.el.contentNew.style.display = 'none';
 			this.el.contentNew.setAttribute('id', 'content_2nd');
 			this.el.contentOld.parentNode.appendChild(this.el.contentNew);
 
+			// Initialize status
+			this.active = false;
+			this.loaded = false;
+
+			// Create UI
 			this.create();
 			//this.toggle();
 			//gca_forge.scrollBook.toggle()
@@ -1319,6 +1333,7 @@ var gca_forge = {
 			this.wrapper = document.createElement('div');
 			let aside, h2, section, table, tbody, tr, th;
 
+			// First Table with prefixes
 			aside = document.createElement('aside');
 			aside.className = 'left';
 			aside.style.width = 'calc(50% - 6px)';
@@ -1340,11 +1355,12 @@ var gca_forge = {
 			tr = document.createElement('tr');
 			tbody.appendChild(tr);
 			th = document.createElement('tr');
-			th.textContent = 'loading';
+			th.textContent = '...';
 			tr.appendChild(th);
 			this.prefixWrapper = tbody;
 			this.wrapper.appendChild(aside);
 
+			// Second table with suffixes
 			aside = document.createElement('aside');
 			aside.className = 'right';
 			aside.style.width = 'calc(50% - 6px)';
@@ -1366,12 +1382,17 @@ var gca_forge = {
 			tr = document.createElement('tr');
 			tbody.appendChild(tr);
 			th = document.createElement('tr');
-			th.textContent = 'loading';
+			th.textContent = '...';
 			tr.appendChild(th);
 			this.suffixWrapper = tbody;
 			this.wrapper.appendChild(aside);
 
 			this.el.contentNew.appendChild(this.wrapper);
+
+			// Toggle button
+			gca_tools.create.footerButton('book').addEventListener('click', () => {
+				this.toggle();
+			}, false);
 		},
 
 		update : function() {
@@ -1431,9 +1452,9 @@ var gca_forge = {
 					prefix_learned++;
 				}
 				let td = document.createElement('td');
-				//td.textContent = info.id;
-				//tr.appendChild(td);
-				//td = document.createElement('td');
+				td.textContent = '#' + info.id;
+				tr.appendChild(td);
+				td = document.createElement('td');
 				td.textContent = info.name;
 				tr.appendChild(td);
 				td = document.createElement('td');
@@ -1469,9 +1490,9 @@ var gca_forge = {
 					suffix_learned++;
 				}
 				let td = document.createElement('td');
-				//td.textContent = info.id;
-				//tr.appendChild(td);
-				//td = document.createElement('td');
+				td.textContent = '#' + info.id;
+				tr.appendChild(td);
+				td = document.createElement('td');
 				td.textContent = info.name;
 				tr.appendChild(td);
 				td = document.createElement('td');

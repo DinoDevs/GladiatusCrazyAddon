@@ -1660,11 +1660,30 @@ var gca_tools = {
 		},
 
 		settingsLink : function(category) {
-			let link = document.createElement("a");
-			link.className = "gca-settings-link-button";
-			link.setAttribute("href", gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : category}));
-			document.getElementById("footer").appendChild(link);
+			let link = this.footerButton('gear', gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : category}));
 			gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "white"]]]));
+		},
+
+		footerButton : function(icon = null, href = null) {
+			let wrapper = this.prepareFooterButtons();
+			let link = document.createElement("a");
+			if (icon) link.className = "gca-icon gca-icon-" + icon;
+			else link.className = "gca-icon";
+			if (href) link.setAttribute("href", href);
+			wrapper.appendChild(link);
+			return link;
+		},
+
+		prepareFooterButtons : function() {
+			let footer = document.getElementById('footer');
+			// Return wrapper if already exists
+			let wrapper = footer.getElementsByClassName('gca-footer-buttons-wrapper');
+			if (wrapper.length > 0) return wrapper[0];
+			// Create wrapper
+			wrapper = document.createElement("div");
+			wrapper.className = 'gca-footer-buttons-wrapper';
+			footer.appendChild(wrapper);
+			return wrapper;
 		},
 
 		link : function(url, text = false, options = {}) {
