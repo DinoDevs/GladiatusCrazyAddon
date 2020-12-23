@@ -187,7 +187,11 @@ var manager = {
 		// Overview section
 		overview : function() {
 			// Overview
-			if(info.page.queries.submod == "fetchLoginBonus" || info.page.queries.submod == null){
+			if(
+				info.page.queries.submod == "fetchLoginBonus" ||
+				info.page.queries.submod == "changeMercName" ||
+				info.page.queries.submod == null
+			){
 				tools.loadScript("source/overview.js");
 			}
 			// Player Stats
