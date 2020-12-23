@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -12,8 +12,7 @@
 	- [x] Items sort
 - **Forge**
 	- [x] Added button to store all resourses at horreum
-- **Horreum**
-	- [ ] Basic version of a Scroll Book added (no button to access it yet)
+	- [x] Added new Scroll Book feature
 - **Workbench**
 	- [x] Fetch item from packages after repair
 - **Target List**
@@ -23,6 +22,8 @@
 ### BUG FIXES
 - **Global Arena**
 	- [x] Visual Fixes
+- **Overview**
+	- [x] Fixed overview scripts run after mercenary name change
 - **Forge**
 	- [x] Small console error fixed
 - **Sync**
