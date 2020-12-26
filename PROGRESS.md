@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -30,6 +30,8 @@
 	- [x] Removed persistent cookie (Firefox policy)
 - **Target List**
 	- [x] Cross server add to target list fix
+- **Market**
+	- [x] Wrong items recognized as scrolls fix
 
 
 ### TRANSLATIONS

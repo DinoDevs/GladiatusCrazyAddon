@@ -600,8 +600,14 @@ var gca_markets = {
 					// If no data return
 					if(!this.prefix) return;
 					
+					// RegExp to check is item is scroll
+					var scroll_patt = new RegExp("20-");
+					
 					// For each item
 					jQuery("#market_table div").each((i, item) => {
+						// If not a scroll, return
+						if(!scroll_patt.test(item.dataset.basis)) return;
+						
 						// If already parsed
 						if(item.dataset.gcaFlag_isLearned) return;
 						// Flag as parsed
