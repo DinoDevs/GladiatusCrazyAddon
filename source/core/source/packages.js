@@ -385,46 +385,40 @@ var gca_packages = {
 
 		// Patch Ajax Response
 		patchAjaxResponse : function(){
-			// Save scope
-			var that = this;
-
 			// Save Items
-			jQuery(".packageItem > [data-container-number]").each(function(){
-				that.patchAjaxResponseItems.push( -1 * jQuery(this).data("containerNumber") );
-			})
+			jQuery(".packageItem > [data-container-number]").each((i, item) => {
+				this.patchAjaxResponseItems.push(-1 * jQuery(item).data("containerNumber"));
+			});
 
 			// Before Response
-			gca_tools.event.request.onBeforeAjaxResponse(function(response){
+			gca_tools.event.request.onBeforeAjaxResponse((response) => {
 				// If package load request
-				if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
+				if (response.data.hasOwnProperty('newPackages') && response.data.hasOwnProperty('pagination') && response.data.hasOwnProperty('worthTotal'))
 					// Handle items
-					that.patchAjaxResponseHandler(response);
+					this.patchAjaxResponseHandler(response);
 			});
 		},
 
 		// Handle
 		patchAjaxResponseItems : [],
 		patchAjaxResponseHandler : function(response){
-			// Save scope
-			var that = this;
-
 			// Remove empty boxes
-			jQuery(".packageItem > [data-container-number]:not(:has(div))").each(function(){
-				var index = that.patchAjaxResponseItems.indexOf(-1 * jQuery(this).data("containerNumber"));
-				if(index > -1){
-					that.patchAjaxResponseItems.splice(index, 1);
+			jQuery(".packageItem > [data-container-number]:not(:has(div))").each((i, item) => {
+				let index = this.patchAjaxResponseItems.indexOf(-1 * jQuery(item).data("containerNumber"));
+				if (index > -1) {
+					this.patchAjaxResponseItems.splice(index, 1);
 				}
 			})
 
 			// Add items on list
-			for(var i = this.patchAjaxResponseItems.length - 1; i >= 0; i--){
-				var index = response.data.newPackages.indexOf(this.patchAjaxResponseItems[i]);
-				if(index == -1){
-					response.data.newPackages.unshift( this.patchAjaxResponseItems[i] );
+			for (let i = this.patchAjaxResponseItems.length - 1; i >= 0; i--) {
+				let index = response.data.newPackages.indexOf(this.patchAjaxResponseItems[i]);
+				if (index == -1) {
+					response.data.newPackages.unshift(this.patchAjaxResponseItems[i]);
 				}
 			}
 
-			JSON.stringify(response.data.newPackages);
+			//JSON.stringify(response.data.newPackages);
 		},
 
 		// Load more pages
@@ -482,12 +476,12 @@ var gca_packages = {
 				return;
 
 			// Get page
-			var page = this.pageLoadArray.shift();
+			let page = this.pageLoadArray.shift();
 
 			// Get packets
 			jQuery.get(gca_getPage.link(page), (content) => {
 				// Get page number
-				var response_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
+				let response_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
 				if(response_page) response_page = parseInt(response_page[1], 10);
 				else response_page = -1;
 
@@ -498,7 +492,7 @@ var gca_packages = {
 				}
 
 				// Parse items form content
-				var items = content.match(/<div\s+class="packageItem">[^<]*<input\s+[^>]+>[^<]*<div[^>]+>[^<]*<\/div>[^<]*<div[^>]*>[^<]*<div[^>]*>[^<]*<\/div>[^<]*<\/div>[^<]*<div>[^<]*[^<]*<span[^>]*>[^<]*<\/span>[^<]*<\/div>[^<]*<\/div>/gim);
+				let items = content.match(/<div\s+class="packageItem">[^<]*<input\s+[^>]+>[^<]*<div[^>]+>[^<]*<\/div>[^<]*<div[^>]*>[^<]*<div[^>]*>[^<]*<\/div>[^<]*<\/div>[^<]*<div>[^<]*[^<]*<span[^>]*>[^<]*<\/span>[^<]*<\/div>[^<]*<\/div>/gim);
 				if(items == null) return;
 				// For each item
 				for (let i = 0; i < items.length; i++) {
@@ -529,8 +523,8 @@ var gca_packages = {
 		// Insert Packet
 		// Just like the page do
 		insertPacket : function(data){
-			var item = jQuery(data.newPackage);
-			var item_dragable = item.find(".ui-draggable");
+			let item = jQuery(data.newPackage);
+			let item_dragable = item.find(".ui-draggable");
 			//jQuery("#packages").append(item);
 			jQuery(item).insertBefore("#gca-page-spot-" + data.page);
 			window.DragDrop.makeDraggable(item_dragable);
@@ -551,11 +545,11 @@ var gca_packages = {
 
 		// Update page price in gold
 		updatePagePriceInGold : function(item, factor){
-			var pagePriceInGold = jQuery("#valuePage");
+			let pagePriceInGold = jQuery("#valuePage");
 			if (!item.data("priceGold") || !item.data("amount")) return;
-			var cost = factor * item.data("priceGold") * item.data("amount");
+			let cost = factor * item.data("priceGold") * item.data("amount");
 			if (isNaN(cost)) return;
-			var newPagePriceInGold = pagePriceInGold.data("value") + cost;
+			let newPagePriceInGold = pagePriceInGold.data("value") + cost;
 			pagePriceInGold.data("value", newPagePriceInGold).text(formatZahl(newPagePriceInGold))
 		},
 
@@ -571,7 +565,7 @@ var gca_packages = {
 		
 		// Resolve category
 		resolve : function(self){
-			var category = parseInt(document.getElementById("pf").f.value);
+			let category = parseInt(document.getElementById("pf").f.value);
 			switch(category){
 				case 0: // All
 					if(gca_data.section.get("packages", "special_category_features", 0) == 1)
@@ -713,33 +707,30 @@ var gca_packages = {
 	// On double click open packet
 	doubleClickToOpen : {
 		init : function(self){
-			// Save instance
-			var that = this;
 			// Apply item events
 			this.apply();
 
 			// On new items reapply
-			gca_tools.event.request.onAjaxResponse(function(response){
+			gca_tools.event.request.onAjaxResponse((response) => {
 				// If package load request
 				if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
-					that.apply();
+					this.apply();
 			});
 			// On packages page load
-			self.loadPackets.onPageLoad(function(){
-				that.apply();
+			self.loadPackets.onPageLoad(() => {
+				this.apply();
 			});
 		},
 		apply : function(){
-			var that = this;
 			// For each
-			jQuery("#packages .ui-draggable").each(function(){
+			jQuery("#packages .ui-draggable").each((i, item) => {
 				// If already parsed
-				if(this.dataset.gcaFlag_doubleClickEvent)
+				if(item.dataset.gcaFlag_doubleClickEvent)
 					return;
 				// Flag as parsed
-				this.dataset.gcaFlag_doubleClickEvent = true;
+				item.dataset.gcaFlag_doubleClickEvent = true;
 				// Add event
-				this.addListener('dblclick', that.handler);
+				item.addListener('dblclick', this.handler);
 			});
 		},
 		handler : function() {
