@@ -1,17 +1,18 @@
 ## Progress on Version 4.3.4 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-7-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
 	- [x] Addon now is able to detect a number of extensions that are against the terms of use of the game
+	- [x] Style improvements while traveling (disable useless menu items)
 - **Auction**
 	- [x] Items sort
 - **Forge**
-	- [x] Added button to store all resourses at horreum
+	- [x] Added button to store all resources at horreum
 	- [x] Added new Scroll Book feature
 - **Workbench**
 	- [x] Fetch item from packages after repair

@@ -82,11 +82,6 @@ var gca_global = {
 		(gca_options.bool("global","shortcuts_bar") &&
 			this.display.shortcuts_bar.create());
 
-		
-		// Display auction status
-		(this.isTraveling && 
-			this.display.traveling_style_fixes());
-
 		// Display auction status
 		(!this.isTraveling && 
 			this.display.auction_status_bar.create());
@@ -102,9 +97,15 @@ var gca_global = {
 		// Advance main menu
 		(gca_options.bool("global","advance_main_menu") && 
 			this.display.advanced_main_menu.create());
+		
 		// Advance main menu - submenu click to change
 		(gca_options.bool("global","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.apply());
+		
+		// Make traveling display fixes
+		(this.isTraveling &&
+			this.display.traveling_style_fixes());
+		
 		// Bind auction last search
 		(!this.isTraveling && gca_options.bool("auction","save_last_state") && 
 			this.display.auctionLoadLastState());
@@ -384,6 +385,23 @@ var gca_global = {
 		traveling_style_fixes : function () {
 			let header = document.getElementById('header_game');
 			header.className += ' gca-traveling';
+			
+			// Disable Pantheon
+			if ( document.getElementsByClassName(" gca_advance_main_menu").length > 0 ){
+				let pantheon_menu_entry = document.getElementsByClassName("advanced_menu_entry")[1];
+				pantheon_menu_entry.style.filter = "grayscale(100%)";
+				pantheon_menu_entry.getElementsByTagName("a")[0].removeAttribute("href");
+				pantheon_menu_entry.getElementsByTagName("a")[1].removeAttribute("href");
+			}else{
+				let pantheon_menu_entry = document.getElementsByClassName("menuitem")[1];
+				pantheon_menu_entry.style.filter = "grayscale(100%)";
+				pantheon_menu_entry.removeAttribute("href");
+			}
+			// Disable Recruitment
+			let recruitment_menu_entry = document.getElementsByClassName("menuitem")[4];
+			recruitment_menu_entry.style.filter = "grayscale(100%)";
+			recruitment_menu_entry.removeAttribute("href");
+			
 		},
 
 		// Points recover timers
