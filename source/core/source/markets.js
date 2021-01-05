@@ -11,13 +11,13 @@ var gca_markets = {
 			return;
 		if(!document.getElementById("content"))
 			return;
-		
+
 		// If there are items
 		if(document.getElementById("market_table")){
 			// If Item shadow
 			(gca_options.bool("global","item_shadow") &&
 				this.itemShadow.market());
-			
+
 			// If 1 gold warnings
 			(gca_options.bool("market","one_gold_warning") &&
 				this.itemsWarnings.oneGoldItems());
@@ -26,11 +26,11 @@ var gca_markets = {
 				this.itemsWarnings.soulboundItems());
 			// If your items warning
 			//	this.itemsWarnings.yourItems();
-			
+
 			// If cancel all button
 			(gca_options.bool("market","cancel_all_button") &&
 				this.cancelAllButton());
-			
+
 			// If remember sell duration
 			if(gca_options.bool("market","remember_sell_duration")){
 				this.remember_sell_duration();
@@ -39,21 +39,21 @@ var gca_markets = {
 			else{
 				this.sell_duration();
 			}
-			
+
 			// Special category features
 			(gca_data.section.get("packages", "special_category_features", 0) != 2 &&
 				this.specialCategory.resolve(this));
 
 			this.layout.changeSortArrows();
 		}
-		
+
 		// Trigger sell with enter
-		(gca_options.bool("market", "sell_with_enter") && 
+		(gca_options.bool("market", "sell_with_enter") &&
 			this.enterTriggerSell());
 
 		// Insert sort options in POST-URL on sell form
 		this.sortOptionsOnSell();
-		
+
 		// 1 gold mode
 		(gca_options.bool("market", "one_gold_mode") &&
 			this.oneGoldMode());
