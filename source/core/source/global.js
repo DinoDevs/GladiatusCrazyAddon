@@ -279,7 +279,7 @@ var gca_global = {
 			if(links[0].className.match('glow') && links[0].href.match('mod=craps')){
 				this.isEvent.craps = true;
 			}
-			// Get first's submenu links
+			// Get second's submenu links
 			links = document.getElementById('submenu2').getElementsByTagName('a');
 			if(links[links.length-1].className.match('glow')){
 				// Check for "Server Bosses" event
@@ -298,10 +298,20 @@ var gca_global = {
 
 	// Resolve page direction
 	pageDirectionResolve : function(){
+		
+		// fix crash from Dark Mode addon (the insert a couple of <link> elements with no href before the gladiatus css files)
+		let s = 0; //skip counter
+		for (var i = 1; i < document.querySelectorAll('link').length - 1 ; i++) {
+			if (document.querySelectorAll('link')[i].getAttribute("href") != null && document.querySelectorAll('link')[i+1].getAttribute("href") != null)
+				break;
+			else
+				s++;
+		}
+		
 		// Check page direction ltr or rtl
 		if(
-			!document.querySelectorAll('link')[1].getAttribute("href").match("rtl_") && 
-			!document.querySelectorAll('link')[2].getAttribute("href").match("rtl_")
+			!document.querySelectorAll('link')[1+s].getAttribute("href").match("rtl_") && 
+			!document.querySelectorAll('link')[2+s].getAttribute("href").match("rtl_")
 		){
 			window.gca_rtl = false;
 			return;
