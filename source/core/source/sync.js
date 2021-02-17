@@ -41,9 +41,10 @@ var gca_sync = {
 				modal.destroy();
 
 				// Get secure hash
-				window.jQuery.get('main.php').success((html) => {
+				//window.jQuery.get('main.php').success((html) => {
+				window.jQuery.get('index.php?mod=overview').success((html) => {
 					// Get hash
-					let match = html.match(/<iframe\s+src="index\.php\?mod=overview&sh=([0-9a-f]+)"/);
+					let match = html.match(/index\.php\?mod=overview&sh=([0-9a-f]+)"/);
 
 					// If found
 					if (match) {
