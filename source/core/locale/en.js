@@ -379,6 +379,7 @@ gca_languages["en"] = {
 			category_packages$special_category_features : "Enable special features per category\n•Show if scrolls are know/unknown\n•Show scroll icon item's prefix/suffix is unknown",
 			category_packages$double_click_open : "Double click packets to open them",
 			category_packages$advance_filter : "Advance packages filters",
+			category_packages$pop_over_bag : "Pop bag over on scroll",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Enable quest grouping",
 			category_pantheon$quests_detailed_rewards : "Show detailed quests rewards",

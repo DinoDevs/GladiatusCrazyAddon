@@ -436,7 +436,9 @@ gca_options.data = {
 		// Open packets with double click
 		"double_click_open" : true,
 		// Advance packet filter
-		"advance_filter" : false
+		"advance_filter" : false,
+		// Pop Bag Over on scroll
+		"pop_over_bag" : true
 	},
 
 	// Pantheon Options

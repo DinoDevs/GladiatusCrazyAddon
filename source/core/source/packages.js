@@ -52,6 +52,9 @@ var gca_packages = {
 		// Enable advance packet filter
 		(gca_options.bool("packages", "advance_filter") && 
 			this.itemFilters.inject(this));
+		// Set Compact layout
+		(gca_options.bool("packages", "pop_over_bag") && 
+			this.layout.popOverBag.inject());
 		
 		// Add new category selection "Event items"
 		this.eventItemsCategory();
@@ -314,7 +317,95 @@ var gca_packages = {
 				// Parse pagination
 				gca_tools.pagination._parse(pagings[i], page, skipping);
 			}
-		}
+		},
+
+		// Implement a fix back on top
+		popOverBag : {
+			// Inject listener
+			inject : function(){
+				// Get bag wrapper element
+				this.wrapper = document.getElementById('inv').parentNode.parentNode;
+				this.handleDrag();
+
+				// Attack a scroll event
+				window.addEventListener('scroll', () => {
+					this.onScroll();
+				}, false);
+				// Fire scroll event
+				this.onScroll();
+			},
+
+			// On Page Scroll
+			onScroll : function(){
+				// Get scroll offset
+				var vscroll = parseInt((document.all ? document.scrollTop : window.pageYOffset), 10);
+				// For each element to be moved on the bar
+				if (vscroll > 465) {
+					if (!this.wrapper.classList.contains('gca-bag-pop-over')) {
+						// Calculate view port
+						let screenW = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+						let screenH = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+						// Get positions
+						let posX = gca_data.section.get("cache", "bagPopOverX", Math.min(764 + ((screenW - 764) / 2) - 15, screenW - 256));
+						let posY = gca_data.section.get("cache", "bagPopOverY", 18);
+						// Set positions
+						this.wrapper.style.top = Math.min(Math.max(posY, 18), screenH - 190) + 'px';
+						this.wrapper.style.left = Math.min(Math.max(posX, 25), screenW - 256) + 'px';
+						this.wrapper.classList.add('gca-bag-pop-over');
+					}
+				}
+				else {
+					this.wrapper.classList.remove('gca-bag-pop-over');
+				}
+			},
+
+			// Handle drag
+			handleDrag : function() {
+				// Implement element drag
+				this.drag = document.createElement('div');
+				this.drag.className = 'gca-bag-pop-over-move-btn';
+
+				let bagPos = {x: 0, y: 0};
+				let startPos = {x : 0, y: 0};
+				let deltaPos = {x : 0, y: 0};
+				
+				let mousedown = (e) => {
+					e.preventDefault();
+					// get the mouse cursor position at startup:
+					startPos.x = e.clientX;
+					startPos.y = e.clientY;
+					bagPos.x = parseInt(this.wrapper.style.left, 10);
+					bagPos.y = parseInt(this.wrapper.style.top, 10);
+					document.addEventListener('mouseup', mouseup);
+					document.addEventListener('mousemove', mousemove);
+				}
+
+				let mousemove = (e) => {
+					e = e || window.event;
+					e.preventDefault();
+					// calculate the new cursor position:
+					deltaPos.x = startPos.x - e.clientX;
+					deltaPos.y = startPos.y - e.clientY;
+					startPos.x = e.clientX;
+					startPos.y = e.clientY;
+					// set the element's new position:
+					bagPos.x -= deltaPos.x;
+					bagPos.y -= deltaPos.y;
+					this.wrapper.style.left = bagPos.x + 'px';
+					this.wrapper.style.top = bagPos.y + 'px';
+				}
+
+				let mouseup = () => {
+					document.removeEventListener('mouseup', mouseup);
+					document.removeEventListener('mousemove', mousemove);
+					gca_data.section.set("cache", "bagPopOverX", bagPos.x);
+					gca_data.section.set("cache", "bagPopOverY", bagPos.y);
+				}
+
+				this.drag.addEventListener('mousedown', mousedown);
+				document.getElementById('inv').parentNode.appendChild(this.drag);
+			}
+		},
 	},
 
 	// Load more packets
