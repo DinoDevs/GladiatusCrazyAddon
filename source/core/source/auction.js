@@ -321,8 +321,7 @@ var gca_auction = {
 
 				// Update gold info
 				if (status != 'unknown') {
-					let time = content.match(/<span id="server-time" data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]/i);
-					time = new Date(time[1], time[2], time[3], time[4], time[5], time[6], time[7]).getTime();
+					let time = gca_tools.time.ajaxServer(content);
 					let gold = document.getElementById("sstat_gold_val");
 					if (parseInt(gold.dataset.updateTime, 10) < time){
 						gold.textContent = content.match(/id="sstat_gold_val">([^<]+)<\/div>/i)[1];

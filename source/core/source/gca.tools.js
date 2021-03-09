@@ -180,13 +180,14 @@ var gca_tools = {
 
 		ajaxServer : function(html){
 			// Calculate server time
-			var time = html.match(/<span id="server-time" data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]">/i);
-			if(time == null){
+			let time = html.match(/<span id="server-time"[^>]+>/i);
+			time = time[0].match(/data-start-time="\[(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\]/i);
+			if (time == null) {
 				return 0;
 			}
 			return new Date(
 				parseInt(time[1], 10),
-				parseInt(time[2], 10) - 1,
+				parseInt(time[2], 10),
 				parseInt(time[3], 10),
 				parseInt(time[4], 10),
 				parseInt(time[5], 10),
