@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-8-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-9-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-10-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -25,6 +25,7 @@
 ### BUG FIXES
 - **Global Arena**
 	- [x] Visual Fixes
+	- [x] Fixed server time recover bug (affected auctions multi bid)
 - **Overview**
 	- [x] Fixed overview scripts run after mercenary name change
 - **Packages**
