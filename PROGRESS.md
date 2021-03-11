@@ -3,7 +3,7 @@
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-0-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-0-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-1-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
@@ -17,4 +17,4 @@
 
 ### TRANSLATIONS
 -  **Updates**
-	- [x] Empty
+	- [x] Czech update by @FrutyX
