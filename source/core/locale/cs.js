@@ -157,7 +157,7 @@ gca_languages['cs'] = {
 		// Arena section
 		arena : {
 			global_arena_title : "Globální Aréna",
-			global_arena_description : "Toto je ultimátní aréna,zde se shromažďují všichni gladiátoři z celého světa! V aréně,gladiátoři nebojují pro zlato či zkušenosti,bojují pro místo na seznamu v celosvětovém top žebříčku!",
+			global_arena_description : "Toto je ultimátní aréna, zde se shromažďují všichni gladiátoři z celého světa! V aréně, gladiátoři nebojují pro zlato či zkušenosti, bojují pro místo na seznamu v celosvětovém top žebříčku!",
 			global_arena_load : "Načíst seznam nepřátel",
 			global_highscore : "Globální Highscore",
 			country : "Země",
@@ -172,7 +172,7 @@ gca_languages['cs'] = {
 			attack_player : "Klikni pro útok “{{name}}”",
 			fight_won : "Vyhrál jsi souboj!",
 			fight_lost : "Prohrál jsi souboj...",
-			player_tired : "Jsi unavený.Musíš si odpočinout.",
+			player_tired : "Jsi unavený. Musíš si odpočinout.",
 			player1_hits_player2 : "{{name1}} zasáhl {{name2}}",
 			player_takes_x_damage :"{{name}} utržil {{number}} poškození",
 			player_dies :"{{name}} zemřel"
@@ -368,6 +368,7 @@ gca_languages['cs'] = {
 			category_packages$special_category_features : "Zapnout speciální funkce podle kategorie",
 			category_packages$double_click_open : "Dvojité kliknutí na zásilky pro jejich otevření",
 			category_packages$advance_filter : "Pokročilé filtry zásilek",
+			category_packages$pop_over_bag : "Postranní zobrazení inventáře při scrollování",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Povolit seskupování úkolů",
 			category_pantheon$quests_detailed_rewards : "Zobrazit podrobné odměny z úkolu",
