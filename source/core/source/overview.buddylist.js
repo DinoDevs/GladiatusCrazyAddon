@@ -215,11 +215,12 @@ var gca_overview_buddylist = {
 			document.getElementById('content').appendChild(error_wrapper);
 			// Detect eval errors
 			var observer = new MutationObserver(function (mutations) {
-				mutations.forEach(function(mutation) {
-					if (mutation.type == 'childList') {
+				for (var i = mutations.length - 1; i >= 0; i--) {
+					if (mutations[i].type == 'childList') {
 						gca_notifications.error(error_text.textContent);
+						break;
 					}
-				});
+				}
 			});
 			observer.observe(error_text, {characterData: false, attributes: false, childList: true, subtree: false});
 		}
@@ -243,4 +244,4 @@ var gca_overview_buddylist = {
 })();
 
 // ESlint defs
-/* global gca_data, gca_getPage, gca_locale, gca_options, gca_section, gca_tools */
+/* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_options, gca_section, gca_tools */
