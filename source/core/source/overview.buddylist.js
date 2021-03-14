@@ -140,7 +140,7 @@ var gca_overview_buddylist = {
 				div.textContent = "A";
 				td.appendChild(div);
 				div.addEventListener('click', () => {
-					this.startArenaFightWithName(name);
+					this.startArenaFightWithId(playerId);
 				});
 			}
 			tr.appendChild(td);
@@ -154,7 +154,7 @@ var gca_overview_buddylist = {
 				div.textContent = "C";
 				td.appendChild(div);
 				div.addEventListener('click', () => {
-					this.startCircusFightWithName(name);
+					this.startCircusFightWithId(playerId);
 				});
 			}
 			tr.appendChild(td);
@@ -189,12 +189,12 @@ var gca_overview_buddylist = {
 			gca_data.section.set('arena', 'target-list', list);
 		},
 
-		startArenaFightWithName: function (playerName) {
-			window.sendRequest("get", "ajax/doArenaFight.php", "dname=" + encodeURIComponent(playerName), undefined);
+		startArenaFightWithId: function (playerId) {
+			window.sendRequest("get", "ajax/doArenaFight.php", "did=" + playerId, undefined);
 		},
 
-		startCircusFightWithName: function (playerName) {
-			window.sendRequest("get", "ajax/doGroupFight.php", "dname=" + encodeURIComponent(playerName), undefined);
+		startCircusFightWithId: function (playerId) {
+			window.sendRequest("get", "ajax/doGroupFight.php", "did=" + playerId, undefined);
 		},
 
 		// Response of arena/circus fight requests contains javascript functions
