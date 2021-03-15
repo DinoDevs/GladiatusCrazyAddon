@@ -1862,7 +1862,7 @@ var gca_tools = {
 							for (let i = 0; i < bases.length; i++) {
 								let id = bases[i].match(/ value="(\d+-\d+)"/i)[1];
 								let name = gca_tools.strings.trim(bases[i].match(/">([^<]*)<\/option>/i)[1]);
-								let level = parseInt(scrolls[i].match(/ data-level="(\d+)"/i)[1], 10);
+								let level = parseInt(bases[i].match(/ data-level="(\d+)"/i)[1], 10);
 								info.id.base.push(id);
 								info.name.base[id] = name;
 								info.level.base.push(level);
