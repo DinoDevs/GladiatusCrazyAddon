@@ -15,7 +15,7 @@ gca_languages['de'] = {
 	// Language name
 	name : 'Deutsch (German)',
 	// Translators (authors of this script)
-	translators : ["DoonFreak", "GreatApo"],
+	translators : ["DoonFreak", "GreatApo", "Sleeping*Shadow (s26-de)"],
 
 	// Translations object
 	locale : {
@@ -54,6 +54,8 @@ gca_languages['de'] = {
 			
 			// Life points recovery
 			life_recover_full : "Gesamtes Leben wiederhergestellt in",
+			expedition_recover_full : "Volle Expeditonspunkte wiederhergestellt in",
+			dungeon_recover_full : "Volle Dungeonpunkte wiederhergestellt in",
 
 			// Button bar - Message
 			message_private_write : "Private Nachricht schreiben",
@@ -69,8 +71,10 @@ gca_languages['de'] = {
 			guild_storage_goto : "Zum Lager",
 			guild_bank_goto : "Zur Bank",
 			guild_warcamp_goto : "Zur Kriegsmeisterhalle",
+			guild_arenareports_goto : "Zu Gilden Kampfberichte",
 			guild_jail_goto : "Zum Negotium X",
 			guild_library_goto : "Zur Bibliothek",
+			guild_templum_goto : "Zum Templum",
 			guild_medic_goto : "Zum Arzt",
 			simulator_goto : "Zum Simulator",
 			stats_display : "Zeige meine Werte",
@@ -99,16 +103,23 @@ gca_languages['de'] = {
 
 			// Notifications
 			notification_guild_application : "Gildenbewerbung vorhanden",
+			notification_guild_attack_ready : "Die Abklingzeit für den Gildenkampf ist vorbei!",
+			low_durability_items : "Es gibt {{number}} Gegenstand/Gegenstände mit einer Haltbarkeit von {{percent}}%",
 
 
 			// Gold - Exp data
+			
 			gold_exp_data_today : "Die letzten 24 Stunden",
 			gold_exp_data_week : "Die letzten 7 Tage",
 			gold_exp_data_avg_day : "Durchschnittswerte pro Tag",
 			gold_exp_data_to_level_up : "Verbleibende Tage bis zum Level Aufstieg",
+
 			gold_exp_data_measurements : "Messungen",
 			gold_exp_data_total_exp : "gesamte Erfahrung",
 			gold_exp_data_total_gold : "gesamtes Gold",
+			
+			// Items
+			
 		},
 
 		// Overview
@@ -117,7 +128,13 @@ gca_languages['de'] = {
 			stats_difference : "Unterschied",
 			// Drop items to see materials to repair feature
 			drop_item_see_materials_repair : "ziehe hierher einen Gegenstand, um die Materialien zu sehen, die benötigt werden, um ihn zu reparieren",
-			workbench_6th_slot_empty : "Der 6. Slot der Werkbank muss leer sein"
+			workbench_6th_slot_empty : "Der 6. Slot der Werkbank muss leer sein",
+
+			// More player info
+			more_player_info : "Weitere Informationen zum Spieler",
+			can_use_max_item_level : "Kann Gegenstände bis zum Level {{max}} benutzen.",
+			can_see_market_max_item_level : "Kann Gegenstände am Markt bis zum Level {{max}} sehen.",
+			can_see_auction_item_levels : "Kann Gegenstände im Auktionshaus von Level {{min}} bis Level {{max}} sehen."
 		},
 
 		// Pantheon section
@@ -169,7 +186,13 @@ gca_languages['de'] = {
 			// Price of item equals to its value
 			price_value_function : "Preis = Wert + {{number}}",
 			// Levels you can see
-			levels_you_can_see : "Du kannst Gegenstände der Stufe {{min}} bis {{max}} sehen."
+			levels_you_can_see : "Du kannst Gegenstände der Stufe {{min}} bis {{max}} sehen.",
+			// Sort
+			sort : "Sortieren",
+			sort_by : "Sortieren nach",
+			sort_order : "Reihenfolge",
+			asc : "aufsteigend",
+			desc : "absteigend"
 		},
 
 		// Markets section
@@ -177,21 +200,27 @@ gca_languages['de'] = {
 			// Warnings
 			item_cost_only_x_gold : "Dieser Gegenstand kostet nur {{number}} Gold.",
 			item_is_soulbound : "Gegenstand ist seelengebunden",
+			item_cant_buy_back : "Du kannst den Gegenstand nicht zurück kaufen.",
 			// Are you sure
-			are_you_sure_you_want_to_buy : "Willst du den Gegenstand wirklich kaufen?"
+			are_you_sure_you_want_to_buy : "Willst du den Gegenstand wirklich kaufen?",
+			click_enter_to_sell : "Drücke Enter ⏎ zum Verkaufen"
 		},
 		
 		// Forge
 		forge : {
 			forge_ended : "Schmiede fertig!",
-			recraft_item : "Gegenstand zerlegt"
+			recraft_item : "Gegenstand zerlegt",
+			show_hide_doll : "Zeige / Verstecke Ausrüstung des Charakters"
 		},
 		
 		// Packages
 		packages : {
 			event_items : "Event Gegenstände",
 			known_scroll : "Bereits gelernt",
-			unknown_scroll : "noch nicht gelernt"
+			unknown_scroll : "noch nicht gelernt",
+			advance_filters : "Erweiteter Filter",
+			advance_filters_apply : "Filter anwenden",
+			advance_filters_clear : "Filter zurücksetzen",
 		},
 
 		// Settings
@@ -207,7 +236,7 @@ gca_languages['de'] = {
 			category_overview : "Übersicht",
 			category_messages : "Nachrichten",
 			category_packages : "Pakete",
-			
+			category_pantheon : "Pantheon",
 			category_reports : "Kampfberichte",
 			category_training : "Training",
 			category_merchants : "Händler",
@@ -229,6 +258,7 @@ gca_languages['de'] = {
 			category_global$extended_hp_xp_info : "Zeige erweiterte HP und XP Infos",
 			category_global$extended_hp_xp_info_potion : "Zeige den Heiltrank Button",
 			category_global$hp_timer_for_full_life : "Zeige Minuten bis zur vollen Gesundheit",
+			category_global$expedition_dungeon_points_recover_timer : "Zeige benötigte Zeit für volle Expeditons- und Dungeonpunkte",
 			category_global$shortcuts_bar : "Buttonleiste anzeigen",
 			category_global$shortcuts_bar_buttons : "Wähle die Optionen für die Schnelltastenleiste",
 			category_global$auction_status_bar : "Auktionsstatus einblenden",
@@ -244,6 +274,8 @@ gca_languages['de'] = {
 			category_global$cooldown_sound_notifications : "Aktiviere sound Benachrichtigungen (Expedition, Dungeon, Arena)",
 			category_global$notify_new_guild_application : "Benachrichtigen bei einer neuen Gildenbewerbung",
 			category_global$notify_new_guild_application_interval : "Überprüfe auf neue Bewerbung (Minuten)",
+			category_global$notify_guild_attack_ready : "Benachrichtige wenn Abklingzeit des Gildenkampfes vorüber ist",
+			category_global$notify_guild_attack_ready_interval : "Überprüfe Abklingzeit des Gildenkampfes (Minuten)",
 			category_global$x_scroll : "Horizontale Scrolleiste aktivieren",
 			category_global$item_shadow : "Qualität der Gegenstände als Schatten anzeigen",
 			category_global$inventory_options_group : "Inventar Optionen zusammenfassen",
@@ -251,14 +283,19 @@ gca_languages['de'] = {
 			
 			category_global$gold_exp_data : "Zeige Gold und Erfahrung Daten an",
 			category_global$pray_shorcut : "Beten Tasten in der Unterwelt anzeigen",
-			
+			category_global$centurio_powerups_timers : "Zeige Timer zu Centurio und Pakte an der Premium Schaltfläche",
 			category_global$show_durability : "Haltbarkeit der Gegenstände unten links anzeigen",
 			category_global$min_durability : "Benachrichtige sobald ein Gegenstand weniger als _% Haltbarkeit + Veredelung hat (Regler auf 0 deaktiviert)",
+			category_global$show_forge_info : "Zeige Schmiederohstoff der Gegenstände im Tooltip",
+			category_global$show_mercenaries_real_name : "Zeige den echten Söldner Namen (Typ) im Tooltip",
+			category_global$global_arena_timer : "Zeige Gobale Arena",
 			// Settings - Overview
 			category_overview$analyze_items : "Analysiere Spielergegenstände",
 			category_overview$food_life_gain : "Zeige Lebenspunkte nach der Nahrung",
+
 			category_overview$best_food : "Hebt das beste Essen hervor",
 			category_overview$overfeed_food : "Blende Essen aus, dass zuviel heilt",
+
 			category_overview$daily_bonus_log : "Tagesbonus protokollieren",
 			category_overview$buffs_detailed_time : "Zeige detaillierte Timer für Buffs (Sekunden)",
 			category_overview$mercenaries_manager : "Söldnermanager anzeigen",
@@ -283,10 +320,14 @@ gca_languages['de'] = {
 			category_packages$filters_layout : "Erweitere das Filter Layout",
 			category_packages$compact_info_layout : "Info-Layout kompakt anzeigen",
 			category_packages$items_layout : "Verbessere das Layout von Gegenständen",
+			category_packages$small_items_layout : "Gegenstände verkleinert anzeigen",
 			category_packages$load_more_pages : "Mehrere Seiten laden",
 			category_packages$pages_to_load : "Max Seitenanzahl die geladen werden soll",
 			category_packages$item_price : "Wert der Gegenstände anzeigen",
-			
+			category_packages$special_category_features : "Aktiviere spezielle Funktionen\n•Zeigt ob Schriftrollen bereits erlernt wurden\n•Zeigt nicht erlernte Suffix / Präfix via Symbol am Gegenstand an",
+			category_packages$double_click_open : "Pakete durch Doppelklick öffnen",
+			category_packages$advance_filter : "Erweiteter Pakete Filter",
+
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Aktiviere die Gruppierung von Aufgaben",
 			category_pantheon$quests_detailed_rewards : "Zeige detaillierte Aufgabenbelohnungen ",
@@ -294,10 +335,12 @@ gca_languages['de'] = {
 			category_pantheon$gods_show_points_percent : "Zeige Götterpunkte in Prozent",
 			category_pantheon$open_many_mysteryboxes : "Öffne mehrere Schatztruhen",
 			category_pantheon$show_mysterybox_rewards_rubies : "Wert der Schatztruhen Belohnungen in Rubinen anzeigen",
+
 			// Settings - Reports
 			category_reports$style_change : "Verbessere das Layout der Kampfberichte",
 			category_reports$load_loot_tooltips : "Beute der Kampfberichte direkt anzeigen",
 			category_reports$found_items : "Daten der gefundenen Gegenstände sammeln",
+
 			// Settings - Training
 			category_training$show_discount : "Trainingsrabatt anzeigen",
 			category_training$show_basics_in_bars : "Zeige Gundwerte als Balken",
@@ -307,21 +350,33 @@ gca_languages['de'] = {
 			category_training$show_points_after_upgrade : "Zeige Werte nach dem Training an",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Verblasse Gegenstände, die Sie sich nicht leisten können",
+			category_merchants$show_shop_info : "Zeige Infos pro Händler (Gesamtes Gold und Rubinen)",
+			category_merchants$double_click_actions : "Gegenstände verkaufen / kaufen durch Doppelklick",
 			// Settings - Forge
 			category_forge$material_links : "Taste zu den Paketen und dem Markt für jedes Material (Schmiede / Reparatur)",
 			category_forge$show_levels : "Stufe neben dem Namen anzeigen",
+			category_forge$horreum_materials_names : "[Horreum] Zeige Rohstoff-Bezeichnung",
+			category_forge$horreum_remember_options : "[Horreum] Letzte Ansicht der Rohstoffkategorie merken",
+			category_forge$horreum_select_meterials : "[Horreum] Rohstoff durch anklicken auswählen",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignoriere Angriffsbestätigungen (mehr als 5 Angriffe usw.)",
 			category_arena$show_simulator_imagelink : "Zeige einen Link zum Simulator (simulator.dinodevs.com)",
+			category_arena$sort_by_lvl : "Sortiere Spieler nach Level",
+			category_arena$highlight_guild_members : "Markiere Gildenmitglieder auf anderen Servern (Namensgleichheit)",
+			category_arena$target_list : "Liste der Angriffsziele",
 			// Settings - Magus
-				category_magus$fade_unimprovable_items : "Verblasse Gegenstände die sich nicht verbessern lassen",
+			category_magus$fade_unimprovable_items : "Verblasse Gegenstände die sich nicht verbessern lassen",
 			// Settings - Market
 			category_market$soulbound_warning : "Kaufbestätigung für seelengebundene Gegenstände",
 			category_market$one_gold_warning : "Kaufbestätigung für Gegenstände, die 1 Gold kosten",
 			category_market$cancel_all_button : "Zeige Alle-abbrechen-Taste",
 			category_market$remember_sell_duration : "Merken die zuletzt gewählte Verkaufsdauer",
 			category_market$sell_duration : "Wähle die Standardverkaufsdauer aus",
+
 			category_market$remember_sort : "Die letzte Sortierreihenfolge merken",
+			category_market$double_click_select : "Wähle Gegenstände durch Doppelklick aus",
+			category_market$sell_warning_icons : "Warnsymbol bei Verkauf von Seelengebundene Gegenstände",
+			category_market$sell_with_enter : "Verkaufe Gegenstände durch Drücken der Enter-Taste ⏎",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Zeige mögliches Schmiedematerial der Gegner",
 			category_expedition$underworld_layout : "Zeige das Layout der Unterwelt wie das der Expedition",
@@ -332,6 +387,7 @@ gca_languages['de'] = {
 			category_guild$library_tooltip_data : "Erweiterte Daten bei den Tooltips der Bibliothek",
 			category_guild$bank_donate_layout : "Verbessere das Layout der Bank",
 			category_guild$bank_book_layout : "Verbessere das Spendenbuch Layout der Bank",
+
 			category_guild$medic_layout : "Verbessere Layout des Arztes",
 			// Settings - Auction
 			category_auction$items_counters : "Zeige Anzahl der Gegenstände",
@@ -341,6 +397,7 @@ gca_languages['de'] = {
 			category_auction$x3_items_per_line : "Zeige 3 Gegenstände pro Reihe",
 			category_auction$multi_bids : "mehrere Gebote ohne Seitenaktualisierung",
 			category_auction$extra_item_stats : "Zeige zusätzliche Statistiken auf den Gegenstandsbildern",
+			category_auction$save_last_state : "Zuletzt gewählter Filter als Standardeinstellung anzeigen",
 			// Settings - Events
 			category_events$craps_timer : "Zeigen den Timer des Würfelevents oben an",
 			category_events$server_quest_timer : "Zeigen den Timer des Server-Quest- oder Location-Events oben an",
@@ -353,6 +410,9 @@ gca_languages['de'] = {
 			category_data$import_settings : "Importieren der Einstellungsdaten aus einer Datei",
 			category_data$reset_settings : "Setzt die Einstellungen des Addons zurück",
 			category_data$clear_data : "Lösche alle Addon Daten",
+			category_data$clear_cache_data : "Lösche Cache Dateien des Addons",
+
+
 
 			// Buttons
 			save : "Speichern",
@@ -363,9 +423,17 @@ gca_languages['de'] = {
 			do_not_show : "nicht anzeigen",
 			show_as : "anzeigen als",
 
+
+
+
+
 			// Info
+			translated_percent : "Aktuell übersetzt: {{number}}%",
+			translated_by : "Übersetzt von: {{string}}",
 			reset_settings_confirm : "Möchtest du die Einstellungen des Addons wirklich zurücksetzen?",
 			clear_data_confirm : "Möchtest du wirklich alle Daten des Addons löschen?",
+			data_exported_save_the_file : "Datei wurde exportiert. Speicher die Datei.",
+			missing_translations : "Fehlende Übersetzung",
 
 			// Notifications
 			notification_reload : "Seite neu laden, um die Zusätze zu aktivieren"
