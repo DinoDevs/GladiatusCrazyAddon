@@ -15,7 +15,7 @@ gca_languages['de'] = {
 	// Language name
 	name : 'Deutsch (German)',
 	// Translators (authors of this script)
-	translators : ["DoonFreak", "GreatApo", "Sleeping*Shadow (s26-de)"],
+	translators : ["DoonFreak", "GreatApo", "Sleeping*Shadow"],
 
 	// Translations object
 	locale : {
