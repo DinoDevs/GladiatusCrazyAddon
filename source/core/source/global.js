@@ -210,6 +210,14 @@ var gca_global = {
 		// Display links on footer
 		this.display.footerLinks();
 
+		// Gladiatus 4.2.0 top links in one line fix
+		[... document.querySelectorAll('#header_game span a')].forEach((link) => {
+			if (link.getOffsets().y > 50) {
+				link.style.marginLeft = 0;
+				link.style.marginRight = 0;
+			}
+		});
+
 		// Clean trash
 		this.maid.clean();
 	},
