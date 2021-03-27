@@ -31,6 +31,9 @@ var gca_global = {
 		// If Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
 			this.display.inventoryOptionsGroup.preload());
+		// Accessibility
+		(gca_options.bool("accessibility","light_level_indicators") &&
+			document.documentElement.classList.add("accessibility-light-level-indicators"));
 
 		// Image Cache
 		this.background.preserve_image_cache.preload();

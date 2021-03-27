@@ -299,6 +299,7 @@ gca_languages["en"] = {
 			category_expedition : "Expedition",
 			category_guild : "Guild",
 			category_auction : "Auction",
+			category_accessibility : "Accessibility",
 			category_events : "Events",
 			category_sound : "Sounds",
 			category_data : "Data",
@@ -450,6 +451,8 @@ gca_languages["en"] = {
 			category_auction$multi_bids : "Bid many items without page refresh",
 			category_auction$extra_item_stats : "Show extra stats on item images",
 			category_auction$save_last_state : "Implemented auction save search and load it by default",
+			// Settings - Accessibility
+			category_accessibility$light_level_indicators : "Make level indicators on items brighter",
 			// Settings - Events
 			category_events$craps_timer : "Display dice event's timer on top",
 			category_events$server_quest_timer : "Display server-quest or location event's timer on top",

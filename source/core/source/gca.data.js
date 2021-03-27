@@ -601,6 +601,12 @@ gca_options.data = {
 		"item_sort_functions" : true
 	},
 
+	// Accessibility
+	"accessibility" : {
+		// Make lvl indicators brighter
+		"light_level_indicators" : false
+	},
+
 	"events" : {
 		// Craps Event Timer
 		"craps_timer" : true,

@@ -986,6 +986,12 @@ var gca_settings = {
 				"save_last_state" : true
 			},
 
+			// Accessibility
+			"accessibility" : {
+				// Make lvl indicators brighter
+				"light_level_indicators" : false
+			},
+
 			"events" : {
 				// Craps Event Timer
 				"craps_timer" : true,

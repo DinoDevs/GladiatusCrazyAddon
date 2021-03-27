@@ -1439,6 +1439,15 @@
 		.accessibility-item-move-bar .btn {color: #ffeb3b;border: 2px solid #ffeb3b;float: right;}
 		.accessibility-item-move-overlay {background: rgba(0,0,0,0.5);position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 9998;display:none;}
 
+		/* Light Level Indicators */
+		.accessibility-light-level-indicators .show-item-quality [data-quality="-1"]:before {color: #fff !important;}
+		.accessibility-light-level-indicators .show-item-quality [data-level]:before {color: #aaffaa !important;}
+		.accessibility-light-level-indicators .show-item-quality [data-quality="1"]:before {color: #c0c3ff !important;}
+		.accessibility-light-level-indicators .show-item-quality [data-quality="2"]:before {color: #e9b1e9 !important;}
+		.accessibility-light-level-indicators .show-item-quality [data-quality="3"]:before {color: #ffdabf !important;}
+		.accessibility-light-level-indicators .show-item-quality [data-quality="4"]:before {color: #ffcaca !important;}
+
+
 	/* Ester Eggs
 	-------------------------------------------------- */
 		
