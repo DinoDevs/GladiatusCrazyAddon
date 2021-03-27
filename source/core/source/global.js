@@ -18,9 +18,7 @@ var gca_global = {
 			this.display.advanced_main_menu.submenuClickToChangeTab.preload());
 		// If rtl server
 		if (localStorage.getItem('gca_rtl')) {
-			if (document.documentElement.className.length)
-				document.documentElement.className += " ";
-			document.documentElement.className += "gca_rtl";
+			document.documentElement.classList.add("gca_rtl");
 		}
 		// If x-scroll
 		(gca_options.bool("global","x_scroll") && 
@@ -40,15 +38,11 @@ var gca_global = {
 
 		// If mobile add css class
 		if (this.isMobile) {
-			if (document.documentElement.className.length)
-				document.documentElement.className += " ";
-			document.documentElement.className += "gca_mobile_device";
+			document.documentElement.classList.add("gca_mobile_device");
 		}
 		// If dirty
 		if (gca_tools.easter_eggs.isDirty()) {
-			if (document.documentElement.className.length)
-				document.documentElement.className += " ";
-			document.documentElement.className += "gca_is_dirty";
+			document.documentElement.classList.add("gca_is_dirty");
 		}
 	},
 	// Inject Code
@@ -342,9 +336,7 @@ var gca_global = {
 	
 		// Else its a right to left server
 		window.gca_rtl = true;
-		if (document.documentElement.className.length)
-			document.documentElement.className += " ";
-		document.documentElement.className += "gca_rtl";
+		document.documentElement.classList.add("gca_rtl");
 
 		// Enable if disabled
 		if (!localStorage.getItem('gca_rtl'))
