@@ -461,7 +461,7 @@ gca_languages["gr"] = {
 			category_data$import_settings : "Εισαγωγή των δεδομένων ρυθμίσεων από αρχείο",
 			category_data$reset_settings : "Επαναφορά των ρυθμίσεων του προσθέτου",
 			category_data$clear_data : "Εκκαθάριση όλων των δεδομένων του προσθέτου",
-			category_data$clear_cache_data : "Εκκαθάριση δεδομένων προσθέτου",
+			category_data$clear_cache_data : "Εκκαθάριση προσωρινών δεδομένων προσθέτου",
 			category_data$cross_browser_login : "Ταυτόχρονη σύνδεση σε πολλαπλούς περιηγητές",
 
 			// Buttons
