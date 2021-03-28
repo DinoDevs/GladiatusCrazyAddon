@@ -1454,12 +1454,12 @@
 		.accessibility-quality-symbols-indicators .show-item-quality div[data-quality="2"]:before {content: "◆◆";}
 		.accessibility-quality-symbols-indicators .show-item-quality div[data-quality="3"]:before {content: "◆◆◇";}
 		.accessibility-quality-symbols-indicators .show-item-quality div[data-quality="4"]:before {content: "◆◆◆";}
-		.accessibility-quality-symbols-indicators .show-item-level div[data-level]:not([data-basis^="18-"])::before {content: "◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
-		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="-1"]:not([data-basis^="18-"])::before {content: "◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
-		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="1"]:not([data-basis^="18-"])::before {content: "◆◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
-		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="2"]:not([data-basis^="18-"])::before {content: "◆◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
-		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="3"]:not([data-basis^="18-"])::before {content: "◆◆◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
-		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="4"]:not([data-basis^="18-"])::before {content: "◆◆◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
+		.accessibility-quality-symbols-indicators .show-item-level div[data-level]:not([data-basis^="18-"])::before {content: "◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;text-align: left;}
+		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="-1"]:not([data-basis^="18-"])::before {content: "◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;text-align: left;}
+		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="1"]:not([data-basis^="18-"])::before {content: "◆◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;text-align: left;}
+		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="2"]:not([data-basis^="18-"])::before {content: "◆◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;text-align: left;}
+		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="3"]:not([data-basis^="18-"])::before {content: "◆◆◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;text-align: left;}
+		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="4"]:not([data-basis^="18-"])::before {content: "◆◆◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;text-align: left;}
 
 		/* Add Quality Diamonds on Tooltips */
 		.accessibility-tooltips-quality-symbols .tooltips > div > p[style*="color:white"]:after {content: "◇";font-size: 0.8em;margin-top: -5px;display: block;}
