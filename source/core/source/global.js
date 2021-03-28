@@ -35,6 +35,10 @@ var gca_global = {
 			document.documentElement.classList.add("accessibility-white-level-indicators"));
 		(gca_options.bool("accessibility","qualty_symbols_indicators") &&
 			document.documentElement.classList.add("accessibility-quality-symbols-indicators"));
+		(gca_options.bool("accessibility","tooltips_qualty_white") &&
+			document.documentElement.classList.add("accessibility-tooltips-quality-white"));
+		(gca_options.bool("accessibility","tooltips_qualty_symbols") &&
+			document.documentElement.classList.add("accessibility-tooltips-quality-symbols"));
 
 		// Image Cache
 		this.background.preserve_image_cache.preload();

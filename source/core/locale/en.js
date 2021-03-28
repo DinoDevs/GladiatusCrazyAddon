@@ -452,8 +452,10 @@ gca_languages["en"] = {
 			category_auction$extra_item_stats : "Show extra stats on item images",
 			category_auction$save_last_state : "Implemented auction save search and load it by default",
 			// Settings - Accessibility
-			category_accessibility$white_level_indicators : "Change level number indicators on items white",
+			category_accessibility$white_level_indicators : "Change level number indicators on items to white",
 			category_accessibility$qualty_symbols_indicators : "Add quality symbols indicators on items",
+			category_accessibility$tooltips_qualty_white : "Change item title in tooltips to white",
+			category_accessibility$tooltips_qualty_symbols : "Add quality symbols on tooltips",
 			// Settings - Events
 			category_events$craps_timer : "Display dice event's timer on top",
 			category_events$server_quest_timer : "Display server-quest or location event's timer on top",

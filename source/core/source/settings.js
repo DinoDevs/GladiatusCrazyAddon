@@ -991,7 +991,11 @@ var gca_settings = {
 				// Make lvl number indicators white
 				"white_level_indicators" : false,
 				// Add quality symbols above level numbers
-				"qualty_symbols_indicators" : false
+				"qualty_symbols_indicators" : false,
+				// Make item title in tooltips white
+				"tooltips_qualty_white" : false,
+				// Add quality symbols on tooltips
+				"tooltips_qualty_symbols" : false,
 			},
 
 			"events" : {

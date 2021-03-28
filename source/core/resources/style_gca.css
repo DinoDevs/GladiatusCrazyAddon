@@ -1448,12 +1448,12 @@
 		.accessibility-white-level-indicators .show-item-quality [data-quality="4"]:before {color: #fff !important;}
 
 		/* Add Quality Diamonds */
-		.accessibility-quality-symbols-indicators .show-item-quality [data-level]:before {content: "◆";white-space: pre-wrap;}
-		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="-1"]:before {content: "◇";white-space: pre-wrap;}
-		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="1"]:before {content: "◆◇";white-space: pre-wrap;}
-		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="2"]:before {content: "◆◆";white-space: pre-wrap;}
-		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="3"]:before {content: "◆◆◇";white-space: pre-wrap;}
-		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="4"]:before {content: "◆◆◆";white-space: pre-wrap;}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-level]:before {content: "◆";}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="-1"]:before {content: "◇";}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="1"]:before {content: "◆◇";}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="2"]:before {content: "◆◆";}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="3"]:before {content: "◆◆◇";}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="4"]:before {content: "◆◆◆";}
 		.accessibility-quality-symbols-indicators .show-item-level [data-level]:not([data-basis^="18-"])::before {content: "◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
 		.accessibility-quality-symbols-indicators .show-item-level [data-quality="-1"]:not([data-basis^="18-"])::before {content: "◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
 		.accessibility-quality-symbols-indicators .show-item-level [data-quality="1"]:not([data-basis^="18-"])::before {content: "◆◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
@@ -1461,6 +1461,20 @@
 		.accessibility-quality-symbols-indicators .show-item-level [data-quality="3"]:not([data-basis^="18-"])::before {content: "◆◆◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
 		.accessibility-quality-symbols-indicators .show-item-level [data-quality="4"]:not([data-basis^="18-"])::before {content: "◆◆◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
 
+		/* Add Quality Diamonds on Tooltips */
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style~="color:white"]:after {content: "◇";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style~="color:lime;"][style~="text-shadow:"]:after {content: "◆";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style~="color:#5159F7;"][style~="text-shadow:"]:after {content: "◆◇";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style~="color:#E303E0;"][style~="text-shadow:"]:after {content: "◆◆";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style~="color:#FF6A00;"][style~="text-shadow:"]:after {content: "◆◆◇";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style~="color:#FF0000;"][style~="text-shadow:"]:after {content: "◆◆◆";font-size: 0.8em;margin-top: -5px;display: block;}
+
+		/* Add Quality Diamonds on Tooltips */
+		.accessibility-tooltips-quality-white .tooltips > div > p[style~="color:lime;"][style~="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style~="color:#5159F7;"][style~="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style~="color:#E303E0;"][style~="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style~="color:#FF6A00;"][style~="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style~="color:#FF0000;"][style~="text-shadow:"] {color: white!important;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
