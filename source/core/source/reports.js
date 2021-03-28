@@ -267,7 +267,7 @@ var gca_reports = {
 								let title = icon.getAttribute('title');
 								icon.removeAttribute('title');
 								icon.style.cursor = "pointer";
-								gca_tools.setTooltip(icon, JSON.stringify([[[title+'<span class="loading"></span>',"white"]]]));
+								gca_tools.setTooltip(icon, JSON.stringify([[[title+'<span class="loading"></span>',"#fdfdfd"]]]));
 								// Load item
 								this.getLootItem(report_id, report_t, icon, title);
 							}
@@ -288,7 +288,7 @@ var gca_reports = {
 							let opponent_id = line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].href.match(/&p=(\d+)/i)[1];
 							let server = line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].href.match(/s(\d+)-(\w+)\./i);
 							attack_again.setAttribute('onclick', "gca_reports.reports_style.startProvinciarumFight(this, "+ ((gca_reports.submod == 'showArena')?2:3) +", "+opponent_id+", "+server[1]+", '"+server[2]+"')");
-							//gca_tools.setTooltip(attack_again, JSON.stringify([[['Attack back',"white"]]]));
+							//gca_tools.setTooltip(attack_again, JSON.stringify([[['Attack back',"#fdfdfd"]]]));
 							
 							// Tooltip
 							let name = line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].textContent;
@@ -360,12 +360,12 @@ var gca_reports = {
 				// Error - not found loot
 				if(tooltips.length == 0){
 					// Display error message
-					gca_tools.setTooltip(icon, JSON.stringify([[[title, "white"], [gca_locale.get("general", "error"), "white"]]]));
+					gca_tools.setTooltip(icon, JSON.stringify([[[title, "#fdfdfd"], [gca_locale.get("general", "error"), "#fdfdfd"]]]));
 				}
 				// Tooltip replace
 				else {
 					// Add title on tooltip
-					let reward_tooltip = [[[title, "white"]]];
+					let reward_tooltip = [[[title, "#fdfdfd"]]];
 					// Init quality
 					let quality_best = 0;
 					// For each tooltip
@@ -383,7 +383,7 @@ var gca_reports = {
 						}
 						// Add space
 						if(i != 0)
-							reward_tooltip[0].push(["&nbsp;", "white"]);
+							reward_tooltip[0].push(["&nbsp;", "#fdfdfd"]);
 						// Add tooltip rows
 						for (let j = 0; j < tooltip[0].length; j++) {
 							reward_tooltip[0].push(tooltip[0][j]);
@@ -618,14 +618,14 @@ var gca_reports = {
 					let span = document.createElement("span");
 					span.style = font_style;
 					span.textContent = '⚔ '+hits+' / '+(hits+misses)+' ('+ ((hits+misses > 0) ? Math.round(hits/(hits+misses)*100) : '--')+'%)';
-					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "hits")+' / '+gca_locale.get("reports", "total_hits")+'","white"]]]';
+					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "hits")+' / '+gca_locale.get("reports", "total_hits")+'","#fdfdfd"]]]';
 					element.getElementsByTagName("td")[0].appendChild(span);
 					br = document.createElement("br");
 					element.getElementsByTagName("td")[0].appendChild(br);
 					span = document.createElement("span");
 					span.style = font_style;
 					span.textContent = '⦰ '+ ((hits > 0) ? Math.round(total_damage/hits) : 0);
-					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "avg_damage")+'","white"]]]';
+					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "avg_damage")+'","#fdfdfd"]]]';
 					element.getElementsByTagName("td")[0].appendChild(span);
 					
 					// Damage Taken
@@ -634,7 +634,7 @@ var gca_reports = {
 					span = document.createElement("span");
 					span.style = font_style;
 					span.textContent = '⚔ '+got_hit+' / '+(dodge+got_hit)+' ('+ ((dodge+got_hit>0) ? Math.round(got_hit/(dodge+got_hit)*100) : '--')+'%)';
-					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "hits")+' / '+gca_locale.get("reports", "total_hits")+'","white"]]]';
+					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "hits")+' / '+gca_locale.get("reports", "total_hits")+'","#fdfdfd"]]]';
 					element.getElementsByTagName("td")[1].appendChild(span);
 					
 					br = document.createElement("br");
@@ -642,7 +642,7 @@ var gca_reports = {
 					span = document.createElement("span");
 					span.style = font_style;
 					span.textContent = '✖ '+dodge+' / '+(dodge+got_hit)+' ('+ ((dodge+got_hit>0) ? Math.round(dodge/(dodge+got_hit)*100) : '--')+'%)';
-					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "dodge")+' / '+gca_locale.get("reports", "total_hits")+'","white"]]]';
+					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "dodge")+' / '+gca_locale.get("reports", "total_hits")+'","#fdfdfd"]]]';
 					element.getElementsByTagName("td")[1].appendChild(span);
 					
 					// Heal done
@@ -657,7 +657,7 @@ var gca_reports = {
 					span = document.createElement("span");
 					span.style = font_style;
 					span.textContent = '⦰ '+ ((heals > 0) ? Math.round(total_heal/heals) : 0);
-					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "avg_heal")+'","white"]]]';
+					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "avg_heal")+'","#fdfdfd"]]]';
 					element.getElementsByTagName("td")[2].appendChild(span);
 					
 					// Points

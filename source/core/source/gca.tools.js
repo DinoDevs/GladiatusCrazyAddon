@@ -1662,7 +1662,7 @@ var gca_tools = {
 
 		settingsLink : function(category) {
 			let link = this.footerButton('gear', gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : category}));
-			gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "white"]]]));
+			gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "#fdfdfd"]]]));
 		},
 
 		footerButton : function(icon = null, href = null) {

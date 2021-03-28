@@ -1326,7 +1326,7 @@ var gca_overview = {
 				mystery.textContent = collected + "/6";
 				boxes[boxes.length-1].appendChild(mystery);
 				boxes[boxes.length-1].className += " mystery";
-				gca_tools.setTooltip(boxes[boxes.length-1], JSON.stringify([[[bonus.description, "white"]]]));
+				gca_tools.setTooltip(boxes[boxes.length-1], JSON.stringify([[[bonus.description, "#fdfdfd"]]]));
 			}
 
 			// Next Bonus timer

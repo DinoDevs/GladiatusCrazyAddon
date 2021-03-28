@@ -366,7 +366,6 @@ var gca_new_message = {
 								name.style.color = "black";
 								name.style.cursor = "pointer";
 								name.style.fontFamily = "century gothic";
-								name.dataset.tooltip = '[[["Test","white"]]]';
 								name.textContent = player_list[i].name;
 								name.title = player_list[i].time;
 								parent.appendChild(name);

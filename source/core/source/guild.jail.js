@@ -143,7 +143,7 @@ var gca_guild_jail = {
 				
 				div3 = document.createElement('div');
 				div3.className = 'expedition_picture';
-				div3.setAttribute('data-tooltip','[[["'+prisoners[i].name+'","white"]]]');
+				div3.setAttribute('data-tooltip','[[["'+prisoners[i].name+'","#fdfdfd"]]]');
 				div2.appendChild(div3);
 				
 				let img = document.createElement('img');
@@ -157,7 +157,7 @@ var gca_guild_jail = {
 				
 				div3 = document.createElement('div');
 				div3.className = 'jail_level_number menue_new_count';
-				div3.setAttribute('data-tooltip','[[["'+prisoners[i].lvl+'","white"]]]');
+				div3.setAttribute('data-tooltip','[[["'+prisoners[i].lvl+'","#fdfdfd"]]]');
 				div3.textContent = prisoners[i].lvl;
 				div2.appendChild(div3);
 				

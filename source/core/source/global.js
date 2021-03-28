@@ -551,7 +551,7 @@ var gca_global = {
 					// Create Healing Pot button
 					var link = document.createElement('a');
 					link.id = "header_life_pot";
-					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="img/premium/token/18.jpg"> ' + gca_locale.get("global", "life_potion_use"),"white"]]]);
+					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="img/premium/token/18.jpg"> ' + gca_locale.get("global", "life_potion_use"),"#fdfdfd"]]]);
 					
 					// On click callback
 					var self = this;
@@ -1325,7 +1325,6 @@ var gca_global = {
 								name.href = gca_getPage.link({"mod":"player","p":player_list[i].id});
 								name.style.color = "black";
 								name.style.fontFamily = "century gothic";
-								name.dataset.tooltip = '[[["Test","white"]]]';
 								name.textContent = player_list[i].name;
 								name.title = player_list[i].time;
 								parent.appendChild(name);
@@ -1406,7 +1405,6 @@ var gca_global = {
 								name.href = gca_getPage.link({"mod":"player","p":player_list[i].id});
 								name.style.color = "black";
 								name.style.fontFamily = "century gothic";
-								//name.dataset.tooltip = '[[["Test","white"]]]';
 								name.textContent = player_list[i].name;
 								name.title = player_list[i].time;
 								parent.appendChild(name);
@@ -2606,7 +2604,7 @@ var gca_global = {
 				let gaCooldownBar = document.createElement("div");
 				gaCooldownBar.id = "cooldown_bar_ga";
 				gaCooldownBar.className = "cooldown_bar global_arena_global_timer";
-				gaCooldownBar.dataset.tooltip = '[[["'+gca_locale.get("arena", "global_arena_title")+' : '+this.global_arena_position+'","white"]]]';
+				gaCooldownBar.dataset.tooltip = '[[["'+gca_locale.get("arena", "global_arena_title")+' : '+this.global_arena_position+'","#fdfdfd"]]]';
 				gaCooldownBar.style.display = 'none';
 				this.globalArenaCooldownProgressBar = document.createElement("div");
 				this.globalArenaCooldownProgressBar.className = "cooldown_bar_fill cooldown_bar_fill_"+( this.timer <= 0 ? "ready" : "progress" );
