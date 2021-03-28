@@ -1439,13 +1439,27 @@
 		.accessibility-item-move-bar .btn {color: #ffeb3b;border: 2px solid #ffeb3b;float: right;}
 		.accessibility-item-move-overlay {background: rgba(0,0,0,0.5);position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 9998;display:none;}
 
-		/* Light Level Indicators */
-		.accessibility-light-level-indicators .show-item-quality [data-quality="-1"]:before {color: #fff !important;}
-		.accessibility-light-level-indicators .show-item-quality [data-level]:before {color: #aaffaa !important;}
-		.accessibility-light-level-indicators .show-item-quality [data-quality="1"]:before {color: #c0c3ff !important;}
-		.accessibility-light-level-indicators .show-item-quality [data-quality="2"]:before {color: #e9b1e9 !important;}
-		.accessibility-light-level-indicators .show-item-quality [data-quality="3"]:before {color: #ffdabf !important;}
-		.accessibility-light-level-indicators .show-item-quality [data-quality="4"]:before {color: #ffcaca !important;}
+		/* Make Level Number Indicators White */
+		.accessibility-white-level-indicators .show-item-quality [data-level]:before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality [data-quality="-1"]:before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality [data-quality="1"]:before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality [data-quality="2"]:before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality [data-quality="3"]:before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality [data-quality="4"]:before {color: #fff !important;}
+
+		/* Add Quality Diamonds */
+		.accessibility-quality-symbols-indicators .show-item-quality [data-level]:before {content: "◆";white-space: pre-wrap;}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="-1"]:before {content: "◇";white-space: pre-wrap;}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="1"]:before {content: "◆◇";white-space: pre-wrap;}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="2"]:before {content: "◆◆";white-space: pre-wrap;}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="3"]:before {content: "◆◆◇";white-space: pre-wrap;}
+		.accessibility-quality-symbols-indicators .show-item-quality [data-quality="4"]:before {content: "◆◆◆";white-space: pre-wrap;}
+		.accessibility-quality-symbols-indicators .show-item-level [data-level]:not([data-basis^="18-"])::before {content: "◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
+		.accessibility-quality-symbols-indicators .show-item-level [data-quality="-1"]:not([data-basis^="18-"])::before {content: "◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
+		.accessibility-quality-symbols-indicators .show-item-level [data-quality="1"]:not([data-basis^="18-"])::before {content: "◆◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
+		.accessibility-quality-symbols-indicators .show-item-level [data-quality="2"]:not([data-basis^="18-"])::before {content: "◆◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
+		.accessibility-quality-symbols-indicators .show-item-level [data-quality="3"]:not([data-basis^="18-"])::before {content: "◆◆◇ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
+		.accessibility-quality-symbols-indicators .show-item-level [data-quality="4"]:not([data-basis^="18-"])::before {content: "◆◆◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;}
 
 
 	/* Ester Eggs

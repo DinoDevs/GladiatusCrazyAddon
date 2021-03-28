@@ -603,8 +603,10 @@ gca_options.data = {
 
 	// Accessibility
 	"accessibility" : {
-		// Make lvl indicators brighter
-		"light_level_indicators" : false
+		// Make lvl number indicators white
+		"white_level_indicators" : false,
+		// Add quality symbols above level numbers
+		"qualty_symbols_indicators" : false
 	},
 
 	"events" : {
