@@ -6,18 +6,7 @@
 // Get browser object
 var Browser = typeof browser === 'undefined' ? chrome : browser;
 
-var init = () => {
-	// Wait until all ready
-	// Usually this will be true only the first time
-	if(
-		!window ||
-		!document.head ||
-		!document.body
-	) {
-		setTimeout(init, 2);
-		return;
-	}
-	
+var init = (function () {
 	// Get info
 	var manifest = Browser.runtime.getManifest();
 	var info = {
@@ -26,15 +15,28 @@ var init = () => {
 		version : manifest.version,
 		extension : Browser.runtime.id
 	};
-	
-	// Start code
-	inject(
-		info,
-		window,
-		Browser.extension.getURL('core')
-	);
-};
-init();
+
+	// Initializer
+	return (() => {
+		// Start code
+		inject(
+			info,
+			window,
+			Browser.extension.getURL('core')
+		);
+	});
+})();
+
+(function(){
+	// Wait until head is ready
+	let o = new MutationObserver(() => {
+		if (document.head) {
+			o.disconnect();
+			init();
+		}
+	});
+	o.observe(document, {childList: true, subtree : true});
+})();
 
 // ESlint defs
 /* global browser, chrome, inject */

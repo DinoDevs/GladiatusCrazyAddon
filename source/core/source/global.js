@@ -4827,12 +4827,17 @@ var gca_global = {
 			// Get resources folder id
 			getId : function() {
 				if (!this.id) {
-					let id = document.head.getElementsByTagName('link');
-					if (!id) return;
-					id = id[0].href.match(/game\/(\d+)\/css/);
-					if (!id | !id[1]) return false;
-					id = id[1];
-					this.id = id;
+					let link = document.head.getElementsByTagName('link');
+					if (link) {
+						for (let i = 0; i < link.length; i++) {
+							let id = link[i].href.match(/game\/(\d+)\/css/);
+							if (id) {
+								this.id = id[1];
+								return this.id;
+							}
+						}
+					}
+					return false;
 				}
 				return this.id;
 			},
