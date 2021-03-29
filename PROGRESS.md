@@ -3,7 +3,7 @@
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-3-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-2-blue.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
@@ -28,4 +28,5 @@
 ### TRANSLATIONS
 -  **Updates**
 	- [x] Czech update by @FrutyX
-	- [x] German update by @Zitronenen 
+	- [x] German update by @Zitronenen
+	- [x] Polish update by @Sorky96
