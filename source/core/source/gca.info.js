@@ -69,7 +69,7 @@ var gca_getPage = {
 		var link = path;
 		var front = "?";
 		for(let i in x){
-			link += front + i + "=" + x[i];
+			link += front + encodeURIComponent(i) + "=" + encodeURIComponent(x[i]);
 			if(front == "?") front = "&";
 		}
 		return link + front + "sh=" + gca_section.sh;
@@ -79,7 +79,7 @@ var gca_getPage = {
 		var link = path;
 		var front = "?";
 		for(let i in x){
-			link += front + i + "=" + x[i];
+			link += front + encodeURIComponent(i) + "=" + encodeURIComponent(x[i]);
 			if(front == "?") front = "&";
 		}
 		return s.protocol + "//" + s.domain + "/game/" + link;
@@ -93,16 +93,18 @@ var gca_getPage = {
 	fullLink : function(x){
 		return gca_section.protocol + "//" + gca_section.domain + "/game/" + this.link(x);
 	},
-	parameter : function(x){
-		for(var array=this.url().match(/\?(.*)$/i)[1].split("&"),par={},i=0;i<array.length;i++)
-			array[i]=array[i].split("="),par[array[i][0]]=(array[i].length>1)?array[i][1]:null;
-		return (typeof par[x] !== "undefined")?par[x]:undefined;
+	parameter : function(x, url){
+		return this.parameters(url)[x];
 	},
 	parameters : function(url){
 		if(!url) url = this.url();
-		for(var array=url.match(/\?(.*)$/i)[1].split("&"),par={},i=0;i<array.length;i++)
-			array[i]=array[i].split("="),par[array[i][0]]=array[i][1];
-		return par;
+		let params = {};
+		let array = url.match(/\?(.*)$/i)[1].split('&');
+		for (let i = 0; i < array.length; i++) {
+			let p = array[i].split('=');
+			params[p[0]] = p.length > 1 ? decodeURIComponent(p[1]) : null;
+		}
+		return params;
 	}
 };
 
