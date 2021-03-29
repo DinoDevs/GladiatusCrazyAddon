@@ -227,7 +227,7 @@ gca_languages['cs'] = {
 		forge : {
 			forge_ended : "Kování skončilo!",
 			recraft_item : "Znovu vykovat předmět",
-			show_hide_doll : "Zobrazit/Skrýt postavy hráče"
+			show_hide_doll : "Zobrazit/Skrýt postavy hráče",
 			horreum_material_change : "Změna stavu surovin ve stodole",
 		},
 		
