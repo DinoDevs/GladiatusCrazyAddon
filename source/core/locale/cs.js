@@ -228,6 +228,7 @@ gca_languages['cs'] = {
 			forge_ended : "Kování skončilo!",
 			recraft_item : "Znovu vykovat předmět",
 			show_hide_doll : "Zobrazit/Skrýt postavy hráče"
+			horreum_material_change : "Změna stavu surovin ve stodole",
 		},
 		
 				// Merchants
@@ -238,7 +239,7 @@ gca_languages['cs'] = {
 		
 		// Packages
 		packages : {
-			event_items : "Eventový předměty",
+			event_items : "Eventové předměty",
 			known_scroll : "Tento svitek už znáš",
 			unknown_scroll : "Tento svitek ještě neznáš",
 			advance_filters : "Pokročilé filtry",
@@ -452,7 +453,7 @@ gca_languages['cs'] = {
 			category_data$import_settings : "Importovat nastavení ze souboru",
 			category_data$reset_settings : "Resetovat nastavení addonu",
 			category_data$clear_data : "Vymazat veškerá data addonu",
-			category_data$clear_cache_data : "Vyčistit data v mezipaměti addonu",
+			category_data$clear_cache_data : "Vymazat dočasná data v mezipaměti addonu",
 			category_data$cross_browser_login : "Synchronizace přihlášení skrze prohlížeče",
 			category_data$export_error_player_settings : "Export uživatelských dat nastavení do souboru",
 			
