@@ -125,6 +125,7 @@ gca_languages['pl'] = {
 			advance_filters_found : "(znaleziono {{items}})"
 		},
 		settings : {
+			//Ustawienia -- Ogólne
 			settings : "Ustawienia",
 			description : "Włącz lub wyłącz odpowiadające Ci funkcje!",
 			description_click_button : "Kliknij przycisk poniżej, aby przejść do ustawień...",
@@ -179,18 +180,27 @@ gca_languages['pl'] = {
 			category_global$show_durability : "Pokaż wytrzymałość przemiotu w dolnym-lewym rogu",
 			category_global$min_durability : "Powiadom mnie gdy wytrzymałość przedmiotu spadnie poniżej _% (przesuń na  0 aby to wyłączyć)",
 			category_global$show_forge_info : "Pokaż potrzebne składniki do wykucia przedmiotu",
+			category_global$show_mercenaries_real_name : "Wyświetlaj prawdziwe nazwy najemników na tooltipie",
+			category_global$global_arena_timer : "Wyswietl zegar dla globalnej areny",
+			//Ustawienia przegląd
 			category_overview$analyze_items : "Analizuj statystyki przedmiotu",
 			category_overview$food_life_gain : "Pokaż ile zdrowia przywraca jedzenie",
 			category_overview$best_food : "Podświetl najbardziej odpowiednie jedzenie w stosunku do obecnego zdrowia",
 			category_overview$overfeed_food : "Przyciemnij jedzenie, które leczy zbyt dużo zdrowia",
+			category_overview$double_click_consume : "Podwójne kliknięcie przedmiotu użyje go",
 			category_overview$daily_bonus_log : "Dzienne bonusy logowania",
 			category_overview$buffs_detailed_time : "Pokaż czas trwania buffu gildii",
+			category_overview$mercenaries_manager : "Pokaż menadżer najemników",
+			category_overview$more_statistics : "Pokaż więcej statystyk na stronie statystyk",
+			category_overview$mercenary_tooltip_show : "Pokaż tooltip najemników",
 			category_overview$achivements_layout : "Popraw stronę osiągnięć",
 			category_overview$costumes_layout : "Popraw stronę z kostiumami",
-			category_overview$items_repair_overview : "Wyświetl box do sprawdzenia potrzebnych składników do naprawy",
+			category_overview$items_repair_overview : "Wyświetl okno do sprawdzenia potrzebnych składników do naprawy",
+			//Ustawienia wiadomości
 			category_messages$messages_layout : "Popraw interfejs wiadomości",
 			category_messages$show_unread : "Podświetl nieprzeczytane wiadomości",
 			category_messages$separate_days : "Oddziel wiadomości z innych dni",
+			category_messages$send_message_box : "Wyświetl okno wysyłania wiadomości",
 			category_messages$more_guild_mate_info : "Pokaż więcej informacji o przyjacielach z gildii",
 			category_messages$show_message_links : "Pokaż linki zawarte w wiadomości",
 			category_messages$get_guild_battle_info : "Automatycznie załaduj informacje o atakach gildii",
@@ -198,39 +208,56 @@ gca_languages['pl'] = {
 			category_messages$fix_header_links : "Napraw błąd kliknięcia w wiadomość",
 			category_messages$new_message_focus : "Ustaw natychmiastowe skupienie się na treści",
 			category_messages$new_message_friend_list : "Włącz przycisk listy znajomych",
+			//Ustawienia paczek
 			category_packages$filters_layout : "Popraw układ filtrów",
+			category_packages$compact_info_layout : "Kompaktowy układ informacji",
 			category_packages$items_layout : "Popraw układ wyświetlania przedmiotów",
 			category_packages$small_items_layout : "Mniejsze przedmioty",
 			category_packages$load_more_pages : "Załaduj więcej stron",
 			category_packages$pages_to_load : "Maksymalna liczba paczek do załadowania",
 			category_packages$item_price : "Pokaż wartość przedmiotu",
+			category_packages$special_category_features : "Włącz specjalne funkcje dla kategorii\n•Pokaż, czy scrolle są znane/nieznane\n•Pokaż, czy prefiks/sufiks ikony przewijania elementu jest nieznany",
 			category_packages$double_click_open : "Włącz podwójne kliknięcie do otwarcia paczki",
 			category_packages$advance_filter : "Zaawansowane filtry",
+			//Ustawienia -- panteon
 			category_pantheon$quests_reorder : "Włącz grupowanie zadań",
 			category_pantheon$quests_detailed_rewards : "Pokaż dokładniej nagrody za zadanie",
 			category_pantheon$missions_show_completed : "Pokaż ukończone zadania",
 			category_pantheon$gods_show_points_percent : "Pokaż łaskę bogów w procentach",
 			category_pantheon$open_many_mysteryboxes : "Otwórz więcej skrzyń boskiego zarządzenia",
 			category_pantheon$show_mysterybox_rewards_rubies : "Pokaż wartość nagrody w rubinach",
+			category_pantheon$show_mysterybox_rewards_owned : "Pokaż posiadaną kwotę nagrody za tajemniczą skrzynkę",
+			//Ustawienia -- raporty
 			category_reports$style_change : "Poprawa interfejs listy raportów",
 			category_reports$load_loot_tooltips : "Załaduj nagrody z każdego raportu",
 			category_reports$found_items : "Zbieraj dane o znalezionych przedmiotach",
+			category_reports$battle_analyzer : "Przeanalizuj raport i pokaż statystyki życia",
+			//ustawienia -- trening
 			category_training$show_discount : "Pokaż zniżkę na trening",
 			category_training$show_basics_in_bars : "Pokaż podstawy w pasku",
 			category_training$multiple_train : "Włącz opcję wielokrotnego treningu",
 			category_training$calculator_train : "Włącz kalkulator kosztu treningu",
+			category_training$show_analyze_items_data : "Pokaż dane analizowanych danych w tooltipach",
 			category_training$show_points_after_upgrade : "Pokaż statystyki po treningu",
+			//Ustawienia -- najemnicy
 			category_merchants$fade_unaffordable_items : "Przyciemnij za drogie przedmioty",
 			category_merchants$show_shop_info : "Pokaż całkowitą wartość sklepu (złoto, rubiny)",
 			category_merchants$double_click_actions : "Podwójne kliknięcie aby sprzedać/kupić przedmiot",
+			//Ustawienia -- najemnicy
 			category_forge$material_links : "[Kuźnia/Stół warsztatowy] Pokaż skróty do rynku/paczek do poszczególnych składników",
 			category_forge$show_levels : "[Kuźnia] Pokaż poziom przedmiotu/prefixu/sufixu przed nazwą",
+			category_forge$horreum_materials_names : "[Kuźnia] Pokaż nazwę składnika",
+			category_forge$horreum_remember_options : "[Kuźnia] Zapamiętaj ostatnie ustawienia",
+			category_forge$horreum_select_meterials : "[Kuźnia] Zaznacz materiały po kliknięciu",
+			//Ustawienia -- arena
 			category_arena$ignore_attack_confirmations : "Ignoruj ataki (powyżej 5 powiadomień ataku)",
 			category_arena$show_simulator_imagelink : "Pokaż link do symulatora (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Sortuj graczy na arenie według poziomu",
 			category_arena$highlight_guild_members : "Podświetl graczy na innym serwerze gdty mogą to być członkowie gildii",
 			category_arena$target_list : "Lista zaznaczonych graczy",
+			//Ustawienia Magus
 			category_magus$fade_unimprovable_items : "Przyciemnij przedmioty których nie możesz ulepszyć",
+			//Ustawienia Rynek
 			category_market$soulbound_warning : "Informacja o kupowaniu przedmiotu związanego z duszą",
 			category_market$one_gold_warning : "Informacja o kupowaniu przedmiotu o wartości 1 złota",
 			category_market$cancel_all_button : "Pokaż przycisk anulowania wszystkich wystawionych przedmiotów",
@@ -238,29 +265,46 @@ gca_languages['pl'] = {
 			category_market$sell_duration : "Wybierz domyślny czas trwania",
 			category_market$one_gold_mode : "Wyświetl przycisk domyślnego ustawienia ceny wystawianego przedmiotu na 1 złota",
 			category_market$remember_sort : "Zapamiętaj ostatnie sortowanie",
-			category_market$double_click_select : "Wybierz przedmiot za pomocą podwójnego kliknięcia",
+			category_market$double_click_select : "Wybierz przedmiot za pomocą podwójnego kliknięcia",			
+			category_market$sell_warning_icons : "Ikona ostrzegalna podczas sprzedawania przedmiotów",
+			category_market$sell_with_enter : "Sprzedaj przedmiot za pomocą ENTERA ⏎",
+			// Ustawienia -- ekspedycje
+			category_expedition$show_enemy_drops : "Pokaż jakie składniki można zdobyć z przeciwnika",
+			category_expedition$underworld_layout : "Pokaż układ wrogów w podziemiach jak w widoku ekspedycji",
+			//Ustawienia -- gildia
 			category_guild$jail_layout : "Poprawa interfejsu więzienia",
 			category_guild$library_layout : "Poprawa interfejsu biblioteki",
 			category_guild$library_fade_non_scrolls : "Przyciemnij przedmioty które nie są błogosławieństwami",
 			category_guild$library_tooltip_data : "Dodaj więcej danych do podpowiedzi biblioteki",
 			category_guild$bank_donate_layout : "Poprawa interfejsu banku",
 			category_guild$bank_book_layout : "Poprawa podręcznika interfejsu banku",
+			category_guild$bank_book_show_changes : "Pokaż zmiany w wysokości darowizny od ostatniej wizyty w księdze banku",
 			category_guild$medic_layout : "Poprawa interfejsu medyka",
+			//Ustawienia -- aukcje
 			category_auction$items_counters : "Wyświetlanie liczby przedmiotów i licytowanych przedmiotów",
 			category_auction$more_search_levels : "Pokaż więcej opcji poziomów w filtrze",
 			category_auction$item_price_analyze : "Analizuj cenę przedmiotów",
 			category_auction$item_level : "Pokaż poziom przedmiotu",
 			category_auction$x3_items_per_line : "Wyświetl 3 przedmioty w jednej linii",
 			category_auction$multi_bids : "Licytuj przedmioty bez odświeżania strony",
+			category_auction$extra_item_stats : "Pokaż dodatkowe statystyki na zdjęciu przedmiotu",
+			category_auction$save_last_state : "Zapisz ostatnio wyszukiwane dane i załaduj je domyślnie",
+			//Ustawienia -- eventy
 			category_events$craps_timer : "Wyświetl czas trwania eventu",
+			category_events$server_quest_timer : "Wyświetl zadania lub zegar wydarzenia na górze",
+			//Ustawienia -- dzwięki
 			category_sound$enabled : "Włącz system dźwięków",
 			category_sound$muted : "Wycisz/wyłącz wyciszenie dźwięków",
 			category_sound$volume : "Głośność dźwięków",
+			//Ustawienia -- Dane
 			category_data$export_settings : "Exportuj ustawienia danych",
 			category_data$import_settings : "Importuj ustawienia danych",
 			category_data$reset_settings : "Zresetuj ustawienia dodatku",
-			category_data$clear_data : "Wyczyść wszystkie dane dodatku",
+			category_data$clear_data : "Wyczyść wszystkie dane dodatku",			
+			category_data$clear_cache_data : "Wyczyść pliki cache dodatku",
 			category_data$cross_browser_login : "Zsynchronizuj przeglądarki",
+			category_data$export_error_player_settings : "Wyeksportuj błędy do pliku",
+			//Przyciski
 			save : "Zapisz wszystko",
 			export : "Export",
 			import : "Import",
@@ -269,10 +313,15 @@ gca_languages['pl'] = {
 			do_not_show : "Nie pokazuj",
 			show_as : "Pokaż jako",
 			show_info : "Pokaż informacje",
+			each_category : "Działanie w kategorii docelowej",
+			all_category : "Uruchom na kategorii docelowej i wszystkich",
+			do_not_run : "Nie uruchamiaj",
+			//Informacje
 			translated_percent : "Przetłumaczone: {{number}}%",
 			translated_by : "Przetłumaczone przez: {{string}}",
 			reset_settings_confirm : "Jesteś pewny że chcesz zresetować ustawienia dodatku?",
 			clear_data_confirm : "Jesteś pewny że chcesz wyczyścić wszystkie dane dodatku?",
+			//Powiadomienia
 			notification_reload : "Odśwież stronę, aby zobaczyć efekty"
 		}
 	}
