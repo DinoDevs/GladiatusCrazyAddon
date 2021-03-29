@@ -181,8 +181,8 @@ gca_languages['cs'] = {
 		// Training section
 		training : {
 			// Points analysis
-			stats_points : "Body vlastností",
-			points_breakdown : "Rozdělení bodů",
+			stats_points : "Atributy",
+			points_breakdown : "Vlastnosti atributů",
 			stats_calculated_with_yourself_as_an_opponent : "* Vlastnosti jsou vypočítány pomocí konceptu napadání sebe sama",
 			// Cost calculator
 			total_cost : "Celková cena",
