@@ -4050,8 +4050,9 @@ var gca_global = {
 				// Delete sh
 				delete page.sh;
 				// Set flag
-				page._not_changed = true;
+				page._updated = false;
 
+				// Check remember
 				if (gca_options.bool("global","remember_tabs")){
 					this.editor_rememberTabs(page);
 				}
@@ -4060,10 +4061,10 @@ var gca_global = {
 				}
 
 				// Check if not changed
-				if (page._not_changed) {
+				if (!page._updated) {
 					return;
 				}
-				delete page._not_changed;
+				delete page._updated;
 
 				// Create link
 				url = gca_getPage.fullLink(page);
@@ -4077,36 +4078,28 @@ var gca_global = {
 				}
 			},
 
-			// Pages with inventory
-			pagesWithInventory : [
-				"overview",
+			// Pages with shop
+			pagesWithShop : [
 				"inventory",
-				"packages",
-				"forge",
-				"magus",
-				"auction",
-				"market",
-				"guild_market",
 				"guild_storage"
 			],
 
 			editor_rememberTabs : function (page){
 				// Get type of page
-				let pageType = this.pagesWithInventory.indexOf(page.mod);
+				let pageType = this.pagesWithShop.indexOf(page.mod);
 				// If no page of interest, return
-				if(pageType < 0 || (pageType == 0 && page.submod != null)) return;
+				if (pageType < 0) return;
 
-				// If destination is "inventory"
-				if(pageType == 1){
-					// If shop is defined, save it
-					if(page.subsub){
-						gca_data.section.set("cache", 'merchants_tab', page.subsub);
-					}
-					// Else, load it
-					else{
-						page.subsub = gca_data.section.get("cache", 'merchants_tab', 0);
-						page._not_changed = false;
-					}
+				// If shop is defined, save it
+				if (page.subsub) {
+					gca_data.section.set('cache', 'merchants_tab', page.subsub);
+				}
+				// Else, load it
+				else {
+					let cachedValue = gca_data.section.get('cache', 'merchants_tab', false);
+					if (!cachedValue) return;
+					page.subsub = cachedValue;
+					page._updated = true;
 				}
 			},
 
@@ -4124,14 +4117,14 @@ var gca_global = {
 
 				// If shop is defined, save it
 				if(page.s){
-					gca_data.section.set("cache", 'market_sort', page.s);
+					gca_data.section.set('cache', 'market_sort', page.s);
 				}
 				// Else, load it
 				else {
-					let cachedValue = gca_data.section.get("cache", 'market_sort', false);
-					if (cachedValue === false) return;
+					let cachedValue = gca_data.section.get('cache', 'market_sort', false);
+					if (!cachedValue) return;
 					page.s = cachedValue;
-					page._not_changed = false;
+					page._updated = true;
 				}
 			}
 		},
