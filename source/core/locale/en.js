@@ -238,7 +238,8 @@ gca_languages["en"] = {
 		forge : {
 			forge_ended : "Forge ended!",
 			recraft_item : "Re-craft item",
-			show_hide_doll : "Show/Hide player dolls"
+			show_hide_doll : "Show/Hide player dolls",
+			horreum_material_change : "Horreum materials change",
 		},
 		
 		// Merchants

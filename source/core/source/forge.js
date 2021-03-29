@@ -1089,7 +1089,7 @@ var gca_forge = {
 				// Construct notification
 				let info = document.createElement('div');
 				info.className = 'show-item-quality';
-				info.appendChild(document.createTextNode('Horreum material change')); // TODO - add locale
+				info.appendChild(document.createTextNode(gca_locale.get('forge', 'horreum_material_change'))); // TODO - add locale
 				info.appendChild(document.createElement('br'));
 				for (let i = 0; i < changes.added.length; i++) {
 					this.addNotificationIcon(changes.added[i], true, info);
