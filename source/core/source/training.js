@@ -91,7 +91,7 @@ var gca_training = {
 				};
 
 				// Cost
-				skill.cost = parseInt(skill.bar.parentNode.getElementsByClassName("training_costs")[0].textContent.replace(/\./g,""));
+				skill.cost = parseInt(skill.bar.parentNode.getElementsByClassName("training_costs")[0].textContent.replace(/\./g,""), 10);
 			}
 
 			// Calculate discount
@@ -841,15 +841,15 @@ var gca_training = {
 				// Damage gain
 					let damageGain = Math.floor(totalNew/10) - Math.floor(totalOld/10);
 					let fakePercentGain = Math.round( (totalNew/10 - totalOld/10)*100 )/100;
-					write_breakdown_stat(0,"Damage: +"+damageGain+" (+"+fakePercentGain+")");
+					write_breakdown_stat(0, gca_locale.get('training', 'points_breakdown_damage', {integer: damageGain, float: fakePercentGain}));
 				// Block % Gain
 					let player_level = parseInt(document.getElementById("header_values_level").textContent);
 					if( Math.floor( (this.specialStats["block"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/6 )>=50){
-						write_breakdown_stat(1,"Block: MAX");
+						write_breakdown_stat(1, gca_locale.get('training', 'points_breakdown_block_max'));
 					}else{
 						let blockPercentGain = Math.floor((this.specialStats["block"].item_points+Math.floor(totalNew/10))*52/(player_level-8)/6) - Math.floor((this.specialStats["block"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/6) ;
 						let fakePercentGain =  Math.round((totalChange/10)*52/(player_level-8)/6 *1000)/100;
-						write_breakdown_stat(1,"Block: +"+blockPercentGain+"% (+"+fakePercentGain+"‰)");
+						write_breakdown_stat(1, gca_locale.get('training', 'points_breakdown_block', {integer: blockPercentGain, float: fakePercentGain}));
 					}
 			}
 			else if(name=='dexterity'){
@@ -857,71 +857,71 @@ var gca_training = {
 					let player_level = parseInt(document.getElementById("header_values_level").textContent);
 					let criticalPercentGain = Math.round((this.specialStats["critical_hit"].item_points+Math.floor(totalNew/10))*52/(player_level-8)/5) - Math.round((this.specialStats["critical_hit"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/5) ;
 					let fakePercentGain =  Math.round((totalChange/10)*52/(player_level-8)/5 *1000)/100;
-					write_breakdown_stat(2,"Crit hit: +"+criticalPercentGain+"% (+"+fakePercentGain+"‰)");
+					write_breakdown_stat(2, gca_locale.get('training', 'points_breakdown_critical_hit', {integer: criticalPercentGain, float: fakePercentGain}));
 				// Hit Chance
 					let hitChanceGain = Math.floor(totalNew/(totalNew+this.self.data.skills["agility"].points)*100)-Math.floor(totalOld/(totalOld+this.self.data.skills["agility"].points)*100);
 					fakePercentGain = Math.round((totalNew/(totalNew+this.self.data.skills["agility"].points)*100 - totalOld/(totalOld+this.self.data.skills["agility"].points)*100) *1000)/100;
-					write_breakdown_stat(0,"Hit%: +"+hitChanceGain+"% (+"+fakePercentGain+"‰) *");
+					write_breakdown_stat(0, gca_locale.get('training', 'points_breakdown_normal_hit', {integer: hitChanceGain, float: fakePercentGain}));
 				// Double hit chance
 					let doubleHitGain = Math.floor(this.self.data.skills["charisma"].points*totalNew/this.self.data.skills["intelligence"].points /this.self.data.skills["agility"].points*10)-Math.floor(this.self.data.skills["charisma"].points*totalOld/this.self.data.skills["intelligence"].points /this.self.data.skills["agility"].points*10);
 					fakePercentGain = Math.round(this.self.data.skills["charisma"].points*totalChange/this.self.data.skills["intelligence"].points /this.self.data.skills["agility"].points*10*1000)/100;
-					write_breakdown_stat(1,"Double hit: +"+doubleHitGain+"% (+"+fakePercentGain+"‰) *");
+					write_breakdown_stat(1, gca_locale.get('training', 'points_breakdown_double_hit', {integer: doubleHitGain, float: fakePercentGain}));
 			}
 			else if(name=='agility'){
 				// Avoid critical % Gain
 					let player_level = parseInt(document.getElementById("header_values_level").textContent);
 					if( Math.round( (this.specialStats["avoid_critical"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/4 )>=25){
-						write_breakdown_stat(2,"Avoid crit: MAX");
+						write_breakdown_stat(2, gca_locale.get('training', 'points_breakdown_avoid_max'));
 					}else{
 						let avoidPercentGain = Math.round((this.specialStats["avoid_critical"].item_points+Math.floor(totalNew/10))*52/(player_level-8)/4) - Math.round((this.specialStats["avoid_critical"].item_points+Math.floor(totalOld/10))*52/(player_level-8)/4) ;
 						let fakePercentGain =  Math.round((totalChange/10)*52/(player_level-8)/4 *1000)/100;
-						write_breakdown_stat(2,"Avoid crit: +"+avoidPercentGain+"% (+"+fakePercentGain+"‰)");
+						write_breakdown_stat(2, gca_locale.get('training', 'points_breakdown_avoid', {integer: avoidPercentGain, float: fakePercentGain}));
 					}
 				// Hit Chance
 					let hitChanceGain = Math.floor(this.self.data.skills["dexterity"].points/(this.self.data.skills["dexterity"].points+totalNew)*100)-Math.floor(this.self.data.skills["dexterity"].points/(this.self.data.skills["dexterity"].points+totalOld)*100);
 					let fakePercentGain = Math.round((this.self.data.skills["dexterity"].points/(this.self.data.skills["dexterity"].points+totalNew)*100 - this.self.data.skills["dexterity"].points/(this.self.data.skills["dexterity"].points+totalOld)*100)*1000)/100;
-					write_breakdown_stat(0,"Enemy hit: "+hitChanceGain+"% ("+fakePercentGain+"‰) *");
+					write_breakdown_stat(0, gca_locale.get('training', 'points_breakdown_enemy_normal_hit', {integer: hitChanceGain, float: fakePercentGain}));
 				// Double hit chance
 					let doubleHitGain = Math.floor(this.self.data.skills["charisma"].points*this.self.data.skills["dexterity"].points/this.self.data.skills["intelligence"].points /totalNew*10)-Math.floor(this.self.data.skills["charisma"].points*this.self.data.skills["dexterity"].points/this.self.data.skills["intelligence"].points /totalOld*10);
 					fakePercentGain = Math.round(( this.self.data.skills["charisma"].points*this.self.data.skills["dexterity"].points/this.self.data.skills["intelligence"].points /totalNew*10 - this.self.data.skills["charisma"].points*this.self.data.skills["dexterity"].points/this.self.data.skills["intelligence"].points /totalOld*10)*1000)/100;
-					write_breakdown_stat(1,"Enemy 2hit: "+doubleHitGain+"% ("+fakePercentGain+"‰) *");
+					write_breakdown_stat(1, gca_locale.get('training', 'points_breakdown_enemy_double_hit', {integer: doubleHitGain, float: fakePercentGain}));
 			}
 			else if(name=='constitution'){
 				// Life gain
 					let lifeGain = totalChange*25;
-					write_breakdown_stat(0,"Life: +"+lifeGain);
+					write_breakdown_stat(0, gca_locale.get('training', 'points_breakdown_life', {number: lifeGain}));
 				// Life regeneration gain
 					let regenGain = totalChange*2;
-					write_breakdown_stat(2,"Regeneration: +"+regenGain);
+					write_breakdown_stat(2, gca_locale.get('training', 'points_breakdown_regeneration', {number: regenGain}));
 			}
 			else if(name=='charisma'){
 				// Double hit chance
 					let doubleHitGain = Math.floor(totalNew*this.self.data.skills["dexterity"].points/this.self.data.skills["intelligence"].points /this.self.data.skills["agility"].points*10)-Math.floor(totalOld*this.self.data.skills["dexterity"].points/this.self.data.skills["intelligence"].points /this.self.data.skills["agility"].points*10);
 					let fakePercentGain = Math.round(totalChange*this.self.data.skills["dexterity"].points/this.self.data.skills["intelligence"].points /this.self.data.skills["agility"].points*10*1000)/100;
-					write_breakdown_stat(1,"Double hit: +"+doubleHitGain+"% (+"+fakePercentGain+"‰) *");
+					write_breakdown_stat(1, gca_locale.get('training', 'points_breakdown_double_hit', {integer: doubleHitGain, float: fakePercentGain}));
 				// Threat per round gain
 					//let threatGain = Math.floor(totalNew/10) - Math.floor(totalOld/10); per round
 					let threatGain = Math.floor(totalNew*0.7) - Math.floor(totalOld*0.7);
 					fakePercentGain = Math.round( (totalNew*0.7 - totalOld*0.7)*100 )/100;
-					write_breakdown_stat(0,"Threat: +"+threatGain+" (+"+fakePercentGain+")");
+					write_breakdown_stat(0, gca_locale.get('training', 'points_breakdown_threat', {integer: threatGain, float: fakePercentGain}));
 			}
 			else if(name=='intelligence'){
 				// Heal gain
 					let healGain = Math.round(totalChange*4/5*100)/100;
-					write_breakdown_stat(0,"Heal: +"+Math.floor(healGain)+" (+"+healGain+")");
+					write_breakdown_stat(0, gca_locale.get('training', 'points_breakdown_heal', {integer: Math.floor(healGain), float: healGain}));
 				// Critical Healing Chance
 					let player_level = parseInt(document.getElementById("header_values_level").textContent);
 					if(Math.round((this.specialStats["critical_healing"].item_points+Math.floor(totalOld/5))*52/(player_level-8)/7)>=90){
-						write_breakdown_stat(2,"Crit heal: MAX");
+						write_breakdown_stat(2, gca_locale.get('training', 'points_breakdown_critical_heal_max'));
 					}else{
 						let healingPercentGain = Math.round((this.specialStats["critical_healing"].item_points+Math.floor(totalNew/5))*52/(player_level-8)/7) - Math.round((this.specialStats["critical_healing"].item_points+Math.floor(totalOld/5))*52/(player_level-8)/7) ;
 						let fakePercentGain =  Math.round((totalChange/5)*52/(player_level-8)/7 *1000)/100;
-						write_breakdown_stat(2,"Crit heal: +"+healingPercentGain+"% (+"+fakePercentGain+"‰)");
+						write_breakdown_stat(2, gca_locale.get('training', 'points_breakdown_critical_heal', {integer: healingPercentGain, float: fakePercentGain}));
 					}
 				// Double hit chance
 					let doubleHitGain = Math.floor(this.self.data.skills["charisma"].points*this.self.data.skills["dexterity"].points/totalNew/this.self.data.skills["agility"].points*10)-Math.floor(this.self.data.skills["charisma"].points*this.self.data.skills["dexterity"].points/totalOld/this.self.data.skills["agility"].points*10);
 					let fakePercentGain = Math.round(( this.self.data.skills["charisma"].points*this.self.data.skills["dexterity"].points/totalNew/this.self.data.skills["agility"].points*10 - this.self.data.skills["charisma"].points*this.self.data.skills["dexterity"].points/totalOld/this.self.data.skills["agility"].points*10 )*1000)/100;
-					write_breakdown_stat(1,"Enemy 2hit: "+doubleHitGain+"% ("+fakePercentGain+"‰) *");
+					write_breakdown_stat(1, gca_locale.get('training', 'points_breakdown_enemy_double_hit', {integer: doubleHitGain, float: fakePercentGain}));
 			}
 		}
 	},
