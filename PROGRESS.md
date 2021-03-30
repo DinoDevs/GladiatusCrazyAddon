@@ -7,7 +7,7 @@
 
 ### IMPROVEMENTS
 - **Global**
-	- [ ] Imporved addon's per page loading speed [testing]
+	- [ ] Improved addon's per page loading speed [testing]
 - **Accessibility**
 	- [x] Added option to turn item level indicator to white
 	- [x] Added option to show item quality with symbols
@@ -28,7 +28,7 @@
 	- [x] Medic site crash fix #250
 	- [ ] Market kick to lobby fix #240 [testing]
 - **Forge**
-	- [x] Fixed scroll knowned retrieve crash (issue #243)
+	- [x] Fixed scroll known retrieve crash (issue #243)
 	- [x] Missing translation on horreum notification added (issue #246)
 
 
