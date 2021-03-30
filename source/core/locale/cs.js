@@ -305,6 +305,7 @@ gca_languages['cs'] = {
 			category_expedition : "Výprava",
 			category_guild : "Nastavení gildy",
 			category_auction : "Nastavení aukce",
+			category_accessibility : "Přehlednost",
 			category_events : "Události",
 			category_sound : "Zvuky",
 			category_data : "Data",
@@ -457,6 +458,11 @@ gca_languages['cs'] = {
 			category_auction$multi_bids : "Přihazovat na více předmětu před znovu načtením stránky",
 			category_auction$extra_item_stats : "Zobrazit extra staty na obrázcích předmětů",
 			category_auction$save_last_state : "Zapamatuje si hledání v aukcích a pokaždé jej načte",
+			// Settings - Accessibility
+			category_accessibility$white_level_indicators : "Změnit číslo úrovně na předmětech na bílou barvu",
+			category_accessibility$qualty_symbols_indicators : "Přidat na předměty indikátory symbolů kvality",
+			category_accessibility$tooltips_qualty_white : "Změnit nadpis předmětů v popiscích na bílou barvu",
+			category_accessibility$tooltips_qualty_symbols : "Přidat symboly kvality v popiscích",
 			// Settings - Events
 			category_events$craps_timer : "Zobrazit odpočet eventu kostek navrchu",
 			category_events$server_quest_timer : "Zobrazit odpočet eventu/události navrchu",
