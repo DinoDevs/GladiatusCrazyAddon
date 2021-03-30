@@ -311,6 +311,13 @@ var gca_tools = {
 			//	x: cords_item.x + (cords_target.x - cords_item.x)/2,
 			//	y: cords_item.y + (cords_target.y - cords_item.y)/2
 			//};
+			
+			// Debugging Code
+			//let dot = document.createElement('div');
+			//dot.setAttribute('style',`position:absolute;top:${cords_target.y}px;left:${cords_target.x}px;width:1px;height:1px;background:red;`);
+			//document.body.appendChild(dot);
+			//return;
+
 			//let scroll = {x : window.scrollX, y : window.scrollY};
 			this._move.fireMouseEvent(item, 'mousedown', {clientX: cords_item.x - window.scrollX, clientY: cords_item.y - window.scrollY});
 			//this._move.fireMouseEvent(document, 'mousemove', {clientX: cords_item.x - window.scrollX, clientY: cords_item.y - window.scrollY});
@@ -383,8 +390,8 @@ var gca_tools = {
 					grid = document.getElementById('market_sell');
 					cords_grid = jQuery(grid).offset();
 					return {
-						x: (cords_grid.left + 32 + 1),
-						y: (cords_grid.top + 32 + 1),
+						x: Math.ceil(cords_grid.left + 32 + 32/4),
+						y: Math.ceil(cords_grid.top + 32 + 32/4),
 						parent : grid
 					};
 				}
@@ -392,8 +399,8 @@ var gca_tools = {
 					grid = document.getElementById('avatar');
 					cords_grid = jQuery(grid).offset();
 					return {
-						x: (cords_grid.left + 168/2),
-						y: (cords_grid.top + 194/2),
+						x: Math.ceil(cords_grid.left + 168/2),
+						y: Math.ceil(cords_grid.top + 194/2),
 						parent : grid
 					};
 				}
@@ -416,8 +423,8 @@ var gca_tools = {
 				cords_grid = jQuery(grid).offset();
 				cords_grid = {x: cords_grid.left, y: cords_grid.top};
 				spot = {
-					x: (cords_grid.x + (32 * spot.x) + 1),
-					y: (cords_grid.y + (32 * spot.y) + 1),
+					x: Math.ceil(cords_grid.x + (32 * spot.x) + 32/4),
+					y: Math.ceil(cords_grid.y + (32 * spot.y) + 32/4),
 					parent : grid,
 					slot : {
 						target : target,
