@@ -1116,9 +1116,8 @@
 		#trainingPage .switch-field input:checked + label{background-color: #C3AB6F;-webkit-box-shadow: none;box-shadow: none;}
 		#trainingPage .switch-field label:first-of-type{border-radius: 4px 0 0 4px;}
 		#trainingPage .switch-field label:last-of-type{border-radius: 0 4px 4px 0;}
-		#trainingPage .breakdownBox{top: -18px;width: 260px;right: 140px;height: 30px;}
-		#trainingPage .breakdownBox table{width:100%;}
-		#trainingPage .breakdownBox td{font-size: 10px;width:50%;line-height: 10px;color: #33280f;vertical-align: top;}
+		#trainingPage .breakdownBox {top: -18px;width: 260px;right: 140px;height: 30px;font-size: 9px;line-height: 10px;text-align: left;color: #33280f;padding-top: 2px;}
+		#trainingPage .breakdownBox > div {padding-left:10px;}
 		.gca_rtl #trainingPage .switch-field label{float: left;}
 		.gca_rtl #trainingPage .breakdownBox{right: auto;left: 140px;}
 

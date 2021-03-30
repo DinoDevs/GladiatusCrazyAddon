@@ -764,16 +764,12 @@ var gca_training = {
 			// Stats breakdown
 			// Create elements for after upgrade
 			var breakdownBox = document.createElement("span");
-			breakdownBox.id = name+"_breakdownBox";
+			breakdownBox.id = name + "_breakdownBox";
 			breakdownBox.className = "training_values gca-training-values breakdownBox"
 			wrapper.parentNode.appendChild(breakdownBox);
-			breakdownBox.appendChild(document.createElement("table"));
-			breakdownBox.getElementsByTagName("table")[0].appendChild(document.createElement("tr"));
-			breakdownBox.getElementsByTagName("table")[0].appendChild(document.createElement("tr"));
-			breakdownBox.getElementsByTagName("table")[0].getElementsByTagName("tr")[0].appendChild(document.createElement("td"));
-			breakdownBox.getElementsByTagName("table")[0].getElementsByTagName("tr")[0].appendChild(document.createElement("td"));
-			breakdownBox.getElementsByTagName("table")[0].getElementsByTagName("tr")[1].appendChild(document.createElement("td"));
-			breakdownBox.getElementsByTagName("table")[0].getElementsByTagName("tr")[1].appendChild(document.createElement("td"));
+			breakdownBox.appendChild(document.createElement("div"));
+			breakdownBox.appendChild(document.createElement("div"));
+			breakdownBox.appendChild(document.createElement("div"));
 			
 			// Display selected mode
 			if(document.getElementById("stat_points_mode").checked == true){
@@ -832,10 +828,7 @@ var gca_training = {
 			
 			// Impact on various stats
 			var write_breakdown_stat = function(td,txt){
-				document.getElementById(name+"_breakdownBox").getElementsByTagName("td")[td].textContent = txt;
-				if (td % 2 == 1) {
-					document.getElementById(name+"_breakdownBox").getElementsByTagName("td")[td].setAttribute('rowspan', 2);
-				}
+				document.getElementById(name+"_breakdownBox").getElementsByTagName("div")[td].textContent = txt;
 			}
 			if(name=='strength'){
 				// Damage gain
