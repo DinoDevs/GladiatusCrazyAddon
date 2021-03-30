@@ -673,13 +673,13 @@
 		.gold_val-fixed-bar, .ruby_val-fixed-bar{z-index: 901; position: fixed; top: 3px; margin-left: 18px;}
 		.gca_rtl .gold_val-fixed-bar, .gca_rtl  .ruby_val-fixed-bar{margin-right: 18px;margin-left: auto;}
 		.icon_expeditionpoints-fixed-bar, .icon_arena-fixed-bar{z-index: 901; position: fixed; top: -1px; cursor: pointer;}
-		.icon_expeditionpoints-fixed-bar, .icon_dungeonpoints-fixed-bar, .icon_arena-fixed-bar .headericon_big, .icon_grouparena-fixed-bar .headericon_big{border-radius: 5px;width: 16px;height: 16px;margin-top: 4px;}
+		.icon_expeditionpoints-fixed-bar, .icon_dungeonpoints-fixed-bar, .icon_arena-fixed-bar .headericon_big, .icon_grouparena-fixed-bar .headericon_big{border-radius: 5px;width: 16px !important;height: 16px!important;margin-top: 4px;}
 		.icon_arena-fixed-bar .headervalue_big, .icon_grouparena-fixed-bar .headervalue_big{font-size: 12px;margin-top: 4px;}
-		.expeditionpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 20px; cursor: pointer;font-size: 12px;}
+		.expeditionpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 20px; cursor: pointer;font-size: 12px!important;}
 		.gca_rtl .expeditionpoints_value-fixed-bar{margin-right: 28px;margin-left: auto;}
 		.icon_dungeonpoints-fixed-bar, .icon_grouparena-fixed-bar{z-index: 901; position: fixed; top: -1px; margin-left: 60px; cursor: pointer;}
 		.gca_rtl  .icon_dungeonpoints-fixed-bar, .gca_rtl .icon_grouparena-fixed-bar{margin-right: 100px;margin-left: auto;}
-		.dungeonpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 80px; cursor: pointer;font-size: 12px;}
+		.dungeonpoints_value-fixed-bar{z-index: 901; position: fixed; top: 1px; margin-left: 80px; cursor: pointer;font-size: 12px!important;}
 		.gca_rtl .dungeonpoints_value-fixed-bar{margin-right: 128px;margin-left: auto;}
 		/*.header_values_ressources-fixed-bar, .header_values_general-fixed-bar{padding-top: 18px;}*/
 		#header_values_hp.header_values_hp-fixed-bar{z-index: 901;position: fixed;top: 6px;margin-left: 90px;left: auto;}
