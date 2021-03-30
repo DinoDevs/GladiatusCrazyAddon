@@ -462,7 +462,7 @@ gca_languages['cs'] = {
 			category_accessibility$white_level_indicators : "Změnit číslo úrovně na předmětech na bílou barvu",
 			category_accessibility$qualty_symbols_indicators : "Přidat na předměty indikátory symbolů kvality",
 			category_accessibility$tooltips_qualty_white : "Změnit nadpis předmětů v popiscích na bílou barvu",
-			category_accessibility$tooltips_qualty_symbols : "Přidat symboly kvality v popiscích",
+			category_accessibility$tooltips_qualty_symbols : "Přidat symboly kvality do popisků",
 			// Settings - Events
 			category_events$craps_timer : "Zobrazit odpočet eventu kostek navrchu",
 			category_events$server_quest_timer : "Zobrazit odpočet eventu/události navrchu",
