@@ -31,7 +31,7 @@ gca_languages['zh'] = {
 			// Minutes
 			minutes : "每分鐘",
 			// Hours
-			
+			hours : "小時",
 			// No data
 			no_data : "目前還沒有數據",
 
@@ -39,10 +39,10 @@ gca_languages['zh'] = {
 			confirm : "確認",
 			cancel : "取消",
 			close : "關閉",
-			error : "錯誤"
-
-
-
+			error : "錯誤",
+			yes : "是",
+			no : "否",
+			ok : "好的"
 		},
 
 		// Global
@@ -54,8 +54,8 @@ gca_languages['zh'] = {
 
 			// Life/Expedition/Dungeon points recovery
 			life_recover_full : "生命值全滿",
-
-
+			expedition_recover_full : "遠征點數完全恢復",
+			dungeon_recover_full : "地城點數完全恢復",
 
 			// Button bar - Message
 			message_private_write : "撰寫私人訊息",
@@ -71,8 +71,10 @@ gca_languages['zh'] = {
 			guild_storage_goto : "移至公會倉庫",
 			guild_bank_goto : "移至公會銀行",
 			guild_warcamp_goto : "移至戰王殿堂",
+			guild_arenareports_goto : "轉到公會競技場戰鬥報告",
 			guild_jail_goto : "移至設裁判所監牢",
 			guild_library_goto : "移至公會圖書館",
+			guild_templum_goto : "轉到工會默觀聖殿",
 			guild_medic_goto : "移至公會醫院",
 			simulator_goto : "移至戰鬥模擬器",
 			stats_display : "顯示我的統計數據",
@@ -101,7 +103,9 @@ gca_languages['zh'] = {
 
 			// Notifications
 			notification_guild_application : "等待公會採用",
+			notification_guild_attack_ready : "公會戰攻擊冷卻結束!",
 			low_durability_items : "有 {{number}} 項裝備耐久度低於 {{percent}}%",
+			item_worth_rubies : "這件物品值紅寶石!",
 
 			// Gold - Exp data
 			gold_exp_data : "金幣及經驗值數據",
@@ -109,10 +113,13 @@ gca_languages['zh'] = {
 			gold_exp_data_week : "最近7天",
 			gold_exp_data_avg_day : "每天平均值",
 			gold_exp_data_to_level_up : "再幾天後升級",
-
-
+			gold_exp_data_package_tax : "每週入金統計",
+			gold_exp_data_measurements : "衡量點",
 			gold_exp_data_total_exp : "總經驗驗值",
-			gold_exp_data_total_gold : "總金幣數"
+			gold_exp_data_total_gold : "總金幣數",
+			
+			// Items
+			merchenary_type : "類型: {{name}} ({{number}})"
 		},
 
 		// Overview
@@ -174,6 +181,12 @@ gca_languages['zh'] = {
 			error_blocked_access : "有東西阻擋了到全球競技場服務器的連接 ({{url}})",
 			error_connection : "連接錯誤",
 			attack_player : "點擊以攻擊 “{{name}}”",
+			fight_won : "您贏得了戰鬥!",
+			fight_lost : "你輸掉了戰鬥...",
+			player_tired : "你已經累了; 你需要等一會.",
+			player1_hits_player2 : "{{name1}} 命中 {{name2}}",
+			player_takes_x_damage : "{{name}} 受到 {{number}} 傷害",
+			player_dies : "{{name}} 死亡"
 		},
 
 		// Training section
@@ -202,6 +215,12 @@ gca_languages['zh'] = {
 			price_value_function : "價格=價值 + {{number}}",
 			// Levels you can see
 			levels_you_can_see : "你能看到的裝備等級從 {{min}} 到 {{max}}.",
+			// Sort
+			sort : "排序",
+			sort_by : "排序由 ",
+			sort_order : "順序",
+			asc : "升序",
+			desc : "降序"
 		},
 
 		// Markets section
@@ -209,15 +228,24 @@ gca_languages['zh'] = {
 			// Warnings
 			item_cost_only_x_gold : "這個物品只需要花 {{number}} 金.",
 			item_is_soulbound : "這個物品是靈魂綁定.",
+			item_cant_buy_back : "你將無法買回這個物品.",
 			// Are you sure
-			are_you_sure_you_want_to_buy : "你真的想要買這件物品麼?"
+			are_you_sure_you_want_to_buy : "你真的想要買這件物品麼?",
+			click_enter_to_sell : "按enter鍵 ⏎ 以出售"
 		},
 		
 		// Forge
 		forge : {
 			forge_ended : "鍛造結束!",
 			recraft_item : "重鑄物品",
-			show_hide_doll : "顯示/隱藏 玩家形象"
+			show_hide_doll : "顯示/隱藏 玩家形象",
+
+		},
+		
+		// Merchants
+		merchants : {
+			search_item_in_merchants : "在商人裡查找物品",
+			no_such_item : "沒有找到這樣的物品."
 		},
 		
 		// Packages
@@ -229,6 +257,16 @@ gca_languages['zh'] = {
 			advance_filters_apply : "接受篩選",
 			advance_filters_clear : "清除篩選項",
 			advance_filters_found : "(找到 {{items}})"
+		},
+		
+		// Report
+		reports : {
+			avg_damage : "平均傷害",
+			avg_heal : "平均治療",
+			total_hits : "總共被擊",
+			hits : "命中數",
+			dodge : "躲閃或格擋",
+			points : "得點"
 		},
 
 		// Cross-Browser Sync
@@ -262,6 +300,7 @@ gca_languages['zh'] = {
 			category_expedition : "遠征",
 			category_guild : "公會設定",
 			category_auction : "拍賣場設定",
+
 			category_events : "事件",
 			category_sound : "聲音",
 			category_data : "數據",
@@ -289,6 +328,8 @@ gca_languages['zh'] = {
 			category_global$cooldown_sound_notifications : "啟用新遠征/地城/競技場提示音",
 			category_global$notify_new_guild_application : "提醒我在有新的工會消息時",
 			category_global$notify_new_guild_application_interval : "檢查工會消息間隔 (分鐘)",
+			category_global$notify_guild_attack_ready : "當工會戰攻擊冷卻好時提醒我",
+			category_global$notify_guild_attack_ready_interval : "檢查工會戰冷卻每x (分鐘)",
 			category_global$x_scroll : "啟用神鬼戰士的水平捲動",
 			category_global$item_shadow : "啟用物品陰影",
 			category_global$inventory_options_group : "分組物品欄選項",
@@ -300,12 +341,15 @@ gca_languages['zh'] = {
 			category_global$show_durability : "在物品的左下角顯示耐久度",
 			category_global$min_durability : "在裝備的耐久度加耐久影響低於 _% 時提醒我(移至 0 來禁用它)",
 			category_global$show_forge_info : "在提示欄顯示物品的鍛造材料",
+			category_global$show_mercenaries_real_name : "在提示條上顯示傭兵的真實名字 (類型) ",
+			category_global$global_arena_timer : "顯示全球競技場計時器",
 			// Settings - Overview
 			category_overview$analyze_items : "分析物品加成 (訓練時)",
 			category_overview$food_life_gain : "顯示從食物獲得的生命",
 			category_overview$block_avoid_caps : "顯示格擋與迴避上限",
 			category_overview$best_food : "高亮最佳食物",
 			category_overview$overfeed_food : "黯淡會導致治療浪費的食物",
+			category_overview$double_click_consume : "雙擊物品以用掉它們",
 			category_overview$daily_bonus_log : "記錄每日收益",
 			category_overview$buffs_detailed_time : "顯示工會增益的詳細計時",
 			category_overview$mercenaries_manager : "顯示傭兵管理器",
@@ -337,6 +381,7 @@ gca_languages['zh'] = {
 			category_packages$special_category_features : "為每個分類啟用特性",
 			category_packages$double_click_open : "雙擊包裹以打開",
 			category_packages$advance_filter : "高級包裹篩選",
+
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "啟用任務分組",
 			category_pantheon$quests_detailed_rewards : "顯示任務的詳細獎勵",
@@ -344,10 +389,12 @@ gca_languages['zh'] = {
 			category_pantheon$gods_show_points_percent : "顯示眾神點數百分比",
 			category_pantheon$open_many_mysteryboxes : "打開多個神聖命運寶箱",
 			category_pantheon$show_mysterybox_rewards_rubies : "顯示神聖命運寶箱中物品相對於紅寶石的價值",
+			category_pantheon$show_mysterybox_rewards_owned : "顯示神聖命運寶箱中物品已擁有的數量",
 			// Settings - Reports
 			category_reports$style_change : "改善戰鬥報告列表頁面",
 			category_reports$load_loot_tooltips : "加載每一個戰鬥報告的獎勵",
 			category_reports$found_items : "蒐集找到物品的數據",
+			category_reports$battle_analyzer : "分析報告並顯示生命狀態",
 			// Settings - Training
 			category_training$show_discount : "顯示訓練優惠",
 			category_training$show_basics_in_bars : "在條狀圖中顯示基礎數值",
@@ -382,6 +429,8 @@ gca_languages['zh'] = {
 			category_market$one_gold_mode : "切換按鈕總是將出售價設為1金",
 			category_market$remember_sort : "記憶最後選擇的排序方式",
 			category_market$double_click_select : "雙擊選取物品",
+			category_market$sell_warning_icons : "當出售物品時顯示警告圖標",
+			category_market$sell_with_enter : "用Enter ⏎鍵出售物品",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "顯示每一個遠征敵人掉落的鍛造材料",
 			category_expedition$underworld_layout : "地下世界界面改為遠征界面",
@@ -392,6 +441,7 @@ gca_languages['zh'] = {
 			category_guild$library_tooltip_data : "在圖書館的提示文本中顯示更多數據",
 			category_guild$bank_donate_layout : "改善銀行捐贈頁面",
 			category_guild$bank_book_layout : "改善銀行捐獻書頁面",
+			category_guild$bank_book_show_changes : "在公會捐獻書頁面顯示自上次訪問以來的捐獻變化值",
 			category_guild$medic_layout : "改善治療頁面",
 			// Settings - Auction
 			category_auction$items_counters : "計算物品數與已拍物品數",
@@ -402,6 +452,11 @@ gca_languages['zh'] = {
 			category_auction$multi_bids : "拍物品時免刷新頁面",
 			category_auction$extra_item_stats : "在物品圖像上顯示額外的狀態",
 			category_auction$save_last_state : "實現拍賣行搜索條件的存儲與默認載入",
+			// Settings - Accessibility
+			
+
+
+
 			// Settings - Events
 			category_events$craps_timer : "在頂部顯示骰子遊戲的計時器",
 			category_events$server_quest_timer : "在頂部顯示服務器任務或者區域事件的計時器",
@@ -414,7 +469,9 @@ gca_languages['zh'] = {
 			category_data$import_settings : "從文件導入設置文件",
 			category_data$reset_settings : "用默認設置重置本插件的設置",
 			category_data$clear_data : "清除所有插件的數據",
+			category_data$clear_cache_data : "清除插件緩存數據",
 			category_data$cross_browser_login : "跨瀏覽器登錄協同",
+			category_data$export_error_player_settings : "輸出用戶的錯誤設置數據到文件",
 
 			// Buttons
 			save : "保存",
@@ -425,12 +482,17 @@ gca_languages['zh'] = {
 			do_not_show : "不要顯示",
 			show_as : "顯示為",
 			show_info : "顯示信息",
+			each_category : "在目標類別上運行",
+			all_category : "在目標類別和所有類別上運行",
+			do_not_run : "不要運行",
 
 			// Info
 			translated_percent : "翻譯百分比: {{number}}%",
 			translated_by : "譯者: {{string}}",
 			reset_settings_confirm : "你確認你想要重置插件的設置麼?",
 			clear_data_confirm : "你確認你想要清除所有插件的數據?",
+			data_exported_save_the_file : "數據已導出,請保存文件.",
+			missing_translations : "缺失翻譯",
 
 			// Notifications
 			notification_reload : "重載頁面使改動生效"
