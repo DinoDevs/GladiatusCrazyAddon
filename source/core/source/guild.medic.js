@@ -25,7 +25,7 @@ var gca_guild_medic = {
 				return;
 
 			// Gather and calculate values
-			var healPercent = parseInt(document.getElementById('content').getElementsByTagName('p')[1].textContent.match(/(\d+)%/i)[1], 10);
+			var healPercent = parseInt(document.getElementById('content').getElementsByTagName('p')[1].textContent.match(/(\d+)\s*%/i)[1], 10);
 			var healpoints = document.getElementById('char_leben_tt').dataset.tooltip.match(/(\d+) \\\/ (\d+)/i);
 			var currentPoints = parseInt(healpoints[1], 10);
 			var maxPoints = parseInt(healpoints[2], 10);
