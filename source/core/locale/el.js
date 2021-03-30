@@ -194,6 +194,22 @@ gca_languages["gr"] = {
 			// Points analysis
 			stats_points : "Πόντοι στατιστικών",
 			points_breakdown : "Ανάλυση πόντων",
+			points_breakdown_damage : "Ζημιά: +{{integer}} (+{{float}})",
+			points_breakdown_block : "Αξία κλειδώματος: +{{integer}}% (+{{float}}%)",
+			points_breakdown_block_max : "Αξία κλειδώματος: μέγιστη τιμή",
+			points_breakdown_normal_hit : "Πιθανότητα χτυπήματος: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_critical_hit : "Πιθανότητα κρίσιμου χτυπήματος: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_double_hit : "Πιθανότητα διπλού χτυπήματος: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_avoid : "Πιθανότητα αποφυγής κρίσιμου χτυπήματος: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_avoid_max : "Πιθανότητα αποφυγής κρίσιμου χτυπήματος: μέγιστη τιμή",
+			points_breakdown_enemy_normal_hit : "Πιθανότητα χτυπήματος αντιπάλου: {{integer}}% ({{float}}‰) *",
+			points_breakdown_enemy_double_hit : "Πιθανότητα διπλού χτυπήματος αντιπάλου: {{integer}}% ({{float}}‰) *",
+			points_breakdown_life : "Πόντοι ζωής: +{{number}}",
+			points_breakdown_regeneration : "Αναπήρωση ανά ώρα: +{{number}}",
+			points_breakdown_threat : "Απειλή: +{{integer}} (+{{float}})",
+			points_breakdown_heal : "Θεραπεία: +{{integer}} (+{{float}})",
+			points_breakdown_critical_heal : "Κρίσιμη αξία θεραπεία: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_heal_max : "Κρίσιμη αξία θεραπεία: μέγιστη τιμή",
 			stats_calculated_with_yourself_as_an_opponent : "* Τα στατιστικά υπολογίζονται με την υπόθεση ότι επιτίθεσαι στον εαυτό σου.",
 			// Cost calculator
 			total_cost : "Συνολικό κόστος",
@@ -238,7 +254,8 @@ gca_languages["gr"] = {
 		forge : {
 			forge_ended : "Η σφυρηλάτηση τελείωσε!",
 			recraft_item : "Σφυρηλάτηση ξανά",
-			show_hide_doll : "Εμφάνιση/Απόκρυψη χαρακτήρα παίχτη"
+			show_hide_doll : "Εμφάνιση/Απόκρυψη χαρακτήρα παίχτη",
+			horreum_material_change : "Μεταβολή στις πρώτες ύλες της αποθήκης"
 		},
 		
 		// Merchants
@@ -299,6 +316,7 @@ gca_languages["gr"] = {
 			category_expedition : "Εξορμήσεις",
 			category_guild: "Τάγμα",
 			category_auction: "Δημοπρατήριο",
+			category_accessibility : "Προσβασιμότητα",
 			category_events : "Εκδηλώσεις",
 			category_sound : "Ήχοι",
 			category_data : "Δεδομένα",
@@ -379,6 +397,7 @@ gca_languages["gr"] = {
 			category_packages$special_category_features : "Ενεργοποίηση ειδικών λειτουργιών ανά κατηγορία\n• Εμφάνιση εάν ο πάπυρος είναι γνωστός/άγνωστος\n• Εμφάνιση εικονιδίου εάν το πρόθεμα/επίθεμα του αντικειμένου είναι άγνωστο",
 			category_packages$double_click_open : "Άνοιγμα πακέτων με διπλό κλικ",
 			category_packages$advance_filter : "Φίλτρα πακέτων για προχωρημένους",
+			category_packages$pop_over_bag : "Ανάδυση της τσάντας από μετά από ολίσθηση",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Ομαδοποίηση αποστολών",
 			category_pantheon$quests_detailed_rewards: "Ενεργοποίηση λεπτομερούς εμφάνισης των ανταμοιβών",
@@ -449,6 +468,11 @@ gca_languages["gr"] = {
 			category_auction$multi_bids: "Ενεργοποίηση πολλαπλών δημοπρατήσεων (χωρίς ανανέωση)",
 			category_auction$extra_item_stats : "Εμφάνιση επιπλέον στατιστικών πάνω στις εικόνες των αντικειμένων",
 			category_auction$save_last_state : "Αποθήκευση της τελευταίας αναζήτησης και φόρτωμα της σαν αρχική",
+			// Settings - Accessibility
+			category_accessibility$white_level_indicators : "Αλλαγή του χρώματος των ενδείξεων επιπέδων στα αντικείμενα σε άσπρο",
+			category_accessibility$qualty_symbols_indicators : "Προσθήκη συμβόλων για την ποιότητα των αντικειμένων πάνω στα αντικείμενα",
+			category_accessibility$tooltips_qualty_white : "Αλλαγή του χρώματος των τίτλων των αντικειμένων στα tooltip σε άσπρο",
+			category_accessibility$tooltips_qualty_symbols : "Προσθήκη συμβόλων για την ποιότητα των αντικειμένων στα tooltip",
 			// Settings - Events
 			category_events$craps_timer : "Εμφάνιση χρονομέτρου για τα event ζαριών στην κορυφή",
 			category_events$server_quest_timer : "Εμφάνιση χρονομέτρου για τα server-quest και τα event περιοχών στην κορυφή",
