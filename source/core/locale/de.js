@@ -105,7 +105,7 @@ gca_languages['de'] = {
 			notification_guild_application : "Gildenbewerbung vorhanden",
 			notification_guild_attack_ready : "Die Abklingzeit für den Gildenkampf ist vorbei!",
 			low_durability_items : "Es gibt {{number}} Gegenstand/Gegenstände mit einer Haltbarkeit von {{percent}}%",
-
+			item_worth_rubies : "Der Gegenstand ist Rubinen wert!",
 
 			// Gold - Exp data
 			gold_exp_data : "Gold- und Erfahrungswerte",
@@ -169,7 +169,7 @@ gca_languages['de'] = {
 		arena : {
 			global_arena_title : "Globale Arena",
 			global_arena_description : "Das ist die ultimative Arena, in der Gladiatoren aus aller Welt zusammenkommen! In dieser Arena kämpfen Gladiatoren nicht um Gold oder Erfahrung, sondern um einen Platz auf der Weltspitzenliste!",
-			
+			global_arena_load : "Globale Angriffsliste anzeigen",
 			global_highscore : "Globale Bestenliste",
 			country : "Land",
 			server : "Server",
@@ -387,12 +387,12 @@ gca_languages['de'] = {
 			category_pantheon$gods_show_points_percent : "Zeige Götterpunkte in Prozent",
 			category_pantheon$open_many_mysteryboxes : "Öffne mehrere Schatztruhen",
 			category_pantheon$show_mysterybox_rewards_rubies : "Wert der Schatztruhen Belohnungen in Rubinen anzeigen",
-
+			category_pantheon$show_mysterybox_rewards_owned : "Zeige in Schatzkammer den aktuellen Inventarbestand an",
 			// Settings - Reports
 			category_reports$style_change : "Verbessere das Layout der Kampfberichte",
 			category_reports$load_loot_tooltips : "Beute der Kampfberichte direkt anzeigen",
 			category_reports$found_items : "Daten der gefundenen Gegenstände sammeln",
-
+			category_reports$battle_analyzer : "Berichtsanalyse und Lebensstatistik anzeigen",
 			// Settings - Training
 			category_training$show_discount : "Trainingsrabatt anzeigen",
 			category_training$show_basics_in_bars : "Zeige Gundwerte als Balken",
@@ -439,7 +439,7 @@ gca_languages['de'] = {
 			category_guild$library_tooltip_data : "Erweiterte Daten bei den Tooltips der Bibliothek",
 			category_guild$bank_donate_layout : "Verbessere das Layout der Bank",
 			category_guild$bank_book_layout : "Verbessere das Spendenbuch Layout der Bank",
-
+			category_guild$bank_book_show_changes : "Zeige Spendendifferenz der Spieler seit letzten Spendenbuch-Besuch",
 			category_guild$medic_layout : "Verbessere Layout des Arztes",
 			// Settings - Auction
 			category_auction$items_counters : "Zeige Anzahl der Gegenstände",
