@@ -481,12 +481,13 @@ gca_languages["gr"] = {
 			category_sound$muted : "Σίγαση / κατάργηση σίγασης ήχων",
 			category_sound$volume : "Ένταση ήχων",
 			// Settings - Data
-			category_data$export_settings : "Εξαγωγή των δεδομένων ρυθμίσεων σε αρχείο",
-			category_data$import_settings : "Εισαγωγή των δεδομένων ρυθμίσεων από αρχείο",
+			category_data$export_settings : "Εξαγωγή των ρυθμίσεων σε αρχείο",
+			category_data$import_settings : "Εισαγωγή των ρυθμίσεων από αρχείο",
 			category_data$reset_settings : "Επαναφορά των ρυθμίσεων του προσθέτου",
 			category_data$clear_data : "Εκκαθάριση όλων των δεδομένων του προσθέτου",
 			category_data$clear_cache_data : "Εκκαθάριση προσωρινών δεδομένων προσθέτου",
 			category_data$cross_browser_login : "Ταυτόχρονη σύνδεση σε πολλαπλούς περιηγητές",
+			category_data$export_error_player_settings : "Εξαγωγή των δεδομένων άγνωστου χρήστη σε αρχείο",
 
 			// Buttons
 			save: "Αποθήκευση",

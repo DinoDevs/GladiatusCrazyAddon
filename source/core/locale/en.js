@@ -481,13 +481,13 @@ gca_languages["en"] = {
 			category_sound$muted : "Mute/Unmute sounds",
 			category_sound$volume : "Sounds volume",
 			// Settings - Data
-			category_data$export_settings : "Export settings data to file",
-			category_data$import_settings : "Import settings data from file",
+			category_data$export_settings : "Export settings to file",
+			category_data$import_settings : "Import settings from file",
 			category_data$reset_settings : "Reset addon's settings",
 			category_data$clear_data : "Clear all addon's data",
 			category_data$clear_cache_data : "Clear addon's temporal data (cache)",
 			category_data$cross_browser_login : "Cross browser login sync",
-			category_data$export_error_player_settings : "Export user error's settings data to file",
+			category_data$export_error_player_settings : "Export unknown-user data to file",
 
 			// Buttons
 			save : "Save",
