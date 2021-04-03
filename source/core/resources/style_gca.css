@@ -1461,20 +1461,21 @@
 		.accessibility-quality-symbols-indicators .show-item-level div[data-quality="4"]:not([data-basis^="18-"])::before {content: "◆◆◆ \A " attr(data-level);white-space: pre-wrap;margin-top: -3px;margin-left: -2px;text-align: left;}
 
 		/* Add Quality Diamonds on Tooltips */
-		.accessibility-tooltips-quality-symbols .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:white"]:after {content: "◇";font-size: 0.8em;margin-top: -5px;display: block;}
-		.accessibility-tooltips-quality-symbols .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:lime;"][style*="text-shadow:"]:after {content: "◆";font-size: 0.8em;margin-top: -5px;display: block;}
-		.accessibility-tooltips-quality-symbols .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:#5159F7;"][style*="text-shadow:"]:after {content: "◆◇";font-size: 0.8em;margin-top: -5px;display: block;}
-		.accessibility-tooltips-quality-symbols .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:#E303E0;"][style*="text-shadow:"]:after {content: "◆◆";font-size: 0.8em;margin-top: -5px;display: block;}
-		.accessibility-tooltips-quality-symbols .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:#FF6A00;"][style*="text-shadow:"]:after {content: "◆◆◇";font-size: 0.8em;margin-top: -5px;display: block;}
-		.accessibility-tooltips-quality-symbols .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:#FF0000;"][style*="text-shadow:"]:after {content: "◆◆◆";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style*="color:white"]:first-child:after {content: "◇";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style*="color:white"]:last-child:after {display: none;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style*="color:lime;"][style*="text-shadow:"]:after {content: "◆";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style*="color:#5159F7;"][style*="text-shadow:"]:after {content: "◆◇";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style*="color:#E303E0;"][style*="text-shadow:"]:after {content: "◆◆";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style*="color:#FF6A00;"][style*="text-shadow:"]:after {content: "◆◆◇";font-size: 0.8em;margin-top: -5px;display: block;}
+		.accessibility-tooltips-quality-symbols .tooltips > div > p[style*="color:#FF0000;"][style*="text-shadow:"]:after {content: "◆◆◆";font-size: 0.8em;margin-top: -5px;display: block;}
 
 		/* Title in white on Tooltips */
-		.accessibility-tooltips-quality-white .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:lime;"][style*="text-shadow:"] {color: white!important;}
-		.accessibility-tooltips-quality-white .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:#5159F7;"][style*="text-shadow:"] {color: white!important;}
-		.accessibility-tooltips-quality-white .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:#E303E0;"][style*="text-shadow:"] {color: white!important;}
-		.accessibility-tooltips-quality-white .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:#FF6A00;"][style*="text-shadow:"] {color: white!important;}
-		.accessibility-tooltips-quality-white .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color:#FF0000;"][style*="text-shadow:"] {color: white!important;}
-		.accessibility-tooltips-quality-white .tooltips > div > p:first-child:nth-last-child(n+3)[style*="color: rgb(186, 151, 0);"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color:lime;"][style*="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color:#5159F7;"][style*="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color:#E303E0;"][style*="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color:#FF6A00;"][style*="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color:#FF0000;"][style*="text-shadow:"] {color: white!important;}
+		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color: rgb(186, 151, 0);"] {color: white!important;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
