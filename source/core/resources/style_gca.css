@@ -727,7 +727,7 @@
 		.gca_rtl .analyzer_life_report{left: auto;right:71px;}
 		.analyzer_life_shadow{position: absolute;background-color: rgba(0,0,0,0.3);width: 1px;top: -1px;bottom: -1px;right: 0;z-index: 1;box-shadow: 0 0 6px black;}
 		.gca_rtl .analyzer_life_shadow{right: auto;left: 0;}
-		.analyzer_life_charstats{margin-top: 0;width: 200px;overflow: hidden;}
+		.analyzer_life_charstats{margin-top: 0;width: 200px !important;overflow: hidden;}
 		.analyzer_life_charstats .charstats_bg2{width: 200px;}
 		.gca_rtl .analyzer_life_charstats .charstats_bg2{background-position: right;}
 		.analyzer_life_charstats .charstats_text span{position: absolute;display: block;font-size: 11px;right: 80px;top: 0px;background: rgba(183, 153, 99, 0.5);}

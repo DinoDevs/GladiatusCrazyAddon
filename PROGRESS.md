@@ -30,6 +30,8 @@
 - **Forge**
 	- [x] Fixed scroll known retrieve crash (issue #243)
 	- [x] Missing translation on horreum notification added (issue #246)
+- **Reports**
+	- [x] Turma/Dungeon analyzer style fix #254
 
 
 ### TRANSLATIONS
