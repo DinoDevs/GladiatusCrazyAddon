@@ -578,15 +578,26 @@ var gca_reports = {
 				points = document.getElementsByClassName("standalone")[0].textContent.match(/\d+/gi);
 			
 			// Parse each player
+			let team = 0
 			jQuery('.dungeon_report_statistic:eq(0) table tr').each((index, element) => {
 				
 				// Get name
 				let player_name = element.getElementsByTagName("th")[0].textContent.trim().replace(/\s\(\d+\)/i,"").trim();
 				let array_index = -1;
+
+				// Detect team change
+				if( element.getElementsByTagName("th")[0].getElementsByTagName("a").length == 1)
+					team += 1
+
+				// Duplicate players across teams fix
+				let duplicate_fix = '¹';
+				if( team == 2 )
+					duplicate_fix = '²';
+
 				// Find in gathered stats
 				let found = this.players.some(
 					function (item, position) {
-						if ( item[0] === player_name ) {
+						if ( item[0].replace(duplicate_fix,'') === player_name ) {
 							array_index = position;
 							return true;
 						}
