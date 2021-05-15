@@ -3,7 +3,7 @@
  * Name : German
  * Code : [none]
  * Tag  : de
- * Translator: DoonFreak, GreatApo
+ * Translator: DoonFreak, Sleeping*Shadow, Zitronenen
  */
 
 // Languages Object
@@ -15,7 +15,7 @@ gca_languages['de'] = {
 	// Language name
 	name : 'Deutsch (German)',
 	// Translators (authors of this script)
-	translators : ["DoonFreak", "GreatApo", "Sleeping*Shadow"],
+	translators : ["DoonFreak", "Sleeping*Shadow", "Zitronenen"],
 
 	// Translations object
 	locale : {
@@ -198,7 +198,23 @@ gca_languages['de'] = {
 			// Cost calculator
 			total_cost : "Gesamtkosten",
 			// Discount show
-			costs_discount : "Trainingskosten Ersparnis: {{number}}%"
+			costs_discount : "Trainingskosten Ersparnis: {{number}}%",
+			// points breakdown
+			points_breakdown_damage : "Schaden: +{{integer}} (+{{float}})",
+			points_breakdown_block : "Block: +{{integer}}% (+{{float}}%)",
+			points_breakdown_block_max : "Block: max. Wert",
+			points_breakdown_normal_hit : "Trefferchance: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_critical_hit : "Kritische Trefferchance: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_double_hit : "Doppelschlag Chance: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_avoid : "Chance kritische Treffer zu vermeiden: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_avoid_max : "Chance kritische Treffer zu vermeiden: max. Wert",
+			points_breakdown_enemy_normal_hit : "Gegnerische Trefferchance: {{integer}}% ({{float}}‰) *",
+			points_breakdown_enemy_double_hit : "Gegnerische Doppelschlag Chance: {{integer}}% ({{float}}‰) *",
+			points_breakdown_life : "Lebenspunkte: +{{number}}",
+			points_breakdown_regeneration : "Regeneration pro Stunde: +{{number}}",
+			points_breakdown_heal : "Heilung: +{{integer}} (+{{float}})",
+			points_breakdown_critical_heal : "Kritische Heilungswertung: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_heal_max : "Kritische Heilungswertung: max. Wert"
 		},
 
 		// Auction section
@@ -238,7 +254,8 @@ gca_languages['de'] = {
 		forge : {
 			forge_ended : "Schmiede fertig!",
 			recraft_item : "Gegenstand zerlegt",
-			show_hide_doll : "Zeige / Verstecke Ausrüstung des Charakters"
+			show_hide_doll : "Zeige / Verstecke Ausrüstung des Charakters",
+			horreum_material_change : "Horreum - Rohstoff wurde aufgewertet"
 		},
 		
 		// Merchants
@@ -464,7 +481,12 @@ gca_languages['de'] = {
 			category_data$clear_data : "Lösche alle Add-on Daten",
 			category_data$clear_cache_data : "Lösche Cache Dateien des Add-ons",
 			category_data$cross_browser_login : "Browserübergreifende Anmeldesynchronisation",
-
+			// Settings - Accessibility
+			category_accessibility : "Bedienungshilfe",
+			category_accessibility$white_level_indicators : "Ändere die Stufen-Anzeige der Gegenstände in die Farbe weiss" ,
+			category_accessibility$qualty_symbols_indicators : "Füge ein Symbol als Qualitätsindikator auf Gegenstände hinzu",
+			category_accessibility$tooltips_qualty_white : "Ändere den Titel der Gegenstände im Tooltip in die Farbe weiss",
+			category_accessibility$tooltips_qualty_symbols : "Füge ein Symbol als Qualitätsindikator im Tooltip hinzu",
 
 			// Buttons
 			save : "Speichern",
