@@ -425,7 +425,7 @@ gca_languages['de'] = {
 			category_forge$material_links : "Taste zu den Paketen und dem Markt für jedes Material (Schmiede / Reparatur)",
 			category_forge$show_levels : "Stufe neben dem Namen anzeigen",
 			category_forge$horreum_materials_names : "[Horreum] Zeige Rohstoff-Bezeichnung",
-			category_forge$horreum_remember_options : "[Horreum] Letzte Ansicht der Rohstoffkategorie merken",
+			category_forge$horreum_remember_options : "[Horreum] Merke gewählte Einstellungen zur Einlagerung",
 			category_forge$horreum_select_meterials : "[Horreum] Rohstoff durch anklicken auswählen",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignoriere Angriffsbestätigungen (mehr als 5 Angriffe usw.)",
