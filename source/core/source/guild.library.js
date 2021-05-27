@@ -151,7 +151,7 @@ var gca_guild_library = {
 				let recipe = recipes[i].getElementsByTagName('div')[1];
 				let tooltip = JSON.parse(recipe.dataset.tooltip);
 				let gold = gca_tools.strings.parseGold(recipes[i].getElementsByTagName('td')[1].textContent);
-				let points = parseInt(recipes[i].getElementsByTagName('td')[2].textContent.match(/\+(\d+)/i)[1], 10);
+				let points = parseInt(tooltip[0][1][0].match(/\+\d+.*/)[0], 10); // Get bonus
 
 				tooltip[0].push([gca_locale.get("guild", "library_per_point_cost") + ' ' + gca_tools.strings.insertDots(Math.round(gold/points)) + ' <div class="icon_gold"></div>', '#DDDDDD']);
 				tooltip[0].push([gca_locale.get("guild", "library_gold_left") + ' ' + gca_tools.strings.insertDots(guildGold - gold) + ' <div class="icon_gold"></div>', '#DDDDDD']);

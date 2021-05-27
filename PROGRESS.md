@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-9-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-10-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -27,6 +27,7 @@
 - **Guild**
 	- [x] Medic site crash fix #250
 	- [ ] Market kick to lobby fix #240 [testing]
+	- [x] Library feature "Add more data on library's tooltips" was working only when "Improve library's layout" was enable
 - **Forge**
 	- [x] Fixed scroll known retrieve crash (issue #243)
 	- [x] Missing translation on horreum notification added (issue #246)
