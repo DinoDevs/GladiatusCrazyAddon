@@ -444,7 +444,7 @@ gca_languages['de'] = {
 			category_market$one_gold_mode : "Schaltfläche zum Ändern des Marktpreise immer auf 1 Gold",
 			category_market$remember_sort : "Die letzte Sortierreihenfolge merken",
 			category_market$double_click_select : "Wähle Gegenstände durch Doppelklick aus",
-			category_market$sell_warning_icons : "Warnsymbol bei Verkauf von Seelengebundene Gegenstände",
+			category_market$sell_warning_icons : "Warnsymbole bei Verkauf von Gegenständen anzeigen",
 			category_market$sell_with_enter : "Verkaufe Gegenstände durch Drücken der Enter-Taste ⏎",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Zeige mögliches Schmiedematerial der Gegner",
