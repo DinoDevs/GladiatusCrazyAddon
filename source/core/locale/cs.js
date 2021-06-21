@@ -3,7 +3,7 @@
  * Name : Czech
  * Code : [none]
  * Tag  : cs
- * Translator: Nekros, WiLLsTeiN, marekrich@seznam.cz, Alutom, bleakill.3607@gmail.com, Yenicheri, JAMES, Drnda3 [jpmaster38@gmail.com]
+ * Translator: Wrath, WiLLsTeiN, marekrich@seznam.cz, Alutom, bleakill.3607@gmail.com, Yenicheri, JAMES, Drnda3 [jpmaster38@gmail.com]
  */
 
 // Languages Object
