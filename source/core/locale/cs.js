@@ -3,7 +3,7 @@
  * Name : Czech
  * Code : [none]
  * Tag  : cs
- * Translator: Nekros, WiLLsTeiN, marekrich@seznam.cz, Alutom, bleakill.3607@gmail.com, Yenicheri, JAMES, Drnda3 [jpmaster38@gmail.com]
+ * Translator: Wrath, WiLLsTeiN, marekrich@seznam.cz, Alutom, bleakill.3607@gmail.com, Yenicheri, JAMES, Drnda3 [jpmaster38@gmail.com]
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['cs'] = {
 	name : 'čeština (Czech)',
-	translators : ["Nekros", "WiLLsTeiN", "marekrich", "Alutom", "bleakill", "Yenicheri", "JAMES", "Drnda3"],
+	translators : ["Wrath", "WiLLsTeiN", "marekrich", "Alutom", "bleakill", "Yenicheri", "JAMES", "Drnda3"],
 	locale : {
 		info : {
 			description : "Nejbláznivější add-on pro Gladiatus"
