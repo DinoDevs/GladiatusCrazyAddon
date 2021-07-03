@@ -487,7 +487,7 @@ gca_languages["en"] = {
 			category_data$clear_data : "Clear all addon's data",
 			category_data$clear_cache_data : "Clear addon's temporal data (cache)",
 			category_data$cross_browser_login : "Cross browser login sync",
-			category_data$export_error_player_settings : "Export unknown-user data to file",
+			category_data$export_error_player_settings : "Export unknown-user data to file", // TODO: This may be removed on the future
 
 			// Buttons
 			save : "Save",

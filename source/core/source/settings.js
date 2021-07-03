@@ -1237,6 +1237,7 @@ var gca_settings = {
 
 				// Export Error Player
 				// TODO: this may be removed in the future
+				/*
 				"export_error_player_settings" : (function(){
 					var scheme = {
 						"type" : "custom",
@@ -1256,6 +1257,7 @@ var gca_settings = {
 					};
 					return scheme;
 				})()
+				*/
 			}
 		},
 
@@ -2017,6 +2019,7 @@ var gca_settings = {
 		},
 
 		// Export gca error player settings
+		/*
 		export_player_error : function() {
 			// Get settings data
 			let settings_data = window.localStorage.getItem(gca_data_manager.mod + "_0" + "_settings") || "{\"data\":{}}";
@@ -2032,6 +2035,7 @@ var gca_settings = {
 				arena : arena_data
 			}, 3);
 		},
+		*/
 
 		// Handle data export
 		export_data : function(info, data, version) {
