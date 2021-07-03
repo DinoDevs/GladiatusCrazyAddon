@@ -51,7 +51,8 @@ var gca_locale = {
 		// TODO : call deprecated warning
 		if(typeof code == "undefined"){
 			// Deprecated Message
-			console.log("Function \"" + arguments.callee.caller.name + "\" called gca_locale.get(\"" + section + "\") which is deprecated!");
+			let funcname = (arguments.callee && arguments.callee.caller && arguments.callee.caller.name ? arguments.callee.caller.name : 'unknown');
+			console.log("Function \"" + funcname + "\" called gca_locale.get(\"" + section + "\") which is deprecated!");
 		}
 
 		// Get raw translation code
@@ -60,7 +61,8 @@ var gca_locale = {
 		// If not found
 		if(raw == false){
 			// Undefined Locale
-			console.log("Function \"" + arguments.callee.caller.name + "\" called gca_locale.get(\"" + section + "\", \"" + code + "\") which is undefined!");
+			let funcname = (arguments.callee && arguments.callee.caller && arguments.callee.caller.name ? arguments.callee.caller.name : 'unknown');
+			console.log("Function \"" + funcname + "\" called gca_locale.get(\"" + section + "\", \"" + code + "\") which is undefined!");
 			// Return undefined
 			return "Undefined_Locale[" + section + "][" + code + "]";
 		}
