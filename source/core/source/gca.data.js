@@ -630,6 +630,11 @@ gca_options.data = {
 	}
 };
 
+// If settings, save default values
+if (new URLSearchParams(window.location.search).get('mod') == 'settings') {
+	gca_options.defaultData = JSON.parse(JSON.stringify(gca_options.data));
+}
+
 // Load Stuff
 (function(){
 	// Initiate Options

@@ -2049,6 +2049,26 @@ var gca_settings = {
 				return false;
 			}
 
+			// Remove settings that have the default value
+			if (gca_options.defaultData) {
+				for (let i in data.settings.data) {
+					if (gca_options.defaultData.hasOwnProperty(i)) {
+						for (let j in data.settings.data[i]) {
+							if (gca_options.defaultData[i].hasOwnProperty(j)) {
+								// If default value
+								if (data.settings.data[i][j] === gca_options.defaultData[i][j]) {
+									delete data.settings.data[i][j];
+								}
+							}
+						}
+						// If empty category
+						if (Object.keys(data.settings.data[i]).length == 0) {
+							delete data.settings.data[i];
+						}
+					}
+				}
+			}
+
 			// Set data version
 			data.version = version;
 			data.info = info;
