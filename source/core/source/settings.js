@@ -1258,6 +1258,164 @@ var gca_settings = {
 					return scheme;
 				})()
 				*/
+
+
+				// Import
+				"import_settings_from_notes" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.import = document.createElement("input");
+							data.import.setAttribute("type", "button");
+							data.import.className = "awesome-button";
+							data.import.style.float = "right";
+							data.import.style.marginTop = "5px";
+							data.import.value = gca_locale.get("settings", "import");
+							// On import
+							data.import.addEventListener("click", () => {
+								// Disable elements
+								data.import.setAttribute("disabled", "disabled");
+								// Get notes
+								jQuery.ajax({
+									type: "GET",
+									url: gca_getPage.link({'mod':'memo'}),
+									success: function(content){
+										// Load notes
+										let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
+										if (!notes) {
+											// Failed to Parse Notes
+											gca_notifications.error(gca_locale.get("general", "error") + ' [F2PN]');
+											return;
+										}
+										notes = notes[1];
+										// Load settings
+										let settings = notes.match(/{GCASETTINGS\|([^}]+)}/i);
+										if (!settings) {
+											// Not found settings
+											gca_notifications.error(gca_locale.get("general", "error") + ' [NFS]');
+											return;
+										}
+										settings = settings[1];
+										// Decode settings
+										try {
+											settings = atob(settings);
+										} catch (e) {
+											// Failed to Decode Settings
+											gca_notifications.error(gca_locale.get("general", "error") + ' [F2DS]');
+											return;
+										}
+										// Import settings
+										let error = gca_settings.backup.import(settings);
+										if (!error) {
+											document.location.href = document.location.href;
+										}
+										else {
+											// Failed to Import Settings
+											gca_notifications.error(gca_locale.get("general", "error") + ' [F2IS]');
+											return;
+										}
+									},
+									error: function(){
+										// Request Failed
+										gca_notifications.error(gca_locale.get("general", "error") + ' [RF]');
+									}
+								});
+							}, false);
+							// Add change event
+							return [data.import];
+						}
+					};
+					return scheme;
+				})(),
+
+
+				// Export
+				"export_settings_to_notes" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.import = document.createElement("input");
+							data.import.setAttribute("type", "button");
+							data.import.className = "awesome-button";
+							data.import.style.float = "right";
+							data.import.style.marginTop = "5px";
+							data.import.value = gca_locale.get("settings", "export");
+							// On export
+							data.import.addEventListener("click", () => {
+								// Disable elements
+								data.import.setAttribute("disabled", "disabled");
+								// Get notes
+								jQuery.ajax({
+									type: "GET",
+									url: gca_getPage.link({'mod':'memo'}),
+									success: function(content){
+										// Load notes
+										let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
+										if (!notes) {
+											// Failed to Parse Notes
+											gca_notifications.error(gca_locale.get("general", "error") + ' [F2PN]');
+											return;
+										}
+										notes = notes[1];
+										// Delete settings
+										notes = notes.replace(/(\n+|){GCASETTINGS\|([^}]+)}/ig, '');
+
+										// Get settings data
+										let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
+										// Get arena data
+										let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
+
+										let sdata = gca_settings.backup.exportDataPrepare({
+											country : gca_section.country,
+											server : gca_section.server,
+											playerId : gca_section.playerId
+										}, {
+											settings : settings_data,
+											arena : arena_data
+										}, 3, true);
+
+										if (!sdata) {
+											// Failed to Get Settings
+											gca_notifications.error(gca_locale.get("general", "error") + ' [FGS]');
+											return;
+										}
+
+										notes += '\n\n' + '{GCASETTINGS\|' + btoa(sdata) + '}';
+
+										// Oups, no space
+										if (notes.length > 16000) {
+											gca_notifications.error(gca_locale.get("general", "error") + ' [NS]');
+											return;
+										}
+
+										jQuery.ajax({
+											type: "POST",
+											url: gca_getPage.link({'mod':'memo', 'submod':'save'}),
+											data: {memo : notes},
+											success: function(){
+												gca_notifications.success(gca_locale.get("general", "ok"));
+												data.import.removeAttribute("disabled");
+											},
+											error: function(){
+												// Failed to Save Settings
+												gca_notifications.error(gca_locale.get("general", "error") + ' [FSS]');
+											}
+										});
+									},
+									error: function(){
+										// Request Failed
+										gca_notifications.error(gca_locale.get("general", "error") + ' [RF]');
+									}
+								});
+							}, false);
+							// Add change event
+							return [data.import];
+						}
+					};
+					return scheme;
+				})(),
 			}
 		},
 
@@ -2008,7 +2166,7 @@ var gca_settings = {
 			// Get arena data
 			let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
 
-			this.export_data({
+			this.exportToFile({
 				country : gca_section.country,
 				server : gca_section.server,
 				playerId : gca_section.playerId
@@ -2026,19 +2184,32 @@ var gca_settings = {
 			// Get arena data
 			let arena_data = window.localStorage.getItem(gca_data_manager.mod + "_0" + "_arena") || "{\"target-list\":{}}";
 
-			this.export_data({
+			this.exportToFile({
 				country : gca_section.country,
 				server : gca_section.server,
 				playerId : 0
 			}, {
 				settings : settings_data,
 				arena : arena_data
-			}, 3);
+			}, 4);
 		},
 		*/
 
 		// Handle data export
-		export_data : function(info, data, version) {
+		exportToFile : function(info, data, version) {
+			data = this.exportDataPrepare(info, data, version);
+			if (!data) {
+				// Set to no data
+				gca_notifications.error(gca_locale.get("general", "error"));
+				return false;
+			}
+
+			// Download file
+			gca_notifications.success(gca_locale.get("settings", "data_exported_save_the_file"));
+			this.downloadFile("settings_" + info.country + "_s" + info.server + "_" + info.playerId + ".gca", data);
+		},
+
+		exportDataPrepare : function(info, data, version, compress=false) {
 			// Handle errors
 			try {
 				// Parse JSON data
@@ -2048,9 +2219,8 @@ var gca_settings = {
 					}
 				}
 			} catch (e) {
-				// Set to no data
-				gca_notifications.error(gca_locale.get("general", "error"));
-				return false;
+				// Failed
+				return null;
 			}
 
 			// Remove settings that have the default value
@@ -2075,12 +2245,17 @@ var gca_settings = {
 
 			// Set data version
 			data.version = version;
+			data.date = Math.round((new Date().getTime() - new Date('2021-01-01').getTime())/1000);
 			data.info = info;
-			data = JSON.stringify(data, null, "\t");
 
-			// Download file
-			gca_notifications.success(gca_locale.get("settings", "data_exported_save_the_file"));
-			this.downloadFile("settings_" + info.country + "_s" + info.server + "_" + info.playerId + ".gca", data);
+			if (compress) {
+				data = JSON.stringify(data);
+			}
+			else {
+				data = JSON.stringify(data, null, "\t");
+			}
+
+			return data;
 		},
 
 		// Download file
@@ -2100,14 +2275,12 @@ var gca_settings = {
 			// Check for json errors
 			try {
 				// Parse json
-				JSON.parse(data);
+				data = JSON.parse(data);
 			}
 			catch (e) {
 				return "Parse error";
 			}
 
-			// Parse data
-			data = JSON.parse(data);
 			let settings_json = null;
 			let arena_json = null;
 
