@@ -2215,14 +2215,15 @@ var gca_settings = {
 		/*
 		// Easy find storages
 		(function(){
-			var s = '';
+			var s = [];
 			for (let key in localStorage) {
 				let storage = key.match(/^gladiatusCrazyAddonData_\d+_(.+)$/);
-				if (storage) s += (s.length > 0 ? ', ':'') + '"' + storage[1] + '"'; 
+				if (storage && !s.includes("'" + storage[1] + "'")) s.push("'" + storage[1] + "'"); 
 			}
-			console.log('[' + s + ']');
+			s.sort();
+			console.log('[' + s.join(', ') + ']');
 		})();
-		 */
+		*/
 
 		// Clear all data
 		clearAll : function() {
