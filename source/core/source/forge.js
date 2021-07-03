@@ -647,6 +647,7 @@ var gca_forge = {
 				hash : el.data('hash'),
 				quality : el.data('quality'),
 				level : el.data('level'),
+				name : jQuery('#forge_infobox .forge_item_name:eq(0)').text()
 			};
 
 			// Make request and handle it
@@ -662,29 +663,44 @@ var gca_forge = {
 
 		searchItem : function(slot, info, pages) {
 			if (!pages.length) {
-				gca_notifications.error(gca_locale.get("global", "error"));
+				gca_notifications.error(gca_locale.get('general', 'error'));
 				return;
 			}
 			
 			let page = pages.shift();
+			let url_params = {
+				mod : 'packages',
+				f : info.basis.match(/(\d+)-(\d+)/)[1],
+				//fq : parseInt(info.basis.match(/(\d+)-(\d+)/)[2], 10) - 2,
+				fq : info.quality,
+				page : page,
+			};
+			// Use biggest word from name as a search word
+			if (info.name.length > 0) {
+				let keyword = (() => {
+					let words = info.name.split(' ');
+					if (words.length < 1) return null;
+					if (words.length > 1) words.sort((a,b) => b.length - a.length);
+					return words[0];
+				})();
+				if (keyword.length > 3) {
+					url_params.qry = keyword;
+				}
+			}
+
 			jQuery.ajax({
 				type: "GET",
-				url: gca_getPage.link({
-					mod : 'packages',
-					f : info.basis.match(/(\d+)-(\d+)/)[1],
-					//fq : parseInt(info.basis.match(/(\d+)-(\d+)/)[2], 10) - 2,
-					fq : info.quality,
-					page : page,
-				}),
+				url: gca_getPage.link(url_params),
 				success: (html) => {
 					if (html.match('data-hash="' + info.hash + '"')) {
-						let code = html.match(new RegExp('<div data-no-combine="true" data-no-destack="true" data-container-number="(-\\d+)"\\s*>\\s*<div style="[^"]*" class="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-price-gold="' + info.priceGold + '" data-tooltip="[^"]*" data-comparison-tooltip="[^"]*" data-soulbound-to="[^"]*" data-level="' + info.level + '" data-quality="[^"]*" data-hash="' + info.hash + '"[^>]*><\\/div>', 'i'));
+						let code = html.match(new RegExp('<div data-no-combine="true" data-no-destack="true" data-container-number="(-\\d+)"\\s*>\\s*<div style="[^"]*" class="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-price-gold="' + info.priceGold + '" data-tooltip="[^"]*" data-comparison-tooltip="[^"]*"( data-soulbound-to="[^"]*"|) data-level="' + info.level + '"( data-quality="[^"]*"|) data-hash="' + info.hash + '"[^>]*><\\/div>', 'i'));
 						if (code) {
 							slot.item = info;
 							slot.item.id = code[1];
 						}
 						else {
-							gca_notifications.error(gca_locale.get("global", "error"));
+							// Double warning
+							//gca_notifications.error(gca_locale.get('general', 'error'));
 							slot.item = null;
 						}
 						this.showItem(slot);
@@ -693,7 +709,7 @@ var gca_forge = {
 					}
 				},
 				error: function(){
-					gca_notifications.error(gca_locale.get("global", "error"));
+					gca_notifications.error(gca_locale.get('general', 'error'));
 				}
 			});
 		},
