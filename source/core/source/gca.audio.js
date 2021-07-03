@@ -225,7 +225,9 @@ var gca_audio = {
 	play : function(id, synced = false) {
 		if (!this._enable) return;
 		var audio = this.new(id, synced);
-		audio.play();
+		// In many cases this fires when the user has not yet interacted with the document
+		try {audio.play();}
+		catch(e){};
 		return audio;
 	},
 };
