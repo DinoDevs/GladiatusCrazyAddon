@@ -217,25 +217,23 @@ var gca_packages = {
 		// Show item's price
 		itemPrice : {
 			init : function(self){
-				// Save instance
-				var that = this;
 				// Apply item shadow
 				this.apply();
 
 				// On new items reapply
-				gca_tools.event.request.onAjaxResponse(function(response){
+				gca_tools.event.request.onAjaxResponse((response) => {
 					// If package load request
 					if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
-						that.apply();
+						this.apply();
 				});
 				// On packages page load
-				self.loadPackets.onPageLoad(function(){
-					that.apply();
+				self.loadPackets.onPageLoad(() => {
+					this.apply();
 				});
 			},
 			apply : function(){
 				// For each
-				jQuery("#packages .ui-draggable").each(function(){
+				jQuery('#packages .ui-draggable').each(function(){
 					// If no gold data
 					if(!this.dataset.priceGold)
 						return;
@@ -251,19 +249,11 @@ var gca_packages = {
 					var amount = parseInt(this.dataset.amount, 10);
 					
 					// Create text
-					var div = document.createElement("div");
-					div.style.position = "absolute";
-					div.style.color = "white";
-					div.style.textAlign = "right";
-					div.style.fontSize = "10px";
-					div.style.overflow = "hidden";
-					div.style.marginTop = "-44px";
-					div.style.width = "70px";
-					div.style.textShadow = "0px 0px 2px #000";
+					var div = document.createElement('div');
+					div.className = 'gca_item_price_info';
 					div.textContent = gca_tools.strings.insertDots(gold * amount);
-					var icon = document.createElement("div");
-					icon.className = "icon_gold";
-					icon.style.transform = "scale(0.8)";
+					var icon = document.createElement('div');
+					icon.className = 'icon_gold';
 					div.appendChild(icon);
 					this.parentNode.parentNode.appendChild(div);
 				});
