@@ -141,8 +141,21 @@ var gca_data_manager = {
 		if (localStorage.getItem(this.mod + "_players") !== null) {
 			players = JSON.parse(localStorage.getItem(this.mod + "_players"));
 		}
-		players[id] = null;
-		localStorage.setItem(this.mod + "_players", JSON.stringify(players));
+		if (!players.hasOwnProperty(id)) {
+			players[id] = null;
+			localStorage.setItem(this.mod + "_players", JSON.stringify(players));
+		}
+	},
+	savePlayerName : function(id, name){
+		if (!id || !name) return;
+		var players = {};
+		if (localStorage.getItem(this.mod + "_players") !== null) {
+			players = JSON.parse(localStorage.getItem(this.mod + "_players"));
+		}
+		if (!players.hasOwnProperty(id) || (players[id] !== name)) {
+			players[id] = name;
+			localStorage.setItem(this.mod + "_players", JSON.stringify(players));
+		}
 	},
 
 	// Load Data from storage

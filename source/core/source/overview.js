@@ -96,6 +96,12 @@ var gca_overview = {
 
 	// Update data
 	updateData : function(){
+		// Get doll name
+		let name = document.getElementsByClassName('playername');
+		if (!name.length) name = document.getElementsByClassName('playername_achievement');
+		if (!name.length) name = 'UnknownName';
+		else name = name[0].textContent.trim();
+
 		// Find player id
 		if (gca_section.playerId == 0 && this.doll == 1) {
 			let player_id = 0;
@@ -126,18 +132,13 @@ var gca_overview = {
 			}
 		}
 
-		if (gca_section.playerId > 0) {
+		if (gca_section.playerId > 0 && this.doll == 1) {
 			// All cookies will expire if not used for some days
 			let d = new Date();
 			d.setTime(d.getTime() + (14 * 24*60*60*1000));
 			let cookie_expires = 'expires=' + d.toUTCString();
 			let cookie_name = 'gca_players';
 
-			// Get Player name
-			let name = document.getElementsByClassName('playername');
-			if (!name.length) name = document.getElementsByClassName('playername_achievement');
-			if (!name.length) name = 'UnknownName';
-			else name = name[0].textContent.trim();
 			// Retrieve players list
 			let players = (() => {
 				let name = cookie_name + '=';
@@ -157,20 +158,28 @@ var gca_overview = {
 			})();
 			// Update list of players
 			let found = false;
+			let changed = false;
 			let entry = gca_section.country + '-' + gca_section.server + '-';
 			let check = new RegExp('^' + entry, 'i');
 			entry = entry + gca_section.playerId + '-' + gca_section.sh + '-' + name; // One per server
 			for (let i = players.length - 1; i >= 0; i--) {
 				if (check.test(players[i])) {
+					changed = (players[i] != entry) ? true : false;
 					players[i] = entry;
 					found = true;
 					break;
 				}
 			}
 			if (!found) players.push(entry);
-			players = players.sort();
-			// Set cookies
-			document.cookie = cookie_name + '=' + encodeURIComponent(players.join('|')) + ';' + cookie_expires + ';path=/;domain=gladiatus.gameforge.com';
+			if (!found || changed) {
+				// Short players
+				players = players.sort();
+				// Set cookies
+				document.cookie = cookie_name + '=' + encodeURIComponent(players.join('|')) + ';' + cookie_expires + ';path=/;domain=gladiatus.gameforge.com';
+			}
+
+			// Update player name
+			gca_data_manager.savePlayerName(gca_section.playerId, name);
 		}
 
 		// Save costume
