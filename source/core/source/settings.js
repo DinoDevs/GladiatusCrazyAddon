@@ -1997,8 +1997,8 @@ var gca_settings = {
 				item.data.input.setAttribute("max", scheme.max);
 				select.appendChild(item.data.input);
 
-				item.data.input.addEventListener('change', function(){
-					preview.textContent = this.value;//Math.round((this.value / scheme.max) * 100);
+				item.data.input.addEventListener('input', function(){
+					preview.textContent = this.value;
 				}, false);
 
 				typeWrapper.appendChild(select);
