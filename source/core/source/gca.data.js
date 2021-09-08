@@ -30,7 +30,7 @@ var gca_data = {
 		return false;
 	},
 
-/*
+	/*
 	// Sync
 	_sync_last : new Date().getTime(),
 	sync : function(){
@@ -43,7 +43,7 @@ var gca_data = {
 		gca_data_manager.loadData();
 		this._sync_last = time;
 	}
-*/
+	*/
 
 	// Section Data
 	section : {
@@ -99,6 +99,8 @@ var gca_data = {
 
 // Data Manager
 var gca_data_manager = {
+	// Flag to show if player id loaded
+	ready : false,
 	// Storage Name
 	mod : "gladiatusCrazyAddonData",
 	name : "",
@@ -107,11 +109,11 @@ var gca_data_manager = {
 	init : function(){
 		// Get Player Id
 		var playerId = this.getPlayerId();
+		this.ready = playerId ? true : false;
 		// Save Player id
 		this.savePlayer(playerId);
 		// Patch Name
 		this.name = this.mod + "_" + playerId;
-
 		this.loadData();
 	},
 	// Get Player Id
@@ -134,43 +136,46 @@ var gca_data_manager = {
 	},
 	// Set Players
 	savePlayer : function(id){
+		if (!id) return;
 		var players = {};
-		if(localStorage.getItem(this.mod+"_players") !== null){
+		if (localStorage.getItem(this.mod + "_players") !== null) {
 			players = JSON.parse(localStorage.getItem(this.mod + "_players"));
 		}
-		players[id] = id;
-		localStorage.setItem(this.mod+"_players", JSON.stringify(players));
+		players[id] = null;
+		localStorage.setItem(this.mod + "_players", JSON.stringify(players));
 	},
 
 	// Load Data from storage
 	loadData : function(){
 		// If data exist
-		if(localStorage.getItem(this.name) !== null){
+		if (this.ready && localStorage.getItem(this.name) !== null) {
 			gca_data.data = JSON.parse(localStorage.getItem(this.name));
 		}
 		// No data
-		else{
-			gca_data.data = {firstRun:true};
+		else {
+			gca_data.data = {firstRun : this.ready};
 		}
 	},
 	// Load Data to storage
 	saveData : function(){
+		if (!this.ready) return;
 		localStorage.setItem(this.name, JSON.stringify(gca_data.data));
 	},
 	// Reset Data on storage
 	resetAll : function(){
-		localStorage.setItem(this.name, JSON.stringify({firstRun:true}));
+		if (!this.ready) return;
+		localStorage.setItem(this.name, JSON.stringify({firstRun : true}));
 		this.loadData();
 	},
 
 	// Load Section Data from storage
 	loadSectionData : function(section){
 		// If data exist
-		if(localStorage.getItem(this.name + "_" + section) !== null){
+		if (this.ready && localStorage.getItem(this.name + "_" + section) !== null) {
 			gca_data.section.data[section] = JSON.parse(localStorage.getItem(this.name + "_" + section));
 		}
 		// No data
-		else{
+		else {
 			gca_data.section.data[section] = {};
 		}
 	},
