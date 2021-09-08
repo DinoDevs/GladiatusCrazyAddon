@@ -55,7 +55,7 @@ var loadScript = function(file, callback) {
 
 var actionGetRecipe = function(request, sender, response) {
 	if (!window.gladiatus_recipes) return;
-	if (!request.prefix || !request.suffix || !request.base) return;
+	if ((!request.prefix && request.prefix !== 0) || (!request.suffix && request.suffix !== 0) || (!request.base)) return;
 	if (!isInteger(request.prefix) || !isInteger(request.suffix) || !(/^\d+-\d+$/).test(request.base)) return;
 	response(window.gladiatus_recipes.getRecipe(request.prefix, request.base, request.suffix));
 };
