@@ -41,7 +41,7 @@ var gca_markets = {
 			}
 
 			// Special category features
-			(gca_data.section.get("packages", "special_category_features", 0) != 2 &&
+			(gca_options.get("packages", "special_category_features") != 2 &&
 				this.specialCategory.resolve(this));
 
 			this.layout.changeSortArrows();
@@ -331,7 +331,7 @@ var gca_markets = {
 	
 	// Default sell duration
 	sell_duration : function(){
-		let duration = gca_data.section.get("market", "sell_duration", 0);
+		let duration = gca_options.get("market", "sell_duration");
 		let options = document.getElementById('dauer');
 		// If 48h is selected, select 24h
 		if (duration >= options.length)
@@ -563,7 +563,7 @@ var gca_markets = {
 			var category = parseInt(document.getElementsByName("f")[0].value);
 			switch(category){
 				case 0: // All
-					if(gca_data.section.get("packages", "special_category_features", 0) == 1)
+					if(gca_options.get("packages", "special_category_features") == 1)
 						this.categories.scroll.loadData(self);
 					break;
 				case 20:

@@ -196,11 +196,11 @@ var gca_global = {
 		this.update_guild_info();
 		
 		// Show durability or notifications
-		((gca_data.section.get("global", "show_durability", 0) != 0 || gca_data.section.get("global", "min_durability", 25) > 0) && gca_section.mod!='auction' &&
+		((gca_options.get("global", "show_durability") != 0 || gca_options.get("global", "min_durability") > 0) && gca_section.mod!='auction' &&
 			this.display.analyzeItems.itemDurability.init());
 
 		// Show forge info
-		(!this.isTraveling && gca_data.section.get("global", "show_forge_info", 0) != 0 && 
+		(!this.isTraveling && gca_options.get("global", "show_forge_info") != 0 && 
 			this.display.analyzeItems.itemForgeInfo.init());
 		
 		// Edit Mercenaries tooltips
@@ -3285,7 +3285,7 @@ var gca_global = {
 			itemDurability : {
 				init : function(){
 					// Show durability
-					if (gca_data.section.get("global", "show_durability", 0) != 0)
+					if (gca_options.get('global', 'show_durability') != 0)
 						document.getElementById('content').className += ' show-item-durability';
 					
 					this.createDurability();
@@ -3327,8 +3327,8 @@ var gca_global = {
 					var items = document.querySelectorAll('div[data-content-type]');
 					var durability;
 					var low_durability_items = [];
-					let minimum_durability = (notifications)? gca_data.section.get("global", "min_durability", 25):0;
-					let show_durability = gca_data.section.get("global", "show_durability", 0);
+					let minimum_durability = notifications ? gca_options.get("global", "min_durability") : 0;
+					let show_durability = gca_options.get('global', 'show_durability');
 					// Loop page's Items
 					for (let i = 0; i < items.length; i++){
 						// If item
@@ -3387,7 +3387,7 @@ var gca_global = {
 
 			itemForgeInfo : {
 				init : function(){
-					var style = gca_data.section.get("global", "show_forge_info", 0);
+					var style = gca_options.get("global", "show_forge_info");
 					if (style == 1) this.style = 'minimal';
 					else if (style == 2) this.style = 'extended';
 					else if (style == 3) this.style = 'minimal-amounts';

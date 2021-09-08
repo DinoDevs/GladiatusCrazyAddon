@@ -638,11 +638,11 @@ var gca_settings = {
 								option.textContent = durations[i];
 								data.select.appendChild(option);
 							}
-							data.select.selectedIndex = gca_data.section.get("global", "show_durability", 0);
+							data.select.selectedIndex = gca_options.get('global', 'show_durability');
 							return data.select;
 						},
 						"save" : function(data){
-							gca_data.section.set("global", "show_durability", data.select.value);
+							gca_options.set("global", "show_durability", (parseInt(data.select.value, 10) || 0));
 						}
 					};
 					return scheme;
@@ -655,7 +655,7 @@ var gca_settings = {
 					"step" : 5,
 					"max" : 200,
 					"scale" : 1,
-					"db" : "section",
+					"db" : "options",
 				},
 				
 				// Show item forge info
@@ -681,11 +681,11 @@ var gca_settings = {
 								option.textContent = styles[i];
 								data.select.appendChild(option);
 							}
-							data.select.selectedIndex = gca_data.section.get("global", "show_forge_info", 0);
+							data.select.selectedIndex = gca_options.get("global", "show_forge_info");
 							return data.select;
 						},
 						"save" : function(data){
-							gca_data.section.set("global", "show_forge_info", data.select.value);
+							gca_options.set("global", "show_forge_info", (parseInt(data.select.value, 10) || 0));
 						}
 					};
 					return scheme;
@@ -789,11 +789,11 @@ var gca_settings = {
 								option.textContent = options[i];
 								data.select.appendChild(option);
 							}
-							data.select.selectedIndex = gca_data.section.get("packages", "special_category_features", 0);
+							data.select.selectedIndex = gca_options.get("packages", "special_category_features");
 							return data.select;
 						},
 						"save" : function(data){
-							gca_data.section.set("packages", "special_category_features", data.select.value);
+							gca_options.set("packages", "special_category_features", (parseInt(data.select.value, 10) || 0));
 						}
 					};
 					return scheme;
@@ -921,11 +921,11 @@ var gca_settings = {
 								option.textContent = durations[i];
 								data.select.appendChild(option);
 							}
-							data.select.selectedIndex = gca_data.section.get("market", "sell_duration", 0);
+							data.select.selectedIndex = gca_options.get("market", "sell_duration");
 							return data.select;
 						},
 						"save" : function(data){
-							gca_data.section.set("market", "sell_duration", data.select.value);
+							gca_options.set("market", "sell_duration", data.select.value);
 						}
 					};
 					return scheme;

@@ -23,7 +23,7 @@ var gca_player = {
 		this.show_buffs();
 		
 		// Show enemy durability
-		(gca_data.section.get("global", "show_durability", 0) > 0 &&
+		(gca_options.get("global", "show_durability") > 0 &&
 			this.show_durability());
 
 		// Show more info about the player
@@ -383,7 +383,7 @@ var gca_player = {
 			return;
 		
 		// Durability display type
-		let show_durability = gca_data.section.get("global", "show_durability", 0);
+		let show_durability = gca_options.get("global", "show_durability");
 		
 		// Item category & sub factor table
 		let category_factor = [

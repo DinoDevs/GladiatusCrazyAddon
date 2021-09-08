@@ -44,7 +44,7 @@ var gca_packages = {
 		(gca_options.bool("packages", "load_more_pages") && 
 			this.loadPackets.load(this));
 		// Special category features
-		(gca_data.section.get("packages", "special_category_features", 0) != 2 &&
+		(gca_options.get("packages", "special_category_features") != 2 &&
 			this.specialCategory.resolve(this));
 		// Open packets with double click
 		(gca_options.bool("packages", "double_click_open") && 
@@ -649,7 +649,7 @@ var gca_packages = {
 			let category = parseInt(document.getElementById("pf").f.value);
 			switch(category){
 				case 0: // All
-					if(gca_data.section.get("packages", "special_category_features", 0) == 1)
+					if(gca_options.get("packages", "special_category_features") == 1)
 						this.scrollFeatures.load(self)
 					break;
 				case 1: // Weapons
