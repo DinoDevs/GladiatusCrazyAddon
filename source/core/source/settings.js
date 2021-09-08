@@ -2009,7 +2009,7 @@ var gca_settings = {
 
 				item.save = function(){
 					var value = item.data.input.value;
-					value = parseInt(value, 10);
+					value = parseInt(value, 10) || 0;
 
 					if(scheme.data.db == "options"){
 						gca_options.set(scheme.data.category, scheme.data.label, value * scheme.scale);
@@ -2165,6 +2165,15 @@ var gca_settings = {
 			let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
 			// Get arena data
 			let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
+
+			settings_data = JSON.parse(settings_data);
+
+			settings_data['extra'] = {};
+			// Get language
+			let value = window.localStorage.getItem(gca_data_manager.name + "_lang") || null;
+			if (value) settings_data['extra']['lang'] = value;
+
+			settings_data = JSON.stringify(settings_data);
 
 			this.exportToFile({
 				country : gca_section.country,
@@ -2347,6 +2356,17 @@ var gca_settings = {
 				let imported_data = JSON.stringify(settings);
 				// Save data
 				window.localStorage.setItem(gca_data_manager.name + "_settings", imported_data);
+
+				// Load extra section
+				if (settings_json.hasOwnProperty('extra')) {
+					// Load lang
+					if (settings_json['extra'].hasOwnProperty('lang')) {
+						let value = settings_json['extra']['lang'];
+						if (gca_languages.hasOwnProperty(value)) {
+							window.localStorage.setItem(gca_data_manager.name + "_lang", settings_json['extra']['lang']);
+						}
+					}
+				}
 			}
 			
 			// Parse arena
