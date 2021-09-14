@@ -163,7 +163,6 @@ gca_languages['ar'] = {
 			category_messages$messages_layout : "تحسين واجهة الرسائل",
 			category_messages$show_unread : "اظهار الرسائل الغير مقروءة بطريقة مميزة",
 			category_messages$separate_days : "فصل الرسائل حسب التاريخ",
-			category_messages$send_message_box : "تمكين مربع الرسائل",
 			category_messages$show_message_links : "عرض الروابط من الرسائل",
 			category_messages$get_guild_battle_info : "تحميل تلقائى لنتائج حروب النقابات",
 			category_messages$new_message_focus : "تعيين التركيز الفوري على المحتوى",

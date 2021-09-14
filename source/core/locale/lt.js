@@ -263,7 +263,6 @@ gca_languages['lt'] = {
 			category_messages$messages_layout : "Pagerinti žinučių išdėstymą",
 			category_messages$show_unread : "Paryškinti neperskaitytas žinutes",
 			category_messages$separate_days : "Atskirti skirtingų dienų žinutes",
-			category_messages$send_message_box : "Įjungti tiesioginį žinutės siuntimo langelį",
 			category_messages$more_guild_mate_info : "Rodyti daugiau informacijos apie gildiečius",
 			category_messages$show_message_links : "Rodyti žinutėse pateiktas nuorodas ",
 			category_messages$get_guild_battle_info : "Automatiškai įkelti gildijos kovų rezultatus",

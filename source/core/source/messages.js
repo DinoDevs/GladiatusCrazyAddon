@@ -45,10 +45,6 @@ var gca_messages = {
 			(gca_options.bool("messages", "separate_days") && 
 				this.separator.days(this));
 
-			// Send message box
-			//(gca_options.bool("messages", "send_message_box") && // TODO : Send message
-			//	this.send_message.create());
-
 			// Guild message player info
 			(gca_options.bool("messages", "messages_layout") && gca_options.bool("messages", "more_guild_mate_info") && (
 				this.guild_message.more_info(this) ||
@@ -1005,18 +1001,6 @@ var gca_messages = {
 			});
 		}
 	}
-
-	// Send message box
-	/*
-	send_message : {
-
-		// Create box
-		create : function(){
-
-		}
-
-	}
-	*/
 
 };
 

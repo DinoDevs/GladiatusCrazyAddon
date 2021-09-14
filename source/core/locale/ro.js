@@ -359,7 +359,6 @@ gca_languages["ro"] = {
 			category_messages$messages_layout : "Îmbunătățește interfața mesajelor",
 			category_messages$show_unread : "Indică mesajele necitite",
 			category_messages$separate_days : "Separă mesajele din zile diferite",
-			category_messages$send_message_box : "Activează folderul pentru mesajele trimise",
 			category_messages$more_guild_mate_info : "Arată informații despre colegii de breaslă",
 			category_messages$show_message_links : "Afișează link-urile incluse în mesaje",
 			category_messages$get_guild_battle_info : "Încarcă automat rezultatul luptelor cu breasla",

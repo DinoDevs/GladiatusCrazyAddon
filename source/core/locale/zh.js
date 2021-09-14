@@ -362,7 +362,6 @@ gca_languages['zh'] = {
 			category_messages$messages_layout : "改進消息界面",
 			category_messages$show_unread : "高亮未讀信息",
 			category_messages$separate_days : "將不同日期的消息分割",
-			category_messages$send_message_box : "啟用發送消息盒子",
 			category_messages$more_guild_mate_info : "顯示更多公會夥伴信息",
 			category_messages$show_message_links : "在訊息夾內顯示鏈接",
 			category_messages$get_guild_battle_info : "自動加載公會戰結果",

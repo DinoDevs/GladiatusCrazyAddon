@@ -266,7 +266,6 @@ gca_languages["tr"] = {
 			category_messages$messages_layout : "Mesaj düzenini geliştir",
 			category_messages$show_unread : "Okunmamış mesajları vurgula",
 			category_messages$separate_days : "Farklı günlerin mesajlarını ayrı tut",
-			category_messages$send_message_box : "Gönder mesaj kutusunu etkinleştir",
 			category_messages$more_guild_mate_info : "İttifak arkadaşlarının seviyesini ve rütbesini göster",
 			category_messages$show_message_links : "Mesajlardaki linkleri özelleştirilmiş alanda göster",
 			category_messages$get_guild_battle_info : "İttifak savaş sonuçlarını otomatik yükle",

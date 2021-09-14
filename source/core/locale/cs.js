@@ -367,7 +367,6 @@ gca_languages['cs'] = {
 			category_messages$messages_layout : "Rozšířené zobrazení zpráv",
 			category_messages$show_unread : "Zvýraznit nepřečtené zprávy",
 			category_messages$separate_days : "Rozdělit zprávy z jiných dní",
-			category_messages$send_message_box : "Povolit box pro posílání zpráv",
 			category_messages$more_guild_mate_info : "Zobrazit více infa o spoluhráči gildy",
 			category_messages$show_message_links : "Zobrazit odkazy ve zprávách",
 			category_messages$get_guild_battle_info : "Automaticky načíst info z gildovní bitvy",

@@ -192,7 +192,6 @@ gca_languages['sk'] = {
 			category_messages$messages_layout : "Rozšírené zobrazenie správ",
 			category_messages$show_unread : "Zvýrazniť neprečítané správy",
 			category_messages$separate_days : "Oddeliť správy z rôznych dní",
-			category_messages$send_message_box : "Povoliť odoslanie správy",
 			category_messages$more_guild_mate_info : "Rozšírené info o spolkových hráčoch",
 			category_messages$show_message_links : "Zobraziť odkazy obsiahnuté v správach",
 			category_messages$get_guild_battle_info : "Automatické načítanie výsledkov spolkovej vojny",

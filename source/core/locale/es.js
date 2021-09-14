@@ -264,7 +264,6 @@ gca_languages['es'] = {
 			category_messages$new_message_focus : "Ajuste el enfoque inmediato en el contenido",
 			category_messages$show_unread : "Resaltar mensajes no leidos",
 			category_messages$separate_days : "Dividir mensajes por diferencia de dias",
-			category_messages$send_message_box : "Activar caja de mensajes enviados",
 			category_messages$more_guild_mate_info : "Mostrar mas información de compañeros de alianza",
 			category_messages$show_message_links : "Mostrar enlaces incluidos en mensajes",
 			category_messages$get_guild_battle_info : "Auto cargar resultados de batalla",

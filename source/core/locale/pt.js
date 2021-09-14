@@ -361,7 +361,6 @@ gca_languages['pt'] = {
 			category_messages$messages_layout : "Melhorar a interface de mensagens",
 			category_messages$show_unread : "Destacar mensagens não lidas",
 			category_messages$separate_days : "Separar mensagens de dias diferentes",
-			category_messages$send_message_box : "Habilitar caixa de mensagens enviadas",
 			category_messages$more_guild_mate_info : "Exibir mais informações dos companheiros de aliança",
 			category_messages$show_message_links : "Exibir links incluídos nas mensagens",
 			category_messages$get_guild_battle_info : "Carregar automaticamente o resultado da batalha de alianças",

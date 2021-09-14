@@ -378,7 +378,6 @@ gca_languages["en"] = {
 			category_messages$messages_layout : "Improve messages layout",
 			category_messages$show_unread : "Highlight unread messages",
 			category_messages$separate_days : "Separate messages from different days",
-			category_messages$send_message_box : "Enable send message box",
 			category_messages$more_guild_mate_info : "Show more guild mates info",
 			category_messages$show_message_links : "Show links included on messages",
 			category_messages$get_guild_battle_info : "Auto load guild battle results",

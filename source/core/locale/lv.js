@@ -188,7 +188,6 @@ gca_languages['lv'] = {
 			category_messages$messages_layout : "Uzlabot vēstuļu izvēlnes izskatu",
 			category_messages$show_unread : "Izcelt nelasītās vēstules",
 			category_messages$separate_days : "Grupēt vēstules pa dienām",
-			category_messages$send_message_box : "Ieslēgt ziņas nosūtīšanas logu",
 			category_messages$more_guild_mate_info : "Rādīt vairāk ģildes biedru info",
 			category_messages$show_message_links : "Rādīt vēstulēs iekļautās saites",
 			category_messages$get_guild_battle_info : "Automātiski ielādēt ģildes cīņu rezultātus",

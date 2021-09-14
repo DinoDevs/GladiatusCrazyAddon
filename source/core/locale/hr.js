@@ -312,7 +312,6 @@ gca_languages['hr'] = {
 			category_messages$messages_layout : "Poboljšaj izgled poruka",
 			category_messages$show_unread : "Označi nepročitane poruke",
 			category_messages$separate_days : "Odvoji poruke po različitim danima",
-			category_messages$send_message_box : "Uključi kutiju za slanje poruke",
 			category_messages$more_guild_mate_info : "Prikaži više informacija o saveznicima",
 			category_messages$show_message_links : "Prikaži linkove unutar poruka",
 			category_messages$get_guild_battle_info : "Automatski ucitaj rezultate saveznih borbi",

@@ -377,7 +377,6 @@ gca_languages['de'] = {
 			category_messages$messages_layout : "Füge Nachrichteninterface hinzu",
 			category_messages$show_unread : "Ungelesene Nachrichten hervorheben",
 			category_messages$separate_days : "Teile Nachrichten nach Tagen auf",
-			category_messages$send_message_box : "Aktiviere die Nachricht Senden-Box",
 			category_messages$more_guild_mate_info : "Zeige zusätzliche Mitgliederinformationen",
 			category_messages$show_message_links : "Links anzeigen",
 			category_messages$get_guild_battle_info : "Zeige Gildenkämpfe direkt an",

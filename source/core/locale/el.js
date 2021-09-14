@@ -378,7 +378,6 @@ gca_languages["gr"] = {
 			category_messages$messages_layout: "Βελτίωση του interface των μηνυμάτων",
 			category_messages$show_unread : "Υπερφώτιση μη αναγνωσμένων μηνυμάτων",
 			category_messages$separate_days : "Διαχωρισμός μηνυμάτων διαφορετικών ημερών",
-			category_messages$send_message_box : "Ενεργοποίηση κουτιού αποστολής μηνύματος",
 			category_messages$more_guild_mate_info : "Εμφάνιση περισσοτέρων πληροφοριών στους συμπαίχτες του τάγματος",
 			category_messages$show_message_links : "Εμφάνιση υπερσυνδέσμων που εμπεριέχονται στα μηνύματα",
 			category_messages$get_guild_battle_info : "Αυτόματη φόρτωση αποτελεσμάτων των μαχών τάγματος",

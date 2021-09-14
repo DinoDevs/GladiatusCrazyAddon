@@ -325,7 +325,6 @@ gca_languages["et"] = {
 			category_messages$messages_layout : "Paranda sõnumite paigutust ",
 			category_messages$show_unread : "Too esile lugemata kirjad",
 			category_messages$separate_days : "Eralda sõnumid päevada kaupa",
-			category_messages$send_message_box : "Aktiveeri saada sõnum kast",
 			category_messages$more_guild_mate_info : "Näita rohkem gildi kaaslase andmeid",
 			category_messages$show_message_links : "Kuva sõnumite lingid",
 			category_messages$get_guild_battle_info : "Lae automaatselt võitluste tulemused",

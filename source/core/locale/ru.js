@@ -163,7 +163,6 @@ gca_languages['ru'] = {
 			category_messages$messages_layout : "Улучшенный внешний вид сообщений",
 			category_messages$show_unread : "Выделить непрочитанные сообщения",
 			category_messages$separate_days : "Разделить сообщения разных дней",
-			category_messages$send_message_box : "Включить окно отправки сообщений",
 			category_messages$more_guild_mate_info : "Показать больше информации о согильдиевцах",
 			category_messages$show_message_links : "Показывать ссылки в сообщениях",
 			category_messages$get_guild_battle_info : "Загружать результаты битвы гильдий",

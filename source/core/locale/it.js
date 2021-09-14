@@ -192,7 +192,6 @@ gca_languages["it"] = {
 			category_messages$messages_layout : "Migliora il layout dei messaggi",
 			category_messages$show_unread : "Evidenzia i messaggi non letti",
 			category_messages$separate_days : "Separa i messaggi da giorni diversi",
-			category_messages$send_message_box : "Abilita casella di invio messaggio ",
 			category_messages$more_guild_mate_info : "Mostra ulteriori informazioni compagni della corporazione",
 			category_messages$show_message_links : "Mostra collegamenti inclusi nei messaggi",
 			category_messages$get_guild_battle_info : "Carica automaticamente i risultati delle battaglie della gilda",

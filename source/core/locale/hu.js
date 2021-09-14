@@ -360,7 +360,6 @@ gca_languages['hu'] = {
 			category_messages$messages_layout : "Üzenetek felületének javítása",
 			category_messages$show_unread : "Emelje ki az olvasatlan üzeneteket",
 			category_messages$separate_days : "Válassza szét naponként az üzeneteket",
-			category_messages$send_message_box : "Engedélyezze az üzenetküldés ikonját",
 			category_messages$more_guild_mate_info : "Mutasson több információt az egyesületi társaimról",
 			category_messages$show_message_links : "Jelenítse meg a linkeket",
 			category_messages$get_guild_battle_info : "Automatikusan töltse be az egyesületi háborúk eredményeit",

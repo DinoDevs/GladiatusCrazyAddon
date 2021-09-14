@@ -200,7 +200,6 @@ gca_languages['pl'] = {
 			category_messages$messages_layout : "Popraw interfejs wiadomości",
 			category_messages$show_unread : "Podświetl nieprzeczytane wiadomości",
 			category_messages$separate_days : "Oddziel wiadomości z innych dni",
-			category_messages$send_message_box : "Wyświetl okno wysyłania wiadomości",
 			category_messages$more_guild_mate_info : "Pokaż więcej informacji o przyjacielach z gildii",
 			category_messages$show_message_links : "Pokaż linki zawarte w wiadomości",
 			category_messages$get_guild_battle_info : "Automatycznie załaduj informacje o atakach gildii",
