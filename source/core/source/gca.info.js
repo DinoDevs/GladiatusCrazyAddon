@@ -99,11 +99,14 @@ var gca_getPage = {
 	parameters : function(url){
 		if(!url) url = this.url();
 		let params = {};
-		let array = url.match(/\?(.*)$/i)[1].split('&');
+		let array = url.match(/\?([^#]*)#*.*$/i)[1].split('&');
 		for (let i = 0; i < array.length; i++) {
 			let p = array[i].split('=');
 			params[p[0]] = p.length > 1 ? decodeURIComponent(p[1]) : null;
 		}
+		//new URL(url).searchParams.forEach((value, key) => {
+		//	params[key] = value;
+		//})
 		return params;
 	}
 };
