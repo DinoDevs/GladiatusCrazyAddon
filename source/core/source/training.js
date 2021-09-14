@@ -684,7 +684,9 @@ var gca_training = {
 			info.style.fontSize = "10px";
 			info.style.textAlign = "right";
 			info.style.display = "none";
-			info.textContent = gca_locale.get("training", "stats_calculated_with_yourself_as_an_opponent");
+			info.appendChild(document.createTextNode(gca_locale.get("training", "stats_calculated_with_yourself_as_an_opponent")));
+			info.appendChild(document.createElement('br'));
+			info.appendChild(document.createTextNode(gca_locale.get("training", "values_in_parenthesis_explanation")));
 			wrapper.appendChild(info);
 
 			// Get bars

@@ -211,6 +211,7 @@ gca_languages["en"] = {
 			points_breakdown_critical_heal : "Critical healing: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_critical_heal_max : "Critical healing: maximum value",
 			stats_calculated_with_yourself_as_an_opponent : "* Stats are calculated with the concept of attacking yourself.",
+			values_in_parenthesis_explanation : "Values inside parentheses shows the corresponding values before rounding.",
 			// Cost calculator
 			total_cost : "Total cost",
 			// Discount show
