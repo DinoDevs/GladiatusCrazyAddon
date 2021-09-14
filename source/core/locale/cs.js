@@ -199,7 +199,8 @@ gca_languages['cs'] = {
 			points_breakdown_heal : "Léčení: +{{integer}} (+{{float}})",
 			points_breakdown_critical_heal : "Kritické léčení: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_critical_heal_max : "Kritické léčení: MAX",
-			stats_calculated_with_yourself_as_an_opponent : "* Vlastnosti jsou vypočítány pomocí konceptu napadání sebe sama",
+			stats_calculated_with_yourself_as_an_opponent : "* Vlastnosti jsou vypočítány pomocí konceptu napadání sebe sama.",
+			values_in_parenthesis_explanation : "Hodnoty v závorkách ukazují odpovídající hodnoty před zaokrouhlením.",
 			// Cost calculator
 			total_cost : "Celková cena",
 			// Discount show
