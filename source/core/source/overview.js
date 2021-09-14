@@ -459,7 +459,7 @@ var gca_overview = {
 				stats.threat = 'Threat'; // Set default value for threat
 			gca_data.section.set("overview", "stats_locale", stats);
 		}
-		else if (this.doll == 2) {
+		else if (this.doll >= 2) {
 			let stats = gca_data.section.get("overview", "stats_locale", {});
 			let spans = document.getElementById('charstats').getElementsByClassName('charstats_value21');
 			stats.threat = spans[3].textContent.trim();
