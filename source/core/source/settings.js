@@ -1789,6 +1789,22 @@ var gca_settings = {
 				typeWrapper.appendChild(title);
 				container.appendChild(typeWrapper);
 
+				var select = document.createElement('label');
+				select.className = "switch-slide";
+
+				item.data.checkbox = document.createElement('input');
+				item.data.checkbox.type = "checkbox";
+				if(scheme.value) item.data.checkbox.checked = true;
+				select.appendChild(item.data.checkbox);
+
+				var slider = document.createElement('span');
+				slider.className = 'slider';
+				select.appendChild(slider);
+
+				//<span class="slider"></span>
+
+
+				/*
 				var select = document.createElement('div');
 				select.className = "switch-field";
 
@@ -1816,6 +1832,7 @@ var gca_settings = {
 
 				if(scheme.value) item.data.true.checked = true;
 				else item.data.false.checked = true;
+				*/
 
 				typeWrapper.appendChild(select);
 
@@ -1824,7 +1841,8 @@ var gca_settings = {
 				typeWrapper.appendChild(clearBoth);
 
 				item.save = function(){
-					var value = item.data.true.checked;
+					//var value = item.data.true.checked;
+					var value = item.data.checkbox.checked;
 
 					if(scheme.data.db == "options"){
 						gca_options.set(scheme.data.category, scheme.data.label, value);

@@ -1430,6 +1430,17 @@
 		.gca_rtl .language_select .translate-percent {text-align: left;}
 		.gca_rtl .language_select .translated-by {text-align: left;}
 
+		/* Switch Slider */
+		#settings_tab .type-wrapper .switch-slide {float: right;}
+		#settings_tab .type-wrapper .switch-slide {position: relative;display: inline-block;width: 36px;height: 21px;}
+		#settings_tab .type-wrapper .switch-slide input {opacity: 0;width: 0;height: 0;}
+		#settings_tab .type-wrapper .switch-slide .slider {position: absolute;cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;background-color: #d9cea2;-webkit-transition: .4s;transition: .4s;border: 1px solid #9c8959;opacity: 0.5;border-radius: 12px;}
+		#settings_tab .type-wrapper .switch-slide .slider:before {position: absolute;content: "";height: 13px;width: 13px;left: 2px;bottom: 2px;background-color: white;-webkit-transition: .4s;transition: .4s;border: 1px solid #9c8959;border-radius: 7px;}
+		#settings_tab .type-wrapper .switch-slide input:checked + .slider {background-color: #c3ab6f;opacity: 1;}
+		#settings_tab .type-wrapper .switch-slide input:focus + .slider {box-shadow: 0 0 1px #c3ab6f;}
+		#settings_tab .type-wrapper .switch-slide input:checked + .slider:before {-webkit-transform: translateX(15px);-ms-transform: translateX(15px);transform: translateX(15px);}
+		.gca_rtl #settings_tab .type-wrapper .switch-slide {float: left;}
+
 
 
 	/* Accessibility
