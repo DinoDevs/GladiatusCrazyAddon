@@ -182,20 +182,18 @@ var gca_packages = {
 		// Item Shadow
 		itemShadow : {
 			init : function(self){
-				// Save instance
-				var that = this;
 				// Apply item shadow
 				this.apply();
 
 				// On new items reapply
-				gca_tools.event.request.onAjaxResponse(function(response){
+				gca_tools.event.request.onAjaxResponse((response) => {
 					// If package load request
-					if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
-						that.apply();
+					if (response.data.hasOwnProperty('newPackages') && gca_getPage.parameter('mod', response.url) == 'packages')
+						this.apply();
 				});
 				// On packages page load
-				self.loadPackets.onPageLoad(function(){
-					that.apply();
+				self.loadPackets.onPageLoad(() => {
+					this.apply();
 				});
 			},
 			apply : function(){

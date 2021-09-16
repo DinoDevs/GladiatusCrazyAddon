@@ -968,7 +968,7 @@ var gca_tools = {
 					}
 
 					// Fire event
-					gca_tools.event.fire('ajaxresponse', {elem : arg.elem, data : arg.data});
+					gca_tools.event.fire('ajaxresponse', {url: url, elem : arg.elem, data : arg.data});
 				}, callbackFail, option);
 			},
 
