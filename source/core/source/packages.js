@@ -186,10 +186,8 @@ var gca_packages = {
 				this.apply();
 
 				// On new items reapply
-				gca_tools.event.request.onAjaxResponse((response) => {
-					// If package load request
-					if (response.data.hasOwnProperty('newPackages') && gca_getPage.parameter('mod', response.url) == 'packages')
-						this.apply();
+				self.onNewItemsLoad(() => {
+					this.apply();
 				});
 				// On packages page load
 				self.loadPackets.onPageLoad(() => {
@@ -219,10 +217,8 @@ var gca_packages = {
 				this.apply();
 
 				// On new items reapply
-				gca_tools.event.request.onAjaxResponse((response) => {
-					// If package load request
-					if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
-						this.apply();
+				self.onNewItemsLoad(() => {
+					this.apply();
 				});
 				// On packages page load
 				self.loadPackets.onPageLoad(() => {
@@ -673,112 +669,109 @@ var gca_packages = {
 		
 		// Scroll features
 		scrollFeatures : {
-				// Load
-				load : function(self){
-					// Get data
-					this.loadData();
+			// Load
+			load : function(self){
+				// Get data
+				this.loadData();
 
-					// On new items reapply
-					gca_tools.event.request.onAjaxResponse((response) => {
-						// If package load request
-						if (response.data.newPackages && response.data.pagination && response.data.worthTotal){
-							this.showIsScrollLearned();
-							this.showProposeToForgeIcon();
-						}
-					});
+				// On new items reapply
+				self.onNewItemsLoad(() => {
+					this.showIsScrollLearned();
+					this.showProposeToForgeIcon();
+				});
 
-					// On packages page load
-					self.loadPackets.onPageLoad(() => {
+				// On packages page load
+				self.loadPackets.onPageLoad(() => {
+					this.showIsScrollLearned();
+					this.showProposeToForgeIcon();
+				});
+			},
+
+			// Load scroll data
+			loadData : function(){
+				gca_tools.ajax.cached.known_scrolls().then(
+					(result) => {
+						// Save lists
+						this.prefix = result.id.prefix;
+						this.suffix = result.id.suffix;
+
+						// Check scrolls
 						this.showIsScrollLearned();
 						this.showProposeToForgeIcon();
-					});
-				},
+					},
+					() => {
+						// On error
+						//setTimeout(() => {
+						//	this.loadData();
+						//}, 10 * 1000);
+					}
+				);
+			},
 
-				// Load scroll data
-				loadData : function(){
-					gca_tools.ajax.cached.known_scrolls().then(
-						(result) => {
-							// Save lists
-							this.prefix = result.id.prefix;
-							this.suffix = result.id.suffix;
-
-							// Check scrolls
-							this.showIsScrollLearned();
-							this.showProposeToForgeIcon();
-						},
-						() => {
-							// On error
-							//setTimeout(() => {
-							//	this.loadData();
-							//}, 10 * 1000);
-						}
-					);
-				},
-
-				// Show if scroll is Learned
-				showIsScrollLearned : function(){
-					// If no data return
-					if(!this.prefix) return;
-					
-					// For each item
-					jQuery("#packages .ui-draggable").each((i, item) => {
-						// If already parsed
-						if(item.dataset.gcaFlag_isLearned) return;
-						// Flag as parsed
-						item.dataset.gcaFlag_isLearned = true;
-
-						// Get hash
-						let hash = gca_tools.item.hash(item);
-						if (!hash) return;
-						
-						// Check if item is a scroll
-						if (hash.category!=20) return;
-						
-						// Check if own
-						let known = (this.prefix.indexOf(hash.prefix) >= 0 || this.suffix.indexOf(hash.suffix) >= 0);
-						if (known) {
-							item.style.filter = "drop-shadow(2px 2px 1px rgba(255,0,0,0.4)) drop-shadow( 2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(255,0,0,0.4))";
-							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","known_scroll"), "red"]);
-						}
-						else {
-							item.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
-							jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","unknown_scroll"), "green"]);
-						}
-					});
-				},
+			// Show if scroll is Learned
+			showIsScrollLearned : function(){
+				// If no data return
+				if(!this.prefix) return;
 				
-				// Show unknown scroll icon on item - propose to forge
-				showProposeToForgeIcon : function(){
-					// If no data return
-					if(!this.prefix) return;
-					
-					// For each item
-					jQuery("#packages .ui-draggable").each((i, item) => {
-						// If already parsed
-						if(item.dataset.gcaFlag_isForge) return;
-						// Flag as parsed
-						item.dataset.gcaFlag_isForge = true;
+				// For each item
+				jQuery("#packages .ui-draggable").each((i, item) => {
+					// If already parsed
+					if(item.dataset.gcaFlag_isLearned) return;
+					// Flag as parsed
+					item.dataset.gcaFlag_isLearned = true;
 
-						// Get hash
-						let hash = gca_tools.item.hash(item);
-						if (!hash) return;
-						
-						// Check if forge-able item
-						if ( !(hash.category>=1 && hash.category<=9 && hash.category!=7 ) ) return;
-						
-						// Check if own
-						let known_prefix = ( this.prefix.indexOf(hash.prefix) >= 0 );
-						let known_suffix = ( this.suffix.indexOf(hash.suffix) >= 0 );
-						if ( !(known_prefix && known_suffix) ){
-							// Both unknown
-							if( !known_prefix && !known_suffix )
-								item.parentNode.dataset.gcaForgeProposal = 2;
-							// One unknown
-							else
-								item.parentNode.dataset.gcaForgeProposal = 1;
-						}
-					});
-				}
+					// Get hash
+					let hash = gca_tools.item.hash(item);
+					if (!hash) return;
+					
+					// Check if item is a scroll
+					if (hash.category!=20) return;
+					
+					// Check if own
+					let known = (this.prefix.indexOf(hash.prefix) >= 0 || this.suffix.indexOf(hash.suffix) >= 0);
+					if (known) {
+						item.style.filter = "drop-shadow(2px 2px 1px rgba(255,0,0,0.4)) drop-shadow( 2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px -2px 1px rgba(255,0,0,0.4)) drop-shadow(-2px 2px 1px rgba(255,0,0,0.4))";
+						jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","known_scroll"), "red"]);
+					}
+					else {
+						item.style.filter = "drop-shadow(2px 2px 1px rgba(0,255,0,0.4)) drop-shadow( 2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px -2px 1px rgba(0,255,0,0.4)) drop-shadow(-2px 2px 1px rgba(0,255,0,0.4))";
+						jQuery(item).data("tooltip")[0].push([gca_locale.get("packages","unknown_scroll"), "green"]);
+					}
+				});
+			},
+			
+			// Show unknown scroll icon on item - propose to forge
+			showProposeToForgeIcon : function(){
+				// If no data return
+				if(!this.prefix) return;
+				
+				// For each item
+				jQuery("#packages .ui-draggable").each((i, item) => {
+					// If already parsed
+					if(item.dataset.gcaFlag_isForge) return;
+					// Flag as parsed
+					item.dataset.gcaFlag_isForge = true;
+
+					// Get hash
+					let hash = gca_tools.item.hash(item);
+					if (!hash) return;
+					
+					// Check if forge-able item
+					if ( !(hash.category>=1 && hash.category<=9 && hash.category!=7 ) ) return;
+					
+					// Check if own
+					let known_prefix = ( this.prefix.indexOf(hash.prefix) >= 0 );
+					let known_suffix = ( this.suffix.indexOf(hash.suffix) >= 0 );
+					if ( !(known_prefix && known_suffix) ){
+						// Both unknown
+						if( !known_prefix && !known_suffix )
+							item.parentNode.dataset.gcaForgeProposal = 2;
+						// One unknown
+						else
+							item.parentNode.dataset.gcaForgeProposal = 1;
+					}
+				});
+			}
 		}
 	},
 
@@ -790,10 +783,8 @@ var gca_packages = {
 			this.apply();
 
 			// On new items reapply
-			gca_tools.event.request.onAjaxResponse((response) => {
-				// If package load request
-				if(response.data.newPackages && response.data.pagination && response.data.worthTotal)
-					this.apply();
+			self.onNewItemsLoad(() => {
+				this.apply();
 			});
 			// On packages page load
 			self.loadPackets.onPageLoad(() => {
@@ -1011,7 +1002,7 @@ var gca_packages = {
 			}
 
 			// On new items reapply
-			gca_tools.event.request.onAjaxResponse(() => {
+			self.onNewItemsLoad(() => {
 				if (active_rules_running) {
 					let items = this.applyFilter(active_rules);
 					info.textContent = gca_locale.get("packages", "advance_filters_found", {items : items.length});
@@ -1076,6 +1067,16 @@ var gca_packages = {
 
 			return false;
 		}
+	},
+
+	// Add event listener for new items load through ajax
+	onNewItemsLoad : function(callback) {
+		// On new items reapply
+		gca_tools.event.request.onAjaxResponse((response) => {
+			// If package load response
+			if (response.data.hasOwnProperty('newPackages') && gca_getPage.parameter('mod', response.url) == 'packages')
+				callback(response);
+		});
 	}
 };
 
