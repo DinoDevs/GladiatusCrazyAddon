@@ -69,7 +69,7 @@ Find set-by-step guides for all major browsers on our [installation docs](docume
 
 ## :mag: Features Documentation
 
-You can read about all available features in our [documentation](documentation/features/README.md) made by [Zitronenen](https://github.com/Zitronenen).
+You can read about all available features in our [documentation](documentation/features/README.md) made by [Zitronenen](https://github.com/Zitronenen) (aka [Sleeping*Shadow](https://s26-de.gladiatus.gameforge.com/game/index.php?mod=player&p=18833)).
 
 
 ## :books: Translation
