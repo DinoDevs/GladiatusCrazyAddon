@@ -12,9 +12,9 @@
   - [ ] Need an Icon from the Red and Green Shadow of Scrolls =) 
  
 ## Global
-- [ ] [Enable Sound] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#enable-sound) 
+- [ ] [Enable Sound] (About.md#enable-sound) 
   - [ ] attitude does not result in any changes. Effective settings are those under Sound
-- [ ] [Show forge/smelt timer indicator] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#show-forgesmelt-timer-indicator)
+- [ ] [Show forge/smelt timer indicator] (About.md#show-forgesmelt-timer-indicator)
   - [ ]  Cannot be activated alone. Only in combination with the merchants timer indicator 
 
 
@@ -34,23 +34,23 @@
 
 ### Done ✓)
 
-- [x] [Show attacked Timers] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#show-attacked-timers) 
+- [x] [Show attacked Timers] (About.md#show-attacked-timers) 
   - [x] can't find the feature. Need a Screenshot
-- [x] [Show merchants timer indicator] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#show-merchants-timer-indicator) 
+- [x] [Show merchants timer indicator] (About.md#show-merchants-timer-indicator) 
   - [x] Can't find the feature. Need a Screenshot 
-- [x] [Show forge/smelt timer indicator] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#show-forgesmelt-timer-indicator)
+- [x] [Show forge/smelt timer indicator] (About.md#show-forgesmelt-timer-indicator)
   - [x]  Can't find the feature. Need a Screenshot
-- [x] [Enable gladiatus horizontal scroll] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#enable-gladiatus-horizontal-scroll)
+- [x] [Enable gladiatus horizontal scroll] (About.md#enable-gladiatus-horizontal-scroll)
   - [x] Can't find the feature. Need a Screenshot  
-- [x] [Display durability on item's bottom-left corner] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#display-durability-on-items-bottom-left-corner)
+- [x] [Display durability on item's bottom-left corner] (About.md#display-durability-on-items-bottom-left-corner)
   - [x]  Can't find the feature. How can use the X for durability info. Need a Screenshot
-- [x] [Analyze items stats (needed for training)] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#analyze-items-stats-needed-for-training) 
+- [x] [Analyze items stats (needed for training)] (About.md#analyze-items-stats-needed-for-training) 
   - [x] can't find the feature. Need a Screenshot
-- [x] [Show block and Avoid caps] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#show-block-and-avoid-caps)
+- [x] [Show block and Avoid caps] (About.md#show-block-and-avoid-caps)
   - [x] can't find the feature. Need a Screenshot 
-- [x] [Show detailed timers on guild buffs] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#show-block-and-avoid-caps)
+- [x] [Show detailed timers on guild buffs] (About.md#show-block-and-avoid-caps)
   - [x] can't find the feature. Need a Screenshot 
-- [x] [Show mercenaries tooltips] (https://github.com/Zitronenen/Doku-GCA/blob/main/About.md#show-mercenaries-tooltips)
+- [x] [Show mercenaries tooltips] (About.md#show-mercenaries-tooltips)
   - [x] can't find the feature. Need a Screenshot 
 - [x] [Focus on message body]
   - [x] I dont know how i can screen this
