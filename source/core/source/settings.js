@@ -2007,10 +2007,10 @@ var gca_settings = {
 				item.data.input.type = "range";
 				item.data.input.id = id + "__range";
 				item.data.input.name = id;
-				item.data.input.value = input_value;
 				item.data.input.setAttribute("min", scheme.min);
 				item.data.input.setAttribute("step", scheme.step);
 				item.data.input.setAttribute("max", scheme.max);
+				item.data.input.value = input_value;
 				select.appendChild(item.data.input);
 
 				item.data.input.addEventListener('input', function(){
