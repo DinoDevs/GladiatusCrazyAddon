@@ -16,7 +16,7 @@
 - **Buddy List**
 	- [x] Attack by id not by name (issue #241)
 - **Training**
-	- [x] Added some clarification at the footnotes #248
+	- [x] Added some clarification at the footnotes (#248)
 - **Settings**
 	- [x] Reduce exported settings size
 	- [ ] Added settings export to player's notes functionality
@@ -27,27 +27,28 @@
 
 ### BUG FIXES
 - **Global**
-	- [x] Missing translations added #248
+	- [x] Missing translations added (#248)
 	- [x] Removed zero player's settings and blocked writes/reads to his storage (when the addon can not detect your user's id, it treats you as the zero player)
-	- [x] Fixed missing resources on some items
+	- [x] Fixed missing resources on some items (#263)
 - **Packages**
-	- [ ] Fix of double click bug #238 [testing]
-	- [x] Fixed bag pop over no background bug #273
-	- [x] Fixed item price layout bug #274
+	- [ ] Fix of double click bug (#238) [testing]
+	- [x] Fixed bag pop over no background bug (#273)
+	- [x] Fixed item price layout bug (#274)
 - **Buddy List**
-	- [x] Fixed scroll double error notifications (issue #242)
+	- [x] Fixed scroll double error notifications (#242)
 - **Guild**
-	- [x] Medic site crash fix #250
-	- [ ] Market kick to lobby fix #240 [testing]
+	- [x] Medic site crash fix (#250)
+	- [ ] Market kick to lobby fix (#240) [testing]
 	- [x] Library feature "Add more data on library's tooltips" was working only when "Improve library's layout" was enable
+	- [x] Guild upgrade gold difference small style fixes (#280)
 - **Forge**
-	- [x] Fixed scroll known retrieve crash (issue #243)
-	- [x] Missing translation on horreum notification added (issue #246)
+	- [x] Fixed scroll known retrieve crash (#243)
+	- [x] Missing translation on horreum notification added (#246)
 - **Workbench**
-	- [x] Fixed failed to get item after workbench fix (issue #272)
+	- [x] Fixed failed to get item after workbench fix (#272)
 - **Reports**
-	- [x] Battle analyzer (Turma/Dungeon) style fix #254
-	- [x] Battle analyzer (Turma/Dungeon) stats not showing fix #256
+	- [x] Battle analyzer (Turma/Dungeon) style fix (#254)
+	- [x] Battle analyzer (Turma/Dungeon) stats not showing fix (#256)
 - **Settings**
 	- [ ] Fixed export that ignored some settings
 	- [x] Removed unscripted feature from settings
