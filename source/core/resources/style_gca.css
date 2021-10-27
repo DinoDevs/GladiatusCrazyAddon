@@ -1457,12 +1457,12 @@
 		.accessibility-item-move-overlay {background: rgba(0,0,0,0.5);position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 9998;display:none;}
 
 		/* Make Level Number Indicators White */
-		.accessibility-white-level-indicators .show-item-quality div[data-level]:before {color: #fff !important;}
-		.accessibility-white-level-indicators .show-item-quality div[data-quality="-1"]:before {color: #fff !important;}
-		.accessibility-white-level-indicators .show-item-quality div[data-quality="1"]:before {color: #fff !important;}
-		.accessibility-white-level-indicators .show-item-quality div[data-quality="2"]:before {color: #fff !important;}
-		.accessibility-white-level-indicators .show-item-quality div[data-quality="3"]:before {color: #fff !important;}
-		.accessibility-white-level-indicators .show-item-quality div[data-quality="4"]:before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality div[data-level]:not([data-basis^="18-"]):before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality div[data-quality="-1"]:not([data-basis^="18-"]):before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality div[data-quality="1"]:not([data-basis^="18-"]):before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality div[data-quality="2"]:not([data-basis^="18-"]):before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality div[data-quality="3"]:not([data-basis^="18-"]):before {color: #fff !important;}
+		.accessibility-white-level-indicators .show-item-quality div[data-quality="4"]:not([data-basis^="18-"]):before {color: #fff !important;}
 
 		/* Add Quality Diamonds */
 		.accessibility-quality-symbols-indicators .show-item-quality div[data-level]:before {content: "◆";}
