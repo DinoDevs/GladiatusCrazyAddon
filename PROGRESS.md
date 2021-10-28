@@ -30,6 +30,7 @@
 	- [x] Missing translations added (#248)
 	- [x] Removed zero player's settings and blocked writes/reads to his storage (when the addon can not detect your user's id, it treats you as the zero player)
 	- [x] Fixed missing resources on some items (#263)
+	- [x] Gold & Exp stats icon position fix (#257)
 - **Packages**
 	- [ ] Fix of double click bug (#238) [testing]
 	- [x] Fixed bag pop over no background bug (#273)
