@@ -4525,7 +4525,7 @@ var gca_global = {
 					// Server time 
 					var lastWeekTimestamp = gca_tools.time.server() - 6048e5; // week - 7 days (= 7*24*60*60*1000 = 604800000 ms)
 					var lastDayTimestamp = gca_tools.time.server() - 864e5; // day - 24h (= 24*60*60*1000 = 86400000 ms)
-					console.log(gca_tools.time.server())
+					
 					// For every data
 					defaultData = data
 					for (var i = 0; i < data.length; i++) {
@@ -4541,9 +4541,7 @@ var gca_global = {
 						// Save first data from last 24h
 						if(firstLast24hDataIndex == null && data[i][2] >= lastDayTimestamp){
 							firstLast24hDataIndex = i
-							console.log(data[i][2] +" >= " +lastDayTimestamp)
 						}
-						console.log(data[i][2] - lastDayTimestamp)
 
 						// Fix EXP data on level up
 						if(i > 0 && defaultData[i][1] < defaultData[i-1][1]){
