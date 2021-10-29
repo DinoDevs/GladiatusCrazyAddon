@@ -4310,7 +4310,7 @@ var gca_global = {
 			
 			collect : function(){
 				// Check every 5 mins
-				if (new Date().getTime() - gca_data.section.get('cache', 'gold_exp_data_last_checked', 0) < 1000) {//5*60*1000) {
+				if (new Date().getTime() - gca_data.section.get('cache', 'gold_exp_data_last_checked', 0) < 5*60*1000) {
 					return;
 				}
 				
