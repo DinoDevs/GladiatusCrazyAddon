@@ -185,9 +185,10 @@ var gca_tools = {
 			if (time == null) {
 				return 0;
 			}
+			// Note: JavaScript counts months from 0 to 11: January = 0, December = 11.
 			return new Date(
 				parseInt(time[1], 10),
-				parseInt(time[2], 10),
+				parseInt(time[2], 10) - 1,
 				parseInt(time[3], 10),
 				parseInt(time[4], 10),
 				parseInt(time[5], 10),

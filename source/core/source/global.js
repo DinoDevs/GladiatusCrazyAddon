@@ -4310,12 +4310,12 @@ var gca_global = {
 			
 			collect : function(){
 				// Check every 5 mins
-				if (new Date().getTime() - gca_data.section.get('cache', 'gold_exp_data_last_checked', 0) < 5*60*1000) {
+				if (new Date().getTime() - gca_data.section.get('cache', 'gold_exp_data_last_checked', 0) < 1000) {//5*60*1000) {
 					return;
 				}
 				
 				// Get exp
-				var exp = document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i);
+				var exp = document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ (\d+)"/i);
 				if (!exp) {
 					gca_data.section.set('cache', 'gold_exp_data_last_checked', new Date().getTime());
 					console.log("GCA: Could not get exp data.");
@@ -4336,9 +4336,6 @@ var gca_global = {
 
 					// Get server date
 					var serverDate = gca_tools.time.ajaxServer(content);
-					// Get saved data (again just to be sure)
-					var data = gca_data.section.get('data', 'gold_exp_data', []);
-
 					// Calculate new data
 					var newData = [
 						// Current gold
@@ -4346,10 +4343,15 @@ var gca_global = {
 						// Current EXP
 						parseInt(exp[1], 10),
 						// Server time
-						serverDate
+						serverDate,
+						// EXP for next level up (this is needed to calculate exp after level up)
+						parseInt(exp[2], 10)
 					];
 
-					// First time saving data
+					// Get saved data (again just to be sure)
+					var data = gca_data.section.get('data', 'gold_exp_data', []);
+
+					// Check if first time saving data
 					if (!data.length) {
 						console.log('GCA: Collected gold and exp data for the first time.', newData);
 						gca_data.section.set('data', 'gold_exp_data', [newData]);
@@ -4358,8 +4360,11 @@ var gca_global = {
 
 					// Get last saved data
 					var lastData = data[data.length - 1];
+					
+					// If new gold/exp are different from last saved data
 					if (lastData[0] != newData[0] || lastData[1] != newData[1]) {
 						console.log('GCA: Collected more gold and exp data.', newData);
+
 						// Push data
 						data.push(newData);
 						
@@ -4509,114 +4514,94 @@ var gca_global = {
 					var data  = gca_data.section.get("data", "gold_exp_data", [[0,0,0]]);
 					
 					// Fix data
-					var seventh_day = -1;
-					var last_day = 0;
-					var exp_levelup = 0;
+					var firstValidDataIndex = null;
+					var firstLast24hDataIndex = null;
+					var levelUpExpFix = 0; // Additional EXP due to level up
 					var goldData = [];
 					var expData = [];
-					var goldDataChange = [];
-					var expDataChange = [];
-					var goldDataAverage = [];
-					var expDataAverage = [];
-					var lastAverage = 0;
-					var countAverage = 1;
+					var goldPerMinData = [];
+					var expPerMinData = [];
 
-					// Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
-					var seventh_day_timestamp = gca_tools.time.server() - 6048e5;
-					var last_day_timestamp = gca_tools.time.server() - 864e5;
-					var newdata=[];
-					
+					// Server time 
+					var lastWeekTimestamp = gca_tools.time.server() - 6048e5; // week - 7 days (= 7*24*60*60*1000 = 604800000 ms)
+					var lastDayTimestamp = gca_tools.time.server() - 864e5; // day - 24h (= 24*60*60*1000 = 86400000 ms)
+					console.log(gca_tools.time.server())
 					// For every data
-					data[-1]=[0,0,0];
-					for (var i = 0; i < data.length-1; i++) {
-						// If time is in the last 7 days
-						if(data[i][2] >= seventh_day_timestamp){
-							newdata.push(data[i-1]);
-							
-							// Sum some of the lost EXP from levelup
-							if(i>0 && data[i][1] < data[i-1][1]){
-								exp_levelup = exp_levelup + data[i-1][1];
-							}
-							// Calculate last 7 days Gold Data
-								goldData[i - seventh_day-1] = {
-									x : data[i][2],
-									y : (data[i][0] - data[seventh_day][0])
-								};
-								goldDataChange[i - seventh_day-1] = {
-									x : data[i][2],
-									y : ((i==0)?0:(data[i][0] - data[i-1][0]))
-								};
-							// Calculate last 7 days Exp Data
-								expData[i - seventh_day-1] = {
-									x : data[i][2],
-									y : (data[i][1]-data[seventh_day][1]+exp_levelup)
-								};
-								expDataChange[i - seventh_day-1] = {
-									x : data[i][2],
-									y : ((i==0)?0:(data[i][1] - data[i-1][1]))
-								};
-							
-							// Calculate average
-								var ratio = 0;
-								if(goldDataAverage.length==0){
-									lastAverage=seventh_day+1;
-									ratio = (data[i][2] - data[seventh_day][2]) / 864e5;
-									
-									goldDataAverage[0] = {
-										x : data[i][2],
-										y : Math.round((data[i][0] - data[seventh_day][0])/ratio)
-									};
-									expDataAverage[0] = {
-										x : data[i][2],
-										y : Math.round((data[i][1] - data[seventh_day][1])/ratio)
-									};
-								}else if( data[i][2]-data[lastAverage][2]>=864e5/2 ){
-									ratio = (data[i][2] - data[lastAverage][2]) / 864e5 ;
-									goldDataAverage[countAverage] = {
-										x : data[i][2],
-										y : Math.round((data[i][0] - data[lastAverage][0])/ratio)
-									};
-									expDataAverage[countAverage] = {
-										x : data[i][2],
-										y : Math.round((expData[i - seventh_day-1].y-expData[lastAverage-seventh_day-1].y)/ratio)
-									};
-									
-									lastAverage=i;
-									countAverage++;
-								}
-							
-							if(last_day==0 && data[i][2] >= last_day_timestamp){
-								last_day = i - seventh_day-1;
-							}
-						}else{
-							seventh_day = i;
+					defaultData = data
+					for (var i = 0; i < data.length; i++) {
+						
+						// If time is not in the last 7 days
+						if(data[i][2] < lastWeekTimestamp)
+							continue
+						
+						// Save first last 7 days data
+						if(firstValidDataIndex == null)
+							firstValidDataIndex = i
+
+						// Save first data from last 24h
+						if(firstLast24hDataIndex == null && data[i][2] >= lastDayTimestamp){
+							firstLast24hDataIndex = i
+							console.log(data[i][2] +" >= " +lastDayTimestamp)
 						}
+						console.log(data[i][2] - lastDayTimestamp)
+
+						// Fix EXP data on level up
+						if(i > 0 && defaultData[i][1] < defaultData[i-1][1]){
+							// Check if level up EXP has been saved (previous version data structure)
+							if (defaultData[i-1].length > 3){
+								levelUpExpFix += defaultData[i-1][3]; // add previous level required EXP
+							}else{
+								levelUpExpFix += defaultData[i-1][1]; // add previous level EXP (approximate)
+							}
+						}
+						data[i][1] += levelUpExpFix
+
+						// Calculate data
+						let timestamp = data[i][2];
+						let j = goldData.length;
+
+						// Gold this week
+						goldData[j] = {
+							x : timestamp,
+							y : data[i][0] - data[firstValidDataIndex][0]
+						};
+						// EXP this week
+						expData[j] = {
+							x : timestamp,
+							y : data[i][1] - data[firstValidDataIndex][1]
+						};
+
+						// Gold per min
+						goldPerMinData[j] = {
+							x : timestamp,
+							y : (i==0) ? 0 : Math.round((data[i][0] - data[firstValidDataIndex][0])/((timestamp-data[firstValidDataIndex][2])/1000/60/60))
+						};
+						// EXP per min
+						expPerMinData[j] = {
+							x : timestamp,
+							y : (i==0) ? 0 : Math.round((data[i][1] - data[firstValidDataIndex][1])/((timestamp-data[firstValidDataIndex][2])/1000/60/60))
+						};
 					}
-					newdata.push(data[i-1]);
-					
-					// Save only last 7 days data
-					/* now done when data are saved
-					if (newdata.length > 1) {
-						gca_data.section.set("data", "gold_exp_data", newdata);
-					}
-					*/
 					
 					// If there are no data
-					if(expData.length<1 || goldData.length<1){
+					if(goldData.length < 2){
 						document.getElementById('today_values').textContent+= " N/A";
 						document.getElementById('days7_values').textContent+= " N/A";
 						document.getElementById('average_per_day').textContent+= " N/A";
 						document.getElementById('days_left_to_level_up').textContent+= " N/A";
 						document.getElementById('graph_canvas').style.display = "none";
 					} else {
+						// Calculate Averages
+
+
 						// Experience translate
 						var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
 						// Gold translate
 						var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
 						
 						// Write data
-						document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y-expData[last_day].y)+" ";
-						document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y-goldData[last_day].y)+" ";
+						document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y - expData[firstLast24hDataIndex].y)+" ";
+						document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y - goldData[firstLast24hDataIndex].y)+" ";
 						var img = document.createElement('img');
 						img.src = "img/ui/icon_level_small.gif";
 						img.border = "0";
@@ -4651,7 +4636,9 @@ var gca_global = {
 						img.border = "0";
 						document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
 						
-						document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round((document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1]-document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7));
+						document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round(
+							(document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1] - document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7)
+						);
 						document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots( Math.round(goldData[goldData.length-1].y/50) );
 						img = document.createElement('img');
 						img.src = "img/res2.gif";
@@ -4665,21 +4652,21 @@ var gca_global = {
 							data: {
 								datasets: [
 									{
-										label: gold_tran,
-										fill: true,
-										backgroundColor: "rgba(255,193,7,0.3)",
-										borderColor: "rgba(255,193,7,1)",
-										data: goldDataAverage
-									},
-									{
 										label: gca_locale.get("global","gold_exp_data_total_gold"),
 										fill: true,
 										backgroundColor: "rgba(255,193,7,0.3)",
 										borderColor: "rgba(255,193,7,1)",
-										data: goldData,
-										hidden: true
+										data: goldData
 									},
 									{
+										label: gold_tran + " / h",
+										fill: true,
+										backgroundColor: "rgba(255,193,7,0.3)",
+										borderColor: "rgba(255,193,7,1)",
+										data: goldPerMinData,
+										hidden: true
+									},
+									/*{
 										label: gca_locale.get("global","gold_exp_data_measurements"), 
 										type: 'line',
 										backgroundColor: "rgba(255,193,7,0.3)",
@@ -4688,15 +4675,7 @@ var gca_global = {
 										hidden: true,
 										pointStyle: "crossRot",
 										showLine: false
-									},
-									{
-										label: exp_tran,
-										fill: true,
-										backgroundColor: "rgba(75,192,192,0.3)",
-										borderColor: "rgba(75,192,192,1)",
-										data: expDataAverage,
-										hidden: true
-									},
+									},*/
 									{
 										label: gca_locale.get("global","gold_exp_data_total_exp"),
 										fill: true,
@@ -4706,6 +4685,14 @@ var gca_global = {
 										hidden: true
 									},
 									{
+										label: exp_tran + " / h",
+										fill: true,
+										backgroundColor: "rgba(75,192,192,0.3)",
+										borderColor: "rgba(75,192,192,1)",
+										data: expPerMinData,
+										hidden: true
+									}/*,
+									{
 										label: gca_locale.get("global","gold_exp_data_measurements"),
 										type: 'line',
 										backgroundColor: "rgba(75,192,192,0.3)",
@@ -4714,7 +4701,7 @@ var gca_global = {
 										hidden: true,
 										pointStyle: "cross",
 										showLine: false
-									}
+									}*/
 								]
 							},
 							options: {
