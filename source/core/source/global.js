@@ -4751,6 +4751,7 @@ var gca_global = {
 				button2.addEventListener('click', function(){
 					gca_data.section.set('data', 'gold_exp_data', []);
 					gca_notifications.success(gca_locale.get('global', 'gold_exp_data_reset'));
+					window.location.reload();
 				
 			});
 
