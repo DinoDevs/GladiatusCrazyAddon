@@ -117,6 +117,7 @@ gca_languages["en"] = {
 			gold_exp_data_measurements : "Measurements",
 			gold_exp_data_total_exp : "Total experience",
 			gold_exp_data_total_gold : "Total gold",
+			gold_exp_data_reset : "Stats have been reset!",
 			
 			// Items
 			merchenary_type : "Type: {{name}} ({{number}})",
