@@ -107,6 +107,7 @@ gca_languages['cs'] = {
 			gold_exp_data_measurements : "Měření",
 			gold_exp_data_total_exp : "Celková zkušenost",
 			gold_exp_data_total_gold : "Celkem zlato",
+			gold_exp_data_reset : "Statistiky resetovány!",
 			
 			// Items
 			merchenary_type : "Typ: {{name}} ({{number}})"
