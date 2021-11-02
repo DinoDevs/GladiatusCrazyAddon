@@ -4735,10 +4735,23 @@ var gca_global = {
 				button.type = "button";
 				button.value = gca_locale.get("general", "close");
 				dialog.body.appendChild(button);
+				
+				// Reset button
+				var button2 = document.createElement('input');
+				button2.className = "button3";
+				button2.type = "button";
+				button2.value = gca_locale.get("settings", "reset");
+				dialog.body.appendChild(button2);
 
 				button.addEventListener('click', function(){
 					dialog.close();
 				}, false);
+				
+				button2.addEventListener('click', function(){
+					gca_data.section.set('data', 'gold_exp_data', []);
+					gca_notifications.success(gca_locale.get('global', 'gold_exp_data_reset'));
+				
+			});
 
 				// Open dialog
 				this.dialog.open();
