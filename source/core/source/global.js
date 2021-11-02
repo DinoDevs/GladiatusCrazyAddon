@@ -4740,6 +4740,7 @@ var gca_global = {
 				var button2 = document.createElement('input');
 				button2.className = "button3";
 				button2.type = "button";
+				button2.setAttribute("style", "float: right");
 				button2.value = gca_locale.get("settings", "reset");
 				dialog.body.appendChild(button2);
 
