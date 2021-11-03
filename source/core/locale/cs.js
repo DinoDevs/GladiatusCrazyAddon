@@ -479,6 +479,8 @@ gca_languages['cs'] = {
 			category_data$clear_cache_data : "Vymazat dočasná data v mezipaměti addonu",
 			category_data$cross_browser_login : "Synchronizace přihlášení skrze prohlížeče",
 			category_data$export_error_player_settings : "Export uživatelských dat nastavení do souboru",
+			category_data$import_settings_from_notes : "Importovat nastavení z poznámek",
+			category_data$export_settings_to_notes : "Exportovat nastavení do poznámek",
 			
 			// Buttons
 			save : "Uložit",
