@@ -117,6 +117,7 @@ gca_languages["gr"] = {
 			gold_exp_data_measurements : "Μετρήσεις",
 			gold_exp_data_total_exp : "Συνολική εμπειρία",
 			gold_exp_data_total_gold : "Συνολικός χρυσός",
+			gold_exp_data_reset : "Η επαναφορά των στατιστικών έγινε!",
 			
 			// Items
 			merchenary_type : "Τύπος: {{name}} ({{number}})",
