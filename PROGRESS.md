@@ -1,13 +1,14 @@
 ## Progress on Version 4.3.5 [Alpha]
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-12-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-17-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-18-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
 	- [ ] Improved addon's per page loading speed [testing]
+	- [x] Gold & Exp stats: added button to reset data by FrutyX (#284)
 - **Accessibility**
 	- [x] Added option to turn item level indicator to white
 	- [x] Added option to show item quality with symbols
@@ -32,7 +33,8 @@
 	- [x] Missing translations added (#248)
 	- [x] Removed zero player's settings and blocked writes/reads to his storage (when the addon can not detect your user's id, it treats you as the zero player)
 	- [x] Fixed missing resources on some items (#263)
-	- [x] Gold & Exp stats icon position fix (#257)
+	- [x] Gold & Exp stats: icon position fix (#257)
+	- [x] Gold & Exp stats: added button to reset data (#248)
 - **Packages**
 	- [ ] Fix of double click bug (#238) [testing]
 	- [x] Fixed bag pop over no background bug (#273)
