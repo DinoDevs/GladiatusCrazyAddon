@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.5 [Alpha]
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-11-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-12-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-17-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
@@ -17,6 +17,8 @@
 	- [x] Attack by id not by name (issue #241)
 - **Training**
 	- [x] Added some clarification at the footnotes (#248)
+- **Guild**
+	- [x] Guild storage: merchant shop info is enabled (shows total gold of storage items) (#290)
 - **Settings**
 	- [x] Reduce exported settings size
 	- [ ] Added settings export to player's notes functionality
