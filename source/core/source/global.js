@@ -4324,7 +4324,7 @@ var gca_global = {
 				
 				// Go to achievements page and collect gathered gold data
 				jQuery.get(gca_getPage.link({'mod':'overview','submod':'achievements'}), (content) => {
-					// Checking now
+					// Just checked
 					gca_data.section.set('cache', 'gold_exp_data_last_checked', new Date().getTime());
 
 					// Get info
@@ -4373,7 +4373,7 @@ var gca_global = {
 						let seventh_day_timestamp = serverDate - 6048e5; // Server time - 7 days (7 days = 7*24*60*60*1000 = 604800000 ms)
 						for (let i = 0; i < data.length; i++) {
 							// If time is in the last 7 days
-							if(data[i][2] >= seventh_day_timestamp)
+							if (data[i][2] >= seventh_day_timestamp)
 								clear_data.push(data[i]);
 						}
 						data = clear_data;
@@ -4583,149 +4583,151 @@ var gca_global = {
 					
 					// If there are no data
 					if(goldData.length < 2){
+						// TODO: Clean up, this code generates invalid HTML
 						document.getElementById('today_values').textContent+= " N/A";
 						document.getElementById('days7_values').textContent+= " N/A";
 						document.getElementById('average_per_day').textContent+= " N/A";
 						document.getElementById('days_left_to_level_up').textContent+= " N/A";
+						document.getElementById('gold_package_tax_estimation').textContent+= " N/A";
 						document.getElementById('graph_canvas').style.display = "none";
-					} else {
-						// Calculate Averages
-
-
-						// Experience translate
-						var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
-						// Gold translate
-						var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
-						
-						// Write data
-						document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y - expData[firstLast24hDataIndex].y)+" ";
-						document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y - goldData[firstLast24hDataIndex].y)+" ";
-						var img = document.createElement('img');
-						img.src = "img/ui/icon_level_small.gif";
-						img.border = "0";
-						document.getElementById('today_values').getElementsByTagName("td")[1].appendChild(img);
-						img = document.createElement('img');
-						img.src = "img/res2.gif";
-						img.align = "absmiddle";
-						img.border = "0";
-						document.getElementById('today_values').getElementsByTagName("td")[2].appendChild(img);
-						
-						document.getElementById('days7_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y)+" ";
-						document.getElementById('days7_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
-						img = document.createElement('img');
-						img.src = "img/ui/icon_level_small.gif";
-						img.border = "0";
-						document.getElementById('days7_values').getElementsByTagName("td")[1].appendChild(img);
-						img = document.createElement('img');
-						img.src = "img/res2.gif";
-						img.align = "absmiddle";
-						img.border = "0";
-						document.getElementById('days7_values').getElementsByTagName("td")[2].appendChild(img);
-						
-						document.getElementById('average_per_day').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7))+" ";
-						document.getElementById('average_per_day').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
-						img = document.createElement('img');
-						img.src = "img/ui/icon_level_small.gif";
-						img.border = "0";
-						document.getElementById('average_per_day').getElementsByTagName("td")[1].appendChild(img);
-						img = document.createElement('img');
-						img.src = "img/res2.gif";
-						img.align = "absmiddle";
-						img.border = "0";
-						document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
-						
-						document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round(
-							(document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1] - document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7)
-						);
-						document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots( Math.round(goldData[goldData.length-1].y/50) );
-						img = document.createElement('img');
-						img.src = "img/res2.gif";
-						img.align = "absmiddle";
-						img.border = "0";
-						document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].appendChild(img);
-						
-						// Populate graph
-						new Chart(document.getElementById('graph_canvas'), {
-							type: 'line',
-							data: {
-								datasets: [
-									{
-										label: gca_locale.get("global","gold_exp_data_total_gold"),
-										fill: true,
-										backgroundColor: "rgba(255,193,7,0.3)",
-										borderColor: "rgba(255,193,7,1)",
-										data: goldData
-									},
-									{
-										label: gold_tran + " / h",
-										fill: true,
-										backgroundColor: "rgba(255,193,7,0.3)",
-										borderColor: "rgba(255,193,7,1)",
-										data: goldPerMinData,
-										hidden: true
-									},
-									/*{
-										label: gca_locale.get("global","gold_exp_data_measurements"), 
-										type: 'line',
-										backgroundColor: "rgba(255,193,7,0.3)",
-										borderColor: "rgba(255,193,7,1)",
-										data: goldDataChange,
-										hidden: true,
-										pointStyle: "crossRot",
-										showLine: false
-									},*/
-									{
-										label: gca_locale.get("global","gold_exp_data_total_exp"),
-										fill: true,
-										backgroundColor: "rgba(75,192,192,0.3)",
-										borderColor: "rgba(75,192,192,1)",
-										data: expData,
-										hidden: true
-									},
-									{
-										label: exp_tran + " / h",
-										fill: true,
-										backgroundColor: "rgba(75,192,192,0.3)",
-										borderColor: "rgba(75,192,192,1)",
-										data: expPerMinData,
-										hidden: true
-									}/*,
-									{
-										label: gca_locale.get("global","gold_exp_data_measurements"),
-										type: 'line',
-										backgroundColor: "rgba(75,192,192,0.3)",
-										borderColor: "rgba(75,192,192,1)",
-										data: expDataChange,
-										hidden: true,
-										pointStyle: "cross",
-										showLine: false
-									}*/
-								]
-							},
-							options: {
-								scales: {
-									xAxes: [{
-										type: 'time',
-										time: {
-											unit: 'day',
-											displayFormats: {
-												day: 'MMM D'
-											},
-											tooltipFormat: 'MMM D, h:mm:ss a'
-										}
-									}],
-									yAxes: [{
-										ticks: {
-											min: 0
-										}
-									}]
-								},
-								legend: {
-									position : 'bottom'
-								}
-							}
-						});
+						return;
 					}
+					
+					// Calculate Averages
+
+					// Experience translate
+					var exp_tran = unescape(JSON.parse('"' +document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"([^:]+):"/i)[1]+ '"'));
+					// Gold translate
+					var gold_tran = unescape(JSON.parse('"' +document.getElementById('icon_gold').dataset.tooltip.match(/"([^"]+)"/i)[1]+ '"'));
+					
+					// Write data
+					document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y - expData[firstLast24hDataIndex].y)+" ";
+					document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y - goldData[firstLast24hDataIndex].y)+" ";
+					var img = document.createElement('img');
+					img.src = "img/ui/icon_level_small.gif";
+					img.border = "0";
+					document.getElementById('today_values').getElementsByTagName("td")[1].appendChild(img);
+					img = document.createElement('img');
+					img.src = "img/res2.gif";
+					img.align = "absmiddle";
+					img.border = "0";
+					document.getElementById('today_values').getElementsByTagName("td")[2].appendChild(img);
+					
+					document.getElementById('days7_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y)+" ";
+					document.getElementById('days7_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
+					img = document.createElement('img');
+					img.src = "img/ui/icon_level_small.gif";
+					img.border = "0";
+					document.getElementById('days7_values').getElementsByTagName("td")[1].appendChild(img);
+					img = document.createElement('img');
+					img.src = "img/res2.gif";
+					img.align = "absmiddle";
+					img.border = "0";
+					document.getElementById('days7_values').getElementsByTagName("td")[2].appendChild(img);
+					
+					document.getElementById('average_per_day').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7))+" ";
+					document.getElementById('average_per_day').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
+					img = document.createElement('img');
+					img.src = "img/ui/icon_level_small.gif";
+					img.border = "0";
+					document.getElementById('average_per_day').getElementsByTagName("td")[1].appendChild(img);
+					img = document.createElement('img');
+					img.src = "img/res2.gif";
+					img.align = "absmiddle";
+					img.border = "0";
+					document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
+					
+					document.getElementById('days_left_to_level_up').getElementsByTagName("td")[1].textContent = Math.round(
+						(document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"\d+ \\\/ (\d+)"/i)[1] - document.getElementById('header_values_xp_bar').dataset.tooltip.match(/"(\d+) \\\/ \d+"/i)[1])/(expData[expData.length-1].y/7)
+					);
+					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots( Math.round(goldData[goldData.length-1].y/50) );
+					img = document.createElement('img');
+					img.src = "img/res2.gif";
+					img.align = "absmiddle";
+					img.border = "0";
+					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].appendChild(img);
+					
+					// Populate graph
+					new Chart(document.getElementById('graph_canvas'), {
+						type: 'line',
+						data: {
+							datasets: [
+								{
+									label: gca_locale.get("global","gold_exp_data_total_gold"),
+									fill: true,
+									backgroundColor: "rgba(255,193,7,0.3)",
+									borderColor: "rgba(255,193,7,1)",
+									data: goldData
+								},
+								{
+									label: gold_tran + " / h",
+									fill: true,
+									backgroundColor: "rgba(255,193,7,0.3)",
+									borderColor: "rgba(255,193,7,1)",
+									data: goldPerMinData,
+									hidden: true
+								},
+								/*{
+									label: gca_locale.get("global","gold_exp_data_measurements"), 
+									type: 'line',
+									backgroundColor: "rgba(255,193,7,0.3)",
+									borderColor: "rgba(255,193,7,1)",
+									data: goldDataChange,
+									hidden: true,
+									pointStyle: "crossRot",
+									showLine: false
+								},*/
+								{
+									label: gca_locale.get("global","gold_exp_data_total_exp"),
+									fill: true,
+									backgroundColor: "rgba(75,192,192,0.3)",
+									borderColor: "rgba(75,192,192,1)",
+									data: expData,
+									hidden: true
+								},
+								{
+									label: exp_tran + " / h",
+									fill: true,
+									backgroundColor: "rgba(75,192,192,0.3)",
+									borderColor: "rgba(75,192,192,1)",
+									data: expPerMinData,
+									hidden: true
+								}/*,
+								{
+									label: gca_locale.get("global","gold_exp_data_measurements"),
+									type: 'line',
+									backgroundColor: "rgba(75,192,192,0.3)",
+									borderColor: "rgba(75,192,192,1)",
+									data: expDataChange,
+									hidden: true,
+									pointStyle: "cross",
+									showLine: false
+								}*/
+							]
+						},
+						options: {
+							scales: {
+								xAxes: [{
+									type: 'time',
+									time: {
+										unit: 'day',
+										displayFormats: {
+											day: 'MMM D'
+										},
+										tooltipFormat: 'MMM D, h:mm:ss a'
+									}
+								}],
+								yAxes: [{
+									ticks: {
+										min: 0
+									}
+								}]
+							},
+							legend: {
+								position : 'bottom'
+							}
+						}
+					});
 				}
 				gca_global.scripts.chartScript.create(renderChart);
 				
