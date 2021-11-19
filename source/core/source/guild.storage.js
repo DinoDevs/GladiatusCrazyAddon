@@ -10,6 +10,10 @@ var gca_guild_storage = {
 		(gca_options.bool("global","item_shadow") &&
 			this.itemShadow.inject());
 
+		// Fade non affordable items
+		(gca_options.bool("merchants","show_shop_info") &&
+			this.containerItemsInfo.prepare());
+
 		// Double click to sell/buy items
 		(gca_options.bool("merchants","double_click_actions") &&
 			this.doubleClickActions.init());
@@ -37,6 +41,75 @@ var gca_guild_storage = {
 			for(var i = items.length - 1; i >= 0; i--){
 				gca_tools.item.shadow.add(items[i]);
 			}
+		}
+	},
+
+	// Show information about shop's items
+	containerItemsInfo : {
+		prepare : function() {
+			// Exit if no inventory
+			if(!document.getElementById("shop")) return;
+
+			// Create UI
+			this.infoBox = document.createElement("div");
+			this.infoBox.className = "gca-shop-info";
+
+			this.infoRubies = document.createElement("span");
+			this.infoBox.appendChild(this.infoRubies);
+			this.infoBox.appendChild(document.createTextNode(" "));
+			this.infoBox.appendChild(gca_tools.create.rubiesIcon());
+
+			var space = document.createElement("span");
+			space.style.display = 'inline-block';
+			space.style.width = '8px';
+			this.infoBox.appendChild(space);
+
+			this.infoGold = document.createElement("span");
+			this.infoBox.appendChild(this.infoGold);
+			this.infoBox.appendChild(document.createTextNode(" "));
+			this.infoBox.appendChild(gca_tools.create.goldIcon());
+
+			document.getElementById("shop").parentNode.insertBefore(this.infoBox, document.getElementById("shop").nextSibling);
+
+			// Show info
+			this.refresh();
+
+			// On item move
+			gca_tools.event.request.onAjaxResponse((data) => {
+				if (
+					data.hasOwnProperty("data") && data.data &&
+					data.data.hasOwnProperty("to") && data.data.to &&
+					data.data.to.hasOwnProperty("data") && data.data.to.data &&
+					data.elem.length === 1
+				) {
+					this.refresh(data.elem[0]);
+				}
+			})
+		},
+
+		refresh : function(item = {dataset:{amount:0,itemId:0,priceGold:0,tooltip:''}}) {
+			// Get items
+			var items = document.getElementById('shop').getElementsByClassName('ui-draggable');
+			// Count gold
+			let rubies = 0;
+			let gold = 0;
+
+			//23 <div class="icon_rubies">
+			// For each item
+			for (var i = items.length - 1; i >= 0; i--) {
+				let itm = (item.dataset.itemId == items[i].dataset.itemId) ? item : items[i];
+				let g = itm.dataset.amount * itm.dataset.priceGold;
+				let r = itm.dataset.tooltip.replace(/\./g, '');
+				r = r.match(/(\d+)\s+(?:<|&lt;)div class=\\(?:"|&quot;)icon_rubies\\(?:"|&quot;)(?:>|&gt;)/i);
+				r = (r) ? parseInt(r[1], 10) : 0;
+
+				if (!isNaN(g)) gold += g;
+				if (!isNaN(r)) rubies += r;
+			}
+
+			// Display
+			this.infoRubies.textContent = gca_tools.strings.insertDots(rubies);
+			this.infoGold.textContent = gca_tools.strings.insertDots(gold);
 		}
 	},
 
