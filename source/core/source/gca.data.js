@@ -300,7 +300,8 @@ gca_options.data = {
 			// sim : battle simulator
 			// stt : show my stats
 			// onl : online friends
-		"shortcuts_bar_buttons" : 'msg|gmd|gmr|gst|gbn|gwr|gjl|glb|sim|stt|onl',
+			// fau : food auctions
+		"shortcuts_bar_buttons" : 'msg|gmd|gmr|gst|gbn|gwr|gjl|glb|sim|stt|onl|fau',
 	
 		// Auction Status
 		"auction_status_bar" : false,
