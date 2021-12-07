@@ -293,7 +293,7 @@ var gca_tools = {
 
 			// Lock spots
 			if(spot.slot) // Markets & avatar do not return slot info
-				this._move.lockSlotSpots(spot.slot);
+				this._move.lockSlotSpots(spot.slot, item.dataset.itemId || item.parentNode.dataset.containerNumber);
 			
 			//console.log(spot);
 			//console.log('<' + spot.slot.x + ',' + spot.slot.y + '>');
@@ -330,12 +330,9 @@ var gca_tools = {
 
 		_move : {
 
-			_lockedSpots : {
-				inv : {},
-				shop: {},
-				lockDuration: 2000
-			},
-			lockSlotSpots : function (slot) {
+			_lockedSpots : [],
+			_pendingItems : {},
+			lockSlotSpots : function (slot, itemId) {
 				// Slot structure:
 				// slot : {
 				//		target : target,
@@ -348,20 +345,70 @@ var gca_tools = {
 				if (slot.target != 'inv' && slot.target != 'shop') {
 					return;
 				}
+				let targetId = this.getTargetId(slot.target);
+				
 				// Create spots tags
 				let tags = [];
 				for (let x = 0; x < slot.w; x++) {
 					for (let y = 0; y < slot.h; y++) {
-						tags.push('<' + (slot.x + x) + ',' + (slot.y + y) + '>');
+						tags.push(targetId + '<' + (slot.x + x) + ',' + (slot.y + y) + '>');
 					}
 				}
-				// Create timestamp until
-				let lockTime = new Date().getTime() + this._lockedSpots.lockDuration;
 				// Lock spots
 				tags.forEach((tag) => {
-					this._lockedSpots[slot.target][tag] = lockTime;
+					if (!this._lockedSpots.includes(tag)) {
+						this._lockedSpots.push(tag);
+					}
 				});
+				// Log pending item move request
+				if (itemId) {
+					this.unlockItemSlots(itemId);
+					this._pendingItems[itemId] = tags;
+				}
+
+				// Init the first time
+				if (this.detectReplies) this.detectReplies();
+
 				return;
+			},
+
+			unlockItemSlots : function(itemId) {
+				if (!itemId || !this._pendingItems.hasOwnProperty(itemId)) return;
+				// Remove locks
+				this._pendingItems[itemId].forEach((tag) => {
+					let index = this._lockedSpots.indexOf(tag);
+					if (index > -1) this._lockedSpots.splice(index, 1);
+				});
+				// Remove pending
+				delete this._pendingItems[itemId];
+			},
+
+			detectReplies : function() {
+				gca_tools.event.request.onAjaxResponse((json) => {
+					// Resolve given URL
+					let url = gca_getPage.parameters(json.url);
+					if (url.mod !== 'inventory' || url.submod !== 'move') return;
+					// Get item's id
+					let itemId = json.elem[0].dataset.itemId || url.from;
+					if (!itemId) return;
+					this.unlockItemSlots(itemId);
+				});
+				this.detectReplies = false;
+			},
+
+
+			getTargetId : function(target) {
+				// Resolve target
+				let targetElement = document.getElementById(target);
+				if (!targetElement) return target;
+
+				if (target == 'inv') {
+					return targetElement.parentNode.getElementsByClassName('awesome-tabs current')[0].dataset.bagNumber;
+				}
+				if (target == 'inv') {
+					return targetElement.dataset.containerNumber;
+				}
+				return target;
 			},
 
 			getTargetSpot : function(item, target) {
@@ -479,13 +526,12 @@ var gca_tools = {
 
 				// Check locked slots
 				if (checkLock) {
-					let lock = this._lockedSpots[checkLock];
+					let targetId = this.getTargetId(checkLock);
 					let now = new Date().getTime();
 					for (let y = 0; y < height; y++) {
 						for (let x = 0; x < width; x++) {
 							if (!table[y][x]) {
-								let tag = '<' + x + ',' + y + '>';
-								if (lock.hasOwnProperty(tag) && lock[tag] >= now) {
+								if (this._lockedSpots.includes(targetId + '<' + x + ',' + y + '>')) {
 									table[y][x] = true;
 								}
 							}
