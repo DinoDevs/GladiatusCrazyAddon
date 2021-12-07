@@ -123,7 +123,7 @@
 	.food-icon:hover{background: transparent url('buttons/main_buttons.png') -395px -25px no-repeat;}
 
 /* Auction Status Bar */
-	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 110px;}
+	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 75px;}
 	.gca_rtl #AuctionStatusDiv{right: auto; left: 110px;}
 
 	#AuctionStatusDiv table{border-spacing: 0px; border: 0px;}
