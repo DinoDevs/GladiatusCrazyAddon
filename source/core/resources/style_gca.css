@@ -119,6 +119,8 @@
 	.refresh-icon:hover{background: transparent url('buttons/main_buttons.png') -320px -25px no-repeat;}
 	.pillar-icon{background: transparent url('buttons/main_buttons.png') -370px 0px no-repeat;}
 	.pillar-icon:hover{background: transparent url('buttons/main_buttons.png') -370px -25px no-repeat;}
+        .food-icon{background: transparent url('buttons/main_buttons.png') -395px 0px no-repeat;}
+	.food-icon:hover{background: transparent url('buttons/main_buttons.png') -395px -25px no-repeat;}
 
 /* Auction Status Bar */
 	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 110px;}
