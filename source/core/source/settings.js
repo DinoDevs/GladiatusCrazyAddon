@@ -545,10 +545,10 @@ var gca_settings = {
 						{icon : "castle-icon", title : gca_locale.get("global", "guild_jail_goto")},
 						{icon : "notebook-icon", title : gca_locale.get("global", "guild_library_goto")},
 						{icon : "pillar-icon", title : gca_locale.get("global", "guild_templum_goto")},
+						{icon : "food-icon", title : gca_locale.get("global", "auction_food_goto")},
 						{icon : "swords-icon", title : gca_locale.get("global", "simulator_goto")},
 						{icon : "people-icon", title : gca_locale.get("global", "stats_display")},
-						{icon : "online-icon", title : gca_locale.get("global", "online_display")},
-						{icon : "food-icon", title : gca_locale.get("global", "auction_food_goto")}
+						{icon : "online-icon", title : gca_locale.get("global", "online_display")}
 					];
 					scheme.values_dom = [];
 					var tmp;
