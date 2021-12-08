@@ -65,6 +65,7 @@ gca_languages['cs'] = {
 			guild_jail_goto : "Negotium X",
 			guild_library_goto : "Knihovna",
 			guild_templum_goto : "Templum",
+			auction_food_goto : "Aukce potravin",
 			guild_medic_goto : "Vila Medici",
 			simulator_goto : "Simulátor",
 			stats_display : "Ukaž mé staty",
