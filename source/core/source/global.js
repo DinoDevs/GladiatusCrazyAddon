@@ -1026,6 +1026,18 @@ var gca_global = {
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);
 						}
+						
+						// Create a Link to food auction
+						if(activeButtons.indexOf("fau") >= 0){
+							button = document.createElement('div');
+							button.className = "icon-out";
+							link = document.createElement('a');
+							link.className = "icon food-icon";
+							link.href = gca_getPage.link({mod : 'auction', itemType : '7'});
+							link.title = gca_locale.get("global", "auction_food_goto");
+							button.appendChild(link);
+							shortcutsBar.appendChild(button);
+						}
 
 					}
 				}

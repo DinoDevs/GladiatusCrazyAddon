@@ -55,7 +55,7 @@
 	.gca_rtl #header_life_pot {margin-left: -5px;float: left;}
 
 /* Button bar */
-	#gca_shortcuts_bar{position: absolute; z-index: 499;top: 114px; left: 520px; height: 25px; width: 370px; text-align: left;}
+	#gca_shortcuts_bar{position: absolute; z-index: 499;top: 114px; left: 520px; height: 25px; width: 400px; text-align: left;}
 	.gca_rtl #gca_shortcuts_bar{right: 520px;left: auto;text-align: right;}
 	#gca_shortcuts_bar.noExtendedHpXpInfo{left: 410px;}
 	.gca_rtl #gca_shortcuts_bar.noExtendedHpXpInfo{right: 410px;}
@@ -119,9 +119,11 @@
 	.refresh-icon:hover{background: transparent url('buttons/main_buttons.png') -320px -25px no-repeat;}
 	.pillar-icon{background: transparent url('buttons/main_buttons.png') -370px 0px no-repeat;}
 	.pillar-icon:hover{background: transparent url('buttons/main_buttons.png') -370px -25px no-repeat;}
+        .food-icon{background: transparent url('buttons/main_buttons.png') -395px 0px no-repeat;}
+	.food-icon:hover{background: transparent url('buttons/main_buttons.png') -395px -25px no-repeat;}
 
 /* Auction Status Bar */
-	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 110px;}
+	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 75px;}
 	.gca_rtl #AuctionStatusDiv{right: auto; left: 110px;}
 
 	#AuctionStatusDiv table{border-spacing: 0px; border: 0px;}

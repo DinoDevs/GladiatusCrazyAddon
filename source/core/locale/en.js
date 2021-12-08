@@ -75,6 +75,7 @@ gca_languages["en"] = {
 			guild_jail_goto : "Go to guild's jail",
 			guild_library_goto : "Go to guild's library",
 			guild_templum_goto : "Go to guild's temple",
+			auction_food_goto : "Go to food auctions",
 			guild_medic_goto : "Go to guild's medic center",
 			simulator_goto : "Go to simulator",
 			stats_display : "Display my stats",

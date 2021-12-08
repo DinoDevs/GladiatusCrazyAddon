@@ -528,10 +528,11 @@ var gca_settings = {
 					// sim : battle simulator
 					// stt : show my stats
 					// onl : online friends
+					// fau : food auctions
 				"shortcuts_bar_buttons" : (function(){
 					var scheme = {
 						"type" : "enumerator",
-						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gar|gjl|glb|gtm|sim|stt|onl'
+						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gar|gjl|glb|gtm|sim|stt|onl|fau'
 					};
 					var btns = [
 						{icon : "message-icon", title : gca_locale.get("global", "message_private_write")},
@@ -546,7 +547,8 @@ var gca_settings = {
 						{icon : "pillar-icon", title : gca_locale.get("global", "guild_templum_goto")},
 						{icon : "swords-icon", title : gca_locale.get("global", "simulator_goto")},
 						{icon : "people-icon", title : gca_locale.get("global", "stats_display")},
-						{icon : "online-icon", title : gca_locale.get("global", "online_display")}
+						{icon : "online-icon", title : gca_locale.get("global", "online_display")},
+						{icon : "food-icon", title : gca_locale.get("global", "auction_food_goto")}
 					];
 					scheme.values_dom = [];
 					var tmp;
