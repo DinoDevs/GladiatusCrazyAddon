@@ -301,7 +301,7 @@ gca_options.data = {
 			// stt : show my stats
 			// onl : online friends
 			// fau : food auctions
-		"shortcuts_bar_buttons" : 'msg|gmd|gmr|gst|gbn|gwr|gjl|glb|sim|stt|onl|fau',
+		"shortcuts_bar_buttons" : 'msg|gmd|gmr|gst|gbn|gwr|gjl|glb|fau|sim|stt|onl',
 	
 		// Auction Status
 		"auction_status_bar" : false,

@@ -530,11 +530,11 @@ var gca_settings = {
 					// onl : online friends
 					// fau : food auctions
 				"shortcuts_bar_buttons" : (function(){
-					var scheme = {
+					let scheme = {
 						"type" : "enumerator",
-						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gar|gjl|glb|gtm|sim|stt|onl|fau'
+						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gar|gjl|glb|gtm|fau|sim|stt|onl'
 					};
-					var btns = [
+					let btns = [
 						{icon : "message-icon", title : gca_locale.get("global", "message_private_write")},
 						{icon : "cross-icon", title : gca_locale.get("global", "guild_medic_goto")},
 						{icon : "market-icon", title : gca_locale.get("global", "guild_market_goto")},
@@ -551,9 +551,8 @@ var gca_settings = {
 						{icon : "online-icon", title : gca_locale.get("global", "online_display")}
 					];
 					scheme.values_dom = [];
-					var tmp;
-					for (var i = 0; i < btns.length; i++) {
-						tmp = document.createElement("span");
+					for (let i = 0; i < btns.length; i++) {
+						let tmp = document.createElement("span");
 						tmp.className = btns[i].icon;
 						tmp.title = btns[i].title;
 						tmp.style.width = "25px";
