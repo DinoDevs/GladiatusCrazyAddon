@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.5 [Alpha]
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-15-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-18-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
@@ -22,6 +22,8 @@
 	- [x] Guild storage: merchant shop info is enabled (shows total gold of storage items) (#290)
 - **Shortcuts bar**
 	- [x] Added a new button - shortcut to food auctions (#291)
+- **Warehouse**
+	- [x] Now shows total gold value (same as merchants) (#290)
 - **Settings**
 	- [x] Reduce exported settings size
 	- [x] Added settings export to player's notes functionality
@@ -42,6 +44,8 @@
 	- [ ] Improved double click spot locking mechanics [testing]
 	- [x] Fixed bag pop over no background bug (#273)
 	- [x] Fixed item price layout bug (#274)
+	- [x] Fixed wrong item colors + browser behaviour change (#282)
+	- [x] Fixed last page load (this time for good) (#258)
 - **Buddy List**
 	- [x] Fixed scroll double error notifications (#242)
 - **Guild**
