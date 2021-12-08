@@ -1277,7 +1277,15 @@ var gca_settings = {
 								// Disable elements
 								data.import.setAttribute("disabled", "disabled");
 								// Get notes
-								gca_settings.backup.importFromNotes();
+								gca_settings.backup.importFromNotes()
+								.then(() => {
+									gca_notifications.success(gca_locale.get("general", "ok"));
+									data.import.removeAttribute("disabled");
+								})
+								.catch((error) => {
+									gca_notifications.error(gca_locale.get("general", "error") + ' [' + error + ']');
+									data.import.removeAttribute("disabled");
+								});
 							}, false);
 							// Add change event
 							return [data.import];
@@ -1293,21 +1301,29 @@ var gca_settings = {
 						"type" : "custom",
 						"dom" : function(data, title, wrapper){
 							// Create button
-							data.import = document.createElement("input");
-							data.import.setAttribute("type", "button");
-							data.import.className = "awesome-button";
-							data.import.style.float = "right";
-							data.import.style.marginTop = "5px";
-							data.import.value = gca_locale.get("settings", "export");
+							data.export = document.createElement("input");
+							data.export.setAttribute("type", "button");
+							data.export.className = "awesome-button";
+							data.export.style.float = "right";
+							data.export.style.marginTop = "5px";
+							data.export.value = gca_locale.get("settings", "export");
 							// On export
-							data.import.addEventListener("click", () => {
+							data.export.addEventListener("click", () => {
 								// Disable elements
-								data.import.setAttribute("disabled", "disabled");
+								data.export.setAttribute("disabled", "disabled");
 								// Export notes
-								gca_settings.backup.exportToNotes();
+								gca_settings.backup.exportToNotes()
+								.then(() => {
+									// Reload page
+									document.location.href = document.location.href;
+								})
+								.catch((error) => {
+									gca_notifications.error(gca_locale.get("general", "error") + ' [' + error + ']');
+									data.export.removeAttribute("disabled");
+								});
 							}, false);
 							// Add change event
-							return [data.import];
+							return [data.export];
 						}
 					};
 					return scheme;
@@ -2182,71 +2198,72 @@ var gca_settings = {
 		},
 
 		exportToNotes : function() {
-			// Get notes
-			jQuery.ajax({
-				type: "GET",
-				url: gca_getPage.link({'mod':'memo'}),
-				success: function(content){
-					// Load notes
-					let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
-					// if Failed to Parse Notes
-					if (!notes) return gca_notifications.error(gca_locale.get("general", "error") + ' [F2PN]');
-					notes = notes[1];
+			return new Promise((resolve, reject) => {
+				// Make request to get notes
+				jQuery.ajax({
+					type: "GET",
+					url: gca_getPage.link({'mod':'memo'}),
+					success: function(content){
+						// Load notes
+						let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
+						// if Failed to Parse Notes
+						if (!notes) return reject('F2PN');
+						notes = notes[1];
 
-					// Delete settings
-					notes = notes.replace(/(\n+|){GCASETTINGS\|([^}]+)}/ig, '');
+						// Delete settings
+						notes = notes.replace(/(\n+|){GCASETTINGS\|([^}]+)}/ig, '');
 
-					// Get settings data
-					let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
-					// Get arena data
-					let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
-					// Decode data to JSON
-					settings_data = JSON.parse(settings_data);
-					// Prepare extra info
-					settings_data['extra'] = {};
-					// Get language
-					let value = window.localStorage.getItem(gca_data_manager.name + "_lang") || null;
-					if (value) settings_data['extra']['lang'] = value;
-					// Encode data
-					settings_data = JSON.stringify(settings_data);
-					// Prepare for export
-					let sdata = gca_settings.backup.exportDataPrepare({
-						country : gca_section.country,
-						server : gca_section.server,
-						playerId : gca_section.playerId
-					}, {
-						settings : settings_data,
-						arena : arena_data
-					}, 3, true);
+						// Get settings data
+						let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
+						// Get arena data
+						let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
+						// Decode data to JSON
+						settings_data = JSON.parse(settings_data);
+						// Prepare extra info
+						settings_data['extra'] = {};
+						// Get language
+						let value = window.localStorage.getItem(gca_data_manager.name + "_lang") || null;
+						if (value) settings_data['extra']['lang'] = value;
+						// Encode data
+						settings_data = JSON.stringify(settings_data);
+						// Prepare for export
+						let sdata = gca_settings.backup.exportDataPrepare({
+							country : gca_section.country,
+							server : gca_section.server,
+							playerId : gca_section.playerId
+						}, {
+							settings : settings_data,
+							arena : arena_data
+						}, 3, true);
 
-					// if Failed to Get Settings
-					if (!sdata) return gca_notifications.error(gca_locale.get("general", "error") + ' [FGS]');
+						// if Failed to Get Settings
+						if (!sdata) return reject('FGS');
 
-					// Prepare note code
-					notes += '\n\n' + '{GCASETTINGS\|' + btoa(sdata) + '}';
+						// Prepare note code
+						notes += '\n\n' + '{GCASETTINGS\|' + btoa(sdata) + '}';
 
-					// if no space available in settings
-					if (notes.length > 16000) return gca_notifications.error(gca_locale.get("general", "error") + ' [NS]');
+						// if no space available in settings
+						if (notes.length > 16000) return reject('NS');
 
-					// Make request to change notes
-					jQuery.ajax({
-						type: "POST",
-						url: gca_getPage.link({'mod':'memo', 'submod':'save'}),
-						data: {memo : notes},
-						success: function(){
-							gca_notifications.success(gca_locale.get("general", "ok"));
-							data.import.removeAttribute("disabled");
-						},
-						error: function(){
-							// Failed to Save Settings
-							gca_notifications.error(gca_locale.get("general", "error") + ' [FSS]');
-						}
-					});
-				},
-				error: function(){
-					// Request Failed
-					gca_notifications.error(gca_locale.get("general", "error") + ' [RF]');
-				}
+						// Make request to change notes
+						jQuery.ajax({
+							type: "POST",
+							url: gca_getPage.link({'mod':'memo', 'submod':'save'}),
+							data: {memo : notes},
+							success: function(){
+								return resolve();
+							},
+							error: function(){
+								// Failed to Save Settings
+								return reject('FSS');
+							}
+						});
+					},
+					error: function(){
+						// Request Failed
+						return reject('RF');
+					}
+				});
 			});
 		},
 
@@ -2386,43 +2403,45 @@ var gca_settings = {
 		},
 
 		importFromNotes : function() {
-			jQuery.ajax({
-				type: "GET",
-				url: gca_getPage.link({'mod':'memo'}),
-				success: function(content){
-					// Load notes
-					let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
+			return new Promise((resolve, reject) => {
+				jQuery.ajax({
+					type: "GET",
+					url: gca_getPage.link({'mod':'memo'}),
+					success: function(content){
+						// Load notes
+						let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
 
-					// if Failed to Parse Notes
-					if (!notes) return gca_notifications.error(gca_locale.get("general", "error") + ' [F2PN]');
-					notes = notes[1];
+						// if Failed to Parse Notes
+						if (!notes) return reject('F2PN');
+						notes = notes[1];
 
-					// Load settings
-					let settings = notes.match(/{GCASETTINGS\|([^}]+)}/i);
-					// if Not found settings
-					if (!settings) return gca_notifications.error(gca_locale.get("general", "error") + ' [NFS]');
-					settings = settings[1];
-					
-					// Decode settings
-					try {
-						settings = atob(settings);
-					} catch (e) {
-						// Failed to Decode Settings
-						return gca_notifications.error(gca_locale.get("general", "error") + ' [F2DS]');
+						// Load settings
+						let settings = notes.match(/{GCASETTINGS\|([^}]+)}/i);
+						// if Not found settings
+						if (!settings) return reject('NFS');
+						settings = settings[1];
+						
+						// Decode settings
+						try {
+							settings = atob(settings);
+						} catch (e) {
+							// Failed to Decode Settings
+							return reject('F2DS');
+						}
+
+						// Import settings
+						let error = gca_settings.backup.import(settings);
+						// if Failed to Import Settings
+						if (error) return reject('F2IS');
+
+						// Done
+						resolve();
+					},
+					error: function(){
+						// Request Failed
+						return reject('RF');
 					}
-
-					// Import settings
-					let error = gca_settings.backup.import(settings);
-					// if Failed to Import Settings
-					if (error) return gca_notifications.error(gca_locale.get("general", "error") + ' [F2IS]');
-
-					// Reload page
-					document.location.href = document.location.href;
-				},
-				error: function(){
-					// Request Failed
-					gca_notifications.error(gca_locale.get("general", "error") + ' [RF]');
-				}
+				});
 			});
 		},
 
