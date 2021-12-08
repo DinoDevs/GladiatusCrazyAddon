@@ -7,7 +7,7 @@
 
 ### IMPROVEMENTS
 - **Global**
-	- [ ] Improved addon's per page loading speed [testing]
+	- [x] Improved addon's per page loading speed
 	- [x] Gold & Exp stats: added button to reset data by FrutyX (#284)
 - **Accessibility**
 	- [x] Added option to turn item level indicator to white
@@ -24,7 +24,7 @@
 	- [x] Added a new button - shortcut to food auctions (#291)
 - **Settings**
 	- [x] Reduce exported settings size
-	- [ ] Added settings export to player's notes functionality
+	- [x] Added settings export to player's notes functionality
 	- [x] Range bars' values live update on change
 	- [x] Updated on/off toggle buttons
 	
@@ -39,6 +39,7 @@
 	- [x] Gold & Exp stats: added button to reset data (#248)
 - **Packages**
 	- [ ] Fix of double click bug (#238) [testing]
+	- [ ] Improved double click spot locking mechanics [testing]
 	- [x] Fixed bag pop over no background bug (#273)
 	- [x] Fixed item price layout bug (#274)
 - **Buddy List**
@@ -57,7 +58,7 @@
 	- [x] Battle analyzer (Turma/Dungeon) style fix (#254)
 	- [x] Battle analyzer (Turma/Dungeon) stats not showing fix (#256)
 - **Settings**
-	- [ ] Fixed export that ignored some settings
+	- [x] Fixed export that ignored some settings
 	- [x] Removed unscripted feature from settings
 
 
