@@ -18,11 +18,9 @@
 	- [x] Attack by id not by name (issue #241)
 - **Training**
 	- [x] Added some clarification at the footnotes (#248)
-- **Guild**
-	- [x] Guild storage: merchant shop info is enabled (shows total gold of storage items) (#290)
 - **Shortcuts bar**
 	- [x] Added a new button - shortcut to food auctions (#291)
-- **Warehouse**
+- **Guild Warehouse**
 	- [x] Now shows total gold value (same as merchants) (#290)
 - **Settings**
 	- [x] Reduce exported settings size
