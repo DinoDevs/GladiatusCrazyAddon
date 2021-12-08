@@ -1275,50 +1275,7 @@ var gca_settings = {
 								// Disable elements
 								data.import.setAttribute("disabled", "disabled");
 								// Get notes
-								jQuery.ajax({
-									type: "GET",
-									url: gca_getPage.link({'mod':'memo'}),
-									success: function(content){
-										// Load notes
-										let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
-										if (!notes) {
-											// Failed to Parse Notes
-											gca_notifications.error(gca_locale.get("general", "error") + ' [F2PN]');
-											return;
-										}
-										notes = notes[1];
-										// Load settings
-										let settings = notes.match(/{GCASETTINGS\|([^}]+)}/i);
-										if (!settings) {
-											// Not found settings
-											gca_notifications.error(gca_locale.get("general", "error") + ' [NFS]');
-											return;
-										}
-										settings = settings[1];
-										// Decode settings
-										try {
-											settings = atob(settings);
-										} catch (e) {
-											// Failed to Decode Settings
-											gca_notifications.error(gca_locale.get("general", "error") + ' [F2DS]');
-											return;
-										}
-										// Import settings
-										let error = gca_settings.backup.import(settings);
-										if (!error) {
-											document.location.href = document.location.href;
-										}
-										else {
-											// Failed to Import Settings
-											gca_notifications.error(gca_locale.get("general", "error") + ' [F2IS]');
-											return;
-										}
-									},
-									error: function(){
-										// Request Failed
-										gca_notifications.error(gca_locale.get("general", "error") + ' [RF]');
-									}
-								});
+								gca_settings.backup.importFromNotes();
 							}, false);
 							// Add change event
 							return [data.import];
@@ -1344,69 +1301,8 @@ var gca_settings = {
 							data.import.addEventListener("click", () => {
 								// Disable elements
 								data.import.setAttribute("disabled", "disabled");
-								// Get notes
-								jQuery.ajax({
-									type: "GET",
-									url: gca_getPage.link({'mod':'memo'}),
-									success: function(content){
-										// Load notes
-										let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
-										if (!notes) {
-											// Failed to Parse Notes
-											gca_notifications.error(gca_locale.get("general", "error") + ' [F2PN]');
-											return;
-										}
-										notes = notes[1];
-										// Delete settings
-										notes = notes.replace(/(\n+|){GCASETTINGS\|([^}]+)}/ig, '');
-
-										// Get settings data
-										let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
-										// Get arena data
-										let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
-
-										let sdata = gca_settings.backup.exportDataPrepare({
-											country : gca_section.country,
-											server : gca_section.server,
-											playerId : gca_section.playerId
-										}, {
-											settings : settings_data,
-											arena : arena_data
-										}, 3, true);
-
-										if (!sdata) {
-											// Failed to Get Settings
-											gca_notifications.error(gca_locale.get("general", "error") + ' [FGS]');
-											return;
-										}
-
-										notes += '\n\n' + '{GCASETTINGS\|' + btoa(sdata) + '}';
-
-										// Oups, no space
-										if (notes.length > 16000) {
-											gca_notifications.error(gca_locale.get("general", "error") + ' [NS]');
-											return;
-										}
-
-										jQuery.ajax({
-											type: "POST",
-											url: gca_getPage.link({'mod':'memo', 'submod':'save'}),
-											data: {memo : notes},
-											success: function(){
-												gca_notifications.success(gca_locale.get("general", "ok"));
-												data.import.removeAttribute("disabled");
-											},
-											error: function(){
-												// Failed to Save Settings
-												gca_notifications.error(gca_locale.get("general", "error") + ' [FSS]');
-											}
-										});
-									},
-									error: function(){
-										// Request Failed
-										gca_notifications.error(gca_locale.get("general", "error") + ' [RF]');
-									}
-								});
+								// Export notes
+								gca_settings.backup.exportToNotes();
 							}, false);
 							// Add change event
 							return [data.import];
@@ -2181,16 +2077,16 @@ var gca_settings = {
 			let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
 			// Get arena data
 			let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
-
+			// Decode data to JSON
 			settings_data = JSON.parse(settings_data);
-
+			// Prepare extra info
 			settings_data['extra'] = {};
-			// Get language
+			// Seve language
 			let value = window.localStorage.getItem(gca_data_manager.name + "_lang") || null;
 			if (value) settings_data['extra']['lang'] = value;
-
+			// Encode data
 			settings_data = JSON.stringify(settings_data);
-
+			// Export
 			this.exportToFile({
 				country : gca_section.country,
 				server : gca_section.server,
@@ -2281,6 +2177,75 @@ var gca_settings = {
 			}
 
 			return data;
+		},
+
+		exportToNotes : function() {
+			// Get notes
+			jQuery.ajax({
+				type: "GET",
+				url: gca_getPage.link({'mod':'memo'}),
+				success: function(content){
+					// Load notes
+					let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
+					// if Failed to Parse Notes
+					if (!notes) return gca_notifications.error(gca_locale.get("general", "error") + ' [F2PN]');
+					notes = notes[1];
+
+					// Delete settings
+					notes = notes.replace(/(\n+|){GCASETTINGS\|([^}]+)}/ig, '');
+
+					// Get settings data
+					let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
+					// Get arena data
+					let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
+					// Decode data to JSON
+					settings_data = JSON.parse(settings_data);
+					// Prepare extra info
+					settings_data['extra'] = {};
+					// Get language
+					let value = window.localStorage.getItem(gca_data_manager.name + "_lang") || null;
+					if (value) settings_data['extra']['lang'] = value;
+					// Encode data
+					settings_data = JSON.stringify(settings_data);
+					// Prepare for export
+					let sdata = gca_settings.backup.exportDataPrepare({
+						country : gca_section.country,
+						server : gca_section.server,
+						playerId : gca_section.playerId
+					}, {
+						settings : settings_data,
+						arena : arena_data
+					}, 3, true);
+
+					// if Failed to Get Settings
+					if (!sdata) return gca_notifications.error(gca_locale.get("general", "error") + ' [FGS]');
+
+					// Prepare note code
+					notes += '\n\n' + '{GCASETTINGS\|' + btoa(sdata) + '}';
+
+					// if no space available in settings
+					if (notes.length > 16000) return gca_notifications.error(gca_locale.get("general", "error") + ' [NS]');
+
+					// Make request to change notes
+					jQuery.ajax({
+						type: "POST",
+						url: gca_getPage.link({'mod':'memo', 'submod':'save'}),
+						data: {memo : notes},
+						success: function(){
+							gca_notifications.success(gca_locale.get("general", "ok"));
+							data.import.removeAttribute("disabled");
+						},
+						error: function(){
+							// Failed to Save Settings
+							gca_notifications.error(gca_locale.get("general", "error") + ' [FSS]');
+						}
+					});
+				},
+				error: function(){
+					// Request Failed
+					gca_notifications.error(gca_locale.get("general", "error") + ' [RF]');
+				}
+			});
 		},
 
 		// Download file
@@ -2397,6 +2362,7 @@ var gca_settings = {
 			// No errors
 			return false;
 		},
+
 		importFromFile : function(file, callback) {
 			try {
 				// Create reader
@@ -2415,6 +2381,47 @@ var gca_settings = {
 			} catch (e) {
 				callback("Unsupported");
 			}
+		},
+
+		importFromNotes : function() {
+			jQuery.ajax({
+				type: "GET",
+				url: gca_getPage.link({'mod':'memo'}),
+				success: function(content){
+					// Load notes
+					let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
+
+					// if Failed to Parse Notes
+					if (!notes) return gca_notifications.error(gca_locale.get("general", "error") + ' [F2PN]');
+					notes = notes[1];
+
+					// Load settings
+					let settings = notes.match(/{GCASETTINGS\|([^}]+)}/i);
+					// if Not found settings
+					if (!settings) return gca_notifications.error(gca_locale.get("general", "error") + ' [NFS]');
+					settings = settings[1];
+					
+					// Decode settings
+					try {
+						settings = atob(settings);
+					} catch (e) {
+						// Failed to Decode Settings
+						return gca_notifications.error(gca_locale.get("general", "error") + ' [F2DS]');
+					}
+
+					// Import settings
+					let error = gca_settings.backup.import(settings);
+					// if Failed to Import Settings
+					if (error) return gca_notifications.error(gca_locale.get("general", "error") + ' [F2IS]');
+
+					// Reload page
+					document.location.href = document.location.href;
+				},
+				error: function(){
+					// Request Failed
+					gca_notifications.error(gca_locale.get("general", "error") + ' [RF]');
+				}
+			});
 		},
 
 		// Reset settings
