@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-23-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-24-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -59,6 +59,8 @@
 - **Reports**
 	- [x] Battle analyzer (Turma/Dungeon) style fix (#254)
 	- [x] Battle analyzer (Turma/Dungeon) stats not showing fix (#256)
+- **Accessibility**
+	- [x] Fixed symbols showing in wrong tooltips (#253)
 - **Settings**
 	- [x] Fixed export that ignored some settings
 	- [x] Removed unscripted feature from settings
