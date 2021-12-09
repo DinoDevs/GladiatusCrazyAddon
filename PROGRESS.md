@@ -62,7 +62,7 @@
 - **Accessibility**
 	- [x] Fixed symbols showing in wrong tooltips (#253)
 - **Settings**
-	- [x] Fixed export that ignored some settings
+	- [x] Fixed export that ignored some settings (#262)
 	- [x] Removed unscripted feature from settings
 
 
