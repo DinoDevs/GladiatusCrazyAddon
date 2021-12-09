@@ -122,7 +122,8 @@ var gca_overview = {
 				// Create player id cookie
 				let cookie_name = "Gca_" + gca_section.country + "_" + gca_section.server;
 				let cookie_value = player_id + "_" + gca_section.sh.substring(0, gca_section.sh.length/4);
-				document.cookie = cookie_name + "=" + cookie_value + ";" + cookie_expires + ";path=/";
+				let cookie_samesite = "SameSite=None; Secure"
+				document.cookie = cookie_name + "=" + cookie_value + ";" + cookie_expires + ";path=/" + ";" + cookie_samesite;
 
 				// Update player id
 				gca_section.resolvePlayerId();
@@ -138,6 +139,7 @@ var gca_overview = {
 			d.setTime(d.getTime() + (14 * 24*60*60*1000));
 			let cookie_expires = 'expires=' + d.toUTCString();
 			let cookie_name = 'gca_players';
+			let cookie_samesite = "SameSite=None; Secure"
 
 			// Retrieve players list
 			let players = (() => {
@@ -175,7 +177,7 @@ var gca_overview = {
 				// Short players
 				players = players.sort();
 				// Set cookies
-				document.cookie = cookie_name + '=' + encodeURIComponent(players.join('|')) + ';' + cookie_expires + ';path=/;domain=gladiatus.gameforge.com';
+				document.cookie = cookie_name + '=' + encodeURIComponent(players.join('|')) + ';' + cookie_expires + ';path=/;domain=gladiatus.gameforge.com' + ";" + cookie_samesite;
 			}
 
 			// Update player name
