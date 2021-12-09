@@ -122,7 +122,7 @@ var gca_overview = {
 				// Create player id cookie
 				let cookie_name = "Gca_" + gca_section.country + "_" + gca_section.server;
 				let cookie_value = player_id + "_" + gca_section.sh.substring(0, gca_section.sh.length/4);
-				let cookie_samesite = "SameSite=None; Secure"
+				let cookie_samesite = "SameSite=Strict; Secure"
 				document.cookie = cookie_name + "=" + cookie_value + ";" + cookie_expires + ";path=/" + ";" + cookie_samesite;
 
 				// Update player id
@@ -139,7 +139,7 @@ var gca_overview = {
 			d.setTime(d.getTime() + (14 * 24*60*60*1000));
 			let cookie_expires = 'expires=' + d.toUTCString();
 			let cookie_name = 'gca_players';
-			let cookie_samesite = "SameSite=None; Secure"
+			let cookie_samesite = "SameSite=Strict; Secure"
 
 			// Retrieve players list
 			let players = (() => {
