@@ -225,6 +225,7 @@ var gca_tools = {
 	// Item Shadow
 	// -------------------------------------------------- //
 	// item.shadow.add(item)
+	// item.shadow.getQuality(tooltip)
 	// item.shadow.getColor(tooltip)
 	// item.move(item, target[, size])
 	// item.hash(item)
@@ -234,8 +235,8 @@ var gca_tools = {
 		// Item Shadow
 		shadow : {
 
-			// Get Tooltip Color
-			getColor : function(data){
+			// Get Tooltip Quality
+			getQuality : function(data){
 				// Parse data
 				if(typeof data == "string" && data.length > 0)
 					data = JSON.parse(data);
@@ -247,20 +248,27 @@ var gca_tools = {
 
 				// Find color
 				if(color.match("white"))
-					return "white";
+					return -1;
 				if(color.match("lime"))
-					return "green";
+					return 0;
 				if(color.match("#5159F7"))
-					return "blue";
+					return 1;
 				if(color.match("#E303E0"))
-					return "purple";
+					return 2;
 				if(color.match("#FF6A00"))
-					return "orange";
+					return 3;
 				if(color.match("#FF0000"))
-					return "red";
+					return 4;
 
 				// Default
 				return false;
+			},
+
+			// Get Tooltip Color
+			getColor : function(data){
+				let quality = (typeof data === 'number') ? data : this.getQuality(data);
+				if (quality === false) return false;
+				return ['white', 'green', 'blue', 'purple', 'orange', 'red'][quality + 1];
 			},
 
 			// Add shadow

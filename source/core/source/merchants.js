@@ -39,6 +39,8 @@ var gca_merchants = {
 
 	// Merchants Search
 	merchantsSearch : {
+		qualities : ['white', 'lime', '#5159f7', '#e303e0', '#FF6A00', '#FF0000'],
+
 		searchBox : function(){
 			// Create UI
 			let container = document.createElement("div");
@@ -51,6 +53,26 @@ var gca_merchants = {
 			searchInput.type = 'text';
 			searchInput.placeholder = gca_locale.get("merchants", "search_item_in_merchants");
 			container.appendChild(searchInput);
+
+			let searchQuality = document.createElement("select");
+			searchQuality.className = 'inputText gca-search-input';
+			searchQuality.id = 'gca-search-input';
+			searchQuality.style.color = this.qualities[0];
+			searchQuality.style.fontWeight = 'bold';
+			searchQuality.style.cursor = 'pointer';
+			container.appendChild(searchQuality);
+			this.qualities.forEach((color) => {
+				let option = document.createElement("option");
+				option.textContent = '⬛';
+				option.style.color = color;
+				option.style.fontWeight = 'bold';
+				if (color === this.qualities[0]) option.selected = true;
+				option.value = this.qualities.indexOf(color) - 1;
+				searchQuality.appendChild(option);
+			});
+			searchQuality.addEventListener('change', () => {
+				searchQuality.style.color = this.qualities[parseInt(searchQuality.value, 10) + 1];
+			}, false);
 			
 			let searchButton = document.createElement("input");
 			searchButton.className = 'awesome-button gca-search-submit';
@@ -61,7 +83,9 @@ var gca_merchants = {
 			
 			document.getElementById('mainnav').appendChild(container);
 			
-			searchButton.addEventListener('click', this.searchItems, false);
+			searchButton.addEventListener('click', () => {
+				this.searchItems(searchInput, searchQuality, searchButton);
+			}, false);
 		},
 		
 		shops : {
@@ -69,59 +93,89 @@ var gca_merchants = {
 			found : 0
 		},
 		
-		searchItems : function(){
-			let searchValue = document.getElementById('gca-search-input').value.toLowerCase();
-			if( searchValue.trim() === "" || searchValue.match(/[<>=+-]/i))
+		searchItems : function(searchInput, searchQuality, searchButton) {
+			// Load values
+			let qualityValue = parseInt(searchQuality.value, 10);
+			let searchValue = searchInput.value.toLowerCase().trim();
+			if ((searchValue === "" && qualityValue < 2) || searchValue.match(/[<>=+-]/i))
 				return;
 			
+			// Disable buttons
+			searchInput.setAttribute('disabled', 'disabled');
+			searchQuality.setAttribute('disabled', 'disabled');
+			searchButton.setAttribute('disabled', 'disabled');
+
+			// Init stats
 			gca_merchants.merchantsSearch.shops.loaded = 0;
 			gca_merchants.merchantsSearch.shops.found = 0;
 			
 			// Search all merchants
-			for(y=1;y<=6;y++){
-				for(c=0;c<=1;c++){
+			for (let y = 1; y <= 6; y++) {
+				for (let c = 0; c <= 1; c++) {
 					// Post to the server
+					let link = gca_getPage.link({"mod":"inventory","subsub":c,"sub":y});
 					jQuery.ajax({
-						url: gca_getPage.link({"mod":"inventory","subsub":c,"sub":y}),
-						success: function(html){
-							
-							if( !html.match(/class="shopTab"/i) ){
-								// error
+						url: link,
+						success: function(response) {
+							// Check if response dont has a shop
+							if (!response.match(/class="shopTab"/i)) {
 								gca_notifications.error( gca_locale.get("general", "error") );
-								gca_merchants.merchantsSearch.shops.loaded += 1;
+								gca_merchants.merchantsSearch.shops.loaded++;
 								return;
 							}
 							
-							let dealerName = html.match(/class="awesome-tabs current">([^<]+)<\/a>/i)[1].trim();
-							let dealerNum = html.match(/data-container-number="(\d+)"/i)[1];
+							// Get dealer name and shop number
+							let dealerName = response.match(/class="awesome-tabs current">([^<]+)<\/a>/i)[1].trim();
+							let dealerNum = response.match(/data-container-number="(\d+)"/i)[1];
 							
-							let tab = "N/A";
-							if(html.match(/shopTab [dynamic ]*active">([^<]+)<\/div/i))
-								tab = html.match(/shopTab [dynamic ]*active">([^<]+)<\/div/i)[1];
-							let items = html.match(/data-container-number="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-item-id="[^"]*" (?:data-price-gold="\d+" )*data-tooltip="\[\[\[&quot;([^&]*)&/gim);
-							if( !items )
-								items = [];
-							
-							let temp_name = 'Unknown';
-							let temp_img = null;
-							for (let i in items){
-								if ( typeof items[i] != "string" )
-									continue;
-								temp_name = decodeURIComponent(JSON.parse("\""+items[i].match(/data-tooltip="\[\[\[&quot;([^&]*)/i)[1]+"\""));
-								if(temp_name.toLowerCase().match(searchValue) && parseInt(items[i].match(/data-container-number="(\d+)"/)[1]) > 20){
-									gca_notifications.success( dealerName+" ["+tab+"]:\n"+temp_name);
-									gca_merchants.merchantsSearch.shops.found += 1;
+							// Detect Tab
+							let tab = response.match(/shopTab [dynamic ]*active">([^<]+)<\/div/i);
+							tab = tab ? tab[1] : "N/A";
+
+							// Detect items
+							let items = response.match(/<div style="[^"]+" class="item-i-\d+-\d+[^"]*" data-container-number="\d+"[^>]+>/img);
+							if (!items) items = [];
+							// Analyse items
+							for (let i = 0; i < items.length; i++) {
+								// Ignore char items
+								if (parseInt(items[i].match(/data-container-number="(\d+)"/)[1], 10) <= 20) continue;
+								// Ignore items below quality threshold
+								let quality = items[i].match(/data-quality="([^"]+)"/);
+								quality = quality ? parseInt(quality[1], 10) : gca_tools.item.shadow.getQuality(items[i].match(/data-tooltip="([^"]+)"/)[1].replace(/&quot;/g,'"'));
+								if (quality < qualityValue) continue;
+								// Get item name
+								let name = decodeURIComponent(JSON.parse("\"" + items[i].match(/data-tooltip="\[\[\[&quot;([^&]*)/i)[1] + "\""));
+								if (name.toLowerCase().match(searchValue)) {
+									let msg = document.createElement('div');
+									msg.style.overflow = 'hidden';
+									let icon = document.createElement('div');
+									icon.className = items[i].match(/class="(item-i-\d+-\d+)/)[1] + ' item-i-' + gca_tools.item.shadow.getColor(quality);
+									icon.style.float = 'left';
+									msg.appendChild(icon);
+									msg.appendChild(document.createTextNode(dealerName + " [" + tab + "]:"));
+									msg.appendChild(document.createElement('br'));
+									msg.appendChild(document.createTextNode(name));
+									gca_notifications.success(msg, link);
+									gca_merchants.merchantsSearch.shops.found++;
 								}
 							}
 							
-							gca_merchants.merchantsSearch.shops.loaded += 1;
+							gca_merchants.merchantsSearch.shops.loaded++;
 							
-							if( gca_merchants.merchantsSearch.shops.loaded == 12 && gca_merchants.merchantsSearch.shops.found == 0 )
-								gca_notifications.warning( gca_locale.get("merchants", "no_such_item") );
+							// If all pages were searched
+							if (gca_merchants.merchantsSearch.shops.loaded == 12) {
+								// If nothing was found
+								if (gca_merchants.merchantsSearch.shops.found == 0)
+									gca_notifications.warning( gca_locale.get("merchants", "no_such_item") );
+								// Enable buttons
+								searchInput.removeAttribute('disabled');
+								searchQuality.removeAttribute('disabled');
+								searchButton.removeAttribute('disabled');
+							}
 						},
-						error: function(){
+						error: function() {
 							gca_notifications.error( gca_locale.get("general", "error") );
-							gca_merchants.merchantsSearch.shops.loaded += 1;
+							gca_merchants.merchantsSearch.shops.loaded++;
 						}
 					});
 				}
