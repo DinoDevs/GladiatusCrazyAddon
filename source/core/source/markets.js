@@ -439,6 +439,52 @@ var gca_markets = {
 		auto_value.style = "display:none";
 		modeSwitch.appendChild(auto_value);
 		
+		// Custom market prices
+		
+		let price_value1 = document.createElement("label");
+		price_value1.id = "price_value1";
+		price_value1.textContent = "💰 100k";
+		modeSwitch.appendChild(price_value1);
+		
+		//event handler
+		price_value1.addEventListener("click", function () {
+        document.getElementById("preis").value = "100000";
+
+    })
+	
+		let price_value2 = document.createElement("label");
+		price_value2.id = "price_value2";
+		price_value2.textContent = "💰 250k";
+		modeSwitch.appendChild(price_value2);
+		
+		//event handler
+		price_value2.addEventListener("click", function () {
+        document.getElementById("preis").value = "250000";
+
+    })
+	
+		let price_value3 = document.createElement("label");
+		price_value3.id = "price_value3";
+		price_value3.textContent = "💰 500k";
+		modeSwitch.appendChild(price_value3);
+		
+		//event handler
+		price_value3.addEventListener("click", function () {
+        document.getElementById("preis").value = "500000";
+
+    })
+	
+		let price_value4 = document.createElement("label");	
+		price_value4.id = "price_value4";
+		price_value4.textContent = "💰 1M";
+		modeSwitch.appendChild(price_value4);
+		
+		//event handler
+		price_value4.addEventListener("click", function () {
+        document.getElementById("preis").value = "1000000";
+
+    })
+		
 		var get_translation = (gca_data.section.get("cache", "value_tanslation", "true")=="true")?true:false;
 
 		// On item drop function
