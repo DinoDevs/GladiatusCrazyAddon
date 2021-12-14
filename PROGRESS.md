@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.5 [Alpha]
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-15-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-24-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 
@@ -27,6 +27,8 @@
 	- [x] Added settings export to player's notes functionality
 	- [x] Range bars' values live update on change
 	- [x] Updated on/off toggle buttons
+- **Miscellaneous**
+	- [x] Improved cookies security (#260)
 	
 
 
