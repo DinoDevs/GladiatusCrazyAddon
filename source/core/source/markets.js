@@ -448,7 +448,7 @@ var gca_markets = {
 		
 		//event handler
 		price_value1.addEventListener("click", function () {
-        document.getElementById("preis").value = "100000";
+                 document.getElementById("preis").value = "100000";
 
     })
 	
@@ -459,7 +459,7 @@ var gca_markets = {
 		
 		//event handler
 		price_value2.addEventListener("click", function () {
-        document.getElementById("preis").value = "250000";
+                 document.getElementById("preis").value = "250000";
 
     })
 	
@@ -470,7 +470,7 @@ var gca_markets = {
 		
 		//event handler
 		price_value3.addEventListener("click", function () {
-        document.getElementById("preis").value = "500000";
+                 document.getElementById("preis").value = "500000";
 
     })
 	
@@ -481,7 +481,7 @@ var gca_markets = {
 		
 		//event handler
 		price_value4.addEventListener("click", function () {
-        document.getElementById("preis").value = "1000000";
+                 document.getElementById("preis").value = "1000000";
 
     })
 		
