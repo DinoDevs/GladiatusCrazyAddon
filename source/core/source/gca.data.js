@@ -272,8 +272,6 @@ gca_options.data = {
 
 	// Global Options
 	"global" : {
-		// Sounds
-		"sound_notifications" : true,
 		// Browser notifications
 		"browser_notifications" : true,
 
