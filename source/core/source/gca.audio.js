@@ -73,19 +73,6 @@ var gca_audio = {
 		}
 	},
 
-	// Sounds list
-	buildInSounds : {
-		'water'			: 'alert-sound-water.ogg',
-		'coin'			: 'coins.ogg',
-		'channel'		: 'communication-channel.ogg',
-		'voila'			: 'et-voila.ogg',
-		'in-the-way'	: 'gets-in-the-way.ogg',
-		'done'			: 'job-done.ogg',
-		'pizzicato'		: 'pizzicato.ogg',
-		'served'		: 'served.ogg',
-		'wet'			: 'wet.ogg'
-	},
-
 	// Id channels settings
 	channels : {},
 	setupChannel : function(id, settings) {
