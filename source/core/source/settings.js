@@ -499,9 +499,7 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
-
-				// Sounds
-				"sound_notifications" : true,
+				
 				// Browser notifications
 				"browser_notifications" : true,
 
