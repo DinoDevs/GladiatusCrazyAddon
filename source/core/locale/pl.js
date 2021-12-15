@@ -166,7 +166,6 @@ gca_languages['pl'] = {
 			category_global$quest_timer : "Pokaż status zadań lub licznik",
 			category_global$merchants_timer : "Wyświetl czas kupców",
 			category_global$forge_timers : "Wyświetl czas w kuźni/roztapiarce",
-			category_global$cooldown_sound_notifications : "Włącz dźwięk powiadomień (wyprawy, lochy, arena)",
 			category_global$notify_new_guild_application : "Powiadom mnie, gdy pojawi się nowe podanie do gildii",
 			category_global$notify_new_guild_application_interval : "Sprawdzaj podania do gildii (minuty)",
 			category_global$x_scroll : "Włącz przewijanie w poziomie",
@@ -293,6 +292,7 @@ gca_languages['pl'] = {
 			category_events$server_quest_timer : "Wyświetl zadania lub zegar wydarzenia na górze",
 			//Ustawienia -- dzwięki
 			category_sound$enabled : "Włącz system dźwięków",
+			category_sound$cooldown_sound_notifications : "Włącz dźwięk powiadomień (wyprawy, lochy, arena)",
 			category_sound$muted : "Wycisz/wyłącz wyciszenie dźwięków",
 			category_sound$volume : "Głośność dźwięków",
 			//Ustawienia -- Dane
