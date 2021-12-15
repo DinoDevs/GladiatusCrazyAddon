@@ -1004,11 +1004,14 @@
 		/* Item icons at the top right corner */
 		/* Soul-bound items */
 		#packages div[data-gca-soulbound]:not([data-gca-forge-proposal]):after {content: "🔗";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
+		.gca_rtl #packages div[data-gca-soulbound]:not([data-gca-forge-proposal]):after {left:  unset;right: 48px;}
 		/* Proposed to forge items (unknown prefix/suffix) */
 		#packages div[data-gca-forge-proposal]:not([data-gca-soulbound]):after {content: "📜";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
+		.gca_rtl #packages div[data-gca-forge-proposal]:not([data-gca-soulbound]):after {left:  unset;right: 48px;}
 		#packages div[data-gca-forge-proposal=2]:not([data-gca-soulbound]):after {content: "📜📜";}
 		/* Both */
 		#packages div[data-gca-forge-proposal][data-gca-soulbound]:after {content: "🔗📜";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
+		.gca_rtl #packages div[data-gca-forge-proposal][data-gca-soulbound]:after {left:  unset;right: 48px;}
 		#packages div[data-gca-forge-proposal=2][data-gca-soulbound]:after {content: "🔗📜📜";}
 
 		/* Bag Pop Over */
