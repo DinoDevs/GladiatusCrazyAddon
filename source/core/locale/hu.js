@@ -323,7 +323,6 @@ gca_languages['hu'] = {
 			category_global$quest_timer : "A küldetések állapota vagy az időzítő megjelenítése",
 			category_global$merchants_timer : "Kereskedők időzítőjének megjelenítése",
 			category_global$forge_timers : "Mutassa a kovácsolás/olvasztás idejének mutatóját",
-			category_global$cooldown_sound_notifications : "Hangjelzések engedélyezése (expedíció, kazamata, aréna)",
 			category_global$notify_new_guild_application : "Értesítés, ha új jelentkező van az egyesületbe",
 			category_global$notify_new_guild_application_interval : "Ellenőrizze az applikációkat minden percben",
 			category_global$notify_guild_attack_ready : "Értesítés, ha újra lehet egyesületi támadást indítani",
@@ -453,6 +452,7 @@ gca_languages['hu'] = {
 			category_events$server_quest_timer : "Esemény időzítőjének megjelenítése az oldal tetején",
 			// Settings - Sound
 			category_sound$enabled : "Hangok engedélyezése",
+			category_sound$cooldown_sound_notifications : "Hangjelzések engedélyezése (expedíció, kazamata, aréna)",
 			category_sound$muted : "Hangok némítása/visszahangosítása",
 			category_sound$volume : "Hangerő",
 			// Settings - Data
