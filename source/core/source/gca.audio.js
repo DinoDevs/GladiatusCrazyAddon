@@ -73,27 +73,6 @@ var gca_audio = {
 		}
 	},
 
-	// Id channels settings
-	channels : {},
-	setupChannel : function(id, settings) {
-		// Init channel
-		var channel = {vol : 1, mute : false, sound : 'water'};
-		if (this.channels.hasOwnProperty(id)) channel = this.channels[id];
-
-		// Set settings
-		if (typeof settings.vol !== 'undefined') {
-			channel.vol = settings.vol;
-		}
-		if (typeof settings.mute !== 'undefined') {
-			channel.mute = settings.mute;
-		}
-		if (typeof settings.sound !== 'undefined' && this.buildInSounds.hasOwnProperty(settings.sound)) {
-			channel.sound = settings.sound;
-		}
-		// Save channel
-		this.channels[id] = channel;
-	},
-
 	// Audio Object List
 	audioIdObjs : {},
 
