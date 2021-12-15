@@ -1008,8 +1008,8 @@
 		#packages div[data-gca-forge-proposal]:not([data-gca-soulbound]):after {content: "📜";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
 		#packages div[data-gca-forge-proposal=2]:not([data-gca-soulbound]):after {content: "📜📜";}
 		/* Both */
-		#packages div[data-gca-forge-proposal][data-gca-soulbound]:after {content: "📜🔗";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
-		#packages div[data-gca-forge-proposal=2][data-gca-soulbound]:after {content: "📜📜🔗";}
+		#packages div[data-gca-forge-proposal][data-gca-soulbound]:after {content: "🔗📜";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
+		#packages div[data-gca-forge-proposal=2][data-gca-soulbound]:after {content: "🔗📜📜";}
 
 		/* Bag Pop Over */
 		.contentItem.gca-bag-pop-over {z-index: 501; position: fixed; top: 18px; right: 10px;width: 256px!important;background: transparent!important;}
