@@ -15,7 +15,7 @@ var gca_audio = {
 		this._volume = gca_data.section.get('sound', 'volume', 1);
 		this._muted = gca_data.section.get('sound', 'muted', false);
 
-		this._enable = gca_options.bool('sound', 'enabled');
+		this._enable = gca_options.bool('sound', 'cooldown_sound_notifications');
 		if (!this._enable) return;
 
 		// Set up syncing interval
@@ -239,7 +239,7 @@ var gca_audio_ui = {
 	load : function() {
 		// If logged Out
 		if (document.getElementById('container_infobox') || document.getElementById('login')) return;
-		if (!gca_options.bool('sound', 'enabled')) return;
+		if (!gca_options.bool('sound', 'cooldown_sound_notifications')) return;
 		this.soundbar();
 	},
 

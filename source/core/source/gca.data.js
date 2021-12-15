@@ -633,8 +633,6 @@ gca_options.data = {
 	},
 
 	"sound" : {
-		// Sound system enabled
-		"enabled" : true,
 		// Cooldown Sound Notification
 		"cooldown_sound_notifications" : true,
 		// Sounds muted

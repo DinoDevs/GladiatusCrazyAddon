@@ -4195,7 +4195,7 @@ var gca_global = {
 			cooldown_sounds : {
 				init : function(){
 					// If no sounds and no notifications
-					if(!gca_options.bool("sound","enabled") && !gca_options.bool("global","browser_notifications")){
+					if(!gca_options.bool("sound","cooldown_sound_notifications") && !gca_options.bool("global","browser_notifications")){
 						// No way to notify the user
 						return;
 					}
@@ -4227,7 +4227,7 @@ var gca_global = {
 						cooldown = (parseInt(cooldown[1], 10) * 60 * 60 + parseInt(cooldown[2], 10) * 60 + parseInt(cooldown[3], 10))*1000;
 						// Setup a timeout
 						setTimeout(function(){
-							if(gca_options.bool("sound","enabled")){
+							if(gca_options.bool("sound","cooldown_sound_notifications")){
 								gca_audio.play(sound);
 							}
 

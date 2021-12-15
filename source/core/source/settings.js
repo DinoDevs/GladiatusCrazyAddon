@@ -1000,8 +1000,6 @@ var gca_settings = {
 			},
 
 			"sound" : {
-				// Sounds enabled
-				"enabled" : true,
 				
 				// Cooldown Sound Notification
 				"cooldown_sound_notifications" : true,
