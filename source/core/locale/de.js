@@ -468,7 +468,6 @@ gca_languages['de'] = {
 			category_events$craps_timer : "Zeigen den Timer des Würfelevents oben an",
 			category_events$server_quest_timer : "Zeigen den Timer des Server-Quest- oder Location-Events oben an",
 			// Settings - Sound
-			category_sound$enabled : "Aktiviere das Soundsystem",
 			category_sound$cooldown_sound_notifications : "Aktiviere Sound Benachrichtigungen (Expedition, Dungeon, Arena)",			
 			category_sound$muted : "Töne stummschalten / aufheben",
 			category_sound$volume : "Lautstärke",

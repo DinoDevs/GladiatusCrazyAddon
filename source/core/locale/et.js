@@ -413,7 +413,6 @@ gca_languages["et"] = {
 			category_events$craps_timer : "Näita täringumängu timerit",
 			category_events$server_quest_timer : "Näita sündmuste taimerit",
 			// Settings - Sound
-			category_sound$enabled : "Luba helid",
 			category_sound$cooldown_sound_notifications : "Anna teada kui jahtumisaeg lõpeb",
 			category_sound$muted : "Vaigista/Luba helid",
 			category_sound$volume : "Heli tugevus",

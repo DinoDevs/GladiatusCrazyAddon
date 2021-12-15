@@ -467,7 +467,6 @@ gca_languages['cs'] = {
 			category_events$craps_timer : "Zobrazit odpočet eventu kostek navrchu",
 			category_events$server_quest_timer : "Zobrazit odpočet eventu/události navrchu",
 			// Settings - Sound
-			category_sound$enabled : "Povolit zvukový systém",
 			category_sound$cooldown_sound_notifications : "Povolit upozornění zvukem (na výpravy, bludiště, arénu)",
 			category_sound$muted : "Ztlumit/Zrušit ztlumení",
 			category_sound$volume : "Hlasitost zvuků",

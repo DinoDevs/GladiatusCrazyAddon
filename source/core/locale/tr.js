@@ -342,7 +342,6 @@ gca_languages["tr"] = {
 			category_auction$save_last_state : "Aranan son kriterleri hatırla.",
 			category_events$craps_timer : "Zar etkinliğinde zamanlayıcıyı en üstte göster",
 			category_events$server_quest_timer : "Sunucu görevini veya konum olayının zamanlayıcısını en üstte göster",
-			category_sound$enabled : "Ses sistemini ektinleştir",
 			category_sound$cooldown_sound_notifications : "Sesli bildirimleri etkinleştir (Keşif, Zindan, Arena, Sirk Turma)",
 			category_sound$muted : "Sesi açma-kapatma sesleri",
 			category_sound$volume : "Ses seviyesi",

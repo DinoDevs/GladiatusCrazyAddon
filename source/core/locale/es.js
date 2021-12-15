@@ -322,7 +322,6 @@ gca_languages['es'] = {
 			category_auction$extra_item_stats : "Mostrar características extra en la imagen de objeto",
 			category_events$craps_timer : "Mostrar el dado del temporizador del evento arriba",
 			category_events$server_quest_timer : "Mostrar tarea del server o lugar del temporizador del evento arriba",
-			category_sound$enabled : "Habilitar sistema de sonido",
 			category_sound$cooldown_sound_notifications : "Activar sonidos del enfriamiento de notificaciones (expedición, mazmorra, arena)",
 			category_sound$muted : "Silenciar/Habilitar sonidos",
 			category_sound$volume : "Volumen del sonido",

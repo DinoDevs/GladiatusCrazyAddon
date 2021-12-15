@@ -450,7 +450,6 @@ gca_languages['hu'] = {
 			category_events$craps_timer : "A kockadobás játék időzítőjének megjelenítése az oldal tetején",
 			category_events$server_quest_timer : "Esemény időzítőjének megjelenítése az oldal tetején",
 			// Settings - Sound
-			category_sound$enabled : "Hangok engedélyezése",
 			category_sound$cooldown_sound_notifications : "Hangjelzések engedélyezése (expedíció, kazamata, aréna)",
 			category_sound$muted : "Hangok némítása/visszahangosítása",
 			category_sound$volume : "Hangerő",

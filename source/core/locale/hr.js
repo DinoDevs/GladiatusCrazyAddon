@@ -400,7 +400,6 @@ gca_languages['hr'] = {
 			category_events$craps_timer : "Prikaži tajmer za kockice eventa",
 			category_events$server_quest_timer : "Display server-quest or location event's timer on top",
 			// Settings - Sound
-			category_sound$enabled : "Uključi zvučni sistem",
 			category_sound$cooldown_sound_notifications : "Uključi zvučne notifikacije za hlađenje (ekspedicije, tamnica, arena)",
 			category_sound$muted : "Mutiraj/Unmutiraj zvukove",
 			category_sound$volume : "Jačina zvuka",

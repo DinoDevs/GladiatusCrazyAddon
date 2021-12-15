@@ -451,7 +451,6 @@ gca_languages['pt'] = {
 			category_events$craps_timer : "Mostrar o cronômetro do evento no topo",
 			category_events$server_quest_timer : "Mostrar missão do servidor ou cronômetro da localização do evento no topo",
 			// Settings - Sound
-			category_sound$enabled : "Habilitar sistema de som",
 			category_sound$cooldown_sound_notifications : "Habilitar notificação sonora ao terminar o tempo de espera(expedição, masmorra, arena, turma)",
 			category_sound$muted : "Remover/Adicionar sons",
 			category_sound$volume : "Volume dos sons",

@@ -458,7 +458,6 @@ gca_languages['zh'] = {
 			category_events$craps_timer : "在頂部顯示骰子遊戲的計時器",
 			category_events$server_quest_timer : "在頂部顯示服務器任務或者區域事件的計時器",
 			// Settings - Sound
-			category_sound$enabled : "啟用聲音系統",
 			category_sound$cooldown_sound_notifications : "啟用新遠征/地城/競技場提示音",
 			category_sound$muted : "靜音/恢復 聲音",
 			category_sound$volume : "音量",

@@ -250,7 +250,6 @@ gca_languages["it"] = {
 			category_auction$extra_item_stats : "Mostra statistiche extra sulle immagini degli articoli",
 			category_events$craps_timer : "Mostra il timer dell'evento in alto",
 			category_events$server_quest_timer : "Visualizza il timer dell'evento del server  in alto",
-			category_sound$enabled : "Abilita il sistema audio",
 			category_sound$cooldown_sound_notifications : "Abilita i suoni  per le notifiche (spedizione, dungeon, arena)",
 			category_sound$muted : "Disattiva / attiva i suoni",
 			category_sound$volume : "Volume dei suoni",

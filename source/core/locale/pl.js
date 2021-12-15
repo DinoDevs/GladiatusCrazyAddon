@@ -290,7 +290,6 @@ gca_languages['pl'] = {
 			category_events$craps_timer : "Wyświetl czas trwania eventu",
 			category_events$server_quest_timer : "Wyświetl zadania lub zegar wydarzenia na górze",
 			//Ustawienia -- dzwięki
-			category_sound$enabled : "Włącz system dźwięków",
 			category_sound$cooldown_sound_notifications : "Włącz dźwięk powiadomień (wyprawy, lochy, arena)",
 			category_sound$muted : "Wycisz/wyłącz wyciszenie dźwięków",
 			category_sound$volume : "Głośność dźwięków",

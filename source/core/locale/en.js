@@ -477,7 +477,6 @@ gca_languages["en"] = {
 			category_events$craps_timer : "Display dice event's timer on top",
 			category_events$server_quest_timer : "Display server-quest or location event's timer on top",
 			// Settings - Sound
-			category_sound$enabled : "Enable sound system",
 			category_sound$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_sound$muted : "Mute/Unmute sounds",
 			category_sound$volume : "Sounds volume",

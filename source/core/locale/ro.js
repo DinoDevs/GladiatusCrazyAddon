@@ -449,7 +449,6 @@ gca_languages["ro"] = {
 			category_events$craps_timer : "Afișează deasupra, cronometrul evenimentului cu zaruri",
 			category_events$server_quest_timer : "Afișează deasupra, cronometrul misiunilor pe server sau pe cel al locațiilor evenimentelor",
 			// Settings - Sound
-			category_sound$enabled : "Activează setarile pentru sunet",
 			category_sound$cooldown_sound_notifications : "Permite sunet de notificare pentru misiuni, temniţe şi arene",	
 			category_sound$muted : "Oprește/Pornește sunetul",
 			category_sound$volume : "Volum sunet",

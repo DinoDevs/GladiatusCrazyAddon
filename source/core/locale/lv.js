@@ -244,7 +244,6 @@ gca_languages['lv'] = {
 			category_auction$extra_item_stats : "Rādīt papildus prasmes uz priekšmetu attēliem",
 			category_events$craps_timer : "Rādīt metamkauliņa taimeri",
 			category_events$server_quest_timer : "Rādīt servera-uzdevuma vai vietas-uzdevuma taimeri",
-			category_sound$enabled : "Ieslēgt skaņu sistēmu",
 			category_sound$cooldown_sound_notifications : "Ieslēgt nomierināšanas laika brīdinājuma skaņu (ekspedīcija, cietums, arēna)",
 			category_sound$muted : "Ieslēgt/Izslēgt skaņas",
 			category_sound$volume : "Skaņas skaļums",

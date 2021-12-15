@@ -475,7 +475,6 @@ gca_languages["gr"] = {
 			category_events$craps_timer : "Εμφάνιση χρονομέτρου για τα event ζαριών στην κορυφή",
 			category_events$server_quest_timer : "Εμφάνιση χρονομέτρου για τα server-quest και τα event περιοχών στην κορυφή",
 			// Settings - Sound
-			category_sound$enabled : "Ενεργοποίηση συστήματος ήχων",
 			category_sound$cooldown_sound_notifications : "Ενεργοποίηση των ήχων ειδοποίησης (επιδρομής, μπουντρούμι, αρένα)",
 			category_sound$muted : "Σίγαση / κατάργηση σίγασης ήχων",
 			category_sound$volume : "Ένταση ήχων",

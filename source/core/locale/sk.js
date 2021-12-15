@@ -251,7 +251,6 @@ gca_languages['sk'] = {
 			category_auction$extra_item_stats : "Zobraziť ďalšie štatistiky o obrázku predmetov",
 			category_events$craps_timer : "Zobraziť časovač pre udalosť s kockami v hornej časti",
 			category_events$server_quest_timer : "Zobraziť časovač pre serverové akcie a eventy v hornej časti",
-			category_sound$enabled : "Povoliť zvukový systém",
 			category_sound$muted : "Stlmiť / Zrušiť zvuk",
 			category_sound$volume : "Hlasitosť zvuku",
 			category_data$export_settings : "Export údajov nastavení do súboru",

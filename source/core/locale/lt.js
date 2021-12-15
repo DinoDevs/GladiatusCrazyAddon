@@ -321,7 +321,6 @@ gca_languages['lt'] = {
 			category_auction$extra_item_stats : "Rodyti ant daiktų paveiksliuko papildomos informacijos",
 			category_events$craps_timer : "Rodyti kauliukų evento laikmatį viršuje",
 			category_events$server_quest_timer : "Rodyti serverio užduočių arba evento laikmačius viršuje",
-			category_sound$enabled : "Įjungti garsų sistemą",
 			category_sound$cooldown_sound_notifications : "Įjungti (ekspedicijų, požemių, arenų) atsistatymo garsinius įspėjimus",
 			category_sound$muted : "Nutildyti/nenutildyti garsus",
 			category_sound$volume : "Garsas",
