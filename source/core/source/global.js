@@ -160,7 +160,7 @@ var gca_global = {
 			this.background.targetLinkEditor.init());
 
 		// Cooldown Sound Notification for missions, dungeons and arenas
-		(!this.isTraveling && gca_options.bool("global","cooldown_sound_notifications") && 
+		(!this.isTraveling && gca_options.bool("sound","cooldown_sound_notifications") && 
 			this.background.notify_me.cooldown_sounds.init());
 
 
