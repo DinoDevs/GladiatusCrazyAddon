@@ -292,7 +292,6 @@ gca_languages["et"] = {
 			category_global$quest_timer : "Näita ülesande taimerit",
 			category_global$merchants_timer : "Näita kaupmeeste taimerit",
 			category_global$forge_timers : "Näita sepikoja/sulatamise taimerit",
-			category_global$cooldown_sound_notifications : "Anna teada kui jahtumisaeg lõpeb",
 			category_global$notify_new_guild_application : "Anna teada uuest gildi avaldusest",
 			category_global$notify_new_guild_application_interval : "Uue gildi avalduste kontrollimise aeg (minutites)",
 			category_global$x_scroll : "Aktiveeri horisontaalne kerimine",
@@ -416,6 +415,7 @@ gca_languages["et"] = {
 			category_events$server_quest_timer : "Näita sündmuste taimerit",
 			// Settings - Sound
 			category_sound$enabled : "Luba helid",
+			category_sound$cooldown_sound_notifications : "Anna teada kui jahtumisaeg lõpeb",
 			category_sound$muted : "Vaigista/Luba helid",
 			category_sound$volume : "Heli tugevus",
 			// Settings - Data
