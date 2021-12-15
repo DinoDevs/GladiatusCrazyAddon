@@ -325,7 +325,6 @@ gca_languages['zh'] = {
 			category_global$quest_timer : "顯示任務狀態或計時器",
 			category_global$merchants_timer : "顯示商人計時器",			
 			category_global$forge_timers : "顯示鍛造/熔煉計時指示圖標",
-			category_global$cooldown_sound_notifications : "啟用新遠征/地城/競技場提示音",
 			category_global$notify_new_guild_application : "提醒我在有新的工會消息時",
 			category_global$notify_new_guild_application_interval : "檢查工會消息間隔 (分鐘)",
 			category_global$notify_guild_attack_ready : "當工會戰攻擊冷卻好時提醒我",
@@ -461,6 +460,7 @@ gca_languages['zh'] = {
 			category_events$server_quest_timer : "在頂部顯示服務器任務或者區域事件的計時器",
 			// Settings - Sound
 			category_sound$enabled : "啟用聲音系統",
+			category_sound$cooldown_sound_notifications : "啟用新遠征/地城/競技場提示音",
 			category_sound$muted : "靜音/恢復 聲音",
 			category_sound$volume : "音量",
 			// Settings - Data
