@@ -333,7 +333,6 @@ gca_languages['cs'] = {
 			category_global$quest_timer : "Zobrazit stav úkolů nebo časovač",
 			category_global$merchants_timer : "Zobrazit čas obchodníků",
 			category_global$forge_timers : "Zobrazit časový indikátor kovárny/tavírny",
-			category_global$cooldown_sound_notifications : "Povolit upozornění zvukem (na výpravy, bludiště, arénu)",
 			category_global$notify_new_guild_application : "Upozorni mě na novou přihlášku do gildy",
 			category_global$notify_new_guild_application_interval : "Kontrolovat gildovní příhlášky každých (minut)",
 			category_global$notify_guild_attack_ready : "Upozorni mě na dobu čeká na gildovní bitvu",
@@ -470,6 +469,7 @@ gca_languages['cs'] = {
 			category_events$server_quest_timer : "Zobrazit odpočet eventu/události navrchu",
 			// Settings - Sound
 			category_sound$enabled : "Povolit zvukový systém",
+			category_sound$cooldown_sound_notifications : "Povolit upozornění zvukem (na výpravy, bludiště, arénu)",
 			category_sound$muted : "Ztlumit/Zrušit ztlumení",
 			category_sound$volume : "Hlasitost zvuků",
 			// Settings - Data
