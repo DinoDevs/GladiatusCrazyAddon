@@ -232,46 +232,6 @@ var gca_audio = {
 	},
 };
 
-
-// Audio channels
-var gca_audio_channels = {
-	// List of channels
-	list : {
-		'expedition_notification'	: {sound : 'water'},
-		'dungeon_notification' 		: {sound : 'water'},
-		'arena_notification'		: {sound : 'water'},
-		'turma_notification'		: {sound : 'water'},
-		'auction_notification'		: {sound : 'coin'},
-		'sound_toggle'				: {sound : 'water'}
-	},
-
-	preload : function() {
-		this.setup();
-	},
-
-	load : function() {
-		// Settings load
-		for (let channel in this.list) {
-			if (this.list.hasOwnProperty(channel)) {
-				this.list[channel] = gca_data.section.get('sound_objects', 'channels', this.list[channel]);
-			}
-		}
-
-		this.setup();
-	},
-
-	setup : function() {
-		// Setup sound channels
-		for (let channel in this.list) {
-			if (this.list.hasOwnProperty(channel)) {
-				gca_audio.setupChannel(channel, this.list[channel]);
-			}
-		}
-		// gca_audio.setupChannel("<id string>", {vol : <0-1>, mute : <boolean>, sound : "<sound id string>"});
-	}
-};
-
-
 // Audio UI
 var gca_audio_ui = {
 	load : function() {
@@ -334,7 +294,6 @@ var gca_audio_ui = {
 
 window.gca_audio_loader = function() {
 	if (typeof gca_tools === 'undefined' || typeof gca_data === 'undefined') return;
-	gca_audio_channels.load();
 	gca_audio.load();
 	gca_audio_ui.load();
 	window.gca_audio_loader = false;
