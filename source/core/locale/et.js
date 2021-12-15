@@ -274,7 +274,6 @@ gca_languages["et"] = {
 
 			// Settings - Global
 			category_global$language_select : "Vali keel",
-			category_global$sound_notifications : "Aktiveeri teavituste helid",
 			category_global$browser_notifications : "Aktiveeri brauseri teated",
 			category_global$extended_hp_xp_info : "Näita elupunktide ja xp infot üleval, kui leht alla keritud",
 			category_global$extended_hp_xp_info_potion : "Näita elueliksiiri kasutamiseks ikooni",

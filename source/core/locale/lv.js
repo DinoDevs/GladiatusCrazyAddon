@@ -145,7 +145,6 @@ gca_languages['lv'] = {
 			category_sound : "Skaņas iestatījumi",
 			category_data : "Dati",
 			category_global$language_select : "Izmainīt paplašinājuma valodu",
-			category_global$sound_notifications : "Atļaut skaņu informācijas signālus misijām, cietumiem, arēnām",
 			category_global$browser_notifications : "Atļaut pārlūka ziņojumus",
 			category_global$extended_hp_xp_info : "Rādīt paplašināto HP un XP galvenes informāciju",
 			category_global$extended_hp_xp_info_potion : "Rādīt dzīvības eliksīra izmantošanas ikonu",

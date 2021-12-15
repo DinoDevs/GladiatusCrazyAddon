@@ -146,7 +146,6 @@ gca_languages["it"] = {
 			category_sound : "Suoni",
 			category_data : "Salva Impostazioni ",
 			category_global$language_select : "Seleziona Lingua",
-			category_global$sound_notifications : "Attiva suono notifica",
 			category_global$browser_notifications : "Attiva notifica browser",
 			category_global$extended_hp_xp_info : "Visualizza informazioni HP e Esp",
 			category_global$extended_hp_xp_info_potion : "Visualizza Icona \"Utilizza Pozione\"",

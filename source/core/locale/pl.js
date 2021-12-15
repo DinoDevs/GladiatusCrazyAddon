@@ -148,7 +148,6 @@ gca_languages['pl'] = {
 			category_sound : "Dżwięki",
 			category_data : "Dane",
 			category_global$language_select : "Wybierz język dodatku",
-			category_global$sound_notifications : "Włącz dźwięki powiadomień",
 			category_global$browser_notifications : "Włącz powiadomienia przeglądarki",
 			category_global$extended_hp_xp_info : "Wyświetl informacje o HP i XP",
 			category_global$extended_hp_xp_info_potion : "Wyświetl ikonę mikstury życia",

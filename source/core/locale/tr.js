@@ -213,7 +213,6 @@ gca_languages["tr"] = {
 			category_sound : "Ses Ayarları",
 			category_data : "Eklenti Ayarları",
 			category_global$language_select : "Eklenti dilini değiştir",
-			category_global$sound_notifications : "Görevler, zindanlar ve arenalar için sesle uyar",
 			category_global$browser_notifications : "Tarayıcı bildirimlerini aç",
 			category_global$extended_hp_xp_info : "Sayfanın üst kısmında genişletilmiş HP ve TP bilgilerini göster",
 			category_global$extended_hp_xp_info_potion : "Şifa iksirini göster",

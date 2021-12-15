@@ -324,7 +324,6 @@ gca_languages["gr"] = {
 
 			// Settings - Global
 			category_global$language_select: "Αλλαγή της γλώσσας του πρόσθετου",
-			category_global$sound_notifications: "Ενεργοποίηση των ήχων ειδοποίησης για αποστολές, μπουντρούμια και αρένες",
 			category_global$browser_notifications : "Ενεργοποίηση των ειδοποιήσεων φυλλομετρητή (browser)",
 			category_global$extended_hp_xp_info: "Προβολή εκτεταμένων πληροφοριών για HP και XP",
 			category_global$extended_hp_xp_info_potion : "Προβολή εικονιδίου χρήσης φίλτρου ζωής",

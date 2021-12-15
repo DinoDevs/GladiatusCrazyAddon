@@ -315,7 +315,6 @@ gca_languages['cs'] = {
 			
 			// Settings - Global
 			category_global$language_select : "Změň jazyk addonu",
-			category_global$sound_notifications : "Povolit zvukové upozornění na výpravy, bludiště a arény",
 			category_global$browser_notifications : "Povolit upozornění v prohlížeči",
 			category_global$extended_hp_xp_info : "Zobraz rozšířené informace o HP a XP na liště",
 			category_global$extended_hp_xp_info_potion : "Zobraz ikonu léčivého lektvaru",

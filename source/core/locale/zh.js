@@ -307,7 +307,6 @@ gca_languages['zh'] = {
 
 			// Settings - Global
 			category_global$language_select : "更改插件顯示的語言",
-			category_global$sound_notifications : "啟用聲音通知(任務，地下城和競技場)",
 			category_global$browser_notifications : "啟用瀏覽器提醒",
 			category_global$extended_hp_xp_info : "顯示延伸的生命值和經驗值資訊",
 			category_global$extended_hp_xp_info_potion : "顯示生命藥水使用圖標",

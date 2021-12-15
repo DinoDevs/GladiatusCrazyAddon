@@ -305,7 +305,6 @@ gca_languages['hu'] = {
 
 			// Settings - Global
 			category_global$language_select : "Segédprogram nyelvének kiválasztása",
-			category_global$sound_notifications : "Hangok értesítéseinek engedélyezése ",
 			category_global$browser_notifications : "Böngésző értesítéseinek engedélyezése",
 			category_global$extended_hp_xp_info : "Életerő és tapasztalati pontok megjelenítése",
 			category_global$extended_hp_xp_info_potion : "Életerő ital ikonjának megjelenítése",

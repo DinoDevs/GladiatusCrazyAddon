@@ -306,7 +306,6 @@ gca_languages['pt'] = {
 			
 			// Settings - Global
 			category_global$language_select : "Alterar a linguagem do Add-on",
-			category_global$sound_notifications : "Ativar notificações de som",
 			category_global$browser_notifications : "Ativar notificações do navegador",
 			category_global$extended_hp_xp_info : "Mostrar informação extendida de Pontos de Vida e Experiência na barra superior.",
 			category_global$extended_hp_xp_info_potion : "Exibir ícone de uso de poção de vida",

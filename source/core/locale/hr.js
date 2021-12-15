@@ -261,7 +261,6 @@ gca_languages['hr'] = {
 
 			// Settings - Global
 			category_global$language_select : "Odaberite jezik addona",
-			category_global$sound_notifications : "Uključi zvučne notifikacije",
 			category_global$browser_notifications : "Uključi browser notifikacije",
 			category_global$extended_hp_xp_info : "Prikaži prošireno HP i XP zaglavlje",
 			category_global$extended_hp_xp_info_potion : "Prikaži ikonicu za korišćenje napitka Života",

@@ -304,7 +304,6 @@ gca_languages["ro"] = {
 
 			// Settings - Global
 			category_global$language_select : "Alege limba interfeței addon-ului",
-			category_global$sound_notifications : "Activează notificările prin sunet",
 			category_global$browser_notifications : "Activează notificările în browser",
 			category_global$extended_hp_xp_info : "Afişează informații liniare despre viaţă şi experienţă în antet",
 			category_global$extended_hp_xp_info_potion : "Afișează scurtătura pentru poțiunea de vindecare 100%",

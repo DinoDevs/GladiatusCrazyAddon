@@ -147,7 +147,6 @@ gca_languages['sk'] = {
 			category_sound$cooldown_sound_notifications : "Zvukové oznámenie (expedícia, žalár, aréna)",
 			category_data : "Údaje",
 			category_global$language_select : "Jazyk addonu",
-			category_global$sound_notifications : "Zvukové upozornenia",
 			category_global$browser_notifications : "Upozornenia prehliadača",
 			category_global$extended_hp_xp_info : "Rozšírené informácie o HP a XP na hlavnej lište",
 			category_global$extended_hp_xp_info_potion : "Ikona Nápoj zdravia",

@@ -326,7 +326,6 @@ gca_languages["en"] = {
 
 			// Settings - Global
 			category_global$language_select : "Select addon's language",
-			category_global$sound_notifications : "Enable sound notifications",
 			category_global$browser_notifications : "Enable browser notifications",
 			category_global$extended_hp_xp_info : "Display extended HP and XP header info",
 			category_global$extended_hp_xp_info_potion : "Display life potion use icon",

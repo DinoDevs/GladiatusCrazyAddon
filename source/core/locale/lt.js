@@ -217,7 +217,6 @@ gca_languages['lt'] = {
 			category_sound : "Garsai",
 			category_data : "Duomenys",
 			category_global$language_select : "Nustatyti papildinio kalbą",
-			category_global$sound_notifications : "Įjungti garsinius įspėjimus",
 			category_global$browser_notifications : "Įjungti naršyklės įspėjimus",
 			category_global$extended_hp_xp_info : "Atvaizduoti išplėstinę gyvybės ir patirties informaciją",
 			category_global$extended_hp_xp_info_potion : "Atvaizduoti naudoti gyvybės gėrimą ikoną",

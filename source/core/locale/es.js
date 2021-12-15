@@ -207,7 +207,6 @@ gca_languages['es'] = {
 			category_sound : "Sonidos",
 			category_data : "Información",
 			category_global$language_select : "Cambiar idioma",
-			category_global$sound_notifications : "Activar notificaciones de sonido",
 			category_global$browser_notifications : "Activar notificaciones del navegador",
 			category_global$extended_hp_xp_info : "Mostrar datos de vida y experiencia extendidos",
 			category_global$extended_hp_xp_info_potion : "Mostrar icono de uso de poción",

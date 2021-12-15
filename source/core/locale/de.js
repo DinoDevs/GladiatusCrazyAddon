@@ -322,7 +322,6 @@ gca_languages['de'] = {
 
 			// Settings - Global
 			category_global$language_select : "Add-on Sprache ändern",
-			category_global$sound_notifications : "Aktiviere Ton Benachrichtigungen für Missionen, Dungeons und Arenas",
 			category_global$browser_notifications : "Aktiviere Browser Benachrichtigungen",
 			category_global$extended_hp_xp_info : "Zeige erweiterte HP und XP Infos",
 			category_global$extended_hp_xp_info_potion : "Zeige den Heiltrank Button",
