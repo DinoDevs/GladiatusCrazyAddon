@@ -325,10 +325,7 @@ gca_options.data = {
 		"merchants_timer" : true,
 		// Forge
 		"forge_timers" : true,
-
-		// Cooldown Sound Notification
-		"cooldown_sound_notifications" : true,
-
+		
 		// Notifications
 		"notify_new_guild_application" : false,
 		"notify_guild_attack_ready" : false,
@@ -640,6 +637,8 @@ gca_options.data = {
 	"sound" : {
 		// Sound system enabled
 		"enabled" : true,
+		// Cooldown Sound Notification
+		"cooldown_sound_notifications" : true,
 		// Sounds muted
 		"muted" : false,
 		// Volume scale
