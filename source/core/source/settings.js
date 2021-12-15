@@ -583,10 +583,7 @@ var gca_settings = {
 				"merchants_timer" : true,
 				// Forge
 				"forge_timers" : true,
-
-				// Cooldown Sound Notification
-				"cooldown_sound_notifications" : true,
-
+				
 				// Notifications
 				"notify_new_guild_application" : false,
 				// Notifications Interval in minutes
@@ -1005,6 +1002,10 @@ var gca_settings = {
 			"sound" : {
 				// Sounds enabled
 				"enabled" : true,
+				
+				// Cooldown Sound Notification
+				"cooldown_sound_notifications" : true,
+				
 				// Sounds muted
 				"muted" : {
 					"type" : "boolean",
@@ -1019,33 +1020,7 @@ var gca_settings = {
 					"scale" : 0.01,
 					"db" : "section",
 				},
-				/*
-				// Channels
-				"channels" : (function(){
-					var scheme = {
-						type : 'custom',
-						dom : function(data, title, wrapper){
-							// Channels wrapper
-							var section = document.createElement('div');
-
-							let channels = gca_audio_channels.list;
-							for (let channel in channels) {
-								if (channels.hasOwnProperty(channel)) {
-									let div = document.createElement('div');
-									div.textContent = channel;
-									section.appendChild(div);
-								}
-							}
-
-							return section;
-						},
-						save : function(data){
-							//gca_data.section.set("global", "show_durability", data.select.value);
-						}
-					};
-					return scheme;
-				})()
-				*/
+				
 			},
 
 			"data" : {
