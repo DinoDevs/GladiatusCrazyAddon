@@ -73,6 +73,40 @@ var gca_audio = {
 		}
 	},
 
+	// Sounds list
+	buildInSounds : {
+		'water'			: 'alert-sound-water.ogg',
+		'coin'			: 'coins.ogg',
+		'channel'		: 'communication-channel.ogg',
+		'voila'			: 'et-voila.ogg',
+		'in-the-way'	: 'gets-in-the-way.ogg',
+		'done'			: 'job-done.ogg',
+		'pizzicato'		: 'pizzicato.ogg',
+		'served'		: 'served.ogg',
+		'wet'			: 'wet.ogg'
+	},
+
+	// Id channels settings
+	channels : {},
+	setupChannel : function(id, settings) {
+		// Init channel
+		var channel = {vol : 1, mute : false, sound : 'water'};
+		if (this.channels.hasOwnProperty(id)) channel = this.channels[id];
+
+		// Set settings
+		if (typeof settings.vol !== 'undefined') {
+			channel.vol = settings.vol;
+		}
+		if (typeof settings.mute !== 'undefined') {
+			channel.mute = settings.mute;
+		}
+		if (typeof settings.sound !== 'undefined' && this.buildInSounds.hasOwnProperty(settings.sound)) {
+			channel.sound = settings.sound;
+		}
+		// Save channel
+		this.channels[id] = channel;
+	},
+
 	// Audio Object List
 	audioIdObjs : {},
 
@@ -198,6 +232,46 @@ var gca_audio = {
 	},
 };
 
+
+// Audio channels
+var gca_audio_channels = {
+	// List of channels
+	list : {
+		'expedition_notification'	: {sound : 'water'},
+		'dungeon_notification' 		: {sound : 'water'},
+		'arena_notification'		: {sound : 'water'},
+		'turma_notification'		: {sound : 'water'},
+		'auction_notification'		: {sound : 'coin'},
+		'sound_toggle'				: {sound : 'water'}
+	},
+
+	preload : function() {
+		this.setup();
+	},
+
+	load : function() {
+		// Settings load
+		for (let channel in this.list) {
+			if (this.list.hasOwnProperty(channel)) {
+				this.list[channel] = gca_data.section.get('sound_objects', 'channels', this.list[channel]);
+			}
+		}
+
+		this.setup();
+	},
+
+	setup : function() {
+		// Setup sound channels
+		for (let channel in this.list) {
+			if (this.list.hasOwnProperty(channel)) {
+				gca_audio.setupChannel(channel, this.list[channel]);
+			}
+		}
+		// gca_audio.setupChannel("<id string>", {vol : <0-1>, mute : <boolean>, sound : "<sound id string>"});
+	}
+};
+
+
 // Audio UI
 var gca_audio_ui = {
 	load : function() {
@@ -260,6 +334,7 @@ var gca_audio_ui = {
 
 window.gca_audio_loader = function() {
 	if (typeof gca_tools === 'undefined' || typeof gca_data === 'undefined') return;
+	gca_audio_channels.load();
 	gca_audio.load();
 	gca_audio_ui.load();
 	window.gca_audio_loader = false;
