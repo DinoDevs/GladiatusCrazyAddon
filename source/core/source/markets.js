@@ -392,16 +392,18 @@ var gca_markets = {
 		let modeSwitch = document.createElement("div");
 		modeSwitch.className = "switch-field";
 		modeSwitch.id = "mode-switch";
+		wrapper.appendChild(modeSwitch);
+
 		let normal_mode = document.createElement("input");
 		normal_mode.type = "radio";
 		normal_mode.id = "normal_mode";
 		normal_mode.name = "sell_mode";
 		normal_mode.value = 0;
-		if(selected_mode === 0)
+		if (selected_mode === 0)
 			normal_mode.checked = true;
 		let normal_mode_label = document.createElement("label");
 		normal_mode_label.setAttribute("for", "normal_mode");
-		normal_mode_label.textContent = 'Auto';//gca_locale.get("training", "stats_points");
+		normal_mode_label.textContent = 'Auto';
 		modeSwitch.appendChild(normal_mode);
 		modeSwitch.appendChild(normal_mode_label);
 
@@ -410,12 +412,11 @@ var gca_markets = {
 		oneG_mode.id = "1g_mode";
 		oneG_mode.name = "sell_mode";
 		oneG_mode.value = 1;
-		if(selected_mode === 1)
+		if (selected_mode === 1)
 			oneG_mode.checked = true;
 		let oneG_mode_label = document.createElement("label");
 		oneG_mode_label.setAttribute("for", "1g_mode");
-		oneG_mode_label.textContent = '1g';//gca_locale.get("training", "points_breakdown");
-		wrapper.appendChild(modeSwitch);
+		oneG_mode_label.textContent = '1g';
 		modeSwitch.appendChild(oneG_mode);
 		modeSwitch.appendChild(oneG_mode_label);
 		
@@ -424,12 +425,11 @@ var gca_markets = {
 		cost_mode.id = "cost_mode";
 		cost_mode.name = "sell_mode";
 		cost_mode.value = 2;
-		if(selected_mode === 2)
+		if (selected_mode === 2)
 			cost_mode.checked = true;
 		let cost_mode_label = document.createElement("label");
 		cost_mode_label.setAttribute("for", "cost_mode");
 		cost_mode_label.textContent = gca_data.section.get("cache", "value_tanslation", "Value");
-		wrapper.appendChild(modeSwitch);
 		modeSwitch.appendChild(cost_mode);
 		modeSwitch.appendChild(cost_mode_label);
 		
@@ -440,51 +440,31 @@ var gca_markets = {
 		modeSwitch.appendChild(auto_value);
 		
 		// Custom market prices
-		
-		let price_value1 = document.createElement("label");
-		price_value1.id = "price_value1";
-		price_value1.textContent = "💰 100k";
-		modeSwitch.appendChild(price_value1);
-		
-		//event handler
-		price_value1.addEventListener("click", function () {
-                 document.getElementById("preis").value = "100000";
+		let custom_prices = [];
+		(gca_options.get("market", "custom_prices") || '').split(',').forEach((price) => {
+			price = price.trim();
+			let isMultiply = (price.substring(0, 1).toLowerCase() == 'x');
+			price = parseFloat(isMultiply ? price.slice(1) : price);
+			if (!isNaN(price) && price > 0) {
+				custom_prices.push(isMultiply ? 'x' + price : price);
+			}
+		});
 
-    })
+		custom_prices.forEach((price) => {
+			let custom_mode = document.createElement("input");
+			custom_mode.type = "radio";
+			custom_mode.id = "gca_custom_mode_" + price;
+			custom_mode.name = "sell_mode";
+			custom_mode.value = "custom_" + price;
+			if (selected_mode === "custom_" + price)
+				custom_mode.checked = true;
+			let custom_mode_label = document.createElement("label");
+			custom_mode_label.setAttribute("for", custom_mode.id);
+			custom_mode_label.textContent = "💰 " + ((price + '').replace(/000000$/,'m').replace(/000$/,'k'));
+			modeSwitch.appendChild(custom_mode);
+			modeSwitch.appendChild(custom_mode_label);
+		});
 	
-		let price_value2 = document.createElement("label");
-		price_value2.id = "price_value2";
-		price_value2.textContent = "💰 250k";
-		modeSwitch.appendChild(price_value2);
-		
-		//event handler
-		price_value2.addEventListener("click", function () {
-                 document.getElementById("preis").value = "250000";
-
-    })
-	
-		let price_value3 = document.createElement("label");
-		price_value3.id = "price_value3";
-		price_value3.textContent = "💰 500k";
-		modeSwitch.appendChild(price_value3);
-		
-		//event handler
-		price_value3.addEventListener("click", function () {
-                 document.getElementById("preis").value = "500000";
-
-    })
-	
-		let price_value4 = document.createElement("label");	
-		price_value4.id = "price_value4";
-		price_value4.textContent = "💰 1M";
-		modeSwitch.appendChild(price_value4);
-		
-		//event handler
-		price_value4.addEventListener("click", function () {
-                 document.getElementById("preis").value = "1000000";
-
-    })
-		
 		var get_translation = (gca_data.section.get("cache", "value_tanslation", "true")=="true")?true:false;
 
 		// On item drop function
@@ -511,14 +491,29 @@ var gca_markets = {
 		
 		// Change mode
 		var modeSwitchFunction = function(){
-			let selected = parseInt(document.querySelector('input[name=sell_mode]:checked').value);
+			let selected = document.querySelector('input[name=sell_mode]:checked').value;
 			gca_data.section.set("cache", "last_sell_1g_mode", selected); // Save last selected mode
 			if(document.getElementById('preis').value != ''){
-				if(selected == 1){
+				// Just 1 g
+				if (selected == 1) {
 					document.getElementById('preis').value = 1;
-				}else if(selected == 2){
+				}
+				// Cost value
+				else if(selected == 2) {
 					document.getElementById('preis').value = Math.round(document.getElementById('auto_value').value*0.375);
-				}else{
+				}
+				// Custom price values
+				else if(selected.substring(0, 8) == 'custom_x') {
+					let price = selected.match(/^custom_x(\d+\.?\d*)/);
+					console.log((price ? parseFloat(price[1]) : 1));
+					document.getElementById('preis').value = Math.round(Math.round(document.getElementById('auto_value').value * 0.375) * (price ? parseFloat(price[1]) : 1));
+				}
+				else if(selected.substring(0, 7) == 'custom_') {
+					let price = selected.match(/^custom_(\d+)/);
+					document.getElementById('preis').value = price ? parseInt(price[1], 10) : document.getElementById('auto_value').value;
+				}
+				// Traditional
+				else {
 					document.getElementById('preis').value = document.getElementById('auto_value').value;
 				}
 			}

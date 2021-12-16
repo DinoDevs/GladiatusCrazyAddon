@@ -931,6 +931,8 @@ var gca_settings = {
 				})(),
 				// 1 gold mode
 				"one_gold_mode" : true,
+				// Custom prices
+				"custom_prices" : "",
 				// Remember sorting
 				"remember_sort" : false,
 				// Double click to select
@@ -1356,6 +1358,9 @@ var gca_settings = {
 							case "integer" :
 								this.scheme[category][label] = this.class.integer(locale, _category, _label, _db);
 								break;
+							case "string" :
+								this.scheme[category][label] = this.class.string(locale, _category, _label, _db);
+								break;
 							case "enumerator" :
 								var _values = this.scheme[category][label].values;
 								var _values_locale = this.scheme[category][label].values_locale;
@@ -1401,9 +1406,10 @@ var gca_settings = {
 								type = "integer";
 						}
 						else{
-							if(type.match(/\|/i)){
+							if(type.match(/\|/i))
 								type = "enumerator";
-							}
+							else
+								type = "string";
 						}
 						var db = "options";
 
@@ -1418,6 +1424,14 @@ var gca_settings = {
 								break;
 							case "integer" :
 								this.scheme[category][label] = this.class.integer(
+									gca_locale.get("settings", "category_" + category + "$" + label),
+									category,
+									label,
+									db
+								);
+								break;
+							case "string" :
+								this.scheme[category][label] = this.class.string(
 									gca_locale.get("settings", "category_" + category + "$" + label),
 									category,
 									label,
@@ -1672,6 +1686,7 @@ var gca_settings = {
 			switch(scheme.type){
 				case "boolean": return this.construct.boolean(id, scheme, container);
 				case "integer": return this.construct.integer(id, scheme, container);
+				case "string": return this.construct.string(id, scheme, container);
 				case "enumerator": return this.construct.enumerator(id, scheme, container);
 				case "range": return this.construct.range(id, scheme, container);
 				case "custom": return this.construct.custom(id, scheme, container);
@@ -1810,6 +1825,49 @@ var gca_settings = {
 						else if(scheme.data.db == "section"){
 							gca_data.section.set(scheme.data.category, scheme.data.label, value);
 						}
+					}
+				};
+
+				return item;
+			},
+
+			string : function(id, scheme, container){
+				// Item object
+				var item = {};
+				item.id = id;
+				item.data = {};
+
+				// Type Wrapper
+				var typeWrapper = document.createElement('div');
+				typeWrapper.className = "type-wrapper type-string";
+				var title = document.createElement('span');
+				title.textContent = scheme.locale;
+				typeWrapper.appendChild(title);
+				container.appendChild(typeWrapper);
+
+				var select = document.createElement('div');
+				select.className = "switch-field";
+
+				item.data.input = document.createElement('input');
+				item.data.input.type = "text";
+				item.data.input.id = id + "__string";
+				item.data.input.name = id;
+				item.data.input.value = scheme.value;
+				select.appendChild(item.data.input);
+
+				typeWrapper.appendChild(select);
+
+				var clearBoth = document.createElement('div');
+				clearBoth.style.clear = "both";
+				typeWrapper.appendChild(clearBoth);
+
+				item.save = function(){
+					var value = item.data.input.value;
+					if(scheme.data.db == "options"){
+						gca_options.set(scheme.data.category, scheme.data.label, value);
+					}
+					else if(scheme.data.db == "section"){
+						gca_data.section.set(scheme.data.category, scheme.data.label, value);
 					}
 				};
 
@@ -2009,6 +2067,21 @@ var gca_settings = {
 			integer : function(locale, category, label, db){
 				return {
 					type : "integer",
+					locale : locale,
+					data : {
+						category : category,
+						label : label,
+						db : db
+					},
+					value : 
+						(db == "options") ? gca_options.get(category, label) :
+						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
+						null
+				};
+			},
+			string : function(locale, category, label, db){
+				return {
+					type : "string",
 					locale : locale,
 					data : {
 						category : category,
