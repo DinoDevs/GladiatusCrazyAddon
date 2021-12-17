@@ -932,7 +932,57 @@ var gca_settings = {
 				// 1 gold mode
 				"one_gold_mode" : true,
 				// Custom prices
-				"custom_prices" : "",
+				"custom_prices" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							if(wrapper.className.length > 0) wrapper.className += " ";
+							wrapper.className += "type-string";
+
+							let field = document.createElement("div");
+							field.className = "switch-field";
+
+							data.input = document.createElement("input");
+							data.input.type = "text";
+							data.input.value = gca_options.get("market", "custom_prices");
+
+							field.appendChild(data.input);
+
+							return field;
+						},
+						"save" : function(data){
+							// Parse data and clean them bofore saving them
+							let custom_prices = [];
+							(data.input.value || '').split(',').forEach((price) => {
+								price = price.trim().replace(/\./g, '');
+								price = price.match(/^(\d+)(%?)$/);
+								if (!price) return;
+								let isPercentage = price[2] == '%';
+								price = parseInt(price[1], 10);
+								if (!isNaN(price) && price > 0) {
+									let value = isPercentage ? price + '%' : gca_tools.strings.insertDots(price);
+									if (!custom_prices.includes(value)) custom_prices.push(value);
+								}
+							});
+							gca_options.set("market", "custom_prices", custom_prices.join(', '));
+						}
+					};
+					return scheme;
+				})(),
+
+				/*
+				(function(){
+					var scheme = {
+						"type" : "string",
+						"save" : function(data){
+							console.log(data.select.value);
+							//gca_options.set("market", "custom_prices", data.select.value);
+						}
+					};
+					return scheme;
+				})(),
+				*/
+
 				// Remember sorting
 				"remember_sort" : false,
 				// Double click to select

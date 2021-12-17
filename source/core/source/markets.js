@@ -442,11 +442,13 @@ var gca_markets = {
 		// Custom market prices
 		let custom_prices = [];
 		(gca_options.get("market", "custom_prices") || '').split(',').forEach((price) => {
-			price = price.trim();
-			let isMultiply = (price.substring(0, 1).toLowerCase() == 'x');
-			price = parseFloat(isMultiply ? price.slice(1) : price);
+			price = price.trim().replace(/\./g, '');
+			price = price.match(/^(\d+)(%?)$/);
+			if (!price) return;
+			let isPercentage = price[2] == '%';
+			price = parseInt(price[1], 10);
 			if (!isNaN(price) && price > 0) {
-				custom_prices.push(isMultiply ? 'x' + price : price);
+				custom_prices.push(isPercentage ? price + '%' : price);
 			}
 		});
 
@@ -503,14 +505,15 @@ var gca_markets = {
 					document.getElementById('preis').value = Math.round(document.getElementById('auto_value').value*0.375);
 				}
 				// Custom price values
-				else if(selected.substring(0, 8) == 'custom_x') {
-					let price = selected.match(/^custom_x(\d+\.?\d*)/);
-					console.log((price ? parseFloat(price[1]) : 1));
-					document.getElementById('preis').value = Math.round(Math.round(document.getElementById('auto_value').value * 0.375) * (price ? parseFloat(price[1]) : 1));
-				}
 				else if(selected.substring(0, 7) == 'custom_') {
-					let price = selected.match(/^custom_(\d+)/);
-					document.getElementById('preis').value = price ? parseInt(price[1], 10) : document.getElementById('auto_value').value;
+					if (selected.charAt(selected.length - 1) == '%') {
+						let price = selected.match(/^custom_(\d+)%$/);
+						document.getElementById('preis').value = Math.round(Math.round(document.getElementById('auto_value').value * 0.375) * (price ? (parseInt(price[1])/100) : 1));
+					}
+					else {
+						let price = selected.match(/^custom_(\d+)/);
+						document.getElementById('preis').value = price ? parseInt(price[1], 10) : document.getElementById('auto_value').value;
+					}
 				}
 				// Traditional
 				else {
