@@ -435,7 +435,7 @@ gca_languages['cs'] = {
 			category_market$remember_sell_duration : "Zapamatovat poslední zvolenou dobu prodeje",
 			category_market$sell_duration : "Zvol výchozí dobu prodeje",
 			category_market$one_gold_mode : "Nastavit výchozí cenu předmětu na 1 zlaťák",
-			category_market$custom_prices : "Vlastní nastavitelné ceny tržiště, rozděleny čárkou. Cenu položky lze vynásobit přidáním 'x' před číslo. (např., '10000, x1.5')",
+			category_market$custom_prices : "Vlastní nastavitelné ceny tržiště, rozděleny čárkou. Cenu položky lze také vypočítat procentuálně přidáním '%' za číslo. (např., '10.000, 200%')",
 			category_market$remember_sort : "Zapamatovat poslední zvolené seřazení",
 			category_market$double_click_select : "Vybrat předmět dvojitým klikem",
 			category_market$sell_warning_icons : "Ikona varování při prodávání předmětů",
