@@ -1814,6 +1814,11 @@ var gca_global = {
 							linkUrl = gca_getPage.link(gca_data.section.get('cache', 'auction_last_search_mercenary', {mod : 'auction', ttype : '3'}));
 						// Display Message
 						gca_notifications.info( auctionName + " : " + auctionStatus, linkUrl);
+						// If sound notifications
+						if(gca_options.bool("sound","cooldown_sound_notifications")){
+							// Make a sound
+							gca_audio.play("water");
+						}
 					}
 				}
 				// Save status
