@@ -445,7 +445,7 @@ gca_languages["en"] = {
 			category_market$remember_sell_duration : "Remember last chosen sell duration",
 			category_market$sell_duration : "Select default sell duration",
 			category_market$one_gold_mode : "Toggle button changing sell price always to 1 gold",
-			category_market$custom_prices : "Custom market prices, seperated with commas. Calculate base on percentage of the item's price by adding an '%'. (e.g., '10.000, 200%')",
+			category_market$custom_prices : "Custom market prices, seperated with commas. Calculate base on percentage of the item's price by adding an '%'. (e.g., '10000, 10.000, 200%')",
 			category_market$remember_sort : "Remember last sort order",
 			category_market$double_click_select : "Select item with double click",
 			category_market$sell_warning_icons : "Warning icon when selling items",
