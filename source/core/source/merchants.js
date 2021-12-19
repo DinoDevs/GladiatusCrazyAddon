@@ -56,7 +56,7 @@ var gca_merchants = {
 
 			let searchQuality = document.createElement("select");
 			searchQuality.className = 'inputText gca-search-input';
-			searchQuality.id = 'gca-search-input';
+			searchQuality.id = 'gca-search-input-color';
 			searchQuality.style.color = this.qualities[0];
 			searchQuality.style.fontWeight = 'bold';
 			searchQuality.style.cursor = 'pointer';
