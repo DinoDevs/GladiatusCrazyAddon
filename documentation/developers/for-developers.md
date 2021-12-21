@@ -1,5 +1,5 @@
 ## About
-<img src="/source/icons/icon_128.png" align="right"/>
+<img src="/documentation/resources/icon_128.png" align="right"/>
 
 Gladiatus Crazy Addon is made in javascript and CSS.
  
