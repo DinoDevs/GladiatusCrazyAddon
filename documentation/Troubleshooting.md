@@ -16,7 +16,7 @@ We would like to offer you help if you are having problems with the addon, below
 - [Browser up-to-date](Troubleshooting.md#browser-up-to-date)
 - [GCA version check](Troubleshooting.md#gca-version-check)
 - [Look out for console errors](Troubleshooting.md#look-out-for-console-errors)
-- [Make sure your connection/computer speed is enough](Troubleshooting.md#make-sure-your-connection/computer-speed-is-enough)
+- [Make sure your connection and computer speed is enough](Troubleshooting.md#make-sure-your-connection-and-computer-speed-is-enough)
 - [Gladiatus server outages](Troubleshooting.md#gladiatus-server-outages)
 - [Check GCA Github for existings bugs](Troubleshooting.md#check-gca-github-for-existings-bugs)
 - [If nothing helps](Troubleshooting.md#if-nothing-helps)
@@ -96,7 +96,7 @@ Console error example:
 
 **Beware!** Other extensions that can affect Gladiatus (Adblock, uBlock...) may create console errors, we suggest to disable them before inspecting the console.
 
-## Make sure your connection/computer speed is enough
+## Make sure your connection and computer speed is enough
 
 Gladiatus is mostly made of pictures, GCA is made of scripts, all this can put some load on your internet and hardware, if it's not enough, some parts of the website can stop showing or working as they normally should.
 
