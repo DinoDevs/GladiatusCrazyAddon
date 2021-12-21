@@ -9,17 +9,17 @@ This is a troubleshooting guide for Gladiatus Crazy Addon.
 We would like to offer you help if you are having problems with the addon, below, you can see a list of potential fixes, please check it out.
 
 ## List of potential fixes
-- [Log off / Restart your browser / Restart your computer](Troubleshooting.md#)
-- [Clear cookies and any other data](Troubleshooting.md#)
-- [Disable other extensions](Troubleshooting.md#)
-- [Reinstall GCA](Troubleshooting.md#)
-- [Browser up-to-date](Troubleshooting.md#)
-- [GCA version check](Troubleshooting.md#)
-- [Look out for console errors](Troubleshooting.md#)
-- [Make sure your connection/computer speed is enough](Troubleshooting.md#)
-- [Gladiatus server outages](Troubleshooting.md#)
-- [Check GCA Github for existings bugs](Troubleshooting.md#)
-- [If nothing helps](Troubleshooting.md#)
+- [Log off / Restart your browser / Restart your computer](Troubleshooting.md#log-off-/-restart-your-browser-/-restart-your-computer)
+- [Clear cookies and any other data](Troubleshooting.md#clear-cookies-and-any-other-data)
+- [Disable other extensions](Troubleshooting.md#disable-other-extensions)
+- [Reinstall GCA](Troubleshooting.md#reinstall-gca)
+- [Browser up-to-date](Troubleshooting.md#browser-up-to-date)
+- [GCA version check](Troubleshooting.md#gca-version-check)
+- [Look out for console errors](Troubleshooting.md#look-out-for-console-errors)
+- [Make sure your connection/computer speed is enough](Troubleshooting.md#make-sure-your-connection/computer-speed-is-enough)
+- [Gladiatus server outages](Troubleshooting.md#gladiatus-server-outages)
+- [Check GCA Github for existings bugs](Troubleshooting.md#check-gca-github-for-existings-bugs)
+- [If nothing helps](Troubleshooting.md#if-nothing-helps)
 
 
 ## Log off / Restart your browser / Restart your computer
@@ -105,7 +105,7 @@ Thus, we recommend checking your internet speed with free tools on the internet 
 For your computer, check the task manager to see if you are not putting too heavy load on your computer, it can slow the browser's abillity to load websites. Disable background applications you don't need to free more resources and speed things up.
 
 <details>
-  <summary><b>Show image (task manager)</b></summary>
+  <summary><b>🖼️ Show image (task manager)</b></summary>
 <img src="/documentation/resources/troubleshooting/taskmanager.PNG"/>
 </details>
 
