@@ -29,6 +29,7 @@ var gca_settings = {
 		urls : {
 			bug_report : gca_links.get('addon-github') + '/issues/new?template=bug.md',
 			idea_request : gca_links.get('addon-github') + '/issues/new?template=feature-request.md',
+			troubleshooting_guide : gca_links.get('addon-github') + '/blob/master/documentation/Troubleshooting.md',
 			translate_addon : gca_links.get('addon-github') + '/blob/master/documentation/translators/README.md',
 
 			github_link : gca_links.get('addon-github') + '/issues',
@@ -156,6 +157,21 @@ var gca_settings = {
 			p.appendChild(a);
 			p.appendChild(document.createTextNode("."));
 			body.appendChild(p);
+			
+			// Troubleshooting guide note
+			p = document.createElement("div");
+			p.style.paddingBottom = "10px";
+			p.appendChild(document.createTextNode("You can also check our 🚩 "));
+			body.appendChild(p);
+			a = document.createElement("a");
+			a.setAttribute("href", this.urls.troubleshooting_guide);
+			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noreferrer");
+			a.style.color = "#612d04;";
+			a.style.textDecoration = "underline";
+			a.textContent = "Troubleshooting guide";
+			p.appendChild(a);
+			p.appendChild(document.createTextNode(" that might help you solve your problem!"));			
 
 			p = document.createElement("div");
 			p.style.paddingBottom = "10px";
