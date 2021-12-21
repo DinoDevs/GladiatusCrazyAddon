@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages["tr"] = {
 	name : "Türkçe (Turkish)",
-	translators : ["Xus (s25)", "Anonim", "Emefar (s33-s41)"],
+	translators : ["mattemre, Xus (s25)", "Anonim", "Emefar (s33-s41)"],
 	locale : {
 		info : {
 			description : "Gladiatus için yapılmış en güzel eklenti!"
@@ -135,7 +135,24 @@ gca_languages["tr"] = {
 		training : {
 			stats_points : "Eğitim Puanı",
 			points_breakdown : "Eğitim Dağılımı",
+			points_breakdown_damage : "Hasar: +{{integer}} (+{{float}})",
+	                points_breakdown_block : "Blok: +{{integer}}% (+{{float}}%)",
+	                points_breakdown_block_max : "Blok: maximum değer",
+	                points_breakdown_normal_hit : "Vuruş şansı: +{{integer}}% (+{{float}}‰) *",
+	                points_breakdown_critical_hit : "Kritik vuruş şansı: +{{integer}}% (+{{float}}‰)",
+	                points_breakdown_double_hit : "Çifte vuruş şansı: +{{integer}}% (+{{float}}‰) *",
+	                points_breakdown_avoid : "Kritik vuruştan kaçma şansı: +{{integer}}% (+{{float}}‰)",
+	                points_breakdown_avoid_max : "Kritik vuruştan kaçma şansı: maximum değer",
+	                points_breakdown_enemy_normal_hit : "Rakip vuruş şansı: {{integer}}% ({{float}}‰) *",
+	                points_breakdown_enemy_double_hit : "Rakip çifte vuruş şansı: {{integer}}% ({{float}}‰) *",
+	                points_breakdown_life : "Yaşam puanı: +{{number}}",
+	                points_breakdown_regeneration : "Saatlik iyileşme: +{{number}}",
+	                points_breakdown_threat : "Tehlike: +{{integer}} (+{{float}})",
+	                points_breakdown_heal : "İyileşme: +{{integer}} (+{{float}})",
+	                points_breakdown_critical_heal : "Kritik iyileşme: +{{integer}}% (+{{float}}‰)",
+	                points_breakdown_critical_heal_max : "Kritik iyileşme: maximum değer",	                
 			stats_calculated_with_yourself_as_an_opponent : "* Yukardaki istatistikler kendinize saldırmak kavramıyla hesaplanır.",
+			values_in_parenthesis_explanation : "Parantez içindeki değerler bir önceki turu temsil eder.",
 			total_cost : "Toplam Tutar",
 			costs_discount : "Eğitim indirimi: {{number}}%"
 		},
@@ -162,7 +179,8 @@ gca_languages["tr"] = {
 		forge : {
 			forge_ended : "Eşya üretimi bitti",
 			recraft_item : "Eşyayı yeniden oluştur",
-			show_hide_doll : "Eşyalarımı Göster/Gizle"
+			show_hide_doll : "Eşyalarımı Göster/Gizle",
+			horreum_material_change : "Demirhane malzemeleri değişimi"
 		},
 		merchants : {
 			search_item_in_merchants : "Tüccarda item ara",
@@ -209,6 +227,7 @@ gca_languages["tr"] = {
 			category_expedition : "Keşif Ayarları",
 			category_guild : "İttifak Ayarları",
 			category_auction : "Müzayede Ayarları",
+			category_accessibility : "Erişebilirlik",
 			category_events : "Etkinlik Ayarları",
 			category_sound : "Ses Ayarları",
 			category_data : "Eklenti Ayarları",
@@ -283,6 +302,7 @@ gca_languages["tr"] = {
 			category_packages$special_category_features : "Özel kategori özelliklerini etkinleştir",
 			category_packages$double_click_open : "Paketleri açmak için çift tıkla",
 			category_packages$advance_filter : "Gelişmiş sandık filtrelemesini etkinleştir",
+			category_packages$pop_over_bag : "Kaydırmada çantayı aç",
 			category_pantheon$quests_reorder : "Görev grubunu göster",
 			category_pantheon$quests_detailed_rewards : "Görevlerin ödüllerini ayrıntılı göster",
 			category_pantheon$missions_show_completed : "Tamamlanan görevleri göster",
@@ -342,6 +362,13 @@ gca_languages["tr"] = {
 			category_auction$multi_bids : "Sayfayı yenilemeden teklif ver",
 			category_auction$extra_item_stats : "Eşya resimlerinde ekstra istatistikleri göster",
 			category_auction$save_last_state : "Aranan son kriterleri hatırla.",
+			
+			// Settings - Accessibility
+			category_accessibility$white_level_indicators : "Öğe seviyelerini beyaz olarak değiştir",
+	                category_accessibility$qualty_symbols_indicators : "Öğelere kalite sembolü ekle",
+	                category_accessibility$tooltips_qualty_white : "Öğe açıklamasında öğe adını beyaz olarak değiştir",
+	                category_accessibility$tooltips_qualty_symbols : "Öğe açıklamasına kalite sembolü ekle",
+			
 			category_events$craps_timer : "Zar etkinliğinde zamanlayıcıyı en üstte göster",
 			category_events$server_quest_timer : "Sunucu görevini veya konum olayının zamanlayıcısını en üstte göster",
 			category_sound$enabled : "Ses sistemini ektinleştir",
