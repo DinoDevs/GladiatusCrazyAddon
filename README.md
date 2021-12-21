@@ -71,6 +71,12 @@ Find set-by-step guides for all major browsers on our [installation docs](docume
 
 You can read about all available features in our [documentation](documentation/features/README.md) made by [Zitronenen](https://github.com/Zitronenen) (aka [Sleeping*Shadow](https://s26-de.gladiatus.gameforge.com/game/index.php?mod=player&p=18833)).
 
+## :triangular_flag_on_post: Troubleshooting 
+
+Before submitting an Issue with a potential bug, check our list with potential fixes, it might help you to solve your problem!
+
+<a href="https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/documentation/Troubleshooting.md">► Troubleshooting guide</a>
+
 
 ## :books: Translation
 
