@@ -18,7 +18,7 @@ We would like to offer you help if you are having problems with the addon, below
 - [Look out for console errors](Troubleshooting.md#look-out-for-console-errors)
 - [Make sure your connection and computer speed is enough](Troubleshooting.md#make-sure-your-connection-and-computer-speed-is-enough)
 - [Gladiatus server outages](Troubleshooting.md#gladiatus-server-outages)
-- [Check GCA Github for existings bugs](Troubleshooting.md#check-gca-github-for-existings-bugs)
+- [Check GCA GitHub for existing bugs](Troubleshooting.md#check-gca-github-for-existing-bugs)
 - [If nothing helps](Troubleshooting.md#if-nothing-helps)
 
 
@@ -48,16 +48,16 @@ By clicking on the lock 🔒 symbol next to the website address, we can find the
 ## Disable other extensions
 
 <img src="/documentation/resources/troubleshooting/addons.PNG" align="right"/>
-Disable any browser extensions that could affect the Gladiatus website (like Ablock, uBlock etc..) and see if your problem is resolved.
+Disable any browser extensions that could affect the Gladiatus website (like Ablock, uBlock etc...) and see if your problem is resolved.
 
 
 ## Reinstall GCA
 
-Unistall and install the addon back again, before doing so, we recommend also clearing your cookies and data.
+Uninstall and install the addon back again, before doing so, we recommend also clearing your cookies and data.
 
 ## Browser up-to-date
 
-Modern browsers are updating automatically, but make sure you are using the latest version of your browser by visiting it in the settings, you may also have an pending update and a browser restart is needed.
+Modern browsers are updating automatically, but make sure you are using the latest version of your browser by visiting it in the settings, you may also have a pending update and a browser restart is needed.
 
 **Opera**: Click on the main Opera icon and select Update & Recovery.
 
@@ -74,16 +74,16 @@ Modern browsers are updating automatically, but make sure you are using the late
 
 ## GCA version check
 
-Make sure you are using the latest version of GCA, you can find it the website footer (GCA vX.X.X) or when you go to your profile settings. GCA is updated automatically, but it may take a few days after a release to reach you (due to the checking process).
+Make sure you are using the latest version of GCA, you can find it in the website footer (GCA vX.X.X) or when you go to your profile settings. GCA is updated automatically, but it may take a few days after a release to reach you (due to the checking process).
 
 <img src="/documentation/resources/troubleshooting/gca_version.PNG"/>
 
 
-The latest stable version is always showed on our <a href="https://github.com/DinoDevs/GladiatusCrazyAddon">Github</a>.
+The latest stable version is always showed on our <a href="https://github.com/DinoDevs/GladiatusCrazyAddon">GitHub</a>.
 
 ## Look out for console errors
 
-Your browser has an console built-in, you can open it by pressing F12 on your keyboard, there you can see what is happening with the site, together with warning and errors. 
+Your browser has a console built-in, you can open it by pressing F12 (Opera: Ctrl+Shift+J) on your keyboard, there you can see what is happening with the site, together with warning and errors. 
 
 Errors are usually colored red and these are the ones that you are looking for, some errors can be harmless, while some are the ones that are causing you problems.
 
@@ -94,7 +94,7 @@ Console error example:
 <img src="/documentation/resources/troubleshooting/error_example.PNG" align="right"/>
 
 
-**Beware!** Other extensions that can affect Gladiatus (Adblock, uBlock...) may create console errors, we suggest to disable them before inspecting the console.
+**Beware!** Other extensions that can affect Gladiatus (Adblock, uBlock...) may create console errors, we suggest disabling them before inspecting the console.
 
 ## Make sure your connection and computer speed is enough
 
@@ -102,7 +102,7 @@ Gladiatus is mostly made of pictures, GCA is made of scripts, all this can put s
 
 Thus, we recommend checking your internet speed with free tools on the internet (like https://www.speedtest.net/) to make sure it's running fast enough.
 
-For your computer, check the task manager to see if you are not putting too heavy load on your computer, it can slow the browser's abillity to load websites. Disable background applications you don't need to free more resources and speed things up.
+For your computer, check the task manager to see if you are not putting too heavy load on your computer, it can slow the browser's ability to load websites. Disable background applications you don't need to free more resources and speed things up.
 
 <details>
   <summary><b>🖼️ Show image (task manager)</b></summary>
@@ -113,10 +113,11 @@ For your computer, check the task manager to see if you are not putting too heav
 
 In some cases, the fault is not on your side, not on addon's side, but even the game servers are having a bad time, sometimes they react slow or not at all, that's not an GCA issue. For more serious problems, we do recommend visiting the official Gladiatus forum.
 
-## Check GCA Github for existings bugs
-Check our Github <a href="https://github.com/DinoDevs/GladiatusCrazyAddon/issues">Issues</a> for any existing bugs you may be experiencing, if you find your problem too, it means it's been already reported and we are working on a fix, this fix will be out when a new GCA version will be released (there is no ETA on when).
+## Check GCA GitHub for existing bugs
+
+Check our GitHub <a href="https://github.com/DinoDevs/GladiatusCrazyAddon/issues">Issues</a> for any existing bugs you may be experiencing, if you find your problem too, it means it's been already reported and we are working on a fix, this fix will be out when a new GCA version will be released (there is no ETA on when).
 
 <img src="/documentation/resources/troubleshooting/issues.PNG" align="right"/>
 
 ## If nothing helps
-If nothing helps, then this is indeed a GCA bug/error, please create a new issue in the <a href="https://github.com/DinoDevs/GladiatusCrazyAddon/issues">Issues</a> section and describe to us your problem, it is advised that you (if possible) also add any screenshots or any visible errors from your browser console, these will help us to indentify the problem.
+If nothing helps, then this is indeed a GCA bug/error, please create a new issue in the <a href="https://github.com/DinoDevs/GladiatusCrazyAddon/issues">Issues</a> section and describe to us your problem, it is advised that you (if possible) also add any screenshots or any visible errors from your browser console, these will help us to identify the problem.
