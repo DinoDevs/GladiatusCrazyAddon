@@ -324,7 +324,6 @@ gca_languages["gr"] = {
 
 			// Settings - Global
 			category_global$language_select: "Αλλαγή της γλώσσας του πρόσθετου",
-			category_global$sound_notifications: "Ενεργοποίηση των ήχων ειδοποίησης για αποστολές, μπουντρούμια και αρένες",
 			category_global$browser_notifications : "Ενεργοποίηση των ειδοποιήσεων φυλλομετρητή (browser)",
 			category_global$extended_hp_xp_info: "Προβολή εκτεταμένων πληροφοριών για HP και XP",
 			category_global$extended_hp_xp_info_potion : "Προβολή εικονιδίου χρήσης φίλτρου ζωής",
@@ -342,7 +341,6 @@ gca_languages["gr"] = {
 			category_global$quest_timer: "Εμφάνιση της κατάστασης/χρόνου των αποστολών",
 			category_global$merchants_timer: "Προβολή του χρονομέτρου των πωλητών",
 			category_global$forge_timers : "Προβολή του χρονομέτρου σιδηρουργείου/χυτηρίου",
-			category_global$cooldown_sound_notifications : "Ενεργοποίηση των ήχων ειδοποίησης (επιδρομής, μπουντρούμι, αρένα)",
 			category_global$notify_new_guild_application : "Ειδοποίηση για νέες αιτήσεις στο τάγμα",
 			category_global$notify_new_guild_application_interval : "Έλεγχος για νέες αιτήσεις κάθε (λεπτά)",
 			category_global$notify_guild_attack_ready : "Ειδοποίηση όταν το τάγμα είναι έτοιμο να επιτεθεί",
@@ -477,7 +475,7 @@ gca_languages["gr"] = {
 			category_events$craps_timer : "Εμφάνιση χρονομέτρου για τα event ζαριών στην κορυφή",
 			category_events$server_quest_timer : "Εμφάνιση χρονομέτρου για τα server-quest και τα event περιοχών στην κορυφή",
 			// Settings - Sound
-			category_sound$enabled : "Ενεργοποίηση συστήματος ήχων",
+			category_sound$cooldown_sound_notifications : "Ενεργοποίηση των ήχων ειδοποίησης (επιδρομής, μπουντρούμι, αρένα)",
 			category_sound$muted : "Σίγαση / κατάργηση σίγασης ήχων",
 			category_sound$volume : "Ένταση ήχων",
 			// Settings - Data

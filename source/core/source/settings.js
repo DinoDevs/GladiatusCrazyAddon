@@ -515,9 +515,7 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
-
-				// Sounds
-				"sound_notifications" : true,
+				
 				// Browser notifications
 				"browser_notifications" : true,
 
@@ -601,10 +599,7 @@ var gca_settings = {
 				"merchants_timer" : true,
 				// Forge
 				"forge_timers" : true,
-
-				// Cooldown Sound Notification
-				"cooldown_sound_notifications" : true,
-
+				
 				// Notifications
 				"notify_new_guild_application" : false,
 				// Notifications Interval in minutes
@@ -947,6 +942,58 @@ var gca_settings = {
 				})(),
 				// 1 gold mode
 				"one_gold_mode" : true,
+				// Custom prices
+				"custom_prices" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							if(wrapper.className.length > 0) wrapper.className += " ";
+							wrapper.className += "type-string";
+
+							let field = document.createElement("div");
+							field.className = "switch-field";
+
+							data.input = document.createElement("input");
+							data.input.type = "text";
+							data.input.value = gca_options.get("market", "custom_prices");
+
+							field.appendChild(data.input);
+
+							return field;
+						},
+						"save" : function(data){
+							// Parse data and clean them bofore saving them
+							let custom_prices = [];
+							(data.input.value || '').split(',').forEach((price) => {
+								price = price.trim().replace(/\./g, '');
+								price = price.match(/^(\d+)(%?)$/);
+								if (!price) return;
+								let isPercentage = price[2] == '%';
+								price = parseInt(price[1], 10);
+								if (!isNaN(price) && price > 0) {
+									let value = isPercentage ? price + '%' : gca_tools.strings.insertDots(price);
+									if (!custom_prices.includes(value)) custom_prices.push(value);
+								}
+							});
+							gca_options.set("market", "custom_prices", custom_prices.join(', '));
+						}
+					};
+					return scheme;
+				})(),
+
+				/*
+				(function(){
+					var scheme = {
+						"type" : "string",
+						"save" : function(data){
+							console.log(data.select.value);
+							//gca_options.set("market", "custom_prices", data.select.value);
+						}
+					};
+					return scheme;
+				})(),
+				*/
+
 				// Remember sorting
 				"remember_sort" : false,
 				// Double click to select
@@ -1021,8 +1068,8 @@ var gca_settings = {
 			},
 
 			"sound" : {
-				// Sounds enabled
-				"enabled" : true,
+				// Cooldown Sound Notification
+				"cooldown_sound_notifications" : true,
 				// Sounds muted
 				"muted" : {
 					"type" : "boolean",
@@ -1037,33 +1084,7 @@ var gca_settings = {
 					"scale" : 0.01,
 					"db" : "section",
 				},
-				/*
-				// Channels
-				"channels" : (function(){
-					var scheme = {
-						type : 'custom',
-						dom : function(data, title, wrapper){
-							// Channels wrapper
-							var section = document.createElement('div');
-
-							let channels = gca_audio_channels.list;
-							for (let channel in channels) {
-								if (channels.hasOwnProperty(channel)) {
-									let div = document.createElement('div');
-									div.textContent = channel;
-									section.appendChild(div);
-								}
-							}
-
-							return section;
-						},
-						save : function(data){
-							//gca_data.section.set("global", "show_durability", data.select.value);
-						}
-					};
-					return scheme;
-				})()
-				*/
+				
 			},
 
 			"data" : {
@@ -1372,6 +1393,9 @@ var gca_settings = {
 							case "integer" :
 								this.scheme[category][label] = this.class.integer(locale, _category, _label, _db);
 								break;
+							case "string" :
+								this.scheme[category][label] = this.class.string(locale, _category, _label, _db);
+								break;
 							case "enumerator" :
 								var _values = this.scheme[category][label].values;
 								var _values_locale = this.scheme[category][label].values_locale;
@@ -1417,9 +1441,10 @@ var gca_settings = {
 								type = "integer";
 						}
 						else{
-							if(type.match(/\|/i)){
+							if(type.match(/\|/i))
 								type = "enumerator";
-							}
+							else
+								type = "string";
 						}
 						var db = "options";
 
@@ -1434,6 +1459,14 @@ var gca_settings = {
 								break;
 							case "integer" :
 								this.scheme[category][label] = this.class.integer(
+									gca_locale.get("settings", "category_" + category + "$" + label),
+									category,
+									label,
+									db
+								);
+								break;
+							case "string" :
+								this.scheme[category][label] = this.class.string(
 									gca_locale.get("settings", "category_" + category + "$" + label),
 									category,
 									label,
@@ -1688,6 +1721,7 @@ var gca_settings = {
 			switch(scheme.type){
 				case "boolean": return this.construct.boolean(id, scheme, container);
 				case "integer": return this.construct.integer(id, scheme, container);
+				case "string": return this.construct.string(id, scheme, container);
 				case "enumerator": return this.construct.enumerator(id, scheme, container);
 				case "range": return this.construct.range(id, scheme, container);
 				case "custom": return this.construct.custom(id, scheme, container);
@@ -1826,6 +1860,49 @@ var gca_settings = {
 						else if(scheme.data.db == "section"){
 							gca_data.section.set(scheme.data.category, scheme.data.label, value);
 						}
+					}
+				};
+
+				return item;
+			},
+
+			string : function(id, scheme, container){
+				// Item object
+				var item = {};
+				item.id = id;
+				item.data = {};
+
+				// Type Wrapper
+				var typeWrapper = document.createElement('div');
+				typeWrapper.className = "type-wrapper type-string";
+				var title = document.createElement('span');
+				title.textContent = scheme.locale;
+				typeWrapper.appendChild(title);
+				container.appendChild(typeWrapper);
+
+				var select = document.createElement('div');
+				select.className = "switch-field";
+
+				item.data.input = document.createElement('input');
+				item.data.input.type = "text";
+				item.data.input.id = id + "__string";
+				item.data.input.name = id;
+				item.data.input.value = scheme.value;
+				select.appendChild(item.data.input);
+
+				typeWrapper.appendChild(select);
+
+				var clearBoth = document.createElement('div');
+				clearBoth.style.clear = "both";
+				typeWrapper.appendChild(clearBoth);
+
+				item.save = function(){
+					var value = item.data.input.value;
+					if(scheme.data.db == "options"){
+						gca_options.set(scheme.data.category, scheme.data.label, value);
+					}
+					else if(scheme.data.db == "section"){
+						gca_data.section.set(scheme.data.category, scheme.data.label, value);
 					}
 				};
 
@@ -2025,6 +2102,21 @@ var gca_settings = {
 			integer : function(locale, category, label, db){
 				return {
 					type : "integer",
+					locale : locale,
+					data : {
+						category : category,
+						label : label,
+						db : db
+					},
+					value : 
+						(db == "options") ? gca_options.get(category, label) :
+						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
+						null
+				};
+			},
+			string : function(locale, category, label, db){
+				return {
+					type : "string",
 					locale : locale,
 					data : {
 						category : category,

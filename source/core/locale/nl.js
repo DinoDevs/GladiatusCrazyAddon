@@ -128,7 +128,6 @@ gca_languages['nl'] = {
 			category_guild : "Gilde instellingen",
 			category_auction : "Veiling instellingen",
 			category_global$language_select : "Verander de taal van de add-on",
-			category_global$sound_notifications : "Zet het herinneringsgeluid aan voor missies, dungeons en arena's",
 			category_global$extended_hp_xp_info : "Toon HP en XP bovenaan",
 			category_global$shortcuts_bar : "Toon knoppenbalk",
 			category_global$auction_status_bar : "Toon veiling status",

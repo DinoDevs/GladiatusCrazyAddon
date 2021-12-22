@@ -120,7 +120,6 @@ gca_languages['nb'] = {
 			category_auction : "Auksjon",
 			category_sound : "Lyder",
 			category_global$language_select : "Velg utvidelse språk",
-			category_global$sound_notifications : "Aktiver lyd varsling for oppdrag, fangehule og arenaer",
 			category_global$extended_hp_xp_info : "Vis ekstra helse- og erfarings poeng hoved info",
 			category_global$auction_status_bar : "Vis auksjons status indikator",
 			category_global$advance_main_menu : "Forbedre hoved meny",

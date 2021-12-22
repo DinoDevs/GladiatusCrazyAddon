@@ -272,8 +272,6 @@ gca_options.data = {
 
 	// Global Options
 	"global" : {
-		// Sounds
-		"sound_notifications" : true,
 		// Browser notifications
 		"browser_notifications" : true,
 
@@ -325,10 +323,7 @@ gca_options.data = {
 		"merchants_timer" : true,
 		// Forge
 		"forge_timers" : true,
-
-		// Cooldown Sound Notification
-		"cooldown_sound_notifications" : true,
-
+		
 		// Notifications
 		"notify_new_guild_application" : false,
 		"notify_guild_attack_ready" : false,
@@ -562,6 +557,8 @@ gca_options.data = {
 		"sell_duration" : 0,
 		// 1 gold mode
 		"one_gold_mode" : true,
+		// Custom prices
+		"custom_prices" : "",
 		// Remember sorting 
 		"remember_sort" : false,
 		// Double click to select
@@ -638,8 +635,8 @@ gca_options.data = {
 	},
 
 	"sound" : {
-		// Sound system enabled
-		"enabled" : true,
+		// Cooldown Sound Notification
+		"cooldown_sound_notifications" : true,
 		// Sounds muted
 		"muted" : false,
 		// Volume scale
@@ -657,6 +654,6 @@ if (new URLSearchParams(window.location.search).get('mod') == 'settings') {
 	// Initiate Options
 	gca_options.init();
 
-	// Load audio
+	// Try to load sound
 	if (window.gca_audio_loader) window.gca_audio_loader();
 })();

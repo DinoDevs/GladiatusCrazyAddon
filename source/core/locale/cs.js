@@ -315,7 +315,6 @@ gca_languages['cs'] = {
 			
 			// Settings - Global
 			category_global$language_select : "Změň jazyk addonu",
-			category_global$sound_notifications : "Povolit zvukové upozornění na výpravy, bludiště a arény",
 			category_global$browser_notifications : "Povolit upozornění v prohlížeči",
 			category_global$extended_hp_xp_info : "Zobraz rozšířené informace o HP a XP na liště",
 			category_global$extended_hp_xp_info_potion : "Zobraz ikonu léčivého lektvaru",
@@ -333,7 +332,6 @@ gca_languages['cs'] = {
 			category_global$quest_timer : "Zobrazit stav úkolů nebo časovač",
 			category_global$merchants_timer : "Zobrazit čas obchodníků",
 			category_global$forge_timers : "Zobrazit časový indikátor kovárny/tavírny",
-			category_global$cooldown_sound_notifications : "Povolit upozornění zvukem (na výpravy, bludiště, arénu)",
 			category_global$notify_new_guild_application : "Upozorni mě na novou přihlášku do gildy",
 			category_global$notify_new_guild_application_interval : "Kontrolovat gildovní příhlášky každých (minut)",
 			category_global$notify_guild_attack_ready : "Upozorni mě na dobu čeká na gildovní bitvu",
@@ -435,6 +433,7 @@ gca_languages['cs'] = {
 			category_market$remember_sell_duration : "Zapamatovat poslední zvolenou dobu prodeje",
 			category_market$sell_duration : "Zvol výchozí dobu prodeje",
 			category_market$one_gold_mode : "Nastavit výchozí cenu předmětu na 1 zlaťák",
+			category_market$custom_prices : "Vlastní nastavitelné ceny tržiště, rozděleny čárkou. Cenu položky lze také vypočítat procentuálně přidáním '%' za číslo. (např., '10000, 10.000, 200%')",
 			category_market$remember_sort : "Zapamatovat poslední zvolené seřazení",
 			category_market$double_click_select : "Vybrat předmět dvojitým klikem",
 			category_market$sell_warning_icons : "Ikona varování při prodávání předmětů",
@@ -469,7 +468,7 @@ gca_languages['cs'] = {
 			category_events$craps_timer : "Zobrazit odpočet eventu kostek navrchu",
 			category_events$server_quest_timer : "Zobrazit odpočet eventu/události navrchu",
 			// Settings - Sound
-			category_sound$enabled : "Povolit zvukový systém",
+			category_sound$cooldown_sound_notifications : "Povolit upozornění zvukem (na výpravy, bludiště, arénu)",
 			category_sound$muted : "Ztlumit/Zrušit ztlumení",
 			category_sound$volume : "Hlasitost zvuků",
 			// Settings - Data

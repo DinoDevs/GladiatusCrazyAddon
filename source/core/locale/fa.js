@@ -83,7 +83,6 @@ gca_languages['fa'] = {
 			category_guild : "تنظیمات اتحاد",
 			category_auction : "تنظیمات حراجی",
 			category_global$language_select : "زبان افزونه",
-			category_global$sound_notifications : "فعالسازی صدا برای اطلاع دادن ماموریت  و حمله در میدان ها",
 			category_global$extended_hp_xp_info : "نمایش اطلاعات سلامتی و تجربه در بالای صفحه",
 			category_global$shortcuts_bar : "نمایش نوار بالایی",
 			category_global$auction_status_bar : "نمایش زمان حراجی",

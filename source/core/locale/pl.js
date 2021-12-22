@@ -148,7 +148,6 @@ gca_languages['pl'] = {
 			category_sound : "Dżwięki",
 			category_data : "Dane",
 			category_global$language_select : "Wybierz język dodatku",
-			category_global$sound_notifications : "Włącz dźwięki powiadomień",
 			category_global$browser_notifications : "Włącz powiadomienia przeglądarki",
 			category_global$extended_hp_xp_info : "Wyświetl informacje o HP i XP",
 			category_global$extended_hp_xp_info_potion : "Wyświetl ikonę mikstury życia",
@@ -166,7 +165,6 @@ gca_languages['pl'] = {
 			category_global$quest_timer : "Pokaż status zadań lub licznik",
 			category_global$merchants_timer : "Wyświetl czas kupców",
 			category_global$forge_timers : "Wyświetl czas w kuźni/roztapiarce",
-			category_global$cooldown_sound_notifications : "Włącz dźwięk powiadomień (wyprawy, lochy, arena)",
 			category_global$notify_new_guild_application : "Powiadom mnie, gdy pojawi się nowe podanie do gildii",
 			category_global$notify_new_guild_application_interval : "Sprawdzaj podania do gildii (minuty)",
 			category_global$x_scroll : "Włącz przewijanie w poziomie",
@@ -292,7 +290,7 @@ gca_languages['pl'] = {
 			category_events$craps_timer : "Wyświetl czas trwania eventu",
 			category_events$server_quest_timer : "Wyświetl zadania lub zegar wydarzenia na górze",
 			//Ustawienia -- dzwięki
-			category_sound$enabled : "Włącz system dźwięków",
+			category_sound$cooldown_sound_notifications : "Włącz dźwięk powiadomień (wyprawy, lochy, arena)",
 			category_sound$muted : "Wycisz/wyłącz wyciszenie dźwięków",
 			category_sound$volume : "Głośność dźwięków",
 			//Ustawienia -- Dane

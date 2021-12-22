@@ -83,7 +83,6 @@ gca_languages['he'] = {
 			category_guild : "הגדרות אגודה",
 			category_auction : "הגדרות מכרזים",
 			category_global$language_select : "שנה את שפת התוסף",
-			category_global$sound_notifications : "אפשר התראה קולית עבור סיורים, צינוקים ומשימות",
 			category_global$extended_hp_xp_info : "הצג בראש הדף תצוגה מורחבת של נקודות החיים וההתנסות",
 			category_global$shortcuts_bar : "הצג את בר הכפתורים בראש הדף",
 			category_global$auction_status_bar : "הצג את מצב המכרזים",

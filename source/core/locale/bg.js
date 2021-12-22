@@ -146,7 +146,6 @@ gca_languages['bg'] = {
 			category_sound : "Звуци",
 			category_data : "Данни",
 			category_global$language_select : "Смени езика",
-			category_global$sound_notifications : "Издавай звуков сигнал при завършване на мисии, подземия и арени",
 			category_global$browser_notifications : "Позволете на браузъра Ви да ви изпраща известия",
 			category_global$extended_hp_xp_info : "Покажи разширено инфо за жизнените точки и точките опит",
 			category_global$extended_hp_xp_info_potion : "Покажете иконата за ползване на колба живот",

@@ -160,7 +160,7 @@ var gca_global = {
 			this.background.targetLinkEditor.init());
 
 		// Cooldown Sound Notification for missions, dungeons and arenas
-		(!this.isTraveling && gca_options.bool("global","cooldown_sound_notifications") && 
+		(!this.isTraveling && gca_options.bool("sound","cooldown_sound_notifications") && 
 			this.background.notify_me.cooldown_sounds.init());
 
 
@@ -1815,9 +1815,9 @@ var gca_global = {
 						// Display Message
 						gca_notifications.info( auctionName + " : " + auctionStatus, linkUrl);
 						// If sound notifications
-						if(gca_options.bool("global","sound_notifications")){
+						if(gca_options.bool("sound","cooldown_sound_notifications")){
 							// Make a sound
-							gca_audio.play("auction_notification");
+							gca_audio.play("auction-status-change-notification");
 						}
 					}
 				}
@@ -4200,7 +4200,7 @@ var gca_global = {
 			cooldown_sounds : {
 				init : function(){
 					// If no sounds and no notifications
-					if(!gca_options.bool("sound","enabled") && !gca_options.bool("global","browser_notifications")){
+					if(!gca_options.bool("sound","cooldown_sound_notifications") && !gca_options.bool("global","browser_notifications")){
 						// No way to notify the user
 						return;
 					}
@@ -4208,13 +4208,13 @@ var gca_global = {
 					// Wait a sec
 					setTimeout(() => {
 						// Missions
-						this.initActionCooldown("cooldown_bar_text_expedition", "expedition_notification", expeditionProgressBar.readyText, "expedition");
+						this.initActionCooldown("cooldown_bar_text_expedition", "expedition-notification", expeditionProgressBar.readyText, "expedition");
 						// Dungeon
-						this.initActionCooldown("cooldown_bar_text_dungeon", "dungeon_notification", dungeonProgressBar.readyText, "dungeon");
+						this.initActionCooldown("cooldown_bar_text_dungeon", "dungeon-notification", dungeonProgressBar.readyText, "dungeon");
 						// Arena
-						this.initActionCooldown("cooldown_bar_text_arena", "arena_notification", arenaProgressBar.readyText, "arena");
+						this.initActionCooldown("cooldown_bar_text_arena", "arena-notification", arenaProgressBar.readyText, "arena");
 						// Arena Turma
-						this.initActionCooldown("cooldown_bar_text_ct", "turma_notification", ctProgressBar.readyText, "turma");
+						this.initActionCooldown("cooldown_bar_text_ct", "turma-notification", ctProgressBar.readyText, "turma");
 					}, 500);
 				},
 
@@ -4232,7 +4232,7 @@ var gca_global = {
 						cooldown = (parseInt(cooldown[1], 10) * 60 * 60 + parseInt(cooldown[2], 10) * 60 + parseInt(cooldown[3], 10))*1000;
 						// Setup a timeout
 						setTimeout(function(){
-							if(gca_options.bool("sound","enabled")){
+							if(gca_options.bool("sound","cooldown_sound_notifications")){
 								gca_audio.play(sound);
 							}
 
