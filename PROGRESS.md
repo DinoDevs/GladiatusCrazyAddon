@@ -1,8 +1,8 @@
 ## Progress on Version 4.3.5 [Alpha]
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-15-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-25-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-16-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-26-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -27,6 +27,7 @@
 	- [x] Added settings export to player's notes functionality
 	- [x] Range bars' values live update on change
 	- [x] Updated on/off toggle buttons
+	- [x] Simplified and cleaned the sound system (#278)
 - **Miscellaneous**
 	- [x] Improved cookies security (#260)
 	
@@ -62,6 +63,8 @@
 - **Reports**
 	- [x] Battle analyzer (Turma/Dungeon) style fix (#254)
 	- [x] Battle analyzer (Turma/Dungeon) stats not showing fix (#256)
+- **Auctions**
+	- [x] Fixed number sorting (#235)
 - **Accessibility**
 	- [x] Fixed symbols showing in wrong tooltips (#253)
 - **Settings**
