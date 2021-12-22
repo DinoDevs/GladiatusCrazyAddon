@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-15-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-24-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-25-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -53,6 +53,7 @@
 	- [ ] Market kick to lobby fix (#240) [testing]
 	- [x] Library feature "Add more data on library's tooltips" was working only when "Improve library's layout" was enable
 	- [x] Guild upgrade gold difference small style fixes (#280)
+	- [x] Guild storage double click sell fix (#300)
 - **Forge**
 	- [x] Fixed scroll known retrieve crash (#243)
 	- [x] Missing translation on horreum notification added (#246)
