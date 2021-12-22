@@ -322,7 +322,6 @@ gca_languages['de'] = {
 
 			// Settings - Global
 			category_global$language_select : "Add-on Sprache ändern",
-			category_global$sound_notifications : "Aktiviere Ton Benachrichtigungen für Missionen, Dungeons und Arenas",
 			category_global$browser_notifications : "Aktiviere Browser Benachrichtigungen",
 			category_global$extended_hp_xp_info : "Zeige erweiterte HP und XP Infos",
 			category_global$extended_hp_xp_info_potion : "Zeige den Heiltrank Button",
@@ -340,7 +339,6 @@ gca_languages['de'] = {
 			category_global$quest_timer : "Aufgaben Timer anzeigen",
 			category_global$merchants_timer : "Händlerzeit anzeigen",
 			category_global$forge_timers : "Schmiede/Schmelzzeit anzeigen",
-			category_global$cooldown_sound_notifications : "Aktiviere Sound Benachrichtigungen (Expedition, Dungeon, Arena)",
 			category_global$notify_new_guild_application : "Benachrichtigen bei einer neuen Gildenbewerbung",
 			category_global$notify_new_guild_application_interval : "Überprüfe auf neue Bewerbung (Minuten)",
 			category_global$notify_guild_attack_ready : "Benachrichtige wenn Abklingzeit des Gildenkampfes vorüber ist",
@@ -470,7 +468,7 @@ gca_languages['de'] = {
 			category_events$craps_timer : "Zeigen den Timer des Würfelevents oben an",
 			category_events$server_quest_timer : "Zeigen den Timer des Server-Quest- oder Location-Events oben an",
 			// Settings - Sound
-			category_sound$enabled : "Aktiviere das Soundsystem",
+			category_sound$cooldown_sound_notifications : "Aktiviere Sound Benachrichtigungen (Expedition, Dungeon, Arena)",			
 			category_sound$muted : "Töne stummschalten / aufheben",
 			category_sound$volume : "Lautstärke",
 			// Settings - Data

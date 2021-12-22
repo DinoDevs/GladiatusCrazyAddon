@@ -261,7 +261,6 @@ gca_languages['hr'] = {
 
 			// Settings - Global
 			category_global$language_select : "Odaberite jezik addona",
-			category_global$sound_notifications : "Uključi zvučne notifikacije",
 			category_global$browser_notifications : "Uključi browser notifikacije",
 			category_global$extended_hp_xp_info : "Prikaži prošireno HP i XP zaglavlje",
 			category_global$extended_hp_xp_info_potion : "Prikaži ikonicu za korišćenje napitka Života",
@@ -279,7 +278,6 @@ gca_languages['hr'] = {
 			category_global$quest_timer : "Prikaži status zadataka ili tajmer",
 			category_global$merchants_timer : "Prikaži vremenski indikator kod prodavca",
 			category_global$forge_timers : "Prikaži indikator vremena kod kovačnice/talioničara",
-			category_global$cooldown_sound_notifications : "Uključi zvučne notifikacije za hlađenje (ekspedicije, tamnica, arena)",
 			category_global$notify_new_guild_application : "Obavijesti me kada ima nova savezna aplikacija",
 			category_global$notify_new_guild_application_interval : "Proveravaj za novu saveznu aplikaciju svakih (minuta)",
 			category_global$x_scroll : "Uključi gladiatusov horizontalni scroll",
@@ -402,7 +400,7 @@ gca_languages['hr'] = {
 			category_events$craps_timer : "Prikaži tajmer za kockice eventa",
 			category_events$server_quest_timer : "Display server-quest or location event's timer on top",
 			// Settings - Sound
-			category_sound$enabled : "Uključi zvučni sistem",
+			category_sound$cooldown_sound_notifications : "Uključi zvučne notifikacije za hlađenje (ekspedicije, tamnica, arena)",
 			category_sound$muted : "Mutiraj/Unmutiraj zvukove",
 			category_sound$volume : "Jačina zvuka",
 			// Settings - Data

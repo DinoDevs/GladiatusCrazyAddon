@@ -142,7 +142,6 @@ gca_languages['ru'] = {
 			category_sound : "Звуки",
 			category_data : "Данные",
 			category_global$language_select : "Изменить язык аддона",
-			category_global$sound_notifications : "Включить звуковые оповещения для миссий, подземелий и арен",
 			category_global$browser_notifications : "Включить уведомления браузера",
 			category_global$extended_hp_xp_info : "Отображать расширение с информацией об опыте и здоровье",
 			category_global$extended_hp_xp_info_potion : "Показать кнопку использования зелья жизни",

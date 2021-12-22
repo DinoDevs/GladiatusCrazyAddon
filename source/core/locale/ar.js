@@ -138,7 +138,6 @@ gca_languages['ar'] = {
 			category_sound : "الاصوات",
 			category_data : "الملفات",
 			category_global$language_select : "إختيار اللغه ",
-			category_global$sound_notifications : "تمكين تنبيه الصوت للبعثه والبرج المحصن والساحات",
 			category_global$browser_notifications : "تمكين اشعارات المتصفح",
 			category_global$extended_hp_xp_info : "معلومات عرض الموسعه HP و XP ",
 			category_global$extended_hp_xp_info_potion : "عرض اداة ملئ الصحة",

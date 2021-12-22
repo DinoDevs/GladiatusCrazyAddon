@@ -326,7 +326,6 @@ gca_languages["en"] = {
 
 			// Settings - Global
 			category_global$language_select : "Select addon's language",
-			category_global$sound_notifications : "Enable sound notifications",
 			category_global$browser_notifications : "Enable browser notifications",
 			category_global$extended_hp_xp_info : "Display extended HP and XP header info",
 			category_global$extended_hp_xp_info_potion : "Display life potion use icon",
@@ -344,7 +343,6 @@ gca_languages["en"] = {
 			category_global$quest_timer : "Show quests status or timer",
 			category_global$merchants_timer : "Show merchants timer indicator",
 			category_global$forge_timers : "Show forge/smelt timer indicator",
-			category_global$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
 			category_global$notify_new_guild_application_interval : "Check for applications every (minutes)",
 			category_global$notify_guild_attack_ready : "Notify me when guild war attack cooldown",
@@ -479,7 +477,7 @@ gca_languages["en"] = {
 			category_events$craps_timer : "Display dice event's timer on top",
 			category_events$server_quest_timer : "Display server-quest or location event's timer on top",
 			// Settings - Sound
-			category_sound$enabled : "Enable sound system",
+			category_sound$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_sound$muted : "Mute/Unmute sounds",
 			category_sound$volume : "Sounds volume",
 			// Settings - Data

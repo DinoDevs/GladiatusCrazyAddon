@@ -112,7 +112,6 @@ gca_languages['fr'] = {
 			category_sound : "son",
 			category_data : "info / donné",
 			category_global$language_select : "Changer la langue de l'addon",
-			category_global$sound_notifications : "Activer les notifications sonores pour les missions, donjons et arènes",
 			category_global$extended_hp_xp_info : "Afficher les infos HP et XP améliorés",
 			category_global$shortcuts_bar : "Afficher la barre de bouton en haut ",
 			category_global$auction_status_bar : "Afficher la barre d'état des enchères",

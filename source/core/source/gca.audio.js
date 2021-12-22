@@ -12,39 +12,41 @@ var gca_audio = {
 	// Loaded
 	loaded : false,
 	load : function() {
+		this._enable = gca_options.bool('sound', 'cooldown_sound_notifications');
+		// Dont run if sounds are disabled
+		if (!this._enable) return;
+
+		// Load volume values
 		this._volume = gca_data.section.get('sound', 'volume', 1);
 		this._muted = gca_data.section.get('sound', 'muted', false);
-
-		this._enable = gca_options.bool('sound', 'enabled');
-		if (!this._enable) return;
 
 		// Set up syncing interval
 		this._sync_interval = setInterval(() => {
 			this.sync();
-		}, 1000);
+		}, 10 * 1000);
+
 		// Set up changes listener
-		gca_tools.event.addListener('volume-change', () => {
-			this.updateAudioObjs();
-		});
+		//gca_tools.event.addListener('volume-change', () => {});
 	},
 
 	// Sync audio across tabs
 	sync : function() {
-		var changed = false;
-		// Sync data
+		// Sync data from local storage
 		gca_data.section.sync('sound');
 
 		// Get data
-		var volume = gca_data.section.get('sound', 'volume', 1);
-		if (volume != this._volume) changed = true;
-		var muted = gca_data.section.get('sound', 'muted', false);
-		if (muted != this._muted) changed = true;
+		let volume = gca_data.section.get('sound', 'volume', 1);
+		let muted = gca_data.section.get('sound', 'muted', false);
 
-		if (changed) {
-			// Update data
+		// If value was changed
+		if (
+			volume != this._volume ||
+			muted != this._muted
+		) {
+			// Update local values
 			this._volume = volume;
 			this._muted = muted;
-			this.updateAudioObjs();
+
 			// Fire event
 			gca_tools.event.fire('volume-change');
 		}
@@ -61,6 +63,7 @@ var gca_audio = {
 		gca_tools.event.fire('volume-change');
 	},
 	volume : function(value = null){
+		// Get value
 		if (value == null) {
 			return this._volume;
 		}
@@ -86,145 +89,56 @@ var gca_audio = {
 		'wet'			: 'wet.ogg'
 	},
 
-	// Id channels settings
-	channels : {},
-	setupChannel : function(id, settings) {
-		// Init channel
-		var channel = {vol : 1, mute : false, sound : 'water'};
-		if (this.channels.hasOwnProperty(id)) channel = this.channels[id];
-
-		// Set settings
-		if (typeof settings.vol !== 'undefined') {
-			channel.vol = settings.vol;
-		}
-		if (typeof settings.mute !== 'undefined') {
-			channel.mute = settings.mute;
-		}
-		if (typeof settings.sound !== 'undefined' && this.buildInSounds.hasOwnProperty(settings.sound)) {
-			channel.sound = settings.sound;
-		}
-		// Save channel
-		this.channels[id] = channel;
+	soundUsage : {
+		'audio-mute-toggle' : 'water',
+		'expedition-notification' : 'water',
+		'dungeon-notification' : 'water',
+		'arena-notification' : 'water',
+		'turma-notification' : 'water',
+		'auction-status-change-notification' : 'water'
 	},
-
-	// Audio Object List
-	audioIdObjs : {},
 
 	// Create a new Audio Object
-	makeAudioIdObj : function(id, obj = false) {
-		// Make obj if not exist
-		this.audioIdObjs[id] = {
-			id : id,
-			url : gca_resources.audio + this.buildInSounds['water'],
-			volume : 1,
-			muted : false,
-			obj : false
-		};
-
-		// Custom preferences
-		if (obj) {
-			// External or Internal url
-			if (obj.url) {
-				if (obj.url.match(/^https:\/\//) != null) {
-					this.audioIdObjs[id].url = obj.url;
-				}
-				else {
-					this.audioIdObjs[id].url = gca_resources.audio + obj.url;
-				}
-			}
-			// Default sounds
-			else if(obj.sound && this.buildInSounds.hasOwnProperty(obj.sound)){
-				this.audioIdObjs[id].url = gca_resources.audio + this.buildInSounds[obj.sound];
-			}
-
-			// Set volume
-			if (obj.vol) {
-				this.audioIdObjs[id].volume = obj.vol;
-			}
-			// Set mute
-			if (obj.mute) {
-				this.audioIdObjs[id].muted = obj.mute;
-			}
+	makeAudioIdObj : function(id) {
+		// Make obj based on sound
+		if (this.buildInSounds.hasOwnProperty(id)) {
+			return {
+				id : id,
+				url : gca_resources.audio + this.buildInSounds[id],
+				volume : 1,
+				muted : false
+			};
 		}
-
-		// Return object
-		return this.audioIdObjs[id];
-	},
-
-	// Update audio prefs
-	updateAudioObjs : function() {
-		for (let id in this.audioIdObjs) {
-			if (this.audioIdObjs.hasOwnProperty(id)) {
-				if (this.audioIdObjs[id].obj) {
-					let sound = this.audioIdObjs[id];
-					sound.obj.volume = (this._volume * sound.obj.volume);
-					sound.obj.muted = (this._muted || sound.obj.muted);
-				}
-			}
+		// Make obj based on 
+		else if (this.soundUsage.hasOwnProperty(id) && this.buildInSounds.hasOwnProperty(this.soundUsage[id])) {
+			return {
+				id : id,
+				url : gca_resources.audio + this.buildInSounds[this.soundUsage[id]],
+				volume : 1,
+				muted : false
+			};
 		}
-	},
-
-	// Load audio by id
-	loadById : function(id) {
-		// Get user data options
-		var data = gca_data.section.get('sound', 'objects', {});
-
-		// If user data defined
-		if (data[id]) {
-			this.audioIdObjs[id] = this.makeAudioIdObj(id, data[id]);
-		}
-		// Else if channel id
-		else if (this.channels[id]) {
-			this.audioIdObjs[id] = this.makeAudioIdObj(id, this.channels[id]);
-		}
-		// Else default options
-		else {
-			this.audioIdObjs[id] = this.makeAudioIdObj(id);
-		}
-
-		// Return object
-		return this.audioIdObjs[id];
-	},
-
-	// Get audio by id
-	getById : function(id) {
-		// Get object
-		if(this.audioIdObjs.hasOwnProperty(id)) {
-			return this.audioIdObjs[id];
-		}
-		// If object don't exist
-		else {
-			return this.loadById(id);
-		}
+		// Default sound
+		return this.makeAudioIdObj('water');
 	},
 
 	// New audio
 	new : function(id, synced = false) {
 		// Get object
-		var soundObj = this.getById(id);
+		var soundObj = this.makeAudioIdObj(id);
 
-		// Sound
-		var audio;
-
-		// If synced audio (singleton) and audio exist
-		if (synced && soundObj.obj) {
-			audio = soundObj.obj;
-		}
 		// Create new audio
-		else {
-			audio = new Audio(soundObj.url);
-			if (synced) soundObj.obj = audio;
-			audio.volume = this._volume * soundObj.volume;
-			audio.muted = (this._muted || soundObj.muted);
-		}
+		let audio = new Audio(soundObj.url);
+		audio.volume = this._volume * soundObj.volume;
+		audio.muted = (this._muted || soundObj.muted);
 
 		return audio;
 	},
 
 	// Play a sound
-	play : function(id, synced = false) {
+	play : function(id) {
 		if (!this._enable) return;
-		var audio = this.new(id, synced);
+		var audio = this.new(id);
 		// In many cases this fires when the user has not yet interacted with the document
 		try {audio.play();}
 		catch(e){};
@@ -232,52 +146,12 @@ var gca_audio = {
 	},
 };
 
-
-// Audio channels
-var gca_audio_channels = {
-	// List of channels
-	list : {
-		'expedition_notification'	: {sound : 'water'},
-		'dungeon_notification' 		: {sound : 'water'},
-		'arena_notification'		: {sound : 'water'},
-		'turma_notification'		: {sound : 'water'},
-		'auction_notification'		: {sound : 'coin'},
-		'sound_toggle'				: {sound : 'water'}
-	},
-
-	preload : function() {
-		this.setup();
-	},
-
-	load : function() {
-		// Settings load
-		for (let channel in this.list) {
-			if (this.list.hasOwnProperty(channel)) {
-				this.list[channel] = gca_data.section.get('sound_objects', 'channels', this.list[channel]);
-			}
-		}
-
-		this.setup();
-	},
-
-	setup : function() {
-		// Setup sound channels
-		for (let channel in this.list) {
-			if (this.list.hasOwnProperty(channel)) {
-				gca_audio.setupChannel(channel, this.list[channel]);
-			}
-		}
-		// gca_audio.setupChannel("<id string>", {vol : <0-1>, mute : <boolean>, sound : "<sound id string>"});
-	}
-};
-
-
 // Audio UI
 var gca_audio_ui = {
 	load : function() {
 		// If logged Out
 		if (document.getElementById('container_infobox') || document.getElementById('login')) return;
-		if (!gca_options.bool('sound', 'enabled')) return;
+		if (!gca_options.bool('sound', 'cooldown_sound_notifications')) return;
 		this.soundbar();
 	},
 
@@ -314,7 +188,7 @@ var gca_audio_ui = {
 	toggle : function(){
 		if (gca_audio.isMuted()) {
 			gca_audio.mute(false);
-			gca_audio.play('sound_toggle');
+			gca_audio.play('audio-mute-toggle');
 		}
 		else {
 			gca_audio.mute(true);
@@ -332,22 +206,23 @@ var gca_audio_ui = {
 	}
 };
 
+// Audio loader
 window.gca_audio_loader = function() {
 	if (typeof gca_tools === 'undefined' || typeof gca_data === 'undefined') return;
-	gca_audio_channels.load();
 	gca_audio.load();
-	gca_audio_ui.load();
 	window.gca_audio_loader = false;
 };
 
+// Try to load sound
+window.gca_audio_loader();
+
 // Onload Handler
-(function(){
-	var loaded = false;
-	var fireLoad = function() {
-		if(loaded) return;
+(() => {
+	let loaded = false;
+	let fireLoad = () => {
+		if (loaded) return;
 		loaded = true;
-		if (window.gca_audio_loader)
-			window.gca_audio_loader();
+		gca_audio_ui.load();
 	};
 	if (document.readyState == 'interactive' || document.readyState == 'complete') {
 		fireLoad();

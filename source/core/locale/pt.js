@@ -306,7 +306,6 @@ gca_languages['pt'] = {
 			
 			// Settings - Global
 			category_global$language_select : "Alterar a linguagem do Add-on",
-			category_global$sound_notifications : "Ativar notificações de som",
 			category_global$browser_notifications : "Ativar notificações do navegador",
 			category_global$extended_hp_xp_info : "Mostrar informação extendida de Pontos de Vida e Experiência na barra superior.",
 			category_global$extended_hp_xp_info_potion : "Exibir ícone de uso de poção de vida",
@@ -324,7 +323,6 @@ gca_languages['pt'] = {
 			category_global$quest_timer : "Mostrar estado das missões ou cronômetro",
 			category_global$merchants_timer : "Mostrar tempo restante dos mercadores.",
 			category_global$forge_timers : "Mostrar indicador de temporizador forja / fundição",
-			category_global$cooldown_sound_notifications : "Habilitar notificação sonora ao terminar o tempo de espera(expedição, masmorra, arena, turma)",
 			category_global$notify_new_guild_application : "Notifique-me quando há uma nova aplicação de alianças",
 			category_global$notify_new_guild_application_interval : "Verifique as aplicações a cada (minutos)",
 			category_global$notify_guild_attack_ready : "Avisar-me quando acabar tempo de espera para atacar na guerra de alianças",
@@ -453,7 +451,7 @@ gca_languages['pt'] = {
 			category_events$craps_timer : "Mostrar o cronômetro do evento no topo",
 			category_events$server_quest_timer : "Mostrar missão do servidor ou cronômetro da localização do evento no topo",
 			// Settings - Sound
-			category_sound$enabled : "Habilitar sistema de som",
+			category_sound$cooldown_sound_notifications : "Habilitar notificação sonora ao terminar o tempo de espera(expedição, masmorra, arena, turma)",
 			category_sound$muted : "Remover/Adicionar sons",
 			category_sound$volume : "Volume dos sons",
 			// Settings - Data
