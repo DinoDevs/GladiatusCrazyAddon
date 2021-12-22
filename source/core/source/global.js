@@ -4559,7 +4559,7 @@ var gca_global = {
 						// fix will only be applied on newly saved data (= data that will include required EXP to level up)
 						if(i > 0 && defaultData[i-1].length > 3){
 							// Check if required EXP has changed, which means that player leveled up
-							if(defaultData[i][3] < defaultData[i-1][3]){ 
+							if(defaultData[i][3] > defaultData[i-1][3]){ 
 								// Add previous level required EXP
 								levelUpExpFix += defaultData[i-1][3]; 
 							}
