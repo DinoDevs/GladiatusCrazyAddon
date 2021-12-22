@@ -652,6 +652,6 @@ if (new URLSearchParams(window.location.search).get('mod') == 'settings') {
 	// Initiate Options
 	gca_options.init();
 
-	// Load audio
+	// Try to load sound
 	if (window.gca_audio_loader) window.gca_audio_loader();
 })();

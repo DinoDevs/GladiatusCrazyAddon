@@ -2013,13 +2013,14 @@ var gca_tools = {
 	}
 })();
 
-// Load More Stuff
-(function(){
+// Load Stuff
+(() => {
+	// Try to load sound
 	if (window.gca_audio_loader) window.gca_audio_loader();
+	
+	// Remove script
+	document.currentScript.remove();
 })();
-
-// Remove script
-document.currentScript.remove();
 
 // ESlint defs
 /* global gca_data, gca_getPage, gca_locale, gca_notifications, gca_resources, gca_tools */

@@ -1817,7 +1817,7 @@ var gca_global = {
 						// If sound notifications
 						if(gca_options.bool("sound","cooldown_sound_notifications")){
 							// Make a sound
-							gca_audio.play("water");
+							gca_audio.play("auction-status-change-notification");
 						}
 					}
 				}
@@ -4208,13 +4208,13 @@ var gca_global = {
 					// Wait a sec
 					setTimeout(() => {
 						// Missions
-						this.initActionCooldown("cooldown_bar_text_expedition", "expedition_notification", expeditionProgressBar.readyText, "expedition");
+						this.initActionCooldown("cooldown_bar_text_expedition", "expedition-notification", expeditionProgressBar.readyText, "expedition");
 						// Dungeon
-						this.initActionCooldown("cooldown_bar_text_dungeon", "dungeon_notification", dungeonProgressBar.readyText, "dungeon");
+						this.initActionCooldown("cooldown_bar_text_dungeon", "dungeon-notification", dungeonProgressBar.readyText, "dungeon");
 						// Arena
-						this.initActionCooldown("cooldown_bar_text_arena", "arena_notification", arenaProgressBar.readyText, "arena");
+						this.initActionCooldown("cooldown_bar_text_arena", "arena-notification", arenaProgressBar.readyText, "arena");
 						// Arena Turma
-						this.initActionCooldown("cooldown_bar_text_ct", "turma_notification", ctProgressBar.readyText, "turma");
+						this.initActionCooldown("cooldown_bar_text_ct", "turma-notification", ctProgressBar.readyText, "turma");
 					}, 500);
 				},
 
