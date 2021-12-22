@@ -3,7 +3,7 @@
  * Name : Turkish (Türkiye)
  * Code : TR
  * Tag  : tr-TR
- * Translator: Xus (s25), Anonim, Emefar (s33-s41)
+ * Translator: Elderly (s48) & Rubick (s48), Xus (s25), Anonim, Emefar (s33-s41)
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages["tr"] = {
 	name : "Türkçe (Turkish)",
-	translators : ["mattemre, Xus (s25)", "Anonim", "Emefar (s33-s41)"],
+	translators : ["Elderly (s48) & Rubick (s48), Xus (s25)", "Anonim", "Emefar (s33-s41)"],
 	locale : {
 		info : {
 			description : "Gladiatus için yapılmış en güzel eklenti!"
