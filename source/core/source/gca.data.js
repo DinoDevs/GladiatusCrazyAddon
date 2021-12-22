@@ -557,6 +557,8 @@ gca_options.data = {
 		"sell_duration" : 0,
 		// 1 gold mode
 		"one_gold_mode" : true,
+		// Custom prices
+		"custom_prices" : "",
 		// Remember sorting 
 		"remember_sort" : false,
 		// Double click to select
