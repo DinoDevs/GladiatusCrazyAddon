@@ -80,7 +80,7 @@ The latest stable version is always showed on our <a href="https://github.com/Di
 
 ## Look out for console errors
 
-Your browser has a console built-in, you can open it by pressing F12 (Opera: Ctrl+Shift+J) on your keyboard, there you can see what is happening with the site, together with warning and errors. 
+Your browser has a console built-in, you can open it by pressing F12 (Opera: Ctrl+Shift+J) on your keyboard, there you can see what is happening with the site, together with warnings and errors. 
 
 Errors are usually colored red and these are the ones that you are looking for, some errors can be harmless, while some are the ones that are causing you problems.
 
