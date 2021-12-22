@@ -743,7 +743,7 @@ var gca_auction = {
 			tds.each((index, item) => {
 				let val = jQuery(item).find('form').first()[0].dataset['item_' + propName];
 				items.push({
-					value : val,
+					value : parseInt(val),
 					nodes : [...item.childNodes]
 				});
 				let text = jQuery(item).find('.gca-auction-sort-value');
