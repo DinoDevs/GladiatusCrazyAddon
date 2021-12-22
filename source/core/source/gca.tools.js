@@ -424,7 +424,7 @@ var gca_tools = {
 				var checkLock = false;
 				if (target == 'shop') {
 					grid = document.getElementById('shop');
-					size = [8, 6];
+					size = [Math.round(grid.clientHeight / 32), 6];
 					checkLock = 'shop';
 				}
 				else if (target == 'inv') {
