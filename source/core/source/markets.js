@@ -399,7 +399,7 @@ var gca_markets = {
 		normal_mode.id = "normal_mode";
 		normal_mode.name = "sell_mode";
 		normal_mode.value = 0;
-		if (selected_mode === 0)
+		if (selected_mode == 0)
 			normal_mode.checked = true;
 		let normal_mode_label = document.createElement("label");
 		normal_mode_label.setAttribute("for", "normal_mode");
@@ -412,7 +412,7 @@ var gca_markets = {
 		oneG_mode.id = "1g_mode";
 		oneG_mode.name = "sell_mode";
 		oneG_mode.value = 1;
-		if (selected_mode === 1)
+		if (selected_mode == 1)
 			oneG_mode.checked = true;
 		let oneG_mode_label = document.createElement("label");
 		oneG_mode_label.setAttribute("for", "1g_mode");
@@ -425,11 +425,11 @@ var gca_markets = {
 		cost_mode.id = "cost_mode";
 		cost_mode.name = "sell_mode";
 		cost_mode.value = 2;
-		if (selected_mode === 2)
+		if (selected_mode == 2)
 			cost_mode.checked = true;
 		let cost_mode_label = document.createElement("label");
 		cost_mode_label.setAttribute("for", "cost_mode");
-		cost_mode_label.textContent = gca_data.section.get("cache", "value_tanslation", "Value");
+		cost_mode_label.textContent = gca_data.section.get("cache", "value_translation", "Value");
 		modeSwitch.appendChild(cost_mode);
 		modeSwitch.appendChild(cost_mode_label);
 		
@@ -458,7 +458,7 @@ var gca_markets = {
 			custom_mode.id = "gca_custom_mode_" + price;
 			custom_mode.name = "sell_mode";
 			custom_mode.value = "custom_" + price;
-			if (selected_mode === "custom_" + price)
+			if (selected_mode == "custom_" + price)
 				custom_mode.checked = true;
 			let custom_mode_label = document.createElement("label");
 			custom_mode_label.setAttribute("for", custom_mode.id);
@@ -468,34 +468,13 @@ var gca_markets = {
 		});
 	
 		var get_translation = (gca_data.section.get("cache", "value_tanslation", "true")=="true")?true:false;
-
-		// On item drop function
-		this.detectMarketSellItemDrop();
-		gca_tools.event.addListener('market-sell-item-drop', (data) => {
-			let b = data.item.data("priceGold") || 0;
-			b = Math.floor(b * data.amount / 1.5);
-			document.getElementById('auto_value').value = b;
-			modeSwitchFunction(); // calcDues(); is called within this function
-			
-			// Save "Value" translation
-			if (get_translation) {
-				let tooltip = data.item.data("tooltip")[0];
-				for (let i = 2; i < tooltip.length; i++) {
-					if (typeof tooltip[i][0] === "string" && tooltip[i][0].match(/(\S+) [1-9][0-9.]* <div class="icon_gold">/)) {
-						let value_tanslation = tooltip[i][0].match(/(\S+) [1-9][0-9.]* <div class="icon_gold">/)[1];
-						gca_data.section.set("cache", "value_tanslation", value_tanslation);
-						cost_mode_label.textContent = value_tanslation;
-						break;
-					}
-				}
-			}
-		});
 		
 		// Change mode
-		var modeSwitchFunction = function(){
-			let selected = document.querySelector('input[name=sell_mode]:checked').value;
+		let modeSwitchFunction = function(){
+			let selected = document.querySelector('input[name=sell_mode]:checked');
+			selected = selected ? selected.value : '0';
 			gca_data.section.set("cache", "last_sell_1g_mode", selected); // Save last selected mode
-			if(document.getElementById('preis').value != ''){
+			if (document.getElementById('preis').value != '') {
 				// Just 1 g
 				if (selected == 1) {
 					document.getElementById('preis').value = 1;
@@ -505,7 +484,7 @@ var gca_markets = {
 					document.getElementById('preis').value = Math.round(document.getElementById('auto_value').value*0.375);
 				}
 				// Custom price values
-				else if(selected.substring(0, 7) == 'custom_') {
+				else if (selected.substring(0, 7) == 'custom_') {
 					if (selected.charAt(selected.length - 1) == '%') {
 						let price = selected.match(/^custom_(\d+)%$/);
 						document.getElementById('preis').value = Math.round(Math.round(document.getElementById('auto_value').value * 0.375) * (price ? (parseInt(price[1])/100) : 1));
@@ -522,7 +501,36 @@ var gca_markets = {
 			}
 			window.calcDues();
 		};
+
+		// On item drop function
+		this.detectMarketSellItemDrop();
+		gca_tools.event.addListener('market-sell-item-drop', (data) => {
+			let b = data.item.data("priceGold") || 0;
+			b = Math.floor(b * data.amount / 1.5);
+			document.getElementById('auto_value').value = b;
+			modeSwitchFunction(); // calcDues(); is called within this function
+		});
+
 		modeSwitch.addEventListener('change', modeSwitchFunction);
+
+		let translationIsNeeded = (gca_data.section.get("cache", "value_tanslation", "true") == "true") ? true : false;
+		if (translationIsNeeded) {
+			// Save "Value" translation
+			gca_tools.event.addListener('market-sell-item-drop', (data) => {
+				if (translationIsNeeded) {
+					let tooltip = data.item.data("tooltip")[0];
+					for (let i = 2; i < tooltip.length; i++) {
+						if (typeof tooltip[i][0] === "string" && tooltip[i][0].match(/<div class="icon_gold"><\/div>/)) {
+							let value_translation = tooltip[i][0].replace(/<div\s*class="icon_gold"><\/div>/g, '').replace(/\s*[0-9.]+\s*/g, '').trim();
+							gca_data.section.set("cache", "value_translation", value_translation);
+							cost_mode_label.textContent = value_translation;
+							translationIsNeeded = false;
+							break;
+						}
+					}
+				}
+			});
+		}
 	},
 
 	// Layout
