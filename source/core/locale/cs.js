@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['cs'] = {
 	name : 'čeština (Czech)',
-	translators : ["Wrath", "WiLLsTeiN", "marekrich", "Alutom", "bleakill", "Yenicheri", "JAMES", "Drnda3"],
+	translators : ["Wrath (GitHub: @FrutyX)", "WiLLsTeiN", "marekrich", "Alutom", "bleakill", "Yenicheri", "JAMES", "Drnda3"],
 	locale : {
 		info : {
 			description : "Nejbláznivější add-on pro Gladiatus"
