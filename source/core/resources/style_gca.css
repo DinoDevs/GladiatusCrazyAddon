@@ -1358,7 +1358,9 @@
 	-------------------------------------------------- */
 
 		/* Logo */
-		#settings_logo{background-image: url(images/GCA_logo.png), linear-gradient(to bottom, #3d0802, #852111);position:relative;background-position: center;width: 530px;height: 130px;margin-bottom: 10px;border: 2px solid black;background-repeat: no-repeat;}
+		#settings_logo{background: linear-gradient(-45deg, #FFD91D, #5c1308, #5c1308, #FFD91D);background-size: 400% 400%;animation: gradient 15s ease infinite;;position:relative;background-position: center;width: 530px;height: 130px;margin-bottom: 10px;border: 2px solid black;background-repeat: no-repeat;}
+	        @keyframes gradient {0% {background-position: 0% 50%;}50% {background-position: 100% 50%;}100% {background-position: 0% 50%;}}
+		#settings_logogca{background-image: url('images/GCA_logo.png');position: absolute;width: 530px;height: 130px;background-repeat: no-repeat;top: 275px;}		
 		#settings_logo .title{color: rgba(255,255,255,0.9);font-size: 12px;position: absolute;bottom: 5px;right: 10px;text-shadow: 0px 0px 5px black, 0px 0px 5px black;}
 		.gca_rtl #settings_logo .title{right: auto;left: 10px;}
 
