@@ -14,6 +14,8 @@
 	- [x] Added option to show item quality with symbols
 	- [x] Added option to turn item tooltip titles to white
 	- [x] Added option to show item quality with symbols in tooltips
+- **Auction**
+	- [x] Added more auction stats sorting options (critical, block etc) (#225)
 - **Buddy List**
 	- [x] Attack by id not by name (issue #241)
 - **Training**

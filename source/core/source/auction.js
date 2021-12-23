@@ -579,6 +579,31 @@ var gca_auction = {
 				//let propName = decodeURIComponent(JSON.parse("\""+prop.split(" ")[0]+"\"")).toLowerCase();
 				let propName = prop.split(" ")[0].toLowerCase();
 				let kw = this.keywordMap[propName];
+				
+				// If not found try to find a generic
+				if (!kw) {
+					// Gather other stats locale with values (+)
+					let match = prop.match(/\s\+/);
+					if (match) {
+						// Use full name
+						propName = prop.split(/\s\+/)[0].toLowerCase().replace(/\s/g, "-");
+						// Search if already saved
+						kw = this.keywordMap[propName];
+						
+						if (!kw){
+							// Save generic
+							let propNameLocale = prop.split(/\s\+/)[0];
+							console.log(propName)
+							this.keywordMap[propName] = {
+								name: propName,
+								display: propNameLocale.charAt(0).toUpperCase() + propNameLocale.slice(1), // First letter capital
+								pattern: /\d+/,
+							};
+							kw = this.keywordMap[propName];
+						}
+					}
+				}
+				
 				//console.log(propName+" -> "+kw);
 				if (kw) {
 					let match = prop.match(kw.pattern);
@@ -595,12 +620,13 @@ var gca_auction = {
 				}
 			}
 
-			// if item doesnt have sort property, add that property with value 0
+			// if item doesn't have sort property, add that property with value 0
+			/*//This is not needed any more because if the dataset is undefined, it is set to 0
 			jQuery.each(this.keywordMap, function (key, val) {
 				if (itemData[key] == undefined) {
 					itemData[key] = 0.0;
 				}
-			});
+			});*/
 
 			return itemData;
 		},
@@ -742,6 +768,8 @@ var gca_auction = {
 			let items = [];
 			tds.each((index, item) => {
 				let val = jQuery(item).find('form').first()[0].dataset['item_' + propName];
+				if (val === undefined)
+					val = 0
 				items.push({
 					value : parseInt(val),
 					nodes : [...item.childNodes]
