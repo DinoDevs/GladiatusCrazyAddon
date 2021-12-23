@@ -138,9 +138,60 @@ var gca_location = {
 				this.locale = gca_data.section.get('cache', 'resource_locale', false);
 				// Get enemies
 				let pictures = document.getElementsByClassName('expedition_picture');
+				
+				// Get local data
+				var localData = gca_data.section.get("data", "enemy_drops", []);
+				var cleanLocalData = [] // save here drops without the known enemies resources drops 
+				var dataCleanNeeded = false
+				var groupedLocalData = {}
+				// Loop through local data and group the material drops by enemy
+				for (let i = 0; i < localData.length; i++) {
+					let item = localData[i];
+					
+					// Check if drop is a material
+					if (item[1].substring(0,3) == "18-"){
+						let enemy = item[0].replace(".jpg\"", "")
+						
+						// If we have data for this enemy
+						if (this.drops[enemy]){
+							dataCleanNeeded = true
+							continue
+						}
+
+						let material = parseInt(item[1].replace("18-", ""))
+						//console.log(enemy +" - "+ material)
+						
+						//if (!groupedLocalData.includes(enemy))
+						if (!(enemy in groupedLocalData))
+							groupedLocalData[enemy] = {}
+						
+						//if (groupedLocalData[enemy].includes(material))
+						if (material in groupedLocalData[enemy]){
+							groupedLocalData[enemy][material] += 1
+						}else{
+							groupedLocalData[enemy][material] = 1
+						}
+						
+						// Increase total
+						if ("total" in groupedLocalData[enemy]){
+							groupedLocalData[enemy]["total"] += 1
+						}else{
+							groupedLocalData[enemy]["total"] = 1
+						}
+					}
+
+					// Save to clean data
+					cleanLocalData.push(item)
+				}
+				// Save clean data
+				if (dataCleanNeeded){
+					console.log("Saving cleared enemy drops")
+					gca_data.section.set("data", "enemy_drops", cleanLocalData);
+				}
+				//console.log(groupedLocalData)
 
 				// For each enemy
-				let i = 0;
+				i = 0;
 				while (pictures[i] && pictures[i].getElementsByTagName('img')[0]) {
 					// Get enemy id
 					let enemy = pictures[i].getElementsByTagName('img')[0].getAttribute('src').match(/img\/(npc|expedition)\/([^.]+)\.(jpg|png)/i)[2];
@@ -159,6 +210,38 @@ var gca_location = {
 							this.createDropIcon(pictures[i], this.drops[enemy][0], 'Only1', 70);
 						}
 
+					}
+
+					// Look in local data
+					else if (enemy in groupedLocalData) {
+						// If enough data have been collected
+						if (groupedLocalData[enemy]["total"] > 50){
+							// Make a copy
+							let obj = {...groupedLocalData[enemy]}
+
+							// Remove total
+							let total = obj["total"]
+							delete obj["total"]
+							
+							// Show first drop
+							let key = Object.keys(obj).reduce(function(a, b){ return obj[a] > obj[b] ? a : b });
+							let chance = Math.round(obj[key] / total * 100);
+							let chanceDetails = "(" + obj[key] + "/" + total + ") ";
+
+							// Show only if drop chance is above X% (avoid showing low change drops)
+							if (chance > 0){ // leave it on for now
+								this.createDropIcon(pictures[i], key, '1', chanceDetails + chance);
+								delete obj[key] // remove key before getting next highest
+
+								// Show second drop
+								if (Object.keys(obj).length > 0){
+									key = Object.keys(obj).reduce(function(a, b){ return obj[a] > obj[b] ? a : b });
+									chance = Math.round(obj[key] / total * 100);
+									chanceDetails = "(" + obj[key] + "/" + total + ") ";
+									this.createDropIcon(pictures[i], key, '2', chanceDetails + chance);
+								}
+							}
+						}
 					}
 					i++;
 				}

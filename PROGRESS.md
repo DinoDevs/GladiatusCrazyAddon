@@ -12,7 +12,7 @@
 - **Accessibility**
 	- [x] Added option to turn item level indicator to white
 	- [x] Added option to show item quality with symbols
-	- [x] Added option to turn item tooltip titles to white 
+	- [x] Added option to turn item tooltip titles to white
 	- [x] Added option to show item quality with symbols in tooltips
 - **Buddy List**
 	- [x] Attack by id not by name (issue #241)
@@ -22,6 +22,8 @@
 	- [x] Added a new button - shortcut to food auctions (#291)
 - **Guild Warehouse**
 	- [x] Now shows total gold value (same as merchants) (#290)
+- **Expeditions**
+	- [x] Display enemy resources drop chances based on personal data (#303)
 - **Settings**
 	- [x] Reduce exported settings size
 	- [x] Added settings export to player's notes functionality
@@ -39,7 +41,6 @@
 	- [x] Removed zero player's settings and blocked writes/reads to his storage (when the addon can not detect your user's id, it treats you as the zero player)
 	- [x] Fixed missing resources on some items (#263)
 	- [x] Gold & Exp stats: icon position fix (#257)
-	- [x] Gold & Exp stats: added button to reset data (#248)
 - **Packages**
 	- [ ] Fix of double click bug (#238) [testing]
 	- [ ] Improved double click spot locking mechanics [testing]
