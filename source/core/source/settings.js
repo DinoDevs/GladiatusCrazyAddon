@@ -1579,7 +1579,7 @@ var gca_settings = {
 			content_2nd.id = "content_2nd";
 			content_2nd.style.display = "none";
 			content.parentNode.insertBefore(content_2nd, content.nextSibling);
-
+			
 			// Logo
 			var logo = document.createElement("div");
 			logo.id = "settings_logo";
@@ -1587,7 +1587,10 @@ var gca_settings = {
 			logo_title.className = "title";
 			logo_title.textContent = gca_locale.get("settings", "settings");
 			logo.appendChild(logo_title);
+			var logogca = document.createElement("div");
+			logogca.id = "settings_logogca";
 			content_2nd.appendChild(logo);
+			content_2nd.appendChild(logogca);
 
 			// Menu Wrapper
 			var menu_div = document.createElement("div");
