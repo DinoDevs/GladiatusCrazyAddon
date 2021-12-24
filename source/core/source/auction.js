@@ -587,13 +587,13 @@ var gca_auction = {
 					if (match) {
 						// Use full name
 						propName = prop.split(/\s\+/)[0].toLowerCase().replace(/\s/g, "-");
+						propName = escape(propName).replace(/%u/g, ""); // convert to valid DOM name (fix for special characters for other languages)
 						// Search if already saved
 						kw = this.keywordMap[propName];
 						
 						if (!kw){
 							// Save generic
 							let propNameLocale = prop.split(/\s\+/)[0];
-							propName = encodeURI(propName).replace(/%/g, "");
 							//console.log(propName)
 							this.keywordMap[propName] = {
 								name: propName,
