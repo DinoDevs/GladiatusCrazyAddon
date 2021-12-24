@@ -593,7 +593,8 @@ var gca_auction = {
 						if (!kw){
 							// Save generic
 							let propNameLocale = prop.split(/\s\+/)[0];
-							console.log(propName)
+							propName = encodeURI(propName).replace(/%/g, "");
+							//console.log(propName)
 							this.keywordMap[propName] = {
 								name: propName,
 								display: propNameLocale.charAt(0).toUpperCase() + propNameLocale.slice(1), // First letter capital
