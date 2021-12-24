@@ -1193,9 +1193,13 @@ var gca_forge = {
 		updateItemLink : function(data) {
 			let name = document.getElementById('forge_item_name');
 			let link = name.getElementsByTagName('a')[0];
-
-			// Link exists
-			if (link) return;
+			let newLink = this.url + 'equipment?item=' + data.item.prefix + ',' + data.item.base + ',' + data.item.suffix
+			
+			// If same link exists
+			if (link){
+				if (link.href == newLink)
+					return;
+			}
 
 			// Create item link
 			let wrapper = name.getElementsByTagName('span')[0];
@@ -1207,7 +1211,7 @@ var gca_forge = {
 			link.title = 'Gladiatus Tools > ' + item_name;
 			wrapper.textContent = '';
 			wrapper.appendChild(link);
-			link.href = this.url + 'equipment?item=' + data.item.prefix + ',' + data.item.base + ',' + data.item.suffix;
+			link.href = newLink;
 		},
 
 		attribution : function() {

@@ -1,8 +1,8 @@
 ## Progress on Version 4.3.5 [Alpha]
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-16-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-26-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-19-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-27-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -63,6 +63,7 @@
 - **Forge**
 	- [x] Fixed scroll known retrieve crash (#243)
 	- [x] Missing translation on horreum notification added (#246)
+	- [x] Fixed wrong item link to Gladiatus-Tools webpage (#212)
 - **Workbench**
 	- [x] Fixed failed to get item after workbench fix (#272)
 - **Reports**
