@@ -1195,23 +1195,30 @@ var gca_forge = {
 			let link = name.getElementsByTagName('a')[0];
 			let newLink = this.url + 'equipment?item=' + data.item.prefix + ',' + data.item.base + ',' + data.item.suffix
 			
+
+			// Get parent
+			let wrapper = name.getElementsByTagName('span')[0];
+			let item_name = wrapper.textContent.trim();
+
 			// If same link exists
 			if (link){
-				if (link.href == newLink)
-					return;
+				if (link.href != newLink){
+					link.textContent = item_name;
+					link.title = 'Gladiatus Tools > ' + item_name;
+					link.href = newLink;
+				}
+				return;
 			}
 
 			// Create item link
-			let wrapper = name.getElementsByTagName('span')[0];
-			let item_name = wrapper.textContent.trim();
 			link = document.createElement('a');
 			link.setAttribute('target', '_blank');
 			link.setAttribute('rel', 'noopener noreferrer');
 			link.textContent = item_name;
 			link.title = 'Gladiatus Tools > ' + item_name;
+			link.href = newLink;
 			wrapper.textContent = '';
 			wrapper.appendChild(link);
-			link.href = newLink;
 		},
 
 		attribution : function() {
