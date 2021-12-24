@@ -53,6 +53,9 @@
 	#header_life_pot {margin-right: -7px;margin-top: -14px;float: right;cursor:pointer;width:15px;height:21px;background-image: url('icons/pot.png');background-position: 0px 0px;}
 	#header_life_pot.disabled {background-position: -15px 0px;}
 	.gca_rtl #header_life_pot {margin-left: -5px;float: left;}
+	#header_life_pot_only {position: absolute; top: 77px;left: 488px;background-image: url('icons/pot.png');background-position: 0px 0px;width:15px;height:21px;cursor:pointer;}
+	#header_life_pot_only.disabled {background-position: -15px 0px;}
+	.gca_rtl #header_life_pot_only {left: unset;right: 488px;}
 
 /* Button bar */
 	#gca_shortcuts_bar{position: absolute; z-index: 499;top: 114px; left: 520px; height: 25px; width: 400px; text-align: left;}

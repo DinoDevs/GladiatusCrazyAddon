@@ -73,8 +73,11 @@ var gca_global = {
 		this.background.preserve_image_cache.load();
 
 		// Extended info on Health and Experience bars
-		(gca_options.bool("global","extended_hp_xp_info") && 
-			this.display.extended_hp_xp.info());
+		if (gca_options.bool("global","extended_hp_xp_info"))
+			this.display.extended_hp_xp.info();
+		else if (gca_options.bool("global","extended_hp_xp_info_potion"))
+			this.display.extended_hp_xp.life_potion_shortcut.create(false);
+
 		// Minutes left for full life
 		(gca_options.bool("global","hp_timer_for_full_life") && 
 			this.display.extended_hp_xp.timerForFullLife());
@@ -550,18 +553,22 @@ var gca_global = {
 
 					// Create Healing Pot button
 					var link = document.createElement('a');
-					link.id = "header_life_pot";
+					link.id = extended_hp_xp ? 'header_life_pot' : 'header_life_pot_only';
 					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="img/premium/token/18.jpg"> ' + gca_locale.get("global", "life_potion_use"),"#fdfdfd"]]]);
 					
 					// On click callback
-					var self = this;
-					link.addEventListener('click', function(){
+					link.addEventListener('click', () => {
 						// try to use a Healing Pot
-						self.tryToUsePotion();
+						this.tryToUsePotion();
 					}, false);
 					
 					// Insert button on page
-					document.getElementById('header_values_hp').appendChild(link);
+					if (extended_hp_xp) {
+						document.getElementById('header_values_hp').appendChild(link);
+					}
+					else {
+						document.getElementById('header_values_hp').parentNode.appendChild(link);
+					}
 				},
 
 				// Try to use a Potion
@@ -616,7 +623,7 @@ var gca_global = {
 							" (" + (potions-1) + " " + gca_locale.get("global", "life_potion_left", {number: potions-1}) + ")"
 						);
 						// Update HP
-						this.extended_hp_xp.updateLife(life[1], life[2]);
+						if (this.extended_hp_xp) this.extended_hp_xp.updateLife(life[1], life[2]);
 					})
 					// If Request Failed
 					.fail(() => {
@@ -638,7 +645,7 @@ var gca_global = {
 						var life = this.parseLifeFromHtml(content);
 
 						// Update HP
-						this.extended_hp_xp.updateLife(life[1],life[2]);
+						if (this.extended_hp_xp) this.extended_hp_xp.updateLife(life[1],life[2]);
 
 						// Return result
 						callback(potions, life);
