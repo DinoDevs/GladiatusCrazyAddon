@@ -26,6 +26,8 @@
 	- [x] Now shows total gold value (same as merchants) (#290)
 - **Expeditions**
 	- [x] Display enemy resources drop chances based on personal data (#303)
+- **Quests**
+	- [x] Quest item reward value displayed next to the icon (#265)
 - **Settings**
 	- [x] Reduce exported settings size
 	- [x] Added settings export to player's notes functionality

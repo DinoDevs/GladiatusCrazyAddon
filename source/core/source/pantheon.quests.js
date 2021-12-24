@@ -96,6 +96,7 @@ var gca_pantheon_quests = {
 		this.detailed_rewards_parse('god');
 		this.detailed_rewards_parse('honor');
 		this.detailed_rewards_parse('xp');
+		this.detailed_rewards_parse('item');
 	},
 	detailed_rewards_parse : function(type){
 		// Get reward elements
@@ -103,18 +104,28 @@ var gca_pantheon_quests = {
 		// For each reward
 		for(var i = reward_element.length-1; i >= 0; i--){
 			// Get element
-			let reward_span = reward_element[i].getElementsByTagName('span');
+			let elementType = (type == 'item')? 'img' : 'span';
+			let reward_span = reward_element[i].getElementsByTagName(elementType);
 			// If exist
 			if(reward_span.length > 0){
 				// Set style
 				reward_element[i].className += ' quest_slot_reward_' + type + '_detailed';
 				// Get reward
-				let reward = reward_span[0].dataset.tooltip.replace(/\./g,'').match(/\d+/);
+				let regexp = (type == 'item')? /(\d+)\s</ : /(\d+)/;
+				let reward = reward_span[0].dataset.tooltip.replace(/\./g,'').match(regexp)[1];
 				// Display
-				reward_span[0].insertBefore(
-					document.createTextNode(gca_tools.strings.insertDots(reward)),
-					reward_span[0].firstChild
-				);
+				if (type == 'item'){
+					reward_span[0].parentNode.append(
+						document.createTextNode(gca_tools.strings.insertDots(reward))
+					);
+					reward_span[0].parentNode.style.width = "auto";
+					reward_span[0].align = "absmiddle";
+				}else{
+					reward_span[0].insertBefore(
+						document.createTextNode(gca_tools.strings.insertDots(reward)),
+						reward_span[0].firstChild
+					);
+				}
 			}
 		}
 		
