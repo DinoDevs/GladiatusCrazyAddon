@@ -14,12 +14,16 @@ var gca_guild = {
 		// If guild buildings
 		else if (gca_section.submod == 'buildings' || gca_section.submod == 'updateBuilding') {
 			this.buildings.buildingsCostDifference.show();
-			this.buildings.calculatorLink.show();
+			this.buildings.calculatorLink();
 		}
 		// If guild applications
 		else if (gca_section.submod == 'adminApplication' || gca_section.submod == 'selectCandidate') {
 			this.applications.showRank();
 			this.applications.setRank();
+		}
+		// If guild map
+		else if (gca_section.submod == null) {
+			this.buildings.collectLevels();
 		}
 
 		// Setting Link
@@ -58,27 +62,86 @@ var gca_guild = {
 				element.parentNode.appendChild(div);
 			}
 		},
-		calculatorLink : {
-			show : function() {
-				// Generate server url
-				this.url = gca_links.get('gladiatus-fansite') + '/calculator';
+		calculatorLink : function() {
+			// Generate server url
+			this.url = gca_links.get('gladiatus-fansite') + '/calculator';
 
-				// Create info box
-				let info = document.createElement('div');
-				info.id = 'gca_buildings_calculator';
-	
-				// Add links
-				let link = document.createElement('a');
-				link.setAttribute('target', '_blank');
-				link.setAttribute('rel', 'noopener noreferrer');
-				link.setAttribute('style', 'text-align: right;display: block;padding-right: 10px;')
-				link.textContent = this.url;
-				link.href = this.url;
-				info.appendChild(link);
-	
-				let buildingsUpgrade = document.getElementById('mainbox');
-				buildingsUpgrade.parentNode.insertBefore(info, buildingsUpgrade.nextSibling);
+			// Create info box
+			let info = document.createElement('div');
+			info.id = 'gca_buildings_calculator';
+
+			// Add links
+			let link = document.createElement('a');
+			link.setAttribute('target', '_blank');
+			link.setAttribute('rel', 'noopener noreferrer');
+			link.setAttribute('style', 'text-align: right;display: block;padding-right: 10px;')
+			link.textContent = this.url;
+			link.href = this.url;
+			info.appendChild(link);
+
+			let buildingsUpgrade = document.getElementById('mainbox');
+			buildingsUpgrade.parentNode.insertBefore(info, buildingsUpgrade.nextSibling);
+		},
+		buildingsData : {
+			levels : {
+				guild : 0,
+				temple : 0,
+				warcamp : 0,
+				market : 0,
+				storage : 0,
+				library : 0,
+				medic : 0,
+				bath : 0,
+				bankinghouse : 0,
+				jail : 0,
+				training : 0
+			},
+			upgradeCostFactors : {
+				guild : [1.2, 6.5],
+				temple : [2, 4.5],
+				warcamp : [2.3, 4.5],
+				market : [2.7, 4.5],
+				storage : [9, 4.5],
+				library : [2.5, 4.5],
+				medic : [4.1, 4.5],
+				bath : [3.3, 4.5],
+				bankinghouse : [4.8, 4.5],
+				jail : [4.1, 4.5],
+				training : [3.9, 4.5]
 			}
+		},
+		collectLevels : function() {
+			// Defaults
+			let levels = this.buildingsData.levels;
+			let upgradeCostFactors = this.buildingsData.upgradeCostFactors;
+			
+			// Get building levels
+			let links = document.getElementsByClassName('map_label')
+			for(let i = 0; i<links.length; i++){
+				let level = parseInt(links[i].textContent.match(/\d+/))
+				let building = links[i].href.match(/mod=(\w+)&/)[1]
+				if (building!='guild')
+					building = building.replace(/guild(_)*/,'').toLowerCase()
+				
+				levels[building] = level
+			}
+			
+			// Save building levels
+			//gca_data.section.set("guild", "buildings", levels); //not used
+			
+			// Calculate upgrade gold spend
+			let totalGoldSpendOnUpgrades = 0;
+			for (let [building, level] of Object.entries(levels)) {
+				//console.log(building, level);
+				let a = upgradeCostFactors[building][0];
+				let b = upgradeCostFactors[building][1];
+				for(let l_level = 1; l_level <= level; l_level++){
+					totalGoldSpendOnUpgrades += Math.floor(Math.pow(l_level*a, b));
+				}
+			}
+			
+			// Save total gold spend on upgrades
+			gca_data.section.set("guild", "upgradesCost", totalGoldSpendOnUpgrades);
 		}
 	},
 

@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.5 [Alpha]
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-20-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-21-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-27-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
@@ -26,6 +26,8 @@
 	- [x] Now shows total gold value (same as merchants) (#290)
 - **Guild Buildings Upgrade**
 	- [x] Link to external buildings upgrade cost calculator
+- **Bank Donations Book**
+	- [x] Display total gold spend on upgrades & donated gold
 - **Expeditions**
 	- [x] Display enemy resources drop chances based on personal data (#303)
 - **Quests**

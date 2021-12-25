@@ -34,9 +34,11 @@ var gca_guild_bank = {
 		(gca_options.bool("guild","bank_book_layout") && 
 			this.bookLayout.improve(this));
 
-		// Changes since last visit
-		(gca_options.bool("guild","bank_book_show_changes") && 
-			this.book_show_donation_changes());
+		// Changes since last visit & total donated gold
+		this.book_show_donation_changes_total_gold(
+			gca_options.bool("guild","bank_book_show_changes"), 
+			gca_options.bool("guild","bank_book_layout")
+		);
 	},
 
 	// Bank Improve
@@ -176,26 +178,31 @@ var gca_guild_bank = {
 			}
 		}
 	},
+	book_show_donation_changes_total_gold : function(enableDonations, enableTotalGold) {
+		if(!enableDonations && !enableTotalGold)
+			return;
 
-	book_show_donation_changes : function() {
 		// Get wrappers
 		var wrapper = document.getElementById('content').getElementsByTagName('section');
 		if(!wrapper) return;
 
-		// Players
+		// Data
 		var players = {};
 		var memory = gca_data.section.get("cache", "guild_donations", {});
-
+		let totalDonatedGold = 0;
+		
 		// Get rows
 		var row = wrapper[0].getElementsByTagName("table")[0].getElementsByTagName('tr');
 		// For each row
 		for (let i = 1; i < row.length; i++) {
 			let a = row[i].getElementsByTagName('a');
+			let gold = gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
+
 			// If this is a player
-			if (a.length && a[0].href.match(/(?:&amp;|&)p=\d+(?:&amp;|&)sh=/i)) {
+			if (a.length && enableDonations && a[0].href.match(/(?:&amp;|&)p=\d+(?:&amp;|&)sh=/i)) {
 				let id = parseInt(a[0].href.match(/(?:&amp;|&)p=(\d+)(?:&amp;|&)sh=/i)[1], 10);
-				let gold = gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
 				players[id] = gold;
+
 				// If player info on memory
 				if (memory.hasOwnProperty(id) && gold - memory[id] > 0) {
 					let info = document.createElement('span');
@@ -203,12 +210,49 @@ var gca_guild_bank = {
 					info.textContent = '+' + gca_tools.strings.insertDots(gold - memory[id]);
 					row[i].getElementsByTagName('td')[2].appendChild(info);
 				}
-			}
-			else break;
+			}else if (!enableTotalGold) break;
+
+			if (enableTotalGold)
+				totalDonatedGold += gold
 		}
 
 		// Save new data
-		gca_data.section.set("cache", "guild_donations", players);
+		if (enableDonations)
+			gca_data.section.set("cache", "guild_donations", players);
+		
+		// Building Levels
+		if (enableTotalGold){
+
+			// Update building levels
+			let totalGoldSpendOnUpgrades = gca_data.section.get("guild", "upgradesCost", 0);
+			if (totalGoldSpendOnUpgrades == 0)
+				return;
+
+			// Assume 30% discount
+			totalGoldSpendOnUpgrades = Math.floor(totalGoldSpendOnUpgrades * 0.7);
+
+			// Show total donated gold
+			let info = document.createElement('div');
+			info.textContent = 'Total donated gold: ' + gca_tools.strings.insertDots(totalDonatedGold) +' ';
+			// Show spend gold
+			let goldIcon = document.createElement('div');
+			goldIcon.className = 'icon_gold';
+			info.appendChild(goldIcon);
+
+			wrapper[0].insertBefore(info, wrapper[0].firstChild);
+
+			// Show spend gold
+			info = document.createElement('div');
+			//info.className = 'bank-book-gold-info';
+			info.textContent = 'Total gold spend on upgrades: ' + gca_tools.strings.insertDots(totalGoldSpendOnUpgrades) +' ';
+			// Show spend gold
+			goldIcon = document.createElement('div');
+			goldIcon.className = 'icon_gold';
+			info.appendChild(goldIcon);
+			info.appendChild(goldIcon);
+
+			wrapper[0].insertBefore(info, wrapper[0].firstChild);
+		}
 	}
 };
 
