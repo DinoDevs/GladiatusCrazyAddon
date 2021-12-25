@@ -928,11 +928,13 @@ var gca_global = {
 						
 						// Create a Link to guild's storage
 						if(activeButtons.indexOf("gst") >= 0){
+							let tab = gca_data.section.get("cache", "guild_storage_tab", 1);
+
 							button = document.createElement('div');
 							button.className = "icon-out";
 							link = document.createElement('a');
 							link.className = "icon box-icon";
-							link.href = gca_getPage.link({"mod":"guildStorage"});
+							link.href = gca_getPage.link({"mod":"guildStorage", "subsub":tab});
 							link.title = gca_locale.get("global", "guild_storage_goto");
 							button.appendChild(link);
 							shortcutsBar.appendChild(button);

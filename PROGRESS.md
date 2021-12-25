@@ -1,8 +1,8 @@
 ## Progress on Version 4.3.5 [Alpha]
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-21-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-27-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-22-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-28-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -28,6 +28,8 @@
 	- [x] Link to external buildings upgrade cost calculator
 - **Bank Donations Book**
 	- [x] Display total gold spend on upgrades & donated gold
+- **Guild Storage**
+	- [x] Remember last storage tab
 - **Expeditions**
 	- [x] Display enemy resources drop chances based on personal data (#303)
 - **Quests**
@@ -75,6 +77,8 @@
 	- [x] Battle analyzer (Turma/Dungeon) stats not showing fix (#256)
 - **Auctions**
 	- [x] Fixed number sorting (#235)
+- **Guild Storage**
+	- [x] Fix errors when visiting the admin tab
 - **Accessibility**
 	- [x] Fixed symbols showing in wrong tooltips (#253)
 - **Settings**

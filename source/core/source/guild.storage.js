@@ -6,21 +6,32 @@
 // Guild Storage
 var gca_guild_storage = {
 	inject : function(){
-		// If Item shadow
-		(gca_options.bool("global","item_shadow") &&
-			this.itemShadow.inject());
+		// Admin tab
+		if (gca_section.submod == 'control') {
+			// Remember last tad
+			this.rememberLastTab.changeHeaderTab();
+		
+		// Storage
+		}else{
+			// If Item shadow
+			(gca_options.bool("global","item_shadow") &&
+				this.itemShadow.inject());
 
-		// Fade non affordable items
-		(gca_options.bool("merchants","show_shop_info") &&
-			this.containerItemsInfo.prepare());
+			// Fade non affordable items
+			(gca_options.bool("merchants","show_shop_info") &&
+				this.containerItemsInfo.prepare());
 
-		// Double click to sell/buy items
-		(gca_options.bool("merchants","double_click_actions") &&
-			this.doubleClickActions.init());
+			// Double click to sell/buy items
+			(gca_options.bool("merchants","double_click_actions") &&
+				this.doubleClickActions.init());
 
-		// Run item categories actions
-		// TODO: Add options in settings
-		this.categories.check();
+			// Run item categories actions
+			// TODO: Add options in settings
+			this.categories.check();
+
+			// Cache last tad
+			this.rememberLastTab.cache();
+		}
 
 		// Setting Link
 		gca_tools.create.settingsLink("guild");
@@ -41,6 +52,31 @@ var gca_guild_storage = {
 			for(var i = items.length - 1; i >= 0; i--){
 				gca_tools.item.shadow.add(items[i]);
 			}
+		}
+	},
+	
+	rememberLastTab : {
+		// Cache last tab
+		cache : function(){
+			// Get tab
+			let tab = gca_getPage.parameter("subsub", gca_getPage.url());
+
+			if(tab == undefined)
+				tab = 1;
+			
+			// Cache tab
+			gca_data.section.set("cache", "guild_storage_tab", tab);
+		},
+		changeHeaderTab : function(){
+			// Get wrappers
+			let headerTabs = document.getElementById('mainnav').getElementsByTagName('a');
+			if(!headerTabs) return;
+
+			// Get cache tab
+			let tab = gca_data.section.get("cache", "guild_storage_tab", 1);
+
+			// Add tab in the header tab
+			headerTabs[0].href += '&subsub=' + tab;
 		}
 	},
 
