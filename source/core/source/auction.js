@@ -540,7 +540,9 @@ var gca_auction = {
 					pattern: /-?\d+/,
 				};
 			} else {
-				locale.level = jQuery('#icon_level').data().tooltip[0][0][0];
+				locale = {
+					level : jQuery('#icon_level').data().tooltip[0][0][0]
+				};
 			}
 			
 			if (locale.level) {
