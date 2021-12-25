@@ -13,7 +13,8 @@ var gca_guild = {
 		}
 		// If guild buildings
 		else if (gca_section.submod == 'buildings' || gca_section.submod == 'updateBuilding') {
-			this.buildings.builingsCostDifference.show();
+			this.buildings.buildingsCostDifference.show();
+			this.buildings.calculatorLink.show();
 		}
 		// If guild applications
 		else if (gca_section.submod == 'adminApplication' || gca_section.submod == 'selectCandidate') {
@@ -35,7 +36,7 @@ var gca_guild = {
 	},
 
 	buildings : {
-		builingsCostDifference : {
+		buildingsCostDifference : {
 			show : function() {
 				// Get guild gold
 				var guildGold = document.getElementById('mainbox').getElementsByTagName('section')[0].textContent.match(/[0-9.]+/)[0];
@@ -49,12 +50,34 @@ var gca_guild = {
 			},
 			perBuilding : function(element, guildGold) {
 				var cost = gca_tools.strings.parseGold(element.textContent);
-				var differece = guildGold - cost;
+				var difference = guildGold - cost;
 				var div = document.createElement('div');
-				div.textContent = '(' + (differece >= 0 ? '+' : '') + gca_tools.strings.insertDots(differece) + ')';
+				div.textContent = '(' + (difference >= 0 ? '+' : '') + gca_tools.strings.insertDots(difference) + ')';
 				div.className = 'gca_guild_buildings_cost_difference';
-				div.style.color = differece >= 0 ? '#006300' : '#840900';
+				div.style.color = difference >= 0 ? '#006300' : '#840900';
 				element.parentNode.appendChild(div);
+			}
+		},
+		calculatorLink : {
+			show : function() {
+				// Generate server url
+				this.url = gca_links.get('gladiatus-fansite') + '/calculator';
+
+				// Create info box
+				let info = document.createElement('div');
+				info.id = 'gca_buildings_calculator';
+	
+				// Add links
+				let link = document.createElement('a');
+				link.setAttribute('target', '_blank');
+				link.setAttribute('rel', 'noopener noreferrer');
+				link.setAttribute('style', 'text-align: right;display: block;padding-right: 10px;')
+				link.textContent = this.url;
+				link.href = this.url;
+				info.appendChild(link);
+	
+				let buildingsUpgrade = document.getElementById('mainbox');
+				buildingsUpgrade.parentNode.insertBefore(info, buildingsUpgrade.nextSibling);
 			}
 		}
 	},
