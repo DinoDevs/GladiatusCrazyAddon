@@ -1774,7 +1774,7 @@ var gca_tools = {
 			let footer = document.getElementById('footer');
 
 			// If no footer
-			if (footer == null) footer = document;
+			if (footer == null) footer = document.getElementsByTagName('body')[0];
 
 			// Return wrapper if already exists
 			let wrapper = footer.getElementsByClassName('gca-footer-buttons-wrapper');
