@@ -111,6 +111,11 @@ var gca_guild = {
 			}
 		},
 		collectLevels : function() {
+			// If other guild, return
+			let guildID = gca_getPage.parameter("i", gca_getPage.url());
+			if (guildID != undefined)
+				return;
+
 			// Defaults
 			let levels = this.buildingsData.levels;
 			let upgradeCostFactors = this.buildingsData.upgradeCostFactors;
