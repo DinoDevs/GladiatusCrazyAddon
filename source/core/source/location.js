@@ -150,7 +150,7 @@ var gca_location = {
 					
 					// Check if drop is a material
 					if (item[1].substring(0,3) == "18-"){
-						let enemy = item[0].replace(/\.\w+$/g, "");
+						let enemy = item[0].replace(/\..+$/g, "");
 						
 						// If we have data for this enemy
 						if (this.drops[enemy]) {
