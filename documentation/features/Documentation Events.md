@@ -1,5 +1,5 @@
 ## Index
-- [Display dice event's timer on top] Open!
+- [Display dice event's timer on top](Documentation%20Events.md#display-dice-events-timer-on-top)
 - [Change level number indicators on items to white](Documentation%20Event.md#display-server-quest-or-location-events-timer-on-top)
 
 ## Events
