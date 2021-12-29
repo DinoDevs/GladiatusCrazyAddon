@@ -1,6 +1,5 @@
 ## Index
 - [Select Addon language](Documentation%20Global.md#select-addon-language)
-- [Enable Sound](Documentation%20Global.md#enable-sound)
 - [Enable Browser Notifications](Documentation%20Global.md#enable-browser-notifications)
 - [Display extended HP and XP Header Info](Documentation%20Global.md#display-extended-hp-and-xp-header-info)
 - [Display Life Potion Use Icon](Documentation%20Global.md#display-life-potion-use-icon)
@@ -44,11 +43,6 @@
 ![Missing Translation](Pictures/Global/Missing_Translation.png)
  
  - More Links: [Submit GCA translations](https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/documentation/translators/README.md)
- ### Enable Sound
- 
->Need Help - Clarification open - attitude does not result in any changes. Effective settings are those under Sound
-
-![Enable Sound Notification](Pictures/Global/Enable_Sound_Notification.png)
 
 ### Enable Browser Notifications
 
@@ -68,7 +62,6 @@
  
 ### Display Life Potion Use Icon
 - Activate Healing Potion Icon for one-click use
-- For this feature you have to have activated the following features "[Display extended HP and XP Header Info](Documentation%20Global.md#display-extended-hp-and-xp-header-info)"
 
  ![Display Life Potion Use](Pictures/Global/Display_Life_Potion_Use.png)
  
@@ -90,19 +83,21 @@
 
 ![Select Shortcut Bar](Pictures/Global/Select_Shortcuts.png)
 
-*Explanation of the symbols:*
---	Write guild message
---	Go to guild's medic center
---	Go to guild's market
---	Go to guild's storage
---	Go to guild's bank
---	Go to guild's war camp
---	Go to guild's arena battle reports
---	Go to guild's jail
---	Go to guild's library
---	Go to guild's temple
---	Display my stats
---	Display online players
+- *Explanation of the symbols:* <br>
+<img src="Pictures/Global/write_mail.png"> - Write guild message <br>
+<img src="Pictures/Global/gotomedic.png">	- Go to guild's medic center <br>
+<img src="Pictures/Global/gotomarket.png"> - Go to guild's market <br>
+<img src="Pictures/Global/gostorage.png"> -	Go to guild's storage <br>
+<img src="Pictures/Global/gotobank.png"> -	Go to guild's bank <br>
+<img src="Pictures/Global/gowarcamp.png"> -	Go to guild's war camp <br>
+<img src="Pictures/Global/gotobattlereport.png"> -	Go to guild's arena battle reports <br>
+<img src="Pictures/Global/gotojails.png"> -	Go to guild's jail <br>
+<img src="Pictures/Global/gotolibrary.png"> -	Go to guild's library <br>
+<img src="Pictures/Global/gototemple.png"> -	Go to guild's temple <br>
+<img src="Pictures/Global/gotofood.png"> - Go to food auctions <br>
+<img src="Pictures/Global/gotosimulator.png"> - Go to simulator <br>
+<img src="Pictures/Global/my_stats.png"> -	Display my stats <br>
+<img src="Pictures/Global/displayonlineplayers.png"> -	Display online players
 
 - These are then displayed as a quick access bar
 
@@ -153,15 +148,15 @@
 ### Show attacked timers
 - These timers show the time passed since you have been attacked.
 
-Top left: Arena
-Top right: Turma
-Bottom left: Cross Server
-Bottom right: Cross Server Turma
-
 ![Show Attack Timer](Pictures/Global/Show_Attack_Timer.png)
 
 ![Show Attack Timer N](Pictures/Global/Show_Attack_Timer_N.png)
 ![Show Attack Timer Y](Pictures/Global/Show_Attack_Timer_Y.png)
+
+**Top left:** Arena <br>
+**Top right:** Turma <br>
+**Bottom left:** Cross Server <br>
+**Bottom right:** Cross Server Turma 
 
 ### Show quests status or timer
 - Shows the status or the timer of the running Quest.
