@@ -7,6 +7,8 @@
 ## Reports
 ### Improve reports' list layout
 - Improves the list layout of the reports (expedition, arena, ...)
+- Adds attack back button on arenas
+- Adds tooltips on rewards icons and adds reward icons for divine chests
 
 ![Improve Reportslist Layout](Pictures/Reports/Improve_Reportslist_Layout.png)
 
