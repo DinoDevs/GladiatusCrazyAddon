@@ -1162,6 +1162,74 @@ var gca_settings = {
 					return scheme;
 				})(),
 
+				// Export
+				"export_settings_to_notes" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.export = document.createElement("input");
+							data.export.setAttribute("type", "button");
+							data.export.className = "awesome-button";
+							data.export.style.float = "right";
+							data.export.style.marginTop = "5px";
+							data.export.value = gca_locale.get("settings", "export");
+							// On export
+							data.export.addEventListener("click", () => {
+								// Disable elements
+								data.export.setAttribute("disabled", "disabled");
+								// Export notes
+								gca_settings.backup.exportToNotes()
+								.then(() => {
+									gca_notifications.success(gca_locale.get("general", "ok"));
+									data.export.removeAttribute("disabled");
+								})
+								.catch((error) => {
+									gca_notifications.error(gca_locale.get("general", "error") + ' [' + error + ']');
+									data.export.removeAttribute("disabled");
+								});
+							}, false);
+							// Add change event
+							return [data.export];
+						}
+					};
+					return scheme;
+				})(),
+				
+				// Import
+				"import_settings_from_notes" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							// Create button
+							data.import = document.createElement("input");
+							data.import.setAttribute("type", "button");
+							data.import.className = "awesome-button";
+							data.import.style.float = "right";
+							data.import.style.marginTop = "5px";
+							data.import.value = gca_locale.get("settings", "import");
+							// On import
+							data.import.addEventListener("click", () => {
+								// Disable elements
+								data.import.setAttribute("disabled", "disabled");
+								// Get notes
+								gca_settings.backup.importFromNotes()
+								.then(() => {
+									// Reload page
+									document.location.href = document.location.href;
+								})
+								.catch((error) => {
+									gca_notifications.error(gca_locale.get("general", "error") + ' [' + error + ']');
+									data.import.removeAttribute("disabled");
+								});
+							}, false);
+							// Add change event
+							return [data.import];
+						}
+					};
+					return scheme;
+				})(),
+
 				// Reset
 				"reset_settings" : (function(){
 					var scheme = {
@@ -1294,76 +1362,6 @@ var gca_settings = {
 					return scheme;
 				})()
 				*/
-
-
-				// Import
-				"import_settings_from_notes" : (function(){
-					var scheme = {
-						"type" : "custom",
-						"dom" : function(data, title, wrapper){
-							// Create button
-							data.import = document.createElement("input");
-							data.import.setAttribute("type", "button");
-							data.import.className = "awesome-button";
-							data.import.style.float = "right";
-							data.import.style.marginTop = "5px";
-							data.import.value = gca_locale.get("settings", "import");
-							// On import
-							data.import.addEventListener("click", () => {
-								// Disable elements
-								data.import.setAttribute("disabled", "disabled");
-								// Get notes
-								gca_settings.backup.importFromNotes()
-								.then(() => {
-									gca_notifications.success(gca_locale.get("general", "ok"));
-									data.import.removeAttribute("disabled");
-								})
-								.catch((error) => {
-									gca_notifications.error(gca_locale.get("general", "error") + ' [' + error + ']');
-									data.import.removeAttribute("disabled");
-								});
-							}, false);
-							// Add change event
-							return [data.import];
-						}
-					};
-					return scheme;
-				})(),
-
-
-				// Export
-				"export_settings_to_notes" : (function(){
-					var scheme = {
-						"type" : "custom",
-						"dom" : function(data, title, wrapper){
-							// Create button
-							data.export = document.createElement("input");
-							data.export.setAttribute("type", "button");
-							data.export.className = "awesome-button";
-							data.export.style.float = "right";
-							data.export.style.marginTop = "5px";
-							data.export.value = gca_locale.get("settings", "export");
-							// On export
-							data.export.addEventListener("click", () => {
-								// Disable elements
-								data.export.setAttribute("disabled", "disabled");
-								// Export notes
-								gca_settings.backup.exportToNotes()
-								.then(() => {
-									// Reload page
-									document.location.href = document.location.href;
-								})
-								.catch((error) => {
-									gca_notifications.error(gca_locale.get("general", "error") + ' [' + error + ']');
-									data.export.removeAttribute("disabled");
-								});
-							}, false);
-							// Add change event
-							return [data.export];
-						}
-					};
-					return scheme;
-				})(),
 			}
 		},
 
@@ -2787,9 +2785,9 @@ var gca_settings = {
 
 // Onload Handler
 (function(){
-	var loaded = false;
-	var fireLoad = function() {
-		if(loaded) return;
+	let loaded = false;
+	let fireLoad = function() {
+		if (loaded) return;
 		loaded = true;
 		gca_settings.inject();
 	};

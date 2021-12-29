@@ -484,13 +484,13 @@ gca_languages["en"] = {
 			// Settings - Data
 			category_data$export_settings : "Export settings to file",
 			category_data$import_settings : "Import settings from file",
+			category_data$export_settings_to_notes : "Export settings to notes",
+			category_data$import_settings_from_notes : "Import settings from notes",
 			category_data$reset_settings : "Reset addon's settings",
 			category_data$clear_data : "Clear all addon's data",
 			category_data$clear_cache_data : "Clear addon's temporal data (cache)",
 			category_data$cross_browser_login : "Cross browser login sync",
 			category_data$export_error_player_settings : "Export unknown-user data to file", // TODO: This may be removed on the future
-			category_data$import_settings_from_notes : "Import settings from notes",
-			category_data$export_settings_to_notes : "Export settings to notes",			
 
 			// Buttons
 			save : "Save",
