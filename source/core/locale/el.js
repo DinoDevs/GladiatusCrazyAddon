@@ -75,6 +75,7 @@ gca_languages["gr"] = {
 			guild_jail_goto: "Πήγαινε στην φυλακή τάγματος",
 			guild_library_goto: "Πήγαινε στην βιβλιοθήκη τάγματος",
 			guild_templum_goto : "Πήγαινε στο ναό του τάγματος",
+			auction_food_goto : "Πήγαινε στα αναλώσιμα στο δημοπρατήριο",
 			guild_medic_goto: "Πήγαινε στο ιατρικό κέντρο",
 			simulator_goto: "Μεταβίβαση στον προσομοιωτή",
 			stats_display: "Εμφάνιση των στατιστικών μου",
@@ -212,6 +213,7 @@ gca_languages["gr"] = {
 			points_breakdown_critical_heal : "Κρίσιμη αξία θεραπεία: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_critical_heal_max : "Κρίσιμη αξία θεραπεία: μέγιστη τιμή",
 			stats_calculated_with_yourself_as_an_opponent : "* Τα στατιστικά υπολογίζονται με την υπόθεση ότι επιτίθεσαι στον εαυτό σου.",
+			values_in_parenthesis_explanation : "Οι τιμές μέσα στις παρενθέσεις παρουσιάζουν τις αντίστοιχες ακριβής τιμές πριν την στρογγυλοποίηση.",
 			// Cost calculator
 			total_cost : "Συνολικό κόστος",
 			// Discount show
@@ -441,6 +443,7 @@ gca_languages["gr"] = {
 			category_market$remember_sell_duration : "Να θυμάται το πρόσθετο την τελευταία επιλεγμένη διάρκεια πώλησης",
 			category_market$sell_duration : "Ορισμός προεπιλεγμένης διάρκειας πώλησης",
 			category_market$one_gold_mode : "Επιλογή για σταθερή τιμή πώλησης 1ος χρυσού",
+			category_market$custom_prices : "Προσαρμοσμένες τιμές αγοράς, διαχωρισμένες με κόμμα. Υπολογισμός βάση ποσοστού της τιμής του προϊόντος προσθέτοντας ένα '%'. (π.χ. '10000, 10.000, 200%')",
 			category_market$remember_sort : "Να θυμάται το πρόσθετο την τελευταία ταξινόμηση",
 			category_market$double_click_select : "Επιλογή αντικειμένου με διπλό κλικ",
 			category_market$sell_warning_icons : "Προειδοποιητικά εικονίδια πώλησης αντικειμένου",
@@ -481,6 +484,8 @@ gca_languages["gr"] = {
 			// Settings - Data
 			category_data$export_settings : "Εξαγωγή των ρυθμίσεων σε αρχείο",
 			category_data$import_settings : "Εισαγωγή των ρυθμίσεων από αρχείο",
+			category_data$export_settings_to_notes : "Εξαγωγή των ρυθμίσεων τις σημειώσεις",
+			category_data$import_settings_from_notes : "Εισαγωγή των ρυθμίσεων από τις σημειώσεις",
 			category_data$reset_settings : "Επαναφορά των ρυθμίσεων του προσθέτου",
 			category_data$clear_data : "Εκκαθάριση όλων των δεδομένων του προσθέτου",
 			category_data$clear_cache_data : "Εκκαθάριση προσωρινών δεδομένων προσθέτου",
