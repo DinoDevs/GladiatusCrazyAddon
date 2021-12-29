@@ -200,7 +200,7 @@ var gca_reports = {
 				if (forgingGood) {
 					let item = forgingGood[1];
 					let image = document.getElementById('defenderAvatar11').getElementsByTagName('div')[2].style.backgroundImage;
-					let enemy = image.match(/url\("\d+\/img\/npc\/(\d+\/[^.]+)\)/);
+					let enemy = image.match(/url\("\d+\/img\/npc\/(\d+\/[^.]+\.\w+)"\)/);
 					if (enemy) data.push([enemy[1], item]);
 					else console.error('Failed to detect enemy', image);
 				}
