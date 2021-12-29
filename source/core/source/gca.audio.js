@@ -140,7 +140,7 @@ var gca_audio = {
 		if (!this._enable) return;
 		var audio = this.new(id);
 		// In many cases this fires when the user has not yet interacted with the document
-		try {audio.play();}
+		try {audio.play().catch(e => {});}
 		catch(e){};
 		return audio;
 	},
