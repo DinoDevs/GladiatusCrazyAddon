@@ -1,6 +1,5 @@
 ## Index
 - [Select Addon language](Documentation%20Global.md#select-addon-language)
-- [Enable Sound](Documentation%20Global.md#enable-sound)
 - [Enable Browser Notifications](Documentation%20Global.md#enable-browser-notifications)
 - [Display extended HP and XP Header Info](Documentation%20Global.md#display-extended-hp-and-xp-header-info)
 - [Display Life Potion Use Icon](Documentation%20Global.md#display-life-potion-use-icon)
