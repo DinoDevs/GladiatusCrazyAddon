@@ -29,6 +29,7 @@ var gca_settings = {
 		urls : {
 			bug_report : gca_links.get('addon-github') + '/issues/new?template=bug.md',
 			idea_request : gca_links.get('addon-github') + '/issues/new?template=feature-request.md',
+			documentation : gca_links.get('addon-github') + '/blob/master/documentation/features/README.md',
 			troubleshooting_guide : gca_links.get('addon-github') + '/blob/master/documentation/Troubleshooting.md',
 			translate_addon : gca_links.get('addon-github') + '/blob/master/documentation/translators/README.md',
 
@@ -158,6 +159,21 @@ var gca_settings = {
 			p.appendChild(document.createTextNode("."));
 			body.appendChild(p);
 			
+			// Documentation
+			p = document.createElement("div");
+			p.style.paddingBottom = "10px";
+			p.appendChild(document.createTextNode("If you want to see all features, check our 📚 "));
+			body.appendChild(p);
+			a = document.createElement("a");
+			a.setAttribute("href", this.urls.documentation);
+			a.setAttribute("target", "_blank");
+			a.setAttribute("rel", "noreferrer");
+			a.style.color = "#612d04;";
+			a.style.textDecoration = "underline";
+			a.textContent = "Documentation";
+			p.appendChild(a);
+			p.appendChild(document.createTextNode(". There, we explain the in-game changes that each setting/option does."));	
+
 			// Troubleshooting guide note
 			p = document.createElement("div");
 			p.style.paddingBottom = "10px";
