@@ -178,27 +178,31 @@ var gca_reports = {
 	// Log items found for statistics
 	report_found_items : function(){
 		// Check if this is new report
-		var reportDate = document.getElementsByTagName('h2')[1].textContent.match(/(\d+).(\d+).(\d+) (\d+).(\d+).(\d+)/i);
+		let reportDate = document.getElementsByTagName('h2')[1].textContent.match(/(\d+).(\d+).(\d+) (\d+).(\d+).(\d+)/i);
 		if (!reportDate) reportDate = document.getElementsByTagName('h2')[0].textContent.match(/(\d+).(\d+).(\d+) (\d+).(\d+).(\d+)/i);
 		if (!reportDate) return;
 		reportDate = new Date(reportDate[3], reportDate[2] - 1, reportDate[1], reportDate[4], reportDate[5], reportDate[6])
-		var timePassed = (gca_tools.time.server() - reportDate.getTime())/1000;//in sec
+		let timePassed = (gca_tools.time.server() - reportDate.getTime())/1000;//in sec
 		
 		if (timePassed > 5) return;
 			
 		// Reward exist?
-		var rewards = document.getElementsByClassName('reportReward');
-		var data = gca_data.section.get('data', 'enemy_drops', []);//enemy,item
+		let rewards = document.getElementsByClassName('reportReward');
+		let data = gca_data.section.get('data', 'enemy_drops', []);//enemy,item
 		// Fix wrong data type of previous versions
 		if (data.constructor != Array) {
 			data = [];
 		}
-		for(let i = 0; i < rewards.length; i++) {
-			if(typeof rewards[i].getElementsByTagName('div')[1]!=='undefined'){
-				if(rewards[i].getElementsByTagName('div')[1].className.match(/item-i-18-\d+/)){
-					let item = rewards[i].getElementsByTagName('div')[1].className.match(/item-i-(18-\d+)/)[1];
-					let enemy = document.getElementById('defenderAvatar11').getElementsByTagName('div')[2].style.backgroundImage.match(/url\("\d+\/img\/npc\/(\d+\/\d+_\d+....")\)/)[1];
-					data.push([enemy, item]);
+		for (let i = 0; i < rewards.length; i++) {
+			let reward = rewards[i].getElementsByTagName('div')[1];
+			if (typeof reward !== 'undefined') {
+				let forgingGood = reward.className.match(/item-i-(18-\d+)/)
+				if (forgingGood) {
+					let item = forgingGood[1];
+					let image = document.getElementById('defenderAvatar11').getElementsByTagName('div')[2].style.backgroundImage;
+					let enemy = image.match(/url\("\d+\/img\/npc\/(\d+\/[^.]+)\)/);
+					if (enemy) data.push([enemy[1], item]);
+					else console.error('Failed to detect enemy', image);
 				}
 			}
 		}
@@ -210,14 +214,14 @@ var gca_reports = {
 		// Change report style
 		change : function(){
 			// Load loot tooltips
-			var load_loot = gca_options.bool("reports","load_loot_tooltips");
+			let load_loot = gca_options.bool("reports","load_loot_tooltips");
 
 			// Date variable
-			var last_date = null;
+			let last_date = null;
 
 			// Report lines
-			var row = 1;
-			var line = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr');
+			let row = 1;
+			let line = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr');
 
 			// Align stuff
 			line[0].getElementsByTagName('th')[2].style.textAlign = "right";

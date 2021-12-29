@@ -140,52 +140,54 @@ var gca_location = {
 				let pictures = document.getElementsByClassName('expedition_picture');
 				
 				// Get local data
-				var localData = gca_data.section.get("data", "enemy_drops", []);
-				var cleanLocalData = [] // save here drops without the known enemies resources drops 
-				var dataCleanNeeded = false
-				var groupedLocalData = {}
+				let localData = gca_data.section.get("data", "enemy_drops", []);
+				let cleanLocalData = [] // save here drops without the known enemies resources drops 
+				let dataCleanNeeded = false
+				let groupedLocalData = {}
 				// Loop through local data and group the material drops by enemy
 				for (let i = 0; i < localData.length; i++) {
 					let item = localData[i];
 					
 					// Check if drop is a material
 					if (item[1].substring(0,3) == "18-"){
-						let enemy = item[0].replace(".jpg\"", "")
+						let enemy = item[0].replace(/\.\w+$/g, "");
 						
 						// If we have data for this enemy
-						if (this.drops[enemy]){
-							dataCleanNeeded = true
-							continue
+						if (this.drops[enemy]) {
+							dataCleanNeeded = true;
+							continue;
 						}
 
-						let material = parseInt(item[1].replace("18-", ""))
+						let material = parseInt(item[1].substring(3), 10); // Remove '18-' and parse as integer
 						//console.log(enemy +" - "+ material)
 						
 						//if (!groupedLocalData.includes(enemy))
 						if (!(enemy in groupedLocalData))
-							groupedLocalData[enemy] = {}
+							groupedLocalData[enemy] = {};
 						
 						//if (groupedLocalData[enemy].includes(material))
-						if (material in groupedLocalData[enemy]){
-							groupedLocalData[enemy][material] += 1
-						}else{
-							groupedLocalData[enemy][material] = 1
+						if (material in groupedLocalData[enemy]) {
+							groupedLocalData[enemy][material] += 1;
+						}
+						else {
+							groupedLocalData[enemy][material] = 1;
 						}
 						
 						// Increase total
-						if ("total" in groupedLocalData[enemy]){
-							groupedLocalData[enemy]["total"] += 1
-						}else{
-							groupedLocalData[enemy]["total"] = 1
+						if ("total" in groupedLocalData[enemy]) {
+							groupedLocalData[enemy]["total"] += 1;
+						}
+						else {
+							groupedLocalData[enemy]["total"] = 1;
 						}
 					}
 
 					// Save to clean data
-					cleanLocalData.push(item)
+					cleanLocalData.push(item);
 				}
 				// Save clean data
 				if (dataCleanNeeded){
-					console.log("Saving cleared enemy drops")
+					console.log("Saving cleared enemy drops");
 					gca_data.section.set("data", "enemy_drops", cleanLocalData);
 				}
 				//console.log(groupedLocalData)
