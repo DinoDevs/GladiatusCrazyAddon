@@ -257,8 +257,28 @@ var gca_reports = {
 						// Align Loot
 						line[row].getElementsByTagName('td')[2].style.textAlign = "right";
 
+						// Or search for divine chest
+						if(gca_reports.submod == 'showArena' || gca_reports.submod == 'showCircusTurma'){
+							// Get report id
+							let report_id = line[row].getElementsByTagName('td')[3].getElementsByTagName('a')[0].href.match(/reportId=(\d+)&/i)[1];
+							// Get report t parm
+							let report_t = line[row].getElementsByTagName('td')[3].getElementsByTagName('a')[0].href.match(/t=(\d+)&/i)[1];
+							// Set a loading tooltip
+							let icon = document.createElement("img");
+							// Load item
+							this.getLootItem(report_id, report_t, icon, null, true);
+
+							// Create icon if there is a reward
+							if (icon.className != ''){
+								icon.className = 'icon_itemreward'
+								icon.id = 'report_reward_item_' + report_id;
+								icon.setAttribute('align', "absmiddle");
+								icon.setAttribute('src', '');
+								line[row].getElementsByTagName('td')[2].appendChild(icon);
+							}
+						}
 						// If report has a reward
-						if (line[row].getElementsByTagName('td')[3].getElementsByTagName('div').length > 0 && line[row].getElementsByTagName('td')[3].getElementsByTagName('div')[0].className == "icon_itemreward") {
+						else if (line[row].getElementsByTagName('td')[3].getElementsByTagName('div').length > 0 && line[row].getElementsByTagName('td')[3].getElementsByTagName('div')[0].className == "icon_itemreward") {
 							// Get report id
 							let report_id = line[row].getElementsByTagName('td')[4].getElementsByTagName('a')[0].href.match(/reportId=(\d+)&/i)[1];
 							// Get report t parm
@@ -324,12 +344,14 @@ var gca_reports = {
 		},
 
 		// Get loot item
-		getLootItem : function(id, t, icon, title){
+		getLootItem : function(id, t, icon, title, cacheNull = false){
 			// Check cache
 			let cache = this.getLootItemFromCache(id);
 			if (cache) {
-				icon.className += ' reward-' + this.getStringFromColorNumber(cache.q);
-				gca_tools.setTooltip(icon, cache.t);
+				if (cache.q != null)
+					icon.className += ' reward-' + this.getStringFromColorNumber(cache.q);
+				if (cache.t != null)
+					gca_tools.setTooltip(icon, cache.t);
 				return;
 			}
 			
@@ -360,16 +382,23 @@ var gca_reports = {
 						tooltips.push(match_tooltips[i].match(/data-tooltip="([^"]+)"/im));
 					}
 				}
-				
+			
+				// Add title on tooltip
+				let reward_tooltip = [[]];
+				if (title != null)
+					reward_tooltip[0].push([title, "#fdfdfd"]);
+
 				// Error - not found loot
 				if(tooltips.length == 0){
+					// Cache no reward (used in arena/turma reports when searching for divine chests)
+					if(cacheNull)
+						this.setLootItemOnCache(id, null, null);
 					// Display error message
-					gca_tools.setTooltip(icon, JSON.stringify([[[title, "#fdfdfd"], [gca_locale.get("general", "error"), "#fdfdfd"]]]));
+					else
+						gca_tools.setTooltip(icon, JSON.stringify(reward_tooltip));
 				}
 				// Tooltip replace
 				else {
-					// Add title on tooltip
-					let reward_tooltip = [[[title, "#fdfdfd"]]];
 					// Init quality
 					let quality_best = 0;
 					// For each tooltip
