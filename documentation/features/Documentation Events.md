@@ -4,7 +4,12 @@
 
 ## Events
 ### Display dice event's timer on top
-- Open!
+- Show the dice event timer on top
+
+![Display_Dice_Events_Timer_On_Top](Pictures/Events/Display_Dice_Events_Timer_On_Top.png)
+
+![Display_Dice_Events_Timer_On_Top_N](Pictures/Events/Display_Dice_Events_Timer_On_Top_N.png)
+![Display_Dice_Events_Timer_On_Top_Y](Pictures/Events/Display_Dice_Events_Timer_On_Top_Y.png)
 
 ### Display server-quest or location event's timer on top
 - Show server-quest or location event's timer on top
