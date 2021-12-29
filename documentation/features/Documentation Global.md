@@ -44,11 +44,6 @@
 ![Missing Translation](Pictures/Global/Missing_Translation.png)
  
  - More Links: [Submit GCA translations](https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/documentation/translators/README.md)
- ### Enable Sound
- 
->Need Help - Clarification open - attitude does not result in any changes. Effective settings are those under Sound
-
-![Enable Sound Notification](Pictures/Global/Enable_Sound_Notification.png)
 
 ### Enable Browser Notifications
 
