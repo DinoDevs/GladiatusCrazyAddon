@@ -1,7 +1,7 @@
 ## Index
 - [Enable cooldowns sounds notifications (expedition, dungeon, arena)](Documentation%20Sounds.md#enable-cooldowns-sounds-notifications-expedition-dungeon-arena)
-- [Mute/Unmute sounds)](Documentation%20Sounds.md#muteunmute-sounds)
-- [Sounds volume)](Documentation%20Sounds.md#sounds-volume)
+- [Mute/Unmute sounds](Documentation%20Sounds.md#muteunmute-sounds)
+- [Sounds volume](Documentation%20Sounds.md#sounds-volume)
 
 ## Sounds
 ### Enable cooldowns sounds notifications (expedition, dungeon, arena)
