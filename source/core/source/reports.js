@@ -232,6 +232,7 @@ var gca_reports = {
 				return;
 
 			// For every row
+			found_daily_divine_chest = false;
 			while (line[row]) {
 				// If a td exist
 				if (line[row].getElementsByTagName('td').length > 0) {
@@ -240,6 +241,7 @@ var gca_reports = {
 					// If this is a new line
 					if (last_date != date) {
 						last_date = date;
+						found_daily_divine_chest = false;
 						// Insert a new line
 						let tr = document.createElement("tr");
 						tr.className = "reports_day_row";
@@ -259,22 +261,31 @@ var gca_reports = {
 
 						// Or search for divine chest
 						if(gca_reports.submod == 'showArena' || gca_reports.submod == 'showCircusTurma'){
-							// Get report id
-							let report_id = line[row].getElementsByTagName('td')[3].getElementsByTagName('a')[0].href.match(/reportId=(\d+)&/i)[1];
-							// Get report t parm
-							let report_t = line[row].getElementsByTagName('td')[3].getElementsByTagName('a')[0].href.match(/t=(\d+)&/i)[1];
-							// Set a loading tooltip
-							let icon = document.createElement("img");
-							// Load item
-							this.getLootItem(report_id, report_t, icon, null, true);
+							// Check if player attacked
+							let player_attacker = (line[row].getElementsByTagName('td')[1].getElementsByTagName('div')[0].className == 'icon_attack');
+							let player_won = (line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].style.color == 'rgb(36, 127, 42)');
+							
+							if (player_attacker && player_won && !found_daily_divine_chest){
+								// Get report id
+								let report_id = line[row].getElementsByTagName('td')[3].getElementsByTagName('a')[0].href.match(/reportId=(\d+)&/i)[1];
+								// Get report t parm
+								let report_t = line[row].getElementsByTagName('td')[3].getElementsByTagName('a')[0].href.match(/t=(\d+)&/i)[1];
+								// Set a loading tooltip
+								let icon = document.createElement("img");
+								// Load item
+								this.getLootItem(report_id, report_t, icon, null, true);
 
-							// Create icon if there is a reward
-							if (icon.className != ''){
-								icon.className = 'icon_itemreward'
-								icon.id = 'report_reward_item_' + report_id;
-								icon.setAttribute('align', "absmiddle");
-								icon.setAttribute('src', '');
-								line[row].getElementsByTagName('td')[2].appendChild(icon);
+								// Create icon if there is a reward
+								if (icon.className != ''){
+									found_daily_divine_chest = true;
+									icon.className = 'icon_itemreward'
+									icon.id = 'report_reward_item_' + report_id;
+									icon.setAttribute('align', "absmiddle");
+									icon.setAttribute('src', '');
+									line[row].getElementsByTagName('td')[2].appendChild(icon);
+									// Remove number of chests (may be wrong due to cache)
+									gca_tools.setTooltip(icon, icon.dataset.tooltip.replace(/,\["[^"]+","#00B712",300\]/,''));
+								}
 							}
 						}
 						// If report has a reward
@@ -437,8 +448,8 @@ var gca_reports = {
 		initLootItemCache : function(){
 			if (this.lootCache) return;
 			this.lootCache = gca_data.section.get('cache', 'reports-loot', []);
-			if (this.lootCache.length > 60) {
-				this.lootCache = this.lootCache.slice(0, 50);
+			if (this.lootCache.length > 100) {
+				this.lootCache = this.lootCache.slice(0, 100);
 				gca_data.section.set('cache', 'reports-loot', this.lootCache);
 			}
 		},
