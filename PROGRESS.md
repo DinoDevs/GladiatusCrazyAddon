@@ -92,7 +92,7 @@
 -  **Updates**
 	- [x] Chinese update by @smoothGrace (#215)
 	- [x] Czech update by @FrutyX
-	- [x] German update by @Zitronenen
+	- [x] German update by @Sleeping*Shadow
 	- [x] Polish update by @Sorky96
 	- [x] Greek update by @GramThanos
 	- [x] Turkish update by @mattemre (#304)

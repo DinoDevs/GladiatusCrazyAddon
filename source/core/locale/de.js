@@ -75,6 +75,7 @@ gca_languages['de'] = {
 			guild_jail_goto : "Zum Negotium X",
 			guild_library_goto : "Zur Bibliothek",
 			guild_templum_goto : "Zum Templum",
+			auction_food_goto : "Zum Auktionshaus - Nahrung",
 			guild_medic_goto : "Zum Arzt",
 			simulator_goto : "Zum Simulator",
 			stats_display : "Zeige meine Werte",
@@ -117,6 +118,7 @@ gca_languages['de'] = {
 			gold_exp_data_measurements : "Messungen",
 			gold_exp_data_total_exp : "gesamte Erfahrung",
 			gold_exp_data_total_gold : "gesamtes Gold",
+			gold_exp_data_reset : "Statistik wurde zurückgesetzt!",
 			
 			// Items
 			merchenary_type : "Typ: {{name}} ({{number}})"
@@ -316,6 +318,7 @@ gca_languages['de'] = {
 			category_expedition : "Expedition",
 			category_guild : "Gilde",
 			category_auction : "Auktionshaus",
+			category_accessibility : "Bedienungshilfe",
 			category_events : "Events",
 			category_sound : "Sound",
 			category_data : "Daten",
@@ -439,6 +442,7 @@ gca_languages['de'] = {
 			category_market$remember_sell_duration : "Merke die zuletzt gewählte Verkaufsdauer",
 			category_market$sell_duration : "Wähle die Standardverkaufsdauer aus",
 			category_market$one_gold_mode : "Schaltfläche zum Ändern des Marktpreise immer auf 1 Gold",
+			category_market$custom_prices : "Zeige benutzerdefinierte Marktpreise/n•Verkaufe den Basiswert des Gegenstandes um 50% teurer (z.B.: 150%)/n•Trenne mit Kommas (z.B.: 100.000, 2000000, 150%)/n ",
 			category_market$remember_sort : "Die letzte Sortierreihenfolge merken",
 			category_market$double_click_select : "Wähle Gegenstände durch Doppelklick aus",
 			category_market$sell_warning_icons : "Warnsymbole bei Verkauf von Gegenständen anzeigen",
@@ -464,6 +468,11 @@ gca_languages['de'] = {
 			category_auction$multi_bids : "mehrere Gebote ohne Seitenaktualisierung",
 			category_auction$extra_item_stats : "Zeige zusätzliche Statistiken auf den Gegenstandsbildern",
 			category_auction$save_last_state : "Zuletzt gewählter Filter als Standardeinstellung anzeigen",
+			// Settings - Accessibility
+			category_accessibility$white_level_indicators : "Ändere die Stufen-Anzeige der Gegenstände in die Farbe weiss" ,
+			category_accessibility$qualty_symbols_indicators : "Füge ein Symbol als Qualitätsindikator auf Gegenstände hinzu",
+			category_accessibility$tooltips_qualty_white : "Ändere den Titel der Gegenstände im Tooltip in die Farbe weiss",
+			category_accessibility$tooltips_qualty_symbols : "Füge ein Symbol als Qualitätsindikator im Tooltip hinzu",
 			// Settings - Events
 			category_events$craps_timer : "Zeigen den Timer des Würfelevents oben an",
 			category_events$server_quest_timer : "Zeigen den Timer des Server-Quest- oder Location-Events oben an",
@@ -474,16 +483,12 @@ gca_languages['de'] = {
 			// Settings - Data
 			category_data$export_settings : "Exportieren von Einstellungsdaten in eine Datei",
 			category_data$import_settings : "Importieren der Einstellungsdaten aus einer Datei",
+			category_data$export_settings_to_notes : "Exportieren von Einstellungsdaten in die Notizen",
+			category_data$import_settings_from_notes : "Importieren der Einstellungsdaten aus den Notizen",
 			category_data$reset_settings : "Setzt die Einstellungen des Add-ons zurück",
 			category_data$clear_data : "Lösche alle Add-on Daten",
 			category_data$clear_cache_data : "Lösche Cache Dateien des Add-ons",
 			category_data$cross_browser_login : "Browserübergreifende Anmeldesynchronisation",
-			// Settings - Accessibility
-			category_accessibility : "Bedienungshilfe",
-			category_accessibility$white_level_indicators : "Ändere die Stufen-Anzeige der Gegenstände in die Farbe weiss" ,
-			category_accessibility$qualty_symbols_indicators : "Füge ein Symbol als Qualitätsindikator auf Gegenstände hinzu",
-			category_accessibility$tooltips_qualty_white : "Ändere den Titel der Gegenstände im Tooltip in die Farbe weiss",
-			category_accessibility$tooltips_qualty_symbols : "Füge ein Symbol als Qualitätsindikator im Tooltip hinzu",
 
 			// Buttons
 			save : "Speichern",
