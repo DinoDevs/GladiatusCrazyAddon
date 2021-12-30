@@ -75,7 +75,7 @@ You can read about all available features in our [documentation](documentation/f
 
 Before submitting an Issue with a potential bug, check our list with potential fixes, it might help you to solve your problem!
 
-<a href="https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/documentation/Troubleshooting.md">► Troubleshooting guide</a>
+[► Troubleshooting guide](documentation/Troubleshooting.md)
 
 
 ## :books: Translation
