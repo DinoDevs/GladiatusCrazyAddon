@@ -66,7 +66,7 @@ Modern browsers are updating automatically, but make sure you are using the late
 
 <details>
   <summary><b>🖼️ Show image (browser versions)</b></summary>
-<img src="/documentation/resources/troubleshooting/browser_versions.png"/>
+<img src="/documentation/resources/troubleshooting/browser_versions.PNG"/>
 </details>
 
 ## GCA version check
