@@ -1,5 +1,7 @@
 ## Index
-- [Fade items that you can not improve](Documentation%20Magus.md#fade-items-that-you-can-not-improve)
+- [Enable cooldowns sounds notifications (expedition, dungeon, arena)](Documentation%20Sounds.md#enable-cooldowns-sounds-notifications-expedition-dungeon-arena)
+- [Mute/Unmute sounds)](Documentation%20Sounds.md#muteunmute-sounds)
+- [Sounds volume)](Documentation%20Sounds.md#sounds-volume)
 
 ## Sounds
 ### Enable cooldowns sounds notifications (expedition, dungeon, arena)
@@ -14,7 +16,7 @@
 
 ![Mute_Unmute_Sounds](Pictures/Sounds/Mute_Unmute_Sounds.png)
 
-### Mute/Unmute sounds
+### Sounds volume
 - Adjust the volume
 
 ![Sounds_Volume](Pictures/Sounds/Sounds_Volume.png)
