@@ -443,7 +443,7 @@ gca_languages['de'] = {
 			category_market$remember_sell_duration : "Zuletzt gewählte Verkaufsdauer merken",
 			category_market$sell_duration : "Wähle die Standardverkaufsdauer aus",
 			category_market$one_gold_mode : "Schaltfläche zum Ändern des Marktpreise immer auf 1 Gold",
-			category_market$custom_prices : "Zeige benutzerdefinierte Marktpreise/n•Verkaufe den Basiswert des Gegenstandes um 50% teurer (z.B.: 150%)/n•Trenne mit Kommas (z.B.: 100.000, 2000000, 150%)/n ",
+			category_market$custom_prices : "Zeige benutzerdefinierte Marktpreise\n•Verkaufe den Basiswert des Gegenstandes um 50% teurer (z.B.: 150%)\n•Trenne mit Kommas (z.B.: 100.000, 2000000, 150%)\n ",
 			category_market$remember_sort : "Die letzte Reihenfolge der Sortierung merken",
 			category_market$double_click_select : "Wähle Gegenstand durch Doppelklick aus",
 			category_market$sell_warning_icons : "Warnsymbole bei Verkauf von Gegenständen anzeigen",
