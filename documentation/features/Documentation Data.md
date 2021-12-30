@@ -1,10 +1,13 @@
 ## Index
 
-- [Ignore attack confirmations](Documentation%20Arena.md#ignore-attack-confirmations)
-- [Show an image-link to the simulator](Documentation%20Arena.md#show-an-image-link-to-the-simulator)
-- [Sort players in arena by level](Documentation%20Arena.md#sort-players-in-arena-by-level)
-- [Highlight players on other servers that may be guild members](Documentation%20Arena.md#highlight-players-on-other-servers-that-may-be-guild-members)
-- [Players target list](Documentation%20Arena.md#players-target-list)
+- [Export settings to file](Documentation%20Data.md#export-settings-to-file)
+- [Import settings from file](Documentation%20Data.md#import-settings-from-file)
+- [Export settings to notes](Documentation%20Data.md#export-settings-to-notes)
+- [Import settings from notes](Documentation%20Data.md#import-settings-from-notes)
+- [Reset addon's settings](Documentation%20Data.md#reset-addons-settings)
+- [Clear all addon's data](Documentation%20Data.md#clear-all-addons-data)
+- [Clear addon's temporal data (cache)](Documentation%20Data.md#clear-addons-temporal-data-cache)
+- [Cross browser login sync](Documentation%20Data.md#cross-browser-login-sync)
 
 ## Data
 ### Export settings to file
@@ -56,3 +59,10 @@
 
 ![Clear Temp Data Cache](Pictures/Data/Clear_Addons_Temp_Data_Cache.png)
 
+### Cross browser login sync
+- Login via Link or QR-Code to another browser
+
+![Cross Browser Login Sync](Pictures/Data/Cross_Browser_Login_Sync.png)
+
+![Cross Browser Login Sync Y](Pictures/Data/Cross_Browser_Login_Sync_Y.png)
+![Cross Browser Login Sync YY](Pictures/Data/Cross_Browser_Login_Sync_YY.png)
