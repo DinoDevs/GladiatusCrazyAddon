@@ -26,7 +26,7 @@ The documentation is continuously adapted to new feature releases.
 - [Auction](Documentation%20Auction.md)
 - [Accessibility](Documentation%20Accessibility.md)
 - [Events](Documentation%20Events.md)
-- [Sounds]
-- [Data]
+- [Sounds](Documentation%20Sounds.md)
+- [Data](Documentation%20Data.md)
 ***
-<sub><sup>Last update on 13-Sept-2021</sup></sub>
+<sub><sup>Last update on 30-Dec-2021</sup></sub>

@@ -35,7 +35,6 @@
 
 ### Add more data on library's tooltips
 - Shows details of the recipes in the library
-- For this feature you have to have activated the following features "[Improve library's layout](Documentation%20Guild.md#improve-librarys-layout)"
 
 ![Add Data Librarys Tooltip](Pictures/Guild/Add_Data_Librarys_Tooltip.png)
 
