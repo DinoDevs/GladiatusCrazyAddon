@@ -4,14 +4,13 @@
 ## Sounds
 ### Enable cooldowns sounds notifications (expedition, dungeon, arena)
 - Activate to receive a sound notification for arenas, expeditions and dungeons
-- When activated, a loudspeaker is displayed in the lower right browser window
+- When activated, a loudspeaker is displayed in the **lower right** browser window
 
 ![Enable_Cooldowns_Sound_Notifications](Pictures/Sounds/Enable_Cooldowns_Sound_Notification.png)
 
 ### Mute/Unmute sounds
 - Mute or Unmute your sound
-- Use the loudspeaker to mute / unmute the sounds 
-<img src="source/core/resources/icons/sound.png"> 
+- Use the loudspeaker to mute / unmute the sounds <img src="Pictures/Sounds/sound_icon.png"> 
 
 ![Mute_Unmute_Sounds](Pictures/Sounds/Mute_Unmute_Sounds.png)
 
