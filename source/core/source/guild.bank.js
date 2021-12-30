@@ -205,22 +205,24 @@ var gca_guild_bank = {
 			let gold = gca_tools.strings.parseGold(row[i].getElementsByTagName("td")[2].textContent);
 
 			// If this is a player
-			if (a.length && enableDonations && a[0].href.match(/(?:&amp;|&)p=\d+(?:&amp;|&)sh=/i)) {
+			if (a.length && a[0].href.match(/(?:&amp;|&)p=\d+(?:&amp;|&)sh=/i)) {
 				let id = parseInt(a[0].href.match(/(?:&amp;|&)p=(\d+)(?:&amp;|&)sh=/i)[1], 10);
 				players[id] = gold;
 
 				// If player info on memory
-				if (memory.hasOwnProperty(id) && gold - memory[id] > 0) {
+				if (enableDonations && memory.hasOwnProperty(id) && gold - memory[id] > 0) {
 					let info = document.createElement('span');
 					info.className = 'gca_donation_difference';
 					info.textContent = '+' + gca_tools.strings.insertDots(gold - memory[id]);
 					row[i].getElementsByTagName('td')[2].appendChild(info);
 				}
-			}else if (!enableTotalGold) break;
+			}
 
 			if (enableTotalGold)
 				totalDonatedGold += gold
 		}
+
+		let number_of_guildmates = Object.keys(players).length;
 
 		// Save new data
 		if (enableDonations)
@@ -231,7 +233,8 @@ var gca_guild_bank = {
 
 			// Update building levels
 			let totalGoldSpendOnUpgrades = gca_data.section.get("guild", "upgradesCost", 0);
-			totalGoldSpendOnUpgrades = Math.floor(totalGoldSpendOnUpgrades * 0.7);// Assume 30% discount
+			totalGoldSpendOnUpgrades = Math.floor(totalGoldSpendOnUpgrades * ( 1 - Math.min(30, number_of_guildmates*3)/100));// Assume 10*3% discount but limited to guild members
+			totalGoldSpendOnUpgrades = Math.min(totalGoldSpendOnUpgrades, totalDonatedGold);
 
 			let boxTitle = document.getElementById('content').getElementsByTagName('h2')[1].textContent.split('\n')[1].trim();
 
@@ -259,7 +262,7 @@ var gca_guild_bank = {
 
 			// Show spend & stolen gold
 			let stolen_gold = totalDonatedGold - totalGoldSpendOnUpgrades;
-			if (totalGoldSpendOnUpgrades > 0 && stolen_gold > 0){
+			if (totalGoldSpendOnUpgrades > 0 && stolen_gold >= 0){
 				// Show spend gold
 				info = document.createElement('div');
 				b = document.createElement('b');
