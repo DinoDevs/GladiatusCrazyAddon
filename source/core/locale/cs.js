@@ -140,6 +140,9 @@ gca_languages['cs'] = {
 		guild : {
 			// Guild Bank
 			bank_all_gold : "Zvolit všechno zlato",
+			total_donations : "Celkem příspěvků",
+	                min_upgrades_gold : "Zlato utracené za vylepšení (minimum)",
+	                max_stolen_gold : "Ukradené zlato z ostatních gild (maximum)",
 			
 			// Library
 			library_per_point_cost : "Cena za bod schopnosti",
