@@ -44,6 +44,8 @@
 
 ### Improve bank's donate layout
 - Improve the layout of the bank donation
+- Added donate all your gold button
+- Changed link to donations book for faster loading (will only show detailed donation from the last 2 days)
 
 ![Improve Banks Donate Layout](Pictures/Guild/Improve_Banks_Donate_Layout.png)
 
@@ -52,6 +54,9 @@
 
 ### Improve bank's book layout
 - Improve the layout of the bank book
+- Shows total gold spend on upgrades, total donated gold & stolen gold
+- Highlight your player in the donations list
+- Shows donations of each player since last visit
 
 ![Improve Banks Book Layout](Pictures/Guild/Improve_Banks_Book_Layout.png)
 

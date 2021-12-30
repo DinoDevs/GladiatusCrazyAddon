@@ -151,6 +151,9 @@ gca_languages["en"] = {
 		guild : {
 			// Guild Bank
 			bank_all_gold : "All your gold",
+			total_donations: "Total donations",
+			min_upgrades_gold: "Gold spend on upgrades (minimum)",
+			max_stolen_gold: "Stolen gold from other guilds (maximum)",
 
 			// Library
 			library_per_point_cost : "Cost per stat point",

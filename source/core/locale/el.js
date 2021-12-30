@@ -151,6 +151,9 @@ gca_languages["gr"] = {
 		guild: {
 			// Guild Bank
 			bank_all_gold: "Όλος ο χρυσός",
+			total_donations: "Σύνολο δωρεών",
+			min_upgrades_gold: "Δαπάνες για αναβαθμίσεις (ελάχιστες)",
+			max_stolen_gold: "Κλεμμένος χρυσός από άλλα τάγματα (μέγιστος)",
 
 			// Library
 			library_per_point_cost : "Κόστος ανά πόντο",

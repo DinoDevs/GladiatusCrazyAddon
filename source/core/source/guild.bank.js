@@ -55,8 +55,14 @@ var gca_guild_bank = {
 
 			// Set gold input to number type
 			var input = wrapper[0].getElementsByTagName("table")[1].getElementsByTagName("input")[0];
-			input.style.width = "138px";
+			input.style.width = "128px";
 			input.type = "number";
+
+			// Change donations book link to show the detailed donations of only 1 day
+			// this speeds up loading and off-loads the server
+			let headerTabs = document.getElementById('mainnav').getElementsByTagName('a');
+			if(!headerTabs || headerTabs.length < 2) return;
+			headerTabs[1].href += '&l2=2';
 		},
 
 		// Improve gold in bank
@@ -225,33 +231,79 @@ var gca_guild_bank = {
 
 			// Update building levels
 			let totalGoldSpendOnUpgrades = gca_data.section.get("guild", "upgradesCost", 0);
-			if (totalGoldSpendOnUpgrades == 0)
-				return;
+			totalGoldSpendOnUpgrades = Math.floor(totalGoldSpendOnUpgrades * 0.7);// Assume 30% discount
 
-			// Assume 30% discount
-			totalGoldSpendOnUpgrades = Math.floor(totalGoldSpendOnUpgrades * 0.7);
+			let boxTitle = document.getElementById('content').getElementsByTagName('h2')[1].textContent.split('\n')[1].trim();
+
+			let h2 = document.createElement('h2');
+			h2.textContent = boxTitle;
+			h2.className = 'section-header';
+			let box = document.createElement('section');
+
+			let info = document.createElement('div');
+			let b = document.createElement('b');
+			let goldIcon = document.createElement('div'); // gold icon
 
 			// Show total donated gold
-			let info = document.createElement('div');
-			info.textContent = 'Total donated gold: ' + gca_tools.strings.insertDots(totalDonatedGold) +' ';
-			// Show spend gold
-			let goldIcon = document.createElement('div');
+			b.textContent = gca_locale.get("guild", "total_donations") + ': ';
+			info.appendChild(b);
+			info.appendChild(
+				document.createTextNode(
+					gca_tools.strings.insertDots(totalDonatedGold) +' '
+				)
+			);
 			goldIcon.className = 'icon_gold';
 			info.appendChild(goldIcon);
+			box.appendChild(info); // add in box
 
-			wrapper[0].insertBefore(info, wrapper[0].firstChild);
+			// Show spend & stolen gold
+			let stolen_gold = totalDonatedGold - totalGoldSpendOnUpgrades;
+			if (totalGoldSpendOnUpgrades > 0 && stolen_gold > 0){
+				// Show spend gold
+				info = document.createElement('div');
+				b = document.createElement('b');
+				goldIcon = document.createElement('div');
+				b.textContent = gca_locale.get("guild", "min_upgrades_gold") + ': ';// Minimum gold spend on upgrades
+				info.appendChild(b);
+				info.appendChild(
+					document.createTextNode(
+						gca_tools.strings.insertDots(totalGoldSpendOnUpgrades) +' '
+					)
+				);
+				goldIcon.className = 'icon_gold';
+				info.appendChild(goldIcon);
+				info.appendChild(
+					document.createTextNode(
+						' ('+ Math.round(totalGoldSpendOnUpgrades/totalDonatedGold*100) +'%)'
+					)
+				);
+				box.appendChild(info); // add in box
 
-			// Show spend gold
-			info = document.createElement('div');
-			//info.className = 'bank-book-gold-info';
-			info.textContent = 'Total gold spend on upgrades: ' + gca_tools.strings.insertDots(totalGoldSpendOnUpgrades) +' ';
-			// Show spend gold
-			goldIcon = document.createElement('div');
-			goldIcon.className = 'icon_gold';
-			info.appendChild(goldIcon);
-			info.appendChild(goldIcon);
+				// Show stolen gold
+				info = document.createElement('div');
+				b = document.createElement('b');
+				goldIcon = document.createElement('div'); // gold icon
+				b.textContent = gca_locale.get("guild", "max_stolen_gold") + ': ';// Maximum gold stolen from other guilds
+				info.appendChild(b);
+				info.appendChild(
+					document.createTextNode(
+						gca_tools.strings.insertDots(stolen_gold) +' '
+					)
+				);
+				goldIcon.className = 'icon_gold';
+				info.appendChild(goldIcon);
+				info.appendChild(
+					document.createTextNode(
+						' ('+ Math.round(stolen_gold/totalDonatedGold*100) +'%)'
+					)
+				);
+				box.appendChild(info); // add in box
+			}
 
-			wrapper[0].insertBefore(info, wrapper[0].firstChild);
+			// Place info box
+			var wrapper = document.getElementById('content').getElementsByTagName('h2');
+			wrapper[0].parentNode.insertBefore(h2, wrapper[0]);
+			wrapper[1].parentNode.insertBefore(box, wrapper[1]);
 		}
 	}
 };
