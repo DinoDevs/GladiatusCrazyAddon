@@ -239,6 +239,7 @@ var gca_guild_bank = {
 			h2.textContent = boxTitle;
 			h2.className = 'section-header';
 			let box = document.createElement('section');
+			box.style = 'display: block;';
 
 			let info = document.createElement('div');
 			let b = document.createElement('b');
