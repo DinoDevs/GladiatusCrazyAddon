@@ -38,6 +38,12 @@ This is purely meant to be informational, taken directly from GCA developers.
 >
 >Lastly, you need to add at least the English translation of the item you just added on the settings page. To do so, you can go to the settings page (on browser) at the overview category, there will be an "undefined translation" id instead of a text, copy it and add it at the /source/core/locale/en.js (you will understand where it goes... all the settings related translations are together).
 
+**Quoted from @GreatApo**
+
+>If you are interested, I would suggest looking into the code. The code is written in Javascript which modifies the webpage (HTML, CSS). There is also a CSS file that is loaded >to help us style custom and existing objects. The file structure is relatively easy too, you will see a bunch of files under "source" folder each of which runs on a separate >page of gladiatus (eg. auction runs on auction).
+>
+>In terms of the workflow, load the extension as unpacked (follow the installation guide by getting the addon for github) and then you can modify the script files, save and just >reload the webpage. You can find the console by clicking f12 in you browser. We use pure javascript and some JQuery that Gladiatus also loads. The translations system along with >how we same data is custom but easy (you can see how it works in the code).
+
 ## Open sourcing the simulator
 
 **Quoted from @GramThanos**
