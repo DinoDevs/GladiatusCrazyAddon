@@ -73,7 +73,7 @@ var gca_tools = {
 			return this.toUTF8Array(str).toString().replace(/,/g,"")
 		},
 		escapeMatch: function(str) {
-			return str.replace(/\$/g, '$$$$');
+			return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 		}
 	},
 
