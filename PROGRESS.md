@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-alpha-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-24-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-28-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-29-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS

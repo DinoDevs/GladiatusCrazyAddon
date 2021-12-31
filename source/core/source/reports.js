@@ -262,30 +262,26 @@ var gca_reports = {
 						// Or search for divine chest
 						if(gca_reports.submod == 'showArena' || gca_reports.submod == 'showCircusTurma'){
 							// Check if player attacked
-							let player_attacker = (line[row].getElementsByTagName('td')[1].getElementsByTagName('div')[0].className == 'icon_attack');
-							let player_won = (line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].style.color == 'rgb(36, 127, 42)');
+							let is_player_attacker = (line[row].getElementsByTagName('td')[1].getElementsByTagName('div')[0].className == 'icon_attack');
+							let did_player_won = (line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].style.color == 'rgb(36, 127, 42)');
 							
-							if (player_attacker && player_won && !found_daily_divine_chest){
+							if (is_player_attacker && did_player_won && !found_daily_divine_chest){
 								// Get report id
 								let report_id = line[row].getElementsByTagName('td')[3].getElementsByTagName('a')[0].href.match(/reportId=(\d+)&/i)[1];
 								// Get report t parm
 								let report_t = line[row].getElementsByTagName('td')[3].getElementsByTagName('a')[0].href.match(/t=(\d+)&/i)[1];
-								// Set a loading tooltip
+								// Create drop icon
 								let icon = document.createElement("img");
+								icon.className = 'icon_itemreward'
+								icon.id = 'report_reward_item_' + report_id;
+								icon.setAttribute('align', "absmiddle");
+								icon.setAttribute('src', '');
+								icon.style.display = 'none'; // do not show by default
+								line[row].getElementsByTagName('td')[2].appendChild(icon);
 								// Load item
-								this.getLootItem(report_id, report_t, icon, null, true);
-
-								// Create icon if there is a reward
-								if (icon.className != ''){
+								let cashedItemFound = this.getLootItem(report_id, report_t, icon, null, true, true);
+								if (cashedItemFound == true)
 									found_daily_divine_chest = true;
-									icon.className = 'icon_itemreward'
-									icon.id = 'report_reward_item_' + report_id;
-									icon.setAttribute('align', "absmiddle");
-									icon.setAttribute('src', '');
-									line[row].getElementsByTagName('td')[2].appendChild(icon);
-									// Remove number of chests (may be wrong due to cache)
-									gca_tools.setTooltip(icon, icon.dataset.tooltip.replace(/,\["[^"]+","#00B712",300\]/,''));
-								}
 							}
 						}
 						// If report has a reward
@@ -347,7 +343,7 @@ var gca_reports = {
 			error_text.id = "errorText";
 			document.getElementById("errorRow").appendChild(error_text);
 		},
-		
+
 		// Gladiatus Attack code
 		startProvinciarumFight :function(d, a, c, b, e) {
 			jQuery("#errorRow").css({display: "none"});
@@ -355,14 +351,17 @@ var gca_reports = {
 		},
 
 		// Get loot item
-		getLootItem : function(id, t, icon, title, cacheNull = false){
+		getLootItem : function(id, t, icon, title, cacheNull = false, replaceGreenTooltipRow = true){
 			// Check cache
 			let cache = this.getLootItemFromCache(id);
 			if (cache) {
-				if (cache.q != null)
+				if (cache.q != null && cache.t != null){
+					icon.style.display = ''; // show icon if hidden
 					icon.className += ' reward-' + this.getStringFromColorNumber(cache.q);
-				if (cache.t != null)
 					gca_tools.setTooltip(icon, cache.t);
+					if (cacheNull)
+						return true;
+				}
 				return;
 			}
 			
@@ -430,11 +429,14 @@ var gca_reports = {
 							reward_tooltip[0].push(["&nbsp;", "#fdfdfd"]);
 						// Add tooltip rows
 						for (let j = 0; j < tooltip[0].length; j++) {
+							if (replaceGreenTooltipRow && tooltip[0][j][1] == '#00B712')
+								continue;
 							reward_tooltip[0].push(tooltip[0][j]);
 						}
 					}
 					// Show tooltip
 					reward_tooltip = JSON.stringify(reward_tooltip);
+					icon.style.display = ''; // show icon if hidden
 					icon.className += ' reward-' + this.getStringFromColorNumber(quality_best);
 					gca_tools.setTooltip(icon, reward_tooltip);
 
