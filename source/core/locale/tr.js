@@ -343,7 +343,7 @@ gca_languages["tr"] = {
 			category_market$remember_sell_duration : "Son seçilen satış süresini hatırla",
 			category_market$sell_duration : "Varsayılan satış süresini seç",
 			category_market$one_gold_mode : "Satış fiyatını her zaman 1 altın olarak değiştir butonunu göster",
-			category_market$custom_prices : "Virgülle ayrılmış özel piyasa fiyatları. Bir '%' ekleyerek öğenin fiyatının yüzdesine dayalı olarak hesaplayın. (ör. '10000, 10.000, %200')",
+			category_market$custom_prices : "Virgülle ayrılmış özel piyasa fiyatları. Bir '%' ekleyerek öğenin fiyatının yüzdesine dayalı olarak hesaplayın. (ör. '10000, 10.000, 200%')",
 			category_market$remember_sort : "Son sıralama düzenini hatırla",
 			category_market$double_click_select : "İtemi markete atmak için çift tıkla",
 			category_market$sell_warning_icons : "İtemi satarken uyarı ikonunu göster",
