@@ -177,7 +177,7 @@ var gca_guild_storage = {
 					data.elem.length === 1
 				) {
 					let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
-					if (item) delete item[0].dataset.gcaFlag_doubleClickEvent;
+					if (item && typeof(item[0].dataset.gcaFlag_doubleClickEvent) !== 'undefined') delete item[0].dataset.gcaFlag_doubleClickEvent;
 					this.apply();
 				}
 			});
