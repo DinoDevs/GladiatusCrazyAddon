@@ -820,14 +820,14 @@ var gca_reports = {
 					for (let i = 0; i < this.players.length; i++) {
 						// Find Attacker
 						let playerI = this.players[i][0].replace(renameFixA,"");
-						if ( text.match(gca_tools.strings.escapeMatch(playerI)) && n > text.indexOf(playerI) ){
+						if ( text.match(gca_tools.strings.escapeRegex(playerI)) && n > text.indexOf(playerI) ){
 							n = text.indexOf(playerI)
 							foundA = i;
 						}
 						
 						// Find Defender
 						playerI = this.players[i][0].replace(renameFixD,"");
-						if ( text.match(gca_tools.strings.escapeMatch(playerI)) && m < text.indexOf(playerI) ){
+						if ( text.match(gca_tools.strings.escapeRegex(playerI)) && m < text.indexOf(playerI) ){
 							m = text.indexOf(playerI)
 							foundD = i;
 						}

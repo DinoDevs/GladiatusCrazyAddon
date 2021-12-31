@@ -72,8 +72,9 @@ var gca_tools = {
 		toUTF8String : function(str) {
 			return this.toUTF8Array(str).toString().replace(/,/g,"")
 		},
-		escapeMatch: function(str) {
-			return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+		escapeRegex: function(str) {
+			// https://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript/13157996#13157996
+			return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 		}
 	},
 
