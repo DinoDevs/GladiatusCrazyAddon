@@ -78,6 +78,7 @@
 - **Reports**
 	- [x] Battle analyzer (Turma/Dungeon) style fix (#254)
 	- [x] Battle analyzer (Turma/Dungeon) stats not showing fix (#256)
+	- [x] Battle analyzer (Turma/Dungeon) player names with special characters were not recognized (#256)
 - **Auctions**
 	- [x] Fixed number sorting (#235)
 - **Guild Storage**
