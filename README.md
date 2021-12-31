@@ -69,7 +69,7 @@ Find set-by-step guides for all major browsers on our [installation docs](docume
 
 ## :mag: Features Documentation
 
-You can read about all available features in our [documentation](documentation/features/README.md) made by [Sleeping*Shadow](https://s26-de.gladiatus.gameforge.com/game/index.php?mod=player&p=18833)([GitHub](https://github.com/Zitronenen)).
+You can read about all available features in our [documentation](documentation/features/README.md) made by [Sleeping*Shadow](https://s26-de.gladiatus.gameforge.com/game/index.php?mod=player&p=18833)([GitHub](https://github.com/SleepingShadow-bit)).
 
 ## :triangular_flag_on_post: Troubleshooting 
 
@@ -112,7 +112,7 @@ Official Gladiatus Discord Server : [https://discord.gg/uacMu7](https://discord.
 
 We will try to provide some more info for anyone that wants to jump into the action.
 
-[Dev docs under construction](documentation/)
+[Dev docs under construction](documentation/developers/for-developers.md)
 
 
 
