@@ -779,7 +779,8 @@ var gca_reports = {
 						// Check for player
 						let found = false;
 						for (let i = 0; i < this.players.length; i++) {
-							if ( text.match(this.players[i][0].replace(renameFix,"")) ) {
+							let player = this.players[i][0].replace(renameFix,"");
+							if ( text.match(gca_tools.strings.escapeRegex(player)) ) {
 								found = true;
 								this.players[i][1] += value;
 								this.players[i][3] += value;
