@@ -5,6 +5,7 @@
 - [Remember last chosen sell duration](Documentation%20Market.md#remember-last-chosen-sell-duration)
 - [Select default sell duration](Documentation%20Market.md#select-default-sell-duration)
 - [Toggle button changing sell price always to 1 gold](Documentation%20Market.md#toggle-button-changing-sell-price-always-to-1-gold)
+- [Custom market prices](Documentation%20Market.md#custom-market-prices)
 - [Remember last sort order](Documentation%20Market.md#remember-last-sort-order)
 - [Select item with double click](Documentation%20Market.md#select-item-with-double-click)
 - [Warning icon when selling items](Documentation%20Market.md#warning-icon-when-selling-items)
@@ -55,6 +56,22 @@
 
 ![Toggle Button Always 1 N](Pictures/Market/Toggle_Button_Always_1_N.png)
 ![Toggle Button Always 1 Y](Pictures/Market/Toggle_Button_Always_1_Y.png)
+
+### Custom market prices
+- Add custom market price for a quick sale
+- Separate values with commas (100.000, 50000, 150%)
+- Sale base on percentage of the item's price by adding an "%"
+
+![Custom Market Prices](Pictures/Market/Custom_Market_Prices.png)
+
+![Toggle Button Always 1 Y](Pictures/Market/Toggle_Button_Always_1_Y.png)
+![Custom Market Prices Y](Pictures/Market/Custom_Market_Prices_Y.png)
+
+For Example:
+- Sell an item for 50% more and type "150%" as custom price.
+- Base is 2358 Gold --> **3537 Gold**
+
+![Custom Market Prices](Pictures/Market/Custom_Market_Prices_YY.png)
 
 ### Remember last sort order
 - Saves the previously used sorting and uses it as the default
