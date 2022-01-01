@@ -5,7 +5,7 @@
 - [Remember last chosen sell duration](Documentation%20Market.md#remember-last-chosen-sell-duration)
 - [Select default sell duration](Documentation%20Market.md#select-default-sell-duration)
 - [Toggle button changing sell price always to 1 gold](Documentation%20Market.md#toggle-button-changing-sell-price-always-to-1-gold)
-- 
+- [Custom market prices](Documentation%20Market.md#custom-market-prices)
 - [Remember last sort order](Documentation%20Market.md#remember-last-sort-order)
 - [Select item with double click](Documentation%20Market.md#select-item-with-double-click)
 - [Warning icon when selling items](Documentation%20Market.md#warning-icon-when-selling-items)
