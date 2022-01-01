@@ -6,7 +6,7 @@
 
 /** Style Override **/
 /* Chat Icon */
-	#chat_icon {z-index: 2;}
+#chat_icon {z-index: 2;}
 
 /* Google Ads*//*// Gameforge Don't like this :P
 	#banner_right{display: none!important;}*/
@@ -971,9 +971,86 @@
 		#packages .packageItem .gca_item_price_info .icon_gold {transform: scale(0.8);}
 
 		/* Small Size Packets */
-		.gca_packages_small_items_layout .packageItem > div:nth-of-type(2){transform: scale(0.5);margin: -25px auto!important;}
+		.gca_packages_small_items_layout .packageItem > div:nth-of-type(1){transform: scale(0.5);margin: -25px auto!important;}
 		.gca_packages_small_items_layout .packageItem {height: 94px;}
 		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem{height: 90px!important;} 
+
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div.size_y_3 {
+			margin: -25px 0 -25px 0 !important;
+		}
+
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div.size_y_2 {
+			margin: -15px 0 -15px 0 !important;
+			height: 65px;
+		}
+
+		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div.size_y_1 {
+			margin: -5px 0 -5px 0 !important;
+			height: 34px;
+		}
+
+
+		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem {
+			display: flex !important;
+			width: auto !important;
+		}
+
+		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem.size_y_3 {
+			height: 48px !important;
+		}
+
+		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem.size_y_2 {
+			height: 36px !important;
+		}
+
+		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem.size_y_1 {
+			height: 23px !important;
+		}
+
+		#packages {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.packageItemInfoColumn {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			margin-left: 12px !important;
+			margin-right: 12px !important;
+		}
+
+		.rightPackageItemInfo {
+			display: flex;
+			flex-grow: 1;
+			justify-content: end;
+			align-items: center;
+		}
+
+		.packageItemInfoColumn * {
+			text-align: start !important;
+		}
+		
+		.packageItemInfoColumn .icon_gold {
+			width: 16px !important;
+		}
+
+		.packageItemInfoColumn .ellipsis {
+			overflow: visible;
+			font-weight: bold;
+		}
+
+		.packageItemInfoColumn .gca_item_price_info {
+			margin: 0 !important;
+			position: relative !important;
+			text-align: start !important;
+			color: #612d04 !important;
+			text-shadow: none !important;
+		}
+
+		.packageItemInfoColumn * {
+			font-size: 8px !important;
+		}
 		
 		/* Group Side Filters */
 		.gca_packages_filters_layout .package_side_filters{width: 190px;margin-top: 25px;height: 184px;background-color: #E7DEB8;border: 1px solid #B9A66D;border-top: 0px;clear: none;background-image: none;}
