@@ -458,6 +458,7 @@ gca_languages['cs'] = {
 			category_auction$more_search_levels : "Zobrazit více levelů v možnostech vyhledávání",
 			category_auction$item_price_analyze : "Analyzovat ceny předmětů",
 			category_auction$item_level : "Zobraz level itemu",
+			category_auction$item_name : "Zobraz název předmětu",
 			category_auction$x3_items_per_line : "Zobrazení 3 itemů na řádek",
 			category_auction$multi_bids : "Přihazovat na více předmětu před znovu načtením stránky",
 			category_auction$extra_item_stats : "Zobrazit extra staty na obrázcích předmětů",
