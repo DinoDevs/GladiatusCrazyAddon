@@ -123,14 +123,21 @@ Contact us to leave us your feedback or to express your thoughts.
 
 DinoDevs members working on this project:
 <dl>
-  <dt>GreatApo ~ https://github.com/GreatApo</dt>
+  <dt>GreatApo ~ Co-Founder / Developer ~ https://github.com/GreatApo</dt>
   <dd>Description not found!</dd>
 
-  <dt>GramThanos ~ https://github.com/GramThanos</dt>
+  <dt>GramThanos ~ Co-Founder / Developer ~ https://github.com/GramThanos</dt>
   <dd>I like to code!</dd>
 </dl>
 
+Additional active GCA team members:
+<dl>
+  <dt>FrutyX ~ Admin / Developer  ~ https://github.com/FrutyX</dt>
+  <dd>{FrutyX add a description here}</dd>
 
+  <dt>Sleeping*Shadow ~ Documentation Master  ~ https://github.com/SleepingShadow-bit</dt>
+  <dd>{Sleeping*Shadow add a description here}</dd>
+</dl>
 
 
 ## :thumbsup: Special Thanks
