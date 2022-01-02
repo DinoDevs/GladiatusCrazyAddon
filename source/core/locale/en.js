@@ -468,6 +468,7 @@ gca_languages["en"] = {
 			category_auction$more_search_levels : "Show more levels in search options",
 			category_auction$item_price_analyze : "Analyze items' prices",
 			category_auction$item_level : "Show items level",
+			category_auction$item_name : "Show items name",
 			category_auction$x3_items_per_line : "Change layout to 3 items per line",
 			category_auction$multi_bids : "Bid many items without page refresh",
 			category_auction$extra_item_stats : "Show extra stats on item images",

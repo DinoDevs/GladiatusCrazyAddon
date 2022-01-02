@@ -443,6 +443,7 @@ gca_languages['pt'] = {
 			category_auction$more_search_levels : "Mostrar mais níveis nas opções de pesquisa",
 			category_auction$item_price_analyze : "Analisar preço dos itens",
 			category_auction$item_level : "Mostrar o nivel dos items.",
+			category_auction$item_name : "Mostrar o nome dos items.",
 			category_auction$x3_items_per_line : "Mostrar 3 items por linha",
 			category_auction$multi_bids : "Licitar muitos itens sem atualizar a página",
 			category_auction$extra_item_stats : "Exibir status extra na imagem dos itens",
