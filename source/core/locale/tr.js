@@ -362,6 +362,7 @@ gca_languages["tr"] = {
 			category_auction$more_search_levels : "Asgari seviye yerine ara seviyeler ekle",
 			category_auction$item_price_analyze : "Eşya fiyatlarını analiz et",
 			category_auction$item_level : "Eşya seviyesini göster",
+			category_auction$item_name : "Eşya adını göster",
 			category_auction$x3_items_per_line : "Satır başına 3 eşya göster",
 			category_auction$multi_bids : "Sayfayı yenilemeden teklif ver",
 			category_auction$extra_item_stats : "Eşya resimlerinde ekstra istatistikleri göster",
