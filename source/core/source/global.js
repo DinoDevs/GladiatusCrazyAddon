@@ -2930,14 +2930,14 @@ var gca_global = {
 				var current = new Date(); current = current.getTime();
 				var tooltip = '[[';
 				if(smeltTimes.data.length>0){
-					tooltip += '[["'+smeltTimes.translation[0]+'","'+smeltTimes.translation[1]+'"],["#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00","#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00"]]';
+					tooltip += '[["'+smeltTimes.translation[0]+'","'+smeltTimes.translation[1]+'"],["#FFF; text-shadow: 0 0 2px #000, 0 0 2px #FFF","#FFF; text-shadow: 0 0 2px #000, 0 0 2px #FFF"]]';
 					for(let i=0;i<smeltTimes.data.length;i++){
 						if(smeltTimes.data[i][0]*1000<=current){
 							type = 'green';
 							gca_notifications.success( smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2], gca_getPage.link({"mod":"forge","submod":"smeltery"}) );
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+smeltTimes.translation[2]+'"],["#DDD","#00ff00"]]';
 						}else{
-							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+'"],["#DDD","#DDD"]]';
+							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+`"],["${smeltTimes.data[i][2]}","${smeltTimes.data[i][2]}"]]`;
 						}
 					}
 					if(forgeTimes.data.length>0){tooltip += ',';}
