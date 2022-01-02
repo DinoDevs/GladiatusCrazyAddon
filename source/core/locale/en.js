@@ -119,7 +119,7 @@ gca_languages["en"] = {
 			gold_exp_data_total_exp : "Total experience",
 			gold_exp_data_total_gold : "Total gold",
 			gold_exp_data_reset : "Stats have been reset!",
-			gold_exp_data_desc: "Data are collected every 5 minutes. Selling items will double your gold earning.",
+			gold_exp_data_desc: "Data are collected every 5 minutes. Selling items will double your gold earnings.",
 			
 			// Items
 			merchenary_type : "Type: {{name}} ({{number}})",
