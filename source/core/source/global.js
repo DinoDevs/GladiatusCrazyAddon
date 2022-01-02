@@ -2938,6 +2938,8 @@ var gca_global = {
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+smeltTimes.translation[2]+'"],["#DDD","#00ff00"]]';
 						}else{
 							let qualityColor = gca_tools.item.shadow.getColor(smeltTimes.data[i][2], true);
+							if (qualityColor == false)
+								qualityColor == 'white'; // compatibility with old data
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+`"],["${qualityColor}","${qualityColor}"]]`;
 						}
 					}
