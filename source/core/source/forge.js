@@ -481,8 +481,9 @@ var gca_forge = {
 			let current = new Date().getTime();
 			for (let i = 0; i < window.slotsData.length; i++) {
 				if (typeof window.slotsData[i]['forge_slots.uend'] !== "undefined") {
+					let itemQuality = window.slotsData[i].item.data.quality;
 					if(window.slotsData[i]['forge_slots.uend'] * 1000 > current)
-						forgeTimes.data.push([window.slotsData[i]['forge_slots.uend'], window.slotsData[i].item.name]);
+						forgeTimes.data.push([window.slotsData[i]['forge_slots.uend'], window.slotsData[i].item.name, itemQuality]);
 				}
 			}
 			gca_data.section.set("timers", "forge_times", forgeTimes);
