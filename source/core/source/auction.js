@@ -32,6 +32,8 @@ var gca_auction = {
 				this.extraItemStats());
 			(gca_options.bool("auction","item_sort_functions") &&
 				this.itemsSort.init());
+			
+			this.saveMercenaryRealNames();
 		}
 		
 		(gca_options.bool("auction","more_search_levels") &&
@@ -87,6 +89,7 @@ var gca_auction = {
 		
 		lvl_options_parent.value = selectedLvl;
 	},
+
 	itemsCounters : function(){
 		// Count items (number of fourms minus the search form)
 		var items = document.forms.length - 1;
@@ -220,9 +223,11 @@ var gca_auction = {
 		var bidItems = document.getElementById("auction_table").querySelectorAll(".auction_bid_div");
 		// For each item
 		for (var i = items.length - 1; i >= 0; i--) {
+			let itemName = JSON.parse(items[i].dataset.tooltip)[0][0][0];
+
 			// Create name div
 			indicator = document.createElement("div");
-			indicator.textContent = JSON.parse(items[i].dataset.tooltip)[0][0][0];
+			indicator.textContent = itemName;
 			// Get wrapper
 			wrapper = bidItems[i];
 			wrapper.insertBefore(indicator, wrapper.children[2]);
@@ -280,6 +285,40 @@ var gca_auction = {
 				wrapper.insertBefore(indicator, wrapper.firstChild);
 			}
 		}
+	},
+
+	saveMercenaryRealNames : function(){
+		// Run mercenaries section only
+		var e = document.getElementsByName("itemType")[0];
+		if (e.options[e.selectedIndex].value != 15)
+			return;
+
+		let cachedMercenaryNamesLocale = gca_data.section.get('cache', 'mercenary_names_locale', gca_global.display.analyzeItems.mercenaries.names);
+		
+		// Get items
+		var items = document.getElementById("auction_table").querySelectorAll(".auction_item_div > div > div");
+		// For each item
+		var newNameFound = false;
+		for (let i = items.length - 1; i >= 0; i--) {
+			// Get hash
+			let hash = gca_tools.item.hash(items[i]);
+			if (!hash) continue;
+			
+			let name = JSON.parse(items[i].dataset.tooltip)[0][0][0];
+
+			if ( hash.subcategory <= cachedMercenaryNamesLocale.length ){
+				if (name != cachedMercenaryNamesLocale[hash.subcategory-1]){ // new locale?
+					console.log(`GCA: Found mercenary name locale to cache (${hash.subcategory} : ${cachedMercenaryNamesLocale[hash.subcategory-1]} = ${name})`)
+					cachedMercenaryNamesLocale[hash.subcategory-1] = name;
+					newNameFound = true;
+				}
+			}else{
+				console.log(`GCA: Unknown mercenary subcategory (${hash.subcategory} : n/a = ${name})`);
+			}
+		}
+
+		if (newNameFound)
+			gca_data.section.set('cache', 'mercenary_names_locale', gca_global.display.analyzeItems.mercenaries.names);
 	},
 	
 	multiBids : function(){

@@ -3779,6 +3779,9 @@ var gca_global = {
 			mercenaries : {
 				// Load
 				init : function(self){
+					// Get cached locale names
+					this.names = gca_data.section.get('cache', 'mercenary_names_locale', this.names);
+
 					// Get data
 					this.showMerchenaryType();
 					
