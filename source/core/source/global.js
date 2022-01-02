@@ -2940,7 +2940,7 @@ var gca_global = {
 							let qualityColor = gca_tools.item.shadow.getColor(smeltTimes.data[i][2], true);
 							if (qualityColor == false)
 								qualityColor == 'white'; // compatibility with old data
-							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+`"],["${qualityColor}","${qualityColor}"]]`;
+							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+`"],["${qualityColor}","white"]]`;
 						}
 					}
 					if(forgeTimes.data.length>0){tooltip += ',';}
@@ -2956,7 +2956,7 @@ var gca_global = {
 							let qualityColor = gca_tools.item.shadow.getColor(forgeTimes.data[i][2], true);
 							if (qualityColor == false)
 								qualityColor == 'white'; // compatibility with old data
-							tooltip += ',[["'+forgeTimes.data[i][1]+'","'+gca_tools.time.msToString(forgeTimes.data[i][0]*1000-current)+`"],["${qualityColor}","${qualityColor}"]]`;
+							tooltip += ',[["'+forgeTimes.data[i][1]+'","'+gca_tools.time.msToString(forgeTimes.data[i][0]*1000-current)+`"],["${qualityColor}","white"]]`;
 						}
 					}
 				}
