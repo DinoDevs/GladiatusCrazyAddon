@@ -4530,14 +4530,10 @@ var gca_global = {
 				dialog.body.appendChild(canvas);
 				
 				// Add description
-				//div = document.createElement('div');
-				//div.textContent = "Click on graph's legends to enable/disable data groups. Gold and Experience data are summed starting from 7 days ago.";
-				//dialog.body.appendChild(div);
-				
-				// Add some space
-				div = document.createElement('div');
-				div.className = "space";
-				dialog.body.appendChild(div);
+				desc = document.createElement('p');
+				desc.textContent = gca_locale.get("global", "gold_exp_data_desc");
+				desc.style.textAlign = "center";
+				dialog.body.appendChild(desc);												
 				
 				var renderChart = function(){
 					// Values for the Data Plot
