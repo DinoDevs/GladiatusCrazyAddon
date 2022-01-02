@@ -2946,14 +2946,17 @@ var gca_global = {
 					if(forgeTimes.data.length>0){tooltip += ',';}
 				}
 				if(forgeTimes.data.length>0){
-					tooltip += '[["'+forgeTimes.translation[0]+'","'+forgeTimes.translation[1]+'"],["#FF6A00; font-size:12px; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00","#FF6A00; font-size:12px; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00"]]';
+					tooltip += '[["'+forgeTimes.translation[0]+'","'+forgeTimes.translation[1]+'"],["#FFF; font-size:12px; text-shadow: 0 0 2px #000, 0 0 2px #FFF","#FFF; font-size:12px; text-shadow: 0 0 2px #000, 0 0 2px #FFF"]]';
 					for(let i=0;i<forgeTimes.data.length;i++){
 						if(forgeTimes.data[i][0]*1000<=current){
 							type = 'green';
 							gca_notifications.success(forgeTimes.translation[0]+': '+forgeTimes.data[i][1]+'\n'+forgeTimes.translation[2]);
 							tooltip += ',[["'+forgeTimes.data[i][1]+'","'+forgeTimes.translation[2]+'"],["#DDD","#00ff00"]]';
 						}else{
-							tooltip += ',[["'+forgeTimes.data[i][1]+'","'+gca_tools.time.msToString(forgeTimes.data[i][0]*1000-current)+'"],["#DDD","#DDD"]]';
+							let qualityColor = gca_tools.item.shadow.getColor(forgeTimes.data[i][2], true);
+							if (qualityColor == false)
+								qualityColor == 'white'; // compatibility with old data
+							tooltip += ',[["'+forgeTimes.data[i][1]+'","'+gca_tools.time.msToString(forgeTimes.data[i][0]*1000-current)+`"],["${qualityColor}","${qualityColor}"]]`;
 						}
 					}
 				}
