@@ -22,6 +22,8 @@ var gca_auction = {
 				this.itemsValuesShow());
 			(gca_options.bool("auction","item_level") && 
 				this.itemsLevelShow());
+			(gca_options.bool("auction","item_name") && 
+				this.itemsNameShow());
 			(gca_options.bool("auction","x3_items_per_line") && 
 				this.items3PerLine());
 			(gca_options.bool("auction","multi_bids") &&
@@ -209,6 +211,21 @@ var gca_auction = {
 			jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").show();
 			jQuery('input[name ="buyout"]').show();
 			that.style.filter = "grayscale(100%)";
+		}
+	},
+
+	itemsNameShow : function() {
+		// Get items
+		var items = document.getElementById("auction_table").querySelectorAll(".auction_item_div > div > div");
+		var bidItems = document.getElementById("auction_table").querySelectorAll(".auction_bid_div");
+		// For each item
+		for (var i = items.length - 1; i >= 0; i--) {
+			// Create name div
+			indicator = document.createElement("div");
+			indicator.textContent = JSON.parse(items[i].dataset.tooltip)[0][0][0];
+			// Get wrapper
+			wrapper = bidItems[i];
+			wrapper.insertBefore(indicator, wrapper.children[2]);
 		}
 	},
 

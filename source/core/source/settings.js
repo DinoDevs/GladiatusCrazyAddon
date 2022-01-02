@@ -1054,6 +1054,8 @@ var gca_settings = {
 				"item_price_analyze" : true,
 				// Show item level
 				"item_level" : true,
+				// Show item names
+				"item_name" : false,
 				// Show 3 items per line
 				"x3_items_per_line" : false,
 				// Enable multi bids
