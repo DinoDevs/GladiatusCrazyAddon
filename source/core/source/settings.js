@@ -479,6 +479,7 @@ var gca_settings = {
 								}
 								info = Math.round(translated_items * 100 / data.translated_items);
 								data.info_completed.textContent = gca_locale.get("settings", "translated_percent", {number: info});
+								data.info_completed.style.fontWeight = "bold";
 								
 								if( translated_items < data.translated_items ){
 									data.show.style.display = "block";
