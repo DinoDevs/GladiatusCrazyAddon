@@ -224,6 +224,8 @@ var gca_reports = {
 			let line = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr');
 
 			// Align stuff
+			if (line[0].getElementsByTagName('th').length < 3) // There has been an error but none of the pages has less than 4...
+				return;
 			line[0].getElementsByTagName('th')[2].style.textAlign = "right";
 
 			// If no reports
