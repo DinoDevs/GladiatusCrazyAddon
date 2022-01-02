@@ -2937,7 +2937,8 @@ var gca_global = {
 							gca_notifications.success( smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2], gca_getPage.link({"mod":"forge","submod":"smeltery"}) );
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+smeltTimes.translation[2]+'"],["#DDD","#00ff00"]]';
 						}else{
-							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+`"],["${smeltTimes.data[i][2]}","${smeltTimes.data[i][2]}"]]`;
+							let qualityColor = gca_tools.item.shadow.getColor(smeltTimes.data[i][2], true);
+							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+gca_tools.time.msToString(smeltTimes.data[i][0]*1000-current)+`"],["${qualityColor}","${qualityColor}"]]`;
 						}
 					}
 					if(forgeTimes.data.length>0){tooltip += ',';}

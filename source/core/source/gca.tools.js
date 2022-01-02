@@ -302,10 +302,14 @@ var gca_tools = {
 			},
 
 			// Get Tooltip Color
-			getColor : function(data){
+			getColor : function(data, hex = false){
 				let quality = (typeof data === 'number') ? data : this.getQuality(data);
 				if (quality === false) return false;
-				return ['white', 'green', 'blue', 'purple', 'orange', 'red'][quality + 1];
+
+				if (!hex)
+					return ['white', 'green', 'blue', 'purple', 'orange', 'red'][quality + 1];
+				else
+					return ['white', 'lime', '#5159f7', '#e303e0', '#FF6A00', '#FF0000'][quality + 1];
 			},
 
 			// Add shadow

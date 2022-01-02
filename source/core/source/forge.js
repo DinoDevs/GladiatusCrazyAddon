@@ -501,17 +501,8 @@ var gca_forge = {
 			smeltTimes.data = [];// EndTime, Name
 			for(var i = 0; i < window.slotsData.length; i++) {
 				if (typeof window.slotsData[i]['forge_slots.uend'] !== "undefined") {
-					var colorFromQuality = (() => {
-						switch (window.slotsData[i].item.data.quality) {
-							case 0: return 'lime'
-							case 1: return '#5159f7'
-							case 2: return '#e303e0'
-							case 3: return '#FF6A00'
-							case 4: return '#FF0000'
-							default: return 'white'
-						}
-					})()
-					smeltTimes.data.push([window.slotsData[i]['forge_slots.uend'], window.slotsData[i].item.name, colorFromQuality]);
+					let itemQuality = window.slotsData[i].item.data.quality;
+					smeltTimes.data.push([window.slotsData[i]['forge_slots.uend'], window.slotsData[i].item.name, itemQuality]);
 				}
 			}
 			gca_data.section.set("timers", "smelt_times", smeltTimes);
