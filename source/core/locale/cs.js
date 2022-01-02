@@ -109,7 +109,7 @@ gca_languages['cs'] = {
 			gold_exp_data_total_exp : "Celková zkušenost",
 			gold_exp_data_total_gold : "Celkem zlato",
 			gold_exp_data_reset : "Statistiky resetovány!",
-			gold_exp_data_desc: "Data jsou shromažďována každých 5 minut. Prodávání koupených předmětů zdvojnásobí Vaše statistiky zlata.",
+			gold_exp_data_desc: "Data jsou shromažďována každých 5 minut. Prodávání zakoupených předmětů zdvojnásobí Vaše statistiky zlata.",
 			
 			// Items
 			merchenary_type : "Typ: {{name}} ({{number}})"
