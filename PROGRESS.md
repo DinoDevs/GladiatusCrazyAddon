@@ -9,6 +9,8 @@
 - **Global**
 	- [ ] Preparations for Manifest v3 (some fixes and testing can be found at [testing branch](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/manifest-v3-testing))
 	- [x] Smelting timers tooltip item color based on quality (by @MiguelSOliveira)
+- **Auction**
+	- [x] Show item names (disabled by default, by @MiguelSOliveira)
 - **Accessibility**
 	- [ ] Improve experience on mobile phones	
 
