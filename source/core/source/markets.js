@@ -462,7 +462,7 @@ var gca_markets = {
 				custom_mode.checked = true;
 			let custom_mode_label = document.createElement("label");
 			custom_mode_label.setAttribute("for", custom_mode.id);
-			custom_mode_label.textContent = "💰 " + ((price + '').replace(/000000$/,'m').replace(/000$/,'k'));
+			custom_mode_label.textContent = "💰 " + ((price + '').replace(/000000$/,'m').replace(/(\d)(\d)00000$/,'$1.$2m').replace(/(\d)(\d\d)0000$/,'$1.$2m').replace(/000$/,'k'));
 			modeSwitch.appendChild(custom_mode);
 			modeSwitch.appendChild(custom_mode_label);
 		});
