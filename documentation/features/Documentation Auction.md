@@ -3,6 +3,7 @@
 - [Show more levels in search options](Documentation%20Auction.md#show-more-levels-in-search-options)
 - [Analyze items' prices](Documentation%20Auction.md#analyze-items-prices)
 - [Show items' level](Documentation%20Auction.md#show-items-level)
+- [Show items' name](Documentation%20Auction.md#show-items-name)
 - [Change layout to 3 items per line](Documentation%20Auction.md#change-layout-to-3-items-per-line)
 - [Bid many items without page refresh](Documentation%20Auction.md#bid-many-items-without-page-refresh)
 - [Show extra stats on item images](Documentation%20Auction.md#show-extra-stats-on-item-images)
@@ -44,6 +45,14 @@
 
 ![Show Items Level N](Pictures/Auction/Show_Items_Level_N.png)
 ![Show Items Level Y](Pictures/Auction/Show_Items_Level_Y.png)
+
+### Show items' name
+- Show the name of the item 
+
+![Show Items Level](Pictures/Auction/Show_Items_Name.png)
+
+![Show Items Level N](Pictures/Auction/Show_Items_Name_N.png)
+![Show Items Level Y](Pictures/Auction/Show_Items_Name_Y.png)
 
 ### Change layout to 3 items per line
 - Changes the layout to 3 rows instead of 2
