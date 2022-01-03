@@ -119,6 +119,7 @@ gca_languages["gr"] = {
 			gold_exp_data_total_exp : "Συνολική εμπειρία",
 			gold_exp_data_total_gold : "Συνολικός χρυσός",
 			gold_exp_data_reset : "Η επαναφορά των στατιστικών έγινε!",
+			gold_exp_data_desc: "Λήψη δεδομένων κάθε 5 λεπτά. Η πώληση αντικειμένων που έχετε αγοράσει θα διπλασιάσει τα κέρδη σας.",
 			
 			// Items
 			merchenary_type : "Τύπος: {{name}} ({{number}})",
