@@ -17,8 +17,8 @@
 
 
 ### BUG FIXES
-- **Global**
-	- [ ] Kill bugs with fire before they lay eggs!
+- **Settings**
+	- [x] Export settings to notes messing up `&"'<>` chars bug fixed
 
 
 ### TRANSLATIONS
