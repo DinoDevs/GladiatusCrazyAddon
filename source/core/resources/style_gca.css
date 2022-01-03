@@ -122,7 +122,7 @@
 	.refresh-icon:hover{background: transparent url('buttons/main_buttons.png') -320px -25px no-repeat;}
 	.pillar-icon{background: transparent url('buttons/main_buttons.png') -370px 0px no-repeat;}
 	.pillar-icon:hover{background: transparent url('buttons/main_buttons.png') -370px -25px no-repeat;}
-        .food-icon{background: transparent url('buttons/main_buttons.png') -395px 0px no-repeat;}
+    .food-icon{background: transparent url('buttons/main_buttons.png') -395px 0px no-repeat;}
 	.food-icon:hover{background: transparent url('buttons/main_buttons.png') -395px -25px no-repeat;}
 
 /* Auction Status Bar */
@@ -590,6 +590,11 @@
 		.gca-traveling .menue_reports:hover, .gca-traveling .menue_reports_highlight:hover{background: url('icons/travel-icons.gif') -42px 0px no-repeat!important;}
 		.gca-traveling .menue_packages, .gca-traveling .menue_packages_highlight{background: url('icons/travel-icons.gif') -84px 0px no-repeat!important;cursor:default;}
 		.gca-traveling .menue_packages:hover, .gca-traveling .menue_packages_highlight:hover{background: url('icons/travel-icons.gif') -84px 0px no-repeat!important;}
+
+
+		/* Style fixes*/
+		/* Fix tall (double line) tabs */
+		.gca_long_tabs .awesome-tabs {width: auto !important;}
 
 
 		/* Notifications

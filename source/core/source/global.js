@@ -1847,6 +1847,16 @@ var gca_global = {
 				document.documentElement.className += " event_bar_moved";
 				// Set moved
 				this.moved = true;
+
+				// Fix for tall tabs
+				let tabs = document.getElementsByClassName("awesome-tabs");
+				var tallTabFound = false;
+				for (let i = tabs.length - 1; i >= 0; i--) {
+					if ( tabs[i].textContent.length > 19 ) //more than 19 characters
+						tallTabFound = true;
+				}
+				if (tallTabFound)
+					document.getElementById("mainnav").className += " gca_long_tabs";
 			},
 			load : function(){
 				// Get banner
