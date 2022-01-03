@@ -29,4 +29,4 @@ The documentation is continuously adapted to new feature releases.
 - [Sounds](Documentation%20Sounds.md)
 - [Data](Documentation%20Data.md)
 ***
-<sub><sup>Last update on 30-Dec-2021</sup></sub>
+<sub><sup>Last update on 03-Jan-2021</sup></sub>
