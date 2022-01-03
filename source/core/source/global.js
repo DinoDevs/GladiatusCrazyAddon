@@ -1364,38 +1364,40 @@ var gca_global = {
 					// Get online family members
 					jQuery.get(gca_getPage.link({"mod":"overview","submod":"buddylist"}), function(content){
 						// Match All active players
-						var online_players = content.match(/<tr>\s*<td[^>]*>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+"[^>]*>([^<]+)<\/a>\s*<\/td>\s*<td><a href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"[^>]*>\s*\[([^\]]+)\]\s*<\/a><\/td>\s*<td>(\d+)<\/td>\s*<td><span style="color: (green|#406000|#804000);[^"]*" title="on">([^<]*)</mg);
+						let online_players = content.match(/<a href="index\.php\?mod=player&p=[^>]+>([^<]+)<\/a>\s*<\/td>\s*<td>(?:<a href="index\.php\?mod=guild&i=[^>]+>[^<]+<\/a>\s*|-*\s*)<\/td>\s*<td>(\d+)<\/td>\s*<td><span style="color: (green|#406000|#804000);[^>]+>([^<]*)</mg);
 						if(!online_players) online_players = [];
 						// List with parsed players info
-						var player_list = [];
+						let player_list = [];
 						// For each player
 						for (let i = 0; i < online_players.length; i++){
 							// Match player's info
-							let player = online_players[i].match(/<tr>\s*<td[^>]*>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+"[^>]*>([^<]+)<\/a>\s*<\/td>\s*<td><a href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"[^>]*>\s*\[([^\]]+)\]\s*<\/a><\/td>\s*<td>(\d+)<\/td>\s*<td><span style="color: (green|#406000|#804000);[^"]*" title="on">([^<]*)</mi);
-							let player_info = {
-								id : player[1],
-								name : player[2],
+							let player_link = online_players[i].match(/<a href="index\.php\?mod=player&p=(\d+)[^>]+>([^<]+)<\/a>/mi);
+							let player_guild = online_players[i].match(/<a href="index\.php\?mod=guild&i=(\d+)[^>]+>\s*\[([^\]]+)\]\s*<\/a>/mi);
+							let player_info = online_players[i].match(/<td>(\d+)<\/td>\s*<td><span style="color: (green|#406000|#804000);[^>]+>([^<]*)</mi);
+							let player = {
+								id : player_link[1],
+								name : player_link[2],
 								guild : {
-									id : player[3],
-									name : player[4]
+									id : player_guild ? player_guild[1] : '-',
+									name : player_guild ? player_guild[2] : '-'
 								},
-								level : player[5],
-								color : player[6],
-								time : player[7]
+								level : player_info[1],
+								color : player_info[2],
+								time : player_info[3]
 							};
-							player_info.name = gca_tools.strings.trim(player_info.name);
-							player_info.guild.name = gca_tools.strings.trim(player_info.guild.name);
-
-							player_list.push(player_info);
+							player.name = gca_tools.strings.trim(player.name);
+							player.guild.name = gca_tools.strings.trim(player.guild.name);
+							if (player.guild.name == '-') player.guild = null;
+							player_list.push(player);
 						}
 
-						var parent = document.getElementById('online_family_friends');
-						var countElement = document.getElementById("online_friends_family_counter");
+						let parent = document.getElementById('online_family_friends');
+						let countElement = document.getElementById("online_friends_family_counter");
 						// Remove loading
 						parent.removeAttribute('class');
 						// If no players online
-						if(player_list.length == 0){
-							var noPlayers = document.createElement('div');
+						if (player_list.length == 0) {
+							let noPlayers = document.createElement('div');
 							noPlayers.style.textAlign = "center";
 							noPlayers.textContent = "-";
 							parent.appendChild(noPlayers);
@@ -1403,11 +1405,11 @@ var gca_global = {
 							parent.parentNode.setAttribute('style','vertical-align:middle;');
 						}
 						// If many players found
-						else{
+						else {
 							// If too many players found
-							if(player_list.length >= 10){
+							if (player_list.length >= 10) {
 								parent.setAttribute('style','overflow:auto;height:200px;');
-							}else{
+							} else {
 								parent.removeAttribute('style');
 							}
 							parent.parentNode.setAttribute('style','vertical-align:top;');
@@ -1433,12 +1435,14 @@ var gca_global = {
 								let info = document.createElement('span');
 								info.style.fontSize = "0.8em";
 								info.style.color = "#525252";
-								info.appendChild( document.createTextNode("[lv" + player_list[i].level + " - ") );
-								let guild = document.createElement('a');
-								guild.href = gca_getPage.link({"mod":"guild","submod":"forumGladiatorius","i":player_list[i].guild.id});
-								guild.style.color = "#525252";
-								guild.textContent = player_list[i].guild.name;
-								info.appendChild(guild);
+								info.appendChild( document.createTextNode("[lv" + player_list[i].level + (player_list[i].guild ? " - " : "")) );
+								if (player_list[i].guild) {
+									let guild = document.createElement('a');
+									guild.href = gca_getPage.link({"mod":"guild","submod":"forumGladiatorius","i":player_list[i].guild.id});
+									guild.style.color = "#525252";
+									guild.textContent = player_list[i].guild.name;
+									info.appendChild(guild);
+								}
 								info.appendChild( document.createTextNode("]") );
 								parent.appendChild(info);
 								parent.appendChild( document.createElement('br') );
