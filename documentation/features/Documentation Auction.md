@@ -2,7 +2,7 @@
 - [Count items and bidden items](Documentation%20Auction.md#count-items-and-bidden-items)
 - [Show more levels in search options](Documentation%20Auction.md#show-more-levels-in-search-options)
 - [Analyze items' prices](Documentation%20Auction.md#analyze-items-prices)
-- [Show items level](Documentation%20Auction.md#show-items-level)
+- [Show items' level](Documentation%20Auction.md#show-items-level)
 - [Change layout to 3 items per line](Documentation%20Auction.md#change-layout-to-3-items-per-line)
 - [Bid many items without page refresh](Documentation%20Auction.md#bid-many-items-without-page-refresh)
 - [Show extra stats on item images](Documentation%20Auction.md#show-extra-stats-on-item-images)
@@ -37,7 +37,7 @@
 
 <img src="Pictures/Auction/Analyze_Items_Prices_YYY.gif" alt="drawing" width="400"/>
 
-### Show items level
+### Show items' level
 - Show the level of the item again
 
 ![Show Items Level](Pictures/Auction/Show_Items_Level.png)
