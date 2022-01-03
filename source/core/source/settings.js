@@ -2337,6 +2337,15 @@ var gca_settings = {
 						if (!notes) return reject('F2PN');
 						notes = notes[1];
 
+						// Revert safe printing (probably from htmlspecialchars)
+						notes = notes
+							.replace(/&amp;/ig, '&')
+							.replace(/&quot;/ig, '"')
+							.replace(/&apos;/ig, '\'')
+							.replace(/&#039;/ig, '\'')
+							.replace(/&lt;/ig, '<')
+							.replace(/&gt;/ig, '>');
+
 						// Delete settings
 						notes = notes.replace(/(\n+|){GCASETTINGS\|([^}]+)}/ig, '');
 
