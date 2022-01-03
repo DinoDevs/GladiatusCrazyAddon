@@ -136,7 +136,7 @@ Additional active GCA team members:
   <dd>Hard, not impossible!</dd>
 
   <dt>Sleeping*Shadow ~ Documentation Master  ~ https://github.com/SleepingShadow-bit</dt>
-  <dd>Great Projects need a Documentation/dd>
+  <dd>Great Projects need Documentation/dd>
 </dl>
 
 
