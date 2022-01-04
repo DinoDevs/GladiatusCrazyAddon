@@ -4,7 +4,7 @@ about: Create a report to help us improve
 
 ---
 
-**Check our Troubleshooting guide first**
+**Check our Troubleshooting guide first (optional)**
 Check our guide before submitting a bug issue to see if it helps, if not, continue with creating this issue.
 
 You can find it at: 
