@@ -278,6 +278,8 @@ var gca_packages = {
 						return
 					}
 
+					console.log(this.dataset)
+
 					// Get item's name
 					var itemName = JSON.parse(this.dataset.tooltip)[0][0][0]
 					var itemLevel = this.dataset.level

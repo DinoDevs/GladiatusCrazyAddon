@@ -976,12 +976,14 @@
 		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem{height: 90px!important;} 
 
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div.size_y_3 {
-			margin: -25px 0 -25px 0 !important;
+			margin: -37px 0 0 0 !important;
+			scale: 0.5;
 		}
 
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div.size_y_2 {
-			margin: -15px 0 -15px 0 !important;
+			margin: -21px 0 0 0 !important;
 			height: 65px;
+			scale: 0.7;
 		}
 
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem > div.size_y_1 {
@@ -996,11 +998,11 @@
 		}
 
 		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem.size_y_3 {
-			height: 48px !important;
+			height: 24px !important;
 		}
 
 		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem.size_y_2 {
-			height: 36px !important;
+			height: 24px !important;
 		}
 
 		.gca_packages_small_items_layout .gca_packages_compact_items_layout .packageItem.size_y_1 {
