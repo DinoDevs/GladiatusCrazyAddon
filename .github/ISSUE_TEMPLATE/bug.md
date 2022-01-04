@@ -23,3 +23,4 @@ Check your browser's console (open with F12 / on Opera with Ctrl+Shift+J) and ch
  - OS: [e.g. Windows, Linux, Mac, Android, iOS]
  - Browser [e.g. Chrome, Firefox, Opera, Edge]
  - Version [e.g. 22]
+ - Installed GCA version [e.g. 4.3.5]
