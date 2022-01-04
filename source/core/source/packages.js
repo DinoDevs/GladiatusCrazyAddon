@@ -35,8 +35,8 @@ var gca_packages = {
 		(gca_options.bool("packages", "item_price") && 
 			this.layout.itemPrice.init(this));
 
-		(gca_options.bool("packages", "item_price") && 
-			this.layout.itemName.init(this));
+		(gca_options.bool("packages", "list_view_layout") && 
+			this.layout.listView.init(this));
 
 		// Set Items layout
 		(gca_options.bool("packages", "items_layout") && 
@@ -258,7 +258,7 @@ var gca_packages = {
 			}
 		},
 
-		itemName : {
+		listView : {
 			init : function(self){
 				this.apply();
 				// On new items reapply
@@ -268,6 +268,7 @@ var gca_packages = {
 			},
 			apply : function(val){
 				console.log('applying')
+				let index = 0
 				jQuery('#packages .ui-draggable').each(function(){
 					var packageContainerElement = this.parentNode.parentNode
 					var packageContainerChildren = packageContainerElement.children
@@ -278,7 +279,9 @@ var gca_packages = {
 						return
 					}
 
-					console.log(this.dataset)
+					if (index++ === 0){
+						jQuery(packageContainerElement.parentNode).addClass('list-view')
+					}
 
 					// Get item's name
 					var itemName = JSON.parse(this.dataset.tooltip)[0][0][0]
@@ -286,7 +289,6 @@ var gca_packages = {
 					var itemColor = JSON.parse(this.dataset.tooltip)[0][0][1].split(';')[0].replace('lime', 'green')
 
 					// arrange layout
-					var packageMetadata = packageContainerChildren[0]
 					var packageOrigin = packageContainerChildren[1]
 					var packageImageContainer = packageContainerChildren[2]
 					var packageExpiration = packageContainerChildren[3]

@@ -793,6 +793,8 @@ var gca_settings = {
 				"items_layout" : true,
 				// Small items layout
 				"small_items_layout" : false,
+				// List view layout
+				"list_view_layout" : false,
 				// Load more packages pages
 				"load_more_pages" : true,
 				// Number of pages to load
