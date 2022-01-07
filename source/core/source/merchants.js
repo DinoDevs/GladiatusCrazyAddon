@@ -40,7 +40,8 @@ var gca_merchants = {
 	// Merchants Search
 	merchantsSearch : {
 		qualities : ['white', 'lime', '#5159f7', '#e303e0', '#FF6A00', '#FF0000'],
-
+		emojis : ['⬜️', '🟩', '🟦', '🟪', '🟧', '🟥'],
+		
 		searchBox : function(){
 			// Create UI
 			let container = document.createElement("div");
@@ -63,7 +64,7 @@ var gca_merchants = {
 			container.appendChild(searchQuality);
 			this.qualities.forEach((color) => {
 				let option = document.createElement("option");
-				option.textContent = '⬛';
+				option.textContent = this.emojis[this.qualities.indexOf(color)];
 				option.style.color = color;
 				option.style.fontWeight = 'bold';
 				if (color === this.qualities[0]) option.selected = true;
