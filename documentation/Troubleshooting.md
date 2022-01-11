@@ -6,6 +6,7 @@ This is a troubleshooting guide for Gladiatus Crazy Addon.
 We would like to offer you help if you are having problems with the addon, below, you can see a list of potential fixes, please check it out.
 
 ## List of potential fixes
+- [Give it some time](Troubleshooting.md#give-it-some-time)
 - [Log off - Restart your browser - Restart your computer](Troubleshooting.md#log-off---restart-your-browser---restart-your-computer)
 - [Clear cookies and any other data](Troubleshooting.md#clear-cookies-and-any-other-data)
 - [Disable other extensions](Troubleshooting.md#disable-other-extensions)
@@ -18,6 +19,12 @@ We would like to offer you help if you are having problems with the addon, below
 - [Check GCA GitHub for existing bugs](Troubleshooting.md#check-gca-github-for-existing-bugs)
 - [If nothing helps](Troubleshooting.md#if-nothing-helps)
 
+## Give it some time
+
+After doing a fresh install, the addon needs time to load everything.
+
+Some features may not work properly until you visit a specific page where there is info to be stored and used by the addon. 
+Thus, it is recommended, to continue playing the game and see if the problem is gonna resolve by itself after a while.
 
 ## Log off - Restart your browser - Restart your computer
 
