@@ -132,7 +132,7 @@ DinoDevs members working on this project:
 
 Additional active GCA team members:
 <dl>
-  <dt>FrutyX ~ Admin / Developer  ~ https://github.com/FrutyX</dt>
+  <dt>FrutyX ~ Admin / Dev Advisor  ~ https://github.com/FrutyX</dt>
   <dd>Hard, not impossible!</dd>
 
   <dt>Sleeping*Shadow ~ Documentation Master  ~ https://github.com/SleepingShadow-bit</dt>
