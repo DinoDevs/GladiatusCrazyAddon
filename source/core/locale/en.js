@@ -446,7 +446,7 @@ gca_languages["en"] = {
 			category_market$cancel_all_button : "Show cancel-all button",
 			category_market$remember_sell_duration : "Remember last chosen sell duration",
 			category_market$sell_duration : "Select default sell duration",
-			category_market$one_gold_mode : "Toggle button changing sell price always to 1 gold",
+			category_market$one_gold_mode : "Add toggleable buttons for item prices (custom prices included)",
 			category_market$custom_prices : "Custom market prices, separated with commas. Calculate base on percentage of the item's price by adding an '%'. (e.g., '10000, 10.000, 200%')",
 			category_market$remember_sort : "Remember last sort order",
 			category_market$double_click_select : "Select item with double click",
