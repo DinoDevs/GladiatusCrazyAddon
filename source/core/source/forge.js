@@ -745,15 +745,18 @@ var gca_forge = {
 			// Handle item on drop
 			if (!this.dropHandler) {
 				this.dropHandler = true;
-				gca_tools.event.item.onDrop(function(item) {
-					// If item was moved
-					if (item.dataset.gcaSource == 'packages' && item.parentNode.dataset.source != 'packages') {
-						// Reload page
-						setInterval(() => {
-							if (item.className.match(/disabled/i)) {
-								document.location.reload();
-							}
-						}, 128);
+				// On ajax request reponse
+				gca_tools.event.request.onAjaxResponse((data) => {
+					if (!data || !data.url) return;
+					// Analyse action URL
+					let link = gca_getPage.parameters(data.url);
+					// If response is from retrieving item from packages
+					if (
+						link.mod == 'inventory' &&
+						link.submod == 'move' &&
+						link.from == slot.item.id
+					) {
+						document.location.reload();
 					}
 				});
 			}
