@@ -276,7 +276,7 @@ gca_languages["en"] = {
 			event_items : "Event items",
 			known_scroll : "You know this scroll",
 			unknown_scroll : "You don't know this scroll",
-			advance_filters : "Advance filters",
+			advance_filters : "Advanced filters",
 			advance_filters_apply : "Apply filters",
 			advance_filters_clear : "Clear filters",
 			advance_filters_found : "(found {{items}})"
@@ -400,7 +400,7 @@ gca_languages["en"] = {
 			category_packages$item_price : "Show items' price",
 			category_packages$special_category_features : "Enable special features per category\n•Show if scrolls are know/unknown\n•Show scroll icon item's prefix/suffix is unknown",
 			category_packages$double_click_open : "Double click packets to open them",
-			category_packages$advance_filter : "Advance packages filters",
+			category_packages$advance_filter : "Advanced packages filters",
 			category_packages$pop_over_bag : "Pop bag over on scroll",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Enable quest grouping",
