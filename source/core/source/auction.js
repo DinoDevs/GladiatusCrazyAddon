@@ -293,6 +293,16 @@ var gca_auction = {
 		if (e.options[e.selectedIndex].value != 15)
 			return;
 
+		// If global script not loaded yet
+		if (!gca_global) {
+			// Run again later
+			setTimeout(() => {
+				this.saveMercenaryRealNames();
+			}, 100);
+			return;
+		}
+
+		// Get cached names
 		let cachedMercenaryNamesLocale = gca_data.section.get('cache', 'mercenary_names_locale', gca_global.display.analyzeItems.mercenaries.names);
 		
 		// Get items
