@@ -595,6 +595,7 @@
 		/* Style fixes*/
 		/* Fix tall (double line) tabs */
 		.gca_long_tabs .awesome-tabs {width: auto !important;}
+		.gca_long_tabs .awesome-tabs .navBG {width: 100%; padding-right: 10px;}
 
 
 		/* Notifications
