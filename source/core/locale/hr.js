@@ -57,7 +57,7 @@ gca_languages['hr'] = {
 			guild_storage_goto : "Idi u savezno skladište",
 			guild_bank_goto : "Idi u saveznu banku",
 			guild_warcamp_goto : "Idi u saveznu dvoranu ratnih heroja",
-			guild_arenareports_goto : "Idi u izveštaje saveznih borbi",
+			guild_arenareports_goto : "Idi u izvještaje saveznih borbi",
 			guild_jail_goto : "Idi u savezni Negotijum",
 			guild_library_goto : "Idi u saveznu knjižnicu",
 			guild_templum_goto : "Idi u savezni Templum",
@@ -74,8 +74,8 @@ gca_languages['hr'] = {
 
 			// Guild donate
 			donate_gold_confirm : "Da li ste sigurni da želite da donirate {{number}} zlata?",
-			donate_gold_success : "Zlato uspešno donirano",
-			donate_gold_failed : "Zlato neuspešno donirano",
+			donate_gold_success : "Zlato uspješno donirano",
+			donate_gold_failed : "Zlato neuspješno donirano",
 			donate_gold_no_gold : "Nemate zlata da donirate",
 			donate_gold_all_gold : "Doniraj sve svoje zlato",
 
@@ -86,13 +86,13 @@ gca_languages['hr'] = {
 			// Pray icon
 			pray_start : "Pritisnite da započnete sa molitvom",
 			pray_stop : "Pritisnite da prekinite sa molitvom",
-			heal : "izlječi",
+			heal : "izliječi",
 
 			// Notifications
 			notification_guild_application : "Ima nova savezna aplikacija na čekanju!",
 			notification_guild_attack_ready : "Hlađenje napada na savez je gotovo!",
 			low_durability_items : "Ima {{number}} predmeta sa održavanjem ispod {{percent}}%",
-			item_worth_rubies : "Taj predmet vredi rubina!",
+			item_worth_rubies : "Taj predmet vrijedi rubina!",
 
 			// Gold - Exp data
 			gold_exp_data : "Podaci o Zlatu i Iskustvu ",
@@ -139,16 +139,16 @@ gca_languages['hr'] = {
 			bank_all_gold : "Dodaj sve svoje zlato",
 			total_donations : "Ukupne donacije",
 			min_upgrades_gold : "Potrošeno zlato na poboljšanja (minimum)",
-			max_stolen_gold : "Ukradeno zlato od drugih saveza (maksimum)"
+			max_stolen_gold : "Ukradeno zlato od drugih saveza (maksimum)",
 
 			// Library
-			library_per_point_cost : "Cena po bodu temeljnog",
+			library_per_point_cost : "Cijena po bodu temeljnog",
 			library_gold_left : "Preostalo savezno zlato nakon aktivacije",
 
 			// Medic
 			medic_lost_points : "Prazni životni bodovi",
 			medic_points_to_heal : "Životnih bodova će biti izlječeno",
-			medic_life_after_heal : "Životni bodovi nakon lječenja"
+			medic_life_after_heal : "Životni bodovi nakon liječenja"
 		},
 
 		// Expedition
