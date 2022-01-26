@@ -263,7 +263,7 @@
 	.gca-jail-content .expedition_button_disabled{cursor: normal!important;}
 	.underworld .gca-jail-content .expedition_name{width: 123px!important;background-size: 123px 34px!important;}
 	.underworld .expedition_button{margin: 5px 0px 0px 0px!important;}
-	.jail_level_number{position: absolute; top: 155px; left: 102px; width: 16px; height: 16px; color: white; text-align: center; font-weight: bold; font-size: 11px; cursor: pointer;}
+	.jail_level_number{position: absolute; top: 155px; left: 102px; width: 16px; height: 16px; color: white; text-align: center; font-weight: bold;cursor: pointer;border-radius: 50%;background-color: #a3281a;box-shadow: 0px 0px 2px #000000;font-size: 0.8em;line-height: 16px;text-shadow: 0px 0px 2px #000;}
 	.gca_rtl .jail_level_number{right: 102px;left: auto;}
 	/* Library */
 	.library_button_disabled{width: 30px; height: 30px; background: transparent url('buttons/quest_button.jpg') -60px 0px no-repeat; cursor: default; border: 0px;}
