@@ -46,16 +46,7 @@ This is purely meant to be informational, taken directly from GCA developers.
 
 ## Open sourcing the simulator
 
-**Quoted from @GramThanos**
-
->Personally speaking, I am not against open sourcing the simulator but I have some concerns, like "what if someone use it for bots?". Also, currently we (me and GreatApo) don't have time to work on the add on... so there is no time to maintain other projects. Lastly, I don't think anyone will eventually contribute, as was the case with the "GladiatusPlayerStatsAPI" that is part of the simulator (we were asked to release it).
-
-
-**Quoted from @GreatApo**
-
->We don't have the problem releasing the code but I agree with Thanos, I don't think anyone will contribute. Additionally, I don't see the game getting any decent update that will make the simulator outdated.
->
->Anyway, if anybody wants to look and improve the simulator code let us know.
+Now available at https://github.com/DinoDevs/GladiatusBattleSimulator.
 
 ## Work in progress
 
