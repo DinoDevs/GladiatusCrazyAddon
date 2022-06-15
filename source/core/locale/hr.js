@@ -207,7 +207,6 @@ gca_languages['hr'] = {
 			points_breakdown_critical_heal : "Kritično liječenje: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_critical_heal_max : "Kritično liječenje: maksimalna vrijednost",
 			values_in_parenthesis_explanation : "Vrijednosti unutar zagrada prikazuju odgovarajuće vrijednosti prije zaokruživanja."
-}
 		},
 
 		// Auction section
