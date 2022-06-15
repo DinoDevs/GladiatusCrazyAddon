@@ -3,7 +3,7 @@
  * Name : Croatian
  * Code : [none]
  * Tag  : hr
- * Translator: Dark_Knight, Tharacius
+ * Translator: Dark_Knight, Tharacius, Flamma (0eXer)
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['hr'] = {
 	name : 'Hrvatski (Croatian)',
-	translators : ["Dark_Knight","Tharacius"],
+	translators : ["Dark_Knight","Tharacius","Flamma"],
 	locale : {
 		info : {
 			description : "Najluđi addon za Gladiatus ikada!"
