@@ -112,7 +112,7 @@ gca_languages['hr'] = {
 
 		// Overview
 		overview : {
-			// Difference
+			// Stats Difference
 			stats_difference : "Razlika",
 			// Drop items to see materials to repair feature
 			drop_item_see_materials_repair : "Prikaži materijale potrebne za popravku",
