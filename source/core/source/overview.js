@@ -103,12 +103,12 @@ var gca_overview = {
 		else name = name[0].textContent.trim();
 
 		// Find player id
-		if (gca_section.playerId == 0 && this.doll == 1) {
+		if (gca_section.playerId == 0) {
 			let player_id = 0;
-			if (window.playerId) {
+			if (window.hasOwnProperty('playerId')) {
 				player_id = window.playerId;
 			}
-			else {
+			else if (this.doll == 1) {
 				let getId = document.getElementById('content').innerHTML.match(/https:\/\/s\d+-\w+\.gladiatus\.gameforge\.com\/game\/index\.php\?mod=player(?:&|&amp;)p=(\d+)/i);
 				if (getId) player_id = getId[1];
 			}
@@ -123,7 +123,7 @@ var gca_overview = {
 				let cookie_name = "Gca_" + gca_section.country + "_" + gca_section.server;
 				let cookie_value = player_id + "_" + gca_section.sh.substring(0, gca_section.sh.length/4);
 				let cookie_samesite = "SameSite=Strict; Secure"
-				document.cookie = cookie_name + "=" + cookie_value + ";" + cookie_expires + ";path=/" + ";" + cookie_samesite;
+				document.cookie = cookie_name + "=" + cookie_value + "; " + cookie_expires + "; path=/" + "; " + cookie_samesite;
 
 				// Update player id
 				gca_section.resolvePlayerId();
@@ -177,7 +177,7 @@ var gca_overview = {
 				// Short players
 				players = players.sort();
 				// Set cookies
-				document.cookie = cookie_name + '=' + encodeURIComponent(players.join('|')) + ';' + cookie_expires + ';path=/;domain=gladiatus.gameforge.com' + ";" + cookie_samesite;
+				document.cookie = cookie_name + '=' + encodeURIComponent(players.join('|')) + '; ' + cookie_expires + '; path=/; domain=gladiatus.gameforge.com' + "; " + cookie_samesite;
 			}
 
 			// Update player name
