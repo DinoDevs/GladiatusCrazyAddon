@@ -555,9 +555,9 @@ var gca_forge = {
 			document.getElementById('forge_box').parentNode.parentNode.appendChild(this.wrapper);
 
 			// Create fetch button
-			this.button = document.createElement('div');
+			this.button = document.createElement('a');
 			this.button.className = "awesome-button";
-			this.button.style = 'position: absolute; top: 38px; left: 50%; margin-left: -82px; width: 150px; z-index: 2;';
+			this.button.style = 'position: absolute; top: 38px; left: 50%; margin-left: -82px; width: 150px; z-index: 2;display: block;';
 			this.button.textContent = document.getElementById('forge_lootbox').textContent;
 			this.button.addEventListener('click', () => {
 				this.getItem();
@@ -1275,21 +1275,23 @@ var gca_forge = {
 		// Create get all button
 		let box = document.getElementById('forge_box').parentNode;
 		// Button to packages
-		let packets = document.createElement('div');
+		let packets = document.createElement('a');
 		packets.className = 'awesome-button';
 		packets.style.position = 'absolute';
 		packets.style.bottom = '-28px';
 		packets.style.left = '12px';
 		packets.style.right = '10px';
+		packets.style.display = 'block';
 		packets.textContent = completed.length + '× ' + document.getElementById('forge_lootbox').textContent;
 		box.appendChild(packets);
 		// Button to horreum
-		let horreum = document.createElement('div');
+		let horreum = document.createElement('a');
 		horreum.className = 'awesome-button';
 		horreum.style.position = 'absolute';
 		horreum.style.bottom = '-60px';
 		horreum.style.left = '12px';
 		horreum.style.right = '10px';
+		horreum.style.display = 'block';
 		horreum.textContent = completed.length + '× ' + document.getElementById('forge_horreum').textContent;
 		box.appendChild(horreum);
 

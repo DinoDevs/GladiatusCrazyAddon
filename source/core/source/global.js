@@ -1911,10 +1911,13 @@ var gca_global = {
 				document.body.appendChild(div);
 				
 				// Set up scroll to top button
-				var scroll_top = document.createElement("div");
-				scroll_top.className = "scroll-to-top";
-				scroll_top.setAttribute("onclick", 'jQuery("html, body").animate({ scrollTop: 0 }, "fast");');//or: window.scrollTo(0, 0)
-				scroll_top.textContent = '▲ top';
+				var scroll_top = document.createElement('a');
+				scroll_top.className = 'scroll-to-top';
+				scroll_top.addEventListener('click', () => {
+					jQuery('html, body').animate({scrollTop: 0}, 'fast');
+					//or: window.scrollTo(0, 0)
+				});
+				scroll_top.textContent = ' ▲ ';
 				div.appendChild(scroll_top);
 				
 				// Bind document elements
@@ -3104,7 +3107,7 @@ var gca_global = {
 				// Get wrapper
 				var wrapper = document.getElementById('inv').parentNode;
 				// Create options button
-				this.button = document.createElement('div');
+				this.button = document.createElement('a');
 				this.button.className = "gca-inv-group-options-button";
 				var that = this;
 				this.button.addEventListener('click', function(){
@@ -4444,7 +4447,7 @@ var gca_global = {
 			// Create Gold & EXP data button
 			create_button : function(){
 				// Create stats icon
-				var icon = document.createElement('div');
+				var icon = document.createElement('a');
 				icon.id = "exp_and_gold_stats_icon";
 				// Insert on page
 				document.getElementById("header_game").appendChild(icon);
