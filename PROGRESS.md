@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-3-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
@@ -13,8 +13,8 @@
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
 - **Accessibility**
-	- [ ] Improve experience on mobile phones	
-
+	- [ ] Improve experience on mobile phones
+	- [x] Added total daily gold in reports lists (#337)
 
 ### BUG FIXES
 - **Global**
