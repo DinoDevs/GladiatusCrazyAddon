@@ -1497,7 +1497,7 @@ var gca_overview = {
 				td = document.createElement("td");
 				td.style.width = "30px";
 				td.style.textAlign = "center";
-				btn = document.createElement("div");
+				btn = document.createElement("a");
 				btn.className = "icon_attack";
 				btn.style.cursor = "pointer";
 				if(this.list[i].type == 1){
@@ -1519,7 +1519,7 @@ var gca_overview = {
 				td = document.createElement("td");
 				td.style.width = "30px";
 				td.style.textAlign = "center";
-				btn = document.createElement("div");
+				btn = document.createElement("a");
 				btn.className = "icon_attack";
 				btn.style.cursor = "pointer";
 				if(this.list[i].type == 2){
@@ -1541,7 +1541,7 @@ var gca_overview = {
 				td = document.createElement("td");
 				td.style.width = "30px";
 				td.style.textAlign = "center";
-				btn = document.createElement("div");
+				btn = document.createElement("a");
 				btn.className = "icon_attack";
 				btn.style.cursor = "pointer";
 				if(this.list[i].type == 3){
@@ -1564,7 +1564,7 @@ var gca_overview = {
 				td.style.width = "30px";
 				td.style.textAlign = "center";
 				if(i != 0){
-					btn = document.createElement("div");
+					btn = document.createElement("a");
 					btn.className = "icon_attack";
 					btn.style.cursor = "pointer";
 					if(this.list[i].type == 0){
