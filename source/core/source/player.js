@@ -122,9 +122,11 @@ var gca_player = {
 
 			// Add button
 			var char = document.getElementById('char');
-			this.btn = document.createElement('img');
+			this.btn = document.createElement('a');
+			this.icon = document.createElement('img');
 			this.btn.className = 'gca-target-player-list-btn';
 			this.btn.style.display = 'none';
+			this.btn.appendChild(this.icon);
 			char.appendChild(this.btn);
 			if (!this.isCrossServer) this.btn.addEventListener('click', () => {this.toggle();});
 			else this.btn.addEventListener('click', () => {this.handleCrossServer(this.self.referrer);});
@@ -170,7 +172,7 @@ var gca_player = {
 		},
 
 		update : function() {
-			this.btn.src = (this.isTarget ? 'img/ui/quest/button_cancel.jpg' : 'img/ui/training/button.jpg');
+			this.icon.src = (this.isTarget ? 'img/ui/quest/button_cancel.jpg' : 'img/ui/training/button.jpg');
 			gca_tools.setTooltip(this.btn, JSON.stringify([[[(this.isTarget ? gca_locale.get('arena', 'target_list_remove') : gca_locale.get('arena', 'target_list_add')), 'white']]]));
 		},
 

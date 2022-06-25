@@ -29,7 +29,8 @@
 ### TRANSLATIONS
 -  **Updates**
 	- [x] Czech update by @FrutyX
-	- [ ] German update by @Sleeping*Shadow
+	- [x] German update by @Sleeping*Shadow
 	- [x] Greek update by @GreatApo
 	- [x] Portuguese update by @MiguelSOliveira
 	- [x] Turkish update by @mattemre
+	- [x] Croatian update by @0eXer

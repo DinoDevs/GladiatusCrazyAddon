@@ -467,7 +467,7 @@
 
 /* General */
 	.black{color: black;}
-	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;top: 116px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));}
+	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;top: 116px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));display: block;}
 	#exp_and_gold_stats_icon:hover{filter: drop-shadow(1px 1px 1px rgba(141, 40, 40, 0.5));}
 
 /* Missions */
@@ -674,7 +674,7 @@
 		#topFixedBar {color: #DCBB96; background: url('interface/top_bar_bg.png') repeat-x scroll 0 -4px transparent; z-index: 900; position: fixed; top: 0px; left: 0px; right: 0px; height: 24px; display: none; line-height: 24px;}
 		#topFixedBar a{color: #DCBB96;display: inline-block;margin-left: 6px;}
 		.gca_rtl #topFixedBar a{margin-left: auto;margin-right: 6px;}
-		#topFixedBar .scroll-to-top{border-radius: 6px;border: 1px solid #4A3615;color: black;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 8px;float: right;text-align: center;margin-top: 2px;margin-right: 10px;cursor: pointer;font-size: 0.8em;vertical-align: bottom;}
+		#topFixedBar .scroll-to-top{border-radius: 6px;border: 1px solid #4A3615;color: black;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 18px;float: right;text-align: center;margin-top: 2px;margin-right: 10px;cursor: pointer;font-size: 0.8em;vertical-align: bottom;display: block;text-decoration: none;}
 		.gca_rtl #topFixedBar .scroll-to-top{float: auto;margin-right: auto;float: left;margin-left: 10px;}
 		@media screen and (max-width: 1080px) {
 			#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
@@ -772,7 +772,8 @@
 		.gca_rtl .charmercsel{transform: scaleX(-1);}
 		.gca_rtl .shopTab:before, .gca_rtl .shopTab:after{transform: scaleX(-1);}
 		/* Target Player List */
-		#char .gca-target-player-list-btn {cursor: pointer;width: 25px;height: 25px;position: absolute;top: 18px;left: 18px;box-shadow: 0px 0px 1px #000000;}
+		#char .gca-target-player-list-btn {cursor: pointer;width: 25px;height: 25px;position: absolute;top: 18px;left: 18px;box-shadow: 0px 0px 1px #000000;display: block;}
+		#char .gca-target-player-list-btn img {width: 25px;height: 25px;}
 		#char .gca-target-player-list-btn:hover {box-shadow: 0px 0px 3px #000000;}
 
 		/* Buddy list*/
