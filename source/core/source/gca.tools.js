@@ -75,6 +75,20 @@ var gca_tools = {
 		escapeRegex: function(str) {
 			// https://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript/13157996#13157996
 			return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+		},
+		decodeHTMLEntities : function(str) {
+			var element = document.createElement('div');
+
+			if(str && typeof str === 'string') {
+				// strip script/html tags
+				str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+				str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+				element.innerHTML = str;
+				str = element.textContent;
+				element.textContent = '';
+			}
+
+			return str;
 		}
 	},
 

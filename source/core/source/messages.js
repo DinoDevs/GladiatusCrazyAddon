@@ -490,11 +490,13 @@ var gca_messages = {
 			// Get pinned message
 			let message = gca_data.section.get('cache', 'guild_pinned_message', null);
 			if(message==null) return;
-			let sender = gca_data.section.get('cache', 'guild_pinned_message_sender', null);
 
 			// Show pinned guild message only if other guild messages are shown (avoid showing the message in folder unrelated to guild)
 			if(gca_messages.messages.type["guild"].length==0)
 				return;
+			
+			message = gca_tools.strings.decodeHTMLEntities(message);// Decode message
+			let sender = gca_data.section.get('cache', 'guild_pinned_message_sender', null);
 
 			// Display pinned message
 			let pinned_message_container = document.createElement("div");
@@ -519,7 +521,7 @@ var gca_messages = {
 			subject_box.appendChild(message_box_title);
 
 			let message_title = document.createElement("div");
-			message_title.className = "message_title";
+			message_title.className = "message_pinned_title";
 			message_box_title.appendChild(message_title);
 
 			let name = document.createElement("b");

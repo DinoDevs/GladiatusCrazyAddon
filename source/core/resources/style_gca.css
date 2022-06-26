@@ -934,8 +934,8 @@
 		.gca_messages_styling .gca_messages_other_news .message_footer{background: #EAD791!important;}
 
 		/* Guild pinned message */
-		.gca_messages_pinned_message .messageSubject{background: #EAD791!important;height: 14px;width: 508px;padding: 4px 4px 4px 0px;border-width: 1px;}
-
+		.gca_messages_pinned_message .messageSubject{height: auto !important;overflow: auto;background: #EAD791!important;height: 14px;width: 508px;padding: 4px 4px 4px 0px;border-width: 1px;}
+		.gca_messages_pinned_message .message_pinned_title{font-size: 13px;float: left;margin-top: -2px;padding-left: 10px;}
 
 	/* New Message Layout
 	-------------------------------------------------- */

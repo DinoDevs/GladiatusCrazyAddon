@@ -4370,10 +4370,15 @@ var gca_global = {
 						message = match_results[2].trim();
 						// Notify
 						console.log(`[GCA] Pinned guild message found from ${player}: ${message}`);
+						// Save
+						gca_data.section.set('cache', 'guild_pinned_message_sender', player);
+						gca_data.section.set('cache', 'guild_pinned_message', message);
+					}else{
+						console.log(`[GCA] No pinned guild message found`);
+						gca_data.section.del('cache', 'guild_pinned_message_sender');
+						gca_data.section.del('cache', 'guild_pinned_message');
+
 					}
-					// Save
-					gca_data.section.set('cache', 'guild_pinned_message_sender', player);
-					gca_data.section.set('cache', 'guild_pinned_message', message);
 				});
 			}
 		},
