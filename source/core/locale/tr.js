@@ -255,7 +255,7 @@ gca_languages["tr"] = {
 			category_global$merchants_timer : "Tüccarların yenilenme süresini göster",
 			category_global$forge_timers : "Demirci / Arındırma zamanlayıcıyı göster",
 			category_global$notify_new_guild_application : "Yeni ittifak başvurusu olduğunda uyarı ver",
-			category_global$notify_new_guild_application_interval : "İttifak başvurularını kontrol et (Dakika cinsinden)",
+			//category_global$check_guild_application_pinned_messages_interval : "İttifak başvurularını kontrol et (Dakika cinsinden)", // add pinned messages
 			category_global$notify_guild_attack_ready : "İttifak savaşo için geri sayım bitince beni uyar",
 			category_global$notify_guild_attack_ready_interval : "İttifak savaşının zamanını kontrol et (Dakika cinsinden)",
 			category_global$x_scroll : "Gladiatus'un yatay kaydırma özelliğini etkinleştir",

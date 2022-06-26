@@ -175,6 +175,10 @@ var gca_global = {
 		(!this.isTraveling && gca_options.bool("global","notify_guild_attack_ready") && 
 			this.background.notify_me.guild_attack_ready());
 
+		// Get pinned guild message
+		(!this.isTraveling && gca_options.bool("global","check_guild_pinned_message") && 
+			this.background.guildPinnedMessage());
+
 		// Pray Buf shortcut
 		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
 			this.underworld.prayCounterBar.add());
@@ -4301,7 +4305,7 @@ var gca_global = {
 					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
 				}
 				// Else if it's time to check
-				else if(gca_tools.time.server() - lastTime >= gca_options.int("global","notify_new_guild_application_interval") * 60000){
+				else if(gca_tools.time.server() - lastTime >= gca_options.int("global","check_guild_application_pinned_messages_interval") * 60000){
 					// Save time
 					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
 					// Check guild for any application
@@ -4344,6 +4348,34 @@ var gca_global = {
 				}
 			}
 
+		},
+
+		// Get guild pinned message
+		guildPinnedMessage : function(){
+			// Get saved data
+			var lastTime = gca_data.section.get("timers", "guild_pinned_message", 0);
+			// If it's time to check
+			if(gca_tools.time.server() - lastTime >= gca_options.int("global","check_guild_application_pinned_messages_interval") * 60000){
+				// Save time
+				gca_data.section.set("timers", "guild_pinned_message", gca_tools.time.server());
+				// Check baths room 1
+				jQuery.get(gca_getPage.link({"mod":"guild_bath","submod":"guild_shoutbox","room":"1"}), function(content){
+					let player = null;
+					let message = null;
+					// If a pinned message exist
+					let match_results = content.match('<a[^>]+>([^>]+)</a>[^<]+<span[^>]+>[^<]+</span>\\s*</td>\\s*</tr>\\s*<tr>\\s*<td style="padding-bottom: 5px">\\[⚲\\]([^<]+)<');
+					if(match_results){
+						// Save
+						player = match_results[1];
+						message = match_results[2].trim();
+						// Notify
+						console.log(`[GCA] Pinned guild message found from ${player}: ${message}`);
+					}
+					// Save
+					gca_data.section.set('cache', 'guild_pinned_message_sender', player);
+					gca_data.section.set('cache', 'guild_pinned_message', message);
+				});
+			}
 		},
 		
 		// Gold/Exp data

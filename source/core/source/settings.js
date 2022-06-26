@@ -619,8 +619,10 @@ var gca_settings = {
 				
 				// Notifications
 				"notify_new_guild_application" : false,
-				// Notifications Interval in minutes
-				"notify_new_guild_application_interval" : 60,
+				// Check other data in guild
+				"check_guild_pinned_message" : true,
+				// Check for applicatons & pinned messages interval in minutes
+				"check_guild_application_pinned_messages_interval" : 60,
 				// Notifications
 				"notify_guild_attack_ready" : false,
 				// Notifications Interval in minutes

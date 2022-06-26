@@ -325,7 +325,7 @@ gca_languages['zh'] = {
 			category_global$merchants_timer : "顯示商人計時器",			
 			category_global$forge_timers : "顯示鍛造/熔煉計時指示圖標",
 			category_global$notify_new_guild_application : "提醒我在有新的工會消息時",
-			category_global$notify_new_guild_application_interval : "檢查工會消息間隔 (分鐘)",
+			//category_global$check_guild_application_pinned_messages_interval : "檢查工會消息間隔 (分鐘)", // add pinned messages
 			category_global$notify_guild_attack_ready : "當工會戰攻擊冷卻好時提醒我",
 			category_global$notify_guild_attack_ready_interval : "檢查工會戰冷卻每x (分鐘)",
 			category_global$x_scroll : "啟用神鬼戰士的水平捲動",

@@ -163,7 +163,12 @@ gca_languages["en"] = {
 			// Medic
 			medic_lost_points : "Lost points",
 			medic_points_to_heal : "Points to heal",
-			medic_life_after_heal : "Life after heal"
+			medic_life_after_heal : "Life after heal",
+
+			// Baths
+			pinned_message : "Pinned guild message",
+			pin_unpin_message : "Pin/Unpin this message",
+			pinned_message_info : "Pinned messages are displayed at the top of the messages for all guild members using this feature"
 		},
 
 		// Expedition
@@ -348,7 +353,8 @@ gca_languages["en"] = {
 			category_global$merchants_timer : "Show merchants timer indicator",
 			category_global$forge_timers : "Show forge/smelt timer indicator",
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
-			category_global$notify_new_guild_application_interval : "Check for applications every (minutes)",
+			category_global$check_guild_pinned_message : "Show guild pinned messages from the baths in messages",
+			category_global$check_guild_application_pinned_messages_interval : "Check for guild applications and pinned messages every (minutes)",
 			category_global$notify_guild_attack_ready : "Notify me when guild war attack cooldown",
 			category_global$notify_guild_attack_ready_interval : "Check the guild war cooldown every (minutes)",
 			category_global$x_scroll : "Enable gladiatus' horizontal scroll",

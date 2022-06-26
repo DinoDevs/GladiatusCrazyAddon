@@ -322,7 +322,7 @@ gca_languages["ro"] = {
 			category_global$merchants_timer : "Afișează timpul pentru negustori",
 			category_global$forge_timers : "Afișează timpul pentru forje/topiri",	
 			category_global$notify_new_guild_application : "Notifică-mă la apariția unei aplicații pentru breaslă",
-			category_global$notify_new_guild_application_interval : "Verifică pentru aplicații la fiecare (minutes)",
+			//category_global$check_guild_application_pinned_messages_interval : "Verifică pentru aplicații la fiecare (minutes)", // add pinned messages
 			category_global$notify_guild_attack_ready : "Notifică-mă cand este posibil un atac cu breasla",
 			category_global$notify_guild_attack_ready_interval : "Verifică timpul pentru un nou atac cu breasla la fiecare (minutes)",
 			category_global$x_scroll : "Activează scroll-ul orizontal pentru Gladiatus",

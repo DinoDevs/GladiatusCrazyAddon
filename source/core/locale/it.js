@@ -163,7 +163,6 @@ gca_languages["it"] = {
 			category_global$merchants_timer : "Mostra l'indicatore del timer dei commercianti",
 			category_global$forge_timers : "Mostra l'indicatore Tempo Forgia/Fusione",
 			category_global$notify_new_guild_application : "Avvisami quando c'è una nuova circolare di gilda",
-			category_global$notify_new_guild_application_interval : "Check for applications every (minutes)",
 			category_global$x_scroll : "Attiva Scorrimento orizzontale",
 			category_global$item_shadow : "Attiva Ombra colorata oggetti",
 			category_global$inventory_options_group : "Opzioni Inventario",

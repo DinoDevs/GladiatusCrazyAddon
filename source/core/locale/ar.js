@@ -150,7 +150,7 @@ gca_languages['ar'] = {
 			category_global$remember_tabs : "حفظ المخزون وعلامة تبويب التجار",
 			category_global$quest_timer : "عرض مؤقت وحالة المهام",
 			category_global$merchants_timer : "عرض مؤقت التجار",
-			category_global$notify_new_guild_application_interval : "البحث عن تحديثات كل ",
+			//category_global$check_guild_application_pinned_messages_interval : "البحث عن تحديثات كل ", // add pinned messages
 			category_global$x_scroll : "اتاحة زر ",
 			category_global$item_shadow : "تمكين ظلال الادوات",
 			category_global$gold_exp_data : "عرض معلومات الذهب والخبرة",

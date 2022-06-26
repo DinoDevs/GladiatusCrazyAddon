@@ -156,6 +156,11 @@ var manager = {
 				case "guild_warcamp":
 					this.section.warcamp();
 					break;
+
+				// Baths
+				case "guild_bath":
+					this.section.baths();
+					break;
 			// Events
 			// 
 				// Craps (Dices)
@@ -386,6 +391,11 @@ var manager = {
 		// Guild Warcamp section
 		warcamp : function() {
 			tools.loadScript("source/guild.warcamp.js");
+		},
+
+		// Guild Warcamp section
+		baths : function() {
+			tools.loadScript("source/guild.baths.js");
 		},
 
 		// Events

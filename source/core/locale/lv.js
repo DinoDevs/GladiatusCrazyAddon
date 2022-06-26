@@ -163,7 +163,7 @@ gca_languages['lv'] = {
 			category_global$forge_timers : "Rādīt kalves taimeri",
 			category_global$player_image : "Rādīt spēlētāju bildes",
 			category_global$notify_new_guild_application : "Paziņot ja ir jauns ģildes pieteikums",
-			category_global$notify_new_guild_application_interval : "Pārbaudīt ik pēc X minūtēm",
+			//category_global$check_guild_application_pinned_messages_interval : "Pārbaudīt ik pēc X minūtēm", // add pinned messages
 			category_global$x_scroll : "Ieslēgt horizontālo skrollēšanu",
 			category_global$item_shadow : "Ieslēgt priekšmetu ēnas",
 			category_global$inventory_options_group : "Grupēt inventāra iestatījumus",

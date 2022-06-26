@@ -351,7 +351,7 @@ gca_languages['hr'] = {
 			category_global$merchants_timer : "Prikaži vremenski indikator kod prodavca",
 			category_global$forge_timers : "Prikaži indikator vremena kod kovačnice/talioničara",
 			category_global$notify_new_guild_application : "Obavijesti me kada ima nova savezna aplikacija",
-			category_global$notify_new_guild_application_interval : "Proveravaj za novu saveznu aplikaciju svakih (minuta)",
+			//category_global$check_guild_application_pinned_messages_interval : "Proveravaj za novu saveznu aplikaciju svakih (minuta)", // add pinned messages
 			category_global$x_scroll : "Uključi gladiatusov horizontalni scroll",
 			category_global$item_shadow : "Uključi senke predmeta",
 			category_global$inventory_options_group : "Grupne postavke inventara",

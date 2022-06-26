@@ -166,7 +166,7 @@ gca_languages['pl'] = {
 			category_global$merchants_timer : "Wyświetl czas kupców",
 			category_global$forge_timers : "Wyświetl czas w kuźni/roztapiarce",
 			category_global$notify_new_guild_application : "Powiadom mnie, gdy pojawi się nowe podanie do gildii",
-			category_global$notify_new_guild_application_interval : "Sprawdzaj podania do gildii (minuty)",
+			//category_global$check_guild_application_pinned_messages_interval : "Sprawdzaj podania do gildii (minuty)", // add pinned messages
 			category_global$x_scroll : "Włącz przewijanie w poziomie",
 			category_global$item_shadow : "Pokaż cienie przedmiotów",
 			category_global$inventory_options_group : "Opcje ekwipunku",

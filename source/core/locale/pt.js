@@ -324,7 +324,7 @@ gca_languages['pt'] = {
 			category_global$merchants_timer : "Mostrar tempo restante dos mercadores.",
 			category_global$forge_timers : "Mostrar indicador de temporizador forja / fundição",
 			category_global$notify_new_guild_application : "Notifique-me quando há uma nova aplicação de alianças",
-			category_global$notify_new_guild_application_interval : "Verifique as aplicações a cada (minutos)",
+			//category_global$check_guild_application_pinned_messages_interval : "Verifique as aplicações a cada (minutos)", // add pinned messages
 			category_global$notify_guild_attack_ready : "Avisar-me quando acabar tempo de espera para atacar na guerra de alianças",
 			category_global$notify_guild_attack_ready_interval : "Verificar o tempo de espera da guerra de alianças a cada (minutos)",
 			category_global$x_scroll : "Ativar rolagem horizontal Gladiatus'",

@@ -163,7 +163,12 @@ gca_languages["gr"] = {
 			// Medic
 			medic_lost_points: "Χαμένοι πόντοι",
 			medic_points_to_heal: "Πόντοι για θεραπεία",
-			medic_life_after_heal: "Ζωή μετά την θεραπεία"
+			medic_life_after_heal: "Ζωή μετά την θεραπεία",
+
+			// Baths
+			pinned_message : "Ανακοίνωση τάγματος",
+			pin_unpin_message : "Ανάρτηση ως ανακοίνωση / επαναφορά ως απλή ανάρτηση",
+			pinned_message_info : "Οι ανακοινώσεις εμφανίζονται στην αρχή των μηνυμάτων σε όλα τα μέλη με ενεργοποιημένες τις ανακοινώσεις τάγματος μέσω του GCA "
 		},
 
 		// Expedition
@@ -348,7 +353,8 @@ gca_languages["gr"] = {
 			category_global$merchants_timer: "Προβολή του χρονομέτρου των πωλητών",
 			category_global$forge_timers : "Προβολή του χρονομέτρου σιδηρουργείου/χυτηρίου",
 			category_global$notify_new_guild_application : "Ειδοποίηση για νέες αιτήσεις στο τάγμα",
-			category_global$notify_new_guild_application_interval : "Έλεγχος για νέες αιτήσεις κάθε (λεπτά)",
+			category_global$check_guild_pinned_message : "Προβολή ανακοινώσεων από τα λουτρά τάγματος στα μηνύματα",
+			category_global$check_guild_application_pinned_messages_interval : "Έλεγχος για νέες αιτήσεις και αναρτημένα μηνύματα κάθε (λεπτά)",
 			category_global$notify_guild_attack_ready : "Ειδοποίηση όταν το τάγμα είναι έτοιμο να επιτεθεί",
 			category_global$notify_guild_attack_ready_interval : "Έλεγχος αν το τάγμα είναι έτοιμο να επιτεθεί κάθε (λεπτά)",
 			category_global$x_scroll : "Ενεργοποίηση της οριζόντιας κύλισης του gladiatus",

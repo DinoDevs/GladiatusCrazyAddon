@@ -337,7 +337,7 @@ gca_languages['cs'] = {
 			category_global$merchants_timer : "Zobrazit čas obchodníků",
 			category_global$forge_timers : "Zobrazit časový indikátor kovárny/tavírny",
 			category_global$notify_new_guild_application : "Upozorni mě na novou přihlášku do gildy",
-			category_global$notify_new_guild_application_interval : "Kontrolovat gildovní příhlášky každých (minut)",
+			//category_global$check_guild_application_pinned_messages_interval : "Kontrolovat gildovní příhlášky každých (minut)", // add pinned messages
 			category_global$notify_guild_attack_ready : "Upozorni mě na dobu čekání na gildovní bitvu",
 			category_global$notify_guild_attack_ready_interval : "Zkontroluj dobu čekání na gildovní bitvu každých (minut)",
 			category_global$x_scroll : "Povolit horizontální posuv",

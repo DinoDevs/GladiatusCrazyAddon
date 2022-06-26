@@ -328,8 +328,10 @@ gca_options.data = {
 		"notify_new_guild_application" : false,
 		"notify_guild_attack_ready" : false,
 		// Notifications Interval in minutes
-		"notify_new_guild_application_interval" : 60,
+		"check_guild_application_pinned_messages_interval" : 60,
 		"notify_guild_attack_ready_interval" : 15,
+		// Check other data in guild
+		"check_guild_pinned_message" : true,
 	
 		// Enable x-scroll
 		"x_scroll" : true,
