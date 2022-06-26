@@ -124,11 +124,11 @@ var gca_packages = {
 			var menu = document.createElement("div");
 			menu.className = "side_menu";
 			// Tabs
-			var filterTab = document.createElement("div");
+			var filterTab = document.createElement("a");
 			filterTab.style.float = "left";
 			filterTab.className = "side_tab active";
 			filterTab.textContent = document.getElementById("pf").getElementsByTagName("legend")[0].textContent;
-			var sortTab = document.createElement("div");
+			var sortTab = document.createElement("a");
 			sortTab.style.float = "right";
 			sortTab.className = "side_tab";
 			sortTab.textContent = document.getElementById("pa").getElementsByTagName("legend")[0].textContent;
@@ -899,6 +899,7 @@ var gca_packages = {
 			var info = document.createElement('span');
 			title.appendChild(info);
 			var section = document.createElement('section');
+			section.style.display = 'block';
 			article.appendChild(section);
 			document.getElementById('content').appendChild(article);
 			
@@ -946,9 +947,11 @@ var gca_packages = {
 			input_value = document.createElement('input');
 			div.appendChild(input_value);
 
-			btn_add = document.createElement('button');
-			btn_add.textContent = '+';
+			btn_add = document.createElement('input');
+			btn_add.value = '+';
 			btn_add.className = 'awesome-button';
+			btn_add.setAttribute('type', 'button');
+			btn_add.style.width = '56px';
 			div.appendChild(btn_add);
 
 			btn_add.addEventListener('click', () => {
@@ -967,11 +970,12 @@ var gca_packages = {
 
 			section.appendChild(div);
 
-			var btn = document.createElement('button');
-			var clear = document.createElement('button');
+			var btn = document.createElement('input');
+			var clear = document.createElement('input');
 
-			clear.textContent = gca_locale.get("packages", "advance_filters_clear");
+			clear.value = gca_locale.get("packages", "advance_filters_clear");
 			clear.className = 'awesome-button';
+			clear.setAttribute('type', 'button');
 			section.appendChild(clear);
 			clear.addEventListener('click', () => {
 				active_rules = [];
@@ -985,8 +989,9 @@ var gca_packages = {
 				info.textContent = '';
 			});
 			
-			btn.textContent = gca_locale.get("packages", "advance_filters_apply");
+			btn.value = gca_locale.get("packages", "advance_filters_apply");
 			btn.className = 'awesome-button';
+			btn.setAttribute('type', 'button');
 			section.appendChild(btn);
 			btn.addEventListener('click', () => {
 				let items = this.applyFilter(active_rules);
