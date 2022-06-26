@@ -243,6 +243,9 @@ var gca_reports = {
 					// Get date
 					let date = line[row].getElementsByTagName('td')[0].textContent.match(/(\d+\.\d+\.\d+)/i)[1];
 					let gold = parseInt(gca_tools.strings.removeDots(line[row].getElementsByTagName('td')[2].textContent), 10) || 0;
+					// Check if fight lost
+					if(line[row].getElementsByTagName('td')[1].getElementsByTagName('a').length>0 && line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].style.color=='rgb(243, 7, 30)')
+						gold = -gold;
 						
 					// Populate gold
 					if (last_date != date || row == line.length-1){
