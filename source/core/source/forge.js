@@ -1382,7 +1382,7 @@ var gca_forge = {
 			section.style.display = 'block';
 			aside.appendChild(section);
 			table = document.createElement('table');
-			table.setAttribute('width', '100%');
+			table.className = 'scroll-books-table';
 			section.appendChild(table);
 			tbody = document.createElement('tbody');
 			table.appendChild(tbody);
@@ -1409,7 +1409,7 @@ var gca_forge = {
 			section.style.display = 'block';
 			aside.appendChild(section);
 			table = document.createElement('table');
-			table.setAttribute('width', '100%');
+			table.className = 'scroll-books-table';
 			section.appendChild(table);
 			tbody = document.createElement('tbody');
 			table.appendChild(tbody);

@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -22,6 +22,7 @@
 	- [x] Show online family members fixes (#314)
 - **Forge**
 	- [x] Fixed a loop when gettings items from workbench (Firefox) (#335)
+	- [x] Style adjustments on book of scrolls (lists with known prefixes & suffixes)
 - **Settings**
 	- [x] Export settings to notes messing up `&"'<>` chars bug fixed
 
