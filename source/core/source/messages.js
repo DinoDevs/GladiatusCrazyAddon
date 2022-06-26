@@ -492,8 +492,13 @@ var gca_messages = {
 			if(message==null) return;
 			let sender = gca_data.section.get('cache', 'guild_pinned_message_sender', null);
 
+			// Show pinned guild message only if other guild messages are shown (avoid showing the message in folder unrelated to guild)
+			if(gca_messages.messages.type["guild"].length==0)
+				return;
+
+			// Display pinned message
 			let pinned_message_container = document.createElement("div");
-			pinned_message_container.className = "message_box gca_messages_other_news";
+			pinned_message_container.className = "message_box gca_messages_pinned_message";
 
 			let subject_box = document.createElement("div");
 			subject_box.className = "messageSubject";

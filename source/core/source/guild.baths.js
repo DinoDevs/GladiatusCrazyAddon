@@ -31,14 +31,16 @@ var gca_guild_baths = {
 			// Check if admin by checking if you can delete all messages
 			let numberOfMessages = document.getElementById('content').getElementsByTagName('tr').length/4;
 			let links = document.getElementById('content').getElementsByTagName('a');
-			numberOfDeleteLinks = 0;
+			let numberOfDeleteLinks = 0;
 			for (var i=0; i<links.length; i++) {
 				let href = links[i].getAttribute('href');
 				if ( href.match('&den=') )
 					numberOfDeleteLinks++;
 			}
-			if(numberOfMessages > numberOfDeleteLinks)
+			if(numberOfMessages > numberOfDeleteLinks){
+				console.log('[GCA] Not authorized to pin messages');
 				return;
+			}
 
 			// Add pinned announcement button
 			let button = document.createElement('input');

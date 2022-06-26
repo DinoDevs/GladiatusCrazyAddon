@@ -933,6 +933,8 @@
 		.gca_messages_styling .gca_messages_other_news .message_text,
 		.gca_messages_styling .gca_messages_other_news .message_footer{background: #EAD791!important;}
 
+		/* Guild pinned message */
+		.gca_messages_pinned_message .messageSubject{background: #EAD791!important;height: 14px;width: 508px;padding: 4px 4px 4px 0px;border-width: 1px;}
 
 
 	/* New Message Layout
