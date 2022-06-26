@@ -988,7 +988,7 @@
 		.gca_packages_filters_layout .package_side_bag{float: right!important;}
 		.gca_rtl.gca_packages_filters_layout .package_side_bag{float: left!important;}
 		.gca_packages_filters_layout #content .contentItem{margin-bottom: 0px;}
-		.gca_packages_filters_layout #content .side_tab{cursor: pointer;width: 84px;border: 1px solid #B9A66D;border-bottom: 1px solid #B9A66D;background-color: #D8C8A0;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+		.gca_packages_filters_layout #content .side_tab{cursor: pointer;width: 84px;border: 1px solid #B9A66D;border-bottom: 1px solid #B9A66D;background-color: #D8C8A0;border-top-left-radius: 5px;border-top-right-radius: 5px;padding: 5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;text-decoration: none;font-weight: normal;}
 		.gca_packages_filters_layout #content .side_tab.active{border-bottom: 0px;background-color: #E7DEB8;}
 		.gca_packages_filters_layout #content .side_tab:hover{text-shadow: 0px 0px 4px #AB9965;color: black;}
 		.gca_packages_filters_layout #content .side_menu{margin: -30px -1px 0px -1px;-webkit-user-select: none;-moz-user-select: none;user-select: none;}
@@ -1050,7 +1050,7 @@
 	-------------------------------------------------- */
 
 		/* Target List */
-		.gca-target-list .attack {text-align: center; font-size: 12px; color: #2c1e0f; line-height: 34px;}
+		.gca-target-list .attack {text-align: center; font-size: 12px; color: #2c1e0f; line-height: 34px;display: block;text-decoration: none!important;}
 
 
 

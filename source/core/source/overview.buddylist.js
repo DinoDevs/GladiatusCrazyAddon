@@ -135,7 +135,7 @@ var gca_overview_buddylist = {
 			td.style.textAlign = 'right';
 			const currentServer = window.location.host.split('-')[0].replace('s','').trim();
 			if (server == currentServer) {
-				let div = document.createElement('div');
+				let div = document.createElement('a');
 				div.className = 'attack';
 				div.textContent = "A";
 				td.appendChild(div);
@@ -149,7 +149,7 @@ var gca_overview_buddylist = {
 			td = document.createElement('td');
 			td.style.textAlign = 'right';
 			if (server == currentServer) {
-				let div = document.createElement('div');
+				let div = document.createElement('a');
 				div.className = 'attack';
 				div.textContent = "C";
 				td.appendChild(div);
@@ -162,9 +162,10 @@ var gca_overview_buddylist = {
 			// Remove Column
 			td = document.createElement('td');
 			td.style.textAlign = 'right';
-			let btn = document.createElement('button');
+			let btn = document.createElement('input');
 			btn.className = 'awesome-button';
-			btn.textContent = '×';
+			btn.setAttribute('type','button');
+			btn.value = '×';
 			td.appendChild(btn);
 			btn.addEventListener('click', () => {this.remove(id);});
 			tr.appendChild(td);
