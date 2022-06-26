@@ -225,6 +225,7 @@ var gca_reports = {
 			// Report lines
 			let row = 1;
 			let line = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr');
+			let loot_translation = line[0].getElementsByTagName('th')[2].textContent;
 
 			// Align stuff
 			if (line[0].getElementsByTagName('th').length < 3) // There has been an error but none of the pages has less than 4...
@@ -245,7 +246,7 @@ var gca_reports = {
 					let gold = parseInt(gca_tools.strings.removeDots(line[row].getElementsByTagName('td')[2].textContent), 10) || 0;
 					// Check if fight lost
 					if(line[row].getElementsByTagName('td')[1].getElementsByTagName('a').length>0 && line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].style.color=='rgb(243, 7, 30)')
-						gold = -gold;
+						gold = 0;
 						
 					// Populate gold
 					if (last_date != date || row == line.length-1){
@@ -254,7 +255,7 @@ var gca_reports = {
 							daily_gold += gold;
 						// Fill last date td
 						if(lastDateGoldTd!=null){
-							lastDateGoldTd.textContent = gca_locale.get("global", "gold_exp_data_total_gold") + ": " +gca_tools.strings.insertDots(daily_gold);
+							lastDateGoldTd.textContent = loot_translation + ": " +gca_tools.strings.insertDots(daily_gold);
 							lastDateGoldTd.appendChild(document.createTextNode(" "));
 							lastDateGoldTd.appendChild(gca_tools.create.goldIcon());
 						}
