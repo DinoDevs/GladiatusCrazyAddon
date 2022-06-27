@@ -60,7 +60,7 @@ gca_languages['de'] = {
 			// Button bar - Message
 			message_private_write : "Private Nachricht schreiben",
 			message_guild_write : "Gildennachricht schreiben",
-			message_send : "senden",
+			message_send : "Senden",
 			message_sent_success : "Gildennachricht wurde gesendet",
 			message_sent_failed : "Gildennachricht ist fehlgeschlagen",
 			message_empty : "Gildennachricht ist leer",
@@ -164,6 +164,11 @@ gca_languages['de'] = {
 			medic_lost_points : "Verlorene Punkte",
 			medic_points_to_heal : "Punkte zum Heilen",
 			medic_life_after_heal : "Leben nach dem heilen"
+			
+			// Baths
+			pinned_message : "Angeheftete Gildennachricht",
+			pin_unpin_message : "Die Nachricht anheften / lösen",
+			pinned_message_info : "Angeheftete Nachrichten werden allen Gildenmitgliedern, die diese Funktion verwenden, oben in den Nachrichten angezeigt"
 		},
 
 		// Expedition
@@ -347,7 +352,8 @@ gca_languages['de'] = {
 			category_global$merchants_timer : "Zeige den Händlerzeit-Indikator",
 			category_global$forge_timers : "Zeige den Schmiede/Schmelzzeit-Indikator",
 			category_global$notify_new_guild_application : "Benachrichtigen bei einer neuen Gildenbewerbung",
-			//category_global$check_guild_application_pinned_messages_interval : "Überprüfe auf neue Bewerbung (Minuten)", // add pinned messages
+			category_global$check_guild_pinned_message : "Zeige gepinnte Nachrichten aus dem Vox als Gildennachricht an",
+			category_global$check_guild_application_pinned_messages_interval : "Überprüfe auf neue Bewerbung und angeheftete Nachrichten (Minuten)",
 			category_global$notify_guild_attack_ready : "Benachrichtige wenn Abklingzeit des Gildenkampfes vorüber ist",
 			category_global$notify_guild_attack_ready_interval : "Überprüfe Abklingzeit des Gildenkampfes (Minuten)",
 			category_global$x_scroll : "Horizontale Scrolleiste aktivieren",
@@ -362,7 +368,7 @@ gca_languages['de'] = {
 			category_global$min_durability : "Benachrichtige sobald ein Gegenstand weniger als _% Haltbarkeit + Veredelung hat (\"0\" zum Deaktivieren)",
 			category_global$show_forge_info : "Zeige Schmiederohstoff der Gegenstände im Tooltip",
 			category_global$show_mercenaries_real_name : "Zeige den echten Söldner Namen (Typ) im Tooltip",
-			category_global$global_arena_timer : "Zeige Gobale Arena",
+			category_global$global_arena_timer : "Zeige Globale Arena",
 			// Settings - Overview
 			category_overview$analyze_items : "Analysiere Spielergegenstände",
 			category_overview$food_life_gain : "Zeige gewonnene Lebenspunkte pro Nahrung",

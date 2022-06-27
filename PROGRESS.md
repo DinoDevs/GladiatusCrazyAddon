@@ -14,7 +14,7 @@
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
 - **Accessibility**
 	- [ ] Improve experience on mobile phones
-	- [x] Added total daily gold in reports lists (#337)
+	- [x] Added loot per side in reports lists (#337)
 - **Guild Bath**
 	- [x] Pin message that will be displayed at the top of messages (#348)
 
