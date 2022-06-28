@@ -163,7 +163,7 @@ gca_languages['de'] = {
 			// Medic
 			medic_lost_points : "Verlorene Punkte",
 			medic_points_to_heal : "Punkte zum Heilen",
-			medic_life_after_heal : "Leben nach dem heilen"
+			medic_life_after_heal : "Leben nach dem heilen",
 			
 			// Baths
 			pinned_message : "Angeheftete Gildennachricht",
