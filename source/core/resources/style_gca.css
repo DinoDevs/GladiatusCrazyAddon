@@ -952,7 +952,6 @@
 		.gca_new_message_styling #messageForm textarea{min-height: 180px!important;max-height: 310px!important;resize: vertical!important;}
 		.gca_new_message_styling #content > div{margin-top: 0px!important;}
 		.gca_new_message_styling #messageForm input[type="submit"]{padding: 5px 10px;}
-                .gca_new_message_styling .messages>.success {max-width: 482px!important;}
                 .gca_new_message_styling .messages>.success, .messages>.fail {max-width: 482px!important;}
 		/* Select user button */
 		.gca_new_message_select_user{cursor: pointer;background: transparent url('buttons/main_buttons.png') -45px 0px no-repeat;width: 25px;height: 25px;border: 0px;display: inline-block;margin: -7px -7px;;}
