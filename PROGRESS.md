@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-5-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-6-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
@@ -17,6 +17,8 @@
 	- [x] Added loot per side in reports lists (#337)
 - **Guild Bath**
 	- [x] Pin message that will be displayed at the top of messages (#348)
+- **Merchants**
+	- [x] Items that costs rubies can now be marked and faded (#355)
 
 ### BUG FIXES
 - **Global**
