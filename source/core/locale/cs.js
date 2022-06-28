@@ -418,7 +418,8 @@ gca_languages['cs'] = {
 			category_training$show_analyze_items_data : "Zobrazit analýzu předmětů v popisu předmětů",
 			category_training$show_points_after_upgrade : "Zobrazit staty bodů po vylepšení",
 			// Settings - Merchants
-			category_merchants$fade_unaffordable_items : "Nechat vyblednout předměty,na které nemám peníze",
+			category_merchants$fade_unaffordable_items : "Nechat vyblednout předměty, na které nemám peníze",
+			category_merchants$fade_rubies_items : "Označit a nechat vyblednout předměty, které stojí rubíny",
 			category_merchants$show_shop_info : "Zobrazit info obchodu (celkové zlato a rubíny)",
 			category_merchants$double_click_actions : "Dvojklik pro prodat/koupit",
 			// Settings - Forge
