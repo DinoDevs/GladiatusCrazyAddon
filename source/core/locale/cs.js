@@ -419,7 +419,7 @@ gca_languages['cs'] = {
 			category_training$show_points_after_upgrade : "Zobrazit staty bodů po vylepšení",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Nechat vyblednout předměty, na které nemám peníze",
-			category_merchants$ruby_icon_on_items : "Označit a nechat vyblednout předměty, které stojí rubíny",
+			category_merchants$ruby_icon_on_items : "Označit ikonkou předměty, které stojí rubíny",
 			category_merchants$show_shop_info : "Zobrazit info obchodu (celkové zlato a rubíny)",
 			category_merchants$double_click_actions : "Dvojklik pro prodat/koupit",
 			// Settings - Forge
