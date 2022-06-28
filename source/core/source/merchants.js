@@ -212,6 +212,7 @@ var gca_merchants = {
 			// For each
 			var t, g, r;
 			for (var i = items.length - 1; i >= 0; i--) {
+				/*
 				// Parse tooltip
 				t = items[i].dataset.tooltip.replace(/\./g, "").replace(/\\/g, "");
 				// Get item's gold
@@ -220,6 +221,11 @@ var gca_merchants = {
 				// Get item's rubies
 				r = t.match(/(\d+) <div class="icon_rubies">/);
 				r = (r) ? r[1] : 0;
+				*/
+
+				let info = gca_tools.item.hash(items[i]);
+				g = info.price_gold
+				r = info.price_rubies
 
 				// If cannot afford
 				if(g > gold || r > rubies) {
@@ -236,37 +242,44 @@ var gca_merchants = {
 	// Fade items that cost rubies
 	fadeItemsForRubies : {
 		inject : function() {
-			// Save instance
-			var that = this;
-			// Recheck items on item move
-			gca_tools.event.request.onAjaxResponse(function(){
-				that.check();
-			});
-			// Run for the first time
-			this.check();
-		},
-		// Do a check
-		check : function(){
-			
-			// Get shop items
-			var items = document.getElementById('shop').getElementsByClassName("ui-draggable");
-			// For each
-			var t, r;
-			for (var i = items.length - 1; i >= 0; i--) {
-				// Parse tooltip
-				t = items[i].dataset.tooltip.replace(/\./g, "").replace(/\\/g, "");
-				
-				// Get item's rubies
-				r = t.match(/(\d+) <div class="icon_rubies">/);
-				r = (r) ? r[1] : 0;
+			// Apply item events
+			this.apply();
 
-				// Check the amount
-				if(r > 0) {
-					items[i].style.opacity = 0.6;
-					items[i].style.backgroundColor = "#950909";  
+			// On item move
+			gca_tools.event.request.onAjaxResponse((data) => {
+				if (
+					data.hasOwnProperty("data") && data.data &&
+					data.data.hasOwnProperty("to") && data.data.to &&
+					data.data.to.hasOwnProperty("data") && data.data.to.data &&
+					data.elem.length === 1
+				) {
+					let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
+					if (item) delete item[0].dataset.gcaFlag_rudies;
+					this.apply();
 				}
-
-			}
+			});
+		},
+		apply : function(){
+			var items = jQuery('#shop .ui-draggable');
+			// For each
+			items.each(function(){
+				if (!this.dataset) return;
+				// If already parsed
+				if(this.dataset.gcaFlag_rudies) return;
+				// Check if cost rubies
+				let info = gca_tools.item.hash(this);
+				// Flag as parsed
+				this.dataset.gcaFlag_rudies = info.price_rubies;
+				// If item cost rubies
+				/*
+				if (info.price_rubies && info.price_rubies > 0) {
+					// Change bg
+					//this.style.opacity = 0.6;
+					this.style.backgroundColor = "rgba(149, 9, 9, 0.8)";
+					//this.style.filter = "grayscale(1)";
+				}
+				*/
+			});
 		}
 	},
 	

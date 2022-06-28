@@ -582,11 +582,11 @@
 		.show-item-durability [data-durability][data-durability-color='5']:after {color: #ff0000;}
 		/* Do not show 100% durability in packages */
 		.show-item-durability [data-durability][data-durability="100%"]:not([data-container-number]):after {content: "" !important;}
-		
+
 		/* Remove level on gold item in packages) */
 		.show-item-level [data-level][data-basis="14-1"]:before {content: "";line-height: 9px;}
 		
-		
+
 		/* Traveling */
 		.gca-traveling .menue_news, .gca-traveling .menue_news_highlight{background: url('icons/travel-icons.gif') 0px 0px no-repeat!important;cursor:default;}
 		.gca-traveling .menue_news:hover, .gca-traveling .menue_news_highlight:hover{background: url('icons/travel-icons.gif') 0px 0px no-repeat!important;}
@@ -1221,6 +1221,9 @@
 		.gca-merchants-search-container .gca-search-input{margin-right: 4px;border-radius: 6px;}
 		.gca_rtl .gca-merchants-search-container{float: left;margin-left: 15px;}
 		.gca_rtl .gca-merchants-search-container .gca-search-input{margin-left: 4px;}
+		
+		/* Ruby items */
+		div[data-gca-flag_rudies]:not([data-gca-flag_rudies='0']):after {content: "💎" !important;font-size: 8px;color: #ff0000;line-height: 9px;bottom: 2px;filter:hue-rotate(170deg) saturate(5);}
 	
 	/* Forge
 	-------------------------------------------------- */
