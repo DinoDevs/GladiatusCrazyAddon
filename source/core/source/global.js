@@ -3443,8 +3443,7 @@ var gca_global = {
 					else return;
 					
 					// Save server speed
-					let isUnderworld = (document.getElementById('wrapper_game').className == 'underworld');
-					this.speed_factor = gca_tools.time.serverSpeed() / ((isUnderworld)?2:1);
+					this.speed_factor = gca_tools.time.serverSpeed();
 
 					var load = false;
 					// If inventory exists
@@ -3491,7 +3490,7 @@ var gca_global = {
 					}
 				},
 
-				speed_factor : 1, // server speed / (2 if in underworld)
+				speed_factor : 1, // server speed
 				enable_forge_time : true, // always true
 				
 				showInfo : function(){
@@ -3564,7 +3563,7 @@ var gca_global = {
 					// Add forge time
 					if(this.enable_forge_time){
 						let gold = gca_tools.item.hash(item.dataset.hash).price_gold;
-						let forge_time = gca_tools.time.msToHMS_String(gold * 0.9374 / this.speed_factor * 1000);
+						let forge_time = gca_tools.time.msToHMS_String(gold * (2*0.9374) / this.speed_factor * 1000);
 						tooltip[0].push([`🕑 ${forge_time}`, '#fff']);
 					}
 
@@ -4377,11 +4376,11 @@ var gca_global = {
 					let player = null;
 					let message = null;
 					// If a pinned message exist
-					let match_results = content.match('<a[^>]+>([^>]+)</a>[^<]+<span[^>]+>[^<]+</span>\\s*</td>\\s*</tr>\\s*<tr>\\s*<td style="padding-bottom: 5px">\\[⚲\\]([^<]+)<');
+					let match_results = content.match('<a[^>]+>([^>]+)</a>[^<]+<span[^>]+>[^<]+</span>\\s*</td>\\s*</tr>\\s*<tr>\\s*<td style="padding-bottom: 5px">\\[⚲\\](.*?)<\/td');//([^<]+)
 					if(match_results){
 						// Save
 						player = match_results[1];
-						message = match_results[2].trim();
+						message = match_results[2].replace(/<br>/gi,'\r\n').trim();
 						// Notify
 						console.log(`[GCA] Pinned guild message found from ${player}: ${message}`);
 						// Save
