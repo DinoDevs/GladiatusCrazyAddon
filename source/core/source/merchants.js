@@ -13,6 +13,10 @@ var gca_merchants = {
 		// Fade non affordable items
 		(gca_options.bool("merchants","fade_unaffordable_items") &&
 			this.fadeUnaffordableItems.inject());
+		
+		// Fade items for rubies
+		(gca_options.bool("merchants","fade_rubies_items") &&
+			this.fadeItemsForRubies.inject());	
 
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
@@ -225,6 +229,43 @@ var gca_merchants = {
 				else {
 					items[i].style.opacity = 1;
 				}
+			}
+		}
+	},
+	
+	// Fade items that cost rubies
+	fadeItemsForRubies : {
+		inject : function() {
+			// Save instance
+			var that = this;
+			// Recheck items on item move
+			gca_tools.event.request.onAjaxResponse(function(){
+				that.check();
+			});
+			// Run for the first time
+			this.check();
+		},
+		// Do a check
+		check : function(){
+			
+			// Get shop items
+			var items = document.getElementById('shop').getElementsByClassName("ui-draggable");
+			// For each
+			var t, r;
+			for (var i = items.length - 1; i >= 0; i--) {
+				// Parse tooltip
+				t = items[i].dataset.tooltip.replace(/\./g, "").replace(/\\/g, "");
+				
+				// Get item's rubies
+				r = t.match(/(\d+) <div class="icon_rubies">/);
+				r = (r) ? r[1] : 0;
+
+				// Check the amount
+				if(r > 0) {
+					items[i].style.opacity = 0.6;
+					items[i].style.backgroundColor = "#950909";  
+				}
+
 			}
 		}
 	},
