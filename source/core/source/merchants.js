@@ -15,8 +15,8 @@ var gca_merchants = {
 			this.fadeUnaffordableItems.inject());
 		
 		// Fade items for rubies
-		(gca_options.bool("merchants","fade_rubies_items") &&
-			this.fadeItemsForRubies.inject());	
+		(gca_options.bool("merchants","ruby_icon_on_items") &&
+			this.iconForItermsForRubies.inject());	
 
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
@@ -240,7 +240,7 @@ var gca_merchants = {
 	},
 	
 	// Fade items that cost rubies
-	fadeItemsForRubies : {
+	iconForItermsForRubies : {
 		inject : function() {
 			// Apply item events
 			this.apply();

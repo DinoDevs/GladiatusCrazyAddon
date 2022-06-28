@@ -18,7 +18,7 @@
 - **Guild Bath**
 	- [x] Pin message that will be displayed at the top of messages (#348)
 - **Merchants**
-	- [x] Items that costs rubies can now be marked and faded (#355)
+	- [x] Items that costs rubies can now have an icon (#355)
 
 ### BUG FIXES
 - **Global**

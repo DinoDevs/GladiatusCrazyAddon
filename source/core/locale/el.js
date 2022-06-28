@@ -430,6 +430,7 @@ gca_languages["gr"] = {
 			category_training$show_points_after_upgrade : "Εμφάνιση πόντων μετά την εκπαίδευση",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να αγοραστούν",
+			category_merchants$ruby_icon_on_items : "Εμφάνιση εικονιδίου στα αντικείμενα που κοστίζουν ρουμπίνια",
 			category_merchants$show_shop_info : "Προβολή πληροφοριών αντικειμένων στους πωλητές (συνολικός χρυσός και ρουμπίνια)",
 			category_merchants$double_click_actions : "Πούλημα/Αγορά αντικειμένων με διπλό κλικ",
 			// Settings - Forge
