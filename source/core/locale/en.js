@@ -430,6 +430,7 @@ gca_languages["en"] = {
 			category_training$show_points_after_upgrade : "Show stat points after upgrade",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Fade items that you can not afford",
+			category_merchants$fade_rubies_items : "Fade items that costs rubies",
 			category_merchants$show_shop_info : "Show shop info (total gold and rubies)",
 			category_merchants$double_click_actions : "Double click items to sell/buy",
 			// Settings - Forge
