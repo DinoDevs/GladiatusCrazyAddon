@@ -3463,7 +3463,7 @@ var gca_global = {
 						}
 					}
 
-					// If in packets
+					// If in packages
 					if (gca_section.mod === 'packages') {
 						load = true;
 						// On item get
@@ -3488,6 +3488,31 @@ var gca_global = {
 						this.locale = gca_data.section.get('cache', 'resource_locale', false);
 						this.showInfo();
 					}
+
+					// On item move
+					gca_tools.event.request.onAjaxResponse((data) => {
+						if (
+							data.hasOwnProperty("data") && data.data &&
+							data.data.hasOwnProperty("to") && data.data.to &&
+							data.data.to.hasOwnProperty("data") && data.data.to.data &&
+							data.elem.length === 1
+						) {
+							let item = jQuery('.ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
+							if (item){
+								item = item[0];
+								var tooltip = JSON.parse(item.dataset.tooltip);
+								// Check if tooltip is modified
+								if(tooltip[0][tooltip[0].length - 1][0].charAt(0)=='\uD83D'){
+									// Refresh the tooltip
+									gca_tools.setTooltip(item, JSON.stringify(tooltip));
+								}else{
+									delete item.dataset.forgeInfo;
+									this.showItemInfo(item);
+								}
+							}
+							//this.showInfo();
+						}
+					});
 				},
 
 				speed_factor : 1, // server speed
@@ -3509,7 +3534,6 @@ var gca_global = {
 					if (item.dataset.forgeInfo) return;
 					// Flag item
 					item.dataset.forgeInfo = true;
-
 					// Analyze hash
 					let hash = item.dataset.hash.split('-');
 
