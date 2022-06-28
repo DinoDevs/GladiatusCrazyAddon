@@ -3441,6 +3441,10 @@ var gca_global = {
 					else if (style == 3) this.style = 'minimal-amounts';
 					else if (style == 4) this.style = 'extended-amounts';
 					else return;
+					
+					// Save server speed
+					let isUnderworld = (document.getElementById('wrapper_game').className == 'underworld');
+					this.speed_factor = gca_tools.time.serverSpeed() / ((isUnderworld)?2:1);
 
 					var load = false;
 					// If inventory exists
@@ -3486,6 +3490,9 @@ var gca_global = {
 						this.showInfo();
 					}
 				},
+
+				speed_factor : 1, // server speed / (2 if in underworld)
+				enable_forge_time : true, // always true
 				
 				showInfo : function(){
 					// Get page Items
@@ -3554,6 +3561,13 @@ var gca_global = {
 					for (let i = 0; i < info.length; i++) {
 						tooltip[0].push(info[i]);
 					}
+					// Add forge time
+					if(this.enable_forge_time){
+						let gold = gca_tools.item.hash(item.dataset.hash).price_gold;
+						let forge_time = gca_tools.time.msToHMS_String(gold * 0.9374 / this.speed_factor * 1000);
+						tooltip[0].push([`🕑 ${forge_time}`, '#fff']);
+					}
+
 					gca_tools.setTooltip(item, JSON.stringify(tooltip));
 				},
 

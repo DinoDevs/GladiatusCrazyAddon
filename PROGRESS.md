@@ -19,6 +19,8 @@
 	- [x] Pin message that will be displayed at the top of messages (#348)
 - **Merchants**
 	- [x] Items that costs rubies can now have an icon (#355)
+- **Forge**
+	- [x] Forging time is now displayed under the required resources in the tooltip (#350)
 
 ### BUG FIXES
 - **Global**
