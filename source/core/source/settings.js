@@ -884,6 +884,8 @@ var gca_settings = {
 			"merchants" : {
 				// Fade items that you can not afford
 				"fade_unaffordable_items" : true,
+				// Fade items for rubies
+		                "fade_rubies_items" : false,
 				// Show shop info
 				"show_shop_info" : true,
 				// Double click items to sell or buy
