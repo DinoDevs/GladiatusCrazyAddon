@@ -352,7 +352,7 @@ gca_languages['de'] = {
 			category_global$merchants_timer : "Zeige den Händlerzeit-Indikator",
 			category_global$forge_timers : "Zeige den Schmiede/Schmelzzeit-Indikator",
 			category_global$notify_new_guild_application : "Benachrichtigen bei einer neuen Gildenbewerbung",
-			category_global$check_guild_pinned_message : "Zeige gepinnte Nachrichten aus dem Vox als Gildennachricht an",
+			category_global$check_guild_pinned_message : "Zeige angeheftete Nachrichten aus dem Vox als Gildennachricht an",
 			category_global$check_guild_application_pinned_messages_interval : "Überprüfe auf neue Bewerbung und angeheftete Nachrichten (Minuten)",
 			category_global$notify_guild_attack_ready : "Benachrichtige wenn Abklingzeit des Gildenkampfes vorüber ist",
 			category_global$notify_guild_attack_ready_interval : "Überprüfe Abklingzeit des Gildenkampfes (Minuten)",
