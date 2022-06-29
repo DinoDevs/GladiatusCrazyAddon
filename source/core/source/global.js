@@ -3498,7 +3498,7 @@ var gca_global = {
 							data.elem.length === 1
 						) {
 							let item = jQuery('.ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
-							if (item){
+							if (item && item[0]){
 								item = item[0];
 								var tooltip = JSON.parse(item.dataset.tooltip);
 								// Check if tooltip is modified
