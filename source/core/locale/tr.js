@@ -84,7 +84,8 @@ gca_languages["tr"] = {
 			gold_exp_data_total_exp : "Toplam Tecrübe",
 			gold_exp_data_total_gold : "Toplam Altın",
 			gold_exp_data_reset : "İstatistikler sıfırlandı",
-			merchenary_type : "Tip: {{name}} ({{number}})",
+			gold_exp_data_desc : "her 5 dakikada veri toplanır. Satın aldığınız ürünleri satmak altın kazancınızı ikiye katlar.",
+			merchenary_type : "Tip: {{name}} ({{number}})"
 
 		},
 		overview : {
@@ -106,11 +107,14 @@ gca_languages["tr"] = {
 			total_donations : "Toplam bağış",
 	                min_upgrades_gold : "Yükseltmeler için harcanan altın (minimum)",
 	                max_stolen_gold : "Diğer loncalardan çalınan altın (maximum)",
-			library_per_point_cost : "Eğitim Başına Maliyet",
+			library_per_point_cost : "Eğitim Başına Mâliyet",
 			library_gold_left : "Aktivasyon İçin Gerekli Altın Miktarı",
 			medic_lost_points : "Kayıp Puan",
 			medic_points_to_heal : "İyileştirilecek Noktalar",
-			medic_life_after_heal : "İyileştikten Sonraki Yaşam Puanı"
+			medic_life_after_heal : "İyileştikten Sonraki Yaşam Puanı",
+			pinned_message : "Sabitlenmiş ittifak mesajı",
+                        pin_unpin_message : "Bu mesajı sabitle veya sabitlemesini kaldır",
+                        pinned_message_info : "Bu özelliği kullanan tüm ittifak üyeleri için mesajların üst kısmında sabitlenmiş mesajlar görüntülenir."
 		},
 		expedition : {
 			material_drop_chance : "Bu malzemenin düşme şansı %{{number}} "
@@ -134,8 +138,8 @@ gca_languages["tr"] = {
 			fight_lost : "Savaşı kaybettin...",
 			player_tired : "Çok yorgunsun, biraz dinlenmelisin.",
 			player1_hits_player2 : "{{name1}} tarafından vurulan: {{name2}}.",
-			player_takes_x_damage :"{{name}}, {{number}} hasar alır",
-			player_dies :"{{name}} ölür"
+			player_takes_x_damage :"{{name}}, {{number}} hasar aldı",
+			player_dies :"{{name}} öldü"
 		},
 		training : {
 			stats_points : "Eğitim Puanı",
@@ -165,7 +169,7 @@ gca_languages["tr"] = {
 			items_info : "Eşya Bilgileri",
 			number_of_items : "Eşya Sayısı : {{number}}",
 			number_of_bided_items : "Teklif verilen eşya sayısı : {{number}}",
-			hide_your_gold_here : "Altını burada saklayabilirsin.",
+			hide_your_gold_here : "Altınını burada saklayabilirsin.",
 			price_value_function : "Ücret = Değer + {{number}}",
 			levels_you_can_see : "Burada görebileceğiniz itemler {{min}} den {{max}}.",
 			sort : "Sıralama",
@@ -175,7 +179,7 @@ gca_languages["tr"] = {
 			desc : "Azalan"
 		},
 		markets : {
-			item_cost_only_x_gold : "Bu itemin maaliyeti sadece {{number}} altın.",
+			item_cost_only_x_gold : "Bu itemin mâliyeti sadece {{number}} altın.",
 			item_is_soulbound : "Bu item ruha bağlıdır.",
 			item_cant_buy_back : "Bu itemi geri alamayacaksınız.",
 			are_you_sure_you_want_to_buy : "Bu itemi gerçekten almak istiyor musun?",
@@ -192,7 +196,7 @@ gca_languages["tr"] = {
 			no_such_item : "Aranan item bulunamadı"
 		},
 		packages : {
-			event_items : "Etkinlik öğeleri",
+			event_items : "Etkinlik ögeleri",
 			known_scroll : "Bu parşömeni daha önce okudun",
 			unknown_scroll : "Bu parşömeni daha önce okumadın",
 			advance_filters : "Gelişmiş Filtreleme",
@@ -255,8 +259,9 @@ gca_languages["tr"] = {
 			category_global$merchants_timer : "Tüccarların yenilenme süresini göster",
 			category_global$forge_timers : "Demirci / Arındırma zamanlayıcıyı göster",
 			category_global$notify_new_guild_application : "Yeni ittifak başvurusu olduğunda uyarı ver",
-			//category_global$check_guild_application_pinned_messages_interval : "İttifak başvurularını kontrol et (Dakika cinsinden)", // add pinned messages
-			category_global$notify_guild_attack_ready : "İttifak savaşo için geri sayım bitince beni uyar",
+			category_global$check_guild_pinned_message : "Mesajlar bölümünde hamamdaki sabitlenmiş ittifak mesajlarını göster",
+                        category_global$check_guild_application_pinned_messages_interval : "İttifak başvurularını ve sabitlenmiş mesajları kontrol edin (Dakika)",
+			category_global$notify_guild_attack_ready : "İttifak savaşı için geri sayım bitince beni uyar",
 			category_global$notify_guild_attack_ready_interval : "İttifak savaşının zamanını kontrol et (Dakika cinsinden)",
 			category_global$x_scroll : "Gladiatus'un yatay kaydırma özelliğini etkinleştir",
 			category_global$item_shadow : "Eşya gölgelerini etkinleştir",
@@ -315,15 +320,16 @@ gca_languages["tr"] = {
 			category_pantheon$show_mysterybox_rewards_owned : "Tanrının lütfu sandığındaki olası kazançlarda, sahip olduğum eşya sayısını göster.",
 			category_reports$style_change : "Rapor liste düzenini iyileştir",
 			category_reports$load_loot_tooltips : "Her raporun ödülünü yükle",
-			category_reports$found_items : "Bulunan öğeler hakkında veri topla",
+			category_reports$found_items : "Bulunan ögeler hakkında veri topla",
 			category_reports$battle_analyzer : "Raporu analiz et ve yaşam istatistiklerini göster",
 			category_training$show_discount : "Eğitim indirimini göster",
 			category_training$show_basics_in_bars : "Temel bilgileri çubuklar halinde göster",
 			category_training$multiple_train : "Birden fazla eğitim basmayı etkinleştir",
-			category_training$calculator_train : "Maliyet hesaplayıcıyı etkinleştir",
+			category_training$calculator_train : "Mâliyet hesaplayıcıyı etkinleştir",
 			category_training$show_analyze_items_data : "Analiz edilen item verilerini araç ipuçlarında göster",
 			category_training$show_points_after_upgrade : "Yükseltmeden sonraki eğitim puanını göster",
 			category_merchants$fade_unaffordable_items : "Alamadığın nesneleri soluk göster",
+			category_merchants$ruby_icon_on_items : "Yakut ile alınan öğelere sembol ekleyin",
 			category_merchants$show_shop_info : "Perakende tüccarında toplam altın ve yakut bilgilerini göster",
 			category_merchants$double_click_actions : "İtemleri almak veya satmak için çift tıkla",
 			category_forge$material_links : "İhtiyaç duyulan hammaddeler için market ve sandık kısayolunu göster (Demirhane / Çalışma Tezgahı)",
@@ -338,12 +344,12 @@ gca_languages["tr"] = {
 			category_arena$target_list : "Hedef listesi özelliğini aktifleştir",
 			category_magus$fade_unimprovable_items : "Geliştirilemeyen itemleri soluk göster",
 			category_market$soulbound_warning : "Satın alımlarda ruha bağlı ürünlerde onay al",
-			category_market$one_gold_warning : "1 Altına maal olan ürünleri alırken onay al",
+			category_market$one_gold_warning : "1 Altına mâl olan ürünleri alırken onay al",
 			category_market$cancel_all_button : "Tümünü iptal et butonunu göster",
 			category_market$remember_sell_duration : "Son seçilen satış süresini hatırla",
 			category_market$sell_duration : "Varsayılan satış süresini seç",
 			category_market$one_gold_mode : "Satış fiyatını her zaman 1 altın olarak değiştir butonunu göster",
-			category_market$custom_prices : "Virgülle ayrılmış özel piyasa fiyatları. Bir '%' ekleyerek öğenin fiyatının yüzdesine dayalı olarak hesaplayın. (ör. '10000, 10.000, 200%')",
+			category_market$custom_prices : "Virgülle ayrılmış özel piyasa fiyatları. Bir '%' ekleyerek ögenin fiyatının yüzdesine dayalı olarak hesaplayın. (ör. '10000, 10.000, 200%')",
 			category_market$remember_sort : "Son sıralama düzenini hatırla",
 			category_market$double_click_select : "İtemi markete atmak için çift tıkla",
 			category_market$sell_warning_icons : "İtemi satarken uyarı ikonunu göster",
@@ -352,11 +358,11 @@ gca_languages["tr"] = {
 			category_expedition$underworld_layout : "Yeraltı NPC'lerini tıpkı normal keşiflerdeki NPC'ler gibi göster",
 			category_guild$jail_layout : "Negotium X arayüzünü geliştir",
 			category_guild$library_layout : "Kütüphanenin arayüzünü geliştir",
-			category_guild$library_fade_non_scrolls : "Kütüphanede kaydırılamayan öğeleri soluk göster",
+			category_guild$library_fade_non_scrolls : "Kütüphanede kaydırılamayan ögeleri soluk göster",
 			category_guild$library_tooltip_data : "Kütüphanenin araç ipuçları hakkında daha fazla veri ekle",
 			category_guild$bank_donate_layout : "Bankanın arayüzünü geliştir",
 			category_guild$bank_book_layout : "Bankanın bağış arayüzünü geliştir",
-			category_guild$bank_book_show_changes : "Bağış Kitabına son ziyaretinden bu yana olan bağış değişikliklerini göster",
+			category_guild$bank_book_show_changes : "Bağış Kitabında son ziyaretinden bu yana olan bağış değişikliklerini göster",
 			category_guild$medic_layout : "Villa Medici'nin arayüzünü geliştir",
 			category_auction$items_counters : "Tüm eşyaları ve teklif verilen eşya sayısını göster",
 			category_auction$more_search_levels : "Asgari seviye yerine ara seviyeler ekle",
@@ -369,10 +375,10 @@ gca_languages["tr"] = {
 			category_auction$save_last_state : "Aranan son kriterleri hatırla.",
 			
 			// Settings - Accessibility
-			category_accessibility$white_level_indicators : "Öğe seviyelerini beyaz olarak değiştir",
-	                category_accessibility$qualty_symbols_indicators : "Öğelere kalite sembolü ekle",
-	                category_accessibility$tooltips_qualty_white : "Öğe açıklamasında öğe adını beyaz olarak değiştir",
-	                category_accessibility$tooltips_qualty_symbols : "Öğe açıklamasına kalite sembolü ekle",
+                        category_accessibility$white_level_indicators : "Öge seviyelerini beyaz olarak değiştir",
+                        category_accessibility$qualty_symbols_indicators : "Ögelere kalite sembolü ekle",
+                        category_accessibility$tooltips_qualty_white : "Öge açıklamasında öge adını beyaz olarak değiştir",
+                        category_accessibility$tooltips_qualty_symbols : "Öge açıklamasına kalite sembolü ekle",
 			
 			category_events$craps_timer : "Zar etkinliğinde zamanlayıcıyı en üstte göster",
 			category_events$server_quest_timer : "Sunucu görevini veya konum olayının zamanlayıcısını en üstte göster",
