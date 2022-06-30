@@ -2169,13 +2169,14 @@ var gca_global = {
 						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
 
 						// Forge
+						/*
 						if(this.info.forge){
 							this.convertMenu.addPlus(this.info.forge, this.info.forge_active, {href : gca_getPage.link({"mod":"forge","submod":"smeltery"})});
 						}
 						// Malefica
 						if(this.info.malefica){
 							this.convertMenu.addPlus(this.info.malefica, this.info.malefica_active, {href : gca_getPage.link({"mod":"forge","submod":"workbench"})});
-						}
+						}*/
 						// Auction
 						if(this.info.auction){
 							this.convertMenu.addPlus(this.info.auction, this.info.auction_active, {href : gca_getPage.link({"mod":"auction","ttype":"3"})});
