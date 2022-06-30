@@ -59,10 +59,11 @@ var gca_merchants = {
 			searchInput.placeholder = gca_locale.get("merchants", "search_item_in_merchants");
 			container.appendChild(searchInput);
 
+			let default_quality = gca_data.section.get("cache", "merchants_search_quality", 0);
 			let searchQuality = document.createElement("select");
 			searchQuality.className = 'inputText gca-search-input';
 			searchQuality.id = 'gca-search-input-color';
-			searchQuality.style.color = this.qualities[0];
+			searchQuality.style.color = this.qualities[default_quality];
 			searchQuality.style.fontWeight = 'bold';
 			searchQuality.style.cursor = 'pointer';
 			container.appendChild(searchQuality);
@@ -71,12 +72,14 @@ var gca_merchants = {
 				option.textContent = this.emojis[this.qualities.indexOf(color)];
 				option.style.color = color;
 				option.style.fontWeight = 'bold';
-				if (color === this.qualities[0]) option.selected = true;
+				if (color === this.qualities[default_quality]) option.selected = true;
 				option.value = this.qualities.indexOf(color) - 1;
 				searchQuality.appendChild(option);
 			});
 			searchQuality.addEventListener('change', () => {
-				searchQuality.style.color = this.qualities[parseInt(searchQuality.value, 10) + 1];
+				let quality = parseInt(searchQuality.value, 10) + 1;
+				searchQuality.style.color = this.qualities[quality];
+				gca_data.section.set("cache", "merchants_search_quality", quality);
 			}, false);
 			
 			let searchButton = document.createElement("input");
