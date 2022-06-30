@@ -78,10 +78,11 @@
 
 ![Focus On Message Body](Pictures/Messages/Focus_On_Message_Body.png)
 
-<img src="Pictures/Messages/Focus_On_Message_Body_Y.gif" alt="drawing" width="400"/> <img src="Pictures/Messages/Focus_On_Message_Body_N.gif" alt="drawing" width="400"/>
-
 ### Fix messages title link click bug
-- Under construction - Ticket on Github
+- When you click the name of a guild player that send the guild message, the message closes. 
+- This Feature disables this so that you can click the link and the message stay open.
+
+![Fix_Messages_Title_Link_Click_Bug](Pictures/Messages/Fix_Messages_Title_Link_Click_Bug.png)
 
 ### Enable select friend from list button
 - When writing a private message, you can select guild mates or friends directly
