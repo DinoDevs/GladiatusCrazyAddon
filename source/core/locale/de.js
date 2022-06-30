@@ -114,7 +114,7 @@ gca_languages['de'] = {
 			gold_exp_data_week : "Die letzten 7 Tage",
 			gold_exp_data_avg_day : "Durchschnittswerte pro Tag",
 			gold_exp_data_to_level_up : "Verbleibende Tage bis zum Level Aufstieg",
-
+			gold_exp_data_package_tax : "Wöchentliche Marktgebühr der Pakete",
 			gold_exp_data_measurements : "Messungen",
 			gold_exp_data_total_exp : "gesamte Erfahrung",
 			gold_exp_data_total_gold : "gesamtes Gold",
@@ -223,9 +223,12 @@ gca_languages['de'] = {
 			points_breakdown_enemy_double_hit : "Gegnerische Doppelschlag Chance: {{integer}}% ({{float}}‰) *",
 			points_breakdown_life : "Lebenspunkte: +{{number}}",
 			points_breakdown_regeneration : "Regeneration pro Stunde: +{{number}}",
+			points_breakdown_threat : "Präsenz: +{{integer}} (+{{float}})",
 			points_breakdown_heal : "Heilung: +{{integer}} (+{{float}})",
 			points_breakdown_critical_heal : "Kritische Heilungswertung: +{{integer}}% (+{{float}}‰)",
-			points_breakdown_critical_heal_max : "Kritische Heilungswertung: max. Wert"
+			points_breakdown_critical_heal_max : "Kritische Heilungswertung: max. Wert",
+			stats_calculated_with_yourself_as_an_opponent : "* Eigenschaften werden nach dem Konzept des Selbstangriffs berechnet.",
+			values_in_parenthesis_explanation : "Werte in Klammern zeigen die entsprechenden Werte vor dem Runden.",
 		},
 
 		// Auction section
@@ -266,7 +269,7 @@ gca_languages['de'] = {
 			forge_ended : "Schmiede fertig!",
 			recraft_item : "Gegenstand zerlegt",
 			show_hide_doll : "Zeige / Verstecke Ausrüstung des Charakters",
-			horreum_material_change : "Horreum - Rohstoff wurde aufgewertet"
+			horreum_material_change : "Horreum - Rohstoff wurde aufgewertet / eingelagert / entnommen"
 		},
 		
 		// Merchants
@@ -292,7 +295,7 @@ gca_languages['de'] = {
 			avg_heal : "Ø-Heilung",
 			total_hits : "Treffer gesamt",
 			hits : "Treffer",
-
+			dodge : "Ausgewichen oder Geblockt",
 			points : "Punkte"
 		},
 
@@ -347,11 +350,11 @@ gca_languages['de'] = {
 			category_global$advance_main_menu : "Zeige verbessertes Layout des Hauptmenüs",
 			category_global$submenu_click_to_change : "Wechsel das Untermenü per Klick",
 			category_global$remember_tabs : "Merke Händler und Inventar Tabs",
-			category_global$attacked_timers : "Anzeige der letzten Angriffe aktivieren",
-			category_global$quest_timer : "Zeige Aufgaben Timer oder Status",
+			category_global$attacked_timers : "Anzeige der letzten Arenen-Angriffe aktivieren",
+			category_global$quest_timer : "Zeige den Aufgaben-Timer/Status",
 			category_global$merchants_timer : "Zeige den Händlerzeit-Indikator",
 			category_global$forge_timers : "Zeige den Schmiede/Schmelzzeit-Indikator",
-			category_global$notify_new_guild_application : "Benachrichtigen bei einer neuen Gildenbewerbung",
+			category_global$notify_new_guild_application : "Benachrichtige bei einer neuen Gildenbewerbung",
 			category_global$check_guild_pinned_message : "Zeige angeheftete Nachrichten aus dem Vox als Gildennachricht an",
 			category_global$check_guild_application_pinned_messages_interval : "Überprüfe auf neue Bewerbung und angeheftete Nachrichten (Minuten)",
 			category_global$notify_guild_attack_ready : "Benachrichtige wenn Abklingzeit des Gildenkampfes vorüber ist",
@@ -372,13 +375,14 @@ gca_languages['de'] = {
 			// Settings - Overview
 			category_overview$analyze_items : "Analysiere Spielergegenstände",
 			category_overview$food_life_gain : "Zeige gewonnene Lebenspunkte pro Nahrung",
-			category_overview$best_food : "Hebt das beste Essen hervor",
-			category_overview$overfeed_food : "Blende Essen aus, dass zuviel heilt",
+			category_overview$block_avoid_caps : "Zeige maximale Block-, Widerstands- und kritische Schadenswerte an",
+			category_overview$best_food : "Hebt die beste Nahrung hervor",
+			category_overview$overfeed_food : "Blende Nahrung aus, welches zuviel heilt",
 			category_overview$double_click_consume : "Durch Doppelklick Gegenstände konsumieren",
 			category_overview$daily_bonus_log : "Tagesbonus protokollieren",
 			category_overview$buffs_detailed_time : "Zeige detaillierte Timer für Buffs (Sekunden)",
 			category_overview$mercenaries_manager : "Zeige den Söldnermanager",
-			category_overview$mercenary_tooltip_show : "Zeige die Söldner-Tooltips",
+			category_overview$mercenary_tooltip_show : "Zeige den Tooltip bei den Söldnern",
 			category_overview$more_statistics : "Zeige mehr Details in der Kampfstatistik",
 			category_overview$achivements_layout : "Verbessere das Layout der Erfolge",
 			category_overview$costumes_layout : "Verbessere das Layout der Kostüme",
@@ -386,11 +390,12 @@ gca_languages['de'] = {
 			// Settings - Messages
 			category_messages$messages_layout : "Zeige verbessertes Layout der Nachrichten",
 			category_messages$show_unread : "Ungelesene Nachrichten hervorheben",
-			category_messages$separate_days : "Teile Nachrichten nach Tagen auf",
+			category_messages$separate_days : "Teile Nachrichten auf verschiedene Tage auf",
 			category_messages$more_guild_mate_info : "Zeige zusätzliche Mitgliederinformationen",
 			category_messages$show_message_links : "Zeige Hyperlinks in den Nachrichten",
 			category_messages$get_guild_battle_info : "Zeige Gildenkämpfe direkt an",
 			category_messages$show_sidebar : "Zeige die Nachrichten-Sidebar",
+			category_messages$fix_header_links : "Behebt den Fehler bei Klick auf Titellink von Nachrichten",
 			category_messages$new_message_focus : "Konzentration auf den Nachrichtentext",
 			category_messages$new_message_friend_list : "Zeige Shortcut zur Freundesliste",
 			// Settings - Packages
@@ -427,6 +432,7 @@ gca_languages['de'] = {
 			category_training$show_points_after_upgrade : "Zeige Werte nach dem Training",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Verblasse Gegenstände, die Du dir nicht leisten kannst",
+			category_merchants$ruby_icon_on_items : "Zeige ein Rubin-Symbol bei Gegenstände, die Rubine kosten",
 			category_merchants$show_shop_info : "Zeige Infos pro Händler (Gesamtes Gold und Rubinen)",
 			category_merchants$double_click_actions : "Gegenstände verkaufen / kaufen durch Doppelklick",
 			// Settings - Forge
