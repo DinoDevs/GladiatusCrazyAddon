@@ -2180,10 +2180,10 @@ var gca_global = {
 						// Auction menu links
 						if(this.info.auction){
 							this.convertMenu.addTabs("auction",this.info.auction, this.info.auction_active, [
-								{href : gca_getPage.link({"mod":"auction","itemType":"6"}), img : {class : "item-i-6-3", style : "margin:-2px;"}},
+								{href : gca_getPage.link({"mod":"auction","itemType":"6"}), img : {class : "item-i-6-6", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"9"}), img : {class : "item-i-9-7", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"11"}), img : {class : "item-i-11-3", style : "margin:-2px;"}},
-								{href : gca_getPage.link({"mod":"auction","itemType":"12"}), img : {class : "item-i-12-15", style : "margin:-2px;"}},
+								{href : gca_getPage.link({"mod":"auction","itemType":"12"}), img : {class : "item-i-12-14", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"15"}), img : {class : "item-i-15-15", style : "margin:-2px;"}}							
 							]);
 						}
