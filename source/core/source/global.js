@@ -2358,6 +2358,7 @@ var gca_global = {
 					if(gca_data.section.get("advanced-menu", name + "-tab", false)){
 						jQuery(menu).hide();
 						jQuery(backTab).show();
+						a.style.opacity = '0.5';
 					}
 
 					return backLinks;
