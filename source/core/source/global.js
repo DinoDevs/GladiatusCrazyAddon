@@ -2179,13 +2179,15 @@ var gca_global = {
 						}*/
 						// Auction menu links
 						if(this.info.auction){
-							this.convertMenu.addTabs("auction",this.info.auction, this.info.auction_active, [
+							this.convertMenu.addPlus(this.info.auction, this.info.auction_active, {href : gca_getPage.link({"mod":"auction","ttype":"3"})});
+							this.convertMenu.addTwoTabs("auction",this.info.auction, this.info.auction_active,
+							[
 								{href : gca_getPage.link({"mod":"auction","itemType":"6"}), img : {class : "item-i-6-6", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"9"}), img : {class : "item-i-9-7", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"11"}), img : {class : "item-i-11-3", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"12"}), img : {class : "item-i-12-14", style : "margin:-2px;"}},
-								{href : gca_getPage.link({"mod":"auction","itemType":"15"}), img : {class : "item-i-15-15", style : "margin:-2px;"}}							
-							]);
+								{href : gca_getPage.link({"mod":"auction","itemType":"15"}), img : {class : "item-i-15-15", style : "margin:-2px;"}}												
+							]);							 
 						}
 						// Inject Market Link
 						if(this.info.market){
@@ -2285,6 +2287,74 @@ var gca_global = {
 					frontTab.appendChild(a);
 					backLinks.push(a);
 
+					if(gca_data.section.get("advanced-menu", name + "-tab", false)){
+						jQuery(menu).hide();
+						jQuery(backTab).show();
+					}
+
+					return backLinks;
+				},
+				
+				// Add a double back Tab
+				addTwoTabs : function(name, menu, active, links){
+					// Front Tab
+					var frontTab = document.createElement("div");
+					frontTab.className = "advanced_menu_entry";
+					menu.parentNode.insertBefore(frontTab, menu.nextSibling);
+					menu.dataset.hasWrapper = "true";
+					// Back Tab
+					var backTab = document.createElement("div");
+					backTab.className = "advanced_menu_back_links";
+					backTab.style.display = "none";
+
+					var backLinks = [];
+					// Back Tab links
+					for(let i = 0; i<links.length; i++){
+						let a = document.createElement("a");
+						if(links[i].img){
+							let img = document.createElement("div");
+							for(let j in links[i].img){
+								img.setAttribute(j, links[i].img[j]);
+							}
+							a.appendChild(img);
+							delete links[i].img;
+						}
+						if(links[i].text){
+							a.textContent = links[i].text;
+							delete links[i].text;
+						}
+						for(let j in links[i]){
+							a.setAttribute(j, links[i][j]);
+						}
+						backTab.appendChild(a);
+						backLinks.push(a);
+					}
+					frontTab.appendChild(menu);
+					menu.className += " advanced_menu_link" + active;
+					frontTab.appendChild(backTab);
+					// Tab Toggle
+					var a = document.createElement("a");
+					a.className = "advanced_menu_shift";
+					a.textContent = "+";
+					a.style = "margin-right: 14px;";
+					a.addEventListener('click',function(){
+						if(backTab.style.display == 'none'){
+							jQuery(menu).hide();
+							jQuery(backTab).show();
+							gca_data.section.set("advanced-menu", name + "-tab", true);
+							a.style.opacity = '0.5';
+						}
+						else{
+							jQuery(backTab).hide();
+							jQuery(menu).show();
+							gca_data.section.set("advanced-menu", name + "-tab", false);
+							a.style.opacity = '1';
+
+						}
+					},false);
+					frontTab.appendChild(a);
+					backLinks.push(a);
+					
 					if(gca_data.section.get("advanced-menu", name + "-tab", false)){
 						jQuery(menu).hide();
 						jQuery(backTab).show();
