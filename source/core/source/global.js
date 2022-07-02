@@ -2141,9 +2141,12 @@ var gca_global = {
 					{text : 'IV', href : gca_getPage.link({"mod":"overview","doll":"6"})}
 				]);
 
-				// Inject Highscore Link
+				// Inject Highscore Link (old, not used)
 				//this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : gca_links.get('addon-page') + "/index.php?mode=highscore", target : "_blank"});
-
+                                
+				// Inject Guild Highscore Link
+				this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : gca_getPage.link({"mod":"highscore","t":"1"})});
+				
 				// Inject Pantheon Link
 				this.convertMenu.addPlus(this.info.pantheon, this.info.pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
 

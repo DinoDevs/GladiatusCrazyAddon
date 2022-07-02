@@ -653,12 +653,12 @@
 		.gca_rtl .gca_advance_main_menu .advanced_sub_menu .advanced_menu_link{background-position: -15px 0px !important;}
 		.gca_rtl .gca_advance_main_menu .advanced_sub_menu .advanced_menu_link:hover{background-position: -161px 0px !important;}
 		.gca_rtl .gca_advance_main_menu .advanced_sub_menu .advanced_menu_link_active{background-position: -161px 0px !important;}
-		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links{height: 26px;margin-left: 10px;}
+		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links{height: 27px;margin-left: 10px;}
 		.gca_rtl .gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links{margin-right: 10px;margin-left: auto;}
-		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links a{height: 26px;width: 29px;float: left;text-decoration: none;display: block;cursor: pointer;line-height: 26px;text-align: center;background: transparent url('interface/menu_items.png') no-repeat -322px 0px !important;}
+		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links a{height: 27px;width: 29px;float: left;text-decoration: none;display: block;cursor: pointer;line-height: 27px;text-align: center;background: transparent url('interface/menu_items.png') no-repeat -322px 0px !important;}
 		.gca_rtl .gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links a{float: right;}
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links a:hover{background: transparent url('interface/menu_items.png') no-repeat -351px 0px !important;}
-		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_shift{width: 15px;cursor: pointer;display: block;height: 26px;line-height: 26px;text-align: center;position: absolute;top: 0px;right: 8px;display: block;background: transparent url('interface/menu_items.png') no-repeat 0px 0px;}
+		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_shift{width: 15px;cursor: pointer;display: block;height: 27px;line-height: 27px;text-align: center;position: absolute;top: 0px;right: 8px;display: block;background: transparent url('interface/menu_items.png') no-repeat 0px 0px;}
 		.gca_rtl .gca_advance_main_menu .advanced_sub_menu .advanced_menu_shift{right: auto;left: 8px;}
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_shift:hover{background: transparent url('interface/menu_items.png') no-repeat -15px 0px;}
 
