@@ -2183,14 +2183,14 @@ var gca_global = {
 						// Auction menu links
 						if(this.info.auction){
 							this.convertMenu.addPlus(this.info.auction, this.info.auction_active, {href : gca_getPage.link({"mod":"auction","ttype":"3"})});
-							this.convertMenu.addTwoTabs("auction",this.info.auction, this.info.auction_active,
+							this.convertMenu.addTabs("auction",this.info.auction, this.info.auction_active,
 							[
 								{href : gca_getPage.link({"mod":"auction","itemType":"6"}), img : {class : "item-i-6-6", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"9"}), img : {class : "item-i-9-7", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"11"}), img : {class : "item-i-11-3", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"12"}), img : {class : "item-i-12-14", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"15"}), img : {class : "item-i-15-15", style : "margin:-2px;"}}												
-							]);							 
+							]);
 						}
 						// Inject Market Link
 						if(this.info.market){
@@ -2237,9 +2237,18 @@ var gca_global = {
 				// Add a back Tab
 				addTabs : function(name, menu, active, links){
 					// Front Tab
-					var frontTab = document.createElement("div");
-					frontTab.className = "advanced_menu_entry";
-					menu.parentNode.insertBefore(frontTab, menu.nextSibling);
+					// Check if front tab exists (tabs to be added on the left side)
+					var frontTab;
+					var existingTab = null;
+					if (menu.parentNode.className == "advanced_menu_entry"){
+						frontTab = menu.parentNode;
+						//frontTab.className += " advanced_menu_shift_left";
+						existingTab = frontTab.getElementsByClassName("advanced_menu_shift")[0];
+					}else{
+						frontTab = document.createElement("div");
+						frontTab.className = "advanced_menu_entry";
+						menu.parentNode.insertBefore(frontTab, menu.nextSibling);
+					}
 					menu.dataset.hasWrapper = "true";
 					// Back Tab
 					var backTab = document.createElement("div");
@@ -2268,8 +2277,12 @@ var gca_global = {
 						backTab.appendChild(a);
 						backLinks.push(a);
 					}
-					frontTab.appendChild(menu);
-					menu.className += " advanced_menu_link" + active;
+					if(frontTab != menu.parentNode){
+						frontTab.appendChild(menu);
+						menu.className += " advanced_menu_link" + active;
+					}else{
+						menu.className += " advanced_menu_link_multiple" + active;
+					}
 					frontTab.appendChild(backTab);
 					// Tab Toggle
 					var a = document.createElement("a");
@@ -2279,11 +2292,15 @@ var gca_global = {
 						if(backTab.style.display == 'none'){
 							jQuery(menu).hide();
 							jQuery(backTab).show();
+							if(existingTab!=null)
+								jQuery(existingTab).hide();
 							gca_data.section.set("advanced-menu", name + "-tab", true);
 						}
 						else{
 							jQuery(backTab).hide();
 							jQuery(menu).show();
+							if(existingTab!=null)
+								jQuery(existingTab).show();
 							gca_data.section.set("advanced-menu", name + "-tab", false);
 						}
 					},false);
@@ -2294,74 +2311,11 @@ var gca_global = {
 						jQuery(menu).hide();
 						jQuery(backTab).show();
 					}
-
-					return backLinks;
-				},
-				
-				// Add a double back Tab
-				addTwoTabs : function(name, menu, active, links){
-					// Front Tab
-					var frontTab = document.createElement("div");
-					frontTab.className = "advanced_menu_entry";
-					menu.parentNode.insertBefore(frontTab, menu.nextSibling);
-					menu.dataset.hasWrapper = "true";
-					// Back Tab
-					var backTab = document.createElement("div");
-					backTab.className = "advanced_menu_back_links";
-					backTab.style.display = "none";
-
-					var backLinks = [];
-					// Back Tab links
-					for(let i = 0; i<links.length; i++){
-						let a = document.createElement("a");
-						if(links[i].img){
-							let img = document.createElement("div");
-							for(let j in links[i].img){
-								img.setAttribute(j, links[i].img[j]);
-							}
-							a.appendChild(img);
-							delete links[i].img;
-						}
-						if(links[i].text){
-							a.textContent = links[i].text;
-							delete links[i].text;
-						}
-						for(let j in links[i]){
-							a.setAttribute(j, links[i][j]);
-						}
-						backTab.appendChild(a);
-						backLinks.push(a);
-					}
-					frontTab.appendChild(menu);
-					menu.className += " advanced_menu_link" + active;
-					frontTab.appendChild(backTab);
-					// Tab Toggle
-					var a = document.createElement("a");
-					a.className = "advanced_menu_shift";
-					a.textContent = "+";
-					a.style = "margin-right: 14px;";
-					a.addEventListener('click',function(){
-						if(backTab.style.display == 'none'){
-							jQuery(menu).hide();
-							jQuery(backTab).show();
-							gca_data.section.set("advanced-menu", name + "-tab", true);
-							a.style.opacity = '0.5';
-						}
-						else{
-							jQuery(backTab).hide();
-							jQuery(menu).show();
-							gca_data.section.set("advanced-menu", name + "-tab", false);
-							a.style.opacity = '1';
-
-						}
-					},false);
-					frontTab.appendChild(a);
-					backLinks.push(a);
 					
-					if(gca_data.section.get("advanced-menu", name + "-tab", false)){
-						jQuery(menu).hide();
-						jQuery(backTab).show();
-						a.style.opacity = '0.5';
+					// Style fixes for multiple tabs (>, +)
+					if(existingTab!=null){
+						backTab.className += " advanced_menu_back_links_left";
+						a.className += " advanced_menu_shift_left";
 					}
 
 					return backLinks;
