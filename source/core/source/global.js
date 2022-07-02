@@ -2310,6 +2310,8 @@ var gca_global = {
 					if(gca_data.section.get("advanced-menu", name + "-tab", false)){
 						jQuery(menu).hide();
 						jQuery(backTab).show();
+						if(existingTab!=null)
+							jQuery(existingTab).hide();
 					}
 					
 					// Style fixes for multiple tabs (>, +)
