@@ -248,7 +248,9 @@ gca_languages['cs'] = {
 			item_cant_buy_back : "Nebudeš moci koupit tento předmět zpět.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Vážně chceš koupit tento předmět?",
-			click_enter_to_sell : "Stisknutím enter ⏎ prodejte"
+			click_enter_to_sell : "Stisknutím enter ⏎ prodejte",
+			// Tooltips
+			add_fees_in_price : "Přičíst poplatek do ceny"
 		},
 		
 		// Forge
@@ -442,6 +444,7 @@ gca_languages['cs'] = {
 			category_market$one_gold_warning : "Potvrzení při koupi předmětů, které stojí 1 zlaťák",
 			category_market$cancel_all_button : "Zobrazit tlačítko pro zrušení všeho",
 			category_market$remember_sell_duration : "Zapamatovat poslední zvolenou dobu prodeje",
+			category_market$add_fees_button : "Zobraz tlačítko které započte poplatek k ceně",
 			category_market$sell_duration : "Zvol výchozí dobu prodeje",
 			category_market$one_gold_mode : "Přidat přepínatelné tlačítka pro ceny předmětů (včetně vlastních cen)",
 			category_market$custom_prices : "Vlastní nastavitelné ceny tržiště, rozděleny čárkou. Cenu položky lze také vypočítat procentuálně přidáním '%' za číslo. (např., '10000, 10.000, 200%')",
