@@ -138,7 +138,7 @@ var gca_arena = {
 			// Add text
 			let description = document.createElement('p');
 			description.textContent = gca_locale.get("arena", "global_arena_description")+" ";
-			description.style = "text-align: justify;";
+			description.style = "text-align: center;";
 			box.appendChild(description);
 
 			// Add link to highscore
