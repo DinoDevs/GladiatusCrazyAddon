@@ -1200,7 +1200,7 @@
 		.gca_arena-simulator-img div{color:#fff;text-align: center;text-shadow: 0px 0px 2px black;padding-top: 4px;}
 		
 		/* Global Arena */
-		.global_arena_header{background-image: url('images/colosseo_by_Dario_Veronesi_unsplash.jpg');background-size: cover;background-repeat: no-repeat;background-position: center center;height: 100px;color: rgba(255, 152, 0, 0.9)!important;font-size: 20px;text-align: center!important;font-size:20px!important;line-height: 100px;font-family: century gothic;text-shadow: 0px 0px 4px #000;}
+		.global_arena_header{background-image: url('images/colosseo_by_Dario_Veronesi_unsplash.jpg');background-size: cover;background-repeat: no-repeat;background-position: center center;height: 100px;color: rgba(255, 152, 0, 0.9)!important;font-size: 20px!important;text-align: center!important;line-height: 100px;font-family: century gothic;text-shadow: 0px 0px 4px #000;}
 		#global_arena_box .flag{height: 12px;width:20px;}
 		#global_arena_box #alert_box{text-align: center;font-size: 14px;font-weight: bold;}
 		#global_arena_box #spiner_box{display:none;width: 500px;position: absolute;line-height:100%;}
