@@ -557,6 +557,8 @@ gca_options.data = {
 		"cancel_all_button" : true,
 		// Remember sell duration
 		"remember_sell_duration" : false,
+		// Show add fees button
+		"add_fees_button" : true,
 		// Default sell duration
 		"sell_duration" : 0,
 		// 1 gold mode
