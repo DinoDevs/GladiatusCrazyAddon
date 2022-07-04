@@ -259,7 +259,9 @@ gca_languages["en"] = {
 			item_cant_buy_back : "You will not be able to buy back this item.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Do you really want to buy this item?",
-			click_enter_to_sell : "press enter ⏎ to sell"
+			click_enter_to_sell : "press enter ⏎ to sell",
+			// Tooltips
+			add_fees_in_price : "Add fees in price",
 		},
 		
 		// Forge

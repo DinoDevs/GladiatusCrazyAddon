@@ -699,6 +699,7 @@ var gca_markets = {
 		btn.style.cursor = 'pointer';
 		btn.style.marginLeft = '5px';
 		btn.style.textDecoration = 'none';
+		btn.dataset.tooltip = '[[["'+gca_locale.get("markets","add_fees_in_price")+'","#fff"]]]';
 
 		btn.addEventListener('click', () => {
 			// Input element with the price

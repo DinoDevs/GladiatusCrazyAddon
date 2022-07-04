@@ -259,7 +259,9 @@ gca_languages["gr"] = {
 			item_cant_buy_back : "Δεν θα μπορείς να αγοράσεις πίσω αυτό το αντικείμενο.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Θέλεις πραγματικά να αγοράσεις αυτό το αντικείμενο;",
-			click_enter_to_sell : "πατήστε enter ⏎ για πώληση"
+			click_enter_to_sell : "πατήστε enter ⏎ για πώληση",
+			// Tooltips
+			add_fees_in_price : "Προσθήκη αμοιβών στην τιμή αγοράς",
 		},
 		
 		// Forge

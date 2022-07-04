@@ -22,6 +22,8 @@
 	- [x] Items that costs rubies can now have an icon (#355)
 - **Forge**
 	- [x] Forging time is now displayed under the required resources in the tooltip (#350)
+- **Market**
+	- Added button to include fees in the market price (#308)
 
 ### BUG FIXES
 - **Global**
