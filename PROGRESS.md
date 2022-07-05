@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-9-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-10-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
@@ -24,6 +24,8 @@
 	- [x] Forging time is now displayed under the required resources in the tooltip (#350)
 - **Market**
 	- Added button to include fees in the market price (#308)
+- **Underworld**
+	- Expedition shortcut will always redirect to the last open location (#223)
 
 ### BUG FIXES
 - **Global**
