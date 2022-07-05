@@ -483,7 +483,10 @@ var gca_messages = {
 			}
 
 			// Add box on message
-			message.body.parentNode.appendChild(wrapper);
+			if(message.body.className=="message_pinned_title") // if pinned message
+				message.body.parentNode.parentNode.parentNode.appendChild(wrapper);
+			else // normal message
+				message.body.parentNode.appendChild(wrapper);
 		},
 
 		showPinned : function(){
@@ -536,6 +539,10 @@ var gca_messages = {
 			// Add tooltip
 			let tooltip = [[[gca_locale.get('guild', 'pinned_message'), 'white']]];
 			gca_tools.setTooltip(pinned_message_container, JSON.stringify(tooltip));
+
+			// Check for links
+			if(gca_options.bool("messages", "show_message_links"))
+				gca_messages.guild_message.parse_links({body:message_title});
 		}
 	},
 
