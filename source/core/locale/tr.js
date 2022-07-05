@@ -183,7 +183,8 @@ gca_languages["tr"] = {
 			item_is_soulbound : "Bu item ruha bağlıdır.",
 			item_cant_buy_back : "Bu itemi geri alamayacaksınız.",
 			are_you_sure_you_want_to_buy : "Bu itemi gerçekten almak istiyor musun?",
-			click_enter_to_sell : "İtemi satmak için ENTER ⏎ tuşunu kullanabilirsin"
+			click_enter_to_sell : "İtemi satmak için ENTER ⏎ tuşunu kullanabilirsin",
+			add_fees_in_price : "Fiyata ücreti ekleyin"
 		},
 		forge : {
 			forge_ended : "Eşya üretimi bitti",
