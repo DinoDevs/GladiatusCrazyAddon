@@ -261,7 +261,8 @@ gca_languages['de'] = {
 			item_cant_buy_back : "Du kannst den Gegenstand nicht zurück kaufen.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Willst du den Gegenstand wirklich kaufen?",
-			click_enter_to_sell : "Drücke Enter ⏎ zum Verkaufen"
+			click_enter_to_sell : "Drücke Enter ⏎ zum Verkaufen",
+			add_fees_in_price : "Inkludiere Gebühr zum Marktpreis"
 		},
 		
 		// Forge
@@ -454,6 +455,7 @@ gca_languages['de'] = {
 			category_market$one_gold_warning : "Kaufbestätigung für Gegenstände, die 1 Gold kosten",
 			category_market$cancel_all_button : "Zeige Schaltfläche \"Alle-Abbrechen\"",
 			category_market$remember_sell_duration : "Zuletzt gewählte Verkaufsdauer merken",
+			category_market$add_fees_button : "Zeige Schaltfläche \"Inkludiere Gebühr zum Marktpreis\"",
 			category_market$sell_duration : "Wähle die Standardverkaufsdauer aus",
 			category_market$one_gold_mode : "Schaltfläche zum Ändern des Marktpreise immer auf 1 Gold",
 			category_market$custom_prices : "Zeige benutzerdefinierte Marktpreise\n•Verkaufe den Basiswert des Gegenstandes um 50% teurer (z.B.: 150%)\n•Trenne mit Kommas (z.B.: 100.000, 2000000, 150%)\n ",
