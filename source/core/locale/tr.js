@@ -183,7 +183,8 @@ gca_languages["tr"] = {
 			item_is_soulbound : "Bu item ruha bağlıdır.",
 			item_cant_buy_back : "Bu itemi geri alamayacaksınız.",
 			are_you_sure_you_want_to_buy : "Bu itemi gerçekten almak istiyor musun?",
-			click_enter_to_sell : "İtemi satmak için ENTER ⏎ tuşunu kullanabilirsin"
+			click_enter_to_sell : "İtemi satmak için ENTER ⏎ tuşunu kullanabilirsin",
+			add_fees_in_price : "Fiyata ücreti ekleyin"
 		},
 		forge : {
 			forge_ended : "Eşya üretimi bitti",
@@ -343,6 +344,7 @@ gca_languages["tr"] = {
 			category_arena$highlight_guild_members : "Diğer sunucularda oynayan ittifak üyelerini vurgula",
 			category_arena$target_list : "Hedef listesi özelliğini aktifleştir",
 			category_magus$fade_unimprovable_items : "Geliştirilemeyen itemleri soluk göster",
+			category_market$add_fees_button : "Ürünün fiyatını satış fiyatının üstüne ekle butonunu göster",
 			category_market$soulbound_warning : "Satın alımlarda ruha bağlı ürünlerde onay al",
 			category_market$one_gold_warning : "1 Altına mâl olan ürünleri alırken onay al",
 			category_market$cancel_all_button : "Tümünü iptal et butonunu göster",
