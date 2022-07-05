@@ -182,6 +182,9 @@ var gca_global = {
 		// Pray Buf shortcut
 		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
 			this.underworld.prayCounterBar.add());
+		// Expendition shortcut always pointing to the last location
+		(this.isInUnderworld &&
+			this.underworld.updateExpenditionLink());
 
 		// Browser notifications
 		(gca_options.bool("global","browser_notifications") &&
@@ -4078,6 +4081,16 @@ var gca_global = {
 			toggle : function() {
 				document.location.href = gca_getPage.link({'mod': 'underworld', 'submod': (this.isPraying ? 'prayEnd' : 'prayStart')});
 			}
+		},
+
+		// Update expendition link to always point to the last expendition location
+		updateExpenditionLink : function(){
+			let locations = document.getElementById('submenu2').getElementsByTagName('a');
+			let last_location_link = locations[locations.length-1].href;
+
+			// Update link
+			if( document.getElementById('cooldown_bar_expedition').getElementsByTagName('a')[0].href != last_location_link )
+				document.getElementById('cooldown_bar_expedition').getElementsByTagName('a')[0].href = last_location_link;
 		}
 	},
 
