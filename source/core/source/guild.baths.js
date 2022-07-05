@@ -25,7 +25,7 @@ var gca_guild_baths = {
 	layout : {
 		pinMessageButton : function(){
 			// If new message textarea
-			if(document.getElementsByName('sendMessage').length!=1 || document.forms.length<1)
+			if((document.getElementsByName('sendMessage').length!=1 && document.getElementsByName('editMessage').length!=1 ) || document.forms.length<1)
 				return;
 
 			// Check if admin by checking if you can delete all messages
