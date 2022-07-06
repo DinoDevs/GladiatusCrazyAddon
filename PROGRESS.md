@@ -23,14 +23,15 @@
 - **Forge**
 	- [x] Forging time is now displayed under the required resources in the tooltip (#350)
 - **Market**
-	- Added button to include fees in the market price (#308)
+	- [x] Added button to include fees in the market price (#308)
 - **Underworld**
-	- Expedition shortcut will always redirect to the last open location (#223)
+	- [x] Expedition shortcut will always redirect to the last open location (#223)
 
 ### BUG FIXES
 - **Global**
 	- [x] Style fix for double line tab names when shortcuts bar is active along with an event
 	- [x] Show online family members fixes (#314)
+	- [x] Style fix for stats box (shortcuts bar) rendering behind event timers (#367)
 - **Forge**
 	- [x] Fixed a loop when gettings items from workbench (Firefox) (#335)
 	- [x] Style adjustments on book of scrolls (lists with known prefixes & suffixes)
