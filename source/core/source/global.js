@@ -3880,6 +3880,9 @@ var gca_global = {
 					// Get cached locale names
 					this.names = gca_data.section.get('cache', 'mercenary_names_locale', this.names);
 
+					// Character Level
+					this.level = parseInt(document.getElementById('header_values_level').textContent, 10);
+
 					// Get data
 					this.showMerchenaryType();
 					
@@ -3915,6 +3918,8 @@ var gca_global = {
 					}
 				},
 				
+				level : 5,
+
 				names : [
 					"Hoplomachus",//1
 					"Medicus",//2
@@ -3956,6 +3961,60 @@ var gca_global = {
 						
 						let original_name = ( hash.subcategory <= this.names.length ) ? this.names[hash.subcategory-1] : "n/a" ;
 						jQuery(item).data("tooltip")[0].splice(1, 0, [ gca_locale.get("global", "merchenary_type", {name:original_name, number:hash.subcategory}), "gray; font-size: 0.8em;"]);
+						
+						let merchenaryLevel = parseInt(jQuery(item).data("tooltip")[0][9][0].match(/(\d+)/i)[1]);//hash.prefix+hash.suffix;
+						let characterLevel = this.level;
+
+						//console.log(jQuery(item).data("tooltip")[0][9][0]);
+						//console.log(hash);
+						let value, j;
+
+						// Max stats
+						j = 2;
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `Max stats:`], ['#BA9700', '#999']];
+						
+						// Strength - Chance to block
+						j = 3;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						dmg = Math.floor(value/10);
+						value = Math.round((dmg * 52 / (characterLevel-8 ))/6*10)/10;// Block chance
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `Damage +${dmg}, Block ${value}%`], ['#BA9700', '#999']];
+						
+						// Dexterity - Critical attack
+						j = 4;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.round((Math.floor(value/10) * 52 / (characterLevel-8 ))/5*10)/10;// Avoid critical
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `Critical ${value}%`], ['#BA9700', '#999']];
+						
+						// Agility - Avoid critical
+						j = 5;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.round((Math.floor(value/10) * 52 / (characterLevel-8 ))/4*10)/10;// Avoid critical
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `Avoid critical ${value}%`], ['#BA9700', '#999']];
+						
+						// Constitution - Life
+						j = 6;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.floor(value*2-50);// life
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `❤ +${value}`], ['#BA9700', '#999']];
+
+						// Charisma - Threat
+						j = 7;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.floor(value*0.7);// threat
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `Threat ${value}`], ['#BA9700', '#999']];
+
+						// Intelligence - Heal
+						j = 8;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.floor(Math.floor(value*4/5) + Math.floor(value/5)*2*(Math.floor(value/5) * 52 / (characterLevel-8 ))/800);// equivalent heal
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `Heal ${value}`], ['#BA9700', '#999']];
 						
 						// Remove all last gray rows of tooltips
 						for(let i = 0; i < 2; i++){
