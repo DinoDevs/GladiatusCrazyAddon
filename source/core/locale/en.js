@@ -70,6 +70,7 @@ gca_languages["en"] = {
 			guild_market_goto : "Go to guild's market",
 			guild_storage_goto : "Go to guild's storage",
 			guild_bank_goto : "Go to guild's bank",
+			guild_baths_goto: "Go to guild's baths (Vox I)",
 			guild_warcamp_goto : "Go to guild's war camp",
 			guild_arenareports_goto : "Go to guild's arena battle reports",
 			guild_jail_goto : "Go to guild's jail",

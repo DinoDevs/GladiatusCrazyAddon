@@ -983,6 +983,18 @@ var gca_global = {
 							}, false);
 						}
 						
+						// Create a Link to guild's baths vox 1
+						if(activeButtons.indexOf("gbt") >= 0){
+							button = document.createElement('div');
+							button.className = "icon-out";
+							link = document.createElement('a');
+							link.className = "icon bathtub-icon";
+							link.href = gca_getPage.link({"mod":"guild_bath","submod":"guild_shoutbox"});
+							link.title = gca_locale.get("global", "guild_baths_goto");
+							button.appendChild(link);
+							shortcutsBar.appendChild(button);
+						}
+
 						// Create a Link to guild's war camp
 						if(activeButtons.indexOf("gwr") >= 0){
 							button = document.createElement('div');

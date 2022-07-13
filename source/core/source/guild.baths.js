@@ -10,7 +10,7 @@ var gca_guild_baths = {
 		if (gca_section.submod == 'guild_shoutbox') {
 
 			// Room 1
-			if (gca_getPage.parameter('room') == 1) {
+			if (gca_getPage.parameter('room') == 1 || (gca_getPage.parameter('room')===undefined)) {
 				// Announcements / Pin message button
 				(gca_options.bool("global","check_guild_pinned_message") && 
 					this.layout.pinMessageButton());

@@ -124,6 +124,8 @@
 	.pillar-icon:hover{background: transparent url('buttons/main_buttons.png') -370px -25px no-repeat;}
     .food-icon{background: transparent url('buttons/main_buttons.png') -395px 0px no-repeat;}
 	.food-icon:hover{background: transparent url('buttons/main_buttons.png') -395px -25px no-repeat;}
+	.bathtub-icon{background: transparent url('buttons/main_buttons.png') -420px 0px no-repeat;}
+	.bathtub-icon:hover{background: transparent url('buttons/main_buttons.png') -420px -25px no-repeat;}
 
 /* Auction Status Bar */
 	#AuctionStatusDiv{position: absolute; z-index: 10; top: 111px; right: 75px;}

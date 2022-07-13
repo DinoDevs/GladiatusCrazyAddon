@@ -70,6 +70,7 @@ gca_languages["gr"] = {
 			guild_market_goto: "Πήγαινε στην αγορά τάγματος",
 			guild_storage_goto: "Πήγαινε στην αποθήκη τάγματος",
 			guild_bank_goto: "Πήγαινε την τράπεζα τάγματος",
+			guild_baths_goto: "Πήγαινε στα λουτρά τάγματος (Vox I)",
 			guild_warcamp_goto: "Πήγαινε στην αίθουσα του άρχοντα του πολέμου",
 			guild_arenareports_goto: "Πήγαινε στις ταγματικές αναφορές μάχης αρένας",
 			guild_jail_goto: "Πήγαινε στην φυλακή τάγματος",

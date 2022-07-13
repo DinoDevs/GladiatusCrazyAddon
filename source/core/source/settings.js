@@ -551,6 +551,7 @@ var gca_settings = {
 					// gmr : guild market
 					// gst : guild storge
 					// gbn : guild bank
+					// gbt : guild war room
 					// gwr : guild war room
 					// gar : guild arena battle reports
 					// gjl : guild jail
@@ -563,7 +564,7 @@ var gca_settings = {
 				"shortcuts_bar_buttons" : (function(){
 					let scheme = {
 						"type" : "enumerator",
-						"values" : 'msg|gmd|gmr|gst|gbn|gwr|gar|gjl|glb|gtm|fau|sim|stt|onl'
+						"values" : 'msg|gmd|gmr|gst|gbn|gbt|gwr|gar|gjl|glb|gtm|fau|sim|stt|onl'
 					};
 					let btns = [
 						{icon : "message-icon", title : gca_locale.get("global", "message_private_write")},
@@ -571,6 +572,7 @@ var gca_settings = {
 						{icon : "market-icon", title : gca_locale.get("global", "guild_market_goto")},
 						{icon : "box-icon", title : gca_locale.get("global", "guild_storage_goto")},
 						{icon : "gold-icon", title : gca_locale.get("global", "guild_bank_goto")},
+						{icon : "bathtub-icon", title : gca_locale.get("global", "guild_baths_goto")},
 						{icon : "report-icon", title : gca_locale.get("global", "guild_warcamp_goto")},
 						{icon : "report2-icon", title : gca_locale.get("global", "guild_arenareports_goto")},
 						{icon : "castle-icon", title : gca_locale.get("global", "guild_jail_goto")},
