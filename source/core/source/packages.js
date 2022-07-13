@@ -34,10 +34,9 @@ var gca_packages = {
 		// Show item's price
 		(gca_options.bool("packages", "item_price") && 
 			this.layout.itemPrice.init(this));
-
+		// Packages as list view
 		(gca_options.bool("packages", "list_view_layout") && 
 			this.layout.listView.init(this));
-
 		// Set Items layout
 		(gca_options.bool("packages", "items_layout") && 
 			this.layout.compactPackets());
@@ -266,50 +265,50 @@ var gca_packages = {
 				// On packages page load
 				self.loadPackets.onPageLoad(this.apply);
 			},
-			apply : function(val){
-				console.log('applying')
+			apply : function(){
+				//console.log('applying')
 				let index = 0
 				jQuery('#packages .ui-draggable').each(function(){
-					var packageContainerElement = this.parentNode.parentNode
-					var packageContainerChildren = packageContainerElement.children
+					var packageContainerElement = this.parentNode.parentNode;
+					var packageContainerChildren = packageContainerElement.children;
 
 					// do nothing if item has already been rearranged
 					if (packageContainerChildren.length === 3) {
-						console.log('do nothing')
-						return
+						//console.log('do nothing');
+						return;
 					}
 
 					if (index++ === 0){
-						jQuery(packageContainerElement.parentNode).addClass('list-view')
+						jQuery(packageContainerElement.parentNode).addClass('list-view');
 					}
 
 					// Get item's name
-					var itemName = JSON.parse(this.dataset.tooltip)[0][0][0]
-					var itemLevel = this.dataset.level
-					var itemColor = JSON.parse(this.dataset.tooltip)[0][0][1].split(';')[0].replace('lime', 'green')
+					var itemName = JSON.parse(this.dataset.tooltip)[0][0][0];
+					var itemLevel = this.dataset.level;
+					var itemColor = JSON.parse(this.dataset.tooltip)[0][0][1].split(';')[0].replace('lime', 'green');
 
 					// arrange layout
-					var packageOrigin = packageContainerChildren[1]
-					var packageImageContainer = packageContainerChildren[2]
-					var packageExpiration = packageContainerChildren[3]
-					var packagePriceInfo = packageContainerChildren[4]
+					var packageOrigin = packageContainerChildren[1];
+					var packageImageContainer = packageContainerChildren[2];
+					var packageExpiration = packageContainerChildren[3];
+					var packagePriceInfo = packageContainerChildren[4];
 
-					jQuery(packageImageContainer).addClass(`size_y_${this.dataset.measurementY}`)
+					jQuery(packageImageContainer).addClass(`size_y_${this.dataset.measurementY}`);
 
-					jQuery(packageOrigin).remove()
-					jQuery(packageExpiration).remove()
-					jQuery(packagePriceInfo).remove()
-					jQuery(packageContainerElement).addClass(`size_y_${this.dataset.measurementY}`)
-					jQuery(packageContainerElement).append('<div class="packageItemInfoColumn"></div>')
-					jQuery(packageContainerElement.children[2]).append('<div class="leftPackageItemInfo"></div>')
-					jQuery(packageContainerElement.children[2]).append('<div class="rightPackageItemInfo"></div>')
-					jQuery(packageContainerElement.children[2].children[0]).append(packageOrigin)
-					jQuery(packageContainerElement.children[2].children[0]).append(`<span style="font-weight: bold; color: ${itemColor}">${itemName}</span>`)
-					jQuery(packageContainerElement.children[2].children[1]).append(`<span style="font-weight: bold; width: 70px">Level ${itemLevel}</span>`)
-					jQuery(packageContainerElement.children[2].children[1]).append(packagePriceInfo)
-					jQuery(packageContainerElement.children[2].children[1]).append(packageExpiration)
+					jQuery(packageOrigin).remove();
+					jQuery(packageExpiration).remove();
+					jQuery(packagePriceInfo).remove();
+					jQuery(packageContainerElement).addClass(`size_y_${this.dataset.measurementY}`);
+					jQuery(packageContainerElement).append('<div class="packageItemInfoColumn"></div>');
+					jQuery(packageContainerElement.children[2]).append('<div class="leftPackageItemInfo"></div>');
+					jQuery(packageContainerElement.children[2]).append('<div class="rightPackageItemInfo"></div>');
+					jQuery(packageContainerElement.children[2].children[0]).append(packageOrigin);
+					jQuery(packageContainerElement.children[2].children[0]).append(`<span style="font-weight: bold; color: ${itemColor}">${itemName}</span>`);
+					jQuery(packageContainerElement.children[2].children[1]).append(`<span style="font-weight: bold; width: 70px">Level ${itemLevel}</span>`);
+					jQuery(packageContainerElement.children[2].children[1]).append(packagePriceInfo);
+					jQuery(packageContainerElement.children[2].children[1]).append(packageExpiration);
 				});
-				console.log('after', jQuery('#packages .ui-draggable').length)
+				//console.log('after', jQuery('#packages .ui-draggable').length);
 			}
 		},
 
@@ -539,20 +538,16 @@ var gca_packages = {
 			// Remove empty boxes
 			jQuery(".packageItem > [data-container-number]:not(:has(div))").each((i, item) => {
 				let index = this.patchAjaxResponseItems.indexOf(-1 * jQuery(item).data("containerNumber"));
-				if (index > -1) {
+				if (index > -1)
 					this.patchAjaxResponseItems.splice(index, 1);
-				}
 			})
 
 			// Add items on list
 			for (let i = this.patchAjaxResponseItems.length - 1; i >= 0; i--) {
 				let index = response.data.newPackages.indexOf(this.patchAjaxResponseItems[i]);
-				if (index == -1) {
+				if (index == -1)
 					response.data.newPackages.unshift(this.patchAjaxResponseItems[i]);
-				}
 			}
-
-			//JSON.stringify(response.data.newPackages);
 		},
 
 		// Load more pages
@@ -709,8 +704,8 @@ var gca_packages = {
 				case 2: // Shields
 				case 3: // Chest
 				case 4: // Helmet
-				case 5: //  Gloves
-				case 6: //  Rings
+				case 5: // Gloves
+				case 6: // Rings
 				case 8:	// Shoes
 				case 9: // Amulets
 					this.scrollFeatures.load(self)
