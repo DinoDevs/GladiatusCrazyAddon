@@ -408,9 +408,9 @@ var gca_auction = {
 					gca_notifications.success(message);
 					let divs = itemform.getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div");
 					divs[0].style.color = 'blue';
-					divs[0].style.height = '48px';
-					divs[1].style.display = 'none';
+					jQuery(divs[0]).height( jQuery(divs[0]).height()+jQuery(divs[1]).height()) ; // hardcode original height to avoid changing height
 					divs[0].textContent = message;
+					divs[1].style.display = 'none';
 					inputs[6].value = Math.floor(price * 1.05) + 1;
 					inputs[6].removeAttribute("style");
 					// Disable button
