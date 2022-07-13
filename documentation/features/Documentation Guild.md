@@ -53,10 +53,11 @@
 
 ### Improve bank's book layout
 - Improve the layout of the bank book
-- Shows total gold spend on upgrades, total donated gold & stolen gold
+- Shows total gold spend on upgrades, total donated gold & stolen gold (without activated recipes and lost gold in guild battles)
 - Highlight your player in the donations list
 - Shows donations of each player since last visit
 
+* 
 ![Improve Banks Book Layout](Pictures/Guild/Improve_Banks_Book_Layout.png)
 
 ![Improve Banks Book Layout N](Pictures/Guild/Improve_Banks_Book_Layout_N.png)

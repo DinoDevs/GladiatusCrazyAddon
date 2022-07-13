@@ -555,9 +555,9 @@ var gca_forge = {
 			document.getElementById('forge_box').parentNode.parentNode.appendChild(this.wrapper);
 
 			// Create fetch button
-			this.button = document.createElement('div');
+			this.button = document.createElement('a');
 			this.button.className = "awesome-button";
-			this.button.style = 'position: absolute; top: 38px; left: 50%; margin-left: -82px; width: 150px; z-index: 2;';
+			this.button.style = 'position: absolute; top: 38px; left: 50%; margin-left: -82px; width: 150px; z-index: 2;display: block;';
 			this.button.textContent = document.getElementById('forge_lootbox').textContent;
 			this.button.addEventListener('click', () => {
 				this.getItem();
@@ -745,15 +745,18 @@ var gca_forge = {
 			// Handle item on drop
 			if (!this.dropHandler) {
 				this.dropHandler = true;
-				gca_tools.event.item.onDrop(function(item) {
-					// If item was moved
-					if (item.dataset.gcaSource == 'packages' && item.parentNode.dataset.source != 'packages') {
-						// Reload page
-						setInterval(() => {
-							if (item.className.match(/disabled/i)) {
-								document.location.reload();
-							}
-						}, 128);
+				// On ajax request reponse
+				gca_tools.event.request.onAjaxResponse((data) => {
+					if (!data || !data.url) return;
+					// Analyse action URL
+					let link = gca_getPage.parameters(data.url);
+					// If response is from retrieving item from packages
+					if (
+						link.mod == 'inventory' &&
+						link.submod == 'move' &&
+						link.from == slot.item.id
+					) {
+						document.location.reload();
 					}
 				});
 			}
@@ -1272,21 +1275,23 @@ var gca_forge = {
 		// Create get all button
 		let box = document.getElementById('forge_box').parentNode;
 		// Button to packages
-		let packets = document.createElement('div');
+		let packets = document.createElement('a');
 		packets.className = 'awesome-button';
 		packets.style.position = 'absolute';
 		packets.style.bottom = '-28px';
 		packets.style.left = '12px';
 		packets.style.right = '10px';
+		packets.style.display = 'block';
 		packets.textContent = completed.length + '× ' + document.getElementById('forge_lootbox').textContent;
 		box.appendChild(packets);
 		// Button to horreum
-		let horreum = document.createElement('div');
+		let horreum = document.createElement('a');
 		horreum.className = 'awesome-button';
 		horreum.style.position = 'absolute';
 		horreum.style.bottom = '-60px';
 		horreum.style.left = '12px';
 		horreum.style.right = '10px';
+		horreum.style.display = 'block';
 		horreum.textContent = completed.length + '× ' + document.getElementById('forge_horreum').textContent;
 		box.appendChild(horreum);
 
@@ -1377,7 +1382,7 @@ var gca_forge = {
 			section.style.display = 'block';
 			aside.appendChild(section);
 			table = document.createElement('table');
-			table.setAttribute('width', '100%');
+			table.className = 'scroll-books-table';
 			section.appendChild(table);
 			tbody = document.createElement('tbody');
 			table.appendChild(tbody);
@@ -1388,6 +1393,16 @@ var gca_forge = {
 			tr.appendChild(th);
 			this.prefixWrapper = tbody;
 			this.wrapper.appendChild(aside);
+
+			// Unknown scrolls code unper prefixes
+			h2 = document.createElement('h2');
+			h2.className = 'section-header';
+			h2.textContent = 'Unknown scrolls share code';
+			aside.appendChild(h2);
+			section = document.createElement('section');
+			section.style.display = 'block';
+			this.shareCodeSection = section;
+			aside.appendChild(section);
 
 			// Second table with suffixes
 			aside = document.createElement('aside');
@@ -1404,7 +1419,7 @@ var gca_forge = {
 			section.style.display = 'block';
 			aside.appendChild(section);
 			table = document.createElement('table');
-			table.setAttribute('width', '100%');
+			table.className = 'scroll-books-table';
 			section.appendChild(table);
 			tbody = document.createElement('tbody');
 			table.appendChild(tbody);
@@ -1429,32 +1444,7 @@ var gca_forge = {
 			if (!this.loaded) {
 				gca_tools.ajax.cached.known_scrolls().then(
 					(result) => {
-						this.loaded = true;
-						
-						this.info = {
-							prefix : new Array(187 +1).fill(null),
-							suffix : new Array(293 +1).fill(null)
-						};
-
-						// Prefix
-						for (let i = 0; i < result.id.prefix.length; i++) {
-							let id = result.id.prefix[i];
-							this.info.prefix[id] = {
-								id : id,
-								level : result.level.prefix[i],
-								name : result.name.prefix[id]
-							}
-						}
-						// Suffix
-						for (let i = 0; i < result.id.suffix.length; i++) {
-							let id = result.id.suffix[i];
-							this.info.suffix[id] = {
-								id : id,
-								level : result.level.suffix[i],
-								name : result.name.suffix[id]
-							}
-						}
-
+						this.updateInfo(result);
 						this.update();
 					}
 				);
@@ -1505,7 +1495,7 @@ var gca_forge = {
 			let suffix_all = 0;
 			let suffix_learned = 0;
 			this.suffixWrapper.textContent = '';
-			exclude = [0, 10, 14, 19, 22, 25, 27, 28, 41, 45, 57, 60, 62, 64, 68, 95, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 112, 113, 125, 140, 166, 184, 194, 202, 204, 209, 211, 212, 213, 214, 216, 217, 219, 225, 226, 227, 228, 231, 233, 235, 238];
+			exclude = [0, 7, 10, 14, 19, 22, 25, 27, 28, 41, 45, 54, 57, 60, 62, 64, 68, 95, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 112, 113, 125, 140, 166, 184, 194, 202, 204, 209, 211, 212, 213, 214, 216, 217, 219, 225, 226, 227, 228, 231, 233, 235, 238];
 			for (let i = 0; i < this.info.suffix.length; i++) {
 				if (exclude.includes(i)) continue;
 				suffix_all++;
@@ -1538,6 +1528,177 @@ var gca_forge = {
 				this.suffixWrapper.appendChild(tr);
 			}
 			this.suffixNote.textContent = '(' + suffix_learned + '/' + suffix_all + ')';
+
+			// Add share code
+			this.shareCodeSection.textContent = "(this is currently useless) " + this.getUnknownsCode();
+		},
+
+		updateInfo : function(result) {
+			// Update info
+			this.loaded = true;
+			
+			this.info = {
+				prefix : new Array(187 +1).fill(null),
+				suffix : new Array(293 +1).fill(null)
+			};
+
+			// Prefix
+			for (let i = 0; i < result.id.prefix.length; i++) {
+				let id = result.id.prefix[i];
+				this.info.prefix[id] = {
+					id : id,
+					level : result.level.prefix[i],
+					name : result.name.prefix[id]
+				}
+			}
+			// Suffix
+			for (let i = 0; i < result.id.suffix.length; i++) {
+				let id = result.id.suffix[i];
+				this.info.suffix[id] = {
+					id : id,
+					level : result.level.suffix[i],
+					name : result.name.suffix[id]
+				}
+			}
+		},
+
+		getUnknownsCode : function(){
+			// If not scroll info not loaded
+			if (!this.loaded) {
+				gca_tools.ajax.cached.known_scrolls().then(
+					(result) => {
+						this.updateInfo(result);
+						this.getUnknownsCode();
+					}
+				);
+				return;
+			}
+			
+			// Get all indexes where values are equal to:
+			getAllIndexes = function(arr, val=null) {
+				var indexes = [], i;
+				for(i = 0; i < arr.length; i++)
+					if (arr[i] === val)
+						indexes.push(i);
+				return indexes;
+			}
+			// Abstract the previous term from each item
+			// (convers list off indexes to distance from the previous)
+			getAbstractCompress = function(arr) {
+				var compArr = [], i;
+				//compArr.push(arr[0]); //skip first because it is the 0 anyway
+				for(i = 1; i < arr.length; i++) 
+					compArr.push(arr[i]-arr[i-1]);
+				return compArr;
+			}
+			getAbstractDecompress = function(arr) {
+				var decompArr = [], i;
+				decompArr.push(arr[0]);
+				for(i = 1; i < arr.length; i++)
+					decompArr.push(arr[i]+decompArr[i-1]);
+				return decompArr;
+			}
+			// Convert numbers to other base (10 -> 16, up to 110)
+			convertBase = function convertBase(value, from_base, to_base) {
+				// https://stackoverflow.com/a/32480941
+				//var range = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/'.split('');//64
+				var range = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZαβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ'.split('');//110
+				var from_range = range.slice(0, from_base);
+				var to_range = range.slice(0, to_base);
+				
+				var dec_value = (value+'').split('').reverse().reduce(function (carry, digit, index) {
+					if (from_range.indexOf(digit) === -1) throw new Error('Invalid digit `'+digit+'` for base '+from_base+'.');
+					return carry += from_range.indexOf(digit) * (Math.pow(from_base, index));
+				}, 0);
+				
+				var new_value = '';
+				while (dec_value > 0) {
+					new_value = to_range[dec_value % to_base] + new_value;
+					dec_value = (dec_value - (dec_value % to_base)) / to_base;
+				}
+				return new_value || '0';
+			}
+			// Custom compress
+			getCompress = function(arr) {
+				var compArr = [], i;
+				for(i = 0; i < arr.length; i++)
+					if (arr[i].toString().length == 1)
+						compArr.push(arr[i]);
+					else
+						compArr.push('-'+arr[i]+'-');
+				
+				return compArr.join('').replace(/--/gi,'-');
+			}
+			// Custom compress
+			getCompress2 = function(arr) {
+				var compArr = [], i;
+				singleDigits = '';
+				digitsLimit = 16;
+				// loop unknown scroll indexes
+				for(i = 0; i < arr.length; i++){
+					l_index = arr[i];
+					// If current index is single digit add to singleDigits number
+					if (l_index.toString().length == 1){
+						singleDigits += l_index;
+						// If digit limit reached, last item in list or next index has many digits
+						// then add number in the compressed array
+						if(singleDigits.length>=digitsLimit || i == arr.length-1 || arr[i+1].toString().length > 1){
+							if(singleDigits.length!=1 && singleDigits.length < 4) // add ~ to differenciate from 2 digit indexes
+								compArr.push('~'+convertBase(parseInt(singleDigits), 10, 110));
+							else
+								compArr.push(convertBase(parseInt(singleDigits), 10, 110));
+							singleDigits = ''// Empty singleDigits
+						}
+					}else{
+						compArr.push(convertBase(l_index, 10, 110));
+					}
+				}
+				return compArr.join('-');
+			}
+
+			// Unknown indexes
+			//console.log(getAllIndexes(this.info.prefix), getAllIndexes(this.info.suffix));
+			// Differences of indexes
+			//console.log(getAbstractCompress(getAllIndexes(this.info.prefix)), getAbstractCompress(getAllIndexes(this.info.suffix)));
+			// Soft compress
+			//console.log(getCompress(getAbstractCompress(getAllIndexes(this.info.prefix))), getCompress(getAbstractCompress(getAllIndexes(this.info.suffix))));
+
+			decode = function(code){
+				let codes = code.split(' ');
+				let arr = [[],[]];
+				for(i=0; i<codes.length; i++){
+					groups = codes[i].split('-');
+					for(j=0; j<groups.length; j++){
+						if(groups[j].charAt(0)=='~'){
+							let decNum = convertBase(groups[j].substring(1, groups[j].length), 110, 10);
+							arr[i].push(parseInt(decNum));
+						}else{
+							let decNum = convertBase(groups[j], 110, 10);
+							if(decNum.length < 4){
+								arr[i].push(parseInt(decNum));
+							}else{
+								decNum = decNum.toString(10).split("").map(function(t){return parseInt(t)})
+								arr[i] = arr[i].concat(decNum);
+							}
+						}
+					}
+				}
+				// Convert from distances to indexes
+				for(i=0; i<arr.length; i++)
+					arr[i] = getAbstractDecompress(arr[i]);
+				return arr;
+			}
+
+			let unknownPrefix = getCompress2(getAbstractCompress(getAllIndexes(this.info.prefix)));
+			let unknownSuffix = getCompress2(getAbstractCompress(getAllIndexes(this.info.suffix)));
+			
+			let code = `${unknownPrefix} ${unknownSuffix}`;
+			//console.log('Unknown code: ', code);
+
+			// Decode back:
+			//console.log('Decode: ', decode(code));
+
+			return code;
 		}
 	}
 };

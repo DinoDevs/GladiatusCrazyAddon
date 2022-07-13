@@ -234,7 +234,7 @@ gca_languages['lt'] = {
 			category_global$merchants_timer : "Rodyti pirklių laiką",
 			category_global$forge_timers : "Rodyti kalimo/lydimo laiką",
 			category_global$notify_new_guild_application : "Pranešti, kai atsiranda nauja gildijos paraiška",
-			category_global$notify_new_guild_application_interval : "Tikrinti paraiškas kas (minutės)",
+			//category_global$check_guild_application_pinned_messages_interval : "Tikrinti paraiškas kas (minutės)", // add pinned messages
 			category_global$x_scroll : "Įjungti gladiatus horizontalų slinkimą",
 			category_global$item_shadow : "Įjungti daiktų šešėlius",
 			category_global$inventory_options_group : "Kuprinės grupavimo pasirinkimai",

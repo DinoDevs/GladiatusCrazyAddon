@@ -109,7 +109,7 @@ gca_languages['cs'] = {
 			gold_exp_data_total_exp : "Celková zkušenost",
 			gold_exp_data_total_gold : "Celkem zlato",
 			gold_exp_data_reset : "Statistiky resetovány!",
-			gold_exp_data_desc: "Data jsou shromažďována každých 5 minut. Prodávání zakoupených předmětů zdvojnásobí Vaše statistiky zlata.",
+			gold_exp_data_desc: "Data jsou shromažďována každých 5 minut. Prodej zakoupených předmětů zdvojnásobí Vaše statistiky zlata.",
 			
 			// Items
 			merchenary_type : "Typ: {{name}} ({{number}})"
@@ -152,7 +152,12 @@ gca_languages['cs'] = {
 			// Medic
 			medic_lost_points : "Ztracené body",
 			medic_points_to_heal : "Body k vyléčení",
-			medic_life_after_heal : "Životy po vyléčení"
+			medic_life_after_heal : "Životy po vyléčení",
+			
+			// Baths
+			pinned_message : "Připnutá gildovní zpráva",
+			pin_unpin_message : "Připnout/Odepnout zprávu",
+			pinned_message_info : "Připnuté zprávy se zobrazují vždy jako první zpráva pro všechny členy gildy využívající tuto funkci"
 		},
 		
 		// Expedition
@@ -243,7 +248,9 @@ gca_languages['cs'] = {
 			item_cant_buy_back : "Nebudeš moci koupit tento předmět zpět.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Vážně chceš koupit tento předmět?",
-			click_enter_to_sell : "Stisknutím enter ⏎ prodejte"
+			click_enter_to_sell : "Stisknutím enter ⏎ prodejte",
+			// Tooltips
+			add_fees_in_price : "Přičíst poplatek do ceny"
 		},
 		
 		// Forge
@@ -297,21 +304,21 @@ gca_languages['cs'] = {
 			description_click_button : "Klikni na tlačítko k nastavení addonu",
 			
 			// Categories
-			category_global : "Hlavní nastavení",
-			category_overview : "Nastavení přehledu",
-			category_messages : "Nastavení zpráv",
-			category_packages : "Nastavení zásilek",
+			category_global : "Obecné",
+			category_overview : "Přehled",
+			category_messages : "Zprávy",
+			category_packages : "Zásilky",
 			category_pantheon : "Pantheon",
-			category_reports : "Nastavení zpráv z boje",
-			category_training : "Nastavení cvičiště",
-			category_merchants : "Nastavení obchodníků",
+			category_reports : "Zprávy z boje",
+			category_training : "Cvičiště",
+			category_merchants : "Obchodníci",
 			category_forge : "Kovárna",
 			category_arena : "Aréna",
 			category_magus : "Magus Hermeticus",
 			category_market : "Tržiště",
 			category_expedition : "Výprava",
-			category_guild : "Nastavení gildy",
-			category_auction : "Nastavení aukce",
+			category_guild : "Gilda",
+			category_auction : "Aukce",
 			category_accessibility : "Přehlednost",
 			category_events : "Události",
 			category_sound : "Zvuky",
@@ -337,8 +344,9 @@ gca_languages['cs'] = {
 			category_global$merchants_timer : "Zobrazit čas obchodníků",
 			category_global$forge_timers : "Zobrazit časový indikátor kovárny/tavírny",
 			category_global$notify_new_guild_application : "Upozorni mě na novou přihlášku do gildy",
-			category_global$notify_new_guild_application_interval : "Kontrolovat gildovní příhlášky každých (minut)",
-			category_global$notify_guild_attack_ready : "Upozorni mě na dobu čeká na gildovní bitvu",
+			category_global$check_guild_pinned_message : "Zobrazit připnuté zprávy z gildovních lázní ve zprávách",
+			category_global$check_guild_application_pinned_messages_interval : "Kontrolovat gildovní příhlášky a připnuté zprávy každých (minut)", 
+			category_global$notify_guild_attack_ready : "Upozorni mě na dobu čekání na gildovní bitvu",
 			category_global$notify_guild_attack_ready_interval : "Zkontroluj dobu čekání na gildovní bitvu každých (minut)",
 			category_global$x_scroll : "Povolit horizontální posuv",
 			category_global$item_shadow : "Povolit stínování předmětů",
@@ -412,7 +420,8 @@ gca_languages['cs'] = {
 			category_training$show_analyze_items_data : "Zobrazit analýzu předmětů v popisu předmětů",
 			category_training$show_points_after_upgrade : "Zobrazit staty bodů po vylepšení",
 			// Settings - Merchants
-			category_merchants$fade_unaffordable_items : "Nechat vyblednout předměty,na které nemám peníze",
+			category_merchants$fade_unaffordable_items : "Nechat vyblednout předměty, na které nemám peníze",
+			category_merchants$ruby_icon_on_items : "Označit ikonkou předměty, které stojí rubíny",
 			category_merchants$show_shop_info : "Zobrazit info obchodu (celkové zlato a rubíny)",
 			category_merchants$double_click_actions : "Dvojklik pro prodat/koupit",
 			// Settings - Forge
@@ -435,8 +444,9 @@ gca_languages['cs'] = {
 			category_market$one_gold_warning : "Potvrzení při koupi předmětů, které stojí 1 zlaťák",
 			category_market$cancel_all_button : "Zobrazit tlačítko pro zrušení všeho",
 			category_market$remember_sell_duration : "Zapamatovat poslední zvolenou dobu prodeje",
+			category_market$add_fees_button : "Zobraz tlačítko které započte poplatek k ceně",
 			category_market$sell_duration : "Zvol výchozí dobu prodeje",
-			category_market$one_gold_mode : "Nastavit výchozí cenu předmětu na 1 zlaťák",
+			category_market$one_gold_mode : "Přidat přepínatelné tlačítka pro ceny předmětů (včetně vlastních cen)",
 			category_market$custom_prices : "Vlastní nastavitelné ceny tržiště, rozděleny čárkou. Cenu položky lze také vypočítat procentuálně přidáním '%' za číslo. (např., '10000, 10.000, 200%')",
 			category_market$remember_sort : "Zapamatovat poslední zvolené seřazení",
 			category_market$double_click_select : "Vybrat předmět dvojitým klikem",

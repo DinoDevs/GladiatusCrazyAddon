@@ -292,7 +292,7 @@ gca_languages["et"] = {
 			category_global$merchants_timer : "Näita kaupmeeste taimerit",
 			category_global$forge_timers : "Näita sepikoja/sulatamise taimerit",
 			category_global$notify_new_guild_application : "Anna teada uuest gildi avaldusest",
-			category_global$notify_new_guild_application_interval : "Uue gildi avalduste kontrollimise aeg (minutites)",
+			//category_global$check_guild_application_pinned_messages_interval : "Uue gildi avalduste kontrollimise aeg (minutites)", // add pinned messages
 			category_global$x_scroll : "Aktiveeri horisontaalne kerimine",
 			category_global$item_shadow : "Aktiveeri esemete varjud",
 			category_global$inventory_options_group : "Grupeeri inventari valikud",

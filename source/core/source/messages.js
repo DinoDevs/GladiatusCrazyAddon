@@ -66,8 +66,13 @@ var gca_messages = {
 			// Header links fix
 			(gca_options.bool("messages", "fix_header_links") &&
 				this.fix.headerLinks(this));
-
+			
+			// Folder shortcuts
 			this.folders.show();
+
+			// Show guild pinned message (LEAVE LAST)
+			(gca_options.bool("global","check_guild_pinned_message") &&
+				this.guild_message.showPinned());
 		}
 
 		// Folders
@@ -478,11 +483,68 @@ var gca_messages = {
 			}
 
 			// Add box on message
-			message.body.parentNode.appendChild(wrapper);
+			if(message.body.className=="message_pinned_title") // if pinned message
+				message.body.parentNode.parentNode.parentNode.appendChild(wrapper);
+			else // normal message
+				message.body.parentNode.appendChild(wrapper);
+		},
+
+		showPinned : function(){
+			// Get pinned message
+			let message = gca_data.section.get('cache', 'guild_pinned_message', null);
+			if(message==null) return;
+
+			// Show pinned guild message only if other guild messages are shown (avoid showing the message in folder unrelated to guild)
+			if(gca_messages.messages.type["guild"].length==0)
+				return;
+			
+			message = gca_tools.strings.decodeHTMLEntities(message);// Decode message
+			let sender = gca_data.section.get('cache', 'guild_pinned_message_sender', null);
+
+			// Display pinned message
+			let pinned_message_container = document.createElement("div");
+			pinned_message_container.className = "message_box gca_messages_pinned_message";
+
+			let subject_box = document.createElement("div");
+			subject_box.className = "messageSubject";
+			pinned_message_container.appendChild(subject_box);
+
+			let message_box_icon = document.createElement("div");
+			message_box_icon.className = "message_box_icon";
+			subject_box.appendChild(message_box_icon);
+
+			let message_icon = document.createElement("div");
+			message_icon.className = "message_icon";
+			//message_icon.textContent = "📌";
+			message_icon.style = 'background-image:url(9425/img/news/icon_7.gif);';
+			message_box_icon.appendChild(message_icon);
+
+			let message_box_title = document.createElement("div");
+			message_box_title.className = "message_box_title";
+			subject_box.appendChild(message_box_title);
+
+			let message_title = document.createElement("div");
+			message_title.className = "message_pinned_title";
+			message_box_title.appendChild(message_title);
+
+			let name = document.createElement("b");
+			name.textContent = sender;
+			message_title.appendChild(name);
+
+			message_title.appendChild(document.createTextNode(`: ${message}`));
+
+			let first_message = document.getElementsByClassName('message_box')[0];
+			first_message.parentNode.insertBefore(pinned_message_container, first_message);
+
+			// Add tooltip
+			let tooltip = [[[gca_locale.get('guild', 'pinned_message'), 'white']]];
+			gca_tools.setTooltip(pinned_message_container, JSON.stringify(tooltip));
+
+			// Check for links
+			if(gca_options.bool("messages", "show_message_links"))
+				gca_messages.guild_message.parse_links({body:message_title});
 		}
-
 	},
-
 
 	// Private message functions
 	private_message : {

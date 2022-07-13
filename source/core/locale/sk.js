@@ -164,7 +164,7 @@ gca_languages['sk'] = {
 			category_global$merchants_timer : "Čas obchodníkov",
 			category_global$forge_timers : "Časovač Vyhňa / Pec",
 			category_global$notify_new_guild_application : "Informovať ma o novej žiadosti vstupu do spolku",
-			category_global$notify_new_guild_application_interval : "Kontrola žiadostí každých (minút)",
+			//category_global$check_guild_application_pinned_messages_interval : "Kontrola žiadostí každých (minút)", //add pinned messages
 			category_global$x_scroll : "Povoliť horizontálne rolovanie Gladiatus",
 			category_global$item_shadow : "Tieňovanie predmetov",
 			category_global$inventory_options_group : "Zoskupiť nastavenia inventára",

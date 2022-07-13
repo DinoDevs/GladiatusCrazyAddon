@@ -1,11 +1,53 @@
-## About
+## About GCA
 <img src="/documentation/resources/icon_128.png" align="right"/>
 
-Gladiatus Crazy Addon is made in javascript and CSS.
- 
+Gladiatus Crazy Addon (GCA) is a browser extension, thus a piece of software acting as a browser plugin, extending the browser's functionalities.
+GCA uses the modern [Web Extensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) format supported by most moder Web Browsers. This extension format was first introdused by Chromium and later adopted by Firefox. Thus, currently such extensions are supported by Chrome, Firefox, Opera, Edge (Basically all Firefox-based and Chromioum-based browsers).
+
 Anyone can contribute to this project by creating their own repository/branch and creating a pull request in the end, the pull request will be inspected and tested, if it is relevant and works well, it will be added to the addon.
 
 This is purely meant to be informational, taken directly from GCA developers.
+
+## Folders Structure
+The source code for the extension is the [source](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/master/source) folder of the Github project.
+The structure of it is the following:
+```
+- manifest.json                         // Extension's information
+- init.js                               // The execution starting point of the extension (extension context)
+- icons/                                // Folder with the extension's icon in various sizes
+- core/
+    - locale/
+        - en.js                         // The english language translations script (this is used as a base and a fallback for all translations)
+        - {country-or-language-code}.js // One script for each language with translations (website context)
+    - resources/                        // Folder with images, sounds, styles, libraries etc. (basically resources that the GCA may load)
+        - {assets}
+        - style_gca.css                 // Main (single) CSS file that loads to apply changes to the game
+    - source/
+        - global.js                     // Main script running on all game pages (website context)
+        - gca.info.js                   // Extension information (extension paths, current page ino, related links) script (website context)
+        - gca.data.js                   // Data storage handling (including default values) script (website context)
+        - gca.tools.js                  // Various helping functions script (website context)
+        - gca.{other-scripts}.js
+        - {section-based-script}.js     // Scripts that run only on specific pages of the game
+    - background.js                     // Extension's page running in the background of the browser (extension context)
+    - background.recipes.js             // Database with recipes that may be loaded by the background page (extension context)
+    - inject.js                         // Script responsible for injecting scripts inside the gladiatus game (extension context)
+    - info.js                           // Script with information about the extension and the current page (extension context)
+    - locale.js                         // Script identifing which languages/translations to load (extension context)
+    - manager.js                        // Script identifing which page specific scripts should be loaded (extension context)
+```
+
+## Used Contenxt
+
+The initialisation code of the extension run on the extension context of the browser, having access to many Browser internal APIs and functionalities but as this extension focuses on imporving the game's experience and thus most of the changes are targeting the actual website of the game, most of the scripts are injected on the game page and run on the website context.
+
+All the scripts under `/core/source/` are running at the website context and hold most of the extension's code and thus most of the features.
+
+## Focusing on the right scripts
+
+For developers: All webpage scripts under `/core/source/` and hold most of the extension's code and thus most of the features.
+For translators: Translations as under `/core/locale/` and also runs at the webpage context.
+
 
 ## Introduction 
 
@@ -46,16 +88,7 @@ This is purely meant to be informational, taken directly from GCA developers.
 
 ## Open sourcing the simulator
 
-**Quoted from @GramThanos**
-
->Personally speaking, I am not against open sourcing the simulator but I have some concerns, like "what if someone use it for bots?". Also, currently we (me and GreatApo) don't have time to work on the add on... so there is no time to maintain other projects. Lastly, I don't think anyone will eventually contribute, as was the case with the "GladiatusPlayerStatsAPI" that is part of the simulator (we were asked to release it).
-
-
-**Quoted from @GreatApo**
-
->We don't have the problem releasing the code but I agree with Thanos, I don't think anyone will contribute. Additionally, I don't see the game getting any decent update that will make the simulator outdated.
->
->Anyway, if anybody wants to look and improve the simulator code let us know.
+Now available at https://github.com/DinoDevs/GladiatusBattleSimulator.
 
 ## Work in progress
 

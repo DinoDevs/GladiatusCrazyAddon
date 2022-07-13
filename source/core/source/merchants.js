@@ -13,6 +13,10 @@ var gca_merchants = {
 		// Fade non affordable items
 		(gca_options.bool("merchants","fade_unaffordable_items") &&
 			this.fadeUnaffordableItems.inject());
+		
+		// Fade items for rubies
+		(gca_options.bool("merchants","ruby_icon_on_items") &&
+			this.iconForItermsForRubies.inject());	
 
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
@@ -40,7 +44,8 @@ var gca_merchants = {
 	// Merchants Search
 	merchantsSearch : {
 		qualities : ['white', 'lime', '#5159f7', '#e303e0', '#FF6A00', '#FF0000'],
-
+		emojis : ['⬜️', '🟩', '🟦', '🟪', '🟧', '🟥'],
+		
 		searchBox : function(){
 			// Create UI
 			let container = document.createElement("div");
@@ -54,24 +59,27 @@ var gca_merchants = {
 			searchInput.placeholder = gca_locale.get("merchants", "search_item_in_merchants");
 			container.appendChild(searchInput);
 
+			let default_quality = gca_data.section.get("cache", "merchants_search_quality", 0);
 			let searchQuality = document.createElement("select");
 			searchQuality.className = 'inputText gca-search-input';
 			searchQuality.id = 'gca-search-input-color';
-			searchQuality.style.color = this.qualities[0];
+			searchQuality.style.color = this.qualities[default_quality];
 			searchQuality.style.fontWeight = 'bold';
 			searchQuality.style.cursor = 'pointer';
 			container.appendChild(searchQuality);
 			this.qualities.forEach((color) => {
 				let option = document.createElement("option");
-				option.textContent = '⬛';
+				option.textContent = this.emojis[this.qualities.indexOf(color)];
 				option.style.color = color;
 				option.style.fontWeight = 'bold';
-				if (color === this.qualities[0]) option.selected = true;
+				if (color === this.qualities[default_quality]) option.selected = true;
 				option.value = this.qualities.indexOf(color) - 1;
 				searchQuality.appendChild(option);
 			});
 			searchQuality.addEventListener('change', () => {
-				searchQuality.style.color = this.qualities[parseInt(searchQuality.value, 10) + 1];
+				let quality = parseInt(searchQuality.value, 10) + 1;
+				searchQuality.style.color = this.qualities[quality];
+				gca_data.section.set("cache", "merchants_search_quality", quality);
 			}, false);
 			
 			let searchButton = document.createElement("input");
@@ -207,6 +215,7 @@ var gca_merchants = {
 			// For each
 			var t, g, r;
 			for (var i = items.length - 1; i >= 0; i--) {
+				/*
 				// Parse tooltip
 				t = items[i].dataset.tooltip.replace(/\./g, "").replace(/\\/g, "");
 				// Get item's gold
@@ -215,6 +224,11 @@ var gca_merchants = {
 				// Get item's rubies
 				r = t.match(/(\d+) <div class="icon_rubies">/);
 				r = (r) ? r[1] : 0;
+				*/
+
+				let info = gca_tools.item.hash(items[i]);
+				g = info.price_gold
+				r = info.price_rubies
 
 				// If cannot afford
 				if(g > gold || r > rubies) {
@@ -225,6 +239,50 @@ var gca_merchants = {
 					items[i].style.opacity = 1;
 				}
 			}
+		}
+	},
+	
+	// Fade items that cost rubies
+	iconForItermsForRubies : {
+		inject : function() {
+			// Apply item events
+			this.apply();
+
+			// On item move
+			gca_tools.event.request.onAjaxResponse((data) => {
+				if (
+					data.hasOwnProperty("data") && data.data &&
+					data.data.hasOwnProperty("to") && data.data.to &&
+					data.data.to.hasOwnProperty("data") && data.data.to.data &&
+					data.elem.length === 1
+				) {
+					let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
+					if (item) delete item[0].dataset.gcaFlag_rudies;
+					this.apply();
+				}
+			});
+		},
+		apply : function(){
+			var items = jQuery('#shop .ui-draggable');
+			// For each
+			items.each(function(){
+				if (!this.dataset) return;
+				// If already parsed
+				if(this.dataset.gcaFlag_rudies) return;
+				// Check if cost rubies
+				let info = gca_tools.item.hash(this);
+				// Flag as parsed
+				this.dataset.gcaFlag_rudies = info.price_rubies;
+				// If item cost rubies
+				/*
+				if (info.price_rubies && info.price_rubies > 0) {
+					// Change bg
+					//this.style.opacity = 0.6;
+					this.style.backgroundColor = "rgba(149, 9, 9, 0.8)";
+					//this.style.filter = "grayscale(1)";
+				}
+				*/
+			});
 		}
 	},
 	

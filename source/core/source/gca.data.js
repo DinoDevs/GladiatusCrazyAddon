@@ -328,8 +328,10 @@ gca_options.data = {
 		"notify_new_guild_application" : false,
 		"notify_guild_attack_ready" : false,
 		// Notifications Interval in minutes
-		"notify_new_guild_application_interval" : 60,
+		"check_guild_application_pinned_messages_interval" : 60,
 		"notify_guild_attack_ready_interval" : 15,
+		// Check other data in guild
+		"check_guild_pinned_message" : true,
 	
 		// Enable x-scroll
 		"x_scroll" : true,
@@ -505,6 +507,8 @@ gca_options.data = {
 	"merchants" : {
 		// Fade items that you can not afford
 		"fade_unaffordable_items" : true,
+		// Fade items for rubies
+		"ruby_icon_on_items" : true,	
 		// Show shop info
 		"show_shop_info" : false,
 		// Double click items to sell or buy
@@ -555,6 +559,8 @@ gca_options.data = {
 		"cancel_all_button" : true,
 		// Remember sell duration
 		"remember_sell_duration" : false,
+		// Show add fees button
+		"add_fees_button" : true,
 		// Default sell duration
 		"sell_duration" : 0,
 		// 1 gold mode

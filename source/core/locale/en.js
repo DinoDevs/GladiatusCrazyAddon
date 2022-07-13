@@ -70,6 +70,7 @@ gca_languages["en"] = {
 			guild_market_goto : "Go to guild's market",
 			guild_storage_goto : "Go to guild's storage",
 			guild_bank_goto : "Go to guild's bank",
+			guild_baths_goto: "Go to guild's baths (Vox I)",
 			guild_warcamp_goto : "Go to guild's war camp",
 			guild_arenareports_goto : "Go to guild's arena battle reports",
 			guild_jail_goto : "Go to guild's jail",
@@ -163,7 +164,12 @@ gca_languages["en"] = {
 			// Medic
 			medic_lost_points : "Lost points",
 			medic_points_to_heal : "Points to heal",
-			medic_life_after_heal : "Life after heal"
+			medic_life_after_heal : "Life after heal",
+
+			// Baths
+			pinned_message : "Pinned guild message",
+			pin_unpin_message : "Pin/Unpin this message",
+			pinned_message_info : "Pinned messages are displayed at the top of the messages for all guild members using this feature"
 		},
 
 		// Expedition
@@ -254,7 +260,9 @@ gca_languages["en"] = {
 			item_cant_buy_back : "You will not be able to buy back this item.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Do you really want to buy this item?",
-			click_enter_to_sell : "press enter ⏎ to sell"
+			click_enter_to_sell : "press enter ⏎ to sell",
+			// Tooltips
+			add_fees_in_price : "Add fees in price",
 		},
 		
 		// Forge
@@ -276,7 +284,7 @@ gca_languages["en"] = {
 			event_items : "Event items",
 			known_scroll : "You know this scroll",
 			unknown_scroll : "You don't know this scroll",
-			advance_filters : "Advance filters",
+			advance_filters : "Advanced filters",
 			advance_filters_apply : "Apply filters",
 			advance_filters_clear : "Clear filters",
 			advance_filters_found : "(found {{items}})"
@@ -348,7 +356,8 @@ gca_languages["en"] = {
 			category_global$merchants_timer : "Show merchants timer indicator",
 			category_global$forge_timers : "Show forge/smelt timer indicator",
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
-			category_global$notify_new_guild_application_interval : "Check for applications every (minutes)",
+			category_global$check_guild_pinned_message : "Show guild pinned messages from the baths in messages",
+			category_global$check_guild_application_pinned_messages_interval : "Check for guild applications and pinned messages every (minutes)",
 			category_global$notify_guild_attack_ready : "Notify me when guild war attack cooldown",
 			category_global$notify_guild_attack_ready_interval : "Check the guild war cooldown every (minutes)",
 			category_global$x_scroll : "Enable gladiatus' horizontal scroll",
@@ -401,7 +410,7 @@ gca_languages["en"] = {
 			category_packages$item_price : "Show items' price",
 			category_packages$special_category_features : "Enable special features per category\n•Show if scrolls are know/unknown\n•Show scroll icon item's prefix/suffix is unknown",
 			category_packages$double_click_open : "Double click packets to open them",
-			category_packages$advance_filter : "Advance packages filters",
+			category_packages$advance_filter : "Advanced packages filters",
 			category_packages$pop_over_bag : "Pop bag over on scroll",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Enable quest grouping",
@@ -425,6 +434,7 @@ gca_languages["en"] = {
 			category_training$show_points_after_upgrade : "Show stat points after upgrade",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Fade items that you can not afford",
+			category_merchants$ruby_icon_on_items : "Add icon on items that cost rubies",
 			category_merchants$show_shop_info : "Show shop info (total gold and rubies)",
 			category_merchants$double_click_actions : "Double click items to sell/buy",
 			// Settings - Forge
@@ -446,8 +456,9 @@ gca_languages["en"] = {
 			category_market$one_gold_warning : "Buy confirmation on items that cost 1 gold",
 			category_market$cancel_all_button : "Show cancel-all button",
 			category_market$remember_sell_duration : "Remember last chosen sell duration",
+			category_market$add_fees_button : "Show button that includes fees on the maket price",
 			category_market$sell_duration : "Select default sell duration",
-			category_market$one_gold_mode : "Toggle button changing sell price always to 1 gold",
+			category_market$one_gold_mode : "Add toggleable buttons for item prices (custom prices included)",
 			category_market$custom_prices : "Custom market prices, separated with commas. Calculate base on percentage of the item's price by adding an '%'. (e.g., '10000, 10.000, 200%')",
 			category_market$remember_sort : "Remember last sort order",
 			category_market$double_click_select : "Select item with double click",

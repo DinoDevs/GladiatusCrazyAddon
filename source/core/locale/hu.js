@@ -323,7 +323,7 @@ gca_languages['hu'] = {
 			category_global$merchants_timer : "Kereskedők időzítőjének megjelenítése",
 			category_global$forge_timers : "Mutassa a kovácsolás/olvasztás idejének mutatóját",
 			category_global$notify_new_guild_application : "Értesítés, ha új jelentkező van az egyesületbe",
-			category_global$notify_new_guild_application_interval : "Ellenőrizze az applikációkat minden percben",
+			//category_global$check_guild_application_pinned_messages_interval : "Ellenőrizze az applikációkat minden percben", // add pinned messages
 			category_global$notify_guild_attack_ready : "Értesítés, ha újra lehet egyesületi támadást indítani",
 			category_global$notify_guild_attack_ready_interval : "Ellenőrizze az egyesületi támadás korlátozásának idejét minden percben",
 			category_global$x_scroll : "Engedélyezze a játék vízszintes görgetését",

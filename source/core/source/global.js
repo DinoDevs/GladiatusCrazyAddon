@@ -175,9 +175,16 @@ var gca_global = {
 		(!this.isTraveling && gca_options.bool("global","notify_guild_attack_ready") && 
 			this.background.notify_me.guild_attack_ready());
 
+		// Get pinned guild message
+		(!this.isTraveling && gca_options.bool("global","check_guild_pinned_message") && 
+			this.background.guildPinnedMessage());
+
 		// Pray Buf shortcut
 		(this.isInUnderworld && gca_options.bool("global","pray_shorcut") &&
 			this.underworld.prayCounterBar.add());
+		// Expendition shortcut always pointing to the last location
+		(this.isInUnderworld &&
+			this.underworld.updateExpenditionLink());
 
 		// Browser notifications
 		(gca_options.bool("global","browser_notifications") &&
@@ -976,6 +983,18 @@ var gca_global = {
 							}, false);
 						}
 						
+						// Create a Link to guild's baths vox 1
+						if(activeButtons.indexOf("gbt") >= 0){
+							button = document.createElement('div');
+							button.className = "icon-out";
+							link = document.createElement('a');
+							link.className = "icon bathtub-icon";
+							link.href = gca_getPage.link({"mod":"guild_bath","submod":"guild_shoutbox"});
+							link.title = gca_locale.get("global", "guild_baths_goto");
+							button.appendChild(link);
+							shortcutsBar.appendChild(button);
+						}
+
 						// Create a Link to guild's war camp
 						if(activeButtons.indexOf("gwr") >= 0){
 							button = document.createElement('div');
@@ -1911,10 +1930,13 @@ var gca_global = {
 				document.body.appendChild(div);
 				
 				// Set up scroll to top button
-				var scroll_top = document.createElement("div");
-				scroll_top.className = "scroll-to-top";
-				scroll_top.setAttribute("onclick", 'jQuery("html, body").animate({ scrollTop: 0 }, "fast");');//or: window.scrollTo(0, 0)
-				scroll_top.textContent = '▲ top';
+				var scroll_top = document.createElement('a');
+				scroll_top.className = 'scroll-to-top';
+				scroll_top.addEventListener('click', () => {
+					jQuery('html, body').animate({scrollTop: 0}, 'fast');
+					//or: window.scrollTo(0, 0)
+				});
+				scroll_top.textContent = ' ▲ ';
 				div.appendChild(scroll_top);
 				
 				// Bind document elements
@@ -2134,9 +2156,12 @@ var gca_global = {
 					{text : 'IV', href : gca_getPage.link({"mod":"overview","doll":"6"})}
 				]);
 
-				// Inject Highscore Link
+				// Inject Highscore Link (old, not used)
 				//this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : gca_links.get('addon-page') + "/index.php?mode=highscore", target : "_blank"});
-
+                                
+				// Inject Guild Highscore Link
+				this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : gca_getPage.link({"mod":"highscore","t":"1"})});
+				
 				// Inject Pantheon Link
 				this.convertMenu.addPlus(this.info.pantheon, this.info.pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
 
@@ -2162,16 +2187,25 @@ var gca_global = {
 						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
 
 						// Forge
+						/*
 						if(this.info.forge){
 							this.convertMenu.addPlus(this.info.forge, this.info.forge_active, {href : gca_getPage.link({"mod":"forge","submod":"smeltery"})});
 						}
 						// Malefica
 						if(this.info.malefica){
 							this.convertMenu.addPlus(this.info.malefica, this.info.malefica_active, {href : gca_getPage.link({"mod":"forge","submod":"workbench"})});
-						}
-						// Auction
+						}*/
+						// Auction menu links
 						if(this.info.auction){
 							this.convertMenu.addPlus(this.info.auction, this.info.auction_active, {href : gca_getPage.link({"mod":"auction","ttype":"3"})});
+							this.convertMenu.addTabs("auction",this.info.auction, this.info.auction_active,
+							[
+								{href : gca_getPage.link({"mod":"auction","itemType":"6"}), img : {class : "item-i-6-6", style : "margin:-2px;"}},
+								{href : gca_getPage.link({"mod":"auction","itemType":"9"}), img : {class : "item-i-9-7", style : "margin:-2px;"}},
+								{href : gca_getPage.link({"mod":"auction","itemType":"11"}), img : {class : "item-i-11-3", style : "margin:-2px;"}},
+								{href : gca_getPage.link({"mod":"auction","itemType":"12"}), img : {class : "item-i-12-14", style : "margin:-2px;"}},
+								{href : gca_getPage.link({"mod":"auction","itemType":"15"}), img : {class : "item-i-15-15", style : "margin:-2px;"}}												
+							]);
 						}
 						// Inject Market Link
 						if(this.info.market){
@@ -2218,9 +2252,18 @@ var gca_global = {
 				// Add a back Tab
 				addTabs : function(name, menu, active, links){
 					// Front Tab
-					var frontTab = document.createElement("div");
-					frontTab.className = "advanced_menu_entry";
-					menu.parentNode.insertBefore(frontTab, menu.nextSibling);
+					// Check if front tab exists (tabs to be added on the left side)
+					var frontTab;
+					var existingTab = null;
+					if (menu.parentNode.className == "advanced_menu_entry"){
+						frontTab = menu.parentNode;
+						//frontTab.className += " advanced_menu_shift_left";
+						existingTab = frontTab.getElementsByClassName("advanced_menu_shift")[0];
+					}else{
+						frontTab = document.createElement("div");
+						frontTab.className = "advanced_menu_entry";
+						menu.parentNode.insertBefore(frontTab, menu.nextSibling);
+					}
 					menu.dataset.hasWrapper = "true";
 					// Back Tab
 					var backTab = document.createElement("div");
@@ -2249,8 +2292,12 @@ var gca_global = {
 						backTab.appendChild(a);
 						backLinks.push(a);
 					}
-					frontTab.appendChild(menu);
-					menu.className += " advanced_menu_link" + active;
+					if(frontTab != menu.parentNode){
+						frontTab.appendChild(menu);
+						menu.className += " advanced_menu_link" + active;
+					}else{
+						menu.className += " advanced_menu_link_multiple" + active;
+					}
 					frontTab.appendChild(backTab);
 					// Tab Toggle
 					var a = document.createElement("a");
@@ -2260,11 +2307,15 @@ var gca_global = {
 						if(backTab.style.display == 'none'){
 							jQuery(menu).hide();
 							jQuery(backTab).show();
+							if(existingTab!=null)
+								jQuery(existingTab).hide();
 							gca_data.section.set("advanced-menu", name + "-tab", true);
 						}
 						else{
 							jQuery(backTab).hide();
 							jQuery(menu).show();
+							if(existingTab!=null)
+								jQuery(existingTab).show();
 							gca_data.section.set("advanced-menu", name + "-tab", false);
 						}
 					},false);
@@ -2274,6 +2325,14 @@ var gca_global = {
 					if(gca_data.section.get("advanced-menu", name + "-tab", false)){
 						jQuery(menu).hide();
 						jQuery(backTab).show();
+						if(existingTab!=null)
+							jQuery(existingTab).hide();
+					}
+					
+					// Style fixes for multiple tabs (>, +)
+					if(existingTab!=null){
+						backTab.className += " advanced_menu_back_links_left";
+						a.className += " advanced_menu_shift_left";
 					}
 
 					return backLinks;
@@ -3104,7 +3163,7 @@ var gca_global = {
 				// Get wrapper
 				var wrapper = document.getElementById('inv').parentNode;
 				// Create options button
-				this.button = document.createElement('div');
+				this.button = document.createElement('a');
 				this.button.className = "gca-inv-group-options-button";
 				var that = this;
 				this.button.addEventListener('click', function(){
@@ -3434,6 +3493,9 @@ var gca_global = {
 					else if (style == 3) this.style = 'minimal-amounts';
 					else if (style == 4) this.style = 'extended-amounts';
 					else return;
+					
+					// Save server speed
+					this.speed_factor = gca_tools.time.serverSpeed();
 
 					var load = false;
 					// If inventory exists
@@ -3453,7 +3515,7 @@ var gca_global = {
 						}
 					}
 
-					// If in packets
+					// If in packages
 					if (gca_section.mod === 'packages') {
 						load = true;
 						// On item get
@@ -3478,7 +3540,35 @@ var gca_global = {
 						this.locale = gca_data.section.get('cache', 'resource_locale', false);
 						this.showInfo();
 					}
+
+					// On item move
+					gca_tools.event.request.onAjaxResponse((data) => {
+						if (
+							data.hasOwnProperty("data") && data.data &&
+							data.data.hasOwnProperty("to") && data.data.to &&
+							data.data.to.hasOwnProperty("data") && data.data.to.data &&
+							data.elem.length === 1
+						) {
+							let item = jQuery('.ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
+							if (item && item[0]){
+								item = item[0];
+								var tooltip = JSON.parse(item.dataset.tooltip);
+								// Check if tooltip is modified
+								if(tooltip[0][tooltip[0].length - 1][0].charAt(0)=='\uD83D'){
+									// Refresh the tooltip
+									gca_tools.setTooltip(item, JSON.stringify(tooltip));
+								}else{
+									delete item.dataset.forgeInfo;
+									this.showItemInfo(item);
+								}
+							}
+							//this.showInfo();
+						}
+					});
 				},
+
+				speed_factor : 1, // server speed
+				enable_forge_time : true, // always true
 				
 				showInfo : function(){
 					// Get page Items
@@ -3496,7 +3586,6 @@ var gca_global = {
 					if (item.dataset.forgeInfo) return;
 					// Flag item
 					item.dataset.forgeInfo = true;
-
 					// Analyze hash
 					let hash = item.dataset.hash.split('-');
 
@@ -3547,6 +3636,13 @@ var gca_global = {
 					for (let i = 0; i < info.length; i++) {
 						tooltip[0].push(info[i]);
 					}
+					// Add forge time
+					if(this.enable_forge_time){
+						let gold = gca_tools.item.hash(item.dataset.hash).price_gold;
+						let forge_time = gca_tools.time.msToHMS_String(gold * (2*0.9374) / this.speed_factor * 1000);
+						tooltip[0].push([`🕑 ${forge_time}`, '#fff']);
+					}
+
 					gca_tools.setTooltip(item, JSON.stringify(tooltip));
 				},
 
@@ -3796,6 +3892,9 @@ var gca_global = {
 					// Get cached locale names
 					this.names = gca_data.section.get('cache', 'mercenary_names_locale', this.names);
 
+					// Character Level
+					this.level = parseInt(document.getElementById('header_values_level').textContent, 10);
+
 					// Get data
 					this.showMerchenaryType();
 					
@@ -3831,6 +3930,8 @@ var gca_global = {
 					}
 				},
 				
+				level : 5,
+
 				names : [
 					"Hoplomachus",//1
 					"Medicus",//2
@@ -3872,6 +3973,81 @@ var gca_global = {
 						
 						let original_name = ( hash.subcategory <= this.names.length ) ? this.names[hash.subcategory-1] : "n/a" ;
 						jQuery(item).data("tooltip")[0].splice(1, 0, [ gca_locale.get("global", "merchenary_type", {name:original_name, number:hash.subcategory}), "gray; font-size: 0.8em;"]);
+						
+						let merchenaryLevel = parseInt(jQuery(item).data("tooltip")[0][9][0].match(/(\d+)/i)[1]);//hash.prefix+hash.suffix;
+						let characterLevel = this.level;
+
+						//console.log(jQuery(item).data("tooltip")[0][9][0]);
+						//console.log(hash);
+						let value, j;
+
+						// Max stats
+						j = 2;
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `Max stats:`], ['#BA9700', '#999']];
+						
+						// Strength - Chance to block
+						j = 3;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						dmg = Math.floor(value/10);
+						value = Math.round((dmg * 52 / (characterLevel-8 ))/6*10)/10;// Block chance
+						jQuery(item).data("tooltip")[0][j] = [ 
+							[
+								jQuery(item).data("tooltip")[0][j][0],
+								gca_locale.get('training', 'points_breakdown_damage', {integer: dmg, float: 0}).replace(' (+0)',`, Block ${value}%`)
+							], ['#BA9700', '#999']];
+						
+						// Dexterity - Critical attack
+						j = 4;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.round((Math.floor(value/10) * 52 / (characterLevel-8 ))/5*10)/10;// Avoid critical
+						jQuery(item).data("tooltip")[0][j] = [ 
+							[
+								jQuery(item).data("tooltip")[0][j][0],
+								`Critical ${value}%`
+							], ['#BA9700', '#999']];
+						
+						// Agility - Avoid critical
+						j = 5;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.round((Math.floor(value/10) * 52 / (characterLevel-8 ))/4*10)/10;// Avoid critical
+						jQuery(item).data("tooltip")[0][j] = [ [jQuery(item).data("tooltip")[0][j][0], `Avoid critical ${value}%`], ['#BA9700', '#999']];
+						
+						// Constitution - Life
+						j = 6;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.floor(value*2-50);// life
+						jQuery(item).data("tooltip")[0][j] = [ 
+							[
+								jQuery(item).data("tooltip")[0][j][0],
+								gca_locale.get('training', 'points_breakdown_life', {number: value})
+							], ['#BA9700', '#999']];
+
+						// Charisma - Threat
+						j = 7;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.floor(value*0.7);// threat
+						jQuery(item).data("tooltip")[0][j] = [ 
+							[
+								jQuery(item).data("tooltip")[0][j][0], 
+								gca_locale.get('training', 'points_breakdown_threat', {integer: value, float: 0}).replace(' (+0)','')
+							], ['#BA9700', '#999']];
+
+						// Intelligence - Heal
+						j = 8;
+						value = jQuery(item).data("tooltip")[0][j][0].match(/(\d+)/i)[1];
+						value = Math.floor(value*1.5+merchenaryLevel);// max value
+						value = Math.floor(Math.floor(value*4/5) + Math.floor(value/5)*2*(Math.floor(value/5) * 52 / (characterLevel-8 ))/800);// equivalent heal
+						jQuery(item).data("tooltip")[0][j] = [ 
+							[
+								jQuery(item).data("tooltip")[0][j][0], 
+								gca_locale.get('training', 'points_breakdown_heal', {integer: value, float: 0}).replace(' (+0)','')
+							], ['#BA9700', '#999']];
+						
 						
 						// Remove all last gray rows of tooltips
 						for(let i = 0; i < 2; i++){
@@ -3997,6 +4173,16 @@ var gca_global = {
 			toggle : function() {
 				document.location.href = gca_getPage.link({'mod': 'underworld', 'submod': (this.isPraying ? 'prayEnd' : 'prayStart')});
 			}
+		},
+
+		// Update expendition link to always point to the last expendition location
+		updateExpenditionLink : function(){
+			let locations = document.getElementById('submenu2').getElementsByTagName('a');
+			let last_location_link = locations[locations.length-1].href;
+
+			// Update link
+			if( document.getElementById('cooldown_bar_expedition').getElementsByTagName('a')[0].href != last_location_link )
+				document.getElementById('cooldown_bar_expedition').getElementsByTagName('a')[0].href = last_location_link;
 		}
 	},
 
@@ -4298,7 +4484,7 @@ var gca_global = {
 					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
 				}
 				// Else if it's time to check
-				else if(gca_tools.time.server() - lastTime >= gca_options.int("global","notify_new_guild_application_interval") * 60000){
+				else if(gca_tools.time.server() - lastTime >= gca_options.int("global","check_guild_application_pinned_messages_interval") * 60000){
 					// Save time
 					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
 					// Check guild for any application
@@ -4341,6 +4527,39 @@ var gca_global = {
 				}
 			}
 
+		},
+
+		// Get guild pinned message
+		guildPinnedMessage : function(){
+			// Get saved data
+			var lastTime = gca_data.section.get("timers", "guild_pinned_message", 0);
+			// If it's time to check
+			if(gca_tools.time.server() - lastTime >= gca_options.int("global","check_guild_application_pinned_messages_interval") * 60000){
+				// Save time
+				gca_data.section.set("timers", "guild_pinned_message", gca_tools.time.server());
+				// Check baths room 1
+				jQuery.get(gca_getPage.link({"mod":"guild_bath","submod":"guild_shoutbox","room":"1"}), function(content){
+					let player = null;
+					let message = null;
+					// If a pinned message exist
+					let match_results = content.match('<a[^>]+>([^>]+)</a>[^<]+<span[^>]+>[^<]+</span>\\s*</td>\\s*</tr>\\s*<tr>\\s*<td style="padding-bottom: 5px">\\[⚲\\](.*?)<\/td');//([^<]+)
+					if(match_results){
+						// Save
+						player = match_results[1];
+						message = match_results[2].replace(/<br>/gi,'\r\n').trim();
+						// Notify
+						console.log(`[GCA] Pinned guild message found from ${player}: ${message}`);
+						// Save
+						gca_data.section.set('cache', 'guild_pinned_message_sender', player);
+						gca_data.section.set('cache', 'guild_pinned_message', message);
+					}else{
+						console.log(`[GCA] No pinned guild message found`);
+						gca_data.section.del('cache', 'guild_pinned_message_sender');
+						gca_data.section.del('cache', 'guild_pinned_message');
+
+					}
+				});
+			}
 		},
 		
 		// Gold/Exp data
@@ -4444,7 +4663,7 @@ var gca_global = {
 			// Create Gold & EXP data button
 			create_button : function(){
 				// Create stats icon
-				var icon = document.createElement('div');
+				var icon = document.createElement('a');
 				icon.id = "exp_and_gold_stats_icon";
 				// Insert on page
 				document.getElementById("header_game").appendChild(icon);

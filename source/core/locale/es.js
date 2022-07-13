@@ -227,7 +227,7 @@ gca_languages['es'] = {
 			category_global$merchants_timer : "Mostrar temporizador de mercaderes",
 			category_global$forge_timers : "Mostrar temporizador de forja/fundido",
 			category_global$notify_new_guild_application : "Notificarme si hay nuevas solicitudes para la alianza",
-			category_global$notify_new_guild_application_interval : "Revisar solicitudes cada (minutos)",
+			//category_global$check_guild_application_pinned_messages_interval : "Revisar solicitudes cada (minutos)", // add pinned messages
 			category_global$x_scroll : "Activar desplazamiento horizontal de gladiatus",
 			category_global$item_shadow : "Activar sombras de objetos",
 			category_global$inventory_options_group : "Agrupar opciones de inventario",

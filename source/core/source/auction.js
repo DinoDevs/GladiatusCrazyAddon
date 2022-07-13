@@ -293,6 +293,16 @@ var gca_auction = {
 		if (e.options[e.selectedIndex].value != 15)
 			return;
 
+		// If global script not loaded yet
+		if (!gca_global) {
+			// Run again later
+			setTimeout(() => {
+				this.saveMercenaryRealNames();
+			}, 100);
+			return;
+		}
+
+		// Get cached names
 		let cachedMercenaryNamesLocale = gca_data.section.get('cache', 'mercenary_names_locale', gca_global.display.analyzeItems.mercenaries.names);
 		
 		// Get items
@@ -398,9 +408,9 @@ var gca_auction = {
 					gca_notifications.success(message);
 					let divs = itemform.getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div");
 					divs[0].style.color = 'blue';
-					divs[0].style.height = '48px';
-					divs[1].style.display = 'none';
+					jQuery(divs[0]).height( jQuery(divs[0]).height()+jQuery(divs[1]).height()) ; // hardcode original height to avoid changing height
 					divs[0].textContent = message;
+					divs[1].style.display = 'none';
 					inputs[6].value = Math.floor(price * 1.05) + 1;
 					inputs[6].removeAttribute("style");
 					// Disable button

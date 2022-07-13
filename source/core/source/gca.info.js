@@ -44,8 +44,12 @@ var gca_section = {
 		if(cookiePlayerId && cookiePlayerId[1]){
 			this.playerId = cookiePlayerId[1];
 		}
-		// Else
-		else{
+		// Is it on window variable
+		else if (typeof window.playerId === 'number' && window.playerId > 0) {
+			this.playerId = window.playerId;
+		}
+		// This is for fallback so that the addon can work
+		else {
 			this.playerId = 0;
 		}
 	},

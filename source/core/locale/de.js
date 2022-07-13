@@ -60,7 +60,7 @@ gca_languages['de'] = {
 			// Button bar - Message
 			message_private_write : "Private Nachricht schreiben",
 			message_guild_write : "Gildennachricht schreiben",
-			message_send : "senden",
+			message_send : "Senden",
 			message_sent_success : "Gildennachricht wurde gesendet",
 			message_sent_failed : "Gildennachricht ist fehlgeschlagen",
 			message_empty : "Gildennachricht ist leer",
@@ -114,11 +114,12 @@ gca_languages['de'] = {
 			gold_exp_data_week : "Die letzten 7 Tage",
 			gold_exp_data_avg_day : "Durchschnittswerte pro Tag",
 			gold_exp_data_to_level_up : "Verbleibende Tage bis zum Level Aufstieg",
-
+			gold_exp_data_package_tax : "Wöchentliche Marktgebühr der Pakete",
 			gold_exp_data_measurements : "Messungen",
 			gold_exp_data_total_exp : "gesamte Erfahrung",
 			gold_exp_data_total_gold : "gesamtes Gold",
 			gold_exp_data_reset : "Statistik wurde zurückgesetzt!",
+			gold_exp_data_desc: "Die Daten werden alle 5 Minunten gesammelt. Der Verkauf von gekauften Gegenständen verdoppelt Deine Goldstatistik.",
 			
 			// Items
 			merchenary_type : "Typ: {{name}} ({{number}})"
@@ -162,7 +163,12 @@ gca_languages['de'] = {
 			// Medic
 			medic_lost_points : "Verlorene Punkte",
 			medic_points_to_heal : "Punkte zum Heilen",
-			medic_life_after_heal : "Leben nach dem heilen"
+			medic_life_after_heal : "Leben nach dem heilen",
+			
+			// Baths
+			pinned_message : "Angeheftete Gildennachricht",
+			pin_unpin_message : "Die Nachricht anheften / lösen",
+			pinned_message_info : "Angeheftete Nachrichten werden allen Gildenmitgliedern, die diese Funktion verwenden, oben in den Nachrichten angezeigt"
 		},
 
 		// Expedition
@@ -217,9 +223,12 @@ gca_languages['de'] = {
 			points_breakdown_enemy_double_hit : "Gegnerische Doppelschlag Chance: {{integer}}% ({{float}}‰) *",
 			points_breakdown_life : "Lebenspunkte: +{{number}}",
 			points_breakdown_regeneration : "Regeneration pro Stunde: +{{number}}",
+			points_breakdown_threat : "Präsenz: +{{integer}} (+{{float}})",
 			points_breakdown_heal : "Heilung: +{{integer}} (+{{float}})",
 			points_breakdown_critical_heal : "Kritische Heilungswertung: +{{integer}}% (+{{float}}‰)",
-			points_breakdown_critical_heal_max : "Kritische Heilungswertung: max. Wert"
+			points_breakdown_critical_heal_max : "Kritische Heilungswertung: max. Wert",
+			stats_calculated_with_yourself_as_an_opponent : "* Eigenschaften werden nach dem Konzept des Selbstangriffs berechnet.",
+			values_in_parenthesis_explanation : "Werte in Klammern zeigen die entsprechenden Werte vor dem Runden.",
 		},
 
 		// Auction section
@@ -252,7 +261,8 @@ gca_languages['de'] = {
 			item_cant_buy_back : "Du kannst den Gegenstand nicht zurück kaufen.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Willst du den Gegenstand wirklich kaufen?",
-			click_enter_to_sell : "Drücke Enter ⏎ zum Verkaufen"
+			click_enter_to_sell : "Drücke Enter ⏎ zum Verkaufen",
+			add_fees_in_price : "Inkludiere Gebühr zum Marktpreis"
 		},
 		
 		// Forge
@@ -260,7 +270,7 @@ gca_languages['de'] = {
 			forge_ended : "Schmiede fertig!",
 			recraft_item : "Gegenstand zerlegt",
 			show_hide_doll : "Zeige / Verstecke Ausrüstung des Charakters",
-			horreum_material_change : "Horreum - Rohstoff wurde aufgewertet"
+			horreum_material_change : "Horreum - Rohstoff wurde aufgewertet / eingelagert / entnommen"
 		},
 		
 		// Merchants
@@ -286,7 +296,7 @@ gca_languages['de'] = {
 			avg_heal : "Ø-Heilung",
 			total_hits : "Treffer gesamt",
 			hits : "Treffer",
-
+			dodge : "Ausgewichen oder Geblockt",
 			points : "Punkte"
 		},
 
@@ -335,43 +345,45 @@ gca_languages['de'] = {
 			category_global$expedition_dungeon_points_recover_timer : "Zeige benötigte Zeit für volle Expeditons- und Dungeonpunkte",
 			category_global$shortcuts_bar : "Zeige Shortcut-Leiste",
 			category_global$shortcuts_bar_buttons : "Wähle die Optionen für die Shortcut-Leiste",
-			category_global$auction_status_bar : "Zeige Auktionsstatus",
+			category_global$auction_status_bar : "Zeige Status des Auktionshauses",
 			category_global$auction_status_notification : "Benachrichtigen sobald sich der Status des Auktionshauses ändert",
 			category_global$top_fixed_bar : "Fixiere die Navigationleiste beim Scrollen",
 			category_global$advance_main_menu : "Zeige verbessertes Layout des Hauptmenüs",
 			category_global$submenu_click_to_change : "Wechsel das Untermenü per Klick",
 			category_global$remember_tabs : "Merke Händler und Inventar Tabs",
-			category_global$attacked_timers : "Anzeige der letzten Angriffe aktivieren",
-			category_global$quest_timer : "Aufgaben Timer anzeigen",
-			category_global$merchants_timer : "Händlerzeit anzeigen",
-			category_global$forge_timers : "Schmiede/Schmelzzeit anzeigen",
-			category_global$notify_new_guild_application : "Benachrichtigen bei einer neuen Gildenbewerbung",
-			category_global$notify_new_guild_application_interval : "Überprüfe auf neue Bewerbung (Minuten)",
+			category_global$attacked_timers : "Anzeige der letzten Arenen-Angriffe aktivieren",
+			category_global$quest_timer : "Zeige den Aufgaben-Timer/Status",
+			category_global$merchants_timer : "Zeige den Händlerzeit-Indikator",
+			category_global$forge_timers : "Zeige den Schmiede/Schmelzzeit-Indikator",
+			category_global$notify_new_guild_application : "Benachrichtige bei einer neuen Gildenbewerbung",
+			category_global$check_guild_pinned_message : "Zeige angeheftete Nachrichten aus dem Vox als Gildennachricht an",
+			category_global$check_guild_application_pinned_messages_interval : "Überprüfe auf neue Bewerbung und angeheftete Nachrichten (Minuten)",
 			category_global$notify_guild_attack_ready : "Benachrichtige wenn Abklingzeit des Gildenkampfes vorüber ist",
 			category_global$notify_guild_attack_ready_interval : "Überprüfe Abklingzeit des Gildenkampfes (Minuten)",
 			category_global$x_scroll : "Horizontale Scrolleiste aktivieren",
 			category_global$item_shadow : "Qualität der Gegenstände als Schatten anzeigen",
 			category_global$inventory_options_group : "Inventar Optionen zusammenfassen",
-			category_global$inventory_gold_info : "Gold des Inventars anzeigen",
+			category_global$inventory_gold_info : "Zeige den Goldwert der Inventare",
 			category_global$pagination_layout : "Ändere Layout der Seitennummerierung (Nachrichten, Pakete,...)",
-			category_global$gold_exp_data : "Zeige Gold- und Erfahrungswerte an",
+			category_global$gold_exp_data : "Zeige die Übersicht Gold- und Erfahrungswerte",
 			category_global$pray_shorcut : "Zeige die Beten-Taste in der Unterwelt",
 			category_global$centurio_powerups_timers : "Zeige Timer zu Centurio und Pakte an der Premium Schaltfläche",
 			category_global$show_durability : "Zeige die Haltbarkeit der Gegenstände unten links",
 			category_global$min_durability : "Benachrichtige sobald ein Gegenstand weniger als _% Haltbarkeit + Veredelung hat (\"0\" zum Deaktivieren)",
 			category_global$show_forge_info : "Zeige Schmiederohstoff der Gegenstände im Tooltip",
 			category_global$show_mercenaries_real_name : "Zeige den echten Söldner Namen (Typ) im Tooltip",
-			category_global$global_arena_timer : "Zeige Gobale Arena",
+			category_global$global_arena_timer : "Zeige Globale Arena",
 			// Settings - Overview
 			category_overview$analyze_items : "Analysiere Spielergegenstände",
 			category_overview$food_life_gain : "Zeige gewonnene Lebenspunkte pro Nahrung",
-			category_overview$best_food : "Hebt das beste Essen hervor",
-			category_overview$overfeed_food : "Blende Essen aus, dass zuviel heilt",
+			category_overview$block_avoid_caps : "Zeige maximale Block-, Widerstands- und kritische Schadenswerte an",
+			category_overview$best_food : "Hebt die beste Nahrung hervor",
+			category_overview$overfeed_food : "Blende Nahrung aus, welches zuviel heilt",
 			category_overview$double_click_consume : "Durch Doppelklick Gegenstände konsumieren",
 			category_overview$daily_bonus_log : "Tagesbonus protokollieren",
 			category_overview$buffs_detailed_time : "Zeige detaillierte Timer für Buffs (Sekunden)",
 			category_overview$mercenaries_manager : "Zeige den Söldnermanager",
-			category_overview$mercenary_tooltip_show : "Zeige die Söldner-Tooltips",
+			category_overview$mercenary_tooltip_show : "Zeige den Tooltip bei den Söldnern",
 			category_overview$more_statistics : "Zeige mehr Details in der Kampfstatistik",
 			category_overview$achivements_layout : "Verbessere das Layout der Erfolge",
 			category_overview$costumes_layout : "Verbessere das Layout der Kostüme",
@@ -379,11 +391,12 @@ gca_languages['de'] = {
 			// Settings - Messages
 			category_messages$messages_layout : "Zeige verbessertes Layout der Nachrichten",
 			category_messages$show_unread : "Ungelesene Nachrichten hervorheben",
-			category_messages$separate_days : "Teile Nachrichten nach Tagen auf",
+			category_messages$separate_days : "Teile Nachrichten auf verschiedene Tage auf",
 			category_messages$more_guild_mate_info : "Zeige zusätzliche Mitgliederinformationen",
 			category_messages$show_message_links : "Zeige Hyperlinks in den Nachrichten",
 			category_messages$get_guild_battle_info : "Zeige Gildenkämpfe direkt an",
 			category_messages$show_sidebar : "Zeige die Nachrichten-Sidebar",
+			category_messages$fix_header_links : "Behebt den Fehler bei Klick auf Titellink von Nachrichten",
 			category_messages$new_message_focus : "Konzentration auf den Nachrichtentext",
 			category_messages$new_message_friend_list : "Zeige Shortcut zur Freundesliste",
 			// Settings - Packages
@@ -420,6 +433,7 @@ gca_languages['de'] = {
 			category_training$show_points_after_upgrade : "Zeige Werte nach dem Training",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Verblasse Gegenstände, die Du dir nicht leisten kannst",
+			category_merchants$ruby_icon_on_items : "Zeige ein Rubin-Symbol bei Gegenstände, die Rubine kosten",
 			category_merchants$show_shop_info : "Zeige Infos pro Händler (Gesamtes Gold und Rubinen)",
 			category_merchants$double_click_actions : "Gegenstände verkaufen / kaufen durch Doppelklick",
 			// Settings - Forge
@@ -441,6 +455,7 @@ gca_languages['de'] = {
 			category_market$one_gold_warning : "Kaufbestätigung für Gegenstände, die 1 Gold kosten",
 			category_market$cancel_all_button : "Zeige Schaltfläche \"Alle-Abbrechen\"",
 			category_market$remember_sell_duration : "Zuletzt gewählte Verkaufsdauer merken",
+			category_market$add_fees_button : "Zeige Schaltfläche \"Inkludiere Gebühr zum Marktpreis\"",
 			category_market$sell_duration : "Wähle die Standardverkaufsdauer aus",
 			category_market$one_gold_mode : "Schaltfläche zum Ändern des Marktpreise immer auf 1 Gold",
 			category_market$custom_prices : "Zeige benutzerdefinierte Marktpreise\n•Verkaufe den Basiswert des Gegenstandes um 50% teurer (z.B.: 150%)\n•Trenne mit Kommas (z.B.: 100.000, 2000000, 150%)\n ",
@@ -459,12 +474,13 @@ gca_languages['de'] = {
 			category_guild$bank_donate_layout : "Zeige verbessertes Layout der Bank",
 			category_guild$bank_book_layout : "Zeige verbessertes Layout des Spendebuches",
 			category_guild$bank_book_show_changes : "Zeige Spendendifferenz der Spieler seit letzten Spendenbuch-Besuch",
-			category_guild$medic_layout : "Zeige verbessertes Layout des Villa Medici",
+			category_guild$medic_layout : "Zeige verbessertes Layout des Villa Medicis",
 			// Settings - Auction
 			category_auction$items_counters : "Zeige Anzahl der Gegenstände",
 			category_auction$more_search_levels : "Zeige mehr Stufen in den Suchoptionen",
 			category_auction$item_price_analyze : "Analysiere die Preise der Gegenstände",
-			category_auction$item_level : "Zeige Level der Gegenstände",
+			category_auction$item_level : "Zeige zusätzlich das Level der Gegenstände",
+			category_auction$item_name : "Zeige zusätzlich den Name der Gegenstände",
 			category_auction$x3_items_per_line : "Zeige 3 Gegenstände pro Reihe",
 			category_auction$multi_bids : "Mehrere Gebote ohne Aktualisierung der Seite",
 			category_auction$extra_item_stats : "Zeige zusätzliche Statistiken auf den Gegenstandsbildern",

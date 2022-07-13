@@ -218,10 +218,14 @@ var gca_reports = {
 
 			// Date variable
 			let last_date = null;
+			let found_daily_divine_chest = false;
+			let daily_gold = 0;
+			let lastDateGoldTd = null;
 
 			// Report lines
 			let row = 1;
 			let line = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr');
+			let loot_translation = line[0].getElementsByTagName('th')[2].textContent;
 
 			// Align stuff
 			if (line[0].getElementsByTagName('th').length < 3) // There has been an error but none of the pages has less than 4...
@@ -234,26 +238,53 @@ var gca_reports = {
 				return;
 
 			// For every row
-			found_daily_divine_chest = false;
 			while (line[row]) {
 				// If a td exist
 				if (line[row].getElementsByTagName('td').length > 0) {
 					// Get date
 					let date = line[row].getElementsByTagName('td')[0].textContent.match(/(\d+\.\d+\.\d+)/i)[1];
-					// If this is a new line
+					let gold = parseInt(gca_tools.strings.removeDots(line[row].getElementsByTagName('td')[2].textContent), 10) || 0;
+					// Check if fight lost
+					if(line[row].getElementsByTagName('td')[1].getElementsByTagName('a').length>0 && line[row].getElementsByTagName('td')[1].getElementsByTagName('a')[0].style.color=='rgb(243, 7, 30)')
+						gold = 0;
+						
+					// Populate gold
+					if (last_date != date || row == line.length-1){
+						// If last row, add last row gold
+						if(row == line.length-1)
+							daily_gold += gold;
+						// Fill last date td
+						if(lastDateGoldTd!=null){
+							lastDateGoldTd.textContent = loot_translation + ": " +gca_tools.strings.insertDots(daily_gold);
+							lastDateGoldTd.appendChild(document.createTextNode(" "));
+							lastDateGoldTd.appendChild(gca_tools.create.goldIcon());
+						}
+						daily_gold = 0;
+					}
+
+					// If this is a new date
 					if (last_date != date) {
 						last_date = date;
 						found_daily_divine_chest = false;
 						// Insert a new line
 						let tr = document.createElement("tr");
 						tr.className = "reports_day_row";
+						// Date td
 						let td = document.createElement("td");
 						td.textContent = last_date;
-						td.setAttribute('colspan', line[row].getElementsByTagName('td').length);
+						td.setAttribute('colspan', 1);
 						tr.appendChild(td);
+						// Empty gold td
+						let td2 = document.createElement("td");
+						td2.setAttribute('colspan', line[row].getElementsByTagName('td').length-1);
+						tr.appendChild(td2);
+						lastDateGoldTd = td2;
+
 						line[row].parentNode.insertBefore(tr, line[row]);
 					}
 					else {
+						daily_gold += gold;
+
 						// Remove style
 						line[row].getElementsByTagName('td')[0].removeAttribute('style');
 						// Leave only time

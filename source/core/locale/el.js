@@ -70,6 +70,7 @@ gca_languages["gr"] = {
 			guild_market_goto: "Πήγαινε στην αγορά τάγματος",
 			guild_storage_goto: "Πήγαινε στην αποθήκη τάγματος",
 			guild_bank_goto: "Πήγαινε την τράπεζα τάγματος",
+			guild_baths_goto: "Πήγαινε στα λουτρά τάγματος (Vox I)",
 			guild_warcamp_goto: "Πήγαινε στην αίθουσα του άρχοντα του πολέμου",
 			guild_arenareports_goto: "Πήγαινε στις ταγματικές αναφορές μάχης αρένας",
 			guild_jail_goto: "Πήγαινε στην φυλακή τάγματος",
@@ -163,7 +164,12 @@ gca_languages["gr"] = {
 			// Medic
 			medic_lost_points: "Χαμένοι πόντοι",
 			medic_points_to_heal: "Πόντοι για θεραπεία",
-			medic_life_after_heal: "Ζωή μετά την θεραπεία"
+			medic_life_after_heal: "Ζωή μετά την θεραπεία",
+
+			// Baths
+			pinned_message : "Ανακοίνωση τάγματος",
+			pin_unpin_message : "Ανάρτηση ως ανακοίνωση / επαναφορά ως απλή ανάρτηση",
+			pinned_message_info : "Οι ανακοινώσεις εμφανίζονται στην αρχή των μηνυμάτων σε όλα τα μέλη με ενεργοποιημένες τις ανακοινώσεις τάγματος μέσω του GCA "
 		},
 
 		// Expedition
@@ -254,7 +260,9 @@ gca_languages["gr"] = {
 			item_cant_buy_back : "Δεν θα μπορείς να αγοράσεις πίσω αυτό το αντικείμενο.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Θέλεις πραγματικά να αγοράσεις αυτό το αντικείμενο;",
-			click_enter_to_sell : "πατήστε enter ⏎ για πώληση"
+			click_enter_to_sell : "πατήστε enter ⏎ για πώληση",
+			// Tooltips
+			add_fees_in_price : "Προσθήκη αμοιβών στην τιμή αγοράς",
 		},
 		
 		// Forge
@@ -348,7 +356,8 @@ gca_languages["gr"] = {
 			category_global$merchants_timer: "Προβολή του χρονομέτρου των πωλητών",
 			category_global$forge_timers : "Προβολή του χρονομέτρου σιδηρουργείου/χυτηρίου",
 			category_global$notify_new_guild_application : "Ειδοποίηση για νέες αιτήσεις στο τάγμα",
-			category_global$notify_new_guild_application_interval : "Έλεγχος για νέες αιτήσεις κάθε (λεπτά)",
+			category_global$check_guild_pinned_message : "Προβολή ανακοινώσεων από τα λουτρά τάγματος στα μηνύματα",
+			category_global$check_guild_application_pinned_messages_interval : "Έλεγχος για νέες αιτήσεις και αναρτημένα μηνύματα κάθε (λεπτά)",
 			category_global$notify_guild_attack_ready : "Ειδοποίηση όταν το τάγμα είναι έτοιμο να επιτεθεί",
 			category_global$notify_guild_attack_ready_interval : "Έλεγχος αν το τάγμα είναι έτοιμο να επιτεθεί κάθε (λεπτά)",
 			category_global$x_scroll : "Ενεργοποίηση της οριζόντιας κύλισης του gladiatus",
@@ -424,6 +433,7 @@ gca_languages["gr"] = {
 			category_training$show_points_after_upgrade : "Εμφάνιση πόντων μετά την εκπαίδευση",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να αγοραστούν",
+			category_merchants$ruby_icon_on_items : "Εμφάνιση εικονιδίου στα αντικείμενα που κοστίζουν ρουμπίνια",
 			category_merchants$show_shop_info : "Προβολή πληροφοριών αντικειμένων στους πωλητές (συνολικός χρυσός και ρουμπίνια)",
 			category_merchants$double_click_actions : "Πούλημα/Αγορά αντικειμένων με διπλό κλικ",
 			// Settings - Forge

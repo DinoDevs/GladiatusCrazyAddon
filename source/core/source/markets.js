@@ -57,6 +57,11 @@ var gca_markets = {
 		// 1 gold mode
 		(gca_options.bool("market", "one_gold_mode") &&
 			this.oneGoldMode());
+		
+		// If insert "with fees" button
+		if (gca_options.bool("market","add_fees_button")){
+			this.add_fees_button();
+		}
 
 		// Item sell warning icons
 		if (gca_options.bool("market", "sell_warning_icons")) {
@@ -682,6 +687,50 @@ var gca_markets = {
 				}
 			}
 		}
+	},
+
+	add_fees_button : function() {
+		let fees_indicator = document.getElementById('marktgebuehren');
+		if (!fees_indicator || !fees_indicator.nextElementSibling || fees_indicator.nextElementSibling.tagName != 'IMG') return;
+		let img = fees_indicator.nextElementSibling;
+		
+		let btn = document.createElement('a');
+		btn.textContent = '[+]';
+		btn.style.cursor = 'pointer';
+		btn.style.marginLeft = '5px';
+		btn.style.textDecoration = 'none';
+		btn.dataset.tooltip = '[[["'+gca_locale.get("markets","add_fees_in_price")+'","#fff"]]]';
+
+		btn.addEventListener('click', () => {
+			// Input element with the price
+			let price_input = document.getElementById('preis');
+			// Parse given price
+			let price = parseInt(price_input.value.replace(/\D/g,''), 10);
+			// If no input exit
+			if (isNaN(price)) return;
+
+			// Get global parameters
+			let multiplier = window.factors[document.getElementById('dauer').value];
+			let priceBuff = window.priceBuff || 1;
+
+			// Calculate fees
+			let fees = Math.ceil(Math.ceil(price * multiplier) * priceBuff);
+			// If the fees were already added on the price
+			if ((price_input.dataset.withFees * 1) == price) {
+				// Change price to the original value
+				price = price_input.dataset.withoutFees * 1;
+			}
+
+			// Update memory data
+			price_input.dataset.withFees = price + fees;
+			price_input.dataset.withoutFees = price;
+
+			// Update price
+			document.getElementById('preis').value = price + fees;
+			// Calculate new fees
+			window.calcDues();
+		});
+		img.parentNode.insertBefore(btn, img.nextSibling);
 	}
 
 };
