@@ -402,9 +402,10 @@ gca_languages['de'] = {
 			category_messages$new_message_friend_list : "Zeige Shortcut zur Freundesliste",
 			// Settings - Packages
 			category_packages$filters_layout : "Zeige verbessertes Layout der Filter",
-			category_packages$compact_info_layout : "Zeige kompaktes Layout",
-			category_packages$items_layout : "Zeige verbessertes Layout von Gegenständen",
 			category_packages$small_items_layout : "Zeige Gegenstände verkleinert",
+			category_packages$items_layout : "Zeige verbessertes Layout von Gegenständen:",
+			category_packages$compact_info_layout : "Zeige kompaktes Layout",
+			category_packages$list_view_layout : "Zeige Pakete als Listen-Ansicht",
 			category_packages$load_more_pages : "Lade mehrere Seiten",
 			category_packages$pages_to_load : "Seitenanzahl die geladen werden soll:",
 			category_packages$item_price : "Wert der Gegenstände anzeigen",
@@ -520,6 +521,7 @@ gca_languages['de'] = {
 			each_category : "Zeige pro Kategorie",
 			all_category : "Zeige pro Kategorie und gesamten Inhalt",
 			do_not_run : "Nicht anzeigen",
+			default: "Ursprünglich",
 
 			// Info
 			translated_percent : "Aktuell übersetzt: {{number}}%",
