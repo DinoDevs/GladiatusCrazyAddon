@@ -433,14 +433,15 @@ gca_options.data = {
 	"packages" : {
 		// Improve filters layout
 		"filters_layout" : true,
-		// Improve info layout
-		"compact_info_layout" : true,
-		// Improve packets layout
-		"items_layout" : true,
 		// Small items layout
 		"small_items_layout" : false,
+		// Improve packets layout
+		"items_layout" : 1,
+		/*"items_layout" : true,
+		// Improve info layout
+		"compact_info_layout" : true,
 		// List view layout
-		"list_view_layout" : false,
+		"list_view_layout" : false,*/
 		// Load more packages pages
 		"load_more_pages" : true,
 		// Number of pages to load

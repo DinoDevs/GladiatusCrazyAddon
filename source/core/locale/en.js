@@ -401,9 +401,9 @@ gca_languages["en"] = {
 			category_messages$new_message_friend_list : "Enable select friend from list button",
 			// Settings - Packages
 			category_packages$filters_layout : "Enhance filters layout",
-			category_packages$compact_info_layout : "Make info layout compact",
-			category_packages$items_layout : "Improve items layout",
 			category_packages$small_items_layout : "Make items small in size",
+			category_packages$items_layout : "Improve items layout:",
+			category_packages$compact_info_layout : "Make info layout compact",
 			category_packages$list_view_layout : "Show packages as a list view",
 			category_packages$load_more_pages : "Load more pages",
 			category_packages$pages_to_load : "Number of pages to load",
@@ -521,6 +521,7 @@ gca_languages["en"] = {
 			each_category : "Run on target category",
 			all_category : "Run on target category & all",
 			do_not_run : "Do not run",
+			default: "Default",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",

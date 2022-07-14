@@ -401,9 +401,9 @@ gca_languages["gr"] = {
 			category_messages$new_message_friend_list: "Εμφάνιση του κουμπιού Λίστα Φίλων",
 			// Settings - Packages
 			category_packages$filters_layout : "Βελτίωση της εμφάνισης των φίλτρων",
-			category_packages$compact_info_layout : "Κάντε το interface των πληροφοριών συμπαγή",
-			category_packages$items_layout : "Βελτίωση της εμφάνισης των αντικειμένων",
 			category_packages$small_items_layout : "Κάνε τα αντικείμενα μικρά σε μέγεθος",
+			category_packages$items_layout : "Βελτίωση της εμφάνισης των αντικειμένων:",
+			category_packages$compact_info_layout : "Συμπύκνωση λίστας πακέτων",
 			category_packages$list_view_layout : "Προβολή πακέτων ως λίστα",
 			category_packages$load_more_pages : "Φόρτωση περισσοτέρων σελίδων",
 			category_packages$pages_to_load: "Μέγιστος αριθμός σελίδων που φορτώνονται",
@@ -520,6 +520,7 @@ gca_languages["gr"] = {
 			each_category : "Ενεργό στην κάθε κατηγορία",
 			all_category : "Ενεργό στην κάθε κατηγορία & στην Όλα",
 			do_not_run : "Απενεργοποίηση",
+			default: "Προεπιλεγμένη",
 
 			// Info
 			translated_percent : "Μεταφρασμένα τοις εκατό: {{number}}%",

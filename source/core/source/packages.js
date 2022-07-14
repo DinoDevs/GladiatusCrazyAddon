@@ -25,21 +25,26 @@ var gca_packages = {
 		// Set filters styling if enabled
 		(gca_options.bool("packages", "filters_layout") && 
 			this.layout.groupSideFilters());
-		// Set Compact layout
-		(gca_options.bool("packages", "compact_info_layout") && 
-			this.layout.compactInfo());
+
 		// If Item shadow (also soul-bound icon)
 		(gca_options.bool("global","item_shadow") && 
 			this.layout.itemShadow.init(this));
 		// Show item's price
 		(gca_options.bool("packages", "item_price") && 
 			this.layout.itemPrice.init(this));
-		// Packages as list view
-		(gca_options.bool("packages", "list_view_layout") && 
-			this.layout.listView.init(this));
-		// Set Items layout
-		(gca_options.bool("packages", "items_layout") && 
-			this.layout.compactPackets());
+
+		// Package view
+		if(gca_options.get("packages", "items_layout") > 0 ){
+			// Set remove some useless spacing
+			this.layout.compactInfo();
+			if(gca_options.get("packages", "items_layout") == 1){
+				// Compact items view
+				this.layout.compactPackets();
+			}else{
+				// Packages as list view
+				this.layout.listView.init(this);
+			}
+		}
 		// Pagination layout
 		(gca_options.bool("global", "pagination_layout") && 
 			this.layout.pagination());

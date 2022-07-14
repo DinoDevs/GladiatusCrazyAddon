@@ -791,14 +791,40 @@ var gca_settings = {
 			"packages" : {
 				// Improve filters layout
 				"filters_layout" : true,
-				// Improve info layout
-				"compact_info_layout" : true,
-				// Improve packets layout
-				"items_layout" : true,
 				// Small items layout
 				"small_items_layout" : false,
+				// Improve info layout
+				//"compact_info_layout" : true, // todo: remove
+				// Improve packets layout
+				//"items_layout" : true, // todo: remove
 				// List view layout
-				"list_view_layout" : false,
+				//"list_view_layout" : false, // todo: remove
+				// Package view layout
+				"items_layout" : (function(){
+					var scheme = {
+						"type" : "custom",
+						"dom" : function(data, title, wrapper){
+							if(wrapper.className.length > 0) wrapper.className += " ";
+							wrapper.className += "gca_settings_select";
+							// Create select
+							data.select = document.createElement("select");
+							// Create a list
+							let options = [gca_locale.get("settings",'default'), gca_locale.get("settings",'category_packages$compact_info_layout'), gca_locale.get("settings",'category_packages$list_view_layout')];
+							for (let i = 0; i < options.length; i++) {
+								let option = document.createElement("option");
+								option.value = i;
+								option.textContent = options[i];
+								data.select.appendChild(option);
+							}
+							data.select.selectedIndex = gca_options.get("packages", "items_layout");
+							return data.select;
+						},
+						"save" : function(data){
+							gca_options.set("packages", "items_layout", (parseInt(data.select.value, 10) || 0));
+						}
+					};
+					return scheme;
+				})(),
 				// Load more packages pages
 				"load_more_pages" : true,
 				// Number of pages to load
