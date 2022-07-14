@@ -60,6 +60,7 @@ gca_languages['cs'] = {
 			guild_market_goto : "Gildovní tržiště",
 			guild_storage_goto : "Skladiště",
 			guild_bank_goto : "Banka",
+			guild_baths_goto: "Lázně (Vox Logus I)",
 			guild_warcamp_goto : "Síň mistra války",
 			guild_arenareports_goto : "Zprávy z boje gildovních bitev",
 			guild_jail_goto : "Negotium X",
