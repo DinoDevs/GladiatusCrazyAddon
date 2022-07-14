@@ -70,6 +70,7 @@ gca_languages['de'] = {
 			guild_market_goto : "Zum Gildenmarkt",
 			guild_storage_goto : "Zum Lager",
 			guild_bank_goto : "Zur Bank",
+			guild_baths_goto : "Zum Badehaus (Vox I)",
 			guild_warcamp_goto : "Zur Kriegsmeisterhalle",
 			guild_arenareports_goto : "Zu Gilden Kampfberichte",
 			guild_jail_goto : "Zum Negotium X",
