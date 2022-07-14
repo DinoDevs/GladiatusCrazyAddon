@@ -660,6 +660,7 @@
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links a{height: 27px;width: 29px;float: left;text-decoration: none;display: block;cursor: pointer;line-height: 27px;text-align: center;background: transparent url('interface/menu_items.png') no-repeat -322px 0px !important;}
 		.gca_rtl .gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links a{float: right;}
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links a:hover{background: transparent url('interface/menu_items.png') no-repeat -351px 0px !important;}
+		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links a > div{transform: scale(0.75);}
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_shift{width: 15px;cursor: pointer;display: block;height: 27px;line-height: 27px;text-align: center;position: absolute;top: 0px;right: 8px;display: block;background: transparent url('interface/menu_items.png') no-repeat 0px 0px;}
 		.gca_rtl .gca_advance_main_menu .advanced_sub_menu .advanced_menu_shift{right: auto;left: 8px;}
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_shift:hover{background: transparent url('interface/menu_items.png') no-repeat -15px 0px;}
@@ -669,6 +670,7 @@
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_link_multiple_active{background: transparent url('interface/menu_items.png') no-repeat -116px -54px !important;}
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_shift_left{left: 10px}
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links_left{margin-left: 26px}
+		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_back_links_left a > div{transform: scale(0.75);}
 
 		/* Menu side icon */
 		.gca_advance_main_menu .advanced_sub_menu .advanced_menu_entry .advanced_menu_side_icon{position: absolute;top:6px;left:-3px;background: transparent url('icons/menu-side-icons.png') no-repeat 0px 0px;width:10px;height:14px;}
