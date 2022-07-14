@@ -393,6 +393,7 @@ gca_languages['cs'] = {
 			category_packages$compact_info_layout : "Udělat kompaktní rozložení informací",
 			category_packages$items_layout : "Vylepšit rozložení předmětů",
 			category_packages$small_items_layout : "Zmenšit velikost předmětů",
+			category_packages$list_view_layout : "Zobrazit zásilky jako seznam",
 			category_packages$load_more_pages : "Načíst více stránek",
 			category_packages$pages_to_load : "Maximum načtených stránek",
 			category_packages$item_price : "Zobrazit cenu předmětů",
