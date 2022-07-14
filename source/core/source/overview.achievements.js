@@ -93,9 +93,15 @@ var gca_overview_achievements = {
 			for (var i = 1; i < 6; i++) {
 				total += document.getElementById('cat' + category).getElementsByClassName('achievement_detail_medal' + i).length;
 			}
-
+			
 			// Completed category achievements
 			var competed = document.getElementById('cat' + category).getElementsByClassName('active').length;
+
+			// Categories without medals (honor titles)
+			if(total == 0){
+				total = document.getElementById('cat' + category).getElementsByClassName('achievement_detail_points').length;
+				competed = document.getElementById('cat' + category).getElementsByClassName('achievement_detail_points_gold').length;
+			}
 
 			// Completed percent
 			var percent = 0;
