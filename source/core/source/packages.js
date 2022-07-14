@@ -303,7 +303,7 @@ var gca_packages = {
 					jQuery(packageContainerElement.children[2]).append('<div class="leftPackageItemInfo"></div>');
 					jQuery(packageContainerElement.children[2]).append('<div class="rightPackageItemInfo"></div>');
 					jQuery(packageContainerElement.children[2].children[0]).append(packageOrigin);
-					jQuery(packageContainerElement.children[2].children[0]).append(`<span style="font-weight: bold; color: ${itemColor}">${itemName}</span>`);
+					jQuery(packageContainerElement.children[2].children[0]).append(`<span style="font-weight: bold; line-height: 8px; color: ${itemColor}">${itemName}</span>`);
 					jQuery(packageContainerElement.children[2].children[1]).append(`<span style="font-weight: bold; width: 70px">Level ${itemLevel}</span>`);
 					jQuery(packageContainerElement.children[2].children[1]).append(packagePriceInfo);
 					jQuery(packageContainerElement.children[2].children[1]).append(packageExpiration);
