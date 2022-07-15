@@ -3974,7 +3974,7 @@ var gca_global = {
 						let tooltip = jQuery(item).data("tooltip")[0];
 
 						let original_name = ( hash.subcategory <= this.names.length ) ? this.names[hash.subcategory-1] : "n/a" ;
-						tooltip.splice(1, 0, [ gca_locale.get("global", "merchenary_type", {name:original_name, number:hash.subcategory}), "gray; font-size: 0.8em;"]);
+						tooltip.splice(1, 0, [ gca_locale.get("global", "mercenary_type", {name:original_name, number:hash.subcategory}), "gray; font-size: 0.8em;"]);
 						
 						let merchenaryLevel = parseInt(tooltip[9][0].match(/(\d+)/i)[1]);//hash.prefix+hash.suffix;
 						let characterLevel = this.level;
@@ -3986,7 +3986,7 @@ var gca_global = {
 
 						// Max stats
 						j = 2+newRow;
-						tooltip[j] = [ [tooltip[j][0], `Combat gains with full stats:`], ['#BA9700', '#999']];
+						tooltip[j] = [ [tooltip[j][0], gca_locale.get('global', 'gains_with_full_stats')], ['#BA9700', '#999']];
 						
 						// Strength - Chance to block
 						j = 3+newRow;
@@ -3994,13 +3994,9 @@ var gca_global = {
 						value = Math.floor(value*1.5+merchenaryLevel);// max value
 						dmg = Math.floor(value/10);
 						value = Math.round((dmg * 52 / (characterLevel-8 ))/6*10)/10;// Block chance
-						tooltip[j] = [ 
-							[
-								tooltip[j][0],
-								gca_locale.get('training', 'points_breakdown_damage', {integer: dmg, float: 0}).replace(' (+0)',"")
-							], ['#999', '#BA9700']];
+						tooltip[j] = [ [tooltip[j][0], gca_locale.get('training', 'points_breakdown_damage', {integer: dmg, float: 0}).replace(' (+0)',"")], ['#999', '#BA9700']];
 						// add row
-						tooltip.splice(4, 0, [["", `Block ${value}%`], ['#999', '#BA9700']]);
+						tooltip.splice(4, 0, [["", gca_locale.get('training', 'points_breakdown_block_short', {integer: value}).replace(' (+0)',"")], ['#999', '#BA9700']]);
 						newRow++;
 						
 						// Dexterity - Critical attack
@@ -4009,11 +4005,7 @@ var gca_global = {
 						value = Math.floor(value*1.5+merchenaryLevel);// max value
 						dexterity = value;
 						value = Math.round((Math.floor(value/10) * 52 / (characterLevel-8 ))/5*10)/10;// Avoid critical
-						tooltip[j] = [ 
-							[
-								tooltip[j][0],
-								`Critical ${value}%`
-							], ['#BA9700', '#BA9700']];
+						tooltip[j] = [[tooltip[j][0], gca_locale.get('training', 'points_breakdown_critical_hit_short', {integer: value})], ['#BA9700', '#BA9700']];
 						
 						// Agility - Avoid critical
 						j = 5+newRow;
@@ -4021,21 +4013,14 @@ var gca_global = {
 						value = Math.floor(value*1.5+merchenaryLevel);// max value
 						agility = value;
 						value = Math.round((Math.floor(value/10) * 52 / (characterLevel-8 ))/4*10)/10;// Avoid critical
-						tooltip[j] = [
-							[
-								tooltip[j][0], `Avoid critical ${value}%`
-							], ['#BA9700', '#BA9700']];
+						tooltip[j] = [[tooltip[j][0], gca_locale.get('training', 'points_breakdown_avoid_short', {integer: value})], ['#BA9700', '#BA9700']];
 						
 						// Constitution - Life
 						j = 6+newRow;
 						value = tooltip[j][0].match(/(\d+)/i)[1];
 						value = Math.floor(value*1.5+merchenaryLevel);// max value
 						value = Math.floor(value*2-50);// life
-						tooltip[j] = [ 
-							[
-								tooltip[j][0],
-								gca_locale.get('training', 'points_breakdown_life', {number: value})
-							], ['#999', '#999']];
+						tooltip[j] = [[tooltip[j][0],gca_locale.get('training', 'points_breakdown_life', {number: value})], ['#999', '#999']];
 
 						// Charisma - Threat
 						j = 7+newRow;
@@ -4044,13 +4029,9 @@ var gca_global = {
 						charisma = value;
 						value = Math.floor(value*0.7);// threat
 						doubleHitFactor = Math.round(charisma*dexterity/100)/10;
-						tooltip[j] = [ 
-							[
-								tooltip[j][0], 
-								"2hit factor: " + doubleHitFactor
-							], ['#999', '#BA9700']];
+						tooltip[j] = [[tooltip[j][0], gca_locale.get('training', 'points_breakdown_threat', {integer: value, float: 0}).replace(' (+0)','')], ['#999', '#999']];
 						// add row
-						tooltip.splice(j+1, 0, [["", gca_locale.get('training', 'points_breakdown_threat', {integer: value, float: 0}).replace(' (+0)','')], ['#999', '#999']]);
+						tooltip.splice(j+1, 0, [["", gca_locale.get('training', 'points_breakdown_double_hit_factor', {number: doubleHitFactor})], ['#999', '#BA9700']]);
 						newRow++;
 
 						// Intelligence - Heal
@@ -4060,13 +4041,9 @@ var gca_global = {
 						intelligence = value;
 						value = Math.floor(Math.floor(value*4/5) + Math.floor(value/5)*2*(Math.floor(value/5) * 52 / (characterLevel-8 ))/800);// equivalent heal
 						avoidDoubleHitFactor = Math.round(intelligence*agility/100)/10;
-						tooltip[j] = [ 
-							[
-								tooltip[j][0], 
-								gca_locale.get('training', 'points_breakdown_heal', {integer: value, float: 0}).replace(' (+0)','')
-							], ['#999', '#BA9700', '#999']];
+						tooltip[j] = [[tooltip[j][0], gca_locale.get('training', 'points_breakdown_heal', {integer: value, float: 0}).replace(' (+0)','')], ['#999', '#BA9700', '#999']];
 						// add row
-						tooltip.splice(j+1, 0, [["", "Avoid 2hit factor: " + avoidDoubleHitFactor], ['#999', '#BA9700']]);
+						tooltip.splice(j+1, 0, [["", gca_locale.get('training', 'points_breakdown_avoid_double_hit_factor', {number: avoidDoubleHitFactor})], ['#999', '#BA9700']]);
 						newRow++;
 						
 						// Remove all last gray rows of tooltips

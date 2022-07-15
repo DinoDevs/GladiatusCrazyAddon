@@ -119,7 +119,7 @@ gca_languages['zh'] = {
 			gold_exp_data_total_gold : "總金幣數",
 			
 			// Items
-			merchenary_type : "類型: {{name}} ({{number}})"
+			mercenary_type : "類型: {{name}} ({{number}})"
 		},
 
 		// Overview

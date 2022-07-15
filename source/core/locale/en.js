@@ -123,7 +123,9 @@ gca_languages["en"] = {
 			gold_exp_data_desc: "Data are collected every 5 minutes. Selling items you have bought will double your gold earnings.",
 			
 			// Items
-			merchenary_type : "Type: {{name}} ({{number}})",
+			// Mercenaries
+			mercenary_type : "Type: {{name}} ({{number}})",
+			gains_with_full_stats: "Gains with full stats:",
 		},
 
 		// Overview
@@ -209,11 +211,16 @@ gca_languages["en"] = {
 			points_breakdown_damage : "Damage: +{{integer}} (+{{float}})",
 			points_breakdown_block : "Block: +{{integer}}% (+{{float}}%)",
 			points_breakdown_block_max : "Block: maximum value",
+			points_breakdown_block_short : "Block: +{{integer}}%",
 			points_breakdown_normal_hit : "Hit chance: +{{integer}}% (+{{float}}‰) *",
 			points_breakdown_critical_hit : "Critical hit chance: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_hit_short : "Critical hit: +{{integer}}%",
 			points_breakdown_double_hit : "Double hit chance: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_double_hit_factor : "Double hit factor: {{number}}",
+			points_breakdown_avoid_double_hit_factor : "Avoid double hit factor: {{number}}",
 			points_breakdown_avoid : "Avoid critical hit chance: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_avoid_max : "Avoid critical hit chance: maximum value",
+			points_breakdown_avoid_short : "Avoid critical hit: +{{integer}}%",
 			points_breakdown_enemy_normal_hit : "Opponent hit chance: {{integer}}% ({{float}}‰) *",
 			points_breakdown_enemy_double_hit : "Opponent double hit chance: {{integer}}% ({{float}}‰) *",
 			points_breakdown_life : "Life points: +{{number}}",
@@ -371,7 +378,7 @@ gca_languages["en"] = {
 			category_global$show_durability : "Display durability on item's bottom-left corner",
 			category_global$min_durability : "Notification for items with durability+conditioning under _% (move to 0 to disable it)",
 			category_global$show_forge_info : "Display item's forge materials on tooltips",
-			category_global$show_mercenaries_real_name : "Display mercenaries real names (type) on tooltips",
+			category_global$show_mercenaries_real_name_and_combat_stats : "Display mercenaries real names (type) and combat stats on tooltips",
 			category_global$global_arena_timer : "Display Global Arena timer",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
@@ -456,7 +463,7 @@ gca_languages["en"] = {
 			category_market$one_gold_warning : "Buy confirmation on items that cost 1 gold",
 			category_market$cancel_all_button : "Show cancel-all button",
 			category_market$remember_sell_duration : "Remember last chosen sell duration",
-			category_market$add_fees_button : "Show button that includes fees on the maket price",
+			category_market$add_fees_button : "Show [+] button that includes fees in selling price",
 			category_market$sell_duration : "Select default sell duration",
 			category_market$one_gold_mode : "Add toggleable buttons for item prices (custom prices included)",
 			category_market$custom_prices : "Custom market prices, separated with commas. Calculate base on percentage of the item's price by adding an '%'. (e.g., '10000, 10.000, 200%')",

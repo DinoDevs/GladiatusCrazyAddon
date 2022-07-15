@@ -82,7 +82,7 @@ gca_languages['lt'] = {
 			guild_templum_goto : "Eiti į gildijos šventyklą",
 			notification_guild_attack_ready : "Galima nauja gildijos kova!",
 			item_worth_rubies : "Šis daiktas yra vertas rubinų!",
-			merchenary_type : "Tipas: {{name}} ({{number}})"
+			mercenary_type : "Tipas: {{name}} ({{number}})"
 		},
 		overview : {
 			stats_difference : "Skirtumas",

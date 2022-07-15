@@ -118,7 +118,7 @@ gca_languages["ro"] = {
 			gold_exp_data_total_exp : "Experiență totală",
 			gold_exp_data_total_gold : "Aur total",
 			
-			merchenary_type : "Type: {{name}} ({{number}})"
+			mercenary_type : "Type: {{name}} ({{number}})"
 		},
 
 		// Overview

@@ -82,7 +82,7 @@ gca_languages['es'] = {
 			guild_templum_goto : "Ir al templo de la alianza",
 			notification_guild_attack_ready : "¡El tiempo de espera para atacar en la guerra de alianzas ha terminado!",
 			item_worth_rubies : "¡Ese objeto vale rubíes!",
-			merchenary_type : "Tipo: {{name}} ({{number}})"
+			mercenary_type : "Tipo: {{name}} ({{number}})"
 		},
 		overview : {
 			stats_difference : "Diferencia",

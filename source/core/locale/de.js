@@ -123,7 +123,7 @@ gca_languages['de'] = {
 			gold_exp_data_desc: "Die Daten werden alle 5 Minunten gesammelt. Der Verkauf von gekauften Gegenständen verdoppelt Deine Goldstatistik.",
 			
 			// Items
-			merchenary_type : "Typ: {{name}} ({{number}})"
+			mercenary_type : "Typ: {{name}} ({{number}})"
 		},
 
 		// Overview

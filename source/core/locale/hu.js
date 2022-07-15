@@ -119,7 +119,7 @@ gca_languages['hu'] = {
 			gold_exp_data_total_gold : "Összes arany",
 
 			// Items
-			merchenary_type : "Írd: {{name}} ({{number}})",
+			mercenary_type : "Írd: {{name}} ({{number}})",
 		},
 
 		// Overview

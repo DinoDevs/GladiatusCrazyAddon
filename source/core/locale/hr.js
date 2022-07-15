@@ -108,7 +108,7 @@ gca_languages['hr'] = {
 		},
 		
 		// Items
-			merchenary_type : "Tip: {{name}} ({{number}})",
+			mercenary_type : "Tip: {{name}} ({{number}})",
 
 		// Overview
 		overview : {

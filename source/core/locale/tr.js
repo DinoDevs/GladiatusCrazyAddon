@@ -109,7 +109,7 @@ gca_languages["tr"] = {
 			gold_exp_data_desc : "her 5 dakikada veri toplanır. Satın aldığınız ürünleri satmak altın kazancınızı ikiye katlar.",
 			
 			//Tüccarlar
-			merchenary_type : "Tip: {{name}} ({{number}})"
+			mercenary_type : "Tip: {{name}} ({{number}})"
 
 		},
 

@@ -123,7 +123,8 @@ gca_languages["gr"] = {
 			gold_exp_data_desc: "Λήψη δεδομένων κάθε 5 λεπτά. Η πώληση αντικειμένων που έχετε αγοράσει θα διπλασιάσει τα κέρδη σας.",
 			
 			// Items
-			merchenary_type : "Τύπος: {{name}} ({{number}})",
+			mercenary_type : "Τύπος: {{name}} ({{number}})",
+			gains_with_full_stats: "Με μέγιστα στατιστικά:",
 		},
 
 		// Overview
@@ -207,13 +208,18 @@ gca_languages["gr"] = {
 			stats_points : "Πόντοι στατιστικών",
 			points_breakdown : "Ανάλυση πόντων",
 			points_breakdown_damage : "Ζημιά: +{{integer}} (+{{float}})",
-			points_breakdown_block : "Αξία κλειδώματος: +{{integer}}% (+{{float}}%)",
-			points_breakdown_block_max : "Αξία κλειδώματος: μέγιστη τιμή",
+			points_breakdown_block : "Πιθανότητα απόκρουσης: +{{integer}}% (+{{float}}%)",
+			points_breakdown_block_max : "Πιθανότητα απόκρουσης: μέγιστη τιμή",
+			points_breakdown_block_short : "Απόκρουση: +{{integer}}%",
 			points_breakdown_normal_hit : "Πιθανότητα χτυπήματος: +{{integer}}% (+{{float}}‰) *",
 			points_breakdown_critical_hit : "Πιθανότητα κρίσιμου χτυπήματος: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_hit_short : "Κρίσιμο χτύπημα: +{{integer}}%",
 			points_breakdown_double_hit : "Πιθανότητα διπλού χτυπήματος: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_double_hit_factor : "Συντελεστής διπλού: {{number}}",
+			points_breakdown_avoid_double_hit_factor : "Συντελεστής αποφηγής διπλού: {{number}}",
 			points_breakdown_avoid : "Πιθανότητα αποφυγής κρίσιμου χτυπήματος: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_avoid_max : "Πιθανότητα αποφυγής κρίσιμου χτυπήματος: μέγιστη τιμή",
+			points_breakdown_avoid_short : "Αποφυγή κρίσιμου: +{{integer}}%",
 			points_breakdown_enemy_normal_hit : "Πιθανότητα χτυπήματος αντιπάλου: {{integer}}% ({{float}}‰) *",
 			points_breakdown_enemy_double_hit : "Πιθανότητα διπλού χτυπήματος αντιπάλου: {{integer}}% ({{float}}‰) *",
 			points_breakdown_life : "Πόντοι ζωής: +{{number}}",
@@ -371,7 +377,7 @@ gca_languages["gr"] = {
 			category_global$show_durability : "Εμφάνιση της ανθεκτικότητας των αντικειμένων στην κάτω αριστερή τους γωνία",
 			category_global$min_durability : "Ειδοποίηση όταν η ανθεκτικότητα+εξευγενισμός είναι κάτω από μια τιμή % (επιλέξτε 0 για απενεργοποίηση)",
 			category_global$show_forge_info : "Εμφάνιση των πρώτων υλών του αντικειμένου στο tooltip",
-			category_global$show_mercenaries_real_name : "Εμφάνιση του πραγματικού ονόματος (τύπος) μισθοφόρου στα tooltip",
+			category_global$show_mercenaries_real_name_and_combat_stats : "Εμφάνιση του πραγματικού ονόματος (τύπος) και παραπάνω στατιστικών στα tooltip των μισθοφόρων",
 			category_global$global_arena_timer : "Προβολή του χρονομέτρου της Παγκόσμιας Αρένας",
 			// Settings - Overview
 			category_overview$analyze_items: "Ανάλυση των αντικειμένων του παίκτη",
@@ -456,6 +462,7 @@ gca_languages["gr"] = {
 			category_market$one_gold_warning : "Επιβεβαίωση αγοράς αντικειμένων κόστους 1 χρυσού",
 			category_market$cancel_all_button : "Εμφάνιση κουμπιού ακύρωσης όλων",
 			category_market$remember_sell_duration : "Να θυμάται το πρόσθετο την τελευταία επιλεγμένη διάρκεια πώλησης",
+			category_market$add_fees_button : "Εμφάνιση κουμπιού [+] που προσθέτει τους φόρους στην τιμή πώλησης",
 			category_market$sell_duration : "Ορισμός προεπιλεγμένης διάρκειας πώλησης",
 			category_market$one_gold_mode : "Επιλογή για σταθερή τιμή πώλησης 1ος χρυσού",
 			category_market$custom_prices : "Προσαρμοσμένες τιμές αγοράς, διαχωρισμένες με κόμμα. Υπολογισμός βάση ποσοστού της τιμής του προϊόντος προσθέτοντας ένα '%'. (π.χ. '10000, 10.000, 200%')",

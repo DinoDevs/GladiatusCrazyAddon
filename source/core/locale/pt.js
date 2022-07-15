@@ -119,7 +119,7 @@ gca_languages['pt'] = {
 			gold_exp_data_total_gold : "Ouro total",
 			
 			// Items
-			merchenary_type : "Tipo: {{name}} ({{number}})"
+			mercenary_type : "Tipo: {{name}} ({{number}})"
 		},
 		
 		// Overview
