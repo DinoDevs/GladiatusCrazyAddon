@@ -762,6 +762,8 @@
 		.gca_rtl .analyzer_life_charstats_border{background-position: right;}
 		.analyzer_life_report .charstats_text{display: unset!important}
 
+		/* Gladiatus Fixes */
+		.report_durability_loss{min-width:36px!important;position:absolute!important;margin:20px;}
 
 	/* Overview Layout
 	-------------------------------------------------- */

@@ -719,13 +719,14 @@ var gca_reports = {
 					element.getElementsByTagName("td")[0].appendChild(span);
 					
 					// Damage Taken
+					/* // useless stat since the blocked/avoided attacks are shown below
 					br = document.createElement("br");
 					element.getElementsByTagName("td")[1].appendChild(br);
 					span = document.createElement("span");
 					span.style = font_style;
 					span.textContent = '⚔ '+got_hit+' / '+(dodge+got_hit)+' ('+ ((dodge+got_hit>0) ? Math.round(got_hit/(dodge+got_hit)*100) : '--')+'%)';
 					span.dataset.tooltip = '[[["'+gca_locale.get("reports", "hits")+' / '+gca_locale.get("reports", "total_hits")+'","#fdfdfd"]]]';
-					element.getElementsByTagName("td")[1].appendChild(span);
+					element.getElementsByTagName("td")[1].appendChild(span);*/
 					
 					br = document.createElement("br");
 					element.getElementsByTagName("td")[1].appendChild(br);
