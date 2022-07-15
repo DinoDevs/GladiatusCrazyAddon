@@ -1003,7 +1003,7 @@ var gca_reports = {
 				
 				bar_wrapper = document.createElement('div');
 				bar_wrapper.className = 'charstats_balken';
-				bar_wrapper.style = "margin-top: 2px;background-image: none;";
+				bar_wrapper.style = "background-image: none;"; //margin-top: 2px
 				let bar_threat = document.createElement('div');
 				bar_threat.className = 'charstats_balken_xp';
 				//bar_threat.style = 'margin-left:10px;position: absolute;width:' + threat_value;

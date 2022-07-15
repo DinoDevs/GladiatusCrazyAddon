@@ -760,6 +760,7 @@
 		.analyzer_life_charstats .charstats_value3{font-weight: normal;font-size: 11px;}
 		.analyzer_life_charstats_border{width: 200px;height: 5px;overflow: hidden;clear: both;}
 		.gca_rtl .analyzer_life_charstats_border{background-position: right;}
+		.analyzer_life_report .charstats_text{display: unset!important}
 
 
 	/* Overview Layout
