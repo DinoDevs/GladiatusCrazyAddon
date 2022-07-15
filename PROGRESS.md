@@ -39,7 +39,7 @@
 	- [x] Fixed a loop when gettings items from workbench (Firefox) (#335)
 	- [x] Style adjustments on book of scrolls (lists with known prefixes & suffixes)
 - **Settings**
-	- [x] Export settings to notes messing up `&"'<>` chars bug fixed
+	- [x] Export settings to notes: messing up `&"'<>` chars bug fixed
 - **Messages**
 	- [x] Fixed styling of the success/failure notice in new message layout (#357)
 
