@@ -511,6 +511,7 @@ gca_languages['cs'] = {
 			each_category : "Na vybrané kategorii",
 			all_category : "Na vybrané kategorii & všechny",
 			do_not_run : "Nikoliv",
+			default: "Výchozí",
 			
 			// Info
 			translated_percent : "Přeloženo: {{number}}%",
