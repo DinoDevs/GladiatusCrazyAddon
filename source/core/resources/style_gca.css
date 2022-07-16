@@ -1016,7 +1016,7 @@
 		.gca_packages_small_items_layout .list-view .packageItem > div:nth-of-type(1){transform: scale(0.5) !important;}
 		.list-view .packageItem.size_y_3 {height: 96px !important;}
 		.list-view .packageItem.size_y_2 {height: 65px !important;}
-		.list-view .packageItem.size_y_1 {height: 30px !important;}
+		.list-view .packageItem.size_y_1 {height: 32px !important;}
 		.gca_packages_small_items_layout .list-view .packageItem.size_y_3 {height: 46px !important;}
 		.gca_packages_small_items_layout .list-view .packageItem.size_y_2 {height: 31px !important;}
 		.gca_packages_small_items_layout .list-view .packageItem.size_y_1 {height: 23px !important;}
