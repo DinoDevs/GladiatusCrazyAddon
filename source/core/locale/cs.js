@@ -113,7 +113,8 @@ gca_languages['cs'] = {
 			gold_exp_data_desc: "Data jsou shromažďována každých 5 minut. Prodej zakoupených předmětů zdvojnásobí Vaše statistiky zlata.",
 			
 			// Items
-			mercenary_type : "Typ: {{name}} ({{number}})"
+			mercenary_type : "Typ: {{name}} ({{number}})",
+			gains_with_full_stats : "Zisk s max. atributy:"
 		},
 		
 		// Overview
@@ -198,11 +199,16 @@ gca_languages['cs'] = {
 			points_breakdown_damage : "Poškození: +{{integer}} (+{{float}})",
 			points_breakdown_block : "Blok: +{{integer}}% (+{{float}}%)",
 			points_breakdown_block_max : "Blok: MAX",
+			points_breakdown_block_short : "Blok: +{{integer}}%",
 			points_breakdown_normal_hit : "Zásah: +{{integer}}% (+{{float}}‰) *",
 			points_breakdown_critical_hit : "Kritický zásah: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_hit_short : "Kritický zásah: +{{integer}}%",
 			points_breakdown_double_hit : "Dvojitý zásah: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_double_hit_factor : "Dvojitý zásah: {{number}}", 
+			points_breakdown_avoid_double_hit_factor : "Šance se vyhnout dvojitému zásahu: {{number}}", 
 			points_breakdown_avoid : "Šance se vyhnout kritickému zásahu: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_avoid_max : "Šance se vyhnout kritickému zásahu: MAX",
+			points_breakdown_avoid_short : "Šance se vyhnout kritickému zásahu: +{{integer}}%", 
 			points_breakdown_enemy_normal_hit : "Protivníkovo šance na zásah: {{integer}}% ({{float}}‰) *",
 			points_breakdown_enemy_double_hit : "Protivníkovo šance na dvojitý zásah: {{integer}}% ({{float}}‰) *",
 			points_breakdown_life : "Život: +{{number}}",
@@ -360,7 +366,7 @@ gca_languages['cs'] = {
 			category_global$show_durability : "Zobrazit životnost předmětu v levém dolním rohu",
 			category_global$min_durability : "Upozornění pro předměty s životností+zdokonalení pod _% (posuň na 0 pro vypnutí)",
 			category_global$show_forge_info : "Zobrazit suroviny předmětu v popisku",
-			category_global$show_mercenaries_real_name : "Zobrazit reálná jména žoldáků (typ) v popiscích",
+			category_global$show_mercenaries_real_name_and_combat_stats : "Zobrazit reálná jména žoldáků (typ) a jejich bojové statistiky v popiscích",
 			category_global$global_arena_timer : "Zobrazit časovač Globální Arény",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
@@ -390,10 +396,10 @@ gca_languages['cs'] = {
 			category_messages$new_message_friend_list : "Zobrazit seznam přátel ve zprávách",
 			// Settings - Packages
 			category_packages$filters_layout : "Vylepšit rozložení filtrů",
-			category_packages$compact_info_layout : "Udělat kompaktní rozložení informací",
+			category_packages$compact_info_layout : "Zobraz kompaktní rozložení informací",
 			category_packages$items_layout : "Vylepšit rozložení předmětů",
 			category_packages$small_items_layout : "Zmenšit velikost předmětů",
-			category_packages$list_view_layout : "Zobrazit zásilky jako seznam",
+			category_packages$list_view_layout : "Zobraz zásilky jako seznam",
 			category_packages$load_more_pages : "Načíst více stránek",
 			category_packages$pages_to_load : "Maximum načtených stránek",
 			category_packages$item_price : "Zobrazit cenu předmětů",
