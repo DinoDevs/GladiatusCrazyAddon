@@ -3928,6 +3928,13 @@ var gca_global = {
 							this.showMerchenaryType();
 						});
 					}
+
+					// On item move
+					gca_tools.event.request.onAjaxResponse((data) => {
+						let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
+						if (item && typeof(item[0].dataset.gcaFlag_isMerchenaryType) !== 'undefined') delete item[0].dataset.gcaFlag_isMerchenaryType;
+						this.showMerchenaryType();
+					})
 				},
 				
 				level : 5,
