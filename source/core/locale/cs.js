@@ -119,7 +119,7 @@ gca_languages['cs'] = {
 			// Item materials
 			base : "Základ",
 			prefix : "Prefix",
-			sufix : "Suffix" 
+			suffix : "Suffix" 
 		},
 		
 		// Overview
