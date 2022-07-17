@@ -214,7 +214,7 @@ var gca_global = {
 			this.display.analyzeItems.itemForgeInfo.init());
 		
 		// Edit Mercenaries tooltips
-		(gca_options.bool("global","show_mercenaries_real_name") &&
+		(gca_options.bool("global","show_mercenaries_real_name_and_combat_stats") &&
 			this.display.analyzeItems.mercenaries.init());
 
 		// Show upgrade item value on item
