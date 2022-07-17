@@ -367,7 +367,7 @@ gca_options.data = {
 		"min_durability" : 25,
 		
 		// Show mercenaries real name
-		"show_mercenaries_real_name" : false,
+		"show_mercenaries_real_name_and_combat_stats" : false,
 		
 		// Show upgrades value on items
 		"show_upgrade_values" : false,
