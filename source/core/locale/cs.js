@@ -367,6 +367,7 @@ gca_languages['cs'] = {
 			category_global$min_durability : "Upozornění pro předměty s životností+zdokonalení pod _% (posuň na 0 pro vypnutí)",
 			category_global$show_forge_info : "Zobrazit suroviny předmětu v popisku",
 			category_global$show_mercenaries_real_name_and_combat_stats : "Zobrazit reálná jména žoldáků (typ) a jejich bojové statistiky v popiscích",
+			category_global$show_upgrade_values : "Zobrazit hodnoty předmětů vylepšení & zdokonalení",
 			category_global$global_arena_timer : "Zobrazit časovač Globální Arény",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
