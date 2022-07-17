@@ -3707,12 +3707,12 @@ var gca_global = {
 							data.prefix.forEach((mat) => {
 								row_mats += '<td><div class="item-i-18-' + mat + '" style="display:inline-block;transform: scale(0.7);margin:-12px -6px -12px -6px;"></div></td>';
 							});
-							row_type += '<td colspan="' + count + '">' + '[Prefix]' + '</td>';
+							row_type += '<td colspan="' + count + '">' + '[' + gca_locale.get("global", "prefix") + ']' + '</td>';
 							row_info += '<td colspan="' + count + '">' + (data.prefix.level >= 0 ? data.prefix.level : '??') + ' lvl' + '</td>';
 							row_dev += '<td colspan="' + count + '">' + '#' + prefix + '</td>';
 						}
 						else {
-							row_type += '<td>' + '[Prefix]' + '</td>';
+							row_type += '<td>' + '[' + gca_locale.get("global", "prefix") + ']' + '</td>';
 							row_info += '<td>' + '?? lvl' + '</td>';
 							row_dev += '<td>' + '#' + prefix + '</td>';
 							row_mats += '<td>?</td>';
@@ -3725,12 +3725,12 @@ var gca_global = {
 						data.base.forEach((mat) => {
 							row_mats += '<td><div class="item-i-18-' + mat + '" style="display:inline-block;transform: scale(0.7);margin:-12px -6px -12px -6px;"></div></td>';
 						});
-						row_type += '<td colspan="' + count + '">' + '[Base]' + '</td>';
+						row_type += '<td colspan="' + count + '">' + '[' + gca_locale.get("global", "base") + ']' + '</td>';
 						row_info += '<td colspan="' + count + '">' + (data.base.level >= 0 ? data.base.level : '??') + ' lvl' + '</td>';
 						row_dev += '<td colspan="' + count + '">' + '#' + base + '</td>';
 					}
 					else {
-						row_type += '<td>' + '[Base](?? lvl)' + base + '</td>';
+						row_type += '<td>' + '[' + gca_locale.get("global", "base") + ']' + '(?? lvl)' + base + '</td>';
 						row_info += '<td>' + '?? lvl' + '</td>';
 						row_dev += '<td>' + '#' + base + '</td>';
 						row_mats += '<td>?</td>';
@@ -3743,12 +3743,12 @@ var gca_global = {
 							data.suffix.forEach((mat) => {
 								row_mats += '<td><div class="item-i-18-' + mat + '" style="display:inline-block;transform: scale(0.7);margin:-12px -6px -12px -6px;"></div></td>';
 							});
-							row_type += '<td colspan="' + count + '">' + '[Suffix]' + '</td>';
+							row_type += '<td colspan="' + count + '">' + '[' + gca_locale.get("global", "suffix") + ']' + '</td>';
 							row_info += '<td colspan="' + count + '">' + (data.suffix.level >= 0 ? data.suffix.level : '??') + ' lvl' + '</td>';
 							row_dev += '<td colspan="' + count + '">' + '#' + suffix + '</td>';
 						}
 						else {
-							row_type += '<td>' + '[Suffix]' + '</td>';
+							row_type += '<td>' + '[' + gca_locale.get("global", "suffix") + ']' + '</td>';
 							row_info += '<td>' + '?? lvl' + '</td>';
 							row_dev += '<td>' + '#' + suffix + '</td>';
 							row_mats += '<td>?</td>';

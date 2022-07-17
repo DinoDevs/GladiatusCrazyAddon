@@ -113,8 +113,13 @@ gca_languages['cs'] = {
 			gold_exp_data_desc: "Data jsou shromažďována každých 5 minut. Prodej zakoupených předmětů zdvojnásobí Vaše statistiky zlata.",
 			
 			// Items
+			// Mercenaries
 			mercenary_type : "Typ: {{name}} ({{number}})",
-			gains_with_full_stats : "Zisk s max. atributy:"
+			gains_with_full_stats : "Zisk s max. atributy:",
+			// Item materials
+			base : "Základ",
+			prefix : "Prefix",
+			suffix : "Suffix" 
 		},
 		
 		// Overview
