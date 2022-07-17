@@ -126,6 +126,10 @@ gca_languages["en"] = {
 			// Mercenaries
 			mercenary_type : "Type: {{name}} ({{number}})",
 			gains_with_full_stats: "Gains with full stats:",
+			// Item materials
+			base : "Base",
+			prefix : "Prefix",
+			suffix : "Suffix"			
 		},
 
 		// Overview
