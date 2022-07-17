@@ -125,6 +125,10 @@ gca_languages["gr"] = {
 			// Items
 			mercenary_type : "Τύπος: {{name}} ({{number}})",
 			gains_with_full_stats: "Με μέγιστα στατιστικά:",
+			// Item materials
+			base : "Βάση",
+			prefix : "Πρόθεμα",
+			suffix : "Επίθεμα"	
 		},
 
 		// Overview

@@ -3780,9 +3780,9 @@ var gca_global = {
 					let count = recipe.keys.length;
 					// Create rows for the tooltip
 					let row_type = '<tr style="color: #ffffff;"><td colspan="' + count + '">';
-					row_type += (prefix > 0) ? '' + '[Prefix ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' + '' : '';
-					row_type += '' + '[Base ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' + '';
-					row_type += (suffix > 0) ? '' + '[Suffix ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' + '' : '';
+					row_type += (prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' + '' : '';
+					row_type += '[' + gca_locale.get("global", "base") + ' ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' + '';
+					row_type += (suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' + '' : '';
 
 					let row_mats = '<tr style="color: #cccccc;text-align:center;">';
 					let row_icons = '<tr style="height: 18px;text-align:center;">';
@@ -3820,39 +3820,39 @@ var gca_global = {
 					// Prefix
 					if (prefix > 0) {
 						if (data.prefix) {
-							info.push(['[Prefix](' + (data.prefix.level >= 0 ? data.prefix.level : '?') + ' lvl)', '#ffffff']);
+							info.push(['[' + gca_locale.get("global", "prefix") + '](' + (data.prefix.level >= 0 ? data.prefix.level : '?') + ' lvl)', '#ffffff']);
 							data.prefix.forEach((mat) => {
 								info.push(this.getInfoRow(mat));
 							});
 						}
 						else {
-							info.push(['[Prefix](? lvl)', '#ffffff']);
+							info.push(['[' + gca_locale.get("global", "prefix") + '](? lvl)', '#ffffff']);
 							info.push(['?', '#cccccc']);
 						}
 					}
 
 					// Base
 					if (data.base) {
-						info.push(['[Base](' + (data.base.level >= 0 ? data.base.level : '?') + ' lvl)', '#ffffff']);
+						info.push(['[' + gca_locale.get("global", "base") + '](' + (data.base.level >= 0 ? data.base.level : '?') + ' lvl)', '#ffffff']);
 						data.base.forEach((mat) => {
 							info.push(this.getInfoRow(mat));
 						});
 					}
 					else {
-						info.push(['[Base](? lvl)', '#ffffff']);
+						info.push(['[' + gca_locale.get("global", "base") + '](? lvl)', '#ffffff']);
 						info.push(['?', '#cccccc']);
 					}
 
 					// Suffix
 					if (suffix > 0) {
 						if (data.suffix) {
-							info.push(['[Suffix](' + (data.suffix.level >= 0 ? data.suffix.level : '?') + ' lvl)', '#ffffff']);
+							info.push(['[' + gca_locale.get("global", "suffix") + '](' + (data.suffix.level >= 0 ? data.suffix.level : '?') + ' lvl)', '#ffffff']);
 							data.suffix.forEach((mat) => {
 								info.push(this.getInfoRow(mat));
 							});
 						}
 						else {
-							info.push(['[Suffix](? lvl)', '#ffffff']);
+							info.push(['[' + gca_locale.get("global", "suffix") + '](? lvl)', '#ffffff']);
 							info.push(['?', '#cccccc']);
 						}
 					}
@@ -3872,9 +3872,9 @@ var gca_global = {
 
 					// Create rows for the tooltip
 					info.push([
-						((prefix > 0) ? '[Prefix ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' : '') +
+						((prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' : '') +
 						'[Base ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' +
-						((suffix > 0) ? '[Suffix ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' : ''),
+						((suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' : ''),
 						'#ffffff'
 					]);
 
