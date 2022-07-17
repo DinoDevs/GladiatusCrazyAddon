@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-12-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
@@ -12,6 +12,7 @@
 	- [x] Show mercenary real name: Names are now translated automatically if previously seen in auction
 	- [x] Menu shortcuts: added new auction menu entry [+] with various shortcuts
 	- [x] Shortcuts bar: added button to guild baths Vox I (#372)
+	- [x] Display buff values on reinforcements & upgrades
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
 - **Accessibility**

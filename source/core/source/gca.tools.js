@@ -756,6 +756,14 @@ var gca_tools = {
 				else if(tooltip.match("#FF0000")) info.quality = 4;
 			}
 
+			// Upgrades
+			if (info.category == 11 || info.category == 12) {
+				let tooltip = item.dataset.tooltip;
+				let upgradeValue = tooltip.match(/: \+(\d+)/i);
+				if(upgradeValue)
+					info.upgrade_value = parseInt(upgradeValue[1]);
+			}
+
 			return info;
 		},
 		

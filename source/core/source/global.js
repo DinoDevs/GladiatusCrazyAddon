@@ -217,6 +217,10 @@ var gca_global = {
 		(gca_options.bool("global","show_mercenaries_real_name") &&
 			this.display.analyzeItems.mercenaries.init());
 
+		// Show upgrade item value on item
+		(gca_options.bool("global","show_upgrade_values") &&
+			this.display.analyzeItems.itemUpgrades.init());
+
 		// Mobile item move helper - Run on mobiles
 		(this.isMobile &&
 			this.accessibility.item_move.init());
@@ -3932,6 +3936,7 @@ var gca_global = {
 					// On item move
 					gca_tools.event.request.onAjaxResponse((data) => {
 						let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
+						if (!item || !item[0] || !item[0].dataset) return;
 						if (item && typeof(item[0].dataset.gcaFlag_isMerchenaryType) !== 'undefined') delete item[0].dataset.gcaFlag_isMerchenaryType;
 						this.showMerchenaryType();
 					})
@@ -4062,7 +4067,66 @@ var gca_global = {
 						jQuery(item).data("tooltip")[0] = tooltip;
 					});
 				}
-			}
+			},
+
+			// Items upgrade value
+			itemUpgrades : {
+				init : function(){
+					// Show durability
+					document.getElementById('content').className += ' show-upgrade-values';
+					
+					this.createUpgradeValues();
+					
+					// Exit if no inventory
+					if(!document.getElementById("inv")) return;
+
+					// Add event
+					gca_tools.event.bag.onBagOpen(() => {
+						this.createUpgradeValues();
+					});
+
+					// If bag not already loaded
+					if (document.getElementById("inv").className.match("unavailable")) {
+						// Wait first bag
+						gca_tools.event.bag.waitBag(() => {
+							this.createUpgradeValues();
+						});
+					}
+
+					// If in packets
+					if (gca_section.mod === "packages") {
+						// On item get
+						gca_tools.event.request.onAjaxResponse((response) => {
+							// If package load request
+							if(response.data.newPackages && response.data.pagination && response.data.worthTotal){
+								this.createUpgradeValues();
+							}
+						});
+						// On new packet page
+						gca_tools.event.addListener("packages_page_loaded", () => {
+							this.createUpgradeValues();
+						});
+					}
+				},
+				
+				createUpgradeValues : function(){
+					// Get page Items
+					var items = document.querySelectorAll('div[data-content-type]');
+					// Loop page's Items
+					for (let i = 0; i < items.length; i++){
+						// If item
+						if(!items[i].dataset.gca_upgrade_value && items[i].dataset.upgrade_value == null){
+							items[i].dataset.gca_upgrade_value = true;
+							
+							let info = gca_tools.item.info(items[i]);
+							
+							// If item has upgrade_value
+							if(info.upgrade_value)
+								items[i].dataset.upgrade_value = "+"+info.upgrade_value;
+						}
+					}
+				}
+			},
 		}
 	},
 

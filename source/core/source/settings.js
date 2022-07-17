@@ -726,6 +726,9 @@ var gca_settings = {
 				
 				// Show mercenaries real name
 				"show_mercenaries_real_name" : false,
+
+				// Show upgrades value on items
+				"show_upgrade_values" : false,
 				
 				// Attacked Timer
 				"global_arena_timer" : true,

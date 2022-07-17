@@ -369,6 +369,9 @@ gca_options.data = {
 		// Show mercenaries real name
 		"show_mercenaries_real_name" : false,
 		
+		// Show upgrades value on items
+		"show_upgrade_values" : false,
+		
 		// Global Arena timer
 		"global_arena_timer" : true
 	},
