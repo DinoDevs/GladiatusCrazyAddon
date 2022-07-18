@@ -1091,9 +1091,9 @@ var gca_settings = {
 				// More search levels
 				"more_search_levels" : true,
 				// Show price data
-				"item_price_analyze" : true,
-				// Show item level
-				"item_level" : true,
+				"item_price_analyze" : true,			
+				// Show item level (disabled)
+				/*"item_level" : false, */				
 				// Show item names
 				"item_name" : false,
 				// Show 3 items per line
