@@ -79,7 +79,7 @@ var gca_guild_jail = {
 				var info = {
 					"name" : name,
 					"lvl" : lvl,
-					"img" : "img/expedition/enemy_unknown.jpg",
+					"img" : "/cdn/img/expedition/enemy_unknown.jpg",
 					"attack_code" :  document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[3].getElementsByTagName('a')[0].getAttribute('onclick'),
 					"attack" :  document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[3].getElementsByTagName('a')[0].textContent,
 					"free_link" : "#",
@@ -210,7 +210,7 @@ var gca_guild_jail = {
 				div2.appendChild(div3);
 				
 				let img = document.createElement('img');
-				img.src = 'img/costumes/background.jpg';
+				img.src = '/cdn/img/costumes/background.jpg';
 				img.style = 'background-color:black;width:123px;height:142px;';
 				div3.appendChild(img);
 				

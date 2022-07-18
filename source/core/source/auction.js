@@ -370,7 +370,7 @@ var gca_auction = {
 		
 		//Create Spinner
 		var spinner = document.createElement("img");
-		spinner.src = "img/ui/spinner.gif";
+		spinner.src = "/cdn/img/ui/spinner.gif";
 		spinner.id = "spinner"+id;
 		spinner.style = "position:absolute;margin-top:-90px;margin-left:115px;margin-right:115px;height:40px;";
 		itemform.appendChild(spinner);

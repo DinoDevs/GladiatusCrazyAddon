@@ -1570,7 +1570,7 @@ var gca_tools = {
 			this.icon.className = "blackoutDialog_icon";
 			this.body_wrapper.appendChild(this.icon);
 			this.img = document.createElement("img");
-			this.img.src = "img/ui/blackoutDialog/icon_warning.jpg";
+			this.img.src = "/cdn/img/ui/blackoutDialog/icon_warning.jpg";
 			this.icon.appendChild(this.img);
 
 			// Content
@@ -1763,10 +1763,10 @@ var gca_tools = {
 	create : {
 
 		goldIcon : function() {
-			return this.icon('img/res2.gif');
+			return this.icon('/cdn/img/res2.gif');
 		},
 		rubiesIcon : function() {
-			return this.icon('img/res3.gif');
+			return this.icon('/cdn/img/res3.gif');
 		},
 		flagIcon : function(country) {
 			country = country.toLowerCase();
