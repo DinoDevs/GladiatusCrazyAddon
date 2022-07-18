@@ -916,7 +916,7 @@ var gca_reports = {
 			table.className = "charstats_nomargin analyzer_life_charstats";
 			let table_top_border = document.createElement('div');
 			table_top_border.className = 'analyzer_life_charstats_border';
-			table_top_border.style.backgroundImage = 'url(img/char_status_kopf_b.jpg)';
+			table_top_border.style.backgroundImage = document.querySelector('#charstatsCombat > div:first-child').style.backgroundImage;
 			table.appendChild(table_top_border);
 			let table_title = document.createElement('div');
 			table_title.className = "charstats_bg2";
@@ -933,7 +933,7 @@ var gca_reports = {
 			
 			let table_bottom_border = document.createElement('div');
 			table_bottom_border.className = 'analyzer_life_charstats_border';
-			table_bottom_border.style.backgroundImage = 'url(img/char_status_abschluss_b.jpg)';
+			table_bottom_border.style.backgroundImage = document.querySelector('#charstatsCombat > div:last-child').style.backgroundImage;
 			table.appendChild(table_bottom_border);
 			
 			round_row.insertBefore(round_report, this.nextSibling);
