@@ -54,9 +54,8 @@
 	- [x] Croatian update by @0eXer
 
 ### Screenshots of changes
-
+-  **Improvements**
 	![forgesmelt_timers_colored](documentation/features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
-	
 	![Show_item_names](documentation/features/Pictures/4.3.5%20to%204.3.6/Show_item_names.png)
 	![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction.png) ![add_loot_2](documentation/features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction_2.png)
 	![add_vox1_to_shortcut_bar](documentation/features/Pictures/4.3.5%20to%204.3.6/add_vox1_to_shortcut_bar.png)
