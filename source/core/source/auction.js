@@ -20,8 +20,8 @@ var gca_auction = {
 				this.itemsShadow());
 			(gca_options.bool("auction","item_price_analyze") && 
 				this.itemsValuesShow());
-			(gca_options.bool("auction","item_level") && 
-				this.itemsLevelShow());
+			/* (gca_options.bool("auction","item_level") && 
+				this.itemsLevelShow()); */
 			(gca_options.bool("auction","item_name") && 
 				this.itemsNameShow());
 			(gca_options.bool("auction","x3_items_per_line") && 
@@ -233,7 +233,9 @@ var gca_auction = {
 			wrapper.insertBefore(indicator, wrapper.children[2]);
 		}
 	},
-
+        
+	/*
+        //Item levels are shown on the items it self, feature is no longer needed
 	itemsLevelShow : function() {
 		// Get items
 		var items = document.getElementById("auction_table").getElementsByClassName("auction_item_div");
@@ -256,6 +258,7 @@ var gca_auction = {
 			wrapper.insertBefore(indicator, wrapper.firstChild);
 		}
 	},
+	*/
 
 	extraItemStats : function() {
 		// Run on food section
