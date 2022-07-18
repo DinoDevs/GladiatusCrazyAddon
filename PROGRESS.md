@@ -8,8 +8,7 @@
 ### IMPROVEMENTS
 - **Global**
 	- [ ] Preparations for Manifest v3 (some fixes and testing can be found at [testing branch](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/manifest-v3-testing))
-	- [x] Item names in forge/smelt timers tooltip are now colored based on item quality (by @MiguelSOliveira)
-		<details>
+	- [x] Item names in forge/smelt timers tooltip are now colored based on item quality (by @MiguelSOliveira) <details>
 		
 		![forgesmelt_timers_colored](documentation/features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
 		</details>
@@ -71,7 +70,7 @@
 - **Packages**
 	- [x] Packages can be displayed as a list view (#323, #309)
 		<details>
-		
+
 		![list_view](documentation/features/Pictures/4.3.5%20to%204.3.6/list_view.png)
 		</details>
 
