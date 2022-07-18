@@ -224,10 +224,12 @@ var gca_auction = {
 		// For each item
 		for (var i = items.length - 1; i >= 0; i--) {
 			let itemName = JSON.parse(items[i].dataset.tooltip)[0][0][0];
+			let itemColor = JSON.parse(items[i].dataset.tooltip)[0][0][1].split(';')[0].replace('lime', 'green');
 
 			// Create name div
 			indicator = document.createElement("div");
 			indicator.textContent = itemName;
+			indicator.style.color = itemColor;	
 			// Get wrapper
 			wrapper = bidItems[i];
 			wrapper.insertBefore(indicator, wrapper.children[2]);
