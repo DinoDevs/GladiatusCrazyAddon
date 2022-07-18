@@ -12,13 +12,16 @@
 		![forgesmelt_timers_colored](documentation/features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
 	- [x] Show mercenary real name: Names are now translated automatically if previously seen in auction
 	- [x] Menu shortcuts: added new auction menu entry [+] with various shortcuts
+		![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction.png) ![add_loot_2](documentation/features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction_2.png)
 	- [x] Shortcuts bar: added button to guild baths Vox I (#372)
+		![add_vox1_to_shortcut_bar](documentation/features/Pictures/4.3.5%20to%204.3.6/add_vox1_to_shortcut_bar.png)
 	- [x] Display buff values on reinforcements & upgrades
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
 - **Accessibility**
 	- [ ] Improve experience on mobile phones
 	- [x] Added loot per side in reports lists (#337)
+		![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_loot.png)
 - **Guild Bath**
 	- [x] Pin message that will be displayed at the top of messages (#348)
 - **Merchants**
