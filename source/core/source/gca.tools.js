@@ -81,8 +81,9 @@ var gca_tools = {
 
 			if(str && typeof str === 'string') {
 				// strip script/html tags
-				str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
-				str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+				while (str.match(/<[^>]+>?/i)) {
+					str = str.replace(/<[^>]+>?/gi, '');
+				}
 				element.innerHTML = str;
 				str = element.textContent;
 				element.textContent = '';
