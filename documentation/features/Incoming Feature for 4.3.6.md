@@ -1,14 +1,9 @@
-## Progress on Version 4.3.6 [Beta]
-
-![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
+## Incoming Features on Version 4.3.6 [Beta]
 
 ### IMPROVEMENTS
-- **Global**
-	- [ ] Preparations for Manifest v3 (some fixes and testing can be found at [testing branch](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/manifest-v3-testing))
 	- [x] Item names in forge/smelt timers tooltip are now colored based on item quality (by @MiguelSOliveira)
+	<details>
+![ct](https://user-images.githubusercontent.com/23278552/179524567-f0e90b05-8ecf-4a88-ad6b-fffdbf6350f1.PNG)
 	- [x] Show mercenary real name: Names are now translated automatically if previously seen in auction
 	- [x] Menu shortcuts: added new auction menu entry [+] with various shortcuts
 	- [x] Shortcuts bar: added button to guild baths Vox I (#372)
