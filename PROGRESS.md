@@ -10,6 +10,7 @@
 	- [ ] Preparations for Manifest v3 (some fixes and testing can be found at [testing branch](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/manifest-v3-testing))
 	- [x] Item names in forge/smelt timers tooltip are now colored based on item quality (by @MiguelSOliveira)
 		<details>
+		
 		![forgesmelt_timers_colored](documentation/features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
 		</details>
 	- [x] Show mercenary real name: Names are now translated automatically if previously seen in auction
@@ -43,13 +44,11 @@
 		</details>
 - **Merchants**
 	- [x] Items that costs rubies can now have an icon (#355)
-	
 		<details>
 		![show_rubin_via_icon](documentation/features/Pictures/4.3.5%20to%204.3.6/show_rubin_via_icon.png)
 		</details>
 - **Forge**
 	- [x] Forging time is now displayed under the required resources in the tooltip (#350)
-	
 		<details>
 		![smelt_time_on_tooltip](documentation/features/Pictures/4.3.5%20to%204.3.6/smelt_time_on_tooltip.png)
 		</details>
