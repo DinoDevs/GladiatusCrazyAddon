@@ -1203,9 +1203,10 @@
 	/* Auction
 	-------------------------------------------------- */
 
-		/* Level indicator */
+		/* Level indicator (disabled)
 		.gca_auction .gca_item_level{float: right;width: 16px;height: 16px;color: white;cursor: default;font-size: 9px;line-height: 17px;text-align: center;margin: 2px;}
 		.gca_rtl .gca_auction .gca_item_level{float: left;}
+                */
 
 		/* Item value info */
 		.gca_auction .gca-auction-good-price,
