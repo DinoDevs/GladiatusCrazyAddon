@@ -565,7 +565,7 @@ var gca_global = {
 					// Create Healing Pot button
 					var link = document.createElement('a');
 					link.id = extended_hp_xp ? 'header_life_pot' : 'header_life_pot_only';
-					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="img/premium/token/18.jpg"> ' + gca_locale.get("global", "life_potion_use"),"#fdfdfd"]]]);
+					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="/cdn/img/premium/token/18.jpg"> ' + gca_locale.get("global", "life_potion_use"),"#fdfdfd"]]]);
 					
 					// On click callback
 					link.addEventListener('click', () => {
@@ -2915,7 +2915,7 @@ var gca_global = {
 
 					// Icon
 					let img = document.createElement("img");
-					img.src = "img/ui/expedition_points2.png";
+					img.src = "/cdn/img/ui/expedition_points2.png";
 					this.serverQuestWrapperElement.appendChild(img);
 					this.serverQuestWrapperElement.appendChild(document.createTextNode(" "));
 
@@ -4143,7 +4143,7 @@ var gca_global = {
 
 				var icon = document.createElement('div');
 				icon.className = 'headericon_big';
-				icon.style.backgroundImage = 'url("img/buff/healing.png")';
+				icon.style.backgroundImage = 'url("/cdn/img/buff/healing.png")';
 				wrapper.appendChild(icon);
 
 				var timer_text = document.createElement('div');
@@ -4202,7 +4202,7 @@ var gca_global = {
 					let buffs = document.getElementById('localBuffs').getElementsByClassName('buff');
 					for (let i = buffs.length - 1; i >= 0; i--) {
 						if(
-							buffs[i].dataset.image == 'img/buff/healing.png' && 
+							buffs[i].dataset.image == '/cdn/img/buff/healing.png' && 
 							//buffs[i].dataset.buffType == '8' && 
 							(
 								(/\+5%/).test(buffs[i].getAttribute('title')) || 
@@ -4933,11 +4933,11 @@ var gca_global = {
 					document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y - expData[firstLast24hDataIndex].y)+" ";
 					document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y - goldData[firstLast24hDataIndex].y)+" ";
 					var img = document.createElement('img');
-					img.src = "img/ui/icon_level_small.gif";
+					img.src = "/cdn/img/ui/icon_level_small.gif";
 					img.border = "0";
 					document.getElementById('today_values').getElementsByTagName("td")[1].appendChild(img);
 					img = document.createElement('img');
-					img.src = "img/res2.gif";
+					img.src = "/cdn/img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('today_values').getElementsByTagName("td")[2].appendChild(img);
@@ -4945,11 +4945,11 @@ var gca_global = {
 					document.getElementById('days7_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y)+" ";
 					document.getElementById('days7_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
 					img = document.createElement('img');
-					img.src = "img/ui/icon_level_small.gif";
+					img.src = "/cdn/img/ui/icon_level_small.gif";
 					img.border = "0";
 					document.getElementById('days7_values').getElementsByTagName("td")[1].appendChild(img);
 					img = document.createElement('img');
-					img.src = "img/res2.gif";
+					img.src = "/cdn/img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('days7_values').getElementsByTagName("td")[2].appendChild(img);
@@ -4957,11 +4957,11 @@ var gca_global = {
 					document.getElementById('average_per_day').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7))+" ";
 					document.getElementById('average_per_day').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
 					img = document.createElement('img');
-					img.src = "img/ui/icon_level_small.gif";
+					img.src = "/cdn/img/ui/icon_level_small.gif";
 					img.border = "0";
 					document.getElementById('average_per_day').getElementsByTagName("td")[1].appendChild(img);
 					img = document.createElement('img');
-					img.src = "img/res2.gif";
+					img.src = "/cdn/img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
@@ -4971,7 +4971,7 @@ var gca_global = {
 					);
 					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots( Math.round(goldData[goldData.length-1].y/50) );
 					img = document.createElement('img');
-					img.src = "img/res2.gif";
+					img.src = "/cdn/img/res2.gif";
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].appendChild(img);
