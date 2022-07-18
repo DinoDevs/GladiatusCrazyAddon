@@ -872,7 +872,7 @@ var gca_settings = {
 			// Pantheon Options
 			"pantheon" : {
 				// Reorder quests
-				"quests_reorder" : true,
+				//"quests_reorder" : true, // disabled untill we find a walk around
 				// Insert more details on quests
 				"quests_detailed_rewards" : true,
 				// Show completed missions

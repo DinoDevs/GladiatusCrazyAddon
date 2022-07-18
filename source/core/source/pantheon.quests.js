@@ -11,8 +11,8 @@ var gca_pantheon_quests = {
 			return;
 
 		// Reorder quests
-		(gca_options.bool("pantheon","quests_reorder") &&
-			this.quests_reorder());
+		//(gca_options.bool("pantheon","quests_reorder") &&
+		//	this.quests_reorder());
 
 		// Detailed rewards on quests
 		(gca_options.bool("pantheon","quests_detailed_rewards") &&
@@ -30,6 +30,7 @@ var gca_pantheon_quests = {
 	quests_categories : ['items','work','dungeon','expedition','combat','grouparena','arena','restart','finished'],
 
 	// Quests Reorder
+	/*
 	quests_reorder : function(){
 		// Check if content board exist
 		if(document.getElementsByClassName('contentboard_start').length != 1)
@@ -90,6 +91,7 @@ var gca_pantheon_quests = {
 			quest_categories[category].appendChild(quests[i]);
 		}
 	},
+	*/
 
 	//Quest God Rewards
 	detailed_rewards : function(){
