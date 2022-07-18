@@ -123,7 +123,11 @@ gca_languages['de'] = {
 			gold_exp_data_desc: "Die Daten werden alle 5 Minunten gesammelt. Der Verkauf von gekauften Gegenständen verdoppelt Deine Goldstatistik.",
 			
 			// Items
-			mercenary_type : "Typ: {{name}} ({{number}})"
+			mercenary_type : "Typ: {{name}} ({{number}})",
+			gains_with_full_stats : "Gewinne mit vollen Statistiken:",
+			base : "Basis",
+			prefix : "Präfix",
+			suffix : "Suffix"
 		},
 
 		// Overview
@@ -205,7 +209,7 @@ gca_languages['de'] = {
 		training : {
 			// Points analysis
 			stats_points : "Trainingsstatistik",
-			points_breakdown : "Points Breakdown",
+			points_breakdown : "Punkte Aufschlüsselung",
 			
 			// Cost calculator
 			total_cost : "Gesamtkosten",
@@ -215,11 +219,16 @@ gca_languages['de'] = {
 			points_breakdown_damage : "Schaden: +{{integer}} (+{{float}})",
 			points_breakdown_block : "Block: +{{integer}}% (+{{float}}%)",
 			points_breakdown_block_max : "Block: max. Wert",
+			points_breakdown_block_short : "Block: +{{integer}}%",
 			points_breakdown_normal_hit : "Trefferchance: +{{integer}}% (+{{float}}‰) *",
 			points_breakdown_critical_hit : "Kritische Trefferchance: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_hit_short : "Kritische Trefferchance: +{{integer}}%",
 			points_breakdown_double_hit : "Doppelschlag Chance: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_double_hit_factor : "Doppelschlag Chance: {{number}}",
 			points_breakdown_avoid : "Chance kritische Treffer zu vermeiden: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_avoid_max : "Chance kritische Treffer zu vermeiden: max. Wert",
+			points_breakdown_avoid_short : "Chance kritische Treffer zu vermeiden: +{{integer}}%",
+			points_breakdown_avoid_double_hit_factor : "Chance Doppelschlag zu vermeiden: {{number}}",
 			points_breakdown_enemy_normal_hit : "Gegnerische Trefferchance: {{integer}}% ({{float}}‰) *",
 			points_breakdown_enemy_double_hit : "Gegnerische Doppelschlag Chance: {{integer}}% ({{float}}‰) *",
 			points_breakdown_life : "Lebenspunkte: +{{number}}",
@@ -372,7 +381,8 @@ gca_languages['de'] = {
 			category_global$show_durability : "Zeige die Haltbarkeit der Gegenstände unten links",
 			category_global$min_durability : "Benachrichtige sobald ein Gegenstand weniger als _% Haltbarkeit + Veredelung hat (\"0\" zum Deaktivieren)",
 			category_global$show_forge_info : "Zeige Schmiederohstoff der Gegenstände im Tooltip",
-			category_global$show_mercenaries_real_name : "Zeige den echten Söldner Namen (Typ) im Tooltip",
+			category_global$show_mercenaries_real_name_and_combat_stats : "Zeige den echten Söldner Namen (Typ) und ihre Kampfstatistik im Tooltip",
+			category_global$show_upgrade_values : "Zeige die Werte von Verbesserungen und Verstärkungen",
 			category_global$global_arena_timer : "Zeige Globale Arena",
 			// Settings - Overview
 			category_overview$analyze_items : "Analysiere Spielergegenstände",
