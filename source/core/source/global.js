@@ -41,7 +41,7 @@ var gca_global = {
 			document.documentElement.classList.add("accessibility-tooltips-quality-symbols"));
 
 		// Image Cache
-		this.background.preserve_image_cache.preload();
+		//this.background.preserve_image_cache.preload();
 
 		// If mobile add css class
 		if (this.isMobile) {
@@ -70,7 +70,7 @@ var gca_global = {
 		}
 		
 		// Image Cache
-		this.background.preserve_image_cache.load();
+		//this.background.preserve_image_cache.load();
 
 		// Extended info on Health and Experience bars
 		if (gca_options.bool("global","extended_hp_xp_info"))
@@ -5091,6 +5091,7 @@ var gca_global = {
 			}
 		},
 
+		/*
 		preserve_image_cache : {
 			preload : function() {
 				// Images to cache
@@ -5103,14 +5104,14 @@ var gca_global = {
 					'img/energie_gelb.gif',
 					'img/energie_gruen.gif',
 
-					/*
-					'img/buff/xp.png',
-					'img/buff/gold.png',
-					'img/buff/dungeon.png',
-					'img/buff/cooldown.png',
-					'img/buff/rubin_right.png',
-					'img/buff/points_limit.png',
-					*/
+					
+					//'img/buff/xp.png',
+					//'img/buff/gold.png',
+					//'img/buff/dungeon.png',
+					//'img/buff/cooldown.png',
+					//'img/buff/rubin_right.png',
+					//'img/buff/points_limit.png',
+					
 
 					'img/ui/spinner.gif',
 					'img/ui/bar.jpg',
@@ -5181,6 +5182,7 @@ var gca_global = {
 				});
 			}
 		}
+		*/
 	},
 	
 	// Display Centurion & PowerUps days every 12h
