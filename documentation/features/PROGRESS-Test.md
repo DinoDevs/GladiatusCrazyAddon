@@ -10,6 +10,8 @@
 	- [ ] Preparations for Manifest v3 (some fixes and testing can be found at [testing branch](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/manifest-v3-testing))
 	- [x] Item names in forge/smelt timers tooltip are now colored based on item quality (by @MiguelSOliveira)
 	<details> ![forgesmelt_timers_colored](Pictures/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)</details>
+	
+	![forgesmelt_timers_colored](Pictures/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
 	- [x] Show mercenary real name: Names are now translated automatically if previously seen in auction
 	- [x] Menu shortcuts: added new auction menu entry [+] with various shortcuts
 	- [x] Shortcuts bar: added button to guild baths Vox I (#372)
