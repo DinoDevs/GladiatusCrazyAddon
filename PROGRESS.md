@@ -66,14 +66,8 @@
 
 	![buff_values_reinforcements_upgrades](documentation/features/Pictures/4.3.5%20to%204.3.6/buff_values_reinforcements_upgrades.png)
 
-	![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_loot.png)
+	![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_loot.png) ![vox_pin_message](documentation/features/Pictures/4.3.5%20to%204.3.6/vox_pin_message.png)
 
-	![vox_pin_message](documentation/features/Pictures/4.3.5%20to%204.3.6/vox_pin_message.png)
+	![show_rubin_via_icon](documentation/features/Pictures/4.3.5%20to%204.3.6/show_rubin_via_icon.png) ![smelt_time_on_tooltip](documentation/features/Pictures/4.3.5%20to%204.3.6/smelt_time_on_tooltip.png)
 
-	![show_rubin_via_icon](documentation/features/Pictures/4.3.5%20to%204.3.6/show_rubin_via_icon.png)
-
-	![smelt_time_on_tooltip](documentation/features/Pictures/4.3.5%20to%204.3.6/smelt_time_on_tooltip.png)
-
-	![item_fee](documentation/features/Pictures/4.3.5%20to%204.3.6/item_fee.png)
-	
-	![list_view](documentation/features/Pictures/4.3.5%20to%204.3.6/list_view.png)
+	![item_fee](documentation/features/Pictures/4.3.5%20to%204.3.6/item_fee.png) ![list_view](documentation/features/Pictures/4.3.5%20to%204.3.6/list_view.png)
