@@ -251,7 +251,7 @@ var gca_auction = {
 			// Create level indicator
 			indicator = document.createElement("div");
 			indicator.className = "gca_item_level";
-			indicator.style.backgroundImage = "url(img/premium/box/amount.png)";
+			indicator.style.backgroundImage = "url(/cdn/img/premium/box/amount.png)";
 			indicator.style.backgroundSize = "contain";
 			indicator.title = level_locale;
 			indicator.textContent = level;

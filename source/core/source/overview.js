@@ -965,7 +965,7 @@ var gca_overview = {
 			// Create extend bar
 			this.custom_elements.bar = document.createElement('div');
 			this.custom_elements.bar.className = "charstats_balken_leben gca_life_gain_bar";
-			this.custom_elements.bar.style = "width:0%;background-image:url(img/energie_gruen.gif);";
+			this.custom_elements.bar.style = "width:0%;background-image:url(/cdn/img/energie_gruen.gif);";
 			document.getElementById("char_leben_balken").parentNode.insertBefore(this.custom_elements.bar, document.getElementById("char_leben_balken"));
 
 			// Add event on bag open

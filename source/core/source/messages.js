@@ -823,7 +823,7 @@ var gca_messages = {
 			// Personal
 			if(messages.type.personal.length){
 				let icon = this.addIcon({
-					backgroundImage : "url(img/interface_ar/messages.gif)"
+					backgroundImage : "url(/cdn/img/interface_ar/messages.gif)"
 				}, messages.type.personal.length, this.handleClick);
 				icon.cur = -1;
 				icon.list = messages.type.personal;
@@ -843,7 +843,7 @@ var gca_messages = {
 			// News
 			if(messages.type.news.length){
 				let icon = this.addIcon({
-					backgroundImage : "url(img/news/icon_7.gif)"
+					backgroundImage : "url(/cdn/img/news/icon_7.gif)"
 				}, messages.type.news.length, this.handleClick);
 				icon.cur = -1;
 				icon.list = messages.type.news;
@@ -852,7 +852,7 @@ var gca_messages = {
 			// Guild Battle
 			if(messages.type.guild_battle.length){
 				let icon = this.addIcon({
-					backgroundImage : "url(img/news/icon_4.gif)"
+					backgroundImage : "url(/cdn/img/news/icon_4.gif)"
 				}, messages.type.guild_battle.length, this.handleClick);
 				icon.cur = -1;
 				icon.list = messages.type.guild_battle;
