@@ -16,8 +16,10 @@ var gca_location = {
 		
 		// Normal World
 		else {
-			(gca_options.bool('expedition', 'show_enemy_drops') && 
-				this.layout.show_drops.show());
+			// The images are now served from a CDN and the links do not contain information about the NPC
+			// Untill we find a work around this feature can not be used
+			//(gca_options.bool('expedition', 'show_enemy_drops') && 
+			//	this.layout.show_drops.show());
 		}
 
 		// Setting Link
@@ -35,6 +37,7 @@ var gca_location = {
 		},
 
 		// Show drops on expedition enemies
+		/*
 		show_drops : {
 			// Drops Data
 			drops : {
@@ -263,6 +266,7 @@ var gca_location = {
 				enemy.appendChild(drop);
 			}
 		}
+		*/
 
 	}
 };
