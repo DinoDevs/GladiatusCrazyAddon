@@ -108,8 +108,13 @@ gca_languages["tr"] = {
 			gold_exp_data_reset : "İstatistikler sıfırlandı",
 			gold_exp_data_desc : "her 5 dakikada veri toplanır. Satın aldığınız ürünleri satmak altın kazancınızı ikiye katlar.",
 			
-			//Tüccarlar
-			mercenary_type : "Tip: {{name}} ({{number}})"
+			//Mersenerler
+			mercenary_type : "Tip: {{name}} ({{number}})",
+			gains_with_full_stats : "Maximum Oluşacak Eğitim İlaveleri",
+			//Eşya Bileşenleri
+			base : "Ana Eşya",
+			prefix : "Ön ek",
+			suffix : "Son ek"
 
 		},
 
@@ -194,10 +199,15 @@ gca_languages["tr"] = {
 			points_breakdown : "Eğitim Dağılımı",
 			points_breakdown_damage : "Hasar: +{{integer}} (+{{float}})",
 			points_breakdown_block : "Blok: +{{integer}}% (+{{float}}%)",
+			points_breakdown_block_short : "Blok: +{{integer}}%",
 			points_breakdown_block_max : "Blok: maximum değer",
 			points_breakdown_normal_hit : "Vuruş şansı: +{{integer}}% (+{{float}}‰) *",
 			points_breakdown_critical_hit : "Kritik vuruş şansı: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_hit_short : "Krit vuruş: +{{integer}}%",
 			points_breakdown_double_hit : "Çifte vuruş şansı: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_double_hit_factor : "Çift Vuruş: {{number}}",
+			points_breakdown_avoid_double_hit_factor : "Çift vuruştan kaçma: {{number}}",
+			points_breakdown_avoid_short : "Kritik vuruştan kaçma: +{{integer}}%",
 			points_breakdown_avoid : "Kritik vuruştan kaçma şansı: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_avoid_max : "Kritik vuruştan kaçma şansı: maximum değer",
 			points_breakdown_enemy_normal_hit : "Rakip vuruş şansı: {{integer}}% ({{float}}‰) *",
@@ -340,6 +350,8 @@ gca_languages["tr"] = {
 			category_global$min_durability : "Seçilen % nin altında dayanıklılığı olan itemleri göster (Devre dışı bırakmak için 0 yapın)",
 			category_global$show_forge_info : "İtemlerin hammadde gereksinimlerini ipucu olarak göster",
 			category_global$show_mercenaries_real_name : "Paralı askerlerin gerçek ismini ve tipini ipucunda göster",
+			category_global$show_mercenaries_real_name_and_combat_stats : "Araç ipuçlarında paralı askerlerin gerçek adlarını (tür) ve savaş istatistiklerini görüntüleyin",
+			category_global$show_upgrade_values : "Takviye ve yükseltmelerde güçlendirme değerlerini göster",
 			category_global$global_arena_timer : "Global Arena zamanlayıcısını göster",
 			//Genel Bakış
 			category_overview$analyze_items : "Eşyaların durumlarını analiz et (Eğitim için gereklidir)",
@@ -490,6 +502,7 @@ gca_languages["tr"] = {
 			each_category : "Hedef kategori üzerinde çalış",
 			all_category : "Hedef kategori ve hepsi üzerinde çalış",
 			do_not_run : "Çalışma",
+			default: "Varsayılan",
 			translated_percent : "Çeviri durumu: %{{number}}",
 			translated_by : "Çeviren: {{string}}",
 			reset_settings_confirm : "Eklenti ayarlarını sıfırlamak istediğinize emin misiniz?",
