@@ -55,14 +55,25 @@
 
 ### Screenshots of changes
 -  **Improvements**
+
 	![forgesmelt_timers_colored](documentation/features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
+	
 	![Show_item_names](documentation/features/Pictures/4.3.5%20to%204.3.6/Show_item_names.png)
+
 	![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction.png) ![add_loot_2](documentation/features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction_2.png)
+
 	![add_vox1_to_shortcut_bar](documentation/features/Pictures/4.3.5%20to%204.3.6/add_vox1_to_shortcut_bar.png)
+
 	![buff_values_reinforcements_upgrades](documentation/features/Pictures/4.3.5%20to%204.3.6/buff_values_reinforcements_upgrades.png)
+
 	![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_loot.png)
+
 	![vox_pin_message](documentation/features/Pictures/4.3.5%20to%204.3.6/vox_pin_message.png)
+
 	![show_rubin_via_icon](documentation/features/Pictures/4.3.5%20to%204.3.6/show_rubin_via_icon.png)
+
 	![smelt_time_on_tooltip](documentation/features/Pictures/4.3.5%20to%204.3.6/smelt_time_on_tooltip.png)
+
 	![item_fee](documentation/features/Pictures/4.3.5%20to%204.3.6/item_fee.png)
+	
 	![list_view](documentation/features/Pictures/4.3.5%20to%204.3.6/list_view.png)
