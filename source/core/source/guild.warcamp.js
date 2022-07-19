@@ -47,7 +47,7 @@ var gca_guild_warcamp = {
 				input.type = "submit";
 				input.name = "combat";
 				input.className = "gca_guild_warcamp_direct_attack";
-				input.style.backgroundImage = "url(/game/img/fordern.gif)";
+				input.style.backgroundImage = "url(/cdn/img/fordern.gif)";
 				input.dataset.tooltip = '[[["'+ gca_locale.get("arena", "attack_player", {name:guildName}) +'","#fff;font-size:12px;"]]]';
 				form.appendChild(input);
 				td.appendChild(form);
