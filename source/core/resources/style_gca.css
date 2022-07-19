@@ -766,7 +766,7 @@
 		.analyzer_life_report .charstats_text{display: unset!important}
 
 		/* Gladiatus Fixes */
-		.report_durability_loss{min-width:36px!important;position:absolute!important;margin:20px;}
+		.report_durability_loss{min-width:36px!important;display: unset!important;}
 
 	/* Overview Layout
 	-------------------------------------------------- */
