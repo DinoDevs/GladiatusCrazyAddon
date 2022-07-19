@@ -29,7 +29,7 @@ To install the developer version, download the [developer code zip](https://gith
 
 ### Install on mobile phone
 
-GCA can be installed on mobile phone by using a browser compatible with one of the provided extensions. For example, on Android phones you would need a browser like [kiwi](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser) or [yandex](https://play.google.com/store/apps/details?id=com.yandex.browser) which support chrome extensions (*.crx*).
+GCA can be installed on mobile phone by using a browser compatible with one of the provided extensions. For example, on Android phones you would need a browser like [kiwi](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser) or [yandex](https://play.google.com/store/apps/details?id=com.yandex.browser) which support chrome extensions (*.crx*). Some of these browsers support installing addons directly from a chrome store.
 
 
 ---
