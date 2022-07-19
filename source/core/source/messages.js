@@ -147,14 +147,13 @@ var gca_messages = {
 				message.type = "guild";
 			}
 
+			// Guild attack
+			else if(element.getElementsByTagName('a').length > 0 && element.getElementsByTagName('a')[0].href.match("guild_warcamp")){
+				message.type = "guild_battle";
+			}
+
 			// Gladiatus notification
 			else if(message.image.match("icon_7.gif")){
-				
-				// Guild attack
-				if(element.getElementsByTagName('a').length > 0 && element.getElementsByTagName('a')[0].href.match("guild_warcamp")){
-					message.type = "guild_battle";
-				}
-
 				/*
 				// New title
 				else if(element.getElementsByTagName('a').length > 0 && element.getElementsByTagName('a')[0].href.match("achievements")){
@@ -179,9 +178,7 @@ var gca_messages = {
 				*/
 				
 				// Other
-				else{
-					message.type = "news";
-				}
+				message.type = "news";
 			}
 
 			return message;
