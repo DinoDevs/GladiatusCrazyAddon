@@ -14,7 +14,7 @@
 <h4 align="center"> A browser extension for the "Gladiatus" browser game.</h4>
 
 <p align="center">
- • <a href="README.md#paperclip-downloads">Downloads</a> • <a href="documentation/installation.md">Installation</a> • <a href="README.md#computer-developers-docs">Developers Docs</a> • <a href="README.md#speech_balloon-contact-us">Contact Us</a> • 
+ • <a href="#paperclip-downloads">Downloads</a> • <a href="#page_with_curl-installation">Installation</a> • <a href="#computer-developers-docs">Developers Docs</a> • <a href="#speech_balloon-contact-us">Contact Us</a> • 
 </p>
 
 <img src="documentation/resources/preview-images/gca-preview-01.png" width="100%"/>
