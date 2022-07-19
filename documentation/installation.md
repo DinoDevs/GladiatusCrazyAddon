@@ -25,7 +25,7 @@
 
 ### Install the developer version
 
-To install the developer version, download the [developer code zip](https://github.com/DinoDevs/GladiatusCrazyAddon/archive/refs/heads/master.zip) and procced by following one of the guides for a *.zip file. At the step where you need to select the GCA folder, select the "source" folder incide the extracted files.
+To install the developer version, download the [developer code zip](https://github.com/DinoDevs/GladiatusCrazyAddon/archive/refs/heads/master.zip) and procced by following one of the guides for a *.zip file. At the step where you need to select the "Gladiatus Crazy Addon" folder, select the "source" folder incide the extracted files.
 
 ---
 
