@@ -22,6 +22,11 @@
 - [![edge-logo](resources/browser-icons/edge_16x16.png) Microsoft Edge](installation-edge.md)
   - [Install using the *.zip* extension file](installation-edge.md#install-using-the-zip-extension-file)
 
+
+### Install the developer version
+
+To install the developer version, download the [developer code zip](https://github.com/DinoDevs/GladiatusCrazyAddon/archive/refs/heads/master.zip) and procced by following one of the guides for a *.zip file. At the step where you need to select the GCA folder, select the "source" folder incide the extracted files.
+
 ---
 
 <sub><sup>Last update on 28-Jan-2017</sup></sub>
