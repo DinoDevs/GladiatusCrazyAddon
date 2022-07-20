@@ -584,7 +584,7 @@ gca_options.data = {
 	// Expedition Options
 	"expedition" : {
 		// Show that each enemy drops
-		//"show_enemy_drops" : true, // disabled untill we find a walk around
+		"show_enemy_drops" : true,
 		// Underworld expedition layout
 		"underworld_layout" : true
 	},
