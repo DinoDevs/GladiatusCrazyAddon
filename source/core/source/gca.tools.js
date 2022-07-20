@@ -2017,6 +2017,39 @@ var gca_tools = {
 	// -------------------------------------------------- //
 	extension : {
 		sendMessage : function (message, callback) {/* Code Below */}
+	},
+
+	// CDN Image
+	// -------------------------------------------------- //
+	// 
+	// -------------------------------------------------- //
+	// Info
+	// 		Gladiatus moved the images under a CDN
+	//		The images were also optimised using the utility "jpegoptim" (exaple: jpegoptim ./image.jpg)
+	//		The old images are still in the servers pushed inside the /cdn/ directory
+	//		Example:
+	//			old image           : https://en.gladiatus.gameforge.com/img/ui/quest/icon_arena_inactive.jpg
+	//			new image location  : https://en.gladiatus.gameforge.com/cdn/img/ui/quest/icon_arena_inactive.jpg
+	//			new image optimised : https://gf2.geo.gfsrv.net/cdn1b/00f1a594723515a77dcd6d66c918fb.jpg
+	cdn : {
+		// The CDN uses the file's md5 hash to generate the URL
+		// Linux command to get md5: md5sum ./filename.png
+		url2info : function(url) {
+			let info = url.match(/^(?:https?:|)\/\/(gf\d+\.geo\.gfsrv\.net)\/cdn([0-9a-f]{2,2})\/([0-9a-f]{30,30})\.(\w+)$/i);
+			
+			if (!info) return null;
+			
+			return {
+				hash : info[2] + info[3],
+				server : info[1]
+			};
+		},
+
+		revLookUp : function(url, lookup) {
+			let info = this.url2info(url);
+			if (!info) return null;
+			return lookup[info.hash];
+		}
 	}
 };
 
