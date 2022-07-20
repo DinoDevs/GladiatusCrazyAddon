@@ -3547,15 +3547,9 @@ var gca_global = {
 
 					// On item move
 					gca_tools.event.request.onAjaxResponse((data) => {
-						if (
-							data.hasOwnProperty("data") && data.data &&
-							data.data.hasOwnProperty("to") && data.data.to &&
-							data.data.to.hasOwnProperty("data") && data.data.to.data &&
-							data.elem.length === 1
-						) {
-							let item = jQuery('.ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
-							if (item && item[0]){
-								item = item[0];
+						if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
+							let item = document.querySelector(`.ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
+							if (item){
 								var tooltip = JSON.parse(item.dataset.tooltip);
 								// Check if tooltip is modified
 								if(tooltip[0][tooltip[0].length - 1][0].charAt(0)=='\uD83D'){
@@ -3935,10 +3929,12 @@ var gca_global = {
 
 					// On item move
 					gca_tools.event.request.onAjaxResponse((data) => {
-						let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
-						if (!item || !item[0] || !item[0].dataset) return;
-						if (item && typeof(item[0].dataset.gcaFlag_isMerchenaryType) !== 'undefined') delete item[0].dataset.gcaFlag_isMerchenaryType;
-						this.showMerchenaryType();
+						if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
+							let item = document.querySelector(`#content .ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
+							if (!item || !item.dataset) return;
+							if (item && typeof(item?.dataset?.gcaFlag_isMerchenaryType) !== 'undefined') delete item.dataset.gcaFlag_isMerchenaryType;
+							this.showMerchenaryType();
+						}
 					})
 				},
 				
