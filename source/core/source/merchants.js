@@ -16,7 +16,7 @@ var gca_merchants = {
 		
 		// Fade items for rubies
 		(gca_options.bool("merchants","ruby_icon_on_items") &&
-			this.iconForItermsForRubies.inject());	
+			this.iconForItemsForRubies.inject());	
 
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 
@@ -194,11 +194,9 @@ var gca_merchants = {
 	// Fade non affordable items
 	fadeUnaffordableItems : {
 		inject : function() {
-			// Save instance
-			var that = this;
 			// Recheck items on item move
-			gca_tools.event.request.onAjaxResponse(function(){
-				that.check();
+			gca_tools.event.request.onAjaxResponse(() => {
+				this.check();
 			});
 			// Run for the first time
 			this.check();
@@ -243,21 +241,16 @@ var gca_merchants = {
 	},
 	
 	// Fade items that cost rubies
-	iconForItermsForRubies : {
+	iconForItemsForRubies : {
 		inject : function() {
 			// Apply item events
 			this.apply();
 
 			// On item move
 			gca_tools.event.request.onAjaxResponse((data) => {
-				if (
-					data.hasOwnProperty("data") && data.data &&
-					data.data.hasOwnProperty("to") && data.data.to &&
-					data.data.to.hasOwnProperty("data") && data.data.to.data &&
-					data.elem.length === 1
-				) {
-					let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
-					if (item) delete item[0].dataset.gcaFlag_rudies;
+				if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
+					let item = document.querySelector(`#content .ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
+					if (item) delete item.dataset.gcaFlag_rudies;
 					this.apply();
 				}
 			});
@@ -358,12 +351,7 @@ var gca_merchants = {
 
 			// On item move
 			gca_tools.event.request.onAjaxResponse((data) => {
-				if (
-					data.hasOwnProperty("data") && data.data &&
-					data.data.hasOwnProperty("to") && data.data.to &&
-					data.data.to.hasOwnProperty("data") && data.data.to.data &&
-					data.elem.length === 1
-				) {
+				if (data?.data?.to?.data && data?.elem?.length === 1) {
 					this.refresh(data.elem[0]);
 				}
 			})
@@ -416,14 +404,9 @@ var gca_merchants = {
 
 			// On item move
 			gca_tools.event.request.onAjaxResponse((data) => {
-				if (
-					data.hasOwnProperty("data") && data.data &&
-					data.data.hasOwnProperty("to") && data.data.to &&
-					data.data.to.hasOwnProperty("data") && data.data.to.data &&
-					data.elem.length === 1
-				) {
-					let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
-					if (item) delete item[0].dataset.gcaFlag_doubleClickEvent;
+				if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
+					let item = document.querySelector(`#content .ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
+					if (item) delete item.dataset.gcaFlag_doubleClickEvent;
 					this.apply();
 				}
 			});
