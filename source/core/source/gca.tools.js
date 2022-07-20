@@ -2256,18 +2256,26 @@ var gca_tools = {
 			'c02eba3e1443a935c8c7c33c9c6898d2' : '/img/npc/4/2_2.jpg',
 			'e9bb23f71f767176ca2444f8bc1c2865' : '/img/npc/4/2_3.jpg',
 			'89ac050c99b685658f5b65511ac83d45' : '/img/npc/4/2_4.jpg',
-			//'c2a474580a0e4fd19f7990532c064604' : '/img/npc/4/3_1.jpg',
-			//'34cc0c80e527503c1b074407e746a0c3' : '/img/npc/4/3_2.jpg',
-			//'e4417400de107ee48b811efd66dce15a' : '/img/npc/4/3_3.jpg',
-			//'c5b3c8a465e288c9211b4d6272d692f1' : '/img/npc/4/3_4.jpg',
-			//'fca1ff0fda2a8079c11f69fb0c8311ae' : '/img/npc/4/4_1.jpg',
-			//'9579474af297df287385a087f828a3b9' : '/img/npc/4/4_2.jpg',
-			//'62b23ca64c300005611da826fb07fd29' : '/img/npc/4/4_3.jpg',
-			//'ef28313eb51b992c45f35e498036e7fe' : '/img/npc/4/4_4.jpg',
-			//'0c0ec352be06b8cf1a24c144abd21199' : '/img/npc/4/5_1.jpg',
-			//'9ce4a8baf2dbcbc6bf9576c14d392ca3' : '/img/npc/4/5_2.jpg',
-			//'e4f822b3e9958abdecf4bb83c9cb906e' : '/img/npc/4/5_3.jpg',
-			//'1febc10b7638b3801701e8e6c5c7adbc' : '/img/npc/4/5_4.jpg',
+			'd8e4b82f457b0803419ce2c50f5255' : '/img/npc/4/3_1.jpg',//'c2a474580a0e4fd19f7990532c064604'
+			'5d44a11052e740a8ec483e76f181a7' : '/img/npc/4/3_2.jpg',//'34cc0c80e527503c1b074407e746a0c3'
+			'a2611142886c9c6634cbb31e0cdb5e' : '/img/npc/4/3_3.jpg',//'e4417400de107ee48b811efd66dce15a'
+			'30c496661bc490a06b5c212124f4fe' : '/img/npc/4/3_4.jpg',//'c5b3c8a465e288c9211b4d6272d692f1'
+			'28735e13275819747922c16a516a5b' : '/img/npc/4/4_1.jpg',//'fca1ff0fda2a8079c11f69fb0c8311ae'
+			'd84f6adad4686ae45ff5b98fcbc692' : '/img/npc/4/4_2.jpg',//'9579474af297df287385a087f828a3b9'
+			'b173612baddf3d7dadbcdb823d3a19' : '/img/npc/4/4_3.jpg',//'62b23ca64c300005611da826fb07fd29'
+			'bac7e539d61a9de6caec21363c2694' : '/img/npc/4/4_4.jpg',//'ef28313eb51b992c45f35e498036e7fe'
+			'8fc1dc28a272c41b475828a8107afe' : '/img/npc/4/5_1.jpg',//'0c0ec352be06b8cf1a24c144abd21199'
+			'0ead089e64b248786fb3e126ffcf7f' : '/img/npc/4/5_2.jpg',//'9ce4a8baf2dbcbc6bf9576c14d392ca3'
+			'99db5b8f77050f201cf67dc8e5bf9d' : '/img/npc/4/5_3.jpg',//'e4f822b3e9958abdecf4bb83c9cb906e'
+			'cdbea7d87f34475e22555256f0f942' : '/img/npc/4/5_4.jpg',//'1febc10b7638b3801701e8e6c5c7adbc'
+			'b98041c012f259885ba823c53eeaca' : '/img/npc/4/6_1.jpg',
+			'195c75c0ba9e8fadda41b58b107b84' : '/img/npc/4/6_2.jpg',
+			'3ae0563db2cd7241d349f766002b3b' : '/img/npc/4/6_3.jpg',
+			'9dd0228c3a6c8dfe9e5b9bd20f50a5' : '/img/npc/4/6_4.jpg',
+			'841d17a434e2018c8c84c1fa2271a5' : '/img/npc/4/7_1.jpg',
+			'e3e4aa1f515a7c28ce7812c3ac63b7' : '/img/npc/4/7_2.jpg',
+			'f4e1cd5cd2438f5a41c47814d0a710' : '/img/npc/4/7_3.jpg',
+			'18b0984d6a55da3e034e4760628b7f' : '/img/npc/4/7_4.jpg',
 
 			'ae904194973d21066c96cb414d04d676' : '/img/expedition/enemy_unknown.jpg'
 		}
