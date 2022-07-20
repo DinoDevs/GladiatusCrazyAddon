@@ -464,7 +464,7 @@ gca_options.data = {
 	// Pantheon Options
 	"pantheon" : {
 		// Reorder quests
-		//"quests_reorder" : true, // disabled untill we find a walk around
+		"quests_reorder" : true,
 		// Insert more details on quests
 		"quests_detailed_rewards" : true,
 		// Show completed missions
