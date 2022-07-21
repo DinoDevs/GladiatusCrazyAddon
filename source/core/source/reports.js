@@ -202,10 +202,10 @@ var gca_reports = {
 					let image = document.getElementById('defenderAvatar11').getElementsByTagName('div')[2].style.backgroundImage;
 					// old enemy pictures, enemy[1] is the code to save in data
 					//let enemy = image.match(/url\("\d+\/img\/npc\/(\d+\/[^.]+\.\w+)"\)/);
-					let cdn_enemy = image.match(/url\("(\/\/gf3\.geo\.gfsrv\.net\/cdn[0-9a-f]{2,2}\/[^.]+\.jpg)"\)/);
+					let cdn_enemy = image.match(/url\("(\/\/gf\d+\.geo\.gfsrv\.net\/cdn[0-9a-f]{2,2}\/[^.]+\.jpg)"\)/);
+					let enemy = (cdn_enemy) ? gca_tools.cdn.revLookUp(cdn_enemy[1], gca_tools.cdn.cdn_npc_lookup) : null;
 					// convert cdn to old images
-					let enemy = (cdn_enemy) ? gca_tools.cdn.revLookUp(cdn_enemy[1], gca_tools.cdn.cdn_npc_lookup).replace('/img/npc/','') : null;
-					if (enemy) data.push([enemy, item]);
+					if (enemy) data.push([enemy.replace('/img/npc/',''), item]);
 					else if (document.getElementById('defenderAvatar11').getElementsByClassName('avatar').length>0) {
 						// this is your avatar in underward
 					}
