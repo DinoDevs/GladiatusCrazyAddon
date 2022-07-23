@@ -1,0 +1,29 @@
+name: Firefox Extension Upload
+
+on:
+  #push:
+  #  tags:
+  #    - '*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Publish webextension
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        cd dist
+        chmod +x ./build.sh
+        ./build.sh
+      shell: bash
+    - name: Upload & Release
+      uses: trmcnvn/firefox-addon@v1
+      with:
+        uuid: ${{ secrets.FIREFOX_EXTENSION_ID }}
+        xpi: dist/GladiatusCrazyAddOn_Firefox.xpi
+        manifest: manifest.json
+        api-key: ${{ secrets.FIREFOX_API_KEY }}
+        api-secret: ${{ secrets.FIREFOX_API_SECRET }}
