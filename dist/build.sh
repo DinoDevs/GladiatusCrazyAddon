@@ -3,6 +3,7 @@
 rm -f GladiatusCrazyAddOn_Chrome.zip
 rm -f GladiatusCrazyAddOn_Chrome_Manifest_v2.zip
 rm -f GladiatusCrazyAddOn_Firefox.xpi
+rm -f GladiatusCrazyAddOn_Edge.zip
 
 cd ../source
 
@@ -16,5 +17,8 @@ zip -q -r ../dist/GladiatusCrazyAddOn_Chrome_Manifest_v2.zip core icons init.js 
 echo "Building for Firefox (Manifest v2)"
 zip -q -r ../dist/GladiatusCrazyAddOn_Firefox.zip core icons init.js manifest.json
 mv ../dist/GladiatusCrazyAddOn_Firefox.zip ../dist/GladiatusCrazyAddOn_Firefox.xpi
+
+echo "Building for Edge (Manifest v2)"
+zip -q -r ../dist/GladiatusCrazyAddOn_Edge.zip core icons init.js manifest.json
 
 cd ../dist
