@@ -18,7 +18,7 @@ jobs:
         node-version: 12
     - name: Build
       run: |
-        cd dist && ./build.sh
+        cd dist && chmod +x ./build.sh && ./build.sh
       #  npm ci
       #  npm run build
     - name: Upload & Release
