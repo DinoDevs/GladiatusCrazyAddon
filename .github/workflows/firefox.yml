@@ -27,3 +27,11 @@ jobs:
         manifest: source/manifest.json
         api-key: ${{ secrets.FIREFOX_API_KEY }}
         api-secret: ${{ secrets.FIREFOX_API_SECRET }}
+    - name: Upload & Release (Offline Version)
+      uses: trmcnvn/firefox-addon@v1
+      with:
+        uuid: ${{ secrets.FIREFOX_EXTENSION_ID_OFFLINE_VERSION }}
+        xpi: dist/GladiatusCrazyAddOn_Firefox.xpi
+        manifest: source/manifest.json
+        api-key: ${{ secrets.FIREFOX_API_KEY }}
+        api-secret: ${{ secrets.FIREFOX_API_SECRET }}
