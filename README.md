@@ -112,7 +112,7 @@ We will try to provide some more info for anyone that wants to jump into the act
 
 Contact us to leave us your feedback or to express your thoughts.
 
-[![github-issues](documentation/resources/social-icons/github_32x32.png "Github issues")](https://github.com/DinoDevs/GladiatusCrazyAddon/issues)
+[![github-discussions](documentation/resources/social-icons/github_32x32.png "Github discussions")](https://github.com/DinoDevs/GladiatusCrazyAddon/discussions)
 [![facebook-page](documentation/resources/social-icons/facebook_32x32.png "Facebook page")](https://www.facebook.com/GladiatusCrazyAddOn)
 
 
