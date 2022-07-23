@@ -1,9 +1,6 @@
-name: Edge Extension Upload
+name: Update Extension (Edge)
 
 on:
-  #push:
-  #  tags:
-  #    - '*'
   workflow_dispatch:
 
 env:

@@ -1,9 +1,6 @@
-name: Chrome Extension Upload
+name: Update Extension (Chrome)
 
 on:
-  #push:
-  #  tags:
-  #    - '*'
   workflow_dispatch:
 
 jobs:

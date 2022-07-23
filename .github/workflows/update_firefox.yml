@@ -1,9 +1,6 @@
-name: Firefox Extension Upload
+name: Update Extension (Firefox)
 
 on:
-  #push:
-  #  tags:
-  #    - '*'
   workflow_dispatch:
 
 jobs:
