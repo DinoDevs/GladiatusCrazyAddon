@@ -68,12 +68,12 @@ Before submitting an Issue with a potential bug, check our list with potential f
 
 [► Troubleshooting guide](documentation/Troubleshooting.md)
 
+## 💬 Discussions
+If you have any questions, or simply want to discuss with the developers - feel free to use our [Discussions](https://github.com/DinoDevs/GladiatusCrazyAddon/discussions)!
 
 ## :books: Translation
 
 Use our [guide](documentation/translators/README.md) to translate the addon in your language!
-
-
 
 
 ## :link: Gladiatus related links
