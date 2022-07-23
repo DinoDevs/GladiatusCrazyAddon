@@ -7,6 +7,7 @@
 ![Github Downloads](https://img.shields.io/github/downloads/DinoDevs/GladiatusCrazyAddon/total?label=Github%20Downloads&style=flat-square)
 
 [![license](https://img.shields.io/github/license/DinoDevs/GladiatusCrazyAddon.svg?style=flat-square)](https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/LICENSE)
+
 </span>
 
 <p align="center"><img src="documentation/resources/logo-icons/icon_64.png"/></p>
