@@ -1,9 +1,10 @@
-name: Test
+name: Chrome Extension Upload
 
 on:
-  push:
-    tags:
-      - '*'
+  #push:
+  #  tags:
+  #    - '*'
+  workflow_dispatch:
 
 jobs:
   build:
