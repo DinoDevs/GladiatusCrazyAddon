@@ -5,7 +5,7 @@
 	"description": "Improve your gladiatus experience!",
 	"author": "DinoDevs (Darkthanos, GreatApo)",
 	"homepage_url": "https://gladiatus.dinodevs.com",
-	"minimum_chrome_version": "18.0",
+	"minimum_chrome_version": "88.0",
 
 	"icons": {
 		"16": "icons/icon_16.png",
