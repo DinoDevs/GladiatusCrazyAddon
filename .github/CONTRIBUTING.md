@@ -5,7 +5,7 @@ Most importantly, do not forget to respect our [Code of Conduct](https://github.
 
 ## Creating an Issue/Pull request
 
-Each issue (and a pull request) has its own template, they will help you and us to give us as much information as possible. 
+Each issue (and a pull request) has its own template, they will help you and us to give us as much information as possible. Always check that you are not creating a duplicate, perhaps a similar issue was already created.
 
 ## Explore the Features Documentation
 
