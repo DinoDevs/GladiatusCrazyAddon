@@ -30,9 +30,10 @@ var gca_sync = {
 				let expire = new Date();
 				expire.setTime(expire.getTime() + (14 * 24*60*60*1000));
 				expire = expire.toUTCString();
+				
 				// Create cookies
-				document.cookie = "Gladiatus_" + gca_section.country + "_" + gca_section.server + "=" + data.player + "%3B" + data.securehash + "; expires=" + expire + ";path=/; SameSite=Strict; Secure; HttpOnly";
-				document.cookie = "Gca_" + gca_section.country + "_" + gca_section.server + "=" + data.player + "_" + data.securehash.substring(0, data.securehash.length/4) + "; expires=" + expire + ";path=/; SameSite=Strict; Secure";
+				document.cookie = "Gladiatus_" + gca_section.country + "_" + gca_section.server + "=" + data.player + "%3B" + data.securehash + "; expires=" + expire + "; domain=.s" + gca_section.server + "-" + gca_section.country + ".gladiatus.gameforge.com; path=/; SameSite=Strict; Secure";
+				document.cookie = "Gca_" + gca_section.country + "_" + gca_section.server + "=" + data.player + "_" + data.securehash.substring(0, data.securehash.length/4) + "; expires=" + expire + "; domain=.s" + gca_section.server + "-" + gca_section.country + ".gladiatus.gameforge.com; path=/; SameSite=Strict; Secure";
 				
 				// Show loading
 				loading.style.display = 'block';
