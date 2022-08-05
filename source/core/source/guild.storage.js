@@ -170,11 +170,13 @@ var gca_guild_storage = {
 
 			// On item move
 			gca_tools.event.request.onAjaxResponse((data) => {
+				console.log(data);
 				if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
 					let item = document.querySelector(`.ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
-					if (item && typeof(item.dataset.gcaFlag_doubleClickEvent) !== 'undefined'){
-						delete item[0].dataset.gcaFlag_doubleClickEvent;
+					if (item && typeof(item.dataset.gcaFlag_doubleClickEvent) !== 'undefined') {
+						delete item.dataset.gcaFlag_doubleClickEvent;
 					}
+					this.apply();
 				}
 			});
 		},
