@@ -767,6 +767,8 @@
 
 		/* Gladiatus Fixes */
 		.report_durability_loss{min-width:36px!important;display: unset!important;}
+                table.section-like {margin-left: -19px;width: 555px!important;max-width: 560px} 
+		table.section-like.narrow th, table.section-like.narrow td {padding: 3px!important;}
 
 	/* Overview Layout
 	-------------------------------------------------- */
