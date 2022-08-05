@@ -165,7 +165,7 @@ var gca_audio_ui = {
 		this.elements.bar.className = 'gca_sound_bar';
 
 		// Toggle sound icon
-		this.elements.toggleIcon = document.createElement('div');
+		this.elements.toggleIcon = document.createElement('a');
 		this.elements.toggleIcon.className = 'sound-toggle';
 		this.elements.bar.appendChild(this.elements.toggleIcon);
 

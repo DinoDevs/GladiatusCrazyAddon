@@ -552,7 +552,7 @@
 		/* Sounds controls bar */
 		.gca_sound_bar{position: fixed;z-index: 6;right: 0px;bottom: 0px;}
 		.gca_rtl .gca_sound_bar{right: auto;left: 0px;bottom: 0px;}
-		.gca_sound_bar .sound-toggle{width: 32px;height: 32px;background: url('icons/sound.png') 0px 0px no-repeat;cursor: pointer;}
+		.gca_sound_bar .sound-toggle{width: 32px;height: 32px;background: url('icons/sound.png') 0px 0px no-repeat;cursor: pointer;display: block;}
 		.gca_sound_bar .sound-toggle.mute{background-position: -32px 0px;}
 		
 		/* GCA Window icons */
