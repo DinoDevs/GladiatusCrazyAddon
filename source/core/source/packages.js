@@ -232,6 +232,9 @@ var gca_packages = {
 				self.loadPackets.onPageLoad(() => {
 					this.apply();
 				});
+
+				// Dont allow section to close
+				document.getElementById('packages').parentNode.className = 'packages-section';
 			},
 			apply : function(){
 				// For each
@@ -266,9 +269,16 @@ var gca_packages = {
 			init : function(self){
 				this.apply();
 				// On new items reapply
-				self.onNewItemsLoad(this.apply);
+				self.onNewItemsLoad(() => {
+					this.apply();
+				});
 				// On packages page load
-				self.loadPackets.onPageLoad(this.apply);
+				self.loadPackets.onPageLoad(() => {
+					this.apply();
+				});
+
+				// Dont allow section to close
+				document.getElementById('packages').parentNode.className = 'packages-section';
 			},
 			apply : function(){
 				//console.log('applying')
@@ -303,15 +313,19 @@ var gca_packages = {
 					jQuery(packageOrigin).remove();
 					jQuery(packageExpiration).remove();
 					jQuery(packagePriceInfo).remove();
-					jQuery(packageContainerElement).addClass(`size_y_${this.dataset.measurementY}`);
-					jQuery(packageContainerElement).append('<div class="packageItemInfoColumn"></div>');
-					jQuery(packageContainerElement.children[2]).append('<div class="leftPackageItemInfo"></div>');
-					jQuery(packageContainerElement.children[2]).append('<div class="rightPackageItemInfo"></div>');
-					jQuery(packageContainerElement.children[2].children[0]).append(packageOrigin);
-					jQuery(packageContainerElement.children[2].children[0]).append(`<span style="font-weight: bold; line-height: 8px; color: ${itemColor}">${itemName}</span>`);
-					jQuery(packageContainerElement.children[2].children[1]).append(`<span style="font-weight: bold; width: 70px">Level ${itemLevel}</span>`);
-					jQuery(packageContainerElement.children[2].children[1]).append(packagePriceInfo);
-					jQuery(packageContainerElement.children[2].children[1]).append(packageExpiration);
+					jQuery(packageContainerElement)
+						.addClass(`size_y_${this.dataset.measurementY}`)
+						.append('<div class="packageItemInfoColumn"></div>');
+					jQuery(packageContainerElement.children[2])
+						.append('<div class="leftPackageItemInfo"></div>')
+						.append('<div class="rightPackageItemInfo"></div>');
+					jQuery(packageContainerElement.children[2].children[0])
+						.append(packageOrigin)
+						.append(`<span style="color: ${itemColor}">${itemName}</span>`);
+					jQuery(packageContainerElement.children[2].children[1])
+						.append(`<span>Level ${itemLevel}</span>`)
+						.append(packagePriceInfo)
+						.append(packageExpiration);
 				});
 				//console.log('after', jQuery('#packages .ui-draggable').length);
 			}

@@ -983,6 +983,9 @@
 	/* Packages Layout
 	-------------------------------------------------- */
 		
+		/* Packages Section should not close  */
+		section.packages-section {display: block!important;}
+
 		/* Compact Packets */
 		.gca_packages_compact_items_layout #packages_wrapper {padding: 4px 0 2px 4px;}
 		.gca_packages_compact_items_layout #packages_wrapper .packageItem{padding: 0px;margin: 0 2px 2px 0;width: 78px;height: 142px;}
@@ -1024,14 +1027,19 @@
 		.gca_packages_small_items_layout .list-view .packageItem.size_y_2 {height: 31px !important;}
 		.gca_packages_small_items_layout .list-view .packageItem.size_y_1 {height: 23px !important;}
 		#packages.list-view {display: flex !important;flex-direction: column !important;}
-		.list-view .packageItemInfoColumn {display: flex !important;justify-content: space-between !important;width: 100% !important;margin-left: 12px !important;margin-right: 12px !important;}
-		.list-view .rightPackageItemInfo > div:last-child {width: 48px !important;}
-		.list-view .rightPackageItemInfo {display: flex !important;flex-grow: 1 !important;justify-content: end !important;align-items: center !important;}
-		.list-view .packageItemInfoColumn * {text-align: start !important;}
+		.list-view .packageItemInfoColumn {display: flex !important;justify-content: space-between !important;width: 100% !important;margin-left: 12px !important;margin-right: 2px !important;}
+		.list-view .packageItemInfoColumn * {font-size: 9px !important;}
 		.list-view .packageItemInfoColumn .icon_gold {width: 16px !important;vertical-align: middle !important;}
 		.list-view .packageItemInfoColumn .ellipsis {overflow: visible !important;font-weight: bold !important;}
-		.list-view .packageItemInfoColumn .gca_item_price_info {margin: 0 !important;position: relative !important;text-align: start !important;color: #612d04 !important;text-shadow: none !important;}
-		.list-view .packageItemInfoColumn * {font-size: 9px !important;}
+		.list-view .packageItemInfoColumn .gca_item_price_info {margin: 0 !important;position: relative !important;text-align: end !important;color: #612d04 !important;text-shadow: none !important;}
+		.list-view .packageItemInfoColumn .leftPackageItemInfo {text-align: start;}
+		.list-view .packageItemInfoColumn .leftPackageItemInfo > * {text-align: start;}
+		.list-view .packageItemInfoColumn .leftPackageItemInfo > div:first-child {width: unset!important;}
+		.list-view .packageItemInfoColumn .leftPackageItemInfo > span:nth-child(2) {font-weight: bold; line-height: 8px;}
+		.list-view .packageItemInfoColumn .rightPackageItemInfo {display: flex !important;flex-grow: 1 !important;justify-content: end !important;align-items: center !important;}
+		.list-view .packageItemInfoColumn .rightPackageItemInfo > span:first-child {font-weight: bold;width: 45px;text-align: start;}
+		.list-view .packageItemInfoColumn .rightPackageItemInfo > div:nth-child(2) {width: 76px !important;}
+		.list-view .packageItemInfoColumn .rightPackageItemInfo > div:last-child {width: 60px !important;align-items: center !important;}
 		
 		/* Group Side Filters */
 		.gca_packages_filters_layout .package_side_filters{width: 190px;margin-top: 25px;height: 184px;background-color: #E7DEB8;border: 1px solid #B9A66D;border-top: 0px;clear: none;background-image: none;}
