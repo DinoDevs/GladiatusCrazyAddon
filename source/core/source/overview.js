@@ -779,7 +779,7 @@ var gca_overview = {
 				// Attach event on request response
 				gca_tools.event.request.onAjaxResponse(function(r){
 					// If the response changes the tooltip
-					if (r.hasOwnProperty('data') && r.data.hasOwnProperty('status') && r.data.status.hasOwnProperty('panzer') && r.data.status.panzer.hasOwnProperty('tooltip') ){
+					if (r?.data?.status?.panzer?.tooltip){
 						// Apply the new tooltip
 						gca_tools.setTooltip(document.getElementById("char_panzer_tt"),JSON.stringify(r.data.status.panzer.tooltip));
 						// Call this function

@@ -170,15 +170,11 @@ var gca_guild_storage = {
 
 			// On item move
 			gca_tools.event.request.onAjaxResponse((data) => {
-				if (
-					data.hasOwnProperty("data") && data.data &&
-					data.data.hasOwnProperty("to") && data.data.to &&
-					data.data.to.hasOwnProperty("data") && data.data.to.data &&
-					data.elem.length === 1
-				) {
-					let item = jQuery('#content .ui-draggable[data-hash=' + data.elem[0].dataset.hash + ']');
-					if (item && typeof(item[0].dataset.gcaFlag_doubleClickEvent) !== 'undefined') delete item[0].dataset.gcaFlag_doubleClickEvent;
-					this.apply();
+				if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
+					let item = document.querySelector(`.ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
+					if (item && typeof(item.dataset.gcaFlag_doubleClickEvent) !== 'undefined'){
+						delete item[0].dataset.gcaFlag_doubleClickEvent;
+					}
 				}
 			});
 		},
