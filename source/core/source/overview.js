@@ -127,6 +127,10 @@ var gca_overview = {
 
 				// Update player id
 				gca_section.resolvePlayerId();
+				gca_data_manager.init();
+
+				// Fire event
+				gca_tools.event.fireOnce('player-id-updated');
 			}
 			else {
 				console.error("Failed to detect player's id.");
