@@ -28,22 +28,6 @@ var gca_pantheon_quests = {
 
 	// Quests Categories
 	quests_categories : ['unknown','items','work','dungeon','expedition','combat','grouparena','arena','restart','finished'],
-	quests_images_cdn_lookup : {
-		'ff92c80be0d47423719891d1c70c7200' : '/img/ui/quest/icon_items_active.jpg',
-		'2b5a358e0a030d8551a5a65d284c8730' : '/img/ui/quest/icon_items_inactive.jpg',
-		'3acc151571bd182e5b55fa75238f18f3' : '/img/ui/quest/icon_work_active.jpg',
-		'b4a8b91ecab5813f97708e0e86f35e06' : '/img/ui/quest/icon_work_inactive.jpg',
-		'aac903cea2513b6a20e1e92500c2a279' : '/img/ui/quest/icon_dungeon_active.jpg',
-		'b5dc366909fdfe69897d583583f6e446' : '/img/ui/quest/icon_dungeon_inactive.jpg',
-		'b0a3d2065a1dac3029b15d5e64ce7a90' : '/img/ui/quest/icon_expedition_active.jpg',
-		'fb4e41ab43222200aa024ee177efef8f' : '/img/ui/quest/icon_expedition_inactive.jpg',
-		'e3cd7b70728e81ac4995e6a3e668a46e' : '/img/ui/quest/icon_combat_active.jpg',
-		'5b8aada67d4c5601e009b9d2a88f478c' : '/img/ui/quest/icon_combat_inactive.jpg',
-		'45c901c26d04e70cc3ecfb37b9632590' : '/img/ui/quest/icon_grouparena_active.jpg',
-		'24586768e942030301c484347698bc5e' : '/img/ui/quest/icon_grouparena_inactive.jpg',
-		'97234cdb450a257bf9c13e55ce0e7c74' : '/img/ui/quest/icon_arena_active.jpg',
-		'1b00f1a594723515a77dcd6d66c918fb' : '/img/ui/quest/icon_arena_inactive.jpg',
-	},
 
 	// Quests Reorder
 	quests_reorder : function(){
@@ -96,7 +80,7 @@ var gca_pantheon_quests = {
 				category = 'restart';
 			}else{
 				let url = quests[i].getElementsByClassName("quest_slot_icon")[0].style.backgroundImage.slice(4, -1).replace(/"/g, "");
-				url = gca_tools.cdn.revLookUp(url, this.quests_images_cdn_lookup);
+				url = gca_tools.img.resolve(url);
 				category = !url ? 'unknown' : url.match(/quest\/([^\.]+)\.jpg/)[1].replace(/(_inactive|_active|icon_)/g,'');
 			}
 

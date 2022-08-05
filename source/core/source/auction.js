@@ -251,7 +251,7 @@ var gca_auction = {
 			// Create level indicator
 			indicator = document.createElement("div");
 			indicator.className = "gca_item_level";
-			indicator.style.backgroundImage = "url(/cdn/img/premium/box/amount.png)";
+			indicator.style.backgroundImage = 'url(' + gca_tools.img.cdn('img/premium/box/amount.png') + ')';
 			indicator.style.backgroundSize = "contain";
 			indicator.title = level_locale;
 			indicator.textContent = level;
@@ -370,7 +370,7 @@ var gca_auction = {
 		
 		//Create Spinner
 		var spinner = document.createElement("img");
-		spinner.src = "/cdn/img/ui/spinner.gif";
+		spinner.src = gca_tools.img.cdn("img/ui/spinner.gif");
 		spinner.id = "spinner"+id;
 		spinner.style = "position:absolute;margin-top:-90px;margin-left:115px;margin-right:115px;height:40px;";
 		itemform.appendChild(spinner);

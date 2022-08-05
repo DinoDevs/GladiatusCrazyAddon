@@ -326,6 +326,9 @@ var gca_pantheon_mysterybox = {
 		resolveReward : function(reward){
 			// Get image
 			var image = reward.getElementsByTagName('img')[0].src;
+			image = gca_tools.img.resolve(image);
+			if (!image) return -1;
+			
 			// Get amount
 			var amount = reward.getElementsByClassName('mysterybox_reward_item_count_value');
 			if (amount.length > 0) amount = parseInt(amount[0].textContent, 10);

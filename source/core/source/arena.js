@@ -177,7 +177,7 @@ var gca_arena = {
 			box.appendChild(spinner);
 			this.spinner = spinner;
 			let img = document.createElement('img');
-			img.src = '/cdn/img/ui/spinner.gif';
+			img.src = gca_tools.img.cdn('img/ui/spinner.gif');
 			spinner.appendChild(img);
 			
 			let rankings_table = document.createElement("table");

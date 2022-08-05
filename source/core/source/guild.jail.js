@@ -21,35 +21,35 @@ var gca_guild_jail = {
 	layout : {
 		// Jail Boss Database
 		jail_dataBase : {
-			"10" : { name : "King Gustavo", image : "/cdn/img/npc/0/2_1.jpg"},
-			"15" : { name : "Flavio Gnaeus Aurelius", image : "/cdn/img/npc/0/2_13.jpg"},
-			"20" : { name : "Oribas", image : "/cdn/img/npc/2/1_21.jpg"},
-			"25" : { name : "Helldog", image : "/cdn/img/npc/0/2_7.jpg"},
-			"30" : { name : "Themba", image : "/cdn/img/npc/1/2_3.jpg"},
-			"35" : { name : "Shetu",  image : "/cdn/img/npc/1/2_14.jpg"},
-			"40" : { name : "Pyro", image : "/cdn/img/npc/1/2_1.jpg"},
-			"45" : { name : "Nithotep", image : "/cdn/img/npc/1/2_6.jpg"},
-			"50" : { name : "Lord Aesteron", image : "/cdn/img/npc/0/2_8.jpg"},
-			"55" : { name : "Oak Lord", image : "/cdn/img/npc/2/2_4.jpg"},
-			"60" : { name : "Homo Nautilus", image : "/cdn/img/npc/0/2_4.jpg"},
-			"70" : { name : "Nekromar", image : "/cdn/img/npc/0/2_5.jpg"},
-			"73" : { name : "Trakovar", image : "/cdn/img/npc/0/2_14.jpg"},
-			"78" : { name : "Captian Kratos", image : "/cdn/img/npc/0/2_12.jpg"},
-			"80" : { name : "Gernasch", image : "/cdn/img/npc/0/2_2.jpg"},
-			"83" : { name : "Fenrirson", image : "/cdn/img/npc/0/2_15.jpg"},
-			"88" : { name : "Zagrash", image : "/cdn/img/npc/0/2_6.jpg"},
+			"10" : { name : "King Gustavo", image : gca_tools.img.cdn("img/npc/0/2_1.jpg")},
+			"15" : { name : "Flavio Gnaeus Aurelius", image : gca_tools.img.cdn("img/npc/0/2_13.jpg")},
+			"20" : { name : "Oribas", image : gca_tools.img.cdn("img/npc/2/1_21.jpg")},
+			"25" : { name : "Helldog", image : gca_tools.img.cdn("img/npc/0/2_7.jpg")},
+			"30" : { name : "Themba", image : gca_tools.img.cdn("img/npc/1/2_3.jpg")},
+			"35" : { name : "Shetu",  image : gca_tools.img.cdn("img/npc/1/2_14.jpg")},
+			"40" : { name : "Pyro", image : gca_tools.img.cdn("img/npc/1/2_1.jpg")},
+			"45" : { name : "Nithotep", image : gca_tools.img.cdn("img/npc/1/2_6.jpg")},
+			"50" : { name : "Lord Aesteron", image : gca_tools.img.cdn("img/npc/0/2_8.jpg")},
+			"55" : { name : "Oak Lord", image : gca_tools.img.cdn("img/npc/2/2_4.jpg")},
+			"60" : { name : "Homo Nautilus", image : gca_tools.img.cdn("img/npc/0/2_4.jpg")},
+			"70" : { name : "Nekromar", image : gca_tools.img.cdn("img/npc/0/2_5.jpg")},
+			"73" : { name : "Trakovar", image : gca_tools.img.cdn("img/npc/0/2_14.jpg")},
+			"78" : { name : "Captian Kratos", image : gca_tools.img.cdn("img/npc/0/2_12.jpg")},
+			"80" : { name : "Gernasch", image : gca_tools.img.cdn("img/npc/0/2_2.jpg")},
+			"83" : { name : "Fenrirson", image : gca_tools.img.cdn("img/npc/0/2_15.jpg")},
+			"88" : { name : "Zagrash", image : gca_tools.img.cdn("img/npc/0/2_6.jpg")},
 			"90" : {
-				"Papa" : {name : "Papa Sasama", image : "/cdn/img/npc/1/2_2.jpg"},
-				"Sasama" : {name : "Papa Sasama", image : "/cdn/img/npc/1/2_2.jpg"},
-				"Frank" : {name : "Frank N. Stein", image : "/cdn/img/npc/2/2_3.jpg"},
-				"Stein" : {name : "Frank N. Stein", image : "/cdn/img/npc/2/2_3.jpg"}
+				"Papa" : {name : "Papa Sasama", image : gca_tools.img.cdn("img/npc/1/2_2.jpg")},
+				"Sasama" : {name : "Papa Sasama", image : gca_tools.img.cdn("img/npc/1/2_2.jpg")},
+				"Frank" : {name : "Frank N. Stein", image : gca_tools.img.cdn("img/npc/2/2_3.jpg")},
+				"Stein" : {name : "Frank N. Stein", image : gca_tools.img.cdn("img/npc/2/2_3.jpg")}
 			},
-			"96" : { name : "Shetu bin Seth", image : "/cdn/img/npc/1/2_16.jpg"},
-			"100" : { name : "Corruption", image : "/cdn/img/npc/1/2_8.jpg"},
-			"102" : { name : "Akhekhu", image : "/cdn/img/npc/1/2_9.jpg"},
-			"112" : { name : "Wrath Mountain", image : "/cdn/img/npc/2/2_5.jpg"},
-			"122" : { name : "Valerius Filius Gustavo", image : "/cdn/img/npc/2/2_8.jpg"},
-			"130" : { name : "Dracolich", image : "/cdn/img/npc/2/1_32.jpg"}
+			"96" : { name : "Shetu bin Seth", image : gca_tools.img.cdn("img/npc/1/2_16.jpg")},
+			"100" : { name : "Corruption", image : gca_tools.img.cdn("img/npc/1/2_8.jpg")},
+			"102" : { name : "Akhekhu", image : gca_tools.img.cdn("img/npc/1/2_9.jpg")},
+			"112" : { name : "Wrath Mountain", image : gca_tools.img.cdn("img/npc/2/2_5.jpg")},
+			"122" : { name : "Valerius Filius Gustavo", image : gca_tools.img.cdn("img/npc/2/2_8.jpg")},
+			"130" : { name : "Dracolich", image : gca_tools.img.cdn("img/npc/2/1_32.jpg")}
 		},
 		
 		improve : function(){
@@ -79,7 +79,7 @@ var gca_guild_jail = {
 				var info = {
 					"name" : name,
 					"lvl" : lvl,
-					"img" : "/cdn/img/expedition/enemy_unknown.jpg",
+					"img" : gca_tools.img.cdn("img/expedition/enemy_unknown.jpg"),
 					"attack_code" :  document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[3].getElementsByTagName('a')[0].getAttribute('onclick'),
 					"attack" :  document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[i].getElementsByTagName('td')[3].getElementsByTagName('a')[0].textContent,
 					"free_link" : "#",
@@ -210,7 +210,7 @@ var gca_guild_jail = {
 				div2.appendChild(div3);
 				
 				let img = document.createElement('img');
-				img.src = '/cdn/img/costumes/background.jpg';
+				img.src = gca_tools.img.cdn('img/costumes/background.jpg');
 				img.style = 'background-color:black;width:123px;height:142px;';
 				div3.appendChild(img);
 				

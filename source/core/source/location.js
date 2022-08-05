@@ -198,11 +198,8 @@ var gca_location = {
 				while (pictures[i] && pictures[i].getElementsByTagName('img')[0]) {
 					// Get enemy id
 					let cdnurl = pictures[i].getElementsByTagName('img')[0].getAttribute('src');
-					let url = gca_tools.cdn.revLookUp(cdnurl, gca_tools.cdn.cdn_npc_lookup);
-					if (!url) {
-						console.error('Failed to reverse lookup url', cdnurl);
-					}
-					else {
+					let url = gca_tools.img.resolve(cdnurl);
+					if (url) {
 						let enemy = url.match(/img\/(npc|expedition)\/([^.]+)\.(jpg|png)/i)[2];
 
 						// If we have data for this enemy

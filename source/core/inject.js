@@ -52,6 +52,8 @@ var inject = function(_info, _window, _folder){
 	tools.preloadScript('source/gca.data.recipes.js');
 	// Functions
 	let toolsScript = tools.preloadScript('source/gca.tools.js');
+	// CDN Methods
+	tools.preloadScript('source/gca.cdn.js');
 	// Audio
 	tools.preloadScript('source/gca.audio.js');
 	// Notifications

@@ -172,7 +172,7 @@ var gca_player = {
 		},
 
 		update : function() {
-			this.icon.src = (this.isTarget ? '/cdn/img/ui/quest/button_cancel.jpg' : '/cdn/img/ui/training/button.jpg');
+			this.icon.src = this.isTarget ? gca_tools.img.cdn('img/ui/quest/button_cancel.jpg') : gca_tools.img.cdn('img/ui/training/button.jpg');
 			gca_tools.setTooltip(this.btn, JSON.stringify([[[(this.isTarget ? gca_locale.get('arena', 'target_list_remove') : gca_locale.get('arena', 'target_list_add')), 'white']]]));
 		},
 
@@ -372,7 +372,7 @@ var gca_player = {
 			
 			// CSS
 			let span2 = document.createElement("style");
-			span2.textContent = ".powerups-powerup_1{background-image: url(/cdn/img/powerups/powerup_1.gif)} .powerups-powerup_3{background-image: url(/cdn/img/powerups/powerup_3.gif)} .powerups-powerup_4{background-image: url(/cdn/img/powerups/powerup_4.gif)} .powerups-heal{background-image: url(/cdn/img/buff/healing.png);background-position: center;}";
+			span2.textContent = ".powerups-powerup_1{background-image: url(" + gca_tools.img.cdn('img/powerups/powerup_1.gif') + ")} .powerups-powerup_3{background-image: url(" + gca_tools.img.cdn('img/powerups/powerup_3.gif') + ")} .powerups-powerup_4{background-image: url(" + gca_tools.img.cdn('img/powerups/powerup_4.gif') + ")} .powerups-heal{background-image: url(" + gca_tools.img.cdn('img/buff/healing.png') + ");background-position: center;}";
 			buffbar.appendChild(span2);
 			
 			document.getElementById("buffbar_old").getElementsByClassName('buff_old')[i-1].className = 'buff_old buffende';

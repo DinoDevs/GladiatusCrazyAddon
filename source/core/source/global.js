@@ -221,6 +221,10 @@ var gca_global = {
 		(gca_options.bool("global","show_upgrade_values") &&
 			this.display.analyzeItems.itemUpgrades.init());
 
+		// Hide flags
+		(gca_options.bool("global","hide_language_flags") &&
+			this.display.hideLanguageFlags.init());
+
 		// Mobile item move helper - Run on mobiles
 		(this.isMobile &&
 			this.accessibility.item_move.init());
@@ -565,7 +569,7 @@ var gca_global = {
 					// Create Healing Pot button
 					var link = document.createElement('a');
 					link.id = extended_hp_xp ? 'header_life_pot' : 'header_life_pot_only';
-					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="/cdn/img/premium/token/18.jpg"> ' + gca_locale.get("global", "life_potion_use"),"#fdfdfd"]]]);
+					link.dataset.tooltip = JSON.stringify([[['<img style="width:20px;" align="absmiddle" src="' + gca_tools.img.cdn('img/premium/token/18.jpg') + '"> ' + gca_locale.get("global", "life_potion_use"),"#fdfdfd"]]]);
 					
 					// On click callback
 					link.addEventListener('click', () => {
@@ -2915,7 +2919,7 @@ var gca_global = {
 
 					// Icon
 					let img = document.createElement("img");
-					img.src = "/cdn/img/ui/expedition_points2.png";
+					img.src = gca_tools.img.cdn("img/ui/expedition_points2.png");
 					this.serverQuestWrapperElement.appendChild(img);
 					this.serverQuestWrapperElement.appendChild(document.createTextNode(" "));
 
@@ -4123,7 +4127,13 @@ var gca_global = {
 					}
 				}
 			},
-		}
+		},
+
+		hideLanguageFlags : {
+			init : function() {
+				
+			}
+		},
 	},
 
 	// Underworld related functions
@@ -4139,7 +4149,7 @@ var gca_global = {
 
 				var icon = document.createElement('div');
 				icon.className = 'headericon_big';
-				icon.style.backgroundImage = 'url("/cdn/img/buff/healing.png")';
+				icon.style.backgroundImage = 'url("' + gca_tools.img.cdn('img/buff/healing.png') + '")';
 				wrapper.appendChild(icon);
 
 				var timer_text = document.createElement('div');
@@ -4196,9 +4206,10 @@ var gca_global = {
 					let started = gca_data.section.get('cache', 'underworld_pray_started', 0);
 					started = Math.round((new Date().getTime() - started) / 1000);
 					let buffs = document.getElementById('localBuffs').getElementsByClassName('buff');
+					let healing_buff_img = gca_tools.img.cdn('img/buff/healing.png');
 					for (let i = buffs.length - 1; i >= 0; i--) {
 						if(
-							buffs[i].dataset.image == '/cdn/img/buff/healing.png' && 
+							buffs[i].dataset.image.substr(10) == healing_buff_img.substr(10) && 
 							//buffs[i].dataset.buffType == '8' && 
 							(
 								(/\+5%/).test(buffs[i].getAttribute('title')) || 
@@ -4929,11 +4940,11 @@ var gca_global = {
 					document.getElementById('today_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y - expData[firstLast24hDataIndex].y)+" ";
 					document.getElementById('today_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y - goldData[firstLast24hDataIndex].y)+" ";
 					var img = document.createElement('img');
-					img.src = "/cdn/img/ui/icon_level_small.gif";
+					img.src = gca_tools.img.cdn("img/ui/icon_level_small.gif");
 					img.border = "0";
 					document.getElementById('today_values').getElementsByTagName("td")[1].appendChild(img);
 					img = document.createElement('img');
-					img.src = "/cdn/img/res2.gif";
+					img.src = gca_tools.img.cdn("img/res2.gif");
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('today_values').getElementsByTagName("td")[2].appendChild(img);
@@ -4941,11 +4952,11 @@ var gca_global = {
 					document.getElementById('days7_values').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(expData[expData.length-1].y)+" ";
 					document.getElementById('days7_values').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(goldData[goldData.length-1].y)+" ";
 					img = document.createElement('img');
-					img.src = "/cdn/img/ui/icon_level_small.gif";
+					img.src = gca_tools.img.cdn("img/ui/icon_level_small.gif");
 					img.border = "0";
 					document.getElementById('days7_values').getElementsByTagName("td")[1].appendChild(img);
 					img = document.createElement('img');
-					img.src = "/cdn/img/res2.gif";
+					img.src = gca_tools.img.cdn("img/res2.gif");
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('days7_values').getElementsByTagName("td")[2].appendChild(img);
@@ -4953,11 +4964,11 @@ var gca_global = {
 					document.getElementById('average_per_day').getElementsByTagName("td")[1].textContent = gca_tools.strings.insertDots(Math.round(expData[expData.length-1].y/7))+" ";
 					document.getElementById('average_per_day').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots(Math.round(goldData[goldData.length-1].y/7))+" ";
 					img = document.createElement('img');
-					img.src = "/cdn/img/ui/icon_level_small.gif";
+					img.src = gca_tools.img.cdn("img/ui/icon_level_small.gif");
 					img.border = "0";
 					document.getElementById('average_per_day').getElementsByTagName("td")[1].appendChild(img);
 					img = document.createElement('img');
-					img.src = "/cdn/img/res2.gif";
+					img.src = gca_tools.img.cdn("img/res2.gif");
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('average_per_day').getElementsByTagName("td")[2].appendChild(img);
@@ -4967,7 +4978,7 @@ var gca_global = {
 					);
 					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].textContent = gca_tools.strings.insertDots( Math.round(goldData[goldData.length-1].y/50) );
 					img = document.createElement('img');
-					img.src = "/cdn/img/res2.gif";
+					img.src = gca_tools.img.cdn("img/res2.gif");
 					img.align = "absmiddle";
 					img.border = "0";
 					document.getElementById('gold_package_tax_estimation').getElementsByTagName("td")[2].appendChild(img);
@@ -5092,31 +5103,31 @@ var gca_global = {
 			preload : function() {
 				// Images to cache
 				let imgs = [
-					'img/item.png',
-					'img/menu.png',
-					'img/spacer.gif',
-					'img/interface.png',
-					'img/energie_rot.gif',
-					'img/energie_gelb.gif',
-					'img/energie_gruen.gif',
+					'/cdn/img/item.png',
+					'/cdn/img/menu.png',
+					'/cdn/img/spacer.gif',
+					'/cdn/img/interface.png',
+					'/cdn/img/energie_rot.gif',
+					'/cdn/img/energie_gelb.gif',
+					'/cdn/img/energie_gruen.gif',
 
 					
-					//'img/buff/xp.png',
-					//'img/buff/gold.png',
-					//'img/buff/dungeon.png',
-					//'img/buff/cooldown.png',
-					//'img/buff/rubin_right.png',
-					//'img/buff/points_limit.png',
+					//'/cdn/img/buff/xp.png',
+					//'/cdn/img/buff/gold.png',
+					//'/cdn/img/buff/dungeon.png',
+					//'/cdn/img/buff/cooldown.png',
+					//'/cdn/img/buff/rubin_right.png',
+					//'/cdn/img/buff/points_limit.png',
 					
 
-					'img/ui/spinner.gif',
-					'img/ui/bar.jpg',
-					'img/ui/bar_fill.jpg',
-					'img/ui/bar_fill_green.jpg',
-					'img/ui/layout/menu_bg.jpg',
-					'img/ui/layout/banner_top.png',
-					'img/ui/layout/bg_body_game.jpg',
-					'img/ui/layout/bg_header_game.jpg'
+					'/cdn/img/ui/spinner.gif',
+					'/cdn/img/ui/bar.jpg',
+					'/cdn/img/ui/bar_fill.jpg',
+					'/cdn/img/ui/bar_fill_green.jpg',
+					'/cdn/img/ui/layout/menu_bg.jpg',
+					'/cdn/img/ui/layout/banner_top.png',
+					'/cdn/img/ui/layout/bg_body_game.jpg',
+					'/cdn/img/ui/layout/bg_header_game.jpg'
 				];
 
 				this.cacheImages(imgs);
@@ -5133,7 +5144,19 @@ var gca_global = {
 						imgs.push(buffs[i].dataset.image);
 					}
 				}
-				
+
+				let elements = [
+					document.querySelector('#header_values_hp_bar_fill'),
+					document.querySelector('cooldown_bar_fill_progress')
+				];
+				elements.forEach(el => {
+					if (!el) return;
+					let styles = getComputedStyle(el);
+					let background = styles.backgroundImage;
+					let url = background.match(/(?:url\(([^\)]+)\))/i).url[1].replace(/(^"|^'|"$|'$)/g, '');
+					imgs.push(url);
+				});
+
 				this.cacheImages(imgs);
 
 				// Right to Left servers have some more
