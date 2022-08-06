@@ -58,7 +58,7 @@
 	.gca_rtl #header_life_pot_only {left: unset;right: 488px;}
 
 /* Button bar */
-	#gca_shortcuts_bar{position: absolute; z-index: 500;top: 114px; left: 520px; height: 25px; width: 400px; text-align: left;}
+	#gca_shortcuts_bar{position: absolute; z-index: 500;top: 114px; left: 520px; height: 25px; width: 410px; text-align: left;}
 	.gca_rtl #gca_shortcuts_bar{right: 520px;left: auto;text-align: right;}
 	#gca_shortcuts_bar.noExtendedHpXpInfo{left: 410px;}
 	.gca_rtl #gca_shortcuts_bar.noExtendedHpXpInfo{right: 410px;}
@@ -186,7 +186,7 @@
 	.attacked_timers_back:before{content: "";top:0px;margin-right: 2px!important;margin-left: 2px!important;position:absolute;top:0px;left:0px;width:192px;height:108px;z-index:-1;background:url('interface/attacked_timers.jpg');}
 	.gca_rtl .attacked_timers_back:before{left:auto;right:0px;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);}
 	
-	.attacked_timers_table{margin-top: 38px;margin-left: 25px;line-height: 16px;width: 170px;text-align: left;}
+	.attacked_timers_table{margin-top: 39px;margin-left: 22px;line-height: 16px;width: 170px;text-align: left;}
 	.gca_rtl  .attacked_timers_table{margin-right: 25px;margin-left: auto;text-align: right;}
 	.attacked_timers_xs_text{color: #d4ad0f!important;position: absolute;margin-left:-8px!important;margin-top: 6px;text-shadow: 0 0 2px #000, 0 0 4px #582f00;cursor: default;}
 	.gca_rtl  .attacked_timers_xs_text{margin-right:-8px!important;margin-left:auto!important;}
@@ -767,6 +767,8 @@
 
 		/* Gladiatus Fixes */
 		.report_durability_loss{min-width:36px!important;display: unset!important;}
+                table.section-like {margin-left: -19px;width: 555px!important;max-width: 560px} 
+		table.section-like.narrow th, table.section-like.narrow td {padding: 3px!important;}
 
 	/* Overview Layout
 	-------------------------------------------------- */
