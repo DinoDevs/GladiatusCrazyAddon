@@ -695,7 +695,7 @@
 		#topFixedBar .scroll-to-top{border-radius: 6px;border: 1px solid #4A3615;color: black;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 18px;float: right;text-align: center;margin-top: 2px;margin-right: 10px;cursor: pointer;font-size: 0.8em;vertical-align: bottom;display: block;text-decoration: none;}
 		.gca_rtl #topFixedBar .scroll-to-top{float: auto;margin-right: auto;float: left;margin-left: 10px;}
 		@media screen and (max-width: 1080px) {
-			#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
+		#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
 		}
 		.bar-fixed-bar{display: inline!important;}
 		.icon_gold-fixed-bar, .icon_rubies-fixed-bar{z-index: 901; position: fixed; top: 3px;}
@@ -721,8 +721,8 @@
 		.show_premium_days-fixed-bar{z-index: 901 !important; position: fixed !important;cursor: pointer;top: -7px !important;}
 		.show_premium_days-fixed-bar h4{top: 4px;height: 15px;line-height: 16px;}
 		@media screen and (min-width: 1300px) {
-			#header_menue.header_menu-fixed-bar {position: fixed;top: 0;z-index: 901;margin: -8px 0 0 -50px;transform: scale(0.60);left: auto;}
-			.gca_rtl #header_menue.header_menu-fixed-bar {margin: -8px -50px 0 0;right: auto;}
+		#header_menue.header_menu-fixed-bar {position: fixed;top: 0;z-index: 901;margin: -8px 0 0 -50px;transform: scale(0.60);left: auto;}
+		.gca_rtl #header_menue.header_menu-fixed-bar {margin: -8px -50px 0 0;right: auto;}
 		}
 
 
@@ -773,6 +773,8 @@
 		#highscorePage .section-like.narrow th, table.section-like.narrow td {padding: 3px!important;} 
                 /* Inventory tabs moved by 1px */
                 #inventory_nav {left: 23px!important;}
+		/* Broken line in header links with various languages */
+		#header_game>span, #header_game>span a {margin-right: 8px!important;}
 
 	/* Overview Layout
 	-------------------------------------------------- */
