@@ -1601,7 +1601,7 @@
                 #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
                 #mainmenu a:hover {overflow: visible;}
                 /* UW Slider style problems with your avatar */
-                .underworld #expedition_info1 {min-height: 241px!important;}
+                .underworld #expedition_info1 {min-height: 241px;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
