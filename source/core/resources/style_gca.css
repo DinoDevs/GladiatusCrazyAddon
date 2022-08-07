@@ -1600,6 +1600,8 @@
                 /* Menu text breaking the line with various languages */
                 #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
                 #mainmenu a:hover {overflow: visible;}
+                /* UW Slider style problems with your avatar */
+                #expedition_info1 {min-height: 241px!important;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
