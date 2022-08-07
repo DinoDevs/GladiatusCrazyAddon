@@ -768,13 +768,8 @@
 
 		/* Gladiatus Fixes */
 		.report_durability_loss{min-width:36px!important;display: unset!important;}
-                /* Highscore tables reposition */
-                #highscorePage .section-like {margin-left: -19px;width: 555px!important;max-width: 560px;}
-		#highscorePage .section-like.narrow th, table.section-like.narrow td {padding: 3px!important;} 
-                /* Inventory tabs moved by 1px */
-                #inventory_nav {left: 23px!important;}
-		/* Broken line in header links with various languages */
-		#header_game>span, #header_game>span a {margin-right: 8px!important;}
+
+
 
 	/* Overview Layout
 	-------------------------------------------------- */
@@ -1591,6 +1586,20 @@
 		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color:#FF6A00;"][style*="text-shadow:"] {color: white!important;}
 		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color:#FF0000;"][style*="text-shadow:"] {color: white!important;}
 		.accessibility-tooltips-quality-white .tooltips > div > p[style*="color: rgb(186, 151, 0);"] {color: white!important;}
+
+	/* Gladiatus Style Fixes
+	-------------------------------------------------- */
+
+               /* Highscore tables reposition */
+                #highscorePage .section-like {margin-left: -19px;width: 555px!important;max-width: 560px;}
+		#highscorePage .section-like.narrow th, table.section-like.narrow td {padding: 3px!important;} 
+                /* Inventory tabs moved by 1px */
+                #inventory_nav {left: 23px!important;}
+		/* Broken line in header links with various languages */
+		#header_game>span, #header_game>span a {margin-right: 8px!important;}
+                /* Menu text breaking the line with various languages */
+                #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+                #mainmenu a:hover {overflow: visible;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
