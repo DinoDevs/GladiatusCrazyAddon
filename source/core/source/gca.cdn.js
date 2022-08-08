@@ -332,6 +332,7 @@ var gca_cdn = {
 		//'img/costumes/sets/male/xxxx.jpg' : '',
 		//'img/costumes/sets/female/xxxx.jpg' : '',
 
+		'img/costumes/sets/male/{feronia-we-dont-know-this}.jpg' : '37c4364b8ac67369247214b8f71fd0b5', // Feronia
 		'img/costumes/sets/male/{neptune-we-dont-know-this}.jpg' : '141c581d299b3aeeae31f748732ce9c8', // Neptune
 		'img/costumes/sets/male/{aeolus-we-dont-know-this}.jpg' : '2201d0f0d9f6620fad15836eb95cbaa3', // Aeolus
 
