@@ -50,7 +50,7 @@
 	#header_values_hp_points span, #header_values_xp_points span{ color: #C7B68A!important; font-size: 15px!important; font-weight: normal!important; margin: 0px!important;}
 	.header_values_bar_percent {width: 23px !important;margin-right: 9px;}
 	.gca_rtl .header_values_bar_percent{margin-left: 9px;}
-        #header_life_pot {margin-right: -6px;margin-top: -15px;float: right;cursor:pointer;width:15px;height:21px;background-image: url('icons/pot.png');background-position: 0px 0px;}
+	#header_life_pot {margin-right: -6px;margin-top: -15px;float: right;cursor:pointer;width:15px;height:21px;background-image: url('icons/pot.png');background-position: 0px 0px;}
 	#header_life_pot:hover {filter: drop-shadow(0px 1px 2px #c7b68a);}   
 	#header_life_pot.disabled {background-position: -15px 0px;}
 	.gca_rtl #header_life_pot {margin-left: -5px;float: left;}
@@ -123,7 +123,7 @@
 	.refresh-icon:hover{background: transparent url('buttons/main_buttons.png') -320px -25px no-repeat;}
 	.pillar-icon{background: transparent url('buttons/main_buttons.png') -370px 0px no-repeat;}
 	.pillar-icon:hover{background: transparent url('buttons/main_buttons.png') -370px -25px no-repeat;}
-    .food-icon{background: transparent url('buttons/main_buttons.png') -395px 0px no-repeat;}
+	.food-icon{background: transparent url('buttons/main_buttons.png') -395px 0px no-repeat;}
 	.food-icon:hover{background: transparent url('buttons/main_buttons.png') -395px -25px no-repeat;}
 	.bathtub-icon{background: transparent url('buttons/main_buttons.png') -420px 0px no-repeat;}
 	.bathtub-icon:hover{background: transparent url('buttons/main_buttons.png') -420px -25px no-repeat;}
@@ -975,8 +975,8 @@
 		.gca_new_message_styling #messageForm textarea{min-height: 180px!important;max-height: 310px!important;resize: vertical!important;}
 		.gca_new_message_styling #content > div{margin-top: 0px!important;}
 		.gca_new_message_styling #messageForm input[type="submit"]{padding: 5px 10px;}
-                 #messagesPage .messages>.success, #messagesPage .messages>.fail {max-width: 475px!important;}
-		 #messagesPage .messages {width: 491px;}
+		#messagesPage .messages>.success, #messagesPage .messages>.fail {max-width: 475px!important;}
+		#messagesPage .messages {width: 491px;}
 		/* Select user button */
 		.gca_new_message_select_user{cursor: pointer;background: transparent url('buttons/main_buttons.png') -45px 0px no-repeat;width: 25px;height: 25px;border: 0px;display: inline-block;margin: -7px -7px;;}
 		.gca_new_message_select_user:hover{background: transparent url('buttons/main_buttons.png') -45px -25px no-repeat;}
@@ -1218,7 +1218,7 @@
 		/* Level indicator (disabled)
 		.gca_auction .gca_item_level{float: right;width: 16px;height: 16px;color: white;cursor: default;font-size: 9px;line-height: 17px;text-align: center;margin: 2px;}
 		.gca_rtl .gca_auction .gca_item_level{float: left;}
-                */
+		*/
 
 		/* Item value info */
 		.gca_auction .gca-auction-good-price,
@@ -1441,7 +1441,7 @@
 
 		/* Logo */
 		#settings_logo{background: linear-gradient(-45deg, #FFD91D, #5c1308, #5c1308, #FFD91D);background-size: 400% 400%;animation: gradient 15s ease infinite;;position:relative;background-position: center;width: 530px;height: 130px;margin-bottom: 10px;border: 2px solid black;background-repeat: no-repeat;}
-	        @keyframes gradient {0% {background-position: 0% 50%;}50% {background-position: 100% 50%;}100% {background-position: 0% 50%;}}
+		@keyframes gradient {0% {background-position: 0% 50%;}50% {background-position: 100% 50%;}100% {background-position: 0% 50%;}}
 		#settings_logogca{background-image: url('images/GCA_logo.png');position: absolute;width: 530px;height: 81px;background-repeat: no-repeat;margin-top: -13.5%;}		
 		#settings_logo .title{color: rgba(255,255,255,0.9);font-size: 12px;position: absolute;bottom: 5px;right: 10px;text-shadow: 0px 0px 5px black, 0px 0px 5px black;}
 		.gca_rtl #settings_logo .title{right: auto;left: 10px;}
@@ -1590,18 +1590,18 @@
 	/* Gladiatus Style Fixes
 	-------------------------------------------------- */
 
-               /* Highscore tables reposition */
-                #highscorePage .section-like {margin-left: -19px;width: 555px!important;max-width: 560px;}
+		/* Highscore tables reposition */
+		#highscorePage .section-like {margin-left: -19px;width: 555px!important;max-width: 560px;}
 		#highscorePage .section-like.narrow th, table.section-like.narrow td {padding: 3px!important;} 
-                /* Inventory tabs moved by 1px */
-                #inventory_nav {left: 23px!important;}
+		/* Inventory tabs moved by 1px */
+		#inventory_nav {left: 23px!important;}
 		/* Broken line in header links with various languages */
 		#header_game>span, #header_game>span a {margin-right: 8px!important;}
-                /* Menu text breaking the line with various languages */
-                #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-                #mainmenu a:hover {overflow: visible;}
-                /* UW Slider style problems with your avatar */
-                .underworld #expedition_info1 {min-height: 241px;}
+		/* Menu text breaking the line with various languages */
+		#mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+		#mainmenu a:hover {overflow: visible;}
+		/* UW Slider style problems with your avatar */
+		.underworld #expedition_info1 {min-height: 241px;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
