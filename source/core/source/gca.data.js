@@ -373,7 +373,10 @@ gca_options.data = {
 		"show_upgrade_values" : false,
 		
 		// Global Arena timer
-		"global_arena_timer" : true
+		"global_arena_timer" : true,
+		
+		// Gladiatus site fixes
+		"gladiatus_site_fixes" : true
 	},
 
 	// Overview Options
