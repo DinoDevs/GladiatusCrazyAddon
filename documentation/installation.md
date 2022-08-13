@@ -27,6 +27,8 @@
 
 To install the developer version, download the [developer code zip](https://github.com/DinoDevs/GladiatusCrazyAddon/archive/refs/heads/master.zip) and procced by following one of the guides for a *.zip file. At the step where you need to select the "Gladiatus Crazy Addon" folder, select the "source" folder incide the extracted files.
 
+Caution: before installing the developer version, disable or remove the curent version. Additionally, mind that the developer version does not auto-update with new releses, instead, you will need to manually replace the unpacked (decompressed) files by getting a fresh copy of the code.
+
 ### Install on mobile phone
 
 GCA can be installed on mobile phone by using a browser compatible with one of the provided extensions. For example, on Android phones you would need a browser like [kiwi](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser) or [yandex](https://play.google.com/store/apps/details?id=com.yandex.browser) which support chrome extensions (*.crx*). Some of these browsers support installing addons directly from a chrome store.
@@ -34,4 +36,4 @@ GCA can be installed on mobile phone by using a browser compatible with one of t
 
 ---
 
-<sub><sup>Last update on 19-Jul-2022</sup></sub>
+<sub><sup>Last update on 13-Aug-2022</sup></sub>
