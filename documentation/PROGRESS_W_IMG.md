@@ -1,4 +1,4 @@
-## Progress on Version 4.3.6 [Beta]
+## 🖼 Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square)
@@ -13,7 +13,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![forgesmelt_timers_colored](documentation/features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
+	![forgesmelt_timers_colored](features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
 	
 	</details>
 	
@@ -23,8 +23,8 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction.png) 
-	![add_loot_2](documentation/features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction_2.png)
+	![add_loot](features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction.png) 
+	![add_loot_2](features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction_2.png)
 	
 	</details>
 	
@@ -33,7 +33,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![add_vox1_to_shortcut_bar](documentation/features/Pictures/4.3.5%20to%204.3.6/add_vox1_to_shortcut_bar.png)
+	![add_vox1_to_shortcut_bar](features/Pictures/4.3.5%20to%204.3.6/add_vox1_to_shortcut_bar.png)
 	
 	</details>
 	
@@ -42,7 +42,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![buff_values_reinforcements_upgrades](documentation/features/Pictures/4.3.5%20to%204.3.6/buff_values_reinforcements_upgrades.png)
+	![buff_values_reinforcements_upgrades](features/Pictures/4.3.5%20to%204.3.6/buff_values_reinforcements_upgrades.png)
 	
 	</details>
 	
@@ -52,7 +52,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![Show_item_names](documentation/features/Pictures/4.3.5%20to%204.3.6/Show_item_names.png)
+	![Show_item_names](features/Pictures/4.3.5%20to%204.3.6/Show_item_names.png)
 	
 	</details>
 	
@@ -63,7 +63,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![add_loot](documentation/features/Pictures/4.3.5%20to%204.3.6/add_loot.png) 
+	![add_loot](features/Pictures/4.3.5%20to%204.3.6/add_loot.png) 
 	
 	</details>
 	
@@ -73,7 +73,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![vox_pin_message](documentation/features/Pictures/4.3.5%20to%204.3.6/vox_pin_message.png)
+	![vox_pin_message](features/Pictures/4.3.5%20to%204.3.6/vox_pin_message.png)
 	
 	</details>
 	
@@ -83,7 +83,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![show_rubin_via_icon](documentation/features/Pictures/4.3.5%20to%204.3.6/show_rubin_via_icon.png) 
+	![show_rubin_via_icon](features/Pictures/4.3.5%20to%204.3.6/show_rubin_via_icon.png) 
 	
 	</details>
 	
@@ -93,7 +93,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![smelt_time_on_tooltip](documentation/features/Pictures/4.3.5%20to%204.3.6/smelt_time_on_tooltip.png)
+	![smelt_time_on_tooltip](features/Pictures/4.3.5%20to%204.3.6/smelt_time_on_tooltip.png)
 	
 	</details>
 	
@@ -103,7 +103,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![item_fee](documentation/features/Pictures/4.3.5%20to%204.3.6/item_fee.png) 
+	![item_fee](features/Pictures/4.3.5%20to%204.3.6/item_fee.png) 
 	
 	</details>
 
@@ -115,7 +115,7 @@
 	<details>
 	<summary>🖼️</summary>
 	
-	![list_view](documentation/features/Pictures/4.3.5%20to%204.3.6/list_view.png)
+	![list_view](features/Pictures/4.3.5%20to%204.3.6/list_view.png)
 	
 	</details>
 
