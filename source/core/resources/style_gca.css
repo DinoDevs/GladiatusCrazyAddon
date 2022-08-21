@@ -38,7 +38,7 @@
 	.event_bar_moved #content_2nd{margin-top: 25px!important;}
 	.event_bar_moved #banner_top{top: 152px!important;background-image: url('interface/eventBar.png')!important;z-index: 299!important;}
 	.event_bar_moved #banner_event{top: 155px!important;z-index: 299!important;}
-	.event_bar_moved #cooldown_bar_event{margin-top: 30px!important;}
+	.event_bar_moved #cooldown_bar_event{margin-top: 30px;}
 
 /* Extended Hp and Xp info */
 	#header_values_hp_xp_background{position: absolute; z-index: 1; top:81px; left:335px; background-image: url('interface/extend_hp_xp_info.png'); width: 180px; height: 50px; border: 0px;}
@@ -1613,6 +1613,11 @@
                 .glfix html {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
                 /* Buff side-icons incomplete */
                 .glfix .buff {display: block!important;} 
+                /* Event timer overhaul (compatible with .event_bar_moved) */
+		.glfix #cooldown_bar_event {background-image: unset!important;background-color: #200500!important;left: 352px!important;top: 195px!important;width: 402px!important;height: 11px!important;outline-style: ridge;outline-width: 2px;outline-color: #9f8548;} 
+		.glfix #cooldown_bar_text_event {font-size: 11px!important;margin-top: -3px!important;} 
+		.glfix.event_bar_moved #cooldown_bar_event {margin-top: unset!important;}
+		.glfix ul#mainnav {z-index: 500;}	
 
 	/* Ester Eggs
 	-------------------------------------------------- */
