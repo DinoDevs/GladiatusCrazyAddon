@@ -1602,16 +1602,16 @@
 		.glfix #mainmenu a:hover {overflow: visible;}
 		/* UW Slider style problems with your avatar */
 		.glfix .underworld #expedition_info1 {min-height: 241px;}
-    /* Custom scrollbar */		
-    .glfix ::-webkit-scrollbar {width: 16px;}
-    .glfix ::-webkit-scrollbar-track {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
-    .glfix ::-webkit-scrollbar-thumb {background: linear-gradient(to bottom, #C3AB6F, #886933);border-radius: 5px; border: 1px solid #4A3615;}
-    .glfix ::-webkit-scrollbar-thumb:hover {background: linear-gradient(to bottom, #D6BC78 , #A27E3E);}
-    .glfix ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
-    /* Custom scrollbar for Firefox */
-    .glfix html {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
-    /* Buff side-icons incomplete */
-    .glfix .buff {display: block!important;} 
+                /* Custom scrollbar */		
+                .glfix ::-webkit-scrollbar {width: 16px;}
+                .glfix ::-webkit-scrollbar-track {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
+                .glfix ::-webkit-scrollbar-thumb {background: linear-gradient(to bottom, #C3AB6F, #886933);border-radius: 5px; border: 1px solid #4A3615;}
+                .glfix ::-webkit-scrollbar-thumb:hover {background: linear-gradient(to bottom, #D6BC78 , #A27E3E);}
+                .glfix ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
+                /* Custom scrollbar for Firefox */
+                .glfix html {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
+                /* Buff side-icons incomplete */
+                .glfix .buff {display: block!important;} 
 
 	/* Ester Eggs
 	-------------------------------------------------- */
