@@ -28,6 +28,9 @@ var gca_global = {
 		// If submenu click to change
 		(gca_options.bool("global","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.preload());
+		// Gladiatus site fixes & improvements
+		(gca_options.bool("global","gladiatus_site_fixes") && 
+			this.display.gladiatus_site_fixes.preload());
 		// If rtl server
 		if (localStorage.getItem('gca_rtl')) {
 			document.documentElement.classList.add("gca_rtl");
@@ -1925,6 +1928,14 @@ var gca_global = {
 					gca_data.section.set("cache", "event_bar_active", 0);
 					document.documentElement.className = document.documentElement.className.replace(/\s*event_bar_moved\s*/i, " ");
 				}
+			}
+		},
+		
+		// Gladiatus site fixes & improvements
+		gladiatus_site_fixes : {
+			preload : function(){
+				// Insert it on html tag
+				document.documentElement.className += " glfix";
 			}
 		},
 
