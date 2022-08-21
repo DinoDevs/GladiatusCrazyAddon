@@ -1610,6 +1610,8 @@
                 ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
                 /* Custom scrollbar for Firefox */
                 html {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
+                /* Buff side-icons incomplete */
+                .buff {display: block!important;} 
 
 
 	/* Ester Eggs
