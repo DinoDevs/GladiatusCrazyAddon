@@ -374,6 +374,7 @@ gca_languages['cs'] = {
 			category_global$show_mercenaries_real_name_and_combat_stats : "Zobrazit reálná jména žoldáků (typ) a jejich bojové statistiky v popiscích",
 			category_global$show_upgrade_values : "Zobrazit hodnoty předmětů vylepšení & zdokonalení",
 			category_global$global_arena_timer : "Zobrazit časovač Globální Arény",
+			category_global$gladiatus_site_fixes : "Oprav a vylepši vzhled stránky Gladiatusu",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
 			category_overview$food_life_gain : "Zobrazit počet životů obdržený z jídla",
