@@ -1595,6 +1595,7 @@
 		.glfix #highscorePage .section-like.narrow th, table.section-like.narrow td {padding: 3px!important;} 
 		/* Inventory tabs moved by 1px */
 		.glfix #inventory_nav {left: 23px!important;}
+                .glfix .contentItem.gca-bag-pop-over #inventory_nav {left: 1px!important}
 		/* Broken line in header links with various languages */
 		.glfix #header_game>span, #header_game>span a {margin-right: 8px!important;}
 		/* Menu text breaking the line with various languages */
