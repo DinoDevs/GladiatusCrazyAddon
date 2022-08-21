@@ -385,6 +385,7 @@ gca_languages["en"] = {
 			category_global$show_mercenaries_real_name_and_combat_stats : "Display mercenaries real names (type) and combat stats on tooltips",
 			category_global$show_upgrade_values : "Display buff values on reinforcements & upgrades",
 			category_global$global_arena_timer : "Display Global Arena timer",
+			category_global$gladiatus_site_fixes : "Fix and improve Gladiatus site style problems",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",

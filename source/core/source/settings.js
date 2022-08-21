@@ -732,6 +732,9 @@ var gca_settings = {
 				
 				// Attacked Timer
 				"global_arena_timer" : true,
+				
+		                // Gladiatus site fixes
+		                "gladiatus_site_fixes" : true				
 			},
 
 			// Overview Options
