@@ -1,43 +1,123 @@
-## Progress on Version 4.3.6 [Beta]
+## 🖼 Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
-[![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
 ### IMPROVEMENTS
 - **Global**
 	- [ ] Preparations for Manifest v3 (some fixes and testing can be found at [testing branch](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/manifest-v3-testing))
-	- [x] Item names in forge/smelt timers tooltip are now colored based on item quality (by @MiguelSOliveira)	
+	- [x] Item names in forge/smelt timers tooltip are now colored based on item quality (by @MiguelSOliveira)
+	
+	<details>
+	<summary>🖼️</summary>
+	
+	![forgesmelt_timers_colored](features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
+	
+	</details>
+	
 	- [x] Show mercenary real name: Names are now translated automatically if previously seen in auction
-	- [x] Menu shortcuts: added new auction menu entry [+] with various shortcuts	
-	- [x] Shortcuts bar: added button to guild baths Vox I (#372)	
+	- [x] Menu shortcuts: added new auction menu entry [+] with various shortcuts
+	
+	<details>
+	<summary>🖼️</summary>
+	
+	![add_loot](features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction.png) 
+	![add_loot_2](features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction_2.png)
+	
+	</details>
+	
+	- [x] Shortcuts bar: added button to guild baths Vox I (#372)
+
+	<details>
+	<summary>🖼️</summary>
+	
+	![add_vox1_to_shortcut_bar](features/Pictures/4.3.5%20to%204.3.6/add_vox1_to_shortcut_bar.png)
+	
+	</details>
+	
 	- [x] Display buff values on reinforcements & upgrades
+	
+	<details>
+	<summary>🖼️</summary>
+	
+	![buff_values_reinforcements_upgrades](features/Pictures/4.3.5%20to%204.3.6/buff_values_reinforcements_upgrades.png)
+	
+	</details>
 	
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
         	
+	<details>
+	<summary>🖼️</summary>
+	
+	![Show_item_names](features/Pictures/4.3.5%20to%204.3.6/Show_item_names.png)
+	
+	</details>
+	
 - **Accessibility**
 	- [ ] Improve experience on mobile phones
 	- [x] Added loot per side in reports lists (#337)
-		
+	
+	<details>
+	<summary>🖼️</summary>
+	
+	![add_loot](features/Pictures/4.3.5%20to%204.3.6/add_loot.png) 
+	
+	</details>
+	
 - **Guild Bath**
-	- [x] Pin message that will be displayed at the top of messages (#348)            
+	- [x] Pin message that will be displayed at the top of messages (#348)
+              
+	<details>
+	<summary>🖼️</summary>
+	
+	![vox_pin_message](features/Pictures/4.3.5%20to%204.3.6/vox_pin_message.png)
+	
+	</details>
 	
 - **Merchants**
 	- [x] Items that costs rubies can now have an icon (#355)	
 	
+	<details>
+	<summary>🖼️</summary>
+	
+	![show_rubin_via_icon](features/Pictures/4.3.5%20to%204.3.6/show_rubin_via_icon.png) 
+	
+	</details>
+	
 - **Forge**
 	- [x] Forging time is now displayed under the required resources in the tooltip (#350)	
+        
+	<details>
+	<summary>🖼️</summary>
+	
+	![smelt_time_on_tooltip](features/Pictures/4.3.5%20to%204.3.6/smelt_time_on_tooltip.png)
+	
+	</details>
 	
 - **Market**
 	- [x] Added button to include fees in the market price (#308)
+		
+	<details>
+	<summary>🖼️</summary>
+	
+	![item_fee](features/Pictures/4.3.5%20to%204.3.6/item_fee.png) 
+	
+	</details>
 
 - **Underworld**
 	- [x] Expedition shortcut will always redirect to the last open location (#223)
 - **Packages**
 	- [x] Packages can be displayed as a list view (#323, #309)
+		
+	<details>
+	<summary>🖼️</summary>
+	
+	![list_view](features/Pictures/4.3.5%20to%204.3.6/list_view.png)
+	
+	</details>
 
 ### BUG FIXES
 - **Global**
