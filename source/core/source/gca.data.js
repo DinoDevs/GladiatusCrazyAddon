@@ -379,7 +379,7 @@ gca_options.data = {
 		"gladiatus_site_fixes" : true,
                 
                 // Hide language flags
-		"hide_language_flags" : true
+		"hide_language_flags" : false
 	},
 
 	// Overview Options
