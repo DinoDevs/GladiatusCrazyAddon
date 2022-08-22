@@ -4168,7 +4168,8 @@ var gca_global = {
 			init : function() {
 			if (gca_section.mod == 'highscore' || gca_section.mod == 'arena' || gca_section.mod == 'market' || gca_section.mod == 'guildMarket') {			 
 				document.getElementById("content").className += " hide-flags";
-				
+			
+				}
 			}
 		},
 	},
