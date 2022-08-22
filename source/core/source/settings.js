@@ -734,7 +734,11 @@ var gca_settings = {
 				"global_arena_timer" : true,
 				
 		                // Gladiatus site fixes
-		                "gladiatus_site_fixes" : true				
+		                "gladiatus_site_fixes" : true,	
+                    
+                                // Hide language flags
+		                "hide_language_flags" : false                                
+                                
 			},
 
 			// Overview Options
