@@ -376,7 +376,10 @@ gca_options.data = {
 		"global_arena_timer" : true,
 		
 		// Gladiatus site fixes
-		"gladiatus_site_fixes" : true
+		"gladiatus_site_fixes" : true,
+		
+		// Lock sections visibility
+		"lock_section_visibility" : false
 	},
 
 	// Overview Options
