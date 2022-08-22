@@ -1617,7 +1617,10 @@
 		.glfix #cooldown_bar_event {background-image: unset!important;background-color: #200500!important;left: 352px!important;top: 195px!important;width: 402px!important;height: 11px!important;outline-style: ridge;outline-width: 2px;outline-color: #9f8548;z-index: 300;} 
 		.glfix #cooldown_bar_text_event {font-size: 11px!important;margin-top: -3px!important;} 
 		.glfix.event_bar_moved #cooldown_bar_event {margin-top: unset!important;}
-		.glfix ul#mainnav li a {z-index: 301;}		
+		.glfix ul#mainnav li a {z-index: 301;}	
+
+                /* Hide flags feature */
+                .hide-flags .language-flag {display: none;}	
 
 	/* Ester Eggs
 	-------------------------------------------------- */
