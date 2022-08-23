@@ -733,11 +733,17 @@ var gca_settings = {
 				// Attacked Timer
 				"global_arena_timer" : true,
 				
-		                // Gladiatus site fixes
-		                "gladiatus_site_fixes" : true,	
+		    // Gladiatus site fixes
+		    "gladiatus_site_fixes" : true,	
+
 				
 				// Lock sections visibility
-				"lock_section_visibility" : false
+				"lock_section_visibility" : false,
+
+                    
+        // Hide language flags
+		    "hide_language_flags" : false                                
+                                
 			},
 
 			// Overview Options

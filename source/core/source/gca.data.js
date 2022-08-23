@@ -379,7 +379,11 @@ gca_options.data = {
 		"gladiatus_site_fixes" : true,
 		
 		// Lock sections visibility
-		"lock_section_visibility" : false
+		"lock_section_visibility" : false,
+                
+    // Hide language flags
+		"hide_language_flags" : false
+
 	},
 
 	// Overview Options
