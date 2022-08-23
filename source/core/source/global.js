@@ -4178,7 +4178,7 @@ var gca_global = {
 		hideLanguageFlags : {
 			preload : function() {
 			       // Detect page mods
-			       if (gca_section.mod == 'highscore' || gca_section.mod == 'arena' || gca_section.mod == 'market' || gca_section.mod == 'guildMarket') {			 
+			       if (gca_section.mod == 'highscore' || gca_section.mod == 'arena' || gca_section.submod == 'showArena' || gca_section.submod == 'showCircusTurma' || gca_section.mod == 'market' || gca_section.mod == 'guildMarket') {				 
 				  // Insert it in content section if mod detected
                                   document.documentElement.className += " hide-flags"; {	
                                        // Remove it in content section if submod detected
