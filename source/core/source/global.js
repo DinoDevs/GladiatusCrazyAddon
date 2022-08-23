@@ -31,6 +31,11 @@ var gca_global = {
 		// Gladiatus site fixes & improvements
 		(gca_options.bool("global","gladiatus_site_fixes") && 
 			this.display.gladiatus_site_fixes.preload());
+		
+		// Hide flags
+		(gca_options.bool("global","hide_language_flags") &&
+			this.display.hideLanguageFlags.preload());
+		
 		// If rtl server
 		if (localStorage.getItem('gca_rtl')) {
 			document.documentElement.classList.add("gca_rtl");
@@ -247,10 +252,6 @@ var gca_global = {
 		// Show upgrade item value on item
 		(gca_options.bool("global","show_upgrade_values") &&
 			this.display.analyzeItems.itemUpgrades.init());
-
-		// Hide flags
-		(gca_options.bool("global","hide_language_flags") &&
-			this.display.hideLanguageFlags.init());
 
 		// Mobile item move helper - Run on mobiles
 		(this.isMobile &&
@@ -4165,10 +4166,10 @@ var gca_global = {
 		},
 
 		hideLanguageFlags : {
-			init : function() {
-			if (gca_section.mod == 'highscore' || gca_section.mod == 'arena' || gca_section.mod == 'market' || gca_section.mod == 'guildMarket') {			 
-				document.getElementById("content").className += " hide-flags";
-			
+			preload : function() {
+			       if (gca_section.mod == 'highscore' || gca_section.mod == 'arena' || gca_section.mod == 'market' || gca_section.mod == 'guildMarket') {			 
+				   // Insert it in content section
+                                   document.getElementById("content").className += " hide-flags";			
 				}
 			}
 		},
