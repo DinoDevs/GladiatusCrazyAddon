@@ -376,6 +376,7 @@ gca_languages['cs'] = {
 			category_global$global_arena_timer : "Zobrazit časovač Globální Arény",
 			category_global$gladiatus_site_fixes : "Oprav a vylepši vzhled stránky Gladiatusu",
 			category_global$lock_section_visibility : "Uzamknout aktuální stav všech skrytých/odkrytých sekcí",
+			category_global$hide_language_flags : "Skrýt vlajky jazyků pod jmény hráčů",   
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
 			category_overview$food_life_gain : "Zobrazit počet životů obdržený z jídla",
