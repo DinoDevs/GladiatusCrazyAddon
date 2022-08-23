@@ -31,6 +31,11 @@ var gca_global = {
 		// Gladiatus site fixes & improvements
 		(gca_options.bool("global","gladiatus_site_fixes") && 
 			this.display.gladiatus_site_fixes.preload());
+		
+		// Hide flags
+		(gca_options.bool("global","hide_language_flags") &&
+			this.display.hideLanguageFlags.preload());
+		
 		// If rtl server
 		if (localStorage.getItem('gca_rtl')) {
 			document.documentElement.classList.add("gca_rtl");
@@ -247,10 +252,6 @@ var gca_global = {
 		// Show upgrade item value on item
 		(gca_options.bool("global","show_upgrade_values") &&
 			this.display.analyzeItems.itemUpgrades.init());
-
-		// Hide flags
-		(gca_options.bool("global","hide_language_flags") &&
-			this.display.hideLanguageFlags.init());
 
 		// Mobile item move helper - Run on mobiles
 		(this.isMobile &&
@@ -4165,11 +4166,20 @@ var gca_global = {
 		},
 
 		hideLanguageFlags : {
-			init : function() {
-				
-			}
-		},
-	},
+			preload : function() {
+			       // Detect page mods
+			       if (gca_section.mod == 'highscore' || gca_section.mod == 'arena' || gca_section.mod == 'market' || gca_section.mod == 'guildMarket') {			 
+				  // Insert it in content section if mod detected
+                                  document.getElementById("content").className += " hide-flags"; {	
+                                       // Remove it in content section if submod detected
+                                       if (gca_section.submod === 'serverArena' || gca_section.submod == 'control' || gca_section.submod == 'suche') { 	
+				           document.getElementById("content").removeClass("hide-flags");	
+                }
+            }
+        }
+    }
+}
+},
 
 	// Underworld related functions
 	underworld : {
