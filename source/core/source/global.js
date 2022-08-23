@@ -4167,13 +4167,19 @@ var gca_global = {
 
 		hideLanguageFlags : {
 			preload : function() {
+			       // Detect page mods
 			       if (gca_section.mod == 'highscore' || gca_section.mod == 'arena' || gca_section.mod == 'market' || gca_section.mod == 'guildMarket') {			 
-				   // Insert it in content section
-                                   document.getElementById("content").className += " hide-flags";			
-				}
-			}
-		},
-	},
+				  // Insert it in content section if mod detected
+                                  document.getElementById("content").className += " hide-flags"; {	
+                                       // Remove it in content section if submod detected
+                                       if (gca_section.submod === 'serverArena' || gca_section.submod == 'control' || gca_section.submod == 'suche') { 	
+				           document.getElementById("content").removeClass("hide-flags");	
+                }
+            }
+        }
+    }
+}
+},
 
 	// Underworld related functions
 	underworld : {
