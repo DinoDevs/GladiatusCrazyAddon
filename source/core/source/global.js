@@ -4183,7 +4183,7 @@ var gca_global = {
                                   document.documentElement.className += " hide-flags"; {	
                                        // Remove it in content section if submod detected
                                        if (gca_section.submod === 'serverArena' || gca_section.submod == 'control' || gca_section.submod == 'suche') { 	
-				           document.documentElement.removeClass("hide-flags");		
+				           document.documentElement.classList.remove("hide-flags");			
                 }
             }
         }
