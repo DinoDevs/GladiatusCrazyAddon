@@ -1623,6 +1623,9 @@
                 /* Hide flags feature */
                 .hide-flags .language-flag {display: none;}	
 
+                /* Lock sections visibility */
+                .lock_section_visibility .section-header {pointer-events: none;cursor: none!important;}	 
+
 	/* Ester Eggs
 	-------------------------------------------------- */
 		

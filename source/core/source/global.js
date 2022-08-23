@@ -31,11 +31,13 @@ var gca_global = {
 		// Gladiatus site fixes & improvements
 		(gca_options.bool("global","gladiatus_site_fixes") && 
 			this.display.gladiatus_site_fixes.preload());
-		
+		// Lock all sections
+		(gca_options.bool("global","lock_section_visibility") && 
+			this.display.lock_section_visibility.preload());
 		// Hide flags
 		(gca_options.bool("global","hide_language_flags") &&
 			this.display.hideLanguageFlags.preload());
-		
+
 		// If rtl server
 		if (localStorage.getItem('gca_rtl')) {
 			document.documentElement.classList.add("gca_rtl");
@@ -1937,6 +1939,14 @@ var gca_global = {
 			preload : function(){
 				// Insert it on html tag
 				document.documentElement.className += " glfix";
+			}
+		},
+                
+                // Lock all sections
+		lock_section_visibility : {
+			preload : function(){
+				// Insert it on html tag
+				document.documentElement.className += " lock_section_visibility";
 			}
 		},
 

@@ -377,9 +377,13 @@ gca_options.data = {
 		
 		// Gladiatus site fixes
 		"gladiatus_site_fixes" : true,
+		
+		// Lock sections visibility
+		"lock_section_visibility" : false,
                 
-                // Hide language flags
+    // Hide language flags
 		"hide_language_flags" : false
+
 	},
 
 	// Overview Options
