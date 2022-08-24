@@ -1625,7 +1625,8 @@
 
                 /* Lock sections visibility */
                 .lock_section_visibility .section-header {pointer-events: none;}	 
-		.lock_section_visibility .paging {pointer-events: auto;}	
+		.lock_section_visibility .paging {pointer-events: auto;}
+                .lock_section_visibility #powerupsPage #changeRune1_1 {pointer-events: auto;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
