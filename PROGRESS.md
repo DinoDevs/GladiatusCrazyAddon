@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -45,6 +45,7 @@
 	- [x] Style fix for double line tab names when shortcuts bar is active along with an event
 	- [x] Show online family members fixes (#314)
 	- [x] Style fix for stats box (shortcuts bar) rendering behind event timers (#367)
+	- [x] Fixed script not detecting the page direction
 - **Forge**
 	- [x] Fixed a loop when gettings items from workbench (Firefox) (#335)
 	- [x] Style adjustments on book of scrolls (lists with known prefixes & suffixes)
