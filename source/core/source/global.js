@@ -370,8 +370,8 @@ var gca_global = {
 		
 		// Check page direction ltr or rtl
 		if(
-			!document.querySelectorAll('link')[1+s].getAttribute("css").match("rtl_") && 
-			!document.querySelectorAll('link')[2+s].getAttribute("css").match("rtl_")
+			// Check if the rtl css exists on the page 
+			!document.querySelector("link[href$='/cdn57/270eb6a1a8de3fd98cd920e0a396ed.css']")
 		){
 			window.gca_rtl = false;
 			return;
