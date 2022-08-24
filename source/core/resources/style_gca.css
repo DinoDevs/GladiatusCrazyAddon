@@ -1593,7 +1593,8 @@
 		/* Highscore tables reposition */
 		.glfix #highscorePage .section-like {margin-left: -19px;width: 555px!important;max-width: 560px;}
 		.glfix #highscorePage .section-like.narrow th, table.section-like.narrow td {padding: 3px!important;} 
-                .glfix #highscorePage table.section-like tr {height: 30px;}	
+                .glfix #highscorePage table.section-like tr {height: 30px;border: 1px solid #bba86e;}	
+		.glfix #highscorePage table.section-like a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}	
 		/* Inventory tabs moved by 1px */
 		.glfix #inventory_nav {left: 23px!important;}
                 .glfix .contentItem.gca-bag-pop-over #inventory_nav {left: 1px!important}
@@ -1620,6 +1621,22 @@
                 .glfix #cooldown_bar_text_event:hover {color: #F9E9CA; cursor: progress;}
 		.glfix.event_bar_moved #cooldown_bar_event {margin-top: unset!important;}
 		.glfix ul#mainnav li a {z-index: 301;}	
+                /* Overhaul Arena and Circus tables */
+                .glfix #arenaPage .right {width: 500px!important;margin-top: 10px; float: unset!important} /* Own ranking */	
+                .glfix #arenaPage .left {width: 500px!important;margin-top: 10px; float: unset!important} /* Top 5 */			
+		.glfix #arenaPage .right th {background-color: #bba86e80;}	
+		.glfix #arenaPage .right table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;}
+		.glfix #arenaPage .right .attack {margin-left: 50px} /* Attack buttons*/	
+		.glfix #arenaPage .left th {background-color: #bba86e80;}	
+		.glfix #arenaPage .left table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;}
+		.glfix #arenaPage .left center {margin-left: 50px;color: black;font-weight:bold;outline-color: #f8e5b0;outline-style: inset;outline-width: 2px} /* Prize gold amount */	
+		.glfix #arenaPage .left img {vertical-align: sub;} /* Prize and Gold icons */			
+		.glfix #arenaPage #own2 th {background-color: #bba86e80;} /* Provinciarum Arena */
+		.glfix #arenaPage #own2 table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;} /* Provinciarum Arena */
+		.glfix #arenaPage #own2 .attack {margin-left: 26px} /* Provinciarum Arena attack buttons */		 
+		.glfix #arenaPage #own3 th {background-color: #bba86e80;} /* Circus Provinciarum */
+		.glfix #arenaPage #own3 table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;} /* Circus Provinciarum */
+		.glfix #arenaPage #own3 .attack {margin-left: 26px} /* Circus Provinciarum attack buttons */	
 
                 /* Hide flags feature */
                 .hide-flags .language-flag {display: none;}	
