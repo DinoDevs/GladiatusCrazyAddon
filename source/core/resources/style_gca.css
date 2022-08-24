@@ -1624,9 +1624,11 @@
                 .hide-flags .language-flag {display: none;}	
 
                 /* Lock sections visibility */
-                .lock_section_visibility .section-header {pointer-events: none;}	 
-		.lock_section_visibility .paging {pointer-events: auto;}
-                .lock_section_visibility #powerupsPage .rune_confirm.section-header {pointer-events: auto;}
+                .lock_section_visibility .section-header {pointer-events: none;}
+                /* Ignore the lock on some elements */
+		.lock_section_visibility .paging {pointer-events: auto!important;}
+                .lock_section_visibility #powerupsPage .rune_confirm.section-header {pointer-events: auto!important;}
+                .lock_section_visibility #powerupsPage .powerup_box {pointer-events: auto!important;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
