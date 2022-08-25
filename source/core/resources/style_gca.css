@@ -188,7 +188,7 @@
 	.gca_rtl .attacked_timers_back:before{left:auto;right:0px;-moz-transform: scaleX(-1);-o-transform: scaleX(-1);-webkit-transform: scaleX(-1);}
 	
 	.attacked_timers_table{margin-top: 39px;margin-left: 22px;line-height: 16px;width: 170px;text-align: left;}
-	.gca_rtl  .attacked_timers_table{margin-right: 25px;margin-left: auto;text-align: right;}
+	.gca_rtl  .attacked_timers_table{margin-right: 22px;margin-left: auto;text-align: right;}
 	.attacked_timers_xs_text{color: #d4ad0f!important;position: absolute;margin-left:-8px!important;margin-top: 6px;text-shadow: 0 0 2px #000, 0 0 4px #582f00;cursor: default;}
 	.gca_rtl  .attacked_timers_xs_text{margin-right:-8px!important;margin-left:auto!important;}
 	.attacked_timers_table .timer{color: #C7B68A;font-weight: normal;margin-left: 0px;margin-right: 0px;vertical-align: middle;}
@@ -1637,6 +1637,13 @@
 		.glfix #arenaPage #own3 th {background-color: #bba86e80;} /* Circus Provinciarum */
 		.glfix #arenaPage #own3 table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;} /* Circus Provinciarum */
 		.glfix #arenaPage #own3 .attack {margin-left: 26px} /* Circus Provinciarum attack buttons */	
+                /* Gladiatus all fixes but with RTL */
+                .gca_rtl.glfix #arenaPage .right .attack {margin-left: auto!important;margin-right: 55px;} 
+		.gca_rtl.glfix #arenaPage .left center {margin-left:auto!important;margin-right:25px;}
+		.gca_rtl.glfix #arenaPage #own2 .attack {margin-left: auto!important;margin-right: 30px;} 
+                .gca_rtl.glfix #arenaPage #own3 .attack {margin-left: auto!important;margin-right: 30px;} 		  	  	  
+		.gca_rtl.glfix #highscorePage .section-like {margin-left: auto!important;margin-right: -19px;} 
+		.gca_rtl.glfix #cooldown_bar_event {left: auto!important;right: 352px;} 
 
                 /* Hide flags feature */
                 .hide-flags .language-flag {display: none;}	
