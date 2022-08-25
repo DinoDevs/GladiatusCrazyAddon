@@ -1338,6 +1338,9 @@
 		/* Click to open all categories */
 		.horreum-click-to-open-categories {position: absolute;margin-top: 16px;right: 61px;width: 16px;height: 16px;text-align: center;line-height: 16px;color: #dace9e!important;background: #4c1300;border: 2px solid #ddd0ae;box-shadow: 0px 0px 2px black;text-decoration: none!important;border-radius: 10px;font-size: 10px;cursor: pointer;}
 		.gca_rtl .horreum-click-to-open-categories {right: auto;left: 61px;}
+                /* Click to close all open categories */
+		.horreum-click-to-close-categories {position: absolute;margin-top: 40px;right: 61px;width: 16px;height: 16px;text-align: center;line-height: 16px;color: #dace9e!important;background: #4c1300;border: 2px solid #ddd0ae;box-shadow: 0px 0px 2px black;text-decoration: none!important;border-radius: 10px;font-size: 10px;cursor: pointer;}
+		.gca_rtl .horreum-click-to-close-categories {right: auto;left: 61px;}
 
 
 	/* Market
