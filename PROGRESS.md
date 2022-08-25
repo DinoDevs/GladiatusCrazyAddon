@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-14-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-17-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
@@ -14,7 +14,9 @@
 	- [x] Menu shortcuts: added new auction menu entry [+] with various shortcuts	
 	- [x] Shortcuts bar: added button to guild baths Vox I (#372)	
 	- [x] Display buff values on reinforcements & upgrades
-	- [x] Settings: option to disable/enable Gladiatus site (style) fixes & improvements (#403)
+	- [x] Settings: option to disable/enable overall Gladiatus site (style) fixes & improvements (#403)
+	- [x] Lock sections: The current state of all sections that can be hidden can now be locked or unlocked in the settings (#160)
+	- [x] Hide flags: Language flags under player names can now be hidden if enabled in the settings (#377)
 	
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
@@ -31,6 +33,7 @@
 	
 - **Forge**
 	- [x] Forging time is now displayed under the required resources in the tooltip (#350)	
+	- [x] Added a button to Horrem materials table to close all categories if opened
 	
 - **Market**
 	- [x] Added button to include fees in the market price (#308)
