@@ -97,6 +97,9 @@ var gca_forge = {
 
 			// Add button to quickly expand all categories
 			this.horreum.openAllCategoriesButton();
+                        
+                        // Add button to quickly close all expanded categories
+			this.horreum.closeAllCategoriesButton();
 
 			// Add link to the scroll book
 			this.scrollBook.inject();
@@ -1062,6 +1065,17 @@ var gca_forge = {
 			}, false);
 			document.getElementById('content').getElementsByTagName('article')[0].appendChild(btn);
 		},
+                
+                closeAllCategoriesButton : function() {
+			let btn = document.createElement('a');
+			btn.className = 'horreum-click-to-close-categories';
+			btn.textContent = '↑';
+			btn.addEventListener('click', function() {
+				jQuery('#resource-list tbody').css('display','none');
+			}, false);
+			document.getElementById('content').getElementsByTagName('article')[0].appendChild(btn);
+		},
+
 
 		gatherInfo : function() {
 			// Get material names
