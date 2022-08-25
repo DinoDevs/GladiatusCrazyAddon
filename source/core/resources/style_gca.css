@@ -1262,6 +1262,8 @@
 		#global_arena_box #spiner_box{display:none;width: 500px;position: absolute;line-height:100%;}
 		#global_arena_box table {/*border-spacing: 0px 2px;*/border: 1px solid #bba86e;}
 		#global_arena_box table th {background-color: #bba86e80;}
+	        .gca_rtl #global_arena_box th:first-child {width: 10%;} 
+		.gca_rtl #global_arena_box .attack {margin-right: 6px;} 
 		#global_arena_box table .highlight th {background-color: transparent;}
 		#global_arena_box .highlight{background-color: #fdc733;}
 		#global_arena_box .highlight .first{border-radius: 10px 0px 0px 10px;border: 0px;}
