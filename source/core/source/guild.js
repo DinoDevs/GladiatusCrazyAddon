@@ -10,6 +10,8 @@ var gca_guild = {
 		if (gca_section.submod == 'adminMail') {
 			// Default auto focus all
 			this.adminMail.auto_focus_all();
+			// Important ranks button
+			this.important_ranks();
 		}
 		// If guild buildings
 		else if (gca_section.submod == 'buildings' || gca_section.submod == 'updateBuilding') {
@@ -38,6 +40,19 @@ var gca_guild = {
 			});
 		}
 	},
+        
+	important_ranks : function() {
+			let btn = document.createElement('input');
+			btn.setAttribute("type", "button");
+			btn.className = 'awesome-button';
+			btn.setAttribute("value", gca_locale.get("guild", "important_ranks"));		
+			document.getElementById('quickFilter').appendChild(btn);			
+			btn.addEventListener('click', function() {
+				jQuery('#mainbox').find('input[data-rank="1"], [data-rank="2"]').each(function(){
+				jQuery(this).prop('checked', 1);
+            });
+        });
+    },        
 
 	buildings : {
 		buildingsCostDifference : {
