@@ -10,6 +10,7 @@ var gca_guild = {
 		if (gca_section.submod == 'adminMail') {
 			// Default auto focus all
 			this.adminMail.auto_focus_all();
+			// Important ranks button
 			this.important_ranks();
 		}
 		// If guild buildings
