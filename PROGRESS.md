@@ -33,7 +33,7 @@
 	
 - **Forge**
 	- [x] Forging time is now displayed under the required resources in the tooltip (#350)	
-	- [x] Added a button to Horrem materials table to close all categories if opened
+	- [x] Added a button to Horreum materials table to close all categories if opened
 	
 - **Market**
 	- [x] Added button to include fees in the market price (#308)
