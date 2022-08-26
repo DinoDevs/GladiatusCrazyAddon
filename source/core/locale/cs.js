@@ -164,7 +164,9 @@ gca_languages['cs'] = {
 			// Baths
 			pinned_message : "Připnutá gildovní zpráva",
 			pin_unpin_message : "Připnout/Odepnout zprávu",
-			pinned_message_info : "Připnuté zprávy se zobrazují vždy jako první zpráva pro všechny členy gildy využívající tuto funkci"
+			pinned_message_info : "Připnuté zprávy se zobrazují vždy jako první zpráva pro všechny členy gildy využívající tuto funkci",
+			// Important ranks button
+			important_ranks : "Důležité hodnosti"
 		},
 		
 		// Expedition
