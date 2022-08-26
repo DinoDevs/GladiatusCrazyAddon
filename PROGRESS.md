@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-17-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-18-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
@@ -24,6 +24,9 @@
 - **Accessibility**
 	- [ ] Improve experience on mobile phones
 	- [x] Added loot per side in reports lists (#337)
+
+- **Guild**
+	- [x] Added a button to the guild message page to select all important ranks (Master + Admin)
 		
 - **Guild Bath**
 	- [x] Pin message that will be displayed at the top of messages (#348)            
