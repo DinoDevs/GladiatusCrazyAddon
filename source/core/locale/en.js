@@ -175,7 +175,10 @@ gca_languages["en"] = {
 			// Baths
 			pinned_message : "Pinned guild message",
 			pin_unpin_message : "Pin/Unpin this message",
-			pinned_message_info : "Pinned messages are displayed at the top of the messages for all guild members using this feature"
+			pinned_message_info : "Pinned messages are displayed at the top of the messages for all guild members using this feature",
+			
+			// Important ranks button
+			important_ranks : "Important ranks"
 		},
 
 		// Expedition
