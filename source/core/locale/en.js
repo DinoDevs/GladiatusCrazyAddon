@@ -129,7 +129,7 @@ gca_languages["en"] = {
 			// Item materials
 			base : "Base",
 			prefix : "Prefix",
-			suffix : "Suffix"			
+			suffix : "Suffix"
 		},
 
 		// Overview
@@ -390,7 +390,7 @@ gca_languages["en"] = {
 			category_global$global_arena_timer : "Display Global Arena timer",
 			category_global$gladiatus_site_fixes : "Fix and improve Gladiatus site style problems",
 			category_global$lock_section_visibility : "Lock the current state of hideable sections",
-			category_global$hide_language_flags : "Hide language flags under player names",     
+			category_global$hide_language_flags : "Hide language flags under player names",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",

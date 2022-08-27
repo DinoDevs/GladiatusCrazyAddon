@@ -1827,7 +1827,7 @@ var gca_tools = {
 			if (options.hasOwnProperty('target'))
 				link.setAttribute('target', options.target);
 
-			return link;	
+			return link;
 		}
 
 	},

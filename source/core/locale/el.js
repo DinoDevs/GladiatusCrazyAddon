@@ -128,7 +128,7 @@ gca_languages["gr"] = {
 			// Item materials
 			base : "Βάση",
 			prefix : "Πρόθεμα",
-			suffix : "Επίθεμα"	
+			suffix : "Επίθεμα"
 		},
 
 		// Overview
@@ -237,7 +237,7 @@ gca_languages["gr"] = {
 			// Cost calculator
 			total_cost : "Συνολικό κόστος",
 			// Discount show
-			costs_discount: "Έκπτωση κόστους: {{number}}%"				 
+			costs_discount: "Έκπτωση κόστους: {{number}}%"
 		},
 
 		// Auction section

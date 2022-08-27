@@ -13,7 +13,7 @@ var gca_overview_stats = {
 
 	// Show More Statistics
 	moreStatistics : function(){
-		// Get Tables 
+		// Get Tables
 		var infoTable = document.getElementById('content').getElementsByTagName('table');
 		var temp;
 

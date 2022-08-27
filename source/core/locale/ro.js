@@ -320,7 +320,7 @@ gca_languages["ro"] = {
 			category_global$attacked_timers : "Arată cronometre de protecție la atac",
 			category_global$quest_timer : "Afișează timpul sau starea Misiunilor",
 			category_global$merchants_timer : "Afișează timpul pentru negustori",
-			category_global$forge_timers : "Afișează timpul pentru forje/topiri",	
+			category_global$forge_timers : "Afișează timpul pentru forje/topiri",
 			category_global$notify_new_guild_application : "Notifică-mă la apariția unei aplicații pentru breaslă",
 			//category_global$check_guild_application_pinned_messages_interval : "Verifică pentru aplicații la fiecare (minutes)", // add pinned messages
 			category_global$notify_guild_attack_ready : "Notifică-mă cand este posibil un atac cu breasla",
@@ -449,7 +449,7 @@ gca_languages["ro"] = {
 			category_events$craps_timer : "Afișează deasupra, cronometrul evenimentului cu zaruri",
 			category_events$server_quest_timer : "Afișează deasupra, cronometrul misiunilor pe server sau pe cel al locațiilor evenimentelor",
 			// Settings - Sound
-			category_sound$cooldown_sound_notifications : "Permite sunet de notificare pentru misiuni, temniţe şi arene",	
+			category_sound$cooldown_sound_notifications : "Permite sunet de notificare pentru misiuni, temniţe şi arene",
 			category_sound$muted : "Oprește/Pornește sunetul",
 			category_sound$volume : "Volum sunet",
 			// Settings - Data

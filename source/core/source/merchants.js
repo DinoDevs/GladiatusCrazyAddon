@@ -16,7 +16,7 @@ var gca_merchants = {
 		
 		// Fade items for rubies
 		(gca_options.bool("merchants","ruby_icon_on_items") &&
-			this.iconForItemsForRubies.inject());	
+			this.iconForItemsForRubies.inject());
 
 		// If Item shadow
 		(gca_options.bool("global","item_shadow") && 

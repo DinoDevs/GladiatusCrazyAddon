@@ -97,8 +97,8 @@ var gca_forge = {
 
 			// Add button to quickly expand all categories
 			this.horreum.openAllCategoriesButton();
-                        
-                        // Add button to quickly close all expanded categories
+
+			// Add button to quickly close all expanded categories
 			this.horreum.closeAllCategoriesButton();
 
 			// Add link to the scroll book
@@ -1065,8 +1065,8 @@ var gca_forge = {
 			}, false);
 			document.getElementById('content').getElementsByTagName('article')[0].appendChild(btn);
 		},
-                
-                closeAllCategoriesButton : function() {
+		
+		closeAllCategoriesButton : function() {
 			let btn = document.createElement('a');
 			btn.className = 'horreum-click-to-close-categories';
 			btn.textContent = '↑';
@@ -1601,7 +1601,7 @@ var gca_forge = {
 			getAbstractCompress = function(arr) {
 				var compArr = [], i;
 				//compArr.push(arr[0]); //skip first because it is the 0 anyway
-				for(i = 1; i < arr.length; i++) 
+				for(i = 1; i < arr.length; i++)
 					compArr.push(arr[i]-arr[i-1]);
 				return compArr;
 			}

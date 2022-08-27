@@ -112,7 +112,7 @@ var gca_notifications = {
 			that.check();
 		},
 		check : function(){
-			// Not supported? 
+			// Not supported?
 			if (!Notification) return;
 			// We need permission
 			if (Notification.permission !== 'granted'){

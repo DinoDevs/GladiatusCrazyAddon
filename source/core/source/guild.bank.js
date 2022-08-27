@@ -6,7 +6,7 @@
 // Guild Library
 var gca_guild_bank = {
 
-	// Inject 
+	// Inject
 	inject : function(){
 
 		// Donate page
@@ -36,7 +36,7 @@ var gca_guild_bank = {
 
 		// Changes since last visit & total donated gold
 		this.book_show_donation_changes_total_gold(
-			gca_options.bool("guild","bank_book_show_changes"), 
+			gca_options.bool("guild","bank_book_show_changes"),
 			gca_options.bool("guild","bank_book_layout")
 		);
 	},

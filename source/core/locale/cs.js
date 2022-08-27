@@ -119,7 +119,7 @@ gca_languages['cs'] = {
 			// Item materials
 			base : "Základ",
 			prefix : "Prefix",
-			suffix : "Suffix" 
+			suffix : "Suffix"
 		},
 		
 		// Overview
@@ -149,8 +149,8 @@ gca_languages['cs'] = {
 			// Guild Bank
 			bank_all_gold : "Zvolit všechno zlato",
 			total_donations : "Celkem příspěvků",
-	                min_upgrades_gold : "Zlato utracené za vylepšení (minimum)",
-	                max_stolen_gold : "Ukradené zlato z ostatních gild (maximum)",
+			min_upgrades_gold : "Zlato utracené za vylepšení (minimum)",
+			max_stolen_gold : "Ukradené zlato z ostatních gild (maximum)",
 			
 			// Library
 			library_per_point_cost : "Cena za bod schopnosti",
@@ -211,11 +211,11 @@ gca_languages['cs'] = {
 			points_breakdown_critical_hit : "Kritický zásah: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_critical_hit_short : "Kritický zásah: +{{integer}}%",
 			points_breakdown_double_hit : "Dvojitý zásah: +{{integer}}% (+{{float}}‰) *",
-			points_breakdown_double_hit_factor : "Dvojitý zásah: {{number}}", 
-			points_breakdown_avoid_double_hit_factor : "Šance se vyhnout dvojitému zásahu: {{number}}", 
+			points_breakdown_double_hit_factor : "Dvojitý zásah: {{number}}",
+			points_breakdown_avoid_double_hit_factor : "Šance se vyhnout dvojitému zásahu: {{number}}",
 			points_breakdown_avoid : "Šance se vyhnout kritickému zásahu: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_avoid_max : "Šance se vyhnout kritickému zásahu: MAX",
-			points_breakdown_avoid_short : "Šance se vyhnout kritickému zásahu: +{{integer}}%", 
+			points_breakdown_avoid_short : "Šance se vyhnout kritickému zásahu: +{{integer}}%",
 			points_breakdown_enemy_normal_hit : "Protivníkovo šance na zásah: {{integer}}% ({{float}}‰) *",
 			points_breakdown_enemy_double_hit : "Protivníkovo šance na dvojitý zásah: {{integer}}% ({{float}}‰) *",
 			points_breakdown_life : "Život: +{{number}}",
@@ -289,7 +289,7 @@ gca_languages['cs'] = {
 			advance_filters : "Pokročilé filtry",
 			advance_filters_apply : "Použít filtry",
 			advance_filters_clear : "Smazat filtry",
-			advance_filters_found : "(nalezeno {{items}})"		
+			advance_filters_found : "(nalezeno {{items}})"
 		},
 		
 		// Report
@@ -359,7 +359,7 @@ gca_languages['cs'] = {
 			category_global$forge_timers : "Zobrazit časový indikátor kovárny/tavírny",
 			category_global$notify_new_guild_application : "Upozorni mě na novou přihlášku do gildy",
 			category_global$check_guild_pinned_message : "Zobrazit připnuté zprávy z gildovních lázní ve zprávách",
-			category_global$check_guild_application_pinned_messages_interval : "Kontrolovat gildovní příhlášky a připnuté zprávy každých (minut)", 
+			category_global$check_guild_application_pinned_messages_interval : "Kontrolovat gildovní příhlášky a připnuté zprávy každých (minut)",
 			category_global$notify_guild_attack_ready : "Upozorni mě na dobu čekání na gildovní bitvu",
 			category_global$notify_guild_attack_ready_interval : "Zkontroluj dobu čekání na gildovní bitvu každých (minut)",
 			category_global$x_scroll : "Povolit horizontální posuv",
@@ -378,7 +378,7 @@ gca_languages['cs'] = {
 			category_global$global_arena_timer : "Zobrazit časovač Globální Arény",
 			category_global$gladiatus_site_fixes : "Oprav a vylepši vzhled stránky Gladiatusu",
 			category_global$lock_section_visibility : "Uzamknout aktuální stav všech skrytých/odkrytých sekcí",
-			category_global$hide_language_flags : "Skrýt vlajky jazyků pod jmény hráčů",   
+			category_global$hide_language_flags : "Skrýt vlajky jazyků pod jmény hráčů",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
 			category_overview$food_life_gain : "Zobrazit počet životů obdržený z jídla",

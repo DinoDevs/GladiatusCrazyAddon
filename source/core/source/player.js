@@ -349,7 +349,7 @@ var gca_player = {
 			buffbar.id = 'buffbar_old';
 			document.getElementById("blackoutDialogbod").parentNode.insertBefore(buffbar, document.getElementById("blackoutDialogbod"));
 			
-            let i = 0;
+			let i = 0;
 			while (buffs[i]) {
 				let div = document.createElement("div");
 				div.className = 'buff_old';

@@ -229,15 +229,15 @@ var gca_auction = {
 			// Create name div
 			indicator = document.createElement("div");
 			indicator.textContent = itemName;
-			indicator.style.color = itemColor;	
+			indicator.style.color = itemColor;
 			// Get wrapper
 			wrapper = bidItems[i];
 			wrapper.insertBefore(indicator, wrapper.children[2]);
 		}
 	},
-        
+
 	/*
-        //Item levels are shown on the items it self, feature is no longer needed
+	//Item levels are shown on the items it self, feature is no longer needed
 	itemsLevelShow : function() {
 		// Get items
 		var items = document.getElementById("auction_table").getElementsByClassName("auction_item_div");

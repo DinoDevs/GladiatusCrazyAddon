@@ -1063,7 +1063,7 @@ var gca_overview = {
 					element.addEventListener('mouseout', function(){
 						gca_overview.foodStuff.hideVitalityGain(this);
 					}, false);
-				}		
+				}
 			}
 		},
 

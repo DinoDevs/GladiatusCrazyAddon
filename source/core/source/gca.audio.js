@@ -109,7 +109,7 @@ var gca_audio = {
 				muted : false
 			};
 		}
-		// Make obj based on 
+		// Make obj based on
 		else if (this.soundUsage.hasOwnProperty(id) && this.buildInSounds.hasOwnProperty(this.soundUsage[id])) {
 			return {
 				id : id,

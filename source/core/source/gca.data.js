@@ -380,8 +380,8 @@ gca_options.data = {
 		
 		// Lock sections visibility
 		"lock_section_visibility" : false,
-                
-    // Hide language flags
+
+		// Hide language flags
 		"hide_language_flags" : false
 
 	},
@@ -524,7 +524,7 @@ gca_options.data = {
 		// Fade items that you can not afford
 		"fade_unaffordable_items" : true,
 		// Fade items for rubies
-		"ruby_icon_on_items" : true,	
+		"ruby_icon_on_items" : true,
 		// Show shop info
 		"show_shop_info" : false,
 		// Double click items to sell or buy
@@ -583,7 +583,7 @@ gca_options.data = {
 		"one_gold_mode" : true,
 		// Custom prices
 		"custom_prices" : "",
-		// Remember sorting 
+		// Remember sorting
 		"remember_sort" : false,
 		// Double click to select
 		"double_click_select" : true,

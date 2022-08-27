@@ -172,7 +172,7 @@ var gca_settings = {
 			a.style.textDecoration = "underline";
 			a.textContent = "Documentation";
 			p.appendChild(a);
-			p.appendChild(document.createTextNode(". There, we explain the in-game changes that each setting/option does."));	
+			p.appendChild(document.createTextNode(". There, we explain the in-game changes that each setting/option does."));
 
 			// Troubleshooting guide note
 			p = document.createElement("div");
@@ -187,7 +187,7 @@ var gca_settings = {
 			a.style.textDecoration = "underline";
 			a.textContent = "Troubleshooting guide";
 			p.appendChild(a);
-			p.appendChild(document.createTextNode(" that might help you solve your problem!"));			
+			p.appendChild(document.createTextNode(" that might help you solve your problem!"));
 
 			p = document.createElement("div");
 			p.style.paddingBottom = "10px";
@@ -733,15 +733,15 @@ var gca_settings = {
 				// Attacked Timer
 				"global_arena_timer" : true,
 				
-		                // Gladiatus site fixes
-		                "gladiatus_site_fixes" : true,	
+				// Gladiatus site fixes
+				"gladiatus_site_fixes" : true,
 				
 				// Lock sections visibility
 				"lock_section_visibility" : false,
-                    
-                                // Hide language flags
-		                "hide_language_flags" : false                                
-                                
+
+				// Hide language flags
+				"hide_language_flags" : false
+
 			},
 
 			// Overview Options
@@ -930,7 +930,7 @@ var gca_settings = {
 				// Fade items that you can not afford
 				"fade_unaffordable_items" : true,
 				// Fade items for rubies
-		        "ruby_icon_on_items" : true,
+				"ruby_icon_on_items" : true,
 				// Show shop info
 				"show_shop_info" : true,
 				// Double click items to sell or buy
@@ -1103,9 +1103,9 @@ var gca_settings = {
 				// More search levels
 				"more_search_levels" : true,
 				// Show price data
-				"item_price_analyze" : true,			
+				"item_price_analyze" : true,
 				// Show item level (disabled)
-				/*"item_level" : false, */				
+				/*"item_level" : false, */
 				// Show item names
 				"item_name" : false,
 				// Show 3 items per line

@@ -322,7 +322,7 @@ gca_languages['zh'] = {
 			category_global$remember_tabs : "記住商戶和背包標籤",
 			category_global$attacked_timers : "顯示攻擊後計時器",
 			category_global$quest_timer : "顯示任務狀態或計時器",
-			category_global$merchants_timer : "顯示商人計時器",			
+			category_global$merchants_timer : "顯示商人計時器",
 			category_global$forge_timers : "顯示鍛造/熔煉計時指示圖標",
 			category_global$notify_new_guild_application : "提醒我在有新的工會消息時",
 			//category_global$check_guild_application_pinned_messages_interval : "檢查工會消息間隔 (分鐘)", // add pinned messages

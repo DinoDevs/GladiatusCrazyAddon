@@ -11,7 +11,7 @@ var gca_global = {
 		if (gca_options.bool("global", "gladiatus_site_fixes"))
 			document.documentElement.className += " glfix";
 		// Lock all sections
-                if (gca_options.bool("global","lock_section_visibility"))
+		if (gca_options.bool("global","lock_section_visibility"))
 			document.documentElement.className += " lock_section_visibility";
 		// If player id is not detected
 		if (gca_section.playerId <= 0) {

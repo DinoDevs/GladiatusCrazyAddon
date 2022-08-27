@@ -1,5 +1,5 @@
 /*
- * Gladiatus' Recipes 
+ * Gladiatus' Recipes
  * Glaiatus Crazy Addon
  * 
  */

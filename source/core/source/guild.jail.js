@@ -192,7 +192,7 @@ var gca_guild_jail = {
 			jailCells-=prisoners.length;
 
 			// Built empty cells
-			for(var i=0;i<jailCells;i++){				
+			for(var i=0;i<jailCells;i++){
 				let div = document.createElement('div');
 				div.className = 'expedition_box';
 				document.getElementById('content').appendChild(div);

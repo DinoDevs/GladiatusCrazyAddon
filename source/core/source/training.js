@@ -49,7 +49,7 @@ var gca_training = {
 			intelligence : {id : "char_f5", index: 6, coeff : 2.4}
 		},
 		
-		// Base max 
+		// Base max
 		base_max : 0,
 
 		// Discount
@@ -131,7 +131,7 @@ var gca_training = {
 				div.style.backgroundColor = "#A70000";
 				skill.bar.getElementsByTagName('div')[0].appendChild(div);
 			}
-		}		
+		}
 	},
 
 	// Multi 
@@ -364,7 +364,7 @@ var gca_training = {
 			// Show/Hide strike-through line (when having free points)
 			if( data.freepoints>0 ){
 				if( data.count == 0 || data.count > data.freepoints || (this.self.calculatorTrain.enabled && this.self.data.initial_discount !== this.self.data.discount)) // Hide
-					data.imgs[0].parentNode.className = "disable-s"; 
+					data.imgs[0].parentNode.className = "disable-s";
 				else // Show
 					data.imgs[0].parentNode.className = "";
 			}
@@ -618,7 +618,7 @@ var gca_training = {
 			var tooltip = document.getElementById(skill.id + "_tt").dataset.tooltip;
 			tooltip = JSON.parse(tooltip);
 
-			// Calculate point from percents 
+			// Calculate point from percents
 			var percentsPoints = 0;
 			for (var i = stat.percents.length - 1; i >= 0; i--) {
 				percentsPoints += Math.round(basics * (stat.percents[i]/100));

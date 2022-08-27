@@ -199,7 +199,7 @@ gca_languages['hr'] = {
 			points_breakdown_avoid : "Šansa izbjegavanja kritične štete: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_avoid_max : "Šansa izbjegavanja kritične štete: maksimalna vrijednost",
 			points_breakdown_enemy_normal_hit : "Šansa za udarac: {{integer}}% ({{float}}‰) *",
-		        points_breakdown_enemy_double_hit : "Šansa za dupli udarac: {{integer}}% ({{float}}‰) *",
+			points_breakdown_enemy_double_hit : "Šansa za dupli udarac: {{integer}}% ({{float}}‰) *",
 			points_breakdown_life : "Životni bodovi: +{{number}}",
 			points_breakdown_regeneration : "Regeneracija po satu: +{{number}}",
 			points_breakdown_threat : "Prijetnja: +{{integer}} (+{{float}})",
@@ -309,7 +309,7 @@ gca_languages['hr'] = {
 			
 			// Description
 			description : "Uključite ili isključite određene opcije addona.",
-			description_click_button : "Pritisnite dugme ispod da odete na postavke addona...",		
+			description_click_button : "Pritisnite dugme ispod da odete na postavke addona...",
 		
 			// Categories
 			category_global : "Globalno",

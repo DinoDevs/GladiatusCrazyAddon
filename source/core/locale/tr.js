@@ -16,7 +16,7 @@ gca_languages["tr"] = {
 	locale : {
 		info : {
 			description : "Gladiatus için yapılmış en güzel eklenti!"
-		},	
+		},
 		general : {
 			days : "Gün",
 			minutes : "Dakika",
@@ -33,7 +33,7 @@ gca_languages["tr"] = {
 
 		//global
 		global : {
-			//Şifa iksiri 
+			//Şifa iksiri
 			life_potion_use : "Şifa İksiri Kullan",
 			life_potion_used : "Şifa İksiri Kullanıldı",
 			life_potion_left : "Kalan Şifa İksirin {{number}}",

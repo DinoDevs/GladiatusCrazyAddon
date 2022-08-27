@@ -262,7 +262,7 @@ gca_languages['pl'] = {
 			category_market$sell_duration : "Wybierz domyślny czas trwania",
 			category_market$one_gold_mode : "Wyświetl przycisk domyślnego ustawienia ceny wystawianego przedmiotu na 1 złota",
 			category_market$remember_sort : "Zapamiętaj ostatnie sortowanie",
-			category_market$double_click_select : "Wybierz przedmiot za pomocą podwójnego kliknięcia",			
+			category_market$double_click_select : "Wybierz przedmiot za pomocą podwójnego kliknięcia",
 			category_market$sell_warning_icons : "Ikona ostrzegalna podczas sprzedawania przedmiotów",
 			category_market$sell_with_enter : "Sprzedaj przedmiot za pomocą ENTERA ⏎",
 			// Ustawienia -- ekspedycje
@@ -297,7 +297,7 @@ gca_languages['pl'] = {
 			category_data$export_settings : "Exportuj ustawienia danych",
 			category_data$import_settings : "Importuj ustawienia danych",
 			category_data$reset_settings : "Zresetuj ustawienia dodatku",
-			category_data$clear_data : "Wyczyść wszystkie dane dodatku",			
+			category_data$clear_data : "Wyczyść wszystkie dane dodatku",
 			category_data$clear_cache_data : "Wyczyść pliki cache dodatku",
 			category_data$cross_browser_login : "Zsynchronizuj przeglądarki",
 			category_data$export_error_player_settings : "Wyeksportuj błędy do pliku",

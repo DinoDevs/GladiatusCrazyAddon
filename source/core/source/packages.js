@@ -15,7 +15,7 @@ var gca_packages = {
 			document.documentElement.className += " gca_packages_small_items_layout";
 		// If packages shortcuts are active
 		if (gca_options.bool("packages", "packages_shortcuts"))
-			document.documentElement.className += " packages_shortcuts";	
+			document.documentElement.className += " packages_shortcuts";
 	},
 
 	// Inject Code
@@ -65,10 +65,10 @@ var gca_packages = {
 			this.itemFilters.inject(this));
 		// Set Compact layout
 		(gca_options.bool("packages", "pop_over_bag") && 
-			this.layout.popOverBag.inject());			
+			this.layout.popOverBag.inject());
 		// Category shortcuts
 		(gca_options.bool("packages", "packages_shortcuts") && 
-			this.packagesShortcuts.inject());	
+			this.packagesShortcuts.inject());
 		
 		// Add new category selection "Event items"
 		this.eventItemsCategory();
