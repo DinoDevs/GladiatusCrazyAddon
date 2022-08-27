@@ -430,7 +430,7 @@ gca_languages["en"] = {
 			category_packages$double_click_open : "Double click packets to open them",
 			category_packages$advance_filter : "Advanced packages filters",
 			category_packages$pop_over_bag : "Pop bag over on scroll",
-			category_packages$packages_shortcuts : "Add category shortcuts",
+			category_packages$packages_shortcuts : "Add item category shortcuts",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Enable quest grouping",
 			category_pantheon$quests_detailed_rewards : "Show detailed quests rewards",
