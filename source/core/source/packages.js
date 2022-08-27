@@ -477,10 +477,10 @@ var gca_packages = {
 		},
 	},
 	
-	// Add category shortcuts 
+	       // Add category shortcuts 
 		packagesShortcuts : {						
-				inject : function(){	  			  			  		  
-		            // Get the right section
+			inject : function(){	  			  			  		  
+		               // Get the right section
 			       let main = document.getElementById('mainnav').getElementsByTagName('table')[0].getElementsByTagName('td')[0];				
 				
 			       //Create new menu items	
@@ -489,37 +489,37 @@ var gca_packages = {
 			       weapons.innerText = "🗡️";			
 			       weapons.href = gca_getPage.link({mod: 'packages',f: '1'});
 
-                   let shields = document.createElement("a");
+                               let shields = document.createElement("a");
 			       shields.className = "awesome-tabs";
 			       shields.textContent = "🛡️";			
 			       shields.href = gca_getPage.link({mod: 'packages',f: '2'});	
 
-                   let armor = document.createElement("a");
+                               let armor = document.createElement("a");
 			       armor.className = "awesome-tabs";
 			       armor.textContent = "🧥";			
 			       armor.href = gca_getPage.link({mod: 'packages',f: '3'});
 
-                   let helmets = document.createElement("a");
+                               let helmets = document.createElement("a");
 			       helmets.className = "awesome-tabs";
 			       helmets.textContent = "⛑️";			
 			       helmets.href = gca_getPage.link({mod: 'packages',f: '4'});
              
-                   let gloves = document.createElement("a");
+                               let gloves = document.createElement("a");
 			       gloves.className = "awesome-tabs";
 			       gloves.textContent = "🧤";			
 			       gloves.href = gca_getPage.link({mod: 'packages',f: '5'});	
   
-                   let shoes = document.createElement("a");
+                               let shoes = document.createElement("a");
 			       shoes.className = "awesome-tabs";
 			       shoes.textContent = "🥾";			
 			       shoes.href = gca_getPage.link({mod: 'packages',f: '8'});	
 
-                   let rings = document.createElement("a");
+                               let rings = document.createElement("a");
 			       rings.className = "awesome-tabs";
 			       rings.textContent = "💍";			
 			       rings.href = gca_getPage.link({mod: 'packages',f: '6'});
 
-                   let amulets = document.createElement("a");
+                               let amulets = document.createElement("a");
 			       amulets.className = "awesome-tabs";
 			       amulets.textContent = "💎";			
 			       amulets.href = gca_getPage.link({mod: 'packages',f: '9'});			
