@@ -694,6 +694,8 @@
 		.gca_rtl #topFixedBar a{margin-left: auto;margin-right: 6px;}
 		#topFixedBar .scroll-to-top{border-radius: 6px;border: 1px solid #4A3615;color: black;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 18px;float: right;text-align: center;margin-top: 2px;margin-right: 10px;cursor: pointer;font-size: 0.8em;vertical-align: bottom;display: block;text-decoration: none;}
 		.gca_rtl #topFixedBar .scroll-to-top{float: auto;margin-right: auto;float: left;margin-left: 10px;}
+                .scroll-to-bottom {border-radius: 6px;border: 1px solid #4A3615;color: black!important;background: linear-gradient(to bottom, #C3AB6F, #886933);width: 18px;height: 18px;line-height: 18px!important;float: right;text-align: center;margin-top: -26px;margin-right: 10px;cursor: pointer;font-size: 0.8em!important;vertical-align: bottom;display: block;text-decoration: none!important;}
+		.gca_rtl .scroll-to-bottom {margin-left: 10px;float: left;}           
 		@media screen and (max-width: 1080px) {
 		#topFixedBar a{font-size: 10px;width: 110px;line-height: 12px;text-align: center;}
 		}
