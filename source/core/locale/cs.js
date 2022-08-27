@@ -418,6 +418,7 @@ gca_languages['cs'] = {
 			category_packages$double_click_open : "Dvojité kliknutí na zásilky pro jejich otevření",
 			category_packages$advance_filter : "Pokročilé filtry zásilek",
 			category_packages$pop_over_bag : "Postranní zobrazení inventáře při scrollování",
+			category_packages$packages_shortcuts : "Zobrazit zkratky pro kategorie předmětů",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Povolit seskupování úkolů",
 			category_pantheon$quests_detailed_rewards : "Zobrazit podrobné odměny z úkolu",
