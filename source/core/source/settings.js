@@ -876,7 +876,9 @@ var gca_settings = {
 				// Advance packet filter
 				"advance_filter" : false,
 				// Pop Bag Over on scroll
-				"pop_over_bag" : true
+				"pop_over_bag" : true,
+				// Category shortcuts on packages page
+				"packages_shortcuts" : true
 			},
 
 			// Pantheon Options

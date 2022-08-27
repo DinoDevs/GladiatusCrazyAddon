@@ -1104,7 +1104,11 @@
 		.gca-bag-pop-over-move-btn {display: none;}
 		.contentItem.gca-bag-pop-over .gca-bag-pop-over-move-btn {display: block;position: absolute;top: 22px;left: -18px;cursor: move;z-index: 1;width: 16px;height: 16px;background: transparent url('icons/move.png');}
 		.contentItem.gca-bag-pop-over .gca-bag-pop-over-move-btn:hover {filter: drop-shadow(0px 0px 1px rgba(0,0,0,0.5));}
-		
+ 
+
+		/* Packages shortcuts */
+                .packages_shortcuts #mainnav .awesome-tabs {width: 17px!important;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;} 
+		.packages_shortcuts #mainnav li a {padding: unset!important;} 
 
 
 
