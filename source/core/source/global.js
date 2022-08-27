@@ -1977,6 +1977,17 @@ var gca_global = {
 				scroll_top.textContent = ' ▲ ';
 				div.appendChild(scroll_top);
 				
+				// Set up scroll to bottom button
+				var bar = document.getElementById("mmonetbar");				
+				var scroll_bottom = document.createElement('a');
+				scroll_bottom.className = 'scroll-to-bottom';
+				scroll_bottom.textContent = ' ▼ ';
+				scroll_bottom.addEventListener("click", function() {
+					jQuery("html").animate({scrollTop: jQuery("#footer_background").offset().top}),800 
+    
+                                });		
+				bar.appendChild(scroll_bottom);				
+				
 				// Bind document elements
 				this.elements.bar.dom = document.getElementById('topFixedBar');
 				this.elements.icon_gold.dom = document.getElementById('icon_gold');
