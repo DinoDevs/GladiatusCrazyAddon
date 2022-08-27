@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-18-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-20-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
@@ -17,6 +17,7 @@
 	- [x] Settings: option to disable/enable overall Gladiatus site (style) fixes & improvements (#403)
 	- [x] Lock sections: The current state of all sections that can be hidden can now be locked or unlocked in the settings (#160)
 	- [x] Hide flags: Language flags under player names can now be hidden if enabled in the settings (#377)
+	- [x] Added a scroll to bottom button to the top bar
 	
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
@@ -45,6 +46,7 @@
 	- [x] Expedition shortcut will always redirect to the last open location (#223)
 - **Packages**
 	- [x] Packages can be displayed as a list view (#323, #309)
+	- [x] Packages page can now have shortcuts to item categories
 
 ### BUG FIXES
 - **Global**
