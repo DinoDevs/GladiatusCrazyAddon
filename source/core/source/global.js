@@ -9,10 +9,10 @@ var gca_global = {
 	preinject : function(){
 		// Gladiatus site fixes & improvements
 		if (gca_options.bool("global", "gladiatus_site_fixes"))
-			document.documentElement.className += " glfix";	
+			document.documentElement.className += " glfix";
 		// Lock all sections
                 if (gca_options.bool("global","lock_section_visibility"))
-			document.documentElement.className += " lock_section_visibility";			
+			document.documentElement.className += " lock_section_visibility";
 		// If player id is not detected
 		if (gca_section.playerId <= 0) {
 			// Wait for it to be detected
@@ -370,7 +370,7 @@ var gca_global = {
 		
 		// Check page direction ltr or rtl
 		if(
-			// Check if the rtl css exists on the page 
+			// Check if the rtl css exists on the page
 			!document.querySelector("link[href$='/cdn57/270eb6a1a8de3fd98cd920e0a396ed.css']")
 		){
 			window.gca_rtl = false;
@@ -511,7 +511,7 @@ var gca_global = {
 				let point_missing = parseInt(document.getElementById(type + 'points_value_pointmax').innerText, 10) - parseInt(document.getElementById(type + 'points_value_point').innerText, 10);
 				if (point_missing === 0) return; // Nothing to do
 
-				// Get time left for next point 
+				// Get time left for next point
 				let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
 				if (next_point) {
 					let now = new Date(gca_tools.time.server());
@@ -768,7 +768,7 @@ var gca_global = {
 				if(minutes_left <= 0) return;
 				
 				// Convert minutes to hours 00:00
-				var hours_left = Math.floor(minutes_left / 60);          
+				var hours_left = Math.floor(minutes_left / 60);
 				minutes_left = minutes_left % 60;
 				
 				var hours_left_text = (hours_left == 0) ? '' : hours_left + " " + gca_locale.get("general", "hours");
@@ -1978,14 +1978,14 @@ var gca_global = {
 				div.appendChild(scroll_top);
 				
 				// Set up scroll to bottom button
-				var bar = document.getElementById("mmonetbar");				
+				var bar = document.getElementById("mmonetbar");
 				var scroll_bottom = document.createElement('a');
 				scroll_bottom.className = 'scroll-to-bottom';
 				scroll_bottom.textContent = ' ▼ ';
 				scroll_bottom.addEventListener("click", () => {
 					document.documentElement.scrollTop = 0;
-				});		
-				bar.appendChild(scroll_bottom);				
+				});
+				bar.appendChild(scroll_bottom);
 				
 				// Bind document elements
 				this.elements.bar.dom = document.getElementById('topFixedBar');
@@ -2026,7 +2026,7 @@ var gca_global = {
 							this.elements[i].dom.className += " "+this.elements[i].className;
 							this.elements[i].dom.name = "in-use";
 						}
-						// If scroll has not yet reached the item 
+						// If scroll has not yet reached the item
 						else if(vscroll<=this.elements[i].scroll && this.elements[i].dom.name == "in-use"){
 							this.elements[i].dom.name = "no-use";
 							this.elements[i].dom.className = this.elements[i].dom.className.replace(this.elements[i].className,"").replace("  "," ");
@@ -2206,7 +2206,7 @@ var gca_global = {
 
 				// Inject Highscore Link (old, not used)
 				//this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : gca_links.get('addon-page') + "/index.php?mode=highscore", target : "_blank"});
-                                
+
 				// Inject Guild Highscore Link
 				this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : gca_getPage.link({"mod":"highscore","t":"1"})});
 				
@@ -2252,7 +2252,7 @@ var gca_global = {
 								{href : gca_getPage.link({"mod":"auction","itemType":"9"}), img : {class : "item-i-9-7", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"11"}), img : {class : "item-i-11-3", style : "margin:-2px;"}},
 								{href : gca_getPage.link({"mod":"auction","itemType":"12"}), img : {class : "item-i-12-14", style : "margin:-2px;"}},
-								{href : gca_getPage.link({"mod":"auction","itemType":"15"}), img : {class : "item-i-15-15", style : "margin:-2px;"}}												
+								{href : gca_getPage.link({"mod":"auction","itemType":"15"}), img : {class : "item-i-15-15", style : "margin:-2px;"}}
 							]);
 						}
 						// Inject Market Link
@@ -3244,7 +3244,7 @@ var gca_global = {
 			hidden : true,
 			toggle : function() {
 				if (this.hidden) this.show();
-				else this.hide(); 
+				else this.hide();
 			},
 			show : function() {
 				this.box.style.display = "block";
@@ -4491,7 +4491,7 @@ var gca_global = {
 			sending : false,
 			// Sent guild message
 			send : function(message, exclude_me, callback){
-				// Check 
+				// Check
 				if(this.sending) return;
 				this.sending = true;
 
@@ -4892,7 +4892,7 @@ var gca_global = {
 				desc = document.createElement('p');
 				desc.textContent = gca_locale.get("global", "gold_exp_data_desc");
 				desc.style.textAlign = "center";
-				dialog.body.appendChild(desc);												
+				dialog.body.appendChild(desc);
 				
 				var renderChart = function(){
 					// Values for the Data Plot
@@ -4907,7 +4907,7 @@ var gca_global = {
 					var goldPerMinData = [];
 					var expPerMinData = [];
 
-					// Server time 
+					// Server time
 					var lastWeekTimestamp = gca_tools.time.server() - 6048e5; // week - 7 days (= 7*24*60*60*1000 = 604800000 ms)
 					var lastDayTimestamp = gca_tools.time.server() - 864e5; // day - 24h (= 24*60*60*1000 = 86400000 ms)
 					
@@ -4932,9 +4932,9 @@ var gca_global = {
 						// fix will only be applied on newly saved data (= data that will include required EXP to level up)
 						if(i > 0 && defaultData[i-1].length > 3){
 							// Check if required EXP has changed, which means that player leveled up
-							if(defaultData[i][3] > defaultData[i-1][3]){ 
+							if(defaultData[i][3] > defaultData[i-1][3]){
 								// Add previous level required EXP
-								levelUpExpFix += defaultData[i-1][3]; 
+								levelUpExpFix += defaultData[i-1][3];
 							}
 						}
 						data[i][1] += levelUpExpFix
@@ -5053,7 +5053,7 @@ var gca_global = {
 									hidden: true
 								},
 								/*{
-									label: gca_locale.get("global","gold_exp_data_measurements"), 
+									label: gca_locale.get("global","gold_exp_data_measurements"),
 									type: 'line',
 									backgroundColor: "rgba(255,193,7,0.3)",
 									borderColor: "rgba(255,193,7,1)",
