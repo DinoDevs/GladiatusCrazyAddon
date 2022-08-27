@@ -572,8 +572,23 @@ var gca_packages = {
 			       let events = document.createElement("a");
 			       events.className = "awesome-tabs";
 			       events.textContent = "🐇";			
-			       events.href = gca_getPage.link({mod: 'packages',f: '21'});			
-			
+			       events.href = gca_getPage.link({mod: 'packages',f: '21'});
+
+			       let purple = document.createElement("a");
+			       purple.className = "awesome-tabs";
+			       purple.textContent = "🟣";			
+			       purple.href = gca_getPage.link({mod: 'packages',f: '0',fq: '2'});	
+
+                               let orange = document.createElement("a");
+			       orange.className = "awesome-tabs";
+			       orange.textContent = "🟠";			
+			       orange.href = gca_getPage.link({mod: 'packages',f: '0',fq: '3'});		
+
+                               let red = document.createElement("a");
+			       red.className = "awesome-tabs";
+			       red.textContent = "🔴";			
+			       red.href = gca_getPage.link({mod: 'packages',f: '0',fq: '4'});					
+						
 			       //Append everything
 			       main.appendChild(weapons);
 			       main.appendChild(shields);
@@ -593,6 +608,9 @@ var gca_packages = {
 			       main.appendChild(tools);
 			       main.appendChild(scrolls);
 			       main.appendChild(events);
+                               main.appendChild(purple);
+			       main.appendChild(orange);
+			       main.appendChild(red);
 			}				
 		},
 
