@@ -482,135 +482,45 @@ var gca_packages = {
 		inject : function(){
 			// Get the right section
 			let main = document.getElementById('mainnav').getElementsByTagName('table')[0].getElementsByTagName('td')[0];
+			let pageParams = gca_getPage.parameters();
 
 			// Create new menu items
-			let weapons = document.createElement("a");
-			weapons.className = "awesome-tabs";
-			weapons.innerText = "🗡️";
-			weapons.href = gca_getPage.link({mod: 'packages',f: '1'});
+			let items = [
+				this.createLink("🗡️", {mod: 'packages', f: '1'}, pageParams),
+				this.createLink("🛡️", {mod: 'packages', f: '2'}, pageParams),
+				this.createLink("🧥", {mod: 'packages', f: '3'}, pageParams),
+				this.createLink("⛑️", {mod: 'packages', f: '4'}, pageParams),
+				this.createLink("🧤", {mod: 'packages', f: '5'}, pageParams),
+				this.createLink("🥾", {mod: 'packages', f: '8'}, pageParams),
+				this.createLink("💍", {mod: 'packages', f: '6'}, pageParams),
+				this.createLink("💎", {mod: 'packages', f: '9'}, pageParams),
+				this.createLink("🍏", {mod: 'packages', f: '7'}, pageParams),
+				this.createLink("🧪", {mod: 'packages', f: '11'}, pageParams),
+				this.createLink("⚙️", {mod: 'packages', f: '12'}, pageParams),
+				this.createLink("📃", {mod: 'packages', f: '13'}, pageParams),
+				this.createLink("💰", {mod: 'packages', f: '14'}, pageParams),
+				this.createLink("🤺", {mod: 'packages', f: '15'}, pageParams),
+				this.createLink("🧱", {mod: 'packages', f: '18'}, pageParams),
+				this.createLink("🔨", {mod: 'packages', f: '19'}, pageParams),
+				this.createLink("📜", {mod: 'packages', f: '20'}, pageParams),
+				this.createLink("🐇", {mod: 'packages', f: '21'}, pageParams),
+				this.createLink("🟣", {mod: 'packages', f: '0', fq: '2'}, pageParams),
+				this.createLink("🟠", {mod: 'packages', f: '0', fq: '3'}, pageParams),
+				this.createLink("🔴", {mod: 'packages', f: '0', fq: '4'}, pageParams),
+			];
 
-			let shields = document.createElement("a");
-			shields.className = "awesome-tabs";
-			shields.textContent = "🛡️";
-			shields.href = gca_getPage.link({mod: 'packages',f: '2'});
+			// Append everything
+			items.forEach(item => {
+				main.appendChild(item);
+			});
+		},
 
-			let armor = document.createElement("a");
-			armor.className = "awesome-tabs";
-			armor.textContent = "🧥";
-			armor.href = gca_getPage.link({mod: 'packages',f: '3'});
-
-			let helmets = document.createElement("a");
-			helmets.className = "awesome-tabs";
-			helmets.textContent = "⛑️";
-			helmets.href = gca_getPage.link({mod: 'packages',f: '4'});
-
-			let gloves = document.createElement("a");
-			gloves.className = "awesome-tabs";
-			gloves.textContent = "🧤";
-			gloves.href = gca_getPage.link({mod: 'packages',f: '5'});
-
-			let shoes = document.createElement("a");
-			shoes.className = "awesome-tabs";
-			shoes.textContent = "🥾";
-			shoes.href = gca_getPage.link({mod: 'packages',f: '8'});
-
-			let rings = document.createElement("a");
-			rings.className = "awesome-tabs";
-			rings.textContent = "💍";
-			rings.href = gca_getPage.link({mod: 'packages',f: '6'});
-
-			let amulets = document.createElement("a");
-			amulets.className = "awesome-tabs";
-			amulets.textContent = "💎";
-			amulets.href = gca_getPage.link({mod: 'packages',f: '9'});
-
-			let usable = document.createElement("a");
-			usable.className = "awesome-tabs";
-			usable.textContent = "🍏";
-			usable.href = gca_getPage.link({mod: 'packages',f: '7'});
-
-			let reinforcements = document.createElement("a");
-			reinforcements.className = "awesome-tabs";
-			reinforcements.textContent = "🧪";
-			reinforcements.href = gca_getPage.link({mod: 'packages',f: '11'});
-
-			let upgrades = document.createElement("a");
-			upgrades.className = "awesome-tabs";
-			upgrades.textContent = "⚙️";
-			upgrades.href = gca_getPage.link({mod: 'packages',f: '12'});
-
-			let recipes = document.createElement("a");
-			recipes.className = "awesome-tabs";
-			recipes.textContent = "📃";
-			recipes.href = gca_getPage.link({mod: 'packages',f: '13'});
-
-			let gold = document.createElement("a");
-			gold.className = "awesome-tabs";
-			gold.textContent = "💰";
-			gold.href = gca_getPage.link({mod: 'packages',f: '14'});
-
-			let mercenary = document.createElement("a");
-			mercenary.className = "awesome-tabs";
-			mercenary.textContent = "🤺";
-			mercenary.href = gca_getPage.link({mod: 'packages',f: '15'});
-
-			let forging = document.createElement("a");
-			forging.className = "awesome-tabs";
-			forging.textContent = "🧱";
-			forging.href = gca_getPage.link({mod: 'packages',f: '18'});
-
-			let tools = document.createElement("a");
-			tools.className = "awesome-tabs";
-			tools.textContent = "🔨";
-			tools.href = gca_getPage.link({mod: 'packages',f: '19'});
-
-			let scrolls = document.createElement("a");
-			scrolls.className = "awesome-tabs";
-			scrolls.textContent = "📜";
-			scrolls.href = gca_getPage.link({mod: 'packages',f: '20'});
-
-			let events = document.createElement("a");
-			events.className = "awesome-tabs";
-			events.textContent = "🐇";
-			events.href = gca_getPage.link({mod: 'packages',f: '21'});
-
-			let purple = document.createElement("a");
-			purple.className = "awesome-tabs";
-			purple.textContent = "🟣";
-			purple.href = gca_getPage.link({mod: 'packages',f: '0',fq: '2'});
-
-			let orange = document.createElement("a");
-			orange.className = "awesome-tabs";
-			orange.textContent = "🟠";
-			orange.href = gca_getPage.link({mod: 'packages',f: '0',fq: '3'});
-
-			let red = document.createElement("a");
-			red.className = "awesome-tabs";
-			red.textContent = "🔴";
-			red.href = gca_getPage.link({mod: 'packages',f: '0',fq: '4'});
-
-			//Append everything
-			main.appendChild(weapons);
-			main.appendChild(shields);
-			main.appendChild(armor);
-			main.appendChild(helmets);
-			main.appendChild(gloves);
-			main.appendChild(shoes);
-			main.appendChild(rings);
-			main.appendChild(amulets);
-			main.appendChild(usable);
-			main.appendChild(reinforcements);
-			main.appendChild(upgrades);
-			main.appendChild(recipes);
-			main.appendChild(gold);
-			main.appendChild(mercenary);
-			main.appendChild(forging);
-			main.appendChild(tools);
-			main.appendChild(scrolls);
-			main.appendChild(events);
-			main.appendChild(purple);
-			main.appendChild(orange);
-			main.appendChild(red);
+		createLink : function(text, linkParams, pageParams) {
+			let a = document.createElement("a");
+			a.className = "awesome-tabs" + (Object.keys(linkParams).every(param => linkParams[param] == pageParams[param]) ? " current" : "");
+			a.textContent = text;
+			a.href = gca_getPage.link(linkParams);
+			return a;
 		}
 	},
 
