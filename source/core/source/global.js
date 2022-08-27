@@ -5687,6 +5687,8 @@ var gca_global = {
 	},
 
 	detectPlayerId : function() {
+		// Dont run if not logged in
+		if (!gca_getPage.parameter('sh')) return;
 		// Try to detect player id using xhr
 		fetch(gca_getPage.link({"mod":"overview"})).then(x => x.text()).then(x => {
 			let playerId = x.match(/var\s+playerId\s+=\s+(\d+);/);
