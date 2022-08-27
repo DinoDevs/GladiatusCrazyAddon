@@ -7,6 +7,12 @@
 var gca_global = {
 	// Pre Inject code
 	preinject : function(){
+		// Gladiatus site fixes & improvements
+		if (gca_options.bool("global", "gladiatus_site_fixes"))
+			document.documentElement.className += " glfix";	
+		// Lock all sections
+        if (gca_options.bool("global","lock_section_visibility"))
+			document.documentElement.className += " lock_section_visibility";			
 		// If player id is not detected
 		if (gca_section.playerId <= 0) {
 			// Wait for it to be detected
@@ -28,12 +34,6 @@ var gca_global = {
 		// If submenu click to change
 		(gca_options.bool("global","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.preload());
-		// Gladiatus site fixes & improvements
-		(gca_options.bool("global","gladiatus_site_fixes") && 
-			this.display.gladiatus_site_fixes.preload());
-		// Lock all sections
-		(gca_options.bool("global","lock_section_visibility") && 
-			this.display.lock_section_visibility.preload());
 		// Hide flags
 		(gca_options.bool("global","hide_language_flags") &&
 			this.display.hideLanguageFlags.preload());
@@ -1934,22 +1934,6 @@ var gca_global = {
 			}
 		},
 		
-		// Gladiatus site fixes & improvements
-		gladiatus_site_fixes : {
-			preload : function(){
-				// Insert it on html tag
-				document.documentElement.className += " glfix";
-			}
-		},
-                
-                // Lock all sections
-		lock_section_visibility : {
-			preload : function(){
-				// Insert it on html tag
-				document.documentElement.className += " lock_section_visibility";
-			}
-		},
-
 		// Implement a top fixed bar to show important info on scroll
 		top_fixed_bar : {
 			// Elements to be moved to the top bar
