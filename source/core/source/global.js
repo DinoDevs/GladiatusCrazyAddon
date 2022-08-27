@@ -4171,19 +4171,27 @@ var gca_global = {
 
 		hideLanguageFlags : {
 			preload : function() {
-			       // Detect page mods
-			       if (gca_section.mod == 'highscore' || gca_section.mod == 'arena' || gca_section.submod == 'showArena' || gca_getPage.parameter('t') == '2' || gca_section.submod == 'showCircusTurma' || gca_section.mod == 'market' || gca_section.mod == 'guildMarket') {				 
-				  // Insert it in content section if mod detected
-                                  document.documentElement.className += " hide-flags"; {	
-                                       // Remove it in content section if submod detected
-                                       if (gca_section.submod === 'serverArena' || gca_section.submod == 'control' || gca_section.submod == 'suche') { 	
-				           document.documentElement.classList.remove("hide-flags");			
-                }
-            }
-        }
-    }
-}
-},
+				// Detect page mods
+				if (
+					gca_section.mod == 'highscore' ||
+					gca_section.mod == 'arena' ||
+					gca_section.submod == 'showArena' ||
+					gca_section.submod == 'showCircusTurma' ||
+					gca_getPage.parameter('t') == '2' ||
+					gca_section.mod == 'market' ||
+					gca_section.mod == 'guildMarket'
+				) {
+					// Insert it in content section if mod detected
+					document.documentElement.className += " hide-flags";
+					
+					// Remove it in content section if submod detected
+					if (gca_section.submod === 'serverArena' || gca_section.submod == 'control' || gca_section.submod == 'suche') {
+						document.documentElement.classList.remove("hide-flags");
+					}
+				}
+			}
+		}
+	},
 
 	// Underworld related functions
 	underworld : {
