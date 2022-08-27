@@ -1982,10 +1982,9 @@ var gca_global = {
 				var scroll_bottom = document.createElement('a');
 				scroll_bottom.className = 'scroll-to-bottom';
 				scroll_bottom.textContent = ' ▼ ';
-				scroll_bottom.addEventListener("click", function() {
-					jQuery("html").animate({scrollTop: jQuery("#footer_background").offset().top}),800 
-    
-                                });		
+				scroll_bottom.addEventListener("click", () => {
+					document.documentElement.scrollTop = 0;
+				});		
 				bar.appendChild(scroll_bottom);				
 				
 				// Bind document elements
