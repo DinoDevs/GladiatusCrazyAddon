@@ -1448,7 +1448,7 @@ var gca_forge = {
 			this.el.contentNew.appendChild(this.wrapper);
 
 			// Toggle button
-			gca_tools.create.footerButton('book').addEventListener('click', () => {
+			gca_tools.create.headerButton('book').addEventListener('click', () => {
 				this.toggle();
 			}, false);
 		},
