@@ -4173,7 +4173,7 @@ var gca_global = {
 			preload : function() {
 				// Detect page mods
 				if (
-				    //run on highscore page
+				        //run on highscore page
 					gca_section.mod == 'highscore' || 
 					//run on arena pages
 					gca_section.mod == 'arena' || 
