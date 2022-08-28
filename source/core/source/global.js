@@ -1983,7 +1983,7 @@ var gca_global = {
 				scroll_bottom.className = 'scroll-to-bottom';
 				scroll_bottom.textContent = ' ▼ ';
 				scroll_bottom.addEventListener("click", function() {
-					jQuery("html").animate({scrollTop: jQuery("#footer_background").offset().top}),800 
+					jQuery("html").animate({scrollTop: jQuery("#footer_background").offset().top}, 800);
                                 });
 				bar.appendChild(scroll_bottom);
 				
