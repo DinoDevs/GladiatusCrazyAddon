@@ -1802,7 +1802,7 @@ var gca_tools = {
 		},
 
 		prepareFooterButtons : function() {
-			let footer = document.getElementById('footer');
+			let footer = document.getElementById('header_game');
 
 			// If no footer
 			if (footer == null) footer = document.getElementsByTagName('body')[0];
