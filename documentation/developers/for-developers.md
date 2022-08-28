@@ -2,11 +2,9 @@
 <img src="/documentation/resources/icon_128.png" align="right"/>
 
 Gladiatus Crazy Addon (GCA) is a browser extension, thus a piece of software acting as a browser plugin, extending the browser's functionalities.
-GCA uses the modern [Web Extensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) format supported by most moder Web Browsers. This extension format was first introdused by Chromium and later adopted by Firefox. Thus, currently such extensions are supported by Chrome, Firefox, Opera, Edge (Basically all Firefox-based and Chromioum-based browsers).
+GCA uses the modern [Web Extensions](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions) format supported by most modern Web Browsers. This extension format was first introduced by Chromium and later adopted by Firefox. Thus, currently such extensions are supported by Chrome, Firefox, Opera, Edge (Basically all Firefox-based and Chromium-based browsers).
 
 Anyone can contribute to this project by creating their own repository/branch and creating a pull request in the end, the pull request will be inspected and tested, if it is relevant and works well, it will be added to the addon.
-
-This is purely meant to be informational, taken directly from GCA developers.
 
 ## Folders Structure
 The source code for the extension is the [source](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/master/source) folder of the Github project.
@@ -37,9 +35,9 @@ The structure of it is the following:
     - manager.js                        // Script identifing which page specific scripts should be loaded (extension context)
 ```
 
-## Used Contenxt
+## Used Context
 
-The initialisation code of the extension run on the extension context of the browser, having access to many Browser internal APIs and functionalities but as this extension focuses on imporving the game's experience and thus most of the changes are targeting the actual website of the game, most of the scripts are injected on the game page and run on the website context.
+The initialization code of the extension run on the extension context of the browser, having access to many Browser internal APIs and functionalities but as this extension focuses on improving the game's experience and thus most of the changes are targeting the actual website of the game, most of the scripts are injected on the game page and run on the website context.
 
 All the scripts under `/core/source/` are running at the website context and hold most of the extension's code and thus most of the features.
 
@@ -49,12 +47,13 @@ For developers: All webpage scripts under `/core/source/` and hold most of the e
 For translators: Translations as under `/core/locale/` and also runs at the webpage context.
 
 
-## Introduction 
+## Useful quotes
+This is purely meant to be informational, taken directly from GCA developers:
 
-(**Quoted from @GramThanos**)
+**Quoted from @GramThanos**
 
 >The main idea is that each page has 1 script that contains the features targeting that page. Additionally, there is one script that runs on every page (name "global").
->All these script are located at "/source/core/source/". For example, the script named "overview.js" runs at player's overview web-page.
+>All these scripts are located at "/source/core/source/". For example, the script named "overview.js" runs at player's overview web-page.
 >
 >These scripts are loaded by the "manager.js" located at "/source/core/". The manager script runs with "extensions rights", while the scripts it imports run with "web-page rights" (injected inside the page).
 >
@@ -79,6 +78,25 @@ For translators: Translations as under `/core/locale/` and also runs at the webp
 >Then we will have to place the options at the settings page, inside the settings.js (search for overview), the format there is like the gca_data.js but supports functions as values. It is automatic for known types like booleans.
 >
 >Lastly, you need to add at least the English translation of the item you just added on the settings page. To do so, you can go to the settings page (on browser) at the overview category, there will be an "undefined translation" id instead of a text, copy it and add it at the /source/core/locale/en.js (you will understand where it goes... all the settings related translations are together).
+
+**Quoted from @GramThanos**
+
+>**So lets inspect the addon script injection process**:
+>
+>1. The user clicks a link towards a gladiatus page
+>2. The browser checks if the url match the addon's script injection regex (from manifest)
+>3. The addon analyses the url and injects on the page first the main scripts (info, data, tools etc)
+>4. After loading the main scripts, the addon injects the global and the page related scripts based on the url.
+>
+>Thus following this process, the addon ensures that the global script will always load after the info script, thus you can always call functions from the info script >on the global script. But the global script may not run before a page script (e.g. overview script) thus the overview script can not call methods from the global >script as they may not exist yet.
+>
+>Then we have codes that interact with the DOM (elements on the page) and other codes that do not interact with the DOM.
+>
+>Thus, as the page loads, we can run first the functions that dont interact with the DOM (preinject) as the DOM is not ready, while the visible part of the page (body) >is empty as the browser is still processing it, and then the rest of the functions after the DOM is ready (inject).
+>
+>Further more, since many changes can be done with CSS, we can apply the CSS rules before the browser renders the body elements (preinject) rather than update the CSS >later and force the browser to re-render the GUI (inject).
+>
+>For cross script communication you can also use custom events gca_tools.event.*. There is a sible example on global script and overview script.
 
 **Quoted from @GreatApo**
 
