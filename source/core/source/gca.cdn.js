@@ -313,6 +313,12 @@ var gca_cdn = {
 		'img/npc/4/9_3.jpg' : 'fdc2e90e2e18d48202fc20e32bba7935',
 		'img/npc/4/9_4.jpg' : '9114082c992a13b9b68fc9347ae60a14',
 
+		// Event - On the Nile bank
+		'img/npc/{on-the-nile-bank}_1.jpg' : '659f45b7fd7ac900004dcafc2feec57d',
+		'img/npc/{on-the-nile-bank}_2.jpg' : '10f0a5434c803bde1ba0913aecd9751b',
+		'img/npc/{on-the-nile-bank}_3.jpg' : 'ae23d6d58d2cf752711ec4a580848476',
+		'img/npc/{on-the-nile-bank}_4.jpg' : '74531075909c1e2cb313eda2bc1e8c8e',
+
 		'img/premium/token/5.jpg' : '07c9ce614bbc67a9e85aa0ee87cf2bb7',
 		'img/premium/token/6.jpg' : 'b91f4b5b4387108ff677cfaf301cfe18',
 		'img/premium/token/7.jpg' : '645690ff3f6948e7a2d12e455ec6cf22',
@@ -472,7 +478,7 @@ var gca_cdn = {
 		// 'img/buff/points_limit.png' : '',
 		// 'img/ui/layout/banner_top.png' : '',
 		// 'img/premium/box/amount.png' : '',
-		// 'img/ui/expedition_points2.png' : '',
+		'img/ui/expedition_points2.png' : 'e4add5f2cc36b27f4719bf2f2772b33d',
 		// '' : '',
 		// '' : '',
 		// '' : '',
