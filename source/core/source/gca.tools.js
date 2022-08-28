@@ -1787,12 +1787,12 @@ var gca_tools = {
 		},
 
 		settingsLink : function(category) {
-			let link = this.footerButton('gear', gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : category}));
+			let link = this.headerButton('gear', gca_getPage.link({"mod" : "settings", "gcamod" : "settings", "category" : category}));
 			gca_tools.setTooltip(link, JSON.stringify([[[gca_locale.get("settings", "settings"), "#fdfdfd"]]]));
 		},
 
-		footerButton : function(icon = null, href = null) {
-			let wrapper = this.prepareFooterButtons();
+		headerButton : function(icon = null, href = null) {
+			let wrapper = this.prepareHeaderButtons();
 			let link = document.createElement("a");
 			if (icon) link.className = "gca-icon gca-icon-" + icon;
 			else link.className = "gca-icon";
@@ -1801,19 +1801,19 @@ var gca_tools = {
 			return link;
 		},
 
-		prepareFooterButtons : function() {
-			let footer = document.getElementById('header_game');
+		prepareHeaderButtons : function() {
+			let header = document.getElementById('header_game');
 
-			// If no footer
-			if (footer == null) footer = document.getElementsByTagName('body')[0];
+			// If no header
+			if (header == null) header = document.getElementsByTagName('body')[0];
 
 			// Return wrapper if already exists
-			let wrapper = footer.getElementsByClassName('gca-footer-buttons-wrapper');
+			let wrapper = header.getElementsByClassName('gca-header-buttons-wrapper');
 			if (wrapper.length > 0) return wrapper[0];
 			// Create wrapper
 			wrapper = document.createElement("div");
-			wrapper.className = 'gca-footer-buttons-wrapper';
-			footer.appendChild(wrapper);
+			wrapper.className = 'gca-header-buttons-wrapper';
+			header.appendChild(wrapper);
 			return wrapper;
 		},
 
