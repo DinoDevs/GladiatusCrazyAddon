@@ -4173,20 +4173,34 @@ var gca_global = {
 			preload : function() {
 				// Detect page mods
 				if (
-					gca_section.mod == 'highscore' ||
-					gca_section.mod == 'arena' ||
-					gca_section.submod == 'showArena' ||
-					gca_section.submod == 'showCircusTurma' ||
-					gca_getPage.parameter('t') == '2' ||
-					gca_section.mod == 'market' ||
-					gca_section.mod == 'guildMarket'
+				    //run on highscore page
+					gca_section.mod == 'highscore' || 
+					//run on arena pages
+					gca_section.mod == 'arena' || 
+					//run on market page
+					gca_section.mod == 'market' || 
+					//run on guild market
+					gca_section.mod == 'guildMarket' ||  
+					//run in reports arena section (CT seems to have no flags)	
+					gca_section.mod == 'reports' && gca_section.submod == 'showArena' || 
+					//run in reports arena section, but if clicked via reports warning button
+					gca_section.mod == 'reports' && gca_getPage.parameter('t') == '2'  
 				) {
-					// Insert it in content section if mod detected
+					// Insert the style if mod detected
 					document.documentElement.className += " hide-flags";
 					
-					// Remove it in content section if submod detected
-					if (gca_section.submod === 'serverArena' || gca_section.submod == 'control' || gca_section.submod == 'suche') {
-						document.documentElement.classList.remove("hide-flags");
+					if (
+					//disable on arena, if on Provinciarum pages
+					gca_section.mod == 'arena' && gca_section.submod === 'serverArena' || 
+					//disable on guild market, if on Administration page
+					gca_section.mod == 'guildMarket' && gca_section.submod == 'control' || 
+					//disable on highscore, if on Guilds page
+					gca_section.mod == 'highscore' && gca_getPage.parameter('t') == '1' || 
+					//disable on highscore, if on Search page
+					gca_section.mod == 'highscore' && gca_section.submod == 'suche' 
+				) {
+					// Remove the style if submod detected
+					document.documentElement.classList.remove("hide-flags");
 					}
 				}
 			}
