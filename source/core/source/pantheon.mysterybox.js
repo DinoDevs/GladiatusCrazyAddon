@@ -315,7 +315,7 @@ var gca_pantheon_mysterybox = {
 				let rubies = this.resolveReward(rewards[i]);
 				let icon = document.createElement('div');
 				icon.className = 'icon_rubies';
-				icon.setAttribute('style', 'transform: scale(0.8); float: left');
+				icon.setAttribute('style', 'transform: scale(0.8);');
 				let div = document.createElement('div');
 				div.className = 'reward_pool_rubies_price';
 				div.appendChild(icon);
