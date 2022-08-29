@@ -342,7 +342,7 @@ var gca_cdn = {
 		'img/costumes/sets/male/{feronia-we-dont-know-this}.jpg' : '37c4364b8ac67369247214b8f71fd0b5', // Feronia
 		'img/costumes/sets/male/{neptune-we-dont-know-this}.jpg' : '141c581d299b3aeeae31f748732ce9c8', // Neptune
 		'img/costumes/sets/male/{aeolus-we-dont-know-this}.jpg' : '2201d0f0d9f6620fad15836eb95cbaa3', // Aeolus
-		'img/costumes/sets/male/{pluto-we-dont-know-this}.jpg' : 'fb5aa808eb79bf95e982817b87ff72', // Pluto
+		'img/costumes/sets/male/{pluto-we-dont-know-this}.jpg' : 'bafb5aa808eb79bf95e982817b87ff72', // Pluto
 		'img/costumes/sets/male/{juno-we-dont-know-this}.jpg' : 'c95c2f5dfa0751a4ed2ff2d8411fbf', // Juno
 		'img/costumes/sets/male/{wrath-we-dont-know-this}.jpg' : '4a19e794899bda1deaf03b3339a2e6f3', // Wrath
 
