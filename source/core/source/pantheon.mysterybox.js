@@ -319,7 +319,7 @@ var gca_pantheon_mysterybox = {
 				let div = document.createElement('div');
 				div.className = 'reward_pool_rubies_price';
 				div.appendChild(icon);
-				div.appendChild(document.createTextNode(((rubies > 0)? rubies : gca_locale.get("pantheon", "unbuyable"))));
+				div.appendChild(document.createTextNode(((rubies > 0)? rubies : '?')));
 				rewards[i].appendChild(div);
 			}
 		},
