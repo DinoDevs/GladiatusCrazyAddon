@@ -152,8 +152,7 @@ gca_languages["en"] = {
 			// Mystery box
 			mysterybox_open_all : "Open all",
 			mysterybox_open_stop : "Stop",
-			mysterybox_open_done : "Done!",
-			unbuyable : "Unbuyable"
+			mysterybox_open_done : "Done!"
 		},
 
 		// Guild section
