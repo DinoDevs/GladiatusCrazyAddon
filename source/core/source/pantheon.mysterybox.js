@@ -238,11 +238,11 @@ var gca_pantheon_mysterybox = {
 
 				// Mobilization
 				// game/assets/img/premium/token/5.jpg
-				"5" : {rubies : 3},
+				"5" : {rubies : 0},
 
 				// Gate Key
 				// game/assets/img/premium/token/6.jpg
-				"6" : {rubies : 3},
+				"6" : {rubies : 0},
 
 				// Holy Hourglass
 				// game/assets/img/premium/token/7.jpg
@@ -278,7 +278,7 @@ var gca_pantheon_mysterybox = {
 
 				// Magical Bag
 				// game/assets/img/premium/token/15.jpg
-				"15" : {rubies : -1},
+				"15" : {rubies : 0},
 
 				// Chest of Divine Fate
 				// game/assets/img/premium/token/16.jpg
@@ -290,17 +290,18 @@ var gca_pantheon_mysterybox = {
 
 				// 100% Healing Potion
 				// game/assets/img/premium/token/18.jpg
-				"18" : {rubies : 1},
+				"18" : {rubies : 0},
+				
 			},
 
 			box : {
 				// Leandronimus Cervisia of Favour
 				// game/assets/img/premium/box/hamper.jpg
-				"hamper" : {rubies : 1.07},
+				"hamper" : {rubies : 0},
 			},
 
 			// game/assets/img/costumes/sets/male/7_complete_small.jpg
-			costumes : {rubies : 50}
+			costumes : {rubies : 0}
 		},
 
 		show : function() {
