@@ -66,13 +66,13 @@ var gca_packages = {
 		// Set Compact layout
 		(gca_options.bool("packages", "pop_over_bag") && 
 			this.layout.popOverBag.inject());
-		// Category shortcuts
-		(gca_options.bool("packages", "packages_shortcuts") && 
-			this.packagesShortcuts.inject());
 		
 		// Add new category selection "Event items"
 		this.eventItemsCategory();
-		
+
+		// Category shortcuts
+		(gca_options.bool("packages", "packages_shortcuts") && 
+			this.packagesShortcuts.inject());
 
 		// Setting Link
 		gca_tools.create.settingsLink("packages");
@@ -520,6 +520,18 @@ var gca_packages = {
 			a.className = "awesome-tabs" + (Object.keys(linkParams).every(param => linkParams[param] == pageParams[param]) ? " current" : "");
 			a.textContent = text;
 			a.href = gca_getPage.link(linkParams);
+			let title = '';
+			if (linkParams.hasOwnProperty('f')) {
+				let name = document.querySelector('select[name="f"] option[value="' + linkParams.f + '"]');
+				title += name ? name.textContent + ' ' : '';
+			}
+			if (linkParams.hasOwnProperty('fq')) {
+				let name = document.querySelector('select[name="fq"] option[value="' + linkParams.fq + '"]');
+				title += name ? name.textContent + ' ' : '';
+			}
+			if (title.length > 1) {
+				a.title = title.replace(/(^\s+|\s+$)/g, '');
+			} 
 			return a;
 		}
 	},
