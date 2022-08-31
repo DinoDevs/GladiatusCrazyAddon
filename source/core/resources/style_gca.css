@@ -1665,7 +1665,7 @@
 		.lock_section_visibility #messagesPage .message_box_title, .message_icon {pointer-events: none;}
 		/* Ignore the lock on some elements */
 		.lock_section_visibility .paging {pointer-events: auto!important;}
-		.lock_section_visibility #messagesPage .message_box_title a {pointer-events: auto;!important}
+		.lock_section_visibility #messagesPage .message_box_title a {pointer-events: auto!important;}
 		.lock_section_visibility #powerupsPage .rune_confirm.section-header {pointer-events: auto!important;}
 		.lock_section_visibility #powerupsPage .powerup_box {pointer-events: auto!important;}
 		.lock_section_visibility #guildBankingHousePage span {pointer-events: auto!important;}
