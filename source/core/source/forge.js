@@ -875,7 +875,7 @@ var gca_forge = {
 				btn_cancel.value = gca_locale.get('general', 'cancel');
 				btn_cancel.style.width = '80px';
 				btn_cancel.style.padding = '5px';
-				btn_cancel.style.margin = '5px 10px 0px';
+				btn_cancel.style.margin = '-5px 10px 0px';
 				wrapper.appendChild(btn_cancel);
 
 				let btn_send = document.createElement('input');
@@ -884,7 +884,7 @@ var gca_forge = {
 				btn_send.value = gca_locale.get('global', 'message_send');
 				btn_send.style.width = '80px';
 				btn_send.style.padding = '5px';
-				btn_send.style.margin = '5px 10px 0px';
+				btn_send.style.margin = '-5px 10px 0px';
 				wrapper.appendChild(btn_send);
 
 				// Construct modal
