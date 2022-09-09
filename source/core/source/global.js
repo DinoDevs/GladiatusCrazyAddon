@@ -1971,7 +1971,7 @@ var gca_global = {
 				var scroll_top = document.createElement('a');
 				scroll_top.className = 'scroll-to-top';
 				scroll_top.addEventListener('click', () => {
-					jQuery('html, body').animate({scrollTop: 0}, 'fast');
+					jQuery('html, body').scrollTop(0);
 					//or: window.scrollTo(0, 0)
 				});
 				scroll_top.textContent = ' ▲ ';
@@ -1983,7 +1983,7 @@ var gca_global = {
 				scroll_bottom.className = 'scroll-to-bottom';
 				scroll_bottom.textContent = ' ▼ ';
 				scroll_bottom.addEventListener("click", function() {
-					jQuery("html").animate({scrollTop: jQuery("#footer_background").offset().top}, 800);
+					jQuery('html, body').scrollTop(jQuery("#footer_background").offset().top);
                                 });
 				bar.appendChild(scroll_bottom);
 				
