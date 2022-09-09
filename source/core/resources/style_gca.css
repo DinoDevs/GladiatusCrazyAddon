@@ -1628,8 +1628,8 @@
 		/* Buff side-icons incomplete */
 		.glfix .buff {display: block!important;}
 		/* Event timer overhaul (compatible with .event_bar_moved) */
-		.glfix #cooldown_bar_event {background-image: unset!important;background-color: #200500!important;left: 352px!important;top: 195px!important;width: 401.3px!important;height: 11px!important;outline-style: solid;outline-width: 2px;outline-color: #978a5f;z-index: 300;} 
-		.glfix #cooldown_bar_text_event {font-size: 11px!important;margin-top: -3.4px!important;}
+		.glfix #cooldown_bar_event {background-image: unset!important;background-color: #200500!important;left: 350px!important;top: 195px!important;width: 400px!important;height: 11px!important;border-style: solid;border-width: 1px 3px 1px;border-color: #978a5f;z-index: 300;} 
+		.glfix #cooldown_bar_text_event {font-size: 11px!important;margin-top: -3.6px!important;}
 		.glfix #cooldown_bar_text_event:hover {color: #F9E9CA; cursor: progress;}
 		.glfix.event_bar_moved #cooldown_bar_event {margin-top: unset!important;}
 		.glfix ul#mainnav li a {z-index: 301;}
