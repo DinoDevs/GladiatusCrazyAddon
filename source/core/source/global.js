@@ -3911,7 +3911,7 @@ var gca_global = {
 					// Create rows for the tooltip
 					info.push([
 						((prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' : '') +
-						'[Base ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' +
+						'[' + gca_locale.get("global", "base") + ' ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' +
 						((suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' : ''),
 						'#ffffff'
 					]);
