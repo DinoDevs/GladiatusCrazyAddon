@@ -1,4 +1,4 @@
-## 🖼 Progress on Version 4.3.6 [Beta]
+## 🖼 !THIS LIST IS CURRENTLY OUTDATED! Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square)
