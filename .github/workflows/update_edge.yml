@@ -28,7 +28,7 @@ jobs:
     - name: Upload & Release
       # https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
       run: |
-        JSON_REPLY=$(curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "client_id={$CLIENT_ID}" -d "scope=https://api.addons.microsoftedge.microsoft.com/.default" -d "client_secret={$CLIENT_SECRET}" -d "grant_type=client_credentials" -v "https://login.microsoftonline.com/$ACCESS_TOKEN_URL_ID/oauth2/v2.0/token")
+        JSON_REPLY=$(curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "client_id=$CLIENT_ID" -d "scope=https://api.addons.microsoftedge.microsoft.com/.default" -d "client_secret=$CLIENT_SECRET" -d "grant_type=client_credentials" -v https://login.microsoftonline.com/$ACCESS_TOKEN_URL_ID/oauth2/v2.0/token)
         API_TOKEN=$(jq -r '.access_token' <<<"$JSON_REPLY")
         curl -H "Authorization: Bearer $API_TOKEN" -H "Content-Type: application/zip" -X POST -T $FILE_PATH -v "https://api.addons.microsoftedge.microsoft.com/v1/products/$EXTENSION_ID/submissions/draft/package"
       shell: bash
