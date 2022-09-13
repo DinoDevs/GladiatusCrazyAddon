@@ -18,6 +18,7 @@
 	- [x] Lock sections: The current state of all sections that can be hidden can now be locked or unlocked in the settings (#160)
 	- [x] Hide flags: Language flags under player names can now be hidden if enabled in the settings (#377)
 	- [x] Added a scroll to bottom button to the top bar
+	- [x] Various Gladiatus site fixes & improvements (#403)
 	
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
@@ -54,6 +55,7 @@
 	- [x] Show online family members fixes (#314)
 	- [x] Style fix for stats box (shortcuts bar) rendering behind event timers (#367)
 	- [x] Fixed script not detecting the page direction
+	- [x] Some missing translations were added
 - **Accessibility**
 	- [x] Improve experience on mobile phones
 - **Forge**
