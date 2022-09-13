@@ -1,8 +1,8 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-21-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-10-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-23-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-16-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -18,7 +18,6 @@
 	- [x] Lock sections: The current state of all sections that can be hidden can now be locked or unlocked in the settings (#160)
 	- [x] Hide flags: Language flags under player names can now be hidden if enabled in the settings (#377)
 	- [x] Added a scroll to bottom button to the top bar
-	- [x] Various Gladiatus site fixes & improvements (#403)
 	
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
@@ -33,7 +32,8 @@
 	- [x] Pin message that will be displayed at the top of messages (#348)            
 	
 - **Merchants**
-	- [x] Items that costs rubies can now have an icon (#355)	
+	- [x] Items that costs rubies can now have an icon (#355)
+	- [x] Item color quality search now remembers last picked color (#360)	
 	
 - **Forge**
 	- [x] Forging time is now displayed under the required resources in the tooltip (#350)	
@@ -44,9 +44,13 @@
 
 - **Underworld**
 	- [x] Expedition shortcut will always redirect to the last open location (#223)
+
 - **Packages**
 	- [x] Packages can be displayed as a list view (#323, #309)
 	- [x] Packages page can now have shortcuts to item categories
+
+- **Items**
+	- [x] Added a max stats comparison for mercenaries in tooltips (#371)
 
 ### BUG FIXES
 - **Global**
@@ -56,15 +60,31 @@
 	- [x] Style fix for stats box (shortcuts bar) rendering behind event timers (#367)
 	- [x] Fixed script not detecting the page direction
 	- [x] Some missing translations were added
+	- [x] Player detection improvements (#213) 
+
 - **Accessibility**
 	- [x] Improve experience on mobile phones
+
 - **Forge**
-	- [x] Fixed a loop when gettings items from workbench (Firefox) (#335)
+	- [x] Fixed a loop when getting items from workbench (Firefox) (#335)
 	- [x] Style adjustments on book of scrolls (lists with known prefixes & suffixes)
+
 - **Settings**
 	- [x] Export settings to notes: messing up `&"'<>` chars bug fixed
+
 - **Messages**
 	- [x] Fixed styling of the success/failure notice in new message layout (#357)
+
+- **Achievements**
+        - [x] Fixed Category 16 (event titles) not being recognized and failing (#370)
+
+- **Reports**
+        - [x] Fixed Turma/Dungeon analyzer style problems (#375)
+        - [x] Fixed an enemy detection error in Underworld when fighting yourself and getting a secondary drop (material) (#368)
+
+- **Items**
+        - [x] Fixed a console error when moving an item from guild storage directly to an item (#369)
+
 
 ### TRANSLATIONS
 -  **Updates**
