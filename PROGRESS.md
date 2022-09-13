@@ -60,7 +60,7 @@
 	- [x] Style fix for stats box (shortcuts bar) rendering behind event timers (#367)
 	- [x] Fixed script not detecting the page direction
 	- [x] Some missing translations were added
-	- [x] Player detection improvements (#213) 
+	- [x] Player detection improvements (#213, #351) 
 
 - **Accessibility**
 	- [x] Improve experience on mobile phones
