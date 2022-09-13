@@ -76,14 +76,14 @@
 	- [x] Fixed styling of the success/failure notice in new message layout (#357)
 
 - **Achievements**
-        - [x] Fixed Category 16 (event titles) not being recognized and failing (#370)
-
+	- [x] Fixed Category 16 (event titles) not being recognized and failing (#370)
+        
 - **Reports**
-        - [x] Fixed Turma/Dungeon analyzer style problems (#375)
-        - [x] Fixed an enemy detection error in Underworld when fighting yourself and getting a secondary drop (material) (#368)
+	- [x] Fixed Turma/Dungeon analyzer style problems (#375)
+	- [x] Fixed an enemy detection error in Underworld when fighting yourself and getting a secondary drop (material) (#368)
 
 - **Items**
-        - [x] Fixed a console error when moving an item from guild storage directly to an item (#369)
+	- [x] Fixed a console error when moving an item from guild storage directly to an item (#369)
 
 
 ### TRANSLATIONS
