@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.6 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-23-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-24-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-16-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
@@ -18,6 +18,7 @@
 	- [x] Lock sections: The current state of all sections that can be hidden can now be locked or unlocked in the settings (#160)
 	- [x] Hide flags: Language flags under player names can now be hidden if enabled in the settings (#377)
 	- [x] Added a scroll to bottom button to the top bar
+	- [x] The settings/book icon was moved from footer to header for better visibility and to be always more "at hand"
 	
 - **Auction**
 	- [x] Show item names (disabled by default, by @MiguelSOliveira)
