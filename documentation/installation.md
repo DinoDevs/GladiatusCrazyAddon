@@ -25,7 +25,7 @@
 
 ### Install the developer version
 
-To install the developer version, download the [developer code zip](https://github.com/DinoDevs/GladiatusCrazyAddon/archive/refs/heads/master.zip) and procced by following one of the guides for a *.zip file. At the step where you need to select the "Gladiatus Crazy Addon" folder, select the "source" folder incide the extracted files.
+To install the developer version, download the [developer code zip](https://github.com/DinoDevs/GladiatusCrazyAddon/archive/refs/heads/master.zip) and proceed by following one of the guides for a *.zip file. At the step where you need to select the "Gladiatus Crazy Addon" folder, select the "source" folder incide the extracted files.
 
 Caution: before installing the developer version, disable or remove the curent version. Additionally, mind that the developer version does not auto-update with new releses, instead, you will need to manually replace the unpacked (decompressed) files by getting a fresh copy of the code.
 
