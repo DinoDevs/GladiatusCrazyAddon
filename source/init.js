@@ -22,7 +22,7 @@ var init = (function () {
 		inject(
 			info,
 			window,
-			Browser.extension.getURL('core')
+			(Browser?.runtime?.getURL || Browser?.extension?.getURL)('core')
 		);
 	});
 })();

@@ -8,12 +8,20 @@ var gca = {
 	name : "Gladiatus Crazy Addon",
 	shortName : "GCA",
 	description: "Improve your gladiatus experience!",
-	version: "4.3.6",
+	version: "4.3.7",
 	developers : [
 		"GreatApo",
 		"DarkThanos"
 	],
 	homepage : "https://gladiatus.dinodevs.com"
+};
+
+var gca_extension = {
+	"id": document.currentScript.dataset.id
+};
+var gca_resources = {
+	"folder": "chrome-extension://" + gca_extension.id + "/core/resources/",
+	"audio": "chrome-extension://" + gca_extension.id + "/core/resources/audio/"
 };
 
 // Page info

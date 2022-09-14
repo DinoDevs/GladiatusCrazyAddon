@@ -8,17 +8,22 @@ rm -f GladiatusCrazyAddOn_Edge.zip
 cd ../source
 
 echo "Building for Chrome (Manifest v3)"
-zip -q -r ../dist/GladiatusCrazyAddOn_Chrome.zip core icons init.js manifest_v3.json
-printf "@ manifest_v3.json\n@=manifest.json\n" | zipnote -w ../dist/GladiatusCrazyAddOn_Chrome.zip
+zip -q -r ../dist/GladiatusCrazyAddOn_Chrome.zip core icons init.js manifest.json
 
 echo "Building for Chrome (Deprecated Manifest v2)"
-zip -q -r ../dist/GladiatusCrazyAddOn_Chrome_Manifest_v2.zip core icons init.js manifest.json
+zip -q -r ../dist/GladiatusCrazyAddOn_Chrome_Manifest_v2.zip core icons init.js manifest_v2.json
+printf "@ manifest_v2.json\n@=manifest.json\n" | zipnote -w ../dist/GladiatusCrazyAddOn_Chrome_Manifest_v2.zip
 
 echo "Building for Firefox (Manifest v2)"
-zip -q -r ../dist/GladiatusCrazyAddOn_Firefox.zip core icons init.js manifest.json
+zip -q -r ../dist/GladiatusCrazyAddOn_Firefox.zip core icons init.js manifest_v2.json
+printf "@ manifest_v2.json\n@=manifest.json\n" | zipnote -w ../dist/GladiatusCrazyAddOn_Firefox.zip
 mv ../dist/GladiatusCrazyAddOn_Firefox.zip ../dist/GladiatusCrazyAddOn_Firefox.xpi
 
-echo "Building for Edge (Manifest v2)"
+echo "Building for Edge (Manifest v3)"
 zip -q -r ../dist/GladiatusCrazyAddOn_Edge.zip core icons init.js manifest.json
+
+echo "Building for Edge (Deprecated Manifest v2)"
+zip -q -r ../dist/GladiatusCrazyAddOn_Edge_Manifest_v2.zip core icons init.js manifest_v2.json
+printf "@ manifest_v2.json\n@=manifest.json\n" | zipnote -w ../dist/GladiatusCrazyAddOn_Edge_Manifest_v2.zip
 
 cd ../dist

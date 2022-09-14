@@ -33,20 +33,9 @@ var inject = function(_info, _window, _folder){
 	// Locale Load
 	locale.preload();
 
-	// Resources Load
-	tools.loadCode(
-		'\n' +
-		'var gca_resources = ' + JSON.stringify({
-			folder : _folder + '/resources/',
-			audio : _folder + '/resources/audio/'
-		}, '', '\t') + ';\n' +
-		'var gca_extension = ' + JSON.stringify({
-			id : _info.extension
-		}, '', '\t') + ';\n'
-	);
-
 	// Info
-	tools.preloadScript('source/gca.info.js');
+	tools.preloadScript('source/gca.info.js')
+		 .setAttribute('data-id', _info.extension);
 	// Data - Options
 	tools.preloadScript('source/gca.data.js');
 	tools.preloadScript('source/gca.data.recipes.js');
@@ -75,7 +64,8 @@ var tools = {
 		// Create script
 		var script = info.data.document.createElement('script');
 		script.setAttribute('type', 'text/javascript');
-		script.text = code;
+		script.setAttribute('src', URL.createObjectURL(new Blob([code], {type : 'text/javascript'})));
+		//script.text = code;
 		info.data.document.head.appendChild(script);
 	},
 
