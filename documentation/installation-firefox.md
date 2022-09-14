@@ -57,7 +57,9 @@ This way of installing (loading) the addon is for developers. So it is not recom
 
 ![firefox-addon-debug-load-temporary-addon](resources/installation/firefox-addon-debug-load-temporary-addon.png)
 
-[*Step 4*] Find the unzipped extension folder and select the *manifest.json* file inside it (if you get a manifest v3 error, delete manifest.json file and rename manifest_v2.json to manifest.json, then select it)
+[*Step 4*] Find the unzipped extension folder and select the *manifest.json* file inside it
+
+(if you get a manifest v3 error, delete manifest.json file and rename manifest_v2.json to manifest.json, then select it)
 
 ![firefox-addon-debug-load-manifest](resources/installation/firefox-addon-debug-load-manifest.png)
 
@@ -65,4 +67,4 @@ This way of installing (loading) the addon is for developers. So it is not recom
 
 ---
 
-<sub><sup>Last update on 28-Jan-2017</sup></sub>
+<sub><sup>Last update on 14-Sep-2022</sup></sub>
