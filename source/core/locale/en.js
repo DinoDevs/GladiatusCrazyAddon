@@ -29,7 +29,7 @@ gca_languages["en"] = {
 			// Days
 			days : "day(s)",
 			// Minutes
-			minutes : "minute",
+			minutes : "minutes",
 			// Hours
 			hours : "hours",
 			// No data
@@ -450,7 +450,7 @@ gca_languages["en"] = {
 			category_training$multiple_train : "Enable multiple training",
 			category_training$calculator_train : "Enable cost calculator",
 			category_training$show_analyze_items_data : "Show analyzed items data in tooltips",
-			category_training$show_points_after_upgrade : "Show stat points after upgrade",
+			category_training$show_points_after_upgrade : "Show tab with trainings' impact on your combat stats",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Fade items that you can not afford",
 			category_merchants$ruby_icon_on_items : "Add icon on items that cost rubies",
@@ -511,8 +511,8 @@ gca_languages["en"] = {
 			category_accessibility$tooltips_qualty_white : "Change item title in tooltips to white",
 			category_accessibility$tooltips_qualty_symbols : "Add quality symbols on tooltips",
 			// Settings - Events
-			category_events$craps_timer : "Display dice event's timer on top",
-			category_events$server_quest_timer : "Display server-quest or location event's timer on top",
+			category_events$craps_timer : "Display dice event's timer at the top",
+			category_events$server_quest_timer : "Display server-quest or location event's timer at the top",
 			// Settings - Sound
 			category_sound$cooldown_sound_notifications : "Enable cooldowns sounds notifications (expedition, dungeon, arena)",
 			category_sound$muted : "Mute/Unmute sounds",
