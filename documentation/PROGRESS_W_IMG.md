@@ -1,142 +1,18 @@
-## 🖼 !THIS LIST IS CURRENTLY OUTDATED! Progress on Version 4.3.6 [Beta]
+## 🖼️ Progress on Version 4.3.8 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-13-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-0-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-0-red.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 - **Global**
-	- [ ] Preparations for Manifest v3 (some fixes and testing can be found at [testing branch](https://github.com/DinoDevs/GladiatusCrazyAddon/tree/manifest-v3-testing))
-	- [x] Item names in forge/smelt timers tooltip are now colored based on item quality (by @MiguelSOliveira)
-	
-	<details>
-	<summary>🖼️</summary>
-	
-	![forgesmelt_timers_colored](features/Pictures/4.3.5%20to%204.3.6/forgesmelt_timers_colored.png)
-	
-	</details>
-	
-	- [x] Show mercenary real name: Names are now translated automatically if previously seen in auction
-	- [x] Menu shortcuts: added new auction menu entry [+] with various shortcuts
-	
-	<details>
-	<summary>🖼️</summary>
-	
-	![add_loot](features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction.png) 
-	![add_loot_2](features/Pictures/4.3.5%20to%204.3.6/add_shortcut_auction_2.png)
-	
-	</details>
-	
-	- [x] Shortcuts bar: added button to guild baths Vox I (#372)
-
-	<details>
-	<summary>🖼️</summary>
-	
-	![add_vox1_to_shortcut_bar](features/Pictures/4.3.5%20to%204.3.6/add_vox1_to_shortcut_bar.png)
-	
-	</details>
-	
-	- [x] Display buff values on reinforcements & upgrades
-	
-	<details>
-	<summary>🖼️</summary>
-	
-	![buff_values_reinforcements_upgrades](features/Pictures/4.3.5%20to%204.3.6/buff_values_reinforcements_upgrades.png)
-	
-	</details>
-	
-- **Auction**
-	- [x] Show item names (disabled by default, by @MiguelSOliveira)
-        	
-	<details>
-	<summary>🖼️</summary>
-	
-	![Show_item_names](features/Pictures/4.3.5%20to%204.3.6/Show_item_names.png)
-	
-	</details>
-	
-- **Accessibility**
-	- [ ] Improve experience on mobile phones
-	- [x] Added loot per side in reports lists (#337)
-	
-	<details>
-	<summary>🖼️</summary>
-	
-	![add_loot](features/Pictures/4.3.5%20to%204.3.6/add_loot.png) 
-	
-	</details>
-	
-- **Guild Bath**
-	- [x] Pin message that will be displayed at the top of messages (#348)
-              
-	<details>
-	<summary>🖼️</summary>
-	
-	![vox_pin_message](features/Pictures/4.3.5%20to%204.3.6/vox_pin_message.png)
-	
-	</details>
-	
-- **Merchants**
-	- [x] Items that costs rubies can now have an icon (#355)	
-	
-	<details>
-	<summary>🖼️</summary>
-	
-	![show_rubin_via_icon](features/Pictures/4.3.5%20to%204.3.6/show_rubin_via_icon.png) 
-	
-	</details>
-	
-- **Forge**
-	- [x] Forging time is now displayed under the required resources in the tooltip (#350)	
-        
-	<details>
-	<summary>🖼️</summary>
-	
-	![smelt_time_on_tooltip](features/Pictures/4.3.5%20to%204.3.6/smelt_time_on_tooltip.png)
-	
-	</details>
-	
-- **Market**
-	- [x] Added button to include fees in the market price (#308)
-		
-	<details>
-	<summary>🖼️</summary>
-	
-	![item_fee](features/Pictures/4.3.5%20to%204.3.6/item_fee.png) 
-	
-	</details>
-
-- **Underworld**
-	- [x] Expedition shortcut will always redirect to the last open location (#223)
-- **Packages**
-	- [x] Packages can be displayed as a list view (#323, #309)
-		
-	<details>
-	<summary>🖼️</summary>
-	
-	![list_view](features/Pictures/4.3.5%20to%204.3.6/list_view.png)
-	
-	</details>
+	- [ ] Only the future knows what new features will be suggested!
 
 ### BUG FIXES
 - **Global**
-	- [x] Style fix for double line tab names when shortcuts bar is active along with an event
-	- [x] Show online family members fixes (#314)
-	- [x] Style fix for stats box (shortcuts bar) rendering behind event timers (#367)
-- **Forge**
-	- [x] Fixed a loop when gettings items from workbench (Firefox) (#335)
-	- [x] Style adjustments on book of scrolls (lists with known prefixes & suffixes)
-- **Settings**
-	- [x] Export settings to notes: messing up `&"'<>` chars bug fixed
-- **Messages**
-	- [x] Fixed styling of the success/failure notice in new message layout (#357)
+	- [ ] Only the future knows what new bugs will be found!
 
 ### TRANSLATIONS
 -  **Updates**
-	- [x] Czech update by @FrutyX
-	- [x] German update by @Sleeping*Shadow
-	- [x] Greek update by @GreatApo
-	- [x] Portuguese update by @MiguelSOliveira
-	- [x] Turkish update by @mattemre
-	- [x] Croatian update by @0eXer
+	- [ ] Pirate Language update by @Jack_Sparrow
