@@ -31,7 +31,8 @@
 	],
 
 	"background": {
-		"service_worker": "core/background.js"
+		"service_worker": "core/background.mv3.js",
+		"type": "module"
 	},
 	"externally_connectable": {
 		"matches": [

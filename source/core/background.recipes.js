@@ -7,7 +7,7 @@
  */
 
 
-window.gladiatus_recipes = {
+self.gladiatus_recipes = {
 
 // Prefix Levels
 prefix_lvls : {
