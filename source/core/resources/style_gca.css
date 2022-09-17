@@ -1674,6 +1674,7 @@
 		.lock_section_visibility .awesome-button {pointer-events: auto!important;}
 		.lock_section_visibility input {pointer-events: auto!important;}
                 .lock_section_visibility form {pointer-events: auto!important;}
+                .lock_section_visibility #addon_box a {pointer-events: auto!important;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */
