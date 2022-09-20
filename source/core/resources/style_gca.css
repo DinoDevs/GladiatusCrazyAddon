@@ -1625,7 +1625,7 @@
 		.glfix ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
 		/* Custom scrollbar for Firefox */
 		.glfix:root {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
-		/* Buff side-icons incomplete */
+		/* Buff side-icons - unnecessary spaces removal */
 		.glfix .buff {display: block!important;}
 		/* Event timer overhaul (compatible with .event_bar_moved) */
 		.glfix #cooldown_bar_event {background-image: unset!important;background-color: #200500!important;left: 350px!important;top: 192px!important;width: 400px!important;height: 11px!important;border-style: solid;border-width: 1px 3px 1px;border-color: #978a5f;z-index: 300;} 
