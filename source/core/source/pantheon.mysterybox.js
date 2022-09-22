@@ -349,11 +349,12 @@ var gca_pantheon_mysterybox = {
 			if (r && this.valueTable.box[r[1]]) {
 				return (this.valueTable.box[r[1]].rubies * amount);
 			}
-
+			
 			// If costume
-			r = image.match(/img\/costumes\/sets\/(?:male|female)\/([^.]+])\.jpg/i);
+			//r = image.match(/img\/costumes\/sets\/(?:male|female)\/([^.]+])\.jpg/i); // not matching
+			r = image.match(/img\/costumes\/sets\/(?:male|female)\//i);
 			if (r) {
-				return -1;
+				return this.valueTable.costumes.rubies; // use -1 to display ?
 			}
 
 		}
