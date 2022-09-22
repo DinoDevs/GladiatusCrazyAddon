@@ -38,7 +38,7 @@
 	.event_bar_moved #content_2nd{margin-top: 25px!important;}
 	.event_bar_moved #banner_top{top: 152px!important;background-image: url('interface/eventBar.png')!important;z-index: 299!important;}
 	.event_bar_moved #banner_event{top: 155px!important;z-index: 299!important;}
-	.event_bar_moved #cooldown_bar_event{margin-top: 30px;}
+	.event_bar_moved #cooldown_bar_event{width: 75px!important;margin-top: 33px;left: 274px!important}
 
 /* Extended Hp and Xp info */
 	#header_values_hp_xp_background{position: absolute; z-index: 1; top:81px; left:335px; background-image: url('interface/extend_hp_xp_info.png'); width: 180px; height: 50px; border: 0px;}
