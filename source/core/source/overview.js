@@ -113,7 +113,9 @@ var gca_overview = {
 				if (getId) player_id = getId[1];
 			}
 
-			if (player_id > 0) {
+			if (player_id > 0 && gca_section.sh != null) {
+				// after closing the chat, sh in not in the url
+
 				// All cookies will expire if not used for some days
 				let d = new Date();
 				d.setTime(d.getTime() + (14 * 24*60*60*1000));
