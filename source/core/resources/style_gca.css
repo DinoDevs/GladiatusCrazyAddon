@@ -6,7 +6,7 @@
 
 /** Style Override **/
 /* Chat Icon */
-	#chat_icon {z-index: 2;}
+	#chat_icon {z-index: 2;left: -1px!important;}
 
 /* Google Ads*//*// Gameforge Don't like this :P
 	#banner_right{display: none!important;}*/
@@ -470,7 +470,7 @@
 
 /* General */
 	.black{color: black;}
-	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;top: 116px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));display: block;}
+	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;top: 116px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));display: block;margin-left:-32px;}
 	#exp_and_gold_stats_icon:hover{filter: drop-shadow(1px 1px 1px rgba(141, 40, 40, 0.5));}
 
 /* Missions */
