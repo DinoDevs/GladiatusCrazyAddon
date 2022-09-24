@@ -6,7 +6,7 @@
 
 /** Style Override **/
 /* Chat Icon */
-	#chat_icon {z-index: 2;}
+	#chat_icon {z-index: 2;left: -1px!important;}
 
 /* Google Ads*//*// Gameforge Don't like this :P
 	#banner_right{display: none!important;}*/
@@ -38,7 +38,7 @@
 	.event_bar_moved #content_2nd{margin-top: 25px!important;}
 	.event_bar_moved #banner_top{top: 152px!important;background-image: url('interface/eventBar.png')!important;z-index: 299!important;}
 	.event_bar_moved #banner_event{top: 155px!important;z-index: 299!important;}
-	.event_bar_moved #cooldown_bar_event{margin-top: 30px;}
+	.event_bar_moved #cooldown_bar_event{width: 75px!important;margin-top: 33px;left: 274px!important}
 
 /* Extended Hp and Xp info */
 	#header_values_hp_xp_background{position: absolute; z-index: 1; top:81px; left:335px; background-image: url('interface/extend_hp_xp_info.png'); width: 180px; height: 50px; border: 0px;}
@@ -470,7 +470,7 @@
 
 /* General */
 	.black{color: black;}
-	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;top: 116px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));display: block;}
+	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;top: 116px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));display: block;margin-left:-32px;}
 	#exp_and_gold_stats_icon:hover{filter: drop-shadow(1px 1px 1px rgba(141, 40, 40, 0.5));}
 
 /* Missions */
@@ -1625,7 +1625,7 @@
 		.glfix ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
 		/* Custom scrollbar for Firefox */
 		.glfix:root {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
-		/* Buff side-icons incomplete */
+		/* Buff side-icons - unnecessary spaces removal */
 		.glfix .buff {display: block!important;}
 		/* Event timer overhaul (compatible with .event_bar_moved) */
 		.glfix #cooldown_bar_event {background-image: unset!important;background-color: #200500!important;left: 350px!important;top: 192px!important;width: 400px!important;height: 11px!important;border-style: solid;border-width: 1px 3px 1px;border-color: #978a5f;z-index: 300;} 
@@ -1674,6 +1674,7 @@
 		.lock_section_visibility .awesome-button {pointer-events: auto!important;}
 		.lock_section_visibility input {pointer-events: auto!important;}
                 .lock_section_visibility form {pointer-events: auto!important;}
+                .lock_section_visibility #addon_box a {pointer-events: auto!important;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */

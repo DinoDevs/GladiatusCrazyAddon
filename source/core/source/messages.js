@@ -513,7 +513,7 @@ var gca_messages = {
 			let message_icon = document.createElement("div");
 			message_icon.className = "message_icon";
 			//message_icon.textContent = "📌";
-			message_icon.style = 'background-image:url(9425/img/news/icon_7.gif);';
+			message_icon.style = 'background-image:url(/cdn/img/news/icon_7.gif);';
 			message_box_icon.appendChild(message_icon);
 
 			let message_box_title = document.createElement("div");

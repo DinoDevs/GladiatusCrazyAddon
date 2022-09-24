@@ -200,13 +200,15 @@ var gca_reports = {
 				if (forgingGood) {
 					let item = forgingGood[1];
 					let image = document.getElementById('defenderAvatar11').getElementsByTagName('div')[2].style.backgroundImage;
+					image = image.replace(/^url\(\"/,"").replace(/\"\)$/,""); // remove 'url("...")' if it exists
 					// old enemy pictures, enemy[1] is the code to save in data
 					//let enemy = image.match(/url\("\d+\/img\/npc\/(\d+\/[^.]+\.\w+)"\)/);
 					//let cdn_enemy = image.match(/url\("(\/\/gf\d+\.geo\.gfsrv\.net\/cdn[0-9a-f]{2,2}\/[^.]+\.jpg)"\)/);
 					let enemy = gca_tools.img.resolve(image);
 					// convert cdn to old images
-					if (enemy) data.push([enemy.replace('/img/npc/','').replace('img/npc/',''), item]);
-					else if (document.getElementById('defenderAvatar11').getElementsByClassName('avatar').length>0) {
+					if (enemy) {
+						data.push([enemy.replace('/img/npc/','').replace('img/npc/',''), item]);
+					}else if (document.getElementById('defenderAvatar11').getElementsByClassName('avatar').length>0) {
 						// this is your avatar in underward
 					}
 					else console.error('Failed to detect enemy', image);
