@@ -417,38 +417,39 @@ var gca_cdn = {
 		'img/ui/quest/icon_grouparena_active.jpg' : '45c901c26d04e70cc3ecfb37b9632590',
 		'img/ui/quest/icon_grouparena_inactive.jpg' : '24586768e942030301c484347698bc5e',
 		'img/ui/quest/icon_arena_active.jpg' : '97234cdb450a257bf9c13e55ce0e7c74',
-		'img/ui/quest/icon_arena_inactive.jpg' : '1b00f1a594723515a77dcd6d66c918fb',
-		// 'img/recruiting/godpoints_active.jpg' : '',
-		// 'img/recruiting/godpoints_inactive.jpg' : '',
-		// 'img/recruiting/expedition_active.jpg' : '',
-		// 'img/recruiting/expedition_inactive.jpg' : '',
-		// 'img/recruiting/dungeon_active.jpg' : '',
-		// 'img/recruiting/dungeon_inactive.jpg' : '',
-		// 'img/recruiting/level_active.jpg' : '',
-		// 'img/recruiting/level_inactive.jpg' : '',
-		// 'img/recruiting/rubies_active.jpg' : '',
-		// 'img/recruiting/rubies_inactive.jpg' : '',
-		'img/ui/bar.jpg' : '98d8ca22bc9f25ce9e6f2db8022106',
-		'img/ui/bar_fill.jpg' : 'ea431d408d42dfa86a5e19915f0a6f', 
-		'img/ui/bar_fill_green.jpg' : '2ae40891e6ff8b7d669103414a78cf',
-		'img/ui/layout/menu_bg.jpg' : 'c0ba8c16c12928c173dec02948883d', 
-		'img/ui/layout/bg_body_game.jpg' : '971e186e7cc48ef7dbc1612d30813a',
-		'img/ui/layout/bg_header_game.jpg' : 'bfa2d4db74a8c53376ab80280e8aee',
+		'img/ui/quest/icon_arena_inactive.jpg' : '1b00f1a594723515a77dcd6d66c918fb',						
+		// 'img/recruiting/godpoints_active.jpg' : '', // no specific hash
+		// 'img/recruiting/godpoints_inactive.jpg' : '', // no specific hash
+		// 'img/recruiting/expedition_active.jpg' : '', // no specific hash
+		// 'img/recruiting/expedition_inactive.jpg' : '', // no specific hash
+		// 'img/recruiting/dungeon_active.jpg' : '', // no specific hash
+		// 'img/recruiting/dungeon_inactive.jpg' : '', // no specific hash
+		// 'img/recruiting/level_active.jpg' : '', // no specific hash
+		// 'img/recruiting/level_inactive.jpg' : '', // no specific hash
+		// 'img/recruiting/rubies_active.jpg' : '', // no specific hash
+		// 'img/recruiting/rubies_inactive.jpg' : '', // no specific hash		
+		'img/ui/bar.jpg' : '3998d8ca22bc9f25ce9e6f2db8022106', 
+		'img/ui/bar_fill.jpg' : '36ea431d408d42dfa86a5e19915f0a6f', 
+		'img/ui/bar_fill_green.jpg' : 'aa2ae40891e6ff8b7d669103414a78cf', 
+		'img/ui/layout/menu_bg.jpg' : '7ac0ba8c16c12928c173dec02948883d',
+		'img/ui/layout/bg_body_game.jpg' : 'c3971e186e7cc48ef7dbc1612d30813a', 
+		'img/ui/layout/bg_header_game.jpg' : 'd7bfa2d4db74a8c53376ab80280e8aee', 				
 		// 'img/ui/blackoutDialog/icon_warning.jpg' : '',
-		// 'img/map_stadt.jpg' : '',
-		// 'img/map_stadt_0.jpg' : '',
-		// 'img/map_stadt_1.jpg' : '',
-		// 'img/map_stadt_2.jpg' : '',
-		// 'img/map_stadt_4.jpg' : '',
-		'img/map_land.jpg' : '9d136977067e1d3834d58898330c2c',
-		'img/map_land_0.jpg' : '9d136977067e1d3834d58898330c2c',
-		'img/map_land_1.jpg' : 'afcc7b6916ffcf1d485bd4c0d4f1af', 
-		'img/map_land_2.jpg' : '91c75049718fd55f7014ca8b357ae0',
-		// 'img/map_land_3.jpg' : '',
-		'img/map_land_4.jpg' : '85f6d0eed8997fa21d65d93908d9c2',
-		'img/costumes/background.jpg' : 'd4f9e647d4a5e8b98bc7c95a8d161b',
-		'img/ui/quest/button_cancel.jpg' : '0517bbe0c9992f2386d79e1e6b5126',
-		'img/ui/training/button_disabled.jpg' : '9a6a568539b92289ff6ff80458f27f',
+		// 'img/ui/blackoutDialog/ ' : '1db8e0f24e86bde507dbadf4999ea9c9', // question mark icon
+		// 'img/map_stadt.jpg' : '', // same as "map_stadt_0" but darker?
+		'img/map_stadt_0.jpg' : 'f8c6f33aafa51d864967c571e7155995', 
+		'img/map_stadt_1.jpg' : '7df47ce1ca602f8245d0591974ba45c8', 
+		'img/map_stadt_2.jpg' : '61c6efcebb28177468191325b578caf8', 
+		'img/map_stadt_4.jpg' : 'bf1eb0d63e3ec870cfa526f6bd1e3ac7', 						
+		'img/map_land.jpg' : '879d136977067e1d3834d58898330c2c', 
+		'img/map_land_0.jpg' : '879d136977067e1d3834d58898330c2c',
+		'img/map_land_1.jpg' : '66afcc7b6916ffcf1d485bd4c0d4f1af', 
+		'img/map_land_2.jpg' : '7591c75049718fd55f7014ca8b357ae0', 		
+		// 'img/map_land_3.jpg' : '', // underworld location, soon 			
+		'img/map_land_4.jpg' : '5485f6d0eed8997fa21d65d93908d9c2',  
+		'img/costumes/background.jpg' : '65d4f9e647d4a5e8b98bc7c95a8d161b', 
+		'img/ui/quest/button_cancel.jpg' : '380517bbe0c9992f2386d79e1e6b5126', 
+		'img/ui/training/button_disabled.jpg' : '139a6a568539b92289ff6ff80458f27f', 
 		// '' : '',
 		// '' : '',
 		// '' : '',
@@ -592,24 +593,24 @@ var gca_cdn = {
 		'img/costumes/sets/female/15_3.png' : '0afe8246f37663a6aaed3308687c93ae',
 		'img/costumes/sets/female/15_4.png' : 'b9e7daf51681591e1db40941efd51c5b',
 
-		// 'img/ui/gods/vulcanus_s16.png' : '',
-		// 'img/ui/gods/minerva_s16.png' : '',
-		// 'img/ui/gods/mars_s16.png' : '',
-		// 'img/ui/gods/merkur_s16.png' : '',
-		// 'img/ui/gods/diana_s16.png' : '',
-		// 'img/ui/gods/apollo_s16.png' : '',
-		// 'img/logo/0/tmp/2-7.png' : '',
-		// 'img/ui/icon_recruiting_points.png' : '',
-		// 'img/shop/forging.png' : '',
-		// 'img/shop/smelting.png' : '',
-		// 'img/shop/workbench.png' : '',
-		// 'img/shop/shop_avatar_1_magus.png' : '',
-		// 'img/shop/shop_avatar_2_magus.png' : '',
-		// 'img/shop/shop_avatar_4_magus.png' : '',
+		// 'img/ui/gods/vulcanus_s16.png' : '', // no specific hash
+		// 'img/ui/gods/minerva_s16.png' : '', // no specific hash
+		// 'img/ui/gods/mars_s16.png' : '', // no specific hash
+		// 'img/ui/gods/merkur_s16.png' : '', // no specific hash
+		// 'img/ui/gods/diana_s16.png' : '', // no specific hash
+		// 'img/ui/gods/apollo_s16.png' : '', // no specific hash
+		// 'img/logo/0/tmp/2-7.png' : '', // no specific hash
+		// 'img/ui/icon_recruiting_points.png' : '', // no specific hash
+		// 'img/shop/forging.png' : '', // no specific hash
+		// 'img/shop/smelting.png' : '', // no specific hash
+		// 'img/shop/workbench.png' : '', // no specific hash
+		// 'img/shop/shop_avatar_1_magus.png' : '', // no specific hash
+		// 'img/shop/shop_avatar_2_magus.png' : '', // no specific hash
+		// 'img/shop/shop_avatar_4_magus.png' : '', // no specific hash
 		'img/item.png' : '8b84fd3f76ff45db7d2cdbf5680aa09b',
-	        'img/menu.png' : '7850696ce9bc0251751e88456338a8',
-		'img/menu_rtl.png' : '4cc8b57835e9ac3dc9150efe125159',
-	        'img/interface.png' : 'abffd21441d06c0b0268ddfc42fbab',
+	        'img/menu.png' : 'd77850696ce9bc0251751e88456338a8', 
+		'img/menu_rtl.png' : '3c4cc8b57835e9ac3dc9150efe125159', 
+	        'img/interface.png' : '4aabffd21441d06c0b0268ddfc42fbab', 
 		// 'img/buff/xp.png' : '',
 		// 'img/buff/gold.png' : '',
 		// 'img/buff/dungeon.png' : '',
@@ -618,8 +619,8 @@ var gca_cdn = {
 		'img/buff/rubin_left.png' : 'ad3f2a1dd8bcaf1a611a9ad79fae506c',
 		// 'img/buff/rubin_right.png' : '',
 		// 'img/buff/points_limit.png' : '',
-		'img/ui/layout/banner_top.png' : 'd5692f8bbc9ea3740c11985a873798',
-		'img/premium/box/amount.png' : '8a77525fd06e0f52db0d1ba8964570',
+		'img/ui/layout/banner_top.png' : '8dd5692f8bbc9ea3740c11985a873798', 
+		'img/premium/box/amount.png' : '548a77525fd06e0f52db0d1ba8964570', 
 		'img/ui/expedition_points2.png' : 'e4add5f2cc36b27f4719bf2f2772b33d',
 		// '' : '',
 		// '' : '',
@@ -633,21 +634,21 @@ var gca_cdn = {
 
 	lookup_gif : {
 		'img/res2.gif' : '6b71e68d38f81ee6f96a618f33c672e0',
-		// 'img/res3.gif' : '',
+		'img/res3.gif' : '9203d0e8e4718d33a582132485433bb7',
 		// 'img/spacer.gif' : '',
-		// 'img/ui/spinner.gif' : '',
-		// 'img/ui/icon_honor_small.gif' : '',
-		// 'img/ui/icon_level_small.gif' : '',
+		'img/ui/spinner.gif' : 'e4234472afb925ddb203ad99cb2ec0b0',
+		// 'img/ui/icon_honor_small.gif' : '', // no specific hash
+		// 'img/ui/icon_level_small.gif' : '', // no specific hash
 		'img/energie_rot.gif' : 'e2d27eeec7274b65d407bb0cbc502bbb',
 		'img/energie_gelb.gif' : 'cc009b6ab0537fae300ea58cce1e4eee',
 		'img/energie_gruen.gif' : '7498f0b5f90e8fc485f8ddd251fb3cac',
 		// 'img/faces/gladiator_40_f_11.gif' : '',
 		// 'img/faces/gladiator_40_m_14.gif' : '',
-		'img/shop/shop_zelle.gif' : 'dd2c8d49efdaeb1ea0ed4d01883d9b',
-		'img/interface_ar/messages.gif' : '0b70a488ee312aef4a42ff53c88c62',
-		// 'img/news/icon_4.gif' : '',
-		// 'img/news/icon_7.gif' : '',
-		'img/powerups/powerup_1.gif' : '908aa633848089ce281dc81659b4bf',
+		'img/shop/shop_zelle.gif' : '64dd2c8d49efdaeb1ea0ed4d01883d9b', 
+		'img/interface_ar/messages.gif' : '010b70a488ee312aef4a42ff53c88c62', 
+		'img/news/icon_4.gif' : '8bce2030c658c6e4ad851333bc608644',
+		'img/news/icon_7.gif' : 'c5/51104639947a3b8744de40099b4497',
+		'img/powerups/powerup_1.gif' : '62908aa633848089ce281dc81659b4bf', 
 		// '' : '',
 		// '' : '',
 		// '' : '',
