@@ -635,7 +635,7 @@ var gca_cdn = {
 	lookup_gif : {
 		'img/res2.gif' : '6b71e68d38f81ee6f96a618f33c672e0',
 		'img/res3.gif' : '9203d0e8e4718d33a582132485433bb7',
-		// 'img/spacer.gif' : '',
+		'img/spacer.gif' : 'ef51e70e9023ed2ea9d2b2acea6e3e07',
 		'img/ui/spinner.gif' : 'e4234472afb925ddb203ad99cb2ec0b0',
 		// 'img/ui/icon_honor_small.gif' : '', // no specific hash
 		// 'img/ui/icon_level_small.gif' : '', // no specific hash
