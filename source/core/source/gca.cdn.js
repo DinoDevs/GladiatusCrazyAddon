@@ -445,7 +445,7 @@ var gca_cdn = {
 		'img/map_land_0.jpg' : '879d136977067e1d3834d58898330c2c',
 		'img/map_land_1.jpg' : '66afcc7b6916ffcf1d485bd4c0d4f1af', 
 		'img/map_land_2.jpg' : '7591c75049718fd55f7014ca8b357ae0', 		
-		// 'img/map_land_3.jpg' : '', // underworld location, soon 			
+		'img/map_land_3.jpg' : '585c86e4366797877e9524e5a09e1a68', 			
 		'img/map_land_4.jpg' : '5485f6d0eed8997fa21d65d93908d9c2',  
 		'img/costumes/background.jpg' : '65d4f9e647d4a5e8b98bc7c95a8d161b', 
 		'img/ui/quest/button_cancel.jpg' : '380517bbe0c9992f2386d79e1e6b5126', 
