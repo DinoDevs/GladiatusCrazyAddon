@@ -434,7 +434,7 @@ var gca_cdn = {
 		'img/ui/layout/menu_bg.jpg' : '7ac0ba8c16c12928c173dec02948883d',
 		'img/ui/layout/bg_body_game.jpg' : 'c3971e186e7cc48ef7dbc1612d30813a', 
 		'img/ui/layout/bg_header_game.jpg' : 'd7bfa2d4db74a8c53376ab80280e8aee', 				
-		// 'img/ui/blackoutDialog/icon_warning.jpg' : '',
+		// 'img/ui/blackoutDialog/icon_warning.jpg' : '', // no specific hash
 		// 'img/ui/blackoutDialog/ ' : '1db8e0f24e86bde507dbadf4999ea9c9', // question mark icon
 		// 'img/map_stadt.jpg' : '', // same as "map_stadt_0" but darker?
 		'img/map_stadt_0.jpg' : 'f8c6f33aafa51d864967c571e7155995', 
