@@ -7,14 +7,8 @@
 var gca_global = {
 	// Pre Inject code
 	preinject : function(){
-		// Gladiatus site fixes & improvements
-		if (gca_options.bool("global", "gladiatus_site_fixes"))
-			document.documentElement.className += " glfix";
-		// Lock all sections
-		if (gca_options.bool("global","lock_section_visibility"))
-			document.documentElement.className += " lock_section_visibility";
 		// If player id is not detected
-		if (gca_section.playerId <= 0) {
+		if (gca_section.playerId <= 0 || gca_section.sh == null) {
 			// Wait for it to be detected
 			gca_tools.event.addListener('player-id-updated', () => {
 				if (gca_section.playerId <= 0) return;
@@ -24,6 +18,13 @@ var gca_global = {
 			this.detectPlayerId();
 			return;
 		}
+
+		// Gladiatus site fixes & improvements
+		if (gca_options.bool("global", "gladiatus_site_fixes"))
+			document.documentElement.className += " glfix";
+		// Lock all sections
+		if (gca_options.bool("global","lock_section_visibility"))
+			document.documentElement.className += " lock_section_visibility";
 
 		// Resolve Game Modes
 		this.gameModePreResolve();
@@ -77,7 +78,7 @@ var gca_global = {
 	// Inject Code
 	inject : function(){
 		// If player id is not detected
-		if (gca_section.playerId <= 0) {
+		if (gca_section.playerId <= 0 || gca_section.sh == null) {
 			// Wait for it to be detected
 			gca_tools.event.addListener('player-id-updated', () => {
 				if (gca_section.playerId <= 0) return;
@@ -5743,6 +5744,7 @@ var gca_global = {
 				// Update player id
 				gca_section.resolvePlayerId();
 				gca_data_manager.init();
+				gca_options.init();
 
 				// Fire event
 				gca_tools.event.fireOnce('player-id-updated');

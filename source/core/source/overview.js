@@ -113,6 +113,12 @@ var gca_overview = {
 				if (getId) player_id = getId[1];
 			}
 
+			// If no secure hash on the URL on the url
+			if (player_id > 0 && gca_section.sh == null && window.secureHash && document.getElementById('icon_rubies')) {
+				gca_section.sh = window.secureHash;
+				//console.log(player_id, window.secureHash);
+			}
+
 			if (player_id > 0 && gca_section.sh != null) {
 				// after closing the chat, sh in not in the url
 
@@ -130,6 +136,7 @@ var gca_overview = {
 				// Update player id
 				gca_section.resolvePlayerId();
 				gca_data_manager.init();
+				gca_options.init();
 
 				// Fire event
 				gca_tools.event.fireOnce('player-id-updated');

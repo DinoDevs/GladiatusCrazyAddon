@@ -118,13 +118,23 @@ var gca_data_manager = {
 	},
 	// Get Player Id
 	getPlayerId : function(){
-		let url = document.location.href;
-		let country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
-		let server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
-		let sh = (url.match(/sh=[0-9a-fA-F]+/i))?url.match(/sh=([0-9a-fA-F]+)/i)[1]:null;
+		let section = {
+			country: null,
+			server: null,
+			sh: null
+		};
+		if (typeof gca_section !== 'undefined' && gca_section.playerId > 0 && gca_section.sh) {
+			section = gca_section;
+		}
+		else {
+			let url = document.location.href;
+			section.country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
+			section.server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
+			section.sh = (url.match(/sh=[0-9a-fA-F]+/i))?url.match(/sh=([0-9a-fA-F]+)/i)[1]:null;
+		}
 
 		// Resolve Player Id from cookies
-		var cookiePlayerId = (sh) ? document.cookie.match(new RegExp("Gca_" + country + "_" + server + "=(\\d+)_" + sh.substring(0, sh.length/4),"i")) : false;
+		var cookiePlayerId = (section.sh) ? document.cookie.match(new RegExp("Gca_" + section.country + "_" + section.server + "=(\\d+)_" + section.sh.substring(0, section.sh.length/4), "i")) : false;
 		// If cookie exist
 		if(cookiePlayerId && cookiePlayerId[1]){
 			return cookiePlayerId[1];
