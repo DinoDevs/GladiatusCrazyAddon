@@ -650,6 +650,7 @@ var gca_cdn = {
 		'img/news/icon_4.gif' : '8bce2030c658c6e4ad851333bc608644',
 		'img/news/icon_7.gif' : 'c551104639947a3b8744de40099b4497',
 		'img/powerups/powerup_1.gif' : '62908aa633848089ce281dc81659b4bf', 
+		'img/powerups/powerup_2.gif' : '1dfb4f2b64dcdaec0b6bf94ced8b091e',
 		'img/powerups/powerup_3.gif' : '92fa7b458af4e2bfee9c3f1bcefa3b19',
 		'img/powerups/powerup_4.gif' : '49c422ef306d0633183b7331b4ee6012', 
 		// '' : '',
