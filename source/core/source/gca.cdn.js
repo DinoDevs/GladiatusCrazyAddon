@@ -647,7 +647,7 @@ var gca_cdn = {
 		'img/shop/shop_zelle.gif' : '64dd2c8d49efdaeb1ea0ed4d01883d9b', 
 		'img/interface_ar/messages.gif' : '010b70a488ee312aef4a42ff53c88c62', 
 		'img/news/icon_4.gif' : '8bce2030c658c6e4ad851333bc608644',
-		'img/news/icon_7.gif' : 'c5/51104639947a3b8744de40099b4497',
+		'img/news/icon_7.gif' : 'c551104639947a3b8744de40099b4497',
 		'img/powerups/powerup_1.gif' : '62908aa633848089ce281dc81659b4bf', 
 		// '' : '',
 		// '' : '',
