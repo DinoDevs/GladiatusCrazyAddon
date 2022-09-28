@@ -605,7 +605,7 @@
 
 		/* Style fixes*/
 		/* Fix tall (double line) tabs */
-		.gca_long_tabs .awesome-tabs {width: auto !important;}
+		.gca_long_tabs .awesome-tabs {width: auto !important;padding: 2px 19px!important;min-width: 50px;}
 		.gca_long_tabs .awesome-tabs .navBG {width: 100%; padding-right: 10px;}
 
 
