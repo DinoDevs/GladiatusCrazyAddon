@@ -478,7 +478,7 @@ gca_languages['cs'] = {
 			// Settings - Guild
 			category_guild$jail_layout : "Zlepšit zobrazení Negotia X",
 			category_guild$library_layout : "Zlepšit zobrazení knihovny",
-			category_guild$library_fade_non_scrolls : "Nechat vyblednout předměty,které nejsou svitky v knihovně",
+			category_guild$library_fade_non_scrolls : "Nechat vyblednout předměty, které nejsou svitky v knihovně",
 			category_guild$library_tooltip_data : "Zobrazit více tipů v knihovně",
 			category_guild$bank_donate_layout : "Zlepšit zobrazení banky",
 			category_guild$bank_book_layout : "Zlepšit zobrazení bankovní knihy darů",
