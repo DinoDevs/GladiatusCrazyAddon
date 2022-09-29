@@ -613,8 +613,9 @@ var gca_cdn = {
 		'img/menu_rtl.png' : '3c4cc8b57835e9ac3dc9150efe125159', 
 	        'img/interface.png' : '4aabffd21441d06c0b0268ddfc42fbab', 
 		// 'img/buff/xp.png' : '',
-		// 'img/buff/gold.png' : '',
+		'img/buff/gold.png' : 'f579b1d11b94b3e1ae434a6eb319be51', 
 		// 'img/buff/dungeon.png' : '',
+		// 'img/buff/ ' : '917e476babb7bcde470ae77c4816e1b0', // durability icon
 		'img/buff/healing.png' : 'f0aab1305010907594934939cb2de129',
 		'img/buff/cooldown.png' : '742bae611990945bca86e33d2e6fc9f8',
 		'img/buff/rubin_left.png' : 'ad3f2a1dd8bcaf1a611a9ad79fae506c',
