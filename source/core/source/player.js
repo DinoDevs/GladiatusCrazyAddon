@@ -490,7 +490,7 @@ var gca_player = {
 			var level = parseInt(document.getElementById('char_level').textContent, 10);
 
 			// Generate info
-			info.push(gca_locale.get('overview', 'can_use_max_item_level', {max : (level + 16)}));
+			info.push(gca_locale.get('overview', 'can_use_max_item_level', {max : ( ( level+16<Math.floor(1.25*level+7.75) )? level+16 : Math.floor(1.25*level+7.75) ) }));
 			info.push(gca_locale.get('overview', 'can_see_market_max_item_level', {max : ( ( level+9<Math.floor(1.25*level) )? level+9 : Math.floor(1.25*level) ) }));
 			info.push(gca_locale.get('overview', 'can_see_auction_item_levels', {
 				min : ( Math.floor(level* 0.75) ),
