@@ -740,7 +740,7 @@ var gca_settings = {
 				"lock_section_visibility" : false,
 
 				// Hide language flags
-				"hide_language_flags" : false
+				"hide_language_flags" : false,
 				
 				// Hide expedition button
 				"bar_hide_exp_btn" : false,
