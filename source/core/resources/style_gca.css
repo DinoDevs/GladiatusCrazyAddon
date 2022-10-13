@@ -223,7 +223,7 @@
         .bar_hide_are_btn #header_game #icon_arena {visibility: hidden;} 
         .bar_hide_are_btn #header_game #arenaPlace {visibility: hidden;} 
         .bar_hide_are_btn a[href*="arena"] {position: absolute;visibility: hidden;}
-        .bar_hide_are_btn #submenu1 .advanced_menu_entry:nth-child(2), a[href*="arena"] {position: absolute!important;visibility: hidden;} 
+        .bar_hide_are_btn #submenu1 .advanced_menu_entry:nth-child(2) {position: absolute!important;visibility: hidden;} 
 
         .bar_hide_ct_btn #header_game #cooldown_bar_ct {visibility: hidden;}
         .bar_hide_ct_btn #header_game #icon_grouparena {visibility: hidden;}
