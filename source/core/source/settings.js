@@ -740,7 +740,19 @@ var gca_settings = {
 				"lock_section_visibility" : false,
 
 				// Hide language flags
-				"hide_language_flags" : false
+				"hide_language_flags" : false,
+				
+				// Hide expedition button
+				"bar_hide_exp_btn" : false,
+				
+				// Hide dungeon button
+				"bar_hide_dun_btn" : false,
+				
+				// Hide arena button
+				"bar_hide_are_btn" : false,
+
+				// Hide circus button
+				"bar_hide_ct_btn" : false
 
 			},
 

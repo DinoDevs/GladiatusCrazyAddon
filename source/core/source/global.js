@@ -25,6 +25,19 @@ var gca_global = {
 		// Lock all sections
 		if (gca_options.bool("global","lock_section_visibility"))
 			document.documentElement.className += " lock_section_visibility";
+		
+		// Hide expedition button
+		if (gca_options.bool("global","bar_hide_exp_btn"))
+			document.documentElement.className += " bar_hide_exp_btn";
+		// Hide dungeon button
+		if (gca_options.bool("global","bar_hide_dun_btn"))
+			document.documentElement.className += " bar_hide_dun_btn";
+		// Hide arena button
+		if (gca_options.bool("global","bar_hide_are_btn"))
+			document.documentElement.className += " bar_hide_are_btn";
+		// Hide circus button
+		if (gca_options.bool("global","bar_hide_ct_btn"))
+			document.documentElement.className += " bar_hide_ct_btn";
 
 		// Resolve Game Modes
 		this.gameModePreResolve();
