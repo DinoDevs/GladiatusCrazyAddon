@@ -2225,7 +2225,14 @@ var gca_global = {
 				this.convertMenu.addPlus(this.info.highscore, this.info.highscore_active, {href : gca_getPage.link({"mod":"highscore","t":"1"})});
 				
 				// Inject Pantheon Link
-				this.convertMenu.addPlus(this.info.pantheon, this.info.pantheon_active, {href : gca_getPage.link({"mod":"gods"})});
+				this.convertMenu.addTabs("pantheon", this.info.pantheon, this.info.pantheon_active, [
+				        {text : ''},
+				        {text : '\uD83D\uDCC4', href : gca_getPage.link({"mod":"quests"})},
+					{text : '\u2714\uFE0F', href : gca_getPage.link({"mod":"missions"})},
+					{text : '\u2728', href : gca_getPage.link({"mod":"gods"})},
+					{text : '\uD83C\uDF81', href : gca_getPage.link({"mod":"mysterybox"})},
+					{text : ''},		
+				]);
 
 				// Inject Guild Link
 				this.convertMenu.addTabs("guild", this.info.guild, this.info.guild_active, [
