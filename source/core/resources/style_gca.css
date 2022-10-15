@@ -211,13 +211,13 @@
         .bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
         .bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
         .bar_hide_exp_btn .menutab_country {pointer-events: none} 
-	    .bar_hide_exp_btn a[href*="map"] {position: absolute;visibility: hidden;} 
+	.bar_hide_exp_btn a[href*="map"] {position: absolute;visibility: hidden;} 
 
         .bar_hide_dun_btn #header_game #cooldown_bar_dungeon {visibility: hidden;}
         .bar_hide_dun_btn #header_game #icon_dungeonpoints {visibility: hidden;}
         .bar_hide_dun_btn #header_game #dungeonpoints_value {visibility: hidden;}
         .bar_hide_dun_btn .menutab_country {pointer-events: none} 
-	    .bar_hide_dun_btn a[href*="map"] {position: absolute;visibility: hidden;} 
+	.bar_hide_dun_btn a[href*="map"] {position: absolute;visibility: hidden;} 
 
         .bar_hide_are_btn #header_game #cooldown_bar_arena {visibility: hidden;} 
         .bar_hide_are_btn #header_game #icon_arena {visibility: hidden;} 
