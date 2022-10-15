@@ -211,18 +211,18 @@
         .bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
         .bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
         .bar_hide_exp_btn .menutab_country {pointer-events: none} 
-	.bar_hide_exp_btn a[href*="map"] {position: absolute;visibility: hidden;} 
+	.bar_hide_exp_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
 
         .bar_hide_dun_btn #header_game #cooldown_bar_dungeon {visibility: hidden;}
         .bar_hide_dun_btn #header_game #icon_dungeonpoints {visibility: hidden;}
         .bar_hide_dun_btn #header_game #dungeonpoints_value {visibility: hidden;}
         .bar_hide_dun_btn .menutab_country {pointer-events: none} 
-	.bar_hide_dun_btn a[href*="map"] {position: absolute;visibility: hidden;} 
+	.bar_hide_dun_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
 
         .bar_hide_are_btn #header_game #cooldown_bar_arena {visibility: hidden;} 
         .bar_hide_are_btn #header_game #icon_arena {visibility: hidden;} 
         .bar_hide_are_btn #header_game #arenaPlace {visibility: hidden;} 
-        .bar_hide_are_btn a[href*="arena"]:not(href*="grouparena") {position: absolute;visibility: hidden;} 
+        .bar_hide_are_btn a.menuitem[href*="arena"]{position: absolute;visibility: hidden;} 
         .bar_hide_are_btn #submenu1 .advanced_menu_entry:nth-child(2) {position: absolute!important;visibility: hidden;} 
 
         .bar_hide_ct_btn #header_game #cooldown_bar_ct {visibility: hidden;}
