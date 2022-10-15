@@ -2271,10 +2271,12 @@ var gca_global = {
 						if(gca_options.bool("global","menu_merge_items")){
 							this.convertMenu.addTabs("forge",this.info.forge, this.info.forge_active,
 							[
+								{text : '', style : "width: 15px;"},
 						                {text : 'I', href : gca_getPage.link({"mod":"forge","submod":"smeltery"})},
 					                        {text : 'II', href : gca_getPage.link({"mod":"forge","submod":"workbench"})},
 					                        {text : 'III', href : gca_getPage.link({"mod":"forge","submod":"storage"})},
-					                        {text : 'IV', href : gca_getPage.link({"mod":"magus"})},					            
+					                        {text : 'IV', href : gca_getPage.link({"mod":"magus"})},
+								{text : '', style : "width: 15px;transform: scale(-1);"},
 							]);
 						}	
 						
