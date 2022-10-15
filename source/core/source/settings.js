@@ -649,7 +649,7 @@ var gca_settings = {
 				
 				// Underworld
 				// Pray Shortcut
-				pray_shorcut" : true,
+				"pray_shorcut" : true,
 				
 				// Centurion & PowerUps timers
 				"centurio_powerups_timers" : false,
