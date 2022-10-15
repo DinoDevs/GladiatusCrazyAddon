@@ -393,6 +393,12 @@ gca_options.data = {
 
 		// Hide language flags
 		"hide_language_flags" : false,
+		
+		// Merge menu merchants
+		"menu_merge_merchants" : false,
+		
+		// Merge menu merchants
+		"menu_merge_items" : false,
 
 		// Hide expedition button
 		"bar_hide_exp_btn" : false,

@@ -379,6 +379,8 @@ gca_languages['cs'] = {
 			category_global$gladiatus_site_fixes : "Oprav a vylepši vzhled stránky Gladiatusu",
 			category_global$lock_section_visibility : "Uzamknout aktuální stav všech skrytých/odkrytých sekcí",
 			category_global$hide_language_flags : "Skrýt vlajky jazyků pod jmény hráčů",
+			category_global$menu_merge_merchants : "Spojit všechny sekce obchodníků v menu do jednoho",
+			category_global$menu_merge_items : "Spojit všechny sekce předmětů v menu do jednoho",
 			category_global$bar_hide_exp_btn : "Skrýt tlačítka Expedice",
 			category_global$bar_hide_dun_btn : "Skrýt tlačítka Bludiště",
 			category_global$bar_hide_are_btn : "Skrýt tlačítka Arény",

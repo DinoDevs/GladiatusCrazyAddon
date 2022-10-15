@@ -648,8 +648,8 @@ var gca_settings = {
 				"gold_exp_data" : true,
 				
 				// Underworld
-					// Pray Shortcut
-					"pray_shorcut" : true,
+				// Pray Shortcut
+				pray_shorcut" : true,
 				
 				// Centurion & PowerUps timers
 				"centurio_powerups_timers" : false,
@@ -741,6 +741,12 @@ var gca_settings = {
 
 				// Hide language flags
 				"hide_language_flags" : false,
+				
+				// Merge menu merchants
+		                "menu_merge_merchants" : false,
+				
+				// Merge menu merchants
+		                "menu_merge_items" : false,
 				
 				// Hide expedition button
 				"bar_hide_exp_btn" : false,

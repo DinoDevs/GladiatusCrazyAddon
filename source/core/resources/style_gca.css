@@ -206,7 +206,7 @@
 	.gca-global-arena-timer-on #cooldown_bar_arena .cooldown_bar_text, .gca-global-arena-timer-on #cooldown_bar_ct .cooldown_bar_text, .gca-global-arena-timer-on #cooldown_bar_ga .cooldown_bar_text{line-height:16px}
 	.gca_rtl .gca-global-arena-timer-on #cooldown_bar_ga {right: 850px;}
 
-/* Hide bar buttons*/	
+/* Hide bar buttons */	
         .bar_hide_exp_btn #header_game #cooldown_bar_expedition {visibility: hidden;}
         .bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
         .bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
@@ -228,6 +228,20 @@
         .bar_hide_ct_btn #header_game #cooldown_bar_ct {visibility: hidden;}
         .bar_hide_ct_btn #header_game #icon_grouparena {visibility: hidden;}
         .bar_hide_ct_btn #header_game #grouparenaPlace {visibility: hidden;}	
+		
+/* Merge menu merchants into one */	
+        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=2"] {position: absolute;visibility: hidden;} 
+        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=3"] {position: absolute;visibility: hidden;} 
+        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=4"] {position: absolute;visibility: hidden;} 
+        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=5"] {position: absolute;visibility: hidden;} 
+        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=6"] {position: absolute;visibility: hidden;} 
+		
+/* Merge menu items into one */	
+        .menu_merge_items a.menuitem[href*="mod=forge&submod=smeltery"] {position: absolute;visibility: hidden;} 
+        .menu_merge_items a.menuitem[href*="mod=forge&submod=workbench"] {position: absolute;visibility: hidden;} 
+        .menu_merge_items a.menuitem[href*="mod=forge&submod=storage"] {position: absolute;visibility: hidden;} 
+        .menu_merge_items a.menuitem[href*="mod=magus"] {position: absolute;visibility: hidden;} 
+
 
 /* OverView */
 	/* Inv Manager */
