@@ -21,7 +21,7 @@ var gca_global = {
 
 		// Gladiatus site fixes & improvements
 		if (gca_options.bool("global", "gladiatus_site_fixes"))
-			document.documentElement.className += " glfix";
+			document.documentElement.className += " glfix";		
 		// Lock all sections
 		if (gca_options.bool("global","lock_section_visibility"))
 			document.documentElement.className += " lock_section_visibility";
@@ -38,6 +38,13 @@ var gca_global = {
 		// Hide circus button
 		if (gca_options.bool("global","bar_hide_ct_btn"))
 			document.documentElement.className += " bar_hide_ct_btn";
+		
+		// Merge menu merchants into one
+		if (gca_options.bool("global","menu_merge_merchants"))
+			document.documentElement.className += " menu_merge_merchants";
+		// Merge menu items into one
+		if (gca_options.bool("global","menu_merge_items"))
+			document.documentElement.className += " menu_merge_items";
 
 		// Resolve Game Modes
 		this.gameModePreResolve();
@@ -2190,6 +2197,11 @@ var gca_global = {
 						this.info.market = this.info.sublink.market.link;
 						this.info.market_active = (this.info.market.className.match('active')) ? '_active' : '';
 					}
+					//WeaponSmith
+					if(this.info.sublink.weaponSmith.active){
+						this.info.weaponSmith = this.info.sublink.weaponSmith.link;
+						this.info.weaponSmith_active = (this.info.weaponSmith.className.match('active')) ? '_active' : '';
+					}
 				}
 			},
 
@@ -2226,8 +2238,8 @@ var gca_global = {
 				
 				// Inject Pantheon Link
 				this.convertMenu.addTabs("pantheon", this.info.pantheon, this.info.pantheon_active, [
-				        {text : ''},
-				        {text : '\uD83D\uDCC4', href : gca_getPage.link({"mod":"quests"})},
+				    {text : ''},
+				    {text : '\uD83D\uDCC4', href : gca_getPage.link({"mod":"quests"})},
 					{text : '\u2714\uFE0F', href : gca_getPage.link({"mod":"missions"})},
 					{text : '\u2728', href : gca_getPage.link({"mod":"gods"})},
 					{text : '\uD83C\uDF81', href : gca_getPage.link({"mod":"mysterybox"})},
@@ -2256,14 +2268,33 @@ var gca_global = {
 						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
 
 						// Forge
+						if(gca_options.bool("global","menu_merge_items")){
+							this.convertMenu.addTabs("forge",this.info.forge, this.info.forge_active,
+							[
+								{text : 'I', href : gca_getPage.link({"mod":"forge","submod":"smeltery"})},
+					            {text : 'II', href : gca_getPage.link({"mod":"forge","submod":"workbench"})},
+					            {text : 'III', href : gca_getPage.link({"mod":"forge","submod":"storage"})},
+					            {text : 'IV', href : gca_getPage.link({"mod":"magus"})},					            
+							]);
+						}	
+						
 						/*
-						if(this.info.forge){
-							this.convertMenu.addPlus(this.info.forge, this.info.forge_active, {href : gca_getPage.link({"mod":"forge","submod":"smeltery"})});
-						}
 						// Malefica
 						if(this.info.malefica){
 							this.convertMenu.addPlus(this.info.malefica, this.info.malefica_active, {href : gca_getPage.link({"mod":"forge","submod":"workbench"})});
 						}*/
+						
+						// Weapon smith
+						if(gca_options.bool("global","menu_merge_merchants")){
+							this.convertMenu.addTabs("weaponSmith",this.info.weaponSmith, this.info.weaponSmith_active,
+							[
+								{text : 'I', href : gca_getPage.link({"mod":"inventory","sub":"2"})},
+					            {text : 'II', href : gca_getPage.link({"mod":"inventory","sub":"3"})},
+					            {text : 'III', href : gca_getPage.link({"mod":"inventory","sub":"4"})},
+					            {text : 'IV', href : gca_getPage.link({"mod":"inventory","sub":"5"})},
+					            {text : 'V', href : gca_getPage.link({"mod":"inventory","sub":"6"})},
+							]);
+						}													
 						// Auction menu links
 						if(this.info.auction){
 							this.convertMenu.addPlus(this.info.auction, this.info.auction_active, {href : gca_getPage.link({"mod":"auction","ttype":"3"})});
