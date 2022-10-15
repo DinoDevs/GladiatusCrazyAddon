@@ -391,6 +391,8 @@ gca_languages["en"] = {
 			category_global$gladiatus_site_fixes : "Fix and improve Gladiatus site style problems",
 			category_global$lock_section_visibility : "Lock the current state of hideable sections",
 			category_global$hide_language_flags : "Hide language flags under player names",
+			category_global$menu_merge_merchants : "Merge all menu merchants categories into one",
+			category_global$menu_merge_items : "Merge all menu item categories into one",
 			category_global$bar_hide_exp_btn : "Hide the Expedition buttons",
 			category_global$bar_hide_dun_btn : "Hide the Dungeon buttons",
 			category_global$bar_hide_are_btn : "Hide the Arena buttons",
