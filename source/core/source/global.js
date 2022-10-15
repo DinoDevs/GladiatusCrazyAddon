@@ -2271,10 +2271,10 @@ var gca_global = {
 						if(gca_options.bool("global","menu_merge_items")){
 							this.convertMenu.addTabs("forge",this.info.forge, this.info.forge_active,
 							[
-								{text : 'I', href : gca_getPage.link({"mod":"forge","submod":"smeltery"})},
-					            {text : 'II', href : gca_getPage.link({"mod":"forge","submod":"workbench"})},
-					            {text : 'III', href : gca_getPage.link({"mod":"forge","submod":"storage"})},
-					            {text : 'IV', href : gca_getPage.link({"mod":"magus"})},					            
+						                {text : 'I', href : gca_getPage.link({"mod":"forge","submod":"smeltery"})},
+					                        {text : 'II', href : gca_getPage.link({"mod":"forge","submod":"workbench"})},
+					                        {text : 'III', href : gca_getPage.link({"mod":"forge","submod":"storage"})},
+					                        {text : 'IV', href : gca_getPage.link({"mod":"magus"})},					            
 							]);
 						}	
 						
@@ -2289,10 +2289,10 @@ var gca_global = {
 							this.convertMenu.addTabs("weaponSmith",this.info.weaponSmith, this.info.weaponSmith_active,
 							[
 								{text : 'I', href : gca_getPage.link({"mod":"inventory","sub":"2"})},
-					            {text : 'II', href : gca_getPage.link({"mod":"inventory","sub":"3"})},
-					            {text : 'III', href : gca_getPage.link({"mod":"inventory","sub":"4"})},
-					            {text : 'IV', href : gca_getPage.link({"mod":"inventory","sub":"5"})},
-					            {text : 'V', href : gca_getPage.link({"mod":"inventory","sub":"6"})},
+					                        {text : 'II', href : gca_getPage.link({"mod":"inventory","sub":"3"})},
+					                        {text : 'III', href : gca_getPage.link({"mod":"inventory","sub":"4"})},
+					                        {text : 'IV', href : gca_getPage.link({"mod":"inventory","sub":"5"})},
+					                        {text : 'V', href : gca_getPage.link({"mod":"inventory","sub":"6"})},
 							]);
 						}													
 						// Auction menu links
