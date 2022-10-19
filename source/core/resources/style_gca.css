@@ -240,12 +240,14 @@
         .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=4"] {position: absolute;visibility: hidden;} 
         .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=5"] {position: absolute;visibility: hidden;} 
         .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=6"] {position: absolute;visibility: hidden;} 
+        .menu_merge_merchants #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 		
 /* Merge menu items into one */	
         .menu_merge_items a.menuitem[href*="mod=forge&submod=smeltery"] {position: absolute;visibility: hidden;} 
         .menu_merge_items a.menuitem[href*="mod=forge&submod=workbench"] {position: absolute;visibility: hidden;} 
         .menu_merge_items a.menuitem[href*="mod=forge&submod=storage"] {position: absolute;visibility: hidden;} 
         .menu_merge_items a.menuitem[href*="mod=magus"] {position: absolute;visibility: hidden;} 
+        .menu_merge_items #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 
 
 /* OverView */
