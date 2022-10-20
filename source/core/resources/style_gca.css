@@ -1659,7 +1659,6 @@
 		.glfix #header_game>span, #header_game>span a {margin-right: 8px!important;}
 		/* Menu text breaking the line with various languages */
 		.glfix #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-		.glfix #mainmenu a:hover {overflow: visible;}
 		/* UW Slider style problems with your avatar */
 		.glfix .underworld #expedition_info1 {min-height: 241px;}
 		/* Custom scrollbar */
