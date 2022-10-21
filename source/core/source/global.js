@@ -2272,10 +2272,10 @@ var gca_global = {
 							this.convertMenu.addTabs("forge",this.info.forge, this.info.forge_active,
 							[
 								{text : '', style : "width: 15px;"},
-						                {text : document.getElementById('submenu1').getElementsByClassName('menuitem')[10].textContent, href : gca_getPage.link({"mod":"forge","submod":"smeltery"})},
-					                        {text : document.getElementById('submenu1').getElementsByClassName('menuitem')[11].textContent, href : gca_getPage.link({"mod":"forge","submod":"workbench"})},
-					                        {text : document.getElementById('submenu1').getElementsByClassName('menuitem')[12].textContent, href : gca_getPage.link({"mod":"forge","submod":"storage"})},
-					                        {text : document.getElementById('submenu1').getElementsByClassName('menuitem')[13].textContent, href : gca_getPage.link({"mod":"magus"})},	
+						                {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=smeltery"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"smeltery"})},
+					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=workbench"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"workbench"})},
+					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=storage"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"storage"})},
+					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=magus"]')[0].textContent, href : gca_getPage.link({"mod":"magus"})},		
 								{text : '', style : "width: 15px;transform: scale(-1);"},
 							]);
 						}	
@@ -2290,11 +2290,11 @@ var gca_global = {
 						if(gca_options.bool("global","menu_merge_merchants")){
 							this.convertMenu.addTabs("weaponSmith",this.info.weaponSmith, this.info.weaponSmith_active,
 							[
-								{text : document.getElementById('submenu1').getElementsByClassName('menuitem')[4].textContent, href : gca_getPage.link({"mod":"inventory","sub":"2"})},
-					                        {text : document.getElementById('submenu1').getElementsByClassName('menuitem')[5].textContent, href : gca_getPage.link({"mod":"inventory","sub":"3"})},
-					                        {text : document.getElementById('submenu1').getElementsByClassName('menuitem')[6].textContent, href : gca_getPage.link({"mod":"inventory","sub":"4"})},
-					                        {text : document.getElementById('submenu1').getElementsByClassName('menuitem')[7].textContent, href : gca_getPage.link({"mod":"inventory","sub":"5"})},
-					                        {text : document.getElementById('submenu1').getElementsByClassName('menuitem')[8].textContent, href : gca_getPage.link({"mod":"inventory","sub":"6"})},
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=2"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"2"})},
+					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=3"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"3"})},
+					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=4"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"4"})},
+					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=5"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"5"})},
+					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=6"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"6"})},
 							]);
 						}													
 						// Auction menu links
