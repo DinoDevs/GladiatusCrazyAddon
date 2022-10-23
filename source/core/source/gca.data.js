@@ -570,7 +570,10 @@ gca_options.data = {
 		// Remember options
 		"horreum_remember_options" : true,
 		// Select material with click
-		"horreum_select_meterials" : true
+		"horreum_select_meterials" : true,
+
+		// Double click to select
+		"double_click_select" : true
 	},
 	
 	// Arena

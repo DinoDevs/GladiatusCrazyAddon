@@ -468,6 +468,7 @@ gca_languages["en"] = {
 			category_forge$horreum_materials_names : "[Horreum] Show material name",
 			category_forge$horreum_remember_options : "[Horreum] Remember last selected store settings",
 			category_forge$horreum_select_meterials : "[Horreum] Select material on click",
+			category_forge$double_click_select : "[Smelt/Repair] Select item with double click",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
 			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (simulator.dinodevs.com)",

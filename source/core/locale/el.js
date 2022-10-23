@@ -449,11 +449,12 @@ gca_languages["gr"] = {
 			category_merchants$show_shop_info : "Προβολή πληροφοριών αντικειμένων στους πωλητές (συνολικός χρυσός και ρουμπίνια)",
 			category_merchants$double_click_actions : "Πούλημα/Αγορά αντικειμένων με διπλό κλικ",
 			// Settings - Forge
-			category_forge$material_links : "Εμφάνιση συντομεύσεων αγοράς & πακέτων για κάθε απαιτούμενο υλικό (σιδηρουργείο/πάγκος εργασίας)",
-			category_forge$show_levels : "Εμφάνιση επιπέδων Προθεμάτων/Επιθεμάτων/Βασικών αντικειμένων δίπλα στα ονόματα τους (σιδηρουργείο)",
+			category_forge$material_links : "Εμφάνιση συντομεύσεων αγοράς & πακέτων για κάθε απαιτούμενο υλικό (Σιδηρουργείο/Πάγκος εργασίας)",
+			category_forge$show_levels : "Εμφάνιση επιπέδων Προθεμάτων/Επιθεμάτων/Βασικών αντικειμένων δίπλα στα ονόματα τους (Σιδηρουργείο)",
 			category_forge$horreum_materials_names : "Προβολή των ονομάτων των υλών (Αποθήκη πρώτων υλών)",
 			category_forge$horreum_remember_options : "Αποθήκευση των τελευταίων επιλογών της αποθήκης (Αποθήκη πρώτων υλών)",
 			category_forge$horreum_select_meterials : "Επιλογή πρώτων υλών με κλικ (Αποθήκη πρώτων υλών)",
+			category_forge$double_click_select : "Επιλογή αντικειμένου με διπλό κλικ (Χυτήριο/Πάγκος εργασίας)",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Αγνοήστε την επιβεβαίωση επίθεσης (μηνύματα για την υπέρβαση των 5 επιθέσεων κλπ)",
 			category_arena$show_simulator_imagelink : "Εμφάνιση εικόνας-σύνδεσμο για τον προσομοιωτή (simulator.dinodevs.com)",

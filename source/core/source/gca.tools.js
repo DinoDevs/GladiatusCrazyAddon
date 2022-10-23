@@ -507,6 +507,15 @@ var gca_tools = {
 						parent : grid
 					};
 				}
+				else if (target == 'forge') {
+					grid = document.getElementById('forge_box');
+					cords_grid = jQuery(grid).offset();
+					return {
+						x: Math.ceil(cords_grid.left + 197/2),
+						y: Math.ceil(cords_grid.top + 10 + 124/4),
+						parent : grid
+					};
+				}
 				else if (target == 'avatar') {
 					grid = document.getElementById('avatar');
 					cords_grid = jQuery(grid).offset();

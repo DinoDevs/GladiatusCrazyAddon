@@ -56,6 +56,10 @@ var gca_forge = {
 			// Add Gladiatus tools links
 			this.gladiatusTools.inject();
 
+			// Double click select
+			(gca_options.bool("forge", "double_click_select") && 
+				this.doubleClickToSelect.init());
+
 			// Add link to the scroll book
 			this.scrollBook.inject();
 		}
@@ -79,6 +83,10 @@ var gca_forge = {
 			// Get repaired item
 			this.getRepairedItem.init();
 
+			// Double click select
+			(gca_options.bool("forge", "double_click_select") && 
+				this.doubleClickToSelect.init());
+				
 			// Don't allow items dropped from char
 			this.disallowCharItemsDrop();
 		}
@@ -1713,6 +1721,42 @@ var gca_forge = {
 			//console.log('Decode: ', decode(code));
 
 			return code;
+		}
+	},
+
+	// On double click item to move to smelt / repair
+	doubleClickToSelect : {
+		init : function(){
+			// Add event
+			gca_tools.event.bag.onBagOpen(() => {
+				this.apply();
+			});
+
+			// If bag not already loaded
+			if (document.getElementById('inv').className.match('unavailable')) {
+				// Wait first bag
+				gca_tools.event.bag.waitBag(() => {
+					this.apply();
+				});
+			}
+			else {
+				this.apply();
+			}
+		},
+		apply : function(){
+			// For each
+			jQuery("#inv .ui-draggable").each((i, item) => {
+				// If already parsed
+				if(item.dataset.gcaFlag_doubleClickEvent)
+					return;
+				// Flag as parsed
+				item.dataset.gcaFlag_doubleClickEvent = true;
+				// Add event
+				item.addListener('dblclick', this.handler);
+			});
+		},
+		handler : function() {
+			gca_tools.item.move(this, 'forge');
 		}
 	}
 };
