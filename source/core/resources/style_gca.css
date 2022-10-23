@@ -1325,7 +1325,28 @@
 		/* Global Arena Report */
 		.global-arena-header th {text-align: left;}
 		.gca_rtl .global-arena-header th {text-align: right;}
-	
+		
+		/* Overhaul Arena and Circus tables */
+		.overhaul_tables .left {width: 500px!important;margin-top: 10px; float: unset!important} /* Top 5 */
+		.overhaul_tables .right th {background-color: #bba86e80;}
+		.overhaul_tables .right table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;}
+		.overhaul_tables .right .attack {margin-left: 50px} /* Attack buttons*/
+		.overhaul_tables .left th {background-color: #bba86e80;}
+		.overhaul_tables .left table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;}
+		.overhaul_tables .left center {margin-left: 30px;color: black;font-weight:bold;background-color: #bba86e80;} /* Prize gold amount */
+		.overhaul_tables .left img {vertical-align: sub;} /* Prize and Gold icons */
+		.overhaul_tables .right {width: 500px!important;margin-top: 10px; float: unset!important} /* Own ranking */
+		.overhaul_tables #own2 th {background-color: #bba86e80;} /* Provinciarum Arena */
+		.overhaul_tables #own2 table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;} /* Provinciarum Arena */
+		.overhaul_tables #own2 .attack {margin-left: 26px} /* Provinciarum Arena attack buttons */
+		.overhaul_tables #own3 th {background-color: #bba86e80;} /* Circus Provinciarum */
+		.overhaul_tables #own3 table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;} /* Circus Provinciarum */
+		.overhaul_tables #own3 .attack {margin-left: 26px} /* Circus Provinciarum attack buttons */
+		
+		.gca_rtl .overhaul_tables .right .attack {margin-left: auto!important;margin-right: 55px;}
+		.gca_rtl .overhaul_tables .left center {margin-left:auto!important;margin-right:25px;}
+		.gca_rtl .overhaul_tables #own2 .attack {margin-left: auto!important;margin-right: 30px;}
+		.gca_rtl .overhaul_tables #own3 .attack {margin-left: auto!important;margin-right: 30px;}
 
 	/* Merchants
 	-------------------------------------------------- */
@@ -1679,29 +1700,9 @@
 		.glfix.event_bar_moved #banner_top {top: 148px!important;}
 		.glfix.event_bar_moved #banner_event {top: 152px!important;}
 		.glfix ul#mainnav li a {z-index: 301;}
-		/* Overhaul Arena and Circus tables */
-		.glfix #arenaPage .right {width: 500px!important;margin-top: 10px; float: unset!important} /* Own ranking */
-		.glfix #arenaPage .left {width: 500px!important;margin-top: 10px; float: unset!important} /* Top 5 */
-		.glfix #arenaPage .right th {background-color: #bba86e80;}
-		.glfix #arenaPage .right table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;}
-		.glfix #arenaPage .right .attack {margin-left: 50px} /* Attack buttons*/
-		.glfix #arenaPage .left th {background-color: #bba86e80;}
-		.glfix #arenaPage .left table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;}
-		.glfix #arenaPage .left center {margin-left: 30px;color: black;font-weight:bold;background-color: #bba86e80;} /* Prize gold amount */
-		.glfix #arenaPage .left img {vertical-align: sub;} /* Prize and Gold icons */
-		.glfix #arenaPage #own2 th {background-color: #bba86e80;} /* Provinciarum Arena */
-		.glfix #arenaPage #own2 table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;} /* Provinciarum Arena */
-		.glfix #arenaPage #own2 .attack {margin-left: 26px} /* Provinciarum Arena attack buttons */
-		.glfix #arenaPage #own3 th {background-color: #bba86e80;} /* Circus Provinciarum */
-		.glfix #arenaPage #own3 table {border: 1px solid #bba86e; width: 494px;margin-left: -5px;} /* Circus Provinciarum */
-		.glfix #arenaPage #own3 .attack {margin-left: 26px} /* Circus Provinciarum attack buttons */
 		/* Gladiatus all fixes but with RTL */
-		.gca_rtl.glfix #arenaPage .right .attack {margin-left: auto!important;margin-right: 55px;}
-		.gca_rtl.glfix #arenaPage .left center {margin-left:auto!important;margin-right:25px;}
-		.gca_rtl.glfix #arenaPage #own2 .attack {margin-left: auto!important;margin-right: 30px;}
-		.gca_rtl.glfix #arenaPage #own3 .attack {margin-left: auto!important;margin-right: 30px;}
-		.gca_rtl.glfix #highscorePage .section-like {margin-left: auto!important;margin-right: -19px;}
-		.gca_rtl.glfix #cooldown_bar_event {left: auto!important;right: 352px;}
+		.gca_rtl #highscorePage .section-like {margin-left: auto!important;margin-right: -19px;}
+		.gca_rtl #cooldown_bar_event {left: auto!important;right: 352px;}
 
 		/* Hide flags feature */
 		.hide-flags .language-flag {display: none;}

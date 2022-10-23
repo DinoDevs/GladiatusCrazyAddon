@@ -584,7 +584,9 @@ gca_options.data = {
 		// Highlight guild members on other servers
 		"highlight_guild_members" : true,
 		// Players target list
-		"target_list" : true
+		"target_list" : true,
+		// Overhaul Arena and Circus tables
+		"overhaul_tables" : false
 	},
 	
 	// Magus

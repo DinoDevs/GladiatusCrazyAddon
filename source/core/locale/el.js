@@ -460,6 +460,7 @@ gca_languages["gr"] = {
 			category_arena$sort_by_lvl : "Ταξινόμηση παιχτών κατά επίπεδο στην αρένα",
 			category_arena$highlight_guild_members : "Χρωμάτισμα παιχτών από άλλους σέρβερς που μπορεί να είναι μέλη του τάγματος",
 			category_arena$target_list : "Λίστα στόχων",
+			category_arena$overhaul_tables : "Διαχωρισμός των 5 καλύτερων και της προσωπικής κατάταξης",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Διαφάνεια στα αντικείμενα που δεν μπορούν να βελτιωθούν",
 			// Settings - Market

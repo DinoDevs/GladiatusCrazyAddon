@@ -5,6 +5,14 @@
 
 // Location
 var gca_arena = {
+	// Pre Inject code
+	preinject : function(){
+
+		// Overhaul Arena and Circus tables
+		(gca_options.bool("arena", "overhaul_tables") &&
+			this.overhaul_tables());
+	},
+
 	inject : function(){
 		// Find arena type
 		this.resolve();
@@ -81,6 +89,11 @@ var gca_arena = {
 		let text = document.createElement('div');
 		text.textContent = "Before attacking, use the...";
 		image.appendChild(text);
+	},
+
+	// Overhaul Arena and Circus tables
+	overhaul_tables : function(){
+		document.getElementById("arenaPage").classList.add("overhaul_tables");
 	},
 	
 	// GCA Global Arena
@@ -1074,6 +1087,7 @@ var gca_arena = {
 		loaded = true;
 		gca_arena.inject();
 	};
+	gca_arena.preinject();
 	if (document.readyState == 'interactive' || document.readyState == 'complete') {
 		fireLoad();
 	} else {
