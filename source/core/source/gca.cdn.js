@@ -318,12 +318,6 @@ var gca_cdn = {
 		'img/npc/{on-the-nile-bank}_2.jpg' : '10f0a5434c803bde1ba0913aecd9751b',
 		'img/npc/{on-the-nile-bank}_3.jpg' : 'ae23d6d58d2cf752711ec4a580848476',
 		'img/npc/{on-the-nile-bank}_4.jpg' : '74531075909c1e2cb313eda2bc1e8c8e',
-		
-		// Event - Desert of Nightmare
-		'img/npc/{desert-of-nightmare}_1.png' : '3041aac04d5fce085c2767c2a8db5d66',
-		'img/npc/{desert-of-nightmare}_2.png' : '7fdf904e7e5c4b784571284de85337a7',
-		'img/npc/{desert-of-nightmare}_3.png' : 'd7bbc3f61e27192208bd831485c06e97',
-		'img/npc/{desert-of-nightmare}_4.png' : 'cc560d5ee6518ec1802bf66f8f436046',
 
 		'img/premium/token/5.jpg' : '07c9ce614bbc67a9e85aa0ee87cf2bb7',
 		'img/premium/token/6.jpg' : 'b91f4b5b4387108ff677cfaf301cfe18',
@@ -600,6 +594,12 @@ var gca_cdn = {
 		'img/costumes/sets/female/15_2.png' : '06ae4c05e7be9e9d88771132154c8580',
 		'img/costumes/sets/female/15_3.png' : '0afe8246f37663a6aaed3308687c93ae',
 		'img/costumes/sets/female/15_4.png' : 'b9e7daf51681591e1db40941efd51c5b',
+		
+		// Event - Desert of Nightmare
+		'img/npc/{desert-of-nightmare}_1.png' : '3041aac04d5fce085c2767c2a8db5d66',
+		'img/npc/{desert-of-nightmare}_2.png' : '7fdf904e7e5c4b784571284de85337a7',
+		'img/npc/{desert-of-nightmare}_3.png' : 'd7bbc3f61e27192208bd831485c06e97',
+		'img/npc/{desert-of-nightmare}_4.png' : 'cc560d5ee6518ec1802bf66f8f436046',
 
 		// 'img/ui/gods/vulcanus_s16.png' : '', // no specific hash
 		// 'img/ui/gods/minerva_s16.png' : '', // no specific hash
