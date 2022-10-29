@@ -377,6 +377,7 @@ gca_languages['cs'] = {
 			category_global$show_upgrade_values : "Zobrazit hodnoty předmětů vylepšení & zdokonalení",
 			category_global$global_arena_timer : "Zobrazit časovač Globální Arény",
 			category_global$gladiatus_site_fixes : "Oprav a vylepši vzhled stránky Gladiatusu",
+			category_global$gca_custom_scrollbar : "Aplikovat vlastní (GCA) vzhled posuvníku",
 			category_global$lock_section_visibility : "Uzamknout aktuální stav všech skrytých/odkrytých sekcí",
 			category_global$hide_language_flags : "Skrýt vlajky jazyků pod jmény hráčů",
 			category_global$menu_merge_merchants : "Spojit všechny sekce obchodníků v menu do jednoho",

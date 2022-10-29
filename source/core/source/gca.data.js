@@ -388,6 +388,9 @@ gca_options.data = {
 		// Gladiatus site fixes
 		"gladiatus_site_fixes" : true,
 		
+		// Custom page scrollbar
+		"gca_custom_scrollbar" : true,
+		
 		// Lock sections visibility
 		"lock_section_visibility" : false,
 

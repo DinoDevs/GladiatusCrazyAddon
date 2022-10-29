@@ -211,18 +211,18 @@
         .bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
         .bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
         .bar_hide_exp_btn .menutab_country {pointer-events: none} 
-	.bar_hide_exp_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;}
+	    .bar_hide_exp_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;}
         .bar_hide_exp_btn .underworld #cooldown_bar_expedition {visibility: visible!important;}
-	.bar_hide_exp_btn .underworld #icon_expeditionpoints {visibility: visible!important;}
-	.bar_hide_exp_btn .underworld #expeditionpoints_value {visibility: visible!important;}
-	.bar_hide_exp_btn .underworld .menutab_country {pointer-events: auto!important;}
-	.bar_hide_exp_btn .underworld a.menuitem[href*="map"] {position: unset!important;visibility: visible!important;}
+	    .bar_hide_exp_btn .underworld #icon_expeditionpoints {visibility: visible!important;}
+	    .bar_hide_exp_btn .underworld #expeditionpoints_value {visibility: visible!important;}
+	    .bar_hide_exp_btn .underworld .menutab_country {pointer-events: auto!important;}
+	    .bar_hide_exp_btn .underworld a.menuitem[href*="map"] {position: unset!important;visibility: visible!important;}
 
         .bar_hide_dun_btn #header_game #cooldown_bar_dungeon {visibility: hidden;}
         .bar_hide_dun_btn #header_game #icon_dungeonpoints {visibility: hidden;}
         .bar_hide_dun_btn #header_game #dungeonpoints_value {visibility: hidden;}
         .bar_hide_dun_btn .menutab_country {pointer-events: none} 
-	.bar_hide_dun_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
+	    .bar_hide_dun_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
 
         .bar_hide_are_btn #header_game #cooldown_bar_arena {visibility: hidden;} 
         .bar_hide_are_btn #header_game #icon_arena {visibility: hidden;} 
@@ -233,6 +233,15 @@
         .bar_hide_ct_btn #header_game #cooldown_bar_ct {visibility: hidden;}
         .bar_hide_ct_btn #header_game #icon_grouparena {visibility: hidden;}
         .bar_hide_ct_btn #header_game #grouparenaPlace {visibility: hidden;}	
+		
+/* Custom scrollbar */
+		.gca_custom_scrollbar ::-webkit-scrollbar {width: 16px;}
+		.gca_custom_scrollbar ::-webkit-scrollbar-track {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
+		.gca_custom_scrollbar ::-webkit-scrollbar-thumb {background: linear-gradient(to bottom, #C3AB6F, #886933);border-radius: 5px; border: 1px solid #4A3615;}
+		.gca_custom_scrollbar ::-webkit-scrollbar-thumb:hover {background: linear-gradient(to bottom, #D6BC78 , #A27E3E);}
+		.gca_custom_scrollbar ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
+/* Custom scrollbar for Firefox */
+		.gca_custom_scrollbar:root {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
 		
 /* Merge menu merchants into one */	
         .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=2"] {position: absolute;visibility: hidden;} 
@@ -1682,14 +1691,6 @@
 		.glfix #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 		/* UW Slider style problems with your avatar */
 		.glfix .underworld #expedition_info1 {min-height: 241px;}
-		/* Custom scrollbar */
-		.glfix ::-webkit-scrollbar {width: 16px;}
-		.glfix ::-webkit-scrollbar-track {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
-		.glfix ::-webkit-scrollbar-thumb {background: linear-gradient(to bottom, #C3AB6F, #886933);border-radius: 5px; border: 1px solid #4A3615;}
-		.glfix ::-webkit-scrollbar-thumb:hover {background: linear-gradient(to bottom, #D6BC78 , #A27E3E);}
-		.glfix ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
-		/* Custom scrollbar for Firefox */
-		.glfix:root {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
 		/* Buff side-icons - unnecessary spaces removal */
 		.glfix .buff {display: block!important;}
 		/* Event timer overhaul (compatible with .event_bar_moved) */
