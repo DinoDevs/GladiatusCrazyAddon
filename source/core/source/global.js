@@ -2271,7 +2271,7 @@ var gca_global = {
 						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
 
 						// Forge
-						if(gca_options.bool("global","menu_merge_items")){
+						if(gca_options.bool("main_menu","menu_merge_items")){
 							this.convertMenu.addTabs("forge",this.info.forge, this.info.forge_active,
 							[
 								{text : '', style : "width: 15px;"},
@@ -2290,7 +2290,7 @@ var gca_global = {
 						}*/
 						
 						// Weapon smith
-						if(gca_options.bool("global","menu_merge_merchants")){
+						if(gca_options.bool("main_menu","menu_merge_merchants")){
 							this.convertMenu.addTabs("weaponSmith",this.info.weaponSmith, this.info.weaponSmith_active,
 							[
 								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=2"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"2"})},
