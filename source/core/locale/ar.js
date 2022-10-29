@@ -146,10 +146,7 @@ gca_languages['ar'] = {
 			category_global$shortcuts_bar_buttons : "اختيار الاختصارات فى شريط الاختصارات",
 			category_global$auction_status_bar : "عرض شريط حالة المزاد",
 			category_global$top_fixed_bar : "تمكين الشريط العلوي",
-			category_global$advance_main_menu : "تحسين القائمة الرئيسيه",
 			category_global$remember_tabs : "حفظ المخزون وعلامة تبويب التجار",
-			category_global$quest_timer : "عرض مؤقت وحالة المهام",
-			category_global$merchants_timer : "عرض مؤقت التجار",
 			//category_global$check_guild_application_pinned_messages_interval : "البحث عن تحديثات كل ", // add pinned messages
 			category_global$x_scroll : "اتاحة زر ",
 			category_global$item_shadow : "تمكين ظلال الادوات",
@@ -159,6 +156,10 @@ gca_languages['ar'] = {
 			category_overview$best_food : "عرض افضل الاغذية",
 			category_overview$overfeed_food : "تعتيم الاغذية التى تعطيك اكثر من حاجتك",
 			category_overview$more_statistics : "عرض المزيد من إحصائيات اللاعب",
+			// Settings - Main menu
+			category_main_menu$advance_main_menu : "تحسين القائمة الرئيسيه",
+			category_main_menu$quest_timer : "عرض مؤقت وحالة المهام",	
+			category_main_menu$merchants_timer : "عرض مؤقت التجار",			
 			category_messages$messages_layout : "تحسين واجهة الرسائل",
 			category_messages$show_unread : "اظهار الرسائل الغير مقروءة بطريقة مميزة",
 			category_messages$separate_days : "فصل الرسائل حسب التاريخ",
