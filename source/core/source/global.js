@@ -43,10 +43,10 @@ var gca_global = {
 			document.documentElement.className += " bar_hide_ct_btn";
 		
 		// Merge menu merchants into one
-		if (gca_options.bool("global","menu_merge_merchants"))
+		if (gca_options.bool("main_menu","menu_merge_merchants"))
 			document.documentElement.className += " menu_merge_merchants";
 		// Merge menu items into one
-		if (gca_options.bool("global","menu_merge_items"))
+		if (gca_options.bool("main_menu","menu_merge_items"))
 			document.documentElement.className += " menu_merge_items";
 
 		// Resolve Game Modes
@@ -56,7 +56,7 @@ var gca_global = {
 		(gca_data.section.get("cache", "event_bar_active", 0) && (gca_options.bool("global","shortcuts_bar") || gca_options.bool("global","auction_status_bar") || gca_options.bool("global","extended_hp_xp_info")) &&
 			this.display.event_bar_move.preload());
 		// If submenu click to change
-		(gca_options.bool("global","submenu_click_to_change") && 
+		(gca_options.bool("main_menu","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.preload());
 		// Hide flags
 		(gca_options.bool("global","hide_language_flags") &&
@@ -160,11 +160,11 @@ var gca_global = {
 			this.display.top_fixed_bar.create());
 
 		// Advance main menu
-		(gca_options.bool("global","advance_main_menu") && 
+		(gca_options.bool("main_menu","advance_main_menu") && 
 			this.display.advanced_main_menu.create());
 		
 		// Advance main menu - submenu click to change
-		(gca_options.bool("global","submenu_click_to_change") && 
+		(gca_options.bool("main_menu","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.apply());
 		
 		// Make traveling display fixes
@@ -180,11 +180,11 @@ var gca_global = {
 			this.display.attacked_timers.inject());
 
 		// Quests Timer
-		(!this.isTraveling && gca_options.bool("global","quest_timer") &&
+		(!this.isTraveling && gca_options.bool("main_menu","quest_timer") &&
 			this.display.quests_timer.inject());
 
 		// Merchants Timer
-		(!this.isTraveling && gca_options.bool("global","merchants_timer") &&
+		(!this.isTraveling && gca_options.bool("main_menu","merchants_timer") &&
 			this.display.merchants_timer.inject(this));
 
 		// Global Arena Timer
@@ -253,11 +253,11 @@ var gca_global = {
 			this.background.gold_exp_data.inject());
 			
 		// Forge timer
-		(!this.isTraveling && gca_options.bool("global","forge_timers") &&
+		(!this.isTraveling && gca_options.bool("main_menu","forge_timers") &&
 			this.display.forge_timer());
 		
 		// Centurion & PowerUps timers
-		(gca_options.bool("global","centurio_powerups_timers") &&
+		(gca_options.bool("main_menu","centurio_powerups_timers") &&
 			this.centurio_days.init());
 		
 		// 24h guild info update
@@ -2271,7 +2271,7 @@ var gca_global = {
 						this.convertMenu.addPlus(this.info.arena, this.info.arena_active, {href : gca_getPage.link({"mod":"arena","submod":"grouparena"})});
 
 						// Forge
-						if(gca_options.bool("global","menu_merge_items")){
+						if(gca_options.bool("main_menu","menu_merge_items")){
 							this.convertMenu.addTabs("forge",this.info.forge, this.info.forge_active,
 							[
 								{text : '', style : "width: 15px;"},
@@ -2290,7 +2290,7 @@ var gca_global = {
 						}*/
 						
 						// Weapon smith
-						if(gca_options.bool("global","menu_merge_merchants")){
+						if(gca_options.bool("main_menu","menu_merge_merchants")){
 							this.convertMenu.addTabs("weaponSmith",this.info.weaponSmith, this.info.weaponSmith_active,
 							[
 								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=2"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"2"})},

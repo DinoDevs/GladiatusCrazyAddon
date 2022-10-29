@@ -122,10 +122,11 @@ gca_languages['nb'] = {
 			category_global$language_select : "Velg utvidelse språk",
 			category_global$extended_hp_xp_info : "Vis ekstra helse- og erfarings poeng hoved info",
 			category_global$auction_status_bar : "Vis auksjons status indikator",
-			category_global$advance_main_menu : "Forbedre hoved meny",
 			category_global$remember_tabs : "Husk kjøpmanns og lagrings faner",
-			category_global$merchants_timer : "Vis kjøpmenns tid",
 			category_overview$analyze_items : "Analyser spillers ting",
+			// Settings - Main menu
+			category_main_menu$advance_main_menu : "Forbedre hoved meny",
+			category_main_menu$merchants_timer : "Vis kjøpmenns tid",
 			category_pantheon$missions_show_completed : "Vis fullførte oppdrag",
 			category_training$show_discount : "Vis treningsrabatt",
 			category_sound$volume : "Lydnivå",

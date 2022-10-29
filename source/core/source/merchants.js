@@ -23,7 +23,7 @@ var gca_merchants = {
 			this.itemShadow.inject());
 
 		// Save merchants time
-		(gca_options.bool("global","merchants_timer") &&
+		(gca_options.bool("main_menu","merchants_timer") &&
 			this.save_merchants_info());
 
 		// Fade non affordable items

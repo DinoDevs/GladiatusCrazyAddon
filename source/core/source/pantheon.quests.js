@@ -19,7 +19,7 @@ var gca_pantheon_quests = {
 			this.detailed_rewards());
 		
 		// Save quest time
-		(gca_options.bool("global","quest_timer") &&
+		(gca_options.bool("main_menu","quest_timer") &&
 			this.save_quest_info());
 
 		// Setting Link
