@@ -1682,6 +1682,13 @@ var gca_settings = {
 			logo.appendChild(logo_title);
 			var logogca = document.createElement("div");
 			logogca.id = "settings_logogca";
+			var version = document.createElement('a');
+			version.href = gca_links.get('addon-github');
+			version.className = "title";
+			version.style.left = "10px";			
+			version.setAttribute('target', '_blank');
+			version.textContent = ' v' + gca.version;			
+			logo.appendChild(version);
 			content_2nd.appendChild(logo);
 			content_2nd.appendChild(logogca);
 
