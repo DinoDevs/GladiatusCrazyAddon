@@ -397,8 +397,8 @@ gca_languages['cs'] = {
 			// Settings - Main menu
 			category_main_menu$advance_main_menu : "Zlepšit hlavní menu",
 			category_main_menu$submenu_click_to_change : "Změna podmenu na kliknutí",
-			category_main_menu$menu_merge_merchants : "Spojit všechny sekce obchodníků v menu do jednoho",
-			category_main_menu$menu_merge_items : "Spojit všechny sekce předmětů v menu do jednoho",
+			category_main_menu$menu_merge_merchants : "Spojit všechny obchodníky v menu do jednoho",
+			category_main_menu$menu_merge_items : "Spojit Kovárnu, Tavírnu, Prac. stůl, Stodolu a Maguse v menu do jednoho",
 			category_main_menu$quest_timer : "Zobrazit stav úkolů nebo časovač",
 			category_main_menu$centurio_powerups_timers : "Zobrazit odpočet Centuriona & Paktů na tlačítku Prémium",
 			category_main_menu$forge_timers : "Zobrazit časový indikátor kovárny/tavírny",
