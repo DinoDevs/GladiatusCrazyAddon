@@ -409,8 +409,8 @@ gca_languages["en"] = {
 			// Settings - Main menu
 			category_main_menu$advance_main_menu : "Improve main menu",
 			category_main_menu$submenu_click_to_change : "Submenu change on click",
-			category_main_menu$menu_merge_merchants : "Merge all menu merchants categories into one",
-			category_main_menu$menu_merge_items : "Merge Forge, Smelter, Workbench and Horreum into one menu entry",
+			category_main_menu$menu_merge_merchants : "Merge all merchants into one menu entry",
+			category_main_menu$menu_merge_items : "Merge Forge, Smelter, Workbench, Horreum and Magus into one menu entry",
 			category_main_menu$quest_timer : "Show quests status or timer",
 			category_main_menu$centurio_powerups_timers : "Display Centurio & PowerUps timers on Premium button",
 			category_main_menu$forge_timers : "Show forge/smelt timer indicator",
