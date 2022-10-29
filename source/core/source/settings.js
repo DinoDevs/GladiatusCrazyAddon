@@ -603,21 +603,11 @@ var gca_settings = {
 				// Top fixed bar
 				"top_fixed_bar" : true,
 
-				// Advance main menu
-				"advance_main_menu" : true,
-				"submenu_click_to_change" : false,
-
 				// Remember Tabs
 				"remember_tabs" : true,
 
 				// Attacked Timer
-				"attacked_timers" : true,
-				// Quest Timer
-				"quest_timer" : true,
-				// Merchants
-				"merchants_timer" : true,
-				// Forge
-				"forge_timers" : true,
+				"attacked_timers" : true,				
 				
 				// Notifications
 				"notify_new_guild_application" : false,
@@ -649,10 +639,7 @@ var gca_settings = {
 				
 				// Underworld
 				// Pray Shortcut
-				"pray_shorcut" : true,
-				
-				// Centurion & PowerUps timers
-				"centurio_powerups_timers" : false,
+				"pray_shorcut" : true,				
 				
 				// Show item durability
 				"show_durability" : (function(){
@@ -745,12 +732,6 @@ var gca_settings = {
 				// Hide language flags
 				"hide_language_flags" : false,
 				
-				// Merge menu merchants
-		        "menu_merge_merchants" : false,
-				
-				// Merge menu merchants
-		        "menu_merge_items" : false,
-				
 				// Hide expedition button
 				"bar_hide_exp_btn" : false,
 				
@@ -795,6 +776,25 @@ var gca_settings = {
 				"costumes_layout" : true,
 				// Items repair overview
 				"items_repair_overview" : true
+			},
+			
+			// Menu Options
+			"main_menu" : {		
+		        // Advance main menu
+		        "advance_main_menu" : true,
+		        "submenu_click_to_change" : false,			
+				// Merge menu merchants
+		        "menu_merge_merchants" : false,				
+				// Merge menu merchants
+		        "menu_merge_items" : false,
+				// Quest Timer
+		        "quest_timer" : true,
+				// Centurion & PowerUps timers
+		        "centurio_powerups_timers" : false,
+				// Forge
+		        "forge_timers" : true,
+				// Merchants
+				"merchants_timer" : true				
 			},
 
 			// Messages Options
