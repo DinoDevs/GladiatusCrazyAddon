@@ -736,6 +736,9 @@ var gca_settings = {
 				// Gladiatus site fixes
 				"gladiatus_site_fixes" : true,
 				
+				// Custom page scrollbar
+		        "gca_custom_scrollbar" : true,
+				
 				// Lock sections visibility
 				"lock_section_visibility" : false,
 
@@ -743,10 +746,10 @@ var gca_settings = {
 				"hide_language_flags" : false,
 				
 				// Merge menu merchants
-		                "menu_merge_merchants" : false,
+		        "menu_merge_merchants" : false,
 				
 				// Merge menu merchants
-		                "menu_merge_items" : false,
+		        "menu_merge_items" : false,
 				
 				// Hide expedition button
 				"bar_hide_exp_btn" : false,

@@ -21,7 +21,10 @@ var gca_global = {
 
 		// Gladiatus site fixes & improvements
 		if (gca_options.bool("global", "gladiatus_site_fixes"))
-			document.documentElement.className += " glfix";		
+			document.documentElement.className += " glfix";	
+		// Custom page scrollbar
+		if (gca_options.bool("global","gca_custom_scrollbar"))
+			document.documentElement.className += " gca_custom_scrollbar";		
 		// Lock all sections
 		if (gca_options.bool("global","lock_section_visibility"))
 			document.documentElement.className += " lock_section_visibility";
