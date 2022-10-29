@@ -478,7 +478,7 @@ gca_languages["en"] = {
 			category_arena$sort_by_lvl : "Sort players in arena by level",
 			category_arena$highlight_guild_members : "Highlight players on other servers that may be guild members",
 			category_arena$target_list : "Players target list",
-			category_arena$overhaul_tables : "Separate the best 5 and the personal ranking tables",
+			category_arena$overhaul_tables : "Separate & improve the best 5 and the personal ranking tables",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Fade items that you can not improve",
 			// Settings - Market
