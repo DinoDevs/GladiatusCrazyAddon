@@ -1685,7 +1685,8 @@ var gca_settings = {
 			var version = document.createElement('a');
 			version.href = gca_links.get('addon-github');
 			version.className = "title";
-			version.style.left = "10px";			
+			version.style.left = "10px";	
+			version.style.right = "unset";	
 			version.setAttribute('target', '_blank');
 			version.textContent = ' v' + gca.version;			
 			logo.appendChild(version);
