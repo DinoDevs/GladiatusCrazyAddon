@@ -17,7 +17,7 @@ var gca_pantheon_quests = {
 		// Detailed rewards on quests
 		(gca_options.bool("pantheon","quests_detailed_rewards") &&
 			this.detailed_rewards());
-				
+		
 		// Save quest time
 		(gca_options.bool("main_menu","quest_timer") &&
 			this.save_quest_info());
@@ -99,7 +99,6 @@ var gca_pantheon_quests = {
 		this.detailed_rewards_parse('honor');
 		this.detailed_rewards_parse('xp');
 		this.detailed_rewards_parse('item');
-		document.documentElement.className += " quest_slot_reward_item_detailed";
 	},
 	detailed_rewards_parse : function(type){
 		// Get reward elements
@@ -108,25 +107,21 @@ var gca_pantheon_quests = {
 		for(var i = reward_element.length-1; i >= 0; i--){
 			// Get element
 			let elementType = (type == 'item')? 'img' : 'span';
-			let reward_span = reward_element[i].getElementsByTagName(elementType);					
+			let reward_span = reward_element[i].getElementsByTagName(elementType);
 			// If exist
 			if(reward_span.length > 0){
 				// Set style
 				reward_element[i].className += ' quest_slot_reward_' + type + '_detailed';
 				// Get reward
 				let regexp = (type == 'item')? /(\d+)\s</ : /(\d+)/;
-				let reward = reward_span[0].dataset.tooltip.replace(/\./g,'').match(regexp)[1];				
-				let name = JSON.parse(reward_span[0].dataset.tooltip)[0][0][0];
-				let goldIcon = document.createElement('div'); 
-				goldIcon.className = 'icon_gold';			  							
+				let reward = reward_span[0].dataset.tooltip.replace(/\./g,'').match(regexp)[1];
 				// Display
 				if (type == 'item'){
 					reward_span[0].parentNode.append(
-						document.createTextNode(gca_tools.strings.insertDots(name) + " - " + (reward)),
-						reward_span[0].appendChild(goldIcon)						 						
+						document.createTextNode(gca_tools.strings.insertDots(reward))
 					);
-					reward_span[0].parentNode.style.cssText = "position:absolute;width: auto;margin-top: 25px;font-weight: bold;";		
-					reward_span[0].align = "absmiddle";					
+					reward_span[0].parentNode.style.width = "auto";
+					reward_span[0].align = "absmiddle";
 				}else{
 					reward_span[0].insertBefore(
 						document.createTextNode(gca_tools.strings.insertDots(reward)),
