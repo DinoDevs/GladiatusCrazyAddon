@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.8 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-8-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-9-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-1-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
@@ -15,6 +15,8 @@
 	- [x] Arena tables overhaul and custom GCA scrollbar are now both a separate feature 
 - **Forge**
 	- [x] Select item with double click (Smelt/Repair) [#432]
+- **Pantheon quests**
+	- [x] Item reward names are now showed without hovering [#265]
 - **Settings**
 	- [x] Added a completely new section "Main menu" for better settings navigation
 	- [x] Added the extension version in the logo with a link leading to GCA GitHub
