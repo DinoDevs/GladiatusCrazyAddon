@@ -99,10 +99,11 @@ var gca_pantheon_quests = {
 		this.detailed_rewards_parse('honor');
 		this.detailed_rewards_parse('xp');
 		this.detailed_rewards_parse('item');
+		document.documentElement.className += " quest_slot_reward_item_detailed";
 	},
 	detailed_rewards_parse : function(type){
 		// Get reward elements
-		var reward_element = document.getElementsByClassName('quest_slot_reward_' + type);		
+		var reward_element = document.getElementsByClassName('quest_slot_reward_' + type);
 		// For each reward
 		for(var i = reward_element.length-1; i >= 0; i--){
 			// Get element
@@ -112,8 +113,6 @@ var gca_pantheon_quests = {
 			if(reward_span.length > 0){
 				// Set style
 				reward_element[i].className += ' quest_slot_reward_' + type + '_detailed';
-				// Extend quests content space for item names
-		                document.documentElement.classList.add("quest_slot_reward_item_detailed");
 				// Get reward
 				let regexp = (type == 'item')? /(\d+)\s</ : /(\d+)/;
 				let reward = reward_span[0].dataset.tooltip.replace(/\./g,'').match(regexp)[1];				
