@@ -1202,7 +1202,9 @@
 		.quest_slot_reward_honor_detailed {width: auto !important;padding-left: 6px;}
 		.gca_rtl .quest_slot_reward_honor_detailed {padding-right: 6px;padding-left: auto;}
 		.quest_slot_reward_xp_detailed {width: auto !important;padding-left: 6px;}
-		.gca_rtl .quest_slot_reward_xp_detailed {padding-right: 6px;padding-left: auto;}
+		.gca_rtl .quest_slot_reward_xp_detailed {padding-right: 6px;padding-left: auto;}	
+		.quest_slot_reward_item_detailed .contentboard_slot {height: 82px!important;}
+        .quest_slot_reward_item_detailed .quest_slot_button {top: 25px!important;}
 
 
 
