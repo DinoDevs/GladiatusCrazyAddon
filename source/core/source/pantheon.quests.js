@@ -115,11 +115,19 @@ var gca_pantheon_quests = {
 				// Get reward
 				let regexp = (type == 'item')? /(\d+)\s</ : /(\d+)/;
 				let reward = reward_span[0].dataset.tooltip.replace(/\./g,'').match(regexp)[1];
+				let name = JSON.parse(reward_span[0].dataset.tooltip)[0][0][0];//.split(" ")[0];
 				// Display
 				if (type == 'item'){
+					// Stretch quest box
+					reward_span[0].parentNode.parentNode.parentNode.style = "background-size: 100% 100%;height:80px;"
+					// Move item reward and add name and cost
 					reward_span[0].parentNode.append(
-						document.createTextNode(gca_tools.strings.insertDots(reward))
+						document.createTextNode(name + " - "),
+						document.createTextNode(gca_tools.strings.insertDots(reward)+" "),
+						gca_tools.create.goldIcon(),
 					);
+					reward_span[0].parentNode.classname = "quest_item_cost_name_reward"
+					// Make text in aline
 					reward_span[0].parentNode.style.width = "auto";
 					reward_span[0].align = "absmiddle";
 				}else{
