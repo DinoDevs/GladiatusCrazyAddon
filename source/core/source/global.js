@@ -4737,14 +4737,14 @@ var gca_global = {
 			},
 			
 			// Minimum health warning
-			healthWarning : function(){   
-			//Check settings and current HP
-			let total_health = parseInt(document.getElementById('header_values_hp_percent').innerText);
-			let minimum_health = gca_options.get("global", "health_warning");  	 
-			// Send notifications			
+			healthWarning : function(){
+				//Check settings and current HP
+				let total_health = parseInt(document.getElementById('header_values_hp_percent').innerText);
+				let minimum_health = gca_options.get("global", "health_warning");
+				// Send notifications			
 				if (total_health < minimum_health && gca_options.bool("global","browser_notifications")){
-					new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"});														 				
-				} 
+					new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"});
+				}
 				else if (total_health <= minimum_health){
 					gca_notifications.error(gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!");
 				}
