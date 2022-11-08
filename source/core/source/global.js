@@ -233,7 +233,7 @@ var gca_global = {
 		(!this.isTraveling && gca_options.bool("global","notify_guild_attack_ready") && 
 			this.background.notify_me.guild_attack_ready());
 			
-	    // Notification: Minimum health warning
+		// Notification: Minimum health warning
 		((gca_options.get("global", "health_warning") > 0) &&
 			this.background.notify_me.healthWarning());	
 
@@ -2012,7 +2012,7 @@ var gca_global = {
 				scroll_bottom.textContent = ' ▼ ';
 				scroll_bottom.addEventListener("click", function() {
 					jQuery('html, body').scrollTop(jQuery("#footer_background").offset().top);
-                                });
+				});
 				bar.appendChild(scroll_bottom);
 				
 				// Bind document elements
@@ -2245,12 +2245,12 @@ var gca_global = {
 				
 				// Inject Pantheon Link
 				this.convertMenu.addTabs("pantheon", this.info.pantheon, this.info.pantheon_active, [
-				        {text : ''},
-				        {text : '\uD83D\uDCC4', href : gca_getPage.link({"mod":"quests"})},
+					{text : ''},
+					{text : '\uD83D\uDCC4', href : gca_getPage.link({"mod":"quests"})},
 					{text : '\u2714\uFE0F', href : gca_getPage.link({"mod":"missions"})},
 					{text : '\u2728', href : gca_getPage.link({"mod":"gods"})},
 					{text : '\uD83C\uDF81', href : gca_getPage.link({"mod":"mysterybox"})},
-					{text : ''},		
+					{text : ''},
 				]);
 
 				// Inject Guild Link
@@ -2279,10 +2279,10 @@ var gca_global = {
 							this.convertMenu.addTabs("forge",this.info.forge, this.info.forge_active,
 							[
 								{text : '', style : "width: 15px;"},
-						                {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=smeltery"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"smeltery"})},
-					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=workbench"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"workbench"})},
-					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=storage"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"storage"})},
-					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=magus"]')[0].textContent, href : gca_getPage.link({"mod":"magus"})},		
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=smeltery"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"smeltery"})},
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=workbench"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"workbench"})},
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=forge&submod=storage"]')[0].textContent, href : gca_getPage.link({"mod":"forge","submod":"storage"})},
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=magus"]')[0].textContent, href : gca_getPage.link({"mod":"magus"})},
 								{text : '', style : "width: 15px;transform: scale(-1);"},
 							]);
 						}	
@@ -2298,12 +2298,12 @@ var gca_global = {
 							this.convertMenu.addTabs("weaponSmith",this.info.weaponSmith, this.info.weaponSmith_active,
 							[
 								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=2"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"2"})},
-					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=3"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"3"})},
-					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=4"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"4"})},
-					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=5"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"5"})},
-					                        {text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=6"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"6"})},
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=3"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"3"})},
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=4"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"4"})},
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=5"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"5"})},
+								{text : document.getElementById('submenu1').querySelectorAll('a[href^="index.php?mod=inventory&sub=6"]')[0].textContent, href : gca_getPage.link({"mod":"inventory","sub":"6"})},
 							]);
-						}													
+						}
 						// Auction menu links
 						if(this.info.auction){
 							this.convertMenu.addPlus(this.info.auction, this.info.auction_active, {href : gca_getPage.link({"mod":"auction","ttype":"3"})});
@@ -4234,7 +4234,7 @@ var gca_global = {
 			preload : function() {
 				// Detect page mods
 				if (
-				        //run on highscore page
+						//run on highscore page
 					gca_section.mod == 'highscore' || 
 					//run on arena pages
 					gca_section.mod == 'arena' || 
@@ -4480,7 +4480,7 @@ var gca_global = {
 						this.onLinkClick(event, url, gca_getPage.parameters(url));
 					}
 				}, false);
-			},			
+			},
 
 			// On link click
 			onLinkClick : function(event, url, page){
@@ -4738,17 +4738,17 @@ var gca_global = {
 			
 			// Minimum health warning
 			healthWarning : function(){   
-            //Check settings and current HP
-            let total_health = parseInt(document.getElementById('header_values_hp_percent').innerText);
-            let minimum_health = gca_options.get("global", "health_warning");  	 
-            // Send notifications			
-			    if (total_health < minimum_health && gca_options.bool("global","browser_notifications")){						
-                    new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"});											             				
+			//Check settings and current HP
+			let total_health = parseInt(document.getElementById('header_values_hp_percent').innerText);
+			let minimum_health = gca_options.get("global", "health_warning");  	 
+			// Send notifications			
+				if (total_health < minimum_health && gca_options.bool("global","browser_notifications")){
+					new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"});														 				
 				} 
 				else if (total_health <= minimum_health){
-				    gca_notifications.error(gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!");	
-                }				
-            }
+					gca_notifications.error(gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!");
+				}
+			}
 		},
 
 		// Get guild pinned message
