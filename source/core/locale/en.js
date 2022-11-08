@@ -56,6 +56,7 @@ gca_languages["en"] = {
 			life_recover_full : "Full life recover",
 			expedition_recover_full : "Full expedition points recover",
 			dungeon_recover_full : "Full dungeon points recover",
+			health_notification: "Your health is below",
 
 			// Button bar - Message
 			message_private_write : "Write private message",
@@ -357,6 +358,7 @@ gca_languages["en"] = {
 			category_global$extended_hp_xp_info : "Display extended HP and XP header info",
 			category_global$extended_hp_xp_info_potion : "Display life potion use icon",
 			category_global$hp_timer_for_full_life : "Display minutes left to full heal",
+			category_global$health_warning : "Send a warning if your HP is below:",
 			category_global$expedition_dungeon_points_recover_timer : "Display minutes left to full expedition/dungeon points recovery",
 			category_global$shortcuts_bar : "Enable the shortcuts bar",
 			category_global$shortcuts_bar_buttons : "Select shortcuts for the shortcuts bar",
@@ -390,7 +392,7 @@ gca_languages["en"] = {
 			category_global$bar_hide_exp_btn : "Hide the Expedition buttons",
 			category_global$bar_hide_dun_btn : "Hide the Dungeon buttons",
 			category_global$bar_hide_are_btn : "Hide the Arena buttons",
-			category_global$bar_hide_ct_btn : "Hide the Circus Turma buttons",			
+			category_global$bar_hide_ct_btn : "Hide the Circus Turma buttons",		
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
