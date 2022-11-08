@@ -4745,7 +4745,7 @@ var gca_global = {
 				if (total_health < minimum_health && gca_options.bool("global","browser_notifications")){
 					new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"});
 				}
-				else if (total_health <= minimum_health){
+				else if (total_health < minimum_health){
 					gca_notifications.error(gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!");
 				}
 			}
