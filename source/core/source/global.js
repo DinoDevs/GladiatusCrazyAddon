@@ -4743,10 +4743,12 @@ var gca_global = {
 				let minimum_health = gca_options.get("global", "health_warning");
 				// Send notifications			
 				if (total_health < minimum_health && gca_options.bool("global","browser_notifications")){
-					new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"});
+					new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"}),
+					document.getElementById("header_game").classList.add("hp_warning_btn");	
 				}
 				else if (total_health < minimum_health){
-					gca_notifications.error(gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!");
+					gca_notifications.error(gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"),
+					document.getElementById("header_game").classList.add("hp_warning_btn");	
 				}
 			}
 		},
