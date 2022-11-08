@@ -232,6 +232,10 @@ var gca_global = {
 		// Notification : Guild attack ready alert
 		(!this.isTraveling && gca_options.bool("global","notify_guild_attack_ready") && 
 			this.background.notify_me.guild_attack_ready());
+			
+	    // Notification: Minimum health warning
+		((gca_options.get("global", "health_warning") > 0) &&
+			this.background.notify_me.healthWarning());	
 
 		// Get pinned guild message
 		(!this.isTraveling && gca_options.bool("global","check_guild_pinned_message") && 
@@ -265,7 +269,7 @@ var gca_global = {
 		
 		// Show durability or notifications
 		((gca_options.get("global", "show_durability") != 0 || gca_options.get("global", "min_durability") > 0) && gca_section.mod!='auction' &&
-			this.display.analyzeItems.itemDurability.init());
+			this.display.analyzeItems.itemDurability.init());			
 
 		// Show forge info
 		(!this.isTraveling && gca_options.get("global", "show_forge_info") != 0 && 
@@ -4263,7 +4267,7 @@ var gca_global = {
 			}
 		}
 	},
-
+	
 	// Underworld related functions
 	underworld : {
 
@@ -4476,7 +4480,7 @@ var gca_global = {
 						this.onLinkClick(event, url, gca_getPage.parameters(url));
 					}
 				}, false);
-			},
+			},			
 
 			// On link click
 			onLinkClick : function(event, url, page){
@@ -4563,7 +4567,7 @@ var gca_global = {
 				}
 			}
 		},
-
+				
 		// Guild message
 		guildMessage : {
 			// Message sending
@@ -4730,8 +4734,21 @@ var gca_global = {
 						}
 					});
 				}
-			}
-
+			},
+			
+			// Minimum health warning
+			healthWarning : function(){   
+            //Check settings and current HP
+            let total_health = parseInt(document.getElementById('header_values_hp_percent').innerText);
+            let minimum_health = gca_options.get("global", "health_warning");  	 
+            // Send notifications			
+			    if (total_health < minimum_health && gca_options.bool("global","browser_notifications")){						
+                    new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"});											             				
+				} 
+				else if (total_health <= minimum_health){
+				    gca_notifications.error(gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!");	
+                }				
+            }
 		},
 
 		// Get guild pinned message
