@@ -59,6 +59,16 @@
 	#header_life_pot_only.disabled {background-position: -15px 0px;}
 	.gca_rtl #header_life_pot_only {left: unset;right: 488px;}
 
+/* Minimum health warning */
+    .hp_warning_btn #cooldown_bar_fill_expedition {filter: grayscale(100%);}
+    .hp_warning_btn #cooldown_bar_text_expedition {color: red;}
+    .hp_warning_btn #cooldown_bar_fill_dungeon {filter: grayscale(100%);}
+    .hp_warning_btn #cooldown_bar_text_dungeon {color: red;}
+    .hp_warning_btn #cooldown_bar_fill_arena {filter: grayscale(100%);}
+    .hp_warning_btn #cooldown_bar_text_arena {color: red;}
+    .hp_warning_btn #cooldown_bar_fill_ct {filter: grayscale(100%);}
+    .hp_warning_btn #cooldown_bar_text_ct {color: red;}
+
 /* Button bar */
 	#gca_shortcuts_bar{position: absolute; z-index: 500;top: 114px; left: 520px; height: 25px; width: 410px; text-align: left;}
 	.gca_rtl #gca_shortcuts_bar{right: 520px;left: auto;text-align: right;}
