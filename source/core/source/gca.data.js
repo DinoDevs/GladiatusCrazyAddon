@@ -290,6 +290,9 @@ gca_options.data = {
 		"extended_hp_xp_info_potion" : true,
 		"hp_timer_for_full_life" : true,
 		
+		// Minimum health warning
+		"health_warning" : 25,
+		
 		// Expedition/Dungeon Points Recover Timer
 		"expedition_dungeon_points_recover_timer" : true,
 
@@ -362,7 +365,7 @@ gca_options.data = {
 		
 		// Minimum durability alert
 		"min_durability" : 25,
-		
+					
 		// Show mercenaries real name
 		"show_mercenaries_real_name_and_combat_stats" : false,
 		

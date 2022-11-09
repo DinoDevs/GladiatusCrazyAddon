@@ -541,6 +541,16 @@ var gca_settings = {
 				"extended_hp_xp_info_potion" : true,
 				"hp_timer_for_full_life" : true,
 				
+				// Minimum health warning
+				"health_warning" : {
+					"type" : "range",
+					"min" : 0,
+					"step" : 1,
+					"max" : 100,
+					"scale" : 1,
+					"db" : "options",
+				},
+				
 				// Expedition/Dungeon Points Recover Timer
 				"expedition_dungeon_points_recover_timer" : true,
 
@@ -676,7 +686,7 @@ var gca_settings = {
 					"max" : 200,
 					"scale" : 1,
 					"db" : "options",
-				},
+				},								
 				
 				// Show item forge info
 				"show_forge_info" : (function(){

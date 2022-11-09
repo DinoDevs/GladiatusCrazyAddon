@@ -46,6 +46,7 @@ gca_languages['cs'] = {
 			life_recover_full : "Plné životy se doplní za",
 			expedition_recover_full : "Úplná obnova výprav za",
 			dungeon_recover_full : "Úplná obnova bodů bludiště za",
+			health_notification: "Tvůj život je pod",
 			
 			// Button bar - Message
 			message_private_write : "Napsat soukromou zprávu",
@@ -345,6 +346,7 @@ gca_languages['cs'] = {
 			category_global$extended_hp_xp_info : "Zobraz rozšířené informace o HP a XP na liště",
 			category_global$extended_hp_xp_info_potion : "Zobraz ikonu léčivého lektvaru",
 			category_global$hp_timer_for_full_life : "Zobraz čas do plného uzdravení",
+			category_global$health_warning : "Obdržet varování, je-li život pod:",
 			category_global$expedition_dungeon_points_recover_timer : "Zobrazit zbylé minuty do doplnění výprav/bludišťových bodů",
 			category_global$shortcuts_bar : "Zobraz lištu",
 			category_global$shortcuts_bar_buttons : "Vyber ikony do rychlého menu",
