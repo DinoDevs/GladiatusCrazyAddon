@@ -66,6 +66,11 @@ gca_languages["en"] = {
 			message_sent_failed : "Failed to sent message",
 			message_empty : "The message is empty",
 			message_exclude_me : "Exclude me",
+			
+			// Welcome message - text
+			welcome_addon : "Welcome to Gladiatus Crazy Addon!",
+			welcome_version : "The current installed version is",
+			welcome_changelog : "Changelogs",
 
 			// Button bar buttons
 			guild_market_goto : "Go to guild's market",
