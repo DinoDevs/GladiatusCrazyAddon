@@ -1,7 +1,7 @@
 ## Progress on Version 4.3.8 [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-10-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-11-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-1-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
@@ -14,6 +14,7 @@
 	- [x] Menu - all item categories can now be merged into one [#430]
 	- [x] Arena tables overhaul and custom GCA scrollbar are now both a separate feature 
 	- [x] Get a notification when your health is below a specific percentage (customizable in settings) [#84]
+	- [x] When GCA is installed or updated (or it's data was purged), you will receive a one time version notification [#66]
 - **Forge**
 	- [x] Select item with double click (Smelt/Repair) [#432]
 - **Pantheon quests**
