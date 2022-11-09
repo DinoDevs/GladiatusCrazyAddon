@@ -6,7 +6,7 @@
 // Data
 var gca_data = {
 	//Welcome message
-	data : {welcomeOnce: false},
+	data : {welcomeOnce: true},
 	// Get a value
 	get : function(name, defvalue){
 		if(this.data[name] != undefined)
