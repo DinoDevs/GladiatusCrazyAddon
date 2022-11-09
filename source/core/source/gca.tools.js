@@ -1657,6 +1657,7 @@ var gca_tools = {
 			var button = document.createElement("input");
 			button.setAttribute("type", "button");
 			button.className = "awesome-button big";
+			button.style.width = "100px";
 			button.value = text;
 			this.buttons_wrapper.appendChild(button);
 
