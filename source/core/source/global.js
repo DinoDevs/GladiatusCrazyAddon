@@ -443,7 +443,7 @@ var gca_global = {
                     modal.show();
                 });
             modal.img.src = gca_resources.folder + 'icons/icon_64.png';
-            modal.body(gca_locale.get("global", "welcome_version") + " " + gca.version + ".");
+            modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + gca.version + ".");
             modal.button(gca_locale.get("general", "ok"), true);
             modal.button(gca_locale.get("global", "welcome_changelog"), false);
             modal.show();
