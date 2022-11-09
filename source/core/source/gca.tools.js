@@ -1658,6 +1658,7 @@ var gca_tools = {
 			button.setAttribute("type", "button");
 			button.className = "awesome-button big";
 			button.style.width = "auto";
+			button.style.minWidth = "60px";
 			button.value = text;
 			this.buttons_wrapper.appendChild(button);
 
