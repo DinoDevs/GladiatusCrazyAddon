@@ -57,6 +57,11 @@ gca_languages['cs'] = {
 			message_empty : "Gildovní zprávy jsou prázdné",
 			message_exclude_me : "Vyloučit mne",
 			
+			// Welcome message - text
+			welcome_addon : "Vítá vás Gladiatus Crazy Addon!",
+			welcome_version : "Aktuální nainstalovaná verze je",
+			welcome_changelog : "Přehled změn",
+			
 			// Button bar buttons
 			guild_market_goto : "Gildovní tržiště",
 			guild_storage_goto : "Skladiště",
