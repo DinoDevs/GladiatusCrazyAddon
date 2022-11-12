@@ -177,7 +177,7 @@ var gca_cdn = {
 		'img/npc/2/1_27.jpg' : 'd1549710f046f8f9bc48a8d2746a3930',
 		'img/npc/2/1_28.jpg' : 'b0bc57005ab3616095b15cc0607711fd',
 		'img/npc/2/1_29.jpg' : 'bf1a2a56307f51d82dcf6581534a392d',
-		'img/npc/2/1_30.jpg' : '93230fc8d3268e05c79944a17ca8b58b',
+		'img/npc/2/1_30.jpg' : '93230fc8d3268e05c79944a17ca8b58b', // Lemures with drops - must be loaded first on the list
 		'img/npc/2/1_31.jpg' : '195223495ed346f0b37786f2c519246f',
 		'img/npc/2/1_32.jpg' : '2aad144e0643fa82b36de31b4d9b7b1c',
 		'img/npc/2/2_1.jpg' : '6aee6c6305b48b14824c1e7274d788e8',
@@ -290,7 +290,7 @@ var gca_cdn = {
 		'img/npc/0/1_33.jpg' : '63f559ab2226acf7e5b5a5d6dccff28d',
 		'img/npc/0/1_34.jpg' : '34d31b305686a94d897e695d52dd3261',
 		'img/npc/0/1_35.jpg' : 'd0180737f4a441d1cb4059baa9ce43fa',
-		'img/npc/0/1_36.jpg' : '93230fc8d3268e05c79944a17ca8b58b',
+		'img/npc/0/1_36.jpg' : '93230fc8d3268e05c79944a17ca8b58b', // Lemures event duplicate - no drops
 		'img/npc/0/1_37.jpg' : '11518d7631a8abd12222f4395bca4f2a',
 		'img/npc/0/1_38.jpg' : '6cf7ba3620db78b6766940ac864075e9',
 		'img/npc/0/1_39.jpg' : '486baa7a5462326c9b9c651ac868b6ed',
