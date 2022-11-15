@@ -50,10 +50,7 @@ var gca_global = {
 			document.documentElement.className += " menu_merge_items";
 
 		// Resolve Game Modes
-		this.gameModePreResolve();
-		
-		// Welcome message
-		this.welcomeMessage();
+		this.gameModePreResolve();		
 
 		// If Event bar was active
 		(gca_data.section.get("cache", "event_bar_active", 0) && (gca_options.bool("global","shortcuts_bar") || gca_options.bool("global","auction_status_bar") || gca_options.bool("global","extended_hp_xp_info")) &&
@@ -193,6 +190,9 @@ var gca_global = {
 		// Global Arena Timer
 		(gca_options.bool("global","global_arena_timer") &&
 			this.display.global_arena.inject());
+			
+		// Welcome message
+		this.welcomeMessage.inject();	
 
 		// Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
@@ -430,26 +430,28 @@ var gca_global = {
 	},
 	
 	//Welcome message, runs only once
-	welcomeMessage: function () {
-        if (gca_data.get("welcomeOnce", true)) {
-            var modal = new gca_tools.Modal(
-                    gca_locale.get("global", "welcome_addon"),
-                    null,
-                    () => {
-                    modal.destroy();
-                },
-                    () => {
-                    window.open('https://github.com/DinoDevs/GladiatusCrazyAddon/releases', '_blank'),
-                    modal.show();
-                });
-            modal.img.src = gca_resources.folder + 'icons/icon_64.png';
-            modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + gca.version + ".");
-            modal.button(gca_locale.get("general", "ok"), true);
-            modal.button(gca_locale.get("global", "welcome_changelog"), false);
-            modal.show();
-            gca_data.set("welcomeOnce", false);
-        }
-    },
+	welcomeMessage: {
+	    inject: function (){
+	        if (gca_data.get("welcomeOnce", true)) {
+	            var modal = new gca_tools.Modal(
+	                    gca_locale.get("global", "welcome_addon"),
+	                    null,
+	                    () => {
+	                    modal.destroy();
+	                },
+	                    () => {
+	                    window.open('https://github.com/DinoDevs/GladiatusCrazyAddon/releases', '_blank'),
+	                    modal.show();
+	                });
+	            modal.img.src = gca_resources.folder + 'icons/icon_64.png';
+	            modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + gca.version + ".");
+	            modal.button(gca_locale.get("general", "ok"), true);
+	            modal.button(gca_locale.get("global", "welcome_changelog"), false);
+	            modal.show();
+	            gca_data.set("welcomeOnce", false);
+	        }
+	    }
+	},
 
 	// Display stuff
 	display : {
