@@ -319,6 +319,12 @@ var gca_cdn = {
 		'img/npc/{on-the-nile-bank}_2.jpg' : '10f0a5434c803bde1ba0913aecd9751b',
 		'img/npc/{on-the-nile-bank}_3.jpg' : 'ae23d6d58d2cf752711ec4a580848476',
 		'img/npc/{on-the-nile-bank}_4.jpg' : '74531075909c1e2cb313eda2bc1e8c8e',
+		
+		// Event - Ice Tundra
+	    'img/npc/{ice-tundra}_1.jpg' : 'c3d8230a947fede10230f925e77abcb8',        
+		'img/npc/{ice-tundra}_2.jpg' : '29cc23cc60d2ee559db2bc4abaf5a271', 	  
+		'img/npc/{ice-tundra}_3.jpg' : 'ea880725d22d0342f7de0287fe6225ac', 	   
+		'img/npc/{ice-tundra}_4.jpg' : 'c9c569df5d416369e84df7e69b8ff24c', 	
 
 		'img/premium/token/5.jpg' : '07c9ce614bbc67a9e85aa0ee87cf2bb7',
 		'img/premium/token/6.jpg' : 'b91f4b5b4387108ff677cfaf301cfe18',
