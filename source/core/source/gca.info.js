@@ -17,11 +17,19 @@ var gca = {
 };
 
 var gca_extension = {
-	"id": document.currentScript.dataset.id
+	"id": (() => {
+		try {return document.currentScript.src.match(/[^:]+:\/\/([^\/]+)\//)[1];}
+		catch (e) {return document.currentScript.dataset.id;}
+	})(),
+	"protocol": (() => {
+		try {return document.currentScript.src.split('://')[0];}
+		catch (e) {return 'chrome-extension';}
+	})()
 };
+
 var gca_resources = {
-	"folder": "chrome-extension://" + gca_extension.id + "/core/resources/",
-	"audio": "chrome-extension://" + gca_extension.id + "/core/resources/audio/"
+	"folder": gca_extension.protocol + "://" + gca_extension.id + "/core/resources/",
+	"audio": gca_extension.protocol + "://" + gca_extension.id + "/core/resources/audio/"
 };
 
 // Page info
