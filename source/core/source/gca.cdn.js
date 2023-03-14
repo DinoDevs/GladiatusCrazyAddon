@@ -668,8 +668,8 @@ var gca_cdn = {
 		'img/res3.gif' : '9203d0e8e4718d33a582132485433bb7',
 		'img/spacer.gif' : 'ef51e70e9023ed2ea9d2b2acea6e3e07',
 		'img/ui/spinner.gif' : 'e4234472afb925ddb203ad99cb2ec0b0',
-		// 'img/ui/icon_honor_small.gif' : '', // no specific hash
-		// 'img/ui/icon_level_small.gif' : '', // no specific hash
+		'img/ui/icon_honor_small.gif' : 'c943438b7e5563870240831358dc6a1a',
+		'img/ui/icon_level_small.gif' : 'c943438b7e5563870240831358dc6a1a',
 		'img/energie_rot.gif' : 'e2d27eeec7274b65d407bb0cbc502bbb',
 		'img/energie_gelb.gif' : 'cc009b6ab0537fae300ea58cce1e4eee',
 		'img/energie_gruen.gif' : '7498f0b5f90e8fc485f8ddd251fb3cac',
