@@ -5592,12 +5592,10 @@ var gca_global = {
 				tooltip.push([[premium_button.textContent.replace(/\([^\)]+\)/i,''),days+' '+gca_locale.get("general", "days")+', '+gca_tools.time.msToHMS_String(centurio_days-now-days*24*60*60*1000)],['#FF6A00; font-size:12px; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00','#fff; font-size:12px;']]);
 			}
 			
-			let powerups_status = gca_data.section.get("timers", "gca_powerups", [
-				{enabled : 0, reload : 0, type : [null,null]},
-				{enabled : 0, reload : 0, type : [null,null]},
-				{enabled : 0, reload : 0, type : [null,null]},
-				{enabled : 0, reload : 0, type : [null,null]}
-			]);
+			let powerups_status = gca_data.section.get("timers", "gca_powerups", false);
+			// If no powerups data, return
+			if (!powerups_status) return;
+
 			for(let i=0;i<powerups_status.length;i++){
 				if(powerups_status[i].enabled-now > 0){
 					let days = Math.floor( (powerups_status[i].enabled-now)/(24*60*60*1000) );
