@@ -538,7 +538,8 @@ var gca_auction = {
 				this.keywordMap[damage.toLowerCase()] = {
 					name: damage,
 					display: locale.damage,
-					pattern: /(:?\d+ - )*-?(\d+)/, // match weapons and other items
+					pattern: /(:?\d+ - )*(-?\d+)/, // match weapons and other items
+					// the "-" sign should be inside capturing group for negative values
 				};
 				// Armour
 				let armour = locale.armour.split(' ')[0].toLowerCase();
