@@ -254,10 +254,10 @@ var gca_training = {
 
 				// Events
 				this.addIncrementEvent(data.arrowUp, (e) => {
-					this.add(e.ctrlKey ?  100 :  1, data);
+					this.add(e.ctrlKey ?  10 :  1, data);
 				}, 200);
 				this.addIncrementEvent(data.arrowDown, (e) => {
-					this.add(e.ctrlKey ? -100 : -1, data);
+					this.add(e.ctrlKey ? -10 : -1, data);
 				}, 200);
 
 				// Update display data
