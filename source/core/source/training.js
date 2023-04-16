@@ -253,11 +253,11 @@ var gca_training = {
 				data.count = 1;
 
 				// Events
-				this.addIncrementEvent(data.arrowUp, () => {
-					this.add( 1, data);
+				this.addIncrementEvent(data.arrowUp, (e) => {
+					this.add(e.ctrlKey ?  100 :  1, data);
 				}, 200);
-				this.addIncrementEvent(data.arrowDown, () => {
-					this.add(-1, data);
+				this.addIncrementEvent(data.arrowDown, (e) => {
+					this.add(e.ctrlKey ? -100 : -1, data);
 				}, 200);
 
 				// Update display data
