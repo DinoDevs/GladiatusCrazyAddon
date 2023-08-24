@@ -245,7 +245,8 @@ gca_languages['pt'] = {
 		// Merchants
 		merchants : {
 			search_item_in_merchants : "Procurar item nos mercadores",
-			no_such_item : "O item não foi encontrado"
+			no_such_item : "O item não foi encontrado",
+			sell_all_button_text: "Vender tudo"
 		},
 		
 		// Packages

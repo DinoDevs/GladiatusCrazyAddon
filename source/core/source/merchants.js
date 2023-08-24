@@ -37,6 +37,8 @@ var gca_merchants = {
 		// Merchants Search
 		this.merchantsSearch.searchBox();
 
+		this.sellAllButtonAction.init();
+
 		// Setting Link
 		gca_tools.create.settingsLink("merchants");
 	},
@@ -447,6 +449,29 @@ var gca_merchants = {
 		},
 		handler_rubies : function() {
 			gca_notifications.error(gca_locale.get("global", "item_worth_rubies"));
+		}
+	},
+
+	sellAllButtonAction:{
+		init: function(){
+				// Create UI
+				const container = document.createElement("div");
+				container.id = 'gca-merchants-sell-all-container';
+				container.className = "gca-merchants-sell-all-container";
+				
+				const button = document.createElement("input");
+				button.className = 'awesome-button gca-merchants-sell-all-button';
+				button.type = 'button';
+				button.value = gca_locale.get("merchants", "sell_all_button_text");
+				container.appendChild(button);
+				
+				document.getElementById('mainnav').appendChild(container);
+				
+				button.addEventListener('click', () => {
+					jQuery('#inv .ui-draggable').each(function(){	
+						gca_tools.item.move(this, 'shop');
+					});
+				}, false);
 		}
 	}
 };

@@ -296,7 +296,8 @@ gca_languages["en"] = {
 		// Merchants
 		merchants : {
 			search_item_in_merchants : "Search item in merchants",
-			no_such_item : "No such item found."
+			no_such_item : "No such item found.",
+			sell_all_button_text: "Sell all"
 		},
 		
 		// Packages
