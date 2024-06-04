@@ -25,7 +25,7 @@ gca_languages['pl'] = {
 			confirm : "Potwierdź",
 			cancel : "Anuluj",
 			close : "Zamknij",
-			error : "Błąd"
+			error : "Błąd",
 			yes : "Tak",
 			no : "Nie",
 			ok : "OK"
