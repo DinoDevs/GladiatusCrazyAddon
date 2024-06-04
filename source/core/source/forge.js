@@ -16,7 +16,7 @@ var gca_forge = {
 			this.detectForgeEvents();
 			
 			(gca_options.bool("forge","show_levels") &&
-			this.showPrefixSufixBaseLevels());
+			this.showPrefixSuffixBaseLevels());
 			
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
@@ -522,7 +522,7 @@ var gca_forge = {
 	},
 	
 	// Show Fix/Suffix/Base names levels
-	showPrefixSufixBaseLevels : function(){
+	showPrefixSuffixBaseLevels : function(){
 		var options;
 
 		options = document.getElementById('prefix0').getElementsByTagName("option");
@@ -785,6 +785,10 @@ var gca_forge = {
 			});
 		},
 		updateLinks : function (data){
+			// Check if data are for the active tab
+			if(data.tab!=window.activeForgeBox) return;
+
+			// Check if materials are needed
 			if(!data.info.formula.hasOwnProperty("needed")) return;
 			
 			var requirements = document.getElementsByClassName('crafting_requirements');
@@ -804,13 +808,13 @@ var gca_forge = {
 
 			var amounts = document.getElementsByClassName('forge_amount');
 			for (let i = 0; i < li.length; i++) {
-				if(!Object.keys(data.info.formula.needed)[i])
-					break;
-			
+				if(!Object.keys(data.info.formula.needed)[i]) break;
+				
 				let name = data.info.formula.needed[Object.keys(data.info.formula.needed)[i]].name;
 				if (amounts[i].style.backgroundColor != 'greenyellow'){
 					all_names += name.split(" ")[name.split(" ").length-1]+" ";
-					guild_msg += "\n - "+name+": "+(parseInt(amounts[i].getElementsByClassName('forge_setpoint')[0].textContent, 10) - parseInt(amounts[i].getElementsByClassName('forge_actual_value')[0].textContent, 10));
+					let required = parseInt(amounts[i].getElementsByClassName('forge_setpoint')[0].textContent, 10) - parseInt(amounts[i].getElementsByClassName('forge_actual_value')[0].textContent, 10)
+					guild_msg += "\n - "+name+": "+required;
 				}
 				let box = document.createElement('div');
 				box.className = 'gca_forge_material_links';
@@ -866,6 +870,7 @@ var gca_forge = {
 		},
 
 		sendMessageModal : function(message) {
+			// Create modal if not available
 			if (!this.info) {
 				this.info = {};
 
