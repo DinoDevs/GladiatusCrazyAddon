@@ -5380,6 +5380,8 @@ var gca_global = {
 	
 	// Display Centurion & PowerUps days every 12h
 	centurio_days : {
+		activeRuneRegExp : /id="rune(1|2|3|4)_\d"\s+class="powerUpImg\d"\s+data-tooltip="([^"]+)"\s+style="background-image: url\(([^)]+)\)/i,
+		
 		init : function(){
 			// Create the dataset
 			document.getElementById('mainmenu').getElementsByClassName('premium')[0].dataset.centurio_days = 0;
@@ -5472,30 +5474,48 @@ var gca_global = {
 					document.getElementsByClassName('powerUpImg5')
 				];
 				for (let i = 0; i < powerups.length; i++) {
-					// Powerup is enabled
-					if(powerups[i].style.color == 'green'){
-						let time = powerups[i].textContent.match(/\d+/g);
-						if (time.length == 3) {
-							status[i].enabled = now + (time[0]*24*60*60+time[1]*60*60+time[2]*60)*1000;
-						}
-						else if (time.length == 2) {
-							status[i].enabled = now + (time[0]*60*60+time[1]*60)*1000;
-						}
-						else if (time.length == 1) {
+					// Check if powerup is enabled
+					if(powerups[i].style.color != 'green') continue;
+					
+					let isCooldown = (powerups[i].parentNode.getElementsByClassName('powerup_cooldown').length>0)
+
+					let time = powerups[i].textContent.match(/\d+/g);
+					// powerups[i].textContent = '14 Days remaining'
+					//let time = ['14'];
+					if (time.length == 3) {
+						// Days, hours and minutes
+						status[i].enabled = now + (time[0]*24*60*60+time[1]*60*60+time[2]*60)*1000;
+					}
+					else if (time.length == 2) {
+						// Hours and minutes
+						status[i].enabled = now + (time[0]*60*60+time[1]*60)*1000;
+					}
+					else if (time.length == 1) {
+						// Minutes or days (just enabled)
+						if(isCooldown && time[0] == "14"){
+							// Days (powerup was just enabled and "14 days" is shown)
+							status[i].enabled = now + time[0]*24*60*60*1000;
+						}else{
+							// Minutes
 							status[i].enabled = now + time[0]*60*1000;
 						}
-						// if reload wait time
-						if(powerups[i].parentNode.getElementsByClassName('powerup_cooldown').length>0)
-							status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft, 10);
-						// find type
-						for(let j=0;j<5;j++){
-							if(imgs[j][i].style.backgroundImage.match('_border')){
-								status[i].type = [
-									document.getElementById('rune'+(i+1)+'_'+(j+1)).dataset.tooltip,
-									document.getElementById('rune'+(i+1)+'_'+(j+1)).style.backgroundImage
-								];
-							}
-						}
+					}
+					// if reload wait time
+					if(isCooldown) status[i].reload = now + parseInt(powerups[i].parentNode.getElementsByClassName('powerup_cooldown')[0].getElementsByTagName('span')[0].dataset.tickerTimeLeft, 10);
+					
+					// find type
+					for(let j=0;j<5;j++){
+						/* Old way checking the image, changed because we down know the images any more
+						let bgImageURL = gca_tools.img.resolve(imgs[j][i].style.backgroundImage);
+						if(!bgImageURL.includes('_border')) continue;*/
+
+						if(!this.activeRuneRegExp.test(imgs[j][i].outerHTML)) continue;
+
+						status[i].type = [
+							document.getElementById('rune'+(i+1)+'_'+(j+1)).dataset.tooltip,
+							document.getElementById('rune'+(i+1)+'_'+(j+1)).style.backgroundImage // This is not used
+						];
+						break;
 					}
 				}
 
@@ -5524,7 +5544,7 @@ var gca_global = {
 				if (found) {
 					let found2 = content.match(/<span class="powerup_duration" style="color: green;">[^<]+<\/span>/gi);
 					for (let i = 0; i < found.length; i++) {
-						let temp = found[i].match(/id="rune(1|2|3|4)_\d"\s+class="powerUpImg\d"\s+data-tooltip="([^"]+)"\s+style="background-image: ([^;]+);"/i);
+						let temp = found[i].match(this.activeRuneRegExp);
 						let position = parseInt(temp[1], 10) - 1;
 						status[position].type = [temp[2].replace(/&quot;/g,'"').replace(/&lt;br\s*\\\/&gt;/g,'<br/>').replace(/&amp;nbsp;/g,' '),temp[3]];
 						temp = found2[i].match(/\d+/g);

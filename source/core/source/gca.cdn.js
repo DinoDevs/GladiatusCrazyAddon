@@ -5,7 +5,7 @@
 
 // Info
 // 		Gladiatus moved the images under a CDN
-//		The images were optimised, thus to find posible hashes we usd the following linux commands:
+//		The images were optimised, thus to find possible hashes we usd the following linux commands:
 //			optipng *.png
 //			jpegoptim *.jpg
 //			jpegoptim *.jpeg
@@ -478,6 +478,32 @@ var gca_cdn = {
 		// '' : '',
 		// '' : '',
 
+		// Pacts (URLs are actually unknown)
+		'img/powerups/*1_1.jpg' : '73eb21690aec1d96fba3aa215e96c90d',
+		'img/powerups/*1_2.jpg' : '4ccf358c538e5803536977846125c979',
+		'img/powerups/*1_3.jpg' : '841ed81ac9053fc5bf70d962f637db45',
+		'img/powerups/*1_4.jpg' : 'e3acb4dd8d0a07f7ea274b840c1600b7',
+		'img/powerups/*1_5.jpg' : '6cb495b3f244395094d4fe7df2b69ec2',
+		
+		'img/powerups/*2_1.jpg' : '5c8bfc623c715506494fd98740c7f32e',
+		'img/powerups/*2_2.jpg' : '0e9346dfd28d29f24e6928590e41d49f',
+		'img/powerups/*2_3.jpg' : '3234fed8f05bfad9069e22da7156cb77',
+		'img/powerups/*2_4.jpg' : '42bad676b578c377b9251d9319b5a9e3',
+		'img/powerups/*2_5.jpg' : 'b9438ecfd74b9464549f5b9e97a3d950',
+		
+		'img/powerups/*3_1.jpg' : 'd4fd582e194918709f858c6a702d77bb',
+		'img/powerups/*3_2.jpg' : 'f2b419dd9d84737720b3911e0e16ab74',
+		'img/powerups/*3_3.jpg' : '',
+		'img/powerups/*3_3*_border.jpg' : 'b395d50462139ef5c113480e1ecf671b',
+		'img/powerups/*3_4.jpg' : '39864cdef231f43ac06956a82f8abecf',
+		'img/powerups/*3_5.jpg' : '8d9d06ce9ce47e15fe2b3deb72e0904d',
+		
+		'img/powerups/*4_1.jpg' : '8e76cf549a92ff7a43f80771659170f5',
+		'img/powerups/*4_2.jpg' : '20894322e9d42ffe611e32facf9e38d3',
+		'img/powerups/*4_3.jpg' : 'e1073b551a230f249a3a4fa083b4fcff',
+		'img/powerups/*4_4.jpg' : '5e234e0c2663d8e28a45c5b9c3241006',
+		'img/powerups/*4_5.jpg' : 'a37236fdf07b3079e56f909a67dec917',
+
 		// Old version images
 		// 'img/allianz/level16.jpg' : '',
 	},
@@ -689,7 +715,7 @@ var gca_cdn = {
 	}
 };
 
-// Location spesific
+// Location specific
 gca_cdn.lookup_jpg_by_location = {
 	'9' : {
 		'img/npc/2/1_30.jpg' : gca_cdn.lookup_jpg['img/npc/2/1_30.jpg']
