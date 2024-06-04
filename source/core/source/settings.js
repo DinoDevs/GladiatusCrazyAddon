@@ -1423,6 +1423,8 @@ var gca_settings = {
 				})(),
 
 				// Sync
+				// TODO: This was disabled as the chat was moved into the game
+				/*
 				"cross_browser_login" : (function(){
 					var scheme = {
 						"type" : "custom",
@@ -1443,6 +1445,7 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
+				*/
 
 				// Export Error Player
 				// TODO: this may be removed in the future
