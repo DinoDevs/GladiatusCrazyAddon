@@ -21,4 +21,4 @@ That is all from us :)
 ### TRANSLATIONS
 
 - **Updates**
-  - [ ] Nop
+  - [x] Portuguese updates by @jrel #453 
