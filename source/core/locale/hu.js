@@ -294,7 +294,7 @@ gca_languages['hu'] = {
 			known_scroll : "Már tudod a tekercset",
 			unknown_scroll : "Még nem tudod a tekercset",
 			advance_filters : "Speciális szűrők",
-			advance_filters_apply : "Szűrők elogadása",
+			advance_filters_apply : "Szűrők elfogadása",
 			advance_filters_clear : "Szűrők törlése",
 			advance_filters_found : "({{items}} találása)"
 		},
