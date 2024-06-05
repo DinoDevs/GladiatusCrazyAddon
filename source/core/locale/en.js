@@ -290,7 +290,7 @@ gca_languages["en"] = {
 			forge_ended : "Forge ended!",
 			recraft_item : "Re-craft item",
 			show_hide_doll : "Show/Hide player dolls",
-			horreum_material_change : "Horreum materials change",
+			horreum_material_change : "Horreum materials change"
 		},
 		
 		// Merchants
@@ -397,7 +397,7 @@ gca_languages["en"] = {
 			category_global$bar_hide_exp_btn : "Hide the Expedition buttons",
 			category_global$bar_hide_dun_btn : "Hide the Dungeon buttons",
 			category_global$bar_hide_are_btn : "Hide the Arena buttons",
-			category_global$bar_hide_ct_btn : "Hide the Circus Turma buttons",		
+			category_global$bar_hide_ct_btn : "Hide the Circus Turma buttons",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
