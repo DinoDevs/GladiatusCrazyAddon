@@ -25,3 +25,4 @@ That is all from us :)
 
 - **Updates**
   - [x] Portuguese updates by @jrel #453 
+  - [x] Hungarian updates by @Gabooor #458 
