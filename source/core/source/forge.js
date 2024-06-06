@@ -706,7 +706,7 @@ var gca_forge = {
 				url: gca_getPage.link(url_params),
 				success: (html) => {
 					if (html.match('data-hash="' + info.hash + '"')) {
-						let code = html.match(new RegExp('<div data-no-combine="true" data-no-destack="true" data-container-number="(-\\d+)"\\s*>\\s*<div style="[^"]*" class="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-price-gold="' + info.priceGold + '" data-tooltip="[^"]*" data-comparison-tooltip="[^"]*"( data-soulbound-to="[^"]*"|) data-level="' + info.level + '"( data-quality="[^"]*"|) data-hash="' + info.hash + '"[^>]*><\\/div>', 'i'));
+						let code = html.match(new RegExp('<div data-no-combine="true" data-no-destack="true" data-container-number="(-\\d+)"\\s*>\\s*<div style="[^"]*" class="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-price-gold="' + info.priceGold + '"( data-price-multiplier="[^"]*"|) data-tooltip="[^"]*" data-comparison-tooltip="[^"]*"( data-soulbound-to="[^"]*"|) data-level="' + info.level + '"( data-quality="[^"]*"|) data-hash="' + info.hash + '"[^>]*><\\/div>', 'i'));
 						if (code) {
 							slot.item = info;
 							slot.item.id = code[1];
@@ -756,7 +756,7 @@ var gca_forge = {
 			// Handle item on drop
 			if (!this.dropHandler) {
 				this.dropHandler = true;
-				// On ajax request reponse
+				// On ajax request response
 				gca_tools.event.request.onAjaxResponse((data) => {
 					if (!data || !data.url) return;
 					// Analyse action URL

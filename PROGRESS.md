@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-0-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-2-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-3-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -20,6 +20,9 @@ That is all from us :)
 
 - **Forge**
   - [x] Fixed wrong forge material on guild message, packages/market links (#416)
+
+- **Workbench**
+  - [x] Fixed workbench not retrieving item after send to packages (#472)
 
 ### TRANSLATIONS
 
