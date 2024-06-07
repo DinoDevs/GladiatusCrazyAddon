@@ -472,6 +472,7 @@ gca_languages["en"] = {
 			category_merchants$ruby_icon_on_items : "Add icon on items that cost rubies",
 			category_merchants$show_shop_info : "Show shop info (total gold and rubies)",
 			category_merchants$double_click_actions : "Double click items to sell/buy",
+			category_merchants$hide_prices : "Hide floating prices when selling/buying",
 			// Settings - Forge
 			category_forge$material_links : "[Forge/Repair] Show packages & market shortcuts for each material need",
 			category_forge$show_levels : "[Forge] Show Prefix/Sufix/Base item levels next to names",
