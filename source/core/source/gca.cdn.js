@@ -709,6 +709,7 @@ var gca_cdn = {
 		'img/powerups/powerup_2.gif' : '1dfb4f2b64dcdaec0b6bf94ced8b091e',
 		'img/powerups/powerup_3.gif' : '92fa7b458af4e2bfee9c3f1bcefa3b19',
 		'img/powerups/powerup_4.gif' : '49c422ef306d0633183b7331b4ee6012', 
+		'img/fordern.gif' : '13e48a51408f7676d184b6bd8f25e0542', //War Master Hall
 		// '' : '',
 		// '' : '',
 		// '' : '',
