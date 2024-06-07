@@ -1,17 +1,16 @@
-## No Progress on No Version
+## Release v4.3.9
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-0-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-3-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-1-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
-That is all from us :)
-
 ### IMPROVEMENTS
 
-- **Global**
-  - [ ] Nop
+- **Merchants**
+
+  - [x] You can now hide the floating prices when selling/buying in the settings (#447)
 
 ### BUG FIXES
 
