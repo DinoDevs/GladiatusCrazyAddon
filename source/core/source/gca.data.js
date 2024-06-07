@@ -563,7 +563,9 @@ gca_options.data = {
 		// Show shop info
 		"show_shop_info" : false,
 		// Double click items to sell or buy
-		"double_click_actions" : true
+		"double_click_actions" : true,
+		// Hide floating prices when selling/buying
+		"hide_prices" : false
 	},
 
 	// Forge
