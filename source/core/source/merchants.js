@@ -9,6 +9,10 @@ var gca_merchants = {
 		// Check for errors
 		if(!document.getElementById("content"))
 			return;
+
+		// Hide floating prices when selling/buying
+		if (gca_options.bool("merchants","hide_prices"))
+			document.documentElement.className += " hide_prices";
 		
 		// Fade non affordable items
 		(gca_options.bool("merchants","fade_unaffordable_items") &&
