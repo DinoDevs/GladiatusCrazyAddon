@@ -29,6 +29,6 @@
 ### TRANSLATIONS
 
 - **Updates**
-  - [x] Portuguese updates by @jrel #453 
+  - [x] Polish updates by @jrel #453 
   - [x] Hungarian updates by @Gabooor #458 
   - [x] Slovak updates by @VolFinKo #457 
