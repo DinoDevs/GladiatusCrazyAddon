@@ -24,7 +24,7 @@
   - [x] Fixed workbench not retrieving item after send to packages (#472)
 
 - **Market**
-  - [x] The "Cancel All" button was reworked to prevent server errors (too many requests). The number of cancelled items per run is now at 10 items maximum.
+  - [x] Added delay between server calls to the "Cancel All" button to prevent server errors (#424)
 
 ### TRANSLATIONS
 

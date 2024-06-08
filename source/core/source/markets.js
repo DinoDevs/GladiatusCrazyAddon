@@ -284,55 +284,58 @@ var gca_markets = {
 	
 		// Cancel market items button
 		cancelAllButton: function(){
-    		var buttons = document.getElementsByName('cancel');
-    
-    		if (buttons.length > 0) {
-        		// Create the button
-        		var button = document.createElement("input");
-        		button.type = 'button';
-        		button.className = "awesome-button";
-        		button.id = 'cancelAllButton';
-        		button.style = "margin-top: -21px;position: absolute;right: 116px;";
-        		button.dataset.current = 0;
-        		button.dataset.max = Math.min(buttons.length, 10); // Limit
-        		button.value = `Cancel (${button.dataset.max}/${buttons.length})`;
+    		let buttons = document.getElementsByName('cancel');
+    		if (buttons.length == 0) return;
 
-        		button.addEventListener('click', function(){
-            		var cancel = encodeURIComponent(buttons[0].value);
-            		var cancelCount = 0; // Counter
-            		var totalButtonsToCancel = Math.min(buttons.length, 10); 
+			// Create the cancel all button
+			let button = document.createElement("input");
+			button.type = 'button';
+			button.className = "awesome-button";
+			button.id = 'cancelAllButton';
+			button.style = "margin-top: -21px;position: absolute;right: 116px;";
+			button.value = buttons[0].value + ' ('+buttons.length+')';
 
-            		function cancelNextButton(index) {
-                		if (cancelCount >= totalButtonsToCancel || index >= buttons.length) {
-                    		document.location.href = document.location.href.replace(/&p=\d+/i,"");
-                    		return;
-                		}
+			button.addEventListener('click', function(){
+				let cancelStr = buttons[0].value;
+				let cancel = encodeURIComponent(cancelStr);
+				let canceledCount = 0; // Counter
+				let total = buttons.length;
+				let forms = document.getElementById("market_table").getElementsByTagName("form");
 
-                		var id = document.getElementById("market_table").getElementsByTagName("form")[index].buyid.value;
-                		jQuery.ajax({
-                    		type: "POST",
-                    		url: document.location.href,
-                    		data: 'buyid=' + id + '&cancel=' + cancel,
-                    		success: function() {
-                        		cancelCount++;
-                        		button.dataset.current = cancelCount;
-                        		button.value = `Cancel (${totalButtonsToCancel - cancelCount}/${buttons.length})`;
-                        		cancelNextButton(index + 1); 
-                    		},
-                    		error: function() {
-                        		gca_notifications.error(gca_locale.get("general", "error"));
-                        		cancelNextButton(index + 1); // Continue even if error
-                    		}
-                		});
-            		}
+				let delayRequests = 100; // delay between requests in ms
+				
+				function cancelNextButton(index) {
+					if (canceledCount >= total) {
+						// If finished, refresh
+						document.location.href = document.location.href.replace(/&p=\d+/i,"");
+						return;
+					}
 
-            		cancelNextButton(0);
-        		});
+					let id = forms[index].buyid.value;
+					jQuery.ajax({
+						type: "POST",
+						url: document.location.href,
+						data: 'buyid=' + id + '&cancel=' + cancel,
+						success: function() {
+							canceledCount++;
+							button.value = `Cancel (${canceledCount}/${total})`;
+							setTimeout(cancelNextButton(index + 1), delayRequests);
+						},
+						error: function() {
+							canceledCount++;
+							gca_notifications.error(gca_locale.get("general", "error"));
+							// Double the delay, just in case
+							setTimeout(cancelNextButton(index + 1), 2 * delayRequests);
+						}
+					});
+				}
 
-        		// Append DOM
-        		var base = document.getElementById("market_table");
-        		base.parentNode.insertBefore(button, base);
-    		}
+				cancelNextButton(0);
+			});
+
+			// Append DOM
+			var base = document.getElementById("market_table");
+			base.parentNode.insertBefore(button, base);
 	},
 	
 	// Default sell duration
