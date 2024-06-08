@@ -1716,6 +1716,8 @@
 		.glfix.event_bar_moved #banner_top {top: 148px!important;}
 		.glfix.event_bar_moved #banner_event {top: 152px!important;}
 		.glfix ul#mainnav li a {z-index: 301;}
+		/* Floating prices not clickable */
+		.glfix .moneymessage{pointer-events: none;} /* .goldRow & .rubyRow */
 		/* Gladiatus all fixes but with RTL */
 		.gca_rtl #highscorePage .section-like {margin-left: auto!important;margin-right: -19px;}
 		.gca_rtl #cooldown_bar_event {left: auto!important;right: 352px;}
