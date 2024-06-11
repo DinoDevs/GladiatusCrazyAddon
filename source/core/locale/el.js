@@ -280,7 +280,11 @@ gca_languages["gr"] = {
 			forge_ended : "Η σφυρηλάτηση τελείωσε!",
 			recraft_item : "Σφυρηλάτηση ξανά",
 			show_hide_doll : "Εμφάνιση/Απόκρυψη χαρακτήρα παίχτη",
-			horreum_material_change : "Μεταβολή στις πρώτες ύλες της αποθήκης"
+			horreum_material_change : "Μεταβολή στις πρώτες ύλες της αποθήκης",
+			unknown_scrolls_share_code : "Κωδικός κοινωποίησης των παπύρων μου",
+			use_share_code : "Χρήση κωδικού κοινωποίησης παπύρων",
+			use_share_code_description : "Επικολλήστε τον κωδικό κοινωποίησης παπύρων ενός μονομάχου για να δείτε τους παπύρους του:",
+			invalid_share_code : "Μη έγκυρος κωδικός κοινωποίησης παπύρων",
 		},
 		
 		// Merchants

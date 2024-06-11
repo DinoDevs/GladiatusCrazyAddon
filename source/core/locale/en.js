@@ -290,7 +290,11 @@ gca_languages["en"] = {
 			forge_ended : "Forge ended!",
 			recraft_item : "Re-craft item",
 			show_hide_doll : "Show/Hide player dolls",
-			horreum_material_change : "Horreum materials change"
+			horreum_material_change : "Horreum materials change",
+			unknown_scrolls_share_code : "My unknown scrolls share code",
+			use_share_code : "Use share code",
+			use_share_code_description : "Paste a gladiator's share code to see which scrolls they know:",
+			invalid_share_code : "Invalid share code",
 		},
 		
 		// Merchants
@@ -560,6 +564,7 @@ gca_languages["en"] = {
 			all_category : "Run on target category & all",
 			do_not_run : "Do not run",
 			default: "Default",
+			highlight: "Highlight",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",
