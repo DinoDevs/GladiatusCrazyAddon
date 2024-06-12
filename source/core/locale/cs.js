@@ -279,6 +279,10 @@ gca_languages['cs'] = {
 			recraft_item : "Znovu vykovat předmět",
 			show_hide_doll : "Zobrazit/Skrýt postavy hráče",
 			horreum_material_change : "Změna stavu surovin ve stodole",
+			unknown_scrolls_share_code : "Můj kód pro sdílení neznámých svitků",
+			use_share_code : "Použít kód pro sdílení",
+			use_share_code_description : "Vložte kód sdílení jiného hráče, pro zobrazení svitků které již znají:",
+			invalid_share_code : "Vložený kód je neplatný"
 		},
 		
 				// Merchants
@@ -548,6 +552,7 @@ gca_languages['cs'] = {
 			all_category : "Na vybrané kategorii & všechny",
 			do_not_run : "Nikoliv",
 			default: "Výchozí",
+			highlight: "Zvýraznit",
 			
 			// Info
 			translated_percent : "Přeloženo: {{number}}%",
