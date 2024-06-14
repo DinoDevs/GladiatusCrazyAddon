@@ -39,7 +39,7 @@
 	.event_bar_moved #content_2nd{margin-top: 25px!important;}
 	.event_bar_moved #banner_top{top: 152px!important;background-image: url('interface/eventBar.png')!important;z-index: 299!important;}
 	.event_bar_moved #banner_event{top: 155px!important;z-index: 299!important;}
-	.event_bar_moved #cooldown_bar_event{width: 75px!important;margin-top: 33px;left: 274px!important}
+	.event_bar_moved #cooldown_bar_event{width: 75px;margin-top: 33px;left: 274px}
 
 /* Extended Hp and Xp info */
 	#header_values_hp_xp_background{position: absolute; z-index: 1; top:81px; left:335px; background-image: url('interface/extend_hp_xp_info.png'); width: 180px; height: 50px; border: 0px;}
@@ -1548,7 +1548,7 @@
 		@keyframes gradient {0% {background-position: 0% 50%;}50% {background-position: 100% 50%;}100% {background-position: 0% 50%;}}
 		#settings_logogca{background-image: url('images/GCA_logo.png');position: absolute;width: 530px;height: 81px;background-repeat: no-repeat;margin-top: -13.5%;}
 		#settings_logo .title{color: rgba(255,255,255,0.9);font-size: 12px;position: absolute;bottom: 5px;right: 10px;text-shadow: 0px 0px 5px black, 0px 0px 5px black;}
-		.gca_rtl #settings_logo .title{right: auto;left: 10px;}
+		.gca_rtl #settings_logo .title{left: 10px;}
 
 		/* Box */
 		#addon_box {width: 500px;margin: 15px auto 0px auto;}
@@ -1722,7 +1722,7 @@
 		.glfix .moneymessage{pointer-events: none;} /* .goldRow & .rubyRow */
 		/* Gladiatus all fixes but with RTL */
 		.gca_rtl #highscorePage .section-like {margin-left: auto!important;margin-right: -19px;}
-		.gca_rtl #cooldown_bar_event {left: auto!important;right: 274px;}
+		.gca_rtl #cooldown_bar_event {right: unset!important;left: 571px!important;}
 
 		/* Hide flags feature */
 		.hide-flags .language-flag {display: none;}
