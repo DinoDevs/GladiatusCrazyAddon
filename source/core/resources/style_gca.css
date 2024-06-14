@@ -1714,7 +1714,7 @@
 		.glfix #cooldown_bar_event {background-image: unset!important;background-color: #200500!important;left: 350px!important;top: 192px!important;width: 400px!important;height: 11px!important;border-style: solid;border-width: 1px 3px 1px;border-color: #978a5f;z-index: 300;} 
 		.glfix #cooldown_bar_text_event {font-size: 11px!important;margin-top: -3.6px!important;}
 		.glfix #cooldown_bar_text_event:hover {color: #F9E9CA; cursor: progress;}
-		.glfix.event_bar_moved #cooldown_bar_event {margin-top: unset!important;right: 352px!important;}
+		.glfix.event_bar_moved #cooldown_bar_event {margin-top: unset!important;right: 350px!important;}
 		.glfix.event_bar_moved #banner_top {top: 148px!important;}
 		.glfix.event_bar_moved #banner_event {top: 152px!important;}
 		.glfix ul#mainnav li a {z-index: 301;}
