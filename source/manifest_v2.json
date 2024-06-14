@@ -37,12 +37,6 @@
 		],
 		"persistent": false
 	},
-	"externally_connectable": {
-		"matches": [
-			"http://*.gladiatus.gameforge.com/game/index.php*",
-			"https://*.gladiatus.gameforge.com/game/index.php*"
-		]
-	},
 
 	"web_accessible_resources": [
 		"core/locale/*",
