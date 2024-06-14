@@ -405,6 +405,10 @@ var gca_global = {
 			!document.querySelector("link[href$='/cdn57/270eb6a1a8de3fd98cd920e0a396ed.css']")
 		){
 			window.gca_rtl = false;
+			if (localStorage.getItem('gca_rtl')) {
+				localStorage.removeItem('gca_rtl');
+				document.documentElement.classList.remove("gca_rtl");
+			}
 			return;
 		}
 
