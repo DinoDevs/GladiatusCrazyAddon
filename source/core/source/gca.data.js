@@ -109,6 +109,9 @@ var gca_data_manager = {
 
 	// Init
 	init : function(){
+		if (this.ready) return;
+		this.max_init_tries--;
+
 		// Get Player Id
 		var playerId = this.getPlayerId();
 		this.ready = playerId ? true : false;
@@ -117,34 +120,46 @@ var gca_data_manager = {
 		// Patch Name
 		this.name = this.mod + "_" + playerId;
 		this.loadData();
+
+		// Try again later
+		if (this.max_init_tries > 0) {
+			setTimeout(() => { this.init(); }, 100);
+		}
 	},
+	max_init_tries : 10,
+	
 	// Get Player Id
 	getPlayerId : function(){
+		// If gca_section is available
+		if (typeof gca_section !== 'undefined' && gca_section.playerId > 0) {
+			return gca_section.playerId;
+		}
+
+		// Gather server info
 		let section = {
 			country: null,
 			server: null,
 			sh: null
 		};
-		if (typeof gca_section !== 'undefined' && gca_section.playerId > 0 && gca_section.sh) {
-			section = gca_section;
-		}
-		else {
-			let url = document.location.href;
-			section.country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
-			section.server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
-			section.sh = (url.match(/sh=[0-9a-fA-F]+/i))?url.match(/sh=([0-9a-fA-F]+)/i)[1]:null;
-		}
+		let url = document.location.href;
+		section.country = (url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/))?url.match(/s\d+-(\w*)\.gladiatus\.gameforge\.com/)[1]:null;
+		section.server = (url.match(/s\d+-/i))?url.match(/s(\d+)-/i)[1]:null;
+		section.sh = (url.match(/sh=[0-9a-fA-F]+/i))?url.match(/sh=([0-9a-fA-F]+)/i)[1]:null;
 
 		// Resolve Player Id from cookies
-		var cookiePlayerId = (section.sh) ? document.cookie.match(new RegExp("Gca_" + section.country + "_" + section.server + "=(\\d+)_" + section.sh.substring(0, section.sh.length/4), "i")) : false;
+		let cookiePlayerId = (section.sh) ? document.cookie.match(new RegExp("Gca_" + section.country + "_" + section.server + "=(\\d+)_" + section.sh.substring(0, section.sh.length/4), "i")) : false;
 		// If cookie exist
-		if(cookiePlayerId && cookiePlayerId[1]){
+		if (cookiePlayerId && cookiePlayerId[1]){
 			return cookiePlayerId[1];
 		}
-		// Else
-		else{
-			return 0;
+
+		// Is it on window variable
+		if (typeof window.playerId === 'number' && window.playerId > 0) {
+			return window.playerId;
 		}
+
+		// Not found
+		return 0;
 	},
 	// Set Players
 	savePlayer : function(id){

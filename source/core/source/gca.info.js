@@ -54,21 +54,40 @@ var gca_section = {
 	// Get Player's id
 	// WARNING: Whenever this change, also change the gca_data_manager.getPlayerId
 	resolvePlayerId : function(){
+		if (this.resolved_playerId) {
+			return this.playerId;
+		}
+		this.max_resolve_tries--;
+
 		// Resolve Player Id from cookies
 		var cookiePlayerId = (this.sh) ? document.cookie.match(new RegExp("Gca_" + this.country + "_" + this.server + "=(\\d+)_" + this.sh.substring(0, this.sh.length/4),"i")) : false;
 		// If cookie exist
 		if(cookiePlayerId && cookiePlayerId[1]){
 			this.playerId = cookiePlayerId[1];
+			this.resolved_playerId = true;
+			return this.playerId;
 		}
+
 		// Is it on window variable
-		else if (typeof window.playerId === 'number' && window.playerId > 0) {
+		if (typeof window.playerId === 'number' && window.playerId > 0) {
 			this.playerId = window.playerId;
+			this.resolved_playerId = true;
+			return this.playerId;
 		}
+
 		// This is for fallback so that the addon can work
-		else {
-			this.playerId = 0;
+		this.playerId = 0;
+		// Check again later
+		if (this.max_resolve_tries > 0) {
+			setTimeout(() => {
+				this.resolvePlayerId();
+			}, 100);
 		}
+		return 0;
 	},
+	resolved_playerId : false,
+	max_resolve_tries : 10,
+	
 	// Check if logged in
 	isLoggedIn : function(){
 		if(document.getElementById("icon_rubies") != null)
