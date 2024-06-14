@@ -8,6 +8,9 @@
 
 ### IMPROVEMENTS
 
+- **Global**
+  - [x] Fixed Gladiatus' bug that allows the chat to be clicked when hidden. (by Dispater, Oblivion, and Filipe @ Discord)
+
 - **Forge**
   - [x] (Un)Known scrolls can be shared with other players through a share code found in the scrolls book page
 
@@ -25,7 +28,7 @@
   - [x] Fixed wrong forge material on guild message, packages/market links (#416)
 
 - **Workbench**
-  - [x] Fixed workbench not retrieving item after send to packages (#472)
+  - [x] Fixed workbench not retrieving item after sent to packages (#472)
 
 - **Market**
   - [x] Added delay between server calls to the "Cancel All" button to prevent server errors (#424)
