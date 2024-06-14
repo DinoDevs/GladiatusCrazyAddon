@@ -531,6 +531,9 @@
 	.ms_item{padding:2px;cursor:pointer;}
 	#ms_loading{padding:20px;}
 
+/* Hide floating prices when buying/selling */
+	.hide_prices .moneymessage{display: none;} /* .goldRow & .rubyRow */
+
 /* General */
 	.black{color: black;}
 	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;top: 116px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));display: block;margin-left:-32px;}
@@ -1713,6 +1716,8 @@
 		.glfix.event_bar_moved #banner_top {top: 148px!important;}
 		.glfix.event_bar_moved #banner_event {top: 152px!important;}
 		.glfix ul#mainnav li a {z-index: 301;}
+		/* Floating prices not clickable */
+		.glfix .moneymessage{pointer-events: none;} /* .goldRow & .rubyRow */
 		/* Gladiatus all fixes but with RTL */
 		.gca_rtl #highscorePage .section-like {margin-left: auto!important;margin-right: -19px;}
 		.gca_rtl #cooldown_bar_event {left: auto!important;right: 352px;}

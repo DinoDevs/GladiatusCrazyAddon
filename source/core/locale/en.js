@@ -291,6 +291,10 @@ gca_languages["en"] = {
 			recraft_item : "Re-craft item",
 			show_hide_doll : "Show/Hide player dolls",
 			horreum_material_change : "Horreum materials change",
+			unknown_scrolls_share_code : "My unknown scrolls share code",
+			use_share_code : "Use share code",
+			use_share_code_description : "Paste a gladiator's share code to see which scrolls they know:",
+			invalid_share_code : "Invalid share code",
 		},
 		
 		// Merchants
@@ -397,7 +401,7 @@ gca_languages["en"] = {
 			category_global$bar_hide_exp_btn : "Hide the Expedition buttons",
 			category_global$bar_hide_dun_btn : "Hide the Dungeon buttons",
 			category_global$bar_hide_are_btn : "Hide the Arena buttons",
-			category_global$bar_hide_ct_btn : "Hide the Circus Turma buttons",		
+			category_global$bar_hide_ct_btn : "Hide the Circus Turma buttons",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
@@ -472,6 +476,7 @@ gca_languages["en"] = {
 			category_merchants$ruby_icon_on_items : "Add icon on items that cost rubies",
 			category_merchants$show_shop_info : "Show shop info (total gold and rubies)",
 			category_merchants$double_click_actions : "Double click items to sell/buy",
+			category_merchants$hide_prices : "Hide floating prices when selling/buying",
 			// Settings - Forge
 			category_forge$material_links : "[Forge/Repair] Show packages & market shortcuts for each material need",
 			category_forge$show_levels : "[Forge] Show Prefix/Sufix/Base item levels next to names",
@@ -559,6 +564,7 @@ gca_languages["en"] = {
 			all_category : "Run on target category & all",
 			do_not_run : "Do not run",
 			default: "Default",
+			highlight: "Highlight",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",

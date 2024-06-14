@@ -20,11 +20,15 @@ gca_languages['pl'] = {
 		general : {
 			days : "Dni",
 			minutes : "Minut",
+			hours : "Godziny",
 			no_data : "Brak danych",
 			confirm : "Potwierdź",
 			cancel : "Anuluj",
 			close : "Zamknij",
-			error : "Błąd"
+			error : "Błąd",
+			yes : "Tak",
+			no : "Nie",
+			ok : "OK"
 		},
 		global : {
 			life_potion_use : "Użyj mikstury życia",
@@ -69,12 +73,33 @@ gca_languages['pl'] = {
 			gold_exp_data_to_level_up : "ile dni pozostało do poziomu w górę",
 			gold_exp_data_package_tax : "Tygodniowy podatek za paczki",
 			gold_exp_data_total_exp : "Łącznie punkty doświadczenia",
-			gold_exp_data_total_gold : "Łącznie złoto"
+			gold_exp_data_total_gold : "Łącznie złoto",
+			expedition_recover_full : "Pełne odzyskanie punktów wyprawy",
+			dungeon_recover_full : "Pełne odzyskanie punktów lochu",
+			guild_baths_goto : "Przejdź do łaźni gildii (Vox I)",
+			guild_arenareports_goto : "Przejdź do raportów z walki na arenie gildii",
+			guild_templum_goto : "Przejdź do świątyni gildii",
+			auction_food_goto : "Przejdź do aukcji jedzenia",
+			notification_guild_attack_ready : "Odnowienie ataku wojny gildii zakończone!",
+			item_worth_rubies : "Ten przedmiot jest warty rubinów!",
+			gold_exp_data : "Dane o złocie i doświadczeniu",
+			gold_exp_data_measurements : "Pomiary",
+			gold_exp_data_reset : "Statystyki zostały zresetowane!",
+			gold_exp_data_desc : "Dane są zbierane co 5 minut. Sprzedając przedmioty, które kupiłeś, podwoisz zarobki ze złota.",
+			mercenary_type : "Typ: {{name}} ({{number}})",
+			gains_with_full_stats : "Zyski przy pełnych statystykach:",
+			base : "Podstawowe",
+			prefix : "Przedrostek",
+			suffix : "Przyrostek"
 		},
 		overview : {
 			stats_difference : "Różnica",
 			drop_item_see_materials_repair : "Upuść przedmiot, aby zobaczyć jakie składniki będą potrzebne do naprawy",
-			workbench_6th_slot_empty : "6 slot w warsztacie musi być pusty"
+			workbench_6th_slot_empty : "6 slot w warsztacie musi być pusty",
+			more_player_info : "Więcej informacji o graczu",
+			can_use_max_item_level : "Może używać przedmiotów o poziomie maksymalnym: {{max}}.",
+			can_see_market_max_item_level : "Może widzieć przedmioty na rynku o maksymalnym poziomie: {{max}}.",
+			can_see_auction_item_levels : "Może widzieć przedmioty na aukcji od poziomu {{min}} do {{max}}."
 		},
 		pantheon : {
 			mysterybox_open_all : "Otwórz wszystkie",
@@ -87,7 +112,14 @@ gca_languages['pl'] = {
 			library_gold_left : "Złoto do gildii po aktywacji",
 			medic_lost_points : "Stracone punkty",
 			medic_points_to_heal : "Punkty zdrowia",
-			medic_life_after_heal : "Życie po uleczeniu"
+			medic_life_after_heal : "Życie po uleczeniu",
+			total_donations : "Całkowite datki",
+			min_upgrades_gold : "Złoto wydane na ulepszenia (minimum)",
+			max_stolen_gold : "Ukradzione złoto z innych gildii (maksimum)",
+			pinned_message : "Przypięta wiadomość gildii",
+			pin_unpin_message : "Przypnij/Odepnij tę wiadomość",
+			pinned_message_info : "Przypięte wiadomości są wyświetlane na górze wiadomości dla wszystkich członków gildii korzystających z tej funkcji",
+			important_ranks : "Ważne rangi"
 		},
 		expedition : {
 			material_drop_chance : "{{number}}% szans na upuszczenie materiału"
@@ -97,7 +129,29 @@ gca_languages['pl'] = {
 			points_breakdown : "Rozłożenie punktów",
 			stats_calculated_with_yourself_as_an_opponent : "* Statystyki są obliczane na podstawie ataku samego siebie.",
 			total_cost : "Suma ",
-			costs_discount : "Zniżka treningu: {{number}}%"
+			costs_discount : "Zniżka treningu: {{number}}%",
+			points_breakdown_damage : "Obrażenia: +{{integer}} (+{{float}})",
+			points_breakdown_block : "Blokada: +{{integer}}% (+{{float}}%)",
+			points_breakdown_block_max : "Blokada: wartość maksymalna",
+			points_breakdown_block_short : "Blokada: +{{integer}}%",
+			points_breakdown_normal_hit : "Szansa trafienia: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_critical_hit : "Szansa na trafienie krytyczne: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_hit_short : "Trafienie krytyczne: +{{integer}}%",
+			points_breakdown_double_hit : "Szansa na podwójne trafienie: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_double_hit_factor : "Współczynnik podwójnego trafienia: {{number}}",
+			points_breakdown_avoid_double_hit_factor : "Uniknięcie współczynnika podwójnego trafienia: {{number}}",
+			points_breakdown_avoid : "Uniknięcie szansy trafienia krytycznego: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_avoid_max : "Uniknięcie szansy trafienia krytycznego: wartość maksymalna",
+			points_breakdown_avoid_short : "Uniknięcie trafienia krytycznego: +{{integer}}%",
+			points_breakdown_enemy_normal_hit : "Szansa trafienia przeciwnika: {{integer}}% ({{float}}‰) *",
+			points_breakdown_enemy_double_hit : "Szansa na podwójne trafienie przeciwnika: {{integer}}% ({{float}}‰) ",
+			points_breakdown_life : "Punkty życia: +{{number}}",
+			points_breakdown_regeneration : "Regeneracja na godzinę: +{{number}}",
+			points_breakdown_threat : "Zagrożenie: +{{integer}} (+{{float}})",
+			points_breakdown_heal : "Leczenie: +{{integer}} (+{{float}})",
+			points_breakdown_critical_heal : "Leczenie krytyczne: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_heal_max : "Leczenie krytyczne: wartość maksymalna",
+			values_in_parenthesis_explanation : "Wartości w nawiasach pokazują odpowiadające wartości przed zaokrągleniem."
 		},
 		auction : {
 			number_of_items : "Liczba przedmiotów : {{number}}",
@@ -105,15 +159,26 @@ gca_languages['pl'] = {
 			hide_your_gold_here : "Tutaj spakuj swoje złoto",
 			price_value_function : "Cena = Wartość + {{number}}",
 			levels_you_can_see : "Możesz widzieć przedmioty od {{min}} poziomu do {{max}} poziomu.",
+			items_info : "Informacje o przedmiotach",
+			sort : "Sortuj",
+			sort_by : "Sortuj według",
+			sort_order : "Kolejność",
+			asc : "Rosnąco",
+			desc : "Malejąco"
 		},
 		markets : {
 			item_cost_only_x_gold : "Przedmiot kosztuje {{number}} złota.",
 			item_is_soulbound : "Ten przedmiot jest związany z duszą.",
-			are_you_sure_you_want_to_buy : "Jesteś pewny że chcesz to kupić?"
+			are_you_sure_you_want_to_buy : "Jesteś pewny że chcesz to kupić?",
+			item_cant_buy_back : "Nie będziesz mógł/a odkupić tego przedmiotu.",
+			click_enter_to_sell : "naciśnij enter ⏎, aby sprzedać",
+			add_fees_in_price : "Dodaj opłaty do ceny"
 		},
 		forge : {
 			forge_ended : "Wykuwanie zakończone!",
-			recraft_item : "Wykuj ponownie"
+			recraft_item : "Wykuj ponownie",
+			show_hide_doll : "Pokaż/Ukryj lalki gracza",
+			horreum_material_change : "Zmień materiały w horreum"
 		},
 		packages : {
 			event_items : "Przedmioty eventowe",
@@ -302,6 +367,7 @@ gca_languages['pl'] = {
 			category_data$clear_cache_data : "Wyczyść pliki cache dodatku",
 			category_data$cross_browser_login : "Zsynchronizuj przeglądarki",
 			category_data$export_error_player_settings : "Wyeksportuj błędy do pliku",
+			
 			//Przyciski
 			save : "Zapisz wszystko",
 			export : "Export",
@@ -320,7 +386,35 @@ gca_languages['pl'] = {
 			reset_settings_confirm : "Jesteś pewny że chcesz zresetować ustawienia dodatku?",
 			clear_data_confirm : "Jesteś pewny że chcesz wyczyścić wszystkie dane dodatku?",
 			//Powiadomienia
-			notification_reload : "Odśwież stronę, aby zobaczyć efekty"
+			notification_reload : "Odśwież stronę, aby zobaczyć efekty",
+			
+			category_accessibility : "Dostępność",
+			category_global$check_guild_pinned_message : "Pokaż przypięte wiadomości gildii w wiadomościach z łaźni",
+			category_global$check_guild_application_pinned_messages_interval : "Sprawdzaj podania do gildii i przypięte wiadomości co (minuty)",
+			category_global$notify_guild_attack_ready : "Powiadom mnie, gdy odnowienie ataku wojny gildii",
+			category_global$notify_guild_attack_ready_interval : "Sprawdzaj odnowienie ataku wojny gildii co (minuty)",
+			category_global$show_mercenaries_real_name_and_combat_stats : "Wyświetl prawdziwe nazwy najemników (typ) i statystyki bojowe w podpowiedziach",
+			category_global$show_upgrade_values : "Wyświetl wartości wzmocnień i ulepszeń",
+			category_global$gladiatus_site_fixes : "Naprawianie i ulepszanie stylu Gladiatus na stronie",
+			category_global$lock_section_visibility : "Zablokuj bieżący stan sekcji do ukrywania",
+			category_global$hide_language_flags : "Ukryj flagi języków pod nazwami graczy",
+			category_overview$block_avoid_caps : "Pokazuj maksymalne wartości blokady i unikania",
+			category_packages$list_view_layout : "Pokaż paczki jako widok listy",
+			category_packages$pop_over_bag : "Wysuń torbę przy przewijaniu",
+			category_packages$packages_shortcuts : "Dodaj skróty kategorii przedmiotów",
+			category_merchants$ruby_icon_on_items : "Dodaj ikonę na przedmioty kosztujące rubiny",
+			category_market$add_fees_button : "Pokaż przycisk [+] zawierający opłaty w cenie sprzedaży",
+			category_market$custom_prices : "Niestandardowe ceny na rynku, oddzielone przecinkami. Obliczaj na podstawie procentowej wartości ceny przedmiotu, dodając znak '%'. (np. '10000, 10.000, 200%')",
+			category_auction$item_name : "Pokaż nazwy przedmiotów",
+			category_accessibility$white_level_indicators : "Zmień wskaźniki numeru poziomu na białe",
+			category_accessibility$qualty_symbols_indicators : "Dodaj wskaźniki symboli jakości na przedmiotach",
+			category_accessibility$tooltips_qualty_white : "Zmień tytuł przedmiotu w podpowiedziach na biały",
+			category_accessibility$tooltips_qualty_symbols : "Dodaj symbole jakości na podpowiedziach",
+			category_data$export_settings_to_notes : "Eksportuj ustawienia do notatek",
+			category_data$import_settings_from_notes : "Importuj ustawienia z notatek",
+			default : "Domyślne",
+			data_exported_save_the_file : "Dane zostały wyeksportowane. Zapisz plik.",
+			missing_translations : "Brakujące tłumaczenia"
 		}
 	}
 }

@@ -279,6 +279,10 @@ gca_languages['cs'] = {
 			recraft_item : "Znovu vykovat předmět",
 			show_hide_doll : "Zobrazit/Skrýt postavy hráče",
 			horreum_material_change : "Změna stavu surovin ve stodole",
+			unknown_scrolls_share_code : "Můj kód pro sdílení neznámých svitků",
+			use_share_code : "Použít kód pro sdílení",
+			use_share_code_description : "Vložte kód sdílení jiného hráče, pro zobrazení svitků které již znají:",
+			invalid_share_code : "Vložený kód je neplatný"
 		},
 		
 				// Merchants
@@ -460,6 +464,7 @@ gca_languages['cs'] = {
 			category_merchants$ruby_icon_on_items : "Označit ikonkou předměty, které stojí rubíny",
 			category_merchants$show_shop_info : "Zobrazit info obchodu (celkové zlato a rubíny)",
 			category_merchants$double_click_actions : "Dvojklik pro prodat/koupit",
+			category_merchants$hide_prices : "Skrýt plovoucí ceny při nákupu/prodeji",
 			// Settings - Forge
 			category_forge$material_links : "[Kovárna/Pracovní stůl] Zobrazit zkratky zásilek & tržiště pro každý potřebný materiál",
 			category_forge$show_levels : "[Kovárna] Zobrazit základní level Prefixu/Sufixu/Základního předmětů vedle názvů",
@@ -547,6 +552,7 @@ gca_languages['cs'] = {
 			all_category : "Na vybrané kategorii & všechny",
 			do_not_run : "Nikoliv",
 			default: "Výchozí",
+			highlight: "Zvýraznit",
 			
 			// Info
 			translated_percent : "Přeloženo: {{number}}%",

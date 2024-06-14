@@ -16,7 +16,7 @@ var gca_forge = {
 			this.detectForgeEvents();
 			
 			(gca_options.bool("forge","show_levels") &&
-			this.showPrefixSufixBaseLevels());
+			this.showPrefixSuffixBaseLevels());
 			
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
@@ -522,7 +522,7 @@ var gca_forge = {
 	},
 	
 	// Show Fix/Suffix/Base names levels
-	showPrefixSufixBaseLevels : function(){
+	showPrefixSuffixBaseLevels : function(){
 		var options;
 
 		options = document.getElementById('prefix0').getElementsByTagName("option");
@@ -706,7 +706,7 @@ var gca_forge = {
 				url: gca_getPage.link(url_params),
 				success: (html) => {
 					if (html.match('data-hash="' + info.hash + '"')) {
-						let code = html.match(new RegExp('<div data-no-combine="true" data-no-destack="true" data-container-number="(-\\d+)"\\s*>\\s*<div style="[^"]*" class="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-price-gold="' + info.priceGold + '" data-tooltip="[^"]*" data-comparison-tooltip="[^"]*"( data-soulbound-to="[^"]*"|) data-level="' + info.level + '"( data-quality="[^"]*"|) data-hash="' + info.hash + '"[^>]*><\\/div>', 'i'));
+						let code = html.match(new RegExp('<div data-no-combine="true" data-no-destack="true" data-container-number="(-\\d+)"\\s*>\\s*<div style="[^"]*" class="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-price-gold="' + info.priceGold + '"( data-price-multiplier="[^"]*"|) data-tooltip="[^"]*" data-comparison-tooltip="[^"]*"( data-soulbound-to="[^"]*"|) data-level="' + info.level + '"( data-quality="[^"]*"|) data-hash="' + info.hash + '"[^>]*><\\/div>', 'i'));
 						if (code) {
 							slot.item = info;
 							slot.item.id = code[1];
@@ -756,7 +756,7 @@ var gca_forge = {
 			// Handle item on drop
 			if (!this.dropHandler) {
 				this.dropHandler = true;
-				// On ajax request reponse
+				// On ajax request response
 				gca_tools.event.request.onAjaxResponse((data) => {
 					if (!data || !data.url) return;
 					// Analyse action URL
@@ -785,6 +785,10 @@ var gca_forge = {
 			});
 		},
 		updateLinks : function (data){
+			// Check if data are for the active tab
+			if(data.tab!=window.activeForgeBox) return;
+
+			// Check if materials are needed
 			if(!data.info.formula.hasOwnProperty("needed")) return;
 			
 			var requirements = document.getElementsByClassName('crafting_requirements');
@@ -804,13 +808,13 @@ var gca_forge = {
 
 			var amounts = document.getElementsByClassName('forge_amount');
 			for (let i = 0; i < li.length; i++) {
-				if(!Object.keys(data.info.formula.needed)[i])
-					break;
-			
+				if(!Object.keys(data.info.formula.needed)[i]) break;
+				
 				let name = data.info.formula.needed[Object.keys(data.info.formula.needed)[i]].name;
 				if (amounts[i].style.backgroundColor != 'greenyellow'){
 					all_names += name.split(" ")[name.split(" ").length-1]+" ";
-					guild_msg += "\n - "+name+": "+(parseInt(amounts[i].getElementsByClassName('forge_setpoint')[0].textContent, 10) - parseInt(amounts[i].getElementsByClassName('forge_actual_value')[0].textContent, 10));
+					let required = parseInt(amounts[i].getElementsByClassName('forge_setpoint')[0].textContent, 10) - parseInt(amounts[i].getElementsByClassName('forge_actual_value')[0].textContent, 10)
+					guild_msg += "\n - "+name+": "+required;
 				}
 				let box = document.createElement('div');
 				box.className = 'gca_forge_material_links';
@@ -866,6 +870,7 @@ var gca_forge = {
 		},
 
 		sendMessageModal : function(message) {
+			// Create modal if not available
 			if (!this.info) {
 				this.info = {};
 
@@ -1416,15 +1421,40 @@ var gca_forge = {
 			this.prefixWrapper = tbody;
 			this.wrapper.appendChild(aside);
 
-			// Unknown scrolls code unper prefixes
+			// Unknown scrolls code under prefixes
 			h2 = document.createElement('h2');
 			h2.className = 'section-header';
-			h2.textContent = 'Unknown scrolls share code';
+			h2.textContent = gca_locale.get("forge", "unknown_scrolls_share_code");
 			aside.appendChild(h2);
 			section = document.createElement('section');
 			section.style.display = 'block';
 			this.shareCodeSection = section;
 			aside.appendChild(section);
+
+			// Unknown scrolls input code under prefixes
+			h2 = document.createElement('h2');
+			h2.className = 'section-header';
+			h2.textContent =  gca_locale.get("forge", "use_share_code");
+			aside.appendChild(h2);
+			section = document.createElement('section');
+			section.style.display = 'block';
+			section.style.padding = '5px';
+			section.textContent =  gca_locale.get("forge", "use_share_code_description");
+			aside.appendChild(section);
+			// Create shared code input
+			let input = document.createElement('input'); 
+			input.type = "text";
+			input.id = "shared-code-input";
+			section.appendChild(input);
+			// Create button
+			let btn = document.createElement('input'); 
+			btn.type = "button";
+			btn.className = "awesome-button";
+			btn.value = gca_locale.get("settings", "highlight");
+			btn.style.marginLeft = '4px';
+			btn.style.marginRight = '4px';
+			btn.addEventListener('click', this.decodeAndHighlight, false);
+			section.appendChild(btn);
 
 			// Second table with suffixes
 			aside = document.createElement('aside');
@@ -1461,6 +1491,10 @@ var gca_forge = {
 			}, false);
 		},
 
+		// Not shown
+		excludedPre : [0, 12, 56, 57, 58, 59, 87, 88, 97, 100, 110, 111, 113, 117, 119, 121, 123, 125, 126, 127, 128, 129, 133, 136, 137],
+		excludedSuf : [0, 7, 10, 14, 19, 22, 25, 27, 28, 41, 45, 54, 57, 60, 62, 64, 68, 95, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 112, 113, 125, 140, 166, 184, 194, 202, 204, 209, 211, 212, 213, 214, 216, 217, 219, 225, 226, 227, 228, 231, 233, 235, 238],
+
 		update : function() {
 			// If not scroll info not loaded
 			if (!this.loaded) {
@@ -1474,14 +1508,12 @@ var gca_forge = {
 			}
 
 			// Update screen info
-			let exclude;
-
 			let prefix_all = 0;
 			let prefix_learned = 0;
 			this.prefixWrapper.textContent = '';
-			exclude = [0, 12, 56, 57, 58, 59, 87, 88, 97, 100, 110, 111, 113, 117, 119, 121, 123, 125, 126, 127, 128, 129, 133, 136, 137];
+			
 			for (let i = 0; i < this.info.prefix.length; i++) {
-				if (exclude.includes(i)) continue;
+				if (this.excludedPre.includes(i)) continue;
 				prefix_all++;
 				let info = this.info.prefix[i];
 				let tr = document.createElement('tr');
@@ -1517,9 +1549,8 @@ var gca_forge = {
 			let suffix_all = 0;
 			let suffix_learned = 0;
 			this.suffixWrapper.textContent = '';
-			exclude = [0, 7, 10, 14, 19, 22, 25, 27, 28, 41, 45, 54, 57, 60, 62, 64, 68, 95, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 112, 113, 125, 140, 166, 184, 194, 202, 204, 209, 211, 212, 213, 214, 216, 217, 219, 225, 226, 227, 228, 231, 233, 235, 238];
 			for (let i = 0; i < this.info.suffix.length; i++) {
-				if (exclude.includes(i)) continue;
+				if (this.excludedSuf.includes(i)) continue;
 				suffix_all++;
 				let info = this.info.suffix[i];
 				let tr = document.createElement('tr');
@@ -1552,7 +1583,7 @@ var gca_forge = {
 			this.suffixNote.textContent = '(' + suffix_learned + '/' + suffix_all + ')';
 
 			// Add share code
-			this.shareCodeSection.textContent = "(this is currently useless) " + this.getUnknownsCode();
+			this.shareCodeSection.textContent = this.getUnknownsCode();
 		},
 
 		updateInfo : function(result) {
@@ -1595,7 +1626,36 @@ var gca_forge = {
 				);
 				return;
 			}
-			
+
+			// Convert {false, false, true ...} to 001011
+			getBinaryStr = function(arr, exc = [], val=null) {
+				return arr.map(function(x, i) {
+					if(exc.includes(i)) return '';
+					return (x === val) ? '1' : '0'
+				}).join('');
+			}
+			// Remove not shown items from binary string
+			remExcluded = function(str, indexes) {
+				for (var i = indexes.length - 1; i > 0; i--) {
+					let pos = indexes[i]
+					str = str.substring(0, pos) + str.substring(pos + 1, str.length);
+				}
+				return str;
+			}
+			// Implementing: https://stackoverflow.com/a/38074583/10396046
+			pack = function(bin) {
+				return btoa(bin.match(/(.{8})/g).map(function(x) {return String.fromCharCode(parseInt(x, 2));}).join(''));
+			}
+
+			// Uncompressed code
+			// the 1st item from prefixes is removed (not shown)
+			let code = getBinaryStr(this.info.prefix, this.excludedPre) + getBinaryStr(this.info.suffix, this.excludedSuf);
+			// Compress code
+			code = pack(code);
+
+			return code;
+
+			/* Code testing other compression mechanisms
 			// Get all indexes where values are equal to:
 			getAllIndexes = function(arr, val=null) {
 				var indexes = [], i;
@@ -1605,7 +1665,7 @@ var gca_forge = {
 				return indexes;
 			}
 			// Abstract the previous term from each item
-			// (convers list off indexes to distance from the previous)
+			// (converts list off indexes to distance from the previous)
 			getAbstractCompress = function(arr) {
 				var compArr = [], i;
 				//compArr.push(arr[0]); //skip first because it is the 0 anyway
@@ -1613,12 +1673,38 @@ var gca_forge = {
 					compArr.push(arr[i]-arr[i-1]);
 				return compArr;
 			}
+			// Decode functions
 			getAbstractDecompress = function(arr) {
 				var decompArr = [], i;
 				decompArr.push(arr[0]);
 				for(i = 1; i < arr.length; i++)
 					decompArr.push(arr[i]+decompArr[i-1]);
 				return decompArr;
+			}
+			decode = function(code){
+				let codes = code.split(' ');
+				let arr = [[],[]];
+				for(i=0; i<codes.length; i++){
+					groups = codes[i].split('-');
+					for(j=0; j<groups.length; j++){
+						if(groups[j].charAt(0)=='~'){
+							let decNum = convertBase(groups[j].substring(1, groups[j].length), 110, 10);
+							arr[i].push(parseInt(decNum));
+						}else{
+							let decNum = convertBase(groups[j], 110, 10);
+							if(decNum.length < 4){
+								arr[i].push(parseInt(decNum));
+							}else{
+								decNum = decNum.toString(10).split("").map(function(t){return parseInt(t)})
+								arr[i] = arr[i].concat(decNum);
+							}
+						}
+					}
+				}
+				// Convert from distances to indexes
+				for(i=0; i<arr.length; i++)
+					arr[i] = getAbstractDecompress(arr[i]);
+				return arr;
 			}
 			// Convert numbers to other base (10 -> 16, up to 110)
 			convertBase = function convertBase(value, from_base, to_base) {
@@ -1639,17 +1725,6 @@ var gca_forge = {
 					dec_value = (dec_value - (dec_value % to_base)) / to_base;
 				}
 				return new_value || '0';
-			}
-			// Custom compress
-			getCompress = function(arr) {
-				var compArr = [], i;
-				for(i = 0; i < arr.length; i++)
-					if (arr[i].toString().length == 1)
-						compArr.push(arr[i]);
-					else
-						compArr.push('-'+arr[i]+'-');
-				
-				return compArr.join('').replace(/--/gi,'-');
 			}
 			// Custom compress
 			getCompress2 = function(arr) {
@@ -1678,49 +1753,49 @@ var gca_forge = {
 				return compArr.join('-');
 			}
 
-			// Unknown indexes
-			//console.log(getAllIndexes(this.info.prefix), getAllIndexes(this.info.suffix));
-			// Differences of indexes
-			//console.log(getAbstractCompress(getAllIndexes(this.info.prefix)), getAbstractCompress(getAllIndexes(this.info.suffix)));
-			// Soft compress
-			//console.log(getCompress(getAbstractCompress(getAllIndexes(this.info.prefix))), getCompress(getAbstractCompress(getAllIndexes(this.info.suffix))));
-
-			decode = function(code){
-				let codes = code.split(' ');
-				let arr = [[],[]];
-				for(i=0; i<codes.length; i++){
-					groups = codes[i].split('-');
-					for(j=0; j<groups.length; j++){
-						if(groups[j].charAt(0)=='~'){
-							let decNum = convertBase(groups[j].substring(1, groups[j].length), 110, 10);
-							arr[i].push(parseInt(decNum));
-						}else{
-							let decNum = convertBase(groups[j], 110, 10);
-							if(decNum.length < 4){
-								arr[i].push(parseInt(decNum));
-							}else{
-								decNum = decNum.toString(10).split("").map(function(t){return parseInt(t)})
-								arr[i] = arr[i].concat(decNum);
-							}
-						}
-					}
-				}
-				// Convert from distances to indexes
-				for(i=0; i<arr.length; i++)
-					arr[i] = getAbstractDecompress(arr[i]);
-				return arr;
-			}
-
 			let unknownPrefix = getCompress2(getAbstractCompress(getAllIndexes(this.info.prefix)));
 			let unknownSuffix = getCompress2(getAbstractCompress(getAllIndexes(this.info.suffix)));
 			
-			let code = `${unknownPrefix} ${unknownSuffix}`;
+			code = `${unknownPrefix} ${unknownSuffix}`;
 			//console.log('Unknown code: ', code);
 
 			// Decode back:
 			//console.log('Decode: ', decode(code));
 
 			return code;
+			*/
+		},
+
+		decodeAndHighlight : function(){
+			// Implementing: https://stackoverflow.com/a/38074583/10396046
+			unpack = function(packed) {
+				return atob(packed).split('').map(function(x) {return ('0000000' + x.charCodeAt(0).toString(2)).substr(-8, 8);}).join('');
+			}
+			// Convert 001011 to {false, false, true ...}
+			getArrayFromBin = function(bin) {
+				return bin.split('').map(function(x) {return x === '1'});
+			}
+
+			let code = document.getElementById('shared-code-input').value;
+			// Get boolean array with the visible unknown scrolls as True
+			let array;
+			try {
+				array = getArrayFromBin(unpack(code));
+			} catch (error) {
+				gca_notifications.error(gca_locale.get('forge', 'invalid_share_code'));
+				return;
+			}
+			// Check decompressed data
+			if(array.length != 400){
+				gca_notifications.error(gca_locale.get('forge', 'invalid_share_code'));
+				return;
+			}
+			
+			// Highligh missing
+			var container = document.getElementById("content_2nd");
+			for (var i = 0, row; row = container.getElementsByTagName("tr")[i]; i++) {
+				row.style.color = (array[i])? 'red' : 'green';
+			}
 		}
 	},
 

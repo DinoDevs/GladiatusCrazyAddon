@@ -3,7 +3,7 @@
  * Name : Magyar (Hungarian)
  * Code : [none]
  * Tag  : hu
- * Translator: Adamus23, Saiid
+ * Translator: Adamus23, Saiid, Gabooor
  */
 
 // Languages Object
@@ -15,7 +15,7 @@ gca_languages['hu'] = {
 	// Language name
 	name : 'Magyar (Hungarian)',
 	// Translators (authors of this script)
-	translators : ["Adamus23", "Saiid"],
+	translators : ["Adamus23", "Saiid", "Gabooor"],
 
 	// Translations object
 	locale : {
@@ -70,16 +70,18 @@ gca_languages['hu'] = {
 			guild_market_goto : "Ugrás az egyesületi piachoz",
 			guild_storage_goto : "Ugrás a raktárépülethez",
 			guild_bank_goto : "Ugrás a bankhoz",
+			guild_baths_goto : "Ugrás a Vox Logusba",
 			guild_warcamp_goto : "Ugrás a harcmesterek csarnokához",
 			guild_arenareports_goto : "Ugrás az egyesület csatajelentéseihez",
 			guild_jail_goto : "Ugrás a negotium x-hez",
 			guild_library_goto : "Ugrás a könyvtárhoz",
 			guild_templum_goto : "Ugrás a templomhoz",
+			auction_food_goto : "Ugrás az élelmiszer aukciókhoz",
 			guild_medic_goto : "Ugrás a villa medici-hez",
 			simulator_goto : "Ugrás a szimulátorhoz",
 			stats_display : "Statisztikám mutatása",
 			online_display : "Aktív barátok mutatása",
-
+			
 			// Online friends
 			online_friends : "Aktív barátok",
 			guild_friends : "Egyesületi társak",
@@ -117,9 +119,12 @@ gca_languages['hu'] = {
 			gold_exp_data_measurements : "Értékek",
 			gold_exp_data_total_exp : "Összes tapasztalat",
 			gold_exp_data_total_gold : "Összes arany",
+			gold_exp_data_reset : "A statisztikák nullázódtak!",
+			gold_exp_data_desc : "Az adatok 5 percenként kerülnek mentésre. Ha vásárolsz egy tárgyat és újra eladod, az mégegyszer felszámolódik.",
 
 			// Items
 			mercenary_type : "Írd: {{name}} ({{number}})",
+			gains_with_full_stats : "Maximális statisztikákkal járó értékek:",
 		},
 
 		// Overview
@@ -149,6 +154,9 @@ gca_languages['hu'] = {
 		guild : {
 			// Guild Bank
 			bank_all_gold : "Összes arany",
+			total_donations : "Összes adomány",
+			min_upgrades_gold : "Fejlesztésekre elköltött arany (minimum)",
+			max_stolen_gold : "Más egyesületektől rabolt arany (maximum)",
 
 			// Library
 			library_per_point_cost : "Ára pontonként",
@@ -157,7 +165,15 @@ gca_languages['hu'] = {
 			// Medic
 			medic_lost_points : "Elvesztett életerő pontok",
 			medic_points_to_heal : "Gyógyítható életerő pontok",
-			medic_life_after_heal : "Életerő gyógyítás után"
+			medic_life_after_heal : "Életerő gyógyítás után",
+
+			// Baths
+			pinned_message : "Rögzített egyesületi üzenet",
+			pin_unpin_message : "Üzenet rögzítése / rögzítés törlése",
+			pinned_message_info : "A rögzített üzenetek mindenki számára az üzenetek tetején lesz látható",
+
+			// Important ranks button
+			important_ranks : "Fontos rangok"
 		},
 
 		// Expedition
@@ -194,6 +210,28 @@ gca_languages['hu'] = {
 			// Points analysis
 			stats_points : "Képességek",
 			points_breakdown : "Képességek elemzése",
+			points_breakdown_damage : "Sebzés: +{{integer}} (+{{float}})",
+			points_breakdown_block : "Blokkolás: +{{integer}}% (+{{float}}%)",
+			points_breakdown_block_max : "Blokkolás: maximum érték",
+			points_breakdown_block_short : "Blokkolás: +{{integer}}%",
+			points_breakdown_normal_hit : "Esély a találatra: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_critical_hit : "Esély a kritikus találatra: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_hit_short : "Kritikus találat: +{{integer}}%",
+			points_breakdown_double_hit : "Dupla találat: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_double_hit_factor : "Dupla találati faktor: {{number}}",
+			points_breakdown_avoid_double_hit_factor : "Dupla találat elkerülési faktor: {{number}}",
+			points_breakdown_avoid : "Kritikus találat elkerülésének esélye: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_avoid_max : "Kritikus találat elkerülésének esélye: maximum érték",
+			points_breakdown_avoid_short : "Kritikus találat elkerülésének esélye: +{{integer}}%",
+			points_breakdown_enemy_normal_hit : "Ellenfél találatának esélye: {{integer}}% ({{float}}‰) *",
+			points_breakdown_enemy_double_hit : "Ellenfél dupla találatának esélye: {{integer}}% ({{float}}‰) *",
+			points_breakdown_life : "Életerő: +{{number}}",
+			points_breakdown_regeneration : "Regeneráció óránként: +{{number}}",
+			points_breakdown_threat : "Veszély: +{{integer}} (+{{float}})",
+			points_breakdown_heal : "Gyógyítás: +{{integer}} (+{{float}})",
+			points_breakdown_critical_heal : "Kritikus gyógyítás: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_heal_max : "Kritikus gyógyítás: maximum érték",
+			values_in_parenthesis_explanation : "A zárójelekben található érték a kerekítés előtti értéket mutatja.",
 			stats_calculated_with_yourself_as_an_opponent : "* Az elemzést egy saját magad ellen folytatott harc alapján számolja",
 			// Cost calculator
 			total_cost : "Összköltség",
@@ -231,14 +269,17 @@ gca_languages['hu'] = {
 			item_cant_buy_back : "Ezt a tárgyat nem fogod tudni visszavásárolni.",
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Biztos meg akarod venni ezt a tárgyat?",
-			click_enter_to_sell : "nyomj entert ⏎ az eladáshoz"
+			click_enter_to_sell : "nyomj entert ⏎ az eladáshoz",
+			// Tooltips
+			add_fees_in_price : "Piaci díj hozzáadása az árhoz"
 		},
 
 		// Forge
 		forge : {
 			forge_ended : "Olvasztás befejeződött!",
 			recraft_item : "Tárgy újrakovácsolása",
-			show_hide_doll : "Mutasd/rejtsd el a játékos felszereléseit"
+			show_hide_doll : "Mutasd/rejtsd el a játékos felszereléseit",
+			horreum_material_change : "Csűr nyersanyag változás"
 		},
 
 		// Merchants
@@ -253,7 +294,7 @@ gca_languages['hu'] = {
 			known_scroll : "Már tudod a tekercset",
 			unknown_scroll : "Még nem tudod a tekercset",
 			advance_filters : "Speciális szűrők",
-			advance_filters_apply : "Szűrők elogadása",
+			advance_filters_apply : "Szűrők elfogadása",
 			advance_filters_clear : "Szűrők törlése",
 			advance_filters_found : "({{items}} találása)"
 		},
@@ -299,6 +340,7 @@ gca_languages['hu'] = {
 			category_expedition : "Expedíció",
 			category_guild : "Egyesület",
 			category_auction : "Aukció",
+			category_accessibility : "Megjelenítés",
 			category_events : "Eventek",
 			category_sound : "Hangok",
 			category_data : "Adatok",
@@ -399,6 +441,7 @@ gca_languages['hu'] = {
 			category_training$show_points_after_upgrade : "Mutassa a képességek értékét gyakorlás után",
 			// Settings - Merchants
 			category_merchants$fade_unaffordable_items : "Homályosítsa el a tárgyakat, amelyekre nincs elég aranyunk/rubinunk",
+			category_merchants$ruby_icon_on_items : "Ikon hozzáadása azokhoz a tárgyakhoz amik rubinba kerülnek",
 			category_merchants$show_shop_info : "Mutassa az oldal teljes árát (rubinban és aranyban)",
 			category_merchants$double_click_actions : "Dupla kattintás egy tárgyra az eladáshoz/vásárláshoz",
 			// Settings - Forge
@@ -420,6 +463,7 @@ gca_languages['hu'] = {
 			category_market$one_gold_warning : "Figyelmeztetés 1 aranyba kerülő tárgy vásárlásánál",
 			category_market$cancel_all_button : "Összes visszavétele gomb mutatása",
 			category_market$remember_sell_duration : "Emlékezzen a legutóbb használt eladási időre",
+			category_market$add_fees_button : "[+] gomb mutatása, amivel hozzáadhatjuk a piaci díjat az árhoz",
 			category_market$sell_duration : "Eladási idő kiválasztása",
 			category_market$one_gold_mode : "Mutassa az 1 aranyért eladás gombot",
 			category_market$remember_sort : "Emlékezzen a legutóbb használt keresési sorrendre",
@@ -443,10 +487,16 @@ gca_languages['hu'] = {
 			category_auction$more_search_levels : "Mutasson több lehetőséget a szint szerinti keresésnél",
 			category_auction$item_price_analyze : "Analizálja a tárgyak árát",
 			category_auction$item_level : "Mutassa a tárgyak szintjét",
+			category_auction$item_name : "Tárgyak nevének mutatása",
 			category_auction$x3_items_per_line : "Rendezze a tárgyakat 3 oszlopba",
 			category_auction$multi_bids : "Licitálás az oldal frissítése nélkül",
 			category_auction$extra_item_stats : "További statisztikák megjelenítése a tárgyaknál",
 			category_auction$save_last_state : "Legutóbb használt szűrő elmentése",
+			// Settings - Accessibility
+			category_accessibility$white_level_indicators : "Tárgy szintek jelzése fehér színnel",
+			category_accessibility$qualty_symbols_indicators : "Tárgyak minőségét jelző szimbólumok mutatása",
+			category_accessibility$tooltips_qualty_white : "Tárgyak nevének megjelenítése fehér színnel (tárgy információját mutató kis ablakban)",
+			category_accessibility$tooltips_qualty_symbols : "Tárgyak minőgését jelző szimbólumok mutatása (tárgy információját mutató kis ablakban)",
 			// Settings - Events
 			category_events$craps_timer : "A kockadobás játék időzítőjének megjelenítése az oldal tetején",
 			category_events$server_quest_timer : "Esemény időzítőjének megjelenítése az oldal tetején",
@@ -457,6 +507,8 @@ gca_languages['hu'] = {
 			// Settings - Data
 			category_data$export_settings : "Exportálja a beállítások adatait fájlba",
 			category_data$import_settings : "Importálja a beállítások adatait fájlból",
+			category_data$export_settings_to_notes : "Beállítások exportálása a feljegyzésekhez",
+			category_data$import_settings_from_notes : "Beállítások importálása a feljegyzésekből",
 			category_data$reset_settings : "Segédprogram beállításainak visszaállítása",
 			category_data$clear_data : "A segédprogram adatainak törlése",
 			category_data$clear_cache_data : "A segédprogram gyorsítótárának törlése",

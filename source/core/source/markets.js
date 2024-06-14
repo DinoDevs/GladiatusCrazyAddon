@@ -282,56 +282,60 @@ var gca_markets = {
 		},
 	},
 	
-	// Cancel all button
-	cancelAllButton : function(){
-		var buttons = document.getElementsByName('cancel');
-		
-		if(buttons.length>0){
-			//create button
-			var button = document.createElement("input");
+		// Cancel market items button
+		cancelAllButton: function(){
+    		let buttons = document.getElementsByName('cancel');
+    		if (buttons.length == 0) return;
+
+			// Create the cancel all button
+			let button = document.createElement("input");
 			button.type = 'button';
 			button.className = "awesome-button";
 			button.id = 'cancelAllButton';
 			button.style = "margin-top: -21px;position: absolute;right: 116px;";
 			button.value = buttons[0].value + ' ('+buttons.length+')';
-			button.dataset.current = 0;
-			button.dataset.max = buttons.length;
+
 			button.addEventListener('click', function(){
-				// Cancel all code
-				var rows = document.getElementById("market_table").getElementsByTagName("tr");
-				var forms = document.getElementById("market_table").getElementsByTagName("form");
-				var cancel = encodeURIComponent(document.getElementsByName('cancel')[0].value);
-				var id;
-				for(var i = 1; i <= rows.length - 1; i++){
-					if(typeof rows[i].getElementsByTagName("input")['cancel'] !== "undefined"){
-						id = forms[i - 1].buyid.value;
-						jQuery.ajax({
-							type: "POST",
-							url: document.location.href,
-							data: 'buyid=' + id + '&cancel=' + cancel,
-							success: function(){
-								if(document.getElementById('cancelAllButton').dataset.current==document.getElementById('cancelAllButton').dataset.max-1){
-									document.location.href=document.location.href.replace(/&p=\d+/i,"");
-									return;
-								}
-								document.getElementById('cancelAllButton').dataset.current++;
-								document.getElementById('cancelAllButton').value = buttons[0].value + ' ( '+document.getElementById('cancelAllButton').dataset.current+'/'+document.getElementById('cancelAllButton').dataset.max+')';;
-							},
-							error: function(){
-								gca_notifications.error(gca_locale.get("general", "error"));
-							}
-						});
+				let cancelStr = buttons[0].value;
+				let cancel = encodeURIComponent(cancelStr);
+				let canceledCount = 0; // Counter
+				let total = buttons.length;
+				let forms = document.getElementById("market_table").getElementsByTagName("form");
+
+				let delayRequests = 100; // delay between requests in ms
+				
+				function cancelNextButton(index) {
+					if (canceledCount >= total) {
+						// If finished, refresh
+						document.location.href = document.location.href.replace(/&p=\d+/i,"");
+						return;
 					}
+
+					let id = forms[index].buyid.value;
+					jQuery.ajax({
+						type: "POST",
+						url: document.location.href,
+						data: 'buyid=' + id + '&cancel=' + cancel,
+						success: function() {
+							canceledCount++;
+							button.value = `Cancel (${canceledCount}/${total})`;
+							setTimeout(cancelNextButton(index + 1), delayRequests);
+						},
+						error: function() {
+							canceledCount++;
+							gca_notifications.error(gca_locale.get("general", "error"));
+							// Double the delay, just in case
+							setTimeout(cancelNextButton(index + 1), 2 * delayRequests);
+						}
+					});
 				}
-				
-				
-				//document.location.href
-				//'buyid='+itemsId+'&cancel='+encodeURIComponent(cancel)
-			}, false);
-			
+
+				cancelNextButton(0);
+			});
+
+			// Append DOM
 			var base = document.getElementById("market_table");
-			base.parentNode.insertBefore(button,base);
-		}
+			base.parentNode.insertBefore(button, base);
 	},
 	
 	// Default sell duration

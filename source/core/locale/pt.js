@@ -199,7 +199,7 @@ gca_languages['pt'] = {
 			// Cost calculator
 			total_cost : "Custo total",
 			// Discount show
-			costs_discount : "Desconto nos custos de treino"
+			costs_discount : "Desconto nos custos de treino: {{number}}%"
 		},
 		
 		// Auction section
