@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-2-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -19,6 +19,7 @@
 
 - **Global**
   - [x] Power-ups/Pacts times not updating/crashing (#441)
+  - [x] Page direction detection fix 
 
 - **Forge**
   - [x] Fixed wrong forge material on guild message, packages/market links (#416)
