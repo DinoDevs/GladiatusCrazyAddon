@@ -1956,41 +1956,53 @@ var gca_global = {
 		},
 
 		// Move event bar
-		event_bar_move : {
-			moved : false,
-			preload : function(){
-				// Insert it on html tag
-				document.documentElement.className += " event_bar_moved";
-				// Set moved
-				this.moved = true;
-
-				// Fix for tall tabs
-				let tabs = document.getElementsByClassName("awesome-tabs");
-				var tallTabFound = false;
-				for (let i = tabs.length - 1; i >= 0; i--) {
-					if ( tabs[i].textContent.length >= 19 ) //more or equal than 19 characters
-						tallTabFound = true;
-				}
-				if (tallTabFound)
-					document.getElementById("mainnav").className += " gca_long_tabs";
-			},
-			load : function(){
-				// Get banner
-				var banner = document.getElementById("banner_top");
-				var div = document.getElementById("banner_event");
-				// Check if active
-				if(banner && div && (banner.style.display == '' || banner.style.display == 'block')){
-					if(!this.moved){
-						gca_data.section.set("cache", "event_bar_active", 1);
-						this.preload();
-					}
-				}
-				// Remove class
-				else if(this.moved){
-					gca_data.section.set("cache", "event_bar_active", 0);
-					document.documentElement.className = document.documentElement.className.replace(/\s*event_bar_moved\s*/i, " ");
-				}
-			}
+		event_bar_move: {
+		    moved: false,
+		    preload: function() {
+		        // Insert it on html tag
+		        document.documentElement.classList.add("event_bar_moved");
+		        // Set moved
+		        this.moved = true;
+		        // Fix for tall tabs
+		        let tabs = document.getElementsByClassName("awesome-tabs");
+		        let tallTabFound = false;
+		        for (let i = tabs.length - 1; i >= 0; i--) {
+		            if (tabs[i].textContent.length >= 19) { // more or equal than 19 characters
+		                tallTabFound = true;
+		            }
+		        }
+		        if (tallTabFound) {
+		            document.getElementById("mainnav").classList.add("gca_long_tabs");
+		        }
+		    },
+		    load: function() {
+		        // Get banner
+		        let banner = document.getElementById("banner_top");
+		        let div = document.getElementById("banner_event");
+		        // Check if active
+		        if (banner && div && (banner.style.display === '' || banner.style.display === 'block')) {
+		            if (!this.moved) {
+		                gca_data.section.set("cache", "event_bar_active", 1);
+		                this.preload();
+		            }
+		        }
+		        // Remove class
+		        else if (this.moved) {
+		            gca_data.section.set("cache", "event_bar_active", 0);
+		            document.documentElement.classList.remove("event_bar_moved");
+		        }
+		        // Applying Gladiatus Fixes banner after this
+		        this.glfixesFeature();
+		    },
+		    // Apply Gladiatus Fixes banner if enabled
+		    glfixesFeature: function() {
+		        // Is enabled?
+		        if (gca_options.bool("global", "gladiatus_site_fixes")) {
+		            setTimeout(function() {
+		                document.documentElement.classList.add("glfix");
+		            }, 0);
+		        }
+		    }
 		},
 		
 		// Implement a top fixed bar to show important info on scroll
