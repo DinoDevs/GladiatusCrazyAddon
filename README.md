@@ -121,6 +121,9 @@ Additional active GCA team members:
 <dl>
   <dt>Sleeping*Shadow ~ Documentation Master  ~ https://github.com/SleepingShadow-bit</dt>
   <dd>Great Projects need Documentation.</dd>
+  
+  <dt>FrutyX ~ Tasks Coordinator  ~ https://github.com/FrutyX</dt>
+  <dd>Making sure everything is in order.</dd>
 </dl>
 
 
