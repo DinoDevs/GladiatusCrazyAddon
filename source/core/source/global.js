@@ -1998,9 +1998,12 @@ var gca_global = {
 		    glfixesFeature: function() {
 		        // Is enabled?
 		        if (gca_options.bool("global", "gladiatus_site_fixes")) {
-		            setTimeout(function() {
-		                document.documentElement.classList.add("glfix");
-		            }, 0);
+		            // Check the class first
+		            if (!document.documentElement.classList.contains("glfix")) {
+		                setTimeout(function() {
+		                    document.documentElement.classList.add("glfix");
+		                }, 0);
+		            }
 		        }
 		    }
 		},
