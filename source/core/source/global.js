@@ -15,7 +15,7 @@ var gca_global = {
 				this.preinject();
 			});
 			// Try to detect
-			this.detectPlayerId();
+			this.detectPlayerId.run();
 			return;
 		}
 
@@ -108,7 +108,7 @@ var gca_global = {
 				this.inject();
 			});
 			// Try to detect
-			this.detectPlayerId();
+			this.detectPlayerId.run();
 			return;
 		}
 
@@ -5832,48 +5832,77 @@ var gca_global = {
 		}
 	},
 
-	detectPlayerId : function() {
-		// Dont run if not logged in
-		if (!gca_getPage.parameter('sh')) return;
-		// Try to detect player id using xhr
-		fetch(gca_getPage.link({"mod":"overview"})).then(x => x.text()).then(x => {
-			let playerId = x.match(/var\s+playerId\s+=\s+(\d+);/);
-			if (!playerId) {
-				console.error('Failed to detect player id using xhr.');
-				return;
-			}
-
-			// If the current player id is invalid
-			if (gca_section.playerId <= 0) {
-				// Get new player id
-				playerId = parseInt(playerId[1], 10);
-
-				// Failsafe check
-				if (playerId <= 0) {
-					console.error('Invalid player id detected using xhr.');
+	detectPlayerId : {
+		atomic : false,
+		run : function() {
+			// Dont run if not logged in
+			if (!gca_getPage.parameter('sh')) return;
+			if (this.atomic) return;
+			this.atomic = true;
+			// Try to detect player id using xhr
+			fetch(gca_getPage.link({"mod":"overview"})).then(x => x.text()).then(x => {
+				let playerId = x.match(/var\s+playerId\s+=\s+(\d+);/);
+				if (!playerId) {
+					console.error('Failed to detect player id using xhr.');
 					return;
 				}
 
-				// All cookies will expire if not used for some days
-				let d = new Date();
-				d.setTime(d.getTime() + (14 * 24*60*60*1000));
-				let cookie_expires = "expires="+ d.toUTCString();
+				// If the current player id is invalid
+				if (gca_section.playerId <= 0) {
+					// Get new player id
+					playerId = parseInt(playerId[1], 10);
 
-				// Create player id cookie
-				let cookie_name = "Gca_" + gca_section.country + "_" + gca_section.server;
-				let cookie_value = playerId + "_" + gca_section.sh.substring(0, gca_section.sh.length/4);
-				let cookie_samesite = "SameSite=Strict; Secure"
-				document.cookie = cookie_name + "=" + cookie_value + "; " + cookie_expires + "; path=/" + "; " + cookie_samesite;
+					// Failsafe check
+					if (playerId <= 0) {
+						console.error('Invalid player id detected using xhr.');
+						return;
+					}
 
-				// Update player id
-				gca_section.resolvePlayerId();
-				gca_data_manager.init();
-				gca_options.init();
+					this.store(playerId);
 
-				// Fire event
-				gca_tools.event.fireOnce('player-id-updated');
-			}
-		});
+					// Clear atomic
+					this.atomic = false;
+					// Fire event
+					gca_tools.event.fireOnce('player-id-updated');
+				}
+			});
+
+			this.timeout_pointers = [
+				setTimeout(() => {this.retrieveFromLocal();}, 0),
+				setTimeout(() => {this.retrieveFromLocal();}, 50),
+				setTimeout(() => {this.retrieveFromLocal();}, 100),
+				setTimeout(() => {this.retrieveFromLocal();}, 250),
+				setTimeout(() => {this.retrieveFromLocal();}, 500)
+			];
+		},
+
+		retrieveFromLocal : function () {
+			if (gca_section.playerId > 0) return;
+			if (!window.playerId && window.playerId <= 0) return;
+
+			this.store(window.playerId);
+
+			this.timeout_pointers.forEach(x => clearTimeout(x));
+			this.timeout_pointers = [];
+		},
+
+		store : function(playerId) {
+			// All cookies will expire if not used for some days
+			let d = new Date();
+			d.setTime(d.getTime() + (14 * 24*60*60*1000));
+			let cookie_expires = "expires="+ d.toUTCString();
+
+			// Create player id cookie
+			let cookie_name = "Gca_" + gca_section.country + "_" + gca_section.server;
+			let cookie_value = playerId + "_" + gca_section.sh.substring(0, gca_section.sh.length/4);
+			let cookie_samesite = "SameSite=Strict; Secure"
+			document.cookie = cookie_name + "=" + cookie_value + "; " + cookie_expires + "; path=/" + "; " + cookie_samesite;
+
+			// Update player id
+			gca_section.resolvePlayerId();
+			gca_data_manager.init();
+			gca_options.init();
+		}
 	},
 
 	maid : {

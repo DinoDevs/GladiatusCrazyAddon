@@ -62,7 +62,7 @@ var gca_section = {
 		// Resolve Player Id from cookies
 		var cookiePlayerId = (this.sh) ? document.cookie.match(new RegExp("Gca_" + this.country + "_" + this.server + "=(\\d+)_" + this.sh.substring(0, this.sh.length/4),"i")) : false;
 		// If cookie exist
-		if(cookiePlayerId && cookiePlayerId[1]){
+		if (cookiePlayerId && cookiePlayerId[1]) {
 			this.playerId = cookiePlayerId[1];
 			this.resolved_playerId = true;
 			return this.playerId;
