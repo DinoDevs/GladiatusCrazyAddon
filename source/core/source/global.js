@@ -303,6 +303,9 @@ var gca_global = {
 
 		// Clean trash
 		this.maid.clean();
+
+		// INFO: Testing the error detection feature
+		// throw new Error('123');
 	},
 	
 	scripts : {
@@ -5976,6 +5979,70 @@ var gca_global = {
 		}
 	}
 };
+
+// Global Errors Handling
+(function(){
+	let error_list = [];
+	window.addEventListener('error', (msg, url, linenumber) => {
+		if (!event || !event.filename || !event.filename.contains('extension://')) return;
+		let filename_match = event.filename.match(/\/core\/source\/([a-zA-Z0-9_\-\.\/]+)/i);
+		if (!filename_match) return;
+
+		// Gether error info
+		error_list.push({
+			filename: filename_match[1],
+			lineno: event.lineno,
+			message: event.message,
+			stack: event?.error?.stack || ''
+		});
+
+		// Already initialised
+		if (error_list.length > 1) return;
+
+		// Create error icon
+		let wrapper = document.createElement('div');
+		wrapper.className = 'notification-error';
+		wrapper.style.position = 'fixed';
+		wrapper.style.bottom = '5px';
+		wrapper.style.left = '5px';
+		wrapper.style.background = 'none';
+		wrapper.style.border = 'none';
+		let icon = document.createElement('div');
+		icon.className = 'icon';
+		icon.title = 'GCA Error(s) detected.';
+		icon.style.width = '16px';
+		icon.style.height = '16px';
+		icon.style.cursor = 'pointer';
+		wrapper.appendChild(icon);
+		document.body.appendChild(wrapper);
+
+		icon.addEventListener('click', () => {
+			let errors = error_list.map(info => {
+				return 'Error --------------\n' + info.filename + ':' + info.lineno + '\n' + info.message + '\n' + info.stack
+			}).join('\n\n');
+
+			// You never know... so if the UI modal fails, throw an alert
+			try {
+				let textarea = document.createElement('textarea');
+				textarea.style.width = '100%';
+				textarea.style.height = '140px';
+				textarea.value = errors;
+
+				let modal = new gca_tools.Modal(
+					'Gladiatus Crazy Addon ' + error_list.length + ' error(s)',
+					textarea,
+					() => {modal.destroy();},
+					() => {modal.destroy();}
+				);
+				modal.body_wrapper.style.height = '170px';
+				modal.show();
+			} catch(e) {
+				alert(errors);
+			};
+			
+		});
+	});
+})();
 
 // Onload Handler
 (function(){
