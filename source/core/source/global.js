@@ -5983,12 +5983,62 @@ var gca_global = {
 // Global Errors Handling
 (function(){
 	let error_list = [];
+	
+	function getBrowserInfo() {
+        const userAgent = navigator.userAgent;
+        let browserName = "Unknown";
+        let fullVersion = "Unknown";
+        
+        if (userAgent.indexOf("Firefox") > -1) {
+            browserName = "Mozilla Firefox";
+            fullVersion = userAgent.substring(userAgent.indexOf("Firefox") + 8);
+        } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+            browserName = "Opera";
+            fullVersion = userAgent.substring(userAgent.indexOf("OPR") + 4);
+        } else if (userAgent.indexOf("Chrome") > -1) {
+            browserName = "Google Chrome";
+            fullVersion = userAgent.substring(userAgent.indexOf("Chrome") + 7);
+        } else if (userAgent.indexOf("Safari") > -1) {
+            browserName = "Apple Safari";
+            fullVersion = userAgent.substring(userAgent.indexOf("Safari") + 7);
+        } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident/") > -1) {
+            browserName = "Microsoft Internet Explorer";
+            fullVersion = userAgent.substring(userAgent.indexOf("MSIE") + 5);
+            if (userAgent.indexOf("Trident/") > -1) {
+                const rv = userAgent.indexOf("rv:");
+                fullVersion = userAgent.substring(rv + 3);
+            }
+        }
+        
+        const versionSplit = fullVersion.split(" ");
+        const version = versionSplit[0].split(".")[0];
+        
+        return { browserName, version };
+    }
+
+    function getOSInfo() {
+        const userAgent = navigator.userAgent;
+        let OSName = "Unknown";
+        
+        if (userAgent.indexOf("Win") > -1) OSName = "Windows";
+        else if (userAgent.indexOf("Mac") > -1) OSName = "Macintosh";
+        else if (userAgent.indexOf("Linux") > -1) OSName = "Linux";
+        else if (userAgent.indexOf("Android") > -1) OSName = "Android";
+        else if (userAgent.indexOf("like Mac") > -1) OSName = "iOS";
+        
+        return OSName;
+    }
+
+    function getLanguage() {
+        return navigator.language || navigator.userLanguage;
+    }
+
 	window.addEventListener('error', (msg, url, linenumber) => {
-		if (!event || !event.filename || !event.filename.contains('extension://')) return;
+		if (!event || !event.filename || !event.filename.includes('extension://')) return;
 		let filename_match = event.filename.match(/\/core\/source\/([a-zA-Z0-9_\-\.\/]+)/i);
 		if (!filename_match) return;
 
-		// Gether error info
+		// Gather error info
 		error_list.push({
 			filename: filename_match[1],
 			lineno: event.lineno,
@@ -6017,8 +6067,12 @@ var gca_global = {
 		document.body.appendChild(wrapper);
 
 		icon.addEventListener('click', () => {
+			const browserInfo = getBrowserInfo();
+			const OSInfo = getOSInfo();
+			const language = getLanguage();
+
 			let errors = error_list.map(info => {
-				return 'Error --------------\n' + info.filename + ':' + info.lineno + '\n' + info.message + '\n' + info.stack
+				return `Error --------------\nBrowser: ${browserInfo.browserName} ${browserInfo.version}\nOS: ${OSInfo}\nLanguage: ${language}\n${info.filename}:${info.lineno}\n${info.message}\n${info.stack}`
 			}).join('\n\n');
 
 			// You never know... so if the UI modal fails, throw an alert
@@ -6039,7 +6093,6 @@ var gca_global = {
 			} catch(e) {
 				alert(errors);
 			};
-			
 		});
 	});
 })();
