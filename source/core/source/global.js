@@ -557,57 +557,64 @@ var gca_global = {
 					document.getElementById("icon_dungeonpoints").parentNode.style.opacity = 0.4;
 				}
 			},
-			showTimer : function(type, server_speed) {
-				// Expedition tooltip div
-				let icon = document.getElementById('icon_' + type + 'points');
+			showTimer: function(type, server_speed) {
+    			// Expedition tooltip div
+    			let icon = document.getElementById('icon_' + type + 'points');
+    			if (!icon) return; // Exit if icon is not found
 
-				// Get tooltip
-				let tooltip = JSON.parse(icon.dataset.tooltip);
-				// Get recovery rate
-				let recover_rate = tooltip[0][1][0].match(/\d+/);
-				if (!recover_rate) return; // Error
-				recover_rate = parseInt(recover_rate[0], 10);
-				recover_rate = (recover_rate + 100) / 100;
+    			// Get tooltip
+    			let tooltip;
+    			try {
+        			tooltip = JSON.parse(icon.dataset.tooltip);
+    			} catch (e) {
+        		return; // Exit if tooltip is not found or cannot be parsed
+    			}
+    
+    			// Get recovery rate
+    			let recover_rate = tooltip[0][1][0].match(/\d+/);
+    			if (!recover_rate) return; // Exit if recovery rate is not found
+    			recover_rate = parseInt(recover_rate[0], 10);
+    			recover_rate = (recover_rate + 100) / 100;
 
-				// Get points left to fill
-				let point_missing = parseInt(document.getElementById(type + 'points_value_pointmax').innerText, 10) - parseInt(document.getElementById(type + 'points_value_point').innerText, 10);
-				if (point_missing === 0) return; // Nothing to do
+    			// Get points left to fill
+    			let point_max_elem = document.getElementById(type + 'points_value_pointmax');
+    			let point_elem = document.getElementById(type + 'points_value_point');
+    			if (!point_max_elem || !point_elem) return; // Exit if point elements are not found
+    
+    			let point_missing = parseInt(point_max_elem.innerText, 10) - parseInt(point_elem.innerText, 10);
+    			if (isNaN(point_missing) || point_missing === 0) return; // Exit if point calculation is invalid or nothing to do
 
-				// Get time left for next point
-				let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
-				if (next_point) {
-					let now = new Date(gca_tools.time.server());
-					now.setSeconds(0);
-					let next = new Date(now.getTime());
-					next.setHours(parseInt(next_point[1], 10));
-					next.setMinutes(parseInt(next_point[2], 10));
-					// Next point in minutes
-					next_point = (next - now) / (1000 * 60);
-					// If day changed
-					if (next_point < 0) {
-						next.setDate(next.getDate() + 1);
-						next_point = (next - now) / (1000 * 60);
-					}
-				}
-				else {
-					next_point = Math.round((90 / server_speed) / recover_rate);
-				}
+    			// Get time left for next point
+    			let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
+    			if (next_point) {
+        			let now = new Date(gca_tools.time.server());
+        			now.setSeconds(0);
+        			let next = new Date(now.getTime());
+        			next.setHours(parseInt(next_point[1], 10));
+        			next.setMinutes(parseInt(next_point[2], 10));
+        			next_point = (next - now) / (1000 * 60);
+        			if (next_point < 0) {
+            				next.setDate(next.getDate() + 1);
+           				 next_point = (next - now) / (1000 * 60);
+        			}
+    			} else {
+        			next_point = Math.round((90 / server_speed) / recover_rate);
+   			 }
 
-				// Find recover time in hours and minutes
-				// let minutes = Math.round((90 / server_speed) / recover_rate) * point_missing;
-				let minutes = (Math.round((90 / server_speed) / recover_rate) * (point_missing - 1)) + next_point;
-				let hours = Math.floor(minutes / 60);
-				minutes = minutes % 60;
+    				// Find recover time in hours and minutes
+    				let minutes = (Math.round((90 / server_speed) / recover_rate) * (point_missing - 1)) + next_point;
+    				let hours = Math.floor(minutes / 60);
+    				minutes = minutes % 60;
 
-				// Convert them to text
-				hours = hours === 0 ? '' : ' ' + hours + ' ' + gca_locale.get("general", "hours");
-				minutes = minutes === 0 ? '' : ' ' + minutes + ' ' + gca_locale.get("general", "minutes");
+    				// Convert them to text
+    				hours = hours === 0 ? '' : ' ' + hours + ' ' + gca_locale.get("general", "hours");
+    				minutes = minutes === 0 ? '' : ' ' + minutes + ' ' + gca_locale.get("general", "minutes");
 
-				// Show timer
-				tooltip[0].push([[gca_locale.get("global", type + "_recover_full") + hours + minutes], ["#BA9700","#BA9700"]]);
-				gca_tools.setTooltip(icon, JSON.stringify(tooltip));
-			}
-		},
+    				// Show timer
+    				tooltip[0].push([[gca_locale.get("global", type + "_recover_full") + hours + minutes], ["#BA9700","#BA9700"]]);
+    				gca_tools.setTooltip(icon, JSON.stringify(tooltip));
+		}
+	},
 		
 		// Extended Health and Experience bars
 		extended_hp_xp : {
