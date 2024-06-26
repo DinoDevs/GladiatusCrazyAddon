@@ -452,6 +452,7 @@ var gca_merchants = {
 	            gca_notifications.error(gca_locale.get("global", "item_worth_rubies"));
 	        }
 	    },
+	
 	    // ALT + Click items to sell/buy
 	    altClickActions: {
 	        init: function() {
