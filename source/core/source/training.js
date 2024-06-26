@@ -20,6 +20,10 @@ var gca_training = {
 		// Enable multiple training
 		((gca_options.bool("training","multiple_train") || gca_options.bool("training","calculator_train")) &&
 			this.multipleTrain.show(this));
+		
+		// Add CTRL Hint
+		(gca_options.bool("training","multiple_train") &&
+			this.addCtrlHint.show());
 
 		// Enable training calculator
 		(gca_options.bool("training","calculator_train") &&
@@ -411,6 +415,18 @@ var gca_training = {
 			}
 		}
 		
+	},
+	
+	// Show the CTRL Hint
+	addCtrlHint: {
+	        show: function(self) {
+	                let ctrlText = document.createElement("p");
+	                ctrlText.textContent = gca_locale.get("training", "ctrl_hint");
+	                ctrlText.style.fontSize = "10px";
+	                ctrlText.style.fontWeight = "bold";
+	                ctrlText.style.textAlign = "center";
+	                document.getElementById("training_box").appendChild(ctrlText);
+	        }
 	},
 
 	// Training Calculator
