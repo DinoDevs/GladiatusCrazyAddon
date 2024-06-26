@@ -235,7 +235,9 @@ gca_languages['cs'] = {
 			// Cost calculator
 			total_cost : "Celková cena",
 			// Discount show
-			costs_discount : "Sleva na cvičení: {{number}}%"
+			costs_discount : "Sleva na cvičení: {{number}}%",
+			// CTRL Hint 
+			ctrl_hint : "Tip: Podržte tlačítko CTRL pro přidání/odebrání o 10"
 		},
 		
 		// Auction section
