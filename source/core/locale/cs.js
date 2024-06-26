@@ -464,6 +464,7 @@ gca_languages['cs'] = {
 			category_merchants$ruby_icon_on_items : "Označit ikonkou předměty, které stojí rubíny",
 			category_merchants$show_shop_info : "Zobrazit info obchodu (celkové zlato a rubíny)",
 			category_merchants$double_click_actions : "Dvojklik pro prodat/koupit",
+			category_merchants$alt_click_actions : "(Podržet) Alt + Klik pro prodat/koupit",
 			category_merchants$hide_prices : "Skrýt plovoucí ceny při nákupu/prodeji",
 			// Settings - Forge
 			category_forge$material_links : "[Kovárna/Pracovní stůl] Zobrazit zkratky zásilek & tržiště pro každý potřebný materiál",

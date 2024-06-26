@@ -579,6 +579,8 @@ gca_options.data = {
 		"show_shop_info" : false,
 		// Double click items to sell or buy
 		"double_click_actions" : true,
+		// Alt + Click items to sell or buy
+		"alt_click_actions" : false,
 		// Hide floating prices when selling/buying
 		"hide_prices" : false
 	},
