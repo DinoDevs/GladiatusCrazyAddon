@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-5-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-7-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-5-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -28,6 +28,7 @@
   - [x] Power-ups/Pacts times not updating/crashing (#441)
   - [x] Page direction detection fix
   - [x] Fixed random cases where the event banner did not load properly (features conflict)
+  - [x] Fixed various cases of console errors (during traveling, conflicting features...)
 
 - **Forge**
   - [x] Fixed wrong forge material on guild message, packages/market links (#416)
