@@ -17,6 +17,7 @@
 - **Merchants**
 
   - [x] You can now hide the floating prices when selling/buying in the settings (#447)
+  - [x] New settings option: selling/buying items with (hold) Alt + Click (#218)
 
 ### BUG FIXES
 
