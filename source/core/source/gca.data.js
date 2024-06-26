@@ -414,7 +414,10 @@ gca_options.data = {
 		"bar_hide_are_btn" : false,
 
 		// Hide circus button
-		"bar_hide_ct_btn" : false				
+		"bar_hide_ct_btn" : false,
+
+		// Hide City Gate menu entry
+		"menu_hide_citygate" : false
 	},
 
 	// Overview Options
