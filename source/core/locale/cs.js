@@ -392,6 +392,7 @@ gca_languages['cs'] = {
 			category_global$bar_hide_dun_btn : "Skrýt tlačítka Bludiště",
 			category_global$bar_hide_are_btn : "Skrýt tlačítka Arény",
 			category_global$bar_hide_ct_btn : "Skrýt tlačítka Circus Turma",
+			category_global$menu_hide_citygate : "Skrýt Městskou bránu v menu",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
 			category_overview$food_life_gain : "Zobrazit počet životů obdržený z jídla",

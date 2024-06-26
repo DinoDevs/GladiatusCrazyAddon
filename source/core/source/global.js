@@ -42,6 +42,10 @@ var gca_global = {
 		if (gca_options.bool("global","bar_hide_ct_btn"))
 			document.documentElement.className += " bar_hide_ct_btn";
 		
+		// Hide City Gate menu entry
+		if (gca_options.bool("global","menu_hide_citygate"))
+			document.documentElement.className += " menu_hide_citygate";
+		
 		// Merge menu merchants into one
 		if (gca_options.bool("main_menu","menu_merge_merchants"))
 			document.documentElement.className += " menu_merge_merchants";

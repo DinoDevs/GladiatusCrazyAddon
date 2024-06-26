@@ -221,12 +221,11 @@
         .bar_hide_exp_btn #header_game #cooldown_bar_expedition {visibility: hidden;}
         .bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
         .bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
-	.bar_hide_exp_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;}
+	
 	/* Show the Underworld button */
         .bar_hide_exp_btn .underworld #cooldown_bar_expedition {visibility: visible!important;}
 	.bar_hide_exp_btn .underworld #icon_expeditionpoints {visibility: visible!important;}
 	.bar_hide_exp_btn .underworld #expeditionpoints_value {visibility: hidden!important;}
-	.bar_hide_exp_btn .underworld a.menuitem[href*="map"] {position: unset!important;visibility: visible!important;}
 
 	/* Hide Dungeon button */
         .bar_hide_dun_btn #header_game #cooldown_bar_dungeon {visibility: hidden;}
@@ -243,7 +242,10 @@
 	/* Hide Circus Turma button */
         .bar_hide_ct_btn #header_game #cooldown_bar_ct {visibility: hidden;}
         .bar_hide_ct_btn #header_game #icon_grouparena {visibility: hidden;}
-        .bar_hide_ct_btn #header_game #grouparenaPlace {visibility: hidden;}	
+        .bar_hide_ct_btn #header_game #grouparenaPlace {visibility: hidden;}
+
+/* Hide City Gate menu entry */
+	.menu_hide_citygate a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
 		
 /* Custom scrollbar */
 		.gca_custom_scrollbar ::-webkit-scrollbar {width: 16px;}
