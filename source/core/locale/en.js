@@ -247,7 +247,9 @@ gca_languages["en"] = {
 			// Cost calculator
 			total_cost : "Total cost",
 			// Discount show
-			costs_discount : "Training costs discount: {{number}}%"
+			costs_discount : "Training costs discount: {{number}}%",
+			// CTRL Hint 
+			ctrl_hint : "Hint: Hold down the CTRL key to increase/decrease by 10"
 		},
 
 		// Auction section
