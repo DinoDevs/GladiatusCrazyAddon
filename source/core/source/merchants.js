@@ -38,6 +38,10 @@ var gca_merchants = {
 		(gca_options.bool("merchants","double_click_actions") &&
 			this.doubleClickActions.init());
 		
+		// Alt + Click to sell/buy items
+		(gca_options.bool("merchants","alt_click_actions") &&
+			this.altClickActions.init());
+		
 		// Merchants Search
 		this.merchantsSearch.searchBox();
 
@@ -388,71 +392,132 @@ var gca_merchants = {
 	},
 
 	// Double click sell/buy
-	doubleClickActions : {
-		init : function(){
-			// Apply item events
-			this.apply();
-
-			// Add event
-			gca_tools.event.bag.onBagOpen(() => {
-				this.apply();
-			});
-
-			// If bag not already loaded
-			if (document.getElementById("inv").className.match("unavailable")) {
-				// Wait first bag
-				gca_tools.event.bag.waitBag(() => {
-					this.apply();
-				});
-			}
-
-			// On item move
-			gca_tools.event.request.onAjaxResponse((data) => {
-				if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
-					let item = document.querySelector(`#content .ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
-					if (item) delete item.dataset.gcaFlag_doubleClickEvent;
-					this.apply();
-				}
-			});
-		},
-		apply : function(){
-			this.applyOn(jQuery('#inv .ui-draggable'));
-			this.applyOn(jQuery('#shop .ui-draggable'));
-		},
-		applyOn : function(items){
-			var that = this;
-			// For each
-			items.each(function(){
-				if (!this.dataset) return;
-				// If already parsed
-				if(this.dataset.gcaFlag_doubleClickEvent) return;
-				// Flag as parsed
-				this.dataset.gcaFlag_doubleClickEvent = true;
-				// Check if cost rubies
-				let info = gca_tools.item.hash(this);
-				// If item cost rubies
-				if (info.price_rubies && info.price_rubies > 0) {
-					// Add rubies event
-					this.addListener('dblclick', that.handler_rubies);
-				}
-				else {
-					// Add event
-					this.addListener('dblclick', that.handler);
-				}
-			});
-		},
-		handler : function() {
-			if (this.parentNode.id == 'inv') {
-				gca_tools.item.move(this, 'shop');
-			}
-			else if (this.parentNode.id == 'shop') {
-				gca_tools.item.move(this, 'inv');
-			}
-		},
-		handler_rubies : function() {
-			gca_notifications.error(gca_locale.get("global", "item_worth_rubies"));
-		}
-	}
+	doubleClickActions: {
+        init: function() {
+            // Apply item events
+            this.apply();
+            // Add event
+            gca_tools.event.bag.onBagOpen(() => {
+                this.apply();
+            });
+            // If bag not already loaded
+            if (document.getElementById("inv").className.match("unavailable")) {
+                // Wait first bag
+                gca_tools.event.bag.waitBag(() => {
+                    this.apply();
+                });
+            }
+            // On item move
+            gca_tools.event.request.onAjaxResponse((data) => {
+                if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
+                    let item = document.querySelector(`#content .ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
+                    if (item) delete item.dataset.gcaFlag_doubleClickEvent;
+                    this.apply();
+                }
+            });
+        },
+        apply: function() {
+            this.applyOn(jQuery('#inv .ui-draggable'));
+            this.applyOn(jQuery('#shop .ui-draggable'));
+        },
+        applyOn: function(items) {
+            var that = this;
+            // For each
+            items.each(function() {
+                if (!this.dataset) return;
+                // If already parsed
+                if (this.dataset.gcaFlag_doubleClickEvent) return;
+                // Flag as parsed
+                this.dataset.gcaFlag_doubleClickEvent = true;
+                // Check if cost rubies
+                let info = gca_tools.item.hash(this);
+                // If item cost rubies
+                if (info.price_rubies && info.price_rubies > 0) {
+                    // Add rubies event
+                    this.addEventListener('dblclick', that.handler_rubies);
+                } else {
+                    // Add event
+                    this.addEventListener('dblclick', that.handler);
+                }
+            });
+        },
+        handler: function() {
+            if (this.parentNode.id == 'inv') {
+                gca_tools.item.move(this, 'shop');
+            } else if (this.parentNode.id == 'shop') {
+                gca_tools.item.move(this, 'inv');
+            }
+        },
+        handler_rubies: function() {
+            gca_notifications.error(gca_locale.get("global", "item_worth_rubies"));
+        }
+    },
+	
+    // ALT + Click items to sell/buy
+    altClickActions: {
+        init: function() {
+            // Apply item events
+            this.apply();
+            // Add event
+            gca_tools.event.bag.onBagOpen(() => {
+                this.apply();
+            });
+            // If bag not already loaded
+            if (document.getElementById("inv").className.match("unavailable")) {
+                // Wait first bag
+                gca_tools.event.bag.waitBag(() => {
+                    this.apply();
+                });
+            }
+            // On item move
+            gca_tools.event.request.onAjaxResponse((data) => {
+                if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
+                    let item = document.querySelector(`#content .ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
+                    if (item) delete item.dataset.gcaFlag_altClickEvent;
+                    this.apply();
+                }
+            });
+        },
+        apply: function() {
+            this.applyOn(jQuery('#inv .ui-draggable'));
+            this.applyOn(jQuery('#shop .ui-draggable'));
+        },
+        applyOn: function(items) {
+            var that = this;
+            // For each
+            items.each(function() {
+                if (!this.dataset) return;
+                // If already parsed
+                if (this.dataset.gcaFlag_altClickEvent) return;
+                // Flag as parsed
+                this.dataset.gcaFlag_altClickEvent = true;
+                // Check if cost rubies
+                let info = gca_tools.item.hash(this);
+                // If item cost rubies
+                if (info.price_rubies && info.price_rubies > 0) {
+                    // Add rubies event
+                    this.addEventListener('click', that.handler_rubies);
+                } else {
+                    // Add event
+                    this.addEventListener('click', that.handler);
+                }
+            });
+        },
+        handler: function(event) {
+            if (event.altKey) {
+                if (this.parentNode.id == 'inv') {
+                    gca_tools.item.move(this, 'shop');
+                } else if (this.parentNode.id == 'shop') {
+                    gca_tools.item.move(this, 'inv');
+                }
+            }
+        },
+        handler_rubies: function(event) {
+            if (event.altKey) {
+                gca_notifications.error(gca_locale.get("global", "item_worth_rubies"));
+            }
+        }
+    }
 };
 
 // Onload Handler
