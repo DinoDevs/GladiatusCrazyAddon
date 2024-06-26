@@ -220,7 +220,7 @@
 	/* Hide Expedition (+ Underworld) button */
         .bar_hide_exp_btn #header_game #cooldown_bar_expedition {visibility: hidden;}
         .bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
-        .bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
+        .bar_hide_exp_btn #header_game #expeditionpoints_value {display: none!important;}
 	.bar_hide_exp_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;}
         .bar_hide_exp_btn .underworld #cooldown_bar_expedition {visibility: visible!important;}
 	.bar_hide_exp_btn .underworld #icon_expeditionpoints {visibility: visible!important;}
@@ -230,7 +230,7 @@
 	/* Hide Dungeon button */
         .bar_hide_dun_btn #header_game #cooldown_bar_dungeon {visibility: hidden;}
         .bar_hide_dun_btn #header_game #icon_dungeonpoints {visibility: hidden;}
-        .bar_hide_dun_btn #header_game #dungeonpoints_value {visibility: hidden;}
+        .bar_hide_dun_btn #header_game #dungeonpoints_value {display: none!important;}
 	.bar_hide_dun_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
 
 	/* Hide Arena button */
