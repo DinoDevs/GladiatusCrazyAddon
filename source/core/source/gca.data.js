@@ -414,10 +414,8 @@ gca_options.data = {
 		"bar_hide_are_btn" : false,
 
 		// Hide circus button
-		"bar_hide_ct_btn" : false,
+		"bar_hide_ct_btn" : false
 
-		// Hide City Gate menu entry
-		"menu_hide_citygate" : false
 	},
 
 	// Overview Options
@@ -468,7 +466,9 @@ gca_options.data = {
 		// Forge
 		"forge_timers" : true,
 		// Merchants
-		"merchants_timer" : true	
+		"merchants_timer" : true,
+		// Hide City Gate menu entry
+		"menu_hide_citygate" : false
 	},
 
 	// Messages Options

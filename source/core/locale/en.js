@@ -404,7 +404,6 @@ gca_languages["en"] = {
 			category_global$bar_hide_dun_btn : "Hide the Dungeon buttons",
 			category_global$bar_hide_are_btn : "Hide the Arena buttons",
 			category_global$bar_hide_ct_btn : "Hide the Circus Turma buttons",
-			category_global$menu_hide_citygate : "Hide the City gate menu entry",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
@@ -428,7 +427,8 @@ gca_languages["en"] = {
 			category_main_menu$quest_timer : "Show quests status or timer",
 			category_main_menu$centurio_powerups_timers : "Display Centurio & PowerUps timers on Premium button",
 			category_main_menu$forge_timers : "Show forge/smelt timer indicator",
-			category_main_menu$merchants_timer : "Show merchants timer indicator",	
+			category_main_menu$merchants_timer : "Show merchants timer indicator",
+			category_main_menu$menu_hide_citygate : "Hide the City gate menu entry",
 			// Settings - Messages
 			category_messages$messages_layout : "Improve messages layout",
 			category_messages$show_unread : "Highlight unread messages",

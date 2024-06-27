@@ -392,7 +392,6 @@ gca_languages['cs'] = {
 			category_global$bar_hide_dun_btn : "Skrýt tlačítka Bludiště",
 			category_global$bar_hide_are_btn : "Skrýt tlačítka Arény",
 			category_global$bar_hide_ct_btn : "Skrýt tlačítka Circus Turma",
-			category_global$menu_hide_citygate : "Skrýt Městskou bránu v menu",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
 			category_overview$food_life_gain : "Zobrazit počet životů obdržený z jídla",
@@ -417,6 +416,7 @@ gca_languages['cs'] = {
 			category_main_menu$centurio_powerups_timers : "Zobrazit odpočet Centuriona & Paktů na tlačítku Prémium",
 			category_main_menu$forge_timers : "Zobrazit časový indikátor kovárny/tavírny",
 			category_main_menu$merchants_timer : "Zobrazit čas obchodníků",
+			category_main_menu$menu_hide_citygate : "Skrýt Městskou bránu v menu",
 			// Settings - Messages
 			category_messages$messages_layout : "Rozšířené zobrazení zpráv",
 			category_messages$show_unread : "Zvýraznit nepřečtené zprávy",
