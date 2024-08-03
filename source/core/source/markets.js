@@ -282,60 +282,60 @@ var gca_markets = {
 		},
 	},
 	
-		// Cancel market items button
-		cancelAllButton: function(){
-    		let buttons = document.getElementsByName('cancel');
-    		if (buttons.length == 0) return;
+	// Cancel market items button
+	cancelAllButton: function(){
+		let buttons = document.getElementsByName('cancel');
+		if (buttons.length == 0) return;
 
-			// Create the cancel all button
-			let button = document.createElement("input");
-			button.type = 'button';
-			button.className = "awesome-button";
-			button.id = 'cancelAllButton';
-			button.style = "margin-top: -21px;position: absolute;right: 116px;";
-			button.value = buttons[0].value + ' ('+buttons.length+')';
+		// Create the cancel all button
+		let button = document.createElement("input");
+		button.type = 'button';
+		button.className = "awesome-button";
+		button.id = 'cancelAllButton';
+		button.style = "margin-top: -21px;position: absolute;right: 116px;";
+		button.value = buttons[0].value + ' ('+buttons.length+')';
 
-			button.addEventListener('click', function(){
-				let cancelStr = buttons[0].value;
-				let cancel = encodeURIComponent(cancelStr);
-				let canceledCount = 0; // Counter
-				let total = buttons.length;
-				let forms = document.getElementById("market_table").getElementsByTagName("form");
+		button.addEventListener('click', function(){
+			let cancelStr = buttons[0].value;
+			let cancel = encodeURIComponent(cancelStr);
+			let canceledCount = 0; // Counter
+			let total = buttons.length;
+			let forms = document.getElementById("market_table").getElementsByTagName("form");
 
-				let delayRequests = 100; // delay between requests in ms
-				
-				function cancelNextButton(index) {
-					if (canceledCount >= total) {
-						// If finished, refresh
-						document.location.href = document.location.href.replace(/&p=\d+/i,"");
-						return;
-					}
-
-					let id = forms[index].buyid.value;
-					jQuery.ajax({
-						type: "POST",
-						url: document.location.href,
-						data: 'buyid=' + id + '&cancel=' + cancel,
-						success: function() {
-							canceledCount++;
-							button.value = `Cancel (${canceledCount}/${total})`;
-							setTimeout(cancelNextButton(index + 1), delayRequests);
-						},
-						error: function() {
-							canceledCount++;
-							gca_notifications.error(gca_locale.get("general", "error"));
-							// Double the delay, just in case
-							setTimeout(cancelNextButton(index + 1), 2 * delayRequests);
-						}
-					});
+			let delayRequests = 100; // delay between requests in ms
+			
+			function cancelNextButton(index) {
+				if (canceledCount >= total) {
+					// If finished, refresh
+					document.location.href = document.location.href.replace(/&p=\d+/i,"");
+					return;
 				}
 
-				cancelNextButton(0);
-			});
+				let id = forms[index].buyid.value;
+				jQuery.ajax({
+					type: "POST",
+					url: document.location.href,
+					data: 'buyid=' + id + '&cancel=' + cancel,
+					success: function() {
+						canceledCount++;
+						button.value = `Cancel (${canceledCount}/${total})`;
+						setTimeout(cancelNextButton(index + 1), delayRequests);
+					},
+					error: function() {
+						canceledCount++;
+						gca_notifications.error(gca_locale.get("general", "error"));
+						// Double the delay, just in case
+						setTimeout(cancelNextButton(index + 1), 2 * delayRequests);
+					}
+				});
+			}
 
-			// Append DOM
-			var base = document.getElementById("market_table");
-			base.parentNode.insertBefore(button, base);
+			cancelNextButton(0);
+		});
+
+		// Append DOM
+		var base = document.getElementById("market_table");
+		base.parentNode.insertBefore(button, base);
 	},
 	
 	// Default sell duration
@@ -489,14 +489,14 @@ var gca_markets = {
 					document.getElementById('preis').value = 1;
 				}
 				// Cost value
-				else if(selected == 2) {
-					document.getElementById('preis').value = Math.round(document.getElementById('auto_value').value*0.375);
+				else if (selected == 2) {
+					document.getElementById('preis').value = Math.round(document.getElementById('auto_value').value * 1);
 				}
 				// Custom price values
 				else if (selected.substring(0, 7) == 'custom_') {
 					if (selected.charAt(selected.length - 1) == '%') {
 						let price = selected.match(/^custom_(\d+)%$/);
-						document.getElementById('preis').value = Math.round(Math.round(document.getElementById('auto_value').value * 0.375) * (price ? (parseInt(price[1])/100) : 1));
+						document.getElementById('preis').value = Math.round(Math.round(document.getElementById('auto_value').value * 1) * (price ? (parseInt(price[1])/100) : 1));
 					}
 					else {
 						let price = selected.match(/^custom_(\d+)/);
@@ -515,7 +515,6 @@ var gca_markets = {
 		this.detectMarketSellItemDrop();
 		gca_tools.event.addListener('market-sell-item-drop', (data) => {
 			let b = data.item.data("priceGold") || 0;
-			b = Math.floor(b * data.amount / 1.5);
 			document.getElementById('auto_value').value = b;
 			modeSwitchFunction(); // calcDues(); is called within this function
 		});
