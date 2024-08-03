@@ -217,32 +217,35 @@
 	.gca_rtl .gca-global-arena-timer-on #cooldown_bar_ga {right: 850px;}
 
 /* Hide bar buttons */	
+	/* Hide Expedition button */
         .bar_hide_exp_btn #header_game #cooldown_bar_expedition {visibility: hidden;}
         .bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
         .bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
-        .bar_hide_exp_btn .menutab_country {pointer-events: none} 
-	    .bar_hide_exp_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;}
+	
+	/* Show the Underworld button */
         .bar_hide_exp_btn .underworld #cooldown_bar_expedition {visibility: visible!important;}
-	    .bar_hide_exp_btn .underworld #icon_expeditionpoints {visibility: visible!important;}
-	    .bar_hide_exp_btn .underworld #expeditionpoints_value {visibility: visible!important;}
-	    .bar_hide_exp_btn .underworld .menutab_country {pointer-events: auto!important;}
-	    .bar_hide_exp_btn .underworld a.menuitem[href*="map"] {position: unset!important;visibility: visible!important;}
+	.bar_hide_exp_btn .underworld #icon_expeditionpoints {visibility: visible!important;}
+	.bar_hide_exp_btn .underworld #expeditionpoints_value {visibility: hidden!important;}
 
+	/* Hide Dungeon button */
         .bar_hide_dun_btn #header_game #cooldown_bar_dungeon {visibility: hidden;}
         .bar_hide_dun_btn #header_game #icon_dungeonpoints {visibility: hidden;}
         .bar_hide_dun_btn #header_game #dungeonpoints_value {visibility: hidden;}
-        .bar_hide_dun_btn .menutab_country {pointer-events: none} 
-	    .bar_hide_dun_btn a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
 
+	/* Hide Arena button */
         .bar_hide_are_btn #header_game #cooldown_bar_arena {visibility: hidden;} 
         .bar_hide_are_btn #header_game #icon_arena {visibility: hidden;} 
         .bar_hide_are_btn #header_game #arenaPlace {visibility: hidden;} 
         .bar_hide_are_btn a.menuitem[href*="arena"]{position: absolute;visibility: hidden;} 
         .bar_hide_are_btn #submenu1 .advanced_menu_entry:nth-child(2) {position: absolute!important;visibility: hidden;} 
 
+	/* Hide Circus Turma button */
         .bar_hide_ct_btn #header_game #cooldown_bar_ct {visibility: hidden;}
         .bar_hide_ct_btn #header_game #icon_grouparena {visibility: hidden;}
-        .bar_hide_ct_btn #header_game #grouparenaPlace {visibility: hidden;}	
+        .bar_hide_ct_btn #header_game #grouparenaPlace {visibility: hidden;}
+
+/* Hide City Gate menu entry */
+	.menu_hide_citygate a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
 		
 /* Custom scrollbar */
 		.gca_custom_scrollbar ::-webkit-scrollbar {width: 16px;}

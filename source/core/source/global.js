@@ -42,6 +42,10 @@ var gca_global = {
 		if (gca_options.bool("global","bar_hide_ct_btn"))
 			document.documentElement.className += " bar_hide_ct_btn";
 		
+		// Hide City Gate menu entry
+		if (gca_options.bool("main_menu","menu_hide_citygate"))
+			document.documentElement.className += " menu_hide_citygate";
+		
 		// Merge menu merchants into one
 		if (gca_options.bool("main_menu","menu_merge_merchants"))
 			document.documentElement.className += " menu_merge_merchants";
@@ -557,57 +561,64 @@ var gca_global = {
 					document.getElementById("icon_dungeonpoints").parentNode.style.opacity = 0.4;
 				}
 			},
-			showTimer : function(type, server_speed) {
-				// Expedition tooltip div
-				let icon = document.getElementById('icon_' + type + 'points');
+			showTimer: function(type, server_speed) {
+    			// Expedition tooltip div
+    			let icon = document.getElementById('icon_' + type + 'points');
+    			if (!icon) return; // Exit if icon is not found
 
-				// Get tooltip
-				let tooltip = JSON.parse(icon.dataset.tooltip);
-				// Get recovery rate
-				let recover_rate = tooltip[0][1][0].match(/\d+/);
-				if (!recover_rate) return; // Error
-				recover_rate = parseInt(recover_rate[0], 10);
-				recover_rate = (recover_rate + 100) / 100;
+    			// Get tooltip
+    			let tooltip;
+    			try {
+        			tooltip = JSON.parse(icon.dataset.tooltip);
+    			} catch (e) {
+        		return; // Exit if tooltip is not found or cannot be parsed
+    			}
+    
+    			// Get recovery rate
+    			let recover_rate = tooltip[0][1][0].match(/\d+/);
+    			if (!recover_rate) return; // Exit if recovery rate is not found
+    			recover_rate = parseInt(recover_rate[0], 10);
+    			recover_rate = (recover_rate + 100) / 100;
 
-				// Get points left to fill
-				let point_missing = parseInt(document.getElementById(type + 'points_value_pointmax').innerText, 10) - parseInt(document.getElementById(type + 'points_value_point').innerText, 10);
-				if (point_missing === 0) return; // Nothing to do
+    			// Get points left to fill
+    			let point_max_elem = document.getElementById(type + 'points_value_pointmax');
+    			let point_elem = document.getElementById(type + 'points_value_point');
+    			if (!point_max_elem || !point_elem) return; // Exit if point elements are not found
+    
+    			let point_missing = parseInt(point_max_elem.innerText, 10) - parseInt(point_elem.innerText, 10);
+    			if (isNaN(point_missing) || point_missing === 0) return; // Exit if point calculation is invalid or nothing to do
 
-				// Get time left for next point
-				let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
-				if (next_point) {
-					let now = new Date(gca_tools.time.server());
-					now.setSeconds(0);
-					let next = new Date(now.getTime());
-					next.setHours(parseInt(next_point[1], 10));
-					next.setMinutes(parseInt(next_point[2], 10));
-					// Next point in minutes
-					next_point = (next - now) / (1000 * 60);
-					// If day changed
-					if (next_point < 0) {
-						next.setDate(next.getDate() + 1);
-						next_point = (next - now) / (1000 * 60);
-					}
-				}
-				else {
-					next_point = Math.round((90 / server_speed) / recover_rate);
-				}
+    			// Get time left for next point
+    			let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
+    			if (next_point) {
+        			let now = new Date(gca_tools.time.server());
+        			now.setSeconds(0);
+        			let next = new Date(now.getTime());
+        			next.setHours(parseInt(next_point[1], 10));
+        			next.setMinutes(parseInt(next_point[2], 10));
+        			next_point = (next - now) / (1000 * 60);
+        			if (next_point < 0) {
+            				next.setDate(next.getDate() + 1);
+           				 next_point = (next - now) / (1000 * 60);
+        			}
+    			} else {
+        			next_point = Math.round((90 / server_speed) / recover_rate);
+   			 }
 
-				// Find recover time in hours and minutes
-				// let minutes = Math.round((90 / server_speed) / recover_rate) * point_missing;
-				let minutes = (Math.round((90 / server_speed) / recover_rate) * (point_missing - 1)) + next_point;
-				let hours = Math.floor(minutes / 60);
-				minutes = minutes % 60;
+    				// Find recover time in hours and minutes
+    				let minutes = (Math.round((90 / server_speed) / recover_rate) * (point_missing - 1)) + next_point;
+    				let hours = Math.floor(minutes / 60);
+    				minutes = minutes % 60;
 
-				// Convert them to text
-				hours = hours === 0 ? '' : ' ' + hours + ' ' + gca_locale.get("general", "hours");
-				minutes = minutes === 0 ? '' : ' ' + minutes + ' ' + gca_locale.get("general", "minutes");
+    				// Convert them to text
+    				hours = hours === 0 ? '' : ' ' + hours + ' ' + gca_locale.get("general", "hours");
+    				minutes = minutes === 0 ? '' : ' ' + minutes + ' ' + gca_locale.get("general", "minutes");
 
-				// Show timer
-				tooltip[0].push([[gca_locale.get("global", type + "_recover_full") + hours + minutes], ["#BA9700","#BA9700"]]);
-				gca_tools.setTooltip(icon, JSON.stringify(tooltip));
-			}
-		},
+    				// Show timer
+    				tooltip[0].push([[gca_locale.get("global", type + "_recover_full") + hours + minutes], ["#BA9700","#BA9700"]]);
+    				gca_tools.setTooltip(icon, JSON.stringify(tooltip));
+		}
+	},
 		
 		// Extended Health and Experience bars
 		extended_hp_xp : {
@@ -5983,12 +5994,62 @@ var gca_global = {
 // Global Errors Handling
 (function(){
 	let error_list = [];
+	
+	function getBrowserInfo() {
+        const userAgent = navigator.userAgent;
+        let browserName = "Unknown";
+        let fullVersion = "Unknown";
+        
+        if (userAgent.indexOf("Firefox") > -1) {
+            browserName = "Mozilla Firefox";
+            fullVersion = userAgent.substring(userAgent.indexOf("Firefox") + 8);
+        } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+            browserName = "Opera";
+            fullVersion = userAgent.substring(userAgent.indexOf("OPR") + 4);
+        } else if (userAgent.indexOf("Chrome") > -1) {
+            browserName = "Google Chrome";
+            fullVersion = userAgent.substring(userAgent.indexOf("Chrome") + 7);
+        } else if (userAgent.indexOf("Safari") > -1) {
+            browserName = "Apple Safari";
+            fullVersion = userAgent.substring(userAgent.indexOf("Safari") + 7);
+        } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident/") > -1) {
+            browserName = "Microsoft Internet Explorer";
+            fullVersion = userAgent.substring(userAgent.indexOf("MSIE") + 5);
+            if (userAgent.indexOf("Trident/") > -1) {
+                const rv = userAgent.indexOf("rv:");
+                fullVersion = userAgent.substring(rv + 3);
+            }
+        }
+        
+        const versionSplit = fullVersion.split(" ");
+        const version = versionSplit[0].split(".")[0];
+        
+        return { browserName, version };
+    }
+
+    function getOSInfo() {
+        const userAgent = navigator.userAgent;
+        let OSName = "Unknown";
+        
+        if (userAgent.indexOf("Win") > -1) OSName = "Windows";
+        else if (userAgent.indexOf("Mac") > -1) OSName = "Macintosh";
+        else if (userAgent.indexOf("Linux") > -1) OSName = "Linux";
+        else if (userAgent.indexOf("Android") > -1) OSName = "Android";
+        else if (userAgent.indexOf("like Mac") > -1) OSName = "iOS";
+        
+        return OSName;
+    }
+
+    function getLanguage() {
+        return navigator.language || navigator.userLanguage;
+    }
+
 	window.addEventListener('error', (msg, url, linenumber) => {
-		if (!event || !event.filename || !event.filename.contains('extension://')) return;
+		if (!event || !event.filename || !event.filename.includes('extension://')) return;
 		let filename_match = event.filename.match(/\/core\/source\/([a-zA-Z0-9_\-\.\/]+)/i);
 		if (!filename_match) return;
 
-		// Gether error info
+		// Gather error info
 		error_list.push({
 			filename: filename_match[1],
 			lineno: event.lineno,
@@ -6017,8 +6078,12 @@ var gca_global = {
 		document.body.appendChild(wrapper);
 
 		icon.addEventListener('click', () => {
+			const browserInfo = getBrowserInfo();
+			const OSInfo = getOSInfo();
+			const language = getLanguage();
+
 			let errors = error_list.map(info => {
-				return 'Error --------------\n' + info.filename + ':' + info.lineno + '\n' + info.message + '\n' + info.stack
+				return `Error --------------\nBrowser: ${browserInfo.browserName} ${browserInfo.version}\nOS: ${OSInfo}\nLanguage: ${language}\n${info.filename}:${info.lineno}\n${info.message}\n${info.stack}`
 			}).join('\n\n');
 
 			// You never know... so if the UI modal fails, throw an alert
@@ -6039,7 +6104,6 @@ var gca_global = {
 			} catch(e) {
 				alert(errors);
 			};
-			
 		});
 	});
 })();

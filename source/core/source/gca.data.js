@@ -414,7 +414,8 @@ gca_options.data = {
 		"bar_hide_are_btn" : false,
 
 		// Hide circus button
-		"bar_hide_ct_btn" : false				
+		"bar_hide_ct_btn" : false
+
 	},
 
 	// Overview Options
@@ -465,7 +466,9 @@ gca_options.data = {
 		// Forge
 		"forge_timers" : true,
 		// Merchants
-		"merchants_timer" : true	
+		"merchants_timer" : true,
+		// Hide City Gate menu entry
+		"menu_hide_citygate" : false
 	},
 
 	// Messages Options
@@ -579,6 +582,8 @@ gca_options.data = {
 		"show_shop_info" : false,
 		// Double click items to sell or buy
 		"double_click_actions" : true,
+		// Alt + Click items to sell or buy
+		"alt_click_actions" : false,
 		// Hide floating prices when selling/buying
 		"hide_prices" : false
 	},

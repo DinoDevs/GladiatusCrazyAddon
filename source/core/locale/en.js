@@ -247,7 +247,9 @@ gca_languages["en"] = {
 			// Cost calculator
 			total_cost : "Total cost",
 			// Discount show
-			costs_discount : "Training costs discount: {{number}}%"
+			costs_discount : "Training costs discount: {{number}}%",
+			// CTRL Hint 
+			ctrl_hint : "Hint: Hold down the CTRL key to increase/decrease by 10"
 		},
 
 		// Auction section
@@ -425,7 +427,8 @@ gca_languages["en"] = {
 			category_main_menu$quest_timer : "Show quests status or timer",
 			category_main_menu$centurio_powerups_timers : "Display Centurio & PowerUps timers on Premium button",
 			category_main_menu$forge_timers : "Show forge/smelt timer indicator",
-			category_main_menu$merchants_timer : "Show merchants timer indicator",	
+			category_main_menu$merchants_timer : "Show merchants timer indicator",
+			category_main_menu$menu_hide_citygate : "Hide the City gate menu entry",
 			// Settings - Messages
 			category_messages$messages_layout : "Improve messages layout",
 			category_messages$show_unread : "Highlight unread messages",
@@ -476,6 +479,7 @@ gca_languages["en"] = {
 			category_merchants$ruby_icon_on_items : "Add icon on items that cost rubies",
 			category_merchants$show_shop_info : "Show shop info (total gold and rubies)",
 			category_merchants$double_click_actions : "Double click items to sell/buy",
+			category_merchants$alt_click_actions : "(HOLD) Alt + Click items to sell/buy",
 			category_merchants$hide_prices : "Hide floating prices when selling/buying",
 			// Settings - Forge
 			category_forge$material_links : "[Forge/Repair] Show packages & market shortcuts for each material need",

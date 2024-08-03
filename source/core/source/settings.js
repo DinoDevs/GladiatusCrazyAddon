@@ -753,7 +753,6 @@ var gca_settings = {
 
 				// Hide circus button
 				"bar_hide_ct_btn" : false
-
 			},
 
 			// Overview Options
@@ -793,18 +792,20 @@ var gca_settings = {
 		        // Advance main menu
 		        "advance_main_menu" : true,
 		        "submenu_click_to_change" : false,			
-				// Merge menu merchants
+			// Merge menu merchants
 		        "menu_merge_merchants" : false,				
-				// Merge menu merchants
+			// Merge menu merchants
 		        "menu_merge_items" : false,
-				// Quest Timer
+			// Quest Timer
 		        "quest_timer" : true,
-				// Centurion & PowerUps timers
+			// Centurion & PowerUps timers
 		        "centurio_powerups_timers" : false,
-				// Forge
+			// Forge
 		        "forge_timers" : true,
-				// Merchants
-				"merchants_timer" : true				
+			// Merchants
+			"merchants_timer" : true,
+			// Hide City Gate menu entry
+			"menu_hide_citygate" : false
 			},
 
 			// Messages Options
@@ -966,6 +967,8 @@ var gca_settings = {
 				"show_shop_info" : true,
 				// Double click items to sell or buy
 				"double_click_actions" : true,
+				// Alt + Click items to sell or buy
+				"alt_click_actions" : false,
 				// Hide floating prices when selling/buying
 				"hide_prices" : false
 			},

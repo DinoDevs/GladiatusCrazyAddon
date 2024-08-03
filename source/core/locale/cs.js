@@ -235,7 +235,9 @@ gca_languages['cs'] = {
 			// Cost calculator
 			total_cost : "Celková cena",
 			// Discount show
-			costs_discount : "Sleva na cvičení: {{number}}%"
+			costs_discount : "Sleva na cvičení: {{number}}%",
+			// CTRL Hint 
+			ctrl_hint : "Tip: Podržte tlačítko CTRL pro přidání/odebrání o 10"
 		},
 		
 		// Auction section
@@ -414,6 +416,7 @@ gca_languages['cs'] = {
 			category_main_menu$centurio_powerups_timers : "Zobrazit odpočet Centuriona & Paktů na tlačítku Prémium",
 			category_main_menu$forge_timers : "Zobrazit časový indikátor kovárny/tavírny",
 			category_main_menu$merchants_timer : "Zobrazit čas obchodníků",
+			category_main_menu$menu_hide_citygate : "Skrýt Městskou bránu v menu",
 			// Settings - Messages
 			category_messages$messages_layout : "Rozšířené zobrazení zpráv",
 			category_messages$show_unread : "Zvýraznit nepřečtené zprávy",
@@ -464,6 +467,7 @@ gca_languages['cs'] = {
 			category_merchants$ruby_icon_on_items : "Označit ikonkou předměty, které stojí rubíny",
 			category_merchants$show_shop_info : "Zobrazit info obchodu (celkové zlato a rubíny)",
 			category_merchants$double_click_actions : "Dvojklik pro prodat/koupit",
+			category_merchants$alt_click_actions : "(Podržet) Alt + Klik pro prodat/koupit",
 			category_merchants$hide_prices : "Skrýt plovoucí ceny při nákupu/prodeji",
 			// Settings - Forge
 			category_forge$material_links : "[Kovárna/Pracovní stůl] Zobrazit zkratky zásilek & tržiště pro každý potřebný materiál",
