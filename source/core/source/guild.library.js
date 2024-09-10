@@ -38,13 +38,19 @@ var gca_guild_library = {
 			container.id = 'gca-library-container';
 
 			// Get guild gold
-			var guildGold = container.parentNode.getElementsByClassName('span_right')[1].textContent;
+			let guildGoldElement = container?.parentNode?.getElementsByClassName('span_right')[1];
+			// Ensure the element exists and has text content, otherwise set a default value
+			let guildGold = guildGoldElement ? guildGoldElement.textContent : '0';
+			// Parse guild gold (using the default value if necessary)
 			guildGold = gca_tools.strings.parseGold(guildGold);
 			
 			// Get recipes
-			var recipes = container.getElementsByTagName('tr');
-			// Header style fix
-			recipes[0].getElementsByTagName('td')[4].style = 'width: 15%;';
+			var recipes = container?.getElementsByTagName('tr') || [];
+
+			// Check
+			if (recipes.length > 0 && recipes[0].getElementsByTagName('td').length > 4) {
+				recipes[0].getElementsByTagName('td')[4].style = 'width: 15%;';
+			}
 			
 			// For each recipe
 			for (var i = recipes.length - 1; i >= 1; i--) {
@@ -139,9 +145,13 @@ var gca_guild_library = {
 			container.id = 'gca-library-container';
 
 			// Get guild gold
-			var guildGold = container.parentNode.getElementsByClassName('span_right')[1].textContent;
+			let guildGoldElement = container?.parentNode?.getElementsByClassName('span_right')[1];
+			// Ensure the element exists and has text content, otherwise set a default value
+			let guildGold = guildGoldElement ? guildGoldElement.textContent : '0';
+			// Parse guild gold
 			guildGold = gca_tools.strings.parseGold(guildGold);
-			if(guildGold === null) return;
+			// If guildGold is still null after parsing, return
+			if (guildGold === null) return;
 			
 			// Get recipes
 			var recipes = container.getElementsByTagName('tr');
