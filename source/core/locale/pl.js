@@ -3,7 +3,7 @@
  * Name : Polish
  * Code : pol
  * Tag  : pl
- * Translator: wupload, Legiss, Vanish_Si, Sorky96
+ * Translator: wupload, Legiss, Vanish_Si, Sorky96, robisxx
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['pl'] = {
 	name : 'Polski (Polish)',
-	translators : ["wupload", "Legiss", "Vanish_Si", "Sorky96"],
+	translators : ["wupload", "Legiss", "Vanish_Si", "Sorky96, robisxx"],
 	locale : {
 		info : {
 			description : "Zwariowany dodatek dla Gladiatusa"
