@@ -76,33 +76,33 @@ var gca_arena = {
 
 	// Show Simulator
 	show_simulator: function() {
-		let content = document.getElementById('content');
-
-		// Check if the 'content' element and the first 'article' element exist
-		if (content) {
-			let article = content.getElementsByTagName('article')[0];
-
-		if (article && article.parentNode) {
-			// Create the simulator link
-			let link = document.createElement('a');
-			link.className = "gca_arena-simulator-link";
-			link.href = gca_links.get('gladiatus-simulator');
-			link.setAttribute("target", "_blank");
-
-			// Insert the link before the article
-			article.parentNode.insertBefore(link, article);
-
-			// Create the image container
-			let image = document.createElement('div');
-			image.className = "gca_arena-simulator-img";
-			link.appendChild(image);
-
-			// Create and append the text
-			let text = document.createElement('div');
-			text.textContent = "Before attacking, use the...";
-			image.appendChild(text);
-			}
-		}
+    		let content = document.getElementById('content');
+    
+    		// Check if the 'content' element and the first 'article' element exist
+    		if (content) {
+        		let article = content.getElementsByTagName('article')[0];
+        
+        		if (article && article.parentNode) {
+            		// Create the simulator link
+            		let link = document.createElement('a');
+            		link.className = "gca_arena-simulator-link";
+            		link.href = gca_links.get('gladiatus-simulator');
+            		link.setAttribute("target", "_blank");
+            
+            		// Insert the link before the article
+            		article.parentNode.insertBefore(link, article);
+            
+            		// Create the image container
+            		let image = document.createElement('div');
+            		image.className = "gca_arena-simulator-img";
+            		link.appendChild(image);
+            
+            		// Create and append the text
+            		let text = document.createElement('div');
+            		text.textContent = "Before attacking, use the...";
+            		image.appendChild(text);
+        		}
+    		}
 	},
 	
 	// Overhaul Arena and Circus tables
@@ -135,7 +135,21 @@ var gca_arena = {
 		},
 
 		getInfo : function() {
-			let arena_rows = document.getElementById('content').getElementsByTagName('article')[0].getElementsByClassName('right')[0].getElementsByTagName('tr');
+			 // Check if 'content' exists
+			let content = document.getElementById('content');
+			if (!content) return;
+
+			// Check if there are any 'article' elements and get the first one
+			let article = content.getElementsByTagName('article')[0];
+			if (!article) return;
+
+			// Check if there are any elements with class 'right' and get the first one
+			let rightSection = article.getElementsByClassName('right')[0];
+			if (!rightSection) return;
+
+			// Check if there are any 'tr' elements
+			let arena_rows = rightSection.getElementsByTagName('tr');
+			if (!arena_rows) return;
 			
 			this.info = {};
 			this.info.locale_position = arena_rows[0].getElementsByTagName('th')[0].textContent.trim();
@@ -149,9 +163,11 @@ var gca_arena = {
 
 		create : function() {
 			let article = document.getElementById('content').getElementsByTagName('article')[0];
-
-			// Add br
-			article.appendChild(document.createElement('br'));
+			
+			// Check if article exists before appending
+			if (article) {
+				article.appendChild(document.createElement('br'));
+			}
 			
 			// Add header
 			let header = document.createElement('h2');
