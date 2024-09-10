@@ -233,8 +233,8 @@ var gca_reports = {
 
 			// Report lines
 			let row = 1;
-			let line = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr');
-			let loot_translation = line[0].getElementsByTagName('th')[2].textContent;
+			let line = document.getElementById('content')?.getElementsByTagName('table')[0]?.getElementsByTagName('tr');
+			let loot_translation = line?.[0]?.getElementsByTagName('th')[2]?.textContent;
 
 			// Align stuff
 			if (line[0].getElementsByTagName('th').length < 3) // There has been an error but none of the pages has less than 4...

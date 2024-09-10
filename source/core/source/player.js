@@ -66,25 +66,29 @@ var gca_player = {
 	},
 
 	// Items Shadow Inject
-	itemShadow : {
-		inject : function(){
-			this.dollItems();
-		},
+	itemShadow: {
+    		inject: function () {
+        		this.dollItems();
+    		},
 
-		// Add shadow to doll items
-		dollItems : function(){
-			// Get doll divs
-			var items = document.getElementById("char").getElementsByClassName("ui-droppable");
+    		// Add shadow to doll items
+    		dollItems: function () {
+        		// Get the #char element and check if it exists
+        		var charElement = document.getElementById("char");
+       	 		if (!charElement) return;
 
-			// Add shadow to each item
-			for(var i = items.length - 1; i >= 0; i--){
-				// If item
-				if(items[i].className.match("item-i-")){
-					gca_tools.item.shadow.add(items[i]);
-				}
-			}
+        		// Get doll divs with the class "ui-droppable"
+        		var items = charElement.getElementsByClassName("ui-droppable");
+        		if (!items || items.length === 0) return;
 
-		}
+        		// Add shadow to each item
+        		for (var i = items.length - 1; i >= 0; i--) {
+            			// If item matches the "item-i-" pattern
+            			if (items[i].className.match("item-i-")) {
+                			gca_tools.item.shadow.add(items[i]);
+            			}
+        		}
+    		}
 	},
 
 	// Target Players List
@@ -206,22 +210,29 @@ var gca_player = {
 	},
 	
 	// Show player buffs
-	show_buffs : function() {
-		if(!document.getElementById('content'))
-			return;
+	show_buffs: function() {
+    		// Check if the content element exists
+    		if (!document.getElementById('content')) return;
 		
-		var charstats = document.getElementById('charstats');
-		var stats_translations = [];
-		var a=2;
-		while (charstats.getElementsByClassName('charstats_text')[a]){
-			stats_translations.push(charstats.getElementsByClassName('charstats_text')[a].textContent);
-			a++;
-		}
-		var b=1;
-		while (charstats.getElementsByClassName('charstats_value21')[b]) {
-			stats_translations.push(charstats.getElementsByClassName('charstats_value21')[b].textContent);
-			b++;
-		}
+    		// Get the charstats element and check if it exists
+    		var charstats = document.getElementById('charstats');
+    		if (!charstats) return;
+		
+    		var stats_translations = [];
+    		var a = 2;
+		
+    		// Loop through elements with class 'charstats_text', if they exist
+    		while (charstats.getElementsByClassName('charstats_text')[a]) {
+        		stats_translations.push(charstats.getElementsByClassName('charstats_text')[a].textContent);
+        		a++;
+    		}
+    		var b = 1;
+		
+    		// Loop through elements with class 'charstats_value21', if they exist
+    		while (charstats.getElementsByClassName('charstats_value21')[b]) {
+        		stats_translations.push(charstats.getElementsByClassName('charstats_value21')[b].textContent);
+        		b++;
+    	}
 		
 		// Buffs array
 		var buffs = [];// category (1:oils, 2:max, 3:enchantments, 4:critical), stat(number), value 
@@ -418,8 +429,9 @@ var gca_player = {
 			/*Red (4)*/ 7
 		];
 		
-		// Item list
-		let items = document.getElementById('char').getElementsByClassName('ui-droppable');
+		// Item list and check
+		let charElement = document.getElementById('char');
+		let items = charElement ? charElement.getElementsByClassName('ui-droppable') : [];
 		
 		let i = 0;
 		while (items.length > i) {
@@ -478,27 +490,33 @@ var gca_player = {
 	more_info : {
 		show : function() {
 			if(!document.getElementById('content')) return;
-
 			let info = this.getInfo();
 			this.create(info);
 		},
 
-		getInfo : function() {
-			var info = [];
+		getInfo: function() {
+    			var info = [];
 
-			// Get player's level
-			var level = parseInt(document.getElementById('char_level').textContent, 10);
+    			// Get player's level element and check if it exists
+    			var levelElement = document.getElementById('char_level');
+    			if (!levelElement) return info;  // Return empty array if level element is not found
 
-			// Generate info
-			info.push(gca_locale.get('overview', 'can_use_max_item_level', {max : ( ( level+16<Math.floor(1.25*level+7.75) )? level+16 : Math.floor(1.25*level+7.75) ) }));
-			info.push(gca_locale.get('overview', 'can_see_market_max_item_level', {max : ( ( level+9<Math.floor(1.25*level) )? level+9 : Math.floor(1.25*level) ) }));
-			info.push(gca_locale.get('overview', 'can_see_auction_item_levels', {
-				min : ( Math.floor(level* 0.75) ),
-				max : ( ( level+14<Math.ceil(1.25*level+5.75) )? level+14 : Math.ceil(1.25*level+5.75) )
-			}));
+    			// Parse the player's level
+    			var level = parseInt(levelElement.textContent, 10);
 
-			return info;
-		},
+    			// Generate info
+    			info.push(gca_locale.get('overview', 'can_use_max_item_level', {
+        			max: ((level + 16 < Math.floor(1.25 * level + 7.75)) ? level + 16 : Math.floor(1.25 * level + 7.75))
+    			}));
+    			info.push(gca_locale.get('overview', 'can_see_market_max_item_level', {
+        			max: ((level + 9 < Math.floor(1.25 * level)) ? level + 9 : Math.floor(1.25 * level))
+    			}));
+    			info.push(gca_locale.get('overview', 'can_see_auction_item_levels', {
+        			min: Math.floor(level * 0.75),
+        			max: ((level + 14 < Math.ceil(1.25 * level + 5.75)) ? level + 14 : Math.ceil(1.25 * level + 5.75))
+    			}));
+    			return info;
+	},
 
 		create : function(info) {
 			// Create Box

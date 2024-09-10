@@ -65,8 +65,27 @@ var gca_guild_jail = {
 			var jailTableRows = document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr').length;
 			
 			// If you have the rights to free monsters
-			var admin = ( document.getElementById('content').getElementsByTagName('table')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[3].getElementsByTagName('a')[1] )?true:false;
-			if(!admin) document.getElementById('content').className('noJailRights');
+			let contentElement = document.getElementById('content');
+			let admin = false;
+
+			if (contentElement) {
+    				let table = contentElement.getElementsByTagName('table')[0];
+    				if (table) {
+       			 		let tr = table.getElementsByTagName('tr')[1];
+        				if (tr) {
+            					let td = tr.getElementsByTagName('td')[3];
+           					 if (td) {
+                					let a = td.getElementsByTagName('a')[1];
+                					admin = !!a; // Set admin to true if the anchor element exists
+            					}
+        				}
+    				}
+			}
+
+			// If not an admin, add the 'noJailRights' class
+			if (!admin) {
+    				contentElement?.classList.add('noJailRights');
+			}
 			
 			// For every prisoner row
 			for(var i=1;i<jailTableRows;i++){
@@ -186,8 +205,16 @@ var gca_guild_jail = {
 			}
 
 			// Hide old prisoners layout
-			document.getElementById('content').getElementsByTagName('article')[0].style = 'display:none';
-			document.getElementById('content').className = 'gca-jail-content';
+			let content = document.getElementById('content');
+			// Check if the content and article exist
+			if (content) {
+				let article = content.getElementsByTagName('article')[0];
+			if (article) {
+				article.style.display = 'none';
+			}
+    			// Set class name for content
+    			content.className = 'gca-jail-content';
+			}
 			// Calculate empty cells
 			jailCells-=prisoners.length;
 

@@ -81,27 +81,38 @@ var gca_markets = {
 	},
 
 	// Trigger sell with {enter}
-	enterTriggerSell : function() {
+	enterTriggerSell: function() {
 		jQuery(document).ready(function() {
 			// Monitor key events
 			jQuery(document).keyup(function(event) {
-				// Check if ENTER
+				// Check if ENTER is pressed
 				if (event.keyCode === 13) {
 					// Check if there is an item to sell
-					if ( document.getElementById("market_sell").getElementsByClassName("ui-draggable").length > 0 ){
+					var marketSellElement = document.getElementById("market_sell");
+					if (marketSellElement && marketSellElement.getElementsByClassName("ui-draggable").length > 0) {
 						//console.log("Item in sell position found");
-						let focus = document.activeElement.type
-						if ( focus != "textarea" && focus != "text")
+						let focus = document.activeElement.type;
+						if (focus != "textarea" && focus != "text") {
 							document.getElementsByName("anbieten")[0].click();
 							//console.log("Not a text area:"+document.activeElement.type);
+						}
 					}
 				}
 			});
-			
+
+			// Create the span element with text
 			let span = document.createElement("span");
-			span.textContent = "("+gca_locale.get("markets", "click_enter_to_sell")+")";//"(click enter to sell)";
-			span.style = "font-size: 0.8em;font-style: italic;"
-			document.getElementById("market_sell_box").getElementsByTagName("section")[0].appendChild(span);
+			span.textContent = "(" + gca_locale.get("markets", "click_enter_to_sell") + ")"; //"(click enter to sell)";
+			span.style = "font-size: 0.8em; font-style: italic;";
+
+			// Check if market_sell_box exists and append the span
+			var marketSellBox = document.getElementById("market_sell_box");
+			if (marketSellBox) {
+				let section = marketSellBox.getElementsByTagName("section")[0];
+				if (section) {
+					section.appendChild(span);
+				}
+			}
 		});
 	},
 
@@ -226,16 +237,24 @@ var gca_markets = {
 	},
 
 	// Show warnings on item selling
-	sellWarnings : {
+	sellWarnings: {
+    		init: function() {
+        		if (this.icons) return;
+        		this.icons = {};
 
-		init : function() {
-			if (this.icons) return;
-			this.icons = {};
+        		// Icon wrapper
+        		this.icons.wrapper = document.createElement('div');
+        		this.icons.wrapper.className = 'gca-market-sell-warnings';
 
-			// Icon wrapper
-			this.icons.wrapper = document.createElement('div');
-			this.icons.wrapper.className = 'gca-market-sell-warnings';
-			document.getElementById('market_sell_box').getElementsByTagName('h2')[0].appendChild(this.icons.wrapper);
+        		// Get the market_sell_box element and check if it exists
+        		var marketSellBox = document.getElementById('market_sell_box');
+        		if (marketSellBox) {
+            			// Get the h2 element inside market_sell_box
+            			var header = marketSellBox.getElementsByTagName('h2')[0];
+            			if (header) {
+                			header.appendChild(this.icons.wrapper);
+            			}
+	     		}
 
 			// Soulbound icon
 			this.icons.soulbound = document.createElement('span');
@@ -390,11 +409,17 @@ var gca_markets = {
 	},
 
 	// 1g mode
-	oneGoldMode : function(){
-		// Create mode switch
-		let wrapper = document.createElement('div');
-		let fields = document.getElementById("market_sell_fields");
-		fields.parentNode.insertBefore(wrapper, fields.nextSibling);
+	oneGoldMode: function() {
+    		// Create mode switch
+   		let wrapper = document.createElement('div');
+    
+    		// Get the market_sell_fields element
+    		let fields = document.getElementById("market_sell_fields");
+    
+    		// Check if the fields element exists before inserting the wrapper
+    		if (fields && fields.parentNode) {
+        		fields.parentNode.insertBefore(wrapper, fields.nextSibling);
+	 	}
 		
 		let selected_mode = gca_data.section.get("cache", "last_sell_1g_mode", 0);
 		
@@ -580,22 +605,22 @@ var gca_markets = {
 	},
 
 	// On double click item to select for selling
-	doubleClickToSelect : {
-		init : function(){
-			// Add event
-			gca_tools.event.bag.onBagOpen(() => {
-				this.apply();
-			});
+	doubleClickToSelect: {
+		init: function() {
+		// Add event
+		gca_tools.event.bag.onBagOpen(() => {
+			this.apply();
+		});
 
-			// If bag not already loaded
-			if (document.getElementById('inv').className.match('unavailable')) {
-				// Wait first bag
-				gca_tools.event.bag.waitBag(() => {
-					this.apply();
-				});
-			}
-			else {
-				this.apply();
+		// Check if 'inv' element exists and handle its className safely
+		let invElement = document.getElementById('inv');
+		if (invElement && invElement.className.match('unavailable')) {
+		// Wait for the first bag
+		gca_tools.event.bag.waitBag(() => {
+			this.apply();
+		});
+		} else if (invElement) {
+			this.apply();
 			}
 		},
 		apply : function(){
