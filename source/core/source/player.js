@@ -429,8 +429,9 @@ var gca_player = {
 			/*Red (4)*/ 7
 		];
 		
-		// Item list
-		let items = document.getElementById('char').getElementsByClassName('ui-droppable');
+		// Item list and check
+		let charElement = document.getElementById('char');
+		let items = charElement ? charElement.getElementsByClassName('ui-droppable') : [];
 		
 		let i = 0;
 		while (items.length > i) {
