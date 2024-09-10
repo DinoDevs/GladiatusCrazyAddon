@@ -43,7 +43,7 @@
 ### TRANSLATIONS
 
 - **Updates**
-  - [x] Polish updates by @jrel #453 
+  - [x] Polish updates by @jrel and @robisxx #453, #486
   - [x] Hungarian updates by @Gabooor #458 
   - [x] Slovak updates by @VolFinKo #457 
   - [x] Greek updates by @GreatApo
