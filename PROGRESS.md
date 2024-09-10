@@ -44,7 +44,7 @@
 
 - **Updates**
   - [x] Polish updates by @jrel and @robisxx #453, #486
-  - [x] Hungarian updates by @Gabooor #458 
+  - [x] Hungarian updates by @Gabooor and @ArtyomCheeky #458, #485
   - [x] Slovak updates by @VolFinKo #457 
   - [x] Greek updates by @GreatApo
   - [x] Czech updates by @FrutyX
