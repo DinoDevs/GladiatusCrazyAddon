@@ -161,20 +161,21 @@ var gca_arena = {
 			this.info.guild_name = gca_data.section.get("guild", "name", "-").trim();
 		},
 
-		create : function() {
-			let article = document.getElementById('content').getElementsByTagName('article')[0];
-			
-			// Check if article exists before appending
-			if (article) {
-				article.appendChild(document.createElement('br'));
-			}
-			
+		create: function() {
+			let article = document.getElementById('content')?.getElementsByTagName('article')[0];
+
+			// Check if article exists before performing any operations
+			if (!article) return;
+
+			// Add <br> element
+			article.appendChild(document.createElement('br'));
+
 			// Add header
 			let header = document.createElement('h2');
 			header.className = "section-header global_arena_header";
 			header.textContent = gca_locale.get("arena", "global_arena_title") + ' ' + '(Crazy Addon)';
 			article.appendChild(header);
-			
+
 			// Add box
 			let box = document.createElement('section');
 			box.id = "global_arena_box";
@@ -182,22 +183,22 @@ var gca_arena = {
 			article.appendChild(box);
 			this.box = box;
 
-			// Add text
+			// Add description
 			let description = document.createElement('p');
-			description.textContent = gca_locale.get("arena", "global_arena_description")+" ";
+			description.textContent = gca_locale.get("arena", "global_arena_description") + " ";
 			description.style = "text-align: center;";
 			box.appendChild(description);
 
-			// Add link to highscore
+			// Add highscore link
 			let highscore_link = document.createElement('a');
 			highscore_link.className = "awesome-button";
 			highscore_link.textContent = gca_locale.get("arena", "global_highscore") + ' 🔗';
 			highscore_link.style = "margin-bottom: 15px;padding: 2px 6px;margin-right: 20px;";
 			highscore_link.href = gca_links.get('addon-page') + "/global-arena.php";
-			highscore_link.setAttribute("target","_blank");
+			highscore_link.setAttribute("target", "_blank");
 			box.appendChild(highscore_link);
 
-			// Add button
+			// Add load button
 			let load_btn = document.createElement('input');
 			load_btn.type = "button";
 			load_btn.className = "awesome-button";
@@ -210,23 +211,25 @@ var gca_arena = {
 			box.appendChild(load_btn);
 			this.load_btn = load_btn;
 
-			// Status
+			// Add status
 			let status = document.createElement('p');
 			status.id = 'alert_box';
 			status.style.display = 'none';
 			box.appendChild(status);
 			this.status = status;
-			
-			// Spinner
+
+			// Add spinner
 			let spinner = document.createElement('div');
 			spinner.id = 'spiner_box';
 			spinner.style.display = 'none';
 			box.appendChild(spinner);
 			this.spinner = spinner;
+
 			let img = document.createElement('img');
 			img.src = gca_tools.img.cdn('img/ui/spinner.gif');
 			spinner.appendChild(img);
-			
+
+			// Add rankings table
 			let rankings_table = document.createElement("table");
 			rankings_table.width = "100%";
 			rankings_table.style.display = "none";
@@ -234,7 +237,8 @@ var gca_arena = {
 			rankings_table.style.wordBreak = 'break-word';
 			box.appendChild(rankings_table);
 			this.rankings_table = rankings_table;
-			
+
+			// Add main table
 			let table = document.createElement("table");
 			table.width = "100%";
 			table.style.border = "0px";
@@ -242,9 +246,9 @@ var gca_arena = {
 			table.style.wordBreak = 'break-word';
 			box.appendChild(table);
 			this.table = table;
-			
-			// if link opens global arena
-			if ( document.location.href.match("#global_arena_box") ){
+
+			// If link opens global arena
+			if (document.location.href.match("#global_arena_box")) {
 				this.loadList();
 				header.scrollIntoView();
 			}
