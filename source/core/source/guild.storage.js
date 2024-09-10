@@ -36,26 +36,8 @@ var gca_guild_storage = {
 		// Setting Link
 		gca_tools.create.settingsLink("guild");
 	},
-
+	
 	// Items Shadow Inject
-	itemShadow : {
-		inject : function(){
-			this.dollItems();
-		},
-
-		// Add shadow to doll items
-		dollItems : function(){
-			// Get doll items
-			var items = document.getElementById("char").getElementsByClassName("ui-draggable");
-
-			// Add shadow to each item
-			for(var i = items.length - 1; i >= 0; i--){
-				gca_tools.item.shadow.add(items[i]);
-			}
-		}
-	},
-
-		// Items Shadow Inject
 	itemShadow: {
     		inject: function() {
        			 this.dollItems();
@@ -63,7 +45,7 @@ var gca_guild_storage = {
 
     		// Add shadow to doll items
    		 dollItems: function() {
-        		// Get doll items safely
+        	// Get doll items safely
         	let charElement = document.getElementById("char");
         		if (!charElement) return; // Exit if 'char' element doesn't exist
 
