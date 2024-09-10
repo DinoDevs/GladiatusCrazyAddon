@@ -31,6 +31,10 @@ gca_languages['pl'] = {
 			ok : "OK"
 		},
 		global : {
+			health_notification : "Twoje zdrowie jest poniżej",
+			welcome_addon : "Witamy w Gladiatus Crazy Addon!",
+			welcome_version : "Aktualnie zainstalowana wersja to",
+			welcome_changelog : "Lista zmian",
 			life_potion_use : "Użyj mikstury życia",
 			life_potion_used : "Użyto miksturę życia",
 			life_potion_left : "Pozostało {{number}} mikstur życia",
@@ -226,6 +230,12 @@ gca_languages['pl'] = {
 			category_global$remember_tabs : "Pamiętaj ostatnią wybraną kartę u kupców",
 			category_global$attacked_timers : "Pokaż licznik atakujących",
 			category_global$notify_new_guild_application : "Powiadom mnie, gdy pojawi się nowe podanie do gildii",
+			category_main_menu : "Menu główne",
+			category_global$health_warning : "Wyślij ostrzeżenie jeśli HP jest poniżej:",
+			category_global$bar_hide_exp_btn : "Ukryj przycisk wypraw",
+			category_global$bar_hide_dun_btn : "Ukryj przycisk lochów",
+			category_global$bar_hide_are_btn : "Ukryj przycisk areny",
+			category_global$bar_hide_ct_btn : "Ukryj przycisk Circus Turma",
 			//category_global$check_guild_application_pinned_messages_interval : "Sprawdzaj podania do gildii (minuty)", // add pinned messages
 			category_global$x_scroll : "Włącz przewijanie w poziomie",
 			category_global$item_shadow : "Pokaż cienie przedmiotów",
