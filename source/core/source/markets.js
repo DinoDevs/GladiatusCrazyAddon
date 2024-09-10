@@ -605,22 +605,22 @@ var gca_markets = {
 	},
 
 	// On double click item to select for selling
-	doubleClickToSelect : {
-		init : function(){
-			// Add event
-			gca_tools.event.bag.onBagOpen(() => {
-				this.apply();
-			});
+	doubleClickToSelect: {
+		init: function() {
+		// Add event
+		gca_tools.event.bag.onBagOpen(() => {
+			this.apply();
+		});
 
-			// If bag not already loaded
-			if (document.getElementById('inv').className.match('unavailable')) {
-				// Wait first bag
-				gca_tools.event.bag.waitBag(() => {
-					this.apply();
-				});
-			}
-			else {
-				this.apply();
+		// Check if 'inv' element exists and handle its className safely
+		let invElement = document.getElementById('inv');
+		if (invElement && invElement.className.match('unavailable')) {
+		// Wait for the first bag
+		gca_tools.event.bag.waitBag(() => {
+			this.apply();
+		});
+		} else if (invElement) {
+			this.apply();
 			}
 		},
 		apply : function(){
