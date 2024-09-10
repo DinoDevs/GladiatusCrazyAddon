@@ -3,7 +3,7 @@
  * Name : Magyar (Hungarian)
  * Code : [none]
  * Tag  : hu
- * Translator: Adamus23, Saiid, Gabooor
+ * Translator: Adamus23, Saiid, Gabooor, ArtyomCheeky
  */
 
 // Languages Object
@@ -15,7 +15,7 @@ gca_languages['hu'] = {
 	// Language name
 	name : 'Magyar (Hungarian)',
 	// Translators (authors of this script)
-	translators : ["Adamus23", "Saiid", "Gabooor"],
+	translators : ["Adamus23", "Saiid", "Gabooor, ArtyomCheeky"],
 
 	// Translations object
 	locale : {
@@ -125,6 +125,15 @@ gca_languages['hu'] = {
 			// Items
 			mercenary_type : "Írd: {{name}} ({{number}})",
 			gains_with_full_stats : "Maximális statisztikákkal járó értékek:",
+
+			// Misc
+			base : "Alap",
+			prefix : "Előtag",
+			suffix : "Utótag",
+			health_notification : "Az életerőd alacsonyabb, mint",
+			welcome_addon : "Üdvözöljük a Gladiatus Crazy Addonban!",
+			welcome_version : "A jelenleg telepített verzió",
+			welcome_changelog : "Változási napló",
 		},
 
 		// Overview
@@ -325,6 +334,7 @@ gca_languages['hu'] = {
 			description_click_button : "Kattints a gombra, hogy a kiegészítő beállításaihoz ugorj!",
 
 			// Categories
+			category_main_menu : "Főmenü",
 			category_global : "Általános",
 			category_overview : "Áttekintés",
 			category_messages : "Üzenetek",
@@ -348,18 +358,32 @@ gca_languages['hu'] = {
 			// Settings - Global
 			category_global$language_select : "Segédprogram nyelvének kiválasztása",
 			category_global$browser_notifications : "Böngésző értesítéseinek engedélyezése",
+			category_global$health_warning : "Figyelmeztetés küldése, ha az életpontok alacsonyabbak, mint:",
 			category_global$extended_hp_xp_info : "Életerő és tapasztalati pontok megjelenítése",
 			category_global$extended_hp_xp_info_potion : "Életerő ital ikonjának megjelenítése",
 			category_global$hp_timer_for_full_life : "Életerő feltöltődésének idejének megjelenítése",
 			category_global$expedition_dungeon_points_recover_timer : "A teljes expedíció/kazamata feltöltődéséhez szükséges idő megjelenítése",
 			category_global$shortcuts_bar : "Gyorskezelési eszköztár megjenítése",
+			category_global$lock_section_visibility : "Az elrejthető szekciók jelenlegi állapotának zárolása",
+			category_global$hide_language_flags : "Nyelvi zászlók elrejtése a játékosnevek alatt",
+			category_global$gca_custom_scrollbar : "GCA egyedi görgetősáv használata",
+			category_global$gladiatus_site_fixes : "A Gladiatus webhely stílusbeli hibáinak javítása és fejlesztése",
+			category_global$show_mercenaries_real_name_and_combat_stats : "Zsoldosok valódi neveinek (típus) és harci statisztikáinak megjelenítése az eszköztippekben",
+			category_global$check_guild_application_pinned_messages_interval : "Céhjelentkezések és kitűzött üzenetek ellenőrzése minden (percben)",
 			category_global$shortcuts_bar_buttons : "Válasszon parancsikont az eszköztár sávjához",
+			category_global$show_upgrade_values : "Buff értékek megjelenítése a megerősítéseknél és fejlesztéseknél",
 			category_global$auction_status_bar : "Aukciós sáv megjelenítése",
 			category_global$auction_status_notification : "Jelzés, ha az aukció állapota megváltozik",
+			category_global$check_guild_pinned_message : "Mutassa a céh kitűzött üzeneteit az üzenetek között a fürdőkben",
 			category_global$top_fixed_bar : "Felső rögzített sáv engedélyezése",
 			category_global$remember_tabs : "Emlékezzen a kereskedő utoljára látogatott lapjára",
 			category_global$attacked_timers : "Támadási időzítők megjelenítése",
 			category_global$notify_new_guild_application : "Értesítés, ha új jelentkező van az egyesületbe",
+			category_global$bar_hide_exp_btn : "Az Expedíciós gombok elrejtése",
+			category_global$bar_hide_dun_btn : "A Kazamaták gombok elrejtése",
+			category_global$bar_hide_are_btn : "Az Aréna gombok elrejtése",
+			category_global$bar_hide_ct_btn : "A Circus Turma gombok elrejtése",
+									
 			//category_global$check_guild_application_pinned_messages_interval : "Ellenőrizze az applikációkat minden percben", // add pinned messages
 			category_global$notify_guild_attack_ready : "Értesítés, ha újra lehet egyesületi támadást indítani",
 			category_global$notify_guild_attack_ready_interval : "Ellenőrizze az egyesületi támadás korlátozásának idejét minden percben",
@@ -397,6 +421,8 @@ gca_languages['hu'] = {
 			category_main_menu$centurio_powerups_timers : "Jelenítse meg a Centurió és a Megállapodások lejáratát a prémium gombnál",
 			category_main_menu$forge_timers : "Mutassa a kovácsolás/olvasztás idejének mutatóját",
 			category_main_menu$merchants_timer : "Kereskedők időzítőjének megjelenítése",	
+			category_main_menu$menu_merge_merchants : "Minden kereskedő egyesítése egy menübpontba",
+			category_main_menu$menu_merge_items : "A Kohó, Olvasztó, Műhely, Horreum és Magus egyesítése egy menüpontba",
 			// Settings - Messages
 			category_messages$messages_layout : "Üzenetek felületének javítása",
 			category_messages$show_unread : "Emelje ki az olvasatlan üzeneteket",
@@ -419,6 +445,9 @@ gca_languages['hu'] = {
 			category_packages$special_category_features : "Speciális funkciók engedélyezése kategóriánként\n•Mutassa, ha egy tekercs meg van/nincs megtanulva\n•Mutassa a tárgyaknál az elő/utótagot, ha az még nincs megtanulva",
 			category_packages$double_click_open : "Dupla kattintás egy tárgya a behúzásához",
 			category_packages$advance_filter : "Egy új, bővített keresési rendszer hozzáadása",
+			category_packages$list_view_layout : "Csomagok listanézetként való megjelenítése",
+			category_packages$pop_over_bag : "Táska megjelenítése görgetéskor",
+			category_packages$packages_shortcuts : "Tárgykategória gyorsbillentyűk hozzáadása",
 			// Settings - Pantheon
 			category_pantheon$quests_reorder : "Feladatok csoportosításának engedélyezése",
 			category_pantheon$quests_detailed_rewards : "Mutassa bővebben a feladatokért kapható jutalmakat",
@@ -444,18 +473,21 @@ gca_languages['hu'] = {
 			category_merchants$ruby_icon_on_items : "Ikon hozzáadása azokhoz a tárgyakhoz amik rubinba kerülnek",
 			category_merchants$show_shop_info : "Mutassa az oldal teljes árát (rubinban és aranyban)",
 			category_merchants$double_click_actions : "Dupla kattintás egy tárgyra az eladáshoz/vásárláshoz",
+			category_merchants$ruby_icon_on_items : "Rubint igénylő tárgyak ikonja",
 			// Settings - Forge
 			category_forge$material_links : "[Kovácsműhely/Munkaasztal] Mutassa a csomag/piac ikonokat a még szükséges anyagokhoz",
 			category_forge$show_levels : "[Kovácsműhely] Mutassa az elő/utótag és az alap tárgy szintjét a neve mellett",
 			category_forge$horreum_materials_names : "[Csűr] Mutassa a nyersanyagok nevét",
 			category_forge$horreum_remember_options : "[Csűr] Emlékezzen a legutóbb használt tárolás beállítására",
 			category_forge$horreum_select_meterials : "[Csűr] Nyersanyag kiválasztása kattintással",
+			category_forge$double_click_select : "[Olvasztás/Javítás] Tárgy kiválasztása dupla kattintással",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Hagyja figyelmen kívül a támadások megerősítését (5 támadás után)",
 			category_arena$show_simulator_imagelink : "Mutasson egy linket a szimulátorhoz (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Rendezze a provinciarum arénában lévő játékosokat szint szerint",
 			category_arena$highlight_guild_members : "Emelje ki a csapattásaim nevét, akik más szerveren is játszanak",
 			category_arena$target_list : "Célpontlista engedélyezése",
+			category_arena$overhaul_tables : "A legjobb 5 és a személyes rangsor táblázatok szétválasztása és javítása",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Homályosítsa el a tárgyakat, amiket már nem lehet fejleszteni",
 			// Settings - Market
@@ -470,6 +502,8 @@ gca_languages['hu'] = {
 			category_market$double_click_select : "Tárgy kiválasztása dupla kattintással",
 			category_market$sell_warning_icons : "Figyelmeztetés tárgy eladása előtt",
 			category_market$sell_with_enter : "Tárgyak eladása ENTER ⏎ lenyomásával",
+			category_market$add_fees_button : "[+] gomb megjelenítése, amely tartalmazza a díjakat az eladási árban",
+			category_market$custom_prices : "Egyedi piaci árak, vesszővel elválasztva. Az ár százalékos értékének kiszámítása '%' hozzáadásával. (pl. '10000, 10.000, 200%')",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Mutassa a szerezhető nyersanyagokat ellenfelenként",
 			category_expedition$underworld_layout : "Mutassa az alvilági ellenfelek elhelyezkedését úgy, mint az expedíción",
@@ -527,6 +561,7 @@ gca_languages['hu'] = {
 			each_category : "Futtassa a célkategórián",
 			all_category : "Futtassa mindenhol",
 			do_not_run : "Ne futtassa",
+			default : "Alapértelmezett",
 
 			// Info
 			translated_percent : "Fordítás százaléka: {{number}}%",
