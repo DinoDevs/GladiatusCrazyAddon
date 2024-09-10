@@ -575,10 +575,10 @@ var gca_global = {
     			}
     
     			// Get recovery rate
-    			let recover_rate = tooltip[0][1][0].match(/\d+/);
-    			if (!recover_rate) return; // Exit if recovery rate is not found
-    			recover_rate = parseInt(recover_rate[0], 10);
-    			recover_rate = (recover_rate + 100) / 100;
+			let recover_rate = tooltip?.[0]?.[1]?.[0]?.match(/\d+/);
+			if (!recover_rate) return;
+			recover_rate = parseInt(recover_rate[0], 10);
+			recover_rate = (recover_rate + 100) / 100;
 
     			// Get points left to fill
     			let point_max_elem = document.getElementById(type + 'points_value_pointmax');
