@@ -75,25 +75,43 @@ var gca_arena = {
 	},
 
 	// Show Simulator
-	show_simulator : function(){
-		let link = document.createElement('a');
-		link.className = "gca_arena-simulator-link";
-		link.href = gca_links.get('gladiatus-simulator');
-		link.setAttribute("target","_blank");
-		document.getElementById('content').getElementsByTagName('article')[0].parentNode.insertBefore(link, document.getElementById('content').getElementsByTagName('article')[0]);
-		
-		let image = document.createElement('div');
-		image.className = "gca_arena-simulator-img";
-		link.appendChild(image);
-		
-		let text = document.createElement('div');
-		text.textContent = "Before attacking, use the...";
-		image.appendChild(text);
-	},
+	show_simulator: function() {
+		let content = document.getElementById('content');
 
+		// Check if the 'content' element and the first 'article' element exist
+		if (content) {
+			let article = content.getElementsByTagName('article')[0];
+
+		if (article && article.parentNode) {
+			// Create the simulator link
+			let link = document.createElement('a');
+			link.className = "gca_arena-simulator-link";
+			link.href = gca_links.get('gladiatus-simulator');
+			link.setAttribute("target", "_blank");
+
+			// Insert the link before the article
+			article.parentNode.insertBefore(link, article);
+
+			// Create the image container
+			let image = document.createElement('div');
+			image.className = "gca_arena-simulator-img";
+			link.appendChild(image);
+
+			// Create and append the text
+			let text = document.createElement('div');
+			text.textContent = "Before attacking, use the...";
+			image.appendChild(text);
+			}
+		}
+	},
+	
 	// Overhaul Arena and Circus tables
-	overhaul_tables : function(){
-		document.getElementById("arenaPage").classList.add("overhaul_tables");
+	overhaul_tables: function() {
+		let arenaPage = document.getElementById("arenaPage");
+    
+		if (arenaPage) {
+			arenaPage.classList.add("overhaul_tables");
+		}
 	},
 	
 	// GCA Global Arena
