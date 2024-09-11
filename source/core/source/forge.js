@@ -272,7 +272,8 @@ var gca_forge = {
 					gca_notifications.info(gca_locale.get('general', 'ok'));
 				}
 			});
-		},
+		}
+	},
 	
 	// Show available items on each quality
 	showAvailableItemsOnQuality : {
