@@ -2326,6 +2326,8 @@ var gca_settings = {
 			let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
 			// Get arena data
 			let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
+			// Get Forge Notes
+			let notes_data = window.localStorage.getItem(gca_data_manager.name + "_notes") || "{\"forge_notes\":{}}";
 			// Decode data to JSON
 			settings_data = JSON.parse(settings_data);
 			// Prepare extra info
@@ -2342,7 +2344,8 @@ var gca_settings = {
 				playerId : gca_section.playerId
 			}, {
 				settings : settings_data,
-				arena : arena_data
+				arena : arena_data,
+				notes : notes_data
 			}, 3);
 		},
 
@@ -2457,6 +2460,8 @@ var gca_settings = {
 						let settings_data = window.localStorage.getItem(gca_data_manager.name + "_settings") || "{\"data\":{}}";
 						// Get arena data
 						let arena_data = window.localStorage.getItem(gca_data_manager.name + "_arena") || "{\"target-list\":{}}";
+						// Get Forge Notes
+						let notes_data = window.localStorage.getItem(gca_data_manager.name + "_notes") || "{\"forge_notes\":{}}";
 						// Decode data to JSON
 						settings_data = JSON.parse(settings_data);
 						// Prepare extra info
@@ -2473,7 +2478,8 @@ var gca_settings = {
 							playerId : gca_section.playerId
 						}, {
 							settings : settings_data,
-							arena : arena_data
+							arena : arena_data,
+							notes : notes_data
 						}, 3, true);
 
 						// if Failed to Get Settings
@@ -2532,6 +2538,7 @@ var gca_settings = {
 
 			let settings_json = null;
 			let arena_json = null;
+			let notes_json = null;
 
 			// Old version file
 			if (data.hasOwnProperty('data')) {
@@ -2541,6 +2548,7 @@ var gca_settings = {
 			else if (data.hasOwnProperty('version')) {
 				settings_json = data.settings;
 				arena_json = data.arena;
+				notes_json = data.notes;
 			}
 			// Error
 			else {
@@ -2616,8 +2624,15 @@ var gca_settings = {
 					gca_data.section.set('arena', 'target-list', arena_json['target-list']);
 				}
 			}
-			
 
+			// Parse Forge notes
+			if (notes_json) {
+				// Save notes
+				if (notes_json.hasOwnProperty('forge_notes')) {
+					gca_data.section.set('notes', 'forge_notes', notes_json['forge_notes']);
+				}
+			}
+			
 			// No errors
 			return false;
 		},
@@ -2692,7 +2707,7 @@ var gca_settings = {
 		},
 
 		// Define addon's storages
-		addonStorages : ["advanced-menu", "arena", "cache", "data", "global", "guild", "lang", "market", "messages", "overview", "packages", "settings", "sound", "stats", "timers"],
+		addonStorages : ["advanced-menu", "arena", "cache", "data", "global", "guild", "lang", "market", "messages", "overview", "packages", "settings", "sound", "stats", "timers", "notes"],
 		/*
 		// Easy find storages
 		(function(){
