@@ -476,6 +476,7 @@ gca_languages['cs'] = {
 			category_forge$horreum_remember_options : "[Stodola] Zapamatovat si poslední nastavení pro uložení surovin",
 			category_forge$horreum_select_meterials : "[Stodola] Zvolit surovinu kliknutím",
 			category_forge$double_click_select : "[Tavírna/Pracovní stůl] Vybrat předmět dvojitým kliknutím",
+			category_forge$forge_notepad : "Přidat nové pole pro poznámky",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignorovat potvrzení pro útoky (přes 5 útoků zpráva apd.)",
 			category_arena$show_simulator_imagelink : "Zobrazovat obrázkový odkaz do simulátoru (simulator.dinodevs.com)",
