@@ -986,7 +986,9 @@ var gca_settings = {
 				// Select material with click
 				"horreum_select_meterials" : true,
 				// Double click to select
-				"double_click_select" : true
+				"double_click_select" : true,
+				// Add a notepad
+				"forge_notepad" : true
 			},
 			
 			// Arena
