@@ -594,16 +594,16 @@ gca_options.data = {
 		"material_links" : true,
 		// Show Prefix/Suffix/Base levels
 		"show_levels" : true,
-
 		// Show materials names
 		"horreum_materials_names" : true,
 		// Remember options
 		"horreum_remember_options" : true,
 		// Select material with click
 		"horreum_select_meterials" : true,
-
 		// Double click to select
-		"double_click_select" : true
+		"double_click_select" : true,
+		// Add a notepad
+		"forge_notepad" : true
 	},
 	
 	// Arena
