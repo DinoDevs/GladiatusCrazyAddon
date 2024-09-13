@@ -362,7 +362,6 @@ gca_languages["dk"] = {
 			category_events: "Begivenheder",
 			category_sound: "Lyde",
 			category_data: "Data",
-		},
 
 			// Settings - Global
 			category_global$language_select: "Vælg addon'ets sprog",
@@ -582,6 +581,7 @@ gca_languages["dk"] = {
 
 			// Notifications
 			notification_reload : "Genindlæs siden for at ændringerne træder i kraft",
+		}		
 	}
 }
 
