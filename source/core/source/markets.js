@@ -302,7 +302,7 @@ var gca_markets = {
 	},
 	
 	// Cancel market items button
-	cancelAllButton: function(){
+	cancelAllButton: function() {
 		let buttons = document.getElementsByName('cancel');
 		if (buttons.length == 0) return;
 
@@ -312,39 +312,59 @@ var gca_markets = {
 		button.className = "awesome-button";
 		button.id = 'cancelAllButton';
 		button.style = "margin-top: -21px;position: absolute;right: 116px;";
-		button.value = buttons[0].value + ' ('+buttons.length+')';
+		button.value = buttons[0].value + ' (' + buttons.length + ')';
 
-		button.addEventListener('click', function(){
+		let atomic = false;
+		button.addEventListener('click', function() {
+			// Disable button
+			if (atomic) return;
+			atomic = false;
+			button.disabled = true;
+
 			let cancelStr = buttons[0].value;
 			let cancel = encodeURIComponent(cancelStr);
 			let canceledCount = 0; // Counter
 			let total = buttons.length;
 			let forms = document.getElementById("market_table").getElementsByTagName("form");
 
-			let delayRequests = 100; // delay between requests in ms
+			let minDelayRequests = 100; // minimum delay between requests in ms
+			button.value = `Cancel (0/${total})`;
 			
 			function cancelNextButton(index) {
-				if (canceledCount >= total) {
+				if (index >= total) {
 					// If finished, refresh
 					document.location.href = document.location.href.replace(/&p=\d+/i,"");
 					return;
 				}
 
-				let id = forms[index].buyid.value;
+				// Gather data for item
+				let btn = buttons[index];
+				let buyid = btn.form.buyid.value;
+
+				// Launch request
+				let request_start = new Date().getTime();
 				jQuery.ajax({
 					type: "POST",
 					url: document.location.href,
-					data: 'buyid=' + id + '&cancel=' + cancel,
+					data: 'buyid=' + encodeURIComponent(buyid) + '&cancel=' + encodeURIComponent(btn.value),
 					success: function() {
-						canceledCount++;
-						button.value = `Cancel (${canceledCount}/${total})`;
-						setTimeout(cancelNextButton(index + 1), delayRequests);
+						let request_duration = new Date().getTime() - request_start;
+						button.value = `Cancel (${index + 1}/${total})`;
+
+						setTimeout(() => {
+							cancelNextButton(index + 1);
+						}, Math.max(request_duration, minDelayRequests));
 					},
 					error: function() {
-						canceledCount++;
+						let request_duration = new Date().getTime() - request_start;
+						// This item cancel failed, it will be skipped
 						gca_notifications.error(gca_locale.get("general", "error"));
-						// Double the delay, just in case
-						setTimeout(cancelNextButton(index + 1), 2 * delayRequests);
+						// Double the min delay, just in case
+						minDelayRequests *= 2;
+
+						setTimeout(() => {
+							cancelNextButton(index + 1);
+						}, Math.max(request_duration * 2, minDelayRequests));
 					}
 				});
 			}
