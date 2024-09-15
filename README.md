@@ -24,7 +24,7 @@
 
 ## :paperclip: Downloads
 
-We suggest you to download a *stable release*. Alpha and Beta releases are for developers (unless you want to check out the latest features and give us some feedback).
+We suggest you download a *stable release*. Alpha and Beta releases are for developers (unless you want to check out the latest features and give us some feedback).
 
 ### Latest public release v4.3.8 <sub><sup>(recommended)</sup></sub>
 
@@ -37,11 +37,13 @@ We suggest you to download a *stable release*. Alpha and Beta releases are for d
 
 <sub>All releases: [stable-releases](https://github.com/DinoDevs/GladiatusCrazyAddon/releases)</sub>
 
+<sub>For fixes and changes on this source code check [here](./PROGRESS.md)</sub>
+
 ## :page_with_curl: Installation
 
-If you are new to installing browsers addons/extensions or you just want to jump on a new browser, follow our steps for installing our addon.
+If you are new to installing browser addons/extensions or you just want to jump on a new browser, follow our steps for installing our addon.
 
-Find set-by-step guides for all major browsers on our [installation docs](documentation/installation.md).
+Find step-by-step guides for all major browsers on our [installation docs](documentation/installation.md).
 
 
 ## :mag: Features Documentation
@@ -50,19 +52,19 @@ You can read about all available features in our [documentation](documentation/f
 
 ## :triangular_flag_on_post: Troubleshooting 
 
-Before submitting an Issue with a potential bug, check our list with potential fixes, it might help you to solve your problem!
+Before submitting an Issue with a potential bug, check our list of potential fixes, it might help you to solve your problem!
 
 [► Troubleshooting guide](documentation/Troubleshooting.md)
 
 ## 💬 Discussions
-If you have any questions, or simply want to discuss with the developers - feel free to use our [Discussions](https://github.com/DinoDevs/GladiatusCrazyAddon/discussions)!
+If you have any questions or simply want to discuss with the developers - feel free to use our [Discussions](https://github.com/DinoDevs/GladiatusCrazyAddon/discussions)!
 
 ## :books: Translation
 
 Use our [guide](documentation/translators/README.md) to translate the addon in your language!
 
 
-## :link: Gladiatus related links
+## :link: Gladiatus-related links
 
 ### Our links
 
@@ -106,34 +108,32 @@ Contact us to leave us your feedback or to express your thoughts.
 
 ## :video_game: Our team
 
-<img align="left" src="documentation/resources/logo-icons/dinodevs_32.png"/> We are [DinoDevs](https://github.com/DinoDevs), a group of people coding for fun!
+<img align="left" src="documentation/resources/logo-icons/dinodevs_32.png"/> A group of people that want to make the game better!
 
-DinoDevs members working on this project:
+People working on this project:
 <dl>
-  <dt>GreatApo ~ Co-Founder / Developer ~ https://github.com/GreatApo</dt>
+  <dt>[GreatApo](https://github.com/GreatApo) ~ Co-Founder / Developer ~  @[DinoDevs](https://dinodevs.com/)</dt>
   <dd>Description not found!</dd>
 
-  <dt>GramThanos ~ Co-Founder / Developer ~ https://github.com/GramThanos</dt>
-  <dd>I like to code!</dd>
-</dl>
-
-Additional active GCA team members:
-<dl>
-  <dt>Sleeping*Shadow ~ Documentation Master  ~ https://github.com/SleepingShadow-bit</dt>
+  <dt>[GramThanos](https://github.com/GramThanos) ~ Co-Founder / Developer ~  @[DinoDevs](https://dinodevs.com/)</dt>
+  <dd>I like break codes!</dd>
+  
+  <dt>[Sleeping*Shadow](https://github.com/SleepingShadow-bit) ~ Documentation Master</dt>
   <dd>Great Projects need Documentation.</dd>
   
-  <dt>FrutyX ~ Tasks Coordinator  ~ https://github.com/FrutyX</dt>
+  <dt>[FrutyX](https://github.com/FrutyX) ~ Tasks Coordinator</dt>
   <dd>Making sure everything is in order.</dd>
 </dl>
 
+We are [DinoDevs](https://github.com/DinoDevs)
 
 ## :thumbsup: Special Thanks
 
-We need to give some attribute on all the people of the community that help us maintain the code by reporting bugs, translating the addon, contributing to our code and donating to the project. Thank YOU!
+We need to give some attributes to all the people of the community that help us maintain the code by reporting bugs, translating the addon, contributing to our code and donating to the project. Thank YOU!
 
 
 
 
 ## :scroll: License
 
-This project is under GNU GPLv3.
+This project is under GNU GPLv3. *If you want to copy this code and create your own Gladiatus extension, you will have to make your code public to the community.*

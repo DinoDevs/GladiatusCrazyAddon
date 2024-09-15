@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-7-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-7-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-8-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -22,7 +22,7 @@
   - [x] New settings option: selling/buying items with (hold) Alt + Click (#218)
 
  - **Training**
-    - [x] Added a hint about CTRL key function (#452) 
+    - [x] Added a hint about the CTRL key function (#452) 
 
 ### BUG FIXES
 
@@ -30,7 +30,7 @@
   - [x] Power-ups/Pacts times not updating/crashing (#441)
   - [x] Page direction detection fix
   - [x] Fixed random cases where the event banner did not load properly (features conflict)
-  - [x] Fixed various cases of console errors (during traveling, conflicting features...)
+  - [x] Fixed various cases of console errors (during travelling, conflicting features...)
 
 - **Forge**
   - [x] Fixed wrong forge material on guild message, packages/market links (#416)
@@ -40,6 +40,7 @@
 
 - **Market**
   - [x] Added delay between server calls to the "Cancel All" button to prevent server errors (#424)
+  - [x] Fixed wrong automatic item price when selling items on the markets (#482)
 
 ### TRANSLATIONS
 
