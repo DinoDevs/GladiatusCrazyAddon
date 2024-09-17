@@ -1,4 +1,6 @@
-## 🖼️ Progress on Version 4.3.8 [Beta]
+## The preview version of the progress list isn't currently actively maintained!
+
+## 🖼️ Progress on Version X.X.X [Beta]
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-0-green.svg?style=flat-square)
@@ -7,12 +9,12 @@
 
 ### IMPROVEMENTS
 - **Global**
-	- [ ] Only the future knows what new features will be suggested!
+	- [ ] 
 
 ### BUG FIXES
 - **Global**
-	- [ ] Only the future knows what new bugs will be found!
+	- [ ] 
 
 ### TRANSLATIONS
 -  **Updates**
-	- [ ] Pirate Language update by @Jack_Sparrow
+	- [ ] 
