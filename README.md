@@ -11,7 +11,7 @@
 
 <p align="center"><img src="documentation/resources/logo-icons/icon_64.png"/></p>
 <h1 align="center">Gladiatus Crazy Addon</h1>
-<h4 align="center">It was "A browser extension for the "Gladiatus" browser game".</h4>
+<h4 align="center">It was "A browser extension for the Gladiatus browser game".</h4>
 
 <p align="center">
  • <a href="#paperclip-downloads">Downloads</a> • <a href="#page_with_curl-installation">Installation</a> • <a href="#computer-developers-docs">Developers Docs</a> • 
