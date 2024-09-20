@@ -1159,9 +1159,11 @@
 		#packages div[data-gca-soulbound]:not([data-gca-forge-proposal]):after {content: "🔗";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
 		.gca_rtl #packages div[data-gca-soulbound]:not([data-gca-forge-proposal]):after {left:  unset;right: 48px;}
 		/* Proposed to forge items (unknown prefix/suffix) */
-		#packages div[data-gca-forge-proposal]:not([data-gca-soulbound]):after {content: "📜";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
+		#packages div[data-gca-forge-proposal]:not([data-gca-soulbound]):after,
+		#auction_table div[data-gca-smelt-proposal]:after {content: "📜";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
 		.gca_rtl #packages div[data-gca-forge-proposal]:not([data-gca-soulbound]):after {left:  unset;right: 48px;}
-		#packages div[data-gca-forge-proposal=2]:not([data-gca-soulbound]):after {content: "📜📜";}
+		#packages div[data-gca-forge-proposal=2]:not([data-gca-soulbound]):after,
+		#auction_table div[data-gca-smelt-proposal=2]:after {content: "📜📜";}
 		/* Both */
 		#packages div[data-gca-forge-proposal][data-gca-soulbound]:after {content: "🔗📜";font-size: 10px;font-weight: normal;margin: 1px;font-family: arial,sans-serif;position: absolute;left: 48px;}
 		.gca_rtl #packages div[data-gca-forge-proposal][data-gca-soulbound]:after {left:  unset;right: 48px;}
@@ -1309,8 +1311,10 @@
 		.gca_auction .gca-auction-can-not-buy{opacity: 0.7;color: rgb(102, 0, 0);}
 		
 		/* Hide gold show/hide button */
-		.gca_auction .gca-auction-show-hide-button {display: inline-block;background: url(icons/coin.png);height: 20px;width:27px;border: 0px;padding: 0px;cursor:pointer;float:right;}
-		.gca_rtl .gca_auction .gca_auction .gca-auction-show-hide-button {float: left;}
+		.gca_auction .gca-auction-custom-extra-filter {text-align: right;}
+		.gca_rtl .gca_auction .gca-auction-custom-extra-filter {text-align: left;}
+		.gca_auction .gca-auction-show-hide-button {display: inline-block;background: url(icons/coin.png);height: 20px;width:27px;border: 0px;padding: 0px;cursor:pointer;}
+		.gca_auction .gca-auction-show-hide-items-to-smelt-button {display: inline-block;background: url(icons/book.png);background-position: center;background-repeat: no-repeat;background-size: contain;height: 20px;width:27px;border: 0px;padding: 0px;cursor:pointer;}
 		
 		/* 3 Items per row */
 		.gca_auction .gca-x3columns{padding-left: 279px;padding-top: 10px;z-index: 35;margin: 27px -1px 0px -280px;background: url(interface/auction_img_midle.jpg) left top repeat-y;}

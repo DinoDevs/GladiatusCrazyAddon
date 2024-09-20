@@ -533,6 +533,7 @@ gca_languages["en"] = {
 			category_auction$multi_bids : "Bid many items without page refresh",
 			category_auction$extra_item_stats : "Show extra stats on item images",
 			category_auction$save_last_state : "Implemented auction save search and load it by default",
+			category_auction$special_category_features : "Enable special features per category\n• Show scroll icon item's prefix/suffix is unknown",
 			// Settings - Accessibility
 			category_accessibility$white_level_indicators : "Change level number indicators on items to white",
 			category_accessibility$qualty_symbols_indicators : "Add quality symbols indicators on items",

@@ -32,6 +32,10 @@ var gca_auction = {
 				this.extraItemStats());
 			(gca_options.bool("auction","item_sort_functions") &&
 				this.itemsSort.init());
+
+			// Special category features
+			(gca_options.get("auction", "special_category_features") != 2 &&
+				this.specialCategory.resolve(this));
 			
 			this.saveMercenaryRealNames();
 		}
@@ -132,19 +136,16 @@ var gca_auction = {
 	},
 
 	itemsValuesShow : function() {
-		let that = this;
 		// Create show/hide button
-		let filters = document.getElementsByTagName("section")[1];
-		let button = document.createElement("a");
-		button.className = "gca-auction-show-hide-button";
-		button.dataset.tooltip = '[[["'+ gca_locale.get("auction", "hide_your_gold_here") +'","#fff;font-size:12px;"]]]';
-		button.addEventListener('click', function(){
+		let btn = this.customExtraFilters.add(
+			'gca-auction-show-hide-button',
+			gca_locale.get('auction', 'hide_your_gold_here')
+		);
+		btn.addEventListener('click', () => {
 			let status = gca_data.section.get("cache", "auction_show_hide_button_status", false);
 			gca_data.section.set("cache", "auction_show_hide_button_status", !status );
-			that.showHideNonHideYourGoldItems(this, !status);
+			this.customExtraFilters.toggleHideYourGoldItems(btn, !status);
 		} , false);
-		filters.appendChild(button);
-		filters.appendChild(document.createElement("br"));
 		
 		// Get items
 		var items = document.getElementById("auction_table").getElementsByClassName("auction_bid_div");
@@ -155,7 +156,7 @@ var gca_auction = {
 
 		// For each item
 		var price, value, percent, wrapper, span, tmp;
-		for (var i = items.length - 1; i >= 0; i--) {
+		for (let i = items.length - 1; i >= 0; i--) {
 			// Get price
 			price = parseInt(gca_tools.strings.removeDots(items[i].getElementsByTagName('div')[1].textContent).match(/(\d+)/i)[1], 10);
 			// Get value
@@ -167,7 +168,7 @@ var gca_auction = {
 			span = document.createElement("span");
 
 			// If price is equal or better from value
-			if(value >= price){
+			if (value >= price) {
 				items[i].getElementsByTagName('input')[0].style.backgroundColor = "#FFCC66";
 				span.className = "gca-auction-good-price";
 				span.textContent = gca_locale.get("auction", "hide_your_gold_here");
@@ -198,23 +199,82 @@ var gca_auction = {
 		// Set button status
 		// True = hide items, False = do not hide
 		let status = gca_data.section.get("cache", "auction_show_hide_button_status", false);
-		if ( status )
-			this.showHideNonHideYourGoldItems(button, status);
-		else
-			button.style.filter = "grayscale(100%)";
-	},
-	
-	showHideNonHideYourGoldItems : function(that, status) {
-		// Show/hide items
-		if ( status == true ){
-			jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").hide();
-			jQuery('input[name ="buyout"]').hide();
-			that.style.filter = "grayscale(0%)";
-		}else{
-			jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").show();
-			jQuery('input[name ="buyout"]').show();
-			that.style.filter = "grayscale(100%)";
+		if (status) {
+			this.customExtraFilters.toggleHideYourGoldItems(btn, status);
 		}
+		else {
+			btn.style.filter = "grayscale(100%)";
+		}
+	},
+
+	customExtraFilters : {
+		init : function() {
+			if (this.wrapper) return;
+
+			let filters = document.getElementsByTagName('section')[1];
+			this.wrapper = document.createElement('div');
+			this.wrapper.className = 'gca-auction-custom-extra-filter';
+			filters.appendChild(this.wrapper);
+		},
+
+		add : function(className, tooltip, onclick) {
+			this.init();
+
+			let btn = document.createElement('a');
+			btn.className = className;
+			if (tooltip) {
+				btn.dataset.tooltip = JSON.stringify([[[tooltip.toString(), '#fff;font-size:12px;']]]);
+			}
+			if (onclick) {
+				btn.addEventListener('click', onclick , false);
+			}
+			this.wrapper.appendChild(btn);
+			return btn;
+		},
+		
+		_cache_statusHideYourGoldItems : false,
+		toggleHideYourGoldItems : function(btn, status) {
+			this._cache_statusHideYourGoldItems = status;
+			// Hide items
+			if (status == true) {
+				jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").hide();
+				jQuery('input[name ="buyout"]').hide();
+				if (btn) btn.style.filter = "grayscale(0%)";
+			}
+			// Show items
+			else {
+				jQuery(".auction_bid_div:not(:has(.gca-auction-good-price))").closest("td").show();
+				jQuery('input[name ="buyout"]').show();
+				if (btn) btn.style.filter = "grayscale(100%)";
+
+				// Re run other hide filters
+				if (this._cache_statusItemsToSmelt) {
+					this.toggleItemsToSmelt(null, this._cache_statusItemsToSmelt);
+				}
+			}
+		},
+		
+		_cache_statusItemsToSmelt : false,
+		toggleItemsToSmelt : function(btn, status) {
+			this._cache_statusItemsToSmelt = status;
+			// Hide items
+			if (status == true) {
+				jQuery(".auction_item_div:not(:has(*[data-gca-smelt-proposal]))").closest("td").hide();
+				jQuery('input[name ="buyout"]').hide();
+				if (btn) btn.style.filter = "grayscale(0%)";
+			}
+			// Show items
+			else {
+				jQuery(".auction_item_div:not(:has(*[data-gca-smelt-proposal]))").closest("td").show();
+				jQuery('input[name ="buyout"]').show();
+				if (btn) btn.style.filter = "grayscale(100%)";
+
+				// Re run other hide filters
+				if (this._cache_statusHideYourGoldItems) {
+					this.toggleHideYourGoldItems(null, this._cache_statusHideYourGoldItems);
+				}
+			}
+		},
 	},
 
 	itemsNameShow : function() {
@@ -918,7 +978,121 @@ var gca_auction = {
 				jQuery(this).data("tooltip", tooltips);
 			});
 		}
-	}
+	},
+
+	// Special Categories
+	specialCategory : {
+		
+		// Resolve category
+		resolve : function(self){
+			let category = parseInt(document.filterForm.itemType.value, 10);
+			switch(category){
+				case 0: // All
+					if(gca_options.get("auction", "special_category_features") == 1)
+						this.scrollFeatures.load(self); // ToDo: Add settings option
+					break;
+				case 1: // Weapons
+				case 2: // Shields
+				case 3: // Chest
+				case 4: // Helmet
+				case 5: // Gloves
+				case 6: // Rings
+				case 8:	// Shoes
+				case 9: // Amulets
+					this.scrollFeatures.load(self); // ToDo: Add settings option
+					break;
+			}
+		},
+
+		// Categories
+		categories : {
+			// No features
+		},
+		
+		// Scroll features
+		scrollFeatures : {
+			// Load
+			load : function(self){
+				this.self = self;
+				// Get data
+				this.loadData();
+			},
+
+			// Load scroll data
+			loadData : function(){
+				gca_tools.ajax.cached.known_scrolls().then(
+					(result) => {
+						// Save lists
+						this.prefix = result.id.prefix;
+						this.suffix = result.id.suffix;
+
+						// Check scrolls
+						this.showProposeToSmeltIcon();
+					},
+					() => {
+						// On error
+						//setTimeout(() => {
+						//	this.loadData();
+						//}, 10 * 1000);
+					}
+				);
+			},
+			
+			// Show unknown scroll icon on item - propose to smelt
+			showProposeToSmeltIcon : function(){
+				// If no data return
+				if (!this.prefix) return;
+				
+				// For each item
+				jQuery("#auction_table .ui-draggable").each((i, item) => {
+					// If already parsed
+					if (item.dataset.gcaFlag_isSmelt) return;
+					// Flag as parsed
+					item.dataset.gcaFlag_isSmelt = true;
+
+					// Get hash
+					let hash = gca_tools.item.hash(item);
+					if (!hash) return;
+					
+					// Check if smelt-able item
+					if ( !(hash.category>=1 && hash.category<=9 && hash.category!=7 ) ) return;
+					
+					// Check if own
+					let known_prefix = ( this.prefix.indexOf(hash.prefix) >= 0 );
+					let known_suffix = ( this.suffix.indexOf(hash.suffix) >= 0 );
+					if ( !(known_prefix && known_suffix) ){
+						// Both unknown
+						if( !known_prefix && !known_suffix )
+							item.parentNode.dataset.gcaSmeltProposal = 2;
+						// One unknown
+						else
+							item.parentNode.dataset.gcaSmeltProposal = 1;
+					}
+				});
+
+				// Create show/hide button
+				let btn = this.self.customExtraFilters.add(
+					'gca-auction-show-hide-items-to-smelt-button',
+					null
+				);
+				btn.addEventListener('click', () => {
+					let status = gca_data.section.get("cache", "auction_show_hide_items_to_smelt_button_status", false);
+					gca_data.section.set("cache", "auction_show_hide_items_to_smelt_button_status", !status );
+					this.self.customExtraFilters.toggleItemsToSmelt(btn, !status);
+				} , false);
+				
+				// Set button status
+				// True = hide items, False = do not hide
+				let status = gca_data.section.get("cache", "auction_show_hide_items_to_smelt_button_status", false);
+				if (status) {
+					this.self.customExtraFilters.toggleItemsToSmelt(btn, status);
+				}
+				else {
+					btn.style.filter = "grayscale(100%)";
+				}
+			}
+		}
+	},
 
 };
 
