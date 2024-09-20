@@ -700,7 +700,9 @@ gca_options.data = {
 		// Save auction last search
 		"save_last_state" : true,
 		// Show item sort functions
-		"item_sort_functions" : true
+		"item_sort_functions" : true,
+		// Special category features
+		"special_category_features" : 0
 	},
 
 	// Accessibility
