@@ -880,15 +880,19 @@ var gca_packages = {
 				});
 			},
 			
+			// Prefix/Suffix that has no name
+			emptyPrefix : [0, 12, 56, 57, 58, 59, 87, 88, 97, 100, 110, 111, 113, 117, 119, 121, 123, 125, 126, 127, 128, 129, 133, 136, 137],
+			emptySuffix : [0, 7, 10, 14, 19, 22, 25, 27, 28, 41, 45, 54, 57, 60, 62, 64, 68, 95, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 112, 113, 125, 140, 166, 184, 194, 202, 204, 209, 211, 212, 213, 214, 216, 217, 219, 225, 226, 227, 228, 231, 233, 235, 238],
+			
 			// Show unknown scroll icon on item - propose to forge
 			showProposeToForgeIcon : function(){
 				// If no data return
-				if(!this.prefix) return;
+				if (!this.prefix) return;
 				
 				// For each item
 				jQuery("#packages .ui-draggable").each((i, item) => {
 					// If already parsed
-					if(item.dataset.gcaFlag_isForge) return;
+					if (item.dataset.gcaFlag_isForge) return;
 					// Flag as parsed
 					item.dataset.gcaFlag_isForge = true;
 
@@ -897,14 +901,14 @@ var gca_packages = {
 					if (!hash) return;
 					
 					// Check if forge-able item
-					if ( !(hash.category>=1 && hash.category<=9 && hash.category!=7 ) ) return;
+					if ( !(hash.category >= 1 && hash.category <= 9 && hash.category != 7 ) ) return;
 					
-					// Check if own
-					let known_prefix = ( this.prefix.indexOf(hash.prefix) >= 0 );
-					let known_suffix = ( this.suffix.indexOf(hash.suffix) >= 0 );
-					if ( !(known_prefix && known_suffix) ){
+					// Check if own and not empty
+					let known_prefix = ( hash.prefix <= 0 || this.prefix.indexOf(hash.prefix) >= 0 || this.emptyPrefix.indexOf(hash.prefix) >= 0 );
+					let known_suffix = ( hash.suffix <= 0 || this.suffix.indexOf(hash.suffix) >= 0 || this.emptySuffix.indexOf(hash.suffix) >= 0 );
+					if ( !(known_prefix && known_suffix) ) {
 						// Both unknown
-						if( !known_prefix && !known_suffix )
+						if ( !known_prefix && !known_suffix )
 							item.parentNode.dataset.gcaForgeProposal = 2;
 						// One unknown
 						else
