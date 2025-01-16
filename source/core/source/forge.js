@@ -297,7 +297,7 @@ var gca_forge = {
 			// Load materials data
 			jQuery.get(gca_getPage.link({'mod':'forge','submod':'storage'}), (content) => {
 				// Get materials info
-				var info = content.match(/<input id="resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
+				var info = content.match(/<input id="remove-resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
 				if (!info || !info[1]) {
 					this.materialAmounts = false;
 					return;
@@ -318,7 +318,7 @@ var gca_forge = {
 				}
 
 				// Get quality translations
-				info = content.match(/<select id="resource-quality"[^>]*>[^<]*<option value="-1">([^<]*)<\/option>[^<]*<option value="0">([^<]*)<\/option>[^<]*<option value="1">([^<]*)<\/option>[^<]*<option value="2">([^<]*)<\/option>[^<]*<option value="3">([^<]*)<\/option>[^<]*<option value="4">([^<]*)<\/option>[^<]*<\/select>/i);
+				info = content.match(/<select id="remove-resource-quality"[^>]*>[^<]*<option value="-1">([^<]*)<\/option>[^<]*<option value="0">([^<]*)<\/option>[^<]*<option value="1">([^<]*)<\/option>[^<]*<option value="2">([^<]*)<\/option>[^<]*<option value="3">([^<]*)<\/option>[^<]*<option value="4">([^<]*)<\/option>[^<]*<\/select>/i);
 				let translations = {};
 				if (!info) {
 					for (let i = -1; i <= 4; i++) translations.push('');
@@ -346,7 +346,7 @@ var gca_forge = {
 			if (!this.selectionsText){
 				this.selectionsText = [];
 				for (let i = 0; i <= 5; i++)
-					this.selectionsText.push(document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent);
+					this.selectionsText.push(document.getElementById("remove-resource-quality").getElementsByTagName("option")[i].textContent);
 			}
 			
 			if (!document.getElementsByClassName("crafting_requirements")[0]) return;
@@ -357,7 +357,7 @@ var gca_forge = {
 			materials[0].dataset.amountsLoaded = true;
 			
 			// Mark that the code has already run
-			document.getElementById("resource-quality").dataset.amounts = true;
+			document.getElementById("remove-resource-quality").dataset.amounts = true;
 
 			// Check if status
 			let isCrafting = !document.getElementById('slot-crafting').classList.contains('hidden');
@@ -409,9 +409,9 @@ var gca_forge = {
 			});
 			
 			// Item in slot
-			if (document.getElementById("resource-quality").parentNode.style.display == "block") {
+			if (document.getElementById("remove-resource-quality").parentNode.style.display == "block") {
 				let select = false;
-				let resource = document.getElementById("resource-quality");
+				let resource = document.getElementById("remove-resource-quality");
 				let options = resource.getElementsByTagName("option");
 				for (let i = 0; i <= 5; i++) {
 					options[i].textContent = this.selectionsText[i] + "("+qualities[i]+"/"+totalRequired+")";
@@ -484,7 +484,7 @@ var gca_forge = {
 	// Show selected quality on dropdown
 	showSelectedQuality : {
 		inject : function() {
-			this.dropdown = document.getElementById('resource-quality');
+			this.dropdown = document.getElementById('remove-resource-quality');
 			if (!this.dropdown) return;
 
 			this.dropdown.addEventListener('change', () => {this.update();}, false);
@@ -1052,8 +1052,8 @@ var gca_forge = {
 
 	horreum : {
 		clickToSelectMaterial : function() {
-			let resource_type = document.getElementById('resource-type');
-			let resource_quality = document.getElementById('resource-quality');
+			let resource_type = document.getElementById('remove-resource-type');
+			let resource_quality = document.getElementById('remove-resource-quality');
 
 			// Enable css
 			document.getElementById('resource-list').className += ' resource-click-to-select';
@@ -1061,7 +1061,7 @@ var gca_forge = {
 			// Get material values
 			let values = {};
 			let option = resource_type.getElementsByTagName('option');
-			for (var i = option.length - 1; i >= 0; i--) {
+			for (let i = option.length - 1; i >= 0; i--) {
 				if (option[i].dataset.imageClass) {
 					values[option[i].dataset.imageClass] = option[i].value;
 				}
@@ -1129,8 +1129,8 @@ var gca_forge = {
 
 			// Get material names
 			let names = {};
-			let option = document.getElementById('resource-type').getElementsByTagName('option');
-			for (var i = option.length - 1; i >= 0; i--) {
+			let option = document.getElementById('remove-resource-type').getElementsByTagName('option');
+			for (let i = option.length - 1; i >= 0; i--) {
 				if (option[i].dataset.imageClass) {
 					names[option[i].dataset.imageClass] = option[i].innerHTML.trim();
 				}
@@ -1173,7 +1173,7 @@ var gca_forge = {
 		gatherInfo : function() {
 			// Get material names
 			let locale = {};
-			let option = document.getElementById('resource-type').getElementsByTagName('option');
+			let option = document.getElementById('remove-resource-type').getElementsByTagName('option');
 			for (var i = option.length - 1; i >= 0; i--) {
 				if (option[i].dataset.imageClass && option[i].dataset.imageClass.match(/item-i-18-(\d+)/i)) {
 					locale[option[i].dataset.imageClass.match(/item-i-18-(\d+)/i)[1]] = option[i].innerHTML.trim();
@@ -1194,7 +1194,7 @@ var gca_forge = {
 				window.forgeStorage.ajax = (f, h, g) => {
 					window.forgeStorage._original_ajax(f, h, g);
 					this.storageMaterials = JSON.parse(JSON.stringify(
-						jQuery('#resource-amount').data('max')
+						jQuery('#remove-resource-amount').data('max')
 					));
 				}
 			},
@@ -1207,7 +1207,7 @@ var gca_forge = {
 				// Detect changes
 				let changes = this.detectStorageChange(
 					this.storageMaterials,
-					window.jQuery('#resource-amount').data('max')
+					window.jQuery('#remove-resource-amount').data('max')
 				);
 				
 				if (changes.added.length == 0 && changes.removed.length == 0) {
