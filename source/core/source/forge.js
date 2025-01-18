@@ -297,7 +297,7 @@ var gca_forge = {
 			// Load materials data
 			jQuery.get(gca_getPage.link({'mod':'forge','submod':'storage'}), (content) => {
 				// Get materials info
-				var info = content.match(/<input id="remove-resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
+				var info = content.match(/id="remove-resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
 				if (!info || !info[1]) {
 					this.materialAmounts = false;
 					return;
@@ -316,9 +316,9 @@ var gca_forge = {
 						}
 					}
 				}
-
+				
 				// Get quality translations
-				info = content.match(/<select id="remove-resource-quality"[^>]*>[^<]*<option value="-1">([^<]*)<\/option>[^<]*<option value="0">([^<]*)<\/option>[^<]*<option value="1">([^<]*)<\/option>[^<]*<option value="2">([^<]*)<\/option>[^<]*<option value="3">([^<]*)<\/option>[^<]*<option value="4">([^<]*)<\/option>[^<]*<\/select>/i);
+				info = content.match(/<select id="remove-resource-quality"[^>]*>[^<]*<option value="-1"[^>]*>\n([^<]*)<\/option>[^<]*<option value="0"[^>]*>\n([^<]*)<\/option>[^<]*<option value="1"[^>]*>\n([^<]*)<\/option>[^<]*<option value="2"[^>]*>\n([^<]*)<\/option>[^<]*<option value="3"[^>]*>\n([^<]*)<\/option>[^<]*<option value="4"[^>]*>\n([^<]*)<\/option>[^<]*<\/select>/i);
 				let translations = {};
 				if (!info) {
 					for (let i = -1; i <= 4; i++) translations.push('');
@@ -328,6 +328,7 @@ var gca_forge = {
 						translations[i] = gca_tools.strings.trim(info[j]);
 					}
 				}
+
 				this.qualityTranslations = translations;
 
 				this.showMaterialsAmounts();
@@ -345,8 +346,9 @@ var gca_forge = {
 			// Save selection the on first run
 			if (!this.selectionsText){
 				this.selectionsText = [];
+
 				for (let i = 0; i <= 5; i++)
-					this.selectionsText.push(document.getElementById("remove-resource-quality").getElementsByTagName("option")[i].textContent);
+					this.selectionsText.push(document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent);
 			}
 			
 			if (!document.getElementsByClassName("crafting_requirements")[0]) return;
@@ -357,7 +359,7 @@ var gca_forge = {
 			materials[0].dataset.amountsLoaded = true;
 			
 			// Mark that the code has already run
-			document.getElementById("remove-resource-quality").dataset.amounts = true;
+			document.getElementById("resource-quality").dataset.amounts = true;
 
 			// Check if status
 			let isCrafting = !document.getElementById('slot-crafting').classList.contains('hidden');
@@ -409,9 +411,9 @@ var gca_forge = {
 			});
 			
 			// Item in slot
-			if (document.getElementById("remove-resource-quality").parentNode.style.display == "block") {
+			if (document.getElementById("resource-quality").parentNode.style.display == "block") {
 				let select = false;
-				let resource = document.getElementById("remove-resource-quality");
+				let resource = document.getElementById("resource-quality");
 				let options = resource.getElementsByTagName("option");
 				for (let i = 0; i <= 5; i++) {
 					options[i].textContent = this.selectionsText[i] + "("+qualities[i]+"/"+totalRequired+")";
@@ -1248,7 +1250,7 @@ var gca_forge = {
 				let b = {};
 
 				// Parse lists
-				for (let i = 1; i <= 64; i++) {
+				for (let i = 1; i <= 71; i++) {
 					a[i] = {'-1' : 0, '0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0};
 					if (_a[i]) {
 						for (let j = -1; j <= 4; j++) {
@@ -1268,7 +1270,7 @@ var gca_forge = {
 				var removed = [];
 
 				// Compare
-				for (let i = 1; i <= 64; i++) {
+				for (let i = 1; i <= 71; i++) {
 					for (let j = -1; j <= 4; j++) {
 						if (a[i][j] > b[i][j]) {
 							removed.push([i, j, a[i][j] - b[i][j]]);
@@ -1401,6 +1403,9 @@ var gca_forge = {
 		horreum.style.display = 'block';
 		horreum.textContent = completed.length + '× ' + document.getElementById('forge_horreum').textContent;
 		box.appendChild(horreum);
+
+		// Leave margin for the buttons above
+		document.getElementById('forge_box').style.marginBottom = '65px';
 
 		// Make requests
 		let makeGatherRequests = (type) => {

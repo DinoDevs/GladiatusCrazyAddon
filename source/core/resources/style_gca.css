@@ -1754,3 +1754,9 @@
 		/* Needs cleaning! */
 		.gca_is_dirty .reportWin, .gca_is_dirty .reportLose {filter: grayscale(100%);}
 		.gca_is_dirty .tooltips>div::after {content: "*";float: right;color: #2d2d2d;padding: 0px 5px 0px 5px;margin-top: -18px;font-size: 2em;line-height: 18px;border-bottom: 1px solid #474747;border-right: 1px solid #474747;}
+
+
+	/* Gladiatus Fixes - version 6.1.0-r5
+	-------------------------------------------------- */
+	#forge_box {min-height: 259px;}
+	#rent[style*="visibility: hidden"] {display: none;}
