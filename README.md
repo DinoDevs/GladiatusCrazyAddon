@@ -11,7 +11,7 @@
 
 <p align="center"><img src="documentation/resources/logo-icons/icon_64.png"/></p>
 <h1 align="center">Gladiatus Crazy Addon</h1>
-<h4 align="center">It was "A browser extension for the Gladiatus browser game".</h4>
+<h4 align="center">A browser extension for the Gladiatus browser game</h4>
 
 <p align="center">
  • <a href="#paperclip-downloads">Downloads</a> • <a href="#page_with_curl-installation">Installation</a> • <a href="#computer-developers-docs">Developers Docs</a> • 
@@ -112,17 +112,19 @@ Contact us to leave us your feedback or to express your thoughts.
 
 People working on this project:
 <dl>
-  <dt>[GreatApo](https://github.com/GreatApo) ~ Co-Founder / Developer ~  @[DinoDevs](https://dinodevs.com/)</dt>
-  <dd>Description not found!</dd>
+ 
+  **[GreatApo](https://github.com/GreatApo)** ~ Co-Founder / Developer ~  [DinoDevs](https://dinodevs.com/)
+  <dd><i>Description not found!</i></dd>
 
-  <dt>[GramThanos](https://github.com/GramThanos) ~ Co-Founder / Developer ~  @[DinoDevs](https://dinodevs.com/)</dt>
-  <dd>I like to break codes!</dd>
+  **[GramThanos](https://github.com/GramThanos)** ~ Co-Founder / Developer ~  [DinoDevs](https://dinodevs.com/)
+  <dd><i>I like to break codes!</i></dd>
   
-  <dt>[Sleeping*Shadow](https://github.com/SleepingShadow-bit) ~ Documentation Master</dt>
-  <dd>Great Projects need Documentation.</dd>
+  **[Sleeping*Shadow](https://github.com/SleepingShadow-bit)** ~ Documentation Master
+  <dd><i>Great Projects need Documentation.</i></dd>
   
-  <dt>[FrutyX](https://github.com/FrutyX) ~ Tasks Coordinator</dt>
-  <dd>Making sure everything is in order.</dd>
+  **[FrutyX](https://github.com/FrutyX)** ~ Tasks Coordinator
+  <dd><i>Making sure everything is in order.</i></dd>
+
 </dl>
 
 ## :thumbsup: Special Thanks
