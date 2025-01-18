@@ -297,7 +297,7 @@ var gca_forge = {
 			// Load materials data
 			jQuery.get(gca_getPage.link({'mod':'forge','submod':'storage'}), (content) => {
 				// Get materials info
-				var info = content.match(/<input class="resource-amount" id="remove-resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
+				var info = content.match(/id="remove-resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
 				if (!info || !info[1]) {
 					this.materialAmounts = false;
 					return;
@@ -318,7 +318,7 @@ var gca_forge = {
 				}
 				
 				// Get quality translations
-				info = content.match(/<select id="remove-resource-quality"[^>]*>[^<]*<option value="-1" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="0" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="1" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="2" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="3" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="4" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<\/select>/i);
+				info = content.match(/<select id="remove-resource-quality"[^>]*>[^<]*<option value="-1"[^>]*>\n([^<]*)<\/option>[^<]*<option value="0"[^>]*>\n([^<]*)<\/option>[^<]*<option value="1"[^>]*>\n([^<]*)<\/option>[^<]*<option value="2"[^>]*>\n([^<]*)<\/option>[^<]*<option value="3"[^>]*>\n([^<]*)<\/option>[^<]*<option value="4"[^>]*>\n([^<]*)<\/option>[^<]*<\/select>/i);
 				let translations = {};
 				if (!info) {
 					for (let i = -1; i <= 4; i++) translations.push('');
@@ -1403,6 +1403,9 @@ var gca_forge = {
 		horreum.style.display = 'block';
 		horreum.textContent = completed.length + '× ' + document.getElementById('forge_horreum').textContent;
 		box.appendChild(horreum);
+
+		// Leave margin for the buttons above
+		document.getElementById('forge_box').style.marginBottom = '65px';
 
 		// Make requests
 		let makeGatherRequests = (type) => {
