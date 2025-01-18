@@ -82,7 +82,7 @@ Gladiatus Forum GCA thread : [https://forum.gladiatus.gameforge.com/forum/thread
 
 Unofficial Gladiatus Reddit : [https://www.reddit.com/r/Gladiatus/](https://www.reddit.com/r/Gladiatus/) (by [Williaf](https://www.reddit.com/user/Williaf))
 
-Official Gladiatus Discord Server : [https://discord.gg/uacMu7](https://discord.gg/uacMu7)
+Official Gladiatus Discord Server : [https://discord.gg/7UgBrnExGW](https://discord.gg/7UgBrnExGW)
 
 *(We would be happy to add your Gladiatus related page here too)*
 
