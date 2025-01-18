@@ -328,7 +328,7 @@ var gca_forge = {
 						translations[i] = gca_tools.strings.trim(info[j]);
 					}
 				}
-				console.log(translations);
+
 				this.qualityTranslations = translations;
 
 				this.showMaterialsAmounts();
