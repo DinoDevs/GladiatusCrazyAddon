@@ -178,7 +178,7 @@ var gca_links = {
 		'reddit-discord' : 'https://discord.gg/uXEGq9Q',
 		'williaf@reddit' : 'https://www.reddit.com/user/Williaf',
 		
-		'official-discord' : 'https://discord.gg/uacMu7'
+		'official-discord' : 'https://discord.gg/7UgBrnExGW'
 	},
 
 	get : function(id) {
