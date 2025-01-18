@@ -125,8 +125,6 @@ People working on this project:
   <dd>Making sure everything is in order.</dd>
 </dl>
 
-We are [DinoDevs](https://github.com/DinoDevs)
-
 ## :thumbsup: Special Thanks
 
 We need to give some attributes to all the people of the community that help us maintain the code by reporting bugs, translating the addon, contributing to our code and donating to the project. Thank YOU!
