@@ -297,7 +297,7 @@ var gca_forge = {
 			// Load materials data
 			jQuery.get(gca_getPage.link({'mod':'forge','submod':'storage'}), (content) => {
 				// Get materials info
-				var info = content.match(/<input id="remove-resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
+				var info = content.match(/<input class="resource-amount" id="remove-resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
 				if (!info || !info[1]) {
 					this.materialAmounts = false;
 					return;
@@ -316,9 +316,9 @@ var gca_forge = {
 						}
 					}
 				}
-
+				
 				// Get quality translations
-				info = content.match(/<select id="remove-resource-quality"[^>]*>[^<]*<option value="-1">([^<]*)<\/option>[^<]*<option value="0">([^<]*)<\/option>[^<]*<option value="1">([^<]*)<\/option>[^<]*<option value="2">([^<]*)<\/option>[^<]*<option value="3">([^<]*)<\/option>[^<]*<option value="4">([^<]*)<\/option>[^<]*<\/select>/i);
+				info = content.match(/<select id="remove-resource-quality"[^>]*>[^<]*<option value="-1" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="0" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="1" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="2" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="3" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<option value="4" data-upgrade=".*">\n([^<]*)<\/option>[^<]*<\/select>/i);
 				let translations = {};
 				if (!info) {
 					for (let i = -1; i <= 4; i++) translations.push('');
@@ -328,6 +328,7 @@ var gca_forge = {
 						translations[i] = gca_tools.strings.trim(info[j]);
 					}
 				}
+				console.log(translations);
 				this.qualityTranslations = translations;
 
 				this.showMaterialsAmounts();
@@ -345,8 +346,9 @@ var gca_forge = {
 			// Save selection the on first run
 			if (!this.selectionsText){
 				this.selectionsText = [];
+
 				for (let i = 0; i <= 5; i++)
-					this.selectionsText.push(document.getElementById("remove-resource-quality").getElementsByTagName("option")[i].textContent);
+					this.selectionsText.push(document.getElementById("resource-quality").getElementsByTagName("option")[i].textContent);
 			}
 			
 			if (!document.getElementsByClassName("crafting_requirements")[0]) return;
@@ -357,7 +359,7 @@ var gca_forge = {
 			materials[0].dataset.amountsLoaded = true;
 			
 			// Mark that the code has already run
-			document.getElementById("remove-resource-quality").dataset.amounts = true;
+			document.getElementById("resource-quality").dataset.amounts = true;
 
 			// Check if status
 			let isCrafting = !document.getElementById('slot-crafting').classList.contains('hidden');
@@ -409,9 +411,9 @@ var gca_forge = {
 			});
 			
 			// Item in slot
-			if (document.getElementById("remove-resource-quality").parentNode.style.display == "block") {
+			if (document.getElementById("resource-quality").parentNode.style.display == "block") {
 				let select = false;
-				let resource = document.getElementById("remove-resource-quality");
+				let resource = document.getElementById("resource-quality");
 				let options = resource.getElementsByTagName("option");
 				for (let i = 0; i <= 5; i++) {
 					options[i].textContent = this.selectionsText[i] + "("+qualities[i]+"/"+totalRequired+")";
