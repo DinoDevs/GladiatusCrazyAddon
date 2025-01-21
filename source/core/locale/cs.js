@@ -284,7 +284,8 @@ gca_languages['cs'] = {
 			unknown_scrolls_share_code : "Můj kód pro sdílení neznámých svitků",
 			use_share_code : "Použít kód pro sdílení",
 			use_share_code_description : "Vložte kód sdílení jiného hráče, pro zobrazení svitků které již znají:",
-			invalid_share_code : "Vložený kód je neplatný"
+			invalid_share_code : "Vložený kód je neplatný",
+			add_last_item : "Přidat poslední předmět"
 		},
 		
 				// Merchants
@@ -477,6 +478,7 @@ gca_languages['cs'] = {
 			category_forge$horreum_select_meterials : "[Stodola] Zvolit surovinu kliknutím",
 			category_forge$double_click_select : "[Tavírna/Pracovní stůl] Vybrat předmět dvojitým kliknutím",
 			category_forge$forge_notepad : "Přidat nové pole pro poznámky",
+			category_forge$add_last_item : "Přidat tlačítko pro poslední předmět",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignorovat potvrzení pro útoky (přes 5 útoků zpráva apd.)",
 			category_arena$show_simulator_imagelink : "Zobrazovat obrázkový odkaz do simulátoru (simulator.dinodevs.com)",

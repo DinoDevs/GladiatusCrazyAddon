@@ -988,7 +988,9 @@ var gca_settings = {
 				// Double click to select
 				"double_click_select" : true,
 				// Add a notepad
-				"forge_notepad" : true
+				"forge_notepad" : true,
+				// Add last item button
+				"add_last_item" : true
 			},
 			
 			// Arena

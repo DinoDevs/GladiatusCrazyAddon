@@ -25,6 +25,10 @@ var gca_forge = {
 			(gca_options.bool("forge","forge_notepad") &&
 			this.forgeNotepad.inject());
 
+			// Add last item button
+			(gca_options.bool("forge","add_last_item") &&
+			this.LastCraftedItemBtn.inject());
+
 			// Add Gladiatus tools links
 			this.gladiatusTools.inject();
 
@@ -273,6 +277,71 @@ var gca_forge = {
 				}
 			});
 		}
+	},
+
+	LastCraftedItemBtn: {
+    		inject: function() {
+        		this.addLastItemButton();
+        		this.saveOriginalButton();
+    		},
+    		// Save data
+    		saveSettings: function() {
+        		const prefix = document.getElementById('prefix0').value;
+        		const item = document.getElementById('basic0').value;
+        		const suffix = document.getElementById('suffix0').value;
+
+        		localStorage.setItem('gladiatusCrazyAddonData_LastItem', JSON.stringify({ prefix, item , suffix }));
+        		gca_notifications.success(gca_locale.get("general", "ok"));
+    		},
+    		// Load data
+    		loadSettings: function() {
+        	const settings = localStorage.getItem('gladiatusCrazyAddonData_LastItem');
+        	if (settings) {
+            		try {
+                		const parsedSettings = JSON.parse(settings);
+                		if (parsedSettings && parsedSettings.prefix && parsedSettings.item && parsedSettings.suffix) {
+                    			document.getElementById('prefix0').value = parsedSettings.prefix;
+                    			document.getElementById('basic0').value = parsedSettings.item;
+                    			document.getElementById('suffix0').value = parsedSettings.suffix;
+                    			gca_notifications.success(gca_locale.get("general", "ok"));
+                		} else {
+                    			gca_notifications.error(gca_locale.get("general", "error"));
+                		}
+            		} catch (error) {
+                		gca_notifications.error(gca_locale.get("general", "error"));
+            		}
+		} else {
+           	 	gca_notifications.error(gca_locale.get("general", "error"));
+        	}
+    		},
+    		// Create Last Item button
+    		addLastItemButton: function() {
+        		const rentButton = document.querySelector('.awesome-button[data-rent="2"]');
+        		if (rentButton) {
+            			const lastItemButton = document.createElement('button');
+            			lastItemButton.textContent = gca_locale.get('forge', 'add_last_item');
+            			lastItemButton.className = 'awesome-button';
+            			lastItemButton.style.marginLeft = '9px';
+            			lastItemButton.style.height = '24px';
+				lastItemButton.style.width = '134px';
+            			lastItemButton.style.fontSize = '11px';
+            			lastItemButton.style.marginTop = '5px';
+            			lastItemButton.style.cursor = 'pointer';
+
+            			// Event listener
+            			lastItemButton.addEventListener('click', () => this.loadSettings());
+
+            			// Add button
+            			rentButton.parentElement.appendChild(lastItemButton);
+        		}		
+    		},
+    		// Save settings with forge button
+    		saveOriginalButton: function() {
+        		const rentButton = document.querySelector('.awesome-button[data-rent="2"]');
+        		if (rentButton) {
+            			rentButton.addEventListener('click', () => this.saveSettings());
+        		}		
+    		}
 	},
 	
 	// Show available items on each quality
