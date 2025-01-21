@@ -289,6 +289,10 @@ var gca_global = {
 		// Show upgrade item value on item
 		(gca_options.bool("global","show_upgrade_values") &&
 			this.display.analyzeItems.itemUpgrades.init());
+		
+		// Highlight item duplicates 
+		(gca_options.bool("accessibility","highlight_item_duplicates") &&
+			this.display.showItemDuplicates.init());
 
 		// Mobile item move helper - Run on mobiles
 		(this.isMobile &&
@@ -4289,6 +4293,76 @@ var gca_global = {
 				}
 			},
 		},
+
+		// Highlight item duplicates	
+		showItemDuplicates: {
+    			init: function() {
+        		// Check inv existence
+        		if (!document.getElementById("inv")) return;
+
+        		// Add function
+        		gca_tools.event.bag.onBagOpen(() => {
+            			this.highlightDuplicates();
+        		});
+
+        		// Check if inv available
+        		if (document.getElementById("inv").className.match("unavailable")) {
+            			gca_tools.event.bag.waitBag(() => {
+                		this.highlightDuplicates();
+            			});
+        		}
+    		},
+
+    			// Main duplicate function
+    			highlightDuplicates: function() {
+        			// Predefined color palette
+        			// It's probably better than random, better visibility and performance
+        			const colorPalette = [
+            				"hsl(30, 100%, 50%)", // 1. Orange
+            				"hsl(157, 100%, 50%)", // 2. Greenish
+            				"hsl(60, 80%, 50%)", // 3. Yellow
+            				"hsl(180, 80%, 50%)", // 4. Turquoise
+            				"hsl(210, 80%, 50%)", // 5. Blue
+            				"hsl(240, 80%, 50%)", // 6. Indigo
+            				"hsl(285, 100%, 61%)", // 7. Purple
+            				"hsl(330, 80%, 50%)", // 8. Pink
+            				"hsl(270, 80%, 50%)", // 9. Lavender    
+        			];
+
+        			const items = document.querySelectorAll('[class^="item-i-"]');
+        			const itemGroups = new Map();
+
+        			// Group items by tooltip and level
+        			items.forEach(item => {
+            				// Skip menu entries
+            				if (item.closest('.advanced_menu_entry')) return;
+
+            			const tooltip = item.getAttribute('data-tooltip');
+            			const level = item.getAttribute('data-level');
+            			const key = `${tooltip || ''}_${level || ''}`;
+
+            			if (!itemGroups.has(key)) {
+                			itemGroups.set(key, []);
+            			}
+            			itemGroups.get(key).push(item);
+        		});
+
+        		// Highlight duplicates with border
+        		let colorIndex = 0;
+        		itemGroups.forEach(group => {
+            			if (group.length > 1) {
+                			const color = colorPalette[colorIndex % colorPalette.length];
+                			colorIndex++;
+                			group.forEach(item => {
+                    				if (!item.style.border) {
+                        			item.style.border = `2px solid ${color}`;
+
+                   			 	}
+                			});
+            			}
+        		});
+    		}
+	},
 
 		hideLanguageFlags : {
 			preload : function() {
