@@ -539,6 +539,7 @@ gca_languages["en"] = {
 			category_accessibility$qualty_symbols_indicators : "Add quality symbols indicators on items",
 			category_accessibility$tooltips_qualty_white : "Change item title in tooltips to white",
 			category_accessibility$tooltips_qualty_symbols : "Add quality symbols on tooltips",
+			category_accessibility$highlight_item_duplicates : "Highlight item duplicates",
 			// Settings - Events
 			category_events$craps_timer : "Display dice event's timer at the top",
 			category_events$server_quest_timer : "Display server-quest or location event's timer at the top",
