@@ -1198,7 +1198,7 @@ var gca_settings = {
 				// Add quality symbols on tooltips
 				"tooltips_qualty_symbols" : false,
 				// Highlight item duplicates
-				"highlight_item_duplicates : false
+				"highlight_item_duplicates" : false
 			},
 
 			"events" : {
