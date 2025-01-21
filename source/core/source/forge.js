@@ -322,11 +322,14 @@ var gca_forge = {
             			lastItemButton.textContent = gca_locale.get('forge', 'add_last_item');
             			lastItemButton.className = 'awesome-button';
             			lastItemButton.style.marginLeft = '9px';
-            			lastItemButton.style.height = '24px';
+            			lastItemButton.style.height = '30px';
 				lastItemButton.style.width = '134px';
             			lastItemButton.style.fontSize = '11px';
             			lastItemButton.style.marginTop = '5px';
             			lastItemButton.style.cursor = 'pointer';
+				lastItemButton.style.overflow = 'hidden';
+				lastItemButton.style.whiteSpace = 'normal';
+				lastItemButton.style.wordWrap = 'break-word';
 
             			// Event listener
             			lastItemButton.addEventListener('click', () => this.loadSettings());
