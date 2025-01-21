@@ -16,6 +16,9 @@
 
 - **Items**
   - [X] Improved detection of items to smelt
+ 
+- **Accessibility**
+  - [X] Added new feature: Highlight duplicate items (disabled by default, #164)
 
 ### BUG FIXES
 
