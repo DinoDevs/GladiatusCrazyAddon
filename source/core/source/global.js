@@ -62,6 +62,12 @@ var gca_global = {
 		// If submenu click to change
 		(gca_options.bool("main_menu","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.preload());
+		// Auto clear attack notifications for Arena 
+		(gca_options.bool("global", "clear_arena_notifications") &&
+			this.display.clearArenaNotifications.preload());
+		// Auto clear attack notifications for Circus turma
+		(gca_options.bool("global", "clear_ct_notifications") &&
+			this.display.clearCircusNotifications.preload());
 		// Hide flags
 		(gca_options.bool("global","hide_language_flags") &&
 			this.display.hideLanguageFlags.preload());
@@ -4363,7 +4369,42 @@ var gca_global = {
         		});
     		}
 	},
+		
+		// Auto clear attack notifications for Arena
+		clearArenaNotifications: { 
+			preload: function () {
+				const link = document.querySelector("#menue_reports");
+				const notificationCount = link ? link.querySelector(".menue_new_count") : null;
 
+				// Check if Arena notification exists
+				if (notificationCount && link.href.includes("t=2")) {
+					// Request 
+					jQuery.get(gca_getPage.link({
+						"mod": "reports",
+						"t": "2" // Arena
+					}));
+				}
+			}
+		},
+
+		// Auto clear attack notifications for Circus Turma
+		clearCircusNotifications: { 
+			preload: function () {
+				const link = document.querySelector("#menue_reports");
+				const notificationCount = link ? link.querySelector(".menue_new_count") : null;
+
+				// Check if Circus Turma notification exists
+				if (notificationCount && link.href.includes("t=3")) {
+					// Request 
+					jQuery.get(gca_getPage.link({
+						"mod": "reports",
+						"t": "3" // Circus Turma
+					}));
+				}
+			}
+		},
+		
+		// Hide language flags under player names
 		hideLanguageFlags : {
 			preload : function() {
 				// Detect page mods

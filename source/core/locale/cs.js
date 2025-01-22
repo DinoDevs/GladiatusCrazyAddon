@@ -393,6 +393,8 @@ gca_languages['cs'] = {
 			category_global$bar_hide_dun_btn : "Skrýt tlačítka Bludiště",
 			category_global$bar_hide_are_btn : "Skrýt tlačítka Arény",
 			category_global$bar_hide_ct_btn : "Skrýt tlačítka Circus Turma",
+			category_global$clear_arena_notifications : "Automaticky mazat notifikace útoků pro Arénu",			
+			category_global$clear_ct_notifications : "Automaticky mazat notifikace útoků pro Circus Turma",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
 			category_overview$food_life_gain : "Zobrazit počet životů obdržený z jídla",
