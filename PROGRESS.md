@@ -1,12 +1,15 @@
 ## Release v4.3.10
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-5-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-1-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-1-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
 ### IMPROVEMENTS
+
+- **Global**
+  - [X] Added new feature: Automatically delete Arena/Circus Turma attack notifications (disabled by default, #338)
 
 - **Auction**
   - [X] Added special category features system from packages (show unlearned scrolls)
