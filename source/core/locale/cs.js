@@ -523,7 +523,7 @@ gca_languages['cs'] = {
 			category_auction$multi_bids : "Přihazovat na více předmětu před znovu načtením stránky",
 			category_auction$extra_item_stats : "Zobrazit extra staty na obrázcích předmětů",
 			category_auction$save_last_state : "Zapamatuje si hledání v aukcích a pokaždé jej načte",
-			category_auction$special_category_features : "Zapnout speciální funkce podle kategorie\n• Zobrazit ikonu svitků pro neznámé prefixy/suffixy",
+			category_auction$special_category_features : "Zapnout speciální funkce podle kategorie\n•Zobrazit ikonu svitků pro neznámé prefixy/suffixy",
 			// Settings - Accessibility
 			category_accessibility$white_level_indicators : "Změnit číslo úrovně na předmětech na bílou barvu",
 			category_accessibility$qualty_symbols_indicators : "Přidat na předměty indikátory symbolů kvality",
