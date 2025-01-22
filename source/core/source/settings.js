@@ -734,7 +734,7 @@ var gca_settings = {
 				"gladiatus_site_fixes" : true,
 				
 				// Custom page scrollbar
-		        "gca_custom_scrollbar" : true,
+				"gca_custom_scrollbar" : true,
 				
 				// Lock sections visibility
 				"lock_section_visibility" : false,
@@ -752,7 +752,13 @@ var gca_settings = {
 				"bar_hide_are_btn" : false,
 
 				// Hide circus button
-				"bar_hide_ct_btn" : false
+				"bar_hide_ct_btn" : false,
+				
+				// Hide attack notifications for Arena 
+				"clear_arena_notifications" : false,
+				
+				// Hide attack notifications for Circus
+				"clear_ct_notifications" : false
 			},
 
 			// Overview Options

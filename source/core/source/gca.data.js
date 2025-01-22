@@ -414,8 +414,13 @@ gca_options.data = {
 		"bar_hide_are_btn" : false,
 
 		// Hide circus button
-		"bar_hide_ct_btn" : false
-
+		"bar_hide_ct_btn" : false,
+		
+		// Hide attack notifications for Arena 
+		"clear_arena_notifications" : false,
+				
+		// Hide attack notifications for Circus
+		"clear_ct_notifications" : false
 	},
 
 	// Overview Options
