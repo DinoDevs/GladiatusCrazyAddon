@@ -29,4 +29,5 @@
 ### TRANSLATIONS
 
 - **Updates**
-  - [X] ...
+
+  - [X] Czech translation updates by @FrutyX
