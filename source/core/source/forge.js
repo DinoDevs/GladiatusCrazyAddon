@@ -316,8 +316,8 @@ var gca_forge = {
     		},
     		// Create Last Item button
     		addLastItemButton: function() {
-        		const rentButton = document.querySelector('.awesome-button[data-rent="2"]');
-        		if (rentButton) {
+        		const rentButtons = document.querySelector('.awesome-button[data-rent="2"]');
+        		if (rentButtons) {
             			const lastItemButton = document.createElement('button');
             			lastItemButton.textContent = gca_locale.get('forge', 'add_last_item');
             			lastItemButton.className = 'awesome-button';
@@ -336,15 +336,15 @@ var gca_forge = {
             			lastItemButton.addEventListener('click', () => this.loadSettings());
 
             			// Add button
-            			rentButton.parentElement.appendChild(lastItemButton);
+            			rentButtons.parentElement.appendChild(lastItemButton);
         		}		
     		},
     		// Save settings with forge button
     		saveOriginalButton: function() {
-        		const rentButton = document.querySelector('.awesome-button[data-rent="2"]');
-        		if (rentButton) {
-            			rentButton.addEventListener('click', () => this.saveSettings());
-        		}		
+    			const rentButtons = document.querySelectorAll('.awesome-button[data-rent="2"], .awesome-button[data-rent="3"]');
+    			rentButtons.forEach(button => {
+        			button.addEventListener('click', () => this.saveSettings());
+    			});
     		}
 	},
 	
