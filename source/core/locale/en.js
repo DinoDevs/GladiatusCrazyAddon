@@ -135,7 +135,10 @@ gca_languages["en"] = {
 			// Item materials
 			base : "Base",
 			prefix : "Prefix",
-			suffix : "Suffix"
+			suffix : "Suffix",
+			
+			// Gods cooldowns
+			gods_cd_title : "Gods cooldowns"
 		},
 
 		// Overview
@@ -413,6 +416,7 @@ gca_languages["en"] = {
 			category_global$clear_arena_notifications : "Automatically clear attack notifications for Arena",
 			category_global$clear_ct_notifications : "Automatically clear attack notifications for Circus Turma",	
 			category_global$surprise_me : "Surprise me.",
+			category_global$gods_cooldown : "Show gods cooldowns",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
