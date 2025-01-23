@@ -288,6 +288,8 @@ gca_languages["en"] = {
 			click_enter_to_sell : "press enter ⏎ to sell",
 			// Tooltips
 			add_fees_in_price : "Add fees in price",
+			// Item checkboxes button
+			checkboxes_button : "Cancel selected",
 		},
 		
 		// Forge
@@ -519,6 +521,7 @@ gca_languages["en"] = {
 			category_market$double_click_select : "Select item with double click",
 			category_market$sell_warning_icons : "Warning icon when selling items",
 			category_market$sell_with_enter : "Sell items by pressing ENTER ⏎",
+			category_market$item_checkboxes : "Add checkboxes for each item",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Show crafting materials each enemy drops",
 			category_expedition$underworld_layout : "Show underworld's enemies layout like expedition's",
