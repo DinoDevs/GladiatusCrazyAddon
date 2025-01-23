@@ -761,7 +761,10 @@ var gca_settings = {
 				"clear_ct_notifications" : false,
 				
 				// Surprise Me?
-				"surprise_me" : false
+				"surprise_me" : false,
+				
+				// Show gods cooldowns
+				"gods_cooldown" : false
 			},
 
 			// Overview Options
