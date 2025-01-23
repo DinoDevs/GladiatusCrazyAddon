@@ -113,7 +113,7 @@ var gca_guild_warcamp = {
 						rewardCell.html(rewardHtml);
 					} else {
 						// If not found, show zero
-						rewardCell.html(`0 <img src="${gca_tools.img.cdn("img/res2.gif")}" alt="Zlato" style="vertical-align: middle; height: 16px;">`);
+						rewardCell.html(`0 <img src="${gca_tools.img.cdn("img/res2.gif")}" alt="Gold" style="vertical-align: middle; height: 16px;">`);
 					}
 				}).fail(function () {
 					// Show error if error
