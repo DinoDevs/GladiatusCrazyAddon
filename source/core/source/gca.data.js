@@ -662,7 +662,9 @@ gca_options.data = {
 		// Item sell warning icons
 		"sell_warning_icons" : true,
 		// Sell with enter
-		"sell_with_enter" : true
+		"sell_with_enter" : true,
+		// Add checkboxes 
+		"item_checkboxes" : true
 	},
 
 	// Expedition Options

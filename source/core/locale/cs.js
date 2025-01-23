@@ -274,7 +274,9 @@ gca_languages['cs'] = {
 			are_you_sure_you_want_to_buy : "Vážně chceš koupit tento předmět?",
 			click_enter_to_sell : "Stisknutím enter ⏎ prodejte",
 			// Tooltips
-			add_fees_in_price : "Přičíst poplatek do ceny"
+			add_fees_in_price : "Přičíst poplatek do ceny",
+			// Item checkboxes button
+			checkboxes_button : "Zrušit vybrané"
 		},
 		
 		// Forge
@@ -506,6 +508,7 @@ gca_languages['cs'] = {
 			category_market$double_click_select : "Vybrat předmět dvojitým klikem",
 			category_market$sell_warning_icons : "Ikona varování při prodávání předmětů",
 			category_market$sell_with_enter : "Prodávat předměty stisknutím klávesy ENTER ⏎",
+			category_market$item_checkboxes : "Přidat zaškrtávací políčka pro předměty",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Zobrazit materiály padající z nepřátel",
 			category_expedition$underworld_layout : "Zobrazit nepřátele v podzemí stejně jako u výprav",
