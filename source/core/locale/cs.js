@@ -125,7 +125,10 @@ gca_languages['cs'] = {
 			// Item materials
 			base : "Základ",
 			prefix : "Prefix",
-			suffix : "Suffix"
+			suffix : "Suffix",
+			
+			// Gods cooldowns
+			gods_cd_title : "Čekací doby bohů"
 		},
 		
 		// Overview
@@ -400,6 +403,7 @@ gca_languages['cs'] = {
 			category_global$clear_arena_notifications : "Automaticky mazat notifikace útoků pro Arénu",			
 			category_global$clear_ct_notifications : "Automaticky mazat notifikace útoků pro Circus Turma",
 			category_global$surprise_me : "Překvap mě.",
+			category_global$gods_cooldown : "Zobrazit zbývající časy bohů",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyzuj hráčovo předměty",
 			category_overview$food_life_gain : "Zobrazit počet životů obdržený z jídla",

@@ -191,6 +191,10 @@ var gca_global = {
 		// Attacked Timers
 		(gca_options.bool("global","attacked_timers") &&
 			this.display.attacked_timers.inject());
+		
+		// Show gods cooldowns
+		(gca_options.bool("global","gods_cooldown") &&
+			this.display.showGodsCooldowns.inject());
 
 		// Quests Timer
 		(!this.isTraveling && gca_options.bool("main_menu","quest_timer") &&
@@ -2939,6 +2943,94 @@ var gca_global = {
 
 				// Display the values
 				this.globalArenaCooldownText.textContent = '0:' + minutes + ':' + seconds;
+			}
+		},
+		
+		showGodsCooldowns : {
+			inject: async function() {
+				// URL
+				const url = gca_getPage.link({ mod: "gods" });
+
+				// Convert time
+				function formatCooldownTime(ms) {
+					const seconds = Math.floor(ms / 1000);
+					const minutes = Math.floor(seconds / 60);
+					const hours = Math.floor(minutes / 60);
+					const remainingMinutes = minutes % 60;
+					const remainingSeconds = seconds % 60;
+					return `${hours}:${remainingMinutes < 10 ? '0' + remainingMinutes : remainingMinutes}:${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds}`;
+				}
+
+				try {
+					// GET URL
+					const response = await jQuery.get(url);
+
+					const godsContainer = jQuery(response);
+
+					// Gods IDs
+					const gods = ["vulcanus", "minerva", "diana", "mars", "merkur", "apollo"];
+
+					// Create wrapper
+					const wrapper = document.createElement('div');
+					wrapper.style.position = 'absolute'; 
+					wrapper.style.top = '200px';  
+					wrapper.style.right = '-160px'; 
+					wrapper.style.maxWidth = '150px';
+					wrapper.style.zIndex = '9999'; 
+					wrapper.style.overflow = 'hidden';
+					wrapper.style.whiteSpace = 'normal';
+					wrapper.style.wordWrap = 'break-word';
+
+					// Title
+					const title = document.createElement('h2');
+					title.className = 'section-header';
+					title.style.cursor = 'pointer';
+					title.textContent = gca_locale.get("global", "gods_cd_title")
+					wrapper.appendChild(title);
+
+					// Section
+					const section = document.createElement('section');
+					section.style.display = 'block';
+
+					// List
+					const list = document.createElement('ul');
+					list.style.margin = '0';
+					list.style.padding = '0';
+					list.style.listStyle = 'none';
+
+					// Browse gods and cds
+					gods.forEach(god => {
+						const godElement = godsContainer.find(`#${god}`);
+						if (godElement.length) {
+							const godName = godElement.find(".god_name").text().trim();
+
+							// Cooldown from data-ticker-time-left
+							const cooldownElement = godElement.find(".ticker");
+							let cooldownTimeLeft = cooldownElement.attr("data-ticker-time-left");
+
+							// Check text
+							if (!cooldownTimeLeft) {
+								cooldownTimeLeft = cooldownElement.text().trim();
+							}
+
+							// Convert or show no cd
+							const formattedCooldown = cooldownTimeLeft ? formatCooldownTime(parseInt(cooldownTimeLeft)) : gca_locale.get("general", "no");
+
+							// Create list
+							const item = document.createElement('li');
+							item.innerHTML = `<strong>${godName}:</strong> ${formattedCooldown}`;  
+							list.appendChild(item);
+						}					
+					});
+
+					section.appendChild(list);
+					wrapper.appendChild(section);
+			
+					// Insert on page
+					document.getElementById('content').appendChild(wrapper);
+				} catch (error) {
+					console.error("Error fetching gods data:", error);
+				}
 			}
 		},
 
