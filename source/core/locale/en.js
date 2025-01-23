@@ -184,7 +184,10 @@ gca_languages["en"] = {
 			pinned_message_info : "Pinned messages are displayed at the top of the messages for all guild members using this feature",
 			
 			// Important ranks button
-			important_ranks : "Important ranks"
+			important_ranks : "Important ranks",
+			
+			// Rewards - guild battles
+			rewards : "Rewards"
 		},
 
 		// Expedition
@@ -527,6 +530,7 @@ gca_languages["en"] = {
 			category_guild$bank_book_layout : "Improve bank's book layout",
 			category_guild$bank_book_show_changes : "Show donation variations since last visit on bank's book",
 			category_guild$medic_layout : "Improve medic's layout",
+			category_guild$show_battle_rewards : "Show rewards for each guild battle",
 			// Settings - Auction
 			category_auction$items_counters : "Count items and bidden items",
 			category_auction$more_search_levels : "Show more levels in search options",

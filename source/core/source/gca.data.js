@@ -371,8 +371,8 @@ gca_options.data = {
 		"gold_exp_data" : true,
 		
 		// Underworld
-			// Pray Shortcut
-			"pray_shorcut" : true,						
+		// Pray Shortcut
+		"pray_shorcut" : true,						
 		
 		// Show item durability
 		"show_durability" : 0,
@@ -683,7 +683,9 @@ gca_options.data = {
 		"bank_book_layout" : true,
 		"bank_book_show_changes" : true,
 		// Medic Layout
-		"medic_layout" : true
+		"medic_layout" : true,
+		// Show guild battle rewards
+		"show_battle_rewards" : true
 	},
 
 	// Auction Options

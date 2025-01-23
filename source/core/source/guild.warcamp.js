@@ -6,6 +6,13 @@
 // Guild Warcamp
 var gca_guild_warcamp = {
 	inject : function(){
+		
+		// Show guild battle rewards
+		if (gca_section.submod == 'guild_combatreports' && gca_options.bool("guild", "show_battle_rewards") && !gca_getPage.parameter('gcid')) {
+			// Run
+			this.showAllRewards.inject();
+		}
+				
 		// If attack guild page
 		if (gca_section.submod == null) {
 			// Add direct attack button
@@ -70,7 +77,51 @@ var gca_guild_warcamp = {
 				element.insertBefore(td2, element.getElementsByTagName("td")[1]);
 			});
 		}
-	}
+	},
+	
+	// Show guild battle rewards
+	showAllRewards : {
+		inject : function() {
+			// Create rewards category
+			jQuery('#content table.section-like > tbody > tr:first-child').append('<th style="text-align: center; padding-left: 3px;">' + gca_locale.get("guild", "rewards") + '</th>');
+
+			// Look for battle links
+			jQuery('#content a[href*="guild_combatreports"]').each(function () {
+				const combatReportUrl = jQuery(this).attr('href'); 
+				const battleRow = jQuery(this).closest('tr'); 
+
+				// Placeholder 
+				const rewardCell = jQuery('<td style="text-align: center; padding-left: 3px;">⌛</td>');
+				battleRow.append(rewardCell);
+
+				// AJAX request
+				jQuery.get(combatReportUrl, function (response) {
+					const parser = new DOMParser();
+					const doc = parser.parseFromString(response, 'text/html');
+
+					// Look for reward
+					const sectionHeader = doc.querySelector('.section-header');
+					if (sectionHeader) {
+						// Extract 
+						const match = sectionHeader.textContent.match(/\d+/);
+						const result = match ? parseInt(match[0], 10) : 0;
+
+						// Show reward and gold icon
+						const rewardHtml = `${result} <img src="${gca_tools.img.cdn("img/res2.gif")}" alt="Gold" style="vertical-align: middle; height: 16px;">`;
+
+						// Update
+						rewardCell.html(rewardHtml);
+					} else {
+						// If not found, show zero
+						rewardCell.html(`0 <img src="${gca_tools.img.cdn("img/res2.gif")}" alt="Zlato" style="vertical-align: middle; height: 16px;">`);
+					}
+				}).fail(function () {
+					// Show error if error
+					rewardCell.html(`<span style="color: red;">❌</span>`);
+				});
+			});
+		}
+	}	
 };
 
 // Onload Handler

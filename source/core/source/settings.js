@@ -1143,7 +1143,9 @@ var gca_settings = {
 				"bank_book_layout" : true,
 				"bank_book_show_changes" : true,
 				// Medic Layout
-				"medic_layout" : true
+				"medic_layout" : true,
+				// Show guild battle rewards
+				"show_battle_rewards" : true
 			},
 
 			// Auction Options
