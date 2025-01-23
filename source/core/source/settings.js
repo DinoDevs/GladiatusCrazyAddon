@@ -758,7 +758,10 @@ var gca_settings = {
 				"clear_arena_notifications" : false,
 				
 				// Hide attack notifications for Circus
-				"clear_ct_notifications" : false
+				"clear_ct_notifications" : false,
+				
+				// Surprise Me?
+				"surprise_me" : false
 			},
 
 			// Overview Options

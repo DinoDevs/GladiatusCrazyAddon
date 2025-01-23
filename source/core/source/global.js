@@ -71,6 +71,9 @@ var gca_global = {
 		// Hide flags
 		(gca_options.bool("global","hide_language_flags") &&
 			this.display.hideLanguageFlags.preload());
+		// Surprise me
+		(gca_options.bool("global","surprise_me") &&
+			this.display.SurpriseMe.preload());
 
 		// If rtl server
 		if (localStorage.getItem('gca_rtl')) {
@@ -4440,7 +4443,86 @@ var gca_global = {
 					}
 				}
 			}
+		},
+		
+		
+		SurpriseMe: {
+			preload: function () {
+				// Find
+				const avatars = document.querySelectorAll('.avatar.avatar_costume_part');
+				if (avatars.length === 0) {
+					return;
+				}
+
+				// Images
+				const avatarImages = [
+					'1.jpg',
+					'2.jpg',
+					'3.jpg',
+					'4.jpg',
+					'5.jpg',
+					'6.jpg'
+				];
+
+				// Get localStorage
+				const playerData = JSON.parse(localStorage.getItem('gladiatusCrazyAddonData_players')) || {};
+				const avatarData = JSON.parse(localStorage.getItem('gladiatusCrazyAddonData_Surprise_AvatarData')) || {};
+
+				// Get image for players
+				function getAvatarImage(playerId) {
+					const currentTime = new Date().getTime();
+
+					// If nothing, create
+					if (!avatarData[playerId] || (currentTime - avatarData[playerId].lastChange) > 86400000) {
+						const currentImageIndex = avatarData[playerId]
+							? (avatarData[playerId].currentImageIndex + 1) % avatarImages.length
+							: 0;
+
+					avatarData[playerId] = {
+					lastChange: currentTime,
+					currentImageIndex: currentImageIndex
+					};
+
+					// Save to localStorage
+					localStorage.setItem('gladiatusCrazyAddonData_Surprise_AvatarData', JSON.stringify(avatarData));
+
+						return avatarImages[currentImageIndex];
+					} else {
+						return avatarImages[avatarData[playerId].currentImageIndex];
+					}
+				}
+
+				// Add CSS
+				avatars.forEach(avatarElement => {
+					const parentDiv = avatarElement.closest('div[id^="defenderAvatar"], div[id^="attackerAvatar"], div[id="content"]');
+					if (!parentDiv) {
+						return;
+					}
+
+					const playerNameElement = parentDiv.querySelector('.playername_achievement.ellipsis');
+					if (!playerNameElement) {
+						return;
+					}
+
+					const playerName = playerNameElement.textContent.trim();
+					const playerId = Object.keys(playerData).find(id => playerData[id] === playerName);
+					if (playerId) {
+						const avatarImageURL = gca_resources.folder + 'avatars/fan_made/' + getAvatarImage(playerId);
+
+						const styleSheet = document.createElement('style');
+						styleSheet.textContent = `
+							.custom-avatar-${playerId} {
+							background-image: url(${avatarImageURL}) !important;
+							background-position: unset !important;
+						}`;
+						document.head.appendChild(styleSheet);
+
+						avatarElement.classList.add(`custom-avatar-${playerId}`);
+					}
+				});
+			}
 		}
+		
 	},
 	
 	// Underworld related functions
