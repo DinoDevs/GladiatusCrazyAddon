@@ -4436,7 +4436,7 @@ var gca_global = {
         			// Group items by tooltip and level
         			items.forEach(item => {
             				// Skip menu entries
-            				if (item.closest('.advanced_menu_entry')) return;
+            				if (item.closest('.advanced_menu_entry') || item.closest('.crafting_requirements')) return;
 
             			const tooltip = item.getAttribute('data-tooltip');
             			const level = item.getAttribute('data-level');
