@@ -3025,6 +3025,9 @@ var gca_global = {
 							// Create list
 							const item = document.createElement('li');
 							item.innerHTML = `<strong>${godName}:</strong> ${formattedCooldown}`;  
+							item.style.display = 'flex';
+							item.style.justifyContent = 'space-between';
+							item.style.padding = '2px 0';
 							list.appendChild(item);
 						}					
 					});
