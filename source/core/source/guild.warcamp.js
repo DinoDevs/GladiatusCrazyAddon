@@ -12,6 +12,12 @@ var gca_guild_warcamp = {
 			// Run
 			this.showAllRewards.inject();
 		}
+		
+		// Show guild battles statistics		
+		if (gca_section.submod == 'guild_combatreports' && gca_options.bool("guild", "show_battle_statistics") && !gca_getPage.parameter('gcid')) {
+			// Run
+			this.showBattleStatistics.inject();
+		}
 				
 		// If attack guild page
 		if (gca_section.submod == null) {
@@ -76,6 +82,145 @@ var gca_guild_warcamp = {
 				td2.appendChild(gladiatorious_a);
 				element.insertBefore(td2, element.getElementsByTagName("td")[1]);
 			});
+		}
+	},
+
+	// Show guild battles statistics
+	showBattleStatistics: {
+		inject: function() {
+		    // Locales
+		    const headersText = {
+			win: gca_locale.get("guild", "win"),
+			loss: gca_locale.get("guild", "loss"),
+			draw: gca_locale.get("guild", "draw"),
+			winPercentage: gca_locale.get("guild", "win_percentage"),
+			lossPercentage: gca_locale.get("guild", "loss_percentage"),
+			drawPercentage: gca_locale.get("guild", "draw_percentage"),
+			error: gca_locale.get("general", "error")
+		    };
+
+		    // Create wrapper for table
+		    const wrapper = document.createElement('div');
+		    wrapper.style.position = 'relative'; 
+		    wrapper.style.marginBottom = '20px'; 
+		    wrapper.style.maxWidth = '500px'; 
+		    wrapper.style.overflow = 'hidden';
+		    wrapper.style.whiteSpace = 'normal';
+		    wrapper.style.wordWrap = 'break-word';
+
+		    // Create table element
+		    const table = document.createElement('table');
+		    table.className = 'section-like'; 
+		    table.style.width = '100%'; 
+		    table.style.borderCollapse = 'collapse';
+		    table.style.tableLayout = 'fixed';  
+
+		    // Create table header
+		    const headerRow = document.createElement('tr');
+		    const headers = [headersText.win, headersText.loss, headersText.draw, headersText.winPercentage, headersText.lossPercentage, headersText.drawPercentage];
+		    headers.forEach(headerText => {
+			const th = document.createElement('th');
+			th.style.padding = '8px';
+			th.style.border = '1px solid black';
+			th.style.textAlign = 'center';
+			th.style.wordWrap = 'break-word';  
+			th.style.maxWidth = '100px';  
+			th.textContent = headerText;
+			headerRow.appendChild(th);
+		    });
+		    table.appendChild(headerRow);
+
+		    // Initialize counters 
+		    let wins = 0;
+		    let losses = 0;
+		    let draws = 0;
+
+		    // Expected image URLs 
+		    // If there are more CDN images, might need to add more later
+		    const winUrl = 'https://gf2.geo.gfsrv.net/cdnad/af0b898e89474b752d8c34f4160ce7.gif';
+		    const lossUrl = 'https://gf3.geo.gfsrv.net/cdnba/b9e3b2e39985976e738bf538f92e62.gif';
+		    const drawUrl = 'https://gf1.geo.gfsrv.net/cdn92/6adc44009c0664f869acbe84125ff0.gif';
+
+		    // Find all tables 
+		    const sectionTables = document.querySelectorAll('table.section-like');
+
+		    sectionTables.forEach(table => {
+			const resultImages = table.querySelectorAll('img[src*="gf1.geo.gfsrv.net/cdn92"], img[src*="gf2.geo.gfsrv.net/cdnad"], img[src*="gf3.geo.gfsrv.net/cdnba"]');
+
+			// Loop through each image and count results
+			resultImages.forEach(img => {
+			    if (img.src === winUrl) {
+				wins++; 
+			    } else if (img.src === lossUrl) {
+				losses++; 
+			    } else if (img.src === drawUrl) {
+				draws++; 
+			    } else {
+				gca_notifications.error(gca_locale.get('general', 'error'));
+			    }
+			});
+		    });
+
+		    // Calculate percentages
+		    const totalMatches = wins + losses + draws;
+		    const winPercentage = totalMatches > 0 ? (wins / totalMatches * 100).toFixed(2) : 0;
+		    const lossPercentage = totalMatches > 0 ? (losses / totalMatches * 100).toFixed(2) : 0;
+		    const drawPercentage = totalMatches > 0 ? (draws / totalMatches * 100).toFixed(2) : 0;
+
+		    // Create table row 
+		    const statsRow = document.createElement('tr');
+
+		    // Create cells for each result type and display the counts
+		    const winsCell = document.createElement('td');
+		    winsCell.style.padding = '8px';
+		    winsCell.style.textAlign = 'center';
+		    winsCell.textContent = wins;
+		    statsRow.appendChild(winsCell);
+
+		    const lossesCell = document.createElement('td');
+		    lossesCell.style.padding = '8px';
+		    lossesCell.style.textAlign = 'center';
+		    lossesCell.textContent = losses;
+		    statsRow.appendChild(lossesCell);
+
+		    const drawsCell = document.createElement('td');
+		    drawsCell.style.padding = '8px';
+		    drawsCell.style.textAlign = 'center';
+		    drawsCell.textContent = draws;
+		    statsRow.appendChild(drawsCell);
+
+		    // Add percentage columns with fallback to 0 if not available
+		    const winPercentageCell = document.createElement('td');
+		    winPercentageCell.style.padding = '8px';
+		    winPercentageCell.style.textAlign = 'center';
+		    winPercentageCell.textContent = winPercentage + '%';
+		    statsRow.appendChild(winPercentageCell);
+
+		    const lossPercentageCell = document.createElement('td');
+		    lossPercentageCell.style.padding = '8px';
+		    lossPercentageCell.style.textAlign = 'center';
+		    lossPercentageCell.textContent = lossPercentage + '%';
+		    statsRow.appendChild(lossPercentageCell);
+
+		    const drawPercentageCell = document.createElement('td');
+		    drawPercentageCell.style.padding = '8px';
+		    drawPercentageCell.style.textAlign = 'center';
+		    drawPercentageCell.textContent = drawPercentage + '%';
+		    statsRow.appendChild(drawPercentageCell);
+
+		    table.appendChild(statsRow);
+
+		    // Append table to wrapper
+		    wrapper.appendChild(table);
+
+		    // Find the <article> element and insert the wrapper above the existing table
+		    const articleElement = document.querySelector('article');
+		    const existingTable = articleElement.querySelector('table.section-like'); 
+		    if (articleElement && existingTable) {
+			articleElement.insertBefore(wrapper, existingTable);
+		    } else {
+			console.error('Element <article> or existing table not found.');
+		    }
 		}
 	},
 	

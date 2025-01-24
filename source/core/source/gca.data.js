@@ -693,7 +693,9 @@ gca_options.data = {
 		// Medic Layout
 		"medic_layout" : true,
 		// Show guild battle rewards
-		"show_battle_rewards" : true
+		"show_battle_rewards" : true,
+		// Show battle statistics
+		"show_battle_statistics" : true
 	},
 
 	// Auction Options
