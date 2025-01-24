@@ -105,6 +105,23 @@ gca_languages['pl'] = {
 			can_see_market_max_item_level : "Może widzieć przedmioty na rynku o maksymalnym poziomie: {{max}}.",
 			can_see_auction_item_levels : "Może widzieć przedmioty na aukcji od poziomu {{min}} do {{max}}."
 		},
+		
+		reports : {
+			avg_damage : "Średnie obrażenia",
+			avg_heal : "Średnie leczenie",
+			total_hits : "Łączna liczba trafień",
+			hits : "Trafienia",
+			dodge : "Uniki lub bloki",
+			points : "Punkty"
+		},
+
+		sync : {
+			are_you_sure : "Czy na pewno chcesz zalogować się jako gracz {{name}}?",
+			gladiatus_crazy_addon_dependency : "Musisz mieć zainstalowany Gladiatus Crazy Addon w innej przeglądarce.",
+			how_to_sync_info : "Skopiuj URL i wklej go w innej przeglądarce lub zeskanuj kod QR."
+		},
+
+		
 		pantheon : {
 			mysterybox_open_all : "Otwórz wszystkie",
 			mysterybox_open_stop : "Zatrzymaj",
@@ -123,40 +140,64 @@ gca_languages['pl'] = {
 			pinned_message : "Przypięta wiadomość gildii",
 			pin_unpin_message : "Przypnij/Odepnij tę wiadomość",
 			pinned_message_info : "Przypięte wiadomości są wyświetlane na górze wiadomości dla wszystkich członków gildii korzystających z tej funkcji",
-			important_ranks : "Ważne rangi"
+			important_ranks : "Ważne rangi",
+			rewards : "Nagrody"
 		},
 		expedition : {
 			material_drop_chance : "{{number}}% szans na upuszczenie materiału"
 		},
 		training : {
-			stats_points : "Punkty statystyk",
-			points_breakdown : "Rozłożenie punktów",
-			stats_calculated_with_yourself_as_an_opponent : "* Statystyki są obliczane na podstawie ataku samego siebie.",
-			total_cost : "Suma ",
-			costs_discount : "Zniżka treningu: {{number}}%",
+			stats_points : "Punkty Statystyk",
+			points_breakdown : "Rozkład Punktów",
+			stats_calculated_with_yourself_as_an_opponent : " Statystyki są obliczane z koncepcją atakowania siebie.",
+			total_cost : "Całkowity koszt",
+			costs_discount : "Zniżka kosztów treningu: {{number}}%",
 			points_breakdown_damage : "Obrażenia: +{{integer}} (+{{float}})",
-			points_breakdown_block : "Blokada: +{{integer}}% (+{{float}}%)",
-			points_breakdown_block_max : "Blokada: wartość maksymalna",
-			points_breakdown_block_short : "Blokada: +{{integer}}%",
-			points_breakdown_normal_hit : "Szansa trafienia: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_block : "Blok: +{{integer}}% (+{{float}}%)",
+			points_breakdown_block_max : "Blok: maksymalna wartość",
+			points_breakdown_block_short : "Blok: +{{integer}}%",
+			points_breakdown_normal_hit : "Szansa na trafienie: +{{integer}}% (+{{float}}‰) *",
 			points_breakdown_critical_hit : "Szansa na trafienie krytyczne: +{{integer}}% (+{{float}}‰)",
 			points_breakdown_critical_hit_short : "Trafienie krytyczne: +{{integer}}%",
 			points_breakdown_double_hit : "Szansa na podwójne trafienie: +{{integer}}% (+{{float}}‰) *",
 			points_breakdown_double_hit_factor : "Współczynnik podwójnego trafienia: {{number}}",
-			points_breakdown_avoid_double_hit_factor : "Uniknięcie współczynnika podwójnego trafienia: {{number}}",
-			points_breakdown_avoid : "Uniknięcie szansy trafienia krytycznego: +{{integer}}% (+{{float}}‰)",
-			points_breakdown_avoid_max : "Uniknięcie szansy trafienia krytycznego: wartość maksymalna",
-			points_breakdown_avoid_short : "Uniknięcie trafienia krytycznego: +{{integer}}%",
+			points_breakdown_avoid_double_hit_factor : "Współczynnik unikania podwójnego trafienia: {{number}}",
+			points_breakdown_avoid : "Szansa na unik trafienia krytycznego: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_avoid_max : "Szansa na unik trafienia krytycznego: maksymalna wartość",
+			points_breakdown_avoid_short : "Unik krytycznego: +{{integer}}%",
 			points_breakdown_enemy_normal_hit : "Szansa trafienia przeciwnika: {{integer}}% ({{float}}‰) *",
 			points_breakdown_enemy_double_hit : "Szansa na podwójne trafienie przeciwnika: {{integer}}% ({{float}}‰) ",
 			points_breakdown_life : "Punkty życia: +{{number}}",
 			points_breakdown_regeneration : "Regeneracja na godzinę: +{{number}}",
 			points_breakdown_threat : "Zagrożenie: +{{integer}} (+{{float}})",
 			points_breakdown_heal : "Leczenie: +{{integer}} (+{{float}})",
-			points_breakdown_critical_heal : "Leczenie krytyczne: +{{integer}}% (+{{float}}‰)",
-			points_breakdown_critical_heal_max : "Leczenie krytyczne: wartość maksymalna",
-			values_in_parenthesis_explanation : "Wartości w nawiasach pokazują odpowiadające wartości przed zaokrągleniem."
-		},
+			points_breakdown_critical_heal : "Krytyczne leczenie: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_heal_max : "Krytyczne leczenie: maksymalna wartość",
+			values_in_parenthesis_explanation : "Wartości w nawiasach pokazują odpowiednie wartości przed zaokrągleniem.",
+			ctrl_hint : "Podpowiedź: Przytrzymaj klawisz CTRL, aby zwiększyć/zmniejszyć o 10"						
+		},	
+		arena : {
+			global_arena_title : "Globalna Arena",
+			global_arena_description : "To jest ostateczna arena, gromadząca gladiatorów z całego świata! Na tej arenie gladiatorzy nie walczą o złoto ani doświadczenie, lecz o miejsce na światowej liście najlepszych!",
+			global_arena_load : "Załaduj listę wrogów",
+			global_highscore : "Światowy Ranking",
+			country : "Kraj",
+			server : "Serwer",
+			target_list : "Lista Celów",
+			target_list_add : "Dodaj do listy celów",
+			target_list_remove : "Usuń z listy celów",
+			error_sth_went_wrong : "Coś poszło nie tak",
+			error_response : "Serwer odpowiedział błędem",
+			error_blocked_access : "Coś blokuje dostęp do serwera GCA ({{url}})",
+			error_connection : "Błąd połączenia",
+			attack_player : "Kliknij, aby zaatakować „{{name}}”",
+			fight_won : "Wygrałeś walkę!",
+			fight_lost : "Przegrałeś walkę...",
+			player_tired : "Jesteś zmęczony; musisz poczekać.",
+			player1_hits_player2 : "{{name1}} uderza {{name2}}",
+			player_takes_x_damage :"{{name}} otrzymuje {{number}} obrażeń",
+			player_dies :"{{name}} umiera"
+},
 		auction : {
 			number_of_items : "Liczba przedmiotów : {{number}}",
 			number_of_bided_items : "Liczba licytowanych przedmiotów : {{number}}",
@@ -182,7 +223,11 @@ gca_languages['pl'] = {
 			forge_ended : "Wykuwanie zakończone!",
 			recraft_item : "Wykuj ponownie",
 			show_hide_doll : "Pokaż/Ukryj lalki gracza",
-			horreum_material_change : "Zmień materiały w horreum"
+			horreum_material_change : "Zmień materiały w horreum",
+			unknown_scrolls_share_code : "Mój kod udostępniania nieznanych zwojów",
+			use_share_code : "Użyj kodu udostępniania",
+			use_share_code_description : "Wklej kod udostępniania gladiatora, aby zobaczyć, które zwoje zna:",
+			invalid_share_code : "Nieprawidłowy kod udostępniania"
 		},
 		packages : {
 			event_items : "Przedmioty eventowe",
@@ -193,9 +238,14 @@ gca_languages['pl'] = {
 			advance_filters_clear : "Wyczyść filtr",
 			advance_filters_found : "(znaleziono {{items}})"
 		},
+		merchants : {
+			search_item_in_merchants : "Wyszukaj przedmiot u kupców",
+			no_such_item : "Nie znaleziono takiego przedmiotu."
+		},
 		settings : {
 			//Ustawienia -- Ogólne
 			settings : "Ustawienia",
+			highlight : "Podświetl",
 			description : "Włącz lub wyłącz odpowiadające Ci funkcje!",
 			description_click_button : "Kliknij przycisk poniżej, aby przejść do ustawień...",
 			category_global : "Ustawienia ogólne",
@@ -236,6 +286,7 @@ gca_languages['pl'] = {
 			category_global$bar_hide_dun_btn : "Ukryj przycisk lochów",
 			category_global$bar_hide_are_btn : "Ukryj przycisk areny",
 			category_global$bar_hide_ct_btn : "Ukryj przycisk Circus Turma",
+			category_global$gca_custom_scrollbar : "Użyj niestandardowego paska przewijania GCA",
 			//category_global$check_guild_application_pinned_messages_interval : "Sprawdzaj podania do gildii (minuty)", // add pinned messages
 			category_global$x_scroll : "Włącz przewijanie w poziomie",
 			category_global$item_shadow : "Pokaż cienie przedmiotów",
@@ -270,6 +321,9 @@ gca_languages['pl'] = {
 			category_main_menu$centurio_powerups_timers : "Pokaż czas Centuriona/Paktów na przycisku Premium",
 			category_main_menu$forge_timers : "Wyświetl czas w kuźni/roztapiarce",
 			category_main_menu$merchants_timer : "Wyświetl czas kupców",
+			category_main_menu$menu_merge_items : "Scal Kuźnię, Hutę, Warsztat, Horreum i Maga w jedno wejście menu",
+			category_main_menu$menu_hide_citygate : "Ukryj wpis w menu bramy miejskiej",
+			ategory_main_menu$menu_merge_merchants : "Scal wszystkich kupców w jedno wejście menu",
 			//Ustawienia wiadomości
 			category_messages$messages_layout : "Popraw interfejs wiadomości",
 			category_messages$show_unread : "Podświetl nieprzeczytane wiadomości",
@@ -316,18 +370,24 @@ gca_languages['pl'] = {
 			category_merchants$fade_unaffordable_items : "Przyciemnij za drogie przedmioty",
 			category_merchants$show_shop_info : "Pokaż całkowitą wartość sklepu (złoto, rubiny)",
 			category_merchants$double_click_actions : "Podwójne kliknięcie aby sprzedać/kupić przedmiot",
+			category_merchants$alt_click_actions : "(PRZYTRZYMAJ) Alt + Kliknij przedmioty, aby sprzedać/kupić",
+			category_merchants$hide_prices : "Ukryj unoszące się ceny przy sprzedaży/zakupie",
+			category_merchants$ruby_icon_on_items : "Dodaj ikonę na przedmioty kosztujące rubiny",
 			//Ustawienia -- najemnicy
 			category_forge$material_links : "[Kuźnia/Stół warsztatowy] Pokaż skróty do rynku/paczek do poszczególnych składników",
 			category_forge$show_levels : "[Kuźnia] Pokaż poziom przedmiotu/prefixu/sufixu przed nazwą",
 			category_forge$horreum_materials_names : "[Kuźnia] Pokaż nazwę składnika",
 			category_forge$horreum_remember_options : "[Kuźnia] Zapamiętaj ostatnie ustawienia",
 			category_forge$horreum_select_meterials : "[Kuźnia] Zaznacz materiały po kliknięciu",
+			category_forge$forge_notepad : "Dodaj dodatkowe pole notatek",
+			category_forge$double_click_select : "[Przetapianie/Naprawa] Wybierz przedmiot podwójnym kliknięciem",
 			//Ustawienia -- arena
 			category_arena$ignore_attack_confirmations : "Ignoruj ataki (powyżej 5 powiadomień ataku)",
 			category_arena$show_simulator_imagelink : "Pokaż link do symulatora (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Sortuj graczy na arenie według poziomu",
 			category_arena$highlight_guild_members : "Podświetl graczy na innym serwerze gdty mogą to być członkowie gildii",
 			category_arena$target_list : "Lista zaznaczonych graczy",
+			category_arena$overhaul_tables : "Oddziel i ulepsz najlepsze 5 i osobiste tabele rankingowe",
 			//Ustawienia Magus
 			category_magus$fade_unimprovable_items : "Przyciemnij przedmioty których nie możesz ulepszyć",
 			//Ustawienia Rynek
@@ -353,6 +413,7 @@ gca_languages['pl'] = {
 			category_guild$bank_book_layout : "Poprawa podręcznika interfejsu banku",
 			category_guild$bank_book_show_changes : "Pokaż zmiany w wysokości darowizny od ostatniej wizyty w księdze banku",
 			category_guild$medic_layout : "Poprawa interfejsu medyka",
+			category_guild$show_battle_rewards : "Pokaż nagrody za każdą bitwę gildii",
 			//Ustawienia -- aukcje
 			category_auction$items_counters : "Wyświetlanie liczby przedmiotów i licytowanych przedmiotów",
 			category_auction$more_search_levels : "Pokaż więcej opcji poziomów w filtrze",
@@ -412,7 +473,6 @@ gca_languages['pl'] = {
 			category_packages$list_view_layout : "Pokaż paczki jako widok listy",
 			category_packages$pop_over_bag : "Wysuń torbę przy przewijaniu",
 			category_packages$packages_shortcuts : "Dodaj skróty kategorii przedmiotów",
-			category_merchants$ruby_icon_on_items : "Dodaj ikonę na przedmioty kosztujące rubiny",
 			category_market$add_fees_button : "Pokaż przycisk [+] zawierający opłaty w cenie sprzedaży",
 			category_market$custom_prices : "Niestandardowe ceny na rynku, oddzielone przecinkami. Obliczaj na podstawie procentowej wartości ceny przedmiotu, dodając znak '%'. (np. '10000, 10.000, 200%')",
 			category_auction$item_name : "Pokaż nazwy przedmiotów",
