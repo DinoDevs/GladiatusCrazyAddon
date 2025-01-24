@@ -141,7 +141,13 @@ gca_languages['pl'] = {
 			pin_unpin_message : "Przypnij/Odepnij tę wiadomość",
 			pinned_message_info : "Przypięte wiadomości są wyświetlane na górze wiadomości dla wszystkich członków gildii korzystających z tej funkcji",
 			important_ranks : "Ważne rangi",
-			rewards : "Nagrody"
+			rewards : "Nagrody",
+			win : "Wygrane",
+			loss : "Przegrane",
+			draw : "Remisy",
+			win_percentage : "Wygrane (%)",
+			loss_percentage : "Przegrane (%)",
+			draw_percentage : "Remisy (%)"			
 		},
 		expedition : {
 			material_drop_chance : "{{number}}% szans na upuszczenie materiału"
@@ -414,6 +420,7 @@ gca_languages['pl'] = {
 			category_guild$bank_book_show_changes : "Pokaż zmiany w wysokości darowizny od ostatniej wizyty w księdze banku",
 			category_guild$medic_layout : "Poprawa interfejsu medyka",
 			category_guild$show_battle_rewards : "Pokaż nagrody za każdą bitwę gildii",
+			category_guild$show_battle_statistics : "Pokaż statystyki z bitew gildii",
 			//Ustawienia -- aukcje
 			category_auction$items_counters : "Wyświetlanie liczby przedmiotów i licytowanych przedmiotów",
 			category_auction$more_search_levels : "Pokaż więcej opcji poziomów w filtrze",
