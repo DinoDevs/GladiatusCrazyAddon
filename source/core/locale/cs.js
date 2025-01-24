@@ -177,7 +177,15 @@ gca_languages['cs'] = {
 			// Important ranks button
 			important_ranks : "Důležité hodnosti",
 			// Rewards - guild battles
-			rewards : "Odměny"
+			rewards : "Odměny",
+			
+			// Battle statistics table
+			win : "Výhry",
+			loss : "Prohry",
+			draw : "Remízy",
+			win_percentage : "Výhra (%)",
+			loss_percentage : "Prohra (%)",
+			draw_percentage : "Remíza (%)"
 		},
 		
 		// Expedition
@@ -526,6 +534,7 @@ gca_languages['cs'] = {
 			category_guild$bank_book_show_changes : "Zobrazit změny v darech od poslední návštěvy příspěvků banky",
 			category_guild$medic_layout : "Zlepšit zobrazení medika",
 			category_guild$show_battle_rewards : "Zobrazovat všechny odměny z gildovních bitev",
+			category_guild$show_battle_statistics : "Zobrazit statistiky z gildovních bitev",
 			// Settings - Auction
 			category_auction$items_counters : "Zobraz počet předmětů",
 			category_auction$more_search_levels : "Zobrazit více levelů v možnostech vyhledávání",

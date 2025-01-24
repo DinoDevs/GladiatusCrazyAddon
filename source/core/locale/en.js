@@ -190,7 +190,15 @@ gca_languages["en"] = {
 			important_ranks : "Important ranks",
 			
 			// Rewards - guild battles
-			rewards : "Rewards"
+			rewards : "Rewards",
+			
+			// Battle statistics table
+			win : "Wins",
+			loss : "Losses",
+			draw : "Draws",
+			win_percentage : "Win (%)",
+			loss_percentage : "Loss (%)",
+			draw_percentage : "Draw (%)"
 		},
 
 		// Expedition
@@ -539,6 +547,7 @@ gca_languages["en"] = {
 			category_guild$bank_book_show_changes : "Show donation variations since last visit on bank's book",
 			category_guild$medic_layout : "Improve medic's layout",
 			category_guild$show_battle_rewards : "Show rewards for each guild battle",
+			category_guild$show_battle_statistics : "Show statistics from guild battles",
 			// Settings - Auction
 			category_auction$items_counters : "Count items and bidden items",
 			category_auction$more_search_levels : "Show more levels in search options",
