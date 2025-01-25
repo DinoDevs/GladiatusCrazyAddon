@@ -603,6 +603,8 @@ var gca_markets = {
 		rows.forEach(row => {
 			// Create checkboxes
 			let checkboxCell = document.createElement("td");
+			checkboxCell.style.backgroundColor = "#d7cba1";
+			checkboxCell.style.borderLeft = "1px solid #b28b60";
 			let checkbox = document.createElement("input");
 			checkbox.type = "checkbox";
 			checkbox.className = "cancel-checkbox";
