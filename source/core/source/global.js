@@ -4550,7 +4550,7 @@ var gca_global = {
 		SurpriseMe: {
 			preload: function () {
 				// Find
-				const avatars = document.querySelectorAll('.avatar.avatar_costume_part');
+				const avatars = document.querySelectorAll('.avatar.avatar_costume_part, .avatar');
 				if (avatars.length === 0) {
 					return;
 				}
