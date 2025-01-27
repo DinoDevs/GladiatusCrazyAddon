@@ -239,7 +239,7 @@ var gca_guild_warcamp = {
 				const battleRow = jQuery(this).closest('tr');
 	
 				// Placeholder
-				const rewardCell = jQuery('<td style="text-align: center; padding-left: 3px;">⌛</td>');
+				const rewardCell = jQuery('<td style="text-align: center; padding-left: 3px; float: right;">⌛</td>');
 				battleRow.append(rewardCell);
 	
 				// Delay the AJAX request
