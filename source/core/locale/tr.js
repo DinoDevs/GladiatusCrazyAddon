@@ -42,6 +42,7 @@ gca_languages["tr"] = {
 			life_recover_full : "Yaşam Enerjisinin Dolacağı Süre:",
 			expedition_recover_full : "Keşif Seferinin Dolacağı Süre:",
 			dungeon_recover_full : "Zindanın Dolacağı Süre:",
+			health_notification: "Mevcut yaşam enerjisi şunun altında:",
 
 			//Tuş ayarları - Mesaj
 			message_private_write : "Özel Mesaj Yaz",
@@ -51,6 +52,11 @@ gca_languages["tr"] = {
 			message_sent_failed : "Mesaj Gönderilemedi",
 			message_empty : "Mesaj Boş",
 			message_exclude_me : "Ben Hariç Herkes",
+
+			//Hoşgeldin mesajı 
+			welcome_addon : "Gladiatus Crazy Addon eklentisine hoşgeldiniz!",
+			welcome_version : "Mevcut yüklenen versiyon",
+			welcome_changelog : "Değişiklik Geçmişi",
 
 			//Kısayol Tuşları
 			auction_food_goto : "Yiyecek müzayedesine git",
@@ -114,7 +120,10 @@ gca_languages["tr"] = {
 			//Eşya Bileşenleri
 			base : "Ana Eşya",
 			prefix : "Ön ek",
-			suffix : "Son ek"
+			suffix : "Son ek",
+
+			// Tanrıların bekleme süreleri
+			gods_cd_title : "Tanrıların bekleme süreleri"
 
 		},
 
@@ -160,7 +169,22 @@ gca_languages["tr"] = {
 			//Hamam
 			pinned_message : "Sabitlenmiş ittifak mesajı",
 			pin_unpin_message : "Bu mesajı sabitle veya sabitlemesini kaldır",
-			pinned_message_info : "Bu özelliği kullanan tüm ittifak üyeleri için mesajların üst kısmında sabitlenmiş mesajlar görüntülenir."
+			pinned_message_info : "Bu özelliği kullanan tüm ittifak üyeleri için mesajların üst kısmında sabitlenmiş mesajlar görüntülenir.",
+		
+			//Önemli rütbeler butonu
+			important_ranks : "Önemli rütbeler",
+			
+			//Ödüller - İttifak savaşları
+			rewards : "Ödül",
+			
+			//Savaş istatistikleri tablosu
+			win : "Galibiyet",
+			loss : "Yenilgi",
+			draw : "Beraberlik",
+			win_percentage : "Galibiyet (%)",
+			loss_percentage : "Yenilgi (%)",
+			draw_percentage : "Beraberlik (%)"
+
 		},
 
 		//Keşif
@@ -221,7 +245,8 @@ gca_languages["tr"] = {
 			stats_calculated_with_yourself_as_an_opponent : "* Yukardaki istatistikler kendinize saldırmak kavramıyla hesaplanır.",
 			values_in_parenthesis_explanation : "Parantez içindeki değerler bir önceki turu temsil eder.",
 			total_cost : "Toplam Tutar",
-			costs_discount : "Eğitim indirimi: {{number}}%"
+			costs_discount : "Eğitim indirimi: {{number}}%",
+			ctrl_hint : "İpucu: CTRL tuşuna basılı tutarak 10ar adet arttırıp azaltabilirsiniz"
 		},
 
 		//Müzayede Salonu
@@ -248,14 +273,21 @@ gca_languages["tr"] = {
 			are_you_sure_you_want_to_buy : "Bu itemi gerçekten almak istiyor musun?",
 			click_enter_to_sell : "İtemi satmak için ENTER ⏎ tuşunu kullanabilirsin",
 			//Kısayol
-			add_fees_in_price : "Fiyata ücreti ekleyin"
+			add_fees_in_price : "Fiyata ücreti ekleyin",
+			//Eşya checkbox butonları
+			checkboxes_button : "Seçimi iptal et",
 		},
 		//Demirhane
 		forge : {
 			forge_ended : "Eşya üretimi bitti",
 			recraft_item : "Eşyayı yeniden oluştur",
 			show_hide_doll : "Eşyalarımı Göster/Gizle",
-			horreum_material_change : "Demirhane malzemeleri değişimi"
+			horreum_material_change : "Demirhane malzemeleri değişimi",
+			unknown_scrolls_share_code : "Henüz okumadığım parşomenlerin paylaşım kodu",
+			use_share_code : "Paylaşım kodu kullan",
+			use_share_code_description : "Hangi parşömenleri okuduklarını görmek için bir arkadaşının paylaşım kodunu yapıştır:",
+			invalid_share_code : "Hatalı paylaşım kodu",
+			add_last_item : "Son itemi ekle"
 		},
 		//Tüccarlar
 		merchants : {
@@ -297,6 +329,7 @@ gca_languages["tr"] = {
 			//Kategoriler
 			category_global : "Genel Ayarlar",
 			category_overview : "Genel Bakış",
+			category_main_menu : "Ana Menü",
 			category_messages : "Mesaj Ayarları",
 			category_packages : "Sandık Ayarları",
 			category_pantheon : "Pantheon Ayarları",
@@ -320,6 +353,7 @@ gca_languages["tr"] = {
 			category_global$extended_hp_xp_info : "Sayfanın üst kısmında genişletilmiş HP ve TP bilgilerini göster",
 			category_global$extended_hp_xp_info_potion : "Şifa iksirini göster",
 			category_global$hp_timer_for_full_life : "Yaşam enerjinisin dolacağı süreyi göster",
+			category_global$health_warning : "HP şu yüzdenin altına düşerse beni uyar:",
 			category_global$expedition_dungeon_points_recover_timer : "Keşif seferinin ve zindanın dolacağı süreyi göster",
 			category_global$shortcuts_bar : "Kısayollar çubuğunu etkinleştir",
 			category_global$shortcuts_bar_buttons : "Kısayol çubuğundaki kısayolları seçin",
@@ -347,6 +381,18 @@ gca_languages["tr"] = {
 			category_global$show_mercenaries_real_name_and_combat_stats : "Araç ipuçlarında paralı askerlerin gerçek adlarını (tür) ve savaş istatistiklerini görüntüleyin",
 			category_global$show_upgrade_values : "Takviye ve yükseltmelerde güçlendirme değerlerini göster",
 			category_global$global_arena_timer : "Global Arena zamanlayıcısını göster",
+			category_global$gladiatus_site_fixes : "Gladiatus site problemlerini düzelt ve geliştir",
+			category_global$gca_custom_scrollbar : "GCA'nın özelleştirilmiş scrollbar'ını kullan",
+			category_global$lock_section_visibility : "Gizlenebilir bölümlerin mevcut durumunu kilitle",
+			category_global$hide_language_flags : "Oyuncu isimleri altındaki bayrakları gizle",
+			category_global$bar_hide_exp_btn : "Keşif butonlarını gizle",
+			category_global$bar_hide_dun_btn : "Zindan butonlarını gizle",
+			category_global$bar_hide_are_btn : "Arena butonlarını gizle",
+			category_global$bar_hide_ct_btn : "Sirk Turma butonlarını gizle",
+			category_global$clear_arena_notifications : "Arena saldırı bildirimlerini otomatik olarak temizle",
+			category_global$clear_ct_notifications : "Sirk Turma saldırı bildirimlerini otomatik olarak temizle",	
+			category_global$surprise_me : "Beni şaşırt.",
+			category_global$gods_cooldown : "Tanrıların bekleme sürelerini göster",
 			//Genel Bakış
 			category_overview$analyze_items : "Eşyaların durumlarını analiz et (Eğitim için gereklidir)",
 			category_overview$food_life_gain : "Malzemelerden hayat kazancını göster",
@@ -365,10 +411,13 @@ gca_languages["tr"] = {
 			// Settings - Main menu
 			category_main_menu$advance_main_menu : "Ana menüyü geliştir",
 			category_main_menu$submenu_click_to_change : "Tıklamayla alt menü değişimini aktifleştir",
+			category_main_menu$menu_merge_merchants : "Tüm satıcıları tek menü altında birleştir",
+			category_main_menu$menu_merge_items : "Demirhane, Dökümhane, Çalışma Tezgahı, Hammadde Deposu ve Hermetik Müneccimi tek menü altında birleştir",
 			category_main_menu$quest_timer : "Görev durumunu ve zamanlayıcıyı göster",	
 			category_main_menu$centurio_powerups_timers : "Premium menüsü üzerinde anlaşmaların kalan zamanlarını göster",
 			category_main_menu$forge_timers : "Demirci / Arındırma zamanlayıcıyı göster",
 			category_main_menu$merchants_timer : "Tüccarların yenilenme süresini göster",
+			category_main_menu$menu_hide_citygate : "Şehir girişini menüden gizle",
 			//Mesaj Ayarları
 			category_messages$messages_layout : "Mesaj düzenini geliştir",
 			category_messages$show_unread : "Okunmamış mesajları vurgula",
@@ -388,11 +437,12 @@ gca_languages["tr"] = {
 			category_packages$load_more_pages : "Daha fazla sayfa yükle",
 			category_packages$list_view_layout : "Liste görünümünde göster",
 			category_packages$pages_to_load : "Yüklenecek sayfa sayısı",
-			category_packages$item_price : "Ögelerin fiyatını göster",
+			category_packages$item_price : "İtemlerin fiyatını göster",
 			category_packages$special_category_features : "Özel kategori özelliklerini etkinleştir",
 			category_packages$double_click_open : "Paketleri açmak için çift tıkla",
 			category_packages$advance_filter : "Gelişmiş sandık filtrelemesini etkinleştir",
 			category_packages$pop_over_bag : "Kaydırmada çantayı aç",
+			category_packages$packages_shortcuts : "İtemlerin kategorilerini kısayol olarak göster",
 			//Pantheon (Görev) Ayarları
 			category_pantheon$quests_reorder : "Görev grubunu göster",
 			category_pantheon$quests_detailed_rewards : "Görevlerin ödüllerini ayrıntılı göster",
@@ -404,7 +454,7 @@ gca_languages["tr"] = {
 			//Raporlama Ayarları
 			category_reports$style_change : "Rapor liste düzenini iyileştir",
 			category_reports$load_loot_tooltips : "Her raporun ödülünü yükle",
-			category_reports$found_items : "Bulunan ögeler hakkında veri topla",
+			category_reports$found_items : "Bulunan itemler hakkında veri topla",
 			category_reports$battle_analyzer : "Raporu analiz et ve yaşam istatistiklerini göster",
 			//Eğitim Ayarları
 			category_training$show_discount : "Eğitim indirimini göster",
@@ -417,19 +467,25 @@ gca_languages["tr"] = {
 			category_merchants$fade_unaffordable_items : "Alamadığın nesneleri soluk göster",
 			category_merchants$ruby_icon_on_items : "Yakut ile alınan öğelere sembol ekleyin",
 			category_merchants$show_shop_info : "Perakende tüccarında toplam altın ve yakut bilgilerini göster",
-			category_merchants$double_click_actions : "İtemleri almak veya satmak için çift tıkla",
+			category_merchants$double_click_actions : "İtemleri alıp satmak için çift tıkla",
+			category_merchants$alt_click_actions : "İtemleri alıp satmak için Alt tuşuna basılı tutarken fare ile iteme tıkla (MacOS için option tuşu)",
+			category_merchants$hide_prices : "Alım satımlarda değişken fiyatları gizle",
 			//Demirhane Ayarları
 			category_forge$material_links : "İhtiyaç duyulan hammaddeler için market ve sandık kısayolunu göster (Demirhane / Çalışma Tezgahı)",
 			category_forge$show_levels : "İtemlerin seviyelerini göster (Demirhane)",
 			category_forge$horreum_materials_names : "Hammaddelerin isimlerini göster (Hammadde Deposu)",
 			category_forge$horreum_remember_options : "Son seçilen hammadde bloğunu hatırla (Hammadde Deposu)",
 			category_forge$horreum_select_meterials : "Hammaddeyi seçmek için tıkla (Hammadde Deposu)",
+			category_forge$double_click_select : "İtemi eritmek veya tamir etmek için çift tıkla",
+			category_forge$forge_notepad : "Ekstra not alanı ekle",
+			category_forge$add_last_item : "'Son itemi ekle' butonunu aktifleştir",	
 			//Arena Ayarları
 			category_arena$ignore_attack_confirmations : "5 defadan fazla saldıramazsınız mesajını yoksay",
 			category_arena$show_simulator_imagelink : "Arena ve Sirk Turma'da simulasyon bağlantısını göster (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Arenadaki oyuncuları seviyeye göre sırala",
 			category_arena$highlight_guild_members : "Diğer sunucularda oynayan ittifak üyelerini vurgula",
 			category_arena$target_list : "Hedef listesi özelliğini aktifleştir",
+			category_arena$overhaul_tables : "En iyi 5 ile kendi pozisyonun tablolarını ayır ve geliştir",
 			//Hermetik Müneccim Ayarları
 			category_magus$fade_unimprovable_items : "Geliştirilemeyen itemleri soluk göster",
 			//Market Ayarları
@@ -440,11 +496,12 @@ gca_languages["tr"] = {
 			category_market$remember_sell_duration : "Son seçilen satış süresini hatırla",
 			category_market$sell_duration : "Varsayılan satış süresini seç",
 			category_market$one_gold_mode : "Satış fiyatını her zaman 1 altın olarak değiştir butonunu göster",
-			category_market$custom_prices : "Virgülle ayrılmış özel piyasa fiyatları. Bir '%' ekleyerek ögenin fiyatının yüzdesine dayalı olarak hesaplayın. (ör. '10000, 10.000, 200%')",
+			category_market$custom_prices : "Virgülle ayrılmış özel piyasa fiyatları. Bir '%' ekleyerek itemin fiyatının yüzdesine dayalı olarak hesaplayın. (ör. '10000, 10.000, 200%')",
 			category_market$remember_sort : "Son sıralama düzenini hatırla",
 			category_market$double_click_select : "İtemi markete atmak için çift tıkla",
 			category_market$sell_warning_icons : "İtemi satarken uyarı ikonunu göster",
 			category_market$sell_with_enter : "İtemleri satmak için ENTER ⏎ tuşunu kullan",
+			category_market$item_checkboxes : "Her item için bir checkbox oluştur",
 			//Keşif Ayarları
 			category_expedition$show_enemy_drops : "NPC'lerden düşebilecek hammaddeleri göster",
 			category_expedition$underworld_layout : "Yeraltı NPC'lerini tıpkı normal keşiflerdeki NPC'ler gibi göster",
@@ -457,6 +514,8 @@ gca_languages["tr"] = {
 			category_guild$bank_book_layout : "Bankanın bağış arayüzünü geliştir",
 			category_guild$bank_book_show_changes : "Bağış Kitabında son ziyaretinden bu yana olan bağış değişikliklerini göster",
 			category_guild$medic_layout : "Villa Medici'nin arayüzünü geliştir",
+			category_guild$show_battle_rewards : "Her ittifak savaşı için ödülleri göster",
+			category_guild$show_battle_statistics : "İttifak savaşı istatistiklerini göster",
 			//Müzayede Ayarları
 			category_auction$items_counters : "Tüm eşyaları ve teklif verilen eşya sayısını göster",
 			category_auction$more_search_levels : "Asgari seviye yerine ara seviyeler ekle",
@@ -467,12 +526,13 @@ gca_languages["tr"] = {
 			category_auction$multi_bids : "Sayfayı yenilemeden teklif ver",
 			category_auction$extra_item_stats : "Eşya resimlerinde ekstra istatistikleri göster",
 			category_auction$save_last_state : "Aranan son kriterleri hatırla.",
-			
+			category_auction$special_category_features : "Her kategori için şu özellikleri etkinleştir\n• Eğer ön eki yada son eki okunmamış ise parşomen simgesi göster",
 			//Erişebilirlik Ayarları
-			category_accessibility$white_level_indicators : "Öge seviyelerini beyaz olarak değiştir",
-			category_accessibility$qualty_symbols_indicators : "Ögelere kalite sembolü ekle",
-			category_accessibility$tooltips_qualty_white : "Öge açıklamasında öge adını beyaz olarak değiştir",
-			category_accessibility$tooltips_qualty_symbols : "Öge açıklamasına kalite sembolü ekle",
+			category_accessibility$white_level_indicators : "İtem seviyelerini beyaz olarak değiştir",
+			category_accessibility$qualty_symbols_indicators : "İtemlere kalite sembolü ekle",
+			category_accessibility$tooltips_qualty_white : "İtem açıklamasındaki item adını beyaz olarak değiştir",
+			category_accessibility$tooltips_qualty_symbols : "İtem açıklamasına kalite sembolü ekle",
+			category_accessibility$highlight_item_duplicates : "Yinelenen itemleri vurgula",
 			//Event(Etkinlik) Ayarları
 			category_events$craps_timer : "Zar etkinliğinde zamanlayıcıyı en üstte göster",
 			category_events$server_quest_timer : "Sunucu görevini veya konum olayının zamanlayıcısını en üstte göster",
@@ -504,12 +564,17 @@ gca_languages["tr"] = {
 			all_category : "Hedef kategori ve hepsi üzerinde çalış",
 			do_not_run : "Çalışma",
 			default: "Varsayılan",
+			highlight: "Vurgula",
+
+			//Bilgilendirme
 			translated_percent : "Çeviri durumu: %{{number}}",
 			translated_by : "Çeviren: {{string}}",
 			reset_settings_confirm : "Eklenti ayarlarını sıfırlamak istediğinize emin misiniz?",
 			clear_data_confirm : "Tüm eklenti ayarlarını silmek istediğinize emin misiniz?",
 			data_exported_save_the_file : "Veriyi dışarı aktarma başarılı",
 			missing_translations : "Eksik Çeviri",
+
+			//Bildirimler
 			notification_reload : "Değişikliklerin geçerli olması için sayfayı yeniden yükleyin",
 		}
 	}
