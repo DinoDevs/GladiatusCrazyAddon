@@ -46,4 +46,4 @@
 
   - [X] Czech translation updates by @FrutyX
   - [X] Polish translation updates by @Weakus (#502)
-  - [X] Turkish translation updates by @Ememfar (#509)
+  - [X] Turkish translation updates by @Emefar (#509)
