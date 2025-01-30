@@ -593,88 +593,99 @@ var gca_markets = {
 	
 	// Add item checkboxes and button
 	addItemCheckboxes: function() {
-		// Get table
-		let marketTable = document.getElementById("market_item_table");
-		if (!marketTable) return;
+	        // Get table
+	        let marketTable = document.getElementById("market_item_table");
+	        if (!marketTable) return;
+	
+	        let rows = marketTable.querySelectorAll("tbody > tr:not(:first-child)");
+	        if (rows.length === 0) return;
 
-		let rows = marketTable.querySelectorAll("tbody > tr:not(:first-child)");
-		if (rows.length === 0) return;
-
-		rows.forEach(row => {
-			// Create checkboxes
-			let checkboxCell = document.createElement("td");
-			checkboxCell.style.backgroundColor = "#d7cba1";
-			checkboxCell.style.borderLeft = "1px solid #b28b60";
-			let checkbox = document.createElement("input");
-			checkbox.type = "checkbox";
-			checkbox.className = "cancel-checkbox";
-			checkboxCell.appendChild(checkbox);
-
-			row.appendChild(checkboxCell);
-		});
-
-		// Create button
-		let cancelSelectedButton = document.createElement("input");
-		cancelSelectedButton.type = "button";
-		cancelSelectedButton.className = "awesome-button";
-		cancelSelectedButton.id = "cancelSelectedButton";
-		cancelSelectedButton.style = "margin-top: 2px; float: right;";
-		cancelSelectedButton.value = gca_locale.get("markets", "checkboxes_button");
-
-		// Append
-		marketTable.parentElement.appendChild(cancelSelectedButton);
-
-		// Event listener
-		cancelSelectedButton.addEventListener("click", function() {
-			let checkboxes = document.querySelectorAll(".cancel-checkbox:checked");
-			if (checkboxes.length === 0) return;
-
-			let atomic = false;
-			let minDelayRequests = 100; // Delay
-
-			// Cancel items
-			function cancelNext(index) {
-				if (index >= checkboxes.length) {
-					// Refresh
-					document.location.href = document.location.href.replace(/&p=\d+/i, "");
-					return;
-				}
-
-				// Find every cancel button
-				let row = checkboxes[index].closest("tr");
-				let cancelBtn = row.querySelector("input[name='cancel']");
-				let buyid = cancelBtn.form.buyid.value;
-
-				// AJAX request
-				let requestStart = new Date().getTime();
-				jQuery.ajax({
-					type: "POST",
-					url: document.location.href,
-					data: `buyid=${encodeURIComponent(buyid)}&cancel=${encodeURIComponent(cancelBtn.value)}`,
-					success: function() {
-						let requestDuration = new Date().getTime() - requestStart;
-						cancelSelectedButton.value = `(${index + 1}/${checkboxes.length})`;
-
-						setTimeout(() => {
-							cancelNext(index + 1);
-						}, Math.max(requestDuration, minDelayRequests));
-					},
-					error: function() {
-						let requestDuration = new Date().getTime() - requestStart;
-						gca_notifications.error(gca_locale.get("general", "error"));
-
-						setTimeout(() => {
-							cancelNext(index + 1);
-						}, Math.max(requestDuration * 2, minDelayRequests));
-					}
-				});
-			}
-
-			// Start it
-			cancelSelectedButton.disabled = true;
-			cancelSelectedButton.value = "⏳";
-			cancelNext(0);
-		});
+		// Check
+	        let CheckMyOffers = false;
+	
+	        rows.forEach(row => {
+	                let cancelButton = row.querySelector("input[name='cancel']");
+	                if (!cancelButton) return;
+	
+	                // Check
+	                CheckMyOffers = true;
+	
+	                // Create checkboxes
+	                let checkboxCell = document.createElement("td");
+	                checkboxCell.style.backgroundColor = "#d7cba1";
+	                checkboxCell.style.borderLeft = "2px solid #0000ff";
+	                let checkbox = document.createElement("input");
+	                checkbox.type = "checkbox";
+	                checkbox.className = "cancel-checkbox";
+	                checkboxCell.appendChild(checkbox);
+	
+	                row.appendChild(checkboxCell);
+	        });
+	
+	        // If no offers from player, do not show btn
+	        if (!CheckMyOffers) return;
+	
+	        // Create button
+	        let cancelSelectedButton = document.createElement("input");
+	        cancelSelectedButton.type = "button";
+	        cancelSelectedButton.className = "awesome-button";
+	        cancelSelectedButton.id = "cancelSelectedButton";
+	        cancelSelectedButton.style = "margin-top: 2px; float: right;";
+	        cancelSelectedButton.value = gca_locale.get("markets", "checkboxes_button");
+	
+	        // Append
+	        marketTable.parentElement.appendChild(cancelSelectedButton);
+	
+	        // Event listener
+	        cancelSelectedButton.addEventListener("click", function() {
+	                let checkboxes = document.querySelectorAll(".cancel-checkbox:checked");
+	                if (checkboxes.length === 0) return;
+	
+	                let minDelayRequests = 100; //Delay
+	
+	                // Cancel items
+	                function cancelNext(index) {
+	                        if (index >= checkboxes.length) {
+	                                // Refresh
+	                                document.location.href = document.location.href.replace(/&p=\d+/i, "");
+	                                return;
+	                        }
+	
+	                        // Find every cancel button
+	                        let row = checkboxes[index].closest("tr");
+	                        let cancelBtn = row.querySelector("input[name='cancel']");
+	                        let buyid = cancelBtn.form.buyid.value;
+	
+	                        // AJAX request
+	                        let requestStart = new Date().getTime();
+	                        jQuery.ajax({
+	                                type: "POST",
+	                                url: document.location.href,
+	                                data: `buyid=${encodeURIComponent(buyid)}&cancel=${encodeURIComponent(cancelBtn.value)}`,
+	                                success: function() {
+	                                        let requestDuration = new Date().getTime() - requestStart;
+	                                        cancelSelectedButton.value = `(${index + 1}/${checkboxes.length})`;
+	
+	                                        setTimeout(() => {
+	                                                cancelNext(index + 1);
+	                                        }, Math.max(requestDuration, minDelayRequests));
+	                                },
+	                                error: function() {
+	                                        let requestDuration = new Date().getTime() - requestStart;
+	                                        gca_notifications.error(gca_locale.get("general", "error"));
+	
+	                                        setTimeout(() => {
+	                                                cancelNext(index + 1);
+	                                        }, Math.max(requestDuration * 2, minDelayRequests));
+	                                }
+	                        });
+	                }
+	
+	                // Start it
+	                cancelSelectedButton.disabled = true;
+	                cancelSelectedButton.value = "⏳";
+	                cancelNext(0);
+	        });
 	},
 
 	// Layout
