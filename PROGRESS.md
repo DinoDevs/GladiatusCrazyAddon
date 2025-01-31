@@ -27,7 +27,7 @@
  
 - **Guild**
   - [X] Added new feature: Show all rewards in guild battles page (War Master Hall)
-  - [X] Added new feature: Add item checkboxes for guild market (to cancel selected items only, #442)
+  - [X] Added new feature: Add item checkboxes for guild market & regular market (to cancel selected items only, #442)
   - [X] Added new feature: Show guild battles statistics (#493)
 
 ### BUG FIXES
