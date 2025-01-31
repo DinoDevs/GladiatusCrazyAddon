@@ -59,9 +59,9 @@ var gca_markets = {
 			this.oneGoldMode());
 			
 		// Add item checkboxes
-		if (gca_section.mod == 'guildMarket' && gca_options.bool("market", "item_checkboxes")) {
-			this.addItemCheckboxes();
-		}		
+		if ((gca_section.mod == 'guildMarket' || gca_section.mod == 'market') && gca_options.bool("market", "item_checkboxes")) {
+    			this.addItemCheckboxes();
+		}	
 		
 		// If insert "with fees" button
 		if (gca_options.bool("market","add_fees_button")){
