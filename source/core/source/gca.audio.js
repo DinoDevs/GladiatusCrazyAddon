@@ -135,14 +135,40 @@ var gca_audio = {
 		return audio;
 	},
 
-	// Play a sound
-	play : function(id) {
-		if (!this._enable) return;
-		var audio = this.new(id);
-		// In many cases this fires when the user has not yet interacted with the document
-		try {audio.play().catch(e => {});}
-		catch(e){};
-		return audio;
+	// Play a sound 
+	play: function(id) {
+	    if (!this._enable) return;
+	    var soundObj = this.makeAudioIdObj(id);
+	
+	    // Firefox detection
+	    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+	        // Load file as blob
+	        fetch(soundObj.url)
+	            .then(response => response.blob())
+	            .then(blob => {
+			// If MIME type is not right, slice blob to audio/ogg
+	                if (blob.type !== 'audio/ogg') {
+	                    blob = blob.slice(0, blob.size, 'audio/ogg');
+	                }
+	                // Create URL from blob
+	                var fixedUrl = URL.createObjectURL(blob);
+	                // Create object with the right URL
+	                var audio = new Audio(fixedUrl);
+	                audio.volume = this._volume * soundObj.volume;
+	                audio.muted = (this._muted || soundObj.muted);
+	                try {
+	                    audio.play().catch(e => {});
+	                } catch (e) {}
+	            })
+	            .catch(error => console.error("Chyba při načítání audio souboru:", error));
+	    } else {
+	        // Other browsers
+	        var audio = this.new(id);
+	        try {
+	            audio.play().catch(e => {});
+	        } catch (e) {}
+	        return audio;
+	    }
 	},
 };
 
