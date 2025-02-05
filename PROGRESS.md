@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-10-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-2-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-3-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -31,6 +31,9 @@
   - [X] Added new feature: Show guild battles statistics (#493)
 
 ### BUG FIXES
+- **Global**
+
+  - [X] Fixed audio system problems on Firefox (#511)
 
 - **Forge**
 
