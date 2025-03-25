@@ -54,7 +54,10 @@ var gca_global = {
 			document.documentElement.className += " menu_merge_items";
 
 		// Resolve Game Modes
-		this.gameModePreResolve();		
+		this.gameModePreResolve();
+
+		// Bypass for event banner not having sh=
+		this.checkBannerSh();
 
 		// If Event bar was active
 		(gca_data.section.get("cache", "event_bar_active", 0) && (gca_options.bool("global","shortcuts_bar") || gca_options.bool("global","auction_status_bar") || gca_options.bool("global","extended_hp_xp_info")) &&
@@ -455,6 +458,41 @@ var gca_global = {
 		// Enable if disabled
 		if (!localStorage.getItem('gca_rtl'))
 			localStorage.setItem('gca_rtl', 'true');
+	},
+
+	// Bypass for event banner not having sh=
+	checkBannerSh: function() {
+	        // Find the banner 
+	        const bannerLink = document.getElementById("banner_event_link");
+	        if (!bannerLink) return;
+	
+	        // If already has sh=, do not run
+	        if (bannerLink.href.indexOf("sh=") !== -1) return;
+	
+	        // Get link from menu, that has sh=
+	        const navLink = document.querySelector('#mainnav a[href*="sh="]');
+	        if (!navLink) return;
+	
+	        try {
+	                // Get sh= value from menu link
+	                const navUrl = new URL(navLink.href, window.location.origin);
+	                const shValue = navUrl.searchParams.get('sh');
+	                if (!shValue) return;
+	
+	                // Create URL object for banner and set sh=
+	                const bannerUrl = new URL(bannerLink.href, window.location.origin);
+	                bannerUrl.searchParams.set('sh', shValue);
+	
+	                // Update banner href
+	                bannerLink.href = bannerUrl.toString();
+	        } catch (error) {
+	                // If URL fails, use regular expression
+	                const shMatch = navLink.href.match(/sh=([^&]+)/);
+	                if (shMatch && shMatch[1]) {
+	                        // Add sh= manually
+	                        bannerLink.href += "&sh=" + shMatch[1];
+	                }
+	        }
 	},
 	
 	//Welcome message, runs only once
