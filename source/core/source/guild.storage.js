@@ -166,7 +166,7 @@ var gca_guild_storage = {
 			if (invElement && invElement.className.match("unavailable")) {
 				// Wait for the first bag
 				gca_tools.event.bag.waitBag(() => {
-					.apply();
+					this.apply();
 				});
 			}
 			// On item move
