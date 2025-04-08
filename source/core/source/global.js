@@ -21,10 +21,10 @@ var gca_global = {
 
 		// Gladiatus site fixes & improvements
 		if (gca_options.bool("global", "gladiatus_site_fixes"))
-			document.documentElement.className += " glfix";	
+			document.documentElement.className += " glfix";
 		// Custom page scrollbar
 		if (gca_options.bool("global","gca_custom_scrollbar"))
-			document.documentElement.className += " gca_custom_scrollbar";		
+			document.documentElement.className += " gca_custom_scrollbar";
 		// Lock all sections
 		if (gca_options.bool("global","lock_section_visibility"))
 			document.documentElement.className += " lock_section_visibility";
@@ -65,7 +65,7 @@ var gca_global = {
 		// If submenu click to change
 		(gca_options.bool("main_menu","submenu_click_to_change") && 
 			this.display.advanced_main_menu.submenuClickToChangeTab.preload());
-		// Auto clear attack notifications for Arena 
+		// Auto clear attack notifications for Arena
 		(gca_options.bool("global", "clear_arena_notifications") &&
 			this.display.clearArenaNotifications.preload());
 		// Auto clear attack notifications for Circus turma
@@ -212,7 +212,7 @@ var gca_global = {
 			this.display.global_arena.inject());
 			
 		// Welcome message
-		this.welcomeMessage.inject();	
+		this.welcomeMessage.inject();
 
 		// Inventory options group
 		(gca_options.bool("global","inventory_options_group") &&
@@ -258,7 +258,7 @@ var gca_global = {
 			
 		// Notification: Minimum health warning
 		((gca_options.get("global", "health_warning") > 0) &&
-			this.background.notify_me.healthWarning());	
+			this.background.notify_me.healthWarning());
 
 		// Get pinned guild message
 		(!this.isTraveling && gca_options.bool("global","check_guild_pinned_message") && 
@@ -292,7 +292,7 @@ var gca_global = {
 		
 		// Show durability or notifications
 		((gca_options.get("global", "show_durability") != 0 || gca_options.get("global", "min_durability") > 0) && gca_section.mod!='auction' &&
-			this.display.analyzeItems.itemDurability.init());			
+			this.display.analyzeItems.itemDurability.init());
 
 		// Show forge info
 		(!this.isTraveling && gca_options.get("global", "show_forge_info") != 0 && 
@@ -306,7 +306,7 @@ var gca_global = {
 		(gca_options.bool("global","show_upgrade_values") &&
 			this.display.analyzeItems.itemUpgrades.init());
 		
-		// Highlight item duplicates 
+		// Highlight item duplicates
 		(gca_options.bool("accessibility","highlight_item_duplicates") &&
 			this.display.showItemDuplicates.init());
 
@@ -462,7 +462,7 @@ var gca_global = {
 
 	// Bypass for event banner not having sh=
 	checkBannerSh: function() {
-		// Find the banner 
+		// Find the banner
 		const bannerLink = document.getElementById("banner_event_link");
 		if (!bannerLink) return;
 	
@@ -3011,11 +3011,11 @@ var gca_global = {
 
 					// Create wrapper
 					const wrapper = document.createElement('div');
-					wrapper.style.position = 'absolute'; 
-					wrapper.style.top = '200px';  
-					wrapper.style.right = '-30px'; 
+					wrapper.style.position = 'absolute';
+					wrapper.style.top = '200px';
+					wrapper.style.right = '-30px';
 					wrapper.style.maxWidth = '150px';
-					wrapper.style.zIndex = '899'; 
+					wrapper.style.zIndex = '899';
 					wrapper.style.overflow = 'hidden';
 					wrapper.style.whiteSpace = 'normal';
 					wrapper.style.wordWrap = 'break-word';
@@ -3063,7 +3063,7 @@ var gca_global = {
 
 							// Create list
 							const item = document.createElement('li');
-							item.innerHTML = `<strong>${godName}:</strong> ${formattedCooldown}`;  
+							item.innerHTML = `<strong>${godName}:</strong> ${formattedCooldown}`;
 							item.style.display = 'flex';
 							item.style.justifyContent = 'space-between';
 							item.style.padding = '2px 0';
@@ -3378,7 +3378,6 @@ var gca_global = {
 			inject : function(self){
 				// Save instances
 				this.self = self;
-				var that = this;
 
 				// Preload
 				this.preload();
@@ -3386,8 +3385,8 @@ var gca_global = {
 				// if merchant wait for update event
 				if(gca_section.mod == 'inventory'){
 					this.setIndicator('grey', false);
-					gca_tools.event.addListener("merchants-timer-update", function(){
-						that.display();
+					gca_tools.event.addListener("merchants-timer-update", () => {
+						this.display();
 					});
 					return;
 				}
@@ -3435,11 +3434,9 @@ var gca_global = {
 				}
 				// Time has NOT finished
 				else{
-					// Save instance
-					var that = this;
 					// Refresh the countdown
-					this.countdown_interval = setInterval(function(){
-						that.countdown();
+					this.countdown_interval = setInterval(() => {
+						this.countdown();
 					}, 1000);
 					this.countdown();
 				}
@@ -3487,9 +3484,8 @@ var gca_global = {
 				// Create options button
 				this.button = document.createElement('a');
 				this.button.className = "gca-inv-group-options-button";
-				var that = this;
-				this.button.addEventListener('click', function(){
-					that.toggle();
+				this.button.addEventListener('click', () => {
+					this.toggle();
 				}, false);
 				wrapper.appendChild(this.button);
 				// Create options box
@@ -4443,7 +4439,7 @@ var gca_global = {
 			},
 		},
 
-		// Highlight item duplicates	
+		// Highlight item duplicates
 		showItemDuplicates: {
 			init: function() {
 				// Check inv existence
@@ -4520,7 +4516,7 @@ var gca_global = {
 
 				// Check if Arena notification exists
 				if (notificationCount && link.href.includes("t=2")) {
-					// Request 
+					// Request
 					jQuery.get(gca_getPage.link({
 						"mod": "reports",
 						"t": "2" // Arena
@@ -4537,7 +4533,7 @@ var gca_global = {
 
 				// Check if Circus Turma notification exists
 				if (notificationCount && link.href.includes("t=3")) {
-					// Request 
+					// Request
 					jQuery.get(gca_getPage.link({
 						"mod": "reports",
 						"t": "3" // Circus Turma
@@ -5137,14 +5133,14 @@ var gca_global = {
 				//Check settings and current HP
 				let total_health = parseInt(document.getElementById('header_values_hp_percent').innerText);
 				let minimum_health = gca_options.get("global", "health_warning");
-				// Send notifications			
+				// Send notifications
 				if (total_health < minimum_health && gca_options.bool("global","browser_notifications") && (Notification.permission === "granted")){
 					new Notification("Gladiatus Crazy Addon", {body: gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!", icon: gca_resources.folder + 'icons/icon.png'}),
-					document.getElementById("header_game").classList.add("hp_warning_btn");	
+					document.getElementById("header_game").classList.add("hp_warning_btn");
 				}
 				else if (total_health < minimum_health){
 					gca_notifications.error(gca_locale.get("global", "health_notification") + " " + gca_options.get("global", "health_warning") + "%!"),
-					document.getElementById("header_game").classList.add("hp_warning_btn");	
+					document.getElementById("header_game").classList.add("hp_warning_btn");
 				}
 			}
 		},

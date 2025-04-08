@@ -1118,18 +1118,18 @@ var gca_tools = {
 
 			init : function(){
 				// If already loaded, return
-				if(this.loaded)
+				if (this.loaded)
 					return;
 				// Set as loaded
 				this.loaded = true;
 
 				// Save this
-				var that = this;
+				let that = this;
 
 				// Wait jQuery
 				jQuery(function(){
 					// Save
-					var events = jQuery._data( document.getElementById("inventory_nav"), "events").click[0];
+					let events = jQuery._data( document.getElementById("inventory_nav"), "events").click[0];
 					that.original.openBag = events.handler;
 
 					// Override
@@ -1155,13 +1155,10 @@ var gca_tools = {
 				list : [],
 				// Polling function
 				polling : function(){
-					// Save instance
-					var that = this;
-
 					// Not ready
 					if(document.getElementById("inv").className.match("unavailable")){
-						setTimeout(function(){
-							that.polling();
+						setTimeout(() => {
+							this.polling();
 						}, 10);
 						return;
 					}
@@ -1175,8 +1172,8 @@ var gca_tools = {
 					for(var i = 0; i < list.length; i++){
 						// Asynchronously call
 						setTimeout(
-							(function(callback){
-								return function(){
+							((callback) => {
+								return () => {
 									callback();
 								}
 							})(list[i])
@@ -1663,12 +1660,11 @@ var gca_tools = {
 			this.buttons_wrapper.appendChild(button);
 
 			if(typeof call == "boolean"){
-				var that = this;
-				if(call){
-					button.addEventListener('click', function(){that.confirm();}, false);
+				if (call){
+					button.addEventListener('click', () => {this.confirm();}, false);
 				}
 				else{
-					button.addEventListener('click', function(){that.cancel();}, false);
+					button.addEventListener('click', () => {this.cancel();}, false);
 				}
 			}
 

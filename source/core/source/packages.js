@@ -219,7 +219,7 @@ var gca_packages = {
 					this.dataset.gcaFlag_itemShadow = true;
 					// Add shadow
 					gca_tools.item.shadow.add(this);
-					// Add icon to soul-bound items 
+					// Add icon to soul-bound items
 					gca_packages.showSoulbound.addIcon(this);
 				});
 			}

@@ -135,7 +135,7 @@ var gca_audio = {
 		return audio;
 	},
 
-	// Play a sound 
+	// Play a sound
 	play: function(id) {
 		if (!this._enable) return;
 		var soundObj = this.makeAudioIdObj(id);

@@ -185,7 +185,7 @@ var gca_guild_storage = {
 			this.applyOn(jQuery('#shop .ui-draggable'));
 		},
 		applyOn : function(items){
-			var that = this;
+			let that = this;
 			// For each
 			items.each(function(){
 				if (!this.dataset) return;

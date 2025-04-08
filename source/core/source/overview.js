@@ -1106,21 +1106,20 @@ var gca_overview = {
 			// Get Life
 			this.initLifeData();
 
-			var that = this;
 			// Add event on bag open
-			gca_tools.event.bag.onBagOpen(function(tab){
+			gca_tools.event.bag.onBagOpen((tab) => {
 				// Find best food
-				that.findBestFood();
+				this.findBestFood();
 			});
-			gca_tools.event.bag.waitBag(function(){
+			gca_tools.event.bag.waitBag(() => {
 				// Find best food
-				that.findBestFood();
+				this.findBestFood();
 			});
 
 			// Track life changes
-			this.keepLifeDataUpdated(function(){
+			this.keepLifeDataUpdated(() => {
 				// Find best food
-				that.findBestFood();
+				this.findBestFood();
 			});
 		},
 
@@ -1773,7 +1772,7 @@ var gca_overview = {
 			var basics = tooltip[0][1][0][1];
 			//var max = tooltip[0][2][0][1];
 
-			// Calculate point from percents 
+			// Calculate point from percents
 			var percentsPoints = 0;
 			for (var i = stat.percents.length - 1; i >= 0; i--) {
 				percentsPoints += Math.round(basics * (stat.percents[i]/100));

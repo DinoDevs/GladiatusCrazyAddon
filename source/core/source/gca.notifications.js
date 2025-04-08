@@ -108,8 +108,7 @@ var gca_notifications = {
 		permissions : false,
 
 		init : function(){
-			var that = this;
-			that.check();
+			this.check();
 		},
 		check : function(){
 			// Not supported?

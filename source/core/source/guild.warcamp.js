@@ -13,7 +13,7 @@ var gca_guild_warcamp = {
 			this.showAllRewards.inject();
 		}
 		
-		// Show guild battles statistics		
+		// Show guild battles statistics
 		if (gca_section.submod == 'guild_combatreports' && gca_options.bool("guild", "show_battle_statistics") && !gca_getPage.parameter('gcid')) {
 			// Run
 			this.showBattleStatistics.inject();
@@ -101,19 +101,19 @@ var gca_guild_warcamp = {
 
 			// Create wrapper for table
 			const wrapper = document.createElement('div');
-			wrapper.style.position = 'relative'; 
-			wrapper.style.marginBottom = '20px'; 
-			wrapper.style.maxWidth = '500px'; 
+			wrapper.style.position = 'relative';
+			wrapper.style.marginBottom = '20px';
+			wrapper.style.maxWidth = '500px';
 			wrapper.style.overflow = 'hidden';
 			wrapper.style.whiteSpace = 'normal';
 			wrapper.style.wordWrap = 'break-word';
 
 			// Create table element
 			const table = document.createElement('table');
-			table.className = 'section-like'; 
-			table.style.width = '100%'; 
+			table.className = 'section-like';
+			table.style.width = '100%';
 			table.style.borderCollapse = 'collapse';
-			table.style.tableLayout = 'fixed';  
+			table.style.tableLayout = 'fixed';
 
 			// Create table header
 			const headerRow = document.createElement('tr');
@@ -123,25 +123,25 @@ var gca_guild_warcamp = {
 				th.style.padding = '8px';
 				th.style.border = '1px solid #c3ab6f';
 				th.style.textAlign = 'center';
-				th.style.wordWrap = 'break-word';  
-				th.style.maxWidth = '100px';  
+				th.style.wordWrap = 'break-word';
+				th.style.maxWidth = '100px';
 				th.textContent = headerText;
 				headerRow.appendChild(th);
 			});
 			table.appendChild(headerRow);
 
-			// Initialize counters 
+			// Initialize counters
 			let wins = 0;
 			let losses = 0;
 			let draws = 0;
 
-			// Expected image URLs 
+			// Expected image URLs
 			// If there are more CDN images, might need to add more later
 			const winUrl = 'https://gf2.geo.gfsrv.net/cdnad/af0b898e89474b752d8c34f4160ce7.gif';
 			const lossUrl = 'https://gf3.geo.gfsrv.net/cdnba/b9e3b2e39985976e738bf538f92e62.gif';
 			const drawUrl = 'https://gf1.geo.gfsrv.net/cdn92/6adc44009c0664f869acbe84125ff0.gif';
 
-			// Find all tables 
+			// Find all tables
 			const sectionTables = document.querySelectorAll('table.section-like');
 
 			sectionTables.forEach(table => {
@@ -150,11 +150,11 @@ var gca_guild_warcamp = {
 				// Loop through each image and count results
 				resultImages.forEach(img => {
 					if (img.src === winUrl) {
-						wins++; 
+						wins++;
 					} else if (img.src === lossUrl) {
-						losses++; 
+						losses++;
 					} else if (img.src === drawUrl) {
-						draws++; 
+						draws++;
 					} else {
 						gca_notifications.error(gca_locale.get('general', 'error'));
 					}
@@ -167,7 +167,7 @@ var gca_guild_warcamp = {
 			const lossPercentage = totalMatches > 0 ? (losses / totalMatches * 100).toFixed(2) : 0;
 			const drawPercentage = totalMatches > 0 ? (draws / totalMatches * 100).toFixed(2) : 0;
 
-			// Create table row 
+			// Create table row
 			const statsRow = document.createElement('tr');
 
 			// Create cells for each result type and display the counts
@@ -215,7 +215,7 @@ var gca_guild_warcamp = {
 
 			// Find the <article> element and insert the wrapper above the existing table
 			const articleElement = document.querySelector('article');
-			const existingTable = articleElement.querySelector('table.section-like'); 
+			const existingTable = articleElement.querySelector('table.section-like');
 			if (articleElement && existingTable) {
 				articleElement.insertBefore(wrapper, existingTable);
 			} else {
@@ -252,7 +252,7 @@ var gca_guild_warcamp = {
 						// Look for reward
 						const sectionHeader = doc.querySelector('.section-header');
 						if (sectionHeader) {
-							// Extract full reward 
+							// Extract full reward
 							const match = sectionHeader.textContent.match(/[\d.,]+/);
 							const result = match ? match[0].replace(/,/g, '') : "0";
 	
@@ -269,7 +269,7 @@ var gca_guild_warcamp = {
 						// Show error if error
 						rewardCell.html(`<span style="color: red;">❌</span>`);
 					});
-				}, index * delay); 
+				}, index * delay);
 			});
 		}
 	}

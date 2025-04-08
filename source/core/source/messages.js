@@ -600,7 +600,7 @@ var gca_messages = {
 			// List
 			var messages = self.messages.type.guild_battle;
 			// Add delay or 503 errors
-			var delay = 200; 
+			var delay = 200;
 			// For each message
 			for (var i = 0; i < messages.length; i++) {
 				// Load battle with delay

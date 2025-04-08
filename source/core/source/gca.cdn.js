@@ -449,7 +449,7 @@ var gca_cdn = {
 		// 'img/recruiting/level_active.jpg' : '', // no specific hash
 		// 'img/recruiting/level_inactive.jpg' : '', // no specific hash
 		// 'img/recruiting/rubies_active.jpg' : '', // no specific hash
-		// 'img/recruiting/rubies_inactive.jpg' : '', // no specific hash		
+		// 'img/recruiting/rubies_inactive.jpg' : '', // no specific hash
 		'img/ui/bar.jpg' : '3998d8ca22bc9f25ce9e6f2db8022106', 
 		'img/ui/bar_fill.jpg' : '36ea431d408d42dfa86a5e19915f0a6f', 
 		'img/ui/bar_fill_green.jpg' : 'aa2ae40891e6ff8b7d669103414a78cf', 

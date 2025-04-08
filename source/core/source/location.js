@@ -142,7 +142,7 @@ var gca_location = {
 				
 				// Get local data
 				let localData = gca_data.section.get("data", "enemy_drops", []);
-				let cleanLocalData = [] // save here drops without the known enemies resources drops 
+				let cleanLocalData = [] // save here drops without the known enemies resources drops
 				let dataCleanNeeded = false
 				let groupedLocalData = {}
 				// Loop through local data and group the material drops by enemy

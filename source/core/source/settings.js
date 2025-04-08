@@ -754,7 +754,7 @@ var gca_settings = {
 				// Hide circus button
 				"bar_hide_ct_btn" : false,
 				
-				// Hide attack notifications for Arena 
+				// Hide attack notifications for Arena
 				"clear_arena_notifications" : false,
 				
 				// Hide attack notifications for Circus
@@ -1126,7 +1126,7 @@ var gca_settings = {
 				"sell_warning_icons" : true,
 				// Sell with enter
 				"sell_with_enter" : true,
-				// Add checkboxes 
+				// Add checkboxes
 				"item_checkboxes" : true
 			},
 			
@@ -1710,15 +1710,14 @@ var gca_settings = {
 			document.getElementById("content").style.display = "none";
 			// Show page's 2nd content
 			document.getElementById("content_2nd").style.display = "block";
-
-			var that = this;
+			
 			// Catch history events
-			window.addEventListener("popstate", function (event) {
+			window.addEventListener("popstate", (event) => {
 				// Previous tab
 				if(event.state){
 					var tabname = event.state.category;
 					// Open Global tab
-					that.openTab(tabname, gca_locale.get("settings", "category_" + tabname));
+					this.openTab(tabname, gca_locale.get("settings", "category_" + tabname));
 					// Scroll to top
 					window.scrollTo(0, 0);
 				}
@@ -1754,10 +1753,10 @@ var gca_settings = {
 			var version = document.createElement('a');
 			version.href = gca_links.get('addon-github');
 			version.className = "title";
-			version.style.left = "10px";	
-			version.style.right = "unset";	
+			version.style.left = "10px";
+			version.style.right = "unset";
 			version.setAttribute('target', '_blank');
-			version.textContent = ' v' + gca.version;			
+			version.textContent = ' v' + gca.version;
 			logo.appendChild(version);
 			content_2nd.appendChild(logo);
 			content_2nd.appendChild(logogca);
@@ -1872,11 +1871,10 @@ var gca_settings = {
 				save.style.float = "right";
 				save.value = gca_locale.get("settings", "save");
 				// Save event
-				var that = this;
-				save.addEventListener('click', function(){
+				save.addEventListener('click', () => {
 					// Saving
-					for (var i = 0; i < that.tabItems.length; i++) {
-						that.tabItems[i].save();
+					for (var i = 0; i < this.tabItems.length; i++) {
+						this.tabItems[i].save();
 					}
 					// Notify
 					// gca_notifications.info(gca_locale.get("settings", "notification_reload"));
@@ -2763,7 +2761,7 @@ var gca_settings = {
 			var s = [];
 			for (let key in localStorage) {
 				let storage = key.match(/^gladiatusCrazyAddonData_\d+_(.+)$/);
-				if (storage && !s.includes("'" + storage[1] + "'")) s.push("'" + storage[1] + "'"); 
+				if (storage && !s.includes("'" + storage[1] + "'")) s.push("'" + storage[1] + "'");
 			}
 			s.sort();
 			console.log('[' + s.join(', ') + ']');

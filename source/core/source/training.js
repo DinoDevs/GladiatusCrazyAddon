@@ -138,7 +138,7 @@ var gca_training = {
 		}
 	},
 
-	// Multi 
+	// Multi
 	multipleTrain : {
 
 		// Show

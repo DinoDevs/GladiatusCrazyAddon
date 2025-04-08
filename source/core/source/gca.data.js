@@ -416,7 +416,7 @@ gca_options.data = {
 		// Hide circus button
 		"bar_hide_ct_btn" : false,
 		
-		// Hide attack notifications for Arena 
+		// Hide attack notifications for Arena
 		"clear_arena_notifications" : false,
 				
 		// Hide attack notifications for Circus
@@ -666,7 +666,7 @@ gca_options.data = {
 		"sell_warning_icons" : true,
 		// Sell with enter
 		"sell_with_enter" : true,
-		// Add checkboxes 
+		// Add checkboxes
 		"item_checkboxes" : true
 	},
 

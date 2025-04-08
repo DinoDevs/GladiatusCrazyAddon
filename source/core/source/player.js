@@ -235,7 +235,7 @@ var gca_player = {
 		}
 		
 		// Buffs array
-		var buffs = [];// category (1:oils, 2:max, 3:enchantments, 4:critical), stat(number), value 
+		var buffs = [];// category (1:oils, 2:max, 3:enchantments, 4:critical), stat(number), value
 		
 		// Find Oil buffs
 		var droppables = document.getElementById('char').getElementsByClassName('ui-droppable');

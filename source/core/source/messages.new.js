@@ -45,7 +45,7 @@ var gca_new_message = {
 			inject : function() {
 				// Check if correct inputs
 				if (document.getElementById("messageForm").getElementsByTagName("input")[0].name != 'messageRecipient') {
-					// Maybe it is a reply 
+					// Maybe it is a reply
 					return;
 				}
 

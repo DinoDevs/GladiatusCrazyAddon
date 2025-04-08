@@ -214,7 +214,7 @@ var gca_forge = {
 				return; // Exit the script if the div is not found
 			}
 
-			// Create a title 
+			// Create a title
 			const notesLink = document.querySelector('#header_game a[href*="mod=memo"]');
 			if (notesLink) {
 				const notesText = notesLink.innerText;
@@ -227,7 +227,7 @@ var gca_forge = {
 				infobox.appendChild(title);
 			}
 
-			// Create the textarea element 
+			// Create the textarea element
 			const textArea = document.createElement('textarea');
 			textArea.style.width = '316px';
 			textArea.style.minWidth = '316px';
@@ -326,7 +326,7 @@ var gca_forge = {
 				lastItemButton.className = 'awesome-button';
 				lastItemButton.style.marginLeft = '9px';
 				lastItemButton.style.height = 'auto';
-				lastItemButton.style.padding = '5px 10px'; 
+				lastItemButton.style.padding = '5px 10px';
 				lastItemButton.style.width = '134px';
 				lastItemButton.style.fontSize = '11px';
 				lastItemButton.style.marginTop = '5px';
@@ -1603,12 +1603,12 @@ var gca_forge = {
 			section.textContent =  gca_locale.get("forge", "use_share_code_description");
 			aside.appendChild(section);
 			// Create shared code input
-			let input = document.createElement('input'); 
+			let input = document.createElement('input');
 			input.type = "text";
 			input.id = "shared-code-input";
 			section.appendChild(input);
 			// Create button
-			let btn = document.createElement('input'); 
+			let btn = document.createElement('input');
 			btn.type = "button";
 			btn.className = "awesome-button";
 			btn.value = gca_locale.get("settings", "highlight");

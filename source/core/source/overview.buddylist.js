@@ -199,7 +199,7 @@ var gca_overview_buddylist = {
 		},
 
 		// Response of arena/circus fight requests contains javascript functions
-		// that is implemented by gameforge to set error message to #errorRow > #errorText 
+		// that is implemented by gameforge to set error message to #errorRow > #errorText
 		// in case of error. In order to adapt to this, we keep single element with id #errorRow
 		// and it's child with #errorText, so the response's error message is detected using
 		// an mutations observer
