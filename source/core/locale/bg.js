@@ -159,7 +159,7 @@ gca_languages['bg'] = {
 			category_global$attacked_timers : "Покажи таймерите за атаки",
 			category_overview$analyze_items : "Анализирай итемите на играча",
 			category_overview$more_statistics : "Осигури повече статистики за играча",			
-            //Settings - Main menu
+			//Settings - Main menu
 			category_main_menu$advance_main_menu : "Подобри главното меню",
 			category_main_menu$submenu_click_to_change : "Промяна на вторично меню по време на клик",
 			category_main_menu$quest_timer : "Покажи куест статуса или таймера.",	

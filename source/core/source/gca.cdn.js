@@ -336,7 +336,7 @@ var gca_cdn = {
 		'img/npc/{on-the-nile-bank}_4.jpg' : '74531075909c1e2cb313eda2bc1e8c8e',
 		
 		// Event - Ice Tundra
-	    'img/npc/{ice-tundra}_1.jpg' : 'c3d8230a947fede10230f925e77abcb8',        
+		'img/npc/{ice-tundra}_1.jpg' : 'c3d8230a947fede10230f925e77abcb8',
 		'img/npc/{ice-tundra}_2.jpg' : '29cc23cc60d2ee559db2bc4abaf5a271', 	  
 		'img/npc/{ice-tundra}_3.jpg' : 'ea880725d22d0342f7de0287fe6225ac', 	   
 		'img/npc/{ice-tundra}_4.jpg' : 'c9c569df5d416369e84df7e69b8ff24c', 	
@@ -664,9 +664,9 @@ var gca_cdn = {
 		// 'img/shop/shop_avatar_2_magus.png' : '', // no specific hash
 		// 'img/shop/shop_avatar_4_magus.png' : '', // no specific hash
 		'img/item.png' : '8b84fd3f76ff45db7d2cdbf5680aa09b',
-	        'img/menu.png' : 'd77850696ce9bc0251751e88456338a8', 
+		'img/menu.png' : 'd77850696ce9bc0251751e88456338a8', 
 		'img/menu_rtl.png' : '3c4cc8b57835e9ac3dc9150efe125159', 
-	        'img/interface.png' : '4aabffd21441d06c0b0268ddfc42fbab', 
+		'img/interface.png' : '4aabffd21441d06c0b0268ddfc42fbab', 
 		// 'img/buff/xp.png' : '',
 		'img/buff/gold.png' : 'f579b1d11b94b3e1ae434a6eb319be51', 
 		'img/buff/dungeon.png' : '20c1747770343a8657a6b5db2ac9b171', 

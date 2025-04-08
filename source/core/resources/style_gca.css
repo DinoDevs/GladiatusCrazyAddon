@@ -7,7 +7,7 @@
 /** Style Override **/
 /* Chat Icon */
 	#chat_icon {z-index: 2;left: -1px!important;}
-        .gca_rtl #chat_icon {right: -1px!important;}
+	.gca_rtl #chat_icon {right: -1px!important;}
 
 /* Google Ads*//*// Gameforge Don't like this :P
 	#banner_right{display: none!important;}*/
@@ -60,14 +60,14 @@
 	.gca_rtl #header_life_pot_only {left: unset;right: 488px;}
 
 /* Minimum health warning */
-    .hp_warning_btn #cooldown_bar_fill_expedition {filter: grayscale(100%);}
-    .hp_warning_btn #cooldown_bar_text_expedition {color: red;}
-    .hp_warning_btn #cooldown_bar_fill_dungeon {filter: grayscale(100%);}
-    .hp_warning_btn #cooldown_bar_text_dungeon {color: red;}
-    .hp_warning_btn #cooldown_bar_fill_arena {filter: grayscale(100%);}
-    .hp_warning_btn #cooldown_bar_text_arena {color: red;}
-    .hp_warning_btn #cooldown_bar_fill_ct {filter: grayscale(100%);}
-    .hp_warning_btn #cooldown_bar_text_ct {color: red;}
+	.hp_warning_btn #cooldown_bar_fill_expedition {filter: grayscale(100%);}
+	.hp_warning_btn #cooldown_bar_text_expedition {color: red;}
+	.hp_warning_btn #cooldown_bar_fill_dungeon {filter: grayscale(100%);}
+	.hp_warning_btn #cooldown_bar_text_dungeon {color: red;}
+	.hp_warning_btn #cooldown_bar_fill_arena {filter: grayscale(100%);}
+	.hp_warning_btn #cooldown_bar_text_arena {color: red;}
+	.hp_warning_btn #cooldown_bar_fill_ct {filter: grayscale(100%);}
+	.hp_warning_btn #cooldown_bar_text_ct {color: red;}
 
 /* Button bar */
 	#gca_shortcuts_bar{position: absolute; z-index: 500;top: 114px; left: 520px; height: 25px; width: 410px; text-align: left;}
@@ -218,58 +218,58 @@
 
 /* Hide bar buttons */	
 	/* Hide Expedition button */
-        .bar_hide_exp_btn #header_game #cooldown_bar_expedition {visibility: hidden;}
-        .bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
-        .bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
+	.bar_hide_exp_btn #header_game #cooldown_bar_expedition {visibility: hidden;}
+	.bar_hide_exp_btn #header_game #icon_expeditionpoints {visibility: hidden;}
+	.bar_hide_exp_btn #header_game #expeditionpoints_value {visibility: hidden;}
 	
 	/* Show the Underworld button */
-        .bar_hide_exp_btn .underworld #cooldown_bar_expedition {visibility: visible!important;}
+	.bar_hide_exp_btn .underworld #cooldown_bar_expedition {visibility: visible!important;}
 	.bar_hide_exp_btn .underworld #icon_expeditionpoints {visibility: visible!important;}
 	.bar_hide_exp_btn .underworld #expeditionpoints_value {visibility: hidden!important;}
 
 	/* Hide Dungeon button */
-        .bar_hide_dun_btn #header_game #cooldown_bar_dungeon {visibility: hidden;}
-        .bar_hide_dun_btn #header_game #icon_dungeonpoints {visibility: hidden;}
-        .bar_hide_dun_btn #header_game #dungeonpoints_value {visibility: hidden;}
+	.bar_hide_dun_btn #header_game #cooldown_bar_dungeon {visibility: hidden;}
+	.bar_hide_dun_btn #header_game #icon_dungeonpoints {visibility: hidden;}
+	.bar_hide_dun_btn #header_game #dungeonpoints_value {visibility: hidden;}
 
 	/* Hide Arena button */
-        .bar_hide_are_btn #header_game #cooldown_bar_arena {visibility: hidden;} 
-        .bar_hide_are_btn #header_game #icon_arena {visibility: hidden;} 
-        .bar_hide_are_btn #header_game #arenaPlace {visibility: hidden;} 
-        .bar_hide_are_btn a.menuitem[href*="arena"]{position: absolute;visibility: hidden;} 
-        .bar_hide_are_btn #submenu1 .advanced_menu_entry:nth-child(2) {position: absolute!important;visibility: hidden;} 
+	.bar_hide_are_btn #header_game #cooldown_bar_arena {visibility: hidden;} 
+	.bar_hide_are_btn #header_game #icon_arena {visibility: hidden;} 
+	.bar_hide_are_btn #header_game #arenaPlace {visibility: hidden;} 
+	.bar_hide_are_btn a.menuitem[href*="arena"]{position: absolute;visibility: hidden;} 
+	.bar_hide_are_btn #submenu1 .advanced_menu_entry:nth-child(2) {position: absolute!important;visibility: hidden;} 
 
 	/* Hide Circus Turma button */
-        .bar_hide_ct_btn #header_game #cooldown_bar_ct {visibility: hidden;}
-        .bar_hide_ct_btn #header_game #icon_grouparena {visibility: hidden;}
-        .bar_hide_ct_btn #header_game #grouparenaPlace {visibility: hidden;}
+	.bar_hide_ct_btn #header_game #cooldown_bar_ct {visibility: hidden;}
+	.bar_hide_ct_btn #header_game #icon_grouparena {visibility: hidden;}
+	.bar_hide_ct_btn #header_game #grouparenaPlace {visibility: hidden;}
 
 /* Hide City Gate menu entry */
 	.menu_hide_citygate a.menuitem[href*="map"] {position: absolute;visibility: hidden;} 
 		
 /* Custom scrollbar */
-		.gca_custom_scrollbar ::-webkit-scrollbar {width: 16px;}
-		.gca_custom_scrollbar ::-webkit-scrollbar-track {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
-		.gca_custom_scrollbar ::-webkit-scrollbar-thumb {background: linear-gradient(to bottom, #C3AB6F, #886933);border-radius: 5px; border: 1px solid #4A3615;}
-		.gca_custom_scrollbar ::-webkit-scrollbar-thumb:hover {background: linear-gradient(to bottom, #D6BC78 , #A27E3E);}
-		.gca_custom_scrollbar ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
+	.gca_custom_scrollbar ::-webkit-scrollbar {width: 16px;}
+	.gca_custom_scrollbar ::-webkit-scrollbar-track {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
+	.gca_custom_scrollbar ::-webkit-scrollbar-thumb {background: linear-gradient(to bottom, #C3AB6F, #886933);border-radius: 5px; border: 1px solid #4A3615;}
+	.gca_custom_scrollbar ::-webkit-scrollbar-thumb:hover {background: linear-gradient(to bottom, #D6BC78 , #A27E3E);}
+	.gca_custom_scrollbar ::-webkit-scrollbar-corner {background: linear-gradient(to right, #290d03, #290d03, #33170D, #33170D);}
 /* Custom scrollbar for Firefox */
-		.gca_custom_scrollbar:root {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
+	.gca_custom_scrollbar:root {scrollbar-color: #a88d54 #290d03; scrollbar-width: 16px;}
 		
 /* Merge menu merchants into one */	
-        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=2"] {position: absolute;visibility: hidden;} 
-        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=3"] {position: absolute;visibility: hidden;} 
-        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=4"] {position: absolute;visibility: hidden;} 
-        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=5"] {position: absolute;visibility: hidden;} 
-        .menu_merge_merchants a.menuitem[href*="mod=inventory&sub=6"] {position: absolute;visibility: hidden;} 
-        .menu_merge_merchants #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+	.menu_merge_merchants a.menuitem[href*="mod=inventory&sub=2"] {position: absolute;visibility: hidden;} 
+	.menu_merge_merchants a.menuitem[href*="mod=inventory&sub=3"] {position: absolute;visibility: hidden;} 
+	.menu_merge_merchants a.menuitem[href*="mod=inventory&sub=4"] {position: absolute;visibility: hidden;} 
+	.menu_merge_merchants a.menuitem[href*="mod=inventory&sub=5"] {position: absolute;visibility: hidden;} 
+	.menu_merge_merchants a.menuitem[href*="mod=inventory&sub=6"] {position: absolute;visibility: hidden;} 
+	.menu_merge_merchants #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 		
 /* Merge menu items into one */	
-        .menu_merge_items a.menuitem[href*="mod=forge&submod=smeltery"] {position: absolute;visibility: hidden;} 
-        .menu_merge_items a.menuitem[href*="mod=forge&submod=workbench"] {position: absolute;visibility: hidden;} 
-        .menu_merge_items a.menuitem[href*="mod=forge&submod=storage"] {position: absolute;visibility: hidden;} 
-        .menu_merge_items a.menuitem[href*="mod=magus"] {position: absolute;visibility: hidden;} 
-        .menu_merge_items #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+	.menu_merge_items a.menuitem[href*="mod=forge&submod=smeltery"] {position: absolute;visibility: hidden;} 
+	.menu_merge_items a.menuitem[href*="mod=forge&submod=workbench"] {position: absolute;visibility: hidden;} 
+	.menu_merge_items a.menuitem[href*="mod=forge&submod=storage"] {position: absolute;visibility: hidden;} 
+	.menu_merge_items a.menuitem[href*="mod=magus"] {position: absolute;visibility: hidden;} 
+	.menu_merge_items #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 
 
 /* OverView */
@@ -541,7 +541,7 @@
 	.black{color: black;}
 	#exp_and_gold_stats_icon{background: transparent url('buttons/main_buttons.png') no-repeat -231px -50px;width:20px;height:20px;position: absolute;top: 116px;cursor: pointer;filter: drop-shadow(1px 1px 1px rgba(57,3,1,1));display: block;margin-left:-32px;}
 	#exp_and_gold_stats_icon:hover{filter: drop-shadow(1px 1px 1px rgba(141, 40, 40, 0.5));}
-        .gca_rtl #exp_and_gold_stats_icon{margin-right:-32px;}
+	.gca_rtl #exp_and_gold_stats_icon{margin-right:-32px;}
 
 /* Missions */
 	#gca_completed_mission .slot_mission_completed{font-size: 13px;font-weight: bold;margin: 0 20px;height: 21px;line-height: 21px;}
@@ -912,7 +912,7 @@
 
 		/* Reward in Rubies Style */
 		.reward_pool_rubies_price {position: absolute;top: 5px;left: 4px;font-size: 11px;color: #c7b68a;font-weight: bold;text-shadow: 1px 1px 2px black, 1px -1px 2px black, -1px 1px 2px black, -1px -1px 2px black;}
-                .gca_rtl .reward_pool_rubies_price {left: auto;right: 4px;}
+		.gca_rtl .reward_pool_rubies_price {left: auto;right: 4px;}
 		.reward_pool_owned_number {position: absolute;bottom: 5px;left: 8px;font-size: 11px;color: #00B712;font-weight: bold;text-shadow: 1px 1px 2px black, 1px -1px 2px black, -1px 1px 2px black, -1px -1px 2px black;}
 		.gca_rtl .reward_pool_owned_number {left: auto;right: 8px;}
 		
@@ -1745,8 +1745,8 @@
 		.lock_section_visibility #guildBankingHousePage span {pointer-events: auto!important;}
 		.lock_section_visibility .awesome-button {pointer-events: auto!important;}
 		.lock_section_visibility input {pointer-events: auto!important;}
-                .lock_section_visibility form {pointer-events: auto!important;}
-                .lock_section_visibility #addon_box a {pointer-events: auto!important;}
+		.lock_section_visibility form {pointer-events: auto!important;}
+		.lock_section_visibility #addon_box a {pointer-events: auto!important;}
 
 	/* Ester Eggs
 	-------------------------------------------------- */

@@ -462,61 +462,62 @@ var gca_global = {
 
 	// Bypass for event banner not having sh=
 	checkBannerSh: function() {
-	        // Find the banner 
-	        const bannerLink = document.getElementById("banner_event_link");
-	        if (!bannerLink) return;
+		// Find the banner 
+		const bannerLink = document.getElementById("banner_event_link");
+		if (!bannerLink) return;
 	
-	        // If already has sh=, do not run
-	        if (bannerLink.href.indexOf("sh=") !== -1) return;
+		// If already has sh=, do not run
+		if (bannerLink.href.indexOf("sh=") !== -1) return;
 	
-	        // Get link from menu, that has sh=
-	        const navLink = document.querySelector('#mainnav a[href*="sh="]');
-	        if (!navLink) return;
+		// Get link from menu, that has sh=
+		const navLink = document.querySelector('#mainnav a[href*="sh="]');
+		if (!navLink) return;
 	
-	        try {
-	                // Get sh= value from menu link
-	                const navUrl = new URL(navLink.href, window.location.origin);
-	                const shValue = navUrl.searchParams.get('sh');
-	                if (!shValue) return;
+		try {
+			// Get sh= value from menu link
+			const navUrl = new URL(navLink.href, window.location.origin);
+			const shValue = navUrl.searchParams.get('sh');
+			if (!shValue) return;
 	
-	                // Create URL object for banner and set sh=
-	                const bannerUrl = new URL(bannerLink.href, window.location.origin);
-	                bannerUrl.searchParams.set('sh', shValue);
+			// Create URL object for banner and set sh=
+			const bannerUrl = new URL(bannerLink.href, window.location.origin);
+			bannerUrl.searchParams.set('sh', shValue);
 	
-	                // Update banner href
-	                bannerLink.href = bannerUrl.toString();
-	        } catch (error) {
-	                // If URL fails, use regular expression
-	                const shMatch = navLink.href.match(/sh=([^&]+)/);
-	                if (shMatch && shMatch[1]) {
-	                        // Add sh= manually
-	                        bannerLink.href += "&sh=" + shMatch[1];
-	                }
-	        }
+			// Update banner href
+			bannerLink.href = bannerUrl.toString();
+		} catch (error) {
+			// If URL fails, use regular expression
+			const shMatch = navLink.href.match(/sh=([^&]+)/);
+			if (shMatch && shMatch[1]) {
+				// Add sh= manually
+				bannerLink.href += "&sh=" + shMatch[1];
+			}
+		}
 	},
 	
 	//Welcome message, runs only once
 	welcomeMessage: {
-	    inject: function (){
-	        if (gca_data.get("welcomeOnce", true)) {
-	            var modal = new gca_tools.Modal(
-	                    gca_locale.get("global", "welcome_addon"),
-	                    null,
-	                    () => {
-	                    modal.destroy();
-	                },
-	                    () => {
-	                    window.open('https://github.com/DinoDevs/GladiatusCrazyAddon/releases', '_blank'),
-	                    modal.show();
-	                });
-	            modal.img.src = gca_resources.folder + 'icons/icon_64.png';
-	            modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + gca.version + ".");
-	            modal.button(gca_locale.get("general", "ok"), true);
-	            modal.button(gca_locale.get("global", "welcome_changelog"), false);
-	            modal.show();
-	            gca_data.set("welcomeOnce", false);
-	        }
-	    }
+		inject: function (){
+			if (gca_data.get("welcomeOnce", true)) {
+				var modal = new gca_tools.Modal(
+					gca_locale.get("global", "welcome_addon"),
+					null,
+					() => {
+						modal.destroy();
+					},
+					() => {
+						window.open('https://github.com/DinoDevs/GladiatusCrazyAddon/releases', '_blank'),
+						modal.show();
+					}
+				);
+				modal.img.src = gca_resources.folder + 'icons/icon_64.png';
+				modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + gca.version + ".");
+				modal.button(gca_locale.get("general", "ok"), true);
+				modal.button(gca_locale.get("global", "welcome_changelog"), false);
+				modal.show();
+				gca_data.set("welcomeOnce", false);
+			}
+		}
 	},
 
 	// Display stuff
@@ -617,63 +618,63 @@ var gca_global = {
 				}
 			},
 			showTimer: function(type, server_speed) {
-    			// Expedition tooltip div
-    			let icon = document.getElementById('icon_' + type + 'points');
-    			if (!icon) return; // Exit if icon is not found
+				// Expedition tooltip div
+				let icon = document.getElementById('icon_' + type + 'points');
+				if (!icon) return; // Exit if icon is not found
 
-    			// Get tooltip
-    			let tooltip;
-    			try {
-        			tooltip = JSON.parse(icon.dataset.tooltip);
-    			} catch (e) {
-        		return; // Exit if tooltip is not found or cannot be parsed
-    			}
-    
-    			// Get recovery rate
-			let recover_rate = tooltip?.[0]?.[1]?.[0]?.match(/\d+/);
-			if (!recover_rate) return;
-			recover_rate = parseInt(recover_rate[0], 10);
-			recover_rate = (recover_rate + 100) / 100;
+				// Get tooltip
+				let tooltip;
+				try {
+					tooltip = JSON.parse(icon.dataset.tooltip);
+				} catch (e) {
+					return; // Exit if tooltip is not found or cannot be parsed
+				}
+	
+				// Get recovery rate
+				let recover_rate = tooltip?.[0]?.[1]?.[0]?.match(/\d+/);
+				if (!recover_rate) return;
+				recover_rate = parseInt(recover_rate[0], 10);
+				recover_rate = (recover_rate + 100) / 100;
 
-    			// Get points left to fill
-    			let point_max_elem = document.getElementById(type + 'points_value_pointmax');
-    			let point_elem = document.getElementById(type + 'points_value_point');
-    			if (!point_max_elem || !point_elem) return; // Exit if point elements are not found
-    
-    			let point_missing = parseInt(point_max_elem.innerText, 10) - parseInt(point_elem.innerText, 10);
-    			if (isNaN(point_missing) || point_missing === 0) return; // Exit if point calculation is invalid or nothing to do
+				// Get points left to fill
+				let point_max_elem = document.getElementById(type + 'points_value_pointmax');
+				let point_elem = document.getElementById(type + 'points_value_point');
+				if (!point_max_elem || !point_elem) return; // Exit if point elements are not found
+	
+				let point_missing = parseInt(point_max_elem.innerText, 10) - parseInt(point_elem.innerText, 10);
+				if (isNaN(point_missing) || point_missing === 0) return; // Exit if point calculation is invalid or nothing to do
 
-    			// Get time left for next point
-    			let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
-    			if (next_point) {
-        			let now = new Date(gca_tools.time.server());
-        			now.setSeconds(0);
-        			let next = new Date(now.getTime());
-        			next.setHours(parseInt(next_point[1], 10));
-        			next.setMinutes(parseInt(next_point[2], 10));
-        			next_point = (next - now) / (1000 * 60);
-        			if (next_point < 0) {
-            				next.setDate(next.getDate() + 1);
-           				 next_point = (next - now) / (1000 * 60);
-        			}
-    			} else {
-        			next_point = Math.round((90 / server_speed) / recover_rate);
-   			 }
+				// Get time left for next point
+				let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
+				if (next_point) {
+					let now = new Date(gca_tools.time.server());
+					now.setSeconds(0);
+					let next = new Date(now.getTime());
+					next.setHours(parseInt(next_point[1], 10));
+					next.setMinutes(parseInt(next_point[2], 10));
+					next_point = (next - now) / (1000 * 60);
+					if (next_point < 0) {
+							next.setDate(next.getDate() + 1);
+						 next_point = (next - now) / (1000 * 60);
+					}
+				} else {
+					next_point = Math.round((90 / server_speed) / recover_rate);
+				}
 
-    				// Find recover time in hours and minutes
-    				let minutes = (Math.round((90 / server_speed) / recover_rate) * (point_missing - 1)) + next_point;
-    				let hours = Math.floor(minutes / 60);
-    				minutes = minutes % 60;
+				// Find recover time in hours and minutes
+				let minutes = (Math.round((90 / server_speed) / recover_rate) * (point_missing - 1)) + next_point;
+				let hours = Math.floor(minutes / 60);
+				minutes = minutes % 60;
 
-    				// Convert them to text
-    				hours = hours === 0 ? '' : ' ' + hours + ' ' + gca_locale.get("general", "hours");
-    				minutes = minutes === 0 ? '' : ' ' + minutes + ' ' + gca_locale.get("general", "minutes");
+				// Convert them to text
+				hours = hours === 0 ? '' : ' ' + hours + ' ' + gca_locale.get("general", "hours");
+				minutes = minutes === 0 ? '' : ' ' + minutes + ' ' + gca_locale.get("general", "minutes");
 
-    				// Show timer
-    				tooltip[0].push([[gca_locale.get("global", type + "_recover_full") + hours + minutes], ["#BA9700","#BA9700"]]);
-    				gca_tools.setTooltip(icon, JSON.stringify(tooltip));
-		}
-	},
+				// Show timer
+				tooltip[0].push([[gca_locale.get("global", type + "_recover_full") + hours + minutes], ["#BA9700","#BA9700"]]);
+				gca_tools.setTooltip(icon, JSON.stringify(tooltip));
+			}
+		},
 		
 		// Extended Health and Experience bars
 		extended_hp_xp : {
@@ -2026,55 +2027,55 @@ var gca_global = {
 
 		// Move event bar
 		event_bar_move: {
-		    moved: false,
-		    preload: function() {
-		        // Insert it on html tag
-		        document.documentElement.classList.add("event_bar_moved");
-		        // Set moved
-		        this.moved = true;
-		        // Fix for tall tabs
-		        let tabs = document.getElementsByClassName("awesome-tabs");
-		        let tallTabFound = false;
-		        for (let i = tabs.length - 1; i >= 0; i--) {
-		            if (tabs[i].textContent.length >= 19) { // more or equal than 19 characters
-		                tallTabFound = true;
-		            }
-		        }
-		        if (tallTabFound) {
-		            document.getElementById("mainnav").classList.add("gca_long_tabs");
-		        }
-		    },
-		    load: function() {
-		        // Get banner
-		        let banner = document.getElementById("banner_top");
-		        let div = document.getElementById("banner_event");
-		        // Check if active
-		        if (banner && div && (banner.style.display === '' || banner.style.display === 'block')) {
-		            if (!this.moved) {
-		                gca_data.section.set("cache", "event_bar_active", 1);
-		                this.preload();
-		            }
-		        }
-		        // Remove class
-		        else if (this.moved) {
-		            gca_data.section.set("cache", "event_bar_active", 0);
-		            document.documentElement.classList.remove("event_bar_moved");
-		        }
-		        // Applying Gladiatus Fixes banner after this
-		        this.glfixesFeature();
-		    },
-		    // Apply Gladiatus Fixes banner if enabled
-		    glfixesFeature: function() {
-		        // Is enabled?
-		        if (gca_options.bool("global", "gladiatus_site_fixes")) {
-		            // Check the class first
-		            if (!document.documentElement.classList.contains("glfix")) {
-		                setTimeout(function() {
-		                    document.documentElement.classList.add("glfix");
-		                }, 0);
-		            }
-		        }
-		    }
+			moved: false,
+			preload: function() {
+				// Insert it on html tag
+				document.documentElement.classList.add("event_bar_moved");
+				// Set moved
+				this.moved = true;
+				// Fix for tall tabs
+				let tabs = document.getElementsByClassName("awesome-tabs");
+				let tallTabFound = false;
+				for (let i = tabs.length - 1; i >= 0; i--) {
+					if (tabs[i].textContent.length >= 19) { // more or equal than 19 characters
+						tallTabFound = true;
+					}
+				}
+				if (tallTabFound) {
+					document.getElementById("mainnav").classList.add("gca_long_tabs");
+				}
+			},
+			load: function() {
+				// Get banner
+				let banner = document.getElementById("banner_top");
+				let div = document.getElementById("banner_event");
+				// Check if active
+				if (banner && div && (banner.style.display === '' || banner.style.display === 'block')) {
+					if (!this.moved) {
+						gca_data.section.set("cache", "event_bar_active", 1);
+						this.preload();
+					}
+				}
+				// Remove class
+				else if (this.moved) {
+					gca_data.section.set("cache", "event_bar_active", 0);
+					document.documentElement.classList.remove("event_bar_moved");
+				}
+				// Applying Gladiatus Fixes banner after this
+				this.glfixesFeature();
+			},
+			// Apply Gladiatus Fixes banner if enabled
+			glfixesFeature: function() {
+				// Is enabled?
+				if (gca_options.bool("global", "gladiatus_site_fixes")) {
+					// Check the class first
+					if (!document.documentElement.classList.contains("glfix")) {
+						setTimeout(function() {
+							document.documentElement.classList.add("glfix");
+						}, 0);
+					}
+				}
+			}
 		},
 		
 		// Implement a top fixed bar to show important info on scroll
@@ -4444,73 +4445,72 @@ var gca_global = {
 
 		// Highlight item duplicates	
 		showItemDuplicates: {
-    			init: function() {
-        		// Check inv existence
-        		if (!document.getElementById("inv")) return;
+			init: function() {
+				// Check inv existence
+				if (!document.getElementById("inv")) return;
 
-        		// Add function
-        		gca_tools.event.bag.onBagOpen(() => {
-            			this.highlightDuplicates();
-        		});
+				// Add function
+				gca_tools.event.bag.onBagOpen(() => {
+					this.highlightDuplicates();
+				});
 
-        		// Check if inv available
-        		if (document.getElementById("inv").className.match("unavailable")) {
-            			gca_tools.event.bag.waitBag(() => {
-                		this.highlightDuplicates();
-            			});
-        		}
-    		},
+				// Check if inv available
+				if (document.getElementById("inv").className.match("unavailable")) {
+					gca_tools.event.bag.waitBag(() => {
+						this.highlightDuplicates();
+					});
+				}
+			},
 
-    			// Main duplicate function
-    			highlightDuplicates: function() {
-        			// Predefined color palette
-        			// It's probably better than random, better visibility and performance
-        			const colorPalette = [
-            				"hsl(30, 100%, 50%)", // 1. Orange
-            				"hsl(157, 100%, 50%)", // 2. Greenish
-            				"hsl(60, 80%, 50%)", // 3. Yellow
-            				"hsl(180, 80%, 50%)", // 4. Turquoise
-            				"hsl(210, 80%, 50%)", // 5. Blue
-            				"hsl(240, 80%, 50%)", // 6. Indigo
-            				"hsl(285, 100%, 61%)", // 7. Purple
-            				"hsl(330, 80%, 50%)", // 8. Pink
-            				"hsl(270, 80%, 50%)", // 9. Lavender    
-        			];
+			// Main duplicate function
+			highlightDuplicates: function() {
+				// Predefined color palette
+				// It's probably better than random, better visibility and performance
+				const colorPalette = [
+					"hsl(30, 100%, 50%)", // 1. Orange
+					"hsl(157, 100%, 50%)", // 2. Greenish
+					"hsl(60, 80%, 50%)", // 3. Yellow
+					"hsl(180, 80%, 50%)", // 4. Turquoise
+					"hsl(210, 80%, 50%)", // 5. Blue
+					"hsl(240, 80%, 50%)", // 6. Indigo
+					"hsl(285, 100%, 61%)", // 7. Purple
+					"hsl(330, 80%, 50%)", // 8. Pink
+					"hsl(270, 80%, 50%)", // 9. Lavender
+				];
 
-        			const items = document.querySelectorAll('[class^="item-i-"]');
-        			const itemGroups = new Map();
+				const items = document.querySelectorAll('[class^="item-i-"]');
+				const itemGroups = new Map();
 
-        			// Group items by tooltip and level
-        			items.forEach(item => {
-            				// Skip menu entries
-            				if (item.closest('.advanced_menu_entry') || item.closest('.crafting_requirements')) return;
+				// Group items by tooltip and level
+				items.forEach(item => {
+					// Skip menu entries
+					if (item.closest('.advanced_menu_entry') || item.closest('.crafting_requirements')) return;
 
-            			const tooltip = item.getAttribute('data-tooltip');
-            			const level = item.getAttribute('data-level');
-            			const key = `${tooltip || ''}_${level || ''}`;
+					const tooltip = item.getAttribute('data-tooltip');
+					const level = item.getAttribute('data-level');
+					const key = `${tooltip || ''}_${level || ''}`;
 
-            			if (!itemGroups.has(key)) {
-                			itemGroups.set(key, []);
-            			}
-            			itemGroups.get(key).push(item);
-        		});
+					if (!itemGroups.has(key)) {
+						itemGroups.set(key, []);
+					}
+					itemGroups.get(key).push(item);
+				});
 
-        		// Highlight duplicates with border
-        		let colorIndex = 0;
-        		itemGroups.forEach(group => {
-            			if (group.length > 1) {
-                			const color = colorPalette[colorIndex % colorPalette.length];
-                			colorIndex++;
-                			group.forEach(item => {
-                    				if (!item.style.border) {
-                        			item.style.border = `2px solid ${color}`;
-
-                   			 	}
-                			});
-            			}
-        		});
-    		}
-	},
+				// Highlight duplicates with border
+				let colorIndex = 0;
+				itemGroups.forEach(group => {
+					if (group.length > 1) {
+						const color = colorPalette[colorIndex % colorPalette.length];
+						colorIndex++;
+						group.forEach(item => {
+							if (!item.style.border) {
+								item.style.border = `2px solid ${color}`;
+							 	}
+						});
+					}
+				});
+			}
+		},
 		
 		// Auto clear attack notifications for Arena
 		clearArenaNotifications: { 
@@ -6332,53 +6332,53 @@ var gca_global = {
 	let error_list = [];
 	
 	function getBrowserInfo() {
-        const userAgent = navigator.userAgent;
-        let browserName = "Unknown";
-        let fullVersion = "Unknown";
-        
-        if (userAgent.indexOf("Firefox") > -1) {
-            browserName = "Mozilla Firefox";
-            fullVersion = userAgent.substring(userAgent.indexOf("Firefox") + 8);
-        } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
-            browserName = "Opera";
-            fullVersion = userAgent.substring(userAgent.indexOf("OPR") + 4);
-        } else if (userAgent.indexOf("Chrome") > -1) {
-            browserName = "Google Chrome";
-            fullVersion = userAgent.substring(userAgent.indexOf("Chrome") + 7);
-        } else if (userAgent.indexOf("Safari") > -1) {
-            browserName = "Apple Safari";
-            fullVersion = userAgent.substring(userAgent.indexOf("Safari") + 7);
-        } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident/") > -1) {
-            browserName = "Microsoft Internet Explorer";
-            fullVersion = userAgent.substring(userAgent.indexOf("MSIE") + 5);
-            if (userAgent.indexOf("Trident/") > -1) {
-                const rv = userAgent.indexOf("rv:");
-                fullVersion = userAgent.substring(rv + 3);
-            }
-        }
-        
-        const versionSplit = fullVersion.split(" ");
-        const version = versionSplit[0].split(".")[0];
-        
-        return { browserName, version };
-    }
+		const userAgent = navigator.userAgent;
+		let browserName = "Unknown";
+		let fullVersion = "Unknown";
+		
+		if (userAgent.indexOf("Firefox") > -1) {
+			browserName = "Mozilla Firefox";
+			fullVersion = userAgent.substring(userAgent.indexOf("Firefox") + 8);
+		} else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+			browserName = "Opera";
+			fullVersion = userAgent.substring(userAgent.indexOf("OPR") + 4);
+		} else if (userAgent.indexOf("Chrome") > -1) {
+			browserName = "Google Chrome";
+			fullVersion = userAgent.substring(userAgent.indexOf("Chrome") + 7);
+		} else if (userAgent.indexOf("Safari") > -1) {
+			browserName = "Apple Safari";
+			fullVersion = userAgent.substring(userAgent.indexOf("Safari") + 7);
+		} else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident/") > -1) {
+			browserName = "Microsoft Internet Explorer";
+			fullVersion = userAgent.substring(userAgent.indexOf("MSIE") + 5);
+			if (userAgent.indexOf("Trident/") > -1) {
+				const rv = userAgent.indexOf("rv:");
+				fullVersion = userAgent.substring(rv + 3);
+			}
+		}
+		
+		const versionSplit = fullVersion.split(" ");
+		const version = versionSplit[0].split(".")[0];
+		
+		return { browserName, version };
+	}
 
-    function getOSInfo() {
-        const userAgent = navigator.userAgent;
-        let OSName = "Unknown";
-        
-        if (userAgent.indexOf("Win") > -1) OSName = "Windows";
-        else if (userAgent.indexOf("Mac") > -1) OSName = "Macintosh";
-        else if (userAgent.indexOf("Linux") > -1) OSName = "Linux";
-        else if (userAgent.indexOf("Android") > -1) OSName = "Android";
-        else if (userAgent.indexOf("like Mac") > -1) OSName = "iOS";
-        
-        return OSName;
-    }
+	function getOSInfo() {
+		const userAgent = navigator.userAgent;
+		let OSName = "Unknown";
+		
+		if (userAgent.indexOf("Win") > -1) OSName = "Windows";
+		else if (userAgent.indexOf("Mac") > -1) OSName = "Macintosh";
+		else if (userAgent.indexOf("Linux") > -1) OSName = "Linux";
+		else if (userAgent.indexOf("Android") > -1) OSName = "Android";
+		else if (userAgent.indexOf("like Mac") > -1) OSName = "iOS";
+		
+		return OSName;
+	}
 
-    function getLanguage() {
-        return navigator.language || navigator.userLanguage;
-    }
+	function getLanguage() {
+		return navigator.language || navigator.userLanguage;
+	}
 
 	window.addEventListener('error', (msg, url, linenumber) => {
 		if (!event || !event.filename || !event.filename.includes('extension://')) return;

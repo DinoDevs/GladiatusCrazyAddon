@@ -595,20 +595,20 @@ var gca_messages = {
 
 	// Guild battle functions
 	guild_battle: {
-	    // Load
-	    more_info: function (self) {
-	        // List
-	        var messages = self.messages.type.guild_battle;
-	        // Add delay or 503 errors
-	        var delay = 200; 
-	        // For each message
-	        for (var i = 0; i < messages.length; i++) {
-	            // Load battle with delay
-	            setTimeout((index => () => {
-	                this.load_battle(messages[index], index);
-	            })(i), i * delay);
-	        }
-	    },
+		// Load
+		more_info: function (self) {
+			// List
+			var messages = self.messages.type.guild_battle;
+			// Add delay or 503 errors
+			var delay = 200; 
+			// For each message
+			for (var i = 0; i < messages.length; i++) {
+				// Load battle with delay
+				setTimeout((index => () => {
+					this.load_battle(messages[index], index);
+				})(i), i * delay);
+			}
+		},
 
 		// Load more
 		load_battle : function(message, index){

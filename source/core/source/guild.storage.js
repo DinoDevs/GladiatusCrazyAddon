@@ -39,23 +39,23 @@ var gca_guild_storage = {
 	
 	// Items Shadow Inject
 	itemShadow: {
-    		inject: function() {
-       			 this.dollItems();
-    		},
+		inject: function() {
+			this.dollItems();
+		},
 
-    		// Add shadow to doll items
-   		 dollItems: function() {
-        	// Get doll items safely
-        	let charElement = document.getElementById("char");
-        		if (!charElement) return; // Exit if 'char' element doesn't exist
+		// Add shadow to doll items
+		dollItems: function() {
+			// Get doll items safely
+			let charElement = document.getElementById("char");
+			if (!charElement) return; // Exit if 'char' element doesn't exist
 
-        	let items = charElement.getElementsByClassName("ui-draggable");
+			let items = charElement.getElementsByClassName("ui-draggable");
 
-        	// Add shadow to each item
-        	for (let i = items.length - 1; i >= 0; i--) {
-            		gca_tools.item.shadow.add(items[i]);
-        		}
-   	 	}
+			// Add shadow to each item
+			for (let i = items.length - 1; i >= 0; i--) {
+				gca_tools.item.shadow.add(items[i]);
+			}
+		}
 	},
 	
 	rememberLastTab : {
@@ -154,32 +154,32 @@ var gca_guild_storage = {
 
 	// Double click sell/buy
 	doubleClickActions: {
-                init: function() {
-                        // Apply item events
-                        this.apply();
-                        // Add event
-                        gca_tools.event.bag.onBagOpen(() => {
-                                this.apply();
-                        });
-                        // Check if 'inv' element exists before checking its className
-                        let invElement = document.getElementById("inv");
-                        if (invElement && invElement.className.match("unavailable")) {
-                                // Wait for the first bag
-                                gca_tools.event.bag.waitBag(() => {
-                                        this.apply();
-                                });
-                        }
-                        // On item move
-                        gca_tools.event.request.onAjaxResponse((data) => {
-                                if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
-                                        let item = document.querySelector(`.ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
-                                        if (item && typeof(item.dataset.gcaFlag_doubleClickEvent) !== 'undefined') {
-                                                delete item.dataset.gcaFlag_doubleClickEvent;
-                                        }
-                                        this.apply();
-                                }
-                        });
-                },
+		init: function() {
+			// Apply item events
+			this.apply();
+			// Add event
+			gca_tools.event.bag.onBagOpen(() => {
+				this.apply();
+			});
+			// Check if 'inv' element exists before checking its className
+			let invElement = document.getElementById("inv");
+			if (invElement && invElement.className.match("unavailable")) {
+				// Wait for the first bag
+				gca_tools.event.bag.waitBag(() => {
+					.apply();
+				});
+			}
+			// On item move
+			gca_tools.event.request.onAjaxResponse((data) => {
+				if (data?.data?.to?.data && data?.elem?.length === 1 && data?.elem[0]?.dataset?.hash) {
+					let item = document.querySelector(`.ui-draggable[data-hash="${data.elem[0].dataset.hash}"]`);
+					if (item && typeof(item.dataset.gcaFlag_doubleClickEvent) !== 'undefined') {
+						delete item.dataset.gcaFlag_doubleClickEvent;
+					}
+					this.apply();
+				}
+			});
+		},
 		apply : function(){
 			this.applyOn(jQuery('#inv .ui-draggable'));
 			this.applyOn(jQuery('#shop .ui-draggable'));

@@ -801,23 +801,23 @@ var gca_settings = {
 			
 			// Menu Options
 			"main_menu" : {		
-		        // Advance main menu
-		        "advance_main_menu" : true,
-		        "submenu_click_to_change" : false,			
-			// Merge menu merchants
-		        "menu_merge_merchants" : false,				
-			// Merge menu merchants
-		        "menu_merge_items" : false,
-			// Quest Timer
-		        "quest_timer" : true,
-			// Centurion & PowerUps timers
-		        "centurio_powerups_timers" : false,
-			// Forge
-		        "forge_timers" : true,
-			// Merchants
-			"merchants_timer" : true,
-			// Hide City Gate menu entry
-			"menu_hide_citygate" : false
+				// Advance main menu
+				"advance_main_menu" : true,
+				"submenu_click_to_change" : false,			
+				// Merge menu merchants
+				"menu_merge_merchants" : false,				
+				// Merge menu merchants
+				"menu_merge_items" : false,
+				// Quest Timer
+				"quest_timer" : true,
+				// Centurion & PowerUps timers
+				"centurio_powerups_timers" : false,
+				// Forge
+				"forge_timers" : true,
+				// Merchants
+				"merchants_timer" : true,
+				// Hide City Gate menu entry
+				"menu_hide_citygate" : false
 			},
 
 			// Messages Options

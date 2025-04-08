@@ -206,149 +206,149 @@ var gca_forge = {
 	// Create the Notepad field
 	forgeNotepad: {
 		inject: function() {
-	                // Find the 'forge_infobox' div
-	                let infobox = document.getElementById('forge_infobox');
-	
-	                // If the 'forge_infobox' doesn't exist, exit the script
-	                if (!infobox) {
-	                        return; // Exit the script if the div is not found
-	                }
-	
-	                // Create a title 
-	                const notesLink = document.querySelector('#header_game a[href*="mod=memo"]');
-	                if (notesLink) {
-	                        const notesText = notesLink.innerText;
-	
-	                        const title = document.createElement('h2');
-	                        title.classList.add('section-header');
-	                        title.style.width = '310px';
-	                        title.style.maxWidth = '310px';
-	                        title.innerText = notesText;
-	                        infobox.appendChild(title);
-	                }
-	
-	                // Create the textarea element 
-	                const textArea = document.createElement('textarea');
-	                textArea.style.width = '316px';
-	                textArea.style.minWidth = '316px';
-	                textArea.style.maxWidth = '316px';
-	                textArea.style.minHeight = '80px';
-	                textArea.placeholder = '✏️';
-	                infobox.appendChild(textArea);
-	
-	                // Create the Save button
-	                const saveBtn = document.createElement('button');
-	                saveBtn.id = 'saveBtn';
-	                saveBtn.classList.add('awesome-button');
-	                saveBtn.style.marginTop = "-6px";
-	                saveBtn.innerText = gca_locale.get('settings', 'save');
-	                infobox.appendChild(saveBtn);
-	
-	                // Create the Delete button
-	                const resetBtn = document.createElement('button');
-	                resetBtn.id = 'resetBtn';
-	                resetBtn.classList.add('awesome-button');
-	                resetBtn.style.marginTop = "-6px";
-	                resetBtn.innerText = gca_locale.get('settings', 'reset');
-	                infobox.appendChild(resetBtn);
-	
-	                // Load the saved notes from local storage (if any)
-	                let savedNotes = gca_data.section.get('notes', 'forge_notes');
-	
-	                // Ensure the value is always a string
-	                if (typeof savedNotes !== 'string') {
-	                        savedNotes = ''; // If it's not a string, reset to empty
-	                }
-	
-	                textArea.value = savedNotes;
-	
-	                // Add event listener to the Save button
-	                saveBtn.addEventListener('click', function() {
-	                        const notes = textArea.value.trim();
-	                        gca_data.section.set('notes', 'forge_notes', notes || ''); // Always save as a string
-	                        gca_notifications.success(gca_locale.get('general', 'ok'));
-	                });
-	
-	                // Add event listener to the Reset button
-	                resetBtn.addEventListener('click', function() {
-	                        if (confirm(gca_locale.get('general', 'confirm'))) {
-	                                gca_data.section.del('notes', 'forge_notes');
-	                                textArea.value = '';
-	                                gca_notifications.success(gca_locale.get('general', 'ok'));
-	                        } else {
-	                                gca_notifications.info(gca_locale.get('general', 'ok'));
-	                        }
-	                });
-	        }
+			// Find the 'forge_infobox' div
+			let infobox = document.getElementById('forge_infobox');
+
+			// If the 'forge_infobox' doesn't exist, exit the script
+			if (!infobox) {
+				return; // Exit the script if the div is not found
+			}
+
+			// Create a title 
+			const notesLink = document.querySelector('#header_game a[href*="mod=memo"]');
+			if (notesLink) {
+				const notesText = notesLink.innerText;
+
+				const title = document.createElement('h2');
+				title.classList.add('section-header');
+				title.style.width = '310px';
+				title.style.maxWidth = '310px';
+				title.innerText = notesText;
+				infobox.appendChild(title);
+			}
+
+			// Create the textarea element 
+			const textArea = document.createElement('textarea');
+			textArea.style.width = '316px';
+			textArea.style.minWidth = '316px';
+			textArea.style.maxWidth = '316px';
+			textArea.style.minHeight = '80px';
+			textArea.placeholder = '✏️';
+			infobox.appendChild(textArea);
+
+			// Create the Save button
+			const saveBtn = document.createElement('button');
+			saveBtn.id = 'saveBtn';
+			saveBtn.classList.add('awesome-button');
+			saveBtn.style.marginTop = "-6px";
+			saveBtn.innerText = gca_locale.get('settings', 'save');
+			infobox.appendChild(saveBtn);
+
+			// Create the Delete button
+			const resetBtn = document.createElement('button');
+			resetBtn.id = 'resetBtn';
+			resetBtn.classList.add('awesome-button');
+			resetBtn.style.marginTop = "-6px";
+			resetBtn.innerText = gca_locale.get('settings', 'reset');
+			infobox.appendChild(resetBtn);
+
+			// Load the saved notes from local storage (if any)
+			let savedNotes = gca_data.section.get('notes', 'forge_notes');
+
+			// Ensure the value is always a string
+			if (typeof savedNotes !== 'string') {
+				savedNotes = ''; // If it's not a string, reset to empty
+			}
+
+			textArea.value = savedNotes;
+
+			// Add event listener to the Save button
+			saveBtn.addEventListener('click', function() {
+				const notes = textArea.value.trim();
+				gca_data.section.set('notes', 'forge_notes', notes || ''); // Always save as a string
+				gca_notifications.success(gca_locale.get('general', 'ok'));
+			});
+
+			// Add event listener to the Reset button
+			resetBtn.addEventListener('click', function() {
+				if (confirm(gca_locale.get('general', 'confirm'))) {
+					gca_data.section.del('notes', 'forge_notes');
+					textArea.value = '';
+					gca_notifications.success(gca_locale.get('general', 'ok'));
+				} else {
+					gca_notifications.info(gca_locale.get('general', 'ok'));
+				}
+			});
+			}
 	},
 
 	LastCraftedItemBtn: {
-    		inject: function() {
-        		this.addLastItemButton();
-        		this.saveOriginalButton();
-    		},
-    		// Save data
-    		saveSettings: function() {
-        		const prefix = document.getElementById('prefix0').value;
-        		const item = document.getElementById('basic0').value;
-        		const suffix = document.getElementById('suffix0').value;
+		inject: function() {
+			this.addLastItemButton();
+			this.saveOriginalButton();
+		},
+		// Save data
+		saveSettings: function() {
+			const prefix = document.getElementById('prefix0').value;
+			const item = document.getElementById('basic0').value;
+			const suffix = document.getElementById('suffix0').value;
 
-        		localStorage.setItem('gladiatusCrazyAddonData_LastItem', JSON.stringify({ prefix, item , suffix }));
-        		gca_notifications.success(gca_locale.get("general", "ok"));
-    		},
-    		// Load data
-    		loadSettings: function() {
-        	const settings = localStorage.getItem('gladiatusCrazyAddonData_LastItem');
-        	if (settings) {
-            		try {
-                		const parsedSettings = JSON.parse(settings);
-                		if (parsedSettings && parsedSettings.prefix && parsedSettings.item && parsedSettings.suffix) {
-                    			document.getElementById('prefix0').value = parsedSettings.prefix;
-                    			document.getElementById('basic0').value = parsedSettings.item;
-                    			document.getElementById('suffix0').value = parsedSettings.suffix;
-                    			gca_notifications.success(gca_locale.get("general", "ok"));
-                		} else {
-                    			gca_notifications.error(gca_locale.get("general", "error"));
-                		}
-            		} catch (error) {
-                		gca_notifications.error(gca_locale.get("general", "error"));
-            		}
-		} else {
-           	 	gca_notifications.error(gca_locale.get("general", "error"));
-        	}
-    		},
-    		// Create Last Item button
-    		addLastItemButton: function() {
-        		const rentButtons = document.querySelector('.awesome-button[data-rent="2"]');
-        		if (rentButtons) {
-            			const lastItemButton = document.createElement('button');
-            			lastItemButton.textContent = gca_locale.get('forge', 'add_last_item');
-            			lastItemButton.className = 'awesome-button';
-            			lastItemButton.style.marginLeft = '9px';
-            			lastItemButton.style.height = 'auto';
+			localStorage.setItem('gladiatusCrazyAddonData_LastItem', JSON.stringify({ prefix, item , suffix }));
+			gca_notifications.success(gca_locale.get("general", "ok"));
+		},
+		// Load data
+		loadSettings: function() {
+			const settings = localStorage.getItem('gladiatusCrazyAddonData_LastItem');
+			if (settings) {
+				try {
+					const parsedSettings = JSON.parse(settings);
+					if (parsedSettings && parsedSettings.prefix && parsedSettings.item && parsedSettings.suffix) {
+						document.getElementById('prefix0').value = parsedSettings.prefix;
+						document.getElementById('basic0').value = parsedSettings.item;
+						document.getElementById('suffix0').value = parsedSettings.suffix;
+						gca_notifications.success(gca_locale.get("general", "ok"));
+					} else {
+						gca_notifications.error(gca_locale.get("general", "error"));
+					}
+				} catch (error) {
+					gca_notifications.error(gca_locale.get("general", "error"));
+				}
+			} else {
+				gca_notifications.error(gca_locale.get("general", "error"));
+			}
+		},
+		// Create Last Item button
+		addLastItemButton: function() {
+			const rentButtons = document.querySelector('.awesome-button[data-rent="2"]');
+			if (rentButtons) {
+				const lastItemButton = document.createElement('button');
+				lastItemButton.textContent = gca_locale.get('forge', 'add_last_item');
+				lastItemButton.className = 'awesome-button';
+				lastItemButton.style.marginLeft = '9px';
+				lastItemButton.style.height = 'auto';
 				lastItemButton.style.padding = '5px 10px'; 
 				lastItemButton.style.width = '134px';
-            			lastItemButton.style.fontSize = '11px';
-            			lastItemButton.style.marginTop = '5px';
-            			lastItemButton.style.cursor = 'pointer';
+				lastItemButton.style.fontSize = '11px';
+				lastItemButton.style.marginTop = '5px';
+				lastItemButton.style.cursor = 'pointer';
 				lastItemButton.style.overflow = 'hidden';
 				lastItemButton.style.whiteSpace = 'normal';
 				lastItemButton.style.wordWrap = 'break-word';
 
-            			// Event listener
-            			lastItemButton.addEventListener('click', () => this.loadSettings());
+				// Event listener
+				lastItemButton.addEventListener('click', () => this.loadSettings());
 
-            			// Add button
-            			rentButtons.parentElement.appendChild(lastItemButton);
-        		}		
-    		},
-    		// Save settings with forge button
-    		saveOriginalButton: function() {
-    			const rentButtons = document.querySelectorAll('.awesome-button[data-rent="2"], .awesome-button[data-rent="3"]');
-    			rentButtons.forEach(button => {
-        			button.addEventListener('click', () => this.saveSettings());
-    			});
-    		}
+				// Add button
+				rentButtons.parentElement.appendChild(lastItemButton);
+			}
+		},
+		// Save settings with forge button
+		saveOriginalButton: function() {
+			const rentButtons = document.querySelectorAll('.awesome-button[data-rent="2"], .awesome-button[data-rent="3"]');
+			rentButtons.forEach(button => {
+				button.addEventListener('click', () => this.saveSettings());
+			});
+		}
 	},
 	
 	// Show available items on each quality
@@ -414,7 +414,7 @@ var gca_forge = {
 				this.materialAmounts = false;
 			});
 		},
-		
+
 		showMaterialsAmounts : function() {
 			// If materials data were not found
 			if (!this.materialAmounts) return;

@@ -69,22 +69,22 @@ var gca_guild_jail = {
 			let admin = false;
 
 			if (contentElement) {
-    				let table = contentElement.getElementsByTagName('table')[0];
-    				if (table) {
-       			 		let tr = table.getElementsByTagName('tr')[1];
-        				if (tr) {
-            					let td = tr.getElementsByTagName('td')[3];
-           					 if (td) {
-                					let a = td.getElementsByTagName('a')[1];
-                					admin = !!a; // Set admin to true if the anchor element exists
-            					}
-        				}
-    				}
+				let table = contentElement.getElementsByTagName('table')[0];
+				if (table) {
+					let tr = table.getElementsByTagName('tr')[1];
+					if (tr) {
+						let td = tr.getElementsByTagName('td')[3];
+						if (td) {
+							let a = td.getElementsByTagName('a')[1];
+							admin = !!a; // Set admin to true if the anchor element exists
+						}
+					}
+				}
 			}
 
 			// If not an admin, add the 'noJailRights' class
 			if (!admin) {
-    				contentElement?.classList.add('noJailRights');
+				contentElement?.classList.add('noJailRights');
 			}
 			
 			// For every prisoner row
@@ -209,11 +209,11 @@ var gca_guild_jail = {
 			// Check if the content and article exist
 			if (content) {
 				let article = content.getElementsByTagName('article')[0];
-			if (article) {
-				article.style.display = 'none';
-			}
-    			// Set class name for content
-    			content.className = 'gca-jail-content';
+				if (article) {
+					article.style.display = 'none';
+				}
+				// Set class name for content
+				content.className = 'gca-jail-content';
 			}
 			// Calculate empty cells
 			jailCells-=prisoners.length;

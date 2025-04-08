@@ -419,14 +419,14 @@ var gca_training = {
 	
 	// Show the CTRL Hint
 	addCtrlHint: {
-	        show: function(self) {
-	                let ctrlText = document.createElement("p");
-	                ctrlText.textContent = gca_locale.get("training", "ctrl_hint");
-	                ctrlText.style.fontSize = "10px";
-	                ctrlText.style.fontWeight = "bold";
-	                ctrlText.style.textAlign = "center";
-	                document.getElementById("training_box").appendChild(ctrlText);
-	        }
+		show: function(self) {
+			let ctrlText = document.createElement("p");
+			ctrlText.textContent = gca_locale.get("training", "ctrl_hint");
+			ctrlText.style.fontSize = "10px";
+			ctrlText.style.fontWeight = "bold";
+			ctrlText.style.textAlign = "center";
+			document.getElementById("training_box").appendChild(ctrlText);
+		}
 	},
 
 	// Training Calculator

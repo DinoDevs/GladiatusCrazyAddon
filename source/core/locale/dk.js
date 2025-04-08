@@ -25,232 +25,232 @@ gca_languages["dk"] = {
 		},
 
 		// General
-        general: {
-            // Days
-            days: "dag(e)",
-            // Minutes
-            minutes: "minutter",
-            // Hours
-            hours: "timer",
-            // No data
-            no_data: "Ingen data",
-    
-            // Buttons
-            confirm: "Bekræft",
-            cancel: "Annuller",
-            close: "Luk",
-            error: "Fejl",
-            yes: "Ja",
-            no: "Nej",
-            ok: "OK"
+		general: {
+			// Days
+			days: "dag(e)",
+			// Minutes
+			minutes: "minutter",
+			// Hours
+			hours: "timer",
+			// No data
+			no_data: "Ingen data",
+	
+			// Buttons
+			confirm: "Bekræft",
+			cancel: "Annuller",
+			close: "Luk",
+			error: "Fejl",
+			yes: "Ja",
+			no: "Nej",
+			ok: "OK"
 		},
 
 		// Global
 		global: {
-            // Use a life potion
-            life_potion_use: "Brug en livsdrik",
-            life_potion_used: "En livsdrik blev brugt",
-            life_potion_left: "Du har nu {{number}} livsdrik(ke)",
-        
-            // Life/Expedition/Dungeon points recovery
-            life_recover_full: "Fuld livs gendannelse",
-            expedition_recover_full: "Fuld ekspeditions point gendannelse",
-            dungeon_recover_full: "Fuld fangehuls point gendannelse",
-            health_notification: "Dit liv er under",
-        
-            // Button bar - Message
-            message_private_write: "Skriv privat besked",
-            message_guild_write: "Skriv ordensbesked",
-            message_send: "Send",
-            message_sent_success: "Beskeden blev sendt med succes",
-            message_sent_failed: "Kunne ikke sende beskeden",
-            message_empty: "Beskeden er tom",
-            message_exclude_me: "Ekskluder mig",
-        
-            // Welcome message - text
-            welcome_addon: "Velkommen til Gladiatus Crazy Addon!",
-            welcome_version: "Den aktuelt installerede version er",
-            welcome_changelog: "Ændringslog",
-        
-            // Button bar buttons
-            guild_market_goto: "Gå til ordens marked",
-            guild_storage_goto: "Gå til ordens lager",
-            guild_bank_goto: "Gå til ordens bank",
-            guild_baths_goto: "Gå til ordens bade (Vox I)",
-            guild_warcamp_goto: "Gå til ordens krigslejr",
-            guild_arenareports_goto: "Gå til ordens arenakamp rapporter",
-            guild_jail_goto: "Gå til ordens fængsel",
-            guild_library_goto: "Gå til ordens bibliotek",
-            guild_templum_goto: "Gå til ordens tempel",
-            auction_food_goto: "Gå til madauktioner",
-            guild_medic_goto: "Gå til ordens behandlingsrum",
-            simulator_goto: "Gå til simulator",
-            stats_display: "Vis mine statistikker",
-            online_display: "Vis online spillere",
-        
-            // Online friends
-            online_friends: "Online Venner",
-            guild_friends: "Ordens Venner",
-            family_friends: "Familie Venner",
-        
-            // Guild donate
-            donate_gold_confirm: "Er du sikker på, at du vil donere {{number}} guld?",
-            donate_gold_success: "Guld blev doneret med succes",
-            donate_gold_failed: "Gulddonation mislykkedes",
-            donate_gold_no_gold: "Der er ingen guld at donere",
-            donate_gold_all_gold: "Doner alt dit guld",
-        
-            // Quest timer
-            quest_full: "Fuld",
-            quest_new: "Ny",
-        
-            // Pray icon
-            pray_start: "Tryk for at starte bøn",
-            pray_stop: "Tryk for at stoppe bøn",
-            heal: "helbredelse",
-        
-            // Notifications
-            notification_guild_application: "Der er en ventende ordensansøgning!",
-            notification_guild_attack_ready: "Ordenens angreb nedkøling er ovre!",
-            low_durability_items: "Der er {{number}} genstand(e) med holdbarhed under {{percent}}%",
-            item_worth_rubies: "Den genstand er rubiner værd!",
-        
-            // Gold - Exp data
-            gold_exp_data: "Guld og Erfaring Data",
-            gold_exp_data_today: "Sidste 24 timer",
-            gold_exp_data_week: "Sidste 7 dage",
-            gold_exp_data_avg_day: "Gennemsnitlige værdier per dag",
-            gold_exp_data_to_level_up: "Dage tilbage til niveau op",
-            gold_exp_data_package_tax: "Ugentlig guld-til-pakke skat",
-            gold_exp_data_measurements: "Målinger",
-            gold_exp_data_total_exp: "Total erfaring",
-            gold_exp_data_total_gold: "Total guld",
-            gold_exp_data_reset: "Statistikker er blevet nulstillet!",
-            gold_exp_data_desc: "Data indsamles hver 5. minut. Salg af varer, du har købt, vil fordoble dine guldindtægter.",
-        
-            // Items
-            // Mercenaries
-            mercenary_type: "Type: {{name}} ({{number}})",
-            gains_with_full_stats: "Gevinster med fulde statistikker:",
-            // Item materials
-            base: "Base",
-            prefix: "Præfix",
-            suffix: "Suffiks"
+			// Use a life potion
+			life_potion_use: "Brug en livsdrik",
+			life_potion_used: "En livsdrik blev brugt",
+			life_potion_left: "Du har nu {{number}} livsdrik(ke)",
+		
+			// Life/Expedition/Dungeon points recovery
+			life_recover_full: "Fuld livs gendannelse",
+			expedition_recover_full: "Fuld ekspeditions point gendannelse",
+			dungeon_recover_full: "Fuld fangehuls point gendannelse",
+			health_notification: "Dit liv er under",
+		
+			// Button bar - Message
+			message_private_write: "Skriv privat besked",
+			message_guild_write: "Skriv ordensbesked",
+			message_send: "Send",
+			message_sent_success: "Beskeden blev sendt med succes",
+			message_sent_failed: "Kunne ikke sende beskeden",
+			message_empty: "Beskeden er tom",
+			message_exclude_me: "Ekskluder mig",
+		
+			// Welcome message - text
+			welcome_addon: "Velkommen til Gladiatus Crazy Addon!",
+			welcome_version: "Den aktuelt installerede version er",
+			welcome_changelog: "Ændringslog",
+		
+			// Button bar buttons
+			guild_market_goto: "Gå til ordens marked",
+			guild_storage_goto: "Gå til ordens lager",
+			guild_bank_goto: "Gå til ordens bank",
+			guild_baths_goto: "Gå til ordens bade (Vox I)",
+			guild_warcamp_goto: "Gå til ordens krigslejr",
+			guild_arenareports_goto: "Gå til ordens arenakamp rapporter",
+			guild_jail_goto: "Gå til ordens fængsel",
+			guild_library_goto: "Gå til ordens bibliotek",
+			guild_templum_goto: "Gå til ordens tempel",
+			auction_food_goto: "Gå til madauktioner",
+			guild_medic_goto: "Gå til ordens behandlingsrum",
+			simulator_goto: "Gå til simulator",
+			stats_display: "Vis mine statistikker",
+			online_display: "Vis online spillere",
+		
+			// Online friends
+			online_friends: "Online Venner",
+			guild_friends: "Ordens Venner",
+			family_friends: "Familie Venner",
+		
+			// Guild donate
+			donate_gold_confirm: "Er du sikker på, at du vil donere {{number}} guld?",
+			donate_gold_success: "Guld blev doneret med succes",
+			donate_gold_failed: "Gulddonation mislykkedes",
+			donate_gold_no_gold: "Der er ingen guld at donere",
+			donate_gold_all_gold: "Doner alt dit guld",
+		
+			// Quest timer
+			quest_full: "Fuld",
+			quest_new: "Ny",
+		
+			// Pray icon
+			pray_start: "Tryk for at starte bøn",
+			pray_stop: "Tryk for at stoppe bøn",
+			heal: "helbredelse",
+		
+			// Notifications
+			notification_guild_application: "Der er en ventende ordensansøgning!",
+			notification_guild_attack_ready: "Ordenens angreb nedkøling er ovre!",
+			low_durability_items: "Der er {{number}} genstand(e) med holdbarhed under {{percent}}%",
+			item_worth_rubies: "Den genstand er rubiner værd!",
+		
+			// Gold - Exp data
+			gold_exp_data: "Guld og Erfaring Data",
+			gold_exp_data_today: "Sidste 24 timer",
+			gold_exp_data_week: "Sidste 7 dage",
+			gold_exp_data_avg_day: "Gennemsnitlige værdier per dag",
+			gold_exp_data_to_level_up: "Dage tilbage til niveau op",
+			gold_exp_data_package_tax: "Ugentlig guld-til-pakke skat",
+			gold_exp_data_measurements: "Målinger",
+			gold_exp_data_total_exp: "Total erfaring",
+			gold_exp_data_total_gold: "Total guld",
+			gold_exp_data_reset: "Statistikker er blevet nulstillet!",
+			gold_exp_data_desc: "Data indsamles hver 5. minut. Salg af varer, du har købt, vil fordoble dine guldindtægter.",
+		
+			// Items
+			// Mercenaries
+			mercenary_type: "Type: {{name}} ({{number}})",
+			gains_with_full_stats: "Gevinster med fulde statistikker:",
+			// Item materials
+			base: "Base",
+			prefix: "Præfix",
+			suffix: "Suffiks"
 		},
 
 		// Overview
 		overview: {
-            // Stats Difference
-            stats_difference: "Forskel",
-            // Drop items to see materials to repair feature
-            drop_item_see_materials_repair: "Smid en genstand for at se de materialer, der kræves for at reparere den",
-            workbench_6th_slot_empty: "Arbejdsbordets 6. plads skal være tomt",
-        
-            // More player info
-            more_player_info: "Mere spiller information",
-            can_use_max_item_level: "Kan bruge genstande op til niveau {{max}}.",
-            can_see_market_max_item_level: "Kan se genstande på markedet op til niveau {{max}}.",
-            can_see_auction_item_levels: "Kan se genstande på auktionen fra niveau {{min}} til {{max}}."
-        },
-        
-        // Pantheon section
-        pantheon: {
-            // Mystery box
-            mysterybox_open_all: "Åbn alle",
-            mysterybox_open_stop: "Stop",
-            mysterybox_open_done: "Færdig!"
-        },
-        
-        // Guild section
-        guild: {
-            // Guild Bank
-            bank_all_gold: "Alt dit guld",
-            total_donations: "Samlede donationer",
-            min_upgrades_gold: "Guld brugt på opgraderinger (minimum)",
-            max_stolen_gold: "Stjålet guld fra andre ordner (maksimum)",
-        
-            // Library
-            library_per_point_cost: "Omkostninger per statpoint",
-            library_gold_left: "Ordens guld efter aktivering",
-        
-            // Medic
-            medic_lost_points: "Tabte point",
-            medic_points_to_heal: "Point til at helbrede",
-            medic_life_after_heal: "Liv efter helbredelse",
-        
-            // Baths
-            pinned_message: "Fastgjort ordens besked",
-            pin_unpin_message: "Fastgør/Fjern fastgørelse af denne besked",
-            pinned_message_info: "Fastgjorte beskeder vises øverst i beskederne for alle ordens medlemmer, der bruger denne funktion",
-            
-            // Important ranks button
-            important_ranks: "Vigtige rangeringer"
-        },
-        
-        // Expedition
-        expedition: {
-            material_drop_chance: "{{number}}% chance, mellem faldne materialer"
-        },
-        
-        // Arena section
-        arena: {
-            global_arena_title: "Global Arena",
-            global_arena_description: "Dette er den ultimative arena, der samler gladiatorer fra hele verden! I denne arena kæmper gladiatorer ikke for guld eller erfaring, de kæmper for en plads på verdens topliste!",
-            global_arena_load: "Vis global liste",
-            global_highscore: "Global Topscore",
-            country: "Land",
-            server: "Server",
-            target_list: "Angrebsliste",
-            target_list_add: "Tilføj til angrebsliste",
-            target_list_remove: "Fjern fra angrebsliste",
-            error_sth_went_wrong: "Noget gik galt",
-            error_response: "Serveren svarede med en fejl",
-            error_blocked_access: "Noget blokerer adgangen til GCA-serveren ({{url}})",
-            error_connection: "Forbindelsesfejl",
-            attack_player: "Klik for at angribe “{{name}}”",
-            fight_won: "Du vandt kampen!",
-            fight_lost: "Du tabte kampen...",
-            player_tired: "Du er træt; du skal vente.",
-            player1_hits_player2: "{{name1}} rammer {{name2}}",
-            player_takes_x_damage: "{{name}} tager {{number}} skade",
-            player_dies: "{{name}} dør"
-        },
-        
-        // Training section
-        training: {
-            // Points analysis
-            stats_points: "Træningsstatistik",
-            points_breakdown: "Fordeling af point",
-            points_breakdown_damage: "Skade: +{{integer}} (+{{float}})",
-            points_breakdown_block: "Blok: +{{integer}}% (+{{float}}%)",
-            points_breakdown_block_max: "Blok: maksimal værdi",
-            points_breakdown_block_short: "Blok: +{{integer}}%",
-            points_breakdown_normal_hit: "Træfchance: +{{integer}}% (+{{float}}‰) *",
-            points_breakdown_critical_hit: "Kritisk træfchance: +{{integer}}% (+{{float}}‰)",
-            points_breakdown_critical_hit_short: "Kritisk træf: +{{integer}}%",
-            points_breakdown_double_hit: "Dobbelt træfchance: +{{integer}}% (+{{float}}‰) *",
-            points_breakdown_double_hit_factor: "Dobbelt træf faktor: {{number}}",
-            points_breakdown_avoid_double_hit_factor: "Undgå dobbelt træf faktor: {{number}}",
-            points_breakdown_avoid: "Undgå kritisk træfchance: +{{integer}}% (+{{float}}‰)",
-            points_breakdown_avoid_max: "Undgå kritisk træfchance: maksimal værdi",
-            points_breakdown_avoid_short: "Undgå kritisk træf: +{{integer}}%",
-            points_breakdown_enemy_normal_hit: "Modstander træfchance: {{integer}}% ({{float}}‰) *",
-            points_breakdown_enemy_double_hit: "Modstander dobbelt træfchance: {{integer}}% ({{float}}‰) *",
-            points_breakdown_life: "Livspoint: +{{number}}",
-            points_breakdown_regeneration: "Regeneration pr. time: +{{number}}",
-            points_breakdown_threat: "Trussel: +{{integer}} (+{{float}})",
-            points_breakdown_heal: "Helbredelse: +{{integer}} (+{{float}})",
-            points_breakdown_critical_heal: "Kritisk helbredelse: +{{integer}}% (+{{float}}‰)",
-            points_breakdown_critical_heal_max: "Kritisk helbredelse: maksimal værdi",
-            stats_calculated_with_yourself_as_an_opponent: "* Statistikerne beregnes med konceptet om at angribe dig selv.",
-            values_in_parenthesis_explanation: "Værdierne i parentes viser de tilsvarende værdier før afrunding.",
-            // Cost calculator
-            total_cost: "Samlede omkostninger",
-            // Discount show
-            costs_discount: "Træningsomkostninger rabat: {{number}}%",
-            // CTRL Hint 
-            ctrl_hint: "Tip: Hold CTRL-tasten nede for at øge/formindske med 10"
-        },
+			// Stats Difference
+			stats_difference: "Forskel",
+			// Drop items to see materials to repair feature
+			drop_item_see_materials_repair: "Smid en genstand for at se de materialer, der kræves for at reparere den",
+			workbench_6th_slot_empty: "Arbejdsbordets 6. plads skal være tomt",
+		
+			// More player info
+			more_player_info: "Mere spiller information",
+			can_use_max_item_level: "Kan bruge genstande op til niveau {{max}}.",
+			can_see_market_max_item_level: "Kan se genstande på markedet op til niveau {{max}}.",
+			can_see_auction_item_levels: "Kan se genstande på auktionen fra niveau {{min}} til {{max}}."
+		},
+		
+		// Pantheon section
+		pantheon: {
+			// Mystery box
+			mysterybox_open_all: "Åbn alle",
+			mysterybox_open_stop: "Stop",
+			mysterybox_open_done: "Færdig!"
+		},
+		
+		// Guild section
+		guild: {
+			// Guild Bank
+			bank_all_gold: "Alt dit guld",
+			total_donations: "Samlede donationer",
+			min_upgrades_gold: "Guld brugt på opgraderinger (minimum)",
+			max_stolen_gold: "Stjålet guld fra andre ordner (maksimum)",
+		
+			// Library
+			library_per_point_cost: "Omkostninger per statpoint",
+			library_gold_left: "Ordens guld efter aktivering",
+		
+			// Medic
+			medic_lost_points: "Tabte point",
+			medic_points_to_heal: "Point til at helbrede",
+			medic_life_after_heal: "Liv efter helbredelse",
+		
+			// Baths
+			pinned_message: "Fastgjort ordens besked",
+			pin_unpin_message: "Fastgør/Fjern fastgørelse af denne besked",
+			pinned_message_info: "Fastgjorte beskeder vises øverst i beskederne for alle ordens medlemmer, der bruger denne funktion",
+			
+			// Important ranks button
+			important_ranks: "Vigtige rangeringer"
+		},
+		
+		// Expedition
+		expedition: {
+			material_drop_chance: "{{number}}% chance, mellem faldne materialer"
+		},
+		
+		// Arena section
+		arena: {
+			global_arena_title: "Global Arena",
+			global_arena_description: "Dette er den ultimative arena, der samler gladiatorer fra hele verden! I denne arena kæmper gladiatorer ikke for guld eller erfaring, de kæmper for en plads på verdens topliste!",
+			global_arena_load: "Vis global liste",
+			global_highscore: "Global Topscore",
+			country: "Land",
+			server: "Server",
+			target_list: "Angrebsliste",
+			target_list_add: "Tilføj til angrebsliste",
+			target_list_remove: "Fjern fra angrebsliste",
+			error_sth_went_wrong: "Noget gik galt",
+			error_response: "Serveren svarede med en fejl",
+			error_blocked_access: "Noget blokerer adgangen til GCA-serveren ({{url}})",
+			error_connection: "Forbindelsesfejl",
+			attack_player: "Klik for at angribe “{{name}}”",
+			fight_won: "Du vandt kampen!",
+			fight_lost: "Du tabte kampen...",
+			player_tired: "Du er træt; du skal vente.",
+			player1_hits_player2: "{{name1}} rammer {{name2}}",
+			player_takes_x_damage: "{{name}} tager {{number}} skade",
+			player_dies: "{{name}} dør"
+		},
+		
+		// Training section
+		training: {
+			// Points analysis
+			stats_points: "Træningsstatistik",
+			points_breakdown: "Fordeling af point",
+			points_breakdown_damage: "Skade: +{{integer}} (+{{float}})",
+			points_breakdown_block: "Blok: +{{integer}}% (+{{float}}%)",
+			points_breakdown_block_max: "Blok: maksimal værdi",
+			points_breakdown_block_short: "Blok: +{{integer}}%",
+			points_breakdown_normal_hit: "Træfchance: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_critical_hit: "Kritisk træfchance: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_hit_short: "Kritisk træf: +{{integer}}%",
+			points_breakdown_double_hit: "Dobbelt træfchance: +{{integer}}% (+{{float}}‰) *",
+			points_breakdown_double_hit_factor: "Dobbelt træf faktor: {{number}}",
+			points_breakdown_avoid_double_hit_factor: "Undgå dobbelt træf faktor: {{number}}",
+			points_breakdown_avoid: "Undgå kritisk træfchance: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_avoid_max: "Undgå kritisk træfchance: maksimal værdi",
+			points_breakdown_avoid_short: "Undgå kritisk træf: +{{integer}}%",
+			points_breakdown_enemy_normal_hit: "Modstander træfchance: {{integer}}% ({{float}}‰) *",
+			points_breakdown_enemy_double_hit: "Modstander dobbelt træfchance: {{integer}}% ({{float}}‰) *",
+			points_breakdown_life: "Livspoint: +{{number}}",
+			points_breakdown_regeneration: "Regeneration pr. time: +{{number}}",
+			points_breakdown_threat: "Trussel: +{{integer}} (+{{float}})",
+			points_breakdown_heal: "Helbredelse: +{{integer}} (+{{float}})",
+			points_breakdown_critical_heal: "Kritisk helbredelse: +{{integer}}% (+{{float}}‰)",
+			points_breakdown_critical_heal_max: "Kritisk helbredelse: maksimal værdi",
+			stats_calculated_with_yourself_as_an_opponent: "* Statistikerne beregnes med konceptet om at angribe dig selv.",
+			values_in_parenthesis_explanation: "Værdierne i parentes viser de tilsvarende værdier før afrunding.",
+			// Cost calculator
+			total_cost: "Samlede omkostninger",
+			// Discount show
+			costs_discount: "Træningsomkostninger rabat: {{number}}%",
+			// CTRL Hint 
+			ctrl_hint: "Tip: Hold CTRL-tasten nede for at øge/formindske med 10"
+		},
 
 		// Auction section
 		auction: {
@@ -581,7 +581,7 @@ gca_languages["dk"] = {
 
 			// Notifications
 			notification_reload : "Genindlæs siden for at ændringerne træder i kraft",
-		}		
+		}
 	}
 }
 

@@ -350,7 +350,7 @@ gca_languages['zh'] = {
 			category_overview$achivements_layout : "強化成就頁面",
 			category_overview$costumes_layout : "強化戎裝頁面",
 			category_overview$items_repair_overview : "在一般戰役頁面顯示裝備修復所需材料的檢測小盒",			
-            // Settings - Main menu
+			// Settings - Main menu
 			category_main_menu$advance_main_menu : "加強主選單",
 			category_main_menu$submenu_click_to_change : "點擊時改變子菜單",
 			category_main_menu$quest_timer : "顯示任務狀態或計時器",	

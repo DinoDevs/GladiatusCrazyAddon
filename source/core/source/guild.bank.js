@@ -43,39 +43,39 @@ var gca_guild_bank = {
 
 		// Bank Improve
 	donateLayout: {
-    		improve: function (self) {
-        		// Get wrappers
-        		var wrapper = document.getElementById("content")?.getElementsByTagName("article");
-        		if (!wrapper || wrapper.length === 0) return;
+		improve: function (self) {
+			// Get wrappers
+			var wrapper = document.getElementById("content")?.getElementsByTagName("article");
+			if (!wrapper || wrapper.length === 0) return;
 
-        		// Ensure the first article contains tables
-        		var tables = wrapper[0]?.getElementsByTagName("table");
-        		if (!tables || tables.length === 0) return;
+			// Ensure the first article contains tables
+			var tables = wrapper[0]?.getElementsByTagName("table");
+			if (!tables || tables.length === 0) return;
 
-        		// Improve gold in bank (ensure first table exists)
-        		if (tables[0]) {
-            		this.goldInBank(self, tables[0]);
-        		}
+			// Improve gold in bank (ensure first table exists)
+			if (tables[0]) {
+				this.goldInBank(self, tables[0]);
+			}
 
-        		// Improve donate all my gold (ensure second table exists)
-        		if (tables[1]) {
-            		this.insertAllPlayersGold(self, tables[1]);
+			// Improve donate all my gold (ensure second table exists)
+			if (tables[1]) {
+				this.insertAllPlayersGold(self, tables[1]);
 
-            		// Set gold input to number type (ensure first input in second table exists)
-            		var input = tables[1]?.getElementsByTagName("input")[0];
-            		if (input) {
-                		input.style.width = "128px";
-                		input.type = "number";
-            		}
-        		}
+				// Set gold input to number type (ensure first input in second table exists)
+				var input = tables[1]?.getElementsByTagName("input")[0];
+				if (input) {
+					input.style.width = "128px";
+					input.type = "number";
+				}
+			}
 
-        	// Change donations book link to show the detailed donations of only 1 day
-        	// Ensure the navigation exists and has enough tabs
-        	let headerTabs = document.getElementById('mainnav')?.getElementsByTagName('a');
-        	if (headerTabs && headerTabs.length > 1) {
-            	headerTabs[1].href += '&l2=2';
-        	}
-    	},
+			// Change donations book link to show the detailed donations of only 1 day
+			// Ensure the navigation exists and has enough tabs
+			let headerTabs = document.getElementById('mainnav')?.getElementsByTagName('a');
+			if (headerTabs && headerTabs.length > 1) {
+				headerTabs[1].href += '&l2=2';
+			}
+		},
 
 		// Improve gold in bank
 		goldInBank : function(self, wrapper){
