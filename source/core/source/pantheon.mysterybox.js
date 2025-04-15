@@ -112,6 +112,7 @@ var gca_pantheon_mysterybox = {
 			jQuery.ajax({
 				type: "GET",
 				url: gca_getPage.link({"mod":"mysterybox"}),
+				crossDomain: true,
 				success: function(content){
 					// Check if stop event
 					if(this.stop){
@@ -165,6 +166,7 @@ var gca_pantheon_mysterybox = {
 							"submod" : "pick",
 							"a" : new Date().getTime()
 						}).replace("index.php","ajax.php"),
+						crossDomain: true,
 						success: function(content){
 
 							// Get reward

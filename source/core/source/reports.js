@@ -408,7 +408,7 @@ var gca_reports = {
 			}
 			
 			// Get Report
-			jQuery.get(gca_getPage.link({"mod":"reports","submod":"showCombatReport","reportId":id,"t":t}), (content) => {
+			gca_tools.ajax.get(gca_getPage.link({"mod":"reports","submod":"showCombatReport","reportId":id,"t":t})).then((content) => {
 				var tooltips = [];
 
 				// Match Loot

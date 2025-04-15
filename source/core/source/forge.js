@@ -371,7 +371,7 @@ var gca_forge = {
 			}
 
 			// Load materials data
-			jQuery.get(gca_getPage.link({'mod':'forge','submod':'storage'}), (content) => {
+			gca_tools.ajax.get(gca_getPage.link({'mod':'forge','submod':'storage'})).then((content) => {
 				// Get materials info
 				var info = content.match(/id="remove-resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
 				if (!info || !info[1]) {
@@ -410,7 +410,7 @@ var gca_forge = {
 				this.showMaterialsAmounts();
 			})
 			// If Request Failed
-			.fail(() => {
+			.catch(() => {
 				this.materialAmounts = false;
 			});
 		},
@@ -862,6 +862,7 @@ var gca_forge = {
 			jQuery.ajax({
 				type: "GET",
 				url: gca_getPage.link(url_params),
+				crossDomain: true,
 				success: (html) => {
 					if (html.match('data-hash="' + info.hash + '"')) {
 						let code = html.match(new RegExp('<div data-no-combine="true" data-no-destack="true" data-container-number="(-\\d+)"\\s*>\\s*<div style="[^"]*" class="[^"]*" data-content-type="[^"]*" data-content-size="[^"]*" data-enchant-type="[^"]*" data-price-gold="' + info.priceGold + '"( data-price-multiplier="[^"]*"|) data-tooltip="[^"]*" data-comparison-tooltip="[^"]*"( data-soulbound-to="[^"]*"|) data-level="' + info.level + '"( data-quality="[^"]*"|) data-hash="' + info.hash + '"[^>]*><\\/div>', 'i'));
@@ -1492,14 +1493,14 @@ var gca_forge = {
 			// Make ajax requests
 			let pending = completed.length;
 			completed.forEach((slot) => {
-				jQuery.post('ajax.php', {
+				gca_tools.ajax.post('ajax.php', {
 					mod: 'forge',
 					submod: type,
 					mode: 'smelting',
 					slot: slot,
 					a: new Date().getTime(),
 					sh: window.secureHash
-				}).always(() => {
+				}).finally(() => {
 					pending--;
 					if (pending === 0) {
 						document.location.href = document.location.href;

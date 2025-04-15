@@ -439,6 +439,7 @@ var gca_auction = {
 		jQuery.ajax({
 			type: "POST",
 			url:  itemform.getAttribute('action'),
+			crossDomain: true,
 			data: data,
 			success: function(content){
 				// Remove spinner

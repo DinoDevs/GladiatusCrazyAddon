@@ -761,7 +761,7 @@ var gca_global = {
 					}
 
 					// Use Potion
-					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventoryActivate","feature":"18","token":potions}), (content) => {
+					gca_tools.ajax.get(gca_getPage.link({"mod":"premium","submod":"inventoryActivate","feature":"18","token":potions})).then((content) => {
 						// Get life info
 						var life = this.parseLifeFromHtml(content);
 
@@ -776,7 +776,7 @@ var gca_global = {
 						if (this.extended_hp_xp) this.extended_hp_xp.updateLife(life[1], life[2]);
 					})
 					// If Request Failed
-					.fail(() => {
+					.catch(() => {
 						this.usageSet(false);
 						// Report Error
 						gca_notifications.error(gca_locale.get("general", "error"));
@@ -786,7 +786,7 @@ var gca_global = {
 				// Get Potion Number
 				getPotionsNumber : function(callback){
 					// Load premium inventory page
-					jQuery.get(gca_getPage.link({"mod":"premium","submod":"inventory"}), (content) => {
+					gca_tools.ajax.get(gca_getPage.link({"mod":"premium","submod":"inventory"})).then((content) => {
 						// Match potion number
 						var potions = content.match(/document\.location\.href='index\.php\?mod=premium&submod=inventoryActivate&feature=18&token=(\d+)&sh=/);
 						potions = potions ? parseInt(potions[1], 10) : 0;
@@ -1396,7 +1396,7 @@ var gca_global = {
 					document.getElementById('online_family_friends').className = "online_friends_loading_img loading";
 
 					// Get online guild members
-					jQuery.get(gca_getPage.link({"mod":"guild","submod":"memberList","order":"o"}), function(content){
+					gca_tools.ajax.get(gca_getPage.link({"mod":"guild","submod":"memberList","order":"o"})).then(function(content){
 						// Match All active players
 						var online_players = content.match(/<tr>\s*<td>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+">([^<]+)<\/a>\s*<\/td>\s*<td>([^<]+)<\/td>\s*<td>(\d+)<\/td>\s*<td align="right">\s*[^<]*(<span[^>]*>[^<]*<\/span>|)\s*<\/td>\s*<td align="right"><span style="color: (green|#406000|#804000);[^"]*" title="[^"]*">([^<]*)</mg);
 						
@@ -1524,7 +1524,7 @@ var gca_global = {
 					});
 					
 					// Get online family members
-					jQuery.get(gca_getPage.link({"mod":"overview","submod":"buddylist"}), function(content){
+					gca_tools.ajax.get(gca_getPage.link({"mod":"overview","submod":"buddylist"})).then(function(content){
 						// Match All active players
 						let online_players = content.match(/<a href="index\.php\?mod=player&p=[^>]+>([^<]+)<\/a>\s*<\/td>\s*<td>(?:<a href="index\.php\?mod=guild&i=[^>]+>[^<]+<\/a>\s*|-*\s*)<\/td>\s*<td>(\d+)<\/td>\s*<td><span style="color: (green|#406000|#804000);[^>]+>([^<]*)</mg);
 						if(!online_players) online_players = [];
@@ -1668,6 +1668,7 @@ var gca_global = {
 					jQuery.ajax({
 						type: "POST",
 						url: gca_getPage.link({"mod":"guildBankingHouse","submod":"donate"}),
+						crossDomain: true,
 						data: 'donation=' + gold + '&doDonation=Donate All',
 						success: function(html){
 							let gold_left = 0;
@@ -1841,6 +1842,7 @@ var gca_global = {
 					jQuery.ajax({
 						type: "GET",
 						url: gca_getPage.link({"mod":"overview"}),
+						crossDomain: true,
 						success: function(content){
 							var stats = {};
 
@@ -1941,12 +1943,12 @@ var gca_global = {
 			// Get Status
 			getStatus : function(){
 				// Get gladiator auction status
-				jQuery.get(gca_getPage.link({"mod":"auction","itemLevel":"999","itemQuality":"2"}), (content) => {
+				gca_tools.ajax.get(gca_getPage.link({"mod":"auction","itemLevel":"999","itemQuality":"2"})).then((content) => {
 					this.parseStatus("gladiator", content);
 				});
 
 				// Get mercenary auction status
-				jQuery.get(gca_getPage.link({"mod":"auction","ttype":"3","itemLevel":"999","itemQuality":"2"}), (content) => {
+				gca_tools.ajax.get(gca_getPage.link({"mod":"auction","ttype":"3","itemLevel":"999","itemQuality":"2"})).then((content) => {
 					this.parseStatus("mercenary", content);
 				});
 			},
@@ -2978,7 +2980,7 @@ var gca_global = {
 
 				try {
 					// GET URL
-					const response = await jQuery.get(url);
+					const response = await gca_tools.ajax.get(url);
 
 					const godsContainer = jQuery(response);
 
@@ -4493,7 +4495,7 @@ var gca_global = {
 				// Check if Arena notification exists
 				if (notificationCount && link.href.includes("t=2")) {
 					// Request
-					jQuery.get(gca_getPage.link({
+					gca_tools.ajax.get(gca_getPage.link({
 						"mod": "reports",
 						"t": "2" // Arena
 					}));
@@ -4510,7 +4512,7 @@ var gca_global = {
 				// Check if Circus Turma notification exists
 				if (notificationCount && link.href.includes("t=3")) {
 					// Request
-					jQuery.get(gca_getPage.link({
+					gca_tools.ajax.get(gca_getPage.link({
 						"mod": "reports",
 						"t": "3" // Circus Turma
 					}));
@@ -4974,6 +4976,7 @@ var gca_global = {
 				jQuery.ajax({
 					type: "POST",
 					url: gca_getPage.link({"mod":"guild","submod":"adminMail"}),
+					crossDomain: true,
 					data: postData,
 					success: function(){
 						self.sending = false;
@@ -5065,7 +5068,7 @@ var gca_global = {
 					// Save time
 					gca_data.section.set("timers", "notify_new_guild_application", gca_tools.time.server());
 					// Check guild for any application
-					jQuery.get(gca_getPage.link({"mod":"guild","submod":"admin"}), function(content){
+					gca_tools.ajax.get(gca_getPage.link({"mod":"guild","submod":"admin"})).then(function(content){
 						// If application exist
 						if(content.match('submod=adminApplication')){
 							// Save
@@ -5092,7 +5095,7 @@ var gca_global = {
 					// Save time
 					gca_data.section.set("timers", "notify_guild_attack_ready", gca_tools.time.server());
 					// Check guild if attack is ready
-					jQuery.get(gca_getPage.link({"mod":"guild_warcamp"}), function(content){
+					gca_tools.ajax.get(gca_getPage.link({"mod":"guild_warcamp"})).then(function(content){
 						// If application exist
 						if(!content.match('data-ticker-loc')){
 							// Save
@@ -5130,7 +5133,7 @@ var gca_global = {
 				// Save time
 				gca_data.section.set("timers", "guild_pinned_message", gca_tools.time.server());
 				// Check baths room 1
-				jQuery.get(gca_getPage.link({"mod":"guild_bath","submod":"guild_shoutbox","room":"1"}), function(content){
+				gca_tools.ajax.get(gca_getPage.link({"mod":"guild_bath","submod":"guild_shoutbox","room":"1"})).then(function(content){
 					let player = null;
 					let message = null;
 					// If a pinned message exist
@@ -5178,7 +5181,7 @@ var gca_global = {
 				}
 				
 				// Go to achievements page and collect gathered gold data
-				jQuery.get(gca_getPage.link({'mod':'overview','submod':'achievements'}), (content) => {
+				gca_tools.ajax.get(gca_getPage.link({'mod':'overview','submod':'achievements'})).then((content) => {
 					// Just checked
 					gca_data.section.set('cache', 'gold_exp_data_last_checked', new Date().getTime());
 
@@ -5765,7 +5768,7 @@ var gca_global = {
 			}
 
 			// If no data or time to update the data, request page
-			jQuery.get(gca_getPage.link({'mod':'premium','submod':'centurio'}), (content) => {
+			gca_tools.ajax.get(gca_getPage.link({'mod':'premium','submod':'centurio'})).then((content) => {
 				let now = new Date().getTime();
 				gca_data.section.set('cache', 'gca_centurio', now);
 				if (content.match(/<div id="premium_duration">/)) {
@@ -5872,7 +5875,7 @@ var gca_global = {
 			}
 			
 			// Request page
-			jQuery.get(gca_getPage.link({'mod':'powerups'}), (content) => {
+			gca_tools.ajax.get(gca_getPage.link({'mod':'powerups'})).then((content) => {
 				let now = new Date().getTime();
 				let status = [
 					{enabled : 0, reload : 0, type : [null,null]},
@@ -5987,7 +5990,7 @@ var gca_global = {
 		gca_data.section.set("timers", "guild_info_update", now);
 		
 		// Get online guild members
-		jQuery.get(gca_getPage.link({"mod":"guild","submod":"memberList","order":"o"}), function(content){
+		gca_tools.ajax.get(gca_getPage.link({"mod":"guild","submod":"memberList","order":"o"})).then(function(content){
 			// Match All active players
 			let guild_players_data = content.match(/<tr>\s*<td>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+">([^<]+)<\/a>\s*<\/td>\s*<td>([^<]+)<\/td>\s*<td>(\d+)<\/td>\s*<td align="right">\s*[^<]*(<span[^>]*>[^<]*<\/span>|)\s*<\/td>\s*<td align="right"><span style="color:[^>]+>([^<]*)</mg);
 				

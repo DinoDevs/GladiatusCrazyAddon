@@ -1920,19 +1920,39 @@ var gca_tools = {
 
 	// Ajax
 	// -------------------------------------------------- //
-	// ajax.get(url).then(result => {}, error => {});
+	// ajax.get(url).then(result => {}).catch(error => {});
 	// 
 	// ajax.cached.known_scrolls().then(result => {}, error => {});
 	// -------------------------------------------------- //
 	ajax : {
-		'get' : function(url) {
+		'get' : function(url, data) {
 			return new Promise(function(resolve, reject) {
-				return jQuery.ajax({
+				url = (typeof url === 'string') ? url : gca_getPage.link(url);
+				let options = {
 					type: 'GET',
-					url: (typeof url === 'string') ? url : gca_getPage.link(url),
+					url: url,
+					//crossDomain: (/^https?:\/\//).test(url) ? false : true,
+					crossDomain: true,
 					success: function(result) {resolve(result);},
 					error: function(jqXHR, textStatus, errorThrown) {reject(new Error(errorThrown));},
-				});
+				};
+				if (data) options.data = data;
+				return jQuery.ajax(options);
+			});
+		},
+		'post' : function(url, data) {
+			return new Promise(function(resolve, reject) {
+				url = (typeof url === 'string') ? url : gca_getPage.link(url);
+				let options = {
+					type: 'POST',
+					url: url,
+					//crossDomain: (/^https?:\/\//).test(url) ? false : true,
+					crossDomain: true,
+					success: function(result) {resolve(result);},
+					error: function(jqXHR, textStatus, errorThrown) {reject(new Error(errorThrown));},
+				};
+				if (data) options.data = data;
+				return jQuery.ajax(options);
 			});
 		},
 

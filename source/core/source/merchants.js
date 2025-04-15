@@ -132,6 +132,7 @@ var gca_merchants = {
 					let link = gca_getPage.link({"mod":"inventory","subsub":c,"sub":y});
 					jQuery.ajax({
 						url: link,
+						crossDomain: true,
 						success: function(response) {
 							// Check if response dont has a shop
 							if (!response.match(/class="shopTab"/i)) {

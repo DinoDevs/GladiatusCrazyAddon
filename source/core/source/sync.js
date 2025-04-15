@@ -43,7 +43,7 @@ var gca_sync = {
 
 				// Get secure hash
 				//window.jQuery.get('main.php').success((html) => {
-				window.jQuery.get('index.php?mod=overview').success((html) => {
+				gca_tools.ajax.get('index.php?mod=overview').then((html) => {
 					// Get hash
 					let match = html.match(/index\.php\?mod=overview&sh=([0-9a-f]+)"/);
 
@@ -58,7 +58,7 @@ var gca_sync = {
 						gca_notifications.error(gca_locale.get('general', 'error'));
 						loading.style.display = 'none';
 					}
-				}).error(() => {
+				}).catch(() => {
 					gca_notifications.error(gca_locale.get('general', 'error'));
 					loading.style.display = 'none';
 				});

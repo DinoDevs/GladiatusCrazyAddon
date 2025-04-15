@@ -267,6 +267,7 @@ var gca_arena = {
 			jQuery.ajax({
 				type: "GET",
 				url: this.getLink({'player_id' : gca_section.playerId, 'server' : gca_section.server, 'country' : gca_section.country, 'level' : this.level}),
+				crossDomain: true,
 				success: (content) => {
 					this.table.style.height = 'auto';
 					this.table.style.opacity = '1';
@@ -646,6 +647,7 @@ var gca_arena = {
 					'player_id_A' : gca_section.playerId, 'server_A' : gca_section.server, 'country_A' : gca_section.country,
 					'player_id_B' : player_id, 'server_B' : server, 'country_B' : country
 				}),
+				crossDomain: true,
 				success: (content) => {
 					this.attack_lock = false;
 					document.getElementById('spiner_box').style.display = 'none';

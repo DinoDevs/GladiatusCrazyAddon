@@ -2484,6 +2484,7 @@ var gca_settings = {
 				jQuery.ajax({
 					type: "GET",
 					url: gca_getPage.link({'mod':'memo'}),
+					crossDomain: true,
 					success: function(content){
 						// Load notes
 						let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
@@ -2542,6 +2543,7 @@ var gca_settings = {
 						jQuery.ajax({
 							type: "POST",
 							url: gca_getPage.link({'mod':'memo', 'submod':'save'}),
+							crossDomain: true,
 							data: {memo : notes},
 							success: function(){
 								return resolve();
@@ -2709,6 +2711,7 @@ var gca_settings = {
 				jQuery.ajax({
 					type: "GET",
 					url: gca_getPage.link({'mod':'memo'}),
+					crossDomain: true,
 					success: function(content){
 						// Load notes
 						let notes = content.match(/<textarea id="memo"[^>]*>([^<]*)</i);
@@ -2862,6 +2865,7 @@ var gca_settings = {
 			jQuery.ajax({
 				method: "GET",
 				url: 'main.php',
+				crossDomain: true,
 				success : (response) => {
 					let match = response.match(/socket\.emit\('authenticate',\s*\{\s*session:\s*'([0-9a-f]+)',\s*id:\s*(\d+)\s*\}\);/i);
 					if (!match) {

@@ -163,7 +163,7 @@ var gca_new_message = {
 					document.getElementById('select_family_friends').className = "online_friends_loading_img loading";
 
 					// Get online guild members
-					jQuery.get(gca_getPage.link({"mod":"guild","submod":"memberList","order":"o"}), (content) => {
+					gca_tools.ajax.get(gca_getPage.link({"mod":"guild","submod":"memberList","order":"o"})).then((content) => {
 						// Match All active players
 						var online_players = content.match(/<tr>\s*<td>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+">([^<]+)<\/a>\s*<\/td>\s*<td>([^<]+)<\/td>\s*<td>(\d+)<\/td>\s*<td align="right">\s*[^<]*(<span[^>]*>[^<]*<\/span>|)\s*<\/td>\s*<td align="right"><span style="color:\s*([^;]+);[^"]*" title="[^"]*">([^<]*)</mg);
 						
@@ -294,7 +294,7 @@ var gca_new_message = {
 					});
 					
 					// Get online family members
-					jQuery.get(gca_getPage.link({"mod":"overview","submod":"buddylist"}), (content) => {
+					gca_tools.ajax.get(gca_getPage.link({"mod":"overview","submod":"buddylist"})).then((content) => {
 						// Match All active players
 						var online_players = content.match(/<tr>\s*<td[^>]*>\s*<a href="index\.php\?mod=player&p=(\d+)&sh=[^"]+"[^>]*>([^<]+)<\/a>\s*<\/td>\s*<td><a href="index\.php\?mod=guild&i=(\d+)&sh=[^"]+"[^>]*>\s*\[([^\]]+)\]\s*<\/a><\/td>\s*<td>(\d+)<\/td>\s*<td><span style="color:\s*([^;]+);[^"]*" title="on">([^<]*)</mg);
 						if(!online_players) online_players = [];

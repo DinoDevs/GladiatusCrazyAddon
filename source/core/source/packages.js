@@ -694,7 +694,7 @@ var gca_packages = {
 			let page = this.pageLoadArray.shift();
 
 			// Get packets
-			jQuery.get(gca_getPage.link(page), (content) => {
+			gca_tools.ajax.get(gca_getPage.link(page)).then((content) => {
 				// Get page number
 				let response_page = content.match(/<span\s+class="paging_numbers_current">\s*(\d+)\s*<\/span>/im);
 				if(response_page) response_page = parseInt(response_page[1], 10);

@@ -350,6 +350,7 @@ var gca_training = {
 			jQuery.ajax({
 				type: "GET",
 				url: link,
+				crossDomain: true,
 				success: () => {
 					count -= 1;
 					this.doTrain(data, count);

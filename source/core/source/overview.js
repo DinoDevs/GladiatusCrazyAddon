@@ -545,6 +545,7 @@ var gca_overview = {
 						jQuery.ajax({
 							type: "POST",
 							url: 'ajax.php',
+							crossDomain: true,
 							data: {
 								"mod":"forge",
 								"submod":"getSmeltingPreview",
@@ -631,7 +632,7 @@ var gca_overview = {
 			}
 
 			// Load materials data
-			jQuery.get(gca_getPage.link({'mod':'forge','submod':'storage'}), (content) => {
+			gca_tools.ajax.get(gca_getPage.link({'mod':'forge','submod':'storage'})).then((content) => {
 				// Get materials info
 				var info = content.match(/<input id="resource-amount" type="number" title="[^"]+" min="[^"]+" max="[^"]+" value="[^"]+"\s+data-max="([^"]+)"\s*\/>/i);
 				if (!info || !info[1]) {
@@ -657,7 +658,7 @@ var gca_overview = {
 				this.showRepaireTooltip(data, id);
 			})
 			// If Request Failed
-			.fail(() => {
+			.catch(() => {
 				this.materialAmounts = false;
 				this.showRepaireTooltip(data, id);
 			});

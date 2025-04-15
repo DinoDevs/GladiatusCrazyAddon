@@ -104,7 +104,7 @@ var gca_pantheon_missions = {
 			// For each quest
 			for (var i = 0; i < info.length; i++) {
 				// Ajax - end mission
-				jQuery.get(gca_getPage.link({"mod":"missions","submod":"finishTask","missionId":info[i].id}).replace("index.php","ajax.php"), (function(data){
+				gca_tools.ajax.get(gca_getPage.link({"mod":"missions","submod":"finishTask","missionId":info[i].id}).replace("index.php","ajax.php")).then((function(data){
 					return function(){
 						// Show that mission ended
 						data.element.style.color = "#007700";

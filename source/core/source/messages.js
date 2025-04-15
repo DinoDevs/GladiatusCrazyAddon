@@ -765,7 +765,7 @@ var gca_messages = {
 			}
 
 			// Load battle info
-			jQuery.get(link.href, function(data){
+			gca_tools.ajax.get(link.href).then(function(data){
 				// Get Winner
 				var winner = data.match(/<div\s*id="reportHeader"\s*class="([^"]+)">([^<]+)<\/div>/i);
 				// Get Guilds

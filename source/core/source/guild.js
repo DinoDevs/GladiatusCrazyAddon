@@ -249,7 +249,7 @@ var gca_guild = {
 			data['zn' + player] = rank;
 
 			// Apply rank
-			jQuery.get(gca_getPage.link({"mod":"guild","submod":"saveMembersRank"}), data, (content) => {
+			gca_tools.ajax.get(gca_getPage.link({"mod":"guild","submod":"saveMembersRank"}), data).then((content) => {
 				// Get player
 				let player_name = content.match(new RegExp('<a href="index\\.php\\?mod=player&p=' + player + '&[^>]+>([^<]+)</a>'));
 				// If not found, you may declined the application
@@ -288,7 +288,7 @@ var gca_guild = {
 			this._getRanks_running = true;
 
 			// Init ranks
-			jQuery.get(gca_getPage.link({"mod":"guild","submod":"adminMembers"}), (content) => {
+			gca_tools.ajax.get(gca_getPage.link({"mod":"guild","submod":"adminMembers"})).then((content) => {
 				this.ranks = [];
 
 				// Get ranks

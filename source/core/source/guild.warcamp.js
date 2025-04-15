@@ -245,7 +245,7 @@ var gca_guild_warcamp = {
 				// Delay the AJAX request
 				setTimeout(() => {
 					// AJAX request
-					jQuery.get(combatReportUrl, function(response) {
+					gca_tools.ajax.get(combatReportUrl).then(function(response) {
 						const parser = new DOMParser();
 						const doc = parser.parseFromString(response, 'text/html');
 	
@@ -265,7 +265,7 @@ var gca_guild_warcamp = {
 							// If not found, show zero
 							rewardCell.html(`0 <img src="${gca_tools.img.cdn("img/res2.gif")}" alt="Gold" style="vertical-align: middle; height: 16px;">`);
 						}
-					}).fail(function() {
+					}).catch(function() {
 						// Show error if error
 						rewardCell.html(`<span style="color: red;">❌</span>`);
 					});

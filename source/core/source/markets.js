@@ -351,6 +351,7 @@ var gca_markets = {
 				jQuery.ajax({
 					type: "POST",
 					url: document.location.href,
+					crossDomain: true,
 					data: 'buyid=' + encodeURIComponent(buyid) + '&cancel=' + encodeURIComponent(btn.value),
 					success: function() {
 						let request_duration = new Date().getTime() - request_start;
@@ -661,6 +662,7 @@ var gca_markets = {
 				jQuery.ajax({
 					type: "POST",
 					url: document.location.href,
+					crossDomain: true,
 					data: `buyid=${encodeURIComponent(buyid)}&cancel=${encodeURIComponent(cancelBtn.value)}`,
 					success: function() {
 						let requestDuration = new Date().getTime() - requestStart;
