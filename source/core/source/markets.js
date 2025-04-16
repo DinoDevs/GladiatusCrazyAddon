@@ -348,30 +348,25 @@ var gca_markets = {
 
 				// Launch request
 				let request_start = new Date().getTime();
-				jQuery.ajax({
-					type: "POST",
-					url: document.location.href,
-					crossDomain: true,
-					data: 'buyid=' + encodeURIComponent(buyid) + '&cancel=' + encodeURIComponent(btn.value),
-					success: function() {
-						let request_duration = new Date().getTime() - request_start;
-						button.value = `Cancel (${index + 1}/${total})`;
+				gca_tools.ajax.post(document.location.href, 'buyid=' + encodeURIComponent(buyid) + '&cancel=' + encodeURIComponent(btn.value))
+				.then(function() {
+					let request_duration = new Date().getTime() - request_start;
+					button.value = `Cancel (${index + 1}/${total})`;
 
-						setTimeout(() => {
-							cancelNextButton(index + 1);
-						}, Math.max(request_duration, minDelayRequests));
-					},
-					error: function() {
-						let request_duration = new Date().getTime() - request_start;
-						// This item cancel failed, it will be skipped
-						gca_notifications.error(gca_locale.get("general", "error"));
-						// Double the min delay, just in case
-						minDelayRequests *= 2;
+					setTimeout(() => {
+						cancelNextButton(index + 1);
+					}, Math.max(request_duration, minDelayRequests));
+				})
+				.catch(function() {
+					let request_duration = new Date().getTime() - request_start;
+					// This item cancel failed, it will be skipped
+					gca_notifications.error(gca_locale.get("general", "error"));
+					// Double the min delay, just in case
+					minDelayRequests *= 2;
 
-						setTimeout(() => {
-							cancelNextButton(index + 1);
-						}, Math.max(request_duration * 2, minDelayRequests));
-					}
+					setTimeout(() => {
+						cancelNextButton(index + 1);
+					}, Math.max(request_duration * 2, minDelayRequests));
 				});
 			}
 
@@ -659,27 +654,22 @@ var gca_markets = {
 	
 				// AJAX request
 				let requestStart = new Date().getTime();
-				jQuery.ajax({
-					type: "POST",
-					url: document.location.href,
-					crossDomain: true,
-					data: `buyid=${encodeURIComponent(buyid)}&cancel=${encodeURIComponent(cancelBtn.value)}`,
-					success: function() {
-						let requestDuration = new Date().getTime() - requestStart;
-						cancelSelectedButton.value = `(${index + 1}/${checkboxes.length})`;
-	
-						setTimeout(() => {
-							cancelNext(index + 1);
-						}, Math.max(requestDuration, minDelayRequests));
-					},
-					error: function() {
-						let requestDuration = new Date().getTime() - requestStart;
-						gca_notifications.error(gca_locale.get("general", "error"));
-	
-						setTimeout(() => {
-							cancelNext(index + 1);
-						}, Math.max(requestDuration * 2, minDelayRequests));
-					}
+				gca_tools.ajax.post(document.location.href, `buyid=${encodeURIComponent(buyid)}&cancel=${encodeURIComponent(cancelBtn.value)}`)
+				.then(function() {
+					let requestDuration = new Date().getTime() - requestStart;
+					cancelSelectedButton.value = `(${index + 1}/${checkboxes.length})`;
+
+					setTimeout(() => {
+						cancelNext(index + 1);
+					}, Math.max(requestDuration, minDelayRequests));
+				})
+				.catch(function() {
+					let requestDuration = new Date().getTime() - requestStart;
+					gca_notifications.error(gca_locale.get("general", "error"));
+
+					setTimeout(() => {
+						cancelNext(index + 1);
+					}, Math.max(requestDuration * 2, minDelayRequests));
 				});
 			}
 	

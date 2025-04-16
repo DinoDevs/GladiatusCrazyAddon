@@ -1925,35 +1925,70 @@ var gca_tools = {
 	// ajax.cached.known_scrolls().then(result => {}, error => {});
 	// -------------------------------------------------- //
 	ajax : {
-		'get' : function(url, data) {
-			return new Promise(function(resolve, reject) {
-				url = (typeof url === 'string') ? url : gca_getPage.link(url);
-				let options = {
-					type: 'GET',
-					url: url,
-					//crossDomain: (/^https?:\/\//).test(url) ? false : true,
-					crossDomain: true,
-					success: function(result) {resolve(result);},
-					error: function(jqXHR, textStatus, errorThrown) {reject(new Error(errorThrown));},
+		'get' : function(url_data, send_data) {
+			return this.request('GET', url_data, send_data);
+		},
+		'post' : function(url_data, send_data) {
+			return this.request('POST', url_data, send_data);
+		},
+		'request' : function(method, url_data, send_data) {
+			// This implementation is a bit messy
+			return new Promise((resolve, reject) => {
+				let options	= {
+					method: method,
+					headers: {},
 				};
-				if (data) options.data = data;
-				return jQuery.ajax(options);
+				let url = (typeof url_data === 'string') ? url_data : gca_getPage.link(url_data);
+				let isSameOrigin = (!url.match(/^[a-zA-Z\-]+:\/\//)) ? true : url.startsWith(window.location.origin + '/') ? true : false;
+				if (!isSameOrigin) {
+					console.log('[EXPERIMENTAL] Can not make CORS requests at:', url);
+					throw new Error('Can not make CORS requests');
+				}
+				if (send_data) {
+					//if (send_data[0] == '{') {
+					//	// TODO: I am not sure if JSON requests are needed
+					//	options.headers['Content-Type'] = 'application/json';
+					//	// TODO: maybe add the CSRF token ?
+					//	console.error('JSON requests are not tested');
+					//}
+					//else {
+					//	options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+					//	if (method == 'POST') {
+					//		let csrf_token = document.head.querySelector("meta[name=csrf-token][content]").content;
+					//		options.body += '&csrf_token=' + encodeURIComponent(csrf_token);
+					//	}
+					//}
+
+					options.body = (typeof send_data == 'string') ? send_data : this.encodeWwwFormUrlencode(send_data);
+					options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+					if (method == 'POST') {
+						let csrf_token = document.head.querySelector("meta[name=csrf-token][content]").content;
+						options.body += '&csrf_token=' + encodeURIComponent(csrf_token);
+					}
+
+					if (isSameOrigin) {
+						options.credentials = 'include';
+						options.mode = 'cors';
+					}
+				}
+
+				fetch(url, options).then((response) => {
+					if (!response.ok) {
+						reject(new Error(`HTTP error! Status: ${response.status}`));
+						return;
+					}
+					return response.text();
+				})
+				.then((response) => {
+					resolve(response);
+				})
+				.catch((error) => {
+					reject(new Error(error.toString()));
+				});
 			});
 		},
-		'post' : function(url, data) {
-			return new Promise(function(resolve, reject) {
-				url = (typeof url === 'string') ? url : gca_getPage.link(url);
-				let options = {
-					type: 'POST',
-					url: url,
-					//crossDomain: (/^https?:\/\//).test(url) ? false : true,
-					crossDomain: true,
-					success: function(result) {resolve(result);},
-					error: function(jqXHR, textStatus, errorThrown) {reject(new Error(errorThrown));},
-				};
-				if (data) options.data = data;
-				return jQuery.ajax(options);
-			});
+		encodeWwwFormUrlencode : function(data) {
+			return Object.keys(data).map(key => (encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))).join('&');
 		},
 
 		cached : {

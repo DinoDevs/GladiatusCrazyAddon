@@ -1665,25 +1665,23 @@ var gca_global = {
 					document.getElementById('sstat_gold_val').appendChild(loading);
 
 					// Post to the server
-					jQuery.ajax({
-						type: "POST",
-						url: gca_getPage.link({"mod":"guildBankingHouse","submod":"donate"}),
-						crossDomain: true,
-						data: 'donation=' + gold + '&doDonation=Donate All',
-						success: function(html){
-							let gold_left = 0;
-							let match = html.match(/<div class="headervalue_small" id="sstat_gold_val">([^<]+)<\/div>/);
-							if (match) {
-								gold_left = parseInt(gca_tools.strings.removeDots(match[1]), 10);
-							}
-
-							document.getElementById('sstat_gold_val').textContent = gca_tools.strings.insertDots(gold_left);
-							gca_notifications.success(gca_locale.get("global", "donate_gold_success"));
-						},
-						error: function(){
-							document.getElementById('sstat_gold_val').textContent = gca_tools.strings.insertDots(gold);
-							gca_notifications.error(gca_locale.get("global", "donate_gold_failed"));
+					gca_tools.ajax.post(
+						gca_getPage.link({"mod":"guildBankingHouse","submod":"donate"}),
+						'donation=' + gold + '&doDonation=Donate All'
+					)
+					.then((html) => {
+						let gold_left = 0;
+						let match = html.match(/<div class="headervalue_small" id="sstat_gold_val">([^<]+)<\/div>/);
+						if (match) {
+							gold_left = parseInt(gca_tools.strings.removeDots(match[1]), 10);
 						}
+
+						document.getElementById('sstat_gold_val').textContent = gca_tools.strings.insertDots(gold_left);
+						gca_notifications.success(gca_locale.get("global", "donate_gold_success"));
+					})
+					.catch(() => {
+						document.getElementById('sstat_gold_val').textContent = gca_tools.strings.insertDots(gold);
+						gca_notifications.error(gca_locale.get("global", "donate_gold_failed"));
 					});
 				}
 
@@ -4970,22 +4968,15 @@ var gca_global = {
 				// Button name
 				postData["sendmails"] = "sendmails";
 
-				// Save instance
-				var self = this;
 				// Sent message
-				jQuery.ajax({
-					type: "POST",
-					url: gca_getPage.link({"mod":"guild","submod":"adminMail"}),
-					crossDomain: true,
-					data: postData,
-					success: function(){
-						self.sending = false;
-						if(callback) callback(true);
-					},
-					error: function(){
-						self.sending = false;
-						if(callback) callback(false);
-					}
+				gca_tools.ajax.post(gca_getPage.link({"mod":"guild","submod":"adminMail"}), postData)
+				.then(() =>{
+					this.sending = false;
+					if(callback) callback(true);
+				})
+				.catch((e) => {
+					this.sending = false;
+					if(callback) callback(false);
 				});
 				return true;
 			}

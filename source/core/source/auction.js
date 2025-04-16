@@ -436,61 +436,56 @@ var gca_auction = {
 		itemform.appendChild(spinner);
 		
 		// Post to the server
-		jQuery.ajax({
-			type: "POST",
-			url:  itemform.getAttribute('action'),
-			crossDomain: true,
-			data: data,
-			success: function(content){
-				// Remove spinner
-				itemform.removeChild(spinner);
+		gca_tools.ajax.post(itemform.getAttribute('action'), data)
+		.then(function(content){
+			// Remove spinner
+			itemform.removeChild(spinner);
 
-				// Get status
-				let status = 
-					content.match(/message fail">([^<]+)<\/div/i) ? 'failed' :
-					(content.match(/message success">([^<]+)<\/div/i) ? 'success' :
-					'unknown');
+			// Get status
+			let status = 
+				content.match(/message fail">([^<]+)<\/div/i) ? 'failed' :
+				(content.match(/message success">([^<]+)<\/div/i) ? 'success' :
+				'unknown');
 
-				// Update gold info
-				if (status != 'unknown') {
-					let time = gca_tools.time.ajaxServer(content);
-					let gold = document.getElementById("sstat_gold_val");
-					if (parseInt(gold.dataset.updateTime, 10) < time){
-						gold.textContent = content.match(/id="sstat_gold_val">([^<]+)<\/div>/i)[1];
-						gold.dataset.updateTime = time;
-					}
+			// Update gold info
+			if (status != 'unknown') {
+				let time = gca_tools.time.ajaxServer(content);
+				let gold = document.getElementById("sstat_gold_val");
+				if (parseInt(gold.dataset.updateTime, 10) < time){
+					gold.textContent = content.match(/id="sstat_gold_val">([^<]+)<\/div>/i)[1];
+					gold.dataset.updateTime = time;
 				}
+			}
 
-				// If Bid failed
-				if (status == 'failed') {
-					// Notification
-					gca_notifications.error(content.match(/message fail">([^<]+)<\/div/i)[1]);
-				}
+			// If Bid failed
+			if (status == 'failed') {
+				// Notification
+				gca_notifications.error(content.match(/message fail">([^<]+)<\/div/i)[1]);
+			}
 
-				// If Bid was success full
-				else if (status == 'success'){
-					let message = content.match(/message success">([^<]+)<\/div/i)[1];
-					// Notification
-					gca_notifications.success(message);
-					let divs = itemform.getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div");
-					divs[0].style.color = 'blue';
-					jQuery(divs[0]).height( jQuery(divs[0]).height()+jQuery(divs[1]).height()) ; // hardcode original height to avoid changing height
-					divs[0].textContent = message;
-					divs[1].style.display = 'none';
-					inputs[6].value = Math.floor(price * 1.05) + 1;
-					inputs[6].removeAttribute("style");
-					// Disable button
-					inputs[7].setAttribute('disabled', 'disabled');
-				}
+			// If Bid was success full
+			else if (status == 'success'){
+				let message = content.match(/message success">([^<]+)<\/div/i)[1];
+				// Notification
+				gca_notifications.success(message);
+				let divs = itemform.getElementsByClassName("auction_bid_div")[0].getElementsByTagName("div");
+				divs[0].style.color = 'blue';
+				jQuery(divs[0]).height( jQuery(divs[0]).height()+jQuery(divs[1]).height()) ; // hardcode original height to avoid changing height
+				divs[0].textContent = message;
+				divs[1].style.display = 'none';
+				inputs[6].value = Math.floor(price * 1.05) + 1;
+				inputs[6].removeAttribute("style");
+				// Disable button
+				inputs[7].setAttribute('disabled', 'disabled');
+			}
 
-				// Unknown error
-				else {
-					gca_notifications.error(gca_locale.get("general", "error"));
-				}
-			},
-			error: function(){
+			// Unknown error
+			else {
 				gca_notifications.error(gca_locale.get("general", "error"));
 			}
+		})
+		.catch(function(){
+			gca_notifications.error(gca_locale.get("general", "error"));
 		});
 	},
 	
