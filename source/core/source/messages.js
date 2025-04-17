@@ -138,7 +138,7 @@ var gca_messages = {
 			};
 
 			// Personal message
-			if(message.image.match("0b70a488ee312aef4a42ff53c88c62.gif")){ //messages.gif
+			if(message.image.match("messages.gif")){ //messages.gif
 				message.type = "personal";
 			}
 
