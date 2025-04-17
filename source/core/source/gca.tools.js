@@ -1963,7 +1963,15 @@ var gca_tools = {
 					options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 					if (method == 'POST') {
 						let csrf_token = document.head.querySelector("meta[name=csrf-token][content]").content;
-						options.body += '&csrf_token=' + encodeURIComponent(csrf_token);
+						// Ajax endpoint wants the CSRF on the headers
+						if (url === 'ajax.php' || url.startsWith('ajax.php?')) {
+							options.headers['x-csrf-token'] = csrf_token;
+							options.headers['x-requested-with'] = 'XMLHttpRequest';
+						}
+						// Other post endpoints want the CSRF at the body
+						else {
+							options.body += '&csrf_token=' + encodeURIComponent(csrf_token);
+						}
 					}
 
 					if (isSameOrigin) {
