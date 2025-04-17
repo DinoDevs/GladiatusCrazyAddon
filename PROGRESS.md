@@ -12,9 +12,9 @@
   - [ ] wip
 
 ### BUG FIXES
-- **Guild Storage**
+- **Global**
 
-  - [X] Fixed script not loading (affecting Google Chrome store version)
+  - [X] Fixed potion use life update
 
 
 ### TRANSLATIONS
