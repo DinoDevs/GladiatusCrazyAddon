@@ -135,26 +135,30 @@ var gca_guild_warcamp = {
 			let losses = 0;
 			let draws = 0;
 
-			// Expected image URLs
-			// If there are more CDN images, might need to add more later
-			const winUrl = 'https://gf2.geo.gfsrv.net/cdnad/af0b898e89474b752d8c34f4160ce7.gif';
-			const lossUrl = 'https://gf3.geo.gfsrv.net/cdnba/b9e3b2e39985976e738bf538f92e62.gif';
-			const drawUrl = 'https://gf1.geo.gfsrv.net/cdn92/6adc44009c0664f869acbe84125ff0.gif';
-
+			// Expected image URLs with regex
+			const resultRegex = /img\/guild\/combat\/(win|lose|draw)\.gif(?:\?[^"]*)?$/;
+			
 			// Find all tables
 			const sectionTables = document.querySelectorAll('table.section-like');
-
+			
 			sectionTables.forEach(table => {
-				const resultImages = table.querySelectorAll('img[src*="gf1.geo.gfsrv.net/cdn92"], img[src*="gf2.geo.gfsrv.net/cdnad"], img[src*="gf3.geo.gfsrv.net/cdnba"]');
-
+				const allImages = table.querySelectorAll('img[src*="combat/"]');
+			
+				const resultImages = Array.from(allImages).filter(img => {
+					const src = img.getAttribute('src');
+					return resultRegex.test(src);
+				});
+			
 				// Loop through each image and count results
 				resultImages.forEach(img => {
-					if (img.src === winUrl) {
-						wins++;
-					} else if (img.src === lossUrl) {
-						losses++;
-					} else if (img.src === drawUrl) {
-						draws++;
+					const src = img.getAttribute('src');
+					const match = src.match(resultRegex);
+			
+					if (match && match[1]) {
+						const result = match[1]; // 'win', 'lose', 'draw'
+						if (result === 'win') wins++;
+						else if (result === 'lose') losses++;
+						else if (result === 'draw') draws++;
 					} else {
 						gca_notifications.error(gca_locale.get('general', 'error'));
 					}
