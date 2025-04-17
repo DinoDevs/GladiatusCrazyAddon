@@ -2096,6 +2096,10 @@ var gca_tools = {
 	// -------------------------------------------------- //
 	img : {
 		resolve : function(url, lookup=false) {
+			// Detect non cdn link
+			if (url.match(/^(?:https?:|)\/\/[^.]+\.gladiatus\.gameforge\.com\/cdn\//)) {
+				return url.substring(url.indexOf('/cdn/') + 5).split('?v=')[0];
+			}
 			return window.gca_cdn ? window.gca_cdn.getSource(url, lookup) : null;
 		},
 
