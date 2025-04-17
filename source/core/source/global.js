@@ -725,13 +725,12 @@ var gca_global = {
 				using : false,
 				tryToUsePotion : function(){
 					// Atomicity check
-					if(this.using) return;
+					if (this.using) return;
 					this.usageSet(true);
 
 					// Get Potions Number
-					var self = this;
-					this.getPotionsNumber(function(potions, life){
-						self.usePotion(potions, life);
+					this.getPotionsNumber((potions, life) => {
+						this.usePotion(potions, life);
 					});
 				},
 				usageSet : function(lock){
@@ -739,9 +738,8 @@ var gca_global = {
 					this.using = lock;
 
 					// Display usage
-					var link = document.getElementById('header_life_pot');
-					if(link)
-						link.className = (lock)?"disabled":"";
+					let link = document.getElementById('header_life_pot');
+					if (link) link.className = lock ? 'disabled' : '';
 				},
 
 				usePotion : function(potions, life){
@@ -788,14 +786,14 @@ var gca_global = {
 					// Load premium inventory page
 					gca_tools.ajax.get(gca_getPage.link({"mod":"premium","submod":"inventory"})).then((content) => {
 						// Match potion number
-						var potions = content.match(/document\.location\.href='index\.php\?mod=premium&submod=inventoryActivate&feature=18&token=(\d+)&sh=/);
+						let potions = content.match(/document\.location\.href='index\.php\?mod=premium&submod=inventoryActivate&feature=18&token=(\d+)&sh=/);
 						potions = potions ? parseInt(potions[1], 10) : 0;
 
 						// Get life info
-						var life = this.parseLifeFromHtml(content);
+						let life = this.parseLifeFromHtml(content);
 
 						// Update HP
-						if (this.extended_hp_xp) this.extended_hp_xp.updateLife(life[1],life[2]);
+						if (this.extended_hp_xp) this.extended_hp_xp.updateLife(life[2], life[1]);
 
 						// Return result
 						callback(potions, life);
@@ -804,12 +802,12 @@ var gca_global = {
 
 				parseLifeFromHtml : function(html){
 					// Get life info
-					var life = html.match(/<div\s+id="header_values_hp_bar"\s+class="header_values_bar"\s+data-max-value="(\d+)"\s+data-value="(\d+)"\s+data-regen-per-hour="(\d+)"/m);
+					let life = html.match(/<div\s+id="header_values_hp_bar"\s+class="header_values_bar"\s+data-max-value="(\d+)"\s+data-value="(\d+)"\s+data-regen-per-hour="(\d+)"/m);
 
 					// If not found
-					if(!life) life = [0, 0, 0];
+					if (!life) life = [0, 0, 0];
 
-					var info = [parseInt(life[1], 10), parseInt(life[2], 10), parseInt(life[3], 10)];
+					let info = [parseInt(life[1], 10), parseInt(life[2], 10), parseInt(life[3], 10)];
 					// Push in frond true/false if life is full/notfull
 					info.unshift( info[0] == info[1] );
 
