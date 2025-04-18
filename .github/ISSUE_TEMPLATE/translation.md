@@ -1,6 +1,7 @@
 ---
 name: Translation
 about: Provide a new or updated translation
+labels: 🏳️ translation
 
 ---
 
