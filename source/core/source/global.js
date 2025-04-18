@@ -2347,7 +2347,7 @@ var gca_global = {
 				this.convertMenu.addTabs("guild", this.info.guild, this.info.guild_active, [
 					{text : '\u265C', href : gca_getPage.link({"mod":"guild"})},
 					{text : '\uD83D\uDD27', href : gca_getPage.link({"mod":"guild","submod":"admin"})},
-					{text : '\uD83C\uDFF0', href : gca_getPage.link({"mod":"guild","submod":"buildings"})},
+					{text : '\uD83C\uDFF0', href : gca_getPage.link({"mod":"guild"})},
 					{text : '\uD83D\uDCB2', href : gca_getPage.link({"mod":"guildBankingHouse"})},
 					{text : '\u27F0', href : gca_getPage.link({"mod":"guild_jail"})},
 					{text : '\u2719', href : gca_getPage.link({"mod":"guild_medic"})}
