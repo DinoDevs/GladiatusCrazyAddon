@@ -623,18 +623,27 @@ var gca_global = {
 				// Get time left for next point
 				let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
 				if (next_point) {
-					let now = new Date(gca_tools.time.server());
+					let now = new Date(gca_tools.time.server())
 					now.setSeconds(0);
+
+					// Calculate absolute offset difference betwee player's timezone and server timezone, in minutes
+					const minutes_offset = Math.floor(Math.abs(new Date() - now) / 1000 / 60)
+					const shift_direction = now < new Date() ? 1 : -1; // Is user timezone before or after server timezone, roughly
+
 					let next = new Date(now.getTime());
-					next.setHours(parseInt(next_point[1], 10));
-					next.setMinutes(parseInt(next_point[2], 10));
+
+					// Adjust `Next point` hour and minute by the calculated timezones offset
+					const hour_to_set = parseInt(next_point[1], 10) + (shift_direction * Math.floor((minutes_offset - (minutes_offset % 60)) / 60));
+					const minutes_to_set = parseInt(next_point[2], 10) + (shift_direction * minutes_offset % 60);
+
+					next.setHours(hour_to_set);
+					next.setMinutes(minutes_to_set);
 					next_point = (next - now) / (1000 * 60);
+
+					// If the difference is negative, assume the "Next point" is the next day.
 					if (next_point < 0) {
 						next.setDate(next.getDate() + 1);
 						next_point = (next - now) / (1000 * 60);
-					}
-					if(next_point > 90) {
-						next_point = Math.round((90 / server_speed) / recover_rate);
 					}
 				} else {
 					next_point = Math.round((90 / server_speed) / recover_rate);
