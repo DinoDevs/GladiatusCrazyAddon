@@ -633,7 +633,7 @@ var gca_global = {
 						next.setDate(next.getDate() + 1);
 						next_point = (next - now) / (1000 * 60);
 					}
-					if(next_point > 90 / server_speed) {
+					if(next_point > 90) {
 						next_point = Math.round((90 / server_speed) / recover_rate);
 					}
 				} else {
