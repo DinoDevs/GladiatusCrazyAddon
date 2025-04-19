@@ -110,38 +110,71 @@ var gca_tools = {
 	// -------------------------------------------------- //
 	time : {
 		// Server's Timestamp
-		_server : false,
+		_serverStart : false,
+		_clientStart : false,
 		_serverDateString : false,
 		_serverTimeString : false,
 		// Update Server Time
-		updateServerTime : function(){
+		_initServerTime : function(){
+			if (this._serverStart) return;
+			
 			// Parse server's time
-			var sDate = JSON.parse(document.getElementById("server-time").getAttribute("data-start-time"));
+			let time_element = document.getElementById('server-time');
+			if (!time_element) return false;
+			let sDate = JSON.parse(time_element.dataset.startTime);
 
 			// Save time
-			this._server = new Date(sDate[0], sDate[1] - 1, sDate[2], sDate[3], sDate[4], sDate[5], sDate[6]).getTime();
-			// Save date string - dd.mm.yyyy
-			this._serverDateString = sDate[2] + "." + sDate[1] + "." + sDate[0];
-			// Save time string - hh:mm
-			this._serverTimeString = sDate[3] + ":" + sDate[4];
+			this._clientStart = new Date().getTime();
+			this._serverStart = new Date(sDate[0], sDate[1] - 1, sDate[2], sDate[3], sDate[4], sDate[5], sDate[6]).getTime();
+
+			// Timezone difference
+			let diff_in_hours = Math.round((((this._serverStart / 1000) - (this._clientStart / 1000)) / (60*60)) * 10) / 10;
+			this._client_timezone_difference = (diff_in_hours * (60 * 60) * 1000) * (-1);
+			//console.log('[TIME] Deference', diff_in_hours);
+			//console.log('[TIME] Deference in ms', this._client_timezone_difference);
+			return true;
+		},
+		getTime : function() {
+			this._initServerTime();
+			return (this._serverStart + (new Date().getTime() - this._clientStart));
 		},
 		// Get server's time
 		server : function(){
-			if(!this._server)
-				this.updateServerTime();
-			return this._server;
+			let timestamp = this.getTime();
+			return timestamp;
 		},
-		// Get server's date string
+		// Get server's date string - dd.mm.yyyy
 		serverDateString : function(){
-			if(!this._server)
-				this.updateServerTime();
-			return this._serverDateString;
+			let date = new Date(this.getTime());
+			return (date.getDate().toString().padStart(2,'0') + '.' + (date.getMonth() + 1).toString().padStart(2,'0') + '.' + date.getFullYear());
 		},
-		// Get server's time string
+		// Get server's time string - hh:mm
 		serverTimeString : function(){
-			if(!this._server)
-				this.updateServerTime();
-			return this._serverTimeString;
+			let date = new Date(this.getTime());
+			return (date.getHours().toString().padStart(2,'0') + ':' + date.getMinutes().toString().padStart(2,'0'));
+		},
+		
+		// Convert from client to server time
+		// Provide Date object or timestamp
+		clientToServer : function(refDate) {
+			if (typeof refDate == 'number') {
+				let offset = this._clientStart - refDate;
+				return this._serverStart + offset;
+			}
+			else {
+				let offset = this._clientStart - refDate.getTime();
+				return new Date(this._serverStart + offset);
+			}
+		},
+		serverToClient : function(refDate) {
+			if (typeof refDate == 'number') {
+				let offset = this._serverStart - refDate;
+				return this._clientStart + offset;
+			}
+			else {
+				let offset = this._serverStart - refDate.getTime();
+				return new Date(this._clientStart + offset);
+			}
 		},
 
 		// Parse Time
@@ -2170,11 +2203,28 @@ var gca_tools = {
 	}
 })();
 
+// Onload Handler
+(function(){
+	let loaded = false;
+	let fireLoad = function() {
+		if (loaded) return;
+		loaded = true;
+		
+		// Items to init
+		gca_tools.time._initServerTime();
+	};
+	if (document.readyState == 'interactive' || document.readyState == 'complete') fireLoad();
+	else {
+		window.addEventListener('DOMContentLoaded', fireLoad, true);
+		window.addEventListener('load', fireLoad, true);
+	}
+})();
+
 // Load Stuff
 (() => {
 	// Try to load sound
 	if (window.gca_audio_loader) window.gca_audio_loader();
-	
+
 	// Remove script
 	document.currentScript.remove();
 })();
