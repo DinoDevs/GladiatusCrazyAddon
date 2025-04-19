@@ -630,8 +630,11 @@ var gca_global = {
 					next.setMinutes(parseInt(next_point[2], 10));
 					next_point = (next - now) / (1000 * 60);
 					if (next_point < 0) {
-							next.setDate(next.getDate() + 1);
-						 next_point = (next - now) / (1000 * 60);
+						next.setDate(next.getDate() + 1);
+						next_point = (next - now) / (1000 * 60);
+					}
+					if(next_point > 90 / server_speed) {
+						next_point = Math.round((90 / server_speed) / recover_rate);
 					}
 				} else {
 					next_point = Math.round((90 / server_speed) / recover_rate);
