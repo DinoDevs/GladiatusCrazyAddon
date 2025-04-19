@@ -138,6 +138,10 @@ var gca_tools = {
 			this._initServerTime();
 			return (this._serverStart + (new Date().getTime() - this._clientStart));
 		},
+		getClientTimezoneDifference : function() {
+			this._initServerTime();
+			return this._client_timezone_difference;
+		},
 		// Get server's time
 		server : function(){
 			let timestamp = this.getTime();
