@@ -9,6 +9,7 @@
 ### IMPROVEMENTS
 
 - **Forge**
+  
   - [X] Enabled item shadows at the Workbench (#531).
 
 ### BUG FIXES
