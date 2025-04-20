@@ -6424,9 +6424,17 @@ var gca_global = {
 	gca_global.preinject();
 	if (document.readyState == 'interactive' || document.readyState == 'complete') {
 		fireLoad();
-	} else {
+	}
+	else {
 		window.addEventListener('DOMContentLoaded', fireLoad, true);
 		window.addEventListener('load', fireLoad, true);
+		document.addEventListener('readystatechange', () => {
+			// This is an experimental fix for Firefox that some times in some weak devices does not run the code
+			// If this works, we will have to patch the rest of the scripts
+			if (document.readyState == 'interactive' || document.readyState == 'complete') {
+				fireLoad();
+			}
+		});
 	}
 })();
 
