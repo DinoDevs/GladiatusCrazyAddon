@@ -329,8 +329,6 @@ var gca_global = {
 				if (gca_getPage.parameter('sh', banner.href)) return;
 				if (!banner.href.startsWith(gca_section.protocol + "//" + gca_section.domain + "/game/")) return;
 				banner.href += '&sh=' + encodeURIComponent(gca_section.sh);
-				console.log('event url was patched');
-				// TODO: clean up this after testing
 			} catch(e) {
 				console.log('error while patching event url', e);
 			}
