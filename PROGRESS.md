@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-1-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-12-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-13-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -46,7 +46,11 @@
 
  - **Pantheon**
 
-  - [X] Fixed the Chest of Divine Fate not opening (#519)
+   - [X] Fixed the Chest of Divine Fate not opening (#519)
+
+ - **Forge**
+
+    - [X] Fixed the Resources list at Forge & Workbench (#519)
 
 
 ### TRANSLATIONS
