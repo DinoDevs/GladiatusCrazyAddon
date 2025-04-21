@@ -1,66 +1,20 @@
-## Release v4.3.11
+## Release v4.3.12
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-1-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-16-red.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-0-green.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-0-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 
-- **Forge**
+- **General**
   
-  - [X] Enabled item shadows at the Workbench (#531).
+  - [ ] WIP
 
 ### BUG FIXES
 - **Global**
 
-  - [X] Fixed potion use life update
-  - [X] Fixed menu shortcut to guild throwing an error (#526)
-  - [X] Fixed expedition/dungeon points showing wrong recovery time (#522)
- 
-- **Quests**
-
-  - [X] Fixed quests not being reordered (#519)
- 
-- **Market**
-
-  - [X] Fixed Cancel All & Cancel Selected items throwing an error (#519)
- 
-- **Auction**
-
-  - [X] Fixed bidding on items throwing an Error (#519)
-  - [X] Fixed auction status bars not loading (#519)
- 
-- **Guild**
-
-  - [X] Fixed guild battles counter not counting (#519)
-  - [X] Fixed not being able to apply rank directly in application (#523)
-  - [X] Fixed cases where items were not recognized in the Guild Storage (#532)
- 
- - **Arena**
-
-    - [X] Fixed Global Arena throwing Errors (#520)
- 
-- **Messages**
-
-  - [X] Fixed private messages not having an improved layout (#524)
- 
-- **Packages**
-
-  - [X] Fixed packages not loading (#519)
-
- - **Pantheon**
-
-   - [X] Fixed the Chest of Divine Fate not opening (#519)
-
- - **Forge**
-
-    - [X] Fixed the Resources list at Forge & Workbench (#519)
-  
- - **Settings**
-
-    - [X] Fixed settings not exporting to notes (#521)
-
+  - [ ] WIP
 
 ### TRANSLATIONS
 
