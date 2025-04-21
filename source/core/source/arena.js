@@ -637,7 +637,8 @@ var gca_arena = {
 			fetch(this.getLink({
 				'player_id_A' : gca_section.playerId, 'server_A' : gca_section.server, 'country_A' : gca_section.country,
 				'player_id_B' : player_id, 'server_B' : server, 'country_B' : country
-			})).then(response => {
+			}))
+			.then(response => {
 				if(!response.ok) {
 					this.attack_lock = false;
 					gca_notifications.error(
@@ -708,8 +709,8 @@ var gca_arena = {
 					);
 					return;
 				})
-
-			}).catch(error => {
+			})
+			.catch(error => {
 				this.attack_lock = false;
 				gca_notifications.error(
 					gca_locale.get("arena", "global_arena_title") + '\n' +
