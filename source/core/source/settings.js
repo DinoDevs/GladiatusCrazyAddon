@@ -6,7 +6,7 @@
 var gca_settings = {
 	preinject : function(){
 		// If gca settings
-		(gca_section.gcamod == "settings" && 
+		(gca_section.gcamod == "settings" &&
 			this.options.preinject.hideContent());
 	},
 
@@ -158,7 +158,7 @@ var gca_settings = {
 			p.appendChild(a);
 			p.appendChild(document.createTextNode("."));
 			body.appendChild(p);
-			
+
 			// Documentation
 			p = document.createElement("div");
 			p.style.paddingBottom = "10px";
@@ -299,27 +299,27 @@ var gca_settings = {
 			wrapper.appendChild(document.createTextNode('Gladiatus Crazy Addon : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-page'), gca_links.get('addon-page'), {target: '_blank'}));
 			group.appendChild(wrapper);
-			
+
 			wrapper = document.createElement('div');
 			wrapper.appendChild(document.createTextNode('Gladiatus Forum : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-forum-thread'), gca_links.get('addon-forum-thread'), {target: '_blank'}));
 			group.appendChild(wrapper);
-			
+
 			wrapper = document.createElement('div');
 			wrapper.appendChild(document.createTextNode('Facebook : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-facebook'), gca_links.get('addon-facebook'), {target: '_blank'}));
 			group.appendChild(wrapper);
-			
+
 			wrapper = document.createElement('div');
 			wrapper.appendChild(document.createTextNode('GitHub : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-github'), gca_links.get('addon-github'), {target: '_blank'}));
 			group.appendChild(wrapper);
-			
+
 			wrapper = document.createElement('div');
 			wrapper.appendChild(document.createTextNode('Install on Firefox : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-mozilla'), gca_links.get('addon-mozilla'), {target: '_blank'}));
 			group.appendChild(wrapper);
-			
+
 			wrapper = document.createElement('div');
 			wrapper.appendChild(document.createTextNode('Install on Chrome : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-chrome'), gca_links.get('addon-chrome'), {target: '_blank'}));
@@ -331,7 +331,7 @@ var gca_settings = {
 			title = document.createElement('h3');
 			title.textContent = 'Other links';
 			box.appendChild(title);
-			
+
 			group = document.createElement('div');
 			group.className = 'group';
 
@@ -358,14 +358,14 @@ var gca_settings = {
 			wrapper.appendChild(document.createTextNode(' by '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('williaf@reddit'), 'Williaf', {target: '_blank'}));
 			group.appendChild(wrapper);
-			
+
 			/*
 			wrapper = document.createElement('div');
 			wrapper.appendChild(document.createTextNode('Discord Server of Gladiatus Reddit : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('reddit-discord'), gca_links.get('reddit-discord'), {target: '_blank'}));
 			group.appendChild(wrapper);
 			*/
-			
+
 			wrapper = document.createElement('div');
 			wrapper.appendChild(document.createTextNode('Official Gladiatus Discord Server : '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('official-discord'), gca_links.get('official-discord'), {target: '_blank'}));
@@ -432,7 +432,7 @@ var gca_settings = {
 								}
 								data.select.appendChild(option);
 							}
-							
+
 							// If language is not selected
 							if (data.select.value == '_active'){
 								data.select.value = 'en';
@@ -480,7 +480,7 @@ var gca_settings = {
 								info = Math.round(translated_items * 100 / data.translated_items);
 								data.info_completed.textContent = gca_locale.get("settings", "translated_percent", {number: info});
 								data.info_completed.style.fontWeight = "bold";
-								
+
 								if( translated_items < data.translated_items ){
 									data.show.style.display = "block";
 									//data.select.value
@@ -509,7 +509,7 @@ var gca_settings = {
 							data.info_completed.className = "translate-percent";
 							data.info_translators = document.createElement("div");
 							data.info_translators.className = "translated-by";
-							
+
 							// Create missing translation button
 							data.show = document.createElement("input");
 							data.show.setAttribute("type", "button");
@@ -519,7 +519,7 @@ var gca_settings = {
 							data.show.addEventListener("click", () => {
 								gca_settings.translation_help.show();
 							}, false);
-							
+
 							data.refreshInfo();
 							// Add change event
 							data.select.addEventListener("change", data.refreshInfo, false);
@@ -532,7 +532,7 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
-				
+
 				// Browser notifications
 				"browser_notifications" : true,
 
@@ -540,7 +540,7 @@ var gca_settings = {
 				"extended_hp_xp_info" : true,
 				"extended_hp_xp_info_potion" : true,
 				"hp_timer_for_full_life" : true,
-				
+
 				// Minimum health warning
 				"health_warning" : {
 					"type" : "range",
@@ -550,7 +550,7 @@ var gca_settings = {
 					"scale" : 1,
 					"db" : "options",
 				},
-				
+
 				// Expedition/Dungeon Points Recover Timer
 				"expedition_dungeon_points_recover_timer" : true,
 
@@ -605,7 +605,7 @@ var gca_settings = {
 					}
 					return scheme;
 				})(),
-			
+
 				// Auction Status
 				"auction_status_bar" : false,
 				"auction_status_notification" : false,
@@ -617,8 +617,8 @@ var gca_settings = {
 				"remember_tabs" : true,
 
 				// Attacked Timer
-				"attacked_timers" : true,				
-				
+				"attacked_timers" : true,
+
 				// Notifications
 				"notify_new_guild_application" : false,
 				// Check other data in guild
@@ -629,7 +629,7 @@ var gca_settings = {
 				"notify_guild_attack_ready" : false,
 				// Notifications Interval in minutes
 				"notify_guild_attack_ready_interval" : 15,
-			
+
 				// Enable x-scroll
 				"x_scroll" : true,
 
@@ -643,14 +643,14 @@ var gca_settings = {
 
 				// Enable pagination layout
 				"pagination_layout" : true,
-				
+
 				// Gold/Exp data
 				"gold_exp_data" : true,
-				
+
 				// Underworld
 				// Pray Shortcut
-				"pray_shorcut" : true,				
-				
+				"pray_shorcut" : true,
+
 				// Show item durability
 				"show_durability" : (function(){
 					var scheme = {
@@ -677,7 +677,7 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
-				
+
 				// Minimum durability alert
 				"min_durability" : {
 					"type" : "range",
@@ -686,8 +686,8 @@ var gca_settings = {
 					"max" : 200,
 					"scale" : 1,
 					"db" : "options",
-				},								
-				
+				},
+
 				// Show item forge info
 				"show_forge_info" : (function(){
 					var scheme = {
@@ -720,49 +720,49 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
-				
+
 				// Show mercenaries real name
 				"show_mercenaries_real_name_and_combat_stats" : false,
 
 				// Show upgrades value on items
 				"show_upgrade_values" : false,
-				
+
 				// Attacked Timer
 				"global_arena_timer" : true,
-				
+
 				// Gladiatus site fixes
 				"gladiatus_site_fixes" : true,
-				
+
 				// Custom page scrollbar
 				"gca_custom_scrollbar" : true,
-				
+
 				// Lock sections visibility
 				"lock_section_visibility" : false,
 
 				// Hide language flags
 				"hide_language_flags" : false,
-				
+
 				// Hide expedition button
 				"bar_hide_exp_btn" : false,
-				
+
 				// Hide dungeon button
 				"bar_hide_dun_btn" : false,
-				
+
 				// Hide arena button
 				"bar_hide_are_btn" : false,
 
 				// Hide circus button
 				"bar_hide_ct_btn" : false,
-				
+
 				// Hide attack notifications for Arena
 				"clear_arena_notifications" : false,
-				
+
 				// Hide attack notifications for Circus
 				"clear_ct_notifications" : false,
-				
+
 				// Surprise Me?
 				"surprise_me" : false,
-				
+
 				// Show gods cooldowns
 				"gods_cooldown" : false
 			},
@@ -798,14 +798,14 @@ var gca_settings = {
 				// Items repair overview
 				"items_repair_overview" : true
 			},
-			
+
 			// Menu Options
-			"main_menu" : {		
+			"main_menu" : {
 				// Advance main menu
 				"advance_main_menu" : true,
-				"submenu_click_to_change" : false,			
+				"submenu_click_to_change" : false,
 				// Merge menu merchants
-				"menu_merge_merchants" : false,				
+				"menu_merge_merchants" : false,
 				// Merge menu merchants
 				"menu_merge_items" : false,
 				// Quest Timer
@@ -914,7 +914,7 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
-				
+
 				// Open packets with double click
 				"double_click_open" : true,
 				// Advance packet filter
@@ -984,7 +984,7 @@ var gca_settings = {
 				// Hide floating prices when selling/buying
 				"hide_prices" : false
 			},
-			
+
 			// Forge
 			"forge" : {
 				// Packages & market shortcuts for each material need (forge/repair)
@@ -1004,7 +1004,7 @@ var gca_settings = {
 				// Add last item button
 				"add_last_item" : true
 			},
-			
+
 			// Arena
 			"arena" : {
 				// Ignore attack confirmations
@@ -1020,13 +1020,13 @@ var gca_settings = {
 				// Overhaul Arena and Circus tables
 				"overhaul_tables" : false
 			},
-			
+
 			// Magus
 			"magus" : {
 				// Fade items that you can not improve
 				"fade_unimprovable_items" : true
 			},
-			
+
 			// Market
 			"market" : {
 				// Soul-bound Buy-Confirmation
@@ -1129,7 +1129,7 @@ var gca_settings = {
 				// Add checkboxes
 				"item_checkboxes" : true
 			},
-			
+
 			// Expedition Options
 			"expedition" : {
 				// Show that each enemy drops
@@ -1245,7 +1245,7 @@ var gca_settings = {
 					"scale" : 0.01,
 					"db" : "section",
 				},
-				
+
 			},
 
 			"data" : {
@@ -1356,7 +1356,7 @@ var gca_settings = {
 					};
 					return scheme;
 				})(),
-				
+
 				// Import
 				"import_settings_from_notes" : (function(){
 					var scheme = {
@@ -1673,7 +1673,7 @@ var gca_settings = {
 								);
 						}
 					}
-					
+
 				}
 			}
 
@@ -1710,7 +1710,7 @@ var gca_settings = {
 			document.getElementById("content").style.display = "none";
 			// Show page's 2nd content
 			document.getElementById("content_2nd").style.display = "block";
-			
+
 			// Catch history events
 			window.addEventListener("popstate", (event) => {
 				// Previous tab
@@ -1740,7 +1740,7 @@ var gca_settings = {
 			content_2nd.id = "content_2nd";
 			content_2nd.style.display = "none";
 			content.parentNode.insertBefore(content_2nd, content.nextSibling);
-			
+
 			// Logo
 			var logo = document.createElement("div");
 			logo.id = "settings_logo";
@@ -2107,7 +2107,7 @@ var gca_settings = {
 					select.appendChild(typeItem);
 					var label = document.createElement('label');
 					label.setAttribute('for', id + "__" + scheme.types[i]);
-					
+
 					if (scheme.values_locale && scheme.values_locale[i]) {
 						label.appendChild(scheme.values_locale[i]);
 					}
@@ -2157,7 +2157,7 @@ var gca_settings = {
 				item.data = {};
 
 				var input_value = scheme.value / scheme.scale;
-				
+
 				// Type Wrapper
 				var typeWrapper = document.createElement('div');
 				typeWrapper.className = "type-wrapper type-range";
@@ -2264,7 +2264,7 @@ var gca_settings = {
 						label : label,
 						db : db
 					},
-					value : 
+					value :
 						(db == "options") ? gca_options.bool(category, label) :
 						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
 						null
@@ -2279,7 +2279,7 @@ var gca_settings = {
 						label : label,
 						db : db
 					},
-					value : 
+					value :
 						(db == "options") ? gca_options.get(category, label) :
 						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
 						null
@@ -2294,7 +2294,7 @@ var gca_settings = {
 						label : label,
 						db : db
 					},
-					value : 
+					value :
 						(db == "options") ? gca_options.get(category, label) :
 						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
 						null
@@ -2303,7 +2303,7 @@ var gca_settings = {
 			enumerator : function(locale, types, values_locale, values_dom, category, label, db){
 				var defValues = types.split('|');
 				var values = [];
-				var saved = 
+				var saved =
 					(db == "options") ? gca_options.get(category, label).split('|') :
 					(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)).split('|') :
 					[];
@@ -2337,7 +2337,7 @@ var gca_settings = {
 						label : label,
 						db : db
 					},
-					value : 
+					value :
 						(db == "options") ? gca_options.get(category, label) :
 						(db == "section") ? gca_data.section.get(category, label, gca_options.get(category, label)) :
 						null
@@ -2540,7 +2540,10 @@ var gca_settings = {
 						if (notes.length > 16000) return reject('NS');
 
 						// Make request to change notes
-						return gca_tools.ajax.post({'mod':'memo', 'submod':'save'}, {memo : notes})
+						return gca_tools.ajax.post(
+							{'mod':'memo', 'submod':'save'},
+							{memo : notes}
+						)
 						.then(() =>  resolve())
 						.catch(() => reject('FSS'))
 					},
@@ -2603,7 +2606,7 @@ var gca_settings = {
 			//		return "Import aborted";
 			//	}
 			//}
-			
+
 			// Parse settings
 			if (settings_json) {
 				// If no valid structure
@@ -2624,7 +2627,7 @@ var gca_settings = {
 							// For each item in category
 							for (let item in gca_options.data[category]) {
 								if (gca_options.data[category].hasOwnProperty(item)) {
-									
+
 									// If item exist in imported data
 									if (settings_json.data[category].hasOwnProperty(item)) {
 										// Save data
@@ -2635,7 +2638,7 @@ var gca_settings = {
 							}
 
 						}
-						
+
 					}
 				}
 
@@ -2655,7 +2658,7 @@ var gca_settings = {
 					}
 				}
 			}
-			
+
 			// Parse arena
 			if (arena_json) {
 				// Save arena list
@@ -2671,7 +2674,7 @@ var gca_settings = {
 					gca_data.section.set('notes', 'forge_notes', notes_json['forge_notes']);
 				}
 			}
-			
+
 			// No errors
 			return false;
 		},
@@ -2715,7 +2718,7 @@ var gca_settings = {
 						// if Not found settings
 						if (!settings) return reject('NFS');
 						settings = settings[1];
-						
+
 						// Decode settings
 						try {
 							settings = atob(settings);
@@ -2825,7 +2828,7 @@ var gca_settings = {
 				() => {modal.destroy();},
 				() => {modal.destroy();}
 			);
-			
+
 			modal.button(gca_locale.get('general', 'ok'), true);
 			modal.window.style.marginTop = '-225px';
 			modal.body_wrapper.style.height = '200px';
@@ -2901,7 +2904,7 @@ var gca_settings = {
 		}
 
 	},
-	
+
 	translation_help : {
 		show : function() {
 			this.wrapper = document.createElement('div');
@@ -2913,7 +2916,7 @@ var gca_settings = {
 				() => {modal.destroy();},
 				() => {modal.destroy();}
 			);
-			
+
 			modal.button(gca_locale.get('general', 'ok'), true);
 			modal.window.style.marginTop = '-225px';
 			modal.body_wrapper.style.height = '200px';
@@ -2931,7 +2934,7 @@ var gca_settings = {
 			// loop through the array of object keys
 			for (let i = 0; i < main_keys.length; i++) {
 				let keys = Object.keys(gca_languages['en'].locale[main_keys[i]]);
-				
+
 				if ( !gca_languages[l].locale[main_keys[i]] )
 					missing_translations += "\n"+main_keys[i]+" : {\n\t/* ALL TRANSLATIONS IN THIS SECTION ARE MISSING, copy them from en.js */\n} ";
 				else{
@@ -2945,7 +2948,7 @@ var gca_settings = {
 						missing_translations += "\n"+main_keys[i]+" : {"+translations.slice(0, -1)+"\n}";
 				}
 			}
-			
+
 			this.wrapper.textContent = '';
 			this.wrapper.style.textAlign = 'left';
 			this.wrapper.style.height = '186px';
