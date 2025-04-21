@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-1-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-14-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-15-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 [![images](https://img.shields.io/badge/🖼️-Preview-blueviolet.svg?style=flat-square)](/documentation/PROGRESS_W_IMG.md)
 
@@ -53,6 +53,10 @@
  - **Forge**
 
     - [X] Fixed the Resources list at Forge & Workbench (#519)
+  
+ - **Settings**
+
+    - [X] Fixed settings not exporting to notes (#521)
 
 
 ### TRANSLATIONS
