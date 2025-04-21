@@ -264,24 +264,25 @@ var gca_arena = {
 
 			this.level = document.getElementById('header_values_level').textContent;
 
-			jQuery.ajax({
-				type: "GET",
-				url: this.getLink({'player_id' : gca_section.playerId, 'server' : gca_section.server, 'country' : gca_section.country, 'level' : this.level}),
-				crossDomain: true,
-				success: (content) => {
+			fetch(this.getLink({
+				'player_id' : gca_section.playerId,
+				'server' : gca_section.server,
+				'country' : gca_section.country,
+				'level' : this.level
+			}))
+			.then(response => {
+				if(!response.ok) {
+					gca_notifications.error(
+						gca_locale.get("arena", "global_arena_title") + '\n' +
+						gca_locale.get("arena", "error_response")
+					);
+					return;
+				}
+
+				response.json().then(json => {
 					this.table.style.height = 'auto';
 					this.table.style.opacity = '1';
 					this.spinner.style.display = 'none';
-					var json = false;
-					try {
-						json = JSON.parse(content);
-					} catch (e) {
-						gca_notifications.error(
-							gca_locale.get("arena", "global_arena_title") + '\n' +
-							gca_locale.get("arena", "error_sth_went_wrong")
-						);
-						return;
-					}
 
 					if (json.error) {
 						gca_notifications.error(
@@ -290,25 +291,17 @@ var gca_arena = {
 						);
 						return;
 					}
-					
+
 					this.createList(json);
-				},
-				error: (jqXHR) => {
-					this.spinner.style.display = 'none';
-					if (jqXHR.status == 0) {
-						gca_notifications.error(
-							gca_locale.get("arena", "global_arena_title") + '\n' +
-							gca_locale.get("arena", "error_blocked_access", {url : gca.homepage})
-						);
-					}
-					else {
-						gca_notifications.error(
-							gca_locale.get("arena", "global_arena_title") + '\n' +
-							gca_locale.get("arena", "error_connection")
-						);
-					}
-				}
-			});
+				})
+			})
+			.catch((err) => {
+				this.spinner.style.display = 'none';
+				gca_notifications.error(
+					gca_locale.get("arena", "global_arena_title") + '\n' +
+					gca_locale.get("arena", "error_connection")
+				);
+			})
 		},
 
 		// Show cooldown
