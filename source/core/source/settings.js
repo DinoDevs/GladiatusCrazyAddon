@@ -2540,7 +2540,10 @@ var gca_settings = {
 						if (notes.length > 16000) return reject('NS');
 
 						// Make request to change notes
-						return gca_tools.ajax.post({'mod':'memo', 'submod':'save'}, {memo : notes})
+						return gca_tools.ajax.post(
+							{'mod':'memo', 'submod':'save'},
+							{memo : notes}
+						)
 						.then(() =>  resolve())
 						.catch(() => reject('FSS'))
 					},
