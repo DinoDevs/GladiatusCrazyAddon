@@ -121,7 +121,6 @@ gca_languages['es'] = {
 			target_list_remove : "Eliminar de la lista de objetivos",
 			error_sth_went_wrong : "Algo salió mal",
 			error_response : "El servidor respondió con un error",
-			error_blocked_access : "Algo bloqueó el acceso al servidor de GCA ({{url}})",
 			error_connection : "Error de conexión",
 			attack_player : "Clic para atacar a “{{name}}”",
 			fight_won : "¡Has ganado la batalla!",

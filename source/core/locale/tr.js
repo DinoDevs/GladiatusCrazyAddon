@@ -205,7 +205,6 @@ gca_languages["tr"] = {
 			target_list_remove : "Hedef listesinden çıkar",
 			error_sth_went_wrong : "Bir şeyler yanlış gitti",
 			error_response : "Sunucu bir hata ile karşılaştı",
-			error_blocked_access : "Bir şeyler GCA sunucusuna bağlanmanızı engelliyor ({{url}})",
 			error_connection : "Bağlantı hatası",
 			attack_player : "Saldırmak için tıkla “{{name}}”",
 			fight_won : "Savaşı kazandın!",
