@@ -3669,7 +3669,7 @@ var gca_global = {
 					if(!document.getElementById("shop")) return;
 
 					// Get items
-					var items = document.getElementById('shop').querySelectorAll('.ui-draggable, .ui-droppable');
+					var items = document.querySelectorAll('#shop .ui-draggable, #shop .ui-droppable[class*="item-i-"]');
 					
 					// For each
 					for (var i = items.length - 1; i >= 0; i--) {
