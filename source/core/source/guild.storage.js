@@ -130,7 +130,7 @@ var gca_guild_storage = {
 
 		refresh : function(item = {dataset:{amount:0,itemId:0,priceGold:0,tooltip:''}}) {
 			// Get items
-			var items = document.getElementById('shop').querySelectorAll('.ui-draggable, .ui-droppable');
+			var items = document.querySelectorAll('#shop .ui-draggable, #shop .ui-droppable[class*="item-i-"]');
 			// Count gold
 			let rubies = 0;
 			let gold = 0;
