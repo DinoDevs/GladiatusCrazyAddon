@@ -2540,19 +2540,12 @@ var gca_settings = {
 						if (notes.length > 16000) return reject('NS');
 
 						// Make request to change notes
-						jQuery.ajax({
-							type: "POST",
-							url: gca_getPage.link({'mod':'memo', 'submod':'save'}),
-							crossDomain: true,
-							data: {memo : notes},
-							success: function(){
-								return resolve();
-							},
-							error: function(){
-								// Failed to Save Settings
-								return reject('FSS');
-							}
-						});
+						return gca_tools.ajax.post(
+							{'mod':'memo', 'submod':'save'},
+							{memo : notes}
+						)
+						.then(() =>  resolve())
+						.catch(() => reject('FSS'))
 					},
 					error: function(){
 						// Request Failed
