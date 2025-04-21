@@ -105,7 +105,6 @@ gca_languages['lt'] = {
 			target_list_remove : "Pašalinti iš taikinių",
 			error_sth_went_wrong : "Kažkas atsitiko ne taip",
 			error_response : "Serverio klaida",
-			error_blocked_access : "Kažkas blokuoja prieigą prie GCA serverio ({{url}})",
 			error_connection : "Prisijungimo klaida",
 			attack_player : "Spustelk kad pultai “{{name}}”",
 			fight_won : "Tu laimėjai kovą!",

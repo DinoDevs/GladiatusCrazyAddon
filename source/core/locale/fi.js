@@ -199,7 +199,6 @@ gca_languages["fi"] = {
 			target_list_remove : "Poista haastolistalta",
 			error_sth_went_wrong : "Jotain meni pieleen",
 			error_response : "Palvelin sanoo: ERROR",
-			error_blocked_access : "Jokin estää yhteyden GCA palvelimelle ({{url}})",
 			error_connection : "Yhteysvirhe",
 			attack_player : "Klikkaa hyökätäksesi “{{name}}”",
 			fight_won : "Voitit taistelun!",

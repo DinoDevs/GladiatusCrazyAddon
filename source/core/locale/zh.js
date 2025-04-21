@@ -178,7 +178,6 @@ gca_languages['zh'] = {
 			target_list_remove : "從目標列表移除",
 			error_sth_went_wrong : "某種錯誤發生(bug)",
 			error_response : "服務器返回錯誤",
-			error_blocked_access : "有東西阻擋了到全球競技場服務器的連接 ({{url}})",
 			error_connection : "連接錯誤",
 			attack_player : "點擊以攻擊 “{{name}}”",
 			fight_won : "您贏得了戰鬥!",

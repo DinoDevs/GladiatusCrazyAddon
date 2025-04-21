@@ -203,7 +203,6 @@ gca_languages['hu'] = {
 			target_list_remove : "Eltávolítás a listáról",
 			error_sth_went_wrong : "Valami nem működik",
 			error_response : "A szerver hibával válaszolt",
-			error_blocked_access : "Valami blokkolja a GCA szervert ({{url}})",
 			error_connection : "Csatlakozási hiba",
 			attack_player : "Kattints “{{name}}” megtámadásához",
 			fight_won : "Megnyerted a harcot!",

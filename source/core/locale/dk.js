@@ -205,7 +205,6 @@ gca_languages["dk"] = {
 			target_list_remove: "Fjern fra angrebsliste",
 			error_sth_went_wrong: "Noget gik galt",
 			error_response: "Serveren svarede med en fejl",
-			error_blocked_access: "Noget blokerer adgangen til GCA-serveren ({{url}})",
 			error_connection: "Forbindelsesfejl",
 			attack_player: "Klik for at angribe “{{name}}”",
 			fight_won: "Du vandt kampen!",

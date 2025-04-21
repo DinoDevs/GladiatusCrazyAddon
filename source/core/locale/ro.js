@@ -177,7 +177,6 @@ gca_languages["ro"] = {
 			target_list_remove : "Șterge din listă",
 			error_sth_went_wrong : "Ceva nu a funcționat corect",
 			error_response : "Server-ul a răspuns cu o eroare",
-			error_blocked_access : "Ceva blochează accesul la server-ul GCA ({{url}})",
 			error_connection : "Eroare de conexiune",
 			attack_player : "Click pentru atac la “{{name}}”",
 			fight_won : "Ai câștigat lupta!",

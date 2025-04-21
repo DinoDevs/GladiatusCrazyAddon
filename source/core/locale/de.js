@@ -194,7 +194,6 @@ gca_languages['de'] = {
 			target_list_remove : "Angriffsziel löschen",
 			error_sth_went_wrong : "Etwas ist schief gelaufen",
 			error_response : "Die Antwort vom Server zeigt an, dass ein Fehler aufgetreten ist.",
-			error_blocked_access : "Etwas blockiert den Zugang zum GCA Server ({{url}})",
 			error_connection : "Verbindungsfehler",
 			attack_player : "Klicke um “{{name}}” anzugreifen",
 			fight_won : "Du hast den Kampf gewonnen!",

@@ -169,7 +169,6 @@ gca_languages['hr'] = {
 			target_list_remove : "Remove from target list",
 			error_sth_went_wrong : "Something went wrong",
 			error_response : "Server responded with an error",
-			error_blocked_access : "Something blocks the access to GCA server ({{url}})",
 			error_connection : "Connection error",
 			attack_player : "Click to attack “{{name}}”",
 			fight_won : "You won the fight!",
