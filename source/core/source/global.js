@@ -471,8 +471,11 @@ var gca_global = {
 	
 	// Welcome message, runs only once
 	welcomeMessage: {
-		inject: function (){
-			if (gca_data.get("welcomeOnce", true)) {
+		inject: function () {
+			let lastShownVersion = gca_data.get("welcomeVersion", null);
+			let currentVersion = gca.version;
+	
+			if (lastShownVersion !== currentVersion) {
 				var modal = new gca_tools.Modal(
 					gca_locale.get("global", "welcome_addon"),
 					null,
@@ -480,16 +483,17 @@ var gca_global = {
 						modal.destroy();
 					},
 					() => {
-						window.open('https://github.com/DinoDevs/GladiatusCrazyAddon/releases', '_blank'),
+						window.open('https://github.com/DinoDevs/GladiatusCrazyAddon/releases', '_blank');
 						modal.show();
 					}
 				);
 				modal.img.src = gca_resources.folder + 'icons/icon_64.png';
-				modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + gca.version + ".");
+				modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + currentVersion + ".");
 				modal.button(gca_locale.get("general", "ok"), true);
 				modal.button(gca_locale.get("global", "welcome_changelog"), false);
 				modal.show();
-				gca_data.set("welcomeOnce", false);
+	
+				gca_data.set("welcomeVersion", currentVersion);
 			}
 		}
 	},
