@@ -634,27 +634,25 @@ var gca_arena = {
 			this.spinner.style.height = this.table.offsetHeight;
 			this.spinner.getElementsByTagName('img')[0].style.marginTop = (this.table.offsetHeight / 2 - 16) + 'px';
 
-			jQuery.ajax({
-				type: "GET",
-				url: this.getLink({
-					'player_id_A' : gca_section.playerId, 'server_A' : gca_section.server, 'country_A' : gca_section.country,
-					'player_id_B' : player_id, 'server_B' : server, 'country_B' : country
-				}),
-				crossDomain: true,
-				success: (content) => {
+			fetch(this.getLink({
+				'player_id_A' : gca_section.playerId, 'server_A' : gca_section.server, 'country_A' : gca_section.country,
+				'player_id_B' : player_id, 'server_B' : server, 'country_B' : country
+			})).then(response => {
+				if(!response.ok) {
 					this.attack_lock = false;
-					document.getElementById('spiner_box').style.display = 'none';
+					gca_notifications.error(
+						gca_locale.get("arena", "global_arena_title") + '\n' +
+						gca_locale.get("arena", "error_connection")
+					);
+					this.status.style.display = 'block';
+					this.status.textContent = gca_locale.get("arena", "error_connection");
+					this.status.style.color = 'rgba(255, 30, 30, 1)';
+					this.spinner.style.display = 'none';
+				}
+				this.attack_lock = false;
+				document.getElementById('spiner_box').style.display = 'none';
 
-					try {
-						var json = JSON.parse(content);
-					} catch (e) {
-						gca_notifications.error(
-							gca_locale.get("arena", "global_arena_title") + '\n' +
-							gca_locale.get("arena", "error_sth_went_wrong")
-						);
-						return;
-					}
-					
+				response.json().then(json => {
 					if (json.error) {
 						gca_notifications.error(
 							gca_locale.get("arena", "global_arena_title") + '\n' +
@@ -696,26 +694,31 @@ var gca_arena = {
 						if (json.report_header && json.report) {
 							this.report.show(json.report_header, json.report);
 						}
-					}
-					else {
+					} else {
 						gca_notifications.error(
 							gca_locale.get("arena", "global_arena_title") + '\n' +
 							gca_locale.get("arena", "error_response")
 						);
 						return;
 					}
-				},
-				error: function(){
-					this.attack_lock = false;
+				}).catch(e => {
 					gca_notifications.error(
 						gca_locale.get("arena", "global_arena_title") + '\n' +
-						gca_locale.get("arena", "error_connection")
+						gca_locale.get("arena", "error_sth_went_wrong")
 					);
-					this.status.style.display = 'block';
-					this.status.textContent = gca_locale.get("arena", "error_connection");
-					this.status.style.color = 'rgba(255, 30, 30, 1)';
-					this.spinner.style.display = 'none';
-				}
+					return;
+				})
+
+			}).catch(error => {
+				this.attack_lock = false;
+				gca_notifications.error(
+					gca_locale.get("arena", "global_arena_title") + '\n' +
+					gca_locale.get("arena", "error_connection")
+				);
+				this.status.style.display = 'block';
+				this.status.textContent = gca_locale.get("arena", "error_connection");
+				this.status.style.color = 'rgba(255, 30, 30, 1)';
+				this.spinner.style.display = 'none';
 			});
 		},
 
