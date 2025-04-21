@@ -299,22 +299,6 @@ var gca_guild_storage = {
 	} else {
 		window.addEventListener('DOMContentLoaded', fireLoad, true);
 		window.addEventListener('load', fireLoad, true);
-
-		// Testing browser events problems
-		// The following code is just for allowing FrutyX to test the bug fix
-		document.addEventListener('readystatechange', () => {
-			if (document.readyState == 'interactive' || document.readyState == 'complete') {
-				if (!loaded) console.log('experimental fix v1');
-				fireLoad();
-			}
-		});
-		setTimeout(() => {
-			if (document.readyState == 'interactive' || document.readyState == 'complete') {
-				if (!loaded) console.log('experimental fix v2');
-				fireLoad();
-			}
-		}, 0);
-
 	}
 })();
 
