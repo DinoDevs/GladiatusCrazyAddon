@@ -1,6 +1,8 @@
 /*
  * Background Recipes Script
- * Gladiatus Crazy Add On
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  *
  * The recipes data were provided by Michalus
  * https://forum.gladiatus.gameforge.com/user/69-michalus/

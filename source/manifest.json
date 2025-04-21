@@ -1,9 +1,9 @@
 {
 	"name": "Gladiatus Crazy Add On",
 	"short_name": "GCA",
-	"version": "4.3.10",
+	"version": "4.3.11",
 	"description": "Improve your gladiatus experience!",
-	"author": "DinoDevs (Darkthanos, GreatApo)",
+	"author": "The GCA Team",
 	"homepage_url": "https://gladiatus.dinodevs.com",
 	"minimum_chrome_version": "88.0",
 

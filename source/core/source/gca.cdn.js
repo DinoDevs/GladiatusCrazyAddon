@@ -1,6 +1,8 @@
 /*
  * Addon CDN related methods Script
- * Author: GramThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Info
