@@ -1572,7 +1572,17 @@ var gca_forge = {
 			<aside class="left" style="width: calc(50% - 6px)">
 				<h2 class="section-header">Prefix <small></small></h2>
 				<section style="display:block">
-					<table class="scroll-books-table"><tbody></tbody></table>
+					<table class="scroll-books-table">
+						<thead>
+							<th>#</th><th>Name</th>
+							<th>
+								<img alt="Level" title="Level" style="vertical-align: middle" 
+									src="${gca_tools.img.cdn("img/ui/icon_level.gif")}">
+							</th>
+							<th title="Details">🔎</th>
+						</thead>
+						<tbody></tbody>
+					</table>
 				</section>
 			</aside>
 			`);
@@ -1634,7 +1644,17 @@ var gca_forge = {
 			<aside class="right" style="width: calc(50% - 6px)">
 				<h2 class="section-header">Suffix <small></small></h2>
 				<section style="display:block">
-					<table class="scroll-books-table"><tbody></tbody></table>
+					<table class="scroll-books-table">
+						<thead>
+							<th>#</th><th>Name</th>
+							<th>
+								<img alt="Level" title="Level" style="vertical-align: middle" 
+									src="${gca_tools.img.cdn("img/ui/icon_level.gif")}">
+							</th>
+							<th title="Details">🔎</th>
+						</thead>
+						<tbody></tbody>
+					</table>
 				</section>
 			</aside>
 			`);
