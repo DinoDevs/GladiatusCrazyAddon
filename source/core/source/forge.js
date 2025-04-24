@@ -1530,6 +1530,10 @@ var gca_forge = {
 			this.active = false;
 			this.loaded = false;
 
+			// Initialize settings
+			this.hide_learned_prefixes = false;
+			this.hide_learned_suffixes = false;
+
 			// Create UI
 			this.create();
 			//this.toggle();
@@ -1554,34 +1558,41 @@ var gca_forge = {
 
 		create : function() {
 			this.wrapper = document.createElement('div');
-			let aside, h2, section, table, tbody, tr, th;
+			let aside, h2, section;
+
+			// Helper function to create DOM subtree from html code
+			const createElement = (html) => {
+				const e = document.createElement("div");
+				e.insertAdjacentHTML("beforeend", html);
+				return e.firstElementChild;
+			};
 
 			// First Table with prefixes
-			aside = document.createElement('aside');
-			aside.className = 'left';
-			aside.style.width = 'calc(50% - 6px)';
-			h2 = document.createElement('h2');
-			h2.className = 'section-header';
-			h2.textContent = 'Prefix';
-			h2.appendChild(document.createTextNode(' '));
-			this.prefixNote = document.createElement('small');
-			h2.appendChild(this.prefixNote);
-			aside.appendChild(h2);
-			section = document.createElement('section');
-			section.style.display = 'block';
-			aside.appendChild(section);
-			table = document.createElement('table');
-			table.className = 'scroll-books-table';
-			section.appendChild(table);
-			tbody = document.createElement('tbody');
-			table.appendChild(tbody);
-			tr = document.createElement('tr');
-			tbody.appendChild(tr);
-			th = document.createElement('tr');
-			th.textContent = '...';
-			tr.appendChild(th);
-			this.prefixWrapper = tbody;
+			aside = createElement(`
+			<aside class="left" style="width: calc(50% - 6px)">
+				<h2 class="section-header">Prefix <small></small></h2>
+				<section style="display:block">
+					<table class="scroll-books-table"><tbody></tbody></table>
+				</section>
+			</aside>
+			`);
+			h2 = aside.querySelector("h2");
+			this.prefixNote = aside.querySelector("h2 small");
+			this.prefixWrapper = aside.querySelector("table tbody");
 			this.wrapper.appendChild(aside);
+
+			// "Show only not learned" label+checkbox for prefix
+			const hide_learned_label = createElement(`
+			<label class="section-header__checkbox">
+				<input type="checkbox"> Hide learned
+			</label>
+			`);
+			const hide_learned_checkbox = hide_learned_label.querySelector("input");
+			hide_learned_checkbox.addEventListener("change", e => {
+				this.hide_learned_prefixes = e.target.checked;
+				this.update();
+			});
+			h2.appendChild(hide_learned_label);
 
 			// Unknown scrolls code under prefixes
 			h2 = document.createElement('h2');
@@ -1619,31 +1630,31 @@ var gca_forge = {
 			section.appendChild(btn);
 
 			// Second table with suffixes
-			aside = document.createElement('aside');
-			aside.className = 'right';
-			aside.style.width = 'calc(50% - 6px)';
-			h2 = document.createElement('h2');
-			h2.className = 'section-header';
-			h2.textContent = 'Suffix';
-			h2.appendChild(document.createTextNode(' '));
-			this.suffixNote = document.createElement('small');
-			h2.appendChild(this.suffixNote);
-			aside.appendChild(h2);
-			section = document.createElement('section');
-			section.style.display = 'block';
-			aside.appendChild(section);
-			table = document.createElement('table');
-			table.className = 'scroll-books-table';
-			section.appendChild(table);
-			tbody = document.createElement('tbody');
-			table.appendChild(tbody);
-			tr = document.createElement('tr');
-			tbody.appendChild(tr);
-			th = document.createElement('tr');
-			th.textContent = '...';
-			tr.appendChild(th);
-			this.suffixWrapper = tbody;
+			aside = createElement(`
+			<aside class="right" style="width: calc(50% - 6px)">
+				<h2 class="section-header">Suffix <small></small></h2>
+				<section style="display:block">
+					<table class="scroll-books-table"><tbody></tbody></table>
+				</section>
+			</aside>
+			`);
+			h2 = aside.querySelector("h2");
+			this.suffixNote = aside.querySelector("h2 small");
+			this.suffixWrapper = aside.querySelector("table tbody");
 			this.wrapper.appendChild(aside);
+
+			// "Show only not learned" label+checkbox for suffix
+			const hide_learned_label_suffix = createElement(`
+			<label class="section-header__checkbox">
+				<input type="checkbox"> Hide learned
+			</label>
+			`);
+			const hide_learned_checkbox_suffix = hide_learned_label_suffix.querySelector("input");
+			hide_learned_checkbox_suffix.addEventListener("change", e => {
+				this.hide_learned_suffixes = e.target.checked;
+				this.update();
+			});
+			h2.appendChild(hide_learned_label_suffix);
 
 			this.el.contentNew.appendChild(this.wrapper);
 
@@ -1658,7 +1669,7 @@ var gca_forge = {
 		excludedSuf : [0, 7, 10, 14, 19, 22, 25, 27, 28, 41, 45, 54, 57, 60, 62, 64, 68, 95, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 112, 113, 125, 140, 166, 184, 194, 202, 204, 209, 211, 212, 213, 214, 216, 217, 219, 225, 226, 227, 228, 231, 233, 235, 238],
 
 		update : function() {
-			// If not scroll info not loaded
+			// If scroll info not loaded
 			if (!this.loaded) {
 				gca_tools.ajax.cached.known_scrolls().then(
 					(result) => {
@@ -1669,80 +1680,46 @@ var gca_forge = {
 				return;
 			}
 
-			// Update screen info
-			let prefix_all = 0;
-			let prefix_learned = 0;
-			this.prefixWrapper.textContent = '';
-			
-			for (let i = 0; i < this.info.prefix.length; i++) {
-				if (this.excludedPre.includes(i)) continue;
-				prefix_all++;
-				let info = this.info.prefix[i];
-				let tr = document.createElement('tr');
-				if (!info) {
-					info = {id : i, name : '????', level : '??'};
-					tr.style.color = '#656565';
-				}
-				else {
-					prefix_learned++;
-				}
-				let td = document.createElement('td');
-				td.textContent = '#' + info.id;
-				tr.appendChild(td);
-				td = document.createElement('td');
-				td.textContent = info.name;
-				tr.appendChild(td);
-				td = document.createElement('td');
-				td.textContent = info.level;
-				tr.appendChild(td);
-				td = document.createElement('td');
-				let a = document.createElement('a');
-				a.textContent = '🔗';
-				a.setAttribute('href', gca_links.get('gladiatus-tools-server') + '/equipment?item=' + info.id + ',1-1,0');
-				a.setAttribute('target', '_blank');
-				a.setAttribute('rel', 'noopener noreferrer');
-				td.appendChild(a);
-				tr.appendChild(td);
-				
-				this.prefixWrapper.appendChild(tr);
-			}
-			this.prefixNote.textContent = '(' + prefix_learned + '/' + prefix_all + ')';
+			const _build_table = (affix_type, data, hide_learned, excludes_list) => {
+				const result = [];
+				for(let i = 0; i < data.length; i++) {
+					if (excludes_list.includes(i)) continue;
+					if (hide_learned && data[i].learned) continue;
 
-			let suffix_all = 0;
-			let suffix_learned = 0;
-			this.suffixWrapper.textContent = '';
-			for (let i = 0; i < this.info.suffix.length; i++) {
-				if (this.excludedSuf.includes(i)) continue;
-				suffix_all++;
-				let info = this.info.suffix[i];
-				let tr = document.createElement('tr');
-				if (!info) {
-					info = {id : i, name : '????', level : '??'};
-					tr.style.color = '#656565';
+					const info = data[i];
+					const tr = document.createElement('tr');
+					if(!info.learned) {
+						tr.style.color = '#656565';
+						tr.title = "Scroll not learned";
+					}
+
+					let link = gca_links.get('gladiatus-tools-server')
+						+ '/equipment?item='
+						+ (affix_type === 'prefix') ? `${info.id},1-1,0` : `0,1-1,${info.id}`;
+
+					tr.insertAdjacentHTML('beforeend', `
+						<td>#${info.id}</td>
+						<td>${info.name} ${info.isUnderworld ? '(U)' : ''}</td>
+						<td>${info.level}</td>
+						<td><a href="${link}" target="_blank" rel="noopener noreferrer">🔗</a></td>
+					`)
+
+					result.push(tr);
 				}
-				else {
-					suffix_learned++;
-				}
-				let td = document.createElement('td');
-				td.textContent = '#' + info.id;
-				tr.appendChild(td);
-				td = document.createElement('td');
-				td.textContent = info.name;
-				tr.appendChild(td);
-				td = document.createElement('td');
-				td.textContent = info.level;
-				tr.appendChild(td);
-				td = document.createElement('td');
-				let a = document.createElement('a');
-				a.textContent = '🔗';
-				a.setAttribute('href', gca_links.get('gladiatus-tools-server') + '/equipment?item=0,1-1,' + info.id + '');
-				a.setAttribute('target', '_blank');
-				a.setAttribute('rel', 'noopener noreferrer');
-				td.appendChild(a);
-				tr.appendChild(td);
-				this.suffixWrapper.appendChild(tr);
+
+				return result;
 			}
-			this.suffixNote.textContent = '(' + suffix_learned + '/' + suffix_all + ')';
+
+			// Update screen info
+			let prefix_all = Object.keys(gca_data_recipesNames.prefixes).length;
+			let prefix_learned = Object.values(this.info.prefix).filter(p=>p && this.hide_learned_prefixes !== p.learned).length;
+			this.prefixWrapper.replaceChildren(..._build_table('prefix', this.info.prefix, this.hide_learned_prefixes, this.excludedPre));
+			this.prefixNote.textContent = `(${prefix_learned}/${prefix_all})`;
+
+			let suffix_all = Object.keys(gca_data_recipesNames.suffixes).length;
+			let suffix_learned = Object.values(this.info.suffix).filter(s=>s && this.hide_learned_suffixes !== s.learned).length;
+			this.suffixWrapper.replaceChildren(..._build_table('suffix', this.info.suffix, this.hide_learned_suffixes, this.excludedSuf))
+			this.suffixNote.textContent = `(${suffix_learned}/${suffix_all})`;
 
 			// Add share code
 			this.shareCodeSection.textContent = this.getUnknownsCode();
@@ -1758,27 +1735,30 @@ var gca_forge = {
 			};
 
 			// Prefix
-			for (let i = 0; i < result.id.prefix.length; i++) {
-				let id = result.id.prefix[i];
+			for(const [id, prefix] of Object.entries(gca_data_recipesNames.prefixes)) {
 				this.info.prefix[id] = {
-					id : id,
-					level : result.level.prefix[i],
-					name : result.name.prefix[id]
+					id,
+					level : gca_data_recipes.getRecipe(id, null, null).prefix.level,
+					name : prefix[gca_locale._getLang()],
+					isUnderworld : prefix["isUnderworld"],
+					learned : (id in result.name.prefix)
 				}
 			}
+
 			// Suffix
-			for (let i = 0; i < result.id.suffix.length; i++) {
-				let id = result.id.suffix[i];
+			for(const [id, suffix] of Object.entries(gca_data_recipesNames.suffixes)) {
 				this.info.suffix[id] = {
-					id : id,
-					level : result.level.suffix[i],
-					name : result.name.suffix[id]
+					id,
+					level : gca_data_recipes.getRecipe(null, null, id).suffix.level,
+					name : suffix[gca_locale._getLang()],
+					isUnderworld : suffix["isUnderworld"],
+					learned : (id in result.name.suffix)
 				}
 			}
 		},
 
 		getUnknownsCode : function(){
-			// If not scroll info not loaded
+			// If scroll info not loaded
 			if (!this.loaded) {
 				gca_tools.ajax.cached.known_scrolls().then(
 					(result) => {
@@ -1790,22 +1770,15 @@ var gca_forge = {
 			}
 
 			// Convert {false, false, true ...} to 001011
-			getBinaryStr = function(arr, exc = [], val=null) {
-				return arr.map(function(x, i) {
-					if(exc.includes(i)) return '';
-					return (x === val) ? '1' : '0'
-				}).join('');
+			const getBinaryStr = function(arr, exc = []) {
+				return arr
+					.filter(el => el && !exc.includes(el.id)) // Remove excluded ones
+					.map(el => el.learned ? '0' : '1') // Map true/false to 1/0
+					.join('');
 			}
-			// Remove not shown items from binary string
-			remExcluded = function(str, indexes) {
-				for (var i = indexes.length - 1; i > 0; i--) {
-					let pos = indexes[i]
-					str = str.substring(0, pos) + str.substring(pos + 1, str.length);
-				}
-				return str;
-			}
+
 			// Implementing: https://stackoverflow.com/a/38074583/10396046
-			pack = function(bin) {
+			const pack = function(bin) {
 				return btoa(bin.match(/(.{8})/g).map(function(x) {return String.fromCharCode(parseInt(x, 2));}).join(''));
 			}
 
