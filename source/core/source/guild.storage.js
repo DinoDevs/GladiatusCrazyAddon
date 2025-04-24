@@ -217,7 +217,7 @@ var gca_guild_storage = {
 		// Check if storage has the category item
 		check : function() {
 			// Calculate number of items for each category
-			let items = [...document.querySelectorAll('#shop .ui-draggable')].reduce((info, item) => {
+			let items = [...document.querySelectorAll('#shop .ui-draggable, #shop .ui-droppable')].reduce((info, item) => {
 				let basis = item.dataset.basis.match(/^(\d+)-(\d+)$/);
 				if (!basis) return info;
 				if (!info.hasOwnProperty(basis[1])) info[basis[1]] = 0;
@@ -260,7 +260,7 @@ var gca_guild_storage = {
 				var isScroll = new RegExp(/^20-/);
 
 				// For each item
-				jQuery("#shop .ui-draggable").each((i, item) => {
+				jQuery("#shop .ui-draggable, #shop .ui-droppable[class*=\"item-i-\"]").each((i, item) => {
 					// If not a scroll, return
 					if(!isScroll.test(item.dataset.basis)) return;
 
