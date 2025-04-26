@@ -18,7 +18,7 @@
 
  - **Guild Storage**
 
-  - [X] Fixed scrolls not being identified in some cases (#532)
+   - [X] Fixed scrolls not being identified in some cases (#532)
 
 ### TRANSLATIONS
 
