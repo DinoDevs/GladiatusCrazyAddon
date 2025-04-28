@@ -2999,20 +2999,7 @@ var gca_global = {
 
 					// Create wrapper
 					const wrapper = document.createElement('div');
-					wrapper.style.position = 'absolute';
-					wrapper.style.top = '200px';
-					wrapper.style.right = '-30px';
-					wrapper.style.maxWidth = '150px';
-					wrapper.style.zIndex = '899';
-					wrapper.style.overflow = 'hidden';
-					wrapper.style.whiteSpace = 'normal';
-					wrapper.style.wordWrap = 'break-word';
-					wrapper.style.background = 'linear-gradient(to bottom, #f7e7ce, #e4c593)';
-					wrapper.style.border = '1px solid #6b1c15';
-					wrapper.style.borderWidth = '4px 1px';
-					wrapper.style.borderRadius = '6px';
-					wrapper.style.padding = '2px';
-				
+					wrapper.className = 'gca-gods-wrapper';				
 
 					// Title
 					const title = document.createElement('h2');
