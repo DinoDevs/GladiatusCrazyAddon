@@ -1710,7 +1710,6 @@ var gca_forge = {
 					const tr = document.createElement('tr');
 					if(!info.learned) {
 						tr.style.color = '#656565';
-						tr.title = "Scroll not learned";
 					}
 
 					let link = gca_links.get('gladiatus-tools-server')
@@ -1719,7 +1718,12 @@ var gca_forge = {
 
 					tr.insertAdjacentHTML('beforeend', `
 						<td>#${info.id}</td>
-						<td>${info.name} ${info.isUnderworld ? '(U)' : ''}</td>
+						<td title="${!info.learned ? gca_locale.get('forge', 'unlearned_scroll') : ''}">
+							${info.name} 
+							<span style="float:right" title="${gca_locale.get('forge', 'underworld_scroll')}">
+								${info.isUnderworld ? '💀' : ''}
+							</span>
+						</td>
 						<td>${info.level}</td>
 						<td><a href="${link}" target="_blank" rel="noopener noreferrer">🔗</a></td>
 					`)
