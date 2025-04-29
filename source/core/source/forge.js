@@ -1759,7 +1759,7 @@ var gca_forge = {
 				this.info.prefix[id] = {
 					id,
 					level : gca_data_recipes.getRecipe(id, null, null).prefix.level,
-					name : prefix[gca_locale._getLang()],
+					name : prefix[gca_locale._getLang()] ?? prefix['us'],
 					isUnderworld : prefix["isUnderworld"],
 					learned : (id in result.name.prefix)
 				}
@@ -1770,7 +1770,7 @@ var gca_forge = {
 				this.info.suffix[id] = {
 					id,
 					level : gca_data_recipes.getRecipe(null, null, id).suffix.level,
-					name : suffix[gca_locale._getLang()],
+					name : suffix[gca_locale._getLang()] ?? suffix['us'],
 					isUnderworld : suffix["isUnderworld"],
 					learned : (id in result.name.suffix)
 				}
