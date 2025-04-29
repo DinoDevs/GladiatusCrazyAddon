@@ -1080,8 +1080,8 @@
 		.gca_packages_compact_items_layout .pagination > .section-header{margin-top: 0px!important;}
 
 		/* Show item's price */
-		#packages .packageItem .gca_item_price_info {position: absolute;color: white;text-align: right;font-size: 10px;overflow: hidden;margin-top: -52px;width: 63px;text-shadow: rgb(0, 0, 0) 0px 0px 2px;white-space: nowrap;}
-		.gca_packages_compact_items_layout #packages .packageItem .gca_item_price_info {margin-top: -44px;width: 70px;}
+		#packages .packageItem .gca_item_price_info {position: absolute;color: white;text-align: right;font-size: 10px;overflow: hidden;margin-top: -52px;width: 63px;text-shadow: rgb(0, 0, 0) 0px 0px 2px;white-space: nowrap;background-color: rgba(0, 0, 0, 0.4);}
+		.gca_packages_compact_items_layout #packages .packageItem .gca_item_price_info {margin-top: -44px;width: 78px;}
 		#packages .packageItem .gca_item_price_info .icon_gold {transform: scale(0.8);}
 
 		/* Small Size Packets */
