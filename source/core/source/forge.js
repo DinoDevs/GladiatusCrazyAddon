@@ -1715,7 +1715,7 @@ var gca_forge = {
 
 					let link = gca_links.get('gladiatus-tools-server')
 						+ '/equipment?item='
-						+ (affix_type === 'prefix') ? `${info.id},1-1,0` : `0,1-1,${info.id}`;
+						+ ((affix_type === 'prefix') ? `${info.id},1-1,0` : `0,1-1,${info.id}`);
 
 					tr.insertAdjacentHTML('beforeend', `
 						<td>#${info.id}</td>
