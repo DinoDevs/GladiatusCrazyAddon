@@ -1720,7 +1720,7 @@ var gca_forge = {
 						<td>#${info.id}</td>
 						<td title="${!info.learned ? gca_locale.get('forge', 'unlearned_scroll') : ''}">
 							${info.name} 
-							<span style="float:right" title="${gca_locale.get('forge', 'underworld_scroll')}">
+							<span style="float:right; filter: drop-shadow(0 0 1px #000)" title="${gca_locale.get('forge', 'underworld_scroll')}">
 								${info.isUnderworld ? '💀' : ''}
 							</span>
 						</td>
@@ -1951,9 +1951,10 @@ var gca_forge = {
 			}
 			
 			// Highligh missing
-			var container = document.getElementById("content_2nd");
-			for (var i = 0, row; row = container.getElementsByTagName("tr")[i]; i++) {
-				row.style.color = (array[i])? 'red' : 'green';
+			let rows = document.getElementById("content_2nd").getElementsByTagName("tr");
+			for (let i = rows.length - 1; i >= 0; i--) {
+				if (i === 0 || i === 164) continue;
+				rows[i].style.color = (array[i]) ? 'red' : 'green';
 			}
 		}
 	},
