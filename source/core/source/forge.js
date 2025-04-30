@@ -1570,16 +1570,19 @@ var gca_forge = {
 			// First Table with prefixes
 			aside = createElement(`
 			<aside class="left" style="width: calc(50% - 6px)">
-				<h2 class="section-header">Prefix <small></small></h2>
+				<h2 class="section-header">${gca_locale.get('global', 'prefix')} <small></small></h2>
 				<section style="display:block">
 					<table class="scroll-books-table">
 						<thead>
-							<th>#</th><th>Name</th>
+							<th>#</th><th>${gca_locale.get('global', 'name')}</th>
 							<th>
-								<img alt="Level" title="Level" style="vertical-align: middle" 
+								<img 
+									alt="${gca_locale.get('global', 'level')}" 
+									title="${gca_locale.get('global', 'level')}" 
+									style="vertical-align: middle" 
 									src="${gca_tools.img.cdn("img/ui/icon_level.gif")}">
 							</th>
-							<th title="Details">🔎</th>
+							<th title="${gca_locale.get('global', 'details')}">🔎</th>
 						</thead>
 						<tbody></tbody>
 					</table>
@@ -1594,7 +1597,7 @@ var gca_forge = {
 			// "Show only not learned" label+checkbox for prefix
 			const hide_learned_label = createElement(`
 			<label class="section-header__checkbox">
-				<input type="checkbox"> Hide learned
+				<input type="checkbox"> ${gca_locale.get('forge', 'hide_learned')}
 			</label>
 			`);
 			const hide_learned_checkbox = hide_learned_label.querySelector("input");
@@ -1642,16 +1645,19 @@ var gca_forge = {
 			// Second table with suffixes
 			aside = createElement(`
 			<aside class="right" style="width: calc(50% - 6px)">
-				<h2 class="section-header">Suffix <small></small></h2>
+				<h2 class="section-header">${gca_locale.get('global', 'suffix')} <small></small></h2>
 				<section style="display:block">
 					<table class="scroll-books-table">
 						<thead>
-							<th>#</th><th>Name</th>
+							<th>#</th><th>${gca_locale.get('global', 'name')}</th>
 							<th>
-								<img alt="Level" title="Level" style="vertical-align: middle" 
+								<img 
+									alt="${gca_locale.get('global', 'level')}" 
+									title="${gca_locale.get('global', 'level')}" 
+									style="vertical-align: middle" 
 									src="${gca_tools.img.cdn("img/ui/icon_level.gif")}">
 							</th>
-							<th title="Details">🔎</th>
+							<th title="${gca_locale.get('global', 'details')}">🔎</th>
 						</thead>
 						<tbody></tbody>
 					</table>
@@ -1666,7 +1672,7 @@ var gca_forge = {
 			// "Show only not learned" label+checkbox for suffix
 			const hide_learned_label_suffix = createElement(`
 			<label class="section-header__checkbox">
-				<input type="checkbox"> Hide learned
+				<input type="checkbox"> ${gca_locale.get('forge', 'hide_learned')}
 			</label>
 			`);
 			const hide_learned_checkbox_suffix = hide_learned_label_suffix.querySelector("input");

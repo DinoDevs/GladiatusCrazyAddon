@@ -138,7 +138,12 @@ gca_languages['en'] = {
             suffix: 'Suffix',
 
             // Gods cooldowns
-            gods_cd_title: 'Gods cooldowns'
+            gods_cd_title: 'Gods cooldowns',
+
+			// Forge scrolls book (but quite general keywords)
+			details: 'Details',
+			level: 'Level',
+			name: 'Name',
         },
 
         // Overview
@@ -316,6 +321,7 @@ gca_languages['en'] = {
             add_last_item: 'Add last item',
             underworld_scroll: 'Underworld scroll',
             unlearned_scroll: 'Unlearned scroll',
+			hide_learned: 'Hide learned',
         },
 
         // Merchants

@@ -94,7 +94,11 @@ gca_languages['pl'] = {
 			gains_with_full_stats : "Zyski przy pełnych statystykach:",
 			base : "Podstawowe",
 			prefix : "Przedrostek",
-			suffix : "Przyrostek"
+			suffix : "Przyrostek",
+			gods_cd_title: 'Czas do odnowienia bonusów bogów',
+			details: 'Szczegóły',
+			level: 'Poziom',
+			name: 'Nazwa',
 		},
 		overview : {
 			stats_difference : "Różnica",
