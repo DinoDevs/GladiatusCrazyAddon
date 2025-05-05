@@ -138,7 +138,7 @@ gca_languages["en"] = {
 			suffix : "Suffix",
 			
 			// Gods cooldowns
-            gods_cd_title : "Gods cooldowns",
+			gods_cd_title : "Gods cooldowns",
 
 			// Forge scrolls book (but quite general keywords)
 			details : "Details",
