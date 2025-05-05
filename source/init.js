@@ -1,6 +1,8 @@
 ﻿/*
  * Browser Init Script
- * Gladiatus Crazy Add On
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Get browser object

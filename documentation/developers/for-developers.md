@@ -104,6 +104,15 @@ This is purely meant to be informational, taken directly from GCA developers:
 >
 >In terms of the workflow, load the extension as unpacked (follow the installation guide by getting the addon for github) and then you can modify the script files, save and just >reload the webpage. You can find the console by clicking f12 in you browser. We use pure javascript and some JQuery that Gladiatus also loads. The translations system along with >how we same data is custom but easy (you can see how it works in the code).
 
+**Quoted from @GramThanos**
+
+>**Coding comment/tips:**
+>
+>- don't mix spaces with tabs indentation (we use tabs so that you can specify tabs width on your editor based on your preferences)
+>- it is better to use if (! condition) return; rather than multiple nested ifs
+>- avoid using var, let and const will most probably cover all your needs.
+>- it is good to leave the last line of the file empty
+
 ## Open sourcing the simulator
 
 Now available at https://github.com/DinoDevs/GladiatusBattleSimulator.

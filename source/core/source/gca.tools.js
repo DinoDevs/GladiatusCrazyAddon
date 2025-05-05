@@ -1,6 +1,8 @@
 /*
  * Addon Tools Script
- * Author: DarkThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Tools
@@ -137,6 +139,10 @@ var gca_tools = {
 		getTime : function() {
 			this._initServerTime();
 			return (this._serverStart + (new Date().getTime() - this._clientStart));
+		},
+		getClientTimezoneDifference : function() {
+			this._initServerTime();
+			return this._client_timezone_difference;
 		},
 		// Get server's time
 		server : function(){
@@ -1964,7 +1970,7 @@ var gca_tools = {
 		'post' : function(url_data, send_data) {
 			return this.request('POST', url_data, send_data);
 		},
-		'request' : function(method, url_data, send_data) {
+		'request' : function(method, url_data, send_data, retries = 0) {
 			// This implementation is a bit messy
 			return new Promise((resolve, reject) => {
 				let options	= {
@@ -2015,12 +2021,25 @@ var gca_tools = {
 
 				fetch(url, options).then((response) => {
 					if (!response.ok) {
+						// If there was a (Service Unavailable) retry in a bit
+						if (isSameOrigin && response.status == 503 && retries < 4) {
+							setTimeout(() => {
+								this.request(method, url_data, send_data, retries++).then((response) => {
+									resolve(response);
+								}).catch((error) => {
+									reject(error);
+								});
+							}, 500);
+							console.log(`[GCA] Request was blocked, tring again in a bit...`);
+							return {retry: true};
+						}
 						reject(new Error(`HTTP error! Status: ${response.status}`));
 						return;
 					}
 					return response.text();
 				})
 				.then((response) => {
+					if (response.retry) return;
 					resolve(response);
 				})
 				.catch((error) => {

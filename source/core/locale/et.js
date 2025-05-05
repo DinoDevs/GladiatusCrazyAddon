@@ -173,7 +173,6 @@ gca_languages["et"] = {
 			target_list_remove : "Eemalda sihtmärkidest",
 			error_sth_went_wrong : "Midagi läks valesti",
 			error_response : "Ühendamisel tekkis viga",
-			error_blocked_access : "Ühendus GCA serveriga puudub ({{url}})",
 			error_connection : "Probleemid ühendusega",
 			attack_player : "Vajuta, et rünnata “{{name}}”",
 			fight_won : "Sa kaotasid võitluse!",

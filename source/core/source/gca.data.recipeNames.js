@@ -1,7 +1,8 @@
 /*
  * Scroll Names in All Languages
- * Gladiatus Crazy Add On
- * by FrutyX
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // This is the first version of the file and may need some edits depending what we need

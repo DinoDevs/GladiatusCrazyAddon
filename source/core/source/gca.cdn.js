@@ -1,6 +1,8 @@
 /*
  * Addon CDN related methods Script
- * Author: GramThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Info
@@ -88,7 +90,7 @@ var gca_cdn = {
 		if (hash) {
 			return this.hash2cdn(hash, ext);
 		}
-		console.warn(`Image path "${path}" was not found on CDN lookup list. Using "${'/cdn/' + path}".`);
+		//console.warn(`Image path "${path}" was not found on CDN lookup list. Using "${'/cdn/' + path}".`);
 		return '/cdn/' + path;
 	},
 

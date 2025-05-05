@@ -1,6 +1,8 @@
 /*
  * Addon Settings Script
- * Author: DarkThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 var gca_settings = {
@@ -191,20 +193,17 @@ var gca_settings = {
 
 			p = document.createElement("div");
 			p.style.paddingBottom = "10px";
-			p.appendChild(document.createTextNode("We need your support! Buy us a "));
-			icon = document.createElement("div");
-			icon.className = "gca_windows_icon gca_windows_icon-beer";
-			p.appendChild(icon);
+			p.appendChild(document.createTextNode("You can help us keep the GCA servers running by 💸"));
 			p.appendChild(document.createTextNode(" "));
 			a = document.createElement("a");
 			a.setAttribute("href", this.urls.donation_link);
 			a.setAttribute("target", "_blank");
 			a.setAttribute("rel", "noreferrer");
-			a.style.color = "#af790f";
+			a.style.color = "#00a773";
 			a.style.textDecoration = "underline";
-			a.textContent = "beer";
+			a.textContent = "donating";
 			p.appendChild(a);
-			p.appendChild(document.createTextNode(" by donating and also help us by "));
+			p.appendChild(document.createTextNode(" or assist us by "));
 			icon = document.createElement("div");
 			icon.className = "gca_windows_icon gca_windows_icon-translation";
 			p.appendChild(icon);
@@ -229,7 +228,7 @@ var gca_settings = {
 			let end = document.createElement("div");
 			end.appendChild(document.createTextNode("Yours,"));
 			end.appendChild(document.createElement("br"));
-			end.appendChild(document.createTextNode("GreatApo & DarkThanos"));
+			end.appendChild(document.createTextNode("The GCA Team"));
 
 			// Build letter
 			letter.appendChild(start);
@@ -296,32 +295,33 @@ var gca_settings = {
 			group.className = 'group';
 
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Gladiatus Crazy Addon : '));
+			wrapper.appendChild(document.createTextNode('Gladiatus Crazy Addon: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-page'), gca_links.get('addon-page'), {target: '_blank'}));
 			group.appendChild(wrapper);
 			
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Gladiatus Forum : '));
-			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-forum-thread'), gca_links.get('addon-forum-thread'), {target: '_blank'}));
-			group.appendChild(wrapper);
-			
-			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Facebook : '));
-			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-facebook'), gca_links.get('addon-facebook'), {target: '_blank'}));
-			group.appendChild(wrapper);
-			
-			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('GitHub : '));
+			wrapper.appendChild(document.createTextNode('GitHub: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-github'), gca_links.get('addon-github'), {target: '_blank'}));
 			group.appendChild(wrapper);
 			
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Install on Firefox : '));
+			wrapper.appendChild(document.createTextNode('Gladiatus Forum: '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-forum-thread'), gca_links.get('addon-forum-thread'), {target: '_blank'}));
+			group.appendChild(wrapper);
+			
+			// I think the era of facebook is over
+			//wrapper = document.createElement('div');
+			//wrapper.appendChild(document.createTextNode('Facebook: '));
+			//wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-facebook'), gca_links.get('addon-facebook'), {target: '_blank'}));
+			//group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Install on Firefox: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-mozilla'), gca_links.get('addon-mozilla'), {target: '_blank'}));
 			group.appendChild(wrapper);
 			
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Install on Chrome : '));
+			wrapper.appendChild(document.createTextNode('Install on Chrome: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-chrome'), gca_links.get('addon-chrome'), {target: '_blank'}));
 			group.appendChild(wrapper);
 
@@ -336,24 +336,24 @@ var gca_settings = {
 			group.className = 'group';
 
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Gladiatus Simulator : '));
+			wrapper.appendChild(document.createTextNode('Gladiatus Simulator: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-simulator'), gca_links.get('gladiatus-simulator'), {target: '_blank'}));
 			group.appendChild(wrapper);
 
 			wrapper = document.createElement('div');
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('skarsburning@forum'), 'Skarsburning\'s', {target: '_blank'}));
-			wrapper.appendChild(document.createTextNode(' Gladiatus Fansite : '));
+			wrapper.appendChild(document.createTextNode(' Gladiatus Fansite: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-fansite'), gca_links.get('gladiatus-fansite'), {target: '_blank'}));
 			group.appendChild(wrapper);
 
 			wrapper = document.createElement('div');
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('michalus@forum'), 'Michalus\'', {target: '_blank'}));
-			wrapper.appendChild(document.createTextNode(' Gladiatus Tools : '));
+			wrapper.appendChild(document.createTextNode(' Gladiatus Tools: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('gladiatus-tools-server'), gca_links.get('gladiatus-tools-server'), {target: '_blank'}));
 			group.appendChild(wrapper);
 
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Unofficial Gladiatus Reddit : '));
+			wrapper.appendChild(document.createTextNode('Unofficial Gladiatus Reddit: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('unofficial-reddit'), gca_links.get('unofficial-reddit'), {target: '_blank'}));
 			wrapper.appendChild(document.createTextNode(' by '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('williaf@reddit'), 'Williaf', {target: '_blank'}));
@@ -367,7 +367,7 @@ var gca_settings = {
 			*/
 			
 			wrapper = document.createElement('div');
-			wrapper.appendChild(document.createTextNode('Official Gladiatus Discord Server : '));
+			wrapper.appendChild(document.createTextNode('Official Gladiatus Discord Server: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('official-discord'), gca_links.get('official-discord'), {target: '_blank'}));
 			group.appendChild(wrapper);
 
@@ -2540,19 +2540,12 @@ var gca_settings = {
 						if (notes.length > 16000) return reject('NS');
 
 						// Make request to change notes
-						jQuery.ajax({
-							type: "POST",
-							url: gca_getPage.link({'mod':'memo', 'submod':'save'}),
-							crossDomain: true,
-							data: {memo : notes},
-							success: function(){
-								return resolve();
-							},
-							error: function(){
-								// Failed to Save Settings
-								return reject('FSS');
-							}
-						});
+						return gca_tools.ajax.post(
+							{'mod':'memo', 'submod':'save'},
+							{memo : notes}
+						)
+						.then(() =>  resolve())
+						.catch(() => reject('FSS'))
 					},
 					error: function(){
 						// Request Failed

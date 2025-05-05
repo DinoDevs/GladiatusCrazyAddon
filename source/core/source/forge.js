@@ -1,6 +1,8 @@
 /*
  * Addon Forge Script
- * Author: DarkThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Forge
@@ -78,6 +80,9 @@ var gca_forge = {
 
 			(gca_options.bool("forge","material_links") &&
 			this.sourceLinks.inject());
+
+			// Show item shadow
+			this.showItemShadow();
 
 			// Add Gladiatus tools links
 			this.gladiatusTools.inject();

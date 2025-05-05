@@ -1,7 +1,8 @@
 ﻿/*
- * Addon Style Css
- * Author: DarkThanos, GreatApo
- * Copyright: all rights reserved
+ * Addon Style CSS
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 /** Style Override **/
@@ -587,7 +588,9 @@
 	.gca_rtl .enemyDrop2{right: auto;left: 25px;}
 	.enemyDrop:hover {filter: drop-shadow(1px 1px 1px rgba(255,255,255,0.3)) drop-shadow( 1px -1px 1px rgba(255,255,255,0.3)) drop-shadow(-1px -1px 1px rgba(255,255,255,0.3)) drop-shadow(-1px 1px 1px rgba(255,255,255,0.3));}
 
-
+/* Gods Cooldowns Wrapper */
+.gca-gods-wrapper {position: absolute;top: 200px;right: -30px;max-width: 150px;z-index: 899;overflow: hidden;white-space: normal;word-wrap: break-word;background: linear-gradient(to bottom, #f7e7ce, #e4c593);border: 4px solid #6b1c15;border-width: 4px 1px;border-radius: 6px;padding: 2px;}
+.gca_rtl .gca-gods-wrapper {right: auto;left: -30px}
 
 
 
@@ -1077,8 +1080,8 @@
 		.gca_packages_compact_items_layout .pagination > .section-header{margin-top: 0px!important;}
 
 		/* Show item's price */
-		#packages .packageItem .gca_item_price_info {position: absolute;color: white;text-align: right;font-size: 10px;overflow: hidden;margin-top: -52px;width: 63px;text-shadow: rgb(0, 0, 0) 0px 0px 2px;}
-		.gca_packages_compact_items_layout #packages .packageItem .gca_item_price_info {margin-top: -44px;width: 70px;}
+		#packages .packageItem .gca_item_price_info {position: absolute;color: white;text-align: inherit;font-size: 10px;overflow: hidden;margin-top: -52px;width: 63px;text-shadow: rgb(0, 0, 0) 0px 0px 2px;white-space: nowrap;background-color: rgba(0, 0, 0, 0.4);}
+		.gca_packages_compact_items_layout #packages .packageItem .gca_item_price_info {margin-top: -44px;width: 78px;}
 		#packages .packageItem .gca_item_price_info .icon_gold {transform: scale(0.8);}
 
 		/* Small Size Packets */

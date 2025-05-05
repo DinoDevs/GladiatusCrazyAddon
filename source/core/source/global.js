@@ -1,6 +1,8 @@
 /*
  * Addon Global Script
- * Author: DarkThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Global
@@ -329,8 +331,6 @@ var gca_global = {
 				if (gca_getPage.parameter('sh', banner.href)) return;
 				if (!banner.href.startsWith(gca_section.protocol + "//" + gca_section.domain + "/game/")) return;
 				banner.href += '&sh=' + encodeURIComponent(gca_section.sh);
-				console.log('event url was patched');
-				// TODO: clean up this after testing
 			} catch(e) {
 				console.log('error while patching event url', e);
 			}
@@ -440,7 +440,10 @@ var gca_global = {
 		// Check page direction ltr or rtl
 		if(
 			// Check if the rtl css exists on the page
-			!document.querySelector("link[href$='/cdn57/270eb6a1a8de3fd98cd920e0a396ed.css'], link[href$='/cdn0c/bc5ca92d0773302a4c1745ad5f8d8c.css']")
+			//!document.querySelector("link[href$='/cdn57/270eb6a1a8de3fd98cd920e0a396ed.css'], link[href$='/cdn0c/bc5ca92d0773302a4c1745ad5f8d8c.css']")
+			!Array.from(document.querySelectorAll('link[href]')).some(link =>
+				/\/rtl\.css(\?.*)?$/.test(link.getAttribute('href'))
+			)
 		){
 			window.gca_rtl = false;
 			if (localStorage.getItem('gca_rtl')) {
@@ -473,8 +476,11 @@ var gca_global = {
 	
 	// Welcome message, runs only once
 	welcomeMessage: {
-		inject: function (){
-			if (gca_data.get("welcomeOnce", true)) {
+		inject: function () {
+			let lastShownVersion = gca_data.get("welcomeVersion", null);
+			let currentVersion = gca.version;
+	
+			if (lastShownVersion !== currentVersion) {
 				var modal = new gca_tools.Modal(
 					gca_locale.get("global", "welcome_addon"),
 					null,
@@ -482,16 +488,17 @@ var gca_global = {
 						modal.destroy();
 					},
 					() => {
-						window.open('https://github.com/DinoDevs/GladiatusCrazyAddon/releases', '_blank'),
+						window.open('https://github.com/DinoDevs/GladiatusCrazyAddon/releases', '_blank');
 						modal.show();
 					}
 				);
 				modal.img.src = gca_resources.folder + 'icons/icon_64.png';
-				modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + gca.version + ".");
+				modal.body("✔️" + " " + gca_locale.get("global", "welcome_version") + " " + "v" + currentVersion + ".");
 				modal.button(gca_locale.get("general", "ok"), true);
 				modal.button(gca_locale.get("global", "welcome_changelog"), false);
 				modal.show();
-				gca_data.set("welcomeOnce", false);
+	
+				gca_data.set("welcomeVersion", currentVersion);
 			}
 		}
 	},
@@ -623,15 +630,22 @@ var gca_global = {
 				// Get time left for next point
 				let next_point = tooltip[0][2][0].match(/(\d+):(\d+)/);
 				if (next_point) {
-					let now = new Date(gca_tools.time.server());
+					let now = new Date(gca_tools.time.server())
 					now.setSeconds(0);
 					let next = new Date(now.getTime());
-					next.setHours(parseInt(next_point[1], 10));
+
+					// Adjust `Next point` hour and minute by the calculated timezones offset
+					const shift_direction = now < new Date() ? 1 : -1; // Is user timezone before or after server timezone, roughly
+					const hour_to_set = parseInt(next_point[1], 10) + (shift_direction * gca_tools.time.getClientTimezoneDifference() / 1000 / 60 / 60);
+
+					next.setHours(hour_to_set);
 					next.setMinutes(parseInt(next_point[2], 10));
 					next_point = (next - now) / (1000 * 60);
+
+					// If the difference is negative, assume the "Next point" is the next day.
 					if (next_point < 0) {
-							next.setDate(next.getDate() + 1);
-						 next_point = (next - now) / (1000 * 60);
+						next.setDate(next.getDate() + 1);
+						next_point = (next - now) / (1000 * 60);
 					}
 				} else {
 					next_point = Math.round((90 / server_speed) / recover_rate);
@@ -2985,20 +2999,7 @@ var gca_global = {
 
 					// Create wrapper
 					const wrapper = document.createElement('div');
-					wrapper.style.position = 'absolute';
-					wrapper.style.top = '200px';
-					wrapper.style.right = '-30px';
-					wrapper.style.maxWidth = '150px';
-					wrapper.style.zIndex = '899';
-					wrapper.style.overflow = 'hidden';
-					wrapper.style.whiteSpace = 'normal';
-					wrapper.style.wordWrap = 'break-word';
-					wrapper.style.background = 'linear-gradient(to bottom, #f7e7ce, #e4c593)';
-					wrapper.style.border = '1px solid #6b1c15';
-					wrapper.style.borderWidth = '4px 1px';
-					wrapper.style.borderRadius = '6px';
-					wrapper.style.padding = '2px';
-				
+					wrapper.className = 'gca-gods-wrapper';				
 
 					// Title
 					const title = document.createElement('h2');
@@ -3664,7 +3665,7 @@ var gca_global = {
 					if(!document.getElementById("shop")) return;
 
 					// Get items
-					var items = document.getElementById('shop').getElementsByClassName("ui-draggable");
+					var items = document.querySelectorAll('#shop .ui-draggable, #shop .ui-droppable[class*="item-i-"]');
 					
 					// For each
 					for (var i = items.length - 1; i >= 0; i--) {
@@ -6419,9 +6420,17 @@ var gca_global = {
 	gca_global.preinject();
 	if (document.readyState == 'interactive' || document.readyState == 'complete') {
 		fireLoad();
-	} else {
+	}
+	else {
 		window.addEventListener('DOMContentLoaded', fireLoad, true);
 		window.addEventListener('load', fireLoad, true);
+		document.addEventListener('readystatechange', () => {
+			// This is an experimental fix for Firefox that some times in some weak devices does not run the code
+			// If this works, we will have to patch the rest of the scripts
+			if (document.readyState == 'interactive' || document.readyState == 'complete') {
+				fireLoad();
+			}
+		});
 	}
 })();
 

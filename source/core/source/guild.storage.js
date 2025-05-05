@@ -1,6 +1,8 @@
 /*
  * Addon Guild Storage Script
- * Author: DarkThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Guild Storage
@@ -11,8 +13,10 @@ var gca_guild_storage = {
 			// Remember last tad
 			this.rememberLastTab.changeHeaderTab();
 		
+		}
+
 		// Storage
-		}else{
+		else{
 			// If Item shadow
 			(gca_options.bool("global","item_shadow") &&
 				this.itemShadow.inject());
@@ -128,7 +132,7 @@ var gca_guild_storage = {
 
 		refresh : function(item = {dataset:{amount:0,itemId:0,priceGold:0,tooltip:''}}) {
 			// Get items
-			var items = document.getElementById('shop').getElementsByClassName('ui-draggable');
+			var items = document.querySelectorAll('#shop .ui-draggable, #shop .ui-droppable[class*="item-i-"]');
 			// Count gold
 			let rubies = 0;
 			let gold = 0;
@@ -213,7 +217,7 @@ var gca_guild_storage = {
 		// Check if storage has the category item
 		check : function() {
 			// Calculate number of items for each category
-			let items = [...document.querySelectorAll('#shop .ui-draggable')].reduce((info, item) => {
+			let items = [...document.querySelectorAll('#shop .ui-draggable, #shop .ui-droppable')].reduce((info, item) => {
 				let basis = item.dataset.basis.match(/^(\d+)-(\d+)$/);
 				if (!basis) return info;
 				if (!info.hasOwnProperty(basis[1])) info[basis[1]] = 0;
@@ -256,7 +260,7 @@ var gca_guild_storage = {
 				var isScroll = new RegExp(/^20-/);
 
 				// For each item
-				jQuery("#shop .ui-draggable").each((i, item) => {
+				jQuery("#shop .ui-draggable, #shop .ui-droppable[class*=\"item-i-\"]").each((i, item) => {
 					// If not a scroll, return
 					if(!isScroll.test(item.dataset.basis)) return;
 

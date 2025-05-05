@@ -1,6 +1,8 @@
 /*
  * Addon Info Script
- * Author: DarkThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Addon Info
@@ -8,10 +10,11 @@ var gca = {
 	name : "Gladiatus Crazy Addon",
 	shortName : "GCA",
 	description: "Improve your gladiatus experience!",
-	version: "4.3.10",
+	version: "4.3.11",
 	developers : [
 		"GreatApo",
-		"DarkThanos"
+		"GramThanos",
+		"FrutyX"
 	],
 	homepage : "https://gladiatus.dinodevs.com"
 };

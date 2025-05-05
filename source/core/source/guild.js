@@ -1,6 +1,8 @@
 /*
  * Addon Guild Script
- * Author: DarkThanos, GreatApo
+ * Copyright (C) Gladiatus Crazy Addon
+ * Licensed under GNU GPLv3
+ * https://github.com/DinoDevs/GladiatusCrazyAddon
  */
 
 // Guild
@@ -238,32 +240,47 @@ var gca_guild = {
 			if (!player || !(/^[0-9]+$/).test(player)) return;
 			let rank = gca_getPage.parameter('gca-rank');
 			if (!rank || !(/^[0-9]+$/).test(rank)) return;
-
+		
 			// Parse inputs
 			player = parseInt(player, 10);
 			rank = parseInt(rank, 10);
 			if (rank < 2) return;
-
-			// Prepare data
-			let data = {};
-			data['zn' + player] = rank;
-
+		
+			// Prepare data as query string
+			let paramName = 'zn' + player;
+			let queryString = encodeURIComponent(paramName) + '=' + encodeURIComponent(rank);
+		
+			let url = gca_getPage.link({ mod: "guild", submod: "saveMembersRank" });
+			url += (url.includes('?') ? '&' : '?') + queryString;
+		
 			// Apply rank
-			gca_tools.ajax.get(gca_getPage.link({"mod":"guild","submod":"saveMembersRank"}), data).then((content) => {
-				// Get player
+			gca_tools.ajax.get(url).then((content) => {
+				// Get name with regex
 				let player_name = content.match(new RegExp('<a href="index\\.php\\?mod=player&p=' + player + '&[^>]+>([^<]+)</a>'));
 				// If not found, you may declined the application
 				//if (!player_name) return gca_notifications.error(gca_locale.get('general', 'error'));
 				if (!player_name) return;
 				player_name = player_name[1].trim();
-
-				// Check if rank was applied
-				let rank_code = content.match(new RegExp('<select name="zn' + player + '" size="1">\\s*(?:\\s*<option value="\\d+"(?:\\s*selected="selected"|)>[^<]*</option>)+\\s*\\s*</select>'));
-				if (!rank_code) return gca_notifications.error(gca_locale.get('general', 'error'));
-				rank_code = rank_code[0].match(new RegExp('<option value="(\\d+)"\\s*selected="selected">([^<]+)</option>'));
-
-				let rank_index = parseInt(rank_code[1], 10);
-				let rank_name = rank_code[2].trim();
+		
+				// DOMParser to load select and rank
+				let parser = new DOMParser();
+				let doc = parser.parseFromString(content, 'text/html');
+		
+				let select = doc.querySelector(`select[name="zn${player}"]`);
+				if (!select) {
+					console.warn("Select not found in response:", content);
+					return gca_notifications.error(gca_locale.get('general', 'error'));
+				}
+		
+				let selectedOption = select.querySelector('option[selected]');
+				if (!selectedOption) {
+					console.warn("Selected option not found:", select.outerHTML);
+					return gca_notifications.error(gca_locale.get('general', 'error'));
+				}
+		
+				let rank_index = parseInt(selectedOption.value, 10);
+				let rank_name = selectedOption.textContent.trim();
+		
 				if (rank_index === rank) {
 					gca_notifications.success('[' + rank_name + '] ' + player_name);
 				}

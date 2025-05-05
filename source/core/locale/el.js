@@ -195,7 +195,6 @@ gca_languages["gr"] = {
 			target_list_remove : "Αφαίρεση από τη λίστα στόχων",
 			error_sth_went_wrong : "Κάτι πήγε στραβά",
 			error_response : "Ο διακομιστής απάντησε με σφάλμα",
-			error_blocked_access : "Κάτι μπλοκάρει την πρόσβαση στον διακομιστή του GCA ({{url}})",
 			error_connection : "Σφάλμα σύνδεσης",
 			attack_player : "Επίθεση στον “{{name}}”",
 			fight_won : "Νίκησες τη μάχη!",

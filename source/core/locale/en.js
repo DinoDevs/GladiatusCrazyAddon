@@ -51,7 +51,7 @@ gca_languages["en"] = {
 			life_potion_use : "Use a life potion",
 			life_potion_used : "A life potion was used",
 			life_potion_left : "You now have {{number}} life potion(s)",
-
+			
 			// Life/Expedition/Dungeon points recovery
 			life_recover_full : "Full life recover",
 			expedition_recover_full : "Full expedition points recover",
@@ -66,7 +66,7 @@ gca_languages["en"] = {
 			message_sent_failed : "Failed to sent message",
 			message_empty : "The message is empty",
 			message_exclude_me : "Exclude me",
-
+			
 			// Welcome message - text
 			welcome_addon : "Welcome to Gladiatus Crazy Addon!",
 			welcome_version : "The current installed version is",
@@ -127,7 +127,7 @@ gca_languages["en"] = {
 			gold_exp_data_total_gold : "Total gold",
 			gold_exp_data_reset : "Stats have been reset!",
 			gold_exp_data_desc: "Data are collected every 5 minutes. Selling items you have bought will double your gold earnings.",
-
+			
 			// Items
 			// Mercenaries
 			mercenary_type : "Type: {{name}} ({{number}})",
@@ -136,14 +136,14 @@ gca_languages["en"] = {
 			base : "Base",
 			prefix : "Prefix",
 			suffix : "Suffix",
-
+			
 			// Gods cooldowns
-            gods_cd_title: 'Gods cooldowns',
+            gods_cd_title : "Gods cooldowns",
 
 			// Forge scrolls book (but quite general keywords)
-			details: "Details",
-			level: "Level",
-			name: "Name",
+			details : "Details",
+			level : "Level",
+			name : "Name",
         },
 
 		// Overview
@@ -190,13 +190,13 @@ gca_languages["en"] = {
 			pinned_message : "Pinned guild message",
 			pin_unpin_message : "Pin/Unpin this message",
 			pinned_message_info : "Pinned messages are displayed at the top of the messages for all guild members using this feature",
-
+			
 			// Important ranks button
 			important_ranks : "Important ranks",
-
+			
 			// Rewards - guild battles
 			rewards : "Rewards",
-
+			
 			// Battle statistics table
 			win : "Wins",
 			loss : "Losses",
@@ -223,7 +223,7 @@ gca_languages["en"] = {
 			target_list_add : "Add to target list",
 			target_list_remove : "Remove from target list",
 			error_sth_went_wrong : "Something went wrong",
-            error_response: 'Server responded with an error',
+			error_response : "Server responded with an error",
 			error_connection : "Connection error",
 			attack_player : "Click to attack “{{name}}”",
 			fight_won : "You won the fight!",
@@ -266,7 +266,7 @@ gca_languages["en"] = {
 			total_cost : "Total cost",
 			// Discount show
 			costs_discount : "Training costs discount: {{number}}%",
-			// CTRL Hint
+			// CTRL Hint 
 			ctrl_hint : "Hint: Hold down the CTRL key to increase/decrease by 10"
 		},
 
@@ -306,7 +306,7 @@ gca_languages["en"] = {
 			// Item checkboxes button
 			checkboxes_button : "Cancel selected",
 		},
-
+		
 		// Forge
 		forge : {
 			forge_ended : "Forge ended!",
@@ -322,13 +322,13 @@ gca_languages["en"] = {
 			unlearned_scroll: "Scroll not yet learned",
 			underworld_scroll: "Underworld scroll",
 		},
-
+		
 		// Merchants
 		merchants : {
 			search_item_in_merchants : "Search item in merchants",
 			no_such_item : "No such item found."
 		},
-
+		
 		// Packages
 		packages : {
 			event_items : "Event items",
@@ -339,7 +339,7 @@ gca_languages["en"] = {
 			advance_filters_clear : "Clear filters",
 			advance_filters_found : "(found {{items}})"
 		},
-
+		
 		// Report
 		reports : {
 			avg_damage : "Average damage",
@@ -364,7 +364,7 @@ gca_languages["en"] = {
 			// Description
 			description : "Enable or disable the addon's features.",
 			description_click_button : "Click the button below to go to addon's settings...",
-
+			
 			// Categories
 			category_global : "Global",
 			category_overview : "Overview",
@@ -401,7 +401,7 @@ gca_languages["en"] = {
 			category_global$auction_status_notification : "Alert when auction status changes",
 			category_global$top_fixed_bar : "Enable top fixed bar",
 			category_global$remember_tabs : "Remember merchants tabs",
-			category_global$attacked_timers : "Show attacked timers",
+			category_global$attacked_timers : "Show attacked timers",		
 			category_global$notify_new_guild_application : "Notify me when there is a new guild application",
 			category_global$check_guild_pinned_message : "Show guild pinned messages from the baths in messages",
 			category_global$check_guild_application_pinned_messages_interval : "Check for guild applications and pinned messages every (minutes)",
@@ -413,7 +413,7 @@ gca_languages["en"] = {
 			category_global$inventory_gold_info : "Show inventory items' gold price",
 			category_global$pagination_layout : "Change pages-box's layout",
 			category_global$gold_exp_data : "Show gold and exp data",
-			category_global$pray_shorcut : "Display pray shortcut when in Underworld",
+			category_global$pray_shorcut : "Display pray shortcut when in Underworld",			
 			category_global$show_durability : "Display durability on item's bottom-left corner",
 			category_global$min_durability : "Notification for items with durability+conditioning under _% (move to 0 to disable it)",
 			category_global$show_forge_info : "Display item's forge materials on tooltips",
@@ -429,7 +429,7 @@ gca_languages["en"] = {
 			category_global$bar_hide_are_btn : "Hide the Arena buttons",
 			category_global$bar_hide_ct_btn : "Hide the Circus Turma buttons",
 			category_global$clear_arena_notifications : "Automatically clear attack notifications for Arena",
-			category_global$clear_ct_notifications : "Automatically clear attack notifications for Circus Turma",
+			category_global$clear_ct_notifications : "Automatically clear attack notifications for Circus Turma",	
 			category_global$surprise_me : "Surprise me.",
 			category_global$gods_cooldown : "Show gods cooldowns",
 			// Settings - Overview
@@ -517,7 +517,7 @@ gca_languages["en"] = {
 			category_forge$horreum_select_meterials : "[Horreum] Select material on click",
 			category_forge$double_click_select : "[Smelt/Repair] Select item with double click",
 			category_forge$forge_notepad : "Add an extra notes field",
-			category_forge$add_last_item : "Add last item button",
+			category_forge$add_last_item : "Add last item button",	
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
 			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (simulator.dinodevs.com)",

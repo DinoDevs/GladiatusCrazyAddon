@@ -206,7 +206,6 @@ gca_languages['cs'] = {
 			target_list_remove : "Odstranit ze seznamu cílů",
 			error_sth_went_wrong : "Něco se pokazilo",
 			error_response : "Server odpověděl chybou",
-			error_blocked_access : "Něco blokuje připojení ke GCA serveru ({{url}})",
 			error_connection : "Chyba připojení",
 			attack_player : "Klikni pro útok “{{name}}”",
 			fight_won : "Vyhrál jsi souboj!",
