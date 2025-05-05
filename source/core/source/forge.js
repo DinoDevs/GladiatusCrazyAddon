@@ -1803,7 +1803,7 @@ var gca_forge = {
 			const getBinaryStr = function(arr, exc = []) {
 				return arr
 					.filter(el => el && !exc.includes(el.id)) // Remove excluded ones
-					.map(el => el.learned ? '0' : '1') // Map true/false to 1/0
+					.map(el => el.learned ? '1' : '0') // Map true/false to 1/0
 					.join('');
 			}
 
@@ -1815,6 +1815,9 @@ var gca_forge = {
 			// Uncompressed code
 			// the 1st item from prefixes is removed (not shown)
 			let code = getBinaryStr(this.info.prefix, this.excludedPre) + getBinaryStr(this.info.suffix, this.excludedSuf);
+			// Pad bin string to have length divisible by 8 to pack correctly. Assuming it's not already divisible by 8
+			code += '0'.repeat(8 - (code.length % 8))
+
 			// Compress code
 			code = pack(code);
 
@@ -1933,11 +1936,11 @@ var gca_forge = {
 
 		decodeAndHighlight : function(){
 			// Implementing: https://stackoverflow.com/a/38074583/10396046
-			unpack = function(packed) {
+			const unpack = function(packed) {
 				return atob(packed).split('').map(function(x) {return ('0000000' + x.charCodeAt(0).toString(2)).substr(-8, 8);}).join('');
 			}
 			// Convert 001011 to {false, false, true ...}
-			getArrayFromBin = function(bin) {
+			const getArrayFromBin = function(bin) {
 				return bin.split('').map(function(x) {return x === '1'});
 			}
 
@@ -1950,18 +1953,19 @@ var gca_forge = {
 				gca_notifications.error(gca_locale.get('forge', 'invalid_share_code'));
 				return;
 			}
+
 			// Check decompressed data
-			if(array.length != 400){
+			// There's 404 scrolls but the length of the bin string with
+			// encoded data has to be divisible by 8, making it 408 characters long
+			if(array.length !== 408){
 				gca_notifications.error(gca_locale.get('forge', 'invalid_share_code'));
 				return;
 			}
 			
-			// Highligh missing
-			let rows = document.getElementById("content_2nd").getElementsByTagName("tr");
-			for (let i = rows.length - 1; i >= 0; i--) {
-				if (i === 0 || i === 164) continue;
-				rows[i].style.color = (array[i]) ? 'red' : 'green';
-			}
+			// Highlight missing
+			document.getElementById("content_2nd")
+				.querySelectorAll("tbody tr")
+				.forEach((row, id) => row.style.color = (array[id]) ? 'green' : 'red')
 		}
 	},
 
