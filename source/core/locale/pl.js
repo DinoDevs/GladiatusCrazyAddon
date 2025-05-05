@@ -238,7 +238,7 @@ gca_languages['pl'] = {
 			use_share_code_description : "Wklej kod udostępniania gladiatora, aby zobaczyć, które zwoje zna:",
 			invalid_share_code : "Nieprawidłowy kod udostępniania",
 			hide_learned: "Ukryj wyuczone",
-			unlearned_scroll: "Zwój nie wyuczony",
+			unlearned_scroll: "Zwój niewyuczony",
 			underworld_scroll: "Zwój Hadesu",
 		},
 		packages : {
