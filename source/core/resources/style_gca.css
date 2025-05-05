@@ -1749,7 +1749,8 @@
 		.lock_section_visibility #addon_box a {pointer-events: auto!important;}
 
 		/* Checkboxes in section-headers (tables headers) */
-		.section-header .section-header__checkbox {pointer-events: auto; float: right; transform: scale(0.75);}
+		.section-header .section-header__checkbox {pointer-events: auto; float: right; font-size: 75%; display: flex; align-items: center;}
+		.section-header .section-header__checkbox input[type=checkbox] {transform: scale(0.75); }
 
 	/* Ester Eggs
 	-------------------------------------------------- */

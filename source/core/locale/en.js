@@ -320,7 +320,7 @@ gca_languages['en'] = {
             invalid_share_code: 'Invalid share code',
             add_last_item: 'Add last item',
             underworld_scroll: 'Underworld scroll',
-            unlearned_scroll: 'Unlearned scroll',
+            unlearned_scroll: 'Scroll not yet learned',
 			hide_learned: 'Hide learned',
         },
 
