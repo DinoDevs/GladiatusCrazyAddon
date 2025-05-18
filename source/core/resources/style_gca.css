@@ -1188,7 +1188,7 @@
 
 		/* Packages shortcuts */
 		.packages_shortcuts #mainnav .awesome-tabs {width: 17px!important;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-		.packages_shortcuts #mainnav li a {padding: unset!important;margin: 1px}
+		.packages_shortcuts #mainnav li a {padding: unset!important;margin: 1px;text-shadow: 1px 1px 1px #501706;}
 
 
 
