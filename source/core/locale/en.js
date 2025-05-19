@@ -138,8 +138,13 @@ gca_languages["en"] = {
 			suffix : "Suffix",
 			
 			// Gods cooldowns
-			gods_cd_title : "Gods cooldowns"
-		},
+			gods_cd_title : "Gods cooldowns",
+
+			// Forge scrolls book (but quite general keywords)
+			details : "Details",
+			level : "Level",
+			name : "Name",
+        },
 
 		// Overview
 		overview : {
@@ -312,7 +317,10 @@ gca_languages["en"] = {
 			use_share_code : "Use share code",
 			use_share_code_description : "Paste a gladiator's share code to see which scrolls they know:",
 			invalid_share_code : "Invalid share code",
-			add_last_item : "Add last item"
+			add_last_item : "Add last item",
+			hide_learned: "Hide learned",
+			unlearned_scroll: "Scroll not yet learned",
+			underworld_scroll: "Underworld scroll",
 		},
 		
 		// Merchants
