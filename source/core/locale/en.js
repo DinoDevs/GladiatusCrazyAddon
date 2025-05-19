@@ -155,6 +155,11 @@ gca_languages["en"] = {
 			can_see_market_max_item_level : "Can see items on the market up to {{max}} level.",
 			can_see_auction_item_levels : "Can see items on the auction from {{min}} to {{max}} level."
 		},
+		
+		// Messages
+		messages : {
+			block_flag : "Message has been flagged as Spam/Ad!"
+		},
 
 		// Pantheon section
 		pantheon : {
@@ -460,6 +465,7 @@ gca_languages["en"] = {
 			category_messages$fix_header_links : "Fix messages title link click bug",
 			category_messages$new_message_focus : "Focus on message body",
 			category_messages$new_message_friend_list : "Enable select friend from list button",
+			category_messages$spam_ad_blocker : "Flag and hide messages suspected to be spam or ads",
 			// Settings - Packages
 			category_packages$filters_layout : "Enhance filters layout",
 			category_packages$small_items_layout : "Make items small in size",
@@ -596,6 +602,7 @@ gca_languages["en"] = {
 			do_not_run : "Do not run",
 			default: "Default",
 			highlight: "Highlight",
+			show_original : "Show original",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",
