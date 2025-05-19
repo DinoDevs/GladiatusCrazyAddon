@@ -1074,23 +1074,20 @@ var gca_messages = {
 	spamDetector: function() {
 		// Words filter
 		const keywords = [
-			"rubies",
-			"tools",
-			"discord",
-			"sell",
-			"selling",
-			"price",
-			"prices",
-			"Deals",
-			"paypal",
-			"crypto",
-			"telegram",
-			"whatsapp",
-			"PayPal",
-			"discounts",
-			"Buy",
-			"$",
-			"€"
+			  "rubies",
+			  "tools",
+			  "discord",
+			  "sell",
+			  "price",
+			  "deals",
+			  "paypal",
+			  "crypto",
+			  "telegram",
+			  "whatsapp",
+			  "discounts",
+			  "buy",
+			  "$",
+			  "€"
 		];
 
 		// Minimum threshold for flagging
