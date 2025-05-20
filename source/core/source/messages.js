@@ -1074,46 +1074,46 @@ var gca_messages = {
 	spamDetector: function() {
 		// Words filter
 		const keywords = [
-			  "rubies",
-			  "tools",
-			  "discord",
-			  "sell",
-			  "price",
-			  "deals",
-			  "paypal",
-			  "crypto",
-			  "telegram",
-			  "whatsapp",
-			  "discounts",
-			  "buy",
-			  "$",
-			  "€"
+		    "rubies",
+		    "tools",
+		    "discord",
+		    "sell",
+		    "price",
+		    "deals",
+		    "paypal",
+		    "crypto",
+		    "telegram",
+		    "whatsapp",
+		    "discounts",
+		    "buy",
+		    "$",
+		    "€"
 		];
-
+	
 		// Minimum threshold for flagging
 		const spamThreshold = 5;
-
+	
 		// Check all messages
 		const boxes = document.querySelectorAll('.message_box');
 		boxes.forEach(box => {
 			const textDiv = box.querySelector('.message_text');
 			if (!textDiv) return;
-
+	
 			const footerDiv = box.querySelector('.message_footer');
 			// Clone original node to preserve formatting
 			const originalNode = textDiv.cloneNode(true);
-
+	
 			// Get plain text for detection
 			const text = textDiv.textContent.toLowerCase();
 			let matchCount = 0;
-
+	
 			// Calculate keyword matches
 			keywords.forEach(keyword => {
 				if (text.includes(keyword.toLowerCase())) {
 					matchCount++;
 				}
 			});
-
+	
 			// If matches >= threshold - Action
 			if (matchCount >= spamThreshold) {
 				// Clear previous content
@@ -1125,24 +1125,38 @@ var gca_messages = {
 				notice.style.fontWeight = 'bold';
 				notice.style.textAlign = 'center';
 				textDiv.appendChild(notice);
-
+	
 				// Add 'Show Original' button
 				if (footerDiv) {
 					const link = document.createElement('a');
 					link.href = '#';
 					link.textContent = gca_locale.get("settings", "show_original");
+	
+					// Tracking
+					let showingOriginal = false;
+	
 					link.addEventListener('click', event => {
 						event.preventDefault();
-						// Restore original content including emojis
 						textDiv.innerHTML = '';
-						textDiv.appendChild(originalNode.cloneNode(true));
-					});
+	
+						if (!showingOriginal) {
+							// Restore original content including emojis
+							textDiv.appendChild(originalNode.cloneNode(true));
+							link.textContent = gca_locale.get("general", "close");
+							showingOriginal = true;
+						} else {
+							// Show again
+							textDiv.appendChild(notice);
+							link.textContent = gca_locale.get("settings", "show_original");
+							showingOriginal = false;
+						}
+					});	
 					footerDiv.appendChild(link);
 				}
 			}
 		});
 	}
-
+	
 };
 
 // Onload Handler
