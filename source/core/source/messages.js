@@ -1120,10 +1120,18 @@ var gca_messages = {
 				textDiv.innerHTML = '';
 				// Flag message
 				const notice = document.createElement('div');
-				notice.textContent = gca_locale.get("messages", "block_flag");
-				notice.style.color = '#ab0000';
+				notice.textContent = " ⚠︎ " + gca_locale.get("messages", "block_flag") + " ⚠︎ ";
+				notice.style.color = '#7c0000';
 				notice.style.fontWeight = 'bold';
 				notice.style.textAlign = 'center';
+				notice.style.padding = '3px 20px';
+				notice.style.margin = '10px auto';
+				notice.style.background = 'linear-gradient(#f7e5b1, #e6c98f)';
+				notice.style.border = '2px solid #7c0000';
+				notice.style.borderRadius = '10px';
+				notice.style.boxShadow = '2px 2px 8px rgba(0,0,0,0.3)';
+				notice.style.fontFamily = 'cursive';
+				
 				textDiv.appendChild(notice);
 	
 				// Add 'Show Original' button
