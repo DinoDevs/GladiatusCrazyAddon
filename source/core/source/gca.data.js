@@ -505,7 +505,9 @@ gca_options.data = {
 		// New Message focus manage
 		"new_message_focus" : true,
 		// New Message friend list
-		"new_message_friend_list" : true
+		"new_message_friend_list" : true,
+		// Spam/Ad Blocker
+		"spam_ad_blocker" : true
 	},
 
 	// Packages Options

@@ -146,6 +146,11 @@ gca_languages['cs'] = {
 			can_see_auction_item_levels : "Může vidět předměty v aukci od {{min}} do {{max}} levelu."
 		},
 		
+		// Messages
+		messages : {
+			block_flag : "Zpráva byla označena jako Spam/Reklama!"
+		},
+		
 		// Pantheon section
 		pantheon : {
 			mysterybox_open_all : "Otevřít vše",
@@ -447,6 +452,7 @@ gca_languages['cs'] = {
 			category_messages$fix_header_links : "Opravit chybu odkazu pro nadpis zpráv při kliknutí",
 			category_messages$new_message_focus : "Okamžité psaní zprávy (ignorovat předmět)",
 			category_messages$new_message_friend_list : "Zobrazit seznam přátel ve zprávách",
+			category_messages$spam_ad_blocker : "Označ a skryj zprávy podezřelé pro spam či reklamu",
 			// Settings - Packages
 			category_packages$filters_layout : "Vylepšit rozložení filtrů",
 			category_packages$compact_info_layout : "Zobraz kompaktní rozložení informací",
@@ -583,6 +589,7 @@ gca_languages['cs'] = {
 			do_not_run : "Nikoliv",
 			default: "Výchozí",
 			highlight: "Zvýraznit",
+			show_original: "Zobrazit originál",
 			
 			// Info
 			translated_percent : "Přeloženo: {{number}}%",

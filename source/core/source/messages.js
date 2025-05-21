@@ -45,8 +45,8 @@ var gca_messages = {
 
 			// Separate days
 			(gca_options.bool("messages", "separate_days") && 
-				this.separator.days(this));
-
+				this.separator.days(this));			
+			
 			// Guild message player info
 			(gca_options.bool("messages", "messages_layout") && gca_options.bool("messages", "more_guild_mate_info") && (
 				this.guild_message.more_info(this) ||
@@ -68,6 +68,10 @@ var gca_messages = {
 			// Header links fix
 			(gca_options.bool("messages", "fix_header_links") &&
 				this.fix.headerLinks(this));
+			
+			// Spam/Ad Blocker
+			(gca_options.bool("messages", "spam_ad_blocker") && 
+				this.spamDetector(this));
 			
 			// Folder shortcuts
 			this.folders.show();
@@ -1064,8 +1068,103 @@ var gca_messages = {
 				gca_tools.setTooltip(a, [[[a.dataset.name, '#ffffff']]]);
 			});
 		}
+	},
+	
+	// Spam/Ad Blocker
+	spamDetector: function() {
+		// Words filter
+		const keywords = [
+		    "rubies",
+		    "tools",
+		    "discord",
+		    "sell",
+		    "price",
+		    "deals",
+		    "paypal",
+		    "crypto",
+		    "telegram",
+		    "whatsapp",
+		    "discounts",
+		    "buy",
+		    "$",
+		    "€"
+		];
+	
+		// Minimum threshold for flagging
+		const spamThreshold = 5;
+	
+		// Check all messages
+		const boxes = document.querySelectorAll('.message_box');
+		boxes.forEach(box => {
+			const textDiv = box.querySelector('.message_text');
+			if (!textDiv) return;
+	
+			const footerDiv = box.querySelector('.message_footer');
+			// Clone original node to preserve formatting
+			const originalNode = textDiv.cloneNode(true);
+	
+			// Get plain text for detection
+			const text = textDiv.textContent.toLowerCase();
+			let matchCount = 0;
+	
+			// Calculate keyword matches
+			keywords.forEach(keyword => {
+				if (text.includes(keyword.toLowerCase())) {
+					matchCount++;
+				}
+			});
+	
+			// If matches >= threshold - Action
+			if (matchCount >= spamThreshold) {
+				// Clear previous content
+				textDiv.innerHTML = '';
+				// Flag message
+				const notice = document.createElement('div');
+				notice.textContent = " ⚠︎ " + gca_locale.get("messages", "block_flag") + " ⚠︎ ";
+				notice.style.color = '#7c0000';
+				notice.style.fontWeight = 'bold';
+				notice.style.textAlign = 'center';
+				notice.style.padding = '3px 20px';
+				notice.style.margin = '10px auto';
+				notice.style.background = 'linear-gradient(#f7e5b1, #e6c98f)';
+				notice.style.border = '2px solid #7c0000';
+				notice.style.borderRadius = '10px';
+				notice.style.boxShadow = '2px 2px 8px rgba(0,0,0,0.3)';
+				notice.style.fontFamily = 'cursive';
+				
+				textDiv.appendChild(notice);
+	
+				// Add 'Show Original' button
+				if (footerDiv) {
+					const link = document.createElement('a');
+					link.href = '#';
+					link.textContent = gca_locale.get("settings", "show_original");
+	
+					// Tracking
+					let showingOriginal = false;
+	
+					link.addEventListener('click', event => {
+						event.preventDefault();
+						textDiv.innerHTML = '';
+	
+						if (!showingOriginal) {
+							// Restore original content including emojis
+							textDiv.appendChild(originalNode.cloneNode(true));
+							link.textContent = gca_locale.get("general", "close");
+							showingOriginal = true;
+						} else {
+							// Show again
+							textDiv.appendChild(notice);
+							link.textContent = gca_locale.get("settings", "show_original");
+							showingOriginal = false;
+						}
+					});	
+					footerDiv.appendChild(link);
+				}
+			}
+		});
 	}
-
+	
 };
 
 // Onload Handler
