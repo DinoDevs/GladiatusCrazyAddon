@@ -1,7 +1,7 @@
 ## Release v4.3.12
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-1-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-2-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-2-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
@@ -10,6 +10,10 @@
 - **General**
   
   - [X] Minor visual improvements
+
+- **Messages**
+  
+  - [X] Added new feature: Hide messages suspected to be Spam/Ad (enabled by default, #540)
 
 ### BUG FIXES
 - **Global**
