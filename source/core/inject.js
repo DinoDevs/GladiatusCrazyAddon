@@ -41,6 +41,7 @@ var inject = function(_info, _window, _folder){
 	// Data - Options
 	tools.preloadScript('source/gca.data.js');
 	tools.preloadScript('source/gca.data.recipes.js');
+
 	// Functions
 	let toolsScript = tools.preloadScript('source/gca.tools.js');
 	// CDN Methods
