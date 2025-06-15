@@ -1572,6 +1572,8 @@ var gca_forge = {
 				return e.firstElementChild;
 			};
 
+			const level_label = document.getElementById('icon_level').dataset.tooltip.split(',')[0].replace(/^\[+"|"$/g, '');
+
 			// First Table with prefixes
 			aside = createElement(`
 			<aside class="left" style="width: calc(50% - 6px)">
@@ -1582,8 +1584,8 @@ var gca_forge = {
 							<th>#</th><th>${gca_locale.get('global', 'name')}</th>
 							<th>
 								<img 
-									alt="${gca_locale.get('global', 'level')}" 
-									title="${gca_locale.get('global', 'level')}" 
+									alt="${level_label}" 
+									title="${level_label}" 
 									style="vertical-align: middle" 
 									src="${gca_tools.img.cdn("img/ui/icon_level.gif")}">
 							</th>
@@ -1657,8 +1659,8 @@ var gca_forge = {
 							<th>#</th><th>${gca_locale.get('global', 'name')}</th>
 							<th>
 								<img 
-									alt="${gca_locale.get('global', 'level')}" 
-									title="${gca_locale.get('global', 'level')}" 
+									alt="${gca_locale.get(level_label)}" 
+									title="${gca_locale.get(level_label)}" 
 									style="vertical-align: middle" 
 									src="${gca_tools.img.cdn("img/ui/icon_level.gif")}">
 							</th>
@@ -1770,11 +1772,12 @@ var gca_forge = {
 			};
 
 			// Prefix
+			const lang = gca_locale._getLang()
 			for(const [id, prefix] of Object.entries(gca_data_recipesNames.prefixes)) {
 				this.info.prefix[id] = {
 					id,
 					level : gca_data_recipes.getRecipe(id, null, null).prefix.level,
-					name : prefix[gca_locale._getLang()] ?? prefix['us'],
+					name : prefix[lang] ?? prefix['us'],
 					isUnderworld : prefix["isUnderworld"],
 					learned : (id in result.name.prefix)
 				}
@@ -1785,7 +1788,7 @@ var gca_forge = {
 				this.info.suffix[id] = {
 					id,
 					level : gca_data_recipes.getRecipe(null, null, id).suffix.level,
-					name : suffix[gca_locale._getLang()] ?? suffix['us'],
+					name : suffix[lang] ?? suffix['us'],
 					isUnderworld : suffix["isUnderworld"],
 					learned : (id in result.name.suffix)
 				}

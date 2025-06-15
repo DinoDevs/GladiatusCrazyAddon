@@ -97,7 +97,6 @@ gca_languages['pl'] = {
 			suffix : "Przyrostek",
 			gods_cd_title: "Czas do odnowienia bonusów bogów",
 			details: "Szczegóły",
-			level: "Poziom",
 			name: "Nazwa",
 		},
 		overview : {

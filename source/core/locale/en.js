@@ -142,7 +142,6 @@ gca_languages["en"] = {
 
 			// Forge scrolls book (but quite general keywords)
 			details : "Details",
-			level : "Level",
 			name : "Name",
         },
 
