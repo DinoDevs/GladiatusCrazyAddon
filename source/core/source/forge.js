@@ -1581,10 +1581,10 @@ var gca_forge = {
 			table.classList.add('scroll-books-table');
 			let thead = document.createElement('thead');
 			let th = document.createElement('th');
-			th.innerText = '#';
+			th.textContent = '#';
 			thead.appendChild(th);
 			th = document.createElement('th');
-			th.innerText = gca_locale.get('global', 'name');
+			th.textContent = gca_locale.get('global', 'name');
 			thead.appendChild(th);
 			th = document.createElement('th');
 			let img = document.createElement('img');
@@ -1596,7 +1596,7 @@ var gca_forge = {
 			thead.appendChild(th);
 			th = document.createElement('th');
 			th.title = gca_locale.get('global', 'details');
-			th.innerText = '🔎';
+			th.textContent = '🔎';
 			thead.appendChild(th);
 			table.appendChild(thead);
 			let tbody = document.createElement('tbody');
@@ -1614,7 +1614,7 @@ var gca_forge = {
 			hide_learned_label.classList.add('section-header__checkbox');
 			const hide_learned_checkbox = document.createElement('input');
 			hide_learned_checkbox.type = 'checkbox';
-			hide_learned_label.innerText = gca_locale.get('forge', 'hide_learned');
+			hide_learned_label.textContent = gca_locale.get('forge', 'hide_learned');
 			hide_learned_label.prepend(hide_learned_checkbox);
 			hide_learned_checkbox.addEventListener("change", e => {
 				this.hide_learned_prefixes = e.target.checked;
@@ -1672,10 +1672,10 @@ var gca_forge = {
 			table.classList.add('scroll-books-table');
 			thead = document.createElement('thead');
 			th = document.createElement('th');
-			th.innerText = '#';
+			th.textContent = '#';
 			thead.appendChild(th);
 			th = document.createElement('th');
-			th.innerText = gca_locale.get('global', 'name');
+			th.textContent = gca_locale.get('global', 'name');
 			thead.appendChild(th);
 			th = document.createElement('th');
 			img = document.createElement('img');
@@ -1687,7 +1687,7 @@ var gca_forge = {
 			thead.appendChild(th);
 			th = document.createElement('th');
 			th.title = gca_locale.get('global', 'details');
-			th.innerText = '🔎';
+			th.textContent = '🔎';
 			thead.appendChild(th);
 			table.appendChild(thead);
 			tbody = document.createElement('tbody');
@@ -1703,7 +1703,7 @@ var gca_forge = {
 			hide_learned_label_suffix.classList.add('section-header__checkbox');
 			const hide_learned_checkbox_suffix = document.createElement('input');
 			hide_learned_checkbox_suffix.type = 'checkbox';
-			hide_learned_label_suffix.innerText = gca_locale.get('forge', 'hide_learned');
+			hide_learned_label_suffix.textContent = gca_locale.get('forge', 'hide_learned');
 			hide_learned_label_suffix.prepend(hide_learned_checkbox_suffix);
 			hide_learned_checkbox_suffix.addEventListener("change", e => {
 				this.hide_learned_suffixes = e.target.checked;
@@ -1754,27 +1754,27 @@ var gca_forge = {
 						+ ((affix_type === 'prefix') ? `${info.id},1-1,0` : `0,1-1,${info.id}`);
 
 					let td = document.createElement('td');
-					td.innerText = `#${info.id}`;
+					td.textContent = `#${info.id}`;
 					tr.append(td);
 					td = td = document.createElement('td');
 					td.title = !info.learned ? unlearned_scroll_label : '';
-					td.innerText = info.name;
+					td.textContent = info.name;
 					const span = document.createElement('span');
 					span.style.float = 'right';
 					span.style.filter = 'drop-shadow(0 0 1px #000)';
 					span.title = underworld_scroll_label;
-					span.innerText = info.isUnderworld ? '💀' : '';
+					span.textContent = info.isUnderworld ? '💀' : '';
 					td.append(span);
 					tr.append(td);
 					td = td = document.createElement('td');
-					td.innerText = info.level;
+					td.textContent = info.level;
 					tr.append(td);
 					td = td = document.createElement('td');
 					let a = document.createElement('a');
 					a.href = link;
 					a.target = '_blank';
 					a.rel = 'noopener noreferrer';
-					a.innerText = '🔗';
+					a.textContent = '🔗';
 					td.append(a);
 					tr.append(td);
 
