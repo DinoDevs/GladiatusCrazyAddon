@@ -1737,6 +1737,8 @@ var gca_forge = {
 
 			const _build_table = (affix_type, data, hide_learned, excludes_list) => {
 				const result = [];
+				const unlearned_scroll_label = gca_locale.get('forge', 'unlearned_scroll');
+				const underworld_scroll_label = gca_locale.get('forge', 'underworld_scroll');
 				for(let i = 0; i < data.length; i++) {
 					if (excludes_list.includes(i)) continue;
 					if (hide_learned && data[i].learned) continue;
@@ -1751,17 +1753,30 @@ var gca_forge = {
 						+ '/equipment?item='
 						+ ((affix_type === 'prefix') ? `${info.id},1-1,0` : `0,1-1,${info.id}`);
 
-					tr.insertAdjacentHTML('beforeend', `
-						<td>#${info.id}</td>
-						<td title="${!info.learned ? gca_locale.get('forge', 'unlearned_scroll') : ''}">
-							${info.name} 
-							<span style="float:right; filter: drop-shadow(0 0 1px #000)" title="${gca_locale.get('forge', 'underworld_scroll')}">
-								${info.isUnderworld ? '💀' : ''}
-							</span>
-						</td>
-						<td>${info.level}</td>
-						<td><a href="${link}" target="_blank" rel="noopener noreferrer">🔗</a></td>
-					`)
+					let td = document.createElement('td');
+					td.innerText = `#${info.id}`;
+					tr.append(td);
+					td = td = document.createElement('td');
+					td.title = !info.learned ? unlearned_scroll_label : '';
+					td.innerText = info.name;
+					const span = document.createElement('span');
+					span.style.float = 'right';
+					span.style.filter = 'drop-shadow(0 0 1px #000)';
+					span.title = underworld_scroll_label;
+					span.innerText = info.isUnderworld ? '💀' : '';
+					td.append(span);
+					tr.append(td);
+					td = td = document.createElement('td');
+					td.innerText = info.level;
+					tr.append(td);
+					td = td = document.createElement('td');
+					let a = document.createElement('a');
+					a.href = link;
+					a.target = '_blank';
+					a.rel = 'noopener noreferrer';
+					a.innerText = '🔗';
+					td.append(a);
+					tr.append(td);
 
 					result.push(tr);
 				}
