@@ -1565,49 +1565,57 @@ var gca_forge = {
 			this.wrapper = document.createElement('div');
 			let aside, h2, section;
 
-			// Helper function to create DOM subtree from html code
-			const createElement = (html) => {
-				const e = document.createElement("div");
-				e.insertAdjacentHTML("beforeend", html);
-				return e.firstElementChild;
-			};
-
 			const level_label = document.getElementById('icon_level').dataset.tooltip.split(',')[0].replace(/^\[+"|"$/g, '');
 
+			aside = document.createElement('aside');
+			aside.classList.add('left');
+			aside.style.width = 'calc(50% - 6px)';
+			h2 = document.createElement('h2');
+			h2.classList.add('section-header');
+			h2.textContent = gca_locale.get('global', 'prefix');
+			let prefixNote = document.createElement('small');
+			h2.appendChild(prefixNote);
+			section = document.createElement('section');
+			section.style.display = 'block';
+			let table = document.createElement('table');
+			table.classList.add('scroll-books-table');
+			let thead = document.createElement('thead');
+			let th = document.createElement('th');
+			th.innerText = '#';
+			thead.appendChild(th);
+			th = document.createElement('th');
+			th.innerText = gca_locale.get('global', 'name');
+			thead.appendChild(th);
+			th = document.createElement('th');
+			let img = document.createElement('img');
+			img.alt = level_label;
+			img.title = level_label;
+			img.style.verticalAlign = 'middle';
+			img.src = gca_tools.img.cdn("img/ui/icon_level.gif");
+			th.appendChild(img);
+			thead.appendChild(th);
+			th = document.createElement('th');
+			th.title = gca_locale.get('global', 'details');
+			th.innerText = '🔎';
+			thead.appendChild(th);
+			table.appendChild(thead);
+			let tbody = document.createElement('tbody');
+			table.appendChild(tbody);
+			section.appendChild(table);
+			aside.append(h2, section);
+
 			// First Table with prefixes
-			aside = createElement(`
-			<aside class="left" style="width: calc(50% - 6px)">
-				<h2 class="section-header">${gca_locale.get('global', 'prefix')} <small></small></h2>
-				<section style="display:block">
-					<table class="scroll-books-table">
-						<thead>
-							<th>#</th><th>${gca_locale.get('global', 'name')}</th>
-							<th>
-								<img 
-									alt="${level_label}" 
-									title="${level_label}" 
-									style="vertical-align: middle" 
-									src="${gca_tools.img.cdn("img/ui/icon_level.gif")}">
-							</th>
-							<th title="${gca_locale.get('global', 'details')}">🔎</th>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</section>
-			</aside>
-			`);
-			h2 = aside.querySelector("h2");
-			this.prefixNote = aside.querySelector("h2 small");
-			this.prefixWrapper = aside.querySelector("table tbody");
+			this.prefixNote = prefixNote;
+			this.prefixWrapper = tbody;
 			this.wrapper.appendChild(aside);
 
 			// "Show only not learned" label+checkbox for prefix
-			const hide_learned_label = createElement(`
-			<label class="section-header__checkbox">
-				<input type="checkbox"> ${gca_locale.get('forge', 'hide_learned')}
-			</label>
-			`);
-			const hide_learned_checkbox = hide_learned_label.querySelector("input");
+			const hide_learned_label = document.createElement('label');
+			hide_learned_label.classList.add('section-header__checkbox');
+			const hide_learned_checkbox = document.createElement('input');
+			hide_learned_checkbox.type = 'checkbox';
+			hide_learned_label.innerText = gca_locale.get('forge', 'hide_learned');
+			hide_learned_label.prepend(hide_learned_checkbox);
 			hide_learned_checkbox.addEventListener("change", e => {
 				this.hide_learned_prefixes = e.target.checked;
 				this.update();
@@ -1650,39 +1658,53 @@ var gca_forge = {
 			section.appendChild(btn);
 
 			// Second table with suffixes
-			aside = createElement(`
-			<aside class="right" style="width: calc(50% - 6px)">
-				<h2 class="section-header">${gca_locale.get('global', 'suffix')} <small></small></h2>
-				<section style="display:block">
-					<table class="scroll-books-table">
-						<thead>
-							<th>#</th><th>${gca_locale.get('global', 'name')}</th>
-							<th>
-								<img 
-									alt="${gca_locale.get(level_label)}" 
-									title="${gca_locale.get(level_label)}" 
-									style="vertical-align: middle" 
-									src="${gca_tools.img.cdn("img/ui/icon_level.gif")}">
-							</th>
-							<th title="${gca_locale.get('global', 'details')}">🔎</th>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</section>
-			</aside>
-			`);
-			h2 = aside.querySelector("h2");
-			this.suffixNote = aside.querySelector("h2 small");
-			this.suffixWrapper = aside.querySelector("table tbody");
+			aside = document.createElement('aside');
+			aside.classList.add('right');
+			aside.style.width = 'calc(50% - 6px)';
+			h2 = document.createElement('h2');
+			h2.classList.add('section-header');
+			h2.textContent = gca_locale.get('global', 'suffix');
+			let suffixNote = document.createElement('small');
+			h2.appendChild(suffixNote);
+			section = document.createElement('section');
+			section.style.display = 'block';
+			table = document.createElement('table');
+			table.classList.add('scroll-books-table');
+			thead = document.createElement('thead');
+			th = document.createElement('th');
+			th.innerText = '#';
+			thead.appendChild(th);
+			th = document.createElement('th');
+			th.innerText = gca_locale.get('global', 'name');
+			thead.appendChild(th);
+			th = document.createElement('th');
+			img = document.createElement('img');
+			img.alt = level_label;
+			img.title = level_label;
+			img.style.verticalAlign = 'middle';
+			img.src = gca_tools.img.cdn("img/ui/icon_level.gif");
+			th.appendChild(img);
+			thead.appendChild(th);
+			th = document.createElement('th');
+			th.title = gca_locale.get('global', 'details');
+			th.innerText = '🔎';
+			thead.appendChild(th);
+			table.appendChild(thead);
+			tbody = document.createElement('tbody');
+			table.appendChild(tbody);
+			section.appendChild(table);
+			aside.append(h2, section);
+			this.suffixNote = suffixNote;
+			this.suffixWrapper = tbody;
 			this.wrapper.appendChild(aside);
 
 			// "Show only not learned" label+checkbox for suffix
-			const hide_learned_label_suffix = createElement(`
-			<label class="section-header__checkbox">
-				<input type="checkbox"> ${gca_locale.get('forge', 'hide_learned')}
-			</label>
-			`);
-			const hide_learned_checkbox_suffix = hide_learned_label_suffix.querySelector("input");
+			const hide_learned_label_suffix = document.createElement('label');
+			hide_learned_label_suffix.classList.add('section-header__checkbox');
+			const hide_learned_checkbox_suffix = document.createElement('input');
+			hide_learned_checkbox_suffix.type = 'checkbox';
+			hide_learned_label_suffix.innerText = gca_locale.get('forge', 'hide_learned');
+			hide_learned_label_suffix.prepend(hide_learned_checkbox_suffix);
 			hide_learned_checkbox_suffix.addEventListener("change", e => {
 				this.hide_learned_suffixes = e.target.checked;
 				this.update();
