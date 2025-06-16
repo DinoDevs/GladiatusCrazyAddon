@@ -32,7 +32,7 @@ var gca_messages = {
 			this.messages.resolve();
 
 			// Messages layout improve
-			(gca_options.bool("messages", "messages_layout") && 
+			(gca_options.bool("messages", "messages_layout") &&
 				this.layout.improve(this));
 
 			// Unread messages
@@ -40,12 +40,12 @@ var gca_messages = {
 				this.unread.show(this));
 
 			// Pagination layout
-			(gca_options.bool("global", "pagination_layout") && 
+			(gca_options.bool("global", "pagination_layout") &&
 				this.pagination());
 
 			// Separate days
-			(gca_options.bool("messages", "separate_days") && 
-				this.separator.days(this));			
+			(gca_options.bool("messages", "separate_days") &&
+				this.separator.days(this));
 			
 			// Guild message player info
 			(gca_options.bool("messages", "messages_layout") && gca_options.bool("messages", "more_guild_mate_info") && (
@@ -70,7 +70,7 @@ var gca_messages = {
 				this.fix.headerLinks(this));
 			
 			// Spam/Ad Blocker
-			(gca_options.bool("messages", "spam_ad_blocker") && 
+			(gca_options.bool("messages", "spam_ad_blocker") &&
 				this.spamDetector(this));
 			
 			// Folder shortcuts
@@ -1131,8 +1131,29 @@ var gca_messages = {
 				notice.style.borderRadius = '10px';
 				notice.style.boxShadow = '2px 2px 8px rgba(0,0,0,0.3)';
 				notice.style.fontFamily = 'cursive';
+				notice.style.cursor = 'pointer';
 				
 				textDiv.appendChild(notice);
+
+				// Tracking
+				let showingOriginal = false;
+
+				// Function to handle toggling
+				let toggle = () => {
+					textDiv.innerHTML = '';
+	
+					if (!showingOriginal) {
+						// Restore original content including emojis
+						textDiv.appendChild(originalNode.cloneNode(true));
+					}
+					else {
+						// Show again
+						textDiv.appendChild(notice);
+					}
+					
+					// Toggle
+					showingOriginal = !showingOriginal;
+				};
 	
 				// Add 'Show Original' button
 				if (footerDiv) {
@@ -1140,27 +1161,36 @@ var gca_messages = {
 					link.href = '#';
 					link.textContent = gca_locale.get("settings", "show_original");
 	
-					// Tracking
-					let showingOriginal = false;
-	
-					link.addEventListener('click', event => {
-						event.preventDefault();
+					toggle = () => {
 						textDiv.innerHTML = '';
-	
+		
 						if (!showingOriginal) {
 							// Restore original content including emojis
 							textDiv.appendChild(originalNode.cloneNode(true));
 							link.textContent = gca_locale.get("general", "close");
-							showingOriginal = true;
-						} else {
+						}
+						else {
 							// Show again
 							textDiv.appendChild(notice);
 							link.textContent = gca_locale.get("settings", "show_original");
-							showingOriginal = false;
 						}
-					});	
+						
+						// Toggle
+						showingOriginal = !showingOriginal;
+					};
+	
+					link.addEventListener('click', event => {
+						event.preventDefault();
+						toggle();
+					});
 					footerDiv.appendChild(link);
 				}
+
+				notice.addEventListener('click', event => {
+					event.preventDefault();
+					if (showingOriginal) return;
+					toggle();
+				});
 			}
 		});
 	}
