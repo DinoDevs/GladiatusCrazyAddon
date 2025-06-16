@@ -1573,6 +1573,7 @@ var gca_forge = {
 			h2 = document.createElement('h2');
 			h2.classList.add('section-header');
 			h2.textContent = gca_locale.get('global', 'prefix');
+			h2.addEventListener('click', (e) => {e.stopImmediatePropagation();}, false);
 			let prefixNote = document.createElement('small');
 			h2.appendChild(prefixNote);
 			section = document.createElement('section');
@@ -1664,6 +1665,8 @@ var gca_forge = {
 			h2 = document.createElement('h2');
 			h2.classList.add('section-header');
 			h2.textContent = gca_locale.get('global', 'suffix');
+			h2.addEventListener('click', (e) => {e.stopImmediatePropagation();}, false);
+			h2.style.cursor = 'default!important';
 			let suffixNote = document.createElement('small');
 			h2.appendChild(suffixNote);
 			section = document.createElement('section');
@@ -2010,7 +2013,9 @@ var gca_forge = {
 			// Highlight missing
 			document.getElementById("content_2nd")
 				.querySelectorAll("tbody tr")
-				.forEach((row, id) => row.style.color = (array[id]) ? 'green' : 'red')
+				.forEach((row, id) => {
+					row.style.color = (array[id]) ? 'green' : 'red';
+				});
 		}
 	},
 
