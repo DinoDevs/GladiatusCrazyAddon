@@ -1744,12 +1744,14 @@ var gca_forge = {
 				const underworld_scroll_label = gca_locale.get('forge', 'underworld_scroll');
 				for(let i = 0; i < data.length; i++) {
 					if (excludes_list.includes(i)) continue;
-					if (hide_learned && data[i].learned) continue;
 
 					const info = data[i];
 					const tr = document.createElement('tr');
 					if(!info.learned) {
 						tr.style.color = '#656565';
+					}
+					if(hide_learned && data[i].learned) {
+						tr.style.display = 'none';
 					}
 
 					let link = gca_links.get('gladiatus-tools-server')
