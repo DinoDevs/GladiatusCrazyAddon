@@ -469,6 +469,21 @@ var gca_messages = {
 			if(!links)
 				return;
 
+			// Check if the link is correct
+			links = links.filter(function(url) {
+				try {
+					new URL(url);
+					return true;
+				}
+				catch (e) {
+					return false;
+				}
+			});
+
+			// If no valid links found return
+			if(!links)
+				return;
+
 			// Create links box
 			var wrapper = document.createElement("div");
 			wrapper.className = "message_text gca_message_links";
