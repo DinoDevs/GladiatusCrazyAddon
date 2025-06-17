@@ -128,7 +128,11 @@ gca_languages['cs'] = {
 			suffix : "Suffix",
 			
 			// Gods cooldowns
-			gods_cd_title : "Čekací doby bohů"
+			gods_cd_title : "Čekací doby bohů",
+
+			// Forge scrolls book (but quite general keywords)
+			details : "Detaily",
+			name : "Název"
 		},
 		
 		// Overview
@@ -304,7 +308,10 @@ gca_languages['cs'] = {
 			use_share_code : "Použít kód pro sdílení",
 			use_share_code_description : "Vložte kód sdílení jiného hráče, pro zobrazení svitků které již znají:",
 			invalid_share_code : "Vložený kód je neplatný",
-			add_last_item : "Přidat poslední předmět"
+			add_last_item : "Přidat poslední předmět",
+			hide_learned: "Skrýt naučené",
+			unlearned_scroll: "Svitek nenaučen",
+			underworld_scroll: "Svitek z Podsvětí"
 		},
 		
 				// Merchants
