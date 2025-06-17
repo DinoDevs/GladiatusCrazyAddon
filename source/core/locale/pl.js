@@ -94,7 +94,10 @@ gca_languages['pl'] = {
 			gains_with_full_stats : "Zyski przy pełnych statystykach:",
 			base : "Podstawowe",
 			prefix : "Przedrostek",
-			suffix : "Przyrostek"
+			suffix : "Przyrostek",
+			gods_cd_title: "Czas do odnowienia bonusów bogów",
+			details: "Szczegóły",
+			name: "Nazwa",
 		},
 		overview : {
 			stats_difference : "Różnica",
@@ -232,7 +235,10 @@ gca_languages['pl'] = {
 			unknown_scrolls_share_code : "Mój kod udostępniania nieznanych zwojów",
 			use_share_code : "Użyj kodu udostępniania",
 			use_share_code_description : "Wklej kod udostępniania gladiatora, aby zobaczyć, które zwoje zna:",
-			invalid_share_code : "Nieprawidłowy kod udostępniania"
+			invalid_share_code : "Nieprawidłowy kod udostępniania",
+			hide_learned: "Ukryj wyuczone",
+			unlearned_scroll: "Zwój niewyuczony",
+			underworld_scroll: "Zwój Hadesu",
 		},
 		packages : {
 			event_items : "Przedmioty eventowe",

@@ -321,6 +321,7 @@ var manager = {
 		// Forge section
 		forge : function() {
 			tools.loadScript("source/forge.js");
+			tools.loadScript('source/gca.data.recipeNames.js');
 		},
 		
 		// Arena section
