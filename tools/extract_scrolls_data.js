@@ -1,9 +1,9 @@
 
 
 var forge_data = {
-	"prefix":{...},
-	"base":{...},
-	"suffix":{...}
+	"prefix":{/*...*/},
+	"base":{/*...*/},
+	"suffix":{/*...*/}
 };
 
 var base_start = function(callback) {
