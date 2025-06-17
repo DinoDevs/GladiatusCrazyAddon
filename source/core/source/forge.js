@@ -1612,7 +1612,7 @@ var gca_forge = {
 
 			// "Show only not learned" label+checkbox for prefix
 			const hide_learned_label = document.createElement('label');
-			hide_learned_label.classList.add('section-header__checkbox');
+			hide_learned_label.classList.add('gca_section-header__checkbox');
 			const hide_learned_checkbox = document.createElement('input');
 			hide_learned_checkbox.type = 'checkbox';
 			hide_learned_label.textContent = gca_locale.get('forge', 'hide_learned');
@@ -1703,7 +1703,7 @@ var gca_forge = {
 
 			// "Show only not learned" label+checkbox for suffix
 			const hide_learned_label_suffix = document.createElement('label');
-			hide_learned_label_suffix.classList.add('section-header__checkbox');
+			hide_learned_label_suffix.classList.add('gca_section-header__checkbox');
 			const hide_learned_checkbox_suffix = document.createElement('input');
 			hide_learned_checkbox_suffix.type = 'checkbox';
 			hide_learned_label_suffix.textContent = gca_locale.get('forge', 'hide_learned');
