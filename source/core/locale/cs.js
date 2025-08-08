@@ -469,7 +469,7 @@ gca_languages['cs'] = {
 			category_packages$load_more_pages : "Načíst více stránek",
 			category_packages$pages_to_load : "Maximum načtených stránek",
 			category_packages$item_price : "Zobrazit cenu předmětů",
-			category_packages$special_category_features : "Zapnout speciální funkce podle kategorie",
+			category_packages$special_category_features : "Zapnout speciální funkce podle kategorie\n•Zobrazit známé/neznámé svitky\n•Zobrazit ikonu svitků pro neznámé prefixy/suffixy",
 			category_packages$double_click_open : "Dvojité kliknutí na zásilky pro jejich otevření",
 			category_packages$advance_filter : "Pokročilé filtry zásilek",
 			category_packages$pop_over_bag : "Postranní zobrazení inventáře při scrollování",
