@@ -555,6 +555,7 @@ gca_languages['hu'] = {
 			category_auction$multi_bids : "Licitálás az oldal frissítése nélkül",
 			category_auction$extra_item_stats : "További statisztikák megjelenítése a tárgyaknál",
 			category_auction$save_last_state : "Legutóbb használt szűrő elmentése",
+			category_auction$special_category_features : "Speciális opciók engedélyezése kategóriánként\n•Mutasd az ismert/ismeretlen tekercseket\n•Tekercs ikon mutatása ismeretlen prefix/suffix esetén",
 			// Settings - Accessibility
 			category_accessibility$white_level_indicators : "Tárgy szintek jelzése fehér színnel",
 			category_accessibility$qualty_symbols_indicators : "Tárgyak minőségét jelző szimbólumok mutatása",
