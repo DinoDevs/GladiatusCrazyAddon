@@ -250,9 +250,14 @@ window.gca_audio_loader();
 (() => {
 	let loaded = false;
 	let fireLoad = () => {
-		if (loaded) return;
-		loaded = true;
-		gca_audio_ui.load();
+	if (loaded) return;
+	if (typeof gca_tools === 'undefined') {
+		// Try again
+		setTimeout(fireLoad, 50);
+		return;
+	}
+	loaded = true;
+	gca_audio_ui.load();
 	};
 	if (document.readyState == 'interactive' || document.readyState == 'complete') {
 		fireLoad();
