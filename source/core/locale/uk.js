@@ -624,3 +624,5 @@ gca_languages["uk"] = {
 		}
 	}
 }
+
+gca_languages._active = "uk";
