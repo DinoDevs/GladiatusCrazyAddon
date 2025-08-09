@@ -17,7 +17,7 @@ var locale = {
 		"en","es","et","fa","fr",
 		"he","hr","hu","it","lt",
 		"lv","nb","nl","pl","pt",
-		"ro","ru","sk","sq",
+		"ro","ru","sk","sq","uk",
 		"tr","zh", "fi","dk"
 	],
 	// Language loaded
