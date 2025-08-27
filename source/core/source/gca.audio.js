@@ -178,9 +178,20 @@ var gca_audio = {
 
 // Audio UI
 var gca_audio_ui = {
-	load : function() {
+	load : function(retry = false) {
 		// If logged Out
 		if (document.getElementById('container_infobox') || document.getElementById('login')) return;
+
+		// Check availability
+		if (typeof gca_options === "undefined") {
+			if (!retry) {
+				setTimeout(() => {
+					gca_audio_ui.load(true);
+				}, 500); 
+			}
+			return;
+		}
+
 		if (!gca_options.bool('sound', 'cooldown_sound_notifications')) return;
 		this.soundbar();
 	},
