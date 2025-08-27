@@ -4654,8 +4654,7 @@ var gca_global = {
 				}
 			}
 		},
-		
-		
+				
 		SurpriseMe: {
 			preload: function () {
 				// Find
@@ -4684,17 +4683,24 @@ var gca_global = {
 
 					// If nothing, create
 					if (!avatarData[playerId] || (currentTime - avatarData[playerId].lastChange) > 86400000) {
-						const currentImageIndex = avatarData[playerId]
-							? (avatarData[playerId].currentImageIndex + 1) % avatarImages.length
-							: 0;
+						let currentImageIndex;
 
-					avatarData[playerId] = {
-					lastChange: currentTime,
-					currentImageIndex: currentImageIndex
-					};
+						// Pick random index, but not same as previous
+						do {
+							currentImageIndex = Math.floor(Math.random() * avatarImages.length);
+						} while (
+							avatarData[playerId] &&
+							currentImageIndex === avatarData[playerId].currentImageIndex &&
+							avatarImages.length > 1
+						);
 
-					// Save to localStorage
-					localStorage.setItem('gladiatusCrazyAddonData_Surprise_AvatarData', JSON.stringify(avatarData));
+						avatarData[playerId] = {
+							lastChange: currentTime,
+							currentImageIndex: currentImageIndex
+						};
+
+						// Save to localStorage
+						localStorage.setItem('gladiatusCrazyAddonData_Surprise_AvatarData', JSON.stringify(avatarData));
 
 						return avatarImages[currentImageIndex];
 					} else {
@@ -4705,26 +4711,23 @@ var gca_global = {
 				// Add CSS
 				avatars.forEach(avatarElement => {
 					const parentDiv = avatarElement.closest('div[id^="defenderAvatar"], div[id^="attackerAvatar"], div[id="content"]');
-					if (!parentDiv) {
-						return;
-					}
+					if (!parentDiv) return;
 
 					const playerNameElement = parentDiv.querySelector('.playername_achievement.ellipsis');
-					if (!playerNameElement) {
-						return;
-					}
+					if (!playerNameElement) return;
 
 					const playerName = playerNameElement.textContent.trim();
 					const playerId = Object.keys(playerData).find(id => playerData[id] === playerName);
+
 					if (playerId) {
 						const avatarImageURL = gca_resources.folder + 'avatars/fan_made/' + getAvatarImage(playerId);
 
 						const styleSheet = document.createElement('style');
 						styleSheet.textContent = `
 							.custom-avatar-${playerId} {
-							background-image: url(${avatarImageURL}) !important;
-							background-position: unset !important;
-						}`;
+								background-image: url(${avatarImageURL}) !important;
+								background-position: unset !important;
+							}`;
 						document.head.appendChild(styleSheet);
 
 						avatarElement.classList.add(`custom-avatar-${playerId}`);
