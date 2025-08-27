@@ -2973,14 +2973,16 @@ var gca_global = {
 			}
 		},
 		
-		showGodsCooldowns : {
+		showGodsCooldowns: {
 			inject: async function() {
 				// URL
-				const url = gca_getPage.link({ mod: "gods" });
+				const url = gca_getPage.link({
+					mod: "gods"
+				});
 
 				// Convert time
 				function formatCooldownTime(ms) {
-					const seconds = Math.floor(ms / 1000);
+					const seconds = Math.max(0, Math.floor(ms / 1000));
 					const minutes = Math.floor(seconds / 60);
 					const hours = Math.floor(minutes / 60);
 					const remainingMinutes = minutes % 60;
@@ -2988,72 +2990,170 @@ var gca_global = {
 					return `${hours}:${remainingMinutes < 10 ? '0' + remainingMinutes : remainingMinutes}:${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds}`;
 				}
 
-				try {
-					// GET URL
-					const response = await gca_tools.ajax.get(url);
-
-					const godsContainer = jQuery(response);
-
-					// Gods IDs
-					const gods = ["vulcanus", "minerva", "diana", "mars", "merkur", "apollo"];
-
-					// Create wrapper
-					const wrapper = document.createElement('div');
-					wrapper.className = 'gca-gods-wrapper';				
-
-					// Title
-					const title = document.createElement('h2');
-					title.className = 'section-header';
-					title.style.cursor = 'pointer';
-					title.textContent = gca_locale.get("global", "gods_cd_title")
-					wrapper.appendChild(title);
-
-					// Section
-					const section = document.createElement('section');
-					section.style.display = 'block';
-
-					// List
-					const list = document.createElement('ul');
-					list.style.margin = '0';
-					list.style.padding = '0';
-					list.style.listStyle = 'none';
-
-					// Browse gods and cds
-					gods.forEach(god => {
-						const godElement = godsContainer.find(`#${god}`);
-						if (godElement.length) {
-							const godName = godElement.find(".god_name").text().trim();
-
-							// Cooldown from data-ticker-time-left
-							const cooldownElement = godElement.find(".ticker");
-							let cooldownTimeLeft = cooldownElement.attr("data-ticker-time-left");
-
-							// Check text
-							if (!cooldownTimeLeft) {
-								cooldownTimeLeft = cooldownElement.text().trim();
-							}
-
-							// Convert or show no cd
-							const formattedCooldown = cooldownTimeLeft ? formatCooldownTime(parseInt(cooldownTimeLeft)) : gca_locale.get("general", "no");
-
-							// Create list
-							const item = document.createElement('li');
-							item.innerHTML = `<strong>${godName}:</strong> ${formattedCooldown}`;
-							item.style.display = 'flex';
-							item.style.justifyContent = 'space-between';
-							item.style.padding = '2px 0';
-							list.appendChild(item);
-						}					
-					});
-
-					section.appendChild(list);
-					wrapper.appendChild(section);
-			
-					// Insert on page
-					document.getElementById('header_game').appendChild(wrapper);
-				} catch (error) {
-					console.error("Error fetching gods data:", error);
+				// Fallback
+				function niceNameFromId(id) {
+					return id.charAt(0).toUpperCase() + id.slice(1);
 				}
+
+				// Gods IDs
+				const GODS = ["vulcanus", "minerva", "diana", "mars", "merkur", "apollo"];
+
+				// State
+				let cooldowns = {}; // { id: ms }
+				let names = {}; // { id: string }
+				let list;
+				let retry = false;
+
+				// Fetch 
+				async function fetchData() {
+					try {
+						const response = await gca_tools.ajax.get(url);
+						const godsContainer = jQuery(response);
+
+						const nextCooldowns = {};
+						const nextNames = {};
+
+						GODS.forEach(id => {
+							const godElement = godsContainer.find(`#${id}`);
+							if (godElement.length) {
+								const godName = godElement.find(".god_name").text().trim();
+								const cooldownElement = godElement.find(".ticker");
+
+								let left = cooldownElement.attr("data-ticker-time-left");
+								if (!left) left = cooldownElement.text().trim();
+
+								const ms = left ? parseInt(left, 10) : 0;
+
+								nextCooldowns[id] = isNaN(ms) ? 0 : ms;
+								nextNames[id] = godName || niceNameFromId(id);
+							} else {
+								nextCooldowns[id] = cooldowns[id] || 0;
+								nextNames[id] = names[id] || niceNameFromId(id);
+							}
+						});
+
+						cooldowns = nextCooldowns;
+						names = nextNames;
+
+						// Persist in the original shape + names map
+						gca_data.section.set("timers", "gods_cooldowns", {
+							timestamp: Date.now(),
+							cooldowns: cooldowns,
+							names: names
+						});
+
+						// Re-render UI after fresh fetch
+						renderList();
+					} catch (error) {
+						console.warn("Error fetching gods data:", error);
+						if (!retry) {
+							retry = true;
+							await fetchData();
+						}
+					}
+				}
+
+				// Build UI once
+				// Wrapper
+				const wrapper = document.createElement('div');
+				wrapper.className = 'gca-gods-wrapper';
+
+				// Title
+				const title = document.createElement('h2');
+				title.className = 'section-header';
+				title.style.cursor = 'pointer';
+				title.textContent = gca_locale.get("global", "gods_cd_title");
+				wrapper.appendChild(title);
+				
+				// Section
+				const section = document.createElement('section');
+				section.style.display = 'block';
+
+				// List
+				list = document.createElement('ul');
+				list.style.margin = '0';
+				list.style.padding = '0';
+				list.style.listStyle = 'none';
+				section.appendChild(list);
+
+				// Append
+				wrapper.appendChild(section);
+				document.getElementById('header_game').appendChild(wrapper);
+
+				// Rendering  
+				function renderList() {
+					list.innerHTML = "";
+					GODS.forEach(id => {
+						const li = document.createElement('li');
+						li.dataset.god = id;
+						li.style.display = 'flex';
+						li.style.justifyContent = 'space-between';
+						li.style.padding = '2px 0';
+						const nm = names[id] || niceNameFromId(id);
+						const body = cooldowns[id] > 0 ? formatCooldownTime(cooldowns[id]) : gca_locale.get("general", "no");
+						li.innerHTML = `<strong>${nm}:</strong> ${body}`;
+						list.appendChild(li);
+					});
+				}
+
+				// Load from storage first 
+				(function hydrateFromStorageOrFetch() {
+					// Read
+					let saved = gca_data.section.get("timers", "gods_cooldowns", null);
+					let savedCooldowns = {};
+					let savedNames = {};
+					let savedTimestamp = 0;
+
+					if (saved && (saved.cooldowns || saved.names || saved.timestamp)) {
+						savedCooldowns = saved.cooldowns || {};
+						savedNames = saved.names || {};
+						savedTimestamp = saved.timestamp || 0;
+					} else if (saved && typeof saved === "object") {
+						savedCooldowns = saved;
+						savedNames = {};
+						savedTimestamp = 0;
+					}
+
+					const isFresh = savedTimestamp && (Date.now() - savedTimestamp < 120000);
+
+					if (isFresh) {
+						const elapsed = Date.now() - savedTimestamp;
+
+						GODS.forEach(id => {
+							const base = savedCooldowns[id] || 0;
+							cooldowns[id] = Math.max(0, base - elapsed);
+							names[id] = savedNames[id] || niceNameFromId(id);
+						});
+
+						renderList();
+					} else {
+						// Too old or missing > fetch now
+						Promise.resolve(fetchData());
+					}
+				})();
+
+				// Live timer
+				setInterval(() => {
+					let changed = false;
+					GODS.forEach(id => {
+						if (cooldowns[id] > 0) {
+							cooldowns[id] = Math.max(0, cooldowns[id] - 1000);
+							changed = true;
+							const li = list.querySelector(`li[data-god="${id}"]`);
+							if (li) {
+								const nm = names[id] || niceNameFromId(id);
+								const body = cooldowns[id] > 0 ? formatCooldownTime(cooldowns[id]) : gca_locale.get("general", "no");
+								li.innerHTML = `<strong>${nm}:</strong> ${body}`;
+							}
+						}
+					});
+				}, 1000);
+
+				// Refresh from server every 2 minutes
+				setInterval(() => {
+					retry = false;
+					fetchData();
+				}, 120000);
 			}
 		},
 
