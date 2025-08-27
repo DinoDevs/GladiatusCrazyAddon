@@ -1,7 +1,7 @@
 ## Release v4.3.12
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-3-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-3-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-2-blue.svg?style=flat-square)
 
@@ -10,6 +10,7 @@
 - **General**
   
   - [X] Minor visual improvements
+  - [X] Various code improvements
 
 - **Messages**
   
