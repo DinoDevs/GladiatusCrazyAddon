@@ -435,7 +435,7 @@ gca_languages["en"] = {
 			category_global$clear_arena_notifications : "Automatically clear attack notifications for Arena",
 			category_global$clear_ct_notifications : "Automatically clear attack notifications for Circus Turma",	
 			category_global$surprise_me : "Surprise me.",
-			category_global$gods_cooldown : "Show gods cooldowns",
+			category_global$gods_cooldown : "Show gods cooldowns (refresh every 2 mins)",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
