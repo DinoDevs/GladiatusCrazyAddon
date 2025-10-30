@@ -29,10 +29,6 @@ To install the developer version, download the [developer code zip](https://gith
 
 Caution: before installing the developer version, disable or remove the curent version. Additionally, mind that the developer version does not auto-update with new releses, instead, you will need to manually replace the unpacked (decompressed) files by getting a fresh copy of the code.
 
-### 📽️ Example Video  
-[https://www.youtube.com/watch?v=rk9nAMPFGVs](https://www.youtube.com/watch?v=rk9nAMPFGVs)  
-* Thanks to Never3K from Discord
-
 ### Install on mobile phone
 
 GCA can be installed on mobile phone by using a browser compatible with one of the provided extensions. For example, on Android phones you would need a browser like [kiwi](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser) or [yandex](https://play.google.com/store/apps/details?id=com.yandex.browser) which support chrome extensions (*.crx*). Some of these browsers support installing addons directly from a chrome store.
