@@ -3,7 +3,7 @@
  * Name : Spanish
  * Code : [none]
  * Tag  : es
- * Translator: Francisco Carvajal, McINTYRE, JotaFraG, Kaenidas, Dodis [kirigayadodis@gmail.com], hola, Cronos_Vzla [juniorperez002@gmail.com], ElCosmo [elangelcaido.bm@gmail.com], Senakhtenre [senakhtenre@gladiatus.es]
+ * Translator: Francisco Carvajal, McINTYRE, JotaFraG, Kaenidas, Dodis [kirigayadodis@gmail.com], hola, Cronos_Vzla [juniorperez002@gmail.com], ElCosmo [elangelcaido.bm@gmail.com], Senakhtenre [senakhtenre@gladiatus.es], @trojan7dhr-pixel
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['es'] = {
 	name : 'Español (Spanish)',
-	translators : ["Francisco Carvajal", "McINTYRE", "JotaFraG", "Kaenidas", "Dodis", "hola", "Cronos_Vzla", "ElCosmo", "Senakhtenre"],
+	translators : ["Francisco Carvajal", "McINTYRE", "JotaFraG", "Kaenidas", "Dodis", "hola", "Cronos_Vzla", "ElCosmo", "Senakhtenre", "trojan7dhr-pixel"],
 	locale : {
 		info : {
 			description : "¡El addon más loco de Gladiatus jamás creado!"
