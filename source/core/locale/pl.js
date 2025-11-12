@@ -3,7 +3,7 @@
  * Name : Polish
  * Code : pol
  * Tag  : pl
- * Translator: wupload, Legiss, Vanish_Si, Sorky96, robisxx
+ * Translator: wupload, Legiss, Vanish_Si, Sorky96, robisxx, Weakus
  */
 
 // Languages Object
@@ -12,7 +12,7 @@ var gca_languages = gca_languages || {};
 // Set Language
 gca_languages['pl'] = {
 	name : 'Polski (Polish)',
-	translators : ["wupload", "Legiss", "Vanish_Si", "Sorky96, robisxx"],
+	translators : ["wupload", "Legiss", "Vanish_Si", "Sorky96", "robisxx", "Weakus"],
 	locale : {
 		info : {
 			description : "Zwariowany dodatek dla Gladiatusa"
@@ -98,6 +98,7 @@ gca_languages['pl'] = {
 			gods_cd_title: "Czas do odnowienia bonusów bogów",
 			details: "Szczegóły",
 			name: "Nazwa",
+			gods_cd_title : "Czas odnowienia bogów"
 		},
 		overview : {
 			stats_difference : "Różnica",
@@ -225,7 +226,8 @@ gca_languages['pl'] = {
 			are_you_sure_you_want_to_buy : "Jesteś pewny że chcesz to kupić?",
 			item_cant_buy_back : "Nie będziesz mógł/a odkupić tego przedmiotu.",
 			click_enter_to_sell : "naciśnij enter ⏎, aby sprzedać",
-			add_fees_in_price : "Dodaj opłaty do ceny"
+			add_fees_in_price : "Dodaj opłaty do ceny",
+			checkboxes_button : "Anuluj wybrane"
 		},
 		forge : {
 			forge_ended : "Wykuwanie zakończone!",
@@ -239,6 +241,7 @@ gca_languages['pl'] = {
 			hide_learned: "Ukryj wyuczone",
 			unlearned_scroll: "Zwój niewyuczony",
 			underworld_scroll: "Zwój Hadesu",
+			add_last_item : "Dodaj ostatni przedmiot"
 		},
 		packages : {
 			event_items : "Przedmioty eventowe",
@@ -291,7 +294,12 @@ gca_languages['pl'] = {
 			category_global$remember_tabs : "Pamiętaj ostatnią wybraną kartę u kupców",
 			category_global$attacked_timers : "Pokaż licznik atakujących",
 			category_global$notify_new_guild_application : "Powiadom mnie, gdy pojawi się nowe podanie do gildii",
+			category_global$clear_arena_notifications : "Automatycznie usuwaj powiadomienia o atakach w Arenie",
+			category_global$clear_ct_notifications : "Automatycznie usuwaj powiadomienia o atakach w Circus Turma",
+			category_global$surprise_me : "Zaskocz mnie.",
+			category_global$gods_cooldown : "Pokaż czasy odnowienia bogów",
 			category_main_menu : "Menu główne",
+			category_main_menu$menu_merge_merchants : "Połącz wszystkich handlarzy w jeden wpis menu",
 			category_global$health_warning : "Wyślij ostrzeżenie jeśli HP jest poniżej:",
 			category_global$bar_hide_exp_btn : "Ukryj przycisk wypraw",
 			category_global$bar_hide_dun_btn : "Ukryj przycisk lochów",
@@ -392,6 +400,7 @@ gca_languages['pl'] = {
 			category_forge$horreum_select_meterials : "[Kuźnia] Zaznacz materiały po kliknięciu",
 			category_forge$forge_notepad : "Dodaj dodatkowe pole notatek",
 			category_forge$double_click_select : "[Przetapianie/Naprawa] Wybierz przedmiot podwójnym kliknięciem",
+			category_forge$add_last_item : "Przycisk dodawania ostatniego przedmiotu",
 			//Ustawienia -- arena
 			category_arena$ignore_attack_confirmations : "Ignoruj ataki (powyżej 5 powiadomień ataku)",
 			category_arena$show_simulator_imagelink : "Pokaż link do symulatora (simulator.dinodevs.com)",
@@ -412,6 +421,7 @@ gca_languages['pl'] = {
 			category_market$double_click_select : "Wybierz przedmiot za pomocą podwójnego kliknięcia",
 			category_market$sell_warning_icons : "Ikona ostrzegalna podczas sprzedawania przedmiotów",
 			category_market$sell_with_enter : "Sprzedaj przedmiot za pomocą ENTERA ⏎",
+			category_market$item_checkboxes : "Dodaj pola wyboru dla każdego przedmiotu",
 			// Ustawienia -- ekspedycje
 			category_expedition$show_enemy_drops : "Pokaż jakie składniki można zdobyć z przeciwnika",
 			category_expedition$underworld_layout : "Pokaż układ wrogów w podziemiach jak w widoku ekspedycji",
@@ -435,6 +445,7 @@ gca_languages['pl'] = {
 			category_auction$multi_bids : "Licytuj przedmioty bez odświeżania strony",
 			category_auction$extra_item_stats : "Pokaż dodatkowe statystyki na zdjęciu przedmiotu",
 			category_auction$save_last_state : "Zapisz ostatnio wyszukiwane dane i załaduj je domyślnie",
+			category_auction$special_category_features : "Włącz specjalne funkcje dla kategorii\n• Pokaż ikonę zwoju, jeśli prefiks/sufiks przedmiotu jest nieznany",
 			//Ustawienia -- eventy
 			category_events$craps_timer : "Wyświetl czas trwania eventu",
 			category_events$server_quest_timer : "Wyświetl zadania lub zegar wydarzenia na górze",
@@ -492,6 +503,7 @@ gca_languages['pl'] = {
 			category_accessibility$qualty_symbols_indicators : "Dodaj wskaźniki symboli jakości na przedmiotach",
 			category_accessibility$tooltips_qualty_white : "Zmień tytuł przedmiotu w podpowiedziach na biały",
 			category_accessibility$tooltips_qualty_symbols : "Dodaj symbole jakości na podpowiedziach",
+			category_accessibility$highlight_item_duplicates : "Podświetl duplikaty przedmiotów",
 			category_data$export_settings_to_notes : "Eksportuj ustawienia do notatek",
 			category_data$import_settings_from_notes : "Importuj ustawienia z notatek",
 			default : "Domyślne",
