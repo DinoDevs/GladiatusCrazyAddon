@@ -3,7 +3,7 @@
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-3-red.svg?style=flat-square)
-![translations](https://img.shields.io/badge/translations-3-blue.svg?style=flat-square)
+![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
 
@@ -37,3 +37,4 @@
   - [X] Hungarian translation updates by @thezen32 (#543)
   - [X] New language added: Ukrainian by @Lys-Mykyta (#544)
   - [X] Spanish translation updates by @trojan7dhr-pixel (#546)
+  - [X] Polish translation updates by @Weakus (#548)
