@@ -1301,7 +1301,7 @@ var gca_forge = {
 				// Construct notification
 				let info = document.createElement('div');
 				info.className = 'show-item-quality';
-				info.appendChild(document.createTextNode(gca_locale.get('forge', 'horreum_material_change'))); // TODO - add locale
+				info.appendChild(document.createTextNode(gca_locale.get('forge', 'horreum_material_change')));
 				info.appendChild(document.createElement('br'));
 				for (let i = 0; i < changes.added.length; i++) {
 					this.addNotificationIcon(changes.added[i], true, info);
@@ -1332,7 +1332,7 @@ var gca_forge = {
 				let b = {};
 
 				// Parse lists
-				for (let i = 1; i <= 71; i++) {
+				for (let i = 1; i <= 83; i++) {
 					a[i] = {'-1' : 0, '0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0};
 					if (_a[i]) {
 						for (let j = -1; j <= 4; j++) {
@@ -1352,7 +1352,7 @@ var gca_forge = {
 				var removed = [];
 
 				// Compare
-				for (let i = 1; i <= 71; i++) {
+				for (let i = 1; i <= 83; i++) {
 					for (let j = -1; j <= 4; j++) {
 						if (a[i][j] > b[i][j]) {
 							removed.push([i, j, a[i][j] - b[i][j]]);
