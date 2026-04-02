@@ -4064,13 +4064,19 @@ var gca_global = {
 					// Try to calculate unknown levels
 					if(item != null){
 						// Check if needed / possible
-						if( data.suffix.level*data.prefix.level < 0 ){
-							var unknownLevel = item.dataset.level - ((prefix > 0) ? data.prefix.level : 0) - ((data.base) ? data.base.level : 0) - ((suffix > 0) ? data.suffix.level : 0) - 1; // -1 because the unknown would be -(-1)=1
+						if(
+							(!data.suffix && (data.prefix || prefix == 0)) || 
+							((data.suffix || suffix == 0) && !data.prefix)
+						){
+							var unknownLevel = item.dataset.level - (data.prefix && prefix > 0 ? data.prefix.level : 0) - ((data.base) ? data.base.level : 0) - (data.suffix && suffix > 0? data.suffix.level : 0);
+							
 							if(unknownLevel > 0){
 								let logType = "Prefix "+prefix;
-								if(data.prefix.level < 0)
+								if(!data.prefix){
+									data.prefix = [];
 									data.prefix.level = unknownLevel;
-								else{
+								} else {
+									data.suffix = [];
 									data.suffix.level = unknownLevel;
 									logType = "Suffix "+suffix;
 								}
