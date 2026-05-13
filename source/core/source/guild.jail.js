@@ -51,7 +51,18 @@ var gca_guild_jail = {
 			"102" : { name : "Akhekhu", image : gca_tools.img.cdn("img/npc/1/2_9.jpg")},
 			"112" : { name : "Wrath Mountain", image : gca_tools.img.cdn("img/npc/2/2_5.jpg")},
 			"122" : { name : "Valerius Filius Gustavo", image : gca_tools.img.cdn("img/npc/2/2_8.jpg")},
-			"130" : { name : "Dracolich", image : gca_tools.img.cdn("img/npc/2/1_32.jpg")}
+			"130" : { name : "Dracolich", image : gca_tools.img.cdn("img/npc/2/1_32.jpg")},
+			// New Britannia bosses
+			"135" : { name : "Dubnovellaunus", image : gca_tools.img.cdn("img/npc/4/dungeons/dubnovellaunus.jpg")},
+			"150" : { name : "Evil Fairy Queen Clíodhna", image : gca_tools.img.cdn("img/npc/4/dungeons/corrupted_fairy_queen_cliodhna.jpg")},
+			"165" : { name : "Athair Nathra", image : gca_tools.img.cdn("img/npc/4/dungeons/athair_nathra.jpg")},
+			"180" : { name : "Nennius", image : gca_tools.img.cdn("img/npc/4/dungeons/nennius.jpg")},
+			"195" : { name : "Lugotrix", image : gca_tools.img.cdn("img/npc/4/dungeons/lugotrix.jpg")},
+			"210" : { name : "Glashtyn", image : gca_tools.img.cdn("img/npc/4/dungeons/glashtyn.jpg")},
+			"225" : { name : "Daruven", image : gca_tools.img.cdn("img/npc/4/dungeons/daruven.jpg")},
+			"245" : { name : "Edern & Dwrgi", image : gca_tools.img.cdn("img/npc/4/dungeons/edern_and_dwrgi.jpg")},
+			// TO DO - Unknown internal name
+			// "265" : { name : "Jago, Avatar of Antenociticus", image : gca_tools.img.cdn("img/npc/4/dungeons/.jpg")}			
 		},
 		
 		improve : function(){
