@@ -61,8 +61,7 @@ var gca_guild_jail = {
 			"210" : { name : "Glashtyn", image : gca_tools.img.cdn("img/npc/4/dungeons/glashtyn.jpg")},
 			"225" : { name : "Daruven", image : gca_tools.img.cdn("img/npc/4/dungeons/daruven.jpg")},
 			"245" : { name : "Edern & Dwrgi", image : gca_tools.img.cdn("img/npc/4/dungeons/edern_and_dwrgi.jpg")},
-			// TO DO - Unknown internal name
-			// "265" : { name : "Jago, Avatar of Antenociticus", image : gca_tools.img.cdn("img/npc/4/dungeons/.jpg")}			
+			"265" : { name : "Jago, Avatar of Antenociticus", image : gca_tools.img.cdn("img/npc/4/dungeons/elowen.jpg")}			
 		},
 		
 		improve : function(){
