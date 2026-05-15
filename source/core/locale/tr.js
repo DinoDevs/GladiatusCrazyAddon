@@ -128,7 +128,6 @@ gca_languages["tr"] = {
 			// Demirhane parşömenleri kitabı
 			details : "Detaylar",
 			name : "İsim"
-
 		},
 
 		//Genel Bakış
@@ -298,7 +297,7 @@ gca_languages["tr"] = {
 			add_last_item : "Son itemi ekle",
 			hide_learned: "Okuduklarımı gizle",
 			unlearned_scroll: "Bu parşomen henüz okunmadı",
-			underworld_scroll: "Yeraltı parşomeni",
+			underworld_scroll: "Yeraltı parşomeni"
 		},
 		//Tüccarlar
 		merchants : {
