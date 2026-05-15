@@ -3,7 +3,7 @@
  * Name : German
  * Code : [none]
  * Tag  : de
- * Translator: DoonFreak, Sleeping*Shadow
+ * Translator: DoonFreak, Sleeping*Shadow, TheMrSnow
  */
 
 // Languages Object
@@ -15,7 +15,7 @@ gca_languages['de'] = {
 	// Language name
 	name : 'Deutsch (German)',
 	// Translators (authors of this script)
-	translators : ["DoonFreak", "Sleeping*Shadow"],
+	translators : ["DoonFreak", "Sleeping*Shadow", "TheMrSnow"],
 
 	// Translations object
 	locale : {
