@@ -127,7 +127,14 @@ gca_languages['de'] = {
 			gains_with_full_stats : "Gewinne mit vollen Statistiken:",
 			base : "Basis",
 			prefix : "Präfix",
-			suffix : "Suffix"
+			suffix : "Suffix",
+
+			health_notification : "Deine Gesundheit ist unter",
+			welcome_addon : "Willkommen beim Gladiatus Crazy Addon!",
+			welcome_version : "Die derzeit installierte Version lautet",
+			welcome_changelog : "Changelogs",
+			gods_cd_title : "Abklingzeit Götter"
+			
 		},
 
 		// Overview
@@ -173,7 +180,16 @@ gca_languages['de'] = {
 			// Baths
 			pinned_message : "Angeheftete Gildennachricht",
 			pin_unpin_message : "Die Nachricht anheften / lösen",
-			pinned_message_info : "Angeheftete Nachrichten werden allen Gildenmitgliedern, die diese Funktion verwenden, oben in den Nachrichten angezeigt"
+			pinned_message_info : "Angeheftete Nachrichten werden allen Gildenmitgliedern, die diese Funktion verwenden, oben in den Nachrichten angezeigt",
+
+			important_ranks : "Wichtige Ränge",
+			rewards : "Belohnungen",
+			win : "Siege",
+			loss : "Niederlagen",
+			draw : "Unentschieden",
+			win_percentage : "Sieg (%)",
+			loss_percentage : "Niederlage (%)",
+			draw_percentage : "Unentschieden (%)"
 		},
 
 		// Expedition
@@ -238,6 +254,7 @@ gca_languages['de'] = {
 			points_breakdown_critical_heal_max : "Kritische Heilungswertung: max. Wert",
 			stats_calculated_with_yourself_as_an_opponent : "* Eigenschaften werden nach dem Konzept des Selbstangriffs berechnet.",
 			values_in_parenthesis_explanation : "Werte in Klammern zeigen die entsprechenden Werte vor dem Runden.",
+			ctrl_hint : "Tipp: Halte die STRG-Taste gedrückt, um den Wert um 10 zu erhöhen bzw. zu verringern"
 		},
 
 		// Auction section
@@ -271,7 +288,8 @@ gca_languages['de'] = {
 			// Are you sure
 			are_you_sure_you_want_to_buy : "Willst du den Gegenstand wirklich kaufen?",
 			click_enter_to_sell : "Drücke Enter ⏎ zum Verkaufen",
-			add_fees_in_price : "Inkludiere Gebühr zum Marktpreis"
+			add_fees_in_price : "Inkludiere Gebühr zum Marktpreis",
+			checkboxes_button : "Auswahl aufheben"
 		},
 		
 		// Forge
@@ -279,7 +297,12 @@ gca_languages['de'] = {
 			forge_ended : "Schmiede fertig!",
 			recraft_item : "Gegenstand zerlegt",
 			show_hide_doll : "Zeige / Verstecke Ausrüstung des Charakters",
-			horreum_material_change : "Horreum - Rohstoff wurde aufgewertet / eingelagert / entnommen"
+			horreum_material_change : "Horreum - Rohstoff wurde aufgewertet / eingelagert / entnommen",
+			unknown_scrolls_share_code : "Share-Code meiner unbekannten Schriftrollen",
+			use_share_code : "Share-Code nutzen",
+			use_share_code_description : "Füge den Share-Code eines Gladiators ein, um zu sehen, welche Schriftrollen er kennt:",
+			invalid_share_code : "Ungültiger Share-Code",
+			add_last_item : "Letztes Item hinzufügen"
 		},
 		
 		// Merchants
@@ -326,6 +349,7 @@ gca_languages['de'] = {
 			
 			// Categories
 			category_global : "Allgemein",
+			category_main_menu : "Hauptmenü",
 			category_overview : "Übersicht",
 			category_messages : "Nachrichten",
 			category_packages : "Pakete",
@@ -377,6 +401,19 @@ gca_languages['de'] = {
 			category_global$show_mercenaries_real_name_and_combat_stats : "Zeige den echten Söldner Namen (Typ) und ihre Kampfstatistik im Tooltip",
 			category_global$show_upgrade_values : "Zeige die Werte von Verbesserungen und Verstärkungen",
 			category_global$global_arena_timer : "Zeige Globale Arena",
+			category_global$health_warning : "Sende eine Warnung, wenn Gesundheit unter diesem Wert liegen:",
+			category_global$gladiatus_site_fixes : "Probleme mit dem Design der Gladiatus-Website beheben und verbessern",
+			category_global$gca_custom_scrollbar : "Benutzerdefinierte GCA-Scrollbar verwenden",
+			category_global$lock_section_visibility : "Den aktuellen Status der ausblendbaren Abschnitte festhalten",
+			category_global$hide_language_flags : "Sprachflaggen unter den Spielernamen ausblenden",
+			category_global$bar_hide_exp_btn : "Die „Expedition“-Schaltflächen ausblenden",
+			category_global$bar_hide_dun_btn : "Die „Dungeon“-Schaltflächen ausblenden",
+			category_global$bar_hide_are_btn : "Die „Arena“-Schaltflächen ausblenden",
+			category_global$bar_hide_ct_btn : "Die „Circus Turma“-Schaltflächen ausblenden",
+			category_global$clear_arena_notifications : "Angriffsbenachrichtigungen für die Arena automatisch löschen",
+			category_global$clear_ct_notifications : "Angriffsbenachrichtigungen für Circus Turma automatisch löschen",
+			category_global$surprise_me : "Überrasche mich.",
+			category_global$gods_cooldown : "Zeige Abklingzeit Götter",
 			// Settings - Overview
 			category_overview$analyze_items : "Analysiere Spielergegenstände",
 			category_overview$food_life_gain : "Zeige gewonnene Lebenspunkte pro Nahrung",
@@ -393,6 +430,9 @@ gca_languages['de'] = {
 			category_overview$costumes_layout : "Verbessere das Layout der Kostüme",
 			category_overview$items_repair_overview : "Zeige die Reperatur-Box",
 			// Settings - Main menu
+			category_main_menu$menu_merge_merchants : "Alle Händler in einem Menüpunkt zusammenfassen",
+			category_main_menu$menu_merge_items : "Schmelze, Schmiede, Werkbank, Horreum und Magus zu einem Menüpunkt zusammenfassen",
+			category_main_menu$menu_hide_citygate : "Den Menüeintrag Stadttor ausblenden",
 			category_main_menu$advance_main_menu : "Zeige verbessertes Layout des Hauptmenüs",
 			category_main_menu$submenu_click_to_change : "Wechsel das Untermenü per Klick",
 			category_main_menu$quest_timer : "Zeige den Aufgaben-Timer/Status",	
@@ -412,6 +452,7 @@ gca_languages['de'] = {
 			category_messages$new_message_friend_list : "Zeige Shortcut zur Freundesliste",
 			// Settings - Packages
 			category_packages$filters_layout : "Zeige verbessertes Layout der Filter",
+			category_packages$packages_shortcuts : "Shortcuts für Item-Kategorien hinzufügen",
 			category_packages$small_items_layout : "Zeige Gegenstände verkleinert",
 			category_packages$items_layout : "Zeige verbessertes Layout von Gegenständen:",
 			category_packages$compact_info_layout : "Zeige kompaktes Layout",
@@ -448,18 +489,24 @@ gca_languages['de'] = {
 			category_merchants$ruby_icon_on_items : "Zeige ein Rubin-Symbol bei Gegenstände, die Rubine kosten",
 			category_merchants$show_shop_info : "Zeige Infos pro Händler (Gesamtes Gold und Rubinen)",
 			category_merchants$double_click_actions : "Gegenstände verkaufen / kaufen durch Doppelklick",
+			category_merchants$alt_click_actions : "(HALTEN) Alt + Klick auf Artikel zum Verkaufen/Kaufen",
+			category_merchants$hide_prices : "Schwebende Preise beim Kauf/Verkauf ausblenden",
 			// Settings - Forge
 			category_forge$material_links : "[Werkbank, Schmiede] Erstelle Shurtcuts (Email, Pakete und Markt) für jedes Material",
 			category_forge$show_levels : "[Schmiede] Zeige zusätzlich Präfix / Suffix - Stufe neben dem Namen ",
 			category_forge$horreum_materials_names : "[Horreum] Zeige Rohstoff-Bezeichnung",
 			category_forge$horreum_remember_options : "[Horreum] Merke gewählte Einstellungen zur Einlagerung",
 			category_forge$horreum_select_meterials : "[Horreum] Rohstoff durch anklicken auswählen",
+			category_forge$double_click_select : "[Schmelzen/Reparieren] Wähle den Gegenstand per Doppelklick aus",
+			category_forge$forge_notepad : "Ein zusätzliches Feld für Notizen hinzufügen",
+			category_forge$add_last_item : "Schaltfläche „Letzten Item“ hinzufügen",
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignoriere Angriffsbestätigungen (größer 5 Angriffe)",
 			category_arena$show_simulator_imagelink : "Zeige einen Link zum Simulator (simulator.dinodevs.com)",
 			category_arena$sort_by_lvl : "Sortiere Spieler nach Level",
 			category_arena$highlight_guild_members : "Markiere Gildenmitglieder auf anderen Servern (Namensgleichheit)",
 			category_arena$target_list : "Liste der Angriffsziele",
+			category_arena$overhaul_tables : "Die besten 5 und die persönlichen Ranglisten getrennt auflisten und verbessern",
 			// Settings - Magus
 			category_magus$fade_unimprovable_items : "Verblasse Gegenstände die sich nicht verbessern lassen",
 			// Settings - Market
@@ -475,6 +522,7 @@ gca_languages['de'] = {
 			category_market$double_click_select : "Wähle Gegenstand durch Doppelklick aus",
 			category_market$sell_warning_icons : "Warnsymbole bei Verkauf von Gegenständen anzeigen",
 			category_market$sell_with_enter : "Verkaufe Gegenstände durch Drücken der Enter-Taste ⏎",
+			category_market$item_checkboxes : "Füge für jeden Eintrag eine Checkbox hinzu",
 			// Settings - Expedition
 			category_expedition$show_enemy_drops : "Zeige mögliches Schmiedematerial der Gegner",
 			category_expedition$underworld_layout : "Zeige das Layout der Unterwelt wie das der Expedition",
@@ -487,6 +535,8 @@ gca_languages['de'] = {
 			category_guild$bank_book_layout : "Zeige verbessertes Layout des Spendebuches",
 			category_guild$bank_book_show_changes : "Zeige Spendendifferenz der Spieler seit letzten Spendenbuch-Besuch",
 			category_guild$medic_layout : "Zeige verbessertes Layout des Villa Medicis",
+			category_guild$show_battle_rewards : "Belohnungen für jeden Gildenkampf anzeigen",
+			category_guild$show_battle_statistics : "Statistiken zu Gildenkämpfen anzeigen",
 			// Settings - Auction
 			category_auction$items_counters : "Zeige Anzahl der Gegenstände",
 			category_auction$more_search_levels : "Zeige mehr Stufen in den Suchoptionen",
@@ -497,11 +547,13 @@ gca_languages['de'] = {
 			category_auction$multi_bids : "Mehrere Gebote ohne Aktualisierung der Seite",
 			category_auction$extra_item_stats : "Zeige zusätzliche Statistiken auf den Gegenstandsbildern",
 			category_auction$save_last_state : "Zuletzt gewählter Filter als Standardeinstellung anzeigen",
+			category_auction$special_category_features : "Spezielle Funktionen pro Kategorie aktivieren\n• Anzeigen, ob Schriftrollen bekannt/unbekannt sind\n• Das Präfix bzw. Suffix des Scroll-Symbols anzeigen, wenn der Name des Items unbekannt ist",
 			// Settings - Accessibility
 			category_accessibility$white_level_indicators : "Ändere die Stufen-Anzeige der Gegenstände in die Farbe weiss" ,
 			category_accessibility$qualty_symbols_indicators : "Füge ein Symbol als Qualitätsindikator auf Gegenstände hinzu",
 			category_accessibility$tooltips_qualty_white : "Ändere den Titel der Gegenstände im Tooltip in die Farbe weiss",
 			category_accessibility$tooltips_qualty_symbols : "Füge ein Symbol als Qualitätsindikator im Tooltip hinzu",
+			category_accessibility$highlight_item_duplicates : "Duplikate hervorheben",
 			// Settings - Events
 			category_events$server_quest_timer : "Zeige den Timer des Server-Quest- oder Location-Events",
 			category_events$craps_timer : "Zeige den Timer des Würfelevents ",
@@ -518,6 +570,7 @@ gca_languages['de'] = {
 			category_data$clear_data : "Lösche alle Add-on Daten",
 			category_data$clear_cache_data : "Lösche Cache Dateien des Add-ons",
 			category_data$cross_browser_login : "Browserübergreifende Anmeldesynchronisation",
+			category_data$export_error_player_settings : "Daten unbekannter Benutzer in eine Datei exportieren",
 
 			// Buttons
 			save : "Speichern",
@@ -532,6 +585,7 @@ gca_languages['de'] = {
 			all_category : "Zeige pro Kategorie und gesamten Inhalt",
 			do_not_run : "Nicht anzeigen",
 			default: "Ursprünglich",
+			highlight : "Highlight",
 
 			// Info
 			translated_percent : "Aktuell übersetzt: {{number}}%",
