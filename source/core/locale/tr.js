@@ -123,8 +123,11 @@ gca_languages["tr"] = {
 			suffix : "Son ek",
 
 			// Tanrıların bekleme süreleri
-			gods_cd_title : "Tanrıların bekleme süreleri"
+			gods_cd_title : "Tanrıların bekleme süreleri",
 
+			// Demirhane parşömenleri kitabı
+			details : "Detaylar",
+			name : "İsim"
 		},
 
 		//Genel Bakış
@@ -140,6 +143,11 @@ gca_languages["tr"] = {
 			can_use_max_item_level : "Bu kullanıcı ana karakterinde maksimum {{max}} seviye itemleri kullanabilir.",
 			can_see_market_max_item_level : "Bu kullanıcı markette maksimum {{max}} seviye itemleri görebilir.",
 			can_see_auction_item_levels : "Bu kullanıcı müzayede salonunda {{min}} ile {{max}} seviye arası itemleri görebilir."
+		},
+
+		// Mesajlar
+		messages : {
+			block_flag : "Mesaj, Spam/Reklam olarak işaretlendi!"
 		},
 
 		//Görev Bölümü
@@ -286,7 +294,10 @@ gca_languages["tr"] = {
 			use_share_code : "Paylaşım kodu kullan",
 			use_share_code_description : "Hangi parşömenleri okuduklarını görmek için bir arkadaşının paylaşım kodunu yapıştır:",
 			invalid_share_code : "Hatalı paylaşım kodu",
-			add_last_item : "Son itemi ekle"
+			add_last_item : "Son itemi ekle",
+			hide_learned: "Okuduklarımı gizle",
+			unlearned_scroll: "Bu parşomen henüz okunmadı",
+			underworld_scroll: "Yeraltı parşomeni"
 		},
 		//Tüccarlar
 		merchants : {
@@ -428,6 +439,7 @@ gca_languages["tr"] = {
 			category_messages$fix_header_links : "Mesajın başlığındaki link'e tıklama hatasını gider",
 			category_messages$new_message_focus : "Mesaj gövdesine odaklan",
 			category_messages$new_message_friend_list : "Listeden arkadaş seç butonunu ektinleştir",
+			category_messages$spam_ad_blocker : "Spam veya reklam olduğundan şüphelenilen mesajları işaretle ve gizle",
 			//Sandık Ayarları
 			category_packages$filters_layout : "Filtre düzenini geliştir",
 			category_packages$compact_info_layout : "Bilgi düzenini kompakt hale getir",
@@ -564,6 +576,7 @@ gca_languages["tr"] = {
 			do_not_run : "Çalışma",
 			default: "Varsayılan",
 			highlight: "Vurgula",
+			show_original : "Orijinalini göster",
 
 			//Bilgilendirme
 			translated_percent : "Çeviri durumu: %{{number}}",
