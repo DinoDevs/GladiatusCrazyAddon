@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-4-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-4-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -30,6 +30,10 @@
 
   - [X] Fixed scrolls not being identified in some cases for Guild Storage (#532)
   - [X] Fixed new Britannia bosses not showing in Negotium X (#556)
+
+- **Forge**
+  
+  - [X] Fixed new resources not being  displayed in Horreum (#550)
 
 ### TRANSLATIONS
 
