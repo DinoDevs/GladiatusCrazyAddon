@@ -180,69 +180,7 @@ prefix_lvls : {
 184:120,
 185:130,
 186:140,
-187:150,
-/* New added in 2026 */
-// The following are compiled from data provided by Evroooo - Not tested/confirmed
-188:155,
-189:155,
-190:155,
-191:155,
-192:157,
-193:158,
-194:159,
-195:160,
-196:160,
-197:160,
-198:160,
-199:162,
-200:162,
-201:163,
-202:165,
-203:165,
-204:165,
-205:165,
-206:167,
-207:168,
-208:168,
-209:170,
-210:170,
-211:172,
-212:173,
-213:175,
-214:177,
-215:178,
-216:180,
-217:182,
-218:183,
-219:185,
-220:187,
-221:188,
-222:190,
-223:192,
-224:193,
-225:195,
-226:197,
-227:198,
-228:198,
-229:200,
-230:202,
-231:203,
-232:207,
-233:209,
-234:210,
-235:212,
-236:215,
-237:217,
-238:222,
-239:220,
-240:227,
-241:225,
-242:230,
-243:232,
-244:235,
-245:237,
-246:240,
-247:242
+187:150
 },
 
 // Suffix Levels
@@ -540,49 +478,7 @@ suffix_lvls : {
 290:65,
 291:70,
 292:75,
-293:80,
-/* New added in 2026 */
-294:85,
-295:85,
-296:85,
-297:85,
-298:85,
-299:87,
-300:87,
-301:88,
-302:90,
-303:90,
-304:90,
-305:90,
-306:92,
-307:93,
-308:94,
-309:95,
-310:95,
-311:95,
-312:95,
-313:95, 
-314:97,
-315:98,
-316:100,
-317:101,
-318:102,
-319:103,
-320:105,
-321:107,
-322:108,
-323:110,
-324:112,
-325:115,
-326:117,
-327:120,
-// The following are compiled from data provided by Evroooo - Not tested/confirmed
-328:122,
-329:125,
-330:127,
-331:130,
-332:132,
-333:132
+293:80
 },
 
 // Base Levels and Materials
@@ -46285,16 +46181,78 @@ getRecipe : function(prefix, base, suffix) {
 			suffix : 0,
 		},
 		keys : [],
-		mats : {}
+		mats : {},
+		groups : {
+			prefix : {keys : [], mats : {}},
+			base : {keys : [], mats : {}},
+			suffix : {keys : [], mats : {}},
+			other : {keys : [], mats : {}}
+		}
 	};
 
-	let id = prefix + '-' + ( ( suffix < 100 || suffix > 109 ) ? suffix : 0 ); // 100 to 109 are the +1, +2 etc suffixes
+	var addTo = function(target, material, amount) {
+		material = String(material);
+		amount = parseInt(amount, 10) || 0;
+		if (amount <= 0) return;
+		if (target.keys.indexOf(material) < 0) target.keys.push(material);
+		target.mats[material] = (parseInt(target.mats[material], 10) || 0) + amount;
+	};
+
+	var addToGroup = function(group, material, amount) {
+		addTo(data, material, amount);
+		addTo(data.groups[group], material, amount);
+	};
+
+	var sortKeys = function(target) {
+		target.keys.sort(function(a, b){return parseInt(a, 10) - parseInt(b, 10)});
+	};
+
+	var splitSharedMaterial = function(material, amount, prefixMats, suffixMats) {
+		var prefixAmount = parseInt(prefixMats[material], 10) || 0;
+		var suffixAmount = parseInt(suffixMats[material], 10) || 0;
+
+		if (prefixAmount > 0 && suffixAmount <= 0) {
+			addToGroup('prefix', material, amount);
+		}
+		else if (suffixAmount > 0 && prefixAmount <= 0) {
+			addToGroup('suffix', material, amount);
+		}
+		else if (prefixAmount > 0 && suffixAmount > 0) {
+			var prefixShare = Math.round(amount * (prefixAmount / (prefixAmount + suffixAmount)));
+			if (prefixShare < 0) prefixShare = 0;
+			if (prefixShare > amount) prefixShare = amount;
+			var suffixShare = amount - prefixShare;
+			addToGroup('prefix', material, prefixShare);
+			addToGroup('suffix', material, suffixShare);
+		}
+		else {
+			// This should be rare. Keep the material visible instead of dropping it.
+			addToGroup('other', material, amount);
+		}
+	};
+
+	let suffix_for_recipe = (suffix < 100 || suffix > 109) ? suffix : 0; // 100 to 109 are the +1, +2 etc suffixes
+	let id = prefix + '-' + suffix_for_recipe;
+
 	if (this.prefix_suffix_mats.hasOwnProperty(id)) {
 		let mats = this.prefix_suffix_mats[id];
+		let prefix_mats = this.prefix_suffix_mats[prefix + '-0'] || {};
+		let suffix_mats = this.prefix_suffix_mats['0-' + suffix_for_recipe] || {};
+
 		for (let i in mats) {
 			if (mats.hasOwnProperty(i)) {
-				data.keys.push(i);
-				data.mats[i] = mats[i];
+				if (prefix > 0 && suffix_for_recipe === 0) {
+					addToGroup('prefix', i, mats[i]);
+				}
+				else if (prefix === 0 && suffix_for_recipe > 0) {
+					addToGroup('suffix', i, mats[i]);
+				}
+				else if (prefix > 0 && suffix_for_recipe > 0) {
+					splitSharedMaterial(i, mats[i], prefix_mats, suffix_mats);
+				}
+				else {
+					addToGroup('other', i, mats[i]);
+				}
 			}
 		}
 	}
@@ -46310,20 +46268,19 @@ getRecipe : function(prefix, base, suffix) {
 		let mats = this.base_mats[base];
 		for (let i in mats) {
 			if (mats.hasOwnProperty(i)) {
-				if (data.keys.includes(i)) {
-					data.mats[i] += mats[i];
-				}
-				else {
-					data.keys.push(i);
-					data.mats[i] = mats[i];
-				}
+				addToGroup('base', i, mats[i]);
 			}
 		}
 	}
 
-	data.keys.sort(function(a, b){return a - b});
+	sortKeys(data);
+	sortKeys(data.groups.prefix);
+	sortKeys(data.groups.base);
+	sortKeys(data.groups.suffix);
+	sortKeys(data.groups.other);
 
 	return data;
 }
+
 
 };

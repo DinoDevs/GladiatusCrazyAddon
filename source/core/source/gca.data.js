@@ -505,9 +505,7 @@ gca_options.data = {
 		// New Message focus manage
 		"new_message_focus" : true,
 		// New Message friend list
-		"new_message_friend_list" : true,
-		// Spam/Ad Blocker
-		"spam_ad_blocker" : true
+		"new_message_friend_list" : true
 	},
 
 	// Packages Options
@@ -620,7 +618,9 @@ gca_options.data = {
 		// Add a notepad
 		"forge_notepad" : true,
 		// Add last item button
-		"add_last_item" : true
+		"add_last_item" : true,
+		// Finished forge/smelting notifications
+		"finish_notifications" : true
 	},
 	
 	// Arena

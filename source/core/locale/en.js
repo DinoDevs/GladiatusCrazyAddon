@@ -138,12 +138,8 @@ gca_languages["en"] = {
 			suffix : "Suffix",
 			
 			// Gods cooldowns
-			gods_cd_title : "Gods cooldowns",
-
-			// Forge scrolls book (but quite general keywords)
-			details : "Details",
-			name : "Name",
-        },
+			gods_cd_title : "Gods cooldowns"
+		},
 
 		// Overview
 		overview : {
@@ -158,11 +154,6 @@ gca_languages["en"] = {
 			can_use_max_item_level : "Can use items up to {{max}} level.",
 			can_see_market_max_item_level : "Can see items on the market up to {{max}} level.",
 			can_see_auction_item_levels : "Can see items on the auction from {{min}} to {{max}} level."
-		},
-		
-		// Messages
-		messages : {
-			block_flag : "Message has been flagged as Spam/Ad!"
 		},
 
 		// Pantheon section
@@ -321,10 +312,7 @@ gca_languages["en"] = {
 			use_share_code : "Use share code",
 			use_share_code_description : "Paste a gladiator's share code to see which scrolls they know:",
 			invalid_share_code : "Invalid share code",
-			add_last_item : "Add last item",
-			hide_learned: "Hide learned",
-			unlearned_scroll: "Scroll not yet learned",
-			underworld_scroll: "Underworld scroll",
+			add_last_item : "Add last item"
 		},
 		
 		// Merchants
@@ -435,7 +423,7 @@ gca_languages["en"] = {
 			category_global$clear_arena_notifications : "Automatically clear attack notifications for Arena",
 			category_global$clear_ct_notifications : "Automatically clear attack notifications for Circus Turma",	
 			category_global$surprise_me : "Surprise me.",
-			category_global$gods_cooldown : "Show gods cooldowns (refresh every 2 mins)",
+			category_global$gods_cooldown : "Show gods cooldowns",
 			// Settings - Overview
 			category_overview$analyze_items : "Analyze items stats (needed for training)",
 			category_overview$food_life_gain : "Show life gain from foods",
@@ -472,7 +460,6 @@ gca_languages["en"] = {
 			category_messages$fix_header_links : "Fix messages title link click bug",
 			category_messages$new_message_focus : "Focus on message body",
 			category_messages$new_message_friend_list : "Enable select friend from list button",
-			category_messages$spam_ad_blocker : "Flag and hide messages suspected to be spam or ads",
 			// Settings - Packages
 			category_packages$filters_layout : "Enhance filters layout",
 			category_packages$small_items_layout : "Make items small in size",
@@ -522,7 +509,8 @@ gca_languages["en"] = {
 			category_forge$horreum_select_meterials : "[Horreum] Select material on click",
 			category_forge$double_click_select : "[Smelt/Repair] Select item with double click",
 			category_forge$forge_notepad : "Add an extra notes field",
-			category_forge$add_last_item : "Add last item button",	
+			category_forge$add_last_item : "Add last item button",
+			category_forge$finish_notifications : "Show finished forge/smelting notifications",	
 			// Settings - Arena
 			category_arena$ignore_attack_confirmations : "Ignore attack confirmations (over 5 attacks message etc)",
 			category_arena$show_simulator_imagelink : "Show an image-link to the simulator (simulator.dinodevs.com)",
@@ -609,7 +597,6 @@ gca_languages["en"] = {
 			do_not_run : "Do not run",
 			default: "Default",
 			highlight: "Highlight",
-			show_original : "Show original",
 
 			// Info
 			translated_percent : "Translated percent: {{number}}%",

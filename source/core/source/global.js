@@ -440,10 +440,7 @@ var gca_global = {
 		// Check page direction ltr or rtl
 		if(
 			// Check if the rtl css exists on the page
-			//!document.querySelector("link[href$='/cdn57/270eb6a1a8de3fd98cd920e0a396ed.css'], link[href$='/cdn0c/bc5ca92d0773302a4c1745ad5f8d8c.css']")
-			!Array.from(document.querySelectorAll('link[href]')).some(link =>
-				/\/rtl\.css(\?.*)?$/.test(link.getAttribute('href'))
-			)
+			!document.querySelector("link[href$='/cdn57/270eb6a1a8de3fd98cd920e0a396ed.css'], link[href$='/cdn0c/bc5ca92d0773302a4c1745ad5f8d8c.css']")
 		){
 			window.gca_rtl = false;
 			if (localStorage.getItem('gca_rtl')) {
@@ -2973,16 +2970,14 @@ var gca_global = {
 			}
 		},
 		
-		showGodsCooldowns: {
+		showGodsCooldowns : {
 			inject: async function() {
 				// URL
-				const url = gca_getPage.link({
-					mod: "gods"
-				});
+				const url = gca_getPage.link({ mod: "gods" });
 
 				// Convert time
 				function formatCooldownTime(ms) {
-					const seconds = Math.max(0, Math.floor(ms / 1000));
+					const seconds = Math.floor(ms / 1000);
 					const minutes = Math.floor(seconds / 60);
 					const hours = Math.floor(minutes / 60);
 					const remainingMinutes = minutes % 60;
@@ -2990,170 +2985,85 @@ var gca_global = {
 					return `${hours}:${remainingMinutes < 10 ? '0' + remainingMinutes : remainingMinutes}:${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds}`;
 				}
 
-				// Fallback
-				function niceNameFromId(id) {
-					return id.charAt(0).toUpperCase() + id.slice(1);
-				}
+				try {
+					// GET URL
+					const response = await gca_tools.ajax.get(url);
 
-				// Gods IDs
-				const GODS = ["vulcanus", "minerva", "diana", "mars", "merkur", "apollo"];
+					const godsContainer = jQuery(response);
 
-				// State
-				let cooldowns = {}; // { id: ms }
-				let names = {}; // { id: string }
-				let list;
-				let retry = false;
+					// Gods IDs
+					const gods = ["vulcanus", "minerva", "diana", "mars", "merkur", "apollo"];
 
-				// Fetch 
-				async function fetchData() {
-					try {
-						const response = await gca_tools.ajax.get(url);
-						const godsContainer = jQuery(response);
-
-						const nextCooldowns = {};
-						const nextNames = {};
-
-						GODS.forEach(id => {
-							const godElement = godsContainer.find(`#${id}`);
-							if (godElement.length) {
-								const godName = godElement.find(".god_name").text().trim();
-								const cooldownElement = godElement.find(".ticker");
-
-								let left = cooldownElement.attr("data-ticker-time-left");
-								if (!left) left = cooldownElement.text().trim();
-
-								const ms = left ? parseInt(left, 10) : 0;
-
-								nextCooldowns[id] = isNaN(ms) ? 0 : ms;
-								nextNames[id] = godName || niceNameFromId(id);
-							} else {
-								nextCooldowns[id] = cooldowns[id] || 0;
-								nextNames[id] = names[id] || niceNameFromId(id);
-							}
-						});
-
-						cooldowns = nextCooldowns;
-						names = nextNames;
-
-						// Persist in the original shape + names map
-						gca_data.section.set("timers", "gods_cooldowns", {
-							timestamp: Date.now(),
-							cooldowns: cooldowns,
-							names: names
-						});
-
-						// Re-render UI after fresh fetch
-						renderList();
-					} catch (error) {
-						console.warn("Error fetching gods data:", error);
-						if (!retry) {
-							retry = true;
-							await fetchData();
-						}
-					}
-				}
-
-				// Build UI once
-				// Wrapper
-				const wrapper = document.createElement('div');
-				wrapper.className = 'gca-gods-wrapper';
-
-				// Title
-				const title = document.createElement('h2');
-				title.className = 'section-header';
-				title.style.cursor = 'pointer';
-				title.textContent = gca_locale.get("global", "gods_cd_title");
-				wrapper.appendChild(title);
+					// Create wrapper
+					const wrapper = document.createElement('div');
+					wrapper.style.position = 'absolute';
+					wrapper.style.top = '200px';
+					wrapper.style.right = '-30px';
+					wrapper.style.maxWidth = '150px';
+					wrapper.style.zIndex = '899';
+					wrapper.style.overflow = 'hidden';
+					wrapper.style.whiteSpace = 'normal';
+					wrapper.style.wordWrap = 'break-word';
+					wrapper.style.background = 'linear-gradient(to bottom, #f7e7ce, #e4c593)';
+					wrapper.style.border = '1px solid #6b1c15';
+					wrapper.style.borderWidth = '4px 1px';
+					wrapper.style.borderRadius = '6px';
+					wrapper.style.padding = '2px';
 				
-				// Section
-				const section = document.createElement('section');
-				section.style.display = 'block';
 
-				// List
-				list = document.createElement('ul');
-				list.style.margin = '0';
-				list.style.padding = '0';
-				list.style.listStyle = 'none';
-				section.appendChild(list);
+					// Title
+					const title = document.createElement('h2');
+					title.className = 'section-header';
+					title.style.cursor = 'pointer';
+					title.textContent = gca_locale.get("global", "gods_cd_title")
+					wrapper.appendChild(title);
 
-				// Append
-				wrapper.appendChild(section);
-				document.getElementById('header_game').appendChild(wrapper);
+					// Section
+					const section = document.createElement('section');
+					section.style.display = 'block';
 
-				// Rendering  
-				function renderList() {
-					list.innerHTML = "";
-					GODS.forEach(id => {
-						const li = document.createElement('li');
-						li.dataset.god = id;
-						li.style.display = 'flex';
-						li.style.justifyContent = 'space-between';
-						li.style.padding = '2px 0';
-						const nm = names[id] || niceNameFromId(id);
-						const body = cooldowns[id] > 0 ? formatCooldownTime(cooldowns[id]) : gca_locale.get("general", "no");
-						li.innerHTML = `<strong>${nm}:</strong> ${body}`;
-						list.appendChild(li);
-					});
-				}
+					// List
+					const list = document.createElement('ul');
+					list.style.margin = '0';
+					list.style.padding = '0';
+					list.style.listStyle = 'none';
 
-				// Load from storage first 
-				(function hydrateFromStorageOrFetch() {
-					// Read
-					let saved = gca_data.section.get("timers", "gods_cooldowns", null);
-					let savedCooldowns = {};
-					let savedNames = {};
-					let savedTimestamp = 0;
+					// Browse gods and cds
+					gods.forEach(god => {
+						const godElement = godsContainer.find(`#${god}`);
+						if (godElement.length) {
+							const godName = godElement.find(".god_name").text().trim();
 
-					if (saved && (saved.cooldowns || saved.names || saved.timestamp)) {
-						savedCooldowns = saved.cooldowns || {};
-						savedNames = saved.names || {};
-						savedTimestamp = saved.timestamp || 0;
-					} else if (saved && typeof saved === "object") {
-						savedCooldowns = saved;
-						savedNames = {};
-						savedTimestamp = 0;
-					}
+							// Cooldown from data-ticker-time-left
+							const cooldownElement = godElement.find(".ticker");
+							let cooldownTimeLeft = cooldownElement.attr("data-ticker-time-left");
 
-					const isFresh = savedTimestamp && (Date.now() - savedTimestamp < 120000);
-
-					if (isFresh) {
-						const elapsed = Date.now() - savedTimestamp;
-
-						GODS.forEach(id => {
-							const base = savedCooldowns[id] || 0;
-							cooldowns[id] = Math.max(0, base - elapsed);
-							names[id] = savedNames[id] || niceNameFromId(id);
-						});
-
-						renderList();
-					} else {
-						// Too old or missing > fetch now
-						Promise.resolve(fetchData());
-					}
-				})();
-
-				// Live timer
-				setInterval(() => {
-					let changed = false;
-					GODS.forEach(id => {
-						if (cooldowns[id] > 0) {
-							cooldowns[id] = Math.max(0, cooldowns[id] - 1000);
-							changed = true;
-							const li = list.querySelector(`li[data-god="${id}"]`);
-							if (li) {
-								const nm = names[id] || niceNameFromId(id);
-								const body = cooldowns[id] > 0 ? formatCooldownTime(cooldowns[id]) : gca_locale.get("general", "no");
-								li.innerHTML = `<strong>${nm}:</strong> ${body}`;
+							// Check text
+							if (!cooldownTimeLeft) {
+								cooldownTimeLeft = cooldownElement.text().trim();
 							}
-						}
-					});
-				}, 1000);
 
-				// Refresh from server every 2 minutes
-				setInterval(() => {
-					retry = false;
-					fetchData();
-				}, 120000);
+							// Convert or show no cd
+							const formattedCooldown = cooldownTimeLeft ? formatCooldownTime(parseInt(cooldownTimeLeft)) : gca_locale.get("general", "no");
+
+							// Create list
+							const item = document.createElement('li');
+							item.innerHTML = `<strong>${godName}:</strong> ${formattedCooldown}`;
+							item.style.display = 'flex';
+							item.style.justifyContent = 'space-between';
+							item.style.padding = '2px 0';
+							list.appendChild(item);
+						}					
+					});
+
+					section.appendChild(list);
+					wrapper.appendChild(section);
+			
+					// Insert on page
+					document.getElementById('header_game').appendChild(wrapper);
+				} catch (error) {
+					console.error("Error fetching gods data:", error);
+				}
 			}
 		},
 
@@ -3404,7 +3314,8 @@ var gca_global = {
 					for(let i=0;i<smeltTimes.data.length;i++){
 						if(smeltTimes.data[i][0]*1000<=current){
 							type = 'green';
-							gca_notifications.success( smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2], gca_getPage.link({"mod":"forge","submod":"smeltery"}) );
+							if(gca_options.bool("forge", "finish_notifications"))
+								gca_notifications.success( smeltTimes.translation[0]+': '+smeltTimes.data[i][1]+'\n'+smeltTimes.translation[2], gca_getPage.link({"mod":"forge","submod":"smeltery"}) );
 							tooltip += ',[["'+smeltTimes.data[i][1]+'","'+smeltTimes.translation[2]+'"],["#DDD","#00ff00"]]';
 						}else{
 							let qualityColor = gca_tools.item.shadow.getColor(smeltTimes.data[i][2], true);
@@ -3420,7 +3331,8 @@ var gca_global = {
 					for(let i=0;i<forgeTimes.data.length;i++){
 						if(forgeTimes.data[i][0]*1000<=current){
 							type = 'green';
-							gca_notifications.success(forgeTimes.translation[0]+': '+forgeTimes.data[i][1]+'\n'+forgeTimes.translation[2]);
+							if(gca_options.bool("forge", "finish_notifications"))
+								gca_notifications.success(forgeTimes.translation[0]+': '+forgeTimes.data[i][1]+'\n'+forgeTimes.translation[2]);
 							tooltip += ',[["'+forgeTimes.data[i][1]+'","'+forgeTimes.translation[2]+'"],["#DDD","#00ff00"]]';
 						}else{
 							let qualityColor = gca_tools.item.shadow.getColor(forgeTimes.data[i][2], true);
@@ -3987,28 +3899,27 @@ var gca_global = {
 					// If not an craftable item
 					if (!gca_data_recipes.isCraftable(base)) return;
 
-					// Build forge info
-					if (this.style === 'minimal' || this.style === 'extended') {
-						this.tooltip(item, prefix, base, suffix);
-					}
-					else if (this.style === 'minimal-amounts' || this.style === 'extended-amounts') {
-						//let Browser = typeof window.browser === 'undefined' ? window.chrome : window.browser;
-						//Browser.runtime.sendMessage(window.gca_extension.id, {action: 'get-recipe', prefix: prefix, base: base, suffix : suffix}, (data) => {
-						//	this.tooltip(item, prefix, base, suffix, data);
-						//});
-						gca_tools.extension.sendMessage({action: 'get-recipe', prefix: prefix, base: base, suffix : suffix}, (data) => {
-							this.tooltip(item, prefix, base, suffix, data);
-						});
-					}
+					// Build forge info.
+					// Always ask the background recipe engine for the amount recipe, even for
+					// non-amount formats. The shared/new recipe patch is name-based and needs
+					// this recipe object so every display format can merge new prefix, base,
+					// suffix, and exact combo material data consistently.
+					gca_tools.extension.sendMessage({action: 'get-recipe', prefix: prefix, base: base, suffix : suffix}, (data) => {
+						this.tooltip(item, prefix, base, suffix, data || false);
+					});
 				},
 
 				tooltip : function(item, prefix, base, suffix, recipe = false) {
+					if (recipe && window.gca_data_shared_recipes) {
+						recipe = window.gca_data_shared_recipes.mergeRecipe(item, recipe);
+					}
+
 					var info;
 					if (this.style === 'extended') {
-						info = this.style_extended(prefix, base, suffix);
+						info = this.style_extended(prefix, base, suffix, item, recipe);
 					}
 					else if (this.style === 'minimal') {
-						info = this.style_normal(prefix, base, suffix, item); // developer mode available
+						info = this.style_normal(prefix, base, suffix, item, recipe); // developer mode available
 					}
 					else if (this.style === 'extended-amounts' && recipe) {
 						info = this.style_extended_amounts(prefix, base, suffix, recipe);
@@ -4049,7 +3960,37 @@ var gca_global = {
 					return code;
 				},
 
-				style_normal : function(prefix, base, suffix, item) {
+				getRecipeDisplayData : function(prefix, base, suffix, recipe) {
+					var fallback = gca_data_recipes.getRecipe(prefix, base, suffix);
+
+					// Amount recipes include grouped materials. Convert those groups into
+					// the older {prefix, base, suffix} shape used by the minimal and
+					// extended non-amount formats, so they also benefit from the shared
+					// recipe database and txt-only prefix/suffix recipes.
+					if (recipe && recipe.groups) {
+						let data = {prefix : false, base : false, suffix : false, other : false};
+						let makePart = (part, fallbackPart) => {
+							let group = recipe.groups && recipe.groups[part] ? recipe.groups[part] : false;
+							let keys = group && Array.isArray(group.keys) ? group.keys.slice(0) : [];
+							if (keys.length === 0 && fallbackPart) keys = fallbackPart.slice(0);
+							if (keys.length === 0) return false;
+							keys.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+							let arr = keys.map((key) => parseInt(key, 10));
+							arr.level = (recipe.lvls && typeof recipe.lvls[part] !== 'undefined') ? recipe.lvls[part] : (fallbackPart ? fallbackPart.level : 0);
+							return arr;
+						};
+
+						data.prefix = makePart('prefix', fallback.prefix);
+						data.base = makePart('base', fallback.base);
+						data.suffix = makePart('suffix', fallback.suffix);
+						data.other = makePart('other', false);
+						return data;
+					}
+
+					return fallback;
+				},
+
+				style_normal : function(prefix, base, suffix, item, recipe = false) {
 					// Switch for developers: show IDs and print unknown levels
 					var developerMode = false;
 					
@@ -4059,24 +4000,18 @@ var gca_global = {
 					var row_mats = '<tr style="height: 18px;color: #cccccc;">';
 					var row_dev = '<tr>';
 
-					var data = gca_data_recipes.getRecipe(prefix, base, suffix);
+					var data = this.getRecipeDisplayData(prefix, base, suffix, recipe);
 					
 					// Try to calculate unknown levels
 					if(item != null){
 						// Check if needed / possible
-						if(
-							(!data.suffix && (data.prefix || prefix == 0)) || 
-							((data.suffix || suffix == 0) && !data.prefix)
-						){
-							var unknownLevel = item.dataset.level - (data.prefix && prefix > 0 ? data.prefix.level : 0) - ((data.base) ? data.base.level : 0) - (data.suffix && suffix > 0? data.suffix.level : 0);
-							
+						if( data.suffix.level*data.prefix.level < 0 ){
+							var unknownLevel = item.dataset.level - ((prefix > 0) ? data.prefix.level : 0) - ((data.base) ? data.base.level : 0) - ((suffix > 0) ? data.suffix.level : 0) - 1; // -1 because the unknown would be -(-1)=1
 							if(unknownLevel > 0){
 								let logType = "Prefix "+prefix;
-								if(!data.prefix){
-									data.prefix = [];
+								if(data.prefix.level < 0)
 									data.prefix.level = unknownLevel;
-								} else {
-									data.suffix = [];
+								else{
 									data.suffix.level = unknownLevel;
 									logType = "Suffix "+suffix;
 								}
@@ -4144,6 +4079,17 @@ var gca_global = {
 						}
 					}
 
+					// Any exact combo materials that cannot be safely attributed to a part.
+					if (data.other) {
+						let count = data.other.length;
+						data.other.forEach((mat) => {
+							row_mats += '<td><div class="item-i-18-' + mat + '" style="display:inline-block;transform: scale(0.7);margin:-12px -6px -12px -6px;"></div></td>';
+						});
+						row_type += '<td colspan="' + count + '">[Other]</td>';
+						row_info += '<td colspan="' + count + '">&nbsp;</td>';
+						row_dev += '<td colspan="' + count + '">#?</td>';
+					}
+
 					row_type += '</tr>';
 					row_info += '</tr>';
 					row_dev += '</tr>';
@@ -4165,38 +4111,112 @@ var gca_global = {
 					return info;
 				},
 
-				style_normal_amounts : function(prefix, base, suffix, recipe) {
-					let count = recipe.keys.length;
-					// Create rows for the tooltip
-					let row_type = '<tr style="color: #ffffff;"><td colspan="' + count + '">';
-					row_type += (prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' + '' : '';
-					row_type += '[' + gca_locale.get("global", "base") + ' ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' + '';
-					row_type += (suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' + '' : '';
+				getAmountGroups : function(prefix, base, suffix, recipe) {
+					let groups = [];
+					let usedKeys = {};
 
-					let row_mats = '<tr style="color: #cccccc;text-align:center;">';
-					let row_icons = '<tr style="height: 18px;text-align:center;">';
-					recipe.keys.forEach((i) => {
-						row_mats += '<td>' + recipe.mats[i] + '&times;</td>';
-						row_icons += '<td><div class="item-i-18-' + i + '" style="display:inline-block;transform: scale(0.7);margin:-12px -4px -12px -4px;"></div></td>';
+					let addGroup = (name, label, level, isVisible) => {
+						if (!isVisible) return;
+						let source = recipe.groups && recipe.groups[name] ? recipe.groups[name] : false;
+						let keys = source && Array.isArray(source.keys) ? source.keys.slice(0) : [];
+						let mats = source && source.mats ? source.mats : {};
+						keys.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+						keys.forEach((key) => { usedKeys[key] = true; });
+						groups.push({
+							name : name,
+							label : '[' + label + ' ' + (level >= 0 ? level : '?') + ' lvl]',
+							keys : keys,
+							mats : mats
+						});
+					};
+
+					if (recipe.groups) {
+						addGroup('prefix', gca_locale.get("global", "prefix"), recipe.lvls.prefix, prefix > 0);
+						addGroup('base', gca_locale.get("global", "base"), recipe.lvls.base, true);
+						addGroup('suffix', gca_locale.get("global", "suffix"), recipe.lvls.suffix, suffix > 0);
+
+						let other = recipe.groups.other && Array.isArray(recipe.groups.other.keys) ? recipe.groups.other.keys.slice(0) : [];
+						(recipe.keys || []).forEach((key) => {
+							if (!usedKeys[key] && other.indexOf(key) < 0) other.push(key);
+						});
+						other.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+						if (other.length > 0) {
+							let mats = Object.assign({}, recipe.groups.other ? recipe.groups.other.mats : {});
+							other.forEach((key) => {
+								if (!mats[key]) mats[key] = recipe.mats[key];
+							});
+							groups.push({
+								name : 'other',
+								label : '[Other]',
+								keys : other,
+								mats : mats
+							});
+						}
+
+						if (groups.some((group) => group.keys.length > 0)) return groups;
+					}
+
+					return [{
+						name : 'all',
+						label : ((prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' : '') +
+							'[' + gca_locale.get("global", "base") + ' ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' +
+							((suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl]' : ''),
+						keys : Array.isArray(recipe.keys) ? recipe.keys.slice(0) : [],
+						mats : recipe.mats || {}
+					}];
+				},
+
+				style_normal_amounts : function(prefix, base, suffix, recipe) {
+					let groups = this.getAmountGroups(prefix, base, suffix, recipe);
+
+					// For the compact amounts tooltip, show the forge parts as 3 visual blocks:
+					// Prefix on the left, base in the middle, suffix on the right.
+					// This keeps every material directly under its own level label and makes the
+					// combined tooltip easier to scan than one long flat row.
+					let order = { prefix : 0, base : 1, suffix : 2, other : 3, all : 4 };
+					groups.sort((a, b) => (order[a.name] ?? 99) - (order[b.name] ?? 99));
+
+					let row = '<tr style="color: #ffffff;text-align:center;vertical-align:top;">';
+
+					groups.forEach((group, index) => {
+						let separator = (index > 0) ? 'border-left:1px solid #555555;' : '';
+						row += '<td style="vertical-align:top;text-align:center;padding:0 3px;' + separator + '">';
+						row += '<div style="white-space:nowrap;color:#ffffff;margin-bottom:1px;">' + group.label + '</div>';
+
+						if (group.keys.length === 0) {
+							row += '<div style="color:#cccccc;">-</div>';
+						}
+						else {
+							row += '<div style="white-space:nowrap;color:#cccccc;">';
+							group.keys.forEach((i) => {
+								row += '<span style="display:inline-block;text-align:center;min-width:23px;margin:0 0.5px;vertical-align:top;">';
+								row += '<span style="display:block;height:12px;line-height:10px;white-space:nowrap;">' + group.mats[i] + '&times;</span>';
+								row += '<div class="item-i-18-' + i + '" style="display:inline-block;transform: scale(0.7);margin:-7px -5px -8px -5px;"></div>';
+								row += '</span>';
+							});
+							row += '</div>';
+						}
+
+						row += '</td>';
 					});
 
-					row_type += '</tr>';
-					row_mats += '</tr>';
-					row_icons += '</tr>';
+					row += '</tr>';
 
 					// Tooltip info list
 					let info = [];
 					// Separator
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
-					// Add table
-					info.push(['<table style="color: #ffffff;font-size: 10px;border-spacing: 0px;">' + row_type + row_mats + row_icons + '</table>', '#000000']);
+					// Add grouped table
+					info.push(['<table style="color: #ffffff;font-size: 10px;border-spacing: 0px;margin:auto;">' + row + '</table>', '#000000']);
 					// Base margin
 					info.push(['<div style="heigth:8px"></div>', '#000000']);
 
 					return info;
 				},
 
-				style_extended : function(prefix, base, suffix) {
+
+
+				style_extended : function(prefix, base, suffix, item = null, recipe = false) {
 					// Tooltip info list
 					var info = [];
 
@@ -4204,7 +4224,7 @@ var gca_global = {
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 
 					//var data = this.data;
-					var data = gca_data_recipes.getRecipe(prefix, base, suffix);
+					var data = this.getRecipeDisplayData(prefix, base, suffix, recipe);
 					
 					// Prefix
 					if (prefix > 0) {
@@ -4246,6 +4266,14 @@ var gca_global = {
 						}
 					}
 
+					// Any exact combo materials that cannot be safely attributed to a part.
+					if (data.other) {
+						info.push(['[Other]', '#ffffff']);
+						data.other.forEach((mat) => {
+							info.push(this.getInfoRow(mat));
+						});
+					}
+
 					// Base margin
 					info.push(['<div style="heigth:8px"></div>', '#000000']);
 
@@ -4259,16 +4287,16 @@ var gca_global = {
 					// Separator
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 
-					// Create rows for the tooltip
-					info.push([
-						((prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' : '') +
-						'[' + gca_locale.get("global", "base") + ' ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' +
-						((suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' : ''),
-						'#ffffff'
-					]);
-
-					recipe.keys.forEach((i) => {
-						info.push(this.getInfoRow(i, recipe.mats[i]));
+					let groups = this.getAmountGroups(prefix, base, suffix, recipe);
+					groups.forEach((group) => {
+						info.push([group.label, '#ffffff']);
+						if (group.keys.length === 0) {
+							info.push(['-', '#cccccc']);
+							return;
+						}
+						group.keys.forEach((i) => {
+							info.push(this.getInfoRow(i, group.mats[i]));
+						});
 					});
 
 					// Base margin
@@ -4276,6 +4304,7 @@ var gca_global = {
 
 					return info;
 				}
+
 			},
 			
 			// Add mercenaries types
@@ -4660,7 +4689,8 @@ var gca_global = {
 				}
 			}
 		},
-				
+		
+		
 		SurpriseMe: {
 			preload: function () {
 				// Find
@@ -4689,24 +4719,17 @@ var gca_global = {
 
 					// If nothing, create
 					if (!avatarData[playerId] || (currentTime - avatarData[playerId].lastChange) > 86400000) {
-						let currentImageIndex;
+						const currentImageIndex = avatarData[playerId]
+							? (avatarData[playerId].currentImageIndex + 1) % avatarImages.length
+							: 0;
 
-						// Pick random index, but not same as previous
-						do {
-							currentImageIndex = Math.floor(Math.random() * avatarImages.length);
-						} while (
-							avatarData[playerId] &&
-							currentImageIndex === avatarData[playerId].currentImageIndex &&
-							avatarImages.length > 1
-						);
+					avatarData[playerId] = {
+					lastChange: currentTime,
+					currentImageIndex: currentImageIndex
+					};
 
-						avatarData[playerId] = {
-							lastChange: currentTime,
-							currentImageIndex: currentImageIndex
-						};
-
-						// Save to localStorage
-						localStorage.setItem('gladiatusCrazyAddonData_Surprise_AvatarData', JSON.stringify(avatarData));
+					// Save to localStorage
+					localStorage.setItem('gladiatusCrazyAddonData_Surprise_AvatarData', JSON.stringify(avatarData));
 
 						return avatarImages[currentImageIndex];
 					} else {
@@ -4717,23 +4740,26 @@ var gca_global = {
 				// Add CSS
 				avatars.forEach(avatarElement => {
 					const parentDiv = avatarElement.closest('div[id^="defenderAvatar"], div[id^="attackerAvatar"], div[id="content"]');
-					if (!parentDiv) return;
+					if (!parentDiv) {
+						return;
+					}
 
 					const playerNameElement = parentDiv.querySelector('.playername_achievement.ellipsis');
-					if (!playerNameElement) return;
+					if (!playerNameElement) {
+						return;
+					}
 
 					const playerName = playerNameElement.textContent.trim();
 					const playerId = Object.keys(playerData).find(id => playerData[id] === playerName);
-
 					if (playerId) {
 						const avatarImageURL = gca_resources.folder + 'avatars/fan_made/' + getAvatarImage(playerId);
 
 						const styleSheet = document.createElement('style');
 						styleSheet.textContent = `
 							.custom-avatar-${playerId} {
-								background-image: url(${avatarImageURL}) !important;
-								background-position: unset !important;
-							}`;
+							background-image: url(${avatarImageURL}) !important;
+							background-position: unset !important;
+						}`;
 						document.head.appendChild(styleSheet);
 
 						avatarElement.classList.add(`custom-avatar-${playerId}`);

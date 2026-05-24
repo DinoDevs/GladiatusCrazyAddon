@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Inject Page
  * Copyright (C) Gladiatus Crazy Addon
  * Licensed under GNU GPLv3
@@ -41,7 +41,7 @@ var inject = function(_info, _window, _folder){
 	// Data - Options
 	tools.preloadScript('source/gca.data.js');
 	tools.preloadScript('source/gca.data.recipes.js');
-
+	tools.preloadScript('source/gca.data.sharedRecipes.js');
 	// Functions
 	let toolsScript = tools.preloadScript('source/gca.tools.js');
 	// CDN Methods
@@ -78,6 +78,10 @@ var tools = {
 		// Create script
 		var script = info.data.document.createElement('script');
 		script.setAttribute('type', 'text/javascript');
+		// Dynamically inserted scripts are async by default in Chrome.
+		// Keep GCA source files in the order they are appended, because later
+		// files such as gca.audio.js depend on globals created by gca.data.js.
+		script.async = false;
 		script.setAttribute('src',  info.data.folder + '/' + path + '?' + info.addon.version + '&built=' + (new Date()).getTime());
 		this.preloadingScripts++;
 		script.addEventListener('load', () => {
@@ -103,6 +107,7 @@ var tools = {
 			// Create script
 			var script = info.data.document.createElement('script');
 			script.setAttribute('type', 'text/javascript');
+			script.async = false;
 			script.setAttribute('src',  this.loadingScripts.shift());
 			info.data.document.head.appendChild(script);
 		}
