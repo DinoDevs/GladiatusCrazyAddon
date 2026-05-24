@@ -41,7 +41,7 @@ var inject = function(_info, _window, _folder){
 	// Data - Options
 	tools.preloadScript('source/gca.data.js');
 	tools.preloadScript('source/gca.data.recipes.js');
-
+	tools.preloadScript('source/gca.data.sharedRecipes.js');
 	// Functions
 	let toolsScript = tools.preloadScript('source/gca.tools.js');
 	// CDN Methods
@@ -79,6 +79,7 @@ var tools = {
 		var script = info.data.document.createElement('script');
 		script.setAttribute('type', 'text/javascript');
 		script.setAttribute('src',  info.data.folder + '/' + path + '?' + info.addon.version + '&built=' + (new Date()).getTime());
+		script.async = false;
 		this.preloadingScripts++;
 		script.addEventListener('load', () => {
 			this.preloadingScripts--;
