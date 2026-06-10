@@ -4165,31 +4165,150 @@ var gca_global = {
 					return info;
 				},
 
-				style_normal_amounts : function(prefix, base, suffix, recipe) {
-					let count = recipe.keys.length;
-					// Create rows for the tooltip
-					let row_type = '<tr style="color: #ffffff;"><td colspan="' + count + '">';
-					row_type += (prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' + '' : '';
-					row_type += '[' + gca_locale.get("global", "base") + ' ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' + '';
-					row_type += (suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' + '' : '';
+				getAmountGroups : function(prefix, base, suffix, recipe) {
+					let groups = [];
+					let usedKeys = {};
 
-					let row_mats = '<tr style="color: #cccccc;text-align:center;">';
-					let row_icons = '<tr style="height: 18px;text-align:center;">';
-					recipe.keys.forEach((i) => {
-						row_mats += '<td>' + recipe.mats[i] + '&times;</td>';
-						row_icons += '<td><div class="item-i-18-' + i + '" style="display:inline-block;transform: scale(0.7);margin:-12px -4px -12px -4px;"></div></td>';
+					let addGroup = (name, label, level, isVisible) => {
+						if (!isVisible) return;
+						let source = recipe.groups && recipe.groups[name] ? recipe.groups[name] : false;
+						let keys = source && Array.isArray(source.keys) ? source.keys.slice(0) : [];
+						let mats = source && source.mats ? Object.assign({}, source.mats) : {};
+
+						keys.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+						keys.forEach((key) => { usedKeys[key] = true; });
+						groups.push({
+							name : name,
+							label : '[' + label + ' ' + (level >= 0 ? level : '?') + ' lvl]',
+							keys : keys,
+							mats : mats
+						});
+					};
+
+					if (recipe.groups) {
+						addGroup('prefix', gca_locale.get("global", "prefix"), recipe.lvls.prefix, prefix > 0);
+						addGroup('base', gca_locale.get("global", "base"), recipe.lvls.base, true);
+						addGroup('suffix', gca_locale.get("global", "suffix"), recipe.lvls.suffix, suffix > 0);
+
+						let other = recipe.groups.other && Array.isArray(recipe.groups.other.keys) ? recipe.groups.other.keys.slice(0) : [];
+						(recipe.keys || []).forEach((key) => {
+							if (!usedKeys[key] && other.indexOf(key) < 0) other.push(key);
+						});
+						other.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+						if (other.length > 0) {
+							let mats = Object.assign({}, recipe.groups.other ? recipe.groups.other.mats : {});
+							other.forEach((key) => {
+								if (!mats[key]) mats[key] = recipe.mats[key];
+							});
+							groups.push({
+								name : 'other',
+								label : '[Other]',
+								keys : other,
+								mats : mats
+							});
+						}
+
+						if (groups.some((group) => group.keys.length > 0)) return groups;
+					}
+
+					let recipeData = gca_data_recipes.getRecipe(prefix, base, suffix) || {};
+					let nativeGroups = [];
+					let nativeUsedKeys = {};
+					let addNativeGroup = (name, label, partData, level, isVisible) => {
+						if (!isVisible) return;
+						let keys = [];
+						let mats = {};
+						if (partData) {
+							partData.forEach((mat) => {
+								let key = String(mat);
+								if (nativeUsedKeys[key]) return;
+								let amount = parseInt(recipe.mats && recipe.mats[key], 10) || 0;
+								if (amount > 0) {
+									keys.push(key);
+									mats[key] = amount;
+									nativeUsedKeys[key] = true;
+								}
+							});
+						}
+						keys.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+						nativeGroups.push({
+							name : name,
+							label : '[' + label + ' ' + (level >= 0 ? level : '?') + ' lvl]',
+							keys : keys,
+							mats : mats
+						});
+					};
+
+					addNativeGroup('prefix', gca_locale.get("global", "prefix"), recipeData.prefix, recipe.lvls.prefix, prefix > 0);
+					addNativeGroup('base', gca_locale.get("global", "base"), recipeData.base, recipe.lvls.base, true);
+					addNativeGroup('suffix', gca_locale.get("global", "suffix"), recipeData.suffix, recipe.lvls.suffix, suffix > 0);
+
+					let nativeOther = [];
+					(recipe.keys || []).forEach((key) => {
+						key = String(key);
+						if (!nativeUsedKeys[key] && nativeOther.indexOf(key) < 0) nativeOther.push(key);
+					});
+					nativeOther.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+					if (nativeOther.length > 0) {
+						let mats = {};
+						nativeOther.forEach((key) => { mats[key] = recipe.mats[key]; });
+						nativeGroups.push({
+							name : 'other',
+							label : '[Other]',
+							keys : nativeOther,
+							mats : mats
+						});
+					}
+
+					if (nativeGroups.some((group) => group.keys.length > 0)) return nativeGroups;
+
+					return [{
+						name : 'all',
+						label : ((prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' : '') +
+							'[' + gca_locale.get("global", "base") + ' ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' +
+							((suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl]' : ''),
+						keys : Array.isArray(recipe.keys) ? recipe.keys.slice(0) : [],
+						mats : recipe.mats || {}
+					}];
+				},
+
+				style_normal_amounts : function(prefix, base, suffix, recipe) {
+					let groups = this.getAmountGroups(prefix, base, suffix, recipe) || [];
+					let order = {prefix : 0, base : 1, suffix : 2, other : 3, all : 4};
+					groups.sort((a, b) => (order.hasOwnProperty(a.name) ? order[a.name] : 99) - (order.hasOwnProperty(b.name) ? order[b.name] : 99));
+
+					let row = '<tr style="color: #ffffff;text-align:center;vertical-align:top;">';
+
+					groups.forEach((group, index) => {
+						let separator = (index > 0) ? 'border-left:1px solid #555555;' : '';
+						row += '<td style="vertical-align:top;text-align:center;padding:0 3px;' + separator + '">';
+						row += '<div style="white-space:nowrap;color:#ffffff;margin-bottom:1px;">' + group.label + '</div>';
+
+						if (group.keys.length === 0) {
+							row += '<div style="color:#cccccc;">-</div>';
+						}
+						else {
+							row += '<div style="white-space:nowrap;color:#cccccc;">';
+							group.keys.forEach((i) => {
+								row += '<span style="display:inline-block;text-align:center;min-width:23px;margin:0 0.5px;vertical-align:top;">';
+								row += '<span style="display:block;height:12px;line-height:10px;white-space:nowrap;">' + group.mats[i] + '&times;</span>';
+								row += '<div class="item-i-18-' + i + '" style="display:inline-block;transform: scale(0.7);margin:-7px -5px -8px -5px;"></div>';
+								row += '</span>';
+							});
+							row += '</div>';
+						}
+
+						row += '</td>';
 					});
 
-					row_type += '</tr>';
-					row_mats += '</tr>';
-					row_icons += '</tr>';
+					row += '</tr>';
 
 					// Tooltip info list
 					let info = [];
 					// Separator
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 					// Add table
-					info.push(['<table style="color: #ffffff;font-size: 10px;border-spacing: 0px;">' + row_type + row_mats + row_icons + '</table>', '#000000']);
+					info.push(['<table style="color: #ffffff;font-size: 10px;border-spacing: 0px;margin:auto;">' + row + '</table>', '#000000']);
 					// Base margin
 					info.push(['<div style="heigth:8px"></div>', '#000000']);
 
@@ -4259,16 +4378,16 @@ var gca_global = {
 					// Separator
 					info.push(['<div style="border-bottom:1px solid #555555"></div>', '#aaaaaa']);
 
-					// Create rows for the tooltip
-					info.push([
-						((prefix > 0) ? '[' + gca_locale.get("global", "prefix") + ' ' + (recipe.lvls.prefix >= 0 ? recipe.lvls.prefix : '?') + ' lvl] ' : '') +
-						'[' + gca_locale.get("global", "base") + ' ' + (recipe.lvls.base >= 0 ? recipe.lvls.base : '?') + ' lvl] ' +
-						((suffix > 0) ? '[' + gca_locale.get("global", "suffix") + ' ' + (recipe.lvls.suffix >= 0 ? recipe.lvls.suffix : '?') + ' lvl] ' : ''),
-						'#ffffff'
-					]);
-
-					recipe.keys.forEach((i) => {
-						info.push(this.getInfoRow(i, recipe.mats[i]));
+					let groups = this.getAmountGroups(prefix, base, suffix, recipe) || [];
+					groups.forEach((group) => {
+						info.push([group.label, '#ffffff']);
+						if (group.keys.length === 0) {
+							info.push(['-', '#cccccc']);
+							return;
+						}
+						group.keys.forEach((i) => {
+							info.push(this.getInfoRow(i, group.mats[i]));
+						});
 					});
 
 					// Base margin
