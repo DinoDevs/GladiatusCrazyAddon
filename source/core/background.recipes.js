@@ -66111,29 +66111,22 @@ getRecipe : function(prefix, base, suffix) {
 			suffix : 0,
 		},
 		keys : [],
-		mats : {}
+		mats : {},
+		groups : {
+			prefix : {keys : [], mats : {}},
+			base : {keys : [], mats : {}},
+			suffix : {keys : [], mats : {}},
+			other : {keys : [], mats : {}}
+		}
 	};
 
-	let id = prefix + '-' + ( ( suffix < 100 || suffix > 109 ) ? suffix : 0 ); // 100 to 109 are the +1, +2 etc suffixes
-	if (this.prefix_suffix_mats.hasOwnProperty(id)) {
-		let mats = this.prefix_suffix_mats[id];
-		for (let i in mats) {
-			if (mats.hasOwnProperty(i)) {
-				data.keys.push(i);
-				data.mats[i] = mats[i];
-			}
-		}
-	}
+	let suffix_id = ( suffix < 100 || suffix > 109 ) ? suffix : 0; // 100 to 109 are the +1, +2 etc suffixes
+	let id = prefix + '-' + suffix_id;
+	let recipe_mats = false;
+	let used = {};
 
-	if (this.prefix_lvls.hasOwnProperty(prefix)) {
-		data.lvls.prefix = this.prefix_lvls[prefix];
-	}
-	if (this.suffix_lvls.hasOwnProperty(suffix)) {
-		data.lvls.suffix = this.suffix_lvls[suffix];
-	}
-	if (this.base_lvls.hasOwnProperty(base)) {
-		data.lvls.base = this.base_lvls[base];
-		let mats = this.base_mats[base];
+	let addToTotal = function(mats) {
+		if (!mats) return;
 		for (let i in mats) {
 			if (mats.hasOwnProperty(i)) {
 				if (data.keys.includes(i)) {
@@ -66145,7 +66138,58 @@ getRecipe : function(prefix, base, suffix) {
 				}
 			}
 		}
+	};
+
+	let addToGroup = function(group, mats, useSourceAmount) {
+		if (!mats) return;
+		for (let i in mats) {
+			if (mats.hasOwnProperty(i)) {
+				let key = String(i);
+				let amount = useSourceAmount ? mats[i] : ((recipe_mats && recipe_mats.hasOwnProperty(i)) ? recipe_mats[i] : mats[i]);
+				if (amount > 0 && data.groups[group].keys.indexOf(key) < 0) {
+					data.groups[group].keys.push(key);
+					data.groups[group].mats[key] = amount;
+					used[key] = true;
+				}
+			}
+		}
+		data.groups[group].keys.sort(function(a, b){return parseInt(a, 10) - parseInt(b, 10)});
+	};
+
+	if (this.prefix_suffix_mats.hasOwnProperty(id)) {
+		recipe_mats = this.prefix_suffix_mats[id];
+		addToTotal(recipe_mats);
 	}
+
+	if (this.prefix_lvls.hasOwnProperty(prefix)) {
+		data.lvls.prefix = this.prefix_lvls[prefix];
+	}
+	if (this.suffix_lvls.hasOwnProperty(suffix)) {
+		data.lvls.suffix = this.suffix_lvls[suffix];
+	}
+	if (this.base_lvls.hasOwnProperty(base)) {
+		data.lvls.base = this.base_lvls[base];
+		addToTotal(this.base_mats[base]);
+	}
+
+	if (prefix > 0) {
+		addToGroup('prefix', this.prefix_suffix_mats[prefix + '-0'], false);
+	}
+	if (this.base_mats.hasOwnProperty(base)) {
+		addToGroup('base', this.base_mats[base], true);
+	}
+	if (suffix_id > 0) {
+		addToGroup('suffix', this.prefix_suffix_mats['0-' + suffix_id], false);
+	}
+
+	data.keys.forEach(function(key) {
+		key = String(key);
+		if (!used[key]) {
+			data.groups.other.keys.push(key);
+			data.groups.other.mats[key] = data.mats[key];
+		}
+	});
+	data.groups.other.keys.sort(function(a, b){return parseInt(a, 10) - parseInt(b, 10)});
 
 	data.keys.sort(function(a, b){return a - b});
 
