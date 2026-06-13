@@ -9,6 +9,8 @@
 
 - **General**
   
+  - [X] Forge materials in item tooltips are now shown in groups by prefix/base/suffix by @EvroXX (#560)
+  - [X] Added support for many of the new Prefixes and Suffixes added in Gladiatus v8.0.0 by @EvroXX (#559)
   - [X] Minor visual improvements
   - [X] Various code improvements
 
@@ -33,7 +35,7 @@
 
 - **Forge**
   
-  - [X] Fixed new resources not being  displayed in Horreum (#550)
+  - [X] Fixed new resources not being displayed in Horreum (#550)
 
 ### TRANSLATIONS
 
