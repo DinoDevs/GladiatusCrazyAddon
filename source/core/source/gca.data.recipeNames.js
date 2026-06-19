@@ -6680,13 +6680,13 @@
 			"isUnderworld": false
 		},
 		227: {
-			"us": "Maximus'",
-			"en": "Maximus'",
+			"us": "Helvius'",
+			"en": "Helvius'",
 			"isUnderworld": false
 		},
 		228: {
-			"us": "Helvius'",
-			"en": "Helvius'",
+			"us": "Maximus'",
+			"en": "Maximus'",
 			"isUnderworld": false
 		},
 		229: {
