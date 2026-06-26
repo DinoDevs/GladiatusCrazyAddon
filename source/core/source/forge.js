@@ -1866,7 +1866,8 @@ var gca_forge = {
 			// the 1st item from prefixes is removed (not shown)
 			let code = getBinaryStr(this.info.prefix, this.excludedPre) + getBinaryStr(this.info.suffix, this.excludedSuf);
 			// Pad bin string to have length divisible by 8 to pack correctly. Assuming it's not already divisible by 8
-			code += '0'.repeat(8 - (code.length % 8))
+			const pad = (8 - (code.length % 8)) % 8;
+			code += '0'.repeat(pad);
 
 			// Compress code
 			code = pack(code);
@@ -2005,9 +2006,18 @@ var gca_forge = {
 			}
 
 			// Check decompressed data
-			// There's 404 scrolls but the length of the bin string with
-			// encoded data has to be divisible by 8, making it 408 characters long
-			if(array.length !== 408){
+			// The expected bitmap size is calculated dynamically from the current visible scroll list and padded to a multiple of 8 bits
+			const expectedLength =
+				gca_forge.scrollBook.info.prefix.filter(
+					el => el && !gca_forge.scrollBook.excludedPre.includes(Number(el.id))
+				).length +
+				gca_forge.scrollBook.info.suffix.filter(
+					el => el && !gca_forge.scrollBook.excludedSuf.includes(Number(el.id))
+				).length;
+
+			const expectedPackedLength = expectedLength + ((8 - expectedLength % 8) % 8);
+
+			if (array.length !== expectedPackedLength) {
 				gca_notifications.error(gca_locale.get('forge', 'invalid_share_code'));
 				return;
 			}
