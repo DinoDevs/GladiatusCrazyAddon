@@ -47,8 +47,3 @@
   - [X] Polish translation updates by @Weakus (#548)
   - [X] Turkish translation updates by @Emefar (#555)
   - [X] German translation updates by @TheMrSnow (#554)
-
-### KNOWN BUGS
-
-  - [ ] Forge Prefix/Suffix preview page (blue book icon at the top right corner of forge) share codes do not work
-  - [ ] Some of the new v8.0.0 Prefix/Suffix are missing from the addon
