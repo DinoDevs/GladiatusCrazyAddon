@@ -1629,9 +1629,45 @@ var gca_forge = {
 			h2.textContent = gca_locale.get("forge", "unknown_scrolls_share_code");
 			aside.appendChild(h2);
 			section = document.createElement('section');
-			section.style.display = 'block';
+			section.style.display = 'flex';
+			section.style.alignItems = 'center';
+			section.style.gap = '2px';
+			section.style.padding = '1px';
 			this.shareCodeSection = section;
 			aside.appendChild(section);
+			
+			// Create Textarea
+			let shareArea = document.createElement('textarea');
+			shareArea.readOnly = true;
+			shareArea.style.flex = '1';
+			shareArea.style.resize = 'none';   
+			shareArea.style.overflow = 'auto';
+			shareArea.style.whiteSpace = 'pre-wrap';
+			shareArea.style.wordBreak = 'break-all';
+			this.shareCodeArea = shareArea;
+			section.appendChild(shareArea);
+
+			// Create Copy button
+			let copyBtn = document.createElement('input');
+			copyBtn.type = 'button';
+			copyBtn.className = 'awesome-button';
+			copyBtn.value = '📋';
+			copyBtn.style.marginLeft = '4px';
+			copyBtn.style.textShadow = "0px 0px 2px #501706";
+
+			copyBtn.addEventListener('click', () => {
+				navigator.clipboard.writeText(this.shareCodeArea.value)
+					.then(() => {
+						gca_notifications.success(gca_locale.get('general', 'ok'));
+					})
+					.catch(() => {
+						this.shareCodeArea.select();
+						document.execCommand('copy');
+						gca_notifications.success(gca_locale.get('general', 'ok'));
+					});
+			}, false);
+
+			section.appendChild(copyBtn);
 
 			// Unknown scrolls input code under prefixes
 			h2 = document.createElement('h2');
@@ -1801,7 +1837,7 @@ var gca_forge = {
 			this.suffixNote.textContent = `(${suffix_learned}/${suffix_all})`;
 
 			// Add share code
-			this.shareCodeSection.textContent = this.getUnknownsCode();
+			this.shareCodeArea.value = this.getUnknownsCode();
 		},
 
 		updateInfo : function(result) {
