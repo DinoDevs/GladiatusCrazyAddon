@@ -1136,15 +1136,17 @@ var gca_forge = {
 
 	horreum : {
 		clickToSelectMaterial : function() {
-			let resource_type = document.getElementById('remove-resource-type');
-			let resource_quality = document.getElementById('remove-resource-quality');
+			let remove_resource_type = document.getElementById('remove-resource-type');
+			let remove_resource_quality = document.getElementById('remove-resource-quality');
+			let change_resource_type = document.getElementById('change-resource-type');
+			let change_resource_quality = document.getElementById('change-resource-quality');
 
 			// Enable css
 			document.getElementById('resource-list').className += ' resource-click-to-select';
 
 			// Get material values
 			let values = {};
-			let option = resource_type.getElementsByTagName('option');
+			let option = remove_resource_type.getElementsByTagName('option');
 			for (let i = option.length - 1; i >= 0; i--) {
 				if (option[i].dataset.imageClass) {
 					values[option[i].dataset.imageClass] = option[i].value;
@@ -1158,12 +1160,22 @@ var gca_forge = {
 					let image = column[0].getElementsByTagName('div')[0].className;
 					row[i].addEventListener('click', function(event){
 						var element = event.target;
-						resource_type.value = values[image];
-						if (element.tagName == 'TD' && element.dataset.quality) {
-							resource_quality.value = element.dataset.quality;
+						if (remove_resource_type && remove_resource_quality) {
+							remove_resource_type.value = values[image];
+							if (element.tagName == 'TD' && element.dataset.quality) {
+								remove_resource_quality.value = element.dataset.quality;
+							}
+							jQuery(remove_resource_type).change();
+							jQuery(remove_resource_quality).change();
 						}
-						jQuery(resource_type).change();
-						jQuery(resource_quality).change();
+						if (change_resource_type && change_resource_quality) {
+							change_resource_type.value = values[image];
+							if (element.tagName == 'TD' && element.dataset.quality) {
+								change_resource_quality.value = element.dataset.quality;
+							}
+							jQuery(change_resource_type).change();
+							jQuery(change_resource_quality).change();
+						}
 					}, false);
 				}
 			}
