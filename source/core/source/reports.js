@@ -1172,8 +1172,13 @@ var gca_reports = {
 
 		// If this is a report
 		if (this.submod == 'showCombatReport' && this.reportId && event) {
-			// Check referrer
-			if (this.referrer.submod == 'serverQuest') {
+			// An alternative way was to check the referrer
+			// `this.referrer.submod == 'serverQuest'` was used in the past, but now all events are server quests
+			// for example, the Nile event reported `{mod: 'location', loc: 'nile_bank', sh: '...'}`
+
+			// Check if attack was in the last 10 seconds
+			// In anycase, the presence of the event means that there was an attack, but maybe there were no points
+			if (gca_tools.time.getTime() - event.timestamp <= 10 * 1000) {
 				gca_data.section.set("timers", 'server_quest_available', event.available);
 				gca_data.section.set("timers", 'server_quest_points', event.points);
 				gca_data.section.set("timers", 'server_quest_last_date', event.last_date);

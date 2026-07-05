@@ -17,13 +17,19 @@ var gca_server_quest = {
 			this.highlightGuildMates();
 		}
 		// Server Event Enemies
-		else if(gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc'))){
+		else if (gca_section.submod == 'serverQuest' || isNaN(gca_getPage.parameter('loc'))) {
 			// Save server quest time
-			if(gca_options.bool("events", "server_quest_timer")){
+			if (gca_options.bool("events", "server_quest_timer")) {
 				this.save_info();
 				this.listen_attacks();
 			}
 		}
+	},
+
+	get_points : function(){
+		const points_number = document.getElementById("content")?.getElementsByClassName("section-header")[0]?.parentNode.innerHTML.match(/(\d+)\s*<img/im) || null;
+		if (!points_number) return -1;
+		return parseInt(points_number[1], 10);
 	},
 
 	// Save server quest infomation
@@ -32,35 +38,26 @@ var gca_server_quest = {
 		var availableIn = gca_tools.time.server();
 
 		// Get cooldown timer
-		var cooldown = document.getElementById("content").getElementsByTagName("span")[1];
-		if(cooldown){
-			let timer = parseInt( cooldown.dataset.tickerTimeLeft );
+		const cooldown = document.getElementById("content").getElementsByTagName("span")[1];
+		if (cooldown) {
+			let timer = parseInt(cooldown.dataset.tickerTimeLeft, 10);
 			availableIn += timer;
 			
 			// Update data
 			gca_data.section.set("timers", 'server_quest_available', availableIn);
 		}
 		// Is already available
-		else{
+		else {
 			// If data are not valid
-			if(gca_data.section.get("timers", 'server_quest_available', 0) >= availableIn){
+			if (gca_data.section.get("timers", 'server_quest_available', 0) >= availableIn) {
 				// Fix data
 				gca_data.section.set("timers", 'server_quest_available', 0);
 			}
 		}
-
 		
 		// Get number of points
-		// was not working var points_number = document.getElementById("content").getElementsByTagName("img")[1].parentNode.innerHTML.match(/(\d+)\s*<img/im);
-		
-		var points_number = document.getElementById("content").getElementsByClassName("section-header")[0].parentNode.innerHTML.match(/(\d+)\s*<img/im);
-		if(points_number){
-			points_number = parseInt(points_number[1]);
-		}
-		else{
-			points_number = 'N/A';
-		}
-		
+		var points_number = this.get_points();
+		if (points_number < 0) points_number = 'N/A';
 		
 		// Save server quest points
 		gca_data.section.set("timers", 'server_quest_points', points_number);
@@ -74,10 +71,12 @@ var gca_server_quest = {
 	listen_attacks : function(){
 		// Attack buttons
 		var buttons = document.getElementById("content").getElementsByClassName("expedition_button");
-		for(let i = buttons.length - 1; i >= 0; i--){
+		for (let i = buttons.length - 1; i >= 0; i--) {
 			if (!buttons[i].className.match("disabled")) {
-				buttons[i].addEventListener('click', () => {
-					this.handle_attack();
+				let btn = buttons[i];
+				let cost = parseInt((btn?.parentNode?.innerHTML?.match(/\s*(\d+)\s*<img\s+/i) || [0, "-1"])[1], 10)
+				btn.addEventListener('click', () => {
+					this.handle_attack(cost);
 				}, false);
 			}
 		}
@@ -85,30 +84,23 @@ var gca_server_quest = {
 
 	// Handle an attack
 	handle_attack_atomicity : false,
-	handle_attack : function(){
-		if(this.handle_attack_atomicity) return;
+	handle_attack : function(cost){
+		if (this.handle_attack_atomicity) return;
 		this.handle_attack_atomicity = true;
 
-		var points = parseInt(gca_data.section.get("timers", 'server_quest_points'), 10);
-		if(isNaN(points)) return;
+		var points = this.get_points() - ((!isNaN(cost) && cost > 0) ? cost : 1);
+		if (points < 0) return;
 
-		points --;
-		//if(type == 3) points --;
-		if(points < 0) points = 0;
-
-		// Server quests available in 5 mins
-		var availableIn = gca_tools.time.server() + gca_tools.time.speedvert(5*60*1000) + 1000;
+		// Server quests available in 5 mins (adapted to server speed)
+		const availableIn = gca_tools.time.server() + gca_tools.time.speedvert(5*60*1000) + 1000;
 
 		// Save data to be updated (report page will update them)
 		gca_data.section.set("timers", 'server_quest_attack', {
 			available : availableIn,
 			points : points,
-			last_date : gca_tools.time.serverDateString()
+			last_date : gca_tools.time.serverDateString(),
+			timestamp: gca_tools.time.getTime()
 		});
-		// Old way - instant update
-		//gca_data.section.set("timers", 'server_quest_available', availableIn);
-		//gca_data.section.set("timers", 'server_quest_points', points);
-		//gca_data.section.set("timers", 'server_quest_last_date', gca_tools.time.serverDateString());
 	},
 
 	// Highlight guild mates

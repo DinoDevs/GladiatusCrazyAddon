@@ -3323,28 +3323,26 @@ var gca_global = {
 					this.serverQuestTimeElement.textContent = "";
 					this.serverQuestWrapperElement.appendChild(this.serverQuestTimeElement);
 
+					
+					// If point data are saved
+					if (this.points != 'N/A') {
+						// No points but new day
+						if (this.points == 0 && gca_data.section.get("timers", 'server_quest_last_date', 0) != gca_tools.time.serverDateString()) {
+							this.serverQuestPointsElement.textContent = "?";
+						}
+						else {
+							this.serverQuestPointsElement.textContent = this.points;
+						}
+					}
+					// No data
+					else {
+						this.serverQuestPointsElement.textContent = "?";
+					}
+
 					// Time difference
 					this.timer = (nextAvailable - gca_tools.time.server());
 					// Check if the time has finished
-					if(this.timer < 0){
-						// No points but new day
-						if(this.points == 0 && gca_data.section.get("timers", 'server_quest_last_date', 0) != gca_tools.time.serverDateString()){
-							this.serverQuestPointsElement.textContent = "?";
-							this.serverQuestTimeElement.textContent = "";
-						}
-						// Do i have data saved?
-						else if(this.points != 'N/A'){
-							this.serverQuestPointsElement.textContent = this.points;
-							this.serverQuestTimeElement.textContent = "";
-						}
-						// No data
-						else{
-							this.serverQuestPointsElement.textContent = "?";
-							this.serverQuestTimeElement.textContent = "";
-						}
-					}
-					// Time has NOT finished
-					else {
+					if (this.timer >= 0) {
 						// Refresh the countdown
 						this.countdown_started = new Date().getTime();
 						this.countdown_interval = setInterval(() => {
