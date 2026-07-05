@@ -272,6 +272,9 @@
 	.menu_merge_items a.menuitem[href*="mod=magus"] {position: absolute;visibility: hidden;} 
 	.menu_merge_items #mainmenu a {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 
+/* Chat */
+	#gca_chat_notification_counter {position: absolute;top: -6px;right: -6px;min-width: 16px;height: 16px;box-sizing: border-box;padding: 0 3px;border-radius: 8px;background: #c00;border: 1px solid #400;color: #fff;font-size: 10px;line-height: 14px;font-weight: bold;text-align: center;z-index: 3;pointer-events: none;}
+	.gca_rtl #gca_chat_notification_counter {right: auto;left: -6px;}
 
 /* OverView */
 	/* Inv Manager */

@@ -313,6 +313,10 @@ var gca_global = {
 		(this.isMobile &&
 			this.accessibility.item_move.init());
 
+		// Unread chat messages counter on the chat icon
+		// TODO: maybe add option here?
+		this.display.chatNotifications.inject();
+
 		// Display links on footer
 		this.display.footerLinks();
 
@@ -4857,8 +4861,65 @@ var gca_global = {
 					}
 				});
 			}
+		},
+
+		// Unread chat messages counter on the chat icon
+		chatNotifications : {
+			count : 0,
+			badge : null,
+
+			inject : function(retries){
+				// Get the chat icon
+				let chatIcon = document.getElementById('chat_icon');
+				let chatDelete = document.getElementById('chatDelete');
+				if (!chatIcon || !chatDelete) return;
+
+				// Wait for the game's socket to be available (defined by an inline page script)
+				if (!window.socket || typeof window.socket.on != 'function') {
+					// Retry a few times before giving up
+					retries = (retries || 0);
+					if (retries >= 20) return;
+					setTimeout(() => { this.inject(retries + 1); }, 250);
+					return;
+				}
+
+				// Create the counter badge
+				let badge = document.createElement('span');
+				badge.id = 'gca_chat_notification_counter';
+				badge.style.display = 'none';
+				chatIcon.appendChild(badge);
+				this.badge = badge;
+
+				// Listen for new chat messages (adds to, not replaces, the game's own listener)
+				window.socket.on('message', (obj) => {
+					// Ignore the history-replay trigger
+					if (!obj || obj.messageType == 20) return;
+					// Only count true player messages
+					if (obj.username == undefined) return;
+					// Increment the counter
+					this.count++;
+					this.render();
+				});
+
+				// Reset the counter when clean is clicked
+				chatDelete.addEventListener('click', () => {
+					this.count = 0;
+					this.render();
+				}, false);
+			},
+
+			// Update the badge
+			render : function(){
+				if (!this.badge) return;
+				if (this.count > 0) {
+					this.badge.textContent = (this.count > 99) ? '99+' : this.count;
+					this.badge.style.display = 'block';
+				} else {
+					this.badge.style.display = 'none';
+				}
+			}
 		}
-		
+
 	},
 	
 	// Underworld related functions
