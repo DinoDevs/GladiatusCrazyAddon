@@ -162,6 +162,7 @@ var gca_links = {
 		'addon-page' : gca.homepage,
 		'addon-mozilla' : 'https://addons.mozilla.org/firefox/addon/gladiatus-crazy-add-on',
 		'addon-chrome' : 'https://chrome.google.com/webstore/detail/gladiatus-crazy-add-on/dfbmiedjenagoegiiabjfjpkhfocifkp',
+		'addon-edge' : 'https://microsoftedge.microsoft.com/addons/detail/gladiatus-crazy-add-on/nielkbamjhjlhmpbhghafgndbcodglhb',
 		'gladiatus-simulator' : 'https://simulator.dinodevs.com',
 		'addon-forum-thread' : 'https://forum.gladiatus.gameforge.com/forum/thread/263',
 		'addon-github' : 'https://github.com/DinoDevs/GladiatusCrazyAddon',
@@ -169,18 +170,14 @@ var gca_links = {
 		'addon-donation' : 'https://paypal.me/gcadonation/5',
 
 		// Other links
-		
 		'gladiatus-tools' : 'https://gladiatus-tools.com',
 		'gladiatus-tools-server' : 'https://' + gca_section.country + '.gladiatus-tools.com',
 		'skarsburning@forum' : 'https://forum.gladiatus.gameforge.com/user/369-skarsburning',
-
 		'gladiatus-fansite' : 'https://gladiatus.gamerz-bg.com',
 		'michalus@forum' : 'https://forum.gladiatus.gameforge.com/user/69-michalus',
-
 		'unofficial-reddit' : 'https://www.reddit.com/r/Gladiatus',
 		'reddit-discord' : 'https://discord.gg/uXEGq9Q',
 		'williaf@reddit' : 'https://www.reddit.com/user/Williaf',
-		
 		'official-discord' : 'https://discord.gg/7UgBrnExGW'
 	},
 
