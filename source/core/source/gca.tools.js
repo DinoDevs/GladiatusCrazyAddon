@@ -1280,6 +1280,127 @@ var gca_tools = {
 		}
 	},
 
+	// Global Events (cross tab events)
+	globalEvents : {
+		// Unique ID for this specific tab instance
+		tabId: Math.random().toString(36).substring(2, 15),
+
+		// Channel name used by all tabs
+		channelName: 'gca_global_channel',
+		channel: null,
+		playerId: null,
+		event_list: {},
+
+		// Track known active peer tabs: { [tabId]: lastSeenTimestamp }
+		activeTabs: {},
+		heartbeatInterval: null,
+		checkInterval: null,
+
+		// Initialize the system
+		init: function() {
+			if (!window.playerId) return;
+			this.playerId = window.playerId;
+			this.channel = new BroadcastChannel(this.channelName);
+			
+			// Setup the global listener
+			this.channel.onmessage = (event) => {
+				const { type, senderId, targetId, playerId, name, data } = event.data;
+				if (!type || !senderId || playerId != this.playerId) return;
+
+				if (type === 'HEARTBEAT') {
+					this.activeTabs[senderId] = Date.now();
+					return;
+				}
+				if (type === 'TAB_CLOSING') {
+					delete this.activeTabs[senderId];
+				}
+
+				// Ignore events sent by *this* tab to prevent infinite loops
+				if (senderId === this.tabId) return;
+				this.cleanUp();
+
+				// If a specific targetId is defined, make sure it matches this tab
+				if (targetId && targetId !== this.tabId) return;
+
+				// If we have local listeners for this event name, fire them
+				if (this.event_list[name]) {
+					for (let i = 0; i < this.event_list[name].length; i++) {
+						const callback = this.event_list[name][i];
+						// Asynchronously call matching your pattern
+						setTimeout(() => callback(data, senderId), 0);
+					}
+				}
+			};
+
+			// Start heartbeats
+			this.sendHeartbeat();
+			this.heartbeatInterval = setInterval(() => this.sendHeartbeat(), 5000);
+
+			// Clean up immediately when user closes or refreshes the tab
+			window.addEventListener('beforeunload', () => {
+				clearInterval(this.heartbeatInterval);
+				clearInterval(this.checkInterval);
+				this.channel.postMessage({ type: 'TAB_CLOSING', senderId: this.tabId, playerId: this.playerId });
+				this.channel.close();
+			});
+		},
+
+		// Internal helper to announce presence
+		sendHeartbeat: function() {
+			this.cleanUp();
+			this.channel.postMessage({ type: 'HEARTBEAT', senderId: this.tabId, playerId: this.playerId });
+		},
+
+		cleanUp: function() {
+			const now = Date.now();
+			for (const id in this.activeTabs) {
+				if (now - this.activeTabs[id] > 11000) {
+					delete this.activeTabs[id];
+				}
+			}
+		},
+
+		// Listen for cross-tab messages/events (your custom 'on' request)
+		on: function(name, callback) {
+			if (!callback) return;
+			
+			if (this.event_list[name]) {
+				this.event_list[name].push(callback);
+			} else {
+				this.event_list[name] = [callback];
+			}
+		},
+
+		// Broadcast a message to ALL other tabs (your custom 'emit' request)
+		emit: function(name, data = null) {
+			if (!this.channel) return;
+			this.channel.postMessage({
+				type: 'EVENT',
+				senderId: this.tabId,
+				targetId: null, // Broadcast to everyone
+				name: name,
+				data: data
+			});
+		},
+
+		// TARGETED EMIT: Send a message to a specific tab ID only
+		emitTo: function(targetTabId, name, data = null) {
+			if (!this.channel) return;
+			this.channel.postMessage({
+				type: 'EVENT',
+				senderId: this.tabId,
+				targetId: targetTabId, // Targeted delivery
+				name: name,
+				data: data
+			});
+		},
+
+		// Utility: Get array of other active tab IDs
+		getOtherTabs: function() {
+			return Object.keys(this.activeTabs);
+		}
+	},
+
 
 	// Pagination
 	// -------------------------------------------------- //
@@ -2231,6 +2352,8 @@ var gca_tools = {
 		
 		// Items to init
 		gca_tools.time._initServerTime();
+		// Cross tab communication
+		gca_tools.globalEvents.init();
 	};
 	if (document.readyState == 'interactive' || document.readyState == 'complete') fireLoad();
 	else {
