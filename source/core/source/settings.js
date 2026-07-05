@@ -324,6 +324,11 @@ var gca_settings = {
 			wrapper.appendChild(document.createTextNode('Install on Chrome: '));
 			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-chrome'), gca_links.get('addon-chrome'), {target: '_blank'}));
 			group.appendChild(wrapper);
+			
+			wrapper = document.createElement('div');
+			wrapper.appendChild(document.createTextNode('Install on Edge: '));
+			wrapper.appendChild(gca_tools.create.link(gca_links.get('addon-edge'), gca_links.get('addon-edge'), {target: '_blank'}));
+			group.appendChild(wrapper);
 
 			box.appendChild(group);
 
