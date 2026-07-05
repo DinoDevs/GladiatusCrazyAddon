@@ -1,7 +1,7 @@
 ## Release v4.3.12
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
-![improvements](https://img.shields.io/badge/improvements-7-green.svg?style=flat-square)
+![improvements](https://img.shields.io/badge/improvements-8-green.svg?style=flat-square)
 ![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-6-blue.svg?style=flat-square)
 
@@ -22,6 +22,10 @@
   
   - [X] Scroll Book rework by @warkadiusz (#298)
   - [X] Added a copy-to-clipboard button for the Scroll book share codes
+
+- **Horreum**
+
+  - [X]  Resource click now also populates the "Convert Fragments" inputs
 
 ### BUG FIXES
 - **Global**
