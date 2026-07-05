@@ -15,6 +15,10 @@
 - **Event**
 
   - [X] Events events points tracking bug
+ 
+- **Guild Library**
+
+  - [X] Fixed crash when recipes have no level
 
 ### TRANSLATIONS
 
