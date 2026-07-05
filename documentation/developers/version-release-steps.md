@@ -56,6 +56,12 @@ thanos@frutyx-pc:~/GladiatusCrazyAddon/dist$ ./build.sh
 Draft a new release on GitHub:
 - Copy the [PROGRESS.md](https://github.com/DinoDevs/GladiatusCrazyAddon/blob/master/PROGRESS.md) file's contents
 - Create a [new release](https://github.com/DinoDevs/GladiatusCrazyAddon/releases/new) on GitHub
+  - Use a previous release to follow the same template an format (e.g. [v4.3.11 ](https://github.com/DinoDevs/GladiatusCrazyAddon/releases/tag/v4.3.11))
+  - Tag: create new tag in `vX.Y.Z` format
+  - Title: in `Release vX.Y.Z` format
+  - Copy past content from the PROGRESS.md
+    - Remove any `[X]` (makings of implementation status)
+    - Update badges at the top (remove beta badge and add release and date badges, check older release for to copy past format)
   - Attach all the binary files generated on the previous step
 
 ### 2.2. Release on DinoDevs GCA website
