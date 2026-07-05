@@ -1736,6 +1736,8 @@
 		/* Gladiatus all fixes but with RTL */
 		.gca_rtl #highscorePage .section-like {margin-left: auto!important;margin-right: -19px;}
 		.gca_rtl #cooldown_bar_event {right: unset!important;left: 571px!important;}
+		/* Chat fix position to move with scroll */
+		.glfix #chatBox {position: fixed!important;}
 
 		/* Hide flags feature */
 		.hide-flags .language-flag {display: none;}

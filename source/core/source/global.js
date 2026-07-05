@@ -183,7 +183,7 @@ var gca_global = {
 			this.display.advanced_main_menu.submenuClickToChangeTab.apply());
 		
 		// Make traveling display fixes
-		(this.isTraveling &&
+		(this.isTraveling && gca_options.bool("global", "gladiatus_site_fixes") &&
 			this.display.traveling_style_fixes());
 		
 		// Bind auction last search
