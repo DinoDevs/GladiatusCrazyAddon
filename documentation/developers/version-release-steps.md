@@ -74,21 +74,26 @@ Update dinodevs website with new version info:
 
 Upload versions on stores:
 - Upload on [chrome store](https://chrome.google.com/u/3/webstore/devconsole)
-  - Use the `GladiatusCrazyAddOn_Chrome.zip` binary
-  - The version will be reviewed and release publicly
-  - Users around the world will get the update automatically
+- Login to the extension author panel
+  - Use the `GladiatusCrazyAddOn_Chrome.zip` binary to upload a new package
+  - Download the signed draft main.crx package
+  - Submit the draft package for review and publication
+         - The version will be reviewed and release publicly (it takes some time)
+         - Users around the world will get the update automatically
+  - Rename the `main.crx` to  `GladiatusCrazyAddOn_Chrome_Signed.crx` and attach it on the Github release
 - Upload on [edge store](https://partner.microsoft.com/en-us/dashboard/microsoftedge/overview)
-  - Use the `GladiatusCrazyAddOn_Edge.zip` binary
-  - The version will be reviewed and release publicly
-  - Users around the world will get the update automatically
+  - Login to the externsion author panel
+  - Use the `GladiatusCrazyAddOn_Chrome.zip` binary to upload a replace old package (yes, the chrome version)
+  - Submit the draft package for review and publication
+         - The version will be reviewed and release publicly (it takes some time)
+         - Users around the world will get the update automatically
 - Upload on [firefox store](https://addons.mozilla.org/en-US/developers/addons)
-  - Use the `GladiatusCrazyAddOn_Firefox.xpi` binary
-  - The version will be reviewed and release publicly
-  - Users around the world will get the update automatically
-- Generate self hosted version on [firefox store](https://addons.mozilla.org/en-US/developers/addons)
-  - Use the `GladiatusCrazyAddOn_Firefox.xpi` binary
-  - Download the signed version
-  - Upload the signed version on the Github release page
+  - Login to the Addon Developer Hub
+  - Under the manage versions page, upload a new version and using the `GladiatusCrazyAddOn_Firefox.xpi` binary
+    - Select both "Firefox" and "Firefox for Android" 
+    - For changelog, provide the GitHub releases `https://github.com/DinoDevs/GladiatusCrazyAddon/releases/` URL
+    - The version will be reviewed and release publicly (it takes some time)
+    - Users around the world will get the update automatically
 
 ## 3. Post-release actions
 
