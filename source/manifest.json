@@ -6,6 +6,20 @@
 	"author": "The GCA Team",
 	"homepage_url": "https://gladiatus.dinodevs.com",
 	"minimum_chrome_version": "88.0",
+	
+	"browser_specific_settings": {
+	  "gecko": {
+	    "id": "gca@dinodevs.com",
+	    "data_collection_permissions": {
+	      "required": [
+	        "personallyIdentifyingInfo"
+	      ],
+	      "optional": [
+	        "technicalAndInteraction"
+	      ]
+	    }
+	  }
+	},
 
 	"icons": {
 		"16": "icons/icon_16.png",
