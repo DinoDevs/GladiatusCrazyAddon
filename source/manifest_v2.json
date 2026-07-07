@@ -11,12 +11,7 @@
 	  "gecko": {
 	    "id": "gca@dinodevs.com",
 	    "data_collection_permissions": {
-	      "required": [
-	        "personallyIdentifyingInfo"
-	      ],
-	      "optional": [
-	        "technicalAndInteraction"
-	      ]
+	      "required": ["personallyIdentifyingInfo","websiteContent"]
 	    }
 	  }
 	},
