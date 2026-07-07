@@ -130,10 +130,68 @@ var gca_arena = {
 			return link;
 		},
 
+		// Show Notice first
+		transparencyNotice: function() {
+			let article = document.getElementById('content')?.getElementsByTagName('article')[0];
+			if (!article) return;
+
+			// Add <br>
+			article.appendChild(document.createElement('br'));
+
+			// Header
+			let header = document.createElement('h2');
+			header.className = "section-header";
+			header.textContent = gca_locale.get("arena", "global_arena_notice_title");
+			article.appendChild(header);
+
+			// Box
+			let box = document.createElement('section');
+			box.style.display = 'block';
+			article.appendChild(box);
+
+			// Icon
+			let img = document.createElement('img');
+			img.src = gca_resources.folder + 'icons/icon_64.png';
+			img.style.display = 'block';
+			img.style.margin = '10px auto';
+			box.appendChild(img);
+
+			// Notice
+			let text = document.createElement('p');
+			text.style.textAlign = "center";
+			text.textContent = "ℹ️ " + gca_locale.get("arena", "global_arena_notice");
+			box.appendChild(text);
+
+			// Confirm button
+			let btn = document.createElement('input');
+			btn.type = "button";
+			btn.className = "awesome-button";
+			btn.value = gca_locale.get("general", "confirm");
+			btn.style.display = "block";
+			btn.style.margin = "15px auto";
+
+			btn.addEventListener('click', () => {
+				gca_data.set("globalArenaNotice", true);
+
+				header.remove();
+				box.remove();
+
+				this.create();
+			}, false);
+
+			box.appendChild(btn);
+		},
+
 		show : function() {
 			this.getInfo();
-			this.create();
 			this.report.init(this);
+
+			if (gca_data.get("globalArenaNotice", false)) {
+				this.create();
+			}
+			else {
+				this.transparencyNotice();
+			}
 		},
 
 		getInfo : function() {
