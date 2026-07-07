@@ -222,7 +222,9 @@ gca_languages['cs'] = {
 			player_tired : "Jsi unavený. Musíš si odpočinout.",
 			player1_hits_player2 : "{{name1}} zasáhl {{name2}}",
 			player_takes_x_damage :"{{name}} utržil {{number}} poškození",
-			player_dies :"{{name}} zemřel"
+			player_dies :"{{name}} zemřel",
+			global_arena_notice : "Pro sledování vašeho umístění v žebříčku odesílá Globální Aréna vaše veřejné informace o hráči (jméno, zemi, server a úroveň) externí službě. Nejsou shromažďována žádná data.",
+			global_arena_notice_title : "Oznámení o transparentnosti"
 		},
 		
 		// Training section
