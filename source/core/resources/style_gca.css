@@ -1116,7 +1116,7 @@
 		.list-view .packageItemInfoColumn * {font-size: 9px !important;}
 		.list-view .packageItemInfoColumn .icon_gold {width: 16px !important;vertical-align: middle !important;}
 		.list-view .packageItemInfoColumn .ellipsis {overflow: visible !important;font-weight: bold !important;}
-		.list-view .packageItemInfoColumn .gca_item_price_info {margin: 0 !important;position: relative !important;text-align: end !important;color: #612d04 !important;text-shadow: none !important;}
+		.list-view .packageItemInfoColumn .gca_item_price_info {margin: 0 !important;position: relative !important;text-align: end !important;color: #612d04 !important;text-shadow: none !important;background-color: unset !important;}
 		.list-view .packageItemInfoColumn .leftPackageItemInfo {text-align: start;}
 		.list-view .packageItemInfoColumn .leftPackageItemInfo > * {text-align: start;}
 		.list-view .packageItemInfoColumn .leftPackageItemInfo > div:first-child {width: unset!important;}
