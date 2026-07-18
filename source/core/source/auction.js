@@ -361,12 +361,12 @@ var gca_auction = {
 			return;
 
 		// If global script not loaded yet
-		if (!gca_global) {
+		if (typeof gca_global === "undefined") {
 			// Run again later
-			setTimeout(() => {
-				this.saveMercenaryRealNames();
-			}, 100);
-			return;
+		    setTimeout(() => {
+		        this.saveMercenaryRealNames();
+		    }, 100);
+		    return;
 		}
 
 		// Get cached names
