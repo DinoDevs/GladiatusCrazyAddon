@@ -213,7 +213,7 @@ var gca_auction = {
 		init : function() {
 			if (this.wrapper) return;
 
-			let filters = document.getElementsByTagName('section')[1];
+			let filters = document.querySelector('form[name="filterForm"]')?.closest('section');
 			this.wrapper = document.createElement('div');
 			this.wrapper.className = 'gca-auction-custom-extra-filter';
 			filters.appendChild(this.wrapper);
