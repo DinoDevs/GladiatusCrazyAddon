@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-2-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-4-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -27,6 +27,7 @@
 - **Auctions**
 
   - [X] Fixed an error in the mercenary section
+  - [X] Patched the book & coin icons moving into a different section
  
 - **Packages**
 
