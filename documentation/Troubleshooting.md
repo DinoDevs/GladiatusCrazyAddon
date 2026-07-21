@@ -14,7 +14,7 @@ We would like to offer you help if you are having problems with the addon, below
 - [Browser up-to-date](Troubleshooting.md#browser-up-to-date)
 - [GCA version check](Troubleshooting.md#gca-version-check)
 - [Look out for console errors](Troubleshooting.md#look-out-for-console-errors)
-- [Make sure your connection and computer speed is enough](Troubleshooting.md#make-sure-your-connection-and-computer-speed-is-enough)
+- [Checking and maintaining your device](Troubleshooting.md#checking-and-maintaining-your-device)
 - [Gladiatus server outages](Troubleshooting.md#gladiatus-server-outages)
 - [Check GCA GitHub for existing bugs](Troubleshooting.md#check-gca-github-for-existing-bugs)
 - [If nothing helps](Troubleshooting.md#if-nothing-helps)
@@ -38,8 +38,6 @@ GCA offers directly in the settings (Data) to clean only it's all data, we can u
 
 By clicking on the lock 🔒 symbol next to the website address, we can find the "website settings", where we can find the clear data button, use it. On some browsers, this might be different, but every browser has an "clear data" button.
 
-
-
 <details>
   <summary><b>🖼️ Show image (cleaning the data)</b></summary>
 <img src="/documentation/resources/troubleshooting/cookies.PNG"/>
@@ -53,7 +51,6 @@ By clicking on the lock 🔒 symbol next to the website address, we can find the
 
 <img src="/documentation/resources/troubleshooting/addons.PNG" align="right"/>
 Disable any browser extensions that could affect the Gladiatus website (like Ablock, uBlock etc...) and see if your problem is resolved.
-
 
 ## Reinstall GCA
 
@@ -97,21 +94,29 @@ Console error example:
 
 <img src="/documentation/resources/troubleshooting/error_example.PNG" align="right"/>
 
-
 **Beware!** Other extensions that can affect Gladiatus (Adblock, uBlock...) may create console errors, we suggest disabling them before inspecting the console.
 
-## Make sure your connection and computer speed is enough
+## Checking and maintaining your device
 
 Gladiatus is mostly made of pictures, GCA is made of scripts, all this can put some load on your internet and hardware, if it's not enough, some parts of the website can stop showing or working as they normally should.
 
-Thus, we recommend checking your internet speed with free tools on the internet (like https://www.speedtest.net/) to make sure it's running fast enough.
+Thus, we recommend checking your internet speed with free tools on the internet (like https://www.speedtest.net/) to make sure it's running fast enough. Maximum speeds may vary depending on your internet tariff.
 
-For your computer, check the task manager to see if you are not putting too heavy load on your computer, it can slow the browser's ability to load websites. Disable background applications you don't need to free more resources and speed things up.
+For your computer, check the task manager to see if you are not putting too heavy load on your computer, it can slow the browser's ability to load websites. Disable background applications you don't need to free more resources and speed things up. This includes your CPU, RAM, Disc and GPU, if even one of them is always running at 100%, then something is wrong, and you will see slowdowns.
 
 <details>
   <summary><b>🖼️ Show image (task manager)</b></summary>
 <img src="/documentation/resources/troubleshooting/taskmanager.PNG"/>
 </details>
+
+You can optionally also perform a maintenance of your device like:
+- Running Windows Update and doing all it's available updates, Microsoft Store apps included
+- Updating your drivers, most of them can be found on your hardware manufacturers websites (most importantly chipset and GPU drivers)
+- Running a virus scan with Malwarebytes and AdwCleaner (both are available free)
+- Checking your HDD/SSD health status with tools like CrystalDiskInfo or Hard Disk Sentinel for example
+- Testing your RAM with Memtest86 or Memtest86+, we suggest seeing a guide or video on how to use it
+- Checking the temperature of your hardware components, overheating can create issues too, maximum operating temperatures may vary depending on your hardware (you need to check the internet)
+- Verify the integrity of your system files, simply search for Command Prompt (or just cmd), open it As Administrator, and run this command in it "sfc /scannow" (without the "" of course). You can also run "DISM /Online /Cleanup-Image /ScanHealth" afterwards, if it detects problems, you need to run "DISM /Online /Cleanup-Image /RestoreHealth" to fix them.
 
 ## Gladiatus server outages
 
