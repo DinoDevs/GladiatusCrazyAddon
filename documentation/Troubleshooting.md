@@ -36,7 +36,7 @@ If you are having problems, of any kind, simply log off from Gladiatus, restart 
 
 GCA offers directly in the settings (Data) to clean only it's all data, we can use this option, but to be completely sure, we should also clean the Gladiatus page data.
 
-By clicking on the lock 🔒 symbol next to the website address, we can find the "website settings", where we can find the clear data button, use it. On some browsers, this might be different, but every browser has an "clear data" button.
+By clicking on the symbol next to the website address (depending on your browser, it can be 🔒, 🛡️, ≔, ☰ and etc.) we can find the "website settings", where we can find the clear data button, use it. On some browsers, this might be different, but every browser has an "clear data" button.
 
 <details>
   <summary><b>🖼️ Show image (cleaning the data)</b></summary>
