@@ -1,4 +1,4 @@
-## Troubleshooting <sub><sup>(Made by @FrutyX, last checked: 11.1.2022)</sup></sub>
+## Troubleshooting <sub><sup>(Made by @FrutyX, last updated: 21.7.2026)</sup></sub>
 <img src="/documentation/resources/icon_128.png" align="right"/>
 
 This is a troubleshooting guide for Gladiatus Crazy Addon.
