@@ -3065,23 +3065,25 @@ var gca_global = {
 				// Title
 				const title = document.createElement('h2');
 				title.className = 'section-header';
-				title.style.cursor = 'pointer';
 				title.textContent = gca_locale.get("global", "gods_cd_title");
 				wrapper.appendChild(title);
 				
-				// Section
-				const section = document.createElement('section');
-				section.style.display = 'block';
-
+				// Text
+				const text = document.createElement('div');
+				text.className = 'gca_gods_text_area';
+				text.style.backgroundImage = `url(${location.origin}/cdn/img/interface/box_bg.jpg)`;
+				text.style.backgroundRepeat = "repeat-x";
+				text.style.backgroundColor = "#ded2ad";
+		
 				// List
 				list = document.createElement('ul');
 				list.style.margin = '0';
 				list.style.padding = '0';
 				list.style.listStyle = 'none';
-				section.appendChild(list);
+				text.appendChild(list);
 
 				// Append
-				wrapper.appendChild(section);
+				wrapper.appendChild(text);
 				document.getElementById('header_game').appendChild(wrapper);
 
 				// Rendering  
