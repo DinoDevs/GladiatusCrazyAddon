@@ -1086,6 +1086,7 @@ var gca_messages = {
 	},
 	
 	// Spam/Ad Blocker
+	// If you are looking at the code to bypass it, you should know that we can patch it too	
 	spamDetector: function() {
 
 		// Normalize text 
