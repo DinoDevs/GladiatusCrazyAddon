@@ -2,7 +2,7 @@
 
 ![version type](https://img.shields.io/badge/version-beta-yellow.svg?style=flat-square)
 ![improvements](https://img.shields.io/badge/improvements-2-green.svg?style=flat-square)
-![bug fixes](https://img.shields.io/badge/bug%20fixes-5-red.svg?style=flat-square)
+![bug fixes](https://img.shields.io/badge/bug%20fixes-6-red.svg?style=flat-square)
 ![translations](https://img.shields.io/badge/translations-0-blue.svg?style=flat-square)
 
 ### IMPROVEMENTS
@@ -16,9 +16,14 @@
   - [X] Manifest (Firefox) - Added the "data_collection_permissions" property
 
 ### BUG FIXES
+
+- **Global**
+
+  - [X] Fixed page sections randomly opening/closing in some cases (#571)
+
 - **Event**
 
-  - [X] Events events points tracking bug
+  - [X] Patched event points tracking bug
  
 - **Guild Library**
 
