@@ -1087,52 +1087,81 @@ var gca_messages = {
 	
 	// Spam/Ad Blocker
 	spamDetector: function() {
+
+		// Normalize text 
+		const normalizeSpamText = (text) => {
+			return text
+				.normalize("NFD")                  
+				.replace(/[\u0300-\u036f]/g, "")   
+				.replace(/[.\-_\s]+/g, "")         
+				.replace(/0/g, "o")
+				.replace(/1/g, "l")
+				.replace(/3/g, "e")
+				.replace(/4/g, "a")
+				.replace(/5/g, "s")
+				.replace(/7/g, "t")
+				.toLowerCase();
+		};
+
 		// Words filter
 		const keywords = [
-		    "rubies",
-		    "tools",
-		    "discord",
-		    "sell",
-		    "price",
-		    "deals",
-		    "paypal",
-		    "crypto",
-		    "telegram",
-		    "whatsapp",
-		    "discounts",
-		    "buy",
-		    "$",
-		    "€"
+			"rubies",
+			"tools",
+			"discord",
+			"sell",
+			"price",
+			"deals",
+			"paypal",
+			"crypto",
+			"telegram",
+			"whatsapp",
+			"discounts",
+			"buy",
+			"$",
+			"€",
+			"bot",
+			"trial",
+			"store",
+			"automation",
+			"hack",
+			"purchase",
+			"installation"
 		];
-	
+
 		// Minimum threshold for flagging
-		const spamThreshold = 5;
-	
+		const spamThreshold = 4;
+
 		// Check all messages
 		const boxes = document.querySelectorAll('.message_box');
+
 		boxes.forEach(box => {
+
 			const textDiv = box.querySelector('.message_text');
 			if (!textDiv) return;
-	
+
 			const footerDiv = box.querySelector('.message_footer');
+
 			// Clone original node to preserve formatting
 			const originalNode = textDiv.cloneNode(true);
-	
-			// Get plain text for detection
-			const text = textDiv.textContent.toLowerCase();
+
+			// Normalize message before checking
+			const normalizedText = normalizeSpamText(textDiv.textContent);
+
 			let matchCount = 0;
-	
+
 			// Calculate keyword matches
 			keywords.forEach(keyword => {
-				if (text.includes(keyword.toLowerCase())) {
+				if (normalizedText.includes(normalizeSpamText(keyword))) {
 					matchCount++;
 				}
 			});
-	
+
 			// If matches >= threshold - Action
 			if (matchCount >= spamThreshold) {
+
 				// Clear previous content
 				textDiv.innerHTML = '';
+
 				// Flag message
 				const notice = document.createElement('div');
 				notice.textContent = " ⚠︎ " + gca_locale.get("messages", "block_flag") + " ⚠︎ ";
@@ -1147,7 +1176,7 @@ var gca_messages = {
 				notice.style.boxShadow = '2px 2px 8px rgba(0,0,0,0.3)';
 				notice.style.fontFamily = 'cursive';
 				notice.style.cursor = 'pointer';
-				
+
 				textDiv.appendChild(notice);
 
 				// Tracking
@@ -1155,8 +1184,9 @@ var gca_messages = {
 
 				// Function to handle toggling
 				let toggle = () => {
+
 					textDiv.innerHTML = '';
-	
+
 					if (!showingOriginal) {
 						// Restore original content including emojis
 						textDiv.appendChild(originalNode.cloneNode(true));
@@ -1165,20 +1195,22 @@ var gca_messages = {
 						// Show again
 						textDiv.appendChild(notice);
 					}
-					
+
 					// Toggle
 					showingOriginal = !showingOriginal;
 				};
-	
+
 				// Add 'Show Original' button
 				if (footerDiv) {
+
 					const link = document.createElement('a');
 					link.href = '#';
 					link.textContent = gca_locale.get("settings", "show_original");
-	
+
 					toggle = () => {
+
 						textDiv.innerHTML = '';
-		
+
 						if (!showingOriginal) {
 							// Restore original content including emojis
 							textDiv.appendChild(originalNode.cloneNode(true));
@@ -1189,15 +1221,16 @@ var gca_messages = {
 							textDiv.appendChild(notice);
 							link.textContent = gca_locale.get("settings", "show_original");
 						}
-						
+
 						// Toggle
 						showingOriginal = !showingOriginal;
 					};
-	
+
 					link.addEventListener('click', event => {
 						event.preventDefault();
 						toggle();
 					});
+
 					footerDiv.appendChild(link);
 				}
 
